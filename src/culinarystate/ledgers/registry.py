@@ -300,17 +300,22 @@ _add("EVD", "state-change evidence atom (W4)", {
     "study_id_status": enum("PRESENT", "NOT_IDENTIFIABLE", "NOT_APPLICABLE"),
     "extraction_version": STR,
     "matrix": {"type": "object", "required": ["ingredient_id"], "additionalProperties": False, "properties": {
-        "ingredient_id": ref_or_null("ING"), "raw_name": STR, "variety": OPT_STR, "part": OPT_STR,
+        "ingredient_id": ref_or_null("ING"), "raw_name": STR, "food_group": OPT_STR, "variety": OPT_STR,
+        "part": OPT_STR,
         "form": OPT_STR, "prior_processing": OPT_STR, "initial_state": OPT_STR, "geometry": OPT_STR,
         "storage_ripeness": OPT_STR}},
     "process": {"type": "object", "required": ["process_id"], "additionalProperties": False, "properties": {
         "process_id": ref_or_null("PROC"), "raw_name": STR, "family": OPT_STR, "tool_ids": refs("TOOL"),
+        "steps": STR_LIST,                       # ordered canonical step names, e.g. ["boil", "drain"]
+        "step_process_ids": refs("PROC"),
+        "modifiers": {"type": "object", "additionalProperties": {"type": ["string", "boolean", "null"]}},
         "medium": OPT_STR, "condition_id": ref_or_null("COND")}},
     "target": {"type": "object", "required": ["state_variable_id"], "additionalProperties": False,
                "properties": {"state_variable_id": ref_or_null("SVAR"), "raw_name": STR,
                               "molecule_id": ref_or_null("MOL"), "reaction_id": ref_or_null("RXN"),
                               "basis": enum("WET", "DRY", "FRESH_WEIGHT", "PER_SERVING", "HEADSPACE",
-                                            "AS_CONSUMED", "TRUE_RETENTION", "UNKNOWN")}},
+                                            "AS_CONSUMED", "TRUE_RETENTION", "APPARENT_RETENTION",
+                                            "RETENTION_TR_OR_AR", "UNKNOWN")}},
     "before": QVALUE, "after": QVALUE,
     "measurement_method_id": ref_or_null("MEAS"),
     "derived": {"type": "object", "additionalProperties": False, "properties": {

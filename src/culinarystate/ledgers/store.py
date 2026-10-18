@@ -37,6 +37,13 @@ def _append_jsonl(path: Path, obj: dict) -> None:
         fh.write(json.dumps(obj, ensure_ascii=False, sort_keys=True) + "\n")
 
 
+_VOLATILE = {"version", "created_at", "schema_version"}
+
+
+def _content(rec: dict) -> dict:
+    return {k: v for k, v in rec.items() if k not in _VOLATILE}
+
+
 class IdMinter:
     """Mint `PREFIX-000123`. Same dedup key -> same id. Numbers are never reused."""
 
@@ -111,6 +118,19 @@ class LedgerStore:
         _append_jsonl(self.root / f"{prefix}.jsonl", rec)
         self._rows(prefix).append(rec)
         return copy.deepcopy(rec)
+
+    def upsert(self, record: dict) -> tuple[str, dict]:
+        """Idempotent write. Returns ("created" | "unchanged" | "revised", stored record).
+
+        Content is compared ignoring version/created_at/schema_version, so re-running an
+        ingester is a no-op unless the parsed content changed — then history grows by one.
+        """
+        prev = self.latest(record["id"])
+        if prev is None:
+            return "created", self.append({**record, "version": 1})
+        if _content(prev) == _content(record):
+            return "unchanged", prev
+        return "revised", self.append({**record, "version": prev["version"] + 1})
 
     def revise(self, record_id: str, changes: dict, created_by: str) -> dict:
         """Append a new version built from the latest one plus `changes`."""

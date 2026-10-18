@@ -75,7 +75,7 @@ QVALUE = {
             "type": "object",
             "required": ["kind", "limit"],
             "additionalProperties": False,
-            "properties": {"kind": enum("LT_LOD", "LT_LOQ", "GT_ULOQ", "ND"), "limit": OPT_NUM},
+            "properties": {"kind": enum("LT_LOD", "LT_LOQ", "GT_ULOQ", "GT_CAP", "ND"), "limit": OPT_NUM},
         }),
         "raw": OPT_STR,
     },

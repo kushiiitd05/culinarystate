@@ -70,9 +70,10 @@ def rule_evd(r: dict) -> list[str]:
     if tier in GROUNDED_TIERS and not prov.get("locator"):
         errs.append(f"tier {tier} requires provenance.locator (page/table/figure/span/row)")
     # censoring flag must agree with values
-    censored_vals = any((r.get(k) or {}).get("status") == "CENSORED" for k in ("before", "after"))
-    if censored_vals and not r["censored"]:
-        errs.append("before/after is CENSORED but censored=false")
+    values = [r.get("before"), r.get("after"), *(r.get("derived") or {}).values()]
+    censored_vals = any(isinstance(v, dict) and v.get("status") == "CENSORED" for v in values)
+    if censored_vals != r["censored"]:
+        errs.append(f"censored={r['censored']} disagrees with CENSORED values ({censored_vals})")
     # percent_change consistency when both sides measured in same unit
     b, a = r.get("before"), r.get("after")
     pc = (r.get("derived") or {}).get("percent_change")

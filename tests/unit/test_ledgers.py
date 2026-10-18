@@ -126,6 +126,18 @@ def test_censored_flag_must_match():
     assert any("censored" in e for e in errors(rec))
 
 
+def test_capped_retention_factor_is_censored():
+    capped = {"status": "CENSORED", "censor": {"kind": "GT_CAP", "limit": 97.5}, "unit": "%", "raw": "100"}
+    rec = ex("EVD", derived={"retention_factor": capped})
+    assert any("censored" in e for e in errors(rec))
+    rec["censored"] = True
+    assert errors(rec) == []
+
+
+def test_censored_true_without_censored_values_rejected():
+    assert errors(ex("EVD", censored=True))
+
+
 # ---- quantity: no invented grams ----
 def test_no_invented_grams_from_cup():
     rec = ex("QNT", normalized=m(125, "g"))
