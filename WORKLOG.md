@@ -445,3 +445,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/{diagnosis`, `policy`, `pipeline}.py tools/ask.py tests/unit/test_diagnosis.py tests/integration/test_e2e_scenarios.py`
 - **Verified:** 2,797 fast + 40 integration pass
 - **Next:** large+CRF results; EXP cards; GLiNER needs approval
+
+### S065 · 2026-10-18 21:54 IST · C16/C17/DEL-5 · Grounded generator, claim checker, ladder smoke (negative result)
+- **Who:** Kush+Claude
+- **Did:** generation/prompts.py (B0, B2 hybrid RAG, B5 packet + mode + precision cap + disallowed claims), generation/claims.py (numeric claims must cite packet rows and match values; fabricated ids; UCR), generation/llm.py (Ollama on A100 via SSH tunnel, temperature 0, fixed seed). tools/run_ladder.py smoke on 8 demo questions with qwen2.5:7b: B0 0 numeric claims, B2 UCR 0.80 (3 fabricated ids), B5 UCR 0.71. Causes: checker missed multi-id brackets (fixed), real model overreach on NEAR rows / RECOVER, non-evidence routes given the evidence prompt. Kept as a negative result.
+- **Files:** `src/culinarystate/generation/ tools/run_ladder.py reports/del5/ tests/unit/test_generation.py`
+- **Verified:** unit tests; smoke outputs in reports/del5
+- **Next:** per-route prompts + precision-cap enforcement + rerun; large+CRF card

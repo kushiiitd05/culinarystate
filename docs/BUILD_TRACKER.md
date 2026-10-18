@@ -27,8 +27,8 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C13 | Relevance gate | ✅ | rules pass SSOT §7 examples; held-out eval needs benchmark (D-008) |
 | C14 | Uncertainty/OOD gate | ✅ | `decision/ood.py`: support per axis, OOD caps precision at QUALITATIVE; wired into policy/ask |
 | C15 | Multi-objective selector | 🟡 | alternatives without hidden weights; no Pareto front |
-| C16 | Grounded response generator | ⬜ | needs LLM (A100) constrained by packet + precision cap |
-| C17 | Citation/provenance layer | 🟡 | packet `citation_map`, SRC/SNAP ledgers; no claim→citation check |
+| C16 | Grounded response generator | 🟡 | `generation/` prompts + Ollama client (A100 tunnel); smoke B5 UCR 0.71 → per-route prompts + cap enforcement next |
+| C17 | Citation/provenance layer | 🟡 | `generation/claims.py`: numeric claim → cited packet row value check, fabricated ids, UCR |
 | C18 | Session-state updater | 🟡 | engine Observe/Predict precedence; sessions runner; not wired to `ask` |
 
 ## Research questions (§247) — protocol §257E
