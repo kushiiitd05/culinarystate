@@ -36,3 +36,10 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
 - **Why:** third-party copyrighted text (D-003). Templates/gold live in `annotation/gold/` (git-ignored); share between Kush and Parv via private drive/zip. Committed: handbook, schema, examples (synthetic), agreement reports, derived metrics.
 - **Also:** gold recipe IDs are A1 `recipe_id`s (mapped by URL), not raw-file line numbers (they differ for 11,980/11,983 rows).
 - **Approver:** Claude (reversible; confirm with Kush/Parv).
+
+### D-008 · 2026-10-18 · Benchmark task types (proposal says "8 task types" but never names them) — PROPOSED
+- T1 CURRENT_STATE (H1) · T2 NEXT_ACTION (H1) · T3 PROCESS_EFFECT_DIRECT (H2/H3) · T4 COMPARE_PROCESSES (H2, mode COMPARE)
+  · T5 UNSUPPORTED_MUST_ABSTAIN (H3, mode ABSTAIN) · T6 FEASIBILITY_CONSTRAINTS (H4: tools/allergens/time)
+  · T7 DIAGNOSE_RECOVER (H4: state divergence, e.g. "boiled instead of browned") · T8 ASK_CLARIFY (VOI, mode ASK).
+- Covers H1–H4 and all decision modes (RECOMMEND inside T6/T7). Registry fields per plan AI6.
+- **Approver:** Kush + Parv to confirm before authoring starts.

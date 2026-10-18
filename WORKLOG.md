@@ -158,3 +158,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `handoff/SOURCE_ACCESS.md`, `handoff/API_BLOCKERS.md`, `handoff/MANUAL_NEXT_STEPS.md`
 - **Verified:** docs written; every command path exists in repo
 - **Next:** PE ingest when crawl completes
+
+### S024 · 2026-10-18 12:04 IST · DEL-4/DEL-5/B17 · Benchmark task-type proposal (D-008) + registry template
+- **Who:** Kush+Claude
+- **Did:** Proposal promises ~80 questions × 8 task types but never names them → proposed T1 CURRENT_STATE, T2 NEXT_ACTION, T3 PROCESS_EFFECT_DIRECT, T4 COMPARE_PROCESSES, T5 UNSUPPORTED_MUST_ABSTAIN, T6 FEASIBILITY_CONSTRAINTS, T7 DIAGNOSE_RECOVER, T8 ASK_CLARIFY (maps H1–H4 + decision modes). benchmark/benchmark_registry_template.csv with plan AI6 registry fields (task type, difficulty, source family, ingredient/process family, evidence regime, answer kind, must-abstain, gold decision mode/evidence/constraints) + 2 example rows. Tiers: min 104 / target 320 / stretch 440 (AH5).
+- **Files:** `DECISIONS.md`, `benchmark/benchmark_registry_template.csv`
+- **Verified:** template columns match plan AI6
+- **Next:** HUMAN: confirm D-008, then author DEV items
