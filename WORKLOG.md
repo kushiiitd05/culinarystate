@@ -424,3 +424,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/{ood`, `policy`, `pipeline}.py tools/ask.py`
 - **Verified:** 2,779 fast + 39 integration tests pass
 - **Next:** diagnosis verifier + recovery KB (RQ16-18/19)
+
+### S062 · 2026-10-18 21:40 IST · RQ16-18/19 · Troubleshooting candidates: cause / prevention / recovery mined
+- **Who:** Kush+Claude
+- **Did:** kg/troubleshoot.py: closed failure vocabulary (curdle, split, burn, stick, sink, lumpy, too thick/thin/salty/dry, tough, heavy, ...) and three relations kept separate (CAUSE 'will curdle if boiled', PREVENTION 'stir to prevent sticking' / ', or it will curdle', RECOVERY 'if it curdles, beat in cold milk'). Over 73,778 Gutenberg + 4,757 Wikibooks docs: ~1.7k statements, ~105 keys with >=2 independent sources. AI-judged precision on random samples: 35/40 then, after fixing 3 systematic errors (keep-it-burning, heavy adjective, non-action clause) and 'grains', 37/40 on a fresh sample. Registry CSV keeps public-domain text only.
+- **Files:** `src/culinarystate/kg/troubleshoot.py tools/mine_troubleshooting.py registry/kg/troubleshooting_candidates_v1.csv reports/troubleshooting_v1.md`
+- **Verified:** unit tests incl. sample regressions; precision samples local
+- **Next:** proposer + verifier over candidates; failure gold (humans)
