@@ -56,3 +56,13 @@ def test_packet_classes():
     assert r.packet("vitamin c fried spinach", Query(ingredient_id="ING-1", process_id="PROC-3", target="vitamin c")).evidence_class == "UNSUPPORTED"
     r2 = EvidenceRetriever([row(1, "ING-1", "PROC-1", "DECREASE", 0.6), row(2, "ING-1", "PROC-1", "INCREASE", 1.2)], {}, FAM)
     assert r2.packet("vitamin c boiled spinach", Query(ingredient_id="ING-1", process_id="PROC-1", target="vitamin c")).evidence_class == "CONFLICT"
+
+
+def test_ingredient_named_in_group_description_is_near():
+    e = {"matrix": {"ingredient_id": None, "raw_name": "stem, flower and seed vegetables, such as broccoli, cauliflower",
+                    "food_group": "vegetables"},
+         "process": {"process_id": "PROC-1", "step_process_ids": ["PROC-1"]}, "target": {"raw_name": "Vitamin C"}, "tier": "E3"}
+    r = compatibility(Query(ingredient_id="ING-1", ingredient_name="broccoli", process_id="PROC-1"), e, None, FAM)
+    assert r["vector"]["matrix"] == "NEAR"
+    r = compatibility(Query(ingredient_id="ING-1", ingredient_name="pea", process_id="PROC-1"), e, None, FAM)
+    assert r["vector"]["matrix"] == "UNKNOWN"                                      # whole words only ("peas" ≠ "pea" here)

@@ -5,6 +5,7 @@ Each axis returns MATCH / NEAR / MISMATCH / UNKNOWN. UNKNOWN on either side is n
 """
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 
 AXES = ("matrix", "state", "process", "time", "temperature", "medium", "target", "basis", "tier")
@@ -46,6 +47,8 @@ def compatibility(q: Query, e: dict, cond: dict | None, proc_family: dict[str, s
     if q.ingredient_id and m.get("ingredient_id"):
         v["matrix"] = "MATCH" if q.ingredient_id == m["ingredient_id"] else (
             "NEAR" if m["ingredient_id"] in q.ingredient_parents else "MISMATCH")
+    elif q.ingredient_name and re.search(rf"\b{re.escape(q.ingredient_name.lower())}\b", (m.get("raw_name") or "").lower()):
+        v["matrix"] = "NEAR"                 # named inside a group row ("vegetables, such as broccoli"): group-level evidence
     elif q.food_group and m.get("food_group"):
         v["matrix"] = "NEAR" if q.food_group.split()[0].lower() in m["food_group"].lower() else "UNKNOWN"
     else:
