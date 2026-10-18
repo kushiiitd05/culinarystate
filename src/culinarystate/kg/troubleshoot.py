@@ -21,13 +21,16 @@ FAILURES = {  # surface stem -> failure key
     "turns out heavy": "HEAVY", "turn out heavy": "HEAVY", "be heavy": "HEAVY", "become heavy": "HEAVY", "is heavy": "HEAVY",
 }
 _F = "|".join(sorted((re.escape(k) for k in FAILURES), key=len, reverse=True))
-FAIL = rf"(?P<fail>(?:{_F})\w*)"
+FAIL = rf"(?P<fail>(?!separately\b)(?:{_F})\w*)"                  # "boiled separately" is not a split
 SUBJ = r"(?:[\w'-]+\s+){0,4}?"                               # any short subject ("the fudge", "your sauce")
 AUX = r"(?:(?:begins?|starts?|seems?|appears?|is about|threatens?|happens?|turns?|becomes?|gets?|goes?|be|is|are|does|do|should)\s+(?:to\s+)?){0,2}"
-RECOVERY_RE = re.compile(rf"^\s*(?:if|should)\s+{SUBJ}{AUX}{FAIL}\b[^,;:]*[,;:]\s*(?:then\s+)?(?P<act>[^.;]{{4,160}})", re.I)
+LEAD = r"(?:(?:in|on|during|for)\s+(?:\w+\s+){0,2}\w+,?\s+)?"         # "In hot weather, if …"
+RECOVERY_RE = re.compile(rf"^\s*{LEAD}(?:if|should)\s+{SUBJ}{AUX}{FAIL}\b[^,;:]*[,;:]\s*(?:then\s+)?(?P<act>[^.;]{{4,160}})", re.I)
 CAUSE_RE = re.compile(rf"\b(?:will|would|may|might|is apt to|are apt to|is likely to|are likely to)\s+{FAIL}\b[^,;]*?"
-                      rf"\b(?:if|when|unless)\s+(?P<cond>[^.;]{{4,160}})", re.I)
-CAUSE_PLAIN_RE = re.compile(rf"\b{FAIL}\s+(?:if|when)\s+(?P<cond>[^.;]{{4,160}})", re.I)
+                      rf"\b(?P<conj>if|when|unless)\s+(?P<cond>[^.;,]{{4,160}})", re.I)
+CAUSE_PLAIN_RE = re.compile(rf"\b{FAIL}\s+(?P<conj>if|when|unless)\s+(?P<cond>[^.;,]{{4,160}})", re.I)
+LESS = re.compile(r"\b(?:not|never|less\s+(?:liable|likely|apt))\s+(?:to\s+)?$", re.I)   # "less liable to burn if X" = X prevents
+DONENESS = re.compile(r"^(?:done|cooked|ready|tried|tested|served|(?:they\s+)?come\s+to\s+(?:the\s+)?table)\b", re.I)
 PREVENT_RE = re.compile(rf"^\s*(?P<act>[^.;]{{4,160}}?)\s*,?\s+(?:to (?:prevent|avoid)|to keep\b[^.;]*?\bfrom|so as not to|lest)\b"
                         rf"[^.;]*?\b{FAIL}", re.I)                    # "keep it burning" (wanted) is not prevention
 NOT_ACTION = re.compile(r"\b(?:difficult|impossible|hard|easy)\b|\bweather\b", re.I)
@@ -56,7 +59,9 @@ def sentences(text: str) -> list[str]:
 NOISE = re.compile(r"\b(?:cinnamon|celery|vanilla|lemongrass|liquorice|licorice|bread|cheese|butter|rhubarb)\s+sticks?\b|"
                    r"\bfalls?\s+(?:in\s+(?:\w+\s+)?drops|from|off|into)\b|\b(?:don'?t|do not|doesn'?t)\s+mind\b|"
                    r"\b(?:prefer|like)\s+(?:it\s+)?(?:soggy|thick|thin|dry)\b|\bburns?\s+(?:well|brightly|clear)\b|"
-                   r"\bdampers?\b|\bwater\s+(?:should\s+|may\s+)?(?:sinks?|falls?)\b", re.I)
+                   r"\bdampers?\b|\bwater\s+(?:should\s+|may\s+)?(?:sinks?|falls?)\b|\beasily\s+separated\b|"
+                   r"\bif\s+(?:preferred|liked|desired|wished|you\s+(?:like|wish|prefer))\b|"
+                   r"\b(?:burn|burns)\s+or\s+scalds?\b|\bphysician|\bpatients?\b|\bseized\s+with\b", re.I)
 
 
 def mine_sentence(s: str) -> list[Statement]:
@@ -66,7 +71,11 @@ def mine_sentence(s: str) -> list[Statement]:
     if m := RECOVERY_RE.search(s):
         out.append(Statement("RECOVERY", _key(m["fail"]), m["act"].strip(" ,"), s))
     elif m := (CAUSE_RE.search(s) or CAUSE_PLAIN_RE.search(s)):
-        out.append(Statement("CAUSE", _key(m["fail"]), m["cond"].strip(" ,"), s))
+        cond = m["cond"].strip(" ,")
+        if DONENESS.match(cond):                                   # "sinks when done": a doneness signal, not a failure
+            return []
+        flip = m["conj"].lower() == "unless" or LESS.search(s[:m.start("fail")])
+        out.append(Statement("PREVENTION" if flip else "CAUSE", _key(m["fail"]), cond, s))
     elif (m := (PREVENT_RE.search(s) or PREVENT_OR_RE.search(s))) and not NOT_ACTION.search(m["act"]):
         out.append(Statement("PREVENTION", _key(m["fail"]), m["act"].strip(" ,"), s))
     return [x for x in out if x.failure != "TURN" or re.search(r"\bturn\w*\s+(?:sour|bitter|rancid)", s, re.I)]

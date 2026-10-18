@@ -76,7 +76,10 @@ def main() -> None:
              "- candidates, not verified causes; precision sample in data/interim/troubleshooting/precision_sample.jsonl",
              "- AI-judged precision on fresh random samples (not human verification): 37/40 (mixed, seed 7); "
              "17/20 RECOVERY before noise filter; 26/30 strict / 28/30 lenient (mixed, seed 23). Known noise: "
-             "condition spans from unrelated if-clauses, vague actions.", "",
+             "condition spans from unrelated if-clauses, vague actions.",
+             "- v1.1 filters (2026-10-18): 'separately', 'if preferred', doneness signals ('sinks when done'), medical text; "
+             "'unless X' / 'less liable to … if X' -> PREVENTION; cause span stops at the clause comma. Fresh sample "
+             "seed 31: 28/30 before the medical filter (both misses medical, now filtered). Multi-source CAUSE keys 9 -> 3.", "",
              by.to_markdown()]
     (ROOT / "reports" / "troubleshooting_v1.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines[:5]))
