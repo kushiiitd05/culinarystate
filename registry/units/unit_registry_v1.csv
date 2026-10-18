@@ -1,0 +1,75 @@
+unit_id,unit,type,dimension,si_factor,conventions,needs_source,aliases
+UNIT-000001,g,PHYSICAL,MASS,1.0,,False,g|gram|grams|gm|gms|gr|grammes
+UNIT-000002,kg,PHYSICAL,MASS,1000.0,,False,kg|kilo|kilos|kilogram|kilograms|kgs
+UNIT-000003,mg,PHYSICAL,MASS,0.001,,False,mg|milligram|milligrams
+UNIT-000004,oz,PHYSICAL,MASS,28.349523125,,False,oz|ounce|ounces|ozs
+UNIT-000005,lb,PHYSICAL,MASS,453.59237,,False,lb|lbs|pound|pounds
+UNIT-000006,ml,PHYSICAL,VOLUME,1.0,,False,ml|mls|millilitre|millilitres|milliliter|milliliters|cc
+UNIT-000007,cl,PHYSICAL,VOLUME,10.0,,False,cl|centilitre|centilitres
+UNIT-000008,dl,PHYSICAL,VOLUME,100.0,,False,dl|decilitre|decilitres
+UNIT-000009,l,PHYSICAL,VOLUME,1000.0,,False,l|litre|litres|liter|liters|ltr|ltrs
+UNIT-000010,fl_oz,CULINARY_VOLUME,VOLUME,,UK=28.4131mL[UK_WMA_1985_SCH1]; US=29.5735mL[NIST_HB44_APPC]; US_LABEL=30mL[CFR21_101_9],False,fl oz|floz|fl. oz|fl.oz|fluid ounce|fluid ounces
+UNIT-000011,pint,CULINARY_VOLUME,VOLUME,,UK=568.261mL[UK_WMA_1985_SCH1]; US=473.176mL[NIST_HB44_APPC],False,pint|pints|pt
+UNIT-000012,quart,CULINARY_VOLUME,VOLUME,,UK=1136.52mL[UK_WMA_1985_SCH1]; US=946.353mL[NIST_HB44_APPC],False,quart|quarts|qt
+UNIT-000013,gallon,CULINARY_VOLUME,VOLUME,,UK=4546.09mL[UK_WMA_1985_SCH1]; US=3785.41mL[NIST_HB44_APPC],False,gallon|gallons|gal
+UNIT-000014,tsp,CULINARY_VOLUME,VOLUME,,AU=5mL[CONV_METRIC_SPOON]; IN=5mL[CONV_METRIC_SPOON]; METRIC=5mL[CONV_METRIC_SPOON]; UK=5mL[CONV_METRIC_SPOON]; US=4.92892mL[NIST_HB44_APPC]; US_LABEL=5mL[CFR21_101_9],True,tsp|tsps|teaspoon|teaspoons|tspn|t
+UNIT-000015,tbsp,CULINARY_VOLUME,VOLUME,,AU=20mL[CONV_AU_TBSP]; IN=15mL[CONV_METRIC_SPOON]; METRIC=15mL[CONV_METRIC_SPOON]; UK=15mL[CONV_METRIC_SPOON]; US=14.7868mL[NIST_HB44_APPC]; US_LABEL=15mL[CFR21_101_9],True,tbsp|tbsps|tablespoon|tablespoons|tbs|tbl|tbls|tblsp|T
+UNIT-000016,dsp,CULINARY_VOLUME,VOLUME,,UK=10mL[CONV_UK_DSP],True,dsp|dessertspoon|dessertspoons|dstspn
+UNIT-000017,cup,CULINARY_VOLUME,VOLUME,,AU=250mL[CONV_METRIC_CUP]; METRIC=250mL[CONV_METRIC_CUP]; US=236.588mL[NIST_HB44_APPC]; US_LABEL=240mL[CFR21_101_9],True,cup|cups|c
+UNIT-000018,katori,REGIONAL,VOLUME,,,False,katori|katoris|katori-ful|vati|bowl|bowls
+UNIT-000019,glass,REGIONAL,VOLUME,,,False,glass|glasses
+UNIT-000020,mug,REGIONAL,VOLUME,,,False,mug|mugs|mugful
+UNIT-000021,clove,COUNT_PORTION,COUNT,,,False,clove|cloves
+UNIT-000022,slice,COUNT_PORTION,COUNT,,,False,slice|slices
+UNIT-000023,fillet,COUNT_PORTION,COUNT,,,False,fillet|fillets
+UNIT-000024,head,COUNT_PORTION,COUNT,,,False,head|heads
+UNIT-000025,bunch,COUNT_PORTION,COUNT,,,False,bunch|bunches
+UNIT-000026,sprig,COUNT_PORTION,COUNT,,,False,sprig|sprigs
+UNIT-000027,stick,COUNT_PORTION,COUNT,,,False,stick|sticks
+UNIT-000028,rasher,COUNT_PORTION,COUNT,,,False,rasher|rashers
+UNIT-000029,sheet,COUNT_PORTION,COUNT,,,False,sheet|sheets
+UNIT-000030,piece,COUNT_PORTION,COUNT,,,False,piece|pieces|pc|pcs
+UNIT-000031,leaf,COUNT_PORTION,COUNT,,,False,leaf|leaves
+UNIT-000032,stalk,COUNT_PORTION,COUNT,,,False,stalk|stalks
+UNIT-000033,wedge,COUNT_PORTION,COUNT,,,False,wedge|wedges
+UNIT-000034,strip,COUNT_PORTION,COUNT,,,False,strip|strips
+UNIT-000035,cube,COUNT_PORTION,COUNT,,,False,cube|cubes
+UNIT-000036,ball,COUNT_PORTION,COUNT,,,False,ball|balls
+UNIT-000037,pod,COUNT_PORTION,COUNT,,,False,pod|pods
+UNIT-000038,ear,COUNT_PORTION,COUNT,,,False,ear|ears
+UNIT-000039,loaf,COUNT_PORTION,COUNT,,,False,loaf|loaves
+UNIT-000040,joint,COUNT_PORTION,COUNT,,,False,joint|joints
+UNIT-000041,bulb,COUNT_PORTION,COUNT,,,False,bulb|bulbs
+UNIT-000042,can,PACKAGE,COUNT,,,False,can|cans|tin|tins
+UNIT-000043,jar,PACKAGE,COUNT,,,False,jar|jars
+UNIT-000044,pack,PACKAGE,COUNT,,,False,pack|packs|packet|packets|pkt
+UNIT-000045,bag,PACKAGE,COUNT,,,False,bag|bags
+UNIT-000046,carton,PACKAGE,COUNT,,,False,carton|cartons
+UNIT-000047,bottle,PACKAGE,COUNT,,,False,bottle|bottles
+UNIT-000048,tub,PACKAGE,COUNT,,,False,tub|tubs
+UNIT-000049,box,PACKAGE,COUNT,,,False,box|boxes
+UNIT-000050,sachet,PACKAGE,COUNT,,,False,sachet|sachets
+UNIT-000051,punnet,PACKAGE,COUNT,,,False,punnet|punnets
+UNIT-000052,bar,PACKAGE,COUNT,,,False,bar|bars
+UNIT-000053,block,PACKAGE,COUNT,,,False,block|blocks
+UNIT-000054,pot,PACKAGE,COUNT,,,False,pot|pots
+UNIT-000055,tray,PACKAGE,COUNT,,,False,tray|trays
+UNIT-000056,pouch,PACKAGE,COUNT,,,False,pouch|pouches
+UNIT-000057,pinch,VERBAL_QUALITATIVE,NONE,,,False,pinch|pinches
+UNIT-000058,dash,VERBAL_QUALITATIVE,NONE,,,False,dash|dashes
+UNIT-000059,splash,VERBAL_QUALITATIVE,NONE,,,False,splash|splashes
+UNIT-000060,handful,VERBAL_QUALITATIVE,NONE,,,False,handful|handfuls
+UNIT-000061,drizzle,VERBAL_QUALITATIVE,NONE,,,False,drizzle
+UNIT-000062,knob,VERBAL_QUALITATIVE,NONE,,,False,knob|knobs
+UNIT-000063,sprinkle,VERBAL_QUALITATIVE,NONE,,,False,sprinkle|sprinkling
+UNIT-000064,glug,VERBAL_QUALITATIVE,NONE,,,False,glug|glugs
+UNIT-000065,smidgen,VERBAL_QUALITATIVE,NONE,,,False,smidgen
+UNIT-000066,drop,VERBAL_QUALITATIVE,NONE,,,False,drop|drops
+UNIT-000067,squeeze,VERBAL_QUALITATIVE,NONE,,,False,squeeze
+UNIT-000068,dollop,VERBAL_QUALITATIVE,NONE,,,False,dollop|dollops
+UNIT-000069,grating,VERBAL_QUALITATIVE,NONE,,,False,grating|gratings
+UNIT-000070,shaving,VERBAL_QUALITATIVE,NONE,,,False,shaving|shavings
+UNIT-000071,scattering,VERBAL_QUALITATIVE,NONE,,,False,scattering
+UNIT-000072,cm,LENGTH,LENGTH,1.0,,False,cm|centimetre|centimetres
+UNIT-000073,mm,LENGTH,LENGTH,0.1,,False,mm
+UNIT-000074,inch,LENGTH,LENGTH,2.54,,False,in|inch|inches

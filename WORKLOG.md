@@ -123,3 +123,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/process/tools.py`, `tools/build_tool_registry.py`, `tests/unit/test_tools.py`, `registry/tools/`, `reports/tool_registry_v1.md`, `ledgers/data/TOOL.jsonl`, `ledgers/data/PROC.jsonl`
 - **Verified:** pytest 246 passed; 83.7% of 39,540 steps mention ≥1 tool; 535 process↔tool links (fry→frying pan lift 21.3, line→baking parchment 27.3, preheat→oven 14.9)
 - **Next:** Phenol-Explorer ingest (crawl nearly done); UNIT ledger records; REC ledger
+
+### S019 · 2026-10-18 11:49 IST · B10/ledger-queue#7 · UNIT ledger records + unit-authority SRC records
+- **Who:** Kush+Claude
+- **Did:** tools/build_unit_registry.py: 74 UNIT records from quantity/units.py (physical / locale culinary volume with per-locale conventions / count-portion / package / verbal / regional / length) each linked to SRC records for its authority: NIST HB44 App C, UK WMA 1985 Sch1, 21 CFR 101.9, SI brochure (AI_PRECHECKED — definitions recalled by AI, human to confirm citation) and 4 conventions (metric spoon, AU tbsp, metric cup, UK dsp) marked NEEDS_SOURCE. Regional vessels (katori, glass, mug) carry no volume.
+- **Files:** `tools/build_unit_registry.py`, `registry/units/unit_registry_v1.csv`, `ledgers/data/UNIT.jsonl`, `ledgers/data/SRC.jsonl`
+- **Verified:** 74 UNIT + 8 SRC created; rerun all unchanged; 4 units flagged NEEDS_SOURCE (tsp, tbsp, dsp, cup)
+- **Next:** HUMAN: cite authorities for metric spoon/cup conventions. Code: Phenol-Explorer ingest; REC ledger
