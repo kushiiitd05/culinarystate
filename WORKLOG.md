@@ -130,3 +130,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/build_unit_registry.py`, `registry/units/unit_registry_v1.csv`, `ledgers/data/UNIT.jsonl`, `ledgers/data/SRC.jsonl`
 - **Verified:** 74 UNIT + 8 SRC created; rerun all unchanged; 4 units flagged NEEDS_SOURCE (tsp, tbsp, dsp, cup)
 - **Next:** HUMAN: cite authorities for metric spoon/cup conventions. Code: Phenol-Explorer ingest; REC ledger
+
+### S020 · 2026-10-18 11:51 IST · B07/ledger-queue#8 · REC ledger (11,934 recipes) + near-duplicate families + REC↔ING links
+- **Who:** Kush+Claude
+- **Did:** ingest/recipe_families.py: word-5-shingle MinHash (64 perms) + 16-band LSH + exact Jaccard ≥0.8 confirmation + union-find families (plan H1). tools/build_recipe_registry.py: REC record per A1 recipe (title, url, sha256 of title+ingredients+steps, family_id, cuisine, counts, raw_location pointer; raw text stays local per D-003; A1 id in external_refs). recipe_ingredient_links_v1.csv joins every A1 mention to REC and ING ids.
+- **Files:** `src/culinarystate/ingest/recipe_families.py`, `tools/build_recipe_registry.py`, `tests/unit/test_recipe_families.py`, `registry/recipes/`, `reports/recipe_registry_v1.md`, `ledgers/data/REC.jsonl`
+- **Verified:** pytest 248 passed; 11,934 REC created; 7 near-duplicate pairs → 5 multi-recipe families (largest 3); REC↔ING: 123,598 mention rows, 95.4% linked
+- **Next:** Phenol-Explorer ingest + EVD→ING/PROC linking
