@@ -403,7 +403,9 @@ _add("CLM", "final claim with support", {
 # ---------------- concept-level knowledge-graph edges (X3c, D-011) ----------------
 KGE_PREDICATES = ["ING_HAS_CATEGORY", "ING_PARENT", "ING_PROCESSED_BY", "ING_CO_OCCURS", "ING_USED_IN_CUISINE",
                   "ING_MEASURED_IN_UNIT", "COMPONENT_CONTAINS_ING", "PROC_USES_TOOL", "PROC_FOLLOWED_BY",
-                  "PROC_TYPICAL_DURATION", "PROC_TYPICAL_TEMPERATURE", "PROC_IN_FAMILY", "TOOL_HAS_CATEGORY"]
+                  "PROC_TYPICAL_DURATION", "PROC_TYPICAL_TEMPERATURE", "PROC_IN_FAMILY", "TOOL_HAS_CATEGORY",
+                  "ING_ALTERNATIVE_TO", "ING_OFTEN_OPTIONAL", "ING_PREP_FORM", "PROC_USES_MEDIUM", "PROC_ENDPOINT_STATE",
+                  "MOL_HAS_TASTE"]
 ANY_ID = {"type": "string", "pattern": r"^[A-Z]{2,8}-\d{6}$"}
 _QUANT = {"type": "object", "additionalProperties": False, "required": ["n", "unit"],
           "properties": {"n": INT0, "unit": STR, "p10": NUM, "p50": NUM, "p90": NUM, "min": NUM, "max": NUM}}
@@ -418,7 +420,7 @@ _add("KGE", "typed concept-level edge with support, association and confidence",
     "quantiles": nullable(_QUANT),
     "confidence": {"type": "number", "minimum": 0, "maximum": 1},
     "confidence_band": enum("HIGH", "MEDIUM", "LOW"),
-    "method": enum("CO_OCCURRENCE", "SEQUENCE", "TEXT_CONDITION", "ONTOLOGY", "CURATED", "EDITOR_LINK", "STRUCTURAL",
+    "method": enum("CO_OCCURRENCE", "SEQUENCE", "TEXT_CONDITION", "ONTOLOGY", "CURATED", "EDITOR_LINK", "STRUCTURAL", "EXTERNAL_SOURCE",
                    "LLM", "HUMAN"),
     "corpus_ids": STR_LIST,
 }, ["predicate", "subject_id", "support", "confidence", "confidence_band", "method"])

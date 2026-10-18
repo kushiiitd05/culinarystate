@@ -80,6 +80,26 @@ class PubChem:
         return pr
 
 
+def normalise_props(pr: dict) -> dict:
+    pr = dict(pr)
+    pr.setdefault("CanonicalSMILES", pr.get("ConnectivitySMILES"))      # PubChem 2025 field rename
+    pr.setdefault("IsomericSMILES", pr.get("SMILES"))
+    if pr.get("MolecularWeight") is not None:
+        pr["MolecularWeight"] = float(pr["MolecularWeight"])
+    return pr
+
+
+def by_cids(pc: "PubChem", cids: list[int], batch: int = 150) -> dict[int, dict]:
+    """Batch property lookup by CID (cached per batch)."""
+    out = {}
+    for i in range(0, len(cids), batch):
+        chunk = ",".join(str(c) for c in cids[i:i + batch])
+        d = pc._get(f"{BASE}/compound/cid/{chunk}/property/{PROPS}/JSON", f"cids_{chunk[:60]}_{len(chunk)}")
+        for pr in (d or {}).get("PropertyTable", {}).get("Properties", []):
+            out[int(pr["CID"])] = normalise_props(pr)
+    return out
+
+
 def stereo_status(isomeric: str | None, canonical: str | None) -> str:
     if not isomeric:
         return "UNKNOWN"
