@@ -410,3 +410,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/{constraints`, `feasibility}.py tools/ask.py gpu/ner_tasteset/{crf`, `train_ner}.py tests/unit/test_constraints.py`
 - **Verified:** 2,767 fast tests pass; real-registry spot checks
 - **Next:** NER layer results; ingredient exclusions; C12 comparator
+
+### S060 · 2026-10-18 21:34 IST · C12 · Outcome comparator; compare intent for 'X or Y ... more'
+- **Who:** Kush+Claude
+- **Did:** decision/comparator.py: per option, retention medians per independence group, range of group medians, censored share; verdict SEPARATED only when ranges are disjoint, OVERLAPPING otherwise, INSUFFICIENT under 2 independent sources. Real data: spinach folate steam 0.70 [0.65-0.75] vs boil 0.65 [0.60-0.70] -> OVERLAPPING; beef thiamin roast vs braise -> INSUFFICIENT (USDA only). Intent fix: 'does roasting or braising keep more' is COMPARE. Retrieval large embeddings + rerankers moved to A100 (Mac swap 8.5/9.2 GB).
+- **Files:** `src/culinarystate/decision/{comparator`, `policy`, `relevance}.py tests/unit/{test_comparator`, `test_policy`, `test_relevance}.py`
+- **Verified:** 2,777 tests pass
+- **Next:** A100 retrieval + NER results

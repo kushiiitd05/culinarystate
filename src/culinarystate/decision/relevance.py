@@ -25,7 +25,8 @@ INTENT = (("RECOVER", r"\baccident\w*|\brecover\w*|\brescue\b|\bsalvage\b|\bfix 
           ("DIAGNOSE", r"\bwhy (?:did|is|are|has|have|does)\b.*\b(?:split|curdle\w*|soggy|dry|tough|bitter|burn\w*|"
                        r"sink|sank|collapse\w*|turn\w*|become|go|went)\b|\bwhat went wrong\b"),
           ("COMPARE", r"\binstead of\b|\bvs\.?\b|\bversus\b|\bcompared? (?:to|with)\b|\bdifference between\b|"
-                      r"\bwhich is better\b"),
+                      r"\bwhich is better\b|\bor\b.*\b(?:more|less|better|worse)\b|"
+                      r"\b(?:more|less|better|worse)\b.*\bor\b"),
           ("RECOMMEND", r"\bwhat should i\b|\bhow (?:should|can|do) i\b|\bbest way\b|\brecommend\w*|\bsuggest\w*"))
 
 

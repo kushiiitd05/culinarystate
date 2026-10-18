@@ -23,7 +23,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C9 | Transition fallback | 🟡 | DEL-2 D0–D7 exist; not routed (G16-TRANS not passed: gains vanish cold) |
 | C10 | Candidate action generator | 🟡 | corpus candidates (ING_PROCESSED_BY heat processes); no rules/LLM proposer |
 | C11 | Feasibility filter | ✅ | `decision/feasibility.py` (allergen table awaits human sign-off) |
-| C12 | Outcome comparator | 🟡 | COMPARE gives per-option evidence; no value-level comparison/intervals |
+| C12 | Outcome comparator | ✅ | `decision/comparator.py`: group-median ranges, SEPARATED/OVERLAPPING/INSUFFICIENT (≥2 independent sources), wired into COMPARE |
 | C13 | Relevance gate | ✅ | rules pass SSOT §7 examples; held-out eval needs benchmark (D-008) |
 | C14 | Uncertainty/OOD gate | ✅ | `decision/ood.py`: support per axis, OOD caps precision at QUALITATIVE; wired into policy/ask |
 | C15 | Multi-objective selector | 🟡 | alternatives without hidden weights; no Pareto front |

@@ -30,3 +30,13 @@ def test_intent():
     assert intent("What changes if I roast instead of steam?") == "COMPARE"
     assert intent("How should I cook spinach to keep vitamin C?") == "RECOMMEND"
     assert intent("How much vitamin C does boiled broccoli keep?") == "ANSWER"
+
+
+@pytest.mark.parametrize("q", ["Does roasting or braising keep more thiamin in beef?", "Is steaming or boiling better for folate?",
+                               "Which keeps less vitamin C, frying or baking?"])
+def test_or_with_comparative_is_compare(q):
+    assert intent(q) == "COMPARE"
+
+
+def test_plain_or_without_comparative_is_not_compare():
+    assert intent("Can I use butter or oil to fry onions?") != "COMPARE"

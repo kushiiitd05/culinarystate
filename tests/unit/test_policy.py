@@ -83,3 +83,8 @@ def test_contradictory_slots_ask():
     d = decide("boiled and not boiled broccoli vitamin C?", {"main": _p("DIRECT", [_hit(1)])},
                {**SLOTS, "contradictions": ["PROC-1"]})
     assert d["mode"] == "ASK" and d["reason"] == "CONTRADICTORY_SLOTS"
+
+
+def test_compare_includes_outcome_comparison():
+    d = decide("What changes if I roast instead of steam?", {"roast": _p("DIRECT", [_hit(1)]), "steam": _p("DIRECT", [_hit(2)])}, SLOTS)
+    assert d["mode"] == "COMPARE" and d["comparison"]["verdict"] in {"SEPARATED", "OVERLAPPING", "INSUFFICIENT"}

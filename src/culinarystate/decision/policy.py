@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from culinarystate.retrieval.retriever import EvidencePacket
 
+from .comparator import compare
 from .confidence import confidence_vector, output_precision, sufficiency
 from .ood import cap_precision
 from .relevance import intent, relevance_gate
@@ -54,7 +55,8 @@ def decide(query: str, packets: dict[str, EvidencePacket], slots: dict, feasibil
     if not usable:
         return {**out, "mode": "ABSTAIN", "reason": "INSUFFICIENT_EVIDENCE"}
     if it == "COMPARE":
-        return {**out, "mode": "COMPARE", "reason": "PER_OPTION_EVIDENCE"}
+        return {**out, "mode": "COMPARE", "reason": "PER_OPTION_EVIDENCE",
+                "comparison": compare({k: packets[k] for k in options})}
     main = options[usable[0]]
     if it == "DIAGNOSE":
         return {**out, "mode": it, "precision": main["precision"], "causal_language": "QUALIFIED",
