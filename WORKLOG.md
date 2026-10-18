@@ -95,3 +95,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/state_graph/rule_compiler.py`, `src/culinarystate/scoring/state_metrics.py`, `tests/unit/test_rule_compiler.py`
 - **Verified:** pytest 234 passed; smoke scores on 3 synthetic gold: merge/split F1 1.00 / 0.35 / 1.00 (pasta fails on hypernym 'pasta'→spaghetti — known baseline gap); NOT a result until 40 human Gold recipes
 - **Next:** Phenol-Explorer ingest after crawl; process registry commit; EDA generator
+
+### S015 · 2026-10-18 11:40 IST · B05/P3 · Process registry v1 (PROC) with corpus + evidence coverage
+- **Who:** Kush+Claude
+- **Did:** spaCy en_core_web_sm verb discovery on 15k BBC steps → curated process vocab (148 processes, 18 families; ACTION vs ENDPOINT; lemma aliases; phrase patterns 'bring … to the boil', 'set … aside', 'leave to cool', 'turn down the heat'; IGNORE list of non-process verbs). Required condition axes per family (structural); mechanism families AI-drafted, flagged to verify vs R3 notes. Evidence step names (USDA/PE) mapped via map_step_name (0 unmapped). Iterated once on top unmapped verbs (break/crack, scoop, pop, smooth, taste) and gap regex ('set the chicken aside').
+- **Files:** `src/culinarystate/process/vocab.py`, `tools/build_process_registry.py`, `tests/unit/test_process_vocab.py`, `registry/processes/`, `reports/process_registry_v1.md`, `ledgers/data/PROC.jsonl`
+- **Verified:** 39,540 BBC steps: recognised process: 39,252 (99.3%); EVD step mentions 8,655 mapped / 0 unmapped; 109 corpus actions with ZERO state-change evidence (put, add, mix, cool, melt, chop, beat …) → sparsity finding for DEL-1/2
+- **Next:** EDA cell-key fix; Phenol-Explorer ingest
