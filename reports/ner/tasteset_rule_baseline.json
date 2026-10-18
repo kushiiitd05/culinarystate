@@ -1,0 +1,172 @@
+{
+ "exact": {
+  "micro": {
+   "tp": 9971,
+   "fp": 1891,
+   "fn": 3391,
+   "precision": 0.8406,
+   "recall": 0.7462,
+   "f1": 0.7906
+  },
+  "macro_f1": 0.7212,
+  "per_label": {
+   "COLOR": {
+    "tp": 193,
+    "fp": 37,
+    "fn": 38,
+    "precision": 0.8391,
+    "recall": 0.8355,
+    "f1": 0.8373
+   },
+   "FOOD": {
+    "tp": 2920,
+    "fp": 812,
+    "fn": 1100,
+    "precision": 0.7824,
+    "recall": 0.7264,
+    "f1": 0.7534
+   },
+   "PART": {
+    "tp": 45,
+    "fp": 41,
+    "fn": 10,
+    "precision": 0.5233,
+    "recall": 0.8182,
+    "f1": 0.6383
+   },
+   "PHYSICAL_QUALITY": {
+    "tp": 372,
+    "fp": 177,
+    "fn": 421,
+    "precision": 0.6776,
+    "recall": 0.4691,
+    "f1": 0.5544
+   },
+   "PROCESS": {
+    "tp": 771,
+    "fp": 190,
+    "fn": 320,
+    "precision": 0.8023,
+    "recall": 0.7067,
+    "f1": 0.7515
+   },
+   "PURPOSE": {
+    "tp": 75,
+    "fp": 81,
+    "fn": 19,
+    "precision": 0.4808,
+    "recall": 0.7979,
+    "f1": 0.6
+   },
+   "QUANTITY": {
+    "tp": 3076,
+    "fp": 471,
+    "fn": 704,
+    "precision": 0.8672,
+    "recall": 0.8138,
+    "f1": 0.8396
+   },
+   "TASTE": {
+    "tp": 82,
+    "fp": 43,
+    "fn": 44,
+    "precision": 0.656,
+    "recall": 0.6508,
+    "f1": 0.6534
+   },
+   "UNIT": {
+    "tp": 2437,
+    "fp": 39,
+    "fn": 735,
+    "precision": 0.9842,
+    "recall": 0.7683,
+    "f1": 0.863
+   }
+  }
+ },
+ "relaxed": {
+  "micro": {
+   "tp": 11322,
+   "fp": 540,
+   "fn": 2040,
+   "precision": 0.9545,
+   "recall": 0.8473,
+   "f1": 0.8977
+  },
+  "macro_f1": 0.7876,
+  "per_label": {
+   "COLOR": {
+    "tp": 198,
+    "fp": 32,
+    "fn": 33,
+    "precision": 0.8609,
+    "recall": 0.8571,
+    "f1": 0.859
+   },
+   "FOOD": {
+    "tp": 3689,
+    "fp": 43,
+    "fn": 331,
+    "precision": 0.9885,
+    "recall": 0.9177,
+    "f1": 0.9518
+   },
+   "PART": {
+    "tp": 51,
+    "fp": 35,
+    "fn": 4,
+    "precision": 0.593,
+    "recall": 0.9273,
+    "f1": 0.7234
+   },
+   "PHYSICAL_QUALITY": {
+    "tp": 396,
+    "fp": 153,
+    "fn": 397,
+    "precision": 0.7213,
+    "recall": 0.4994,
+    "f1": 0.5902
+   },
+   "PROCESS": {
+    "tp": 869,
+    "fp": 92,
+    "fn": 222,
+    "precision": 0.9043,
+    "recall": 0.7965,
+    "f1": 0.847
+   },
+   "PURPOSE": {
+    "tp": 76,
+    "fp": 80,
+    "fn": 18,
+    "precision": 0.4872,
+    "recall": 0.8085,
+    "f1": 0.608
+   },
+   "QUANTITY": {
+    "tp": 3518,
+    "fp": 29,
+    "fn": 262,
+    "precision": 0.9918,
+    "recall": 0.9307,
+    "f1": 0.9603
+   },
+   "TASTE": {
+    "tp": 86,
+    "fp": 39,
+    "fn": 40,
+    "precision": 0.688,
+    "recall": 0.6825,
+    "f1": 0.6853
+   },
+   "UNIT": {
+    "tp": 2439,
+    "fp": 37,
+    "fn": 733,
+    "precision": 0.9851,
+    "recall": 0.7689,
+    "f1": 0.8637
+   }
+  }
+ }
+}
