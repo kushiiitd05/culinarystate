@@ -61,3 +61,14 @@ def test_months_and_years():
     d = extract_conditions("Stored 6 months at room temperature")["durations"][0]
     assert d["raw"] == "6 months" and round(d["value"] / 1440) == 183
     assert extract_conditions("aged 2 years")["durations"][0]["unit"] == "min"
+
+
+def test_negative_temperatures_keep_sign():
+    t = lambda s: [x["value"] for x in extract_conditions(s)["temperatures"]]  # noqa: E731
+    assert t("stored, -20°C 6 months")[0]["value"] == -20.0
+    assert t("frozen at −18 °C")[0]["value"] == -18.0
+    r = t("stored at -18 to -20°C")[0]
+    assert (r["low"], r["high"]) == (-20.0, -18.0)
+    r = t("chilled at 4-6°C")[0]
+    assert (r["low"], r["high"]) == (4.0, 6.0)                 # a range, not -6
+    assert t("blanched at 95°C")[0]["value"] == 95.0

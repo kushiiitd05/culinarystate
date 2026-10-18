@@ -23,7 +23,7 @@
 - censored rows: 2,620; RF status: {'CENSORED': 2620, 'MEASURED': 8244, 'UNKNOWN': 24}
 - direction: {'UNKNOWN': 2644, 'DECREASE': 7146, 'NO_CHANGE': 80, 'INCREASE': 1018}; basis: {'RETENTION_TR_OR_AR': 7018, 'FRESH_WEIGHT': 2906, 'PER_VOLUME': 960, 'DRY': 4}
 - unique matrices 184, step sequences 67, targets 187, cells 8,651; matrix×process density 0.0372
-- condition axes: {'duration': {'UNKNOWN': 7805, 'MEASURED': 2607, 'RANGE': 476}, 'temperature': {'UNKNOWN': 8660, 'MEASURED': 2047, 'RANGE': 181}}
+- condition axes: {'duration': {'UNKNOWN': 7805, 'MEASURED': 2607, 'RANGE': 476}, 'temperature': {'UNKNOWN': 8660, 'MEASURED': 2046, 'RANGE': 182}}
 - conflict candidates (opposite directions across independent groups, same cell): 17
 
 ## Known limitations / bias

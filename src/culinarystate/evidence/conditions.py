@@ -12,7 +12,10 @@ _NUM = r"(\d+(?:[.,]\d+)?)"
 _RANGE = rf"{_NUM}(?:\s*(?:-|–|to)\s*{_NUM})?"
 DUR_RE = re.compile(rf"{_RANGE}\s*(seconds?|secs?|s|minutes?|mins?|min|hours?|hrs?|h|days?|d|weeks?|months?|years?)\b",
                     re.IGNORECASE)
-TEMP_RE = re.compile(rf"{_RANGE}\s*(?:°|º|deg(?:rees?)?\.?\s*)\s*([CF])\b", re.IGNORECASE)
+# signed only when the minus is attached to the number and preceded by start/space/punctuation ("-20°C", "-18 to -20°C");
+# "4-6°C" stays a 4..6 range
+_SNUM = r"((?:(?<=[\s,(:;/])|^)[-−–]\s?\d+(?:[.,]\d+)?|\d+(?:[.,]\d+)?)"
+TEMP_RE = re.compile(rf"{_SNUM}(?:\s*(?:-|–|to)\s*{_SNUM})?\s*(?:°|º|deg(?:rees?)?\.?\s*)\s*([CF])\b", re.IGNORECASE)
 POWER_RE = re.compile(rf"{_RANGE}\s*(W|watts?|kW)\b", re.IGNORECASE)
 PRESSURE_RE = re.compile(rf"{_RANGE}\s*(MPa|kPa|bar|atm|psi)\b", re.IGNORECASE)
 QUAL_HEAT_RE = re.compile(r"\b(low|medium|moderate|high|gentle|full)[- ](?:high[- ])?(heat|flame|power|setting)\b",
@@ -28,7 +31,7 @@ _TO_MIN = {"s": 1 / 60, "sec": 1 / 60, "secs": 1 / 60, "second": 1 / 60, "second
 
 
 def _f(x: str) -> float:
-    return float(x.replace(",", "."))
+    return float(re.sub(r"[−–]\s?|-\s", "-", x).replace(",", "."))
 
 
 def _qv(lo: float, hi: float | None, unit: str, raw: str) -> dict:

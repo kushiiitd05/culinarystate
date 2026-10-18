@@ -200,3 +200,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `registry/evidence/`, `reports/`, `STATUS.md`
 - **Verified:** pytest 265 passed
 - **Next:** AI pre-check pass of queue; DEL-2 log-RF; A100 for dense/NER (VPN)
+
+### S030 · 2026-10-18 12:42 IST · P1/DEL-1 · AI pre-check Route A + human review pack + temperature sign fix
+- **Who:** Kush+Claude
+- **Did:** Crossref/OpenAlex DOI resolver (strict title+year); 121/125 PE papers resolved, 15 OA. Rule pre-check of 3,870 PE rows -> AI_PRECHECKED (3,791 LIKELY_CONFIRM, 79 CHECK_VALUES). Found+fixed bug: '-20°C' parsed as +20 -> 266 COND revised. Human review pack 55 rows (40 MAIN) from 15 OA papers. apply_human_review.py (CONFIRM -> new E1/E2 HUMAN_VERIFIED mirror row; REJECT/CORRECT). EVIDENCE_REVIEW_GUIDE.md.
+- **Files:** `src/culinarystate/evidence/{doi_resolve`, `precheck`, `conditions}.py tools/{precheck_route_a`, `reextract_conditions`, `apply_human_review}.py registry/evidence/{human_review_pack_v1`, `route_a_paper_precheck`, `verification_queue_ranked_v1}.csv handoff/EVIDENCE_REVIEW_GUIDE.md`
+- **Verified:** 271 tests pass; 0 invalid EVD/COND/SRC; reextract idempotent (2nd run 0 writes); apply dry-run rejects verifier=Claude and CONFIRM w/o locator
+- **Next:** Humans: 40 rows in human_review_pack_v1.csv. AI: data expansion (OFF ingredient taxonomy, open recipes, public-domain books, Bognar retention table)
