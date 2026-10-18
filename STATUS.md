@@ -40,7 +40,7 @@
 | X3c | Typed link sub-ledgers with support + confidence (ING↔PROC, PROC↔TOOL, PROC timers/temps, ING↔cuisine, components, categories) | KG layer for DEL-4/5 | ✅ S037: 8,824 KGE edges (13 predicates; 3,124 HIGH) over 15,610 recipes; 28 process timer profiles |
 | X4 | Project Gutenberg cookbooks (public domain) | procedures, TOOL, PROC coverage | ⏳ crawl running (347 books, PGLAF mirror) |
 | X5 | Bognár 2002 retention/yield tables (open access PDF) | EVD source family 3 → source-disjoint DEL-2 | ✅ S038: +6,594 EVD (28/39 Part-2 tables; 11 sub-variant tables skipped); Part-1 yields queued |
-| X6 | Wikidata kitchenware (CC0) | TOOL QIDs + new tools | queued |
+| X6 | Wikidata kitchenware (CC0) | TOOL QIDs + new tools | ✅ S041: 73 LINKED, 31 CANDIDATE (review CSV), 12 no match |
 | X7 | recipe-scrapers on robots-allowed sites | REC (Indian focus) | queued (needs `pip install recipe-scrapers`) |
 | X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | queued |
 

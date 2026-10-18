@@ -66,6 +66,10 @@ for t in TOOLS:
            "aliases": [a for a in t.aliases if a != t.canonical], "category": t.category,
            "material": None, "reactive_with": [], "max_safe_temperature_c": {"status": "UNKNOWN"},
            "external_refs": [f"WIKIBOOKS:Cookbook:{WIKIBOOKS_PAGE[t.canonical]}"] if t.canonical in WIKIBOOKS_PAGE else []}
+    prev = st.latest(rid)                              # keep refs owned by other tools (e.g. WIKIDATA from X6)
+    if prev:
+        rec["external_refs"] = sorted(set(rec["external_refs"]) | {r for r in prev.get("external_refs") or []
+                                                                    if not r.startswith("WIKIBOOKS:")})
     counts[("TOOL", st.upsert(rec)[0])] += 1
 by_proc = links_df.groupby("process")["tool"].apply(list).to_dict() if len(links_df) else {}
 for proc in st.all_latest("PROC"):

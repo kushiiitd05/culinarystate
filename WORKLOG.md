@@ -277,3 +277,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/transition/{baselines`, `evaluate}.py tools/{run_del2`, `register_experiments}.py experiments/ reports/del2/ tests/unit/test_del2.py`
 - **Verified:** 301 tests; cards regenerate deterministically
 - **Next:** X4 Gutenberg ingest when crawl finishes
+
+### S041 · 2026-10-18 16:14 IST · X6/P3 · TOOL -> Wikidata QIDs
+- **Who:** Kush+Claude
+- **Did:** Exact label/alias SPARQL lookup restricted to kitchen roots (kitchenware, cookware, kitchen utensil, appliance, container). 73 LINKED (unique + label equals canonical/alias), 31 CANDIDATE (several items, e.g. grill vs automobile grille; tea towel->wrapper downgraded), 12 NO_MATCH (handi, tadka pan, idli steamer ...). Tool builder now preserves non-Wikibooks refs.
+- **Files:** `tools/build_tool_wikidata.py tools/build_tool_registry.py registry/tools/tool_wikidata_v1.csv reports/tool_wikidata_v1.md`
+- **Verified:** 301 tests; both builders 2nd run 0 writes
+- **Next:** X4 ingest after crawl; handoff docs RUNBOOK/DATASETS
