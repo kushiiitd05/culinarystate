@@ -501,3 +501,15 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `experiments/EXP-000006/card.md`, `tools/{build_rq1603_pairs`, `score_pairs_ce`, `eval_rq1603}.py`, `reports/del4/rq1603_pilot_v1.{md`, `json}`, `docs/BUILD_TRACKER.md`
 - **Verified:** eval reproducible from pairs + CE files; ledger audit (card contract) passes
 - **Next:** benchmark authoring for human labels (D-008); C10/C15/C18 per tracker
+
+### S073 · 2026-10-19 01:33 IST · DEL-5 · NER runtime replay verified on Mac
+- **Who:** Kush+Claude
+- **Did:** Pulled deberta-v3-base+CRF model from A100 (scp). Ran --replay on TASTEset test split (105 docs, seed 7). Got 0.9266 exact F1, matches tagger.json exactly. MPS device. Sample tag of '2 cups finely chopped fresh spinach' correct.
+- **Files:** `data/interim/models/ner/deberta-v3-base_crf/ tools/ner_tag.py`
+- **Verified:** replay_test_exact_f1==trained_test_exact_f1==0.9266
+
+### S074 · 2026-10-19 01:44 IST · DEL-5 · C18 session-state updater wired to pipeline and ask
+- **Who:** Kush+Claude
+- **Did:** SessionState class wraps engine replay; from_session() auto-injects Add events from ingredients list; process_history() feeds diagnosis verifier with actual session steps (was using question processes). Pipeline.answer() accepts session kwarg. ask.py takes --session and --turn flags. Diagnosis now marks causes CONSISTENT/INCONSISTENT against real cooking history (demo: boil in session → 'boiled' cause CONSISTENT for curdle). 16 unit tests (12 mandatory + 4 extra).
+- **Files:** `src/culinarystate/decision/session_state.py src/culinarystate/decision/pipeline.py tools/ask.py tests/unit/test_session_state.py`
+- **Verified:** 2897 fast tests pass; diagnosis CONSISTENT with session history
