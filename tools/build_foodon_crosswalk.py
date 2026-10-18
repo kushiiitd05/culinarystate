@@ -63,6 +63,13 @@ def main() -> None:
     terms = parse(OWL)
     idx = name_index(terms)
     st = LedgerStore()
+    st.upsert({"id": st.ids.mint("SRC", key="foodon:owl"), "record_type": "SRC", "status": "ACTIVE",
+               "created_by": "Kush+Claude", "provenance": {"method": "MANUAL", "source_ids": []},
+               "verification": {"status": "UNVERIFIED"}, "kind": "DATASET", "title": "FoodOn food ontology (foodon.owl)",
+               "url": "https://raw.githubusercontent.com/FoodOntology/foodon/master/foodon.owl", "publisher": "FoodOn consortium",
+               "licence": "CC BY 4.0", "licence_status": "VERIFIED", "storage_rule": "COMMIT_OK",
+               "primary_or_secondary": "SECONDARY", "source_family_id": "FOODON",
+               "notes": "local copy data/raw/foodon/foodon.owl (sha256 prefix b897bf64c1b265c4, 2026-10-18)"})
     rows, writes, bands = [], Counter(), Counter()
     for ing in st.all_latest("ING"):
         if ing["status"] != "ACTIVE":

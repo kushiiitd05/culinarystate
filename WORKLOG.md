@@ -284,3 +284,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/build_tool_wikidata.py tools/build_tool_registry.py registry/tools/tool_wikidata_v1.csv reports/tool_wikidata_v1.md`
 - **Verified:** 301 tests; both builders 2nd run 0 writes
 - **Next:** X4 ingest after crawl; handoff docs RUNBOOK/DATASETS
+
+### S042 · 2026-10-18 16:16 IST · P15 · Handoff RUNBOOK + DATASETS; SRC for FoodOn/Wikidata
+- **Who:** Kush+Claude
+- **Did:** handoff/RUNBOOK.md (acquisition, dependency-ordered ledger build, review/report commands, field ownership, logging). handoff/DATASETS.md (13 source families with licence, storage rule, local path, feeds; unused sources and why). Added SRC records for FoodOn (CC BY 4.0) and Wikidata (CC0).
+- **Files:** `handoff/RUNBOOK.md handoff/DATASETS.md tools/build_foodon_crosswalk.py tools/build_tool_wikidata.py`
+- **Verified:** tests pass; builders unchanged on rerun
+- **Next:** X4 Gutenberg ingest when crawl finishes

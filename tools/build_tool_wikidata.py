@@ -43,6 +43,12 @@ def query(labels: list[str]) -> list[dict]:
 
 def main() -> None:
     st = LedgerStore()
+    st.upsert({"id": st.ids.mint("SRC", key="wikidata:sparql"), "record_type": "SRC", "status": "ACTIVE",
+               "created_by": "Kush+Claude", "provenance": {"method": "MANUAL", "source_ids": []},
+               "verification": {"status": "UNVERIFIED"}, "kind": "API", "title": "Wikidata Query Service (SPARQL)",
+               "url": ENDPOINT, "publisher": "Wikimedia Foundation", "licence": "CC0 1.0 (structured data)",
+               "licence_status": "VERIFIED", "storage_rule": "COMMIT_OK", "primary_or_secondary": "SECONDARY",
+               "source_family_id": "WIKIDATA", "notes": "cached responses data/raw/wikidata/"})
     tools = [t for t in st.all_latest("TOOL") if t["status"] == "ACTIVE"]
     surface = {t["canonical_name"]: [t["canonical_name"], *(t.get("aliases") or [])] for t in tools}
     if CACHE.exists():
