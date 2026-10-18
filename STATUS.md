@@ -1,6 +1,6 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-**Updated:** 2026-10-18 12:20 IST (after S029) · **Final presentation: 25–26 Nov 2026 (T-38 days)**
+**Updated:** 2026-10-18 18:15 IST (after S055) · **Final presentation: 25–26 Nov 2026 (T-38 days)**
 **Repo:** `~/Desktop/CGAS/culinarystate` (local git; GitHub push only after H7 approval)
 **Step-by-step log:** `WORKLOG.md` (timestamped, sequential). **Decisions:** `DECISIONS.md`.
 **Bible:** `docs/SSOT/…v15_0.md` (read via `docs/SSOT_INDEX.md`) · plan `docs/plan/CulinaryState_Final_Master_Plan_SSOT15_v4_0.md`
@@ -25,8 +25,9 @@
 ## 2b. NEXT (in order)
 1. AI pre-check pass over verification queue (AI_PRECHECKED + suggested decision) → humans confirm fast (Kush asked AI to review; AI cannot sign as human).
 2. ✅ (S040) DEL-2 log-RF + median AE + experiment cards EXP-000001..4 (verdict: gains vanish under cold-start).
-3. Dense embeddings + DEL-4 calibration/abstention eval (A100 — ask VPN first).
-4. DEL-5 decision layer (ANSWER…ABSTAIN) + benchmark authoring (confirm D-008).
+3. Dense embeddings + DEL-4 calibration/abstention eval (A100 — ask VPN first). ✅ (S053) metrics ECE/Brier/AURC/UCR + confidence vector; eval waits for verified labels.
+4. DEL-5 decision layer (ANSWER…ABSTAIN) + benchmark authoring (confirm D-008). ✅ (S054) relevance gate, feasibility filter, policy, `tools/ask.py`; benchmark still human.
+4b. DEL-3: ✅ (S055) 30 scripted sessions drafted (all pass, 237 checks) — 0/30 human-reviewed (MANUAL_NEXT_STEPS #10b).
 5. NER baselines on TASTEset (A100 encoder), Silver factory scaffold, B03/B15 small reproductions, WARN (after FSIS manual download).
 
 ## 2c. EXPANSION QUEUE (D-009, sequential)
@@ -38,16 +39,16 @@
 | X3 | Wikibooks Cookbook (CC BY-SA, API) | REC source family 2 (world + Indian) | ✅ S034: +3,676 REC (143 Indian), 97.7% lines linked, +97 ING, +155 aliases, 49k silver NER spans |
 | X3b | Wikibooks equipment (130) + technique (81) pages | TOOL / PROC crosswalk + new entries | ✅ S035: TOOL 76→116 (97 Wikibooks refs), PROC 148→156, 605 proc↔tool links |
 | X3c | Typed link sub-ledgers with support + confidence (ING↔PROC, PROC↔TOOL, PROC timers/temps, ING↔cuisine, components, categories) | KG layer for DEL-4/5 | ✅ S037: 8,824 KGE edges (13 predicates; 3,124 HIGH) over 15,610 recipes; 28 process timer profiles |
-| X4 | Project Gutenberg cookbooks (public domain) | procedures, TOOL, PROC coverage | ⏳ S042: 49,520 silver REC from 205/347 books (crawl continuing; re-run ingest when done) |
+| X4 | Project Gutenberg cookbooks (public domain) | procedures, TOOL, PROC coverage | ✅ S045: crawl 346/347 books; 65,738 silver REC from 306 books, 603k REC↔ING links (D-012 silver) |
 | X5 | Bognár 2002 retention/yield tables (open access PDF) | EVD source family 3 → source-disjoint DEL-2 | ✅ S038: +6,594 EVD (28/39 Part-2 tables; 11 sub-variant tables skipped); Part-1 yields queued |
 | X6 | Wikidata kitchenware (CC0) | TOOL QIDs + new tools | ✅ S041: 73 LINKED, 31 CANDIDATE (review CSV), 12 no match |
-| X14 | corpus-mined KGE: ING_ALTERNATIVE_TO, ING_PREP_FORM, ING_OFTEN_OPTIONAL, PROC_USES_MEDIUM, PROC_ENDPOINT_STATE (SSOT relations) | KGE | next |
-| X9 | FlavorGraph (Apache-2.0; count+checksum first, Q-N1) | ING_CONTAINS_COMPOUND, MOL | queued |
-| X10 | TASTEset (MIT) | NER reference set for X8 | queued |
-| X11 | ChemTastesDB (CC BY 4.0) | MOL taste classes | queued |
-| X12 | OpenPI (MIT) | DEL-3 external state-change check | queued |
-| X13 | FoodAtlas (Apache-2.0 code; mixed upstream) | ING↔chemical candidate observations | queued |
-| X15 | FDC raw/cooked matched pairs | EVD candidates (E6) | queued |
+| X14 | corpus-mined KGE: ING_ALTERNATIVE_TO, ING_PREP_FORM, ING_OFTEN_OPTIONAL, PROC_USES_MEDIUM, PROC_ENDPOINT_STATE (SSOT relations) | KGE | ✅ S045: 5 predicates over 3 corpora (e.g. chicken stock↔vegetable stock n=106; blend→smooth n=538) |
+| X9 | FlavorGraph (Apache-2.0; count+checksum first, Q-N1) | ING_CONTAINS_COMPOUND, MOL | ✅ S046: counts match release; +1,595 MOL, 29,656 IMAP PRESENCE, 27.5k ING_CO_OCCURS\|FLAVORGRAPH; NC upstream → no redistribution |
+| X10 | TASTEset (MIT) | NER reference set for X8 | ✅ S047: rule floor micro F1 0.791 exact / 0.898 relaxed; `handoff/NER_RUNBOOK.md` |
+| X11 | ChemTastesDB (CC BY 4.0) | MOL taste classes | ✅ S048: 204 MOL_HAS_TASTE (curated class; 138 bitter) |
+| X12 | OpenPI (MIT) | DEL-3 external state-change check | ✅ S049: 197 food procedures, 7,629 state changes, 46% entities → ING |
+| X13 | FoodAtlas (MIT code; data CC BY-NC 4.0 since 2026-10-09) | ING↔chemical candidate observations | ⛔ manual download (bundles private; MANUAL_NEXT_STEPS #12) |
+| X15 | FDC raw/cooked matched pairs | EVD candidates (E6) | ✅ S050: 867 pairs, 16,365 dry-basis ratios; vs R6 group level within 0.10 for 46% (analytical) |
 | X7 | recipe-scrapers on robots-allowed sites | REC (Indian focus) | queued (needs `pip install recipe-scrapers`) |
 | X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | queued |
 
@@ -58,6 +59,7 @@
 | FlavorDB bulk access | molecule ↔ ingredient joins | PubChem PUG-REST (open) + FooDB downloads; FlavorDB later |
 | Human verification (Kush/Parv) | E4 rows, Gold recipes, benchmark labels | queues + handbooks ready to work through, no waiting on code |
 | rdkit missing in all conda envs | ECFP/Tanimoto | `pip install rdkit` into `recsys_env` (ask before installing) |
+| Ledger file size (D-012): REC.jsonl 94 MB, KGE.jsonl 57 MB (+15–20 MB per KG rebuild) | GitHub 100 MB limit before H7 push | Kush/Parv decide: shard per family / git-lfs / compacted snapshots |
 | GitHub repo creation (H7) | collaboration | local git; Parv clones from zip/remote once approved |
 
 ## 4. DATED PLAN TO PRESENTATION

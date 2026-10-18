@@ -72,3 +72,13 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
 - `ledgers/data/REC.jsonl` is ~54 MB after X4. GitHub rejects files > 100 MB: before H7 push, if any ledger file
   exceeds 90 MB, shard by source family (`REC.<family>.jsonl`) or move to git-lfs (decide then).
 - **Approver:** Claude (Kush/Parv to confirm before push).
+
+### D-013 · 2026-10-18 · Stated temperature bounds are CENSORED, not exact
+- Text such as "core temperature > 75 °C" or "stored below 4 °C" was extracted as MEASURED 75 / 4 (16 of 555
+  temperatures in evidence texts). New censor kinds `GT_STATED` / `LT_STATED` (shared QVALUE enum) record a bound
+  the source states; the qualifier stays in `raw`. Approximations ("~ 66 °C", "around 100°C") stay MEASURED with the
+  qualifier in `raw`. Completeness mask maps CENSORED → RANGE (half-open interval). KG timer/temperature quantiles
+  use MEASURED/RANGE only. "min"/"max" are not qualifiers ("10 min 100 °C").
+- Builders that rewrite EVD from source keep link_evidence / review-owned fields (`keep_linker_fields`); found
+  when an ingest_bognar rerun cleared 6,594 process links and 2,251 ingredient links (repaired by link_evidence).
+- **Approver:** Claude (Kush/Parv to confirm).

@@ -38,8 +38,14 @@ py tools/build_molecule_registry.py        # MOL / IMAP
 py tools/build_allergen_registry.py        # ALLERGEN (FSSAI)
 py tools/build_fdc_crosswalk.py            # FDC candidates (CSV only, D-006)
 py tools/build_kg_edges.py                 # KGE concept edges (needs everything above)
+py tools/ingest_flavorgraph.py             # MOL (by InChIKey) + IMAP PRESENCE + KGE ING_CO_OCCURS|FLAVORGRAPH (X9)
+py tools/ingest_chemtastesdb.py            # KGE MOL_HAS_TASTE for MOL with a PubChem CID (X11; after FlavorGraph)
+py tools/reextract_conditions.py           # Phenol-Explorer COND after extractor changes
+py tools/ingest_bognar_yields.py          # Bognár Part-1 weight yields -> EVD yield_factor (after ingest_bognar)
 ```
-Run steps 2–15 twice; the second pass must write nothing.
+External sets (no ledger writes): `py tools/eval_tasteset.py` (X10 NER floor), `py tools/build_openpi_food.py` (X12),
+`py tools/build_fdc_pairs.py` (X15 raw/cooked pairs vs R6).
+Run steps 2–19 twice; the second pass must write nothing.
 
 ## 3. Evidence review + reports
 ```bash
@@ -51,6 +57,9 @@ py tools/run_del2.py --source USDA-RETN-R6 --n-boot 100
 py tools/run_del2.py --source PHENOL-EXPLORER-3.6 --n-boot 100 --log-target
 py tools/run_del2.py --source BOGNAR-2002 --n-boot 100
 py tools/run_cross_source.py && py tools/register_experiments.py
+py tools/build_fdc_pairs.py                # X15 raw/cooked pairs vs R6 (after ingest_bognar_yields for yields)
+py tools/run_sessions.py                   # DEL-3 scripted sessions (counts HUMAN_REVIEWED only)
+py tools/ask.py --demo                     # DEL-5 rule baseline: gate -> slots -> packets -> feasibility -> decision
 ```
 
 ## 4. Field ownership (who may write what)

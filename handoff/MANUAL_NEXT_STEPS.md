@@ -14,6 +14,9 @@ Presentation 25–26 Nov 2026. Code is ready for each task; humans supply judgem
 | 8 | Cite authorities for metric spoon / cup | UNIT records flagged NEEDS_SOURCE | `registry/units/unit_registry_v1.csv` | find standard/official source; add to notes | 20 min | either |
 | 9 | Review ingredient registry rejects + polysemy | registry quality | `registry/ingredients/unresolved_high_frequency.csv`, `alias_collision_report.csv` | mark keep/drop/split | 30 min | either |
 | 10 | Author benchmark questions (DEL-4/5) | ≥ 80 dev+test questions, 8 task types | template (coming) | write questions from scenarios; freeze hash before tuning | 3–4 h | both |
+| 10b | Review 30 AI-drafted scripted sessions | DEL-3 contract: ≥ 30 sessions (currently 0 reviewed) | `annotation/sessions/SES-*.json`, `reports/del3/sessions_v1.md` | read each turn: are the events what the utterance implies? is the expected end state right? fix, then set `provenance.status` = HUMAN_REVIEWED + `reviewed_by`; `python tools/run_sessions.py` | ~5 min/session | both |
+| 11 | Download FooDB CSV bundle in a browser (CC BY-NC 4.0) | compound concentrations per food (SSOT §175.3) | foodb.ca/downloads (refuses scripts, 403) | save the CSV tar.gz into `data/raw/foodb/`; tell Claude the file name | 5 min | either |
+| 12 | Request a FoodAtlas bundle (CC BY-NC 4.0 since 2026-10-09) | X13 food–chemical evidence graph | foodatlas.ai downloads page (bot checkpoint; zips are private S3, pre-signed per key holder) | get the latest bundle zip via the site; save into `data/raw/foodatlas/`; record version + date | 10 min | either |
 
 Rules: verification is recorded with the verifier's real name and date; disagreements go to adjudication; nothing is
 edited directly in `ledgers/data/` — tools promote verified rows.

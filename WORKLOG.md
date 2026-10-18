@@ -305,3 +305,80 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `docs/RESOURCE_GAP_MAP.md STATUS.md`
 - **Verified:** licences checked via GitHub/Zenodo APIs
 - **Next:** X14 corpus-mined predicates
+
+### S045 · 2026-10-18 18:14 IST · X4/X14 · Gutenberg complete; SSOT relations mined into KGE
+- **Who:** Kush+Claude
+- **Did:** Crawl finished (346/347 books); re-ingest: 71k silver REC from 306+ books, 675k REC<->ING links, 1,065 near-dup families. X14: ING_ALTERNATIVE_TO, ING_OFTEN_OPTIONAL, ING_PREP_FORM, PROC_USES_MEDIUM, PROC_ENDPOINT_STATE mined with closed vocabularies over BBC+Wikibooks+Gutenberg. Fix: 'chicken or vegetable stock' shares the head noun only when the pair names a more specific concept (now chicken stock<->vegetable stock n=106, lift 11.3). Historic-tool review list drops units and modifier+known-tool phrases.
+- **Files:** `src/culinarystate/kg/{mine`, `edges`, `corpus}.py tools/{build_kg_edges`, `ingest_gutenberg}.py src/culinarystate/vocab/line_link.py registry/kg/kg_edges_v1.csv reports/{kg_edges`, `gutenberg}_v1.md`
+- **Verified:** tests pass; KGE 0 invalid; Gutenberg 2nd run created only books missed by the earlier partial run
+- **Next:** X9 FlavorGraph
+
+### S046 · 2026-10-18 18:14 IST · X9 · FlavorGraph compounds and co-occurrence
+- **Who:** Kush+Claude
+- **Did:** Pinned 8d3472d; counts match release (8,298 nodes, 147,179 edges). +1,595 MOL by InChIKey (PubChem), 29,656 IMAP PRESENCE (qualitative), 27,530 ING_CO_OCCURS|FLAVORGRAPH (NPMI). Fix: several FlavorGraph nodes map to one ING, so edges are aggregated per ledger key before writing (was flip-flopping 5.4k KGE / 354 IMAP per run). NC upstream (FlavorDB): no redistribution.
+- **Files:** `tools/ingest_flavorgraph.py src/culinarystate/molecules/pubchem.py src/culinarystate/ledgers/{registry`, `rules}.py reports/flavorgraph_v1.md`
+- **Verified:** second run: 27,530 KGE + 29,656 IMAP unchanged
+- **Next:** X10 TASTEset
+
+### S047 · 2026-10-18 18:14 IST · X10/P5 · TASTEset rule NER floor
+- **Who:** Kush+Claude
+- **Did:** Rule tagger in TASTEset labels (quantity grammar, closed lists, prep forms, ING lexicon for FOOD). TASTEset @80bb783: micro F1 0.791 exact / 0.898 relaxed; FOOD 0.753/0.952; PHYSICAL_QUALITY 0.554 weakest. NER_RUNBOOK for A100 encoder runs (VPN first).
+- **Files:** `src/culinarystate/ner/rule_ner.py tools/eval_tasteset.py reports/ner/ handoff/NER_RUNBOOK.md`
+- **Verified:** unit tests; scorer = common span metrics
+- **Next:** X11
+
+### S048 · 2026-10-18 18:14 IST · X11 · ChemTastesDB taste classes
+- **Who:** Kush+Claude
+- **Did:** Zenodo 15051366 (CC BY 4.0): 204 MOL_HAS_TASTE for MOL matched by PubChem CID; object = curated 'Class taste' (Bitterness 138 ...), free-text label in notes; v0 free-text edges deprecated.
+- **Files:** `tools/ingest_chemtastesdb.py reports/chemtastesdb_v1.md`
+- **Verified:** second run 204 unchanged
+- **Next:** X12
+
+### S049 · 2026-10-18 18:14 IST · X12/DEL-3 · OpenPI food subset
+- **Who:** Kush+Claude
+- **Did:** OpenPI 2.0 (MIT) Food and Entertaining: 174/15/8 procedures, 7,629 entity-attribute before->after changes, 46% entities linked to ING. External check for DEL-3, not Gold.
+- **Files:** `tools/build_openpi_food.py reports/openpi_food_v1.md`
+- **Verified:** counts per split
+- **Next:** X15
+
+### S050 · 2026-10-18 18:14 IST · X15/DEL-2 · FDC SR Legacy raw/cooked pairs vs R6
+- **Who:** Kush+Claude
+- **Did:** 867 description pairs (state tokens stripped, unsalted twin preferred), 16,365 dry-basis ratios (= true retention iff solids conserved), 4,984 analytical-only (source codes 1/6/13; imputed values circular vs R6). Group level vs R6: within 0.10 for 46% (analytical), Spearman 0.31. Candidates, not EVD.
+- **Files:** `src/culinarystate/evidence/fdc_pairs.py tools/build_fdc_pairs.py registry/evidence/fdc_raw_cooked_pairs_v1.csv reports/del2/fdc_pairs_v1.md`
+- **Verified:** unit tests; analytical/all tiers reported separately
+- **Next:** X13
+
+### S051 · 2026-10-18 18:14 IST · X13 · FoodAtlas access check: manual
+- **Who:** Kush+Claude
+- **Did:** Data relicensed CC BY-NC 4.0 on 2026-10-09 (repo LICENSE-DATA.md); bundles are private S3 objects pre-signed for key holders; site behind bot checkpoint -> not scripted. MANUAL_NEXT_STEPS #11 FooDB, #12 FoodAtlas.
+- **Files:** `docs/RESOURCE_GAP_MAP.md handoff/MANUAL_NEXT_STEPS.md`
+- **Verified:** GitHub API reads only
+- **Next:** Bognar yields
+
+### S052 · 2026-10-18 18:14 IST · X5b/D-013 · Bognar Part-1 yields; stated temperature bounds
+- **Who:** Kush+Claude
+- **Did:** Parser for weight-yield tables: 444 rows / 30 tables (~94%), core temperature kept as printed; 496 EVD derived.yield_factor (edible + with-waste), key includes core temperature (same roast at 80-90 vs >90 C). D-013: '> 75 C' was MEASURED 75 -> CENSORED GT_STATED/LT_STATED, qualifier in raw; KG quantiles skip bounds. Found + fixed: ingest_bognar rerun cleared 6,594 process / 2,251 ingredient links -> keep_linker_fields; link_evidence restored them.
+- **Files:** `src/culinarystate/ingest/{bognar_yield`, `bognar_build`, `phenol_explorer_build}.py tools/{ingest_bognar_yields`, `reextract_conditions`, `build_kg_edges}.py src/culinarystate/evidence/{conditions`, `linker}.py src/culinarystate/ledgers/common.py ledgers/schemas DECISIONS.md`
+- **Verified:** second pass of every touched builder writes nothing; 10 ledgers 0 invalid; Bognar links 6,594/2,251 restored
+- **Next:** DEL-4/5 layer
+
+### S053 · 2026-10-18 18:14 IST · DEL-4 · Calibration metrics and confidence vector
+- **Who:** Kush+Claude
+- **Did:** scoring/calibration.py: Brier, ECE (+reliability bins), risk-coverage, AURC, error-detection AUROC, UCR. decision/confidence.py: SSOT 242.1 vector (unknown stays None), 242.6 sufficiency modes, 242.7 output precision <= evidence precision. Retrieval: ingredient named inside a group row ('vegetables, such as broccoli') = matrix NEAR.
+- **Files:** `src/culinarystate/scoring/calibration.py src/culinarystate/decision/confidence.py src/culinarystate/retrieval/compatibility.py`
+- **Verified:** unit tests
+- **Next:** DEL-5 decision layer
+
+### S054 · 2026-10-18 18:14 IST · DEL-5 · Relevance gate, feasibility filter, decision policy, ask tool
+- **Who:** Kush+Claude
+- **Did:** decision/relevance.py (SSOT 7 rule gate + intent), feasibility.py (C11: malformed->REJECT, OOD->UNKNOWN, tools from HIGH PROC_USES_TOOL, time from duration quantiles, FSSAI allergens; unstated constraint = NOT_APPLICABLE), policy.py (243: ASK on missing slot, feasibility before utility, alternatives without hidden weights, diagnosis QUALIFIED, RECOVER = cause evidence + recoverability UNKNOWN), pipeline.py + tools/ask.py --demo. Demo exposed + fixed: question homographs (keep/split/can).
+- **Files:** `src/culinarystate/decision/ tools/ask.py`
+- **Verified:** unit tests; 8 demo questions give expected modes on real ledgers
+- **Next:** DEL-3 sessions
+
+### S055 · 2026-10-18 18:14 IST · DEL-3 · 30 scripted sessions (AI-drafted)
+- **Who:** Kush+Claude
+- **Did:** annotation/sessions.py: session schema (gold event vocabulary, expected alive/dead/fields/edges/issue count), replay check; gold.compile_event shared. 30 sessions over 10 scenario types; all pass (237 checks, deterministic replay). Contract counts HUMAN_REVIEWED only: 0/30.
+- **Files:** `src/culinarystate/annotation/{sessions`, `gold}.py annotation/sessions/ tools/run_sessions.py reports/del3/`
+- **Verified:** tests 355 passed
+- **Next:** humans review sessions (#10b); D-012 storage decision
