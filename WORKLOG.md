@@ -88,3 +88,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/annotation/`, `tools/gold_cli.py`, `tools/make_gold_batch.py`, `annotation/`, `tests/unit/test_gold.py`, `.gitignore`, `DECISIONS.md`
 - **Verified:** pytest 225 passed; 3 examples validate + replay with 0 issues; demo agree shows concept disagreement row; templates fail validation until TODOs filled
 - **Next:** HUMAN: Kush + Parv annotate pilot_20 independently (≈15–25 min each) → agree → adjudicate → handbook v1.1
+
+### S014 · 2026-10-18 11:39 IST · DEL-3/B11/P5 · Rule baseline recipe→events compiler (B-rules) + entity alignment for scoring
+- **Who:** Kush+Claude
+- **Did:** state_graph/rule_compiler.py: ingredient lines → Add (cleaned food label, longest registry concept), per-sentence processes (phrases first; case-insensitive verb matching with light inflection; noun-like aliases (butter/oil/salt/heat…) only in verb position; 'the reserved X' is an adjective), rules for Reserve (portion from sentence), drain/strain → Split+Discard (+Reserve if 'reserving'), divide into N (fractions only if 'equal'), combination verbs or 'X in/with Y' → Merge into running mixture, reserved mention → Recombine, tool words → Transfer, other actions → Transform. scoring/state_metrics.py: align_entities (ingredients by line order, intermediates by Jaccard of aligned ingredient ancestors, greedy 1:1), relabel, aligned_state_scores. Iterated 4× against gold examples: fixed case-sensitive regex (lost all sentence-initial imperatives), noun-as-verb, reserved butter merged into roux, missing drain target.
+- **Files:** `src/culinarystate/state_graph/rule_compiler.py`, `src/culinarystate/scoring/state_metrics.py`, `tests/unit/test_rule_compiler.py`
+- **Verified:** pytest 234 passed; smoke scores on 3 synthetic gold: merge/split F1 1.00 / 0.35 / 1.00 (pasta fails on hypernym 'pasta'→spaghetti — known baseline gap); NOT a result until 40 human Gold recipes
+- **Next:** Phenol-Explorer ingest after crawl; process registry commit; EDA generator
