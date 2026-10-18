@@ -1,5 +1,5 @@
 {
- "selected_on_dev": "deberta-v3-large",
+ "selected_on_dev": "deberta-v3-large_crf",
  "verdict": "BEATS_FLOOR",
  "floor_test_ci": {
   "estimate": 0.7738,
@@ -85,6 +85,25 @@
     "UNIT": 0.9782
    },
    "minutes_per_run": 0.8
+  },
+  "deberta-v3-large_crf": {
+   "seeds": 5,
+   "dev_mean": 0.9441,
+   "test_exact_mean": 0.9332,
+   "test_exact_sd": 0.003,
+   "test_relaxed_mean": 0.957,
+   "per_label_exact": {
+    "COLOR": 0.8488,
+    "FOOD": 0.9076,
+    "PART": 0.5091,
+    "PHYSICAL_QUALITY": 0.8073,
+    "PROCESS": 0.9254,
+    "PURPOSE": 0.7644,
+    "QUANTITY": 0.9772,
+    "TASTE": 0.662,
+    "UNIT": 0.9793
+   },
+   "minutes_per_run": 2.5
   },
   "deberta-v3-large": {
    "seeds": 5,
