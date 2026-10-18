@@ -165,3 +165,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `DECISIONS.md`, `benchmark/benchmark_registry_template.csv`
 - **Verified:** template columns match plan AI6
 - **Next:** HUMAN: confirm D-008, then author DEV items
+
+### S025 · 2026-10-18 12:06 IST · DEL-1/B06 · Phenol-Explorer 3.6 ingested: 3,870 primary-study EVD rows, 125 publications
+- **Who:** Kush+Claude
+- **Did:** Crawl completed (1,130 detail pages, 0 failures, survived one network drop via backoff). tools/ingest_phenol_explorer.py: 3,870 EVD (origin PRIMARY_STUDY, tier E3 curated, study lineage PRESENT), 125 STUDY + 126 SRC (1 database + 125 papers), 161 SVAR compounds, 3,870 COND (durations/temperatures/power/pressure from 'food after processing' text; PER_VOLUME basis for liquids). Before/after content, PE RF (incl. yield) and yield factor stored separately. Open discrepancy: list pages advertise 4,407 data points vs 3,870 per-publication values parsed (detail paths deduplicated) — to investigate, not assumed.
+- **Files:** `tools/ingest_phenol_explorer.py`, `ledgers/data/EVD.jsonl`, `ledgers/data/COND.jsonl`, `ledgers/data/STUDY.jsonl`, `ledgers/data/SRC.jsonl`, `ledgers/data/SVAR.jsonl`
+- **Verified:** all rows schema+law validated on write; rerun all unchanged
+- **Next:** link EVD→ING/PROC; MOL/IMAP; queue refresh; EDA; DEL-2 on PE (study-disjoint possible)
