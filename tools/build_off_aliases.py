@@ -61,6 +61,10 @@ def main() -> None:
     for e in off.values():
         for n in e.names.get("en", []):
             en_index.setdefault(norm(n), set()).add(e.id)
+    for a in st.all_latest("ALIAS"):                   # migrate OFF aliases if norm() changed (e.g. accent folding)
+        if a["status"] == "ACTIVE" and sid in a["provenance"]["source_ids"] and a["language"] == "en" \
+                and a["normalized"] != norm(a["surface"]):
+            st.upsert({**a, "normalized": norm(a["surface"])})
     alias_owner = {a["normalized"]: a["ingredient_id"] for a in st.all_latest("ALIAS") if a["status"] == "ACTIVE"}
     ings = [i for i in st.all_latest("ING") if i["status"] == "ACTIVE"]
     canon_owner = {norm(i["canonical_name"]): i["id"] for i in ings}

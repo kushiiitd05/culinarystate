@@ -228,3 +228,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/vocab/registry_build.py tools/build_ingredient_registry.py tools/build_foodon_crosswalk.py tools/build_off_aliases.py ledgers/data/*.jsonl registry/*`
 - **Verified:** 276 tests; 0 invalid; 0 dangling ING refs across all ledgers; every builder 2nd run = 0 writes
 - **Next:** X3 Wikibooks Cookbook recipes (MediaWiki API, CC BY-SA)
+
+### S034 · 2026-10-18 13:18 IST · X3/DEL-3 · Wikibooks Cookbook recipes ingested (source family 2)
+- **Who:** Kush+Claude
+- **Did:** MediaWiki API crawl (cached, 1 req/s): 3,797 recipe + 130 equipment + 749 ingredient + 81 technique pages; cuisine tree (155) + technique tree (26). Parser keeps [[Cookbook:X]] links as spans and sub-section groups (dough/filling = intermediate components). REC +3,676 (family WIKIBOOKS-COOKBOOK; cuisines incl. Indian 143; technique refs). REC<->ING 97.7% of 32,036 lines (wiki link 28k, ngram 3k). +97 ING from editor-linked ingredient pages (>=3 recipes, category pages filtered), +155 aliases. Silver NER export (local) ~49k spans INGREDIENT/TOOL/UNIT/PROCESS. Cross-source near-dups with BBC: 1. Fixes: norm() folds accents (crème fraîche), shown text before link target (lumped pages).
+- **Files:** `src/culinarystate/ingest/wikibooks.py src/culinarystate/vocab/{line_link`, `foodon}.py tools/{crawl_wikibooks`, `ingest_wikibooks}.py tools/build_off_aliases.py tools/build_ingredient_registry.py registry/recipes/wikibooks_ingredient_links_v1.csv reports/wikibooks_v1.md`
+- **Verified:** 282 tests; 0 invalid; ingest 2nd run 0 writes; 40-line spot check ~90% correct before shown-text fix
+- **Next:** X3b equipment/technique pages -> TOOL/PROC; then X4 Gutenberg cookbooks

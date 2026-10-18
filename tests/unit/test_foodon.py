@@ -15,4 +15,4 @@ def test_index_scores():
     idx = name_index(parse(OWL))
     assert idx["tomato"] == {"FOODON_2": 1.0, "FOODON_3": 0.85}     # qualifier-stripped label scores lower
     assert idx["love apple"] == {"FOODON_2": 0.9}
-    assert norm("Tomatoes") == "tomato" and norm("berries") == "berry" and strip_qualifier("a (b, c)") == "a"
+    assert norm("Tomatoes") == "tomato" and norm("berries") == "berry" and norm("Crème Fraîche") == "creme fraiche" and strip_qualifier("a (b, c)") == "a"

@@ -67,7 +67,7 @@ for c in concepts:
 current_ing = set(ids.values())
 superseded = {}
 for old in st.all_latest("ING"):                       # concepts that dropped out: deprecate, never delete
-    if old["id"] not in current_ing and old["status"] == "ACTIVE":
+    if old["id"] not in current_ing and old["status"] == "ACTIVE" and src_id in old["provenance"]["source_ids"]:
         keeper = merged.get(old["canonical_name"])
         if keeper in ids:                              # duplicate spelling merged into keeper
             superseded[old["id"]] = ids[keeper]

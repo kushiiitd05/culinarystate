@@ -7,6 +7,7 @@ alternative terms (0.9), the label with its parenthetical qualifier removed — 
 from __future__ import annotations
 
 import re
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -31,7 +32,8 @@ class Term:
 
 
 def norm(s: str) -> str:
-    s = re.sub(r"[^a-z0-9 ]+", " ", (s or "").lower())
+    s = "".join(c for c in unicodedata.normalize("NFKD", (s or "").lower()) if not unicodedata.combining(c))
+    s = re.sub(r"[^a-z0-9 ]+", " ", s)
     words = [w[:-3] + "y" if w.endswith("ies") and len(w) > 4 else
              (w[:-2] if re.search(r"(oes|ches|shes|sses|xes)$", w) else
               (w[:-1] if w.endswith("s") and not w.endswith("ss") and len(w) > 3 else w)) for w in s.split()]
