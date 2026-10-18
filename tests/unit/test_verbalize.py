@@ -104,3 +104,10 @@ def test_prevention_prefers_short_statements():
                          {"action": "do not let it boil", "support_sources": 2}]}
     t = verbalize("q", {"mode": "DIAGNOSE", "route": "DIAGNOSIS", "diagnosis": dg}, {})
     assert "do not let it boil" in t and "1-1/2 hour" not in t
+
+
+def test_unlinked_food_rows_are_not_called_similar():
+    h = _hit(7, 0.7, "SHELLFISH")
+    h = Hit(h.evd_id, h.score, h.bm25, {"match": {"matrix": "UNKNOWN"}}, h.row)
+    t = verbalize("q", _ans("QUALITATIVE"), {"boil": EvidencePacket("q", Query(), "QUALITATIVE", [], [h])})
+    assert "relation to yours unknown: shellfish" in t and "similar" not in t

@@ -1,0 +1,122 @@
+{
+ "n_cells": 1500,
+ "n_common": 104,
+ "systems": {
+  "B0": {
+   "coverage": 0.8727,
+   "mae": 0.1854,
+   "mae_common": 0.0722
+  },
+  "RP": {
+   "coverage": 0.0707,
+   "mae": 0.0792,
+   "mae_common": 0.0769
+  },
+  "RG": {
+   "coverage": 0.386,
+   "mae": 0.1302,
+   "mae_common": 0.0699
+  },
+  "RGN": {
+   "coverage": 0.2033,
+   "mae": 0.0494,
+   "mae_common": 0.0772
+  },
+  "RGU": {
+   "coverage": 0.6707,
+   "mae": 0.1079,
+   "mae_common": 0.0956
+  }
+ },
+ "RG-B0": {
+  "estimate": -0.0023,
+  "low": -0.017,
+  "high": 0.0118,
+  "n_groups": 104,
+  "n_boot": 1000,
+  "seed": 20261018
+ },
+ "RGN-B0": {
+  "estimate": 0.005,
+  "low": -0.011,
+  "high": 0.0204,
+  "n_groups": 104,
+  "n_boot": 1000,
+  "seed": 20261018
+ },
+ "RP-B0": {
+  "estimate": 0.0047,
+  "low": -0.0114,
+  "high": 0.0202,
+  "n_groups": 104,
+  "n_boot": 1000,
+  "seed": 20261018
+ },
+ "RG-RP": {
+  "estimate": -0.007,
+  "low": -0.0128,
+  "high": -0.0014,
+  "n_groups": 104,
+  "n_boot": 1000,
+  "seed": 20261018
+ },
+ "RGN-RG": {
+  "estimate": 0.0073,
+  "low": 0.0016,
+  "high": 0.0137,
+  "n_groups": 104,
+  "n_boot": 1000,
+  "seed": 20261018
+ },
+ "new_RG-B0": {
+  "estimate": 0.018,
+  "low": -0.0029,
+  "high": 0.042,
+  "n_groups": 467,
+  "n_boot": 1000,
+  "seed": 20261018
+ },
+ "new_RGN-B0": {
+  "estimate": -0.0264,
+  "low": -0.0351,
+  "high": -0.0173,
+  "n_groups": 198,
+  "n_boot": 1000,
+  "seed": 20261018
+ },
+ "new_RGU-B0": {
+  "estimate": 0.0179,
+  "low": 0.012,
+  "high": 0.0235,
+  "n_groups": 895,
+  "n_boot": 1000,
+  "seed": 20261018
+ },
+ "by_relation": {
+  "PARENT": {
+   "n": 118,
+   "mae": 0.0482,
+   "b0_mae": 0.0564
+  },
+  "CHILD": {
+   "n": 122,
+   "mae": 0.0356,
+   "b0_mae": 0.0634
+  },
+  "SIBLING": {
+   "n": 343,
+   "mae": 0.1828,
+   "b0_mae": 0.1464
+  },
+  "ANCESTOR": {
+   "n": 18,
+   "mae": 0.0194,
+   "b0_mae": 0.0667
+  },
+  "GROUP_ROW": {
+   "n": 51,
+   "mae": 0.0873,
+   "b0_mae": 0.075
+  }
+ }
+}

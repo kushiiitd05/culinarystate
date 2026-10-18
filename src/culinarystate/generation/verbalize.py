@@ -43,6 +43,8 @@ def _label(p: EvidencePacket, key: str) -> str:
     if p.direct:
         return key
     foods = list(dict.fromkeys(_food(h.row["matrix"]["raw_name"]) for h in p.near if h.row["matrix"].get("raw_name")))
+    if p.near and all((h.compat.get("match") or {}).get("matrix") == "UNKNOWN" for h in p.near):
+        return f"{key} (other foods, relation to yours unknown: {', '.join(foods[:3])})"
     return f"{key} (similar foods only: {', '.join(foods[:3])})"
 
 

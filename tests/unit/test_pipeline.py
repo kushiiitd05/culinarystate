@@ -42,3 +42,20 @@ def test_negated_and_affirmed_same_process_is_contradiction():
     s = parse_query("How much vitamin C does boiled and also not boiled broccoli keep?", LEX)
     assert s.contradictions == ("PROC-1",)
     assert parse_query("How much vitamin C does boiled broccoli keep?", LEX).contradictions == ()
+
+
+def test_food_graph_relations_reach_the_query():
+    from dataclasses import replace
+    from culinarystate.decision.pipeline import answer
+    seen = {}
+
+    class R:
+        def packet(self, q, query, k):
+            seen["rel"] = query.ingredient_relations
+            from culinarystate.retrieval.retriever import EvidencePacket
+            return EvidencePacket(q, query, "UNSUPPORTED")
+    lex = replace(LEX, relations={"ING-1": (("ING-9", "PARENT"),)})
+    from culinarystate.decision.feasibility import Requirements
+    answer("How much vitamin C does boiled broccoli keep?", lex, R(), Requirements({"PROC-1": "boil"}, {}, {}, {}),
+           {"PROC-1": "WET"})
+    assert seen["rel"] == (("ING-9", "PARENT"),)

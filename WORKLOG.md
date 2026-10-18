@@ -480,3 +480,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/evidence/link_review.py`, `tools/{apply_link_review`, `link_evidence}.py`, `registry/evidence/evd_ingredient_link_{review_AI_prechecked`, `decisions`, `review}.csv`, `DECISIONS.md D-014`, `handoff/RUNBOOK.md`, `STATUS.md`, `tests/unit/test_link_review.py`
 - **Verified:** pytest 2866 fast + 40 ledgers (release audit) pass; link_evidence idempotent
 - **Next:** R4 graph expansion; RQ16-03 hard-negative compatibility reranker
+
+### S070 · 2026-10-18 23:40 IST · DEL-4 · R4 food-graph expansion + strict near-evidence rule
+- **Who:** Kush
+- **Did:** FoodGraph over ING parents + OFF taxonomy (ODbL) with categorical match types; leave-cell-out eval of 1,500 cells: vertical relations promoted (new cells MAE 0.032 vs 0.058 global median, Δ -0.026 CI excludes 0), siblings off (worse than baseline), unlinked-food rows no longer NEAR when a food is asked (old rule Δ +0.018 worse than baseline) -> BROAD_QUALITATIVE with 'relation unknown' wording. Lexicon carries relations; Query.ingredient_relations; compat match record.
+- **Files:** `src/culinarystate/retrieval/{food_graph`, `compatibility`, `retriever}.py`, `src/culinarystate/decision/pipeline.py`, `src/culinarystate/generation/verbalize.py`, `tools/eval_graph_expansion.py`, `reports/del4/graph_expansion_v1{.md`, `.json`, `_analysis.md}`, `tests/unit/test_{food_graph`, `retrieval`, `pipeline`, `verbalize}.py`
+- **Verified:** pytest 2875 fast + 40 ledgers pass; demo answers re-checked
+- **Next:** paired test for GROUP_ROW; RQ16-03 hard-negative compatibility reranker; benchmark authoring (D-008) still human-gated

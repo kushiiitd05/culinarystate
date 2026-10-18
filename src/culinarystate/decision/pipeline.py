@@ -9,9 +9,11 @@ slots stay None and the policy asks or abstains.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from pathlib import Path
 
 from culinarystate.retrieval.compatibility import Query
+from culinarystate.retrieval.food_graph import FoodGraph
 from culinarystate.retrieval.retriever import EvidenceRetriever
 from culinarystate.state_graph.rule_compiler import step_processes
 from culinarystate.transition.cross_source import NUTRIENT
@@ -42,6 +44,7 @@ class Lexicon:
     parents: dict                   # ING id -> tuple of parent ING ids
     processed_by: dict              # ING id -> PROC ids by ING_PROCESSED_BY confidence
     heat_procs: frozenset
+    relations: dict = field(default_factory=dict)   # ING id -> ((ING id, relation), ...) from the R4 food graph
 
 
 @dataclass(frozen=True)
@@ -98,7 +101,8 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
     def query(pid: str) -> Query:
         return Query(ingredient_id=s.ingredient_id, ingredient_name=s.ingredient_name,
                      ingredient_parents=frozenset(s.parents), process_id=pid,
-                     process_family=proc_family.get(pid), target=s.target)
+                     process_family=proc_family.get(pid), target=s.target,
+                     ingredient_relations=lex.relations.get(s.ingredient_id, ()))
 
     packets = {n: retriever.packet(q, query(p), k) for n, p in options}
     feas = {n: check(Action(p, (s.ingredient_id,) if s.ingredient_id else ()), constraints or Constraints(), req)
@@ -115,8 +119,13 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
             "feasibility": feas, "support": support}
 
 
-def load_lexicon(store) -> tuple[Lexicon, dict]:
+OFF_TAXONOMY = Path(__file__).resolve().parents[3] / "data" / "raw" / "off" / "ingredients_a1ce1d36.txt"
+
+
+def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, dict]:
+    """off_path: OFF taxonomy for R4 relations (parents/children/ancestors); None or missing file -> ING parents only."""
     from culinarystate.vocab.foodon import norm
+    from culinarystate.vocab.off import parse as parse_off
     names = {norm(i["canonical_name"]): i["id"] for i in store.all_latest("ING") if i["status"] == "ACTIVE"}
     for a in store.all_latest("ALIAS"):
         if a["status"] == "ACTIVE" and a.get("ingredient_id") and a["language"] == "en":
@@ -127,8 +136,13 @@ def load_lexicon(store) -> tuple[Lexicon, dict]:
     for e in store.all_latest("KGE"):
         if e["status"] == "ACTIVE" and e["predicate"] == "ING_PROCESSED_BY":
             by.setdefault(e["subject_id"], []).append((-e["confidence"], e["object_id"]))
+    ings = [i for i in store.all_latest("ING") if i["status"] == "ACTIVE"]
+    off = {k: e.parents for k, e in parse_off(off_path).items()} if off_path and off_path.exists() else {}
+    graph = FoodGraph(ings, off)
+    relations = {i["id"]: r for i in ings if (r := tuple(graph.related(i["id"]).items()))}
     lex = Lexicon(LineLinker(names, set()), {p["canonical_name"]: p["id"] for p in procs},
                   {i["id"]: tuple(i.get("parent_ids") or ()) for i in store.all_latest("ING")},
                   {k: tuple(p for _, p in sorted(v)) for k, v in by.items()},
-                  frozenset(p["id"] for p in procs if p["family"] in HEAT_FAMILIES or p["canonical_name"] in EXTRA_METHODS))
+                  frozenset(p["id"] for p in procs if p["family"] in HEAT_FAMILIES or p["canonical_name"] in EXTRA_METHODS),
+                  relations)
     return lex, family

@@ -17,7 +17,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C3 | State reconstructor | ✅ | `state_graph/engine.py`, `rule_compiler.py`; 30 sessions pass |
 | C4 | Process-history tracker | 🟡 | engine `last_process` + TRANSFORMS_INTO edges; no history-conditioned features yet |
 | C5 | Goal/constraint parser | ✅ | `constraints@0.2`: tools (closed/open world, unavailable; weak aliases after cues), time budget, FSSAI allergens, ingredient exclusions (longest lexicon phrase; feasibility rejects descendants; unknown -> UNRESOLVED); diets UNRESOLVED |
-| C6 | Multi-index retriever | 🟡 | structured primary (MRR 0.856); free-text fallback RRF BM25+e5-large-v2 (0.762; +0.057 paired vs bge-small); dense blend on structured +0.005 n.s.; cross-encoders negative; R4 graph expansion ⬜ |
+| C6 | Multi-index retriever | 🟡 | structured primary (MRR 0.856); free-text fallback RRF BM25+e5-large-v2 (0.762; +0.057 paired vs bge-small); dense blend on structured +0.005 n.s.; cross-encoders negative; R4 food graph (parent/child/ancestor) promoted, siblings off; unlinked-food rows -> BROAD — `reports/del4/graph_expansion_v1_analysis.md` |
 | C7 | Evidence compatibility layer | ✅ | `retrieval/compatibility.py` (9 axes, UNKNOWN neutral, group-row NEAR) |
 | C8 | Direct transition lookup | ✅ | retriever DIRECT class + cell dedup |
 | C9 | Transition fallback | 🟡 | DEL-2 D0–D7 exist; not routed (G16-TRANS not passed: gains vanish cold) |

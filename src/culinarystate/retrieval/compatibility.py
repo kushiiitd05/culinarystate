@@ -29,6 +29,7 @@ class Query:
     medium: str | None = None
     target: str | None = None
     basis: str | None = None
+    ingredient_relations: tuple = ()          # R4 food graph: ((ING id, PARENT|CHILD|SIBLING|ANCESTOR), ...)
 
 
 def _interval(q: tuple[float, float] | None, ev: dict | None, near_frac: float = 0.5) -> str:
@@ -44,24 +45,29 @@ def _interval(q: tuple[float, float] | None, ev: dict | None, near_frac: float =
 def compatibility(q: Query, e: dict, cond: dict | None, proc_family: dict[str, str]) -> dict:
     m, p, t = e["matrix"], e["process"], e["target"]
     v = {}
+    rel = dict(q.ingredient_relations)
     if q.ingredient_id and m.get("ingredient_id"):
-        v["matrix"] = "MATCH" if q.ingredient_id == m["ingredient_id"] else (
-            "NEAR" if m["ingredient_id"] in q.ingredient_parents else "MISMATCH")
-    elif q.ingredient_name and re.search(rf"(?<!\w){re.escape(q.ingredient_name.lower())}(?!\w)", (m.get("raw_name") or "").lower()):
-        v["matrix"] = "NEAR"                 # named inside a group row ("vegetables, such as broccoli"): group-level evidence
+        mi = m["ingredient_id"]
+        kind = "EXACT" if q.ingredient_id == mi else "PARENT" if mi in q.ingredient_parents else rel.get(mi, "NONE")
+        v["matrix"] = "MATCH" if kind == "EXACT" else "MISMATCH" if kind == "NONE" else "NEAR"
+    elif q.ingredient_name and re.search(rf"(?<!\w){re.escape(q.ingredient_name.lower())}(?!\w)",
+                                         (m.get("raw_name") or "").lower()):
+        kind, v["matrix"] = "GROUP_ROW", "NEAR"     # named inside a group row ("vegetables, such as broccoli")
     elif q.food_group and m.get("food_group"):
-        v["matrix"] = "NEAR" if q.food_group.split()[0].lower() in m["food_group"].lower() else "UNKNOWN"
+        near = q.food_group.split()[0].lower() in m["food_group"].lower()
+        kind, v["matrix"] = ("FOOD_GROUP", "NEAR") if near else ("UNKNOWN", "UNKNOWN")
     else:
-        v["matrix"] = "UNKNOWN"
+        kind, v["matrix"] = "UNKNOWN", "UNKNOWN"
     v["state"] = "UNKNOWN" if not (q.state and m.get("initial_state")) else (
         "MATCH" if q.state.lower() in m["initial_state"].lower() else "NEAR")
     pid = p.get("process_id")
     if q.process_id and pid:
         same_fam = proc_family.get(q.process_id) and proc_family.get(q.process_id) == proc_family.get(pid)
-        v["process"] = "MATCH" if pid == q.process_id or q.process_id in (p.get("step_process_ids") or []) else (
-            "NEAR" if same_fam else "MISMATCH")
+        pkind = "EXACT" if pid == q.process_id else "STEP" if q.process_id in (p.get("step_process_ids") or []) else (
+            "SAME_FAMILY" if same_fam else "NONE")
+        v["process"] = {"EXACT": "MATCH", "STEP": "MATCH", "SAME_FAMILY": "NEAR", "NONE": "MISMATCH"}[pkind]
     else:
-        v["process"] = "UNKNOWN"
+        pkind, v["process"] = "UNKNOWN", "UNKNOWN"
     c = cond or {}
     v["time"] = _interval(q.time_min, c.get("duration"))
     temps = [x["value"] for x in c.get("temperatures", []) if x["value"].get("unit") == "degC"]
@@ -75,4 +81,5 @@ def compatibility(q: Query, e: dict, cond: dict | None, proc_family: dict[str, s
     v["tier"] = e["tier"]
     score = sum(WEIGHTS[a] * (TIER_RANK.get(v[a], 0) if a == "tier" else VALUE[v[a]]) for a in AXES)
     hard_mismatch = any(v[a] == "MISMATCH" for a in ("matrix", "process", "target"))
-    return {"vector": v, "score": round(score / sum(WEIGHTS.values()), 4), "hard_mismatch": hard_mismatch}
+    return {"vector": v, "score": round(score / sum(WEIGHTS.values()), 4), "hard_mismatch": hard_mismatch,
+            "match": {"matrix": kind, "process": pkind}}                # §241.3 categorical match types

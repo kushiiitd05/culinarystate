@@ -71,7 +71,8 @@ class EvidenceRetriever:
     def _candidates(self, text: str, q: Query, k_bm25: int) -> dict[int, float]:
         bm = dict(self.bm25.top(text, k_bm25))
         pool = set(bm)
-        for ing in ({q.ingredient_id} if q.ingredient_id else set()) | set(q.ingredient_parents):
+        related = {i for i, _ in q.ingredient_relations}                    # R4 graph expansion
+        for ing in ({q.ingredient_id} if q.ingredient_id else set()) | set(q.ingredient_parents) | related:
             pool |= set(self.by_ing.get(ing, []))
         if q.target:
             pool &= pool if not self.by_target else pool | {i for t, ix in self.by_target.items()
@@ -79,8 +80,9 @@ class EvidenceRetriever:
         return {i: bm.get(i, 0.0) for i in pool}
 
     def search(self, text: str, q: Query, k: int = 10, k_bm25: int = 300,
-               dense_scores: dict[int, float] | None = None) -> list[Hit]:
-        cands = self._candidates(text, q, k_bm25)
+               dense_scores: dict[int, float] | None = None, exclude: set | None = None) -> list[Hit]:
+        """exclude: row indices hidden from this search (leave-cell-out evaluation)."""
+        cands = {i: b for i, b in self._candidates(text, q, k_bm25).items() if not exclude or i not in exclude}
         if not cands:
             return []
         mx = max(cands.values()) or 1.0
@@ -111,6 +113,11 @@ class EvidenceRetriever:
         near = [h for h in hits if h not in direct and not h.compat["hard_mismatch"] and
                 h.compat["vector"]["target"] in ("MATCH", "UNKNOWN") and
                 sum(h.compat["vector"][a] in ("MATCH", "NEAR") for a in ("matrix", "process")) >= 1]
+        broad_only = False
+        if q.ingredient_id or q.ingredient_name:     # a food was asked: unlinked-food rows are BROAD, never NEAR
+            strict = [h for h in near if h.compat["vector"]["matrix"] in ("MATCH", "NEAR")]
+            broad_only = not strict and bool(near)   # (graph_expansion_v1: such rows lose to the global median)
+            near = strict or near
         pool = direct or near
         dirs = {}
         for h in pool:
@@ -124,12 +131,13 @@ class EvidenceRetriever:
         elif direct:
             cls = "DIRECT" if has_numeric else "QUALITATIVE"
         elif near:
-            cls = "INTERPOLATED" if has_numeric else "QUALITATIVE"
+            cls = "INTERPOLATED" if has_numeric and not broad_only else "QUALITATIVE"
         else:
             cls = "UNSUPPORTED"
         unknowns = sorted({a for h in pool[:5] for a, v in h.compat["vector"].items() if v == "UNKNOWN"})
         diffs = sorted({f"{a}: {v}" for h in near[:5] for a, v in h.compat["vector"].items() if v in ("NEAR",
-                                                                                                    "MISMATCH")})
+                                                                                                    "MISMATCH")}
+                       | ({"matrix: UNKNOWN (relation of these foods to the asked food is unknown)"} if broad_only else set()))
         disallowed = []
         if cls in ("INTERPOLATED", "QUALITATIVE"):
             disallowed.append("no exact numeric claim for the asked condition; state the nearest evidence and its differences")
