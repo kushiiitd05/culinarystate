@@ -151,3 +151,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/evidence/literature.py`, `tools/build_verification_queue.py`, `tools/del1_data_card.py`, `tools/ingest_phenol_explorer.py`, `tools/build_molecule_registry.py`, `src/culinarystate/molecules/pubchem.py`, `registry/evidence/`, `reports/evidence_precheck_report.html`, `reports/DEL1_data_card.md`, `tests/unit/`
 - **Verified:** pytest 257 passed; Route B: 509 candidates (130 VERIFY_NOW / 245 STRONG / 134 NEEDS_SOURCE), 73 rejected; data card 4/6 clauses pass (0/40 human-verified rows = human task)
 - **Next:** Full PE ingest → link EVD → MOL/IMAP → refresh queue (Route A) + data card + EDA + DEL-2 on PE
+
+### S023 · 2026-10-18 12:03 IST · P15 · Handoff docs: SOURCE_ACCESS, API_BLOCKERS, MANUAL_NEXT_STEPS
+- **Who:** Kush+Claude
+- **Did:** handoff/SOURCE_ACCESS.md (13 sources: access route, status, licence, storage rule, ledger, command; DNS-pinning note; books policy). handoff/API_BLOCKERS.md (8 blockers with impact/workaround/unblock owner — RecipeDB key, FlavorDB, FSIS/FoodSafety.gov 403 to scripts (tried twice, stopped, manual download), router DNS, FDC rate limit, rdkit, TabPFN, human verification). handoff/MANUAL_NEXT_STEPS.md (10 human tasks with input file, exact steps, time estimate, owner). Tried FSIS and FoodSafety.gov charts → HTTP 403 (CDN refuses automated clients) → not circumvented.
+- **Files:** `handoff/SOURCE_ACCESS.md`, `handoff/API_BLOCKERS.md`, `handoff/MANUAL_NEXT_STEPS.md`
+- **Verified:** docs written; every command path exists in repo
+- **Next:** PE ingest when crawl completes
