@@ -57,7 +57,10 @@ class TroubleshootIndex:
 
 
 def _verify(cause: str, history: set[str]) -> str:
-    """Named (non-generic) process in the cause vs session history; a negated process flips the test."""
+    """Named (non-generic) process in the cause vs session history; a negated process flips the test.
+    No history (no session) means nothing can be checked."""
+    if not history:
+        return "UNVERIFIABLE"
     verdicts = []
     for pos, p in step_processes(cause):
         if p not in BY_CANON or BY_CANON[p].family in GENERIC:

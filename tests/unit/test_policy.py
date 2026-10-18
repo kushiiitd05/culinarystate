@@ -118,3 +118,9 @@ def test_recover_takes_options_from_recovery_index():
 def test_diagnose_without_candidates_abstains():
     empty = {**DIAG, "causes": [], "recovery": []}
     assert decide("Why did my custard curdle?", {}, {"ingredient": None, "process": None}, diagnosis=empty)["mode"] == "ABSTAIN"
+
+
+def test_out_of_scope_requests_abstain():
+    from culinarystate.decision.policy import decide
+    d = decide("Tell me a joke about pasta.", {}, {})
+    assert d["mode"] == "ABSTAIN" and d["route"] == "OUT_OF_SCOPE" and d["reason"] == "OUT_OF_SCOPE"

@@ -20,7 +20,8 @@ HIGH = (("SUBSTITUTION", r"\binstead of\b|\bsubstitut\w*|\bswap\b|\breplace\b"),
         ("FAILURE", r"\b(?:burnt|burned|overcooked|undercooked|soggy|curdled|split|too (?:salty|dry|thick|thin|bitter))\b"))
 LOW = (("NAVIGATION", r"\bnext (?:step|instruction)\b|\bprevious step\b|\bwhat is step\b"),
        ("COUNT", r"\bhow many\b(?!.*\b(?:lose|retain|keep)\b)"),
-       ("TRANSFER", r"^\s*(?:move|transfer|put|place|set aside)\b"))
+       ("TRANSFER", r"^\s*(?:move|transfer|put|place|set aside)\b"),
+       ("OUT_OF_SCOPE", r"\b(?:joke|poem|story|song|riddle|limerick)s?\b"))
 INTENT = (("RECOVER", r"\baccident\w*|\brecover\w*|\brescue\b|\bsalvage\b|\bfix (?:it|this)\b|\bsave (?:it|this)\b"),
           ("DIAGNOSE", r"\bwhy (?:did|is|are|has|have|does)\b.*\b(?:split|curdle\w*|soggy|dry|tough|bitter|burn\w*|"
                        r"sink|sank|collapse\w*|turn\w*|become|go|went)\b|\bwhat went wrong\b"),

@@ -30,6 +30,8 @@ def decide(query: str, packets: dict[str, EvidencePacket], slots: dict, feasibil
            numeric_target: bool = True, support: dict | None = None, diagnosis: dict | None = None) -> dict:
     gate = relevance_gate(query)
     base = {"version": VERSION, "query": query, "gate": gate, "intent": intent(query)}
+    if gate["reason"] == "OUT_OF_SCOPE":
+        return {**base, "mode": "ABSTAIN", "route": "OUT_OF_SCOPE", "reason": "OUT_OF_SCOPE"}
     if gate["relevant"] is False:
         return {**base, "mode": "ANSWER", "route": "RECIPE_STATE", "reason": "LOW_PROCESS_RELEVANCE"}
     if base["intent"] in ("DIAGNOSE", "RECOVER") and diagnosis and diagnosis.get("failure"):

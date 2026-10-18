@@ -15,3 +15,5 @@ Demo questions only (n=8); not a benchmark. B5 numbers must be cited and match p
   narrating cause-evidence numbers, invented "[1]" citations on non-evidence routes.
 - Next: per-route B5 prompts (RECIPE_STATE, DIAGNOSIS/RECOVER render candidates not rows), post-hoc enforcement of the
   precision cap (strip numbers when QUALITATIVE), rerun with stored packets, then qwen2.5-32B.
+
+**Superseded (2026-10-18):** checker bugs inflated UCR; see `generator_c16_v1.md` for the corrected ablation.

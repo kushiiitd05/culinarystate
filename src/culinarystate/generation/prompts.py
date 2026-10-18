@@ -5,6 +5,7 @@ only state numbers that appear in the rendered evidence, each with its [EVD-…]
 """
 from __future__ import annotations
 
+from culinarystate.generation.verbalize import facts
 from culinarystate.retrieval.retriever import EvidencePacket
 
 
@@ -52,3 +53,13 @@ def b5_prompt(q: str, p: EvidencePacket, decision: dict, disallowed: list[str]) 
     return ("You are CulinaryState, an evidence-grounded cooking assistant. Follow the rules exactly.\nRules:\n- "
             + "\n- ".join(rules) + "\n\nEvidence rows:\n" + render_evidence(p) + "\n\nQuestion: " + q
             + "\nAnswer in at most 3 sentences.")
+
+
+def b5f_prompt(q: str, decision: dict, packets: dict[str, EvidencePacket]) -> str:
+    """Per-route C16 prompt: the LLM only rephrases the verbaliser's fact lines (no raw rows, no second analysis)."""
+    lines = facts(decision, packets)["lines"]
+    return ("You are CulinaryState, an evidence-grounded cooking assistant. Rewrite the facts below as a short, "
+            "friendly answer (at most 3 sentences) to the question.\nRules:\n- Do not add numbers, foods, causes, "
+            "steps or advice that are not in the facts.\n- Keep each [EVD-…] id right after the number or statement "
+            "it supports.\n- Keep words like 'similar foods', 'may', 'not ranked' and 'unknown' when the facts use "
+            "them.\n\nFacts:\n" + "\n".join(lines) + "\n\nQuestion: " + q)

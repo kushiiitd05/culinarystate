@@ -17,7 +17,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C3 | State reconstructor | ✅ | `state_graph/engine.py`, `rule_compiler.py`; 30 sessions pass |
 | C4 | Process-history tracker | 🟡 | engine `last_process` + TRANSFORMS_INTO edges; no history-conditioned features yet |
 | C5 | Goal/constraint parser | 🟡 | `decision/constraints.py`: tools (closed/open world, unavailable), time budget, FSSAI allergens; diets UNRESOLVED; ingredient exclusions ("no onion") ⬜ |
-| C6 | Multi-index retriever | 🟡 | BM25 + dense (bge/e5/gte) + structured + RRF; R4 graph expansion ⬜; R5 cross-encoder running |
+| C6 | Multi-index retriever | 🟡 | structured primary (MRR 0.856); free-text fallback RRF BM25+e5-large-v2 (0.762, best of 6 dense); R5 bge-reranker-base 0.614 (negative); R4 graph expansion ⬜ |
 | C7 | Evidence compatibility layer | ✅ | `retrieval/compatibility.py` (9 axes, UNKNOWN neutral, group-row NEAR) |
 | C8 | Direct transition lookup | ✅ | retriever DIRECT class + cell dedup |
 | C9 | Transition fallback | 🟡 | DEL-2 D0–D7 exist; not routed (G16-TRANS not passed: gains vanish cold) |
@@ -27,8 +27,8 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C13 | Relevance gate | ✅ | rules pass SSOT §7 examples; held-out eval needs benchmark (D-008) |
 | C14 | Uncertainty/OOD gate | ✅ | `decision/ood.py`: support per axis, OOD caps precision at QUALITATIVE; wired into policy/ask |
 | C15 | Multi-objective selector | 🟡 | alternatives without hidden weights; no Pareto front |
-| C16 | Grounded response generator | 🟡 | `generation/` prompts + Ollama client (A100 tunnel); smoke B5 UCR 0.71 → per-route prompts + cap enforcement next |
-| C17 | Citation/provenance layer | 🟡 | `generation/claims.py`: numeric claim → cited packet row value check, fabricated ids, UCR |
+| C16 | Grounded response generator | ✅ | template verbaliser promoted (0 unsupported / 0 violations); LLM rephrase + enforcement unpromoted (readability needs humans) — `reports/del5/generator_c16_v1.md`; 12 contract cases |
+| C17 | Citation/provenance layer | ✅ | `claims@0.2` (strict ids, citation-only fragments attach to previous sentence, bare counts not claims) + `enforce@0.1`; 12 contract cases |
 | C18 | Session-state updater | 🟡 | engine Observe/Predict precedence; sessions runner; not wired to `ask` |
 
 ## Research questions (§247) — protocol §257E
@@ -36,7 +36,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 |---|---|---|---|
 | 01 | Semantic state value | ⬜ | needs B3 vs B4 ladder on benchmark |
 | 02 | Structured retrieval | 🟡 | silver: structured MRR 0.856 vs hybrid 0.704 vs BM25 0.597 (`reports/del4/`) |
-| 03 | Compatibility reranker vs cross-encoder | 🟡 | R5 cross-encoder baseline running; scientific hard negatives ⬜ |
+| 03 | Compatibility reranker vs cross-encoder | 🟡 | general cross-encoder loses to RRF on silver (0.614 vs 0.704); large pending; scientific hard negatives ⬜ |
 | 04 | Context restructuring | ⬜ | packet fields exist; generator needed |
 | 05 | Confidence vector | ✅ | `decision/confidence.py`; calibration needs verified labels |
 | 06 | Evidence sufficiency policy | ✅ | §242.6–8 modes + precision cap |

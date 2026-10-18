@@ -52,3 +52,8 @@ def test_negated_cause_flips_verification():
     assert {c["cause"]: c["verdict"] for c in d["causes"]}["not stirred"] == "CONSISTENT"      # stir absent
     d = diagnose("Why did my custard curdle?", history=["boil", "stir"], idx=IDX)
     assert {c["cause"]: c["verdict"] for c in d["causes"]}["not stirred"] == "INCONSISTENT"
+
+
+def test_no_history_means_unverifiable_not_inconsistent():
+    d = diagnose("Why did my custard curdle?", history=[], idx=IDX)
+    assert {c["verdict"] for c in d["causes"]} == {"UNVERIFIABLE"}

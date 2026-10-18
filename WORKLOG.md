@@ -452,3 +452,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/generation/ tools/run_ladder.py reports/del5/ tests/unit/test_generation.py`
 - **Verified:** unit tests; smoke outputs in reports/del5
 - **Next:** per-route prompts + precision-cap enforcement + rerun; large+CRF card
+
+### S066 · 2026-10-18 22:45 IST · DEL-5 · C16/C17 generator ablation: template promoted, LLM rephrase unpromoted
+- **Who:** Kush
+- **Did:** Deterministic verbaliser (verbalize@0.1), per-route fact prompt (b5f), post-hoc enforcer (enforce@0.1), claims@0.2 fixes (bare '1', 7-digit ids, citations after full stop); ladder v2 on 20 dev questions with qwen2.5 7B and 32B on private GPU Ollama (shared service was CPU-only). B5F+E and B5T both 0 unsupported/0 violations; template keeps all facts -> promoted. Fixed miner v1.1, diagnosis no-history verdict, out-of-scope gate, enforcer ASK/malformed-id gaps.
+- **Files:** `src/culinarystate/generation/{verbalize`, `enforce`, `claims`, `prompts`, `llm}.py`, `src/culinarystate/decision/{diagnosis`, `policy`, `relevance}.py`, `tools/run_ladder.py`, `tests/contract/test_generation_contracts.py`, `tests/unit/test_{verbalize`, `enforce`, `generation`, `diagnosis`, `policy}.py`, `reports/del5/generator_c16_v1.md`, `ladder_v2_qwen{7b`, `32b}.*`
+- **Verified:** pytest 2857 fast + 40 ledgers pass; ladder rescored with final checker
+- **Next:** retrieval report v2 (6 dense + R5 base/large); wire e5-large free-text fallback decision; R4 graph expansion

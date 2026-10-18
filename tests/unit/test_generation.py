@@ -52,3 +52,10 @@ def test_non_claim_numbers_ignored():
 def test_multiple_ids_in_one_bracket_are_citations():
     r = check_claims("Retention is about 55% [EVD-000001, EVD-000002].", PK)
     assert r["unsupported"] == 0 and r["claims"][0]["cites"] == ["EVD-000001", "EVD-000002"]
+
+
+def test_citations_after_the_full_stop_attach_to_the_previous_sentence():
+    r = check_claims("Boiling keeps about 55% of vitamin C. [EVD-000001]", PK)
+    assert r["unsupported"] == 0 and r["claims"][0]["cites"] == ["EVD-000001"]
+    r = check_claims("Boiling keeps 55%. It is similar to kale. [EVD-000001]", PK)
+    assert r["claims"][0]["reason"] == "UNCITED"                  # only the sentence right before gets the ids
