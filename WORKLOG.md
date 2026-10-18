@@ -525,3 +525,9 @@ Presentation: **25–26 Nov 2026**.
 - **Did:** selector@0.1: Pareto front over retention (higher better), time (lower better), feasibility (ALLOWED>CONSTRAINED>UNKNOWN; REJECTED excluded). No hidden weights. UNKNOWN objectives neutral. 14 unit tests (12 mandatory + 2 extra).
 - **Files:** `src/culinarystate/decision/selector.py tests/unit/test_selector.py`
 - **Verified:** 2926 fast tests pass
+
+### S077 · 2026-10-19 02:15 IST · E16-A · NER error analysis, paired bootstrap, hybrid pipeline
+- **Who:** Kush+Claude
+- **Did:** Error analysis of 301 test errors (deberta-v3-base_crf seed 1): 46.5% boundary, FOOD↔PHYSICAL_QUALITY top confusion, PART/TASTE weakest. Paired bootstrap significance: CRF sig p=0.003, kNN-NER null (Δ=0 all 5 seeds, excluded). Built NER hybrid pipeline module (rules → encoder cascade, GLiNER/verifier stubs). 14 new tests (2940 total).
+- **Files:** `src/culinarystate/ner/pipeline.py`, `tools/ner_analysis.py`, `reports/ner/e16a_error_analysis.md`, `reports/ner/e16a_significance.md`, `tests/unit/test_ner_pipeline.py`
+- **Verified:** pytest 2940 pass; error analysis covers 7 models × 5 seeds; bootstrap CIs match report

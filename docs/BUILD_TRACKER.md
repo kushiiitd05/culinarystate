@@ -68,7 +68,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 ## Experiment families (§245) and gates
 | ID | Family | Status | Evidence / gap |
 |---|---|---|---|
-| E16-A | Semantic parsing (NER) | 🟡 | test exact F1: rules 0.774 → BERT 0.919, RoBERTa 0.925, DeBERTa 0.922 (5 seeds); +CRF (base 0.927, large 0.933); runtime replay verified on Mac MPS (0.9266); GLiNER zero-shot pending |
+| E16-A | Semantic parsing (NER) | 🟡 | test exact F1: rules 0.774 → BERT 0.919, RoBERTa 0.925, DeBERTa 0.922 (5 seeds); +CRF (base 0.927, large 0.933); kNN-NER Δ=0 (null, excluded); runtime replay verified on Mac MPS (0.9266); error analysis: 46.5% boundary, FOOD↔PHYS_QUAL top confusion; paired bootstrap: CRF sig (p=0.003), large+CRF sig (p=0.004); hybrid pipeline module `ner/pipeline.py`; GLiNER zero-shot pending |
 | E16-B | Quantity | 🟡 | `reports/quantity_coverage_v0.md` |
 | E16-C | Vocabulary/cold-start | 🟡 | coverage curves; cold-start eval ⬜ |
 | E16-D | Recipe graph | 🟡 | 30 AI-drafted sessions; Gold ⛔ humans |
