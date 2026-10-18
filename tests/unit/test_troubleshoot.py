@@ -43,3 +43,15 @@ def test_precision_sample_regressions():
 def test_grains_noun_is_not_grainy():
     assert rel("If the grains are cooked in a double boiler, they will not need stirring.") == []
     assert rel("If the fudge turns grainy, add a little water and reheat.")[0][:2] == ("RECOVERY", "GRAINY")
+
+
+def test_recovery_sample_noise_regressions():
+    assert rel("If you have cinnamon stick, break it into four pieces.") == []
+    assert rel("If it falls in heavy drops, the jam is sufficiently cooked.") == []
+    assert rel("If you don't mind soggy nori, you can wrap the balls in nori beforehand.") == []
+    assert rel("If the dough sticks to the board, dust with a little flour.")[0][:2] == ("RECOVERY", "STICK")
+
+
+def test_fire_and_water_level_are_not_food_failures():
+    assert rel("If this burns well, change the dampers to make an indirect draft.") == []
+    assert rel("Should the water sink below two-thirds, replenish from the boiling kettle.") == []

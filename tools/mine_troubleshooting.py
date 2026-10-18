@@ -73,7 +73,10 @@ def main() -> None:
              f"PREVENTION {sum(df.relation == 'PREVENTION'):,}, RECOVERY {sum(df.relation == 'RECOVERY'):,})",
              f"- distinct (relation, failure, text) keys: {len(sup):,}; with support ≥ 2 sources: {sum(sup.support_sources >= 2):,}",
              "- registry CSV carries Gutenberg (public domain) text only; Wikibooks text stays local (CC BY-SA).",
-             "- candidates, not verified causes; precision sample in data/interim/troubleshooting/precision_sample.jsonl", "",
+             "- candidates, not verified causes; precision sample in data/interim/troubleshooting/precision_sample.jsonl",
+             "- AI-judged precision on fresh random samples (not human verification): 37/40 (mixed, seed 7); "
+             "17/20 RECOVERY before noise filter; 26/30 strict / 28/30 lenient (mixed, seed 23). Known noise: "
+             "condition spans from unrelated if-clauses, vague actions.", "",
              by.to_markdown()]
     (ROOT / "reports" / "troubleshooting_v1.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines[:5]))

@@ -22,8 +22,8 @@ FAILURES = {  # surface stem -> failure key
 }
 _F = "|".join(sorted((re.escape(k) for k in FAILURES), key=len, reverse=True))
 FAIL = rf"(?P<fail>(?:{_F})\w*)"
-SUBJ = r"(?:(?:the|your|it|they|this|its|mixture|sauce|custard|cake|eggs?|cream|milk|batter|dough|butter|fat|it all)\s*){0,4}?"
-AUX = r"(?:(?:begins?|starts?|seems?|appears?|is about|threatens?|happens?|be|is|are|does|do|should)\s+(?:to\s+)?){0,2}"
+SUBJ = r"(?:[\w'-]+\s+){0,4}?"                               # any short subject ("the fudge", "your sauce")
+AUX = r"(?:(?:begins?|starts?|seems?|appears?|is about|threatens?|happens?|turns?|becomes?|gets?|goes?|be|is|are|does|do|should)\s+(?:to\s+)?){0,2}"
 RECOVERY_RE = re.compile(rf"^\s*(?:if|should)\s+{SUBJ}{AUX}{FAIL}\b[^,;:]*[,;:]\s*(?:then\s+)?(?P<act>[^.;]{{4,160}})", re.I)
 CAUSE_RE = re.compile(rf"\b(?:will|would|may|might|is apt to|are apt to|is likely to|are likely to)\s+{FAIL}\b[^,;]*?"
                       rf"\b(?:if|when|unless)\s+(?P<cond>[^.;]{{4,160}})", re.I)
@@ -53,7 +53,15 @@ def sentences(text: str) -> list[str]:
     return [s.strip() for s in SENT.split(text or "") if s.strip()]
 
 
+NOISE = re.compile(r"\b(?:cinnamon|celery|vanilla|lemongrass|liquorice|licorice|bread|cheese|butter|rhubarb)\s+sticks?\b|"
+                   r"\bfalls?\s+(?:in\s+(?:\w+\s+)?drops|from|off|into)\b|\b(?:don'?t|do not|doesn'?t)\s+mind\b|"
+                   r"\b(?:prefer|like)\s+(?:it\s+)?(?:soggy|thick|thin|dry)\b|\bburns?\s+(?:well|brightly|clear)\b|"
+                   r"\bdampers?\b|\bwater\s+(?:should\s+|may\s+)?(?:sinks?|falls?)\b", re.I)
+
+
 def mine_sentence(s: str) -> list[Statement]:
+    if NOISE.search(s):
+        return []
     out = []
     if m := RECOVERY_RE.search(s):
         out.append(Statement("RECOVERY", _key(m["fail"]), m["act"].strip(" ,"), s))
