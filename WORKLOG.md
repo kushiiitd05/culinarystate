@@ -137,3 +137,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/ingest/recipe_families.py`, `tools/build_recipe_registry.py`, `tests/unit/test_recipe_families.py`, `registry/recipes/`, `reports/recipe_registry_v1.md`, `ledgers/data/REC.jsonl`
 - **Verified:** pytest 248 passed; 11,934 REC created; 7 near-duplicate pairs → 5 multi-recipe families (largest 3); REC↔ING: 123,598 mention rows, 95.4% linked
 - **Next:** Phenol-Explorer ingest + EVD→ING/PROC linking
+
+### S021 · 2026-10-18 11:54 IST · B16/AH3/ledger-queue#10 · ALLERGEN ledger from FSSAI Labelling & Display Regs 2020, Reg 5(14)
+- **Who:** Kush+Claude
+- **Did:** Downloaded official FSSAI compendium (Version-I 23.09.2021, sha256 ca2df1df…) → SRC (AUTHORITY_STANDARD) + SNAP. Extracted Reg 5(14) verbatim: 8 groups — cereals containing gluten (wheat, rye, barley, oats, spelt; glucose-syrup/maltodextrin/distillate exceptions ≤20 mg/kg), crustacean, milk, egg, fish, nut (peanuts + tree nuts), soy, sulphite ≥10 mg/kg; 'May contain' for cross-contamination; exemptions for derived oils, distilled spirits, product-is-allergen, raw agricultural commodities. 8 ALLERGEN records with quoted legal_reference. ING membership = AI-drafted keyword mapping with exceptions (coconut/almond milk, nutmeg, butternut, derived oils, chocolate eggs, pine nut → review), verification UNVERIFIED; sulphite review-only (concentration-dependent). Memory of the list confirmed only after reading the gazette text.
+- **Files:** `tools/build_allergen_registry.py`, `registry/allergens/ing_allergen_review.csv`, `ledgers/data/ALLERGEN.jsonl`, `ledgers/data/SRC.jsonl`, `ledgers/data/SNAP.jsonl`
+- **Verified:** 8 ALLERGEN records; memberships gluten 177, milk 136, fish 43, nut ~40, soy ~22, egg ~14, crustacean 13 ING concepts; spot-check fixed groundnut oil / chocolate egg / pine nut errors
+- **Next:** HUMAN: tick ing_allergen_review.csv before DEL-5 hard constraints. Code: Phenol-Explorer ingest
