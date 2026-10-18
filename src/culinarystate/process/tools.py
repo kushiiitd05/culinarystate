@@ -33,10 +33,10 @@ TOOLS: tuple[Tool, ...] = (
     T("ice cream maker", "APPLIANCE", ("ice cream maker", "ice cream machine")), T("spice grinder", "APPLIANCE", ("spice grinder", "coffee grinder")),
     # cookware
     T("frying pan", "COOKWARE", ("frying pan", "skillet", "non-stick pan", "non-stick frying pan")),
-    T("saucepan", "COOKWARE", ("saucepan", "pan", "large pan", "small pan", "pot", "stockpot", "stock pot")),
+    T("saucepan", "COOKWARE", ("saucepan", "pan", "large pan", "small pan", "pot", "stockpot", "stock pot", "stewpan", "stew pan", "sauce pan", "soup pot")),
     T("griddle pan", "COOKWARE", ("griddle pan", "griddle", "ridged griddle pan")),
     T("wok", "COOKWARE", ("wok",)), T("casserole", "COOKWARE", ("casserole", "casserole dish", "dutch oven", "flameproof casserole")),
-    T("roasting tin", "COOKWARE", ("roasting tin", "roasting tray", "roasting pan")),
+    T("roasting tin", "COOKWARE", ("roasting tin", "roasting tray", "roasting pan", "dripping pan")),
     T("baking tray", "COOKWARE", ("baking tray", "baking sheet", "oven tray", "cookie sheet", "sheet pan", "sheet")),
     T("baking dish", "COOKWARE", ("baking dish", "ovenproof dish", "gratin dish", "pie dish", "dish")),
     T("cake tin", "COOKWARE", ("cake tin", "cake pan", "sandwich tin", "springform tin", "springform pan", "loose-bottomed tin", "tin")),
@@ -73,7 +73,9 @@ TOOLS: tuple[Tool, ...] = (
     T("scales", "MEASURE", ("scales", "digital scales")), T("measuring spoon", "MEASURE", ("measuring spoon", "measuring spoons")),
     T("timer", "MEASURE", ("timer",)),
     # added from Wikibooks Cookbook equipment pages (X3b, D-009)
-    T("double boiler", "COOKWARE", ("double boiler", "bain-marie", "bain marie")),
+    T("double boiler", "COOKWARE", ("double boiler", "bain-marie", "bain marie", "farina kettle")),
+    T("chafing dish", "COOKWARE", ("chafing dish",)), T("fish kettle", "COOKWARE", ("fish kettle",)),
+    T("preserving pan", "COOKWARE", ("preserving pan", "preserving kettle", "jam pan", "maslin pan")),
     T("idli steamer", "COOKWARE", ("idli steamer", "idli pan", "idli stand", "idli maker")),
     T("tamagoyaki pan", "COOKWARE", ("tamagoyaki pan", "makiyakinabe")), T("fondue pot", "COOKWARE", ("fondue pot", "caquelon")),
     T("bundt tin", "COOKWARE", ("bundt tin", "bundt pan", "bundt mould")), T("pizza stone", "COOKWARE", ("pizza stone", "baking stone")),
@@ -204,12 +206,18 @@ WIKIBOOKS_PAGE: dict[str, str] = {
 MATERIALS = ("non-stick", "cast-iron", "cast iron", "stainless steel", "aluminium", "copper", "enamelled", "glass",
              "ceramic", "wooden", "silicone", "carbon steel", "heatproof", "ovenproof", "flameproof")
 
+def _hy(s: str) -> str:
+    """Hyphen/space-insensitive key: historic texts write 'frying-pan', 'stew-pan', 'sauce-pan'."""
+    return re.sub(r"[\s-]+", " ", s.lower()).strip()
+
+
 ALIAS_TO_TOOL: dict[str, str] = {}
 for _t in TOOLS:
     for _a in sorted((_t.canonical, *_t.aliases), key=len, reverse=True):
-        ALIAS_TO_TOOL.setdefault(_a, _t.canonical)
-_ALIAS_RE = re.compile(r"\b(" + "|".join(re.escape(a) for a in sorted(ALIAS_TO_TOOL, key=len, reverse=True))
-                       + r")s?\b", re.IGNORECASE)
+        ALIAS_TO_TOOL.setdefault(_hy(_a), _t.canonical)
+_NOSEP = {k.replace(" ", ""): v for k, v in ALIAS_TO_TOOL.items()}
+_ALIAS_RE = re.compile(r"\b(" + "|".join(re.escape(a).replace(r"\ ", r"[\s-]?") for a in
+                                         sorted(ALIAS_TO_TOOL, key=len, reverse=True)) + r")s?\b", re.IGNORECASE)
 _MAT_RE = re.compile(r"\b(" + "|".join(re.escape(m) for m in MATERIALS) + r")\b", re.IGNORECASE)
 # aliases that are too generic to count unless the context is clearly equipment
 WEAK = {"sheet", "dish", "tin", "pan", "pot", "board", "surface", "spoon", "brush", "rack", "bag", "glass", "jar",
@@ -223,9 +231,10 @@ def find_tools(text: str) -> list[tuple[int, str, str | None]]:
     """(position, canonical tool, material-or-None) — weak aliases count only after an article/adjective."""
     out = []
     for m in _ALIAS_RE.finditer(text):
-        alias = m.group(1).lower()
-        if alias in WEAK and not _ARTICLE.search(text[:m.start()]):
+        alias = _hy(m.group(1))
+        if alias in WEAK and not _ARTICLE.search(text[:m.start()]):  # noqa: SIM102
             continue
         mat = _MAT_RE.search(text[max(0, m.start() - 25):m.end()])   # material may sit inside the alias
-        out.append((m.start(), ALIAS_TO_TOOL[alias], mat.group(1).lower() if mat else None))
+        tool = ALIAS_TO_TOOL.get(alias) or _NOSEP[alias.replace(" ", "")]
+        out.append((m.start(), tool, mat.group(1).lower() if mat else None))
     return out

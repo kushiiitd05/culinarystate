@@ -65,3 +65,10 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
 - Association confidence = 95% Wilson lower bound of P(object|subject); bands HIGH (support ≥ 30, lift ≥ 2) / MEDIUM (≥ 10, ≥ 1.5) / LOW. Quantile edges: n/(n+20).
 - LLM-proposed edges can never be HIGH without human verification (rule_kge).
 - **Approver:** Claude (schema addition; Kush/Parv to confirm).
+
+### D-012 · 2026-10-18 · Gutenberg recipes are silver; ledger file size watch
+- Gutenberg REC come from heuristic segmentation of free text (measured precision ≈ 80–85% on 30-sample after
+  index/menu/non-food/date filters). They are recipe *candidates* for procedure/tool/verb statistics, not Gold.
+- `ledgers/data/REC.jsonl` is ~54 MB after X4. GitHub rejects files > 100 MB: before H7 push, if any ledger file
+  exceeds 90 MB, shard by source family (`REC.<family>.jsonl`) or move to git-lfs (decide then).
+- **Approver:** Claude (Kush/Parv to confirm before push).

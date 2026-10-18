@@ -291,3 +291,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `handoff/RUNBOOK.md handoff/DATASETS.md tools/build_foodon_crosswalk.py tools/build_tool_wikidata.py`
 - **Verified:** tests pass; builders unchanged on rerun
 - **Next:** X4 Gutenberg ingest when crawl finishes
+
+### S043 · 2026-10-18 16:39 IST · X4/DEL-3 · Gutenberg public-domain cookbooks ingested (partial, silver)
+- **Who:** Kush+Claude
+- **Did:** PGLAF mirror crawl (zip, 2 s/req) of 347 catalog-selected cookbooks (205 done so far). Heuristic segmenter (headings + Beeton fields) + evidence filter (>=2 ING mentions, >=1 process) + index/menu/date/non-food filters: 49,520 REC (family GUTENBERG-PD), 484k REC<->ING mention links, 1,147 with Beeton ingredient field; precision ~80-85% on 30-sample (D-012 silver). Tool matcher hyphen-insensitive (stew-pan, sauce-pan); +3 historic tools (chafing dish, fish kettle, preserving pan) and aliases (stewpan, dripping pan, farina kettle).
+- **Files:** `src/culinarystate/ingest/{gutenberg`, `old_recipes}.py src/culinarystate/process/tools.py tools/{crawl_gutenberg`, `ingest_gutenberg}.py registry/recipes/gutenberg_ingredient_links_v1.csv registry/tools/historic_tool_candidates.csv reports/gutenberg_v1.md DECISIONS.md`
+- **Verified:** 301 tests; 0 invalid REC/SRC/SNAP; 3 samples of 25-30 reviewed
+- **Next:** SSOT deep-dive for more resources + graph edge types; re-run ingest after crawl; add Gutenberg to tool/KG corpora
