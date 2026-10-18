@@ -3,8 +3,8 @@
 
   /opt/anaconda3/bin/python tools/ask.py "How much vitamin C does boiled broccoli keep?"
   /opt/anaconda3/bin/python tools/ask.py --demo          # the fixed demo questions below
-Prints the decision, the evidence class per option and the cited EVD ids. No free-text generation here:
-the output is the structured decision a generator would be constrained by.
+Prints the answer from the promoted C16 template verbaliser (reports/del5/generator_c16_v1.md), the decision,
+the evidence class per option and the cited EVD ids.
 """
 import argparse
 import json
@@ -18,6 +18,7 @@ from culinarystate.decision.diagnosis import TroubleshootIndex  # noqa: E402
 from culinarystate.decision.feasibility import load_requirements  # noqa: E402
 from culinarystate.decision.ood import SupportIndex  # noqa: E402
 from culinarystate.decision.pipeline import answer, load_lexicon  # noqa: E402
+from culinarystate.generation.verbalize import verbalize  # noqa: E402
 from culinarystate.ledgers.store import LedgerStore  # noqa: E402
 from culinarystate.retrieval.retriever import EvidenceRetriever  # noqa: E402
 
@@ -39,7 +40,7 @@ def show(q: str, r: dict) -> dict:
                 "support": (r.get("support") or {}).get(k)}
             for k, p in r["packets"].items()}
     s = r["slots"]
-    return {"question": q, "mode": d["mode"], "reason": d.get("reason"), "precision": d.get("precision"),
+    return {"question": q, "answer": verbalize(q, d, r["packets"]), "mode": d["mode"], "reason": d.get("reason"), "precision": d.get("precision"),
             "gate": d["gate"]["reason"], "intent": d["intent"],
             "diagnosis": {k: d["diagnosis"][k] for k in ("failure", "causes", "recovery", "next_observations")}
             if d.get("diagnosis") else None, "recovery_options": d.get("recovery_options"),
