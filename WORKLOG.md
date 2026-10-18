@@ -382,3 +382,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/annotation/{sessions`, `gold}.py annotation/sessions/ tools/run_sessions.py reports/del3/`
 - **Verified:** tests 355 passed
 - **Next:** humans review sessions (#10b); D-012 storage decision
+
+### S056 · 2026-10-18 18:15 IST · DEL-5/D-008 · Doubts resolved from SSOT first (D-008, D-012)
+- **Who:** Kush+Claude
+- **Did:** Kush: resolve doubts from SSOT + md first, ask only if unresolved. D-008: SSOT §12 names 9 benchmark tasks; draft list replaced by SSOT-aligned 8 (one merge) with evidence regimes as slices. D-012: SSOT §226.3/§226.10 (versioned schema, DVC/versioned snapshots) + plan law 15 (append-only) settle the method; remote/account choice left to humans.
+- **Files:** `DECISIONS.md`
+- **Verified:** SSOT lines 1258-1288, 24515-24530, 24590-24602; plan H2, AI9
+- **Next:** Kush: confirm D-008 merge; pick snapshot remote for D-012

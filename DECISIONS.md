@@ -43,6 +43,13 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
   · T7 DIAGNOSE_RECOVER (H4: state divergence, e.g. "boiled instead of browned") · T8 ASK_CLARIFY (VOI, mode ASK).
 - Covers H1–H4 and all decision modes (RECOMMEND inside T6/T7). Registry fields per plan AI6.
 - **Approver:** Kush + Parv to confirm before authoring starts.
+- **REVISED 2026-10-18 (SUPERSEDES the list above): follow SSOT §12, which names 9 Project-A tasks.** Course contract says
+  "8 task types", so one merge is needed. Proposal: T1 CURRENT_STATE · T2 NEXT_ACTION · T3 TRANSFORMATION_EXPLANATION
+  ("why brown the onions?") · T4 PROCESS_SUBSTITUTION · T5 ADAPTATION (SSOT T5 equipment + T6 ingredient, both via the
+  feasibility filter) · T6 MISTAKE_RECOVERY · T7 PROCESS_COMPARISON · T8 CHEMISTRY_RELEVANCE (relevance gate, SSOT §7).
+  Evidence regimes are slices across all types, not types: DIRECT / NEAR / UNSUPPORTED (must ABSTAIN) / CONFLICT /
+  AMBIGUOUS (must ASK) — plan AI9 "covering all task types and evidence regimes"; §245.1 CONF/DEC families.
+  Open for Kush/Parv: which two SSOT tasks to merge (proposal: equipment + ingredient adaptation).
 
 ### D-009 · 2026-10-18 · Open-resource expansion, done sequentially (Kush: "web, cookbooks, websites, scrapers … sequentially")
 - **Approved source classes (H2 satisfied by Kush's request):** open ontologies/taxonomies (FoodOn CC BY 4.0, Open Food Facts taxonomy ODbL,
