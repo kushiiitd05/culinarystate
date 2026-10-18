@@ -41,6 +41,13 @@
 | X4 | Project Gutenberg cookbooks (public domain) | procedures, TOOL, PROC coverage | ⏳ S042: 49,520 silver REC from 205/347 books (crawl continuing; re-run ingest when done) |
 | X5 | Bognár 2002 retention/yield tables (open access PDF) | EVD source family 3 → source-disjoint DEL-2 | ✅ S038: +6,594 EVD (28/39 Part-2 tables; 11 sub-variant tables skipped); Part-1 yields queued |
 | X6 | Wikidata kitchenware (CC0) | TOOL QIDs + new tools | ✅ S041: 73 LINKED, 31 CANDIDATE (review CSV), 12 no match |
+| X14 | corpus-mined KGE: ING_ALTERNATIVE_TO, ING_PREP_FORM, ING_OFTEN_OPTIONAL, PROC_USES_MEDIUM, PROC_ENDPOINT_STATE (SSOT relations) | KGE | next |
+| X9 | FlavorGraph (Apache-2.0; count+checksum first, Q-N1) | ING_CONTAINS_COMPOUND, MOL | queued |
+| X10 | TASTEset (MIT) | NER reference set for X8 | queued |
+| X11 | ChemTastesDB (CC BY 4.0) | MOL taste classes | queued |
+| X12 | OpenPI (MIT) | DEL-3 external state-change check | queued |
+| X13 | FoodAtlas (Apache-2.0 code; mixed upstream) | ING↔chemical candidate observations | queued |
+| X15 | FDC raw/cooked matched pairs | EVD candidates (E6) | queued |
 | X7 | recipe-scrapers on robots-allowed sites | REC (Indian focus) | queued (needs `pip install recipe-scrapers`) |
 | X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | queued |
 

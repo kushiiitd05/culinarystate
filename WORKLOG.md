@@ -298,3 +298,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/ingest/{gutenberg`, `old_recipes}.py src/culinarystate/process/tools.py tools/{crawl_gutenberg`, `ingest_gutenberg}.py registry/recipes/gutenberg_ingredient_links_v1.csv registry/tools/historic_tool_candidates.csv reports/gutenberg_v1.md DECISIONS.md`
 - **Verified:** 301 tests; 0 invalid REC/SRC/SNAP; 3 samples of 25-30 reviewed
 - **Next:** SSOT deep-dive for more resources + graph edge types; re-run ingest after crawl; add Gutenberg to tool/KG corpora
+
+### S044 · 2026-10-18 16:42 IST · X/SSOT · SSOT deep-dive: resource + relation gap map
+- **Who:** Kush+Claude
+- **Did:** Read SSOT data-inventory/licence/KG/relation sections; docs/RESOURCE_GAP_MAP.md lists 18 named resources with role, licence, status, and maps the 15 SSOT core relations to KGE predicates (6 present, 6 planned: ALTERNATIVE_TO, OFTEN_OPTIONAL, PREP_FORM, USES_MEDIUM, ENDPOINT_STATE, CONTAINS_COMPOUND). Checked availability: FlavorGraph Apache-2.0, FoodAtlas Apache-2.0, TASTEset MIT, OpenPI MIT, ChemTastesDB CC BY 4.0; FooDB 403 (manual); r-FG repo not found. Queue X14, X9-X13, X15 added to STATUS.
+- **Files:** `docs/RESOURCE_GAP_MAP.md STATUS.md`
+- **Verified:** licences checked via GitHub/Zenodo APIs
+- **Next:** X14 corpus-mined predicates
