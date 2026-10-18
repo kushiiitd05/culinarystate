@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:obo="http://purl.obolibrary.org/obo/"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/FOODON_1"><rdfs:label>food product</rdfs:label></owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/FOODON_2"><rdfs:label>tomato</rdfs:label>
+    <oboInOwl:hasExactSynonym>love apple</oboInOwl:hasExactSynonym>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FOODON_1"/></owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/FOODON_3"><rdfs:label>tomato (raw)</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/FOODON_2"/></owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/FOODON_4"><rdfs:label>obsolete: old tomato</rdfs:label></owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/FOODON_5"><rdfs:label>gone</rdfs:label>
+    <owl:deprecated>true</owl:deprecated></owl:Class>
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/UBERON_9"><rdfs:label>leaf</rdfs:label></owl:Class>
+</rdf:RDF>

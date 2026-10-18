@@ -43,3 +43,14 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
   · T7 DIAGNOSE_RECOVER (H4: state divergence, e.g. "boiled instead of browned") · T8 ASK_CLARIFY (VOI, mode ASK).
 - Covers H1–H4 and all decision modes (RECOMMEND inside T6/T7). Registry fields per plan AI6.
 - **Approver:** Kush + Parv to confirm before authoring starts.
+
+### D-009 · 2026-10-18 · Open-resource expansion, done sequentially (Kush: "web, cookbooks, websites, scrapers … sequentially")
+- **Approved source classes (H2 satisfied by Kush's request):** open ontologies/taxonomies (FoodOn CC BY 4.0, Open Food Facts taxonomy ODbL,
+  Wikidata CC0), openly licensed recipe wikis via official API (Wikibooks Cookbook CC BY-SA), public-domain books (Project Gutenberg),
+  open-access retention tables (e.g. Bognár 2002 / OpenAgrar), schema.org recipe markup via `recipe-scrapers` (GitHub hhursev) **only on sites whose
+  robots.txt allows it**, polite rate (≥ 2 s/page), raw text local only.
+- **Not allowed:** 403/paywall circumvention, login-walled datasets without a human accepting terms (RecipeNLG, Kaggle), pirated books.
+- **Order (one at a time, each validated + committed + logged):** X1 FoodOn crosswalk → X2 OFF taxonomy aliases → X3 Wikibooks recipes →
+  X4 Gutenberg cookbooks (procedures/tools) → X5 Bognár retention table (PDF table extraction) → X6 Wikidata kitchenware → X7 recipe-scrapers
+  (Indian + world sites, robots-checked) → X8 SOTA ingredient NER on A100 (VPN) over all recipe sources.
+- **Approver:** Kush.

@@ -207,3 +207,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/evidence/{doi_resolve`, `precheck`, `conditions}.py tools/{precheck_route_a`, `reextract_conditions`, `apply_human_review}.py registry/evidence/{human_review_pack_v1`, `route_a_paper_precheck`, `verification_queue_ranked_v1}.csv handoff/EVIDENCE_REVIEW_GUIDE.md`
 - **Verified:** 271 tests pass; 0 invalid EVD/COND/SRC; reextract idempotent (2nd run 0 writes); apply dry-run rejects verifier=Claude and CONFIRM w/o locator
 - **Next:** Humans: 40 rows in human_review_pack_v1.csv. AI: data expansion (OFF ingredient taxonomy, open recipes, public-domain books, Bognar retention table)
+
+### S031 · 2026-10-18 12:50 IST · X1/P3 · FoodOn crosswalk + ING categories
+- **Who:** Kush+Claude
+- **Did:** Parsed FoodOn (28,684 live FOODON terms, 42,658 names). ING->FoodOn: 534 LINKED (unique exact label, non-polysemous), 287 CANDIDATE, 1,176 NO_MATCH; linked+candidate = 75.4% of corpus mentions. ING.category filled for 572 concepts from nearest FoodOn ancestor (14 coarse classes). D-009 recorded (open-resource expansion, sequential X1-X8).
+- **Files:** `src/culinarystate/vocab/foodon.py tools/build_foodon_crosswalk.py registry/ingredients/foodon_crosswalk_v1.csv reports/foodon_crosswalk_v1.md tests/unit/test_foodon.py DECISIONS.md STATUS.md`
+- **Verified:** tests pass; 0 invalid ING; categories spot-checked (lemon FRUIT, sugar SWEETENER, tomato VEGETABLE, wine vinegar CONDIMENT)
+- **Next:** X2 Open Food Facts taxonomy -> aliases (UK/US, Hindi) to reduce NO_MATCH

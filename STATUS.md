@@ -29,6 +29,18 @@
 4. DEL-5 decision layer (ANSWER…ABSTAIN) + benchmark authoring (confirm D-008).
 5. NER baselines on TASTEset (A100 encoder), Silver factory scaffold, B03/B15 small reproductions, WARN (after FSIS manual download).
 
+## 2c. EXPANSION QUEUE (D-009, sequential)
+| # | Source | Feeds | State |
+|---|---|---|---|
+| X1 | FoodOn ontology (CC BY 4.0) | ING external ids + category | ✅ S031: 534 LINKED + 287 CANDIDATE (75% of mentions), 572 categorised |
+| X2 | Open Food Facts ingredient taxonomy (ODbL) | ALIAS (multilingual, Hindi), ING parents | next |
+| X3 | Wikibooks Cookbook (CC BY-SA, API) | REC source family 2 (world + Indian) | queued |
+| X4 | Project Gutenberg cookbooks (public domain) | procedures, TOOL, PROC coverage | queued |
+| X5 | Bognár 2002 retention/yield tables (open access PDF) | EVD source family 3 → source-disjoint DEL-2 | queued |
+| X6 | Wikidata kitchenware (CC0) | TOOL QIDs + new tools | queued |
+| X7 | recipe-scrapers on robots-allowed sites | REC (Indian focus) | queued (needs `pip install recipe-scrapers`) |
+| X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | queued |
+
 ## 3. BLOCKED / WAITING
 | Blocker | Impact | Workaround |
 |---|---|---|
