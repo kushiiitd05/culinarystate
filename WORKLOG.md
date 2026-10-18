@@ -519,3 +519,9 @@ Presentation: **25–26 Nov 2026**.
 - **Did:** candidates@0.1: three candidate families (PROCESS from ING_PROCESSED_BY, SUBSTITUTION from ING_ALTERNATIVE_TO, SEQUENCE from PROC_FOLLOWED_BY). Ranks by evidence_count then confidence. Nothing invented. 15 unit tests (12 mandatory + 3 extra).
 - **Files:** `src/culinarystate/decision/candidates.py tests/unit/test_candidates.py`
 - **Verified:** 2912 fast tests pass
+
+### S076 · 2026-10-19 01:50 IST · DEL-5 · C15 multi-objective selector (Pareto front)
+- **Who:** Kush+Claude
+- **Did:** selector@0.1: Pareto front over retention (higher better), time (lower better), feasibility (ALLOWED>CONSTRAINED>UNKNOWN; REJECTED excluded). No hidden weights. UNKNOWN objectives neutral. 14 unit tests (12 mandatory + 2 extra).
+- **Files:** `src/culinarystate/decision/selector.py tests/unit/test_selector.py`
+- **Verified:** 2926 fast tests pass

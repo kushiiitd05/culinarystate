@@ -26,7 +26,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C12 | Outcome comparator | ✅ | `decision/comparator.py`: group-median ranges, SEPARATED/OVERLAPPING/INSUFFICIENT (≥2 independent sources), wired into COMPARE |
 | C13 | Relevance gate | ✅ | rules pass SSOT §7 examples; held-out eval needs benchmark (D-008) |
 | C14 | Uncertainty/OOD gate | ✅ | `decision/ood.py`: support per axis, OOD caps precision at QUALITATIVE; wired into policy/ask |
-| C15 | Multi-objective selector | 🟡 | alternatives without hidden weights; no Pareto front |
+| C15 | Multi-objective selector | ✅ | `selector@0.1`: Pareto front over retention, time, feasibility; no hidden weights; UNKNOWN neutral; 14 unit tests |
 | C16 | Grounded response generator | ✅ | template verbaliser promoted (0 unsupported / 0 violations); LLM rephrase + enforcement unpromoted (readability needs humans) — `reports/del5/generator_c16_v1.md`; 12 contract cases |
 | C17 | Citation/provenance layer | ✅ | `claims@0.2` (strict ids, citation-only fragments attach to previous sentence, bare counts not claims) + `enforce@0.1`; 12 contract cases |
 | C18 | Session-state updater | ✅ | `session_state@0.1`: replays events, auto-injects ingredients, passes process_history to diagnosis verifier; `ask.py --session --turn`; 16 unit tests |
