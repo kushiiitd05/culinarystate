@@ -473,3 +473,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/eval_retrieval_silver.py`, `reports/del4/retrieval_silver_v1.{md`, `json}`, `reports/del4/retrieval_silver_v2_analysis.md`, `docs/BUILD_TRACKER.md`
 - **Verified:** eval rerun with all 6 embeddings + 2 rerank files; paired CIs in report
 - **Next:** R4 graph expansion; RQ16-03 hard-negative compatibility reranker
+
+### S069 · 2026-10-18 23:28 IST · DEL-1 · Ingredient-link review signed off by Kush and applied (D-014)
+- **Who:** Kush
+- **Did:** Kush confirmed bulk sign-off of the 389 AI-prechecked link rows. apply_link_review.py (--sign-as Kush) filled human_decision=AI recommendation with basis; decisions: 237 LINKED, 129 HELD, 23 CONCEPT_MISSING (no concepts minted). link_evidence.py now applies signed decisions every run: 2,806 EVD rows revised; second pass writes nothing; KGE rebuilt. Potato vitamin C now DIRECT; carrot beta-carotene / spinach folate stay NEAR (linked rows are polyphenols; nutrient rows are held USDA/Bognar categories) — genuine data gap.
+- **Files:** `src/culinarystate/evidence/link_review.py`, `tools/{apply_link_review`, `link_evidence}.py`, `registry/evidence/evd_ingredient_link_{review_AI_prechecked`, `decisions`, `review}.csv`, `DECISIONS.md D-014`, `handoff/RUNBOOK.md`, `STATUS.md`, `tests/unit/test_link_review.py`
+- **Verified:** pytest 2866 fast + 40 ledgers (release audit) pass; link_evidence idempotent
+- **Next:** R4 graph expansion; RQ16-03 hard-negative compatibility reranker

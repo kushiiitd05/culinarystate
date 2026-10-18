@@ -1,6 +1,6 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-**Updated:** 2026-10-18 18:15 IST (after S055) · **Final presentation: 25–26 Nov 2026 (T-38 days)**
+**Updated:** 2026-10-18 23:10 IST (after S069) · **Final presentation: 25–26 Nov 2026 (T-38 days)**
 **Repo:** `~/Desktop/CGAS/culinarystate` (local git; GitHub push only after H7 approval)
 **Step-by-step log:** `WORKLOG.md` (timestamped, sequential). **Decisions:** `DECISIONS.md`.
 **Bible:** `docs/SSOT/…v15_0.md` (read via `docs/SSOT_INDEX.md`) · plan `docs/plan/CulinaryState_Final_Master_Plan_SSOT15_v4_0.md`
@@ -14,6 +14,8 @@
 | A2: frequent itemsets vs random controls; A3: copy-mutate evolution models | `../A2/`, `../A3/` |
 | Research notes R1–R5 + verified references | `../research/`, `../cgas_salvage/` |
 | SSOT index — all Appendix-1 counts match (30 RQ16, 14 G16, 18 G15 …) | `docs/SSOT_INDEX.md` (S003) |
+| Ingredient-link review signed by Kush (D-014): 237 matrices / 2,806 EVD rows linked, 129 held, 23 concept-missing | `registry/evidence/evd_ingredient_link_decisions.csv` (S069) |
+| C16 template generator promoted; C17 checker/enforcer; C5 ingredient exclusions; retrieval paired study | `reports/del5/generator_c16_v1.md`, `reports/del4/retrieval_silver_v2_analysis.md` (S066–S068) |
 
 **Not on this machine:** Parv's Max-plan work (old STATUS/DECISIONS, ~519 evidence candidate cells). Decision D-001: rebuild here; Parv continues from this repo.
 

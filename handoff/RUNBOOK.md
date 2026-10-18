@@ -30,7 +30,8 @@ py tools/ingest_wikibooks.py               # REC family 2, new ING from editor l
 py tools/build_foodon_crosswalk.py         # ING.crosswalks.foodon + category
 py tools/build_off_aliases.py              # ING OFF/Wikidata refs + multilingual aliases
 py tools/build_process_registry.py         # PROC
-py tools/link_evidence.py                  # EVD -> ING/PROC links, PROC.evidence_coverage
+py tools/apply_link_review.py              # signed link review -> evd_ingredient_link_decisions.csv (D-014)
+py tools/link_evidence.py                  # EVD -> ING/PROC links (+ signed decisions), PROC.evidence_coverage
 py tools/build_tool_registry.py            # TOOL + PROC.tool_ids (BBC + Wikibooks steps)
 py tools/build_tool_wikidata.py            # TOOL Wikidata refs
 py tools/build_recipe_registry.py          # REC family 1 (BBC) + families

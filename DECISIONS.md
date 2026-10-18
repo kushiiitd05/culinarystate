@@ -89,3 +89,16 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
 - Builders that rewrite EVD from source keep link_evidence / review-owned fields (`keep_linker_fields`); found
   when an ingest_bognar rerun cleared 6,594 process links and 2,251 ingredient links (repaired by link_evidence).
 - **Approver:** Claude (Kush/Parv to confirm).
+
+### D-014 · 2026-10-18 · Ingredient-link review signed off by Kush (bulk, on the AI pre-check)
+- **What:** all 389 MEDIUM/NONE-band EVD matrices in `registry/evidence/evd_ingredient_link_review_AI_prechecked.csv`
+  carry `human_decision` = the AI recommendation, reviewer Kush, 2026-10-18. Kush confirmed in session
+  ("Yes, sign off as Kush") after the AI + human consensus review; the basis is stored per row
+  (`human_signoff_basis`). Claude did not re-verify rows individually.
+- **Effect:** ACCEPT/CORRECT -> LINK (237 matrices, 2,806 EVD rows linked); HOLD_* / UNRESOLVED -> stay unlinked
+  (129: categories, multi-matrix rows, composite dishes); 23 LINK rows whose concept is not in the ING registry
+  (hare, plaice, bilberry, meat loaf …) are CONCEPT_MISSING: recorded, not linked, no concepts minted.
+- **Mechanism:** `tools/apply_link_review.py` -> `registry/evidence/evd_ingredient_link_decisions.csv`;
+  `tools/link_evidence.py` applies LINKED decisions on every run (idempotent; second pass writes nothing).
+  The EVD schema is unchanged; link provenance for these rows is the decisions file.
+- **Approver:** Kush.
