@@ -61,6 +61,28 @@ def profile_ledger(store: LedgerStore, prefix: str) -> dict:
     }
 
 
+STRUCTURAL_MODS = ("drippings_included", "coating", "cooking_water", "skin", "shell", "medium", "start_state",
+                   "vessel", "alcohol_mixing", "heat", "hold", "added_to", "stored_before")
+
+
+def _dur_sig(c: dict | None) -> str:
+    d = (c or {}).get("duration") or {}
+    if d.get("status") == "MEASURED":
+        return f"{d['value']:g}min"
+    if d.get("status") == "RANGE":
+        return f"{d['low']:g}-{d['high']:g}min"
+    return "?"
+
+
+def cell_key(e: dict, cond: dict) -> tuple:
+    """(matrix, steps, target, condition signature) — rows sharing a key are true replicates/duplicates."""
+    mods = e["process"].get("modifiers") or {}
+    sig = tuple(sorted((k, str(mods[k])) for k in STRUCTURAL_MODS if k in mods))
+    c = cond.get(e["process"].get("condition_id") or "")
+    return (e["matrix"]["raw_name"].lower(), e["matrix"].get("form") or "", tuple(e["process"].get("steps", [])),
+            e["target"]["raw_name"].lower(), sig, _dur_sig(c))
+
+
 def evidence_section(store: LedgerStore) -> dict:
     evd = store.all_latest("EVD")
     if not evd:
@@ -78,28 +100,25 @@ def evidence_section(store: LedgerStore) -> dict:
     axis_table = defaultdict(dict)
     for (ax, st), k in axes.items():
         axis_table[ax][st] = k
-    cells = Counter((e["matrix"]["raw_name"].lower(), tuple(e["process"].get("steps", [])), e["target"]["raw_name"].lower())
-                    for e in evd)
+    cells = Counter(cell_key(e, cond) for e in evd)
     pairs = Counter((e["matrix"]["raw_name"].lower(), tuple(e["process"].get("steps", []))) for e in evd)
     matrices = Counter(e["matrix"]["raw_name"].lower() for e in evd)
     procs = Counter(s for e in evd for s in e["process"].get("steps", []))
     targets = Counter(e["target"]["raw_name"].lower() for e in evd)
     density = len(pairs) / (len(matrices) * max(1, len({p for _, p in pairs})))
     # duplicates: identical cell from same source family; conflicts: same cell, opposite direction, independent groups
-    dup = sum(c - 1 for c in Counter((k, e["source_family_id"]) for e in evd
-                                     for k in [(e["matrix"]["raw_name"].lower(), tuple(e["process"].get("steps", [])),
-                                                e["target"]["raw_name"].lower())]).values() if c > 1)
+    dup = sum(c - 1 for c in Counter((cell_key(e, cond), e.get("independence_group")) for e in evd).values() if c > 1)
     by_cell = defaultdict(list)
     for e in evd:
-        k = (e["matrix"]["raw_name"].lower(), tuple(e["process"].get("steps", [])), e["target"]["raw_name"].lower())
-        by_cell[k].append(e)
+        by_cell[cell_key(e, cond)].append(e)
     conflicts = []
     for k, es in by_cell.items():
         dirs = {(x["derived"].get("direction"), x.get("independence_group")) for x in es}
         d_only = {d for d, _ in dirs if d in ("INCREASE", "DECREASE")}
         groups = {g for _, g in dirs}
         if len(d_only) == 2 and len(groups) > 1:
-            conflicts.append({"cell": " | ".join([k[0], ">".join(k[1]), k[2]]), "rows": len(es),
+            conflicts.append({"cell": " | ".join([k[0], k[1], ">".join(k[2]), k[3], str(dict(k[4])), k[5]]),
+                              "rows": len(es),
                               "groups": len(groups)})
     return {
         "rows": n,
@@ -125,7 +144,7 @@ def evidence_section(store: LedgerStore) -> dict:
         "matrix_long_tail": {"matrices_with_1_row": sum(1 for c in matrices.values() if c == 1),
                              "median_rows_per_matrix": sorted(matrices.values())[len(matrices) // 2]},
         "process_steps_top": procs.most_common(15),
-        "duplicate_rows_same_family": dup,
+        "replicate_rows_same_cell_same_group": dup,
         "conflict_candidates": len(conflicts), "conflict_examples": conflicts[:15],
     }
 

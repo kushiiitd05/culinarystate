@@ -1,4 +1,4 @@
-# Ledger EDA summary (2026-10-18T06:10:30+00:00)
+# Ledger EDA summary (2026-10-18T06:11:31+00:00)
 
 | Ledger | records | versions | verification |
 |---|---|---|---|
@@ -30,11 +30,11 @@
 - **unique_matrices**: 38
 - **unique_step_sequences**: 42
 - **unique_targets**: 26
-- **unique_cells**: 4445
+- **unique_cells**: 7018
 - **matrix_process_density**: 0.1071
 - **matrix_long_tail**: {'matrices_with_1_row': 0, 'median_rows_per_matrix': 130}
 - **process_steps_top**: [('simmer', 1534), ('boil', 1144), ('bake', 832), ('fry', 780), ('reheat', 727), ('drain', 598), ('broil', 546), ('brown', 520), ('cook', 312), ('roast', 208), ('saute', 182), ('stir', 181), ('braise', 156), ('bake|simmer', 155), ('steam', 130)]
-- **duplicate_rows_same_family**: 2573
+- **replicate_rows_same_cell_same_group**: 0
 - **conflict_candidates**: 0
 
 ## Ingredients

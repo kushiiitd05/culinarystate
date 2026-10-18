@@ -102,3 +102,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/process/vocab.py`, `tools/build_process_registry.py`, `tests/unit/test_process_vocab.py`, `registry/processes/`, `reports/process_registry_v1.md`, `ledgers/data/PROC.jsonl`
 - **Verified:** 39,540 BBC steps: recognised process: 39,252 (99.3%); EVD step mentions 8,655 mapped / 0 unmapped; 109 corpus actions with ZERO state-change evidence (put, add, mix, cool, melt, chop, beat …) → sparsity finding for DEL-1/2
 - **Next:** EDA cell-key fix; Phenol-Explorer ingest
+
+### S016 · 2026-10-18 11:41 IST · P14/Part-M · Reusable ledger EDA report generator
+- **Who:** Kush+Claude
+- **Did:** eda/report.py: generic per-ledger profile (records/versions, status, verification, provenance method, top sources, field missingness incl. UNKNOWN/NOT_APPLICABLE), evidence section (tiers, origin, source family, study lineage, independent groups, censoring, RF status, direction, basis, ING/PROC link rates, condition-axis completeness, rows with temperature, unique matrices/steps/targets/cells, matrix×process density, long tail, replicate rows per cell, conflict candidates = same cell with opposite directions across independent groups), ingredient section (crosswalk status, ambiguity, parents, scientific identity, frequency concentration), process section (corpus actions without evidence). HTML (self-contained, dark-mode aware) + markdown + JSON. tools/eda_report.py. Self-caught bug: cell key ignored modifiers and form → reported 2,573 then 780 false duplicates in USDA; key now (matrix, form, steps, target, structural modifiers, duration).
+- **Files:** `src/culinarystate/eda/report.py`, `tools/eda_report.py`, `tests/unit/test_eda.py`, `reports/eda/`
+- **Verified:** pytest 236 passed; USDA: 7,018 unique cells, 0 replicates, 0 conflicts (single source); density 0.107; temperature known in 0 rows; ING/PROC link 0% (linking step pending)
+- **Next:** Phenol-Explorer ingest + link EVD→ING/PROC + DEL-1 data card
