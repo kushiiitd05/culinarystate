@@ -38,7 +38,11 @@ def decide(query: str, packets: dict[str, EvidencePacket], slots: dict, feasibil
     if slots.get("contradictions"):
         return {**base, "mode": "ASK", "ask_for": ["process"], "route": "CLARIFY", "reason": "CONTRADICTORY_SLOTS"}
     if slots.get("needs_target") and not slots.get("target"):    # target decides which evidence applies (§243.8)
-        return {**base, "mode": "ASK", "ask_for": ["target"], "route": "CLARIFY", "reason": "TARGET_MISSING"}
+        opts = slots.get("target_options")
+        if opts is not None and not opts:                         # asking has no decision value: nothing to answer with
+            return {**base, "mode": "ABSTAIN", "route": "CLARIFY", "reason": "NO_EVIDENCE_FOR_ANY_TARGET"}
+        return {**base, "mode": "ASK", "ask_for": ["target"], "ask_options": list(opts or [])[:5], "route": "CLARIFY",
+                "reason": "TARGET_MISSING"}
     feas = feasibility or {}
     rejected = [k for k in packets if feas.get(k, {}).get("decision") == "REJECT"]
     options = {k: _option(p, numeric_target, (support or {}).get(k)) for k, p in packets.items() if k not in rejected}

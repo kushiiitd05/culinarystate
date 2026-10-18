@@ -35,3 +35,15 @@ def test_precision_cap():
     assert cap_precision("INTERVAL", {"ood": True}) == ("QUALITATIVE", "OOD_SUPPORT_CAP")
     assert cap_precision("QUANTITATIVE", {"ood": False}) == ("QUANTITATIVE", None)
     assert cap_precision("ABSTAIN", {"ood": True}) == ("ABSTAIN", None)
+
+
+def test_targets_for_pair_counts_evidence_targets():
+    idx = SupportIndex([
+        {"status": "ACTIVE", "matrix": {"ingredient_id": "ING-1", "raw_name": "carrot"}, "process": {"process_id": "PROC-1"},
+         "target": {"raw_name": "beta-Carotene"}, "derived": {"retention_factor": {}}},
+        {"status": "ACTIVE", "matrix": {"ingredient_id": "ING-1", "raw_name": "carrot"}, "process": {"process_id": "PROC-1"},
+         "target": {"raw_name": "Vitamin C"}, "derived": {"retention_factor": {}}},
+        {"status": "ACTIVE", "matrix": {"ingredient_id": "ING-1", "raw_name": "carrot"}, "process": {"process_id": "PROC-1"},
+         "target": {"raw_name": "Vitamin C"}, "derived": {"retention_factor": {}}}])
+    assert idx.targets_for("ING-1", (), "carrot", "PROC-1") == [("vitamin c", 2), ("beta-carotene", 1)]
+    assert idx.targets_for("ING-1", (), "carrot", "PROC-9") == []

@@ -88,3 +88,11 @@ def test_contradictory_slots_ask():
 def test_compare_includes_outcome_comparison():
     d = decide("What changes if I roast instead of steam?", {"roast": _p("DIRECT", [_hit(1)]), "steam": _p("DIRECT", [_hit(2)])}, SLOTS)
     assert d["mode"] == "COMPARE" and d["comparison"]["verdict"] in {"SEPARATED", "OVERLAPPING", "INSUFFICIENT"}
+
+
+def test_voi_target_missing_no_options_abstains_one_option_answers_many_asks():
+    base = {**SLOTS, "target": None, "needs_target": True}
+    pk = {"main": _p("DIRECT", [_hit(1)])}
+    assert decide("What happens when I boil broccoli?", pk, {**base, "target_options": []})["reason"] == "NO_EVIDENCE_FOR_ANY_TARGET"
+    d = decide("What happens when I boil broccoli?", pk, {**base, "target_options": ["vitamin c", "folate", "calcium"]})
+    assert d["mode"] == "ASK" and d["ask_options"] == ["vitamin c", "folate", "calcium"]

@@ -50,7 +50,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | 14 | State memory | 🟡 | engine; ablation ⬜ |
 | 15 | Direct observation override | ✅ | engine: observation outranks prediction (audit kept); sessions SES-003/011 |
 | 16 | Feasibility filter | ✅ | C11 |
-| 17 | VOI clarification | ⬜ | policy asks on missing critical slot only |
+| 17 | VOI clarification | 🟡 | target slot: 0 evidenced targets → ABSTAIN, 1 → answer, ≥2 → ASK with options; other slots ask always; utility model ⬜ |
 | 18 | Diagnosis verifier | ⬜ | proposer/verifier separation not built |
 | 19 | Recovery separation | 🟡 | policy keeps cause ≠ recovery evidence; recovery KB ⬜ |
 | 20 | Transition fallback | 🟡 | DEL-2 negative result (cold) — report as such |

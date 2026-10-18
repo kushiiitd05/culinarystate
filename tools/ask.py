@@ -41,7 +41,7 @@ def show(q: str, r: dict) -> dict:
     return {"question": q, "mode": d["mode"], "reason": d.get("reason"), "precision": d.get("precision"),
             "gate": d["gate"]["reason"], "intent": d["intent"],
             "slots": {"ingredient": s.ingredient_id, "processes": [n for n, _ in s.processes], "target": s.target,
-                      "candidates": list(s.candidates)}, "ask_for": d.get("ask_for"), "options": opts}
+                      "candidates": list(s.candidates)}, "ask_for": d.get("ask_for"), "ask_options": d.get("ask_options"), "options": opts}
 
 
 def main() -> None:

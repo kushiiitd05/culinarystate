@@ -82,6 +82,12 @@ def parse_query(q: str, lex: Lexicon) -> Slots:
 def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements, proc_family: dict,
            constraints: Constraints | None = None, k: int = 10, support_index: SupportIndex | None = None) -> dict:
     s = parse_query(q, lex)
+    t_opts = None
+    if not s.target and s.processes and support_index and intent(q) in ("ANSWER", "COMPARE"):
+        t_opts = [t for t, _ in support_index.targets_for(s.ingredient_id, s.parents, s.ingredient_name, s.processes[0][1])]
+        if len(t_opts) == 1:                      # VOI: a single evidenced target -> asking changes nothing
+            s = Slots(s.ingredient_id, s.ingredient_name, s.parents, s.processes, t_opts[0], s.candidates,
+                      s.contradictions, s.numeric_target)
     name_of = {v: n for n, v in lex.proc_ids.items()}
     options = [(n, p) for n, p in s.processes] or [(name_of.get(p, p), p) for p in s.candidates]
     if intent(q) not in ("COMPARE", "RECOMMEND", "RECOVER"):
@@ -96,7 +102,8 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
     feas = {n: check(Action(p, (s.ingredient_id,) if s.ingredient_id else ()), constraints or Constraints(), req)
             for n, p in options}
     slots = {"ingredient": s.ingredient_id, "process": options[0][1] if options else None, "target": s.target,
-             "needs_target": intent(q) in ("ANSWER", "COMPARE"), "contradictions": list(s.contradictions)}
+             "needs_target": intent(q) in ("ANSWER", "COMPARE"), "contradictions": list(s.contradictions),
+             "target_options": t_opts}
     support = {n: support_index.support(s.ingredient_id, s.parents, s.ingredient_name, p) for n, p in options} \
         if support_index else None
     return {"slots": s, "decision": decide(q, packets, slots, feasibility=feas, support=support, numeric_target=s.numeric_target), "packets": packets,

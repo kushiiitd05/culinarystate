@@ -32,6 +32,11 @@ class SupportIndex:
         group = {i for i, raw in self.group_rows if re.search(rf"(?<!\w){re.escape(name.lower())}(?!\w)", raw)} if name else set()
         return direct, group
 
+    def targets_for(self, ing: str | None, parents: tuple, name: str | None, process_id: str | None) -> list:
+        """Targets with retention evidence for this (ingredient, process) pair, most supported first (for VOI)."""
+        direct, group = self._ingredient_rows(ing, parents, name)
+        return _targets(self.rows, (direct | group) & self.by_proc.get(process_id, set())) if process_id else []
+
     def support(self, ing: str | None, parents: tuple, name: str | None, process_id: str | None) -> dict:
         direct, group = self._ingredient_rows(ing, parents, name)
         stated_ing = bool(ing or name)
@@ -44,6 +49,15 @@ class SupportIndex:
         return {"ingredient": len(direct | group), "process": len(proc), "pair": pair,
                 "pair_level": "INGREDIENT" if pair_direct else "GROUP" if pair_group else None,
                 "cold_axes": cold, "ood": ood}
+
+
+def _targets(rows, idx) -> list[tuple[str, int]]:
+    c: dict = {}
+    for i in idx:
+        t = ((rows[i].get("target") or {}).get("raw_name") or "").lower()
+        if t:
+            c[t] = c.get(t, 0) + 1
+    return sorted(c.items(), key=lambda x: (-x[1], x[0]))
 
 
 def cap_precision(precision: str, support: dict) -> tuple[str, str | None]:

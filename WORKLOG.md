@@ -417,3 +417,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/{comparator`, `policy`, `relevance}.py tests/unit/{test_comparator`, `test_policy`, `test_relevance}.py`
 - **Verified:** 2,777 tests pass
 - **Next:** A100 retrieval + NER results
+
+### S061 · 2026-10-18 21:36 IST · RQ16-17 · VOI-aware target clarification
+- **Who:** Kush+Claude
+- **Did:** SSOT 243.8: ask only with decision value. Missing target on a process-effect question: candidate targets = targets with retention evidence for the (ingredient, process) pair (SupportIndex.targets_for). None -> ABSTAIN (asking cannot help), one -> answer with it, several -> ASK listing up to 5 evidenced options (broccoli+boil -> total polyphenols, quercetin, amino acids, biotin, calcium).
+- **Files:** `src/culinarystate/decision/{ood`, `policy`, `pipeline}.py tools/ask.py`
+- **Verified:** 2,779 fast + 39 integration tests pass
+- **Next:** diagnosis verifier + recovery KB (RQ16-18/19)
