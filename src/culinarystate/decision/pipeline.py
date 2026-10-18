@@ -20,6 +20,7 @@ from culinarystate.transition.cross_source import NUTRIENT
 from culinarystate.vocab.line_link import LineLinker
 
 from .diagnosis import TroubleshootIndex, diagnose
+from .targets import TargetLexicon
 from .feasibility import Action, Constraints, Requirements, check
 from .ood import SupportIndex
 from .policy import decide
@@ -45,6 +46,7 @@ class Lexicon:
     processed_by: dict              # ING id -> PROC ids by ING_PROCESSED_BY confidence
     heat_procs: frozenset
     relations: dict = field(default_factory=dict)   # ING id -> ((ING id, relation), ...) from the R4 food graph
+    targets: TargetLexicon | None = None             # ledger target names (closed world); regex list is the fallback
 
 
 @dataclass(frozen=True)
@@ -72,13 +74,14 @@ def parse_query(q: str, lex: Lexicon) -> Slots:
     for m in re.finditer(r"[A-Za-z]+(?:-[A-Za-z]+)?", q):     # every mention, for negations ("not boiled")
         if NEGATION.search(q[max(0, m.start() - 24):m.start()].lower()):
             negated |= {lex.proc_ids[n] for _, n in step_processes(m.group(0)) if n in lex.proc_ids}
-    tm = next((m for pat, _ in NUTRIENT if (m := re.search(pat, q.lower()))), None)
-    qual = QUALITATIVE_TARGET.search(q.lower()) if not tm else None
+    lt = lex.targets.find(q) if lex.targets else None
+    tm = None if lt else next((m for pat, _ in NUTRIENT if (m := re.search(pat, q.lower()))), None)
+    qual = QUALITATIVE_TARGET.search(q.lower()) if not (lt or tm) else None
     cands = ()
     if not procs and ing and intent(q) == "RECOMMEND":
         cands = tuple(p for p in lex.processed_by.get(ing, ()) if p in lex.heat_procs)[:MAX_CANDIDATES]
     name = next((n for n, i in lex.linker.names.items() if i == ing), None) if ing else None
-    target = tm.group(0) if tm else qual.group(0) if qual else None
+    target = lt or (tm.group(0) if tm else qual.group(0) if qual else None)
     return Slots(ing, name, tuple(lex.parents.get(ing, ())), tuple(procs), target, cands,
                  tuple(sorted(seen & negated)), numeric_target=not qual)
 
@@ -140,9 +143,10 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
     off = {k: e.parents for k, e in parse_off(off_path).items()} if off_path and off_path.exists() else {}
     graph = FoodGraph(ings, off)
     relations = {i["id"]: r for i in ings if (r := tuple(graph.related(i["id"]).items()))}
+    targets = TargetLexicon(sorted({e["target"]["raw_name"] for e in store.all_latest("EVD") if e["status"] == "ACTIVE"}))
     lex = Lexicon(LineLinker(names, set()), {p["canonical_name"]: p["id"] for p in procs},
                   {i["id"]: tuple(i.get("parent_ids") or ()) for i in store.all_latest("ING")},
                   {k: tuple(p for _, p in sorted(v)) for k, v in by.items()},
                   frozenset(p["id"] for p in procs if p["family"] in HEAT_FAMILIES or p["canonical_name"] in EXTRA_METHODS),
-                  relations)
+                  relations, targets)
     return lex, family

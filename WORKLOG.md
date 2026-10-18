@@ -487,3 +487,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/retrieval/{food_graph`, `compatibility`, `retriever}.py`, `src/culinarystate/decision/pipeline.py`, `src/culinarystate/generation/verbalize.py`, `tools/eval_graph_expansion.py`, `reports/del4/graph_expansion_v1{.md`, `.json`, `_analysis.md}`, `tests/unit/test_{food_graph`, `retrieval`, `pipeline`, `verbalize}.py`
 - **Verified:** pytest 2875 fast + 40 ledgers pass; demo answers re-checked
 - **Next:** paired test for GROUP_ROW; RQ16-03 hard-negative compatibility reranker; benchmark authoring (D-008) still human-gated
+
+### S071 · 2026-10-18 23:51 IST · DEL-5 · C2 target slot: closed-world ledger target lexicon
+- **Who:** Kush
+- **Did:** EXP-000006 predicted-slot run showed parse_query got the target right 20.5% of the time (regex nutrient list misses lycopene/choline/polyphenols/weight yield; 'carot' ambiguous). targets@0.1: variants of the 223 ledger target names (head before qualifier, beta-carotene forms, a + b), longest word-bounded match, shared key when ambiguous; 'fat'/'water' excluded. Accuracy 0.994 on templated questions (optimistic); natural phrasings checked.
+- **Files:** `src/culinarystate/decision/{targets`, `pipeline}.py`, `tests/unit/test_targets.py`
+- **Verified:** pytest 2879 fast + 40 ledgers pass
+- **Next:** RQ16-03 pilot record
