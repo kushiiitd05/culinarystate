@@ -63,5 +63,21 @@
 19. Silver factory scaffold (adapters, prompts, validators, 1k→audit gates) — no launch (P7)
 20. Handoff docs: RUNBOOK, MANUAL_NEXT_STEPS, EXPERIMENT_QUEUE, BLOCKERS … (P15)
 
+## 5b. LEDGER BUILD QUEUE (one by one, all linked by IDs) — added 2026-10-18 on Kush's request
+| # | Ledger | Source | State |
+|---|---|---|---|
+| 1 | ING / ALIAS | A1 corpus (+FDC candidates) | ✅ v1 (S009–S010) |
+| 2 | PROC | corpus verbs + evidence steps | ✅ v1 (S015) |
+| 3 | EVD / COND / SVAR / SRC / SNAP / MEAS | USDA R6 | ✅ (S007) |
+| 4 | EVD (Phenol-Explorer) + STUDY | polite crawl (D-005) | ⏳ crawl running |
+| 5 | EVD → ING / PROC links | registries | next |
+| 6 | TOOL (utensils, cookware, appliances, materials) | corpus mining + curated | queued |
+| 7 | UNIT records | units.py catalogue | queued |
+| 8 | REC (11,934 recipes, hashes, families) | A1 corpus | queued |
+| 9 | MOL / IMAP | PubChem PUG-REST (+FlavorDB later) | queued |
+| 10 | ALLERGEN | FSSAI labelling regulations | queued |
+| 11 | WARN | authority sources + EVD | queued |
+| 12 | Books / references | public-domain (Gutenberg) + open textbooks + govt guides only; no pirated copies | queued |
+
 ## 6. GATES REQUIRING HUMANS
 H1 email to Prof. Bagler (draft in plan Appendix 2 / Part AS) · H2 any new scrape target · H6 any "beats CoSyLab"/SOTA claim · H7 GitHub repo · H8 semester scope cut.

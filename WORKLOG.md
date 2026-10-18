@@ -109,3 +109,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/eda/report.py`, `tools/eda_report.py`, `tests/unit/test_eda.py`, `reports/eda/`
 - **Verified:** pytest 236 passed; USDA: 7,018 unique cells, 0 replicates, 0 conflicts (single source); density 0.107; temperature known in 0 rows; ING/PROC link 0% (linking step pending)
 - **Next:** Phenol-Explorer ingest + link EVD→ING/PROC + DEL-1 data card
+
+### S017 · 2026-10-18 11:45 IST · DEL-2/B13/P8 · DEL-2 pipeline: cells, splits, D0–D7 baselines, censor-aware eval, conformal, MNAR — first USDA run
+- **Who:** Kush+Claude
+- **Did:** transition/dataset.py: explicit course-cell projection per source family (no USDA/PE merging; RF>1 not clipped; censored rows keep y_lower). splits.py: random, pair_holdout, matrix_disjoint, process_disjoint, study_disjoint via row→study connected components (refuses when single source/giant component, AM3); leakage check; split sha256. baselines.py: D0 persistence, D1 global, D2 process mean, D3 hierarchical shrinkage, D4 nearest compatible evidence (vectorised), D5 HistGradientBoosting (categorical+masks), D7 biased MF with side-info biases; D6 TabPFN SKIPPED (not installed/GPU). evaluate.py: censor-aware MAE, observed RMSE, grouped bootstrap CI, IPW MAE beside unweighted (propensity from marginal frequencies; degenerate grids handled), split-conformal 90% empirical coverage. tools/run_del2.py one command.
+- **Files:** `src/culinarystate/transition/`, `tools/run_del2.py`, `tests/unit/test_transition.py`, `reports/del2/USDA-RETN-R6_results.md`, `reports/del2/USDA-RETN-R6_results.json`
+- **Verified:** pytest 7 DEL-2 tests pass; USDA 7,018 rows run in 23 s. random: D5 0.025 vs D0 0.121; matrix_disjoint: D0 0.059 ≈ D4 0.057 (CIs overlap) — cold-food gains vanish; process_disjoint: D0 0.073 vs D5 0.067; conformal-90 empirical coverage 0.72–0.87 on cold splits (AH4). study_disjoint NOT POSSIBLE for USDA (single source). Caveat: USDA factors largely imputed.
+- **Next:** Re-run on Phenol-Explorer (study-disjoint possible); experiment cards EXP-D0…D7
