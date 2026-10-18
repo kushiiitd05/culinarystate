@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/STUDY.schema.json",
+  "title": "STUDY- study design / experiment family",
+  "description": "schema_version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^STUDY-\\d{6}$"
+    },
+    "record_type": {
+      "const": "STUDY"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^STUDY-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^SRC-\\d{6}$"
+    },
+    "design": {
+      "type": "string",
+      "enum": [
+        "CONTROLLED_EXPERIMENT",
+        "OBSERVATIONAL",
+        "DATABASE_AGGREGATE",
+        "REVIEW",
+        "AUTHORITY",
+        "PROJECT_MEASUREMENT",
+        "UNKNOWN"
+      ]
+    },
+    "matrix_description": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "controls": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "replicates": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "analytical_platform_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^MEAS-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "equipment": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "condition_completeness": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "quality_flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "source_id",
+    "design"
+  ]
+}

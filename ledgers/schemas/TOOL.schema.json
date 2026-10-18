@@ -1,0 +1,486 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/TOOL.schema.json",
+  "title": "TOOL- utensil / tool / material",
+  "description": "schema_version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^TOOL-\\d{6}$"
+    },
+    "record_type": {
+      "const": "TOOL"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^TOOL-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "canonical_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "COOKWARE",
+        "APPLIANCE",
+        "UTENSIL",
+        "VESSEL",
+        "HEAT_SOURCE",
+        "MEASURE",
+        "OTHER"
+      ]
+    },
+    "material": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reactive_with": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "max_safe_temperature_c": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "censor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "limit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "LT_LOD",
+                    "LT_LOQ",
+                    "GT_ULOQ",
+                    "ND"
+                  ]
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "censor"
+            ],
+            "properties": {
+              "censor": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "canonical_name",
+    "category"
+  ]
+}

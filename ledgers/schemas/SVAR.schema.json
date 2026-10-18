@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/SVAR.schema.json",
+  "title": "SVAR- state variable registry (W3)",
+  "description": "schema_version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^SVAR-\\d{6}$"
+    },
+    "record_type": {
+      "const": "SVAR"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^SVAR-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "canonical_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "family": {
+      "type": "string",
+      "enum": [
+        "PHYSICAL",
+        "CHEMICAL",
+        "SENSORY",
+        "PROCEDURAL",
+        "SAFETY"
+      ]
+    },
+    "dimension": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "preferred_unit": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "value_type": {
+      "type": "string",
+      "enum": [
+        "SCALAR",
+        "INTERVAL",
+        "CATEGORY",
+        "VECTOR",
+        "TRAJECTORY",
+        "BOOLEAN"
+      ]
+    },
+    "preferred_measurement_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^MEAS-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "comparability_notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observable_in_session": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "canonical_name",
+    "family",
+    "value_type",
+    "observable_in_session"
+  ]
+}

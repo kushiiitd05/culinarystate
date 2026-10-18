@@ -1,0 +1,1991 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/EVD.schema.json",
+  "title": "EVD- state-change evidence atom (W4)",
+  "description": "schema_version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^EVD-\\d{6}$"
+    },
+    "record_type": {
+      "const": "EVD"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^EVD-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "origin_type": {
+      "type": "string",
+      "enum": [
+        "PRIMARY_STUDY",
+        "DATABASE_AGGREGATE",
+        "REVIEW_AGGREGATE",
+        "AUTHORITY_STANDARD",
+        "PROJECT_MEASUREMENT"
+      ]
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^SRC-\\d{6}$"
+    },
+    "source_family_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "study_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^STUDY-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "study_id_status": {
+      "type": "string",
+      "enum": [
+        "PRESENT",
+        "NOT_IDENTIFIABLE",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "extraction_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "matrix": {
+      "type": "object",
+      "required": [
+        "ingredient_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ingredient_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^ING-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "variety": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "part": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "form": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "prior_processing": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "initial_state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "geometry": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "storage_ripeness": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "process": {
+      "type": "object",
+      "required": [
+        "process_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "process_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^PROC-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "family": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tool_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^TOOL-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "medium": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "condition_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^COND-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "state_variable_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "state_variable_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^SVAR-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "molecule_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^MOL-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reaction_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^RXN-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "WET",
+            "DRY",
+            "FRESH_WEIGHT",
+            "PER_SERVING",
+            "HEADSPACE",
+            "AS_CONSUMED",
+            "TRUE_RETENTION",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "before": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "censor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "limit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "LT_LOD",
+                    "LT_LOQ",
+                    "GT_ULOQ",
+                    "ND"
+                  ]
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "censor"
+            ],
+            "properties": {
+              "censor": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "after": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "censor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "limit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "LT_LOD",
+                    "LT_LOQ",
+                    "GT_ULOQ",
+                    "ND"
+                  ]
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "censor"
+            ],
+            "properties": {
+              "censor": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "measurement_method_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^MEAS-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "derived": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "delta": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "ND"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "percent_change": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "ND"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "retention_factor": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "ND"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "log_fold_change": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "ND"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "INCREASE",
+            "DECREASE",
+            "NO_CHANGE",
+            "MIXED",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "design": {
+      "type": "string",
+      "enum": [
+        "CONTROLLED_EXPERIMENT",
+        "OBSERVATIONAL",
+        "DATABASE_AGGREGATE",
+        "REVIEW",
+        "AUTHORITY",
+        "UNKNOWN"
+      ]
+    },
+    "n_replicates": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6",
+        "E7"
+      ]
+    },
+    "conflict_cluster": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "independence_group": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "applicability": {
+      "type": "string",
+      "enum": [
+        "EXACT",
+        "NEAR",
+        "ANALOGOUS",
+        "GENERIC",
+        "UNKNOWN"
+      ]
+    },
+    "censored": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "origin_type",
+    "source_id",
+    "source_family_id",
+    "study_id_status",
+    "extraction_version",
+    "matrix",
+    "process",
+    "target",
+    "tier",
+    "censored"
+  ]
+}
