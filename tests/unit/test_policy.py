@@ -96,3 +96,25 @@ def test_voi_target_missing_no_options_abstains_one_option_answers_many_asks():
     assert decide("What happens when I boil broccoli?", pk, {**base, "target_options": []})["reason"] == "NO_EVIDENCE_FOR_ANY_TARGET"
     d = decide("What happens when I boil broccoli?", pk, {**base, "target_options": ["vitamin c", "folate", "calcium"]})
     assert d["mode"] == "ASK" and d["ask_options"] == ["vitamin c", "folate", "calcium"]
+
+
+DIAG = {"failure": "CURDLE", "causes": [{"cause": "boiled", "verdict": "CONSISTENT", "support_sources": 2}],
+        "recovery": [{"action": "begin again with a fresh yolk", "support_sources": 2}], "prevention": [],
+        "next_observations": [], "recoverability": "UNKNOWN", "causal_language": "QUALIFIED"}
+
+
+def test_diagnose_uses_symptom_without_process_slot():
+    d = decide("Why did my custard curdle?", {}, {"ingredient": None, "process": None}, diagnosis=DIAG)
+    assert d["mode"] == "DIAGNOSE" and d["diagnosis"]["causes"][0]["cause"] == "boiled"
+    assert d["causal_language"] == "QUALIFIED"
+
+
+def test_recover_takes_options_from_recovery_index():
+    d = decide("It curdled, how can I recover?", {}, {"ingredient": None, "process": None}, diagnosis=DIAG)
+    assert d["mode"] == "RECOVER" and d["recovery_options"] == ["begin again with a fresh yolk"]
+    assert d["recoverability"] == "UNKNOWN"
+
+
+def test_diagnose_without_candidates_abstains():
+    empty = {**DIAG, "causes": [], "recovery": []}
+    assert decide("Why did my custard curdle?", {}, {"ingredient": None, "process": None}, diagnosis=empty)["mode"] == "ABSTAIN"

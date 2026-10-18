@@ -438,3 +438,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `gpu/ner_tasteset/ tools/summarise_ner_runs.py reports/ner/tasteset_encoders_v1.md`
 - **Verified:** 30 runs pulled; summariser selects only complete seed sets
 - **Next:** large+CRF; GLiNER layer needs package approval; EXP card
+
+### S064 · 2026-10-18 21:46 IST · RQ16-18/19 · Diagnosis proposer + verifier; separate recovery index
+- **Who:** Kush+Claude
+- **Did:** decision/diagnosis.py: symptom -> failure key (statement vocabulary + symptom adjectives); proposer = cited CAUSE candidates with >=2 independent sources (single-source mined statements proved noisy on real data); verifier = named non-generic process vs session history, negated causes flip ('not stirred'); unverifiable causes -> next observations. RECOVER takes options from the RECOVERY relation only; recoverability UNKNOWN; all QUALIFIED. Real: custard curdle -> 'boiled' CONSISTENT + 'begin again with a fresh yolk'; lumpy gravy -> 'strain through a hair sieve'; burnt jam -> prevention 'stir frequently' (7 sources), no recovery claimed.
+- **Files:** `src/culinarystate/decision/{diagnosis`, `policy`, `pipeline}.py tools/ask.py tests/unit/test_diagnosis.py tests/integration/test_e2e_scenarios.py`
+- **Verified:** 2,797 fast + 40 integration pass
+- **Next:** large+CRF results; EXP cards; GLiNER needs approval

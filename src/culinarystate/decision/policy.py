@@ -27,11 +27,13 @@ def _option(p: EvidencePacket, numeric_target: bool, support: dict | None = None
 
 
 def decide(query: str, packets: dict[str, EvidencePacket], slots: dict, feasibility: dict | None = None,
-           numeric_target: bool = True, support: dict | None = None) -> dict:
+           numeric_target: bool = True, support: dict | None = None, diagnosis: dict | None = None) -> dict:
     gate = relevance_gate(query)
     base = {"version": VERSION, "query": query, "gate": gate, "intent": intent(query)}
     if gate["relevant"] is False:
         return {**base, "mode": "ANSWER", "route": "RECIPE_STATE", "reason": "LOW_PROCESS_RELEVANCE"}
+    if base["intent"] in ("DIAGNOSE", "RECOVER") and diagnosis and diagnosis.get("failure"):
+        return _diagnose_or_recover(base, diagnosis)
     missing = [s for s in CRITICAL if not slots.get(s)]
     if missing:
         return {**base, "mode": "ASK", "ask_for": missing, "route": "CLARIFY", "reason": "CRITICAL_SLOT_MISSING"}
@@ -66,3 +68,19 @@ def decide(query: str, packets: dict[str, EvidencePacket], slots: dict, feasibil
         return {**out, "mode": it, "precision": main["precision"], "causal_language": "QUALIFIED",
                 "reason": "CANDIDATE_CAUSES_NEED_VERIFICATION"}
     return {**out, "mode": "ANSWER", "precision": main["precision"], "reason": main["sufficiency"]}
+
+
+def _diagnose_or_recover(base: dict, dg: dict) -> dict:
+    """§243.6–243.7: corroborated candidate causes (qualified) / recovery from its own index; abstain when empty."""
+    out = {**base, "route": "DIAGNOSIS", "diagnosis": dg, "causal_language": "QUALIFIED",
+           "recoverability": dg.get("recoverability", "UNKNOWN")}
+    if base["intent"] == "RECOVER":
+        opts = [r["action"] for r in dg.get("recovery", [])]
+        if not opts:
+            return {**out, "mode": "ABSTAIN", "reason": "NO_CORROBORATED_RECOVERY", "recovery_options": []}
+        return {**out, "mode": "RECOVER", "reason": "RECOVERY_INDEX", "recovery_options": opts}
+    if not dg.get("causes"):
+        return {**out, "mode": "ABSTAIN", "reason": "NO_CORROBORATED_CAUSE"}
+    return {**out, "mode": "DIAGNOSE", "reason": "CANDIDATE_CAUSES_VERIFIED_AGAINST_HISTORY",
+            "next_observations": dg.get("next_observations", [])}
+

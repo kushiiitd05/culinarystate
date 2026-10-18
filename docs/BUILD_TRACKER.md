@@ -51,8 +51,8 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | 15 | Direct observation override | ✅ | engine: observation outranks prediction (audit kept); sessions SES-003/011 |
 | 16 | Feasibility filter | ✅ | C11 |
 | 17 | VOI clarification | 🟡 | target slot: 0 evidenced targets → ABSTAIN, 1 → answer, ≥2 → ASK with options; other slots ask always; utility model ⬜ |
-| 18 | Diagnosis verifier | ⬜ | proposer/verifier separation not built |
-| 19 | Recovery separation | 🟡 | policy keeps cause ≠ recovery evidence; recovery KB ⬜ |
+| 18 | Diagnosis verifier | 🟡 | proposer (cited CAUSE candidates, ≥2 sources) + history verifier (negation-aware); eval needs failure gold + B0 LLM baseline |
+| 19 | Recovery separation | 🟡 | separate RECOVERY index (mined, corroborated); never inverted causes; recovery validity eval needs gold |
 | 20 | Transition fallback | 🟡 | DEL-2 negative result (cold) — report as such |
 | 21 | Completion visibility | ⬜ | |
 | 22 | Conflict handling | 🟡 | CONFLICT class + report; lineage-aware resolution ⬜ |
@@ -76,7 +76,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | E16-F | Evidence packet / grounded generation | ⬜ | C16 |
 | E16-G | Confidence/abstention | 🟡 | metrics ready; verified labels ⛔ humans |
 | E16-H | Decision policy | 🟡 | rule policy + demo; benchmark ⛔ |
-| E16-I | Diagnosis/recovery | ⬜ | |
+| E16-I | Diagnosis/recovery | 🟡 | `decision/diagnosis.py` + `kg/troubleshoot.py` (~1.9k statements, 126 corroborated keys); HypothesisRecall@K needs gold |
 | E16-J | Transition integration | 🟡 | DEL-2 cards EXP-000001…4 |
 | E16-K | FlavorTwin | ➖ | |
 | E16-L | Full system | ⬜ | B0–B5 ladder |

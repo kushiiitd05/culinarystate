@@ -5,6 +5,7 @@ never crash and never produce a numeric precision without evidence.
 """
 import pytest
 
+from culinarystate.decision.diagnosis import TroubleshootIndex
 from culinarystate.decision.feasibility import Constraints, load_requirements
 from culinarystate.decision.ood import SupportIndex
 from culinarystate.decision.pipeline import answer, load_lexicon
@@ -18,12 +19,14 @@ def system(store, latest):
     lex, fam = load_lexicon(store)
     cond = {c["id"]: c for c in latest("COND")}
     evd = latest("EVD")
-    return lex, EvidenceRetriever(evd, cond, fam), load_requirements(store), fam, SupportIndex(evd)
+    from pathlib import Path
+    ts = TroubleshootIndex.from_registry(Path(__file__).resolve().parents[2])
+    return lex, EvidenceRetriever(evd, cond, fam), load_requirements(store), fam, SupportIndex(evd), ts
 
 
 def run(system, q, constraints=None):
-    lex, retr, req, fam, sup = system
-    return answer(q, lex, retr, req, fam, constraints=constraints, support_index=sup)["decision"]
+    lex, retr, req, fam, sup, ts = system
+    return answer(q, lex, retr, req, fam, constraints=constraints, support_index=sup, troubleshoot=ts)["decision"]
 
 
 SCENARIOS = [
@@ -85,3 +88,11 @@ def test_ambiguous_or_contradictory_questions_ask(system, q, reason):
 def test_texture_question_is_qualitative_target(system):
     d = run(system, "How does boiling change the texture of broccoli?")
     assert d["mode"] in {"ANSWER", "ABSTAIN"} and d.get("precision") in {None, "QUALITATIVE", "REPORT_CONFLICT"}
+
+
+def test_diagnosis_scenarios(system):
+    d = run(system, "Why did my custard curdle after I boiled it?")
+    assert d["mode"] == "DIAGNOSE" and d["causal_language"] == "QUALIFIED"
+    assert any(c["verdict"] == "CONSISTENT" for c in d["diagnosis"]["causes"])
+    r = run(system, "My gravy is lumpy, how can I fix it?")
+    assert r["mode"] == "RECOVER" and r["recovery_options"]

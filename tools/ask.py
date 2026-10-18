@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.decision.constraints import load_constraint_lexicons, parse_constraints  # noqa: E402
+from culinarystate.decision.diagnosis import TroubleshootIndex  # noqa: E402
 from culinarystate.decision.feasibility import load_requirements  # noqa: E402
 from culinarystate.decision.ood import SupportIndex  # noqa: E402
 from culinarystate.decision.pipeline import answer, load_lexicon  # noqa: E402
@@ -40,6 +41,8 @@ def show(q: str, r: dict) -> dict:
     s = r["slots"]
     return {"question": q, "mode": d["mode"], "reason": d.get("reason"), "precision": d.get("precision"),
             "gate": d["gate"]["reason"], "intent": d["intent"],
+            "diagnosis": {k: d["diagnosis"][k] for k in ("failure", "causes", "recovery", "next_observations")}
+            if d.get("diagnosis") else None, "recovery_options": d.get("recovery_options"),
             "slots": {"ingredient": s.ingredient_id, "processes": [n for n, _ in s.processes], "target": s.target,
                       "candidates": list(s.candidates)}, "ask_for": d.get("ask_for"), "ask_options": d.get("ask_options"), "options": opts}
 
@@ -59,7 +62,9 @@ def main() -> None:
     req = load_requirements(st)
     qs = DEMO if a.demo else [a.question]
     cons, info = parse_constraints(a.constraints, *load_constraint_lexicons(st))
-    out = [show(q, answer(q, lex, retriever, req, family, constraints=cons, support_index=sup)) for q in qs if q]
+    ts = TroubleshootIndex.from_registry(ROOT)
+    out = [show(q, answer(q, lex, retriever, req, family, constraints=cons, support_index=sup, troubleshoot=ts))
+           for q in qs if q]
     if a.constraints:
         out.append({"constraints": str(cons), "unresolved": info["unresolved"]})
     print(json.dumps(out, indent=1, ensure_ascii=False))
