@@ -25,6 +25,11 @@ from culinarystate.retrieval.retriever import EvidenceRetriever  # noqa: E402
 from culinarystate.scoring.metrics import grouped_bootstrap  # noqa: E402
 
 RET, EMB, K = ROOT / "data" / "interim" / "retrieval", ROOT / "data" / "interim" / "embeddings", 10
+PAIRS = [("R2 RRF BM25+intfloat/e5-large-v2", "R2 RRF BM25+BAAI/bge-small-en-v1.5"),   # (candidate, baseline)
+         ("R2 RRF BM25+intfloat/e5-large-v2", "R0 BM25"),
+         ("R5 rerank BAAI/bge-reranker-large", "R2 RRF BM25+BAAI/bge-small-en-v1.5"),  # reranker vs its own input
+         ("R5 rerank BAAI/bge-reranker-base", "R2 RRF BM25+BAAI/bge-small-en-v1.5"),
+         ("R4 structured + intfloat/e5-large-v2", "R3 structured (oracle slots)")]
 
 
 def scores(ranked: list[str], rel: set) -> dict:
@@ -110,6 +115,13 @@ def main() -> None:
         cell = lambda m: f"{s[m]['mean']} [{s[m]['low']}–{s[m]['high']}]"  # noqa: E731
         lines.append(f"| {n} | {cell('hit@5')} | {cell('hit@10')} | {cell('mrr@10')} | {cell('ndcg@10')} | "
                      + " | ".join(str(by_family[n][f]) for f in fams) + " |")
+    lines += ["", "Paired MRR@10 differences (candidate − baseline, bootstrap over queries):", "",
+              "| candidate | baseline | Δ MRR@10 [95% CI] |", "|---|---|---|"]
+    for a, b in PAIRS:
+        if a in results and b in results:
+            ci = grouped_bootstrap({i: [x["mrr@10"] - y["mrr@10"]] for i, (x, y) in enumerate(zip(results[a], results[b]))},
+                                   lambda xs: sum(xs) / len(xs), n_boot=1000)
+            lines.append(f"| {a} | {b} | {ci['estimate']:+.4f} [{ci['low']:+.4f}, {ci['high']:+.4f}] |")
     (out / "retrieval_silver_v1.md").write_text("\n".join(lines) + "\n")
     print("\n".join(lines))
 

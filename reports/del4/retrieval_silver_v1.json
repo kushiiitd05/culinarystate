@@ -66,6 +66,50 @@
     "high": 0.7599
    }
   },
+  "R1 dense BAAI/bge-large-en-v1.5": {
+   "hit@5": {
+    "mean": 0.8083,
+    "low": 0.775,
+    "high": 0.8383
+   },
+   "hit@10": {
+    "mean": 0.8767,
+    "low": 0.85,
+    "high": 0.9017
+   },
+   "mrr@10": {
+    "mean": 0.6777,
+    "low": 0.6422,
+    "high": 0.7084
+   },
+   "ndcg@10": {
+    "mean": 0.7046,
+    "low": 0.6736,
+    "high": 0.7312
+   }
+  },
+  "R2 RRF BM25+BAAI/bge-large-en-v1.5": {
+   "hit@5": {
+    "mean": 0.8283,
+    "low": 0.7983,
+    "high": 0.8583
+   },
+   "hit@10": {
+    "mean": 0.9083,
+    "low": 0.885,
+    "high": 0.9283
+   },
+   "mrr@10": {
+    "mean": 0.6818,
+    "low": 0.6485,
+    "high": 0.7129
+   },
+   "ndcg@10": {
+    "mean": 0.7239,
+    "low": 0.6962,
+    "high": 0.7493
+   }
+  },
   "R1 dense BAAI/bge-small-en-v1.5": {
    "hit@5": {
     "mean": 0.795,
@@ -108,6 +152,50 @@
     "mean": 0.7288,
     "low": 0.7008,
     "high": 0.7546
+   }
+  },
+  "R1 dense intfloat/e5-large-v2": {
+   "hit@5": {
+    "mean": 0.8533,
+    "low": 0.825,
+    "high": 0.8783
+   },
+   "hit@10": {
+    "mean": 0.9133,
+    "low": 0.8917,
+    "high": 0.935
+   },
+   "mrr@10": {
+    "mean": 0.6999,
+    "low": 0.6676,
+    "high": 0.7319
+   },
+   "ndcg@10": {
+    "mean": 0.7163,
+    "low": 0.6909,
+    "high": 0.7432
+   }
+  },
+  "R2 RRF BM25+intfloat/e5-large-v2": {
+   "hit@5": {
+    "mean": 0.87,
+    "low": 0.8417,
+    "high": 0.895
+   },
+   "hit@10": {
+    "mean": 0.945,
+    "low": 0.9267,
+    "high": 0.9617
+   },
+   "mrr@10": {
+    "mean": 0.7616,
+    "low": 0.7311,
+    "high": 0.7879
+   },
+   "ndcg@10": {
+    "mean": 0.7828,
+    "low": 0.7573,
+    "high": 0.8059
    }
   },
   "R1 dense intfloat/e5-small-v2": {
@@ -154,6 +242,50 @@
     "high": 0.7521
    }
   },
+  "R1 dense thenlper/gte-large": {
+   "hit@5": {
+    "mean": 0.825,
+    "low": 0.795,
+    "high": 0.855
+   },
+   "hit@10": {
+    "mean": 0.9,
+    "low": 0.875,
+    "high": 0.9233
+   },
+   "mrr@10": {
+    "mean": 0.6799,
+    "low": 0.6489,
+    "high": 0.7126
+   },
+   "ndcg@10": {
+    "mean": 0.7068,
+    "low": 0.6787,
+    "high": 0.7355
+   }
+  },
+  "R2 RRF BM25+thenlper/gte-large": {
+   "hit@5": {
+    "mean": 0.8367,
+    "low": 0.8083,
+    "high": 0.8667
+   },
+   "hit@10": {
+    "mean": 0.915,
+    "low": 0.8917,
+    "high": 0.9367
+   },
+   "mrr@10": {
+    "mean": 0.7018,
+    "low": 0.6721,
+    "high": 0.7313
+   },
+   "ndcg@10": {
+    "mean": 0.7356,
+    "low": 0.7093,
+    "high": 0.7605
+   }
+  },
   "R3 structured (oracle slots)": {
    "hit@5": {
     "mean": 0.96,
@@ -176,7 +308,51 @@
     "high": 0.6871
    }
   },
-  "R4 structured + BAAI/bge-small-en-v1.5": {
+  "R5 rerank BAAI/bge-reranker-base": {
+   "hit@5": {
+    "mean": 0.7533,
+    "low": 0.7183,
+    "high": 0.785
+   },
+   "hit@10": {
+    "mean": 0.8983,
+    "low": 0.8733,
+    "high": 0.9217
+   },
+   "mrr@10": {
+    "mean": 0.6135,
+    "low": 0.5797,
+    "high": 0.6443
+   },
+   "ndcg@10": {
+    "mean": 0.6578,
+    "low": 0.6284,
+    "high": 0.6826
+   }
+  },
+  "R5 rerank BAAI/bge-reranker-large": {
+   "hit@5": {
+    "mean": 0.805,
+    "low": 0.7733,
+    "high": 0.835
+   },
+   "hit@10": {
+    "mean": 0.885,
+    "low": 0.8583,
+    "high": 0.9117
+   },
+   "mrr@10": {
+    "mean": 0.6483,
+    "low": 0.6172,
+    "high": 0.6795
+   },
+   "ndcg@10": {
+    "mean": 0.6954,
+    "low": 0.6673,
+    "high": 0.7223
+   }
+  },
+  "R4 structured + intfloat/e5-large-v2": {
    "hit@5": {
     "mean": 0.9617,
     "low": 0.9467,
@@ -184,18 +360,18 @@
    },
    "hit@10": {
     "mean": 0.9917,
-    "low": 0.985,
+    "low": 0.9833,
     "high": 0.9983
    },
    "mrr@10": {
-    "mean": 0.8591,
-    "low": 0.8371,
-    "high": 0.8806
+    "mean": 0.8601,
+    "low": 0.8376,
+    "high": 0.8821
    },
    "ndcg@10": {
-    "mean": 0.6682,
-    "low": 0.6491,
-    "high": 0.6882
+    "mean": 0.6695,
+    "low": 0.6497,
+    "high": 0.6889
    }
   }
  },
@@ -215,6 +391,16 @@
    "PHENOL-EXPLORER-3.6": 0.7485,
    "USDA-RETN-R6": 0.6929
   },
+  "R1 dense BAAI/bge-large-en-v1.5": {
+   "BOGNAR-2002": 0.6665,
+   "PHENOL-EXPLORER-3.6": 0.6841,
+   "USDA-RETN-R6": 0.6824
+  },
+  "R2 RRF BM25+BAAI/bge-large-en-v1.5": {
+   "BOGNAR-2002": 0.619,
+   "PHENOL-EXPLORER-3.6": 0.7335,
+   "USDA-RETN-R6": 0.6928
+  },
   "R1 dense BAAI/bge-small-en-v1.5": {
    "BOGNAR-2002": 0.6729,
    "PHENOL-EXPLORER-3.6": 0.6606,
@@ -224,6 +410,16 @@
    "BOGNAR-2002": 0.6576,
    "PHENOL-EXPLORER-3.6": 0.7407,
    "USDA-RETN-R6": 0.7142
+  },
+  "R1 dense intfloat/e5-large-v2": {
+   "BOGNAR-2002": 0.6896,
+   "PHENOL-EXPLORER-3.6": 0.7026,
+   "USDA-RETN-R6": 0.7076
+  },
+  "R2 RRF BM25+intfloat/e5-large-v2": {
+   "BOGNAR-2002": 0.7848,
+   "PHENOL-EXPLORER-3.6": 0.7358,
+   "USDA-RETN-R6": 0.7643
   },
   "R1 dense intfloat/e5-small-v2": {
    "BOGNAR-2002": 0.5558,
@@ -235,15 +431,35 @@
    "PHENOL-EXPLORER-3.6": 0.7738,
    "USDA-RETN-R6": 0.705
   },
+  "R1 dense thenlper/gte-large": {
+   "BOGNAR-2002": 0.7033,
+   "PHENOL-EXPLORER-3.6": 0.7003,
+   "USDA-RETN-R6": 0.636
+  },
+  "R2 RRF BM25+thenlper/gte-large": {
+   "BOGNAR-2002": 0.6555,
+   "PHENOL-EXPLORER-3.6": 0.7455,
+   "USDA-RETN-R6": 0.7046
+  },
   "R3 structured (oracle slots)": {
    "BOGNAR-2002": 0.8417,
    "PHENOL-EXPLORER-3.6": 0.8902,
    "USDA-RETN-R6": 0.8346
   },
-  "R4 structured + BAAI/bge-small-en-v1.5": {
-   "BOGNAR-2002": 0.8442,
+  "R5 rerank BAAI/bge-reranker-base": {
+   "BOGNAR-2002": 0.593,
+   "PHENOL-EXPLORER-3.6": 0.6146,
+   "USDA-RETN-R6": 0.6329
+  },
+  "R5 rerank BAAI/bge-reranker-large": {
+   "BOGNAR-2002": 0.6192,
+   "PHENOL-EXPLORER-3.6": 0.6428,
+   "USDA-RETN-R6": 0.6829
+  },
+  "R4 structured + intfloat/e5-large-v2": {
+   "BOGNAR-2002": 0.8484,
    "PHENOL-EXPLORER-3.6": 0.8877,
-   "USDA-RETN-R6": 0.8454
+   "USDA-RETN-R6": 0.8442
   }
  },
  "n_queries": 600

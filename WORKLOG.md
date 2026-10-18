@@ -466,3 +466,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/{constraints`, `feasibility}.py`, `src/culinarystate/process/tools.py`, `tools/ask.py`, `tests/unit/test_constraints.py`, `tests/property/test_fuzz_entry_points.py`
 - **Verified:** pytest 2863 fast + 40 ledgers pass
 - **Next:** retrieval report v2 once reranker-large lands; R4 graph expansion
+
+### S068 · 2026-10-18 22:53 IST · DEL-4 · Retrieval: 6 dense models + 2 cross-encoders, paired bootstrap
+- **Who:** Kush
+- **Did:** A100: e5-large-v2, gte-large, bge-large, bge-small embeddings + bge-reranker-base/large over RRF top-50. Paired MRR@10: RRF+e5-large +0.057 [+0.035,+0.082] vs RRF+bge-small; rerankers -0.056/-0.091 (negative); structured+dense +0.005 n.s. Decision: e5-large free-text fallback; structured primary; no reranker; no dense blend.
+- **Files:** `tools/eval_retrieval_silver.py`, `reports/del4/retrieval_silver_v1.{md`, `json}`, `reports/del4/retrieval_silver_v2_analysis.md`, `docs/BUILD_TRACKER.md`
+- **Verified:** eval rerun with all 6 embeddings + 2 rerank files; paired CIs in report
+- **Next:** R4 graph expansion; RQ16-03 hard-negative compatibility reranker

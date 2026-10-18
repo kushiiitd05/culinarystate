@@ -17,7 +17,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C3 | State reconstructor | ✅ | `state_graph/engine.py`, `rule_compiler.py`; 30 sessions pass |
 | C4 | Process-history tracker | 🟡 | engine `last_process` + TRANSFORMS_INTO edges; no history-conditioned features yet |
 | C5 | Goal/constraint parser | ✅ | `constraints@0.2`: tools (closed/open world, unavailable; weak aliases after cues), time budget, FSSAI allergens, ingredient exclusions (longest lexicon phrase; feasibility rejects descendants; unknown -> UNRESOLVED); diets UNRESOLVED |
-| C6 | Multi-index retriever | 🟡 | structured primary (MRR 0.856); free-text fallback RRF BM25+e5-large-v2 (0.762, best of 6 dense); R5 bge-reranker-base 0.614 (negative); R4 graph expansion ⬜ |
+| C6 | Multi-index retriever | 🟡 | structured primary (MRR 0.856); free-text fallback RRF BM25+e5-large-v2 (0.762; +0.057 paired vs bge-small); dense blend on structured +0.005 n.s.; cross-encoders negative; R4 graph expansion ⬜ |
 | C7 | Evidence compatibility layer | ✅ | `retrieval/compatibility.py` (9 axes, UNKNOWN neutral, group-row NEAR) |
 | C8 | Direct transition lookup | ✅ | retriever DIRECT class + cell dedup |
 | C9 | Transition fallback | 🟡 | DEL-2 D0–D7 exist; not routed (G16-TRANS not passed: gains vanish cold) |
@@ -36,7 +36,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 |---|---|---|---|
 | 01 | Semantic state value | ⬜ | needs B3 vs B4 ladder on benchmark |
 | 02 | Structured retrieval | 🟡 | silver: structured MRR 0.856 vs hybrid 0.704 vs BM25 0.597 (`reports/del4/`) |
-| 03 | Compatibility reranker vs cross-encoder | 🟡 | general cross-encoder loses to RRF on silver (0.614 vs 0.704); large pending; scientific hard negatives ⬜ |
+| 03 | Compatibility reranker vs cross-encoder | 🟡 | bge-reranker large/base hurt their RRF input (Δ −0.056 / −0.091, CIs exclude 0) — `reports/del4/retrieval_silver_v2_analysis.md`; scientific hard negatives ⬜ |
 | 04 | Context restructuring | ⬜ | packet fields exist; generator needed |
 | 05 | Confidence vector | ✅ | `decision/confidence.py`; calibration needs verified labels |
 | 06 | Evidence sufficiency policy | ✅ | §242.6–8 modes + precision cap |
@@ -84,7 +84,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | Gates | G16-DATA/VOCAB/QTY/SEM/GRAPH/EVID/CONFLICT/CAL/TRANS/DEC/REC/PROV/OOD | ⬜ | to be scored when the matching E16 runs exist |
 
 ## Order from here (one at a time)
-1. RQ16-02/03 retrieval: large embeddings + R5 cross-encoder (running locally) → analyse.
+1. ✅ RQ16-02/03 retrieval: large embeddings + R5 cross-encoders analysed (paired); next R4 graph expansion + hard negatives.
 2. E16-A NER: CRF / kNN / DeBERTa-large on A100 (running) → GLiNER layer → verifier → calibration (Part K).
 3. ✅ C14 OOD gate → C5 goal/constraint parser → C12 outcome comparator (value intervals).
 4. RQ16-17 VOI ask policy → RQ16-18/19 diagnosis verifier + recovery KB.
