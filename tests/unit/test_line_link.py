@@ -18,3 +18,8 @@ def test_wiki_links_skip_units():
 
 def test_mentions_longest_first():
     assert L.mentions("Fry the red onions in oil, then add potatoes and mustard seed.") == ["ING-2", "ING-4", "ING-1", "ING-5"]
+
+
+def test_free_text_excludes_verb_homographs():
+    ll = LineLinker({"fry": "ING-9", "butter": "ING-1"}, set())
+    assert ll.mentions("Fry in butter") == ["ING-1"]

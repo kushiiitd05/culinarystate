@@ -16,6 +16,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.evidence.conditions import extract_conditions  # noqa: E402
 from culinarystate.kg import corpus  # noqa: E402
 from culinarystate.kg.edges import PairCounter, quantile_confidence, quantiles  # noqa: E402
+from culinarystate.kg.mine import alternatives, endpoints, forms, is_optional, media  # noqa: E402
 from culinarystate.ledgers.store import LedgerStore  # noqa: E402
 from culinarystate.process.tools import find_tools  # noqa: E402
 from culinarystate.process.vocab import BY_CANON  # noqa: E402
@@ -32,7 +33,11 @@ TIMED = {"DRY_HEAT", "FAT_HEAT", "WET_HEAT", "HEAT_GENERAL", "COOLING", "RESTING
 # predicate: (min recipe support, min lift, top-k per subject)
 PARAMS = {"ING_PROCESSED_BY": (10, 1.3, 15), "PROC_USES_TOOL": (10, 1.5, 8), "PROC_FOLLOWED_BY": (10, 1.2, 8),
           "ING_CO_OCCURS": (15, 2.0, 10), "ING_USED_IN_CUISINE": (5, 1.5, 5), "ING_MEASURED_IN_UNIT": (10, 0.0, 3),
-          "COMPONENT_CONTAINS_ING": (5, 1.5, 5)}
+          "COMPONENT_CONTAINS_ING": (5, 1.5, 5), "ING_ALTERNATIVE_TO": (5, 1.5, 8), "ING_OFTEN_OPTIONAL": (10, 1.5, 1),
+          "ING_PREP_FORM": (10, 1.5, 5), "PROC_USES_MEDIUM": (10, 1.3, 5), "PROC_ENDPOINT_STATE": (10, 1.3, 8)}
+VALUE_OBJ = {"ING_USED_IN_CUISINE", "COMPONENT_CONTAINS_ING", "ING_OFTEN_OPTIONAL", "ING_PREP_FORM", "PROC_USES_MEDIUM",
+             "PROC_ENDPOINT_STATE"}
+GUT = ROOT / "data" / "interim" / "gutenberg" / "recipes.jsonl"
 
 
 def lookups(st: LedgerStore):
@@ -54,9 +59,8 @@ def lookups(st: LedgerStore):
     return ings, names, surfaces, proc, tool, unit
 
 
-def recipes(st: LedgerStore, names: dict, unit: dict):
+def recipes(st: LedgerStore, names: dict, unit: dict, linker: LineLinker):
     recs = st.all_latest("REC")
-    linker = LineLinker(names, set(unit))
     bbc_ids = {r["external_refs"][0].split(":", 1)[1]: r["id"] for r in recs
                if r["status"] == "ACTIVE" and (r.get("external_refs") or [""])[0].startswith("A1:")}
     wb_ids = {int(r["external_refs"][0].split(":")[1]): r["id"] for r in recs
@@ -65,6 +69,8 @@ def recipes(st: LedgerStore, names: dict, unit: dict):
     yield from corpus.bbc(A1, bbc_ids, linker, names)
     yield from corpus.wikibooks(WB / "recipes.jsonl", ROOT / "registry" / "recipes" / "wikibooks_ingredient_links_v1.csv",
                                 wb_ids, cuisine_of)
+    if GUT.exists():
+        yield from corpus.gutenberg(GUT)
 
 
 def scan(st: LedgerStore):
@@ -73,11 +79,26 @@ def scan(st: LedgerStore):
     cuisine_pc, comp_pc = pcs["ING_USED_IN_CUISINE"], pcs["COMPONENT_CONTAINS_ING"]
     dur, temp = defaultdict(list), defaultdict(list)
     n_by_src = Counter()
-    for rv in recipes(st, names, unit):
+    linker = LineLinker(names, set(unit))
+    for rv in recipes(st, names, unit, linker):
         n_by_src[rv.family] += 1
+        lines = [(t, i or (linker.link(t)[0] if t else None)) for t, i in rv.lines]
+        line_ings = {i for _, i in lines if i}
+        alt = {x for t, _ in lines if " or " in t.lower()
+               for x in [alternatives(t, lambda ph: linker.match_phrase(linker.phrase(ph)))] if x}
+        pcs["ING_ALTERNATIVE_TO"].add_recipe(rv.family, rv.ing_ids | line_ings, rv.ing_ids | line_ings,
+                                             alt | {(b, a) for a, b in alt})
+        opt = {(i, "OPTIONAL") for t, i in lines if i and is_optional(t)}
+        pcs["ING_OFTEN_OPTIONAL"].add_recipe(rv.family, line_ings, {"OPTIONAL"} if opt else set(), opt)
+        fpairs = {(i, f) for t, i in lines if i for f in forms(t)}
+        pcs["ING_PREP_FORM"].add_recipe(rv.family, line_ings, {f for _, f in fpairs}, fpairs)
+        med_pairs, end_pairs = set(), set()
         ing_procs, proc_tools, transitions, seq, all_procs, all_tools = set(), set(), set(), [], set(), set()
         for s in rv.steps:
-            ps = [p for _, p in step_processes(s) if p in proc]
+            pos_ps = [(pos, p) for pos, p in step_processes(s) if p in proc]
+            ps = [p for _, p in pos_ps]
+            med_pairs |= {(proc[p], m) for p in ps if BY_CANON[p].family in TIMED for m in media(s)}
+            end_pairs |= {(proc[p], e) for p, e in endpoints(s, pos_ps)}
             ts = {t for _, t, _ in find_tools(s) if t in tool}
             all_procs.update(ps)
             all_tools.update(ts)
@@ -96,6 +117,8 @@ def scan(st: LedgerStore):
                         dur[p].append(v)
                 for t in c["temperatures"]:
                     q = t["value"]
+                    if q["status"] not in ("MEASURED", "RANGE"):          # stated bounds ("above 180 °C") skipped
+                        continue
                     v = q.get("value") if q["status"] == "MEASURED" else (q["low"] + q["high"]) / 2
                     v = (v - 32) * 5 / 9 if q["unit"] == "degF" else v
                     if -40 <= v <= 300:
@@ -108,7 +131,9 @@ def scan(st: LedgerStore):
         pcs["PROC_FOLLOWED_BY"].add_recipe(rv.family, pid_set, pid_set, transitions)
         pcs["ING_CO_OCCURS"].add_recipe(rv.family, rv.ing_ids, rv.ing_ids,
                                         {(a, b) for a in rv.ing_ids for b in rv.ing_ids if a != b})
-        units = {(i, unit[q.unit_key]) for t, i in rv.lines if i and (q := parse_line(t)).unit_key in unit}
+        pcs["PROC_USES_MEDIUM"].add_recipe(rv.family, pid_set, {m for _, m in med_pairs}, med_pairs)
+        pcs["PROC_ENDPOINT_STATE"].add_recipe(rv.family, pid_set, {e for _, e in end_pairs}, end_pairs)
+        units = {(i, unit[q.unit_key]) for t, i in lines if i and (q := parse_line(t)).unit_key in unit}
         pcs["ING_MEASURED_IN_UNIT"].add_recipe(rv.family, {i for i, _ in units}, {u for _, u in units}, units)
         if rv.cuisines:
             cuisine_pc.add_recipe(rv.family, rv.ing_ids, set(rv.cuisines), {(i, c) for i in rv.ing_ids for c in rv.cuisines})
@@ -142,7 +167,7 @@ def main() -> None:
     recs, rows = [], []
     for pred, pc in pcs.items():
         mn, lift, k = PARAMS[pred]
-        value_obj = pred in ("ING_USED_IN_CUISINE", "COMPONENT_CONTAINS_ING")
+        value_obj = pred in VALUE_OBJ
         method = "SEQUENCE" if pred == "PROC_FOLLOWED_BY" else "CO_OCCURRENCE"
         for e in pc.edges(mn, lift, k):
             sup = {"recipes": e["support"], "mentions": e["mentions"], "subject_recipes": e["subject_recipes"],
@@ -209,6 +234,9 @@ def report(rows, writes, n_by_src, proc, tool, ings) -> None:
              "Examples:", f"- PROC_USES_TOOL: {ex('PROC_USES_TOOL')}", f"- PROC_FOLLOWED_BY: {ex('PROC_FOLLOWED_BY')}",
              f"- ING_PROCESSED_BY: {ex('ING_PROCESSED_BY')}", f"- ING_CO_OCCURS: {ex('ING_CO_OCCURS')}",
              f"- ING_USED_IN_CUISINE: {ex('ING_USED_IN_CUISINE')}",
+             f"- ING_ALTERNATIVE_TO: {ex('ING_ALTERNATIVE_TO')}", f"- ING_PREP_FORM: {ex('ING_PREP_FORM')}",
+             f"- PROC_USES_MEDIUM: {ex('PROC_USES_MEDIUM')}", f"- PROC_ENDPOINT_STATE: {ex('PROC_ENDPOINT_STATE', 10)}",
+             f"- ING_OFTEN_OPTIONAL: {ex('ING_OFTEN_OPTIONAL')}",
              "- typical durations (median min, n): " + ", ".join(
                  f"{name.get(r.subject_id)} {r.p50} (n={r.support})" for r in timers.itertuples()),
              "", "Statistical edges are corpus associations (recipe text), not chemistry; confidence = 95% Wilson lower "

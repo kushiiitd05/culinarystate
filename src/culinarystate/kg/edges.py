@@ -46,8 +46,8 @@ class PairCounter:
 
     def add_recipe(self, family: str, subjects: set, objects: set, pairs: set, mentions: Counter | None = None):
         self.n += 1
-        self.subj.update(subjects)
-        self.obj.update(objects)
+        self.subj.update(set(subjects) | {s for s, _ in pairs})     # a pair's members always count as present
+        self.obj.update(set(objects) | {o for _, o in pairs})
         self.pair.update(pairs)
         for p in pairs:
             self.by_src[p][family] += 1

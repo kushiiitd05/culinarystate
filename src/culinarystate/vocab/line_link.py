@@ -12,6 +12,10 @@ from culinarystate.quantity.grammar import parse_line
 
 from .foodon import norm
 
+# single-word ING names that are usually verbs/utensils in running text ("sprinkle", "fry", "spoon"); ingredient-line
+# linking keeps them, free-text mention scanning drops them
+FREE_TEXT_EXCLUDE = frozenset({"sprinkle", "fry", "spoon", "spread", "wrap", "mash", "dip", "roll", "toast", "crisp",
+                               "pickle", "brine", "puree", "sprout", "cube", "squash", "season", "dress", "stuff"})
 CUT = re.compile(r"\s*(\(|,|;| - | – | to taste\b| for (?:garnish|serving|frying|dusting)\b| or \b).*$", re.I)
 
 
@@ -36,13 +40,14 @@ class LineLinker:
                     return hit
         return None
 
-    def mentions(self, text: str) -> list[str]:
+    def mentions(self, text: str, exclude: frozenset = FREE_TEXT_EXCLUDE) -> list[str]:
         """All non-overlapping ING mentions in free text, longest n-gram first, in reading order."""
         words, out, i = norm(text).split(), [], 0
         while i < len(words):
             for n in range(min(self.max_n, len(words) - i), 0, -1):
-                hit = self.names.get(" ".join(words[i:i + n]))
-                if hit and " ".join(words[i:i + n]) not in self.unit_words:
+                k = " ".join(words[i:i + n])
+                hit = self.names.get(k)
+                if hit and k not in self.unit_words and k not in exclude:
                     out.append(hit)
                     i += n
                     break

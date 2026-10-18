@@ -52,6 +52,13 @@ def is_index_or_menu(title: str, body: str) -> bool:
 TOOL_SLOT = re.compile(r"\b(?:in|into|on|over|with|upon) (?:a|an|the) ((?:[a-z-]+ ){0,1}[a-z-]+?(?:pan|pot|kettle|dish|tin|"
                        r"oven|sieve|cloth|jar|mould|mold|basin|bowl|spoon|board|knife|press|griddle|skillet|boiler|"
                        r"spider|salamander|toaster|grater|mortar|bag))\b")
+SPOON_UNITS = {"tablespoon", "teaspoon", "dessertspoon", "dessert spoon", "table spoon", "tea spoon", "saltspoon"}
+
+
+def _novel_tool(phrase: str) -> bool:
+    """Review candidates only: drop units and modifier + known tool ("small saucepan", "buttered pie-dish")."""
+    words = _hy(phrase).split()
+    return not any(" ".join(words[i:]) in ALIAS_TO_TOOL or " ".join(words[i:]) in SPOON_UNITS for i in range(len(words)))
 
 
 def cuisine_of(subjects: str) -> str | None:
@@ -118,7 +125,7 @@ def main() -> None:
             procs = [p for s in SENT.split(c.get("method") or body) for _, p in step_processes(s)]
             if len(set(ings)) < 2 or not procs:
                 continue
-            tool_words.update(m.group(1) for m in TOOL_SLOT.finditer(body.lower()) if _hy(m.group(1)) not in ALIAS_TO_TOOL)
+            tool_words.update(m.group(1) for m in TOOL_SLOT.finditer(body.lower()) if _novel_tool(m.group(1)))
             good.append({"book_id": int(b.book_id), "idx": i, "title": c["title"].title()[:200], "body": body,
                          "fields": {k: v for k, v in c.items() if k not in ("title", "body")},
                          "ing_ids": sorted(set(ings)), "processes": sorted(set(procs)),

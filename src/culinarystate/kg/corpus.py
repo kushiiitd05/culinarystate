@@ -70,3 +70,13 @@ def wikibooks(recipes_jsonl: Path, links_csv: Path, rec_ids: dict[int, str], cui
                 comps.setdefault(c, set()).add(iid)
         yield RecipeView(rid, "WIKIBOOKS-COOKBOOK", {i for _, i in lines if i}, lines, [s["text"] for s in r["steps"]],
                          (cuisine_of.get(rid) or "").split("|") if cuisine_of.get(rid) else [], comps)
+
+
+def gutenberg(recipes_jsonl: Path) -> Iterator[RecipeView]:
+    """Silver recipes from public-domain books (D-012): mention-based ING sets; Beeton ingredient field as lines."""
+    for line in recipes_jsonl.open():
+        r = json.loads(line)
+        ing_text = (r.get("fields") or {}).get("ingredients")
+        lines = [(t.strip(), None) for t in re.split(r"[,;]", ing_text)] if ing_text else []
+        yield RecipeView(r["rec_id"], "GUTENBERG-PD", set(r["ing_ids"]), lines, r["steps"],
+                         (r.get("cuisine") or "").split("|") if r.get("cuisine") else [])
