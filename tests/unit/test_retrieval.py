@@ -41,3 +41,18 @@ def test_time_interval_axis():
     cond = {"duration": {"status": "MEASURED", "value": 10, "unit": "min"}}
     assert compatibility(Query(time_min=(8, 12)), _evd(), cond, FAM)["vector"]["time"] == "MATCH"
     assert compatibility(Query(time_min=(60, 90)), _evd(), cond, FAM)["vector"]["time"] == "MISMATCH"
+
+
+def test_packet_classes():
+    from culinarystate.retrieval.retriever import EvidenceRetriever
+    def row(i, ing, pid, d, rf):
+        e = _evd(ing=ing, pid=pid)
+        e.update({"id": f"EVD-{i:06d}", "status": "ACTIVE", "source_id": "SRC-000001", "independence_group": f"g{i}",
+                  "derived": {"direction": d, "retention_factor": {"status": "MEASURED", "value": rf}}})
+        e["matrix"]["raw_name"], e["process"]["raw_name"], e["process"]["steps"] = "spinach", "boil", ["boil"]
+        return e
+    r = EvidenceRetriever([row(1, "ING-1", "PROC-1", "DECREASE", 0.6)], {}, FAM)
+    assert r.packet("vitamin c boiled spinach", Query(ingredient_id="ING-1", process_id="PROC-1", target="vitamin c")).evidence_class == "DIRECT"
+    assert r.packet("vitamin c fried spinach", Query(ingredient_id="ING-1", process_id="PROC-3", target="vitamin c")).evidence_class == "UNSUPPORTED"
+    r2 = EvidenceRetriever([row(1, "ING-1", "PROC-1", "DECREASE", 0.6), row(2, "ING-1", "PROC-1", "INCREASE", 1.2)], {}, FAM)
+    assert r2.packet("vitamin c boiled spinach", Query(ingredient_id="ING-1", process_id="PROC-1", target="vitamin c")).evidence_class == "CONFLICT"

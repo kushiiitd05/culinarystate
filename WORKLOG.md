@@ -179,3 +179,24 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/evidence/linker.py`, `tools/link_evidence.py`, `src/culinarystate/vocab/registry_build.py`, `tests/unit/test_linker.py`, `registry/evidence/evd_ingredient_link_review.csv`, `registry/ingredients/`, `ledgers/data/`
 - **Verified:** EXACT+HIGH: USDA 3,978/7,018 (57%), PE 1,817/3,870 (47%); 94 matrices for human review; process linked 100% of mapped steps; rerun unchanged; pytest passes
 - **Next:** MOL/IMAP; refresh queue + data card + EDA
+
+### S027 · 2026-10-18 12:17 IST · B04/AH9/ledger-queue#9 · MOL (PubChem) + typed IMAP
+- **Who:** Kush+Claude
+- **Did:** molecules/pubchem.py (cached PUG-REST, handles 2025 field rename ConnectivitySMILES/SMILES, refuses aggregates). tools/build_molecule_registry.py: 131 MOL (InChIKey, CID, SMILES, formula, MW, stereo status, XLogP/TPSA/HBD/HBA/rot/heavy atoms, CACTVS-881 fingerprint; ECFP pending rdkit), SVAR→MOL links, 592 IMAP (MEASURED_CONCENTRATION from before-processing contents with basis; PROCESS_CHANGE → EVD ids). 34 aggregate targets SVAR-only; 22 unresolved (proanthocyanidin n-mers, rare glycosides) listed.
+- **Files:** `src/culinarystate/molecules/pubchem.py`, `tools/build_molecule_registry.py`, `tests/unit/test_pubchem.py`, `registry/molecules/`, `ledgers/data/MOL.jsonl`, `ledgers/data/IMAP.jsonl`
+- **Verified:** quercetin–kaempferol Tanimoto 0.935 vs quercetin–ascorbic 0.297 (sanity)
+- **Next:** retriever; queue refresh
+
+### S028 · 2026-10-18 12:17 IST · DEL-4/P10 · Retrieval core: BM25 + inspectable compatibility vector + Evidence Packet
+- **Who:** Kush+Claude
+- **Did:** retrieval/bm25.py (dependency-free), compatibility.py (9 axes MATCH/NEAR/MISMATCH/UNKNOWN; unknown never mismatch; parent concepts NEAR; process family NEAR), retriever.py (BM25 ∪ structured candidates, rank 0.35 bm25 + 0.65 compat, hard-mismatch demotion, lineage dedup, evidence class DIRECT/INTERPOLATED/QUALITATIVE/CONFLICT/UNSUPPORTED, packet with known unknowns, condition differences, disallowed claims, citation map); dense slot for A100 embeddings later.
+- **Files:** `src/culinarystate/retrieval/`, `tests/unit/test_retrieval.py`
+- **Verified:** pytest 265 passed
+- **Next:** dense embeddings (A100), calibration/abstention eval, benchmark
+
+### S029 · 2026-10-18 12:18 IST · DEL-1/DEL-2 · Refresh: verification queue (Route A+B), DEL-1 card, EDA, DEL-2 on Phenol-Explorer
+- **Who:** Kush+Claude
+- **Did:** Queue now 634 rows (Route A PE publications + Route B OpenAlex), 17 conflict cells, 73 rejected. DEL-1 card: 10,888 DB rows; ING normalised 53.2%; human-verified 0/40. DEL-2 PE run incl. study_disjoint (125 publications): MAE ~0.4–0.9 dominated by formation outliers (RF up to 102); persistence often best → metric/target must change (log-RF, median AE) before any claim. STATUS updated with done list + next 5.
+- **Files:** `registry/evidence/`, `reports/`, `STATUS.md`
+- **Verified:** pytest 265 passed
+- **Next:** AI pre-check pass of queue; DEL-2 log-RF; A100 for dense/NER (VPN)

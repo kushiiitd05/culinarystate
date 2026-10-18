@@ -1,6 +1,6 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-**Updated:** 2026-10-18 · **Final presentation: 25–26 Nov 2026 (T-38 days)**
+**Updated:** 2026-10-18 12:20 IST (after S029) · **Final presentation: 25–26 Nov 2026 (T-38 days)**
 **Repo:** `~/Desktop/CGAS/culinarystate` (local git; GitHub push only after H7 approval)
 **Step-by-step log:** `WORKLOG.md` (timestamped, sequential). **Decisions:** `DECISIONS.md`.
 **Bible:** `docs/SSOT/…v15_0.md` (read via `docs/SSOT_INDEX.md`) · plan `docs/plan/CulinaryState_Final_Master_Plan_SSOT15_v4_0.md`
@@ -17,10 +17,17 @@
 
 **Not on this machine:** Parv's Max-plan work (old STATUS/DECISIONS, ~519 evidence candidate cells). Decision D-001: rebuild here; Parv continues from this repo.
 
-## 2. ACTIVE (this week, 18–24 Oct)
-- P2 core ledger schemas + ID minter + validators + tests
-- P1 DEL-1 evidence substrate: USDA R6 retention + Phenol-Explorer ingestion; literature candidate harvest → verification queue
-- P3 quantity system v0 (UNIT/QNT/POR/ALLOC) on the A1 corpus
+## 2. DONE TODAY (S001–S029, see WORKLOG.md)
+- Ledgers live & linked: SRC/SNAP/MEAS/STUDY, EVD 10,888 (USDA 7,018 + Phenol-Explorer 3,870 / 125 papers), COND, SVAR, ING 1,997 + ALIAS, PROC 148, TOOL 76 (+535 process↔tool links), UNIT 74, REC 11,934 (+families, REC↔ING), MOL 131, IMAP 592, ALLERGEN 8 (FSSAI).
+- Code: schemas+laws, quantity grammar (90% lines), state engine + rule baseline, common scorer, gold toolchain + handbook, EDA generator, DEL-1 data card, DEL-2 pipeline (D0–D7), retrieval core (BM25 + compatibility + Evidence Packet), literature queue (634 rows), handoff docs. 265 tests.
+- Results: DEL-1 4/6 clauses (0/40 human-verified rows). DEL-2 USDA: learned models win on random splits, gains vanish on cold splits; conformal coverage 0.72–0.87 under shift. DEL-2 PE: outlier-dominated → needs log-RF/median metrics (next).
+
+## 2b. NEXT (in order)
+1. AI pre-check pass over verification queue (AI_PRECHECKED + suggested decision) → humans confirm fast (Kush asked AI to review; AI cannot sign as human).
+2. DEL-2 on PE with log-RF target + median AE; experiment cards EXP-D0…D7.
+3. Dense embeddings + DEL-4 calibration/abstention eval (A100 — ask VPN first).
+4. DEL-5 decision layer (ANSWER…ABSTAIN) + benchmark authoring (confirm D-008).
+5. NER baselines on TASTEset (A100 encoder), Silver factory scaffold, B03/B15 small reproductions, WARN (after FSIS manual download).
 
 ## 3. BLOCKED / WAITING
 | Blocker | Impact | Workaround |

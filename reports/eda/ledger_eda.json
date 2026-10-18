@@ -1,12 +1,13 @@
 {
- "generated_at": "2026-10-18T06:11:31+00:00",
+ "generated_at": "2026-10-18T06:47:22+00:00",
  "ledgers": {
   "ALIAS": {
    "prefix": "ALIAS",
    "records": 2031,
-   "versions": 2031,
+   "versions": 2043,
    "status": {
-    "ACTIVE": 2031
+    "ACTIVE": 2019,
+    "DEPRECATED": 12
    },
    "verification": {
     "UNVERIFIED": 2031
@@ -22,20 +23,53 @@
    ],
    "missingness": []
   },
-  "COND": {
-   "prefix": "COND",
-   "records": 270,
-   "versions": 270,
+  "ALLERGEN": {
+   "prefix": "ALLERGEN",
+   "records": 8,
+   "versions": 8,
    "status": {
-    "ACTIVE": 270
+    "ACTIVE": 8
    },
    "verification": {
-    "UNVERIFIED": 270
+    "UNVERIFIED": 8
    },
    "provenance_method": {
-    "IMPORT": 270
+    "MANUAL": 8
    },
    "top_sources": [
+    [
+     "SRC-000011",
+     8
+    ]
+   ],
+   "missingness": [
+    [
+     "ingredient_ids",
+     0.125,
+     {
+      "empty": 1
+     }
+    ]
+   ]
+  },
+  "COND": {
+   "prefix": "COND",
+   "records": 4140,
+   "versions": 4140,
+   "status": {
+    "ACTIVE": 4140
+   },
+   "verification": {
+    "UNVERIFIED": 4140
+   },
+   "provenance_method": {
+    "IMPORT": 4140
+   },
+   "top_sources": [
+    [
+     "SRC-000012",
+     3870
+    ],
     [
      "SRC-000001",
      270
@@ -44,90 +78,147 @@
    "missingness": [
     [
      "duration",
-     0.8963,
+     0.4242,
      {
-      "unknown": 242
+      "unknown": 1756
      }
     ]
    ]
   },
   "EVD": {
    "prefix": "EVD",
-   "records": 7018,
-   "versions": 7018,
+   "records": 10888,
+   "versions": 21776,
    "status": {
-    "ACTIVE": 7018
+    "ACTIVE": 10888
    },
    "verification": {
-    "UNVERIFIED": 7018
+    "UNVERIFIED": 10888
    },
    "provenance_method": {
-    "IMPORT": 7018
+    "IMPORT": 10888
    },
    "top_sources": [
     [
      "SRC-000001",
      7018
+    ],
+    [
+     "SRC-000012",
+     3870
+    ],
+    [
+     "SRC-000027",
+     251
+    ],
+    [
+     "SRC-000092",
+     244
+    ],
+    [
+     "SRC-000028",
+     216
+    ],
+    [
+     "SRC-000030",
+     200
+    ],
+    [
+     "SRC-000123",
+     186
+    ],
+    [
+     "SRC-000016",
+     156
     ]
    ],
    "missingness": [
     [
-     "matrix.ingredient_id",
-     1.0,
-     {
-      "empty": 7018
-     }
-    ],
-    [
-     "process.process_id",
-     1.0,
-     {
-      "empty": 7018
-     }
-    ],
-    [
      "study_ids",
-     1.0,
+     0.6446,
      {
       "empty": 7018
      }
     ],
     [
      "process.medium",
-     0.9333,
+     0.6016,
      {
       "empty": 6550
      }
     ],
     [
      "matrix.initial_state",
-     0.7888,
+     0.5084,
      {
       "empty": 5536
      }
     ],
     [
+     "matrix.ingredient_id",
+     0.4678,
+     {
+      "empty": 5093
+     }
+    ],
+    [
      "matrix.form",
-     0.6666,
+     0.4296,
      {
       "empty": 4678
      }
     ],
     [
+     "process.process_id",
+     0.0121,
+     {
+      "empty": 132
+     }
+    ],
+    [
+     "process.step_process_ids",
+     0.0121,
+     {
+      "empty": 132
+     }
+    ],
+    [
      "derived.retention_factor",
-     0.0034,
+     0.0022,
      {
       "unknown": 24
      }
     ]
    ]
   },
+  "IMAP": {
+   "prefix": "IMAP",
+   "records": 592,
+   "versions": 592,
+   "status": {
+    "ACTIVE": 592
+   },
+   "verification": {
+    "UNVERIFIED": 592
+   },
+   "provenance_method": {
+    "DERIVED": 592
+   },
+   "top_sources": [
+    [
+     "SRC-000138",
+     592
+    ]
+   ],
+   "missingness": []
+  },
   "ING": {
    "prefix": "ING",
    "records": 2009,
-   "versions": 2009,
+   "versions": 2027,
    "status": {
-    "ACTIVE": 2009
+    "ACTIVE": 1997,
+    "DEPRECATED": 12
    },
    "verification": {
     "UNVERIFIED": 2009
@@ -151,9 +242,9 @@
     ],
     [
      "notes",
-     0.4769,
+     0.4734,
      {
-      "empty": 958
+      "empty": 951
      }
     ]
    ]
@@ -179,10 +270,39 @@
    ],
    "missingness": []
   },
+  "MOL": {
+   "prefix": "MOL",
+   "records": 131,
+   "versions": 131,
+   "status": {
+    "ACTIVE": 131
+   },
+   "verification": {
+    "UNVERIFIED": 131
+   },
+   "provenance_method": {
+    "IMPORT": 131
+   },
+   "top_sources": [
+    [
+     "SRC-000138",
+     131
+    ]
+   ],
+   "missingness": [
+    [
+     "synonyms",
+     0.9466,
+     {
+      "empty": 124
+     }
+    ]
+   ]
+  },
   "PROC": {
    "prefix": "PROC",
    "records": 148,
-   "versions": 160,
+   "versions": 294,
    "status": {
     "ACTIVE": 148
    },
@@ -222,120 +342,357 @@
     ]
    ]
   },
-  "SNAP": {
-   "prefix": "SNAP",
-   "records": 2,
-   "versions": 2,
+  "REC": {
+   "prefix": "REC",
+   "records": 11934,
+   "versions": 11934,
    "status": {
-    "ACTIVE": 2
+    "ACTIVE": 11934
    },
    "verification": {
-    "UNVERIFIED": 2
+    "UNVERIFIED": 11934
    },
    "provenance_method": {
-    "IMPORT": 2
+    "SCRAPE": 11934
+   },
+   "top_sources": [
+    [
+     "SRC-000002",
+     11934
+    ]
+   ],
+   "missingness": [
+    [
+     "cuisine",
+     0.4154,
+     {
+      "empty": 4957
+     }
+    ]
+   ]
+  },
+  "SNAP": {
+   "prefix": "SNAP",
+   "records": 3,
+   "versions": 3,
+   "status": {
+    "ACTIVE": 3
+   },
+   "verification": {
+    "UNVERIFIED": 3
+   },
+   "provenance_method": {
+    "IMPORT": 3
    },
    "top_sources": [
     [
      "SRC-000001",
      2
+    ],
+    [
+     "SRC-000011",
+     1
     ]
    ],
    "missingness": []
   },
   "SRC": {
    "prefix": "SRC",
-   "records": 2,
-   "versions": 2,
+   "records": 138,
+   "versions": 138,
    "status": {
-    "ACTIVE": 2
+    "ACTIVE": 138
    },
    "verification": {
-    "UNVERIFIED": 2
+    "UNVERIFIED": 129,
+    "AI_PRECHECKED": 5,
+    "NEEDS_SOURCE": 4
    },
    "provenance_method": {
-    "MANUAL": 2
+    "MANUAL": 13,
+    "IMPORT": 125
    },
-   "top_sources": [],
+   "top_sources": [
+    [
+     "SRC-000012",
+     125
+    ]
+   ],
+   "missingness": []
+  },
+  "STUDY": {
+   "prefix": "STUDY",
+   "records": 125,
+   "versions": 125,
+   "status": {
+    "ACTIVE": 125
+   },
+   "verification": {
+    "UNVERIFIED": 125
+   },
+   "provenance_method": {
+    "IMPORT": 125
+   },
+   "top_sources": [
+    [
+     "SRC-000013",
+     1
+    ],
+    [
+     "SRC-000014",
+     1
+    ],
+    [
+     "SRC-000015",
+     1
+    ],
+    [
+     "SRC-000016",
+     1
+    ],
+    [
+     "SRC-000017",
+     1
+    ],
+    [
+     "SRC-000018",
+     1
+    ],
+    [
+     "SRC-000019",
+     1
+    ],
+    [
+     "SRC-000020",
+     1
+    ]
+   ],
    "missingness": []
   },
   "SVAR": {
    "prefix": "SVAR",
-   "records": 26,
-   "versions": 26,
+   "records": 187,
+   "versions": 318,
    "status": {
-    "ACTIVE": 26
+    "ACTIVE": 187
    },
    "verification": {
-    "UNVERIFIED": 26
+    "UNVERIFIED": 187
    },
    "provenance_method": {
-    "IMPORT": 26
+    "IMPORT": 187
    },
    "top_sources": [
+    [
+     "SRC-000012",
+     161
+    ],
     [
      "SRC-000001",
      26
     ]
    ],
    "missingness": []
+  },
+  "TOOL": {
+   "prefix": "TOOL",
+   "records": 76,
+   "versions": 76,
+   "status": {
+    "ACTIVE": 76
+   },
+   "verification": {
+    "UNVERIFIED": 76
+   },
+   "provenance_method": {
+    "MANUAL": 76
+   },
+   "top_sources": [
+    [
+     "SRC-000002",
+     76
+    ]
+   ],
+   "missingness": [
+    [
+     "material",
+     1.0,
+     {
+      "empty": 76
+     }
+    ],
+    [
+     "max_safe_temperature_c",
+     1.0,
+     {
+      "unknown": 76
+     }
+    ],
+    [
+     "reactive_with",
+     1.0,
+     {
+      "empty": 76
+     }
+    ],
+    [
+     "aliases",
+     0.2105,
+     {
+      "empty": 16
+     }
+    ]
+   ]
+  },
+  "UNIT": {
+   "prefix": "UNIT",
+   "records": 74,
+   "versions": 74,
+   "status": {
+    "ACTIVE": 74
+   },
+   "verification": {
+    "UNVERIFIED": 70,
+    "NEEDS_SOURCE": 4
+   },
+   "provenance_method": {
+    "MANUAL": 74
+   },
+   "top_sources": [
+    [
+     "SRC-000003",
+     10
+    ],
+    [
+     "SRC-000006",
+     9
+    ],
+    [
+     "SRC-000004",
+     4
+    ],
+    [
+     "SRC-000005",
+     4
+    ],
+    [
+     "SRC-000007",
+     2
+    ],
+    [
+     "SRC-000008",
+     1
+    ],
+    [
+     "SRC-000010",
+     1
+    ],
+    [
+     "SRC-000009",
+     1
+    ]
+   ],
+   "missingness": [
+    [
+     "ambiguity_notes",
+     0.9324,
+     {
+      "empty": 69
+     }
+    ],
+    [
+     "conventions",
+     0.8919,
+     {
+      "empty": 66
+     }
+    ],
+    [
+     "external_refs",
+     0.8378,
+     {
+      "empty": 62
+     }
+    ],
+    [
+     "si_unit",
+     0.7297,
+     {
+      "empty": 54
+     }
+    ]
+   ]
   }
  },
  "evidence": {
-  "rows": 7018,
+  "rows": 10888,
   "tier": {
-   "E3": 7018
+   "E3": 10888
   },
   "origin_type": {
-   "DATABASE_AGGREGATE": 7018
+   "DATABASE_AGGREGATE": 7018,
+   "PRIMARY_STUDY": 3870
   },
   "source_family": {
-   "USDA-RETN-R6": 7018
+   "USDA-RETN-R6": 7018,
+   "PHENOL-EXPLORER-3.6": 3870
   },
   "study_lineage": {
-   "NOT_IDENTIFIABLE": 7018
+   "NOT_IDENTIFIABLE": 7018,
+   "PRESENT": 3870
   },
-  "independent_groups": 1,
+  "independent_groups": 126,
   "censored_rows": 2620,
   "retention_factor_status": {
    "CENSORED": 2620,
-   "MEASURED": 4374,
+   "MEASURED": 8244,
    "UNKNOWN": 24
   },
   "direction": {
    "UNKNOWN": 2644,
-   "DECREASE": 4374
+   "DECREASE": 7146,
+   "NO_CHANGE": 80,
+   "INCREASE": 1018
   },
   "target_basis": {
-   "RETENTION_TR_OR_AR": 7018
+   "RETENTION_TR_OR_AR": 7018,
+   "FRESH_WEIGHT": 2906,
+   "PER_VOLUME": 960,
+   "DRY": 4
   },
-  "ingredient_id_linked": 0.0,
-  "process_id_linked": 0.0,
+  "ingredient_id_linked": 0.5322,
+  "process_id_linked": 0.9879,
   "condition_axes": {
    "duration": {
-    "UNKNOWN": 6291,
-    "MEASURED": 259,
-    "RANGE": 468
+    "UNKNOWN": 7805,
+    "MEASURED": 2607,
+    "RANGE": 476
    },
    "moisture": {
-    "UNKNOWN": 7018
+    "UNKNOWN": 10888
    },
    "ph": {
-    "UNKNOWN": 7018
+    "UNKNOWN": 10888
    },
    "pressure": {
-    "NOT_APPLICABLE": 7018
+    "NOT_APPLICABLE": 7018,
+    "MEASURED": 129
    },
    "temperature": {
-    "UNKNOWN": 7018
+    "UNKNOWN": 8660,
+    "MEASURED": 2047,
+    "RANGE": 181
+   },
+   "power": {
+    "MEASURED": 60
    }
   },
-  "rows_with_temperature": 0,
-  "unique_matrices": 38,
-  "unique_step_sequences": 42,
-  "unique_targets": 26,
-  "unique_cells": 7018,
-  "matrix_process_density": 0.1071,
+  "rows_with_temperature": 2228,
+  "unique_matrices": 184,
+  "unique_step_sequences": 67,
+  "unique_targets": 187,
+  "unique_cells": 8651,
+  "matrix_process_density": 0.0372,
   "rows_per_matrix_top": [
    [
     "pork",
@@ -370,34 +727,42 @@
     259
    ],
    [
-    "chicken",
-    234
+    "sweet cherry, raw",
+    259
    ],
    [
-    "sweetpotatoes",
+    "chicken",
     234
    ]
   ],
   "matrix_long_tail": {
-   "matrices_with_1_row": 0,
-   "median_rows_per_matrix": 130
+   "matrices_with_1_row": 10,
+   "median_rows_per_matrix": 17
   },
   "process_steps_top": [
+   [
+    "boil",
+    1630
+   ],
    [
     "simmer",
     1534
    ],
    [
-    "boil",
-    1144
+    "store-ambient",
+    1132
    ],
    [
     "bake",
-    832
+    910
+   ],
+   [
+    "store-refrigerated",
+    908
    ],
    [
     "fry",
-    780
+    869
    ],
    [
     "reheat",
@@ -420,37 +785,105 @@
     312
    ],
    [
+    "store-frozen",
+    245
+   ],
+   [
+    "freeze",
+    226
+   ],
+   [
     "roast",
-    208
-   ],
-   [
-    "saute",
-    182
-   ],
-   [
-    "stir",
-    181
-   ],
-   [
-    "braise",
-    156
-   ],
-   [
-    "bake|simmer",
-    155
+    224
    ],
    [
     "steam",
-    130
+    214
    ]
   ],
-  "replicate_rows_same_cell_same_group": 0,
-  "conflict_candidates": 0,
-  "conflict_examples": []
+  "replicate_rows_same_cell_same_group": 2181,
+  "conflict_candidates": 17,
+  "conflict_examples": [
+   {
+    "cell": "blackcurrant, raw |  | freeze>store-frozen | polyphenols, total | {} | 394462min",
+    "rows": 6,
+    "groups": 2
+   },
+   {
+    "cell": "cauliflower, blanched |  | freeze>store-frozen | polyphenols, total | {} | ?",
+    "rows": 17,
+    "groups": 2
+   },
+   {
+    "cell": "apple, whole, raw |  | store-refrigerated | polyphenols, total | {} | ?",
+    "rows": 4,
+    "groups": 2
+   },
+   {
+    "cell": "soy, tofu |  | fry | 6''-o-acetyldaidzin | {} | ?",
+    "rows": 4,
+    "groups": 4
+   },
+   {
+    "cell": "soy, tofu |  | fry | 6''-o-acetylgenistin | {} | ?",
+    "rows": 4,
+    "groups": 4
+   },
+   {
+    "cell": "potato, raw |  | boil | caffeic acid | {} | ?",
+    "rows": 13,
+    "groups": 2
+   },
+   {
+    "cell": "soy, tofu |  | fry | 6''-o-malonyldaidzin | {} | ?",
+    "rows": 4,
+    "groups": 4
+   },
+   {
+    "cell": "soy, tofu |  | fry | 6''-o-malonylgenistin | {} | ?",
+    "rows": 4,
+    "groups": 4
+   },
+   {
+    "cell": "soy, tofu |  | fry | 6''-o-malonylglycitin | {} | ?",
+    "rows": 4,
+    "groups": 4
+   },
+   {
+    "cell": "soy, tofu |  | fry | daidzein | {} | ?",
+    "rows": 5,
+    "groups": 4
+   },
+   {
+    "cell": "soy, tofu |  | fry | daidzin | {} | ?",
+    "rows": 4,
+    "groups": 4
+   },
+   {
+    "cell": "soy, tofu |  | fry | genistein | {} | ?",
+    "rows": 5,
+    "groups": 4
+   },
+   {
+    "cell": "soy, tofu |  | fry | genistin | {} | ?",
+    "rows": 4,
+    "groups": 4
+   },
+   {
+    "cell": "soy, tofu |  | fry | glycitein | {} | ?",
+    "rows": 4,
+    "groups": 4
+   },
+   {
+    "cell": "soy, tofu |  | fry | glycitin | {} | ?",
+    "rows": 4,
+    "groups": 4
+   }
+  ]
  },
  "ingredients": {
   "concepts": 2009,
-  "active": 2009,
+  "active": 1997,
   "ambiguity": {
    "LOW": 1994,
    "HIGH": 15
@@ -502,8 +935,8 @@
    "ACTION": 139,
    "ENDPOINT": 9
   },
-  "with_evidence": 27,
-  "corpus_actions_without_evidence": 109,
+  "with_evidence": 36,
+  "corpus_actions_without_evidence": 102,
   "top_unevidenced_by_corpus_freq": [
    "put",
    "add",
