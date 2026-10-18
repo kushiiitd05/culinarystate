@@ -82,7 +82,7 @@ def main() -> None:
         refs.append(f"OFF:{e.id}")
         if e.props.get("wikidata"):
             refs.append(f"WIKIDATA:{e.props['wikidata']}")
-        w_ing[st.upsert({**ing, "external_refs": refs})[0]] += 1
+        w_ing[st.upsert({**ing, "external_refs": sorted(refs)})[0]] += 1
         for lang, names in e.names.items():
             if lang != "en" and lang not in INDIAN_LANGS:
                 continue

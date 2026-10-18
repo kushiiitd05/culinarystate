@@ -221,3 +221,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/vocab/off.py tools/build_off_aliases.py tools/build_ingredient_registry.py registry/ingredients/off_crosswalk_v1.csv registry/ingredients/off_alias_collisions.csv reports/off_taxonomy_v1.md tests/unit/test_off.py`
 - **Verified:** tests pass; 0 invalid; 2nd run 0 writes
 - **Next:** X2b merge duplicate ING concepts at builder level
+
+### S033 · 2026-10-18 13:03 IST · X2b/P3 · Merge duplicate ingredient concepts at builder level
+- **Who:** Kush+Claude
+- **Did:** merge_map in registry_build (plural-only, named-cheese 'X cheese', explicit bay->bay leaf); builder folds mention table before counting, marks losers SUPERSEDED with superseded_by keeper, repoints aliases from any source, preserves X1/X2 enrichment fields. Fixed two version-churn bugs found on the way (null-vs-missing category copy; external_refs order ping-pong between FoodOn/OFF tools -> sorted). Reran FoodOn, OFF, link_evidence (183 EVD relinked), recipe, molecule (+46 IMAP), allergen, FDC CSV.
+- **Files:** `src/culinarystate/vocab/registry_build.py tools/build_ingredient_registry.py tools/build_foodon_crosswalk.py tools/build_off_aliases.py ledgers/data/*.jsonl registry/*`
+- **Verified:** 276 tests; 0 invalid; 0 dangling ING refs across all ledgers; every builder 2nd run = 0 writes
+- **Next:** X3 Wikibooks Cookbook recipes (MediaWiki API, CC BY-SA)

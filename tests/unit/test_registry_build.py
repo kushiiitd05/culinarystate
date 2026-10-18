@@ -46,3 +46,12 @@ def test_aliases_and_coverage():
     assert al["egg"].link_band == "EXACT"
     cur = coverage_curve(m, concepts)
     assert cur["cum_share"].iloc[-1] == 1.0 and not cur.loc[cur.canonical == "rare thing", "in_registry"].iloc[0]
+
+
+def test_merge_map_duplicates_only():
+    from culinarystate.vocab.registry_build import merge_map
+    f = {"pea": 50, "peas": 300, "feta": 120, "feta cheese": 40, "cream cheese": 90, "cream": 400, "bay": 10,
+         "bay leaf": 200, "brussels sprouts": 30, "brussels sprout": 5}
+    m = merge_map(f)
+    assert m == {"pea": "peas", "feta cheese": "feta", "bay": "bay leaf", "brussels sprout": "brussels sprouts"}
+    assert "cream cheese" not in m and "cream" not in m

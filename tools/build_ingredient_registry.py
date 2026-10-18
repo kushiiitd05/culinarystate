@@ -13,8 +13,10 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.ledgers.store import LedgerStore  # noqa: E402
-from culinarystate.vocab.registry_build import POLYSEMOUS, build_aliases, build_concepts, coverage_curve  # noqa: E402
+from culinarystate.vocab.registry_build import (POLYSEMOUS, build_aliases, build_concepts, coverage_curve,  # noqa: E402
+                                                merge_map)
 
+ENRICHED = ("crosswalks", "category", "external_refs")   # owned by build_foodon_crosswalk / build_off_aliases
 TAXO = {"FORM_OF", "VARIANT_OF"}   # only these become parent_ids; HEAD_NOUN is review grouping
 
 ap = argparse.ArgumentParser()
@@ -23,6 +25,8 @@ ap.add_argument("--min-recipes", type=int, default=3)
 a = ap.parse_args()
 
 m = pd.read_csv(a.mentions)
+merged = merge_map(m.groupby("ingredient_canonical")["recipe_id"].nunique().to_dict())   # loser -> keeper
+m = m.assign(ingredient_canonical=m["ingredient_canonical"].map(lambda n: merged.get(n, n)))
 concepts, rejects = build_concepts(m, a.min_recipes)
 known = {c.name for c in concepts}
 aliases = build_aliases(m, known)
@@ -55,13 +59,24 @@ for c in concepts:
                f"{c.relation} {c.parent}" if c.parent else "", f"modifier={c.facets['modifier']}"
                if c.facets.get("modifier") else "", f"polysemous: {POLYSEMOUS[c.name]}" if c.name in POLYSEMOUS
                else "") if x) or None}
+    prev = st.latest(rec["id"])                         # keep enrichment written by later tools (X1 FoodOn, X2 OFF)
+    if prev:
+        rec.update({k: prev[k] for k in ENRICHED if k in prev})
     n_ing[st.upsert(rec)[0]] += 1
 
 current_ing = set(ids.values())
+superseded = {}
 for old in st.all_latest("ING"):                       # concepts that dropped out: deprecate, never delete
     if old["id"] not in current_ing and old["status"] == "ACTIVE":
-        st.upsert({**old, "status": "DEPRECATED", "notes": "dropped from registry rebuild (see reports)"})
-        n_ing["deprecated"] = n_ing.get("deprecated", 0) + 1
+        keeper = merged.get(old["canonical_name"])
+        if keeper in ids:                              # duplicate spelling merged into keeper
+            superseded[old["id"]] = ids[keeper]
+            st.upsert({**old, "status": "SUPERSEDED", "superseded_by": ids[keeper],
+                       "notes": f"merged into {keeper} (duplicate spelling)"})
+            n_ing["superseded"] = n_ing.get("superseded", 0) + 1
+        else:
+            st.upsert({**old, "status": "DEPRECATED", "notes": "dropped from registry rebuild (see reports)"})
+            n_ing["deprecated"] = n_ing.get("deprecated", 0) + 1
 
 n_alias = {"created": 0, "unchanged": 0, "revised": 0}
 for al in aliases:
@@ -79,6 +94,14 @@ for old in st.all_latest("ALIAS"):                     # only aliases this build
     if old["id"] not in current_alias and old["status"] == "ACTIVE" and src_id in old["provenance"]["source_ids"]:
         st.upsert({**old, "status": "DEPRECATED", "notes": "dropped from registry rebuild"})
         n_alias["deprecated"] = n_alias.get("deprecated", 0) + 1
+
+for al in st.all_latest("ALIAS"):                      # any source's alias pointing at a merged concept -> keeper
+    if al["status"] == "ACTIVE" and (al.get("ingredient_id") in superseded or
+                                     set(al.get("candidate_ingredient_ids") or []) & set(superseded)):
+        cands = list(dict.fromkeys(superseded.get(c, c) for c in al.get("candidate_ingredient_ids") or []))
+        st.upsert({**al, "ingredient_id": superseded.get(al.get("ingredient_id"), al.get("ingredient_id")),
+                   "candidate_ingredient_ids": cands})
+        n_alias["repointed"] = n_alias.get("repointed", 0) + 1
 
 out = ROOT / "registry" / "ingredients"
 out.mkdir(parents=True, exist_ok=True)

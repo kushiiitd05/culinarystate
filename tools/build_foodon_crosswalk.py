@@ -80,7 +80,7 @@ def main() -> None:
         refs = [r for r in (ing.get("external_refs") or []) if not r.startswith("FOODON:")]
         if status == "LINKED":
             refs.append(f"FOODON:{best[0].split('_', 1)[1]}")
-        new = {**ing, "crosswalks": cw, "external_refs": refs, "category": cat or ing.get("category")}
+        new = {**ing, "crosswalks": cw, "external_refs": sorted(refs), "category": cat or ing.get("category")}
         writes[st.upsert(new)[0]] += 1
         rows.append({"ing_id": ing["id"], "canonical_name": name, "corpus_frequency": freq, "status": status,
                      "foodon_id": best[0], "foodon_label": terms[best[0]].label if best[0] else None,

@@ -34,8 +34,8 @@
 |---|---|---|---|
 | X1 | FoodOn ontology (CC BY 4.0) | ING external ids + category | ✅ S031: 534 LINKED + 287 CANDIDATE (75% of mentions), 572 categorised |
 | X2 | Open Food Facts ingredient taxonomy (ODbL) | ALIAS (multilingual, Hindi), ING refs | ✅ S032: 835 ING linked (81% mentions), +1,770 aliases (14 langs), 560 Wikidata QIDs |
-| X2b | ING duplicate merge (plural / "X cheese") | ING, ALIAS, downstream links | next |
-| X3 | Wikibooks Cookbook (CC BY-SA, API) | REC source family 2 (world + Indian) | queued |
+| X2b | ING duplicate merge (plural / "X cheese") | ING, ALIAS, downstream links | ✅ S033: 49 superseded → 1,951 active; 0 dangling refs |
+| X3 | Wikibooks Cookbook (CC BY-SA, API) | REC source family 2 (world + Indian) | next |
 | X4 | Project Gutenberg cookbooks (public domain) | procedures, TOOL, PROC coverage | queued |
 | X5 | Bognár 2002 retention/yield tables (open access PDF) | EVD source family 3 → source-disjoint DEL-2 | queued |
 | X6 | Wikidata kitchenware (CC0) | TOOL QIDs + new tools | queued |

@@ -41,6 +41,12 @@ ADJECTIVE_ONLY = {"firm", "fresh", "large", "small", "medium", "ripe", "hot", "c
                   "white", "black", "red", "green", "yellow", "brown", "golden", "pink", "purple", "orange-fleshed",
                   "chinese", "indian", "thai", "italian", "mexican", "french", "greek", "spanish", "japanese",
                   "korean", "vietnamese", "british", "english", "american", "asian", "mediterranean", "middle eastern"}
+# "X cheese" == "X" only for named cheeses (never "cream cheese" vs "cream"); explicit synonym pairs
+NAMED_CHEESES = {"parmesan", "cheddar", "mozzarella", "feta", "ricotta", "mascarpone", "halloumi", "gruyère", "gruyere",
+                 "stilton", "brie", "camembert", "gorgonzola", "paneer", "manchego", "emmental", "pecorino", "gouda",
+                 "taleggio", "comté", "wensleydale", "roquefort", "provolone", "burrata", "fontina", "edam",
+                 "jarlsberg", "red leicester", "cheshire", "lancashire", "caerphilly", "quark", "cottage", "dolcelatte"}
+SAME_CONCEPT = {"bay": "bay leaf"}
 GENERIC_HEADS = set(FORM_WORDS) | {"mix", "mixture", "dough", "filling", "topping", "dressing"}
 
 
@@ -73,6 +79,27 @@ def _singular(w: str) -> str:
     if w.endswith("s") and not w.endswith("ss") and len(w) > 3:
         return w[:-1]
     return w
+
+
+def merge_key(name: str) -> str:
+    n = SAME_CONCEPT.get(name, name)
+    words = n.split()
+    if len(words) >= 2 and words[-1] == "cheese" and " ".join(words[:-1]) in NAMED_CHEESES:
+        words = words[:-1]
+    return " ".join(_singular(w) for w in words)
+
+
+def merge_map(freq: dict[str, int]) -> dict[str, str]:
+    """Duplicate canonical names (plural / named-cheese / explicit synonym) -> most frequent spelling."""
+    groups: dict[str, list[str]] = defaultdict(list)
+    for name in freq:
+        groups[merge_key(name)].append(name)
+    out = {}
+    for names in groups.values():
+        if len(names) > 1:
+            keeper = max(names, key=lambda n: (freq[n], -len(n), n))
+            out.update({n: keeper for n in names if n != keeper})
+    return out
 
 
 def classify_reject(name: str) -> str | None:
