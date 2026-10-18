@@ -97,7 +97,9 @@ def test_yield_parser_ignores_garbage_and_truncated_tables():
 @pytest.mark.parametrize("s", GARBAGE)
 def test_constraint_parser_never_crashes_or_invents(s):
     from culinarystate.decision.constraints import parse_constraints
-    c, info = parse_constraints(s, {"oven": "TOOL-000001", "frying pan": "TOOL-000003"}, {"nut": "ALLERGEN-000006"})
+    c, info = parse_constraints(s, {"oven": "TOOL-000001", "frying pan": "TOOL-000003"}, {"nut": "ALLERGEN-000006"},
+                                {"onion": "ING-000010", "garlic": "ING-000012"})
     assert info["raw"] == s
+    assert c.excluded_ingredients <= {"ING-000010", "ING-000012"}
     assert c.time_budget_min is None or (c.time_budget_min == c.time_budget_min and c.time_budget_min >= 0)
     assert not (c.available_tools or set()) & c.unavailable_tools

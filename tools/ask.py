@@ -67,7 +67,8 @@ def main() -> None:
     out = [show(q, answer(q, lex, retriever, req, family, constraints=cons, support_index=sup, troubleshoot=ts))
            for q in qs if q]
     if a.constraints:
-        out.append({"constraints": str(cons), "unresolved": info["unresolved"]})
+        out.append({"constraints": str(cons), "unresolved": info["unresolved"],
+                    "unresolved_exclusions": info["unresolved_exclusions"]})
     print(json.dumps(out, indent=1, ensure_ascii=False))
 
 

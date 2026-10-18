@@ -1,8 +1,9 @@
 """C17 claim checker: numeric claims must be cited and match the cited evidence (SSOT §257B C17; UCR, DEL-4).
 
 A numeric claim = a percentage or a decimal fraction (0.x / 1.x; a bare "1" is a count, not a claim);
-durations/temperatures/step numbers are not claims here. Supported iff it cites ≥ 1 packet row (nearest following [EVD-…] ids in the same sentence) and the
-value is within tolerance of one cited row's retention (fraction or % scale). Citations to ids outside the packet are
+durations/temperatures/step numbers are not claims here. Supported iff it cites ≥ 1 packet row ([EVD-…] ids in
+the same sentence, or in a citation-only fragment right after it) and the value is within tolerance of one cited
+row's retention (fraction or % scale). Citations to ids outside the packet are
 fabricated. UCR = unsupported / numeric claims.
 """
 from __future__ import annotations

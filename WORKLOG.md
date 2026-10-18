@@ -459,3 +459,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/generation/{verbalize`, `enforce`, `claims`, `prompts`, `llm}.py`, `src/culinarystate/decision/{diagnosis`, `policy`, `relevance}.py`, `tools/run_ladder.py`, `tests/contract/test_generation_contracts.py`, `tests/unit/test_{verbalize`, `enforce`, `generation`, `diagnosis`, `policy}.py`, `reports/del5/generator_c16_v1.md`, `ladder_v2_qwen{7b`, `32b}.*`
 - **Verified:** pytest 2857 fast + 40 ledgers pass; ladder rescored with final checker
 - **Next:** retrieval report v2 (6 dense + R5 base/large); wire e5-large free-text fallback decision; R4 graph expansion
+
+### S067 · 2026-10-18 22:51 IST · DEL-5 · C5 ingredient exclusions + weak tool aliases in constraints
+- **Who:** Kush
+- **Did:** parse 'no onion' / 'without garlic' / 'out of coconut milk' to ING ids (longest phrase, norm plurals, lookahead so cues in a phrase are not swallowed); feasibility EXCLUDED_INGREDIENT over the ING or any ancestor (Requirements.ingredient_parents); unknown names UNRESOLVED; tools beat ingredients; 'no microwave' now resolves (weak alias accepted after constraint cue). Real run: microwave REJECT, braise kept, blorpfruit unresolved.
+- **Files:** `src/culinarystate/decision/{constraints`, `feasibility}.py`, `src/culinarystate/process/tools.py`, `tools/ask.py`, `tests/unit/test_constraints.py`, `tests/property/test_fuzz_entry_points.py`
+- **Verified:** pytest 2863 fast + 40 ledgers pass
+- **Next:** retrieval report v2 once reranker-large lands; R4 graph expansion

@@ -16,7 +16,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C2 | Entity/coreference resolver | 🟡 | `LineLinker` (lexicon+aliases), gold coref tooling; no runtime coref across turns |
 | C3 | State reconstructor | ✅ | `state_graph/engine.py`, `rule_compiler.py`; 30 sessions pass |
 | C4 | Process-history tracker | 🟡 | engine `last_process` + TRANSFORMS_INTO edges; no history-conditioned features yet |
-| C5 | Goal/constraint parser | 🟡 | `decision/constraints.py`: tools (closed/open world, unavailable), time budget, FSSAI allergens; diets UNRESOLVED; ingredient exclusions ("no onion") ⬜ |
+| C5 | Goal/constraint parser | ✅ | `constraints@0.2`: tools (closed/open world, unavailable; weak aliases after cues), time budget, FSSAI allergens, ingredient exclusions (longest lexicon phrase; feasibility rejects descendants; unknown -> UNRESOLVED); diets UNRESOLVED |
 | C6 | Multi-index retriever | 🟡 | structured primary (MRR 0.856); free-text fallback RRF BM25+e5-large-v2 (0.762, best of 6 dense); R5 bge-reranker-base 0.614 (negative); R4 graph expansion ⬜ |
 | C7 | Evidence compatibility layer | ✅ | `retrieval/compatibility.py` (9 axes, UNKNOWN neutral, group-row NEAR) |
 | C8 | Direct transition lookup | ✅ | retriever DIRECT class + cell dedup |

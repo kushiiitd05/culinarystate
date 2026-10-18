@@ -227,12 +227,14 @@ _ARTICLE = re.compile(r"\b(a|an|the|your|each|large|small|medium|deep|shallow|bi
                       r"non-stick|heavy|wide|separate|heatproof|ovenproof|flameproof|hot)\s+$", re.IGNORECASE)
 
 
-def find_tools(text: str) -> list[tuple[int, str, str | None]]:
-    """(position, canonical tool, material-or-None) — weak aliases count only after an article/adjective."""
+def find_tools(text: str, allow_weak_after: re.Pattern | None = None) -> list[tuple[int, str, str | None]]:
+    """(position, canonical tool, material-or-None) — weak aliases count only after an article/adjective, or after
+    a caller-given context pattern (e.g. a constraint cue: "no microwave")."""
     out = []
     for m in _ALIAS_RE.finditer(text):
         alias = _hy(m.group(1))
-        if alias in WEAK and not _ARTICLE.search(text[:m.start()]):  # noqa: SIM102
+        ctx_ok = _ARTICLE.search(text[:m.start()]) or (allow_weak_after and allow_weak_after.search(text[:m.start()]))
+        if alias in WEAK and not ctx_ok:  # noqa: SIM102
             continue
         mat = _MAT_RE.search(text[max(0, m.start() - 25):m.end()])   # material may sit inside the alias
         tool = ALIAS_TO_TOOL.get(alias) or _NOSEP[alias.replace(" ", "")]

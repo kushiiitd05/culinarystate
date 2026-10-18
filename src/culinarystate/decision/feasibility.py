@@ -28,6 +28,7 @@ class Constraints:
     time_budget_min: float | None = None
     excluded_allergens: frozenset = field(default_factory=frozenset)
     unavailable_tools: frozenset = field(default_factory=frozenset)     # "no oven": rejects even in open world
+    excluded_ingredients: frozenset = field(default_factory=frozenset)  # "no onion": the ING or any descendant
 
 
 @dataclass(frozen=True)
@@ -36,6 +37,7 @@ class Requirements:
     required_tools: dict                               # PROC id -> frozenset of TOOL ids (any one suffices)
     typical_minutes: dict                              # PROC id -> (p10, p50, p90)
     allergen_of: dict                                  # ING id -> frozenset of ALLERGEN ids
+    ingredient_parents: dict = field(default_factory=dict)   # ING id -> tuple of parent ING ids
 
 
 def _c(status: str, reason: str | None = None, detail=None) -> dict:
@@ -62,6 +64,24 @@ def _time(a: Action, c: Constraints, r: Requirements) -> dict:
     return _c("FAIL", "TYPICAL_MEDIAN_EXCEEDS_BUDGET", q) if q[1] > c.time_budget_min else _c("PASS", "TYPICAL_MEDIAN", q)
 
 
+def _ancestors(i: str, parents: dict) -> set:
+    seen, todo = {i}, [i]
+    while todo:
+        for p in parents.get(todo.pop(), ()):
+            if p not in seen:
+                seen.add(p)
+                todo.append(p)
+    return seen
+
+
+def _ingredient(a: Action, c: Constraints, r: Requirements) -> dict:
+    if not c.excluded_ingredients:
+        return _c("NOT_APPLICABLE")
+    hits = {i: sorted(_ancestors(i, r.ingredient_parents) & c.excluded_ingredients) for i in a.ingredient_ids}
+    hits = {i: h for i, h in hits.items() if h}
+    return _c("FAIL", "EXCLUDED_INGREDIENT", hits) if hits else _c("PASS")
+
+
 def _allergen(a: Action, c: Constraints, r: Requirements) -> dict:
     if not c.excluded_allergens:
         return _c("NOT_APPLICABLE")
@@ -80,7 +100,8 @@ def check(a: Action, c: Constraints, r: Requirements) -> dict:
         out["checks"]["input"] = _c("PASS")
         known = a.process_id in r.processes
         out["checks"]["process"] = _c("PASS") if known else _c("UNKNOWN", "OOD_PROCESS", a.process_id)
-        out["checks"].update(tool=_tool(a, c, r), time=_time(a, c, r), allergen=_allergen(a, c, r))
+        out["checks"].update(tool=_tool(a, c, r), time=_time(a, c, r), allergen=_allergen(a, c, r),
+                             ingredient=_ingredient(a, c, r))
     st = {x["status"] for x in out["checks"].values()}
     out["decision"] = "REJECT" if "FAIL" in st else "UNKNOWN" if "UNKNOWN" in st else "ALLOW"
     return out
@@ -103,5 +124,6 @@ def load_requirements(store) -> Requirements:
     for a in store.all_latest("ALLERGEN"):
         for i in a.get("ingredient_ids") or []:
             allergen_of.setdefault(i, set()).add(a["id"])
+    parents = {i["id"]: tuple(i.get("parent_ids") or ()) for i in store.all_latest("ING") if i.get("parent_ids")}
     return Requirements(procs, {k: frozenset(v) for k, v in tools.items()}, minutes,
-                        {k: frozenset(v) for k, v in allergen_of.items()})
+                        {k: frozenset(v) for k, v in allergen_of.items()}, parents)
