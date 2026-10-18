@@ -44,7 +44,7 @@ def test_parse_details():
 
 def test_helpers():
     assert process_steps("dehulled, soaked, pressure-boiled") == ["dehull", "soak", "pressure-boil"]
-    assert basis_of("mg/100 g dry weight") == "DRY" and basis_of("mg/100 ml") == "UNKNOWN"
+    assert basis_of("mg/100 g dry weight") == "DRY" and basis_of("mg/100 g") == "UNKNOWN"
 
 
 def test_build(tmp_path):
@@ -64,3 +64,7 @@ def test_build(tmp_path):
     assert cond2["duration"]["value"] == 30.0 and cond2["temperatures"][0]["location"] == "UNSPECIFIED"
     assert e1["independence_group"] == evd[1]["independence_group"]   # same publication
     assert set(a for _, a in build(LedgerStore(tmp_path), [(food, parse_details(DET_HTML))])) == {"unchanged"}
+
+
+def test_volume_basis():
+    assert basis_of("mg/100 ml") == "PER_VOLUME" and basis_of("mg/100 mL") == "PER_VOLUME"

@@ -55,3 +55,9 @@ def test_total_duration():
     one = {"status": "MEASURED", "value": 2.0, "unit": "min", "raw": "2 min"}
     assert total_duration([one]) == one
     assert total_duration([one, one])["status"] == "UNKNOWN"
+
+
+def test_months_and_years():
+    d = extract_conditions("Stored 6 months at room temperature")["durations"][0]
+    assert d["raw"] == "6 months" and round(d["value"] / 1440) == 183
+    assert extract_conditions("aged 2 years")["durations"][0]["unit"] == "min"

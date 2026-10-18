@@ -10,7 +10,7 @@ import re
 
 _NUM = r"(\d+(?:[.,]\d+)?)"
 _RANGE = rf"{_NUM}(?:\s*(?:-|–|to)\s*{_NUM})?"
-DUR_RE = re.compile(rf"{_RANGE}\s*(seconds?|secs?|s|minutes?|mins?|min|hours?|hrs?|h|days?|d|weeks?)\b",
+DUR_RE = re.compile(rf"{_RANGE}\s*(seconds?|secs?|s|minutes?|mins?|min|hours?|hrs?|h|days?|d|weeks?|months?|years?)\b",
                     re.IGNORECASE)
 TEMP_RE = re.compile(rf"{_RANGE}\s*(?:°|º|deg(?:rees?)?\.?\s*)\s*([CF])\b", re.IGNORECASE)
 POWER_RE = re.compile(rf"{_RANGE}\s*(W|watts?|kW)\b", re.IGNORECASE)
@@ -22,7 +22,9 @@ LOCATION_WORDS = (("core", "CORE"), ("internal", "CORE"), ("centre", "CORE"), ("
 
 _TO_MIN = {"s": 1 / 60, "sec": 1 / 60, "secs": 1 / 60, "second": 1 / 60, "seconds": 1 / 60, "min": 1, "mins": 1,
            "minute": 1, "minutes": 1, "h": 60, "hr": 60, "hrs": 60, "hour": 60, "hours": 60, "d": 1440,
-           "day": 1440, "days": 1440, "week": 10080, "weeks": 10080}
+           "day": 1440, "days": 1440, "week": 10080, "weeks": 10080,
+           # convention: mean Gregorian month/year (30.436875 d / 365.2425 d); raw text always kept
+           "month": 43829.1, "months": 43829.1, "year": 525949.2, "years": 525949.2}
 
 
 def _f(x: str) -> float:

@@ -318,7 +318,7 @@ _add("EVD", "state-change evidence atom (W4)", {
                "properties": {"state_variable_id": ref_or_null("SVAR"), "raw_name": STR,
                               "molecule_id": ref_or_null("MOL"), "reaction_id": ref_or_null("RXN"),
                               "basis": enum("WET", "DRY", "FRESH_WEIGHT", "PER_SERVING", "HEADSPACE",
-                                            "AS_CONSUMED", "TRUE_RETENTION", "APPARENT_RETENTION",
+                                            "AS_CONSUMED", "TRUE_RETENTION", "APPARENT_RETENTION", "PER_VOLUME",
                                             "RETENTION_TR_OR_AR", "UNKNOWN")}},
     "before": QVALUE, "after": QVALUE,
     "measurement_method_id": ref_or_null("MEAS"),

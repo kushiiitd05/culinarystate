@@ -44,6 +44,8 @@ def basis_of(units: str) -> str:
         return "DRY"
     if "fresh" in u:
         return "FRESH_WEIGHT"
+    if re.search(r"/\s*\d*\s*ml\b", u):
+        return "PER_VOLUME"
     return "UNKNOWN"
 
 
