@@ -126,13 +126,16 @@ def main() -> None:
         lines.append(f"Cells newly covered by {s} (RP had nothing, B0 available): {len(g)}; MAE {s} "
                      f"{mae([abs(r[s] - r['truth']) for r in g])} vs B0 {mae([abs(r['B0'] - r['truth']) for r in g])}; "
                      f"paired Δ {ci['estimate']:+.4f} [{ci['low']:+.4f}, {ci['high']:+.4f}].")
-    lines += ["", "| relation | cells | MAE of that relation's median | B0 MAE on the same cells |", "|---|---|---|---|"]
+    lines += ["", "| relation | cells | MAE of that relation's median | B0 MAE on the same cells | paired Δ [95% CI] |",
+              "|---|---|---|---|---|"]
     for kd in ("PARENT", "CHILD", "SIBLING", "ANCESTOR", "GROUP_ROW", "FOOD_GROUP"):
         rs = [r for r in rows if kd in r["by_kind"] and r["B0"] is not None]
         if rs:
             m_k, m_b = mae([abs(r["by_kind"][kd] - r["truth"]) for r in rs]), mae([abs(r["B0"] - r["truth"]) for r in rs])
-            lines.append(f"| {kd} | {len(rs)} | {m_k} | {m_b} |")
-            out.setdefault("by_relation", {})[kd] = {"n": len(rs), "mae": m_k, "b0_mae": m_b}
+            ci = grouped_bootstrap({i: [abs(r["by_kind"][kd] - r["truth"]) - abs(r["B0"] - r["truth"])]
+                                    for i, r in enumerate(rs)}, lambda xs: sum(xs) / len(xs), n_boot=1000)
+            lines.append(f"| {kd} | {len(rs)} | {m_k} | {m_b} | {ci['estimate']:+.4f} [{ci['low']:+.4f}, {ci['high']:+.4f}] |")
+            out.setdefault("by_relation", {})[kd] = {"n": len(rs), "mae": m_k, "b0_mae": m_b, "delta": ci}
     rep = ROOT / "reports" / "del4"
     (rep / "graph_expansion_v1.json").write_text(json.dumps(out, indent=1))
     (rep / "graph_expansion_v1.md").write_text("\n".join(lines) + "\n")

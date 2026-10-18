@@ -96,27 +96,67 @@
   "PARENT": {
    "n": 118,
    "mae": 0.0482,
-   "b0_mae": 0.0564
+   "b0_mae": 0.0564,
+   "delta": {
+    "estimate": -0.0081,
+    "low": -0.0219,
+    "high": 0.0053,
+    "n_groups": 118,
+    "n_boot": 1000,
+    "seed": 20261018
+   }
   },
   "CHILD": {
    "n": 122,
    "mae": 0.0356,
-   "b0_mae": 0.0634
+   "b0_mae": 0.0634,
+   "delta": {
+    "estimate": -0.0278,
+    "low": -0.0398,
+    "high": -0.016,
+    "n_groups": 122,
+    "n_boot": 1000,
+    "seed": 20261018
+   }
   },
   "SIBLING": {
    "n": 343,
    "mae": 0.1828,
-   "b0_mae": 0.1464
+   "b0_mae": 0.1464,
+   "delta": {
+    "estimate": 0.0364,
+    "low": 0.0072,
+    "high": 0.0699,
+    "n_groups": 343,
+    "n_boot": 1000,
+    "seed": 20261018
+   }
   },
   "ANCESTOR": {
    "n": 18,
    "mae": 0.0194,
-   "b0_mae": 0.0667
+   "b0_mae": 0.0667,
+   "delta": {
+    "estimate": -0.0472,
+    "low": -0.0653,
+    "high": -0.0292,
+    "n_groups": 18,
+    "n_boot": 1000,
+    "seed": 20261018
+   }
   },
   "GROUP_ROW": {
    "n": 51,
    "mae": 0.0873,
-   "b0_mae": 0.075
+   "b0_mae": 0.075,
+   "delta": {
+    "estimate": 0.0123,
+    "low": -0.0049,
+    "high": 0.0289,
+    "n_groups": 51,
+    "n_boot": 1000,
+    "seed": 20261018
+   }
   }
  }
 }
