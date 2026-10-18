@@ -513,3 +513,9 @@ Presentation: **25–26 Nov 2026**.
 - **Did:** SessionState class wraps engine replay; from_session() auto-injects Add events from ingredients list; process_history() feeds diagnosis verifier with actual session steps (was using question processes). Pipeline.answer() accepts session kwarg. ask.py takes --session and --turn flags. Diagnosis now marks causes CONSISTENT/INCONSISTENT against real cooking history (demo: boil in session → 'boiled' cause CONSISTENT for curdle). 16 unit tests (12 mandatory + 4 extra).
 - **Files:** `src/culinarystate/decision/session_state.py src/culinarystate/decision/pipeline.py tools/ask.py tests/unit/test_session_state.py`
 - **Verified:** 2897 fast tests pass; diagnosis CONSISTENT with session history
+
+### S075 · 2026-10-19 01:48 IST · DEL-5 · C10 candidate action generator
+- **Who:** Kush+Claude
+- **Did:** candidates@0.1: three candidate families (PROCESS from ING_PROCESSED_BY, SUBSTITUTION from ING_ALTERNATIVE_TO, SEQUENCE from PROC_FOLLOWED_BY). Ranks by evidence_count then confidence. Nothing invented. 15 unit tests (12 mandatory + 3 extra).
+- **Files:** `src/culinarystate/decision/candidates.py tests/unit/test_candidates.py`
+- **Verified:** 2912 fast tests pass

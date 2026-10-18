@@ -21,7 +21,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C7 | Evidence compatibility layer | ✅ | `retrieval/compatibility.py` (9 axes, UNKNOWN neutral, group-row NEAR) |
 | C8 | Direct transition lookup | ✅ | retriever DIRECT class + cell dedup |
 | C9 | Transition fallback | 🟡 | DEL-2 D0–D7 exist; not routed (G16-TRANS not passed: gains vanish cold) |
-| C10 | Candidate action generator | 🟡 | corpus candidates (ING_PROCESSED_BY heat processes); no rules/LLM proposer |
+| C10 | Candidate action generator | ✅ | `candidates@0.1`: PROCESS (ING_PROCESSED_BY, heat, ranked by EVD support), SUBSTITUTION (ING_ALTERNATIVE_TO), SEQUENCE (PROC_FOLLOWED_BY); 15 unit tests |
 | C11 | Feasibility filter | ✅ | `decision/feasibility.py` (allergen table awaits human sign-off) |
 | C12 | Outcome comparator | ✅ | `decision/comparator.py`: group-median ranges, SEPARATED/OVERLAPPING/INSUFFICIENT (≥2 independent sources), wired into COMPARE |
 | C13 | Relevance gate | ✅ | rules pass SSOT §7 examples; held-out eval needs benchmark (D-008) |
@@ -29,7 +29,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C15 | Multi-objective selector | 🟡 | alternatives without hidden weights; no Pareto front |
 | C16 | Grounded response generator | ✅ | template verbaliser promoted (0 unsupported / 0 violations); LLM rephrase + enforcement unpromoted (readability needs humans) — `reports/del5/generator_c16_v1.md`; 12 contract cases |
 | C17 | Citation/provenance layer | ✅ | `claims@0.2` (strict ids, citation-only fragments attach to previous sentence, bare counts not claims) + `enforce@0.1`; 12 contract cases |
-| C18 | Session-state updater | 🟡 | engine Observe/Predict precedence; sessions runner; not wired to `ask` |
+| C18 | Session-state updater | ✅ | `session_state@0.1`: replays events, auto-injects ingredients, passes process_history to diagnosis verifier; `ask.py --session --turn`; 16 unit tests |
 
 ## Research questions (§247) — protocol §257E
 | RQ | Topic | Status | Evidence / gap |
@@ -68,7 +68,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 ## Experiment families (§245) and gates
 | ID | Family | Status | Evidence / gap |
 |---|---|---|---|
-| E16-A | Semantic parsing (NER) | 🟡 | test exact F1: rules 0.774 → BERT 0.919, RoBERTa 0.925, DeBERTa 0.922 (5 seeds); +CRF, +kNN, DeBERTa-large running (A100) |
+| E16-A | Semantic parsing (NER) | 🟡 | test exact F1: rules 0.774 → BERT 0.919, RoBERTa 0.925, DeBERTa 0.922 (5 seeds); +CRF (base 0.927, large 0.933); runtime replay verified on Mac MPS (0.9266); GLiNER zero-shot pending |
 | E16-B | Quantity | 🟡 | `reports/quantity_coverage_v0.md` |
 | E16-C | Vocabulary/cold-start | 🟡 | coverage curves; cold-start eval ⬜ |
 | E16-D | Recipe graph | 🟡 | 30 AI-drafted sessions; Gold ⛔ humans |
