@@ -74,3 +74,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/state_graph/symqty.py`, `src/culinarystate/state_graph/engine.py`, `tests/unit/test_state_engine.py`
 - **Verified:** pytest 204 passed (15 engine/symqty tests: pancake merge+reserve+transfer, dough split 500→125/375 g, pasta water discard+recombine with all relation types, observe>predict audit, candidate gating, determinism sha256)
 - **Next:** Recipe→events compiler (A1 instruction_events + quantity parser); ledger export ENTITY/STATE/EVT/GRAPH; DEL-3 scorer
+
+### S012 · 2026-10-18 11:24 IST · B08/B17/P5-B · Common scorer: spans, linking, relations, coref, quantities, state, grouped bootstrap
+- **Who:** Kush+Claude
+- **Did:** scoring/metrics.py: span PRF exact/relaxed (1:1 greedy), micro/macro/per-label, label filter (SIZE excluded vs included); linking Acc@1/Recall@k/MRR with NIL gold (correct abstention) + over-link rate; tuple/relation PRF per relation; coreference B³ + pairwise; quantity channel scoring with invented_value_rate (numeric where gold UNKNOWN) and missed_value_rate; grouped bootstrap CI over families/sources/studies (seeded). scoring/state_metrics.py: DEL-3 state-field accuracy on alive entities (fields, location, symbolic qty), alive-entity PRF, merge/split F1 on structural relations, all-edge relation scores (version-agnostic), replay consistency (sha256 + issues).
+- **Files:** `src/culinarystate/scoring/metrics.py`, `src/culinarystate/scoring/state_metrics.py`, `tests/unit/test_scoring.py`
+- **Verified:** pytest 215 passed; hand-computed checks: B³ P/R, MRR, macro≠micro, relaxed 1:1, missed-reserve degrades merge/split recall + field accuracy
+- **Next:** Phenol-Explorer ingest when crawl finishes; recipe→events compiler; annotation handbook + gold schema
