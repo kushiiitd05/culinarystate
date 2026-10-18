@@ -249,3 +249,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/ledgers/{registry`, `rules}.py src/culinarystate/kg/{__init__`, `corpus`, `edges}.py ledgers/schemas/KGE.schema.json tests/unit/test_kg_edges.py tests/unit/test_ledgers.py tests/fixtures/ledger_examples.py DECISIONS.md`
 - **Verified:** all tests pass
 - **Next:** tools/build_kg_edges.py: compute 13 predicates over BBC+Wikibooks, write KGE records (top-k per subject, min support), report reports/kg_edges_v1.md; then X4 Gutenberg
+
+### S037 · 2026-10-18 15:34 IST · X3c/P3 · KGE edges built over BBC + Wikibooks
+- **Who:** Kush+Claude
+- **Did:** tools/build_kg_edges.py: 8,824 typed edges with support, lift/PMI, Wilson confidence, band, per-source support: ING_CO_OCCURS 3,683, ING_USED_IN_CUISINE 1,564, ING_MEASURED_IN_UNIT 1,137, ING_PROCESSED_BY 776, ING_HAS_CATEGORY 631, PROC_USES_TOOL 334, ING_PARENT 315, PROC_IN_FAMILY 156, TOOL_HAS_CATEGORY 116, COMPONENT_CONTAINS_ING 49, PROC_FOLLOWED_BY 30, PROC_TYPICAL_DURATION 28 (bake p50 25 min n=847; simmer 15; chill 60), PROC_TYPICAL_TEMPERATURE 5. Stale edges auto-deprecated.
+- **Files:** `tools/build_kg_edges.py ledgers/data/KGE.jsonl registry/kg/kg_edges_v1.csv reports/kg_edges_v1.md`
+- **Verified:** 289 tests; 0 invalid KGE; 2nd run 0 writes
+- **Next:** review PROC_FOLLOWED_BY (few edges, some odd pairs e.g. insert->rinse); X4 Gutenberg cookbooks
