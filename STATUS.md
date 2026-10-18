@@ -1,6 +1,6 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-**Updated:** 2026-10-19 01:50 IST (after S076) · **Final presentation: 25–26 Nov 2026 (T-37 days)**
+**Updated:** 2026-10-19 02:30 IST (after S077) · **Final presentation: 25–26 Nov 2026 (T-37 days)**
 **Repo:** `~/Desktop/CGAS/culinarystate` (local git; GitHub push only after H7 approval)
 **Step-by-step log:** `WORKLOG.md` (timestamped, sequential). **Decisions:** `DECISIONS.md`.
 **Bible:** `docs/SSOT/…v15_0.md` (read via `docs/SSOT_INDEX.md`) · plan `docs/plan/CulinaryState_Final_Master_Plan_SSOT15_v4_0.md`
@@ -17,6 +17,7 @@
 | Ingredient-link review signed by Kush (D-014): 237 matrices / 2,806 EVD rows linked, 129 held, 23 concept-missing | `registry/evidence/evd_ingredient_link_decisions.csv` (S069) |
 | C16 template generator promoted; C17 checker/enforcer; C5 ingredient exclusions; retrieval paired study | `reports/del5/generator_c16_v1.md`, `reports/del4/retrieval_silver_v2_analysis.md` (S066–S068) |
 | NER runtime verified on Mac (base+CRF 0.9266); C18 session-state updater wired; C10 candidate action generator; C15 Pareto selector | S073–S076 |
+| E16-A error analysis (301 errors, frequency buckets), paired bootstrap significance (CRF sig, kNN null), hybrid NER pipeline module | S077 |
 
 **Not on this machine:** Parv's Max-plan work (old STATUS/DECISIONS, ~519 evidence candidate cells). Decision D-001: rebuild here; Parv continues from this repo.
 
@@ -53,7 +54,7 @@
 | X13 | FoodAtlas (MIT code; data CC BY-NC 4.0 since 2026-10-09) | ING↔chemical candidate observations | ⛔ manual download (bundles private; MANUAL_NEXT_STEPS #12) |
 | X15 | FDC raw/cooked matched pairs | EVD candidates (E6) | ✅ S050: 867 pairs, 16,365 dry-basis ratios; vs R6 group level within 0.10 for 46% (analytical) |
 | X7 | recipe-scrapers on robots-allowed sites | REC (Indian focus) | queued (needs `pip install recipe-scrapers`) |
-| X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | 🟡 TASTEset test exact F1: rules 0.774 → base+CRF 0.927 / large+CRF 0.933 (5 seeds); base runtime verified on Mac (0.9266 replay match); GLiNER zero-shot pending |
+| X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | 🟡 TASTEset test exact F1: rules 0.774 → base+CRF 0.927 / large+CRF 0.933 (5 seeds); kNN Δ=0 (null); CRF sig p=0.003; FOOD F1: head 0.97 → unseen 0.69; hybrid pipeline module; GLiNER zero-shot pending |
 
 ## 3. BLOCKED / WAITING
 | Blocker | Impact | Workaround |
