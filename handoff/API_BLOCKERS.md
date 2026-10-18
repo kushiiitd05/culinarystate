@@ -2,7 +2,7 @@
 
 | # | Blocker | Impact | Workaround in place | Unblock action (owner) |
 |---|---|---|---|---|
-| 1 | RecipeDB / RecipeDB3 API key + licence | RecipeDB3 NER reproduction; RecipeDB name crosswalk; DEL-1 "names normalised to RecipeDB" clause | A1 BBC corpus + TASTEset; ING crosswalk `UNRESOLVED_EXTERNAL` (AH2) | Send H1 email (plan Part AS) to Prof. Bagler (Kush) |
+| 1 | RecipeDB / RecipeDB3 API key + licence | RecipeDB3 NER reproduction; RecipeDB name crosswalk; DEL-1 "names normalised to RecipeDB" clause | A1 BBC corpus + TASTEset; ING crosswalk `UNRESOLVED_EXTERNAL` (AH2) | Send H1 email to Prof. Bagler (Kush) — draft `handoff/H1_email_bagler.md` (2026-10-19). Found: RecipeDB 3.0 API docs on Postman (33 endpoints, base URL not public); RecipeDB3 NER code+data public on GitHub but **no licence** -> not downloaded until permission |
 | 2 | FlavorDB bulk access | ingredient↔molecule presence for flavour compounds | PubChem identities + Phenol-Explorer measured contents (IMAP) | Same email; ask for FlavorDB2 dump/terms (Kush) |
 | 3 | FSIS / FoodSafety.gov charts return 403 to scripts | food-safety WARN rules (temperatures) | none — no safety warning without authority text | Open in a browser, save HTML/PDF to `data/raw/fsis/` (Parv), then run WARN builder |
 | 4 | Router DNS SERVFAIL for *.usda.gov | downloads fail | `curl --resolve` with public-DNS IP | optional: set Mac DNS to 1.1.1.1 |
