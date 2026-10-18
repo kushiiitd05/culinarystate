@@ -1,0 +1,77 @@
+{
+ "session_id": "SES-007",
+ "title": "Transfer between vessels: dal from cooker to serving bowl",
+ "scenario": "TRANSFER",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "dal",
+   "concept": "UNKNOWN",
+   "quantity": "150g toor dal"
+  },
+  {
+   "entity": "water",
+   "concept": "UNKNOWN",
+   "quantity": "500ml water"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Pressure cooked the dal.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "dal",
+      "water"
+     ],
+     "output": "cooked dal",
+     "process": "pressure-cook"
+    },
+    {
+     "type": "Transfer",
+     "target": "cooked dal",
+     "location": "pressure cooker"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Moved it to the serving bowl.",
+   "events": [
+    {
+     "type": "Transfer",
+     "target": "cooked dal",
+     "location": "serving bowl"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "cooked dal"
+  ],
+  "dead": [
+   "dal",
+   "water"
+  ],
+  "fields": {
+   "cooked dal.location": "serving bowl"
+  },
+  "edges": [
+   [
+    "cooked dal",
+    "TRANSFERRED_TO",
+    "cooked dal"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

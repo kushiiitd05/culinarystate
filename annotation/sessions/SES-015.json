@@ -1,0 +1,101 @@
+{
+ "session_id": "SES-015",
+ "title": "Transfer to oven and back: roast vegetables",
+ "scenario": "TRANSFER",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "veg",
+   "concept": "UNKNOWN",
+   "quantity": "500g mixed vegetables"
+  },
+  {
+   "entity": "oil",
+   "concept": "UNKNOWN",
+   "quantity": "2 tbsp olive oil"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Tossed veg in oil on a tray.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "veg",
+      "oil"
+     ],
+     "output": "tray veg",
+     "process": "toss"
+    },
+    {
+     "type": "Transfer",
+     "target": "tray veg",
+     "location": "baking tray"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Into the oven at 200 °C.",
+   "events": [
+    {
+     "type": "Transfer",
+     "target": "tray veg",
+     "location": "oven"
+    },
+    {
+     "type": "Transform",
+     "target": "tray veg",
+     "process": "roast"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Out of the oven, nicely charred.",
+   "events": [
+    {
+     "type": "Transfer",
+     "target": "tray veg",
+     "location": "worktop"
+    },
+    {
+     "type": "Observe",
+     "target": "tray veg",
+     "field": "colour",
+     "value": "charred edges"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "tray veg"
+  ],
+  "dead": [
+   "veg",
+   "oil"
+  ],
+  "fields": {
+   "tray veg.location": "worktop",
+   "tray veg.colour": "charred edges",
+   "tray veg.last_process": "roast"
+  },
+  "edges": [
+   [
+    "tray veg",
+    "TRANSFERRED_TO",
+    "tray veg"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

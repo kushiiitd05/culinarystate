@@ -1,0 +1,139 @@
+{
+ "session_id": "SES-002",
+ "title": "Pasta: drain properly, keep a cup of cooking water, loosen sauce",
+ "scenario": "RESERVE_RECOMBINE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "pasta",
+   "concept": "UNKNOWN",
+   "quantity": "200g pasta"
+  },
+  {
+   "entity": "water",
+   "concept": "UNKNOWN",
+   "quantity": "2 litres water"
+  },
+  {
+   "entity": "sauce",
+   "concept": "UNKNOWN",
+   "quantity": "300ml tomato sauce"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Pasta into boiling water.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "pasta",
+      "water"
+     ],
+     "output": "pot",
+     "process": "boil"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Done — I'll keep a cup of the water before draining.",
+   "events": [
+    {
+     "type": "Reserve",
+     "target": "pot",
+     "output": "pasta water",
+     "portion": "250ml water"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Drained into a colander.",
+   "events": [
+    {
+     "type": "Split",
+     "target": "pot",
+     "outputs": [
+      {
+       "label": "cooked pasta",
+       "fraction": null
+      },
+      {
+       "label": "cooking water",
+       "fraction": null
+      }
+     ]
+    },
+    {
+     "type": "Discard",
+     "target": "cooking water",
+     "value": "cooking water"
+    }
+   ]
+  },
+  {
+   "turn": 4,
+   "user": "Pasta into the sauce, then a splash of the reserved water.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "cooked pasta",
+      "sauce"
+     ],
+     "output": "dish",
+     "process": "toss"
+    },
+    {
+     "type": "Recombine",
+     "target": "pasta water",
+     "output": "dish"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "dish"
+  ],
+  "dead": [
+   "pot",
+   "cooking water",
+   "pasta water",
+   "cooked pasta",
+   "sauce"
+  ],
+  "fields": {},
+  "edges": [
+   [
+    "pot",
+    "RESERVED_AS",
+    "pasta water"
+   ],
+   [
+    "pot",
+    "SPLITS_INTO",
+    "cooked pasta"
+   ],
+   [
+    "cooking water",
+    "DISCARDED_FROM",
+    "DISCARD"
+   ],
+   [
+    "pasta water",
+    "RECOMBINED_WITH",
+    "dish"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

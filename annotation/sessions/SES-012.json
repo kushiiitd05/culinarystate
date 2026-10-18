@@ -1,0 +1,96 @@
+{
+ "session_id": "SES-012",
+ "title": "Mistake: too much salt, dilute by splitting and adding water",
+ "scenario": "MISTAKE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "soup",
+   "concept": "UNKNOWN",
+   "quantity": "1 litre lentil soup"
+  },
+  {
+   "entity": "water",
+   "concept": "UNKNOWN",
+   "quantity": "250ml water"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Tasted — way too salty.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "soup",
+     "field": "taste",
+     "value": "too salty"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Took out a third and topped up with water.",
+   "events": [
+    {
+     "type": "Discard",
+     "target": "soup",
+     "value": "over-salted soup",
+     "fraction": "1/3"
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "soup",
+      "water"
+     ],
+     "output": "diluted soup",
+     "process": "stir"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Better now.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "diluted soup",
+     "field": "taste",
+     "value": "acceptable salt"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "diluted soup"
+  ],
+  "dead": [
+   "soup",
+   "water"
+  ],
+  "fields": {
+   "diluted soup.taste": "acceptable salt"
+  },
+  "edges": [
+   [
+    "soup",
+    "DISCARDED_FROM",
+    "soup"
+   ],
+   [
+    "soup",
+    "MERGES_INTO",
+    "diluted soup"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

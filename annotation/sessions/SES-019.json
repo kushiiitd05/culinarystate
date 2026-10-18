@@ -1,0 +1,82 @@
+{
+ "session_id": "SES-019",
+ "title": "Observation of quantity loss after reduction",
+ "scenario": "OBSERVATION_OVERRIDE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "wine",
+   "concept": "UNKNOWN",
+   "quantity": "250ml red wine"
+  },
+  {
+   "entity": "shallots",
+   "concept": "UNKNOWN",
+   "quantity": "2 shallots"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Shallots chopped, wine added, reducing.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "shallots",
+     "process": "chop",
+     "sets": {
+      "form": "chopped"
+     }
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "shallots",
+      "wine"
+     ],
+     "output": "reduction",
+     "process": "reduce"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "It's reduced by about half and syrupy.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "reduction",
+     "field": "volume",
+     "value": "about half"
+    },
+    {
+     "type": "Observe",
+     "target": "reduction",
+     "field": "consistency",
+     "value": "syrupy"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "reduction"
+  ],
+  "dead": [
+   "wine",
+   "shallots"
+  ],
+  "fields": {
+   "reduction.volume": "about half",
+   "reduction.consistency": "syrupy"
+  },
+  "edges": [],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "volume loss is an observed field; symbolic qty is not edited (no invented grams)"
+ }
+}

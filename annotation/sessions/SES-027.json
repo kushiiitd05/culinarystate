@@ -1,0 +1,82 @@
+{
+ "session_id": "SES-027",
+ "title": "Transform history: blanch then shock then saute beans",
+ "scenario": "OBSERVATION_OVERRIDE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "beans",
+   "concept": "UNKNOWN",
+   "quantity": "200g green beans"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Blanched the beans.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "beans",
+     "process": "blanch"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Into iced water.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "beans",
+     "process": "shock",
+     "sets": {
+      "temperature_state": "cold"
+     }
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Sautéed with butter — still bright green.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "beans",
+     "process": "saute"
+    },
+    {
+     "type": "Observe",
+     "target": "beans",
+     "field": "colour",
+     "value": "bright green"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "beans"
+  ],
+  "dead": [],
+  "fields": {
+   "beans.last_process": "saute",
+   "beans.temperature_state": "cold",
+   "beans.colour": "bright green"
+  },
+  "edges": [
+   [
+    "beans",
+    "TRANSFORMS_INTO",
+    "beans"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "temperature_state 'cold' is the last explicit setting; the saute does not set it (engine never infers)"
+ }
+}

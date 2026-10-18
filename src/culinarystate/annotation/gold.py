@@ -146,30 +146,30 @@ def to_events(doc: dict) -> list:
         concept = None if li["concept"] == "UNKNOWN" else li["concept"]
         events.append(Add(li["entity"], concept, _base_from_text(qtext, loc), form=form, step=0))
     for st in doc["steps"]:
-        k = st["step_index"]
-        for ev in st["events"]:
-            t = ev["type"]
-            cond = {key: ev[key] for key in ("tool", "medium", "time", "temperature", "endpoint") if key in ev}
-            if t == "Transform":
-                events.append(Transform(ev["target"], ev["process"], cond, tuple(sorted(ev.get("sets", {}).items())),
-                                        step=k))
-            elif t == "Merge":
-                events.append(Merge(tuple(ev["inputs"]), ev["output"], ev.get("process", "combine"), step=k))
-            elif t == "Split":
-                events.append(Split(ev["target"], tuple((o["label"], _frac(o["fraction"])) for o in ev["outputs"]),
-                                    step=k))
-            elif t == "Reserve":
-                portion = _base_from_text(ev["portion"], loc) if ev.get("portion") else None
-                events.append(Reserve(ev["target"], ev["output"], portion=portion,
-                                      fraction=_frac(ev.get("fraction")), step=k))
-            elif t == "Discard":
-                portion = _base_from_text(ev["portion"], loc) if ev.get("portion") else None
-                events.append(Discard(ev["target"], portion=portion, fraction=_frac(ev.get("fraction")),
-                                      what=ev.get("value"), step=k))
-            elif t == "Recombine":
-                events.append(Recombine(ev["target"], ev["output"], step=k))
-            elif t == "Transfer":
-                events.append(Transfer(ev["target"], ev["location"], step=k))
-            elif t == "Observe":
-                events.append(Observe(ev["target"], ev["field"], ev["value"], step=k))
+        events += [compile_event(ev, st["step_index"], loc) for ev in st["events"]]
     return events
+
+
+def compile_event(ev: dict, k: int, loc: str | None = None):
+    """One annotated step event (gold / session vocabulary) -> engine event."""
+    t = ev["type"]
+    cond = {key: ev[key] for key in ("tool", "medium", "time", "temperature", "endpoint") if key in ev}
+    if t == "Transform":
+        return Transform(ev["target"], ev["process"], cond, tuple(sorted(ev.get("sets", {}).items())), step=k)
+    if t == "Merge":
+        return Merge(tuple(ev["inputs"]), ev["output"], ev.get("process", "combine"), step=k)
+    if t == "Split":
+        return Split(ev["target"], tuple((o["label"], _frac(o["fraction"])) for o in ev["outputs"]), step=k)
+    if t == "Reserve":
+        portion = _base_from_text(ev["portion"], loc) if ev.get("portion") else None
+        return Reserve(ev["target"], ev["output"], portion=portion, fraction=_frac(ev.get("fraction")), step=k)
+    if t == "Discard":
+        portion = _base_from_text(ev["portion"], loc) if ev.get("portion") else None
+        return Discard(ev["target"], portion=portion, fraction=_frac(ev.get("fraction")), what=ev.get("value"), step=k)
+    if t == "Recombine":
+        return Recombine(ev["target"], ev["output"], step=k)
+    if t == "Transfer":
+        return Transfer(ev["target"], ev["location"], step=k)
+    if t == "Observe":
+        return Observe(ev["target"], ev["field"], ev["value"], step=k)
+    raise ValueError(f"unknown event type {ev.get('type')!r}")

@@ -1,0 +1,101 @@
+{
+ "session_id": "SES-023",
+ "title": "Mistake recovery: split mayonnaise rescued with a new yolk",
+ "scenario": "MISTAKE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "yolk",
+   "concept": "UNKNOWN",
+   "quantity": "1 egg yolk"
+  },
+  {
+   "entity": "oil",
+   "concept": "UNKNOWN",
+   "quantity": "200ml sunflower oil"
+  },
+  {
+   "entity": "yolk 2",
+   "concept": "UNKNOWN",
+   "quantity": "1 egg yolk"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Whisking oil into yolk.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "yolk",
+      "oil"
+     ],
+     "output": "mayo",
+     "process": "whisk"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Oh no, it split.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "mayo",
+     "field": "emulsion",
+     "value": "split"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Whisked the split mix slowly into a fresh yolk.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "yolk 2",
+      "mayo"
+     ],
+     "output": "rescued mayo",
+     "process": "whisk"
+    },
+    {
+     "type": "Observe",
+     "target": "rescued mayo",
+     "field": "emulsion",
+     "value": "stable"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "rescued mayo"
+  ],
+  "dead": [
+   "yolk",
+   "oil",
+   "mayo",
+   "yolk 2"
+  ],
+  "fields": {
+   "rescued mayo.emulsion": "stable"
+  },
+  "edges": [
+   [
+    "mayo",
+    "MERGES_INTO",
+    "rescued mayo"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

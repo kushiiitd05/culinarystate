@@ -1,0 +1,74 @@
+{
+ "session_id": "SES-030",
+ "title": "Duplicate entity name mistake is flagged, not merged silently",
+ "scenario": "MISTAKE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "sugar",
+   "concept": "UNKNOWN",
+   "quantity": "100g sugar"
+  },
+  {
+   "entity": "butter",
+   "concept": "UNKNOWN",
+   "quantity": "100g butter"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Creamed butter and sugar.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "butter",
+      "sugar"
+     ],
+     "output": "creamed",
+     "process": "cream"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Creamed them again into 'creamed'.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "butter",
+      "sugar"
+     ],
+     "output": "creamed",
+     "process": "cream"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "creamed"
+  ],
+  "dead": [
+   "butter",
+   "sugar"
+  ],
+  "fields": {},
+  "edges": [
+   [
+    "butter",
+    "MERGES_INTO",
+    "creamed"
+   ]
+  ],
+  "issues": 1
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "second merge must be rejected (inputs consumed, output exists) and surfaced as an issue"
+ }
+}

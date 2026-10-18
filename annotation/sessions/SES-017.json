@@ -1,0 +1,84 @@
+{
+ "session_id": "SES-017",
+ "title": "Partial use of stock: 300 ml now from 1 litre",
+ "scenario": "PARTIAL_USE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "stock",
+   "concept": "UNKNOWN",
+   "quantity": "1 litre chicken stock"
+  },
+  {
+   "entity": "risotto",
+   "concept": "UNKNOWN",
+   "quantity": "200g arborio rice"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Toasted the rice.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "risotto",
+     "process": "toast"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Added 300 ml stock, kept the rest warm.",
+   "events": [
+    {
+     "type": "Reserve",
+     "target": "stock",
+     "output": "stock in use",
+     "portion": "300ml chicken stock"
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "risotto",
+      "stock in use"
+     ],
+     "output": "risotto pot",
+     "process": "simmer"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "risotto pot",
+   "stock"
+  ],
+  "dead": [
+   "risotto",
+   "stock in use"
+  ],
+  "fields": {
+   "risotto pot.qty": "200g arborio rice + 300ml chicken stock"
+  },
+  "edges": [
+   [
+    "stock",
+    "RESERVED_AS",
+    "stock in use"
+   ],
+   [
+    "stock in use",
+    "MERGES_INTO",
+    "risotto pot"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

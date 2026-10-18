@@ -1,0 +1,96 @@
+{
+ "session_id": "SES-014",
+ "title": "Discard soaking water of chickpeas",
+ "scenario": "DISCARD",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "chickpeas",
+   "concept": "UNKNOWN",
+   "quantity": "200g dried chickpeas"
+  },
+  {
+   "entity": "water",
+   "concept": "UNKNOWN",
+   "quantity": "1 litre water"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Soaked chickpeas overnight.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "chickpeas",
+      "water"
+     ],
+     "output": "soak",
+     "process": "soak"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Drained and rinsed.",
+   "events": [
+    {
+     "type": "Split",
+     "target": "soak",
+     "outputs": [
+      {
+       "label": "soaked chickpeas",
+       "fraction": null
+      },
+      {
+       "label": "soaking water",
+       "fraction": null
+      }
+     ]
+    },
+    {
+     "type": "Discard",
+     "target": "soaking water",
+     "value": "soaking water"
+    },
+    {
+     "type": "Transform",
+     "target": "soaked chickpeas",
+     "process": "rinse"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "soaked chickpeas"
+  ],
+  "dead": [
+   "soak",
+   "soaking water"
+  ],
+  "fields": {
+   "soaked chickpeas.last_process": "rinse"
+  },
+  "edges": [
+   [
+    "soak",
+    "SPLITS_INTO",
+    "soaked chickpeas"
+   ],
+   [
+    "soaking water",
+    "DISCARDED_FROM",
+    "DISCARD"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

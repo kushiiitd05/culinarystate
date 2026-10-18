@@ -1,0 +1,114 @@
+{
+ "session_id": "SES-001",
+ "title": "Tadka: chop and fry onions, temper cumin in ghee, combine",
+ "scenario": "MERGE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "onions",
+   "concept": "UNKNOWN",
+   "quantity": "2 onions"
+  },
+  {
+   "entity": "ghee",
+   "concept": "UNKNOWN",
+   "quantity": "2 tbsp ghee"
+  },
+  {
+   "entity": "cumin",
+   "concept": "UNKNOWN",
+   "quantity": "1 tsp cumin seeds"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Chopped the onions.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "onions",
+     "process": "chop",
+     "sets": {
+      "form": "chopped"
+     }
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Heated ghee and added cumin till it crackled.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "ghee",
+      "cumin"
+     ],
+     "output": "tadka",
+     "process": "temper"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Onions into the tadka, fried till golden.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "tadka",
+      "onions"
+     ],
+     "output": "masala base",
+     "process": "fry"
+    },
+    {
+     "type": "Observe",
+     "target": "masala base",
+     "field": "colour",
+     "value": "golden"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "masala base"
+  ],
+  "dead": [
+   "onions",
+   "ghee",
+   "cumin",
+   "tadka"
+  ],
+  "fields": {
+   "masala base.colour": "golden",
+   "masala base.last_process": "fry"
+  },
+  "edges": [
+   [
+    "onions",
+    "MERGES_INTO",
+    "masala base"
+   ],
+   [
+    "cumin",
+    "MERGES_INTO",
+    "tadka"
+   ],
+   [
+    "tadka",
+    "MERGES_INTO",
+    "masala base"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

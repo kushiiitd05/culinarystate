@@ -1,0 +1,96 @@
+{
+ "session_id": "SES-022",
+ "title": "Chill and set: panna cotta to fridge",
+ "scenario": "TRANSFER",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "cream",
+   "concept": "UNKNOWN",
+   "quantity": "500ml double cream"
+  },
+  {
+   "entity": "gelatine",
+   "concept": "UNKNOWN",
+   "quantity": "3 gelatine leaves"
+  },
+  {
+   "entity": "sugar",
+   "concept": "UNKNOWN",
+   "quantity": "50g sugar"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Warmed cream with sugar, dissolved gelatine.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "cream",
+      "sugar",
+      "gelatine"
+     ],
+     "output": "panna cotta mix",
+     "process": "heat"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Into moulds, then the fridge.",
+   "events": [
+    {
+     "type": "Transfer",
+     "target": "panna cotta mix",
+     "location": "moulds"
+    },
+    {
+     "type": "Transfer",
+     "target": "panna cotta mix",
+     "location": "fridge"
+    },
+    {
+     "type": "Transform",
+     "target": "panna cotta mix",
+     "process": "chill"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Next morning — set.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "panna cotta mix",
+     "field": "texture",
+     "value": "set"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "panna cotta mix"
+  ],
+  "dead": [
+   "cream",
+   "gelatine",
+   "sugar"
+  ],
+  "fields": {
+   "panna cotta mix.location": "fridge",
+   "panna cotta mix.texture": "set"
+  },
+  "edges": [],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

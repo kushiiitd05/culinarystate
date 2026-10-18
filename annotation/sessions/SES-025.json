@@ -1,0 +1,85 @@
+{
+ "session_id": "SES-025",
+ "title": "Merge with an unknown quantity ingredient",
+ "scenario": "MERGE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "spinach",
+   "concept": "UNKNOWN",
+   "quantity": "1 bag spinach"
+  },
+  {
+   "entity": "garlic",
+   "concept": "UNKNOWN",
+   "quantity": "2 garlic cloves"
+  },
+  {
+   "entity": "salt",
+   "concept": "UNKNOWN",
+   "quantity": "salt to taste"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Garlic sliced, spinach wilted with it.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "garlic",
+     "process": "slice",
+     "sets": {
+      "form": "sliced"
+     }
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "garlic",
+      "spinach"
+     ],
+     "output": "greens",
+     "process": "wilt"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Seasoned with salt.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "greens",
+      "salt"
+     ],
+     "output": "seasoned greens",
+     "process": "season"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "seasoned greens"
+  ],
+  "dead": [
+   "spinach",
+   "garlic",
+   "salt",
+   "greens"
+  ],
+  "fields": {
+   "seasoned greens.last_process": "season"
+  },
+  "edges": [],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "'to taste' quantity stays qualitative; nothing is invented"
+ }
+}

@@ -1,0 +1,94 @@
+{
+ "session_id": "SES-006",
+ "title": "Discard part: burnt garlic removed",
+ "scenario": "MISTAKE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "garlic",
+   "concept": "UNKNOWN",
+   "quantity": "4 garlic cloves"
+  },
+  {
+   "entity": "oil",
+   "concept": "UNKNOWN",
+   "quantity": "2 tbsp olive oil"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Garlic sliced into oil.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "garlic",
+     "process": "slice",
+     "sets": {
+      "form": "sliced"
+     }
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "garlic",
+      "oil"
+     ],
+     "output": "garlic oil",
+     "process": "fry"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Some of the garlic burnt.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "garlic oil",
+     "field": "colour",
+     "value": "partly burnt"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Picked out about half of it.",
+   "events": [
+    {
+     "type": "Discard",
+     "target": "garlic oil",
+     "value": "burnt garlic",
+     "fraction": "1/2"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "garlic oil"
+  ],
+  "dead": [
+   "garlic",
+   "oil"
+  ],
+  "fields": {
+   "garlic oil.colour": "partly burnt",
+   "garlic oil.qty": "1/2×4 garlic cloves + 1/2×2 tbsp olive oil"
+  },
+  "edges": [
+   [
+    "garlic oil",
+    "DISCARDED_FROM",
+    "garlic oil"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "fraction discard scales every component equally — a known simplification (oil is not removed with the garlic)"
+ }
+}

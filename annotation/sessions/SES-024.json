@@ -1,0 +1,120 @@
+{
+ "session_id": "SES-024",
+ "title": "Multi-component: dosa batter and chutney prepared in parallel",
+ "scenario": "MULTI_COMPONENT",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "batter",
+   "concept": "UNKNOWN",
+   "quantity": "500g dosa batter"
+  },
+  {
+   "entity": "coconut",
+   "concept": "UNKNOWN",
+   "quantity": "100g grated coconut"
+  },
+  {
+   "entity": "chilli",
+   "concept": "UNKNOWN",
+   "quantity": "1 green chilli"
+  },
+  {
+   "entity": "oil",
+   "concept": "UNKNOWN",
+   "quantity": "1 tbsp oil"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Ground coconut and chilli into chutney.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "coconut",
+      "chilli"
+     ],
+     "output": "chutney",
+     "process": "grind"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Spread a ladle of batter on the tawa with oil.",
+   "events": [
+    {
+     "type": "Reserve",
+     "target": "batter",
+     "output": "dosa",
+     "fraction": "1/8"
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "dosa",
+      "oil"
+     ],
+     "output": "cooking dosa",
+     "process": "fry"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Dosa crisp — served with chutney.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "cooking dosa",
+     "field": "texture",
+     "value": "crisp"
+    },
+    {
+     "type": "Transfer",
+     "target": "cooking dosa",
+     "location": "plate"
+    },
+    {
+     "type": "Transfer",
+     "target": "chutney",
+     "location": "plate"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "batter",
+   "cooking dosa",
+   "chutney"
+  ],
+  "dead": [
+   "coconut",
+   "chilli",
+   "dosa",
+   "oil"
+  ],
+  "fields": {
+   "cooking dosa.texture": "crisp",
+   "chutney.location": "plate",
+   "batter.qty": "7/8×500g dosa batter"
+  },
+  "edges": [
+   [
+    "batter",
+    "RESERVED_AS",
+    "dosa"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "remaining batter stays alive with the portion subtracted"
+ }
+}

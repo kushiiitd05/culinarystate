@@ -1,0 +1,91 @@
+{
+ "session_id": "SES-005",
+ "title": "Substitution: butter swapped for oil before frying",
+ "scenario": "SUBSTITUTION",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "butter",
+   "concept": "UNKNOWN",
+   "quantity": "30g butter"
+  },
+  {
+   "entity": "oil",
+   "concept": "UNKNOWN",
+   "quantity": "2 tbsp sunflower oil"
+  },
+  {
+   "entity": "mushrooms",
+   "concept": "UNKNOWN",
+   "quantity": "250g mushrooms"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "No butter left — using oil instead.",
+   "events": [
+    {
+     "type": "Discard",
+     "target": "butter",
+     "value": "not used (substituted)"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Sliced mushrooms into the hot oil.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "mushrooms",
+     "process": "slice",
+     "sets": {
+      "form": "sliced"
+     }
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "oil",
+      "mushrooms"
+     ],
+     "output": "pan",
+     "process": "fry"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "pan"
+  ],
+  "dead": [
+   "butter",
+   "oil",
+   "mushrooms"
+  ],
+  "fields": {
+   "pan.last_process": "fry"
+  },
+  "edges": [
+   [
+    "butter",
+    "DISCARDED_FROM",
+    "DISCARD"
+   ],
+   [
+    "mushrooms",
+    "MERGES_INTO",
+    "pan"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "substitution modelled as discard of planned ingredient + use of replacement"
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "session_id": "SES-028",
+ "title": "Discard fat from browned mince",
+ "scenario": "DISCARD",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "mince",
+   "concept": "UNKNOWN",
+   "quantity": "500g beef mince"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Browned the mince.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "mince",
+     "process": "brown"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Spooned off the fat.",
+   "events": [
+    {
+     "type": "Discard",
+     "target": "mince",
+     "value": "rendered fat",
+     "portion": "2 tbsp fat"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "mince"
+  ],
+  "dead": [],
+  "fields": {
+   "mince.last_process": "brown",
+   "mince.qty": "500g beef mince − 2 tbsp fat"
+  },
+  "edges": [
+   [
+    "mince",
+    "DISCARDED_FROM",
+    "mince"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

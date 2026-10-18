@@ -1,0 +1,98 @@
+{
+ "session_id": "SES-008",
+ "title": "Partial use: half the chopped tomatoes now, rest later",
+ "scenario": "PARTIAL_USE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "tomatoes",
+   "concept": "UNKNOWN",
+   "quantity": "4 tomatoes"
+  },
+  {
+   "entity": "base",
+   "concept": "UNKNOWN",
+   "quantity": "1 onion"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Chopped the tomatoes.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "tomatoes",
+     "process": "chop",
+     "sets": {
+      "form": "chopped"
+     }
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Half go in now.",
+   "events": [
+    {
+     "type": "Reserve",
+     "target": "tomatoes",
+     "output": "tomatoes for later",
+     "fraction": "1/2"
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "base",
+      "tomatoes"
+     ],
+     "output": "gravy",
+     "process": "cook"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Rest added near the end.",
+   "events": [
+    {
+     "type": "Recombine",
+     "target": "tomatoes for later",
+     "output": "gravy"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "gravy"
+  ],
+  "dead": [
+   "tomatoes",
+   "base",
+   "tomatoes for later"
+  ],
+  "fields": {
+   "gravy.qty": "1 onion + 4 tomatoes"
+  },
+  "edges": [
+   [
+    "tomatoes",
+    "RESERVED_AS",
+    "tomatoes for later"
+   ],
+   [
+    "tomatoes for later",
+    "RECOMBINED_WITH",
+    "gravy"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "quantities must re-sum to the full 4 tomatoes after recombine"
+ }
+}

@@ -1,0 +1,455 @@
+{
+ "summary": {
+  "sessions": 30,
+  "invalid": {},
+  "passed": 30,
+  "checks": 237,
+  "deterministic_replay": true,
+  "by_status": {
+   "AI_DRAFTED": 30
+  },
+  "by_scenario": {
+   "MERGE": 2,
+   "RESERVE_RECOMBINE": 3,
+   "OBSERVATION_OVERRIDE": 4,
+   "SPLIT_PORTION": 4,
+   "SUBSTITUTION": 2,
+   "MISTAKE": 5,
+   "TRANSFER": 3,
+   "PARTIAL_USE": 2,
+   "MULTI_COMPONENT": 2,
+   "DISCARD": 3
+  },
+  "contract_count_reviewed_and_passing": 0
+ },
+ "results": [
+  {
+   "session_id": "SES-001",
+   "pass": true,
+   "checks": 11,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "36036983e0bcc11afeef3b0c78554d6e3f4acc7e640fa7a734cfd82633631ae0"
+   },
+   "scenario": "MERGE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-002",
+   "pass": true,
+   "checks": 11,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "09887363f6a07d2e4ebc8c757511325a0d6aa9facc56dfc07bab29c2cdc8bbbe"
+   },
+   "scenario": "RESERVE_RECOMBINE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-003",
+   "pass": true,
+   "checks": 7,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "98d1fb2fb34a8620216d1972cb2d1de800b55b0228408c66355990e4f5692014"
+   },
+   "scenario": "OBSERVATION_OVERRIDE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-004",
+   "pass": true,
+   "checks": 12,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "35d11c256dbe6aec5115ac67c85c5b1fa89b8c23991e3375d096d5ae9f40a6f0"
+   },
+   "scenario": "SPLIT_PORTION",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-005",
+   "pass": true,
+   "checks": 8,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "c786d486ae5c402fb5726a55ce202f20b2968ee5da14556d570da71186183986"
+   },
+   "scenario": "SUBSTITUTION",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-006",
+   "pass": true,
+   "checks": 7,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "8bcc1aee6303b707fe129f3582210ba0aa898ec957770bd0ed884ee330b2a1e7"
+   },
+   "scenario": "MISTAKE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-007",
+   "pass": true,
+   "checks": 6,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "bb6a3635f8a5074da70e879451a1902f98a94b75a25fa4337bb855314e8466b2"
+   },
+   "scenario": "TRANSFER",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-008",
+   "pass": true,
+   "checks": 8,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "5b5d218c3374fde719a9c19192818a813d8415e815ef4f6c7d308924ac6276b3"
+   },
+   "scenario": "PARTIAL_USE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-009",
+   "pass": true,
+   "checks": 11,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "5ebfc0d9be0a83d9eea279c33bc7798ae8c07feb70031e58bc2d9f99cf241700"
+   },
+   "scenario": "SPLIT_PORTION",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-010",
+   "pass": true,
+   "checks": 11,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "3c01a2ea6860725d8751827a62f48c8457c9d1f08ee072d5be5ec801f6619023"
+   },
+   "scenario": "MULTI_COMPONENT",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-011",
+   "pass": true,
+   "checks": 5,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "49909c81bf8ef8eccfa7b90df254f3ba2c5c29e062bc66a8eca646c9167e4175"
+   },
+   "scenario": "OBSERVATION_OVERRIDE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-012",
+   "pass": true,
+   "checks": 7,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "efd894cd571e8e99b6e6f48e95ca9887b0bae56dab71421bcbf93005b99e4005"
+   },
+   "scenario": "MISTAKE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-013",
+   "pass": true,
+   "checks": 7,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "61862cf93d6dc819548dbe4edc1ccfdb27d98f2489d773848099309303e52843"
+   },
+   "scenario": "RESERVE_RECOMBINE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-014",
+   "pass": true,
+   "checks": 7,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "b684a26826d92b6944f659ff0205f5c62adb637234cbca4ba845ad91749eba00"
+   },
+   "scenario": "DISCARD",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-015",
+   "pass": true,
+   "checks": 8,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "daf81b4fc02c1801a2793738c0b2ecac88315098da5b77febfd0c3f648c838f1"
+   },
+   "scenario": "TRANSFER",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-016",
+   "pass": true,
+   "checks": 7,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "3daea0ced16437b79cc4681413649ff687b76603388051d4352d280c8c45ceff"
+   },
+   "scenario": "SUBSTITUTION",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-017",
+   "pass": true,
+   "checks": 8,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "ed9860d78446c8c766a6e12585a6696a02aed1bc70ada8c6927b2a77df60429e"
+   },
+   "scenario": "PARTIAL_USE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-018",
+   "pass": true,
+   "checks": 5,
+   "failures": [],
+   "issues": [
+    "event 4: entity 'cream' already consumed/discarded"
+   ],
+   "replay": {
+    "deterministic": true,
+    "issues": [
+     "event 4: entity 'cream' already consumed/discarded"
+    ],
+    "sha256": "af296d353965bb4379b340d815f5a5877f3dbeb3d57ccba040a5b6a1e80eae61"
+   },
+   "scenario": "MISTAKE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-019",
+   "pass": true,
+   "checks": 6,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "34da054001bcaccab732fbbf1325d3f5c950aeb134fb1b87abc8ca7e247a60ba"
+   },
+   "scenario": "OBSERVATION_OVERRIDE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-020",
+   "pass": true,
+   "checks": 9,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "c3c2c4b3114ab5da7fd8e9d4d58c178f69855154bf7019a527b424062bd27278"
+   },
+   "scenario": "SPLIT_PORTION",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-021",
+   "pass": true,
+   "checks": 8,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "3338654b3c4da6e15d18cf54ab87f2f54a88e5a00cd1175e0ea84537ea03d0b9"
+   },
+   "scenario": "DISCARD",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-022",
+   "pass": true,
+   "checks": 7,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "7dd7e94d020fe49ffd58b17982246688d91b648c7d6f221279b9fde48ec95640"
+   },
+   "scenario": "TRANSFER",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-023",
+   "pass": true,
+   "checks": 8,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "6f4a18d8850cf88891e111f012b765033aa860bbf56e16ad1dc076a5be0b2d05"
+   },
+   "scenario": "MISTAKE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-024",
+   "pass": true,
+   "checks": 12,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "1ef6b19096caea1ead1fb29a5236a0fd97025ab554b3fad827ba678299d86b35"
+   },
+   "scenario": "MULTI_COMPONENT",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-025",
+   "pass": true,
+   "checks": 7,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "ec8bc902455b788a44fe0f85f0d1d05701a9be79287ca4bc261ae58658f3d285"
+   },
+   "scenario": "MERGE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-026",
+   "pass": true,
+   "checks": 9,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "825575cae20df7ca3a42e760614e08cea19702a0bec467f11ea7c450a5ec018b"
+   },
+   "scenario": "RESERVE_RECOMBINE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-027",
+   "pass": true,
+   "checks": 6,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "20bcb90deb8f160af675e64756b4d9f5e377c4dc0e163534bebbd92b7d148c17"
+   },
+   "scenario": "OBSERVATION_OVERRIDE",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-028",
+   "pass": true,
+   "checks": 5,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "348133bc935e77f9f890fd98ac76685168891d8c7fb9baf7461a4d6222d7664f"
+   },
+   "scenario": "DISCARD",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-029",
+   "pass": true,
+   "checks": 9,
+   "failures": [],
+   "issues": [],
+   "replay": {
+    "deterministic": true,
+    "issues": [],
+    "sha256": "510590d62783f7e05d7554de0ac1cf5f863f90522b49f9ad6c37efb0e7786fe7"
+   },
+   "scenario": "SPLIT_PORTION",
+   "status": "AI_DRAFTED"
+  },
+  {
+   "session_id": "SES-030",
+   "pass": true,
+   "checks": 5,
+   "failures": [],
+   "issues": [
+    "event 3: merge output 'creamed' already exists"
+   ],
+   "replay": {
+    "deterministic": true,
+    "issues": [
+     "event 3: merge output 'creamed' already exists"
+    ],
+    "sha256": "bd5c3b0f18d225c842a54cea3349f86a6ab2c7e84e35bad578306dd7ccb0f067"
+   },
+   "scenario": "MISTAKE",
+   "status": "AI_DRAFTED"
+  }
+ ]
+}

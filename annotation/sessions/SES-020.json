@@ -1,0 +1,108 @@
+{
+ "session_id": "SES-020",
+ "title": "Split batter: half plain pancakes, half with blueberries",
+ "scenario": "SPLIT_PORTION",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "flour",
+   "concept": "UNKNOWN",
+   "quantity": "200g plain flour"
+  },
+  {
+   "entity": "milk",
+   "concept": "UNKNOWN",
+   "quantity": "300ml milk"
+  },
+  {
+   "entity": "egg",
+   "concept": "UNKNOWN",
+   "quantity": "1 egg"
+  },
+  {
+   "entity": "blueberries",
+   "concept": "UNKNOWN",
+   "quantity": "100g blueberries"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Whisked a batter.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "flour",
+      "milk",
+      "egg"
+     ],
+     "output": "batter",
+     "process": "whisk"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Split it in two; blueberries in one half.",
+   "events": [
+    {
+     "type": "Split",
+     "target": "batter",
+     "outputs": [
+      {
+       "label": "plain batter",
+       "fraction": "1/2"
+      },
+      {
+       "label": "blueberry batter",
+       "fraction": "1/2"
+      }
+     ]
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "blueberry batter",
+      "blueberries"
+     ],
+     "output": "berry batter",
+     "process": "fold"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "plain batter",
+   "berry batter"
+  ],
+  "dead": [
+   "batter",
+   "blueberry batter",
+   "blueberries"
+  ],
+  "fields": {
+   "plain batter.qty": "1/2×200g plain flour + 1/2×300ml milk + 1/2×1 egg"
+  },
+  "edges": [
+   [
+    "batter",
+    "SPLITS_INTO",
+    "plain batter"
+   ],
+   [
+    "blueberries",
+    "MERGES_INTO",
+    "berry batter"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

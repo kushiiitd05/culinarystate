@@ -1,0 +1,149 @@
+{
+ "session_id": "SES-010",
+ "title": "Multi-component: biryani layers rice and masala",
+ "scenario": "MULTI_COMPONENT",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "rice",
+   "concept": "UNKNOWN",
+   "quantity": "300g basmati rice"
+  },
+  {
+   "entity": "water",
+   "concept": "UNKNOWN",
+   "quantity": "2 litres water"
+  },
+  {
+   "entity": "chicken",
+   "concept": "UNKNOWN",
+   "quantity": "500g chicken"
+  },
+  {
+   "entity": "yoghurt",
+   "concept": "UNKNOWN",
+   "quantity": "150g yoghurt"
+  },
+  {
+   "entity": "saffron milk",
+   "concept": "UNKNOWN",
+   "quantity": "3 tbsp saffron milk"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Rice par-boiled and drained.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "rice",
+      "water"
+     ],
+     "output": "rice pot",
+     "process": "parboil"
+    },
+    {
+     "type": "Split",
+     "target": "rice pot",
+     "outputs": [
+      {
+       "label": "parboiled rice",
+       "fraction": null
+      },
+      {
+       "label": "rice water",
+       "fraction": null
+      }
+     ]
+    },
+    {
+     "type": "Discard",
+     "target": "rice water",
+     "value": "rice water"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Chicken marinated in yoghurt and cooked.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "chicken",
+      "yoghurt"
+     ],
+     "output": "chicken masala",
+     "process": "marinate"
+    },
+    {
+     "type": "Transform",
+     "target": "chicken masala",
+     "process": "cook"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Layered rice over masala, drizzled saffron milk, dum.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "chicken masala",
+      "parboiled rice",
+      "saffron milk"
+     ],
+     "output": "biryani",
+     "process": "layer"
+    },
+    {
+     "type": "Transform",
+     "target": "biryani",
+     "process": "dum"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "biryani"
+  ],
+  "dead": [
+   "rice pot",
+   "rice water",
+   "parboiled rice",
+   "chicken masala",
+   "saffron milk"
+  ],
+  "fields": {
+   "biryani.last_process": "dum"
+  },
+  "edges": [
+   [
+    "parboiled rice",
+    "MERGES_INTO",
+    "biryani"
+   ],
+   [
+    "chicken masala",
+    "MERGES_INTO",
+    "biryani"
+   ],
+   [
+    "rice water",
+    "DISCARDED_FROM",
+    "DISCARD"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

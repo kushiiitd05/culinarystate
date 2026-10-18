@@ -1,0 +1,82 @@
+{
+ "session_id": "SES-003",
+ "title": "Observation overrides plan: rice still hard after planned simmer",
+ "scenario": "OBSERVATION_OVERRIDE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "rice",
+   "concept": "UNKNOWN",
+   "quantity": "200g basmati rice"
+  },
+  {
+   "entity": "water",
+   "concept": "UNKNOWN",
+   "quantity": "400ml water"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Rice and water in the pan, simmering.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "rice",
+      "water"
+     ],
+     "output": "rice pot",
+     "process": "simmer"
+    },
+    {
+     "type": "Transform",
+     "target": "rice pot",
+     "process": "simmer",
+     "sets": {
+      "texture": "tender"
+     }
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Tasted it — still hard in the middle.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "rice pot",
+     "field": "texture",
+     "value": "hard centre"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "rice pot"
+  ],
+  "dead": [
+   "rice",
+   "water"
+  ],
+  "fields": {
+   "rice pot.texture": "hard centre",
+   "rice pot.last_process": "simmer"
+  },
+  "edges": [
+   [
+    "rice pot",
+    "OBSERVED_AS",
+    "rice pot"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "planned texture (PLANNED) must be superseded by the observation; audit keeps the plan"
+ }
+}

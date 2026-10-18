@@ -1,0 +1,105 @@
+{
+ "session_id": "SES-021",
+ "title": "Raita: grate, squeeze out water, combine",
+ "scenario": "DISCARD",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "cucumber",
+   "concept": "UNKNOWN",
+   "quantity": "1 cucumber"
+  },
+  {
+   "entity": "yoghurt",
+   "concept": "UNKNOWN",
+   "quantity": "250g yoghurt"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Grated the cucumber.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "cucumber",
+     "process": "grate",
+     "sets": {
+      "form": "grated"
+     }
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Squeezed out the water.",
+   "events": [
+    {
+     "type": "Split",
+     "target": "cucumber",
+     "outputs": [
+      {
+       "label": "squeezed cucumber",
+       "fraction": null
+      },
+      {
+       "label": "cucumber water",
+       "fraction": null
+      }
+     ]
+    },
+    {
+     "type": "Discard",
+     "target": "cucumber water",
+     "value": "cucumber water"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Stirred into the yoghurt.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "yoghurt",
+      "squeezed cucumber"
+     ],
+     "output": "raita",
+     "process": "stir"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "raita"
+  ],
+  "dead": [
+   "cucumber",
+   "cucumber water",
+   "squeezed cucumber",
+   "yoghurt"
+  ],
+  "fields": {},
+  "edges": [
+   [
+    "cucumber",
+    "SPLITS_INTO",
+    "squeezed cucumber"
+   ],
+   [
+    "squeezed cucumber",
+    "MERGES_INTO",
+    "raita"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

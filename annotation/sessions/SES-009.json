@@ -1,0 +1,108 @@
+{
+ "session_id": "SES-009",
+ "title": "Egg separation: yolks and whites go different ways",
+ "scenario": "SPLIT_PORTION",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "eggs",
+   "concept": "UNKNOWN",
+   "quantity": "3 eggs"
+  },
+  {
+   "entity": "sugar",
+   "concept": "UNKNOWN",
+   "quantity": "75g caster sugar"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Separated the eggs.",
+   "events": [
+    {
+     "type": "Split",
+     "target": "eggs",
+     "outputs": [
+      {
+       "label": "yolks",
+       "fraction": null
+      },
+      {
+       "label": "whites",
+       "fraction": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Whisked the whites to stiff peaks.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "whites",
+     "process": "whisk",
+     "sets": {
+      "texture": "stiff peaks"
+     }
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Yolks beaten with the sugar.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "yolks",
+      "sugar"
+     ],
+     "output": "yolk mix",
+     "process": "beat"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "whites",
+   "yolk mix"
+  ],
+  "dead": [
+   "eggs",
+   "yolks",
+   "sugar"
+  ],
+  "fields": {
+   "whites.texture": "stiff peaks",
+   "whites.qty": "share of eggs"
+  },
+  "edges": [
+   [
+    "eggs",
+    "SPLITS_INTO",
+    "yolks"
+   ],
+   [
+    "eggs",
+    "SPLITS_INTO",
+    "whites"
+   ],
+   [
+    "yolks",
+    "MERGES_INTO",
+    "yolk mix"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "qualitative split: shares are unknown, so qty stays symbolic"
+ }
+}

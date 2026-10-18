@@ -1,0 +1,62 @@
+{
+ "session_id": "SES-011",
+ "title": "Observation then prediction: prediction must not override observation",
+ "scenario": "OBSERVATION_OVERRIDE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "steak",
+   "concept": "UNKNOWN",
+   "quantity": "1 sirloin steak"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Seared the steak.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "steak",
+     "process": "sear"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Checked: it's medium-rare.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "steak",
+     "field": "doneness",
+     "value": "medium-rare"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "steak"
+  ],
+  "dead": [],
+  "fields": {
+   "steak.doneness": "medium-rare",
+   "steak.last_process": "sear"
+  },
+  "edges": [
+   [
+    "steak",
+    "OBSERVED_AS",
+    "steak"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

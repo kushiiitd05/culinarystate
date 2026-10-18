@@ -1,0 +1,89 @@
+{
+ "session_id": "SES-016",
+ "title": "Substitution: paneer for tofu mid-recipe",
+ "scenario": "SUBSTITUTION",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "tofu",
+   "concept": "UNKNOWN",
+   "quantity": "200g firm tofu"
+  },
+  {
+   "entity": "paneer",
+   "concept": "UNKNOWN",
+   "quantity": "200g paneer"
+  },
+  {
+   "entity": "gravy",
+   "concept": "UNKNOWN",
+   "quantity": "400ml tomato gravy"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Out of tofu, paneer instead.",
+   "events": [
+    {
+     "type": "Discard",
+     "target": "tofu",
+     "value": "not used (substituted)"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Cubed the paneer and added to the gravy.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "paneer",
+     "process": "cube",
+     "sets": {
+      "form": "cubed"
+     }
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "gravy",
+      "paneer"
+     ],
+     "output": "paneer curry",
+     "process": "simmer"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "paneer curry"
+  ],
+  "dead": [
+   "tofu",
+   "paneer",
+   "gravy"
+  ],
+  "fields": {},
+  "edges": [
+   [
+    "tofu",
+    "DISCARDED_FROM",
+    "DISCARD"
+   ],
+   [
+    "paneer",
+    "MERGES_INTO",
+    "paneer curry"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

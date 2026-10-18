@@ -1,0 +1,96 @@
+{
+ "session_id": "SES-029",
+ "title": "Split cake batter across two tins, one tin over-bakes",
+ "scenario": "SPLIT_PORTION",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "batter",
+   "concept": "UNKNOWN",
+   "quantity": "800g sponge batter"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Split between two tins.",
+   "events": [
+    {
+     "type": "Split",
+     "target": "batter",
+     "outputs": [
+      {
+       "label": "tin A",
+       "fraction": "1/2"
+      },
+      {
+       "label": "tin B",
+       "fraction": "1/2"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Both in the oven.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "tin A",
+     "process": "bake"
+    },
+    {
+     "type": "Transform",
+     "target": "tin B",
+     "process": "bake"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Tin B is darker — overbaked edges.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "tin B",
+     "field": "colour",
+     "value": "dark edges"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "tin A",
+   "tin B"
+  ],
+  "dead": [
+   "batter"
+  ],
+  "fields": {
+   "tin B.colour": "dark edges",
+   "tin A.last_process": "bake",
+   "tin A.qty": "1/2×800g sponge batter"
+  },
+  "edges": [
+   [
+    "batter",
+    "SPLITS_INTO",
+    "tin A"
+   ],
+   [
+    "batter",
+    "SPLITS_INTO",
+    "tin B"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "observation applies to one portion only"
+ }
+}

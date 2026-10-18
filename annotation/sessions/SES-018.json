@@ -1,0 +1,74 @@
+{
+ "session_id": "SES-018",
+ "title": "Merge failure: adding something that was already used",
+ "scenario": "MISTAKE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "cream",
+   "concept": "UNKNOWN",
+   "quantity": "150ml double cream"
+  },
+  {
+   "entity": "sauce",
+   "concept": "UNKNOWN",
+   "quantity": "200ml mushroom sauce"
+  },
+  {
+   "entity": "pasta",
+   "concept": "UNKNOWN",
+   "quantity": "200g pasta"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Cream into the sauce.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "sauce",
+      "cream"
+     ],
+     "output": "cream sauce",
+     "process": "stir"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Add the cream to the pasta too.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "pasta",
+      "cream"
+     ],
+     "output": "creamy pasta",
+     "process": "toss"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "cream sauce",
+   "pasta"
+  ],
+  "dead": [
+   "cream",
+   "sauce"
+  ],
+  "fields": {},
+  "edges": [],
+  "issues": 1
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "second merge references consumed cream: engine must refuse it (pasta stays alive, no creamy pasta entity)"
+ }
+}

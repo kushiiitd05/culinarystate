@@ -1,0 +1,96 @@
+{
+ "session_id": "SES-013",
+ "title": "Reserve garnish: coriander kept aside, added at end",
+ "scenario": "RESERVE_RECOMBINE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "coriander",
+   "concept": "UNKNOWN",
+   "quantity": "1 bunch coriander"
+  },
+  {
+   "entity": "curry",
+   "concept": "UNKNOWN",
+   "quantity": "500ml chicken curry"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Chopped the coriander.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "coriander",
+     "process": "chop",
+     "sets": {
+      "form": "chopped"
+     }
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Most goes in now, keep a pinch for garnish.",
+   "events": [
+    {
+     "type": "Reserve",
+     "target": "coriander",
+     "output": "garnish",
+     "fraction": "1/5"
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "curry",
+      "coriander"
+     ],
+     "output": "finished curry",
+     "process": "stir"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Sprinkled the garnish.",
+   "events": [
+    {
+     "type": "Recombine",
+     "target": "garnish",
+     "output": "finished curry"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "finished curry"
+  ],
+  "dead": [
+   "coriander",
+   "curry",
+   "garnish"
+  ],
+  "fields": {},
+  "edges": [
+   [
+    "coriander",
+    "RESERVED_AS",
+    "garnish"
+   ],
+   [
+    "garnish",
+    "RECOMBINED_WITH",
+    "finished curry"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

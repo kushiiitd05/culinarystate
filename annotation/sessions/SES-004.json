@@ -1,0 +1,114 @@
+{
+ "session_id": "SES-004",
+ "title": "Split dough into equal rotis",
+ "scenario": "SPLIT_PORTION",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "atta",
+   "concept": "UNKNOWN",
+   "quantity": "300g wholemeal flour"
+  },
+  {
+   "entity": "water",
+   "concept": "UNKNOWN",
+   "quantity": "180ml water"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Kneaded a dough.",
+   "events": [
+    {
+     "type": "Merge",
+     "inputs": [
+      "atta",
+      "water"
+     ],
+     "output": "dough",
+     "process": "knead"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Divided into 3 equal balls.",
+   "events": [
+    {
+     "type": "Split",
+     "target": "dough",
+     "outputs": [
+      {
+       "label": "ball 1",
+       "fraction": "1/3"
+      },
+      {
+       "label": "ball 2",
+       "fraction": "1/3"
+      },
+      {
+       "label": "ball 3",
+       "fraction": "1/3"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Rolled the first one and cooked it on the tawa.",
+   "events": [
+    {
+     "type": "Transform",
+     "target": "ball 1",
+     "process": "roll",
+     "sets": {
+      "form": "flat round"
+     }
+    },
+    {
+     "type": "Transform",
+     "target": "ball 1",
+     "process": "dry-fry"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "ball 1",
+   "ball 2",
+   "ball 3"
+  ],
+  "dead": [
+   "dough",
+   "atta",
+   "water"
+  ],
+  "fields": {
+   "ball 1.form": "flat round",
+   "ball 1.last_process": "dry-fry",
+   "ball 1.qty": "1/3×300g wholemeal flour + 1/3×180ml water"
+  },
+  "edges": [
+   [
+    "dough",
+    "SPLITS_INTO",
+    "ball 1"
+   ],
+   [
+    "dough",
+    "SPLITS_INTO",
+    "ball 3"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}

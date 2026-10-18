@@ -1,0 +1,103 @@
+{
+ "session_id": "SES-026",
+ "title": "Over-reduction then dilution with reserved stock",
+ "scenario": "RESERVE_RECOMBINE",
+ "locale": "UK",
+ "ingredients": [
+  {
+   "entity": "stock",
+   "concept": "UNKNOWN",
+   "quantity": "500ml beef stock"
+  },
+  {
+   "entity": "onions",
+   "concept": "UNKNOWN",
+   "quantity": "3 onions"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 1,
+   "user": "Kept 100 ml stock back, rest in with the onions.",
+   "events": [
+    {
+     "type": "Reserve",
+     "target": "stock",
+     "output": "spare stock",
+     "portion": "100ml beef stock"
+    },
+    {
+     "type": "Merge",
+     "inputs": [
+      "onions",
+      "stock"
+     ],
+     "output": "gravy",
+     "process": "simmer"
+    }
+   ]
+  },
+  {
+   "turn": 2,
+   "user": "Gravy got too thick.",
+   "events": [
+    {
+     "type": "Observe",
+     "target": "gravy",
+     "field": "consistency",
+     "value": "too thick"
+    }
+   ]
+  },
+  {
+   "turn": 3,
+   "user": "Loosened it with the spare stock.",
+   "events": [
+    {
+     "type": "Recombine",
+     "target": "spare stock",
+     "output": "gravy"
+    },
+    {
+     "type": "Observe",
+     "target": "gravy",
+     "field": "consistency",
+     "value": "pourable"
+    }
+   ]
+  }
+ ],
+ "expected": {
+  "alive": [
+   "gravy"
+  ],
+  "dead": [
+   "spare stock",
+   "stock",
+   "onions"
+  ],
+  "fields": {
+   "gravy.consistency": "pourable",
+   "gravy.qty": "3 onions + 500ml beef stock"
+  },
+  "edges": [
+   [
+    "stock",
+    "RESERVED_AS",
+    "spare stock"
+   ],
+   [
+    "spare stock",
+    "RECOMBINED_WITH",
+    "gravy"
+   ]
+  ],
+  "issues": 0
+ },
+ "provenance": {
+  "authored_by": "Claude",
+  "status": "AI_DRAFTED",
+  "reviewed_by": null,
+  "notes": "engine test; counts toward DEL-3 only after human review"
+ }
+}
