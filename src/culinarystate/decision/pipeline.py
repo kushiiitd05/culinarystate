@@ -20,6 +20,7 @@ from culinarystate.transition.cross_source import NUTRIENT
 from culinarystate.vocab.line_link import LineLinker
 
 from .diagnosis import TroubleshootIndex, diagnose
+from .session_state import SessionState
 from .targets import TargetLexicon
 from .feasibility import Action, Constraints, Requirements, check
 from .ood import SupportIndex
@@ -88,7 +89,7 @@ def parse_query(q: str, lex: Lexicon) -> Slots:
 
 def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements, proc_family: dict,
            constraints: Constraints | None = None, k: int = 10, support_index: SupportIndex | None = None,
-           troubleshoot: TroubleshootIndex | None = None) -> dict:
+           troubleshoot: TroubleshootIndex | None = None, session: SessionState | None = None) -> dict:
     s = parse_query(q, lex)
     t_opts = None
     if not s.target and s.processes and support_index and intent(q) in ("ANSWER", "COMPARE"):
@@ -113,13 +114,15 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
     slots = {"ingredient": s.ingredient_id, "process": options[0][1] if options else None, "target": s.target,
              "needs_target": intent(q) in ("ANSWER", "COMPARE"), "contradictions": list(s.contradictions),
              "target_options": t_opts}
-    dg = diagnose(q, [n for n, _ in s.processes], troubleshoot) \
+    # C18: diagnosis uses session process history when available, falls back to question processes
+    history = list(session.process_history()) if session else [n for n, _ in s.processes]
+    dg = diagnose(q, history, troubleshoot) \
         if troubleshoot and intent(q) in ("DIAGNOSE", "RECOVER") else None
     support = {n: support_index.support(s.ingredient_id, s.parents, s.ingredient_name, p) for n, p in options} \
         if support_index else None
     return {"slots": s, "decision": decide(q, packets, slots, feasibility=feas, support=support, numeric_target=s.numeric_target,
                               diagnosis=dg), "packets": packets,
-            "feasibility": feas, "support": support}
+            "feasibility": feas, "support": support, "session": session}
 
 
 OFF_TAXONOMY = Path(__file__).resolve().parents[3] / "data" / "raw" / "off" / "ingredients_a1ce1d36.txt"

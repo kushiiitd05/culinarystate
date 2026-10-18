@@ -18,6 +18,7 @@ from culinarystate.decision.diagnosis import TroubleshootIndex  # noqa: E402
 from culinarystate.decision.feasibility import load_requirements  # noqa: E402
 from culinarystate.decision.ood import SupportIndex  # noqa: E402
 from culinarystate.decision.pipeline import answer, load_lexicon  # noqa: E402
+from culinarystate.decision.session_state import SessionState  # noqa: E402
 from culinarystate.generation.verbalize import verbalize  # noqa: E402
 from culinarystate.ledgers.store import LedgerStore  # noqa: E402
 from culinarystate.retrieval.retriever import EvidenceRetriever  # noqa: E402
@@ -53,6 +54,8 @@ def main() -> None:
     ap.add_argument("question", nargs="?")
     ap.add_argument("--demo", action="store_true")
     ap.add_argument("--constraints", default="", help='free text, e.g. "no oven, gluten-free, 20 minutes"')
+    ap.add_argument("--session", default="", help="path to a session JSON file (annotation/sessions/SES-*.json)")
+    ap.add_argument("--turn", type=int, default=None, help="replay only up to this turn number (inclusive)")
     a = ap.parse_args()
     st = LedgerStore()
     lex, family = load_lexicon(st)
@@ -64,7 +67,14 @@ def main() -> None:
     qs = DEMO if a.demo else [a.question]
     cons, info = parse_constraints(a.constraints, *load_constraint_lexicons(st))
     ts = TroubleshootIndex.from_registry(ROOT)
-    out = [show(q, answer(q, lex, retriever, req, family, constraints=cons, support_index=sup, troubleshoot=ts))
+    sess = None
+    if a.session:
+        sd = json.loads(Path(a.session).read_text())
+        if a.turn is not None:
+            sd = {**sd, "turns": [t for t in sd.get("turns", []) if t.get("turn", 0) <= a.turn]}
+        sess = SessionState.from_session(sd)
+    out = [show(q, answer(q, lex, retriever, req, family, constraints=cons, support_index=sup,
+                          troubleshoot=ts, session=sess))
            for q in qs if q]
     if a.constraints:
         out.append({"constraints": str(cons), "unresolved": info["unresolved"],
