@@ -25,3 +25,9 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
 - **Checks:** robots.txt has no disallow; terms = free resource, commercial use/redistribution needs permission, cite Phenol-Explorer + original publications. ~1,900 pages, 1.5 s spacing, cached, never re-fetched.
 - **Storage:** raw HTML local-only (`data/raw/`, git-ignored); derived EVD rows committed with citation; SRC storage_rule DERIVED_ONLY.
 - **Approver:** Kush ("if possible you can scrape", 2026-10-18).
+
+### D-006 · 2026-10-18 · FDC crosswalk is CANDIDATE-only; FDC portions become POR- records only after human verification
+- **Why:** an ING↔FDC link decides which food's gram weights apply; a wrong link invents grams. Top-1 HIGH covers 550 concepts / 67% of recipe-frequency weight, so ~1–2 h of human ticking lifts sourced mass coverage ≈30% → ≈55% of BBC lines.
+- **Also:** UK→US synonym table and polysemy list are AI-drafted linguistic aids, flagged for review.
+- **Network note:** home router DNS returns SERVFAIL for *.usda.gov; downloads used public-DNS-resolved IP pinning (`curl --resolve`). Not a site block.
+- **Approver:** Claude (process); humans own each link decision.
