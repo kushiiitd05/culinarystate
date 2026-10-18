@@ -214,9 +214,36 @@ class D7BiasedMF(Model):
             if r is not None and c is not None:
                 v += self.P[r] @ self.Q[c]
             out.append(v)
-        return np.asarray(out)
+        arr = np.asarray(out, dtype=float)
+        self.n_fallback = int((~np.isfinite(arr)).sum())      # SGD can diverge on raw RF scale (RF up to ~100)
+        return np.where(np.isfinite(arr), arr, self.mu)
 
 
 def all_models() -> list[Model]:
     return [D0Persistence(), D1GlobalMean(), D2ProcessMean(), D3Hierarchical(), D4NearestEvidence(), D5Boosting(),
             D7BiasedMF()]
+
+
+EPS = 1e-3
+
+
+class LogTarget(Model):
+    """Fit the wrapped model on log(RF) (and log of censored lower bounds); predict exp(·) on the RF scale.
+    RF spans 0.01–100 in Phenol-Explorer, so additive fits on the raw scale are dominated by a few large ratios."""
+
+    def __init__(self, base: Model):
+        self.base, self.name = base, f"{base.name}+log"
+
+    def fit(self, df):
+        d = df.copy()
+        d["y"] = np.log(np.clip(pd.to_numeric(d["y"], errors="coerce"), EPS, None))
+        d["y_lower"] = np.log(np.clip(pd.to_numeric(d["y_lower"], errors="coerce"), EPS, None))
+        self.base.fit(d)
+        return self
+
+    def predict(self, df):
+        return np.exp(self.base.predict(df))
+
+
+def log_models() -> list[Model]:
+    return [m if isinstance(m, D0Persistence) else LogTarget(m) for m in all_models()]

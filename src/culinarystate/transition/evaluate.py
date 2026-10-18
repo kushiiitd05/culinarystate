@@ -84,6 +84,10 @@ def evaluate(df: pd.DataFrame, split: Split, model: Model, n_boot: int = 300) ->
         "mae_censor_aware": round(float(err_t.mean()), 4), "mae_ci": ci,
         "mae_observed_only": round(float(err_t[obs].mean()), 4) if obs.any() else None,
         "rmse_observed_only": round(float(np.sqrt((err_t[obs] ** 2).mean())), 4) if obs.any() else None,
+        "median_ae": round(float(np.median(err_t)), 4),
+        "mae_log_observed": round(float(np.mean(np.abs(np.log(np.clip(pd.to_numeric(te["y"], errors="coerce")
+                                                                       .to_numpy(dtype=float)[obs], 1e-3, None))
+                                                        - np.log(np.clip(pt[obs], 1e-3, None))))), 4) if obs.any() else None,
         "mae_ipw": round(float(np.average(err_t, weights=w)), 4),
         "conformal_90": conformal(err_c, te, pt, 0.1),
     }

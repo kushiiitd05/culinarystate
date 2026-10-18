@@ -24,7 +24,7 @@
 
 ## 2b. NEXT (in order)
 1. AI pre-check pass over verification queue (AI_PRECHECKED + suggested decision) → humans confirm fast (Kush asked AI to review; AI cannot sign as human).
-2. DEL-2 on PE with log-RF target + median AE; experiment cards EXP-D0…D7.
+2. ✅ (S040) DEL-2 log-RF + median AE + experiment cards EXP-000001..4 (verdict: gains vanish under cold-start).
 3. Dense embeddings + DEL-4 calibration/abstention eval (A100 — ask VPN first).
 4. DEL-5 decision layer (ANSWER…ABSTAIN) + benchmark authoring (confirm D-008).
 5. NER baselines on TASTEset (A100 encoder), Silver factory scaffold, B03/B15 small reproductions, WARN (after FSIS manual download).

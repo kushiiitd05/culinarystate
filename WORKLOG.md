@@ -270,3 +270,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/transition/cross_source.py tools/run_cross_source.py reports/del2/cross_source_v1.* tests/unit/test_cross_source.py`
 - **Verified:** 300 tests pass
 - **Next:** X4 Gutenberg ingest after crawl; Bognár Part-1 yields; DEL-2 log-RF for PE
+
+### S040 · 2026-10-18 16:10 IST · DEL-2 · Log-RF target, median/log errors, experiment cards
+- **Who:** Kush+Claude
+- **Did:** LogTarget wrapper (fit on log RF, predict exp) + median AE + MAE-log metrics; runner --log-target; D7 divergence guard (raw PE NaN fixed). Reran USDA, PE raw, PE log, Bognár. Experiment cards experiments/EXP-000001..4 + EXP ledger: USDA supported on random only; PE (raw+log) not supported (study_disjoint best = global mean, median AE 0.21; D5 worse than persistence); Bognár supported but caveated (templated factors; process split degenerate -> n/a).
+- **Files:** `src/culinarystate/transition/{baselines`, `evaluate}.py tools/{run_del2`, `register_experiments}.py experiments/ reports/del2/ tests/unit/test_del2.py`
+- **Verified:** 301 tests; cards regenerate deterministically
+- **Next:** X4 Gutenberg ingest when crawl finishes
