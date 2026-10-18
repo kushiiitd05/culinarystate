@@ -2,7 +2,7 @@
 """Summarise X8 encoder NER runs (gpu/ner_tasteset/runs/*.json) against the rule floor on the same test split.
 
   /opt/anaconda3/bin/python tools/summarise_ner_runs.py
-Model choice uses mean DEV micro exact F1 over seeds; test numbers are reported for every model but never used to
+Variants (from file names: base, _crf, _knn) are separate rows; choice uses mean DEV micro exact F1 over seeds; test numbers are reported for every model but never used to
 choose. "Beats the floor" = the selected model's 5-seed mean test F1 is above the floor's 95% CI upper bound.
 Writes reports/ner/tasteset_encoders_v1.md/json.
 """
@@ -17,7 +17,13 @@ RUNS = ROOT / "gpu" / "ner_tasteset" / "runs"
 
 
 def main() -> None:
-    runs = [json.loads(p.read_text()) for p in sorted(RUNS.glob("*_seed*.json"))]
+    runs = []
+    for f in sorted(RUNS.glob("*_seed*.json")):
+        r = json.loads(f.read_text())
+        variant = f.stem.rsplit("_seed", 1)[0]                     # e.g. deberta-v3-base, deberta-v3-base_knn
+        if variant.endswith("_knn") and r.get("knn"):              # report the dev-selected kNN interpolation
+            r = {**r, "test": r["knn"]["test"], "best_dev_micro_exact_f1": r["knn"]["selected_on_dev"]["dev_f1"]}
+        runs.append({**r, "model": variant})
     if not runs:
         sys.exit(f"no runs in {RUNS}")
     floor = json.loads((ROOT / "reports" / "ner" / "tasteset_rule_baseline.json").read_text())
@@ -37,7 +43,8 @@ def main() -> None:
                    "per_label_exact": {lab: round(stats.mean(r["test"]["exact"]["per_label"][lab]["f1"] for r in rs), 4)
                                        for lab in labels},
                    "minutes_per_run": round(stats.mean(r["minutes"] for r in rs), 1)}
-    best = max(rows, key=lambda m: rows[m]["dev_mean"])
+    complete = [m for m in rows if rows[m]["seeds"] >= 5] or list(rows)     # incomplete variants cannot be selected
+    best = max(complete, key=lambda m: rows[m]["dev_mean"])
     verdict = "BEATS_FLOOR" if rows[best]["test_exact_mean"] > f_ci["high"] else "NOT_SEPARATED"
     res = {"selected_on_dev": best, "verdict": verdict, "floor_test_ci": f_ci, "models": rows}
     out = ROOT / "reports" / "ner"
