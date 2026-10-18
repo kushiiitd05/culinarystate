@@ -1,10 +1,11 @@
 # Tool registry v1
 
-- tools: 76; categories: {'HEAT_SOURCE': 4, 'APPLIANCE': 14, 'COOKWARE': 19, 'VESSEL': 6, 'UTENSIL': 24, 'OTHER': 5, 'MEASURE': 4}
-- BBC steps with ≥1 tool mention: 33,088/39,540 (83.7%)
-- tools never mentioned in BBC (kept: Indian/evidence equipment): ['handi', 'tadka pan']
-- process↔tool links (sentence co-occurrence, count ≥ 20, lift ≥ 2.0): 535 over 115 processes
-- examples: heat→oven (lift 5.59); preheat→oven (lift 14.92); bake→baking tray (lift 12.87); fry→frying pan (lift 21.3); mix→bowl (lift 3.33); put→bowl (lift 2.23); heat→frying pan (lift 6.75); heat→saucepan (lift 2.07); bake→baking parchment (lift 11.78); boil→saucepan (lift 4.0); tip→bowl (lift 3.26); line→baking parchment (lift 27.33)
-- material mentions (top): frying pan/non-stick=854, wooden spoon/wooden=515, bowl/heatproof=412, baking dish/ovenproof=278, glass/glass=247, casserole/flameproof=195, frying pan/ovenproof=106, baking tray/non-stick=82
+- tools: 116; categories: {'HEAT_SOURCE': 5, 'APPLIANCE': 22, 'COOKWARE': 26, 'VESSEL': 6, 'UTENSIL': 44, 'OTHER': 8, 'MEASURE': 5}
+- corpus steps (BBC 39,540 + Wikibooks 26,225) with ≥1 tool mention: 43,981/65,765 (66.9%)
+- tools with a Wikibooks equipment page: 97
+- tools never mentioned in the corpus (kept: curated/Indian/evidence equipment): ['handi', 'tamagoyaki pan', 'whipping siphon', 'egg separator', 'fat separator', 'egg slicer', 'knife sharpener', 'proofing basket']
+- process↔tool links (sentence co-occurrence, count ≥ 20, lift ≥ 2.0): 606 over 118 processes
+- examples: preheat→oven (lift 16.28); heat→oven (lift 5.51); bake→baking tray (lift 13.44); mix→bowl (lift 3.42); fry→frying pan (lift 20.46); put→bowl (lift 2.25); heat→saucepan (lift 2.18); heat→frying pan (lift 7.02); bake→baking parchment (lift 12.41); boil→saucepan (lift 3.7); bake→oven (lift 2.59); tip→bowl (lift 3.53)
+- material mentions (top): frying pan/non-stick=915, wooden spoon/wooden=606, bowl/heatproof=414, glass/glass=308, baking dish/ovenproof=286, casserole/flameproof=196, frying pan/ovenproof=106, baking tray/non-stick=85
 - material/reactivity/max temperature NOT asserted (needs authority evidence → WARN layer)
-- ledger writes: {('TOOL', 'created'): 76, ('PROC', 'revised'): 115}
+- ledger writes: {('TOOL', 'unchanged'): 116}

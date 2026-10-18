@@ -15,7 +15,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.ledgers.store import LedgerStore  # noqa: E402
-from culinarystate.process.tools import TOOLS, find_tools  # noqa: E402
+from culinarystate.process.tools import TOOLS, WIKIBOOKS_PAGE, find_tools  # noqa: E402
 from culinarystate.state_graph.rule_compiler import step_processes  # noqa: E402
 
 MIN_COUNT, MIN_LIFT = 20, 2.0
@@ -23,6 +23,10 @@ steps = []
 with (ROOT.parent / "a1" / "A1 3" / "data" / "raw" / "recipes_raw.jsonl").open() as fh:
     for line in fh:
         steps += json.loads(line).get("instruction_steps_raw") or []
+n_bbc = len(steps)
+WB = ROOT / "data" / "interim" / "wikibooks" / "recipes.jsonl"          # X3 corpus (local, CC BY-SA)
+if WB.exists():
+    steps += [s["text"] for line in WB.open() for s in json.loads(line)["steps"]]
 sents = [s for st in steps for s in re.split(r"(?<=[.!?])\s+", st) if s.strip()]
 
 tool_freq, proc_freq, pair, mat = Counter(), Counter(), Counter(), Counter()
@@ -48,17 +52,20 @@ links_df = pd.DataFrame(links).sort_values(["process", "lift"], ascending=[True,
 
 st = LedgerStore()
 src_id = st.ids.mint("SRC", key="a1:bbcgoodfood:ingredient_mentions")
+wb_src = st.ids.lookup("SRC", "wikibooks:cookbook")
 tool_ids = {}
 counts = Counter()
 for t in TOOLS:
     rid = st.ids.mint("TOOL", key=f"name:{t.canonical}")
     tool_ids[t.canonical] = rid
     rec = {"id": rid, "record_type": "TOOL", "status": "ACTIVE", "created_by": "Kush+Claude",
-           "provenance": {"method": "MANUAL", "source_ids": [src_id], "agent": "tool_vocab@1.0",
+           "provenance": {"method": "MANUAL", "agent": "tool_vocab@1.1",
+                          "source_ids": [src_id] + ([wb_src] if wb_src and t.canonical in WIKIBOOKS_PAGE else []),
                           "notes": f"corpus sentence mentions: {tool_freq.get(t.canonical, 0)}"},
            "verification": {"status": "UNVERIFIED"}, "canonical_name": t.canonical,
            "aliases": [a for a in t.aliases if a != t.canonical], "category": t.category,
-           "material": None, "reactive_with": [], "max_safe_temperature_c": {"status": "UNKNOWN"}}
+           "material": None, "reactive_with": [], "max_safe_temperature_c": {"status": "UNKNOWN"},
+           "external_refs": [f"WIKIBOOKS:Cookbook:{WIKIBOOKS_PAGE[t.canonical]}"] if t.canonical in WIKIBOOKS_PAGE else []}
     counts[("TOOL", st.upsert(rec)[0])] += 1
 by_proc = links_df.groupby("process")["tool"].apply(list).to_dict() if len(links_df) else {}
 for proc in st.all_latest("PROC"):
@@ -76,8 +83,10 @@ pd.DataFrame([{"tool": t, "material": m, "count": c} for (t, m), c in mat.most_c
     .to_csv(out / "tool_material_mentions.csv", index=False)
 zero = [t.canonical for t in TOOLS if not tool_freq.get(t.canonical)]
 lines = ["# Tool registry v1", "", f"- tools: {len(TOOLS)}; categories: {dict(Counter(t.category for t in TOOLS))}",
-         f"- BBC steps with ≥1 tool mention: {steps_with_tool:,}/{len(steps):,} ({steps_with_tool/len(steps):.1%})",
-         f"- tools never mentioned in BBC (kept: Indian/evidence equipment): {zero}",
+         f"- corpus steps (BBC {n_bbc:,} + Wikibooks {len(steps) - n_bbc:,}) with ≥1 tool mention: "
+         f"{steps_with_tool:,}/{len(steps):,} ({steps_with_tool/len(steps):.1%})",
+         f"- tools with a Wikibooks equipment page: {sum(t.canonical in WIKIBOOKS_PAGE for t in TOOLS)}",
+         f"- tools never mentioned in the corpus (kept: curated/Indian/evidence equipment): {zero}",
          f"- process↔tool links (sentence co-occurrence, count ≥ {MIN_COUNT}, lift ≥ {MIN_LIFT}): {len(links_df)} "
          f"over {links_df['process'].nunique() if len(links_df) else 0} processes",
          "- examples: " + "; ".join(f"{r.process}→{r.tool} (lift {r.lift})" for r in links_df.sort_values("count",

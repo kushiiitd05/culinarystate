@@ -130,7 +130,7 @@ class LedgerStore:
             return "created", self.append({**record, "version": 1})
         if _content(prev) == _content(record):
             return "unchanged", prev
-        return "revised", self.append({**record, "version": prev["version"] + 1})
+        return "revised", self.append({**record, "version": prev["version"] + 1, "created_at": now_iso()})
 
     def revise(self, record_id: str, changes: dict, created_by: str) -> dict:
         """Append a new version built from the latest one plus `changes`."""

@@ -235,3 +235,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/ingest/wikibooks.py src/culinarystate/vocab/{line_link`, `foodon}.py tools/{crawl_wikibooks`, `ingest_wikibooks}.py tools/build_off_aliases.py tools/build_ingredient_registry.py registry/recipes/wikibooks_ingredient_links_v1.csv reports/wikibooks_v1.md`
 - **Verified:** 282 tests; 0 invalid; ingest 2nd run 0 writes; 40-line spot check ~90% correct before shown-text fix
 - **Next:** X3b equipment/technique pages -> TOOL/PROC; then X4 Gutenberg cookbooks
+
+### S035 · 2026-10-18 13:47 IST · X3b/P3 · Wikibooks equipment + techniques -> TOOL/PROC; polysemy splits; timestamp fix
+- **Who:** Kush+Claude
+- **Did:** TOOL vocab +40 tools (double boiler, idli steamer, tandoor, rice cooker, garlic press, food mill, ...) and US aliases (cutting board, plastic wrap, loaf pan ...); 97 tools carry WIKIBOOKS refs; tool co-occurrence corpus = BBC 39.5k + Wikibooks 26.2k steps -> 605 proc<->tool links. PROC +8 (sous-vide, scald, render, baste, blind-bake, temper, brine, degorge); split polysemy: 'temper' no longer = tadka, 'brine' no longer = pickle; curated 63-page technique map -> PROC external_refs; 487 EVD relinked. Builders now preserve fields owned by other builders (tool_ids, evidence_coverage). Fixed store bug: upsert revisions kept v1 created_at (D-010).
+- **Files:** `src/culinarystate/process/{tools`, `vocab}.py src/culinarystate/ledgers/store.py tools/build_{tool`, `process}_registry.py tests/unit/test_ledgers.py DECISIONS.md`
+- **Verified:** 283 tests; 0 invalid TOOL/PROC/EVD; full builder cycle 2nd pass 0 writes
+- **Next:** X3c typed link sub-ledgers with support/confidence

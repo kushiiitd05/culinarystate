@@ -16,7 +16,7 @@ import spacy
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.ledgers.store import LedgerStore  # noqa: E402
-from culinarystate.process.vocab import (AXES, BY_CANON, IGNORE, LEMMA_TO_PROC, MECHANISMS, PROCESSES,  # noqa: E402
+from culinarystate.process.vocab import (AXES, BY_CANON, IGNORE, LEMMA_TO_PROC, MECHANISMS, PROCESSES, WIKIBOOKS_TECHNIQUE,  # noqa: E402,E501
                                          map_step_name, phrase_processes)
 
 ap = argparse.ArgumentParser()
@@ -70,7 +70,12 @@ for p in PROCESSES:
            "aliases": [x for x in p.aliases if x != p.canonical], "family": p.family, "kind": p.kind,
            "required_condition_axes": list(AXES.get(p.family, ())),
            "mechanism_families": list(MECHANISMS.get(p.family, ())),
-           "corpus_frequency": freq.get(p.canonical, 0), "evidence_coverage": evd_steps.get(p.canonical, 0)}
+           "corpus_frequency": freq.get(p.canonical, 0), "evidence_coverage": evd_steps.get(p.canonical, 0),
+           "external_refs": [f"WIKIBOOKS:Cookbook:{t}" for t, c in sorted(WIKIBOOKS_TECHNIQUE.items()) if c == p.canonical]}
+    prev = st.latest(rid)          # tool_ids owned by build_tool_registry, evidence_coverage by link_evidence
+    for k in ("tool_ids", "evidence_coverage"):
+        if prev and k in prev:
+            rec[k] = prev[k]
     counts[st.upsert(rec)[0]] += 1
     rows.append({"proc_id": rid, "canonical": p.canonical, "family": p.family, "kind": p.kind,
                  "steps_with_process": freq.get(p.canonical, 0), "evd_rows": evd_steps.get(p.canonical, 0),

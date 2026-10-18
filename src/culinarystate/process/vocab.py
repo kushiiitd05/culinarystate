@@ -42,8 +42,14 @@ MECHANISMS = {
 
 P = Proc
 PROCESSES: tuple[Proc, ...] = (
+    # added from Wikibooks Cookbook technique pages (X3b, D-009); "temper" split from tadka, "brine" from pickle
+    P("sous-vide", "WET_HEAT", "ACTION", ("sous-vide", "sous vide")), P("scald", "WET_HEAT", "ACTION", ("scald",)),
+    P("render", "FAT_HEAT", "ACTION", ("render",)), P("baste", "FAT_HEAT", "ACTION", ("baste",)),
+    P("blind-bake", "DRY_HEAT", "ACTION", ("blind-bake", "bake blind")),
+    P("temper", "HEAT_GENERAL", "ACTION", ("temper",)), P("brine", "PRESERVATION", "ACTION", ("brine",)),
+    P("degorge", "SEPARATION", "ACTION", ("degorge", "disgorge")),
     # dry heat
-    P("bake", "DRY_HEAT", "ACTION", ("bake",)), P("roast", "DRY_HEAT", "ACTION", ("roast",)),
+    P("bake", "DRY_HEAT", "ACTION", ("bake", "shirr")), P("roast", "DRY_HEAT", "ACTION", ("roast",)),
     P("grill", "DRY_HEAT", "ACTION", ("grill", "broil", "barbecue", "griddle")),
     P("toast", "DRY_HEAT", "ACTION", ("toast",)), P("char", "DRY_HEAT", "ACTION", ("char", "blacken", "scorch")),
     P("smoke", "DRY_HEAT", "ACTION", ("smoke",)), P("microwave", "HEAT_GENERAL", "ACTION", ("microwave", "nuke")),
@@ -52,8 +58,8 @@ PROCESSES: tuple[Proc, ...] = (
     P("fry", "FAT_HEAT", "ACTION", ("fry",)), P("stir-fry", "FAT_HEAT", "ACTION", ("stir-fry", "stirfry")),
     P("deep-fry", "FAT_HEAT", "ACTION", ("deep-fry",)), P("shallow-fry", "FAT_HEAT", "ACTION", ("shallow-fry",)),
     P("pan-fry", "FAT_HEAT", "ACTION", ("pan-fry",)), P("saute", "FAT_HEAT", "ACTION", ("sauté", "saute")),
-    P("sear", "FAT_HEAT", "ACTION", ("sear",)), P("brown", "FAT_HEAT", "ACTION", ("brown",)),
-    P("sweat", "FAT_HEAT", "ACTION", ("sweat",)), P("temper-spices", "FAT_HEAT", "ACTION", ("tadka", "temper")),
+    P("sear", "FAT_HEAT", "ACTION", ("sear", "reverse-sear", "pan-broil")), P("brown", "FAT_HEAT", "ACTION", ("brown",)),
+    P("sweat", "FAT_HEAT", "ACTION", ("sweat",)), P("temper-spices", "FAT_HEAT", "ACTION", ("tadka", "chhonk", "baghar")),
     # wet heat
     P("boil", "WET_HEAT", "ACTION", ("boil",)), P("simmer", "WET_HEAT", "ACTION", ("simmer",)),
     P("poach", "WET_HEAT", "ACTION", ("poach",)), P("steam", "WET_HEAT", "ACTION", ("steam",)),
@@ -84,7 +90,7 @@ PROCESSES: tuple[Proc, ...] = (
     P("score", "MECHANICAL_CUT", "ACTION", ("score", "slash")), P("crumble", "MECHANICAL_CUT", "ACTION", ("crumble",)),
     P("flake", "MECHANICAL_CUT", "ACTION", ("flake",)), P("pierce", "MECHANICAL_CUT", "ACTION", ("pierce", "prick", "poke")),
     P("grind", "MECHANICAL_CUT", "ACTION", ("grind", "mill")), P("julienne", "MECHANICAL_CUT", "ACTION", ("julienne",)),
-    P("butterfly", "MECHANICAL_CUT", "ACTION", ("butterfly", "spatchcock")),
+    P("butterfly", "MECHANICAL_CUT", "ACTION", ("butterfly", "spatchcock", "spatchcock")),
     # mechanical mix
     P("stir", "MECHANICAL_MIX", "ACTION", ("stir",)), P("mix", "MECHANICAL_MIX", "ACTION", ("mix", "combine", "incorporate", "loosen")),
     P("whisk", "MECHANICAL_MIX", "ACTION", ("whisk",)), P("beat", "MECHANICAL_MIX", "ACTION", ("beat", "cream")),
@@ -120,17 +126,17 @@ PROCESSES: tuple[Proc, ...] = (
     P("thread", "TRANSFER", "ACTION", ("thread", "skewer")), P("flip", "TRANSFER", "ACTION", ("flip", "turn")),
     P("insert", "TRANSFER", "ACTION", ("insert", "tuck", "push")),
     # shaping / assembly
-    P("roll", "SHAPING", "ACTION", ("roll",)), P("shape", "SHAPING", "ACTION", ("shape", "form", "mould")),
+    P("roll", "SHAPING", "ACTION", ("roll",)), P("shape", "SHAPING", "ACTION", ("shape", "form", "mould", "quenelle")),
     P("divide", "SHAPING", "ACTION", ("divide", "split", "portion")), P("pipe", "SHAPING", "ACTION", ("pipe",)),
     P("flatten", "SHAPING", "ACTION", ("flatten", "press")), P("stamp-out", "SHAPING", "ACTION", ("stamp",)),
     P("assemble", "SHAPING", "ACTION", ("assemble", "sandwich", "build")), P("tie", "SHAPING", "ACTION", ("tie", "truss")),
     P("decorate", "SHAPING", "ACTION", ("decorate", "garnish")), P("pack", "SHAPING", "ACTION", ("pack",)),
     # biological / preservation
     P("prove", "FERMENT_LEAVEN", "ACTION", ("prove", "proof")), P("ferment", "FERMENT_LEAVEN", "ACTION", ("ferment",)),
-    P("soak", "FERMENT_LEAVEN", "ACTION", ("soak",)), P("pickle", "PRESERVATION", "ACTION", ("pickle", "cure", "brine")),
+    P("soak", "FERMENT_LEAVEN", "ACTION", ("soak",)), P("pickle", "PRESERVATION", "ACTION", ("pickle", "cure")),
     P("sterilise", "PRESERVATION", "ACTION", ("sterilise", "sterilize")), P("can", "PRESERVATION", "ACTION", ()),
     P("dry", "PRESERVATION", "ACTION", ("dry", "dehydrate")), P("pasteurise", "PRESERVATION", "ACTION", ("pasteurise",)),
-    P("germinate", "FERMENT_LEAVEN", "ACTION", ("germinate", "sprout")),
+    P("germinate", "FERMENT_LEAVEN", "ACTION", ("germinate", "sprout", "sprout")),
     # reservation / serving / heat control
     P("reserve", "RESERVATION", "ACTION", ("reserve", "save", "keep")), P("serve", "SERVING", "ACTION", ("serve",)),
     P("adjust-heat", "HEAT_CONTROL", "ACTION", ("lower", "increase")),
@@ -161,6 +167,24 @@ IGNORE = {"use", "make", "leave", "have", "like", "need", "start", "take", "come
           "work", "prepare", "hold", "fit", "release", "drop", "pull", "slide", "throw", "measure", "weigh", "touch",
           "resemble", "overlap", "space", "low", "room", "re", "double", "base", "ice", "flour", "oven", "chilli",
           "stick", "lie", "burn", "cle"}
+
+# Wikibooks Cookbook technique page -> canonical process (curated; pages without a single process are omitted)
+WIKIBOOKS_TECHNIQUE: dict[str, str] = {
+    "Baking": "bake", "Deep Fat Frying": "deep-fry", "Grilling": "grill", "Boiling": "boil", "Braising": "braise",
+    "Frying": "fry", "Broiling": "grill", "Blanching": "blanch", "Dredging": "coat", "Marinating": "marinate",
+    "Barbecuing": "grill", "Pickling": "pickle", "Parboiling": "parboil", "Boiling Rice": "boil", "Cooking Sugar": "boil",
+    "Brining": "brine", "Boiling Pasta": "boil", "Basting": "baste", "Caramelization": "caramelise",
+    "Microwaving": "microwave", "Melting chocolate": "melt", "Fermentation": "ferment", "Al Dente": "boil",
+    "Knife Skills": "cut", "Browning": "brown", "Mixing": "mix", "Deglazing": "deglaze", "Pan Broiling": "sear",
+    "Degorging": "degorge", "Canning": "can", "Freezing": "freeze", "Microwave Cooking": "microwave",
+    "Blind-baking": "blind-bake", "Roasting": "roast", "Roasting Nuts": "toast", "Simmering": "simmer",
+    "Steaming": "steam", "Sautéing": "saute", "Salting": "season", "Poaching": "poach", "Stir-frying": "stir-fry",
+    "Smoking": "smoke", "Stewing": "stew", "Rolling Boil": "boil", "Puréeing": "blend", "Soaking Beans": "soak",
+    "Toasting": "toast", "Tempering": "temper", "Tempering Chocolate": "temper", "Scalding": "scald",
+    "Pressure Cooking": "pressure-cook", "Separating Eggs": "separate", "Sous-vide": "sous-vide", "Shirring": "bake",
+    "Thermal Cooking": "cook", "Sprouting": "germinate", "Spatchcocking": "butterfly", "Quenelle": "shape",
+    "Rendering": "render", "Reverse-searing": "sear", "Outdoor Cooking": "cook", "Camp Cooking": "cook",
+    "Clay Pot Cooking": "cook"}
 
 BY_CANON = {p.canonical: p for p in PROCESSES}
 LEMMA_TO_PROC: dict[str, str] = {}

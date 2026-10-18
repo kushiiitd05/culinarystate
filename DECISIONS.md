@@ -54,3 +54,8 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
   X4 Gutenberg cookbooks (procedures/tools) → X5 Bognár retention table (PDF table extraction) → X6 Wikidata kitchenware → X7 recipe-scrapers
   (Indian + world sites, robots-checked) → X8 SOTA ingredient NER on A100 (VPN) over all recipe sources.
 - **Approver:** Kush.
+
+### D-010 · 2026-10-18 · Ledger version timestamps
+- Before S035, `LedgerStore.upsert` revisions inherited the record's original `created_at`; from S035 every new version gets its own timestamp.
+- Older history is not rewritten (append-only). Version number is the authoritative order; pre-S035 `created_at` on v≥2 means "v1 time".
+- **Approver:** Claude (bug fix; Kush/Parv informed via WORKLOG).

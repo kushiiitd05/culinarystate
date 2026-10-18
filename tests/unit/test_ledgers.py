@@ -245,3 +245,12 @@ def test_e3_tier_origin_rules():
              provenance={"method": "LLM", "source_ids": [i("SRC")], "locator": "p3"})
     assert any("E3" in e for e in errors(llm))
     assert errors(ex("EVD", origin_type="AUTHORITY_STANDARD"))
+
+
+def test_upsert_revision_gets_its_own_timestamp(tmp_path):
+    st = LedgerStore(tmp_path)
+    rid = st.ids.mint("ING", key="okra")
+    first = st.upsert(ex("ING", id=rid, created_at="2020-01-01T00:00:00+00:00"))[1]
+    status, second = st.upsert({**first, "category": "VEGETABLE"})     # caller passes the old created_at along
+    assert status == "revised" and second["created_at"] != first["created_at"]
+    assert st.upsert({**second})[0] == "unchanged"
