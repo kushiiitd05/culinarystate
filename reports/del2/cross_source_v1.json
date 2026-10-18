@@ -1,0 +1,188 @@
+{
+ "L1 ingredient-level: USDA-RETN-R6 vs BOGNAR-2002": {
+  "overlap_cells": 67,
+  "ingredients": 4,
+  "steps": [
+   "roast"
+  ],
+  "nutrients": 17,
+  "mae_same_cell": 0.0751,
+  "median_ae": 0.05,
+  "share_within_0.10": 0.687,
+  "spearman": 0.611,
+  "mae_from_A_step_nutrient_mean": 0.0681,
+  "mae_B_global_mean": 0.1165,
+  "censored_share_a": 0.134,
+  "censored_share_b": 0.284,
+  "largest_disagreements": [
+   {
+    "step": "roast",
+    "nutrient": "copper",
+    "y_a": 0.95,
+    "y_b": 0.6,
+    "ingredient": "chicken"
+   },
+   {
+    "step": "roast",
+    "nutrient": "vitamin_b12",
+    "y_a": 0.65,
+    "y_b": 0.9,
+    "ingredient": "turkey"
+   },
+   {
+    "step": "roast",
+    "nutrient": "sodium",
+    "y_a": 0.75,
+    "y_b": 0.995,
+    "ingredient": "turkey"
+   },
+   {
+    "step": "roast",
+    "nutrient": "potassium",
+    "y_a": 0.75,
+    "y_b": 0.98,
+    "ingredient": "turkey"
+   },
+   {
+    "step": "roast",
+    "nutrient": "potassium",
+    "y_a": 0.8,
+    "y_b": 0.6,
+    "ingredient": "chicken"
+   },
+   {
+    "step": "roast",
+    "nutrient": "vitamin_b6",
+    "y_a": 0.8,
+    "y_b": 0.6,
+    "ingredient": "chicken"
+   },
+   {
+    "step": "roast",
+    "nutrient": "copper",
+    "y_a": 0.7,
+    "y_b": 0.9,
+    "ingredient": "turkey"
+   },
+   {
+    "step": "roast",
+    "nutrient": "magnesium",
+    "y_a": 0.8,
+    "y_b": 0.995,
+    "ingredient": "turkey"
+   },
+   {
+    "step": "roast",
+    "nutrient": "sodium",
+    "y_a": 0.75,
+    "y_b": 0.922,
+    "ingredient": "lamb"
+   },
+   {
+    "step": "roast",
+    "nutrient": "magnesium",
+    "y_a": 0.75,
+    "y_b": 0.922,
+    "ingredient": "pork"
+   }
+  ]
+ },
+ "L1 ingredient-level: USDA-RETN-R6 vs PHENOL-EXPLORER-3.6": {
+  "overlap_cells": 0
+ },
+ "L1 ingredient-level: BOGNAR-2002 vs PHENOL-EXPLORER-3.6": {
+  "overlap_cells": 0
+ },
+ "L2 food-group x step-family: USDA-RETN-R6 vs BOGNAR-2002": {
+  "overlap_cells": 249,
+  "ingredients": 4,
+  "steps": [
+   "BOIL",
+   "DRY_HEAT",
+   "FRY",
+   "STEAM",
+   "STEW"
+  ],
+  "nutrients": 17,
+  "mae_same_cell": 0.0831,
+  "median_ae": 0.0556,
+  "share_within_0.10": 0.695,
+  "spearman": 0.693,
+  "mae_from_A_step_nutrient_mean": 0.0966,
+  "mae_B_global_mean": 0.116,
+  "censored_share_a": 0.322,
+  "censored_share_b": 0.148,
+  "largest_disagreements": [
+   {
+    "step": "BOIL",
+    "nutrient": "copper",
+    "y_a": 0.95,
+    "y_b": 0.5,
+    "ingredient": "POULTRY"
+   },
+   {
+    "step": "BOIL",
+    "nutrient": "sodium",
+    "y_a": 0.838,
+    "y_b": 0.4,
+    "ingredient": "POULTRY"
+   },
+   {
+    "step": "BOIL",
+    "nutrient": "potassium",
+    "y_a": 0.922,
+    "y_b": 0.488,
+    "ingredient": "VEGETABLE"
+   },
+   {
+    "step": "BOIL",
+    "nutrient": "magnesium",
+    "y_a": 0.958,
+    "y_b": 0.6,
+    "ingredient": "VEGETABLE"
+   },
+   {
+    "step": "BOIL",
+    "nutrient": "vitamin_b12",
+    "y_a": 0.975,
+    "y_b": 0.633,
+    "ingredient": "VEGETABLE"
+   },
+   {
+    "step": "STEAM",
+    "nutrient": "vitamin_b12",
+    "y_a": 0.975,
+    "y_b": 0.633,
+    "ingredient": "VEGETABLE"
+   },
+   {
+    "step": "BOIL",
+    "nutrient": "potassium",
+    "y_a": 0.775,
+    "y_b": 0.45,
+    "ingredient": "POULTRY"
+   },
+   {
+    "step": "BOIL",
+    "nutrient": "vitamin_b2",
+    "y_a": 0.936,
+    "y_b": 0.662,
+    "ingredient": "VEGETABLE"
+   },
+   {
+    "step": "BOIL",
+    "nutrient": "vitamin_b6",
+    "y_a": 0.924,
+    "y_b": 0.662,
+    "ingredient": "VEGETABLE"
+   },
+   {
+    "step": "BOIL",
+    "nutrient": "folate",
+    "y_a": 0.76,
+    "y_b": 0.5,
+    "ingredient": "VEGETABLE"
+   }
+  ]
+ }
+}

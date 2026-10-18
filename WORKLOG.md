@@ -263,3 +263,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/ingest/{bognar`, `bognar_build`, `gutenberg`, `old_recipes}.py src/culinarystate/vocab/line_link.py tools/{ingest_bognar`, `crawl_gutenberg`, `ingest_gutenberg}.py reports/bognar_v1.md reports/del2/BOGNAR-2002_results.* tests/unit/test_{bognar`, `gutenberg`, `old_recipes`, `line_link}.py`
 - **Verified:** 298 tests; 0 invalid; 8/8 random cells match raw PDF text columns
 - **Next:** finish X4 ingest when crawl completes; cross-source DEL-2 (train USDA/PE, test Bognár); Bognár Part-1 yield tables
+
+### S039 · 2026-10-18 15:57 IST · DEL-2 · Cross-source agreement USDA vs Bognár (source-disjoint)
+- **Who:** Kush+Claude
+- **Did:** transition/cross_source.py: explicit harmonisation (nutrient keys, Bognár portion A, no breaded). L1 ingredient-level overlap 67 cells (roast poultry only): MAE 0.075, 69% within 0.10, Spearman 0.61. L2 food-group x step-family: 249 cells, MAE 0.083, median 0.056, 70% within 0.10, Spearman 0.69; USDA step-nutrient means predict Bognár (0.097) better than Bognár's global mean (0.116). Systematic conflict: minerals in boiled vegetables/poultry (USDA ~0.9 vs Bognár ~0.5).
+- **Files:** `src/culinarystate/transition/cross_source.py tools/run_cross_source.py reports/del2/cross_source_v1.* tests/unit/test_cross_source.py`
+- **Verified:** 300 tests pass
+- **Next:** X4 Gutenberg ingest after crawl; Bognár Part-1 yields; DEL-2 log-RF for PE
