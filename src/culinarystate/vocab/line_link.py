@@ -36,6 +36,20 @@ class LineLinker:
                     return hit
         return None
 
+    def mentions(self, text: str) -> list[str]:
+        """All non-overlapping ING mentions in free text, longest n-gram first, in reading order."""
+        words, out, i = norm(text).split(), [], 0
+        while i < len(words):
+            for n in range(min(self.max_n, len(words) - i), 0, -1):
+                hit = self.names.get(" ".join(words[i:i + n]))
+                if hit and " ".join(words[i:i + n]) not in self.unit_words:
+                    out.append(hit)
+                    i += n
+                    break
+            else:
+                i += 1
+        return out
+
     def link(self, text: str, links: list | None = None) -> tuple[str | None, str]:
         for a, b, target in links or []:
             for cand in (text[a:b], target):                  # shown text first: editors link lumped pages

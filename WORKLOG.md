@@ -256,3 +256,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/build_kg_edges.py ledgers/data/KGE.jsonl registry/kg/kg_edges_v1.csv reports/kg_edges_v1.md`
 - **Verified:** 289 tests; 0 invalid KGE; 2nd run 0 writes
 - **Next:** review PROC_FOLLOWED_BY (few edges, some odd pairs e.g. insert->rinse); X4 Gutenberg cookbooks
+
+### S038 · 2026-10-18 15:55 IST · X5/DEL-1 · Bognár (2002) retention factors -> EVD (third source family)
+- **Who:** Kush+Claude
+- **Did:** Downloaded BFE-R-02-03 PDF (KIT repository, sha pinned in SNAP); pdftotext -layout; parser recovers method columns from the A/B basis row (new method at each A or B-after-B, must equal header method count) and skips 11 tables with column-specific sub-variants (logged). 6,594 EVD rows (tier E3, DATABASE_AGGREGATE, TRUE_RETENTION, portion A/B modifier, estimated flag from preface list, 1.00 stored CENSORED GT_CAP 0.995), 36 SVAR, 123 COND (core temperature from table titles as CORE). Linker: 2,251 HIGH. DEL-2 on BOGNAR runs (D5 matrix-disjoint MAE 0.046 vs D0 0.062; process_disjoint degenerate). Gutenberg crawl (X4) running in background with zip downloads.
+- **Files:** `src/culinarystate/ingest/{bognar`, `bognar_build`, `gutenberg`, `old_recipes}.py src/culinarystate/vocab/line_link.py tools/{ingest_bognar`, `crawl_gutenberg`, `ingest_gutenberg}.py reports/bognar_v1.md reports/del2/BOGNAR-2002_results.* tests/unit/test_{bognar`, `gutenberg`, `old_recipes`, `line_link}.py`
+- **Verified:** 298 tests; 0 invalid; 8/8 random cells match raw PDF text columns
+- **Next:** finish X4 ingest when crawl completes; cross-source DEL-2 (train USDA/PE, test Bognár); Bognár Part-1 yield tables

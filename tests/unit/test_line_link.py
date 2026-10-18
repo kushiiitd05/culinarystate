@@ -14,3 +14,7 @@ def test_ngram_prefers_longest_and_head():
 def test_wiki_links_skip_units():
     text = "1 tablespoon oil"
     assert L.link(text, [(2, 12, "Tablespoon"), (13, 16, "Oil")]) == ("ING-4", "wiki_link")
+
+
+def test_mentions_longest_first():
+    assert L.mentions("Fry the red onions in oil, then add potatoes and mustard seed.") == ["ING-2", "ING-4", "ING-1", "ING-5"]
