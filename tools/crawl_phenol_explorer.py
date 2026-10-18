@@ -29,13 +29,27 @@ for p in range(2, last + 1):
 fps = sorted({r.fp_path for r in rows})
 log(f"list rows={len(rows)} fp_pages={len(fps)}")
 details = set()
+failures = []
+
+
+def safe_get(path):
+    try:
+        return f.get(path)
+    except Exception as e:  # noqa: BLE001 — log, skip, re-run later picks it up
+        failures.append(path)
+        log(f"FAILED {path}: {type(e).__name__}: {str(e)[:120]}")
+        return ""
+
+
 for i, fp in enumerate(fps, 1):
-    details |= {x.details_path for x in parse_food_processing(f.get(fp))}
+    details |= {x.details_path for x in parse_food_processing(safe_get(fp))}
     if i % 50 == 0:
         log(f"fp {i}/{len(fps)} details_so_far={len(details)} fetched={f.fetched}")
 log(f"fp done; details pages={len(details)}")
 for i, d in enumerate(sorted(details), 1):
-    f.get(d)
+    safe_get(d)
     if i % 100 == 0:
         log(f"details {i}/{len(details)} fetched={f.fetched}")
-log(f"DONE fetched_this_run={f.fetched} details={len(details)}")
+log(f"DONE fetched_this_run={f.fetched} details={len(details)} failures={len(failures)}")
+if failures:
+    sys.exit(2)

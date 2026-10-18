@@ -45,19 +45,23 @@ class CachedFetcher:
         p = self.path_for(path)
         if p.exists():
             return p.read_text(encoding="utf-8")
-        for attempt in range(4):
+        attempts = 7                       # backoff 15,30,60,120,240,300 s -> survives short network drops
+        for attempt in range(attempts):
             try:
                 r = self.session.get(BASE + path, timeout=60)
                 if r.status_code == 200:
                     break
-                if r.status_code in (429, 500, 502, 503, 504):
-                    time.sleep(10 * (attempt + 1))
-                    continue
-                r.raise_for_status()
-            except requests.RequestException:
-                if attempt == 3:
+                if r.status_code not in (429, 500, 502, 503, 504):
+                    r.raise_for_status()
+            except requests.ConnectionError:
+                if attempt == attempts - 1:
                     raise
-                time.sleep(10 * (attempt + 1))
+            except requests.Timeout:
+                if attempt == attempts - 1:
+                    raise
+            if attempt == attempts - 1:
+                r.raise_for_status()
+            time.sleep(min(300, 15 * 2 ** attempt))
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(r.text, encoding="utf-8")
         self.fetched += 1

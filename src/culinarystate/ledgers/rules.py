@@ -95,7 +95,14 @@ def rule_qnt(r: dict) -> list[str]:
     if norm.get("status") in {"MEASURED", "RANGE"} and (norm.get("unit") or "").lower() == "g":
         if unit_raw not in MASS_UNITS and not r.get("portion_id"):
             errs.append(f"grams from unit {unit_raw or '<none>'!r} require portion_id (POR-); else UNKNOWN")
-    if parsed.get("kind") == "QUALITATIVE" and norm.get("status") in {"MEASURED", "RANGE"}:
+    mass = r.get("mass_g") or {}
+    if mass.get("status") in {"MEASURED", "RANGE"} and unit_raw not in MASS_UNITS \
+            and r.get("conversion_method") not in {"SOURCE_STATED", "PORTION_RECORD"}:
+        errs.append("mass_g from a non-mass unit needs SOURCE_STATED mass or a PORTION_RECORD (POR-)")
+    if r.get("conversion_method") == "PORTION_RECORD" and not r.get("portion_id"):
+        errs.append("conversion_method PORTION_RECORD requires portion_id")
+    if parsed.get("kind") == "QUALITATIVE" and any(
+            (r.get(k) or {}).get("status") in {"MEASURED", "RANGE"} for k in ("normalized", "mass_g", "volume_ml")):
         errs.append("qualitative quantities (pinch, to taste) never get numeric totals")
     return errs
 

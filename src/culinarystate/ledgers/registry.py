@@ -225,7 +225,11 @@ _add("QNT", "parsed quantity expression", {
         "value": OPT_NUM, "low": OPT_NUM, "high": OPT_NUM, "multiplier": OPT_NUM,
         "unit_id": ref_or_null("UNIT"), "unit_raw": OPT_STR, "size": OPT_STR, "qualifier": OPT_STR,
         "package_size": QVALUE}},
-    "normalized": QVALUE,                     # g / mL / count, or UNKNOWN
+    "normalized": QVALUE,                     # primary channel: g / mL / count, or UNKNOWN
+    "mass_g": QVALUE, "volume_ml": QVALUE, "count": QVALUE,   # SSOT §235.7 channels; missing = UNKNOWN mask
+    "qualifiers": STR_LIST,                   # about, heaped, level, divided, optional, to taste …
+    "conversion_method": nullable(enum("EXACT_PHYSICAL", "LOCALE_CONVENTION", "SOURCE_STATED", "PORTION_RECORD",
+                                       "NONE")),
     "conversion_path": {"type": "array", "items": {"type": "string"}},
     "portion_id": ref_or_null("POR"),
     "q_level": enum(*QLEVELS),
