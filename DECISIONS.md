@@ -19,3 +19,9 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
 
 ### D-004 · 2026-10-18 · Interpreter = `/opt/anaconda3/bin/python` (base); heavy ML (transformers/lightgbm) = `recsys_env`. No new venvs.
 - **Approver:** standing user rule.
+
+### D-005 · 2026-10-18 · Scrape Phenol-Explorer retention-factor pages (H2 for this one target)
+- **Why:** retention factors (with per-publication before/after values, needed for DEL-1 study lineage and DEL-2 study-disjoint splits) are excluded from the bulk downloads.
+- **Checks:** robots.txt has no disallow; terms = free resource, commercial use/redistribution needs permission, cite Phenol-Explorer + original publications. ~1,900 pages, 1.5 s spacing, cached, never re-fetched.
+- **Storage:** raw HTML local-only (`data/raw/`, git-ignored); derived EVD rows committed with citation; SRC storage_rule DERIVED_ONLY.
+- **Approver:** Kush ("if possible you can scrape", 2026-10-18).

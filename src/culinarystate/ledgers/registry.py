@@ -320,6 +320,7 @@ _add("EVD", "state-change evidence atom (W4)", {
     "measurement_method_id": ref_or_null("MEAS"),
     "derived": {"type": "object", "additionalProperties": False, "properties": {
         "delta": QVALUE, "percent_change": QVALUE, "retention_factor": QVALUE, "log_fold_change": QVALUE,
+        "yield_factor": QVALUE,
         "direction": enum("INCREASE", "DECREASE", "NO_CHANGE", "MIXED", "UNKNOWN")}},
     "design": enum("CONTROLLED_EXPERIMENT", "OBSERVATIONAL", "DATABASE_AGGREGATE", "REVIEW", "AUTHORITY",
                    "UNKNOWN"),

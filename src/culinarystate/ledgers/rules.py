@@ -63,8 +63,10 @@ def rule_evd(r: dict) -> list[str]:
         errs.append("HUMAN_VERIFIED LLM-extracted row must be tier E4, not E5")
     if tier in {"E4", "E5"} and prov["method"] != "LLM":
         errs.append(f"tier {tier} means LLM-extracted; provenance.method must be LLM")
-    if tier == "E3" and r["origin_type"] not in {"DATABASE_AGGREGATE", "REVIEW_AGGREGATE"}:
-        errs.append("tier E3 is for database/review aggregates")
+    # E3 = database-curated: aggregates, or primary-study values imported from a curated database
+    curated_primary = r["origin_type"] == "PRIMARY_STUDY" and prov["method"] == "IMPORT"
+    if tier == "E3" and not (r["origin_type"] in {"DATABASE_AGGREGATE", "REVIEW_AGGREGATE"} or curated_primary):
+        errs.append("tier E3 is for database-curated rows (aggregate, or imported primary values)")
     if tier in {"E6", "E7"} and r["origin_type"] == "PRIMARY_STUDY":
         errs.append("E6/E7 are model/simulator outputs, not primary-study evidence")
     if tier in GROUNDED_TIERS and not prov.get("locator"):

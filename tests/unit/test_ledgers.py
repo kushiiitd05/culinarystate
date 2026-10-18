@@ -236,3 +236,12 @@ def test_store_does_not_mutate_input(tmp_path):
     snapshot = copy.deepcopy(rec)
     st.append(rec)
     assert rec == snapshot
+
+
+def test_e3_tier_origin_rules():
+    curated = ex("EVD", origin_type="PRIMARY_STUDY", study_id_status="PRESENT", study_ids=[i("STUDY")])
+    assert errors(curated) == []                                   # imported primary value from curated DB
+    llm = ex("EVD", origin_type="PRIMARY_STUDY", study_id_status="PRESENT", study_ids=[i("STUDY")],
+             provenance={"method": "LLM", "source_ids": [i("SRC")], "locator": "p3"})
+    assert any("E3" in e for e in errors(llm))
+    assert errors(ex("EVD", origin_type="AUTHORITY_STANDARD"))

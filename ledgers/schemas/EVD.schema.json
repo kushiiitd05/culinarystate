@@ -256,6 +256,16 @@
           "type": "string",
           "minLength": 1
         },
+        "food_group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "variety": {
           "anyOf": [
             {
@@ -369,6 +379,31 @@
           "minItems": 0,
           "uniqueItems": true
         },
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "step_process_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^PROC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "modifiers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "boolean",
+              "null"
+            ]
+          }
+        },
         "medium": {
           "anyOf": [
             {
@@ -446,6 +481,8 @@
             "HEADSPACE",
             "AS_CONSUMED",
             "TRUE_RETENTION",
+            "APPARENT_RETENTION",
+            "RETENTION_TR_OR_AR",
             "UNKNOWN"
           ]
         }
@@ -545,6 +582,7 @@
                     "LT_LOD",
                     "LT_LOQ",
                     "GT_ULOQ",
+                    "GT_CAP",
                     "ND"
                   ]
                 },
@@ -782,6 +820,7 @@
                     "LT_LOD",
                     "LT_LOQ",
                     "GT_ULOQ",
+                    "GT_CAP",
                     "ND"
                   ]
                 },
@@ -1034,6 +1073,7 @@
                         "LT_LOD",
                         "LT_LOQ",
                         "GT_ULOQ",
+                        "GT_CAP",
                         "ND"
                       ]
                     },
@@ -1271,6 +1311,7 @@
                         "LT_LOD",
                         "LT_LOQ",
                         "GT_ULOQ",
+                        "GT_CAP",
                         "ND"
                       ]
                     },
@@ -1508,6 +1549,7 @@
                         "LT_LOD",
                         "LT_LOQ",
                         "GT_ULOQ",
+                        "GT_CAP",
                         "ND"
                       ]
                     },
@@ -1745,6 +1787,245 @@
                         "LT_LOD",
                         "LT_LOQ",
                         "GT_ULOQ",
+                        "GT_CAP",
+                        "ND"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "yield_factor": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "GT_CAP",
                         "ND"
                       ]
                     },
