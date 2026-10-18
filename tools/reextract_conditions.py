@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
-from culinarystate.evidence.conditions import extract_conditions  # noqa: E402
+from culinarystate.evidence.conditions import extract_conditions, mask_status  # noqa: E402
 from culinarystate.ledgers.store import LedgerStore  # noqa: E402
 
 PREFIX = "food after processing: "
@@ -22,7 +22,7 @@ for c in st.all_latest("COND"):
     temps = extract_conditions(loc[len(PREFIX):])["temperatures"]
     if temps == (c.get("temperatures") or []):
         continue
-    mask = {**c["completeness_mask"], "temperature": temps[0]["value"]["status"] if temps else "UNKNOWN"}
+    mask = {**c["completeness_mask"], "temperature": mask_status(temps[0]["value"]) if temps else "UNKNOWN"}
     new = {**c, "completeness_mask": mask}
     new.pop("temperatures", None)
     if temps:

@@ -72,3 +72,15 @@ def test_negative_temperatures_keep_sign():
     r = t("chilled at 4-6°C")[0]
     assert (r["low"], r["high"]) == (4.0, 6.0)                 # a range, not -6
     assert t("blanched at 95°C")[0]["value"] == 95.0
+
+
+def test_stated_bounds_and_approximations_keep_qualifier():
+    gt = extract_conditions("Pork, core temperature > 75 °C")["temperatures"][0]["value"]
+    assert gt == {"status": "CENSORED", "censor": {"kind": "GT_STATED", "limit": 75.0}, "unit": "degC", "raw": "> 75 °C"}
+    lt = extract_conditions("stored below 4 °C")["temperatures"][0]["value"]
+    assert lt["censor"] == {"kind": "LT_STATED", "limit": 4.0} and lt["raw"] == "below 4 °C"
+    ap = extract_conditions("core temperature ~ 66 °C")["temperatures"][0]["value"]
+    assert ap == {"status": "MEASURED", "value": 66.0, "unit": "degC", "raw": "~ 66 °C"}
+    assert extract_conditions("a temperature of around 100°C")["temperatures"][0]["value"]["raw"] == "around 100°C"
+    assert extract_conditions("heated to -18 °C")["temperatures"][0]["value"]["raw"] == "-18 °C"
+    assert extract_conditions("boiled 10 min 100 °C")["temperatures"][0]["value"]["status"] == "MEASURED"   # "min" = minutes

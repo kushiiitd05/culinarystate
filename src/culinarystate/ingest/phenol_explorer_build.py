@@ -12,7 +12,7 @@ import hashlib
 import re
 from collections import Counter
 
-from culinarystate.evidence.conditions import extract_conditions, total_duration
+from culinarystate.evidence.conditions import extract_conditions, mask_status, total_duration
 from culinarystate.ingest.phenol_explorer import Details, FoodRow, PubValue
 from culinarystate.ledgers.store import LedgerStore
 
@@ -107,7 +107,7 @@ def cond_record(store: LedgerStore, db_src: str, key: str, food_after: str, proc
     mask["duration"] = dur["status"]
     if c["temperatures"]:
         rec["temperatures"] = c["temperatures"]
-        mask["temperature"] = c["temperatures"][0]["value"]["status"]
+        mask["temperature"] = mask_status(c["temperatures"][0]["value"])
     if c["power"]:
         rec["power"] = c["power"][0]
         mask["power"] = c["power"][0]["status"]

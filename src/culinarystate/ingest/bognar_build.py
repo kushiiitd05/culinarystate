@@ -7,7 +7,8 @@ from __future__ import annotations
 
 from collections import Counter
 
-from culinarystate.evidence.conditions import extract_conditions
+from culinarystate.evidence.conditions import extract_conditions, mask_status
+from culinarystate.evidence.linker import keep_linker_fields
 from culinarystate.ingest.acquire import Snapshot
 from culinarystate.ledgers.store import LedgerStore
 
@@ -69,7 +70,7 @@ def build(st: LedgerStore, rows: list[RetRow], snap: Snapshot) -> Counter:
             rec = {**_env(st, "COND", f"bognar:T{r.table}:{r.method}", [src_id], locator=f"Part 2 table {r.table}"),
                    "duration": {"status": "UNKNOWN", "raw": None},
                    "completeness_mask": {"duration": "UNKNOWN", "ph": "UNKNOWN", "moisture": "UNKNOWN",
-                                         "temperature": temps[0]["value"]["status"] if temps else "UNKNOWN"}}
+                                         "temperature": mask_status(temps[0]["value"]) if temps else "UNKNOWN"}}
             if temps:
                 rec["temperatures"] = temps
             if MEDIUM.get(r.method):
@@ -98,5 +99,5 @@ def build(st: LedgerStore, rows: list[RetRow], snap: Snapshot) -> Counter:
                "derived": {"retention_factor": rf, "direction": "DECREASE" if v < 1.0 else "UNKNOWN"},
                "design": "DATABASE_AGGREGATE", "tier": "E3", "applicability": "GENERIC", "censored": v >= 1.0,
                "independence_group": FAMILY}
-        counts[("EVD", st.upsert(rec)[0])] += 1
+        counts[("EVD", st.upsert(keep_linker_fields(st.latest(rec["id"]), rec))[0])] += 1
     return counts

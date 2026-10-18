@@ -79,3 +79,15 @@ class IngredientLinker:
         if len(top) == 1 and not extra and chosen not in self.polysemous:
             return IngLink(self.concepts[chosen][0], chosen, "HIGH")
         return IngLink(self.concepts[chosen][0], chosen, "MEDIUM", tuple(top[1:4]) + tuple(sorted(extra))[:3])
+
+
+def keep_linker_fields(prev: dict | None, rec: dict) -> dict:
+    """Builders rewrite EVD from source; fields owned by link_evidence / review tools carry over (RUNBOOK §4)."""
+    if not prev:
+        return rec
+    m = {**rec["matrix"], "ingredient_id": prev["matrix"].get("ingredient_id")}
+    p = {**rec["process"], **{k: prev["process"][k] for k in ("process_id", "step_process_ids") if k in prev["process"]}}
+    out = {**rec, "matrix": m, "process": p}
+    if (prev.get("verification") or {}).get("status", "UNVERIFIED") != "UNVERIFIED":
+        out["verification"] = prev["verification"]
+    return out

@@ -20,6 +20,11 @@ POWER_RE = re.compile(rf"{_RANGE}\s*(W|watts?|kW)\b", re.IGNORECASE)
 PRESSURE_RE = re.compile(rf"{_RANGE}\s*(MPa|kPa|bar|atm|psi)\b", re.IGNORECASE)
 QUAL_HEAT_RE = re.compile(r"\b(low|medium|moderate|high|gentle|full)[- ](?:high[- ])?(heat|flame|power|setting)\b",
                           re.IGNORECASE)
+# a qualifier written right before a temperature: bounds become CENSORED (GT/LT_STATED), approximations stay MEASURED;
+# the qualifier is kept in `raw` either way
+QUALIFIER_RE = re.compile(r"(?:(?P<gt>>|≥|\b(?:above|over|more than|at least|exceeding|minimum))|"     # not "min"/"max":
+                          r"(?P<lt><|≤|\b(?:below|under|less than|up to|maximum))|"        # "10 min 100 °C"
+                          r"(?P<ap>~|≈|ca\.|\b(?:approx\.?|approximately|about|around|circa)))\s*$", re.IGNORECASE)
 LOCATION_WORDS = (("core", "CORE"), ("internal", "CORE"), ("centre", "CORE"), ("center", "CORE"),
                   ("surface", "SURFACE"), ("oil", "MEDIUM"), ("water", "MEDIUM"), ("oven", "SETPOINT"))
 
@@ -57,8 +62,15 @@ def extract_conditions(text: str) -> dict:
     for m in TEMP_RE.finditer(text):
         lo, hi = _f(m.group(1)), (_f(m.group(2)) if m.group(2) else None)
         unit = "degC" if m.group(3).upper() == "C" else "degF"
-        out["temperatures"].append({"location": _location(text, m.start()),
-                                    "value": _qv(lo, hi, unit, m.group(0))})
+        q = QUALIFIER_RE.search(text[max(0, m.start() - 20):m.start()]) if hi is None else None
+        raw = text[m.start() - len(q.group(0)):m.end()] if q else m.group(0)
+        if q and (q["gt"] or q["lt"]):
+            value = {"status": "CENSORED", "censor": {"kind": "GT_STATED" if q["gt"] else "LT_STATED", "limit": lo},
+                     "unit": unit, "raw": raw}
+        else:
+            value = _qv(lo, hi, unit, raw)
+        out["temperatures"].append({"location": _location(text, m.start() - (len(q.group(0)) if q else 0)),
+                                    "value": value})
     for m in DUR_RE.finditer(text):
         k = _TO_MIN[m.group(3).lower()]
         lo = _f(m.group(1)) * k
@@ -72,6 +84,11 @@ def extract_conditions(text: str) -> dict:
     for m in QUAL_HEAT_RE.finditer(text):
         out["qualitative"].append({"status": "QUALITATIVE", "qualitative": m.group(0).lower(), "raw": m.group(0)})
     return out
+
+
+def mask_status(value: dict) -> str:
+    """Completeness-mask status for a QVALUE: a stated bound (CENSORED) is a half-open interval -> RANGE."""
+    return "RANGE" if value["status"] == "CENSORED" else value["status"]
 
 
 def total_duration(durations: list[dict]) -> dict:

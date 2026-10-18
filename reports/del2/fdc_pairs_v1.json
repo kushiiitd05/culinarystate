@@ -1,0 +1,391 @@
+{
+ "pairs": 867,
+ "pairs_with_ratio": 867,
+ "ratio_rows": 16365,
+ "analytical_rows": 4984,
+ "pairs_linked_to_ING": 830,
+ "methods": {
+  "roast": 211,
+  "braise": 168,
+  "boil": 127,
+  "grill": 112,
+  "broil": 82,
+  "cook": 73,
+  "fry": 30,
+  "simmer": 24,
+  "stew": 24,
+  "bake": 9,
+  "steam": 5,
+  "microwave": 2
+ },
+ "L1 ingredient x step: R6 vs FDC dry-basis (all)": {
+  "overlap_cells": 347,
+  "ingredients": 8,
+  "steps": [
+   "braise",
+   "broil",
+   "cook",
+   "fry",
+   "roast",
+   "simmer"
+  ],
+  "nutrients": 17,
+  "mae_same_cell": 0.1673,
+  "median_ae": 0.0994,
+  "share_within_0.10": 0.507,
+  "spearman": 0.521,
+  "mae_from_A_step_nutrient_mean": 0.1662,
+  "mae_B_global_mean": 0.2769,
+  "censored_share_a": 0.207,
+  "censored_share_b": 0.0,
+  "largest_disagreements": [
+   {
+    "ingredient_id": "ING-002106",
+    "step": "broil",
+    "nutrient": "folate",
+    "y_a": 0.75,
+    "y_b": 3.733
+   },
+   {
+    "ingredient_id": "ING-000374",
+    "step": "fry",
+    "nutrient": "vitamin_a",
+    "y_a": 0.75,
+    "y_b": 2.319
+   },
+   {
+    "ingredient_id": "ING-000374",
+    "step": "broil",
+    "nutrient": "folate",
+    "y_a": 0.85,
+    "y_b": 2.387
+   },
+   {
+    "ingredient_id": "ING-002106",
+    "step": "braise",
+    "nutrient": "carotenoids",
+    "y_a": 0.775,
+    "y_b": 1.856
+   },
+   {
+    "ingredient_id": "ING-000374",
+    "step": "fry",
+    "nutrient": "calcium",
+    "y_a": 0.75,
+    "y_b": 1.667
+   },
+   {
+    "ingredient_id": "ING-002106",
+    "step": "fry",
+    "nutrient": "folate",
+    "y_a": 0.8,
+    "y_b": 1.686
+   },
+   {
+    "ingredient_id": "ING-002106",
+    "step": "broil",
+    "nutrient": "potassium",
+    "y_a": 0.85,
+    "y_b": 1.733
+   },
+   {
+    "ingredient_id": "ING-002106",
+    "step": "fry",
+    "nutrient": "carotenoids",
+    "y_a": 0.75,
+    "y_b": 1.626
+   },
+   {
+    "ingredient_id": "ING-000080",
+    "step": "fry",
+    "nutrient": "vitamin_c",
+    "y_a": 0.8,
+    "y_b": 0.0
+   },
+   {
+    "ingredient_id": "ING-000080",
+    "step": "roast",
+    "nutrient": "vitamin_c",
+    "y_a": 0.8,
+    "y_b": 0.0
+   }
+  ]
+ },
+ "L2 group x step-family: R6 vs FDC dry-basis (all)": {
+  "overlap_cells": 246,
+  "ingredients": 6,
+  "steps": [
+   "BOIL",
+   "DRY_HEAT",
+   "FRY",
+   "STEAM",
+   "STEW"
+  ],
+  "nutrients": 17,
+  "mae_same_cell": 0.1629,
+  "median_ae": 0.0856,
+  "share_within_0.10": 0.537,
+  "spearman": 0.432,
+  "mae_from_A_step_nutrient_mean": 0.1696,
+  "mae_B_global_mean": 0.1861,
+  "censored_share_a": 0.315,
+  "censored_share_b": 0.0,
+  "largest_disagreements": [
+   {
+    "ingredient_id": "FISH",
+    "step": "FRY",
+    "nutrient": "sodium",
+    "y_a": 0.975,
+    "y_b": 2.729
+   },
+   {
+    "ingredient_id": "FRUIT",
+    "step": "FRY",
+    "nutrient": "vitamin_b6",
+    "y_a": 0.9,
+    "y_b": 2.295
+   },
+   {
+    "ingredient_id": "FRUIT",
+    "step": "DRY_HEAT",
+    "nutrient": "folate",
+    "y_a": 0.6,
+    "y_b": 1.9
+   },
+   {
+    "ingredient_id": "VEGETABLE",
+    "step": "BOIL",
+    "nutrient": "vitamin_b12",
+    "y_a": 0.975,
+    "y_b": 0.0
+   },
+   {
+    "ingredient_id": "VEGETABLE",
+    "step": "FRY",
+    "nutrient": "vitamin_b12",
+    "y_a": 0.975,
+    "y_b": 0.0
+   },
+   {
+    "ingredient_id": "VEGETABLE",
+    "step": "DRY_HEAT",
+    "nutrient": "vitamin_b12",
+    "y_a": 0.975,
+    "y_b": 0.0
+   },
+   {
+    "ingredient_id": "FISH",
+    "step": "FRY",
+    "nutrient": "folate",
+    "y_a": 0.872,
+    "y_b": 1.74
+   },
+   {
+    "ingredient_id": "POULTRY",
+    "step": "FRY",
+    "nutrient": "vitamin_c",
+    "y_a": 0.812,
+    "y_b": 0.0
+   },
+   {
+    "ingredient_id": "POULTRY",
+    "step": "DRY_HEAT",
+    "nutrient": "vitamin_c",
+    "y_a": 0.8,
+    "y_b": 0.0
+   },
+   {
+    "ingredient_id": "MEAT",
+    "step": "BOIL",
+    "nutrient": "vitamin_c",
+    "y_a": 0.796,
+    "y_b": 0.0
+   }
+  ]
+ },
+ "L1 ingredient x step: R6 vs FDC dry-basis (analytical)": {
+  "overlap_cells": 283,
+  "ingredients": 7,
+  "steps": [
+   "braise",
+   "broil",
+   "cook",
+   "fry",
+   "roast",
+   "simmer"
+  ],
+  "nutrients": 17,
+  "mae_same_cell": 0.1408,
+  "median_ae": 0.0974,
+  "share_within_0.10": 0.53,
+  "spearman": 0.494,
+  "mae_from_A_step_nutrient_mean": 0.1292,
+  "mae_B_global_mean": 0.1691,
+  "censored_share_a": 0.226,
+  "censored_share_b": 0.0,
+  "largest_disagreements": [
+   {
+    "ingredient_id": "ING-002106",
+    "step": "fry",
+    "nutrient": "folate",
+    "y_a": 0.8,
+    "y_b": 2.031
+   },
+   {
+    "ingredient_id": "ING-002106",
+    "step": "braise",
+    "nutrient": "carotenoids",
+    "y_a": 0.775,
+    "y_b": 1.856
+   },
+   {
+    "ingredient_id": "ING-002106",
+    "step": "fry",
+    "nutrient": "carotenoids",
+    "y_a": 0.75,
+    "y_b": 1.626
+   },
+   {
+    "ingredient_id": "ING-000267",
+    "step": "simmer",
+    "nutrient": "vitamin_a",
+    "y_a": 0.775,
+    "y_b": 0.0
+   },
+   {
+    "ingredient_id": "ING-000080",
+    "step": "fry",
+    "nutrient": "vitamin_c",
+    "y_a": 0.8,
+    "y_b": 0.102
+   },
+   {
+    "ingredient_id": "ING-000246",
+    "step": "cook",
+    "nutrient": "vitamin_c",
+    "y_a": 0.85,
+    "y_b": 0.258
+   },
+   {
+    "ingredient_id": "ING-000374",
+    "step": "fry",
+    "nutrient": "calcium",
+    "y_a": 0.75,
+    "y_b": 1.295
+   },
+   {
+    "ingredient_id": "ING-000267",
+    "step": "broil",
+    "nutrient": "calcium",
+    "y_a": 0.975,
+    "y_b": 0.431
+   },
+   {
+    "ingredient_id": "ING-002106",
+    "step": "braise",
+    "nutrient": "vitamin_a",
+    "y_a": 0.775,
+    "y_b": 1.31
+   },
+   {
+    "ingredient_id": "ING-002106",
+    "step": "fry",
+    "nutrient": "vitamin_a",
+    "y_a": 0.75,
+    "y_b": 1.244
+   }
+  ]
+ },
+ "L2 group x step-family: R6 vs FDC dry-basis (analytical)": {
+  "overlap_cells": 190,
+  "ingredients": 4,
+  "steps": [
+   "BOIL",
+   "DRY_HEAT",
+   "FRY",
+   "STEAM",
+   "STEW"
+  ],
+  "nutrients": 17,
+  "mae_same_cell": 0.1991,
+  "median_ae": 0.1093,
+  "share_within_0.10": 0.458,
+  "spearman": 0.308,
+  "mae_from_A_step_nutrient_mean": 0.1962,
+  "mae_B_global_mean": 0.2145,
+  "censored_share_a": 0.328,
+  "censored_share_b": 0.0,
+  "largest_disagreements": [
+   {
+    "ingredient_id": "VEGETABLE",
+    "step": "FRY",
+    "nutrient": "vitamin_b1",
+    "y_a": 0.85,
+    "y_b": 5.523
+   },
+   {
+    "ingredient_id": "VEGETABLE",
+    "step": "DRY_HEAT",
+    "nutrient": "carotenoids",
+    "y_a": 0.945,
+    "y_b": 3.232
+   },
+   {
+    "ingredient_id": "FRUIT",
+    "step": "FRY",
+    "nutrient": "vitamin_b6",
+    "y_a": 0.9,
+    "y_b": 2.295
+   },
+   {
+    "ingredient_id": "FRUIT",
+    "step": "DRY_HEAT",
+    "nutrient": "folate",
+    "y_a": 0.6,
+    "y_b": 1.9
+   },
+   {
+    "ingredient_id": "VEGETABLE",
+    "step": "FRY",
+    "nutrient": "vitamin_c",
+    "y_a": 0.785,
+    "y_b": 0.0
+   },
+   {
+    "ingredient_id": "POULTRY",
+    "step": "FRY",
+    "nutrient": "vitamin_c",
+    "y_a": 0.812,
+    "y_b": 0.102
+   },
+   {
+    "ingredient_id": "MEAT",
+    "step": "FRY",
+    "nutrient": "folate",
+    "y_a": 0.712,
+    "y_b": 1.36
+   },
+   {
+    "ingredient_id": "FRUIT",
+    "step": "FRY",
+    "nutrient": "vitamin_c",
+    "y_a": 0.7,
+    "y_b": 0.102
+   },
+   {
+    "ingredient_id": "FRUIT",
+    "step": "DRY_HEAT",
+    "nutrient": "sodium",
+    "y_a": 0.975,
+    "y_b": 0.394
+   },
+   {
+    "ingredient_id": "FRUIT",
+    "step": "DRY_HEAT",
+    "nutrient": "iron",
+    "y_a": 0.975,
+    "y_b": 0.402
+   }
+  ]
+ }
+}

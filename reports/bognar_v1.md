@@ -3,7 +3,7 @@
 - PDF sha256 0d7b7fbc2326b74a…, 1,554,156 bytes; parsed value cells 6,686; EVD rows (non '-') 6,594
 - tables parsed: 28 of 39; methods: {'boil': 1020, 'stew': 175, 'fry in oven': 1100, 'stew, braise': 776, 'fry in pan': 1344, 'deep fry': 914, 'steam': 984, 'in oven': 72, 'frying in pan': 70, 'bake in oven': 139}
 - values = 1.00 stored CENSORED (≥ cap / possible default): 3,274; constituents flagged estimated (preface list): 2,048
-- ledger writes: {('SRC', 'created'): 1, ('SNAP', 'created'): 1, ('MEAS', 'created'): 1, ('SVAR', 'created'): 36, ('COND', 'created'): 123, ('EVD', 'created'): 6594}
+- ledger writes: {('SRC', 'unchanged'): 1, ('SNAP', 'unchanged'): 1, ('MEAS', 'unchanged'): 1, ('SVAR', 'unchanged'): 36, ('COND', 'unchanged'): 123, ('EVD', 'unchanged'): 6594}
 
 Skipped / problems:
 - table 2: column-specific sub-variants (b)/c) etc.) — skipped
