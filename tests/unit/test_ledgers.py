@@ -254,3 +254,13 @@ def test_upsert_revision_gets_its_own_timestamp(tmp_path):
     status, second = st.upsert({**first, "category": "VEGETABLE"})     # caller passes the old created_at along
     assert status == "revised" and second["created_at"] != first["created_at"]
     assert st.upsert({**second})[0] == "unchanged"
+
+
+def test_kge_object_rules():
+    assert errors(ex("KGE", object_id=None)) != []                               # id predicate needs object_id
+    cat = ex("KGE", predicate="ING_HAS_CATEGORY", subject_id=i("ING"), object_id=None, object_value="DAIRY",
+             method="ONTOLOGY")
+    assert errors(cat) == []
+    timer = ex("KGE", predicate="PROC_TYPICAL_DURATION", object_id=None, method="TEXT_CONDITION")
+    assert errors(timer) != []                                                    # needs quantiles
+    assert errors({**timer, "quantiles": {"n": 40, "unit": "min", "p10": 5, "p50": 10, "p90": 20}}) == []

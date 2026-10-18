@@ -167,9 +167,33 @@ def rule_model(r: dict) -> list[str]:
     return []
 
 
+VALUE_PREDICATES = {"ING_HAS_CATEGORY", "ING_USED_IN_CUISINE", "PROC_IN_FAMILY", "TOOL_HAS_CATEGORY",
+                    "COMPONENT_CONTAINS_ING"}
+STAT_PREDICATES = {"PROC_TYPICAL_DURATION", "PROC_TYPICAL_TEMPERATURE"}
+
+
+def rule_kge(r: dict) -> list[str]:
+    errs = []
+    has_id, has_val = bool(r.get("object_id")), bool(r.get("object_value"))
+    if r["predicate"] in STAT_PREDICATES:
+        if not r.get("quantiles"):
+            errs.append(f"{r['predicate']} needs quantiles")
+    elif r["predicate"] in VALUE_PREDICATES:
+        if not has_val:
+            errs.append(f"{r['predicate']} needs object_value")
+    elif has_id == has_val or not has_id:
+        errs.append(f"{r['predicate']} needs object_id (and no object_value)")
+    if r["method"] in ("CO_OCCURRENCE", "SEQUENCE") and r["support"]["recipes"] < 1:
+        errs.append("statistical edge needs recipe support ≥ 1")
+    if r["confidence_band"] == "HIGH" and r["method"] == "LLM" and r["verification"]["status"] != "HUMAN_VERIFIED":
+        errs.append("LLM-proposed edges cannot be HIGH confidence without human verification")
+    return errs
+
+
 RULES: dict[str, list[Rule]] = {
     "EVD": [rule_evd], "QNT": [rule_qnt], "POR": [rule_por], "IMAP": [rule_imap], "COND": [rule_cond],
     "STATE": [rule_state], "ALLERGEN": [rule_allergen], "CLM": [rule_clm], "MODEL": [rule_model],
+    "KGE": [rule_kge],
 }
 UNIVERSAL: list[Rule] = [rule_human_verification, rule_supersession]
 

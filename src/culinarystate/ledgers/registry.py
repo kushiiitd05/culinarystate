@@ -400,4 +400,27 @@ _add("CLM", "final claim with support", {
     "approval": enum("DRAFT", "HUMAN_APPROVED", "REJECTED"), "approved_by": OPT_STR,
 }, ["statement", "claim_type", "approval"])
 
+# ---------------- concept-level knowledge-graph edges (X3c, D-011) ----------------
+KGE_PREDICATES = ["ING_HAS_CATEGORY", "ING_PARENT", "ING_PROCESSED_BY", "ING_CO_OCCURS", "ING_USED_IN_CUISINE",
+                  "ING_MEASURED_IN_UNIT", "COMPONENT_CONTAINS_ING", "PROC_USES_TOOL", "PROC_FOLLOWED_BY",
+                  "PROC_TYPICAL_DURATION", "PROC_TYPICAL_TEMPERATURE", "PROC_IN_FAMILY", "TOOL_HAS_CATEGORY"]
+ANY_ID = {"type": "string", "pattern": r"^[A-Z]{2,8}-\d{6}$"}
+_QUANT = {"type": "object", "additionalProperties": False, "required": ["n", "unit"],
+          "properties": {"n": INT0, "unit": STR, "p10": NUM, "p50": NUM, "p90": NUM, "min": NUM, "max": NUM}}
+_add("KGE", "typed concept-level edge with support, association and confidence", {
+    "predicate": enum(*KGE_PREDICATES), "subject_id": ANY_ID, "object_id": nullable(ANY_ID),
+    "object_value": OPT_STR,
+    "support": {"type": "object", "additionalProperties": False, "required": ["recipes"],
+                "properties": {"recipes": INT0, "mentions": INT0, "subject_recipes": INT0, "object_recipes": INT0,
+                               "by_source_family": {"type": "object", "additionalProperties": INT0}}},
+    "association": {"type": "object", "additionalProperties": False,
+                    "properties": {"p_object_given_subject": NUM, "lift": NUM, "pmi": NUM}},
+    "quantiles": nullable(_QUANT),
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "confidence_band": enum("HIGH", "MEDIUM", "LOW"),
+    "method": enum("CO_OCCURRENCE", "SEQUENCE", "TEXT_CONDITION", "ONTOLOGY", "CURATED", "EDITOR_LINK", "STRUCTURAL",
+                   "LLM", "HUMAN"),
+    "corpus_ids": STR_LIST,
+}, ["predicate", "subject_id", "support", "confidence", "confidence_band", "method"])
+
 PREFIXES = tuple(R)

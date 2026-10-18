@@ -59,3 +59,9 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
 - Before S035, `LedgerStore.upsert` revisions inherited the record's original `created_at`; from S035 every new version gets its own timestamp.
 - Older history is not rewritten (append-only). Version number is the authoritative order; pre-S035 `created_at` on v≥2 means "v1 time".
 - **Approver:** Claude (bug fix; Kush/Parv informed via WORKLOG).
+
+### D-011 · 2026-10-18 · KGE ledger: typed concept-level edges with support + confidence (Kush: "link confidence, usage support, categories, timers")
+- New record type `KGE` (13 predicates: categories, parent, processed-by, co-occurs, cuisine, unit, component, proc↔tool, proc→next proc, typical duration/temperature, family).
+- Association confidence = 95% Wilson lower bound of P(object|subject); bands HIGH (support ≥ 30, lift ≥ 2) / MEDIUM (≥ 10, ≥ 1.5) / LOW. Quantile edges: n/(n+20).
+- LLM-proposed edges can never be HIGH without human verification (rule_kge).
+- **Approver:** Claude (schema addition; Kush/Parv to confirm).

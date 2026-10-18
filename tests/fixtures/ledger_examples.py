@@ -87,4 +87,8 @@ EXAMPLES: dict[str, dict] = {
     "RS": base("RS", spawn_status="QUEUED"),
     "CLM": base("CLM", statement="State-aware retrieval improves Recall@5", experiment_ids=[i("EXP")],
                 claim_type="COMPARATIVE", approval="DRAFT"),
+    "KGE": base("KGE", predicate="PROC_USES_TOOL", subject_id=i("PROC"), object_id=i("TOOL"),
+                support={"recipes": 120, "mentions": 150, "by_source_family": {"BBCGF-A1": 100, "WIKIBOOKS-COOKBOOK": 20}},
+                association={"p_object_given_subject": 0.4, "lift": 6.2}, confidence=0.36, confidence_band="HIGH",
+                method="CO_OCCURRENCE", corpus_ids=["BBCGF-A1", "WIKIBOOKS-COOKBOOK"]),
 }

@@ -37,7 +37,7 @@
 | X2b | ING duplicate merge (plural / "X cheese") | ING, ALIAS, downstream links | ✅ S033: 49 superseded → 1,951 active; 0 dangling refs |
 | X3 | Wikibooks Cookbook (CC BY-SA, API) | REC source family 2 (world + Indian) | ✅ S034: +3,676 REC (143 Indian), 97.7% lines linked, +97 ING, +155 aliases, 49k silver NER spans |
 | X3b | Wikibooks equipment (130) + technique (81) pages | TOOL / PROC crosswalk + new entries | ✅ S035: TOOL 76→116 (97 Wikibooks refs), PROC 148→156, 605 proc↔tool links |
-| X3c | Typed link sub-ledgers with support + confidence (ING↔PROC, PROC↔TOOL, PROC timers/temps, ING↔cuisine, components, categories) | KG layer for DEL-4/5 | next |
+| X3c | Typed link sub-ledgers with support + confidence (ING↔PROC, PROC↔TOOL, PROC timers/temps, ING↔cuisine, components, categories) | KG layer for DEL-4/5 | ⏳ S036: KGE schema+rules+stats+corpus adapter done; NEXT write tools/build_kg_edges.py |
 | X4 | Project Gutenberg cookbooks (public domain) | procedures, TOOL, PROC coverage | queued |
 | X5 | Bognár 2002 retention/yield tables (open access PDF) | EVD source family 3 → source-disjoint DEL-2 | queued |
 | X6 | Wikidata kitchenware (CC0) | TOOL QIDs + new tools | queued |

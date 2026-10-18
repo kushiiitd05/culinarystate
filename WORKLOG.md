@@ -242,3 +242,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/process/{tools`, `vocab}.py src/culinarystate/ledgers/store.py tools/build_{tool`, `process}_registry.py tests/unit/test_ledgers.py DECISIONS.md`
 - **Verified:** 283 tests; 0 invalid TOOL/PROC/EVD; full builder cycle 2nd pass 0 writes
 - **Next:** X3c typed link sub-ledgers with support/confidence
+
+### S036 · 2026-10-18 13:50 IST · X3c/P3 · KGE edge ledger foundation (schema, rules, stats, corpus adapter)
+- **Who:** Kush+Claude
+- **Did:** Added KGE record type (13 predicates) + rule_kge + example + tests; kg/edges.py (PairCounter with lift/PMI/Wilson confidence/bands/per-source support, quantiles for timer/temperature profiles); kg/corpus.py (BBC + Wikibooks unified RecipeView incl. components from sub-section groups). D-011.
+- **Files:** `src/culinarystate/ledgers/{registry`, `rules}.py src/culinarystate/kg/{__init__`, `corpus`, `edges}.py ledgers/schemas/KGE.schema.json tests/unit/test_kg_edges.py tests/unit/test_ledgers.py tests/fixtures/ledger_examples.py DECISIONS.md`
+- **Verified:** all tests pass
+- **Next:** tools/build_kg_edges.py: compute 13 predicates over BBC+Wikibooks, write KGE records (top-k per subject, min support), report reports/kg_edges_v1.md; then X4 Gutenberg

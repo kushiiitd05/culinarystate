@@ -1,0 +1,378 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/KGE.schema.json",
+  "title": "KGE- typed concept-level edge with support, association and confidence",
+  "description": "schema_version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^KGE-\\d{6}$"
+    },
+    "record_type": {
+      "const": "KGE"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^KGE-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "predicate": {
+      "type": "string",
+      "enum": [
+        "ING_HAS_CATEGORY",
+        "ING_PARENT",
+        "ING_PROCESSED_BY",
+        "ING_CO_OCCURS",
+        "ING_USED_IN_CUISINE",
+        "ING_MEASURED_IN_UNIT",
+        "COMPONENT_CONTAINS_ING",
+        "PROC_USES_TOOL",
+        "PROC_FOLLOWED_BY",
+        "PROC_TYPICAL_DURATION",
+        "PROC_TYPICAL_TEMPERATURE",
+        "PROC_IN_FAMILY",
+        "TOOL_HAS_CATEGORY"
+      ]
+    },
+    "subject_id": {
+      "type": "string",
+      "pattern": "^[A-Z]{2,8}-\\d{6}$"
+    },
+    "object_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Z]{2,8}-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "object_value": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "support": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recipes"
+      ],
+      "properties": {
+        "recipes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mentions": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "subject_recipes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "object_recipes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "by_source_family": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "association": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "p_object_given_subject": {
+          "type": "number"
+        },
+        "lift": {
+          "type": "number"
+        },
+        "pmi": {
+          "type": "number"
+        }
+      }
+    },
+    "quantiles": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "n",
+            "unit"
+          ],
+          "properties": {
+            "n": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1
+            },
+            "p10": {
+              "type": "number"
+            },
+            "p50": {
+              "type": "number"
+            },
+            "p90": {
+              "type": "number"
+            },
+            "min": {
+              "type": "number"
+            },
+            "max": {
+              "type": "number"
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "confidence_band": {
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "method": {
+      "type": "string",
+      "enum": [
+        "CO_OCCURRENCE",
+        "SEQUENCE",
+        "TEXT_CONDITION",
+        "ONTOLOGY",
+        "CURATED",
+        "EDITOR_LINK",
+        "STRUCTURAL",
+        "LLM",
+        "HUMAN"
+      ]
+    },
+    "corpus_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "predicate",
+    "subject_id",
+    "support",
+    "confidence",
+    "confidence_band",
+    "method"
+  ]
+}
