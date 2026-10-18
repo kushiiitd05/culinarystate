@@ -46,23 +46,36 @@ class IngLink:
     alternatives: tuple[str, ...] = ()
 
 
+BENIGN = {"unknown", "color", "colour", "species", "variety", "cultivar", "type", "pure", "highbush", "lowbush",
+          "whole", "raw", "fresh", "common", "grain"}
+FORM_TOKENS = {"juice", "jam", "oil", "flour", "puree", "purée", "paste", "powder", "seed", "peel", "skin", "leaf",
+               "sauce", "wine", "vinegar", "syrup", "extract", "grits", "bran", "flake", "meal"}
+FORM_TOKENS = {_sing(w) for w in FORM_TOKENS}            # same normalisation as toks() (grits -> grit)
+
+
 class IngredientLinker:
-    def __init__(self, concepts: dict[str, tuple[str, int]]):
-        """concepts: canonical_name -> (ING id, corpus frequency)."""
+    def __init__(self, concepts: dict[str, tuple[str, int]], polysemous: set[str] | None = None):
+        """concepts: canonical_name -> (ING id, corpus frequency); polysemous names never auto-link."""
         self.concepts = concepts
+        self.polysemous = polysemous or set()
         self.tok = {name: frozenset(toks(name)) for name in concepts}
 
     def link(self, matrix_raw: str) -> IngLink:
         name = re.sub(r"\s+", " ", re.sub(r"[^a-z ]", " ", matrix_raw.lower())).strip()
         if name in self.concepts:
-            return IngLink(self.concepts[name][0], name, "EXACT")
+            band = "MEDIUM" if name in self.polysemous else "EXACT"
+            return IngLink(self.concepts[name][0], name, band)
         mt = set(toks(matrix_raw))
-        # "Onion [Red]" -> also try bracket-first order tokens (already order-free via sets)
-        cands = [(len(t), n) for n, t in self.tok.items() if t and t <= mt]
+        first = matrix_raw.lower().split(",")[0]
+        head_seg = set(toks(re.sub(r"\[.*?\]", " ", first)))          # food segment without [qualifiers]
+        cands = [(len(t), n) for n, t in self.tok.items()
+                 if t and t <= mt and toks(n)[-1:] and toks(n)[-1] in head_seg]   # concept head must be the food
         if not cands:
             return IngLink(None, None, "NONE")
         best = max(c[0] for c in cands)
         top = sorted((n for k, n in cands if k == best), key=lambda n: (-self.concepts[n][1], n))
-        if len(top) == 1:
-            return IngLink(self.concepts[top[0]][0], top[0], "HIGH")
-        return IngLink(self.concepts[top[0]][0], top[0], "MEDIUM", tuple(top[1:4]))
+        chosen = top[0]
+        extra = (head_seg | (mt & FORM_TOKENS)) - self.tok[chosen] - BENIGN
+        if len(top) == 1 and not extra and chosen not in self.polysemous:
+            return IngLink(self.concepts[chosen][0], chosen, "HIGH")
+        return IngLink(self.concepts[chosen][0], chosen, "MEDIUM", tuple(top[1:4]) + tuple(sorted(extra))[:3])

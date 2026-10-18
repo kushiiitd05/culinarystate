@@ -17,3 +17,21 @@ def test_process_primary_is_heat_step():
     assert link_process(["boil", "drain"], pids) == ("PROC-1", ["PROC-1", "PROC-2"])
     assert link_process(["stir", "bake|simmer"], pids)[0] == "PROC-4"
     assert link_process(["drain"], pids) == ("PROC-2", ["PROC-2"])
+
+
+def test_linker_regressions_from_spot_check():
+    c = {"fat": ("I-f", 100), "grain": ("I-g", 50), "white": ("I-w", 10), "maize": ("I-m", 5),
+         "yellow pepper": ("I-yp", 40), "pepper": ("I-p", 400), "blackcurrant": ("I-b", 30), "blueberry": ("I-bb", 60)}
+    lk = IngredientLinker(c, polysemous={"pepper"})
+    assert lk.link("FINFISH,<5%FAT").band == "NONE"                      # 'fat' is not the food
+    assert lk.link("Maize, whole grain").concept == "maize"
+    assert lk.link("Maize [White]").concept == "maize"
+    assert lk.link("Chilli pepper C. pubescens [Yellow], raw").band == "MEDIUM"
+    assert lk.link("Blackcurrant, juice").band == "MEDIUM"                # form changes the matrix
+    assert lk.link("Highbush blueberry, raw").band == "HIGH"
+    assert lk.link("Pepper [Unknown color], raw").band == "MEDIUM"        # polysemous never auto-links
+
+
+def test_plural_form_token_downgrades():
+    lk = IngredientLinker({"buckwheat": ("I-1", 5)})
+    assert lk.link("Buckwheat, grits").band == "MEDIUM"

@@ -15,12 +15,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.evidence.linker import IngredientLinker, link_process  # noqa: E402
 from culinarystate.ledgers.store import LedgerStore  # noqa: E402
+from culinarystate.vocab.registry_build import POLYSEMOUS  # noqa: E402
 
 st = LedgerStore()
 proc_ids = {p["canonical_name"]: p["id"] for p in st.all_latest("PROC")}
 concepts = {r["canonical_name"]: (r["id"], r.get("corpus_frequency") or 0) for r in st.all_latest("ING")
             if r["status"] == "ACTIVE"}
-linker = IngredientLinker(concepts)
+linker = IngredientLinker(concepts, polysemous=set(POLYSEMOUS))
 
 counts, bands, review, cov = Counter(), Counter(), {}, Counter()
 cache: dict[str, object] = {}

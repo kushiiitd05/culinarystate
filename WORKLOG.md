@@ -172,3 +172,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/ingest_phenol_explorer.py`, `ledgers/data/EVD.jsonl`, `ledgers/data/COND.jsonl`, `ledgers/data/STUDY.jsonl`, `ledgers/data/SRC.jsonl`, `ledgers/data/SVAR.jsonl`
 - **Verified:** all rows schema+law validated on write; rerun all unchanged
 - **Next:** link EVD→ING/PROC; MOL/IMAP; queue refresh; EDA; DEL-2 on PE (study-disjoint possible)
+
+### S026 · 2026-10-18 12:12 IST · DEL-1/AH2/ledger-queue#5 · EVD → ING / PROC linking (strict) + registry adjective cleanup
+- **Who:** Kush+Claude
+- **Did:** evidence/linker.py + tools/link_evidence.py: every EVD step → PROC (primary = first heat step); ING link only if concept head is the food (first segment, brackets removed), no identity-changing extra tokens/forms (juice, jam, oil, grits…), not polysemous (pepper, squash) — else MEDIUM → review table. Spot-check caught FINFISH→'fat', Maize→'grain'/'white', Chinese bayberry→'chinese', Chilli pepper [Yellow]→'yellow pepper', Blackcurrant juice→blackcurrant, grits plural; all fixed with regression tests. Registry: colour/nationality words now adjective-only rejects (12 ING deprecated by new version).
+- **Files:** `src/culinarystate/evidence/linker.py`, `tools/link_evidence.py`, `src/culinarystate/vocab/registry_build.py`, `tests/unit/test_linker.py`, `registry/evidence/evd_ingredient_link_review.csv`, `registry/ingredients/`, `ledgers/data/`
+- **Verified:** EXACT+HIGH: USDA 3,978/7,018 (57%), PE 1,817/3,870 (47%); 94 matrices for human review; process linked 100% of mapped steps; rerun unchanged; pytest passes
+- **Next:** MOL/IMAP; refresh queue + data card + EDA

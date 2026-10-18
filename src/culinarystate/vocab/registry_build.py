@@ -37,7 +37,10 @@ NON_FOOD = re.compile(r"\b(cutter|tin|tray|paper|string|skewer[s]?|stick[s]? for
                       r"ice lolly stick|kitchen|baking parchment|twine|cling|board|bag|cake case[s]?)\b")
 FOOD_PART = re.compile(r"\b(skin[s]?|bone[s]?|pin bone[s]?|trimming[s]?|frond[s]?|carcass)\b")
 ADJECTIVE_ONLY = {"firm", "fresh", "large", "small", "medium", "ripe", "hot", "cold", "warm", "soft", "hard", "fine",
-                  "dry", "wet", "raw", "cooked", "whole", "half", "extra", "plain", "light", "dark", "granary"}
+                  "dry", "wet", "raw", "cooked", "whole", "half", "extra", "plain", "light", "dark", "granary",
+                  "white", "black", "red", "green", "yellow", "brown", "golden", "pink", "purple", "orange-fleshed",
+                  "chinese", "indian", "thai", "italian", "mexican", "french", "greek", "spanish", "japanese",
+                  "korean", "vietnamese", "british", "english", "american", "asian", "mediterranean", "middle eastern"}
 GENERIC_HEADS = set(FORM_WORDS) | {"mix", "mixture", "dough", "filling", "topping", "dressing"}
 
 
