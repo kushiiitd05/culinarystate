@@ -31,3 +31,8 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
 - **Also:** UK→US synonym table and polysemy list are AI-drafted linguistic aids, flagged for review.
 - **Network note:** home router DNS returns SERVFAIL for *.usda.gov; downloads used public-DNS-resolved IP pinning (`curl --resolve`). Not a site block.
 - **Approver:** Claude (process); humans own each link decision.
+
+### D-007 · 2026-10-18 · Gold files and adjudication sheets stay out of git (they contain BBC recipe text)
+- **Why:** third-party copyrighted text (D-003). Templates/gold live in `annotation/gold/` (git-ignored); share between Kush and Parv via private drive/zip. Committed: handbook, schema, examples (synthetic), agreement reports, derived metrics.
+- **Also:** gold recipe IDs are A1 `recipe_id`s (mapped by URL), not raw-file line numbers (they differ for 11,980/11,983 rows).
+- **Approver:** Claude (reversible; confirm with Kush/Parv).

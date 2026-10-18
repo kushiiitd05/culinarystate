@@ -1,0 +1,335 @@
+{
+  "schema_version": "gold-1.0",
+  "recipe_id": "GOLD-EX-002",
+  "source_ref": "synthetic handbook example",
+  "annotator": "Kush",
+  "status": "DONE",
+  "locale": "UK",
+  "ingredient_lines": [
+    {
+      "line_index": 0,
+      "text": "300g spaghetti",
+      "spans": [
+        {
+          "start": 0,
+          "end": 3,
+          "label": "QUANTITY",
+          "text": "300"
+        },
+        {
+          "start": 3,
+          "end": 4,
+          "label": "UNIT",
+          "text": "g"
+        },
+        {
+          "start": 5,
+          "end": 14,
+          "label": "FOOD",
+          "text": "spaghetti"
+        }
+      ],
+      "entity": "spaghetti",
+      "concept": "spaghetti"
+    },
+    {
+      "line_index": 1,
+      "text": "2 garlic cloves, sliced",
+      "spans": [
+        {
+          "start": 0,
+          "end": 1,
+          "label": "QUANTITY",
+          "text": "2"
+        },
+        {
+          "start": 2,
+          "end": 8,
+          "label": "FOOD",
+          "text": "garlic"
+        },
+        {
+          "start": 9,
+          "end": 15,
+          "label": "UNIT",
+          "text": "cloves"
+        },
+        {
+          "start": 17,
+          "end": 23,
+          "label": "FORM",
+          "text": "sliced"
+        }
+      ],
+      "entity": "garlic",
+      "concept": "garlic"
+    },
+    {
+      "line_index": 2,
+      "text": "3 tbsp olive oil",
+      "spans": [
+        {
+          "start": 0,
+          "end": 1,
+          "label": "QUANTITY",
+          "text": "3"
+        },
+        {
+          "start": 2,
+          "end": 6,
+          "label": "UNIT",
+          "text": "tbsp"
+        },
+        {
+          "start": 7,
+          "end": 16,
+          "label": "FOOD",
+          "text": "olive oil"
+        }
+      ],
+      "entity": "oil",
+      "concept": "olive oil"
+    },
+    {
+      "line_index": 3,
+      "text": "salt, to taste",
+      "spans": [
+        {
+          "start": 0,
+          "end": 4,
+          "label": "FOOD",
+          "text": "salt"
+        }
+      ],
+      "entity": "salt",
+      "concept": "salt"
+    }
+  ],
+  "steps": [
+    {
+      "step_index": 0,
+      "text": "Cook the spaghetti in a large pan of salted boiling water for 10 mins.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 4,
+          "label": "ACTION",
+          "text": "Cook"
+        },
+        {
+          "start": 24,
+          "end": 33,
+          "label": "TOOL",
+          "text": "large pan"
+        },
+        {
+          "start": 37,
+          "end": 57,
+          "label": "MEDIUM",
+          "text": "salted boiling water"
+        },
+        {
+          "start": 62,
+          "end": 69,
+          "label": "TIME",
+          "text": "10 mins"
+        }
+      ],
+      "events": [
+        {
+          "type": "Merge",
+          "inputs": [
+            "spaghetti",
+            "salt"
+          ],
+          "output": "pasta pot",
+          "process": "boil",
+          "medium": "salted boiling water",
+          "implicit": true
+        },
+        {
+          "type": "Transform",
+          "target": "pasta pot",
+          "process": "boil",
+          "time": "10 min",
+          "tool": "large pan"
+        }
+      ]
+    },
+    {
+      "step_index": 1,
+      "text": "Drain, reserving a mugful of the cooking water.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 5,
+          "label": "ACTION",
+          "text": "Drain"
+        },
+        {
+          "start": 7,
+          "end": 16,
+          "label": "ACTION",
+          "text": "reserving"
+        },
+        {
+          "start": 19,
+          "end": 25,
+          "label": "UNIT",
+          "text": "mugful"
+        }
+      ],
+      "events": [
+        {
+          "type": "Split",
+          "target": "pasta pot",
+          "outputs": [
+            {
+              "label": "pasta",
+              "fraction": null
+            },
+            {
+              "label": "cooking water",
+              "fraction": null
+            }
+          ]
+        },
+        {
+          "type": "Reserve",
+          "target": "cooking water",
+          "output": "reserved water",
+          "portion": "1 mug"
+        },
+        {
+          "type": "Discard",
+          "target": "cooking water",
+          "value": "drained water"
+        }
+      ],
+      "coref": [
+        {
+          "mention": "the cooking water",
+          "start": 29,
+          "end": 46,
+          "entity": "cooking water"
+        }
+      ]
+    },
+    {
+      "step_index": 2,
+      "text": "Meanwhile, gently fry the garlic in the oil until just golden.",
+      "spans": [
+        {
+          "start": 18,
+          "end": 21,
+          "label": "ACTION",
+          "text": "fry"
+        },
+        {
+          "start": 50,
+          "end": 61,
+          "label": "ENDPOINT",
+          "text": "just golden"
+        }
+      ],
+      "events": [
+        {
+          "type": "Merge",
+          "inputs": [
+            "garlic",
+            "oil"
+          ],
+          "output": "garlic oil",
+          "process": "fry"
+        },
+        {
+          "type": "Transform",
+          "target": "garlic oil",
+          "process": "fry",
+          "endpoint": "just golden",
+          "sets": {
+            "garlic_colour": "golden"
+          }
+        }
+      ],
+      "coref": [
+        {
+          "mention": "the garlic",
+          "start": 22,
+          "end": 32,
+          "entity": "garlic"
+        },
+        {
+          "mention": "the oil",
+          "start": 36,
+          "end": 43,
+          "entity": "oil"
+        }
+      ]
+    },
+    {
+      "step_index": 3,
+      "text": "Toss the pasta with the garlic oil, adding a splash of the reserved water to loosen.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 4,
+          "label": "ACTION",
+          "text": "Toss"
+        },
+        {
+          "start": 24,
+          "end": 34,
+          "label": "INTERMEDIATE",
+          "text": "garlic oil"
+        },
+        {
+          "start": 45,
+          "end": 51,
+          "label": "UNIT",
+          "text": "splash"
+        }
+      ],
+      "events": [
+        {
+          "type": "Merge",
+          "inputs": [
+            "pasta",
+            "garlic oil"
+          ],
+          "output": "dish",
+          "process": "toss"
+        },
+        {
+          "type": "Recombine",
+          "target": "reserved water",
+          "output": "dish"
+        }
+      ],
+      "coref": [
+        {
+          "mention": "the pasta",
+          "start": 5,
+          "end": 14,
+          "entity": "pasta"
+        },
+        {
+          "mention": "the reserved water",
+          "start": 55,
+          "end": 73,
+          "entity": "reserved water"
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    {
+      "what": "volume of a mugful",
+      "why": "mug is a non-standard vessel"
+    },
+    {
+      "what": "how much reserved water is used ('a splash')",
+      "why": "qualitative; whole reserve recombined"
+    }
+  ]
+}

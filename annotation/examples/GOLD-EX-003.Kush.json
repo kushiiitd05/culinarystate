@@ -1,0 +1,260 @@
+{
+  "schema_version": "gold-1.0",
+  "recipe_id": "GOLD-EX-003",
+  "source_ref": "synthetic handbook example",
+  "annotator": "Kush",
+  "status": "DONE",
+  "locale": "UK",
+  "ingredient_lines": [
+    {
+      "line_index": 0,
+      "text": "2 large carrots",
+      "spans": [
+        {
+          "start": 0,
+          "end": 1,
+          "label": "QUANTITY",
+          "text": "2"
+        },
+        {
+          "start": 2,
+          "end": 7,
+          "label": "SIZE",
+          "text": "large"
+        },
+        {
+          "start": 8,
+          "end": 15,
+          "label": "FOOD",
+          "text": "carrots"
+        }
+      ],
+      "entity": "carrots",
+      "concept": "carrot"
+    },
+    {
+      "line_index": 1,
+      "text": "1 red onion, cut into wedges",
+      "spans": [
+        {
+          "start": 0,
+          "end": 1,
+          "label": "QUANTITY",
+          "text": "1"
+        },
+        {
+          "start": 2,
+          "end": 11,
+          "label": "FOOD",
+          "text": "red onion"
+        },
+        {
+          "start": 13,
+          "end": 28,
+          "label": "FORM",
+          "text": "cut into wedges"
+        }
+      ],
+      "entity": "onion",
+      "concept": "red onion"
+    },
+    {
+      "line_index": 2,
+      "text": "2 tbsp olive oil",
+      "spans": [
+        {
+          "start": 0,
+          "end": 1,
+          "label": "QUANTITY",
+          "text": "2"
+        },
+        {
+          "start": 2,
+          "end": 6,
+          "label": "UNIT",
+          "text": "tbsp"
+        },
+        {
+          "start": 7,
+          "end": 16,
+          "label": "FOOD",
+          "text": "olive oil"
+        }
+      ],
+      "entity": "oil",
+      "concept": "olive oil"
+    }
+  ],
+  "steps": [
+    {
+      "step_index": 0,
+      "text": "Heat oven to 200C/180C fan/gas 6.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 4,
+          "label": "ACTION",
+          "text": "Heat"
+        },
+        {
+          "start": 5,
+          "end": 9,
+          "label": "TOOL",
+          "text": "oven"
+        },
+        {
+          "start": 13,
+          "end": 32,
+          "label": "TEMPERATURE",
+          "text": "200C/180C fan/gas 6"
+        }
+      ],
+      "events": []
+    },
+    {
+      "step_index": 1,
+      "text": "Cut the carrots into chunks.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 3,
+          "label": "ACTION",
+          "text": "Cut"
+        },
+        {
+          "start": 21,
+          "end": 27,
+          "label": "FORM",
+          "text": "chunks"
+        }
+      ],
+      "events": [
+        {
+          "type": "Transform",
+          "target": "carrots",
+          "process": "cut",
+          "sets": {
+            "form": "chunks"
+          }
+        }
+      ],
+      "coref": [
+        {
+          "mention": "the carrots",
+          "start": 4,
+          "end": 15,
+          "entity": "carrots"
+        }
+      ]
+    },
+    {
+      "step_index": 2,
+      "text": "Toss the carrots and onion with the oil on a baking tray.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 4,
+          "label": "ACTION",
+          "text": "Toss"
+        },
+        {
+          "start": 45,
+          "end": 56,
+          "label": "TOOL",
+          "text": "baking tray"
+        }
+      ],
+      "events": [
+        {
+          "type": "Merge",
+          "inputs": [
+            "carrots",
+            "onion",
+            "oil"
+          ],
+          "output": "tray veg",
+          "process": "toss"
+        },
+        {
+          "type": "Transfer",
+          "target": "tray veg",
+          "location": "baking tray"
+        }
+      ],
+      "coref": [
+        {
+          "mention": "the carrots",
+          "start": 5,
+          "end": 16,
+          "entity": "carrots"
+        },
+        {
+          "mention": "onion",
+          "start": 21,
+          "end": 26,
+          "entity": "onion"
+        },
+        {
+          "mention": "the oil",
+          "start": 32,
+          "end": 39,
+          "entity": "oil"
+        }
+      ]
+    },
+    {
+      "step_index": 3,
+      "text": "Roast for 35-40 mins until tender and golden at the edges.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 5,
+          "label": "ACTION",
+          "text": "Roast"
+        },
+        {
+          "start": 10,
+          "end": 20,
+          "label": "TIME",
+          "text": "35-40 mins"
+        },
+        {
+          "start": 27,
+          "end": 57,
+          "label": "ENDPOINT",
+          "text": "tender and golden at the edges"
+        }
+      ],
+      "events": [
+        {
+          "type": "Transfer",
+          "target": "tray veg",
+          "location": "oven",
+          "implicit": true
+        },
+        {
+          "type": "Transform",
+          "target": "tray veg",
+          "process": "roast",
+          "time": "35-40 min",
+          "temperature": "200C conventional / 180C fan setpoint",
+          "endpoint": "tender, golden edges",
+          "sets": {
+            "doneness": "tender",
+            "colour": "golden edges"
+          }
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    {
+      "what": "food core temperature",
+      "why": "only oven setpoint given (never treat as core temp)"
+    },
+    {
+      "what": "carrot mass",
+      "why": "count + size only; no verified POR"
+    }
+  ]
+}

@@ -81,3 +81,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/scoring/metrics.py`, `src/culinarystate/scoring/state_metrics.py`, `tests/unit/test_scoring.py`
 - **Verified:** pytest 215 passed; hand-computed checks: B³ P/R, MRR, macro≠micro, relaxed 1:1, missed-reserve degrades merge/split recall + field accuracy
 - **Next:** Phenol-Explorer ingest when crawl finishes; recipe→events compiler; annotation handbook + gold schema
+
+### S013 · 2026-10-18 11:28 IST · P4/DEL-3/B07 · Gold annotation foundation: schema, compiler, agreement, handbook, pilot batch
+- **Who:** Kush+Claude
+- **Did:** annotation/gold.py: gold-1.0 JSON Schema (15 span labels, 8 event types, coref, unknowns; annotator ∈ {Kush, Parv, ADJUDICATED}), validator (offset/text match, unique entities, required event fields, TODO guard), compiler to engine events (quantities via grammar+normalizer, never invented). agreement.py: span exact/relaxed F1, char-level Cohen κ, concept agreement, coref B³, replayed state comparison; adjudication rows. examples.py: 3 synthetic worked recipes (white sauce reserve+remaining, pasta drain-reserve-discard-recombine, roast veg with fan-oven setpoint + endpoints). Docs: annotation_handbook_v1.md, annotation_checklist.md, hard_examples.md (16), UNKNOWN_examples.md (12), adjudication_template.csv, gold_schema.json. tools/gold_cli.py validate/agree/schema/examples. tools/make_gold_batch.py: stratified pilot_20 (reserve/split, drain, baking, Indian, simple, multi-component) → text-only templates (no label pre-fill). Fixed: A1 recipe_id ≠ raw line number → map by URL.
+- **Files:** `src/culinarystate/annotation/`, `tools/gold_cli.py`, `tools/make_gold_batch.py`, `annotation/`, `tests/unit/test_gold.py`, `.gitignore`, `DECISIONS.md`
+- **Verified:** pytest 225 passed; 3 examples validate + replay with 0 issues; demo agree shows concept disagreement row; templates fail validation until TODOs filled
+- **Next:** HUMAN: Kush + Parv annotate pilot_20 independently (≈15–25 min each) → agree → adjudicate → handbook v1.1

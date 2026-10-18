@@ -1,0 +1,340 @@
+{
+  "schema_version": "gold-1.0",
+  "recipe_id": "GOLD-EX-001",
+  "source_ref": "synthetic handbook example",
+  "annotator": "Kush",
+  "status": "DONE",
+  "locale": "UK",
+  "ingredient_lines": [
+    {
+      "line_index": 0,
+      "text": "50g unsalted butter",
+      "spans": [
+        {
+          "start": 0,
+          "end": 2,
+          "label": "QUANTITY",
+          "text": "50"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "label": "UNIT",
+          "text": "g"
+        },
+        {
+          "start": 4,
+          "end": 19,
+          "label": "FOOD",
+          "text": "unsalted butter"
+        }
+      ],
+      "entity": "butter",
+      "concept": "unsalted butter"
+    },
+    {
+      "line_index": 1,
+      "text": "50g plain flour",
+      "spans": [
+        {
+          "start": 0,
+          "end": 2,
+          "label": "QUANTITY",
+          "text": "50"
+        },
+        {
+          "start": 2,
+          "end": 3,
+          "label": "UNIT",
+          "text": "g"
+        },
+        {
+          "start": 4,
+          "end": 15,
+          "label": "FOOD",
+          "text": "plain flour"
+        }
+      ],
+      "entity": "flour",
+      "concept": "plain flour"
+    },
+    {
+      "line_index": 2,
+      "text": "500ml whole milk",
+      "spans": [
+        {
+          "start": 0,
+          "end": 3,
+          "label": "QUANTITY",
+          "text": "500"
+        },
+        {
+          "start": 3,
+          "end": 5,
+          "label": "UNIT",
+          "text": "ml"
+        },
+        {
+          "start": 6,
+          "end": 16,
+          "label": "FOOD",
+          "text": "whole milk"
+        }
+      ],
+      "entity": "milk",
+      "concept": "milk"
+    },
+    {
+      "line_index": 3,
+      "text": "pinch of grated nutmeg (optional)",
+      "spans": [
+        {
+          "start": 0,
+          "end": 5,
+          "label": "UNIT",
+          "text": "pinch"
+        },
+        {
+          "start": 9,
+          "end": 15,
+          "label": "FORM",
+          "text": "grated"
+        },
+        {
+          "start": 16,
+          "end": 22,
+          "label": "FOOD",
+          "text": "nutmeg"
+        },
+        {
+          "start": 24,
+          "end": 32,
+          "label": "OPTIONAL",
+          "text": "optional"
+        }
+      ],
+      "entity": "nutmeg",
+      "concept": "nutmeg",
+      "optional": true
+    }
+  ],
+  "steps": [
+    {
+      "step_index": 0,
+      "text": "Melt the butter in a saucepan over a low heat, then spoon out 1 tbsp and set aside for greasing.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 4,
+          "label": "ACTION",
+          "text": "Melt"
+        },
+        {
+          "start": 21,
+          "end": 29,
+          "label": "TOOL",
+          "text": "saucepan"
+        },
+        {
+          "start": 37,
+          "end": 45,
+          "label": "TEMPERATURE",
+          "text": "low heat"
+        },
+        {
+          "start": 52,
+          "end": 61,
+          "label": "ACTION",
+          "text": "spoon out"
+        },
+        {
+          "start": 62,
+          "end": 68,
+          "label": "QUANTITY",
+          "text": "1 tbsp"
+        }
+      ],
+      "events": [
+        {
+          "type": "Transfer",
+          "target": "butter",
+          "location": "saucepan"
+        },
+        {
+          "type": "Transform",
+          "target": "butter",
+          "process": "melt",
+          "temperature": "low heat (qualitative)",
+          "sets": {
+            "phase": "melted"
+          }
+        },
+        {
+          "type": "Reserve",
+          "target": "butter",
+          "output": "greasing butter",
+          "portion": "1 tbsp"
+        }
+      ],
+      "coref": [
+        {
+          "mention": "the butter",
+          "start": 5,
+          "end": 15,
+          "entity": "butter"
+        }
+      ]
+    },
+    {
+      "step_index": 1,
+      "text": "Stir the flour into the remaining butter and cook for 2 mins to make a roux.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 4,
+          "label": "ACTION",
+          "text": "Stir"
+        },
+        {
+          "start": 45,
+          "end": 49,
+          "label": "ACTION",
+          "text": "cook"
+        },
+        {
+          "start": 54,
+          "end": 60,
+          "label": "TIME",
+          "text": "2 mins"
+        },
+        {
+          "start": 71,
+          "end": 75,
+          "label": "INTERMEDIATE",
+          "text": "roux"
+        }
+      ],
+      "events": [
+        {
+          "type": "Merge",
+          "inputs": [
+            "flour",
+            "butter"
+          ],
+          "output": "roux",
+          "process": "stir"
+        },
+        {
+          "type": "Transform",
+          "target": "roux",
+          "process": "cook",
+          "time": "2 min"
+        }
+      ],
+      "coref": [
+        {
+          "mention": "the remaining butter",
+          "start": 20,
+          "end": 40,
+          "entity": "butter"
+        }
+      ]
+    },
+    {
+      "step_index": 2,
+      "text": "Gradually whisk in the milk and simmer for 5 mins until thick enough to coat the back of a spoon.",
+      "spans": [
+        {
+          "start": 10,
+          "end": 18,
+          "label": "ACTION",
+          "text": "whisk in"
+        },
+        {
+          "start": 32,
+          "end": 38,
+          "label": "ACTION",
+          "text": "simmer"
+        },
+        {
+          "start": 43,
+          "end": 49,
+          "label": "TIME",
+          "text": "5 mins"
+        },
+        {
+          "start": 56,
+          "end": 96,
+          "label": "ENDPOINT",
+          "text": "thick enough to coat the back of a spoon"
+        }
+      ],
+      "events": [
+        {
+          "type": "Merge",
+          "inputs": [
+            "roux",
+            "milk"
+          ],
+          "output": "sauce",
+          "process": "whisk"
+        },
+        {
+          "type": "Transform",
+          "target": "sauce",
+          "process": "simmer",
+          "time": "5 min",
+          "endpoint": "coats back of spoon",
+          "sets": {
+            "texture": "thick"
+          }
+        }
+      ],
+      "coref": [
+        {
+          "mention": "the milk",
+          "start": 19,
+          "end": 27,
+          "entity": "milk"
+        }
+      ]
+    },
+    {
+      "step_index": 3,
+      "text": "Season with the nutmeg, if using.",
+      "spans": [
+        {
+          "start": 0,
+          "end": 6,
+          "label": "ACTION",
+          "text": "Season"
+        }
+      ],
+      "events": [
+        {
+          "type": "Merge",
+          "inputs": [
+            "sauce",
+            "nutmeg"
+          ],
+          "output": "seasoned sauce",
+          "process": "season"
+        }
+      ],
+      "coref": [
+        {
+          "mention": "the nutmeg",
+          "start": 12,
+          "end": 22,
+          "entity": "nutmeg"
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    {
+      "what": "mass of the reserved 1 tbsp butter",
+      "why": "volume only; no POR record -> symbolic"
+    }
+  ]
+}
