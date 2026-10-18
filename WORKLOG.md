@@ -116,3 +116,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/transition/`, `tools/run_del2.py`, `tests/unit/test_transition.py`, `reports/del2/USDA-RETN-R6_results.md`, `reports/del2/USDA-RETN-R6_results.json`
 - **Verified:** pytest 7 DEL-2 tests pass; USDA 7,018 rows run in 23 s. random: D5 0.025 vs D0 0.121; matrix_disjoint: D0 0.059 ≈ D4 0.057 (CIs overlap) — cold-food gains vanish; process_disjoint: D0 0.073 vs D5 0.067; conformal-90 empirical coverage 0.72–0.87 on cold splits (AH4). study_disjoint NOT POSSIBLE for USDA (single source). Caveat: USDA factors largely imputed.
 - **Next:** Re-run on Phenol-Explorer (study-disjoint possible); experiment cards EXP-D0…D7
+
+### S018 · 2026-10-18 11:49 IST · B05/X1/ledger-queue#6 · TOOL ledger v1 (utensils/cookware/appliances/materials) + corpus-measured process↔tool links
+- **Who:** Kush+Claude
+- **Did:** Mined BBC steps for heads after 'in/into/on/with/using a …' → curated 76 tools in 7 categories (heat sources, appliances, cookware, vessels, utensils, consumables, measurement) incl. Indian equipment (tawa, kadai, handi, tadka pan, pressure cooker). find_tools(): multi-word aliases, material capture (non-stick, cast-iron, ovenproof…), weak/verb-like aliases (whisk, grill, microwave, sieve, pan, tin, dish…) counted only after article/adjective. Process→tool links from sentence co-occurrence (count ≥20, lift ≥2) written into PROC.tool_ids (115 processes revised). Material reactivity / max temperature deliberately UNKNOWN (needs authority → WARN). Fixed verb-as-tool (Whisk the eggs) and material-inside-alias bugs found by tests.
+- **Files:** `src/culinarystate/process/tools.py`, `tools/build_tool_registry.py`, `tests/unit/test_tools.py`, `registry/tools/`, `reports/tool_registry_v1.md`, `ledgers/data/TOOL.jsonl`, `ledgers/data/PROC.jsonl`
+- **Verified:** pytest 246 passed; 83.7% of 39,540 steps mention ≥1 tool; 535 process↔tool links (fry→frying pan lift 21.3, line→baking parchment 27.3, preheat→oven 14.9)
+- **Next:** Phenol-Explorer ingest (crawl nearly done); UNIT ledger records; REC ledger
