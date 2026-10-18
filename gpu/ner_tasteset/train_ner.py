@@ -163,6 +163,7 @@ def main() -> None:
     ap.add_argument("--crf", action="store_true", help="linear-chain CRF over word positions (plan Part K)")
     ap.add_argument("--knn", action="store_true", help="kNN-NER over a train-only datastore, lambda/k tuned on dev")
     ap.add_argument("--out", default="runs")
+    ap.add_argument("--save", default="", help="directory for the selected model + tokenizer + CRF + tags (runtime)")
     a = ap.parse_args()
     random.seed(a.seed), np.random.seed(a.seed), torch.manual_seed(a.seed)
     dev = "cuda" if torch.cuda.is_available() else "cpu"
@@ -247,6 +248,16 @@ def main() -> None:
         "torch": torch.__version__}, indent=1))
     (out / f"{name}.pred.jsonl").write_text("\n".join(json.dumps({"recipe": split["test"][i], "gold": g, "pred": p})
                                                       for i, (g, p) in enumerate(test)) + "\n")
+    if a.save:                                    # weights of the DEV-selected epoch (train split only)
+        sd = Path(a.save)
+        sd.mkdir(parents=True, exist_ok=True)
+        model.save_pretrained(sd)
+        tok.save_pretrained(sd)
+        if crf:
+            torch.save(crf.state_dict(), sd / "crf.pt")
+        (sd / "tagger.json").write_text(json.dumps({"tags": tags, "crf": bool(crf), "max_len": a.max_len,
+                                                    "base_model": a.model, "seed": a.seed, "split_seed": SPLIT_SEED,
+                                                    "test_exact_f1": res["exact"]["micro"]["f1"], "dev_f1": best}))
     print(name, "dev", best, "test exact", res["exact"]["micro"]["f1"], "relaxed", res["relaxed"]["micro"]["f1"], ci)
 
 
