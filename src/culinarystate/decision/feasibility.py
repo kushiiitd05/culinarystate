@@ -27,6 +27,7 @@ class Constraints:
     available_tools: frozenset | None = None          # None = not stated
     time_budget_min: float | None = None
     excluded_allergens: frozenset = field(default_factory=frozenset)
+    unavailable_tools: frozenset = field(default_factory=frozenset)     # "no oven": rejects even in open world
 
 
 @dataclass(frozen=True)
@@ -43,6 +44,8 @@ def _c(status: str, reason: str | None = None, detail=None) -> dict:
 
 def _tool(a: Action, c: Constraints, r: Requirements) -> dict:
     need = r.required_tools.get(a.process_id)
+    if need and need <= c.unavailable_tools:
+        return _c("FAIL", "REQUIRED_TOOL_UNAVAILABLE", sorted(need))
     if c.available_tools is None or not need:
         return _c("NOT_APPLICABLE", None if need else "NO_TOOL_REQUIREMENT_KNOWN")
     return _c("PASS") if need & c.available_tools else _c("FAIL", "MISSING_REQUIRED_TOOL", sorted(need))

@@ -403,3 +403,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/{ood`, `policy`, `pipeline`, `relevance}.py src/culinarystate/quantity/grammar.py src/culinarystate/vocab/line_link.py src/culinarystate/retrieval/compatibility.py tests/{property`, `contract`, `integration}/ pyproject.toml`
 - **Verified:** 2,338 fast + 35 ledger integration tests pass
 - **Next:** NER sweep summary; Part K layers
+
+### S059 · 2026-10-18 21:29 IST · C5/C11 · Goal/constraint parser; unavailable tools in feasibility
+- **Who:** Kush+Claude
+- **Did:** decision/constraints.py: 'only have X' = closed-world tools, 'no oven' = unavailable (rejects even open-world), time budget (word forms, ranges -> lower end, cue-gated), 8 FSSAI allergen categories via cue patterns; diets (vegan/jain/keto/lactose...) returned UNRESOLVED. ask.py --constraints. NER layers: CRF (verified vs brute force) and kNN-NER (train-only datastore, dev-tuned) added; DeBERTa-large queued.
+- **Files:** `src/culinarystate/decision/{constraints`, `feasibility}.py tools/ask.py gpu/ner_tasteset/{crf`, `train_ner}.py tests/unit/test_constraints.py`
+- **Verified:** 2,767 fast tests pass; real-registry spot checks
+- **Next:** NER layer results; ingredient exclusions; C12 comparator

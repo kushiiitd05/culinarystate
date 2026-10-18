@@ -92,3 +92,12 @@ def test_linkers_miners_and_gates_never_crash(s):
 def test_yield_parser_ignores_garbage_and_truncated_tables():
     text = "\n".join(GARBAGE[:200]) + "\nTable 9: Weight yield factors by cooking of x\n Carrot, boiled   FR m.S   a\n"
     assert parse_yields(text) == []                    # truncated row: not parsed, not guessed
+
+
+@pytest.mark.parametrize("s", GARBAGE)
+def test_constraint_parser_never_crashes_or_invents(s):
+    from culinarystate.decision.constraints import parse_constraints
+    c, info = parse_constraints(s, {"oven": "TOOL-000001", "frying pan": "TOOL-000003"}, {"nut": "ALLERGEN-000006"})
+    assert info["raw"] == s
+    assert c.time_budget_min is None or (c.time_budget_min == c.time_budget_min and c.time_budget_min >= 0)
+    assert not (c.available_tools or set()) & c.unavailable_tools

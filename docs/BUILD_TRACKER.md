@@ -12,11 +12,11 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 ## Runtime modules (§257B)
 | # | Module | Status | Evidence / gap |
 |---|---|---|---|
-| C1 | Query/intent parser | 🟡 | `decision/relevance.intent`, `decision/pipeline.parse_query` (rules); no learned parser, no eval set |
+| C1 | Query/intent parser | 🟡 | rules + negation/contradiction + qualitative targets; ASK on missing target (VOI-lite); no learned parser |
 | C2 | Entity/coreference resolver | 🟡 | `LineLinker` (lexicon+aliases), gold coref tooling; no runtime coref across turns |
 | C3 | State reconstructor | ✅ | `state_graph/engine.py`, `rule_compiler.py`; 30 sessions pass |
 | C4 | Process-history tracker | 🟡 | engine `last_process` + TRANSFORMS_INTO edges; no history-conditioned features yet |
-| C5 | Goal/constraint parser | ⬜ | constraints only structured (`Constraints`); no text → tools/time/allergen parsing |
+| C5 | Goal/constraint parser | 🟡 | `decision/constraints.py`: tools (closed/open world, unavailable), time budget, FSSAI allergens; diets UNRESOLVED; ingredient exclusions ("no onion") ⬜ |
 | C6 | Multi-index retriever | 🟡 | BM25 + dense (bge/e5/gte) + structured + RRF; R4 graph expansion ⬜; R5 cross-encoder running |
 | C7 | Evidence compatibility layer | ✅ | `retrieval/compatibility.py` (9 axes, UNKNOWN neutral, group-row NEAR) |
 | C8 | Direct transition lookup | ✅ | retriever DIRECT class + cell dedup |
@@ -25,7 +25,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | C11 | Feasibility filter | ✅ | `decision/feasibility.py` (allergen table awaits human sign-off) |
 | C12 | Outcome comparator | 🟡 | COMPARE gives per-option evidence; no value-level comparison/intervals |
 | C13 | Relevance gate | ✅ | rules pass SSOT §7 examples; held-out eval needs benchmark (D-008) |
-| C14 | Uncertainty/OOD gate | 🟡 | confidence vector has `ood` slot, not computed |
+| C14 | Uncertainty/OOD gate | ✅ | `decision/ood.py`: support per axis, OOD caps precision at QUALITATIVE; wired into policy/ask |
 | C15 | Multi-objective selector | 🟡 | alternatives without hidden weights; no Pareto front |
 | C16 | Grounded response generator | ⬜ | needs LLM (A100) constrained by packet + precision cap |
 | C17 | Citation/provenance layer | 🟡 | packet `citation_map`, SRC/SNAP ledgers; no claim→citation check |
@@ -68,7 +68,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 ## Experiment families (§245) and gates
 | ID | Family | Status | Evidence / gap |
 |---|---|---|---|
-| E16-A | Semantic parsing (NER) | 🟡 | TASTEset rule floor 0.774 (test); encoder sweep ready (A100, VPN) |
+| E16-A | Semantic parsing (NER) | 🟡 | test exact F1: rules 0.774 → BERT 0.919, RoBERTa 0.925, DeBERTa 0.922 (5 seeds); +CRF, +kNN, DeBERTa-large running (A100) |
 | E16-B | Quantity | 🟡 | `reports/quantity_coverage_v0.md` |
 | E16-C | Vocabulary/cold-start | 🟡 | coverage curves; cold-start eval ⬜ |
 | E16-D | Recipe graph | 🟡 | 30 AI-drafted sessions; Gold ⛔ humans |
@@ -80,12 +80,13 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 | E16-J | Transition integration | 🟡 | DEL-2 cards EXP-000001…4 |
 | E16-K | FlavorTwin | ➖ | |
 | E16-L | Full system | ⬜ | B0–B5 ladder |
+| Tests | SSOT §257I layers | ✅ | property, fuzz, §257B contracts, replay, release audit, retrieval regression, e2e (`pytest`, `pytest -m ledgers`) |
 | Gates | G16-DATA/VOCAB/QTY/SEM/GRAPH/EVID/CONFLICT/CAL/TRANS/DEC/REC/PROV/OOD | ⬜ | to be scored when the matching E16 runs exist |
 
 ## Order from here (one at a time)
 1. RQ16-02/03 retrieval: large embeddings + R5 cross-encoder (running locally) → analyse.
-2. E16-A NER: encoder sweep on A100 (needs VPN) → large encoders if base beats floor.
-3. C14 OOD gate → C5 goal/constraint parser → C12 outcome comparator (value intervals).
+2. E16-A NER: CRF / kNN / DeBERTa-large on A100 (running) → GLiNER layer → verifier → calibration (Part K).
+3. ✅ C14 OOD gate → C5 goal/constraint parser → C12 outcome comparator (value intervals).
 4. RQ16-17 VOI ask policy → RQ16-18/19 diagnosis verifier + recovery KB.
 5. C16 grounded generator + B0–B5 ladder on A100 (open LLM), E16-F/L.
 6. After DEL-5: FlavorTwin (RQ16-25/26, E16-K, SSOT §246 boundary), sensory study (RQ16-27), deployment.

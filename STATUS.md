@@ -50,7 +50,7 @@
 | X13 | FoodAtlas (MIT code; data CC BY-NC 4.0 since 2026-10-09) | ING↔chemical candidate observations | ⛔ manual download (bundles private; MANUAL_NEXT_STEPS #12) |
 | X15 | FDC raw/cooked matched pairs | EVD candidates (E6) | ✅ S050: 867 pairs, 16,365 dry-basis ratios; vs R6 group level within 0.10 for 46% (analytical) |
 | X7 | recipe-scrapers on robots-allowed sites | REC (Indian focus) | queued (needs `pip install recipe-scrapers`) |
-| X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | queued |
+| X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | 🟡 TASTEset test exact F1: rules 0.774 → DeBERTa 0.922 / RoBERTa 0.925 (5 seeds); CRF, kNN, large running |
 
 ## 3. BLOCKED / WAITING
 | Blocker | Impact | Workaround |

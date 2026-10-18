@@ -13,6 +13,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+from culinarystate.decision.constraints import load_constraint_lexicons, parse_constraints  # noqa: E402
 from culinarystate.decision.feasibility import load_requirements  # noqa: E402
 from culinarystate.decision.ood import SupportIndex  # noqa: E402
 from culinarystate.decision.pipeline import answer, load_lexicon  # noqa: E402
@@ -47,6 +48,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("question", nargs="?")
     ap.add_argument("--demo", action="store_true")
+    ap.add_argument("--constraints", default="", help='free text, e.g. "no oven, gluten-free, 20 minutes"')
     a = ap.parse_args()
     st = LedgerStore()
     lex, family = load_lexicon(st)
@@ -56,7 +58,10 @@ def main() -> None:
     sup = SupportIndex(evd)
     req = load_requirements(st)
     qs = DEMO if a.demo else [a.question]
-    out = [show(q, answer(q, lex, retriever, req, family, support_index=sup)) for q in qs if q]
+    cons, info = parse_constraints(a.constraints, *load_constraint_lexicons(st))
+    out = [show(q, answer(q, lex, retriever, req, family, constraints=cons, support_index=sup)) for q in qs if q]
+    if a.constraints:
+        out.append({"constraints": str(cons), "unresolved": info["unresolved"]})
     print(json.dumps(out, indent=1, ensure_ascii=False))
 
 
