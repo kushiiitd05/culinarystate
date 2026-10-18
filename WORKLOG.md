@@ -431,3 +431,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/kg/troubleshoot.py tools/mine_troubleshooting.py registry/kg/troubleshooting_candidates_v1.csv reports/troubleshooting_v1.md`
 - **Verified:** unit tests incl. sample regressions; precision samples local
 - **Next:** proposer + verifier over candidates; failure gold (humans)
+
+### S063 · 2026-10-18 21:43 IST · X8/E16-A · Encoder NER on A100: base, CRF, kNN, large (5 seeds each)
+- **Who:** Kush+Claude
+- **Did:** TASTEset, same recipe split as the rule floor, dev selection, grouped CI. Test exact F1 (mean of 5 seeds): rules 0.774; BERT 0.919; RoBERTa 0.925; DeBERTa-base 0.922; +kNN-NER 0.924; +CRF 0.929; DeBERTa-large 0.928. CRF earns its place (+0.007 dev and test); kNN marginal; large ties base+CRF on dev at 2x cost. Server: system torch env lacks protobuf for DeBERTa -> mh-copilot venv (py3.8) used read-only; metrics alias made py3.8-safe. Large+CRF running.
+- **Files:** `gpu/ner_tasteset/ tools/summarise_ner_runs.py reports/ner/tasteset_encoders_v1.md`
+- **Verified:** 30 runs pulled; summariser selects only complete seed sets
+- **Next:** large+CRF; GLiNER layer needs package approval; EXP card
