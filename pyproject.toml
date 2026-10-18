@@ -6,3 +6,5 @@ requires-python = ">=3.10"
 [tool.pytest.ini_options]
 pythonpath = ["src", "."]
 testpaths = ["tests"]
+markers = ["ledgers: integration tests over the real local ledgers (slow; run with -m ledgers)"]
+addopts = "-m 'not ledgers'"

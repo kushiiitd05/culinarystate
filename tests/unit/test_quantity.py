@@ -124,3 +124,9 @@ def test_implicit_one_is_marked():
 @pytest.mark.parametrize("line", ["few drops vanilla extract", "grating of nutmeg"])
 def test_more_qualitative(line):
     assert parse_line(line).kind == "QUALITATIVE"
+
+
+def test_zero_denominator_is_invalid_not_a_crash():
+    from culinarystate.quantity.grammar import parse_line
+    p = parse_line("1/0 cup flour")
+    assert p.kind == "NONE" and "INVALID_NUMBER" in p.flags and p.raw == "1/0 cup flour"

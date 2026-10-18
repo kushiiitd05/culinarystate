@@ -120,6 +120,14 @@ def _clean_rest(rest: str) -> str:
 
 
 def parse_line(raw: str) -> QuantityParse:
+    """Never raises on malformed numbers ("1/0 cup"): returns kind NONE flagged INVALID_NUMBER, raw kept."""
+    try:
+        return _parse_line(raw)
+    except ZeroDivisionError:
+        return QuantityParse(raw, "NONE", rest=raw, flags=("INVALID_NUMBER",))
+
+
+def _parse_line(raw: str) -> QuantityParse:
     s = normalize_text(raw)
     quals = _qualifiers(s)
     stated = None

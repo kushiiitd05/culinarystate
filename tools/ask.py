@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.decision.feasibility import load_requirements  # noqa: E402
+from culinarystate.decision.ood import SupportIndex  # noqa: E402
 from culinarystate.decision.pipeline import answer, load_lexicon  # noqa: E402
 from culinarystate.ledgers.store import LedgerStore  # noqa: E402
 from culinarystate.retrieval.retriever import EvidenceRetriever  # noqa: E402
@@ -32,7 +33,8 @@ def show(q: str, r: dict) -> dict:
     d = r["decision"]
     opts = {k: {"class": p.evidence_class, "direct": [h.evd_id for h in p.direct[:3]],
                 "near": [h.evd_id for h in p.near[:3]], "feasibility": r["feasibility"][k]["decision"],
-                "precision": d.get("per_option", {}).get(k, {}).get("precision")}
+                "precision": d.get("per_option", {}).get(k, {}).get("precision"),
+                "support": (r.get("support") or {}).get(k)}
             for k, p in r["packets"].items()}
     s = r["slots"]
     return {"question": q, "mode": d["mode"], "reason": d.get("reason"), "precision": d.get("precision"),
@@ -49,10 +51,12 @@ def main() -> None:
     st = LedgerStore()
     lex, family = load_lexicon(st)
     cond = {c["id"]: c for c in st.all_latest("COND")}
-    retriever = EvidenceRetriever(st.all_latest("EVD"), cond, family)
+    evd = st.all_latest("EVD")
+    retriever = EvidenceRetriever(evd, cond, family)
+    sup = SupportIndex(evd)
     req = load_requirements(st)
     qs = DEMO if a.demo else [a.question]
-    out = [show(q, answer(q, lex, retriever, req, family)) for q in qs if q]
+    out = [show(q, answer(q, lex, retriever, req, family, support_index=sup)) for q in qs if q]
     print(json.dumps(out, indent=1, ensure_ascii=False))
 
 

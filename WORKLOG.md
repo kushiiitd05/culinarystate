@@ -389,3 +389,17 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `DECISIONS.md`
 - **Verified:** SSOT lines 1258-1288, 24515-24530, 24590-24602; plan H2, AI9
 - **Next:** Kush: confirm D-008 merge; pick snapshot remote for D-012
+
+### S057 · 2026-10-18 21:23 IST · DEL-4/RQ16-02 · Silver retrieval comparison; dense + hybrid rungs
+- **Who:** Kush+Claude
+- **Did:** 600 templated cell-level questions over 17,978 EVD texts (silver, dev only). Embeddings on M2 MPS (bge-small/base/large, e5-small/large, gte-large). MRR@10: BM25 0.597, dense bge-small 0.668, RRF hybrid 0.704 (CI separated from BM25), structured with oracle slots 0.856; adding dense to structured not separated. R5 cross-encoder tool ready. Finding: common vegetables (potato/carrot/spinach x boil) have no ingredient-linked rows until the 198 AI-ACCEPT link rows are human-signed.
+- **Files:** `tools/{export_retrieval_set`, `embed_texts`, `eval_retrieval_silver`, `rerank_silver}.py reports/del4/`
+- **Verified:** bootstrap CIs over queries
+- **Next:** R5 rerank results; human sign-off of link review
+
+### S058 · 2026-10-18 21:23 IST · 257I/C14 · SSOT 257I test layers + OOD gate; adversarial testing
+- **Who:** Kush+Claude
+- **Did:** C14 OOD gate (support per axis, cap at QUALITATIVE when pair unsupported + cold axis). Tests added per SSOT 257I: property-based quantity (kg/g, L/mL, lb/oz, fractions, ranges, cup stays ambiguous, C/F), 1.7k seeded fuzz cases over every text entry point, 257B 12-case module contracts (C1/C3/C7/C11/C13/C14/policy), replay prefix-consistency + correction propagation over 30 sessions, release audit (provenance, checksums, dangling refs, DEL-1 clause, no BBC text, unique ids), retrieval regression with hard negatives, e2e incl. hostile inputs. Bugs found and fixed: '1/0 cup' crash; double-space bypassed gate; LineLinker silently mis-linked raw keys; regex word boundary failed on names ending in punctuation; process-effect answer with no target mixed all nutrients (now ASK); 'boiled and not boiled' ignored (now ASK).
+- **Files:** `src/culinarystate/decision/{ood`, `policy`, `pipeline`, `relevance}.py src/culinarystate/quantity/grammar.py src/culinarystate/vocab/line_link.py src/culinarystate/retrieval/compatibility.py tests/{property`, `contract`, `integration}/ pyproject.toml`
+- **Verified:** 2,338 fast + 35 ledger integration tests pass
+- **Next:** NER sweep summary; Part K layers

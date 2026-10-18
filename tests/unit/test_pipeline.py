@@ -36,3 +36,9 @@ def test_question_homographs_are_not_processes():
 
 def test_ingredient_name_is_carried():
     assert parse_query("How much vitamin C does boiled broccoli keep?", LEX).ingredient_name == "broccoli"
+
+
+def test_negated_and_affirmed_same_process_is_contradiction():
+    s = parse_query("How much vitamin C does boiled and also not boiled broccoli keep?", LEX)
+    assert s.contradictions == ("PROC-1",)
+    assert parse_query("How much vitamin C does boiled broccoli keep?", LEX).contradictions == ()

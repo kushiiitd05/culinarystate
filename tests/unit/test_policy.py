@@ -64,3 +64,22 @@ def test_recover_reports_cause_evidence_and_unknown_recoverability():
     d = decide("I accidentally boiled it too long; how can I recover?", {"boil": _p("CONFLICT", [_hit(1)])}, SLOTS)
     assert d["mode"] == "RECOVER" and d["recoverability"] == "UNKNOWN" and d["recovery_options"] == []
     assert d["cause_evidence"]["boil"]["precision"] == "REPORT_CONFLICT" and d["causal_language"] == "QUALIFIED"
+
+
+def test_ood_support_caps_numeric_precision():
+    sup = {"main": {"ood": True, "cold_axes": ["ingredient"]}}
+    d = decide("How much vitamin C does boiled kohlrabi keep?", {"main": _p("INTERPOLATED", [_hit(1)])}, SLOTS, support=sup)
+    assert d["precision"] == "QUALITATIVE" and d["per_option"]["main"]["cap"] == "OOD_SUPPORT_CAP"
+    assert d["per_option"]["main"]["confidence"]["ood"] is True
+
+
+def test_process_effect_answer_without_target_asks_for_it():
+    d = decide("What happens when I boil broccoli?", {"main": _p("DIRECT", [_hit(1)])},
+               {**SLOTS, "target": None, "needs_target": True})
+    assert d["mode"] == "ASK" and d["ask_for"] == ["target"]
+
+
+def test_contradictory_slots_ask():
+    d = decide("boiled and not boiled broccoli vitamin C?", {"main": _p("DIRECT", [_hit(1)])},
+               {**SLOTS, "contradictions": ["PROC-1"]})
+    assert d["mode"] == "ASK" and d["reason"] == "CONTRADICTORY_SLOTS"

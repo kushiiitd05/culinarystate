@@ -18,6 +18,7 @@ from culinarystate.transition.cross_source import NUTRIENT
 from culinarystate.vocab.line_link import LineLinker
 
 from .feasibility import Action, Constraints, Requirements, check
+from .ood import SupportIndex
 from .policy import decide
 from .relevance import intent
 
@@ -27,6 +28,10 @@ MAX_CANDIDATES = 4
 # verbs whose question reading is not a cooking action: "keep vitamin C" (-> reserve), "sauce split" (state, -> divide),
 # modal "can" (-> canning), generic "cook"
 QUESTION_NOT_PROCESS = {"cook", "reserve", "divide", "can", "serve", "set", "rest"}
+NEGATION = re.compile(r"\b(?:not|never|without|no)\s+(?:\w+\s+)?$")
+# non-numeric targets (SSOT §242.7: quantitative output only if the target definition supports it)
+QUALITATIVE_TARGET = re.compile(r"\b(texture|colou?r|flavou?r|taste|aroma|smell|crisp(?:ness)?|tender(?:ness)?|"
+                                r"moisture|juic(?:y|iness)|softness|firmness)\b")
 
 
 @dataclass(frozen=True)
@@ -45,28 +50,37 @@ class Slots:
     parents: tuple
     processes: tuple                # ((name, PROC id), ...)
     target: str | None
-    candidates: tuple               # PROC ids generated for RECOMMEND/RECOVER
+    candidates: tuple               # PROC ids generated for RECOMMEND
+    contradictions: tuple = ()      # PROC ids both affirmed and negated ("boiled and not boiled")
+    numeric_target: bool = True
 
 
 def parse_query(q: str, lex: Lexicon) -> Slots:
     ments = lex.linker.mentions(q)
     ing = ments[0] if ments else None
-    seen, procs = set(), []
-    for _, name in step_processes(q):
+    seen, procs, negated = set(), [], set()
+    for pos, name in step_processes(q):          # one hit per process: the affirmed reading
         pid = lex.proc_ids.get(name)
-        if pid and pid not in seen and name not in QUESTION_NOT_PROCESS:
+        if pid and name not in QUESTION_NOT_PROCESS and pid not in seen and \
+                not NEGATION.search(q[max(0, pos - 24):pos].lower()):
             seen.add(pid)
             procs.append((name, pid))
+    for m in re.finditer(r"[A-Za-z]+(?:-[A-Za-z]+)?", q):     # every mention, for negations ("not boiled")
+        if NEGATION.search(q[max(0, m.start() - 24):m.start()].lower()):
+            negated |= {lex.proc_ids[n] for _, n in step_processes(m.group(0)) if n in lex.proc_ids}
     tm = next((m for pat, _ in NUTRIENT if (m := re.search(pat, q.lower()))), None)
+    qual = QUALITATIVE_TARGET.search(q.lower()) if not tm else None
     cands = ()
     if not procs and ing and intent(q) == "RECOMMEND":
         cands = tuple(p for p in lex.processed_by.get(ing, ()) if p in lex.heat_procs)[:MAX_CANDIDATES]
     name = next((n for n, i in lex.linker.names.items() if i == ing), None) if ing else None
-    return Slots(ing, name, tuple(lex.parents.get(ing, ())), tuple(procs), tm.group(0) if tm else None, cands)
+    target = tm.group(0) if tm else qual.group(0) if qual else None
+    return Slots(ing, name, tuple(lex.parents.get(ing, ())), tuple(procs), target, cands,
+                 tuple(sorted(seen & negated)), numeric_target=not qual)
 
 
 def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements, proc_family: dict,
-           constraints: Constraints | None = None, k: int = 10) -> dict:
+           constraints: Constraints | None = None, k: int = 10, support_index: SupportIndex | None = None) -> dict:
     s = parse_query(q, lex)
     name_of = {v: n for n, v in lex.proc_ids.items()}
     options = [(n, p) for n, p in s.processes] or [(name_of.get(p, p), p) for p in s.candidates]
@@ -81,8 +95,12 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
     packets = {n: retriever.packet(q, query(p), k) for n, p in options}
     feas = {n: check(Action(p, (s.ingredient_id,) if s.ingredient_id else ()), constraints or Constraints(), req)
             for n, p in options}
-    slots = {"ingredient": s.ingredient_id, "process": options[0][1] if options else None}
-    return {"slots": s, "decision": decide(q, packets, slots, feasibility=feas), "packets": packets, "feasibility": feas}
+    slots = {"ingredient": s.ingredient_id, "process": options[0][1] if options else None, "target": s.target,
+             "needs_target": intent(q) in ("ANSWER", "COMPARE"), "contradictions": list(s.contradictions)}
+    support = {n: support_index.support(s.ingredient_id, s.parents, s.ingredient_name, p) for n, p in options} \
+        if support_index else None
+    return {"slots": s, "decision": decide(q, packets, slots, feasibility=feas, support=support, numeric_target=s.numeric_target), "packets": packets,
+            "feasibility": feas, "support": support}
 
 
 def load_lexicon(store) -> tuple[Lexicon, dict]:

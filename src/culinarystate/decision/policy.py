@@ -11,20 +11,22 @@ from __future__ import annotations
 from culinarystate.retrieval.retriever import EvidencePacket
 
 from .confidence import confidence_vector, output_precision, sufficiency
+from .ood import cap_precision
 from .relevance import intent, relevance_gate
 
 VERSION = "policy_rules@0.1"
 CRITICAL = ("ingredient", "process")
 
 
-def _option(p: EvidencePacket, numeric_target: bool) -> dict:
+def _option(p: EvidencePacket, numeric_target: bool, support: dict | None = None) -> dict:
     mode = sufficiency(p)
-    return {"sufficiency": mode, "precision": output_precision(mode, numeric_target),
-            "confidence": confidence_vector(p), "disallowed_claims": p.disallowed_claims}
+    precision, cap = cap_precision(output_precision(mode, numeric_target), support or {})
+    return {"sufficiency": mode, "precision": precision, "cap": cap, "support": support,
+            "confidence": confidence_vector(p, ood=(support or {}).get("ood")), "disallowed_claims": p.disallowed_claims}
 
 
 def decide(query: str, packets: dict[str, EvidencePacket], slots: dict, feasibility: dict | None = None,
-           numeric_target: bool = True) -> dict:
+           numeric_target: bool = True, support: dict | None = None) -> dict:
     gate = relevance_gate(query)
     base = {"version": VERSION, "query": query, "gate": gate, "intent": intent(query)}
     if gate["relevant"] is False:
@@ -32,9 +34,13 @@ def decide(query: str, packets: dict[str, EvidencePacket], slots: dict, feasibil
     missing = [s for s in CRITICAL if not slots.get(s)]
     if missing:
         return {**base, "mode": "ASK", "ask_for": missing, "route": "CLARIFY", "reason": "CRITICAL_SLOT_MISSING"}
+    if slots.get("contradictions"):
+        return {**base, "mode": "ASK", "ask_for": ["process"], "route": "CLARIFY", "reason": "CONTRADICTORY_SLOTS"}
+    if slots.get("needs_target") and not slots.get("target"):    # target decides which evidence applies (§243.8)
+        return {**base, "mode": "ASK", "ask_for": ["target"], "route": "CLARIFY", "reason": "TARGET_MISSING"}
     feas = feasibility or {}
     rejected = [k for k in packets if feas.get(k, {}).get("decision") == "REJECT"]
-    options = {k: _option(p, numeric_target) for k, p in packets.items() if k not in rejected}
+    options = {k: _option(p, numeric_target, (support or {}).get(k)) for k, p in packets.items() if k not in rejected}
     usable = [k for k, o in options.items() if o["precision"] != "ABSTAIN"]
     out = {**base, "route": "PROCESS_EFFECT", "per_option": options, "rejected": rejected}
     it = base["intent"]

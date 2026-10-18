@@ -21,8 +21,11 @@ CUT = re.compile(r"\s*(\(|,|;| - | – | to taste\b| for (?:garnish|serving|fryi
 
 class LineLinker:
     def __init__(self, names: dict[str, str], unit_words: set[str]):
-        """names: normalised surface -> ING id (canonical names + unambiguous aliases)."""
-        self.names = names
+        """names: surface -> ING id (canonical names + unambiguous aliases); keys are normalised here (idempotent),
+        so a caller passing raw surfaces cannot silently mis-link ("green beans" vs "bean")."""
+        self.names = {}
+        for k, v in names.items():
+            self.names.setdefault(norm(k), v)
         self.unit_words = {norm(u) for u in unit_words}
         self.max_n = max((len(k.split()) for k in names), default=1)
 

@@ -32,7 +32,7 @@ INTENT = (("RECOVER", r"\baccident\w*|\brecover\w*|\brescue\b|\bsalvage\b|\bfix 
 def relevance_gate(query: str) -> dict:
     if not query or not query.strip():
         return {"relevant": None, "reason": "MALFORMED_EMPTY", "cue": None, "version": VERSION, "raw": query}
-    q = query.lower()
+    q = re.sub(r"\s+", " ", query.lower())             # surface variation: spacing never changes the gate
     for name, pat in HIGH:
         if re.search(pat, q):
             return {"relevant": True, "reason": name, "cue": re.search(pat, q).group(0), "version": VERSION, "raw": query}
@@ -43,5 +43,5 @@ def relevance_gate(query: str) -> dict:
 
 
 def intent(query: str) -> str:
-    q = (query or "").lower()
+    q = re.sub(r"\s+", " ", (query or "").lower())
     return next((name for name, pat in INTENT if re.search(pat, q)), "ANSWER")

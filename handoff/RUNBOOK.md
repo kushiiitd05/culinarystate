@@ -6,6 +6,7 @@ a second run prints `unchanged` / `{}` writes. If a second run writes anything, 
 ## 0. Check
 ```bash
 py -m pytest -q                      # all tests must pass
+py -m pytest -q -m ledgers           # integration over real ledgers: release audit, retrieval regression, e2e (~40 s)
 git status                           # clean before a rebuild
 ```
 
