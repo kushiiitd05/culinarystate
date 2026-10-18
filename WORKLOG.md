@@ -214,3 +214,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/vocab/foodon.py tools/build_foodon_crosswalk.py registry/ingredients/foodon_crosswalk_v1.csv reports/foodon_crosswalk_v1.md tests/unit/test_foodon.py DECISIONS.md STATUS.md`
 - **Verified:** tests pass; 0 invalid ING; categories spot-checked (lemon FRUIT, sugar SWEETENER, tomato VEGETABLE, wine vinegar CONDIMENT)
 - **Next:** X2 Open Food Facts taxonomy -> aliases (UK/US, Hindi) to reduce NO_MATCH
+
+### S032 · 2026-10-18 12:56 IST · X2/P3 · Open Food Facts taxonomy -> aliases + external refs
+- **Who:** Kush+Claude
+- **Did:** Pinned OFF ingredients.txt (git a1ce1d36, ODbL) with SRC+SNAP. 835 ING linked to unique OFF entry (81.1% corpus mentions); +1,770 ALIAS (en 384 + 13 Indian languages: hi 164, ta 146, bn 137 ...); 560 Wikidata QIDs, 215 OFF->FDC codes + Ecobalyse densities listed (candidates). 475 alias collisions skipped, 135 flagged SAME_CONCEPT_MERGE -> reveals ~30 duplicate ING pairs (pea/peas, feta/feta cheese). Fixed ING builder so rebuilds only deprecate A1-owned aliases.
+- **Files:** `src/culinarystate/vocab/off.py tools/build_off_aliases.py tools/build_ingredient_registry.py registry/ingredients/off_crosswalk_v1.csv registry/ingredients/off_alias_collisions.csv reports/off_taxonomy_v1.md tests/unit/test_off.py`
+- **Verified:** tests pass; 0 invalid; 2nd run 0 writes
+- **Next:** X2b merge duplicate ING concepts at builder level

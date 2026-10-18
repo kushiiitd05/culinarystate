@@ -75,8 +75,8 @@ for al in aliases:
            "corpus_frequency": al.count}
     n_alias[st.upsert(rec)[0]] += 1
 current_alias = {st.ids.lookup("ALIAS", f"en:{al.surface}") for al in aliases}
-for old in st.all_latest("ALIAS"):
-    if old["id"] not in current_alias and old["status"] == "ACTIVE":
+for old in st.all_latest("ALIAS"):                     # only aliases this builder owns (A1 source); OFF etc. untouched
+    if old["id"] not in current_alias and old["status"] == "ACTIVE" and src_id in old["provenance"]["source_ids"]:
         st.upsert({**old, "status": "DEPRECATED", "notes": "dropped from registry rebuild"})
         n_alias["deprecated"] = n_alias.get("deprecated", 0) + 1
 
