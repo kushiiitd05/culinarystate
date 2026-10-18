@@ -15,3 +15,5 @@ TASTEset @ 80bb783f5210 (MIT): 700 recipes, 13,362 gold spans. Rule NER = quanti
 | UNIT | 0.9842 | 0.7683 | 0.863 | 0.8637 |
 | micro | 0.8406 | 0.7462 | 0.7906 | 0.8977 |
 | macro F1 | | | 0.7212 | 0.7876 |
+
+Test split only (105 recipes, same split as encoder runs): micro exact F1 0.7738 (95% CI 0.7392–0.8076), relaxed 0.8953

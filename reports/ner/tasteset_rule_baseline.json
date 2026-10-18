@@ -168,5 +168,185 @@
     "f1": 0.8637
    }
   }
+ },
+ "test_split": {
+  "exact": {
+   "micro": {
+    "tp": 1478,
+    "fp": 324,
+    "fn": 540,
+    "precision": 0.8202,
+    "recall": 0.7324,
+    "f1": 0.7738
+   },
+   "macro_f1": 0.6953,
+   "per_label": {
+    "COLOR": {
+     "tp": 28,
+     "fp": 4,
+     "fn": 5,
+     "precision": 0.875,
+     "recall": 0.8485,
+     "f1": 0.8615
+    },
+    "FOOD": {
+     "tp": 425,
+     "fp": 140,
+     "fn": 180,
+     "precision": 0.7522,
+     "recall": 0.7025,
+     "f1": 0.7265
+    },
+    "PART": {
+     "tp": 7,
+     "fp": 8,
+     "fn": 5,
+     "precision": 0.4667,
+     "recall": 0.5833,
+     "f1": 0.5185
+    },
+    "PHYSICAL_QUALITY": {
+     "tp": 59,
+     "fp": 31,
+     "fn": 55,
+     "precision": 0.6556,
+     "recall": 0.5175,
+     "f1": 0.5784
+    },
+    "PROCESS": {
+     "tp": 128,
+     "fp": 31,
+     "fn": 58,
+     "precision": 0.805,
+     "recall": 0.6882,
+     "f1": 0.742
+    },
+    "PURPOSE": {
+     "tp": 14,
+     "fp": 12,
+     "fn": 1,
+     "precision": 0.5385,
+     "recall": 0.9333,
+     "f1": 0.6829
+    },
+    "QUANTITY": {
+     "tp": 457,
+     "fp": 83,
+     "fn": 112,
+     "precision": 0.8463,
+     "recall": 0.8032,
+     "f1": 0.8242
+    },
+    "TASTE": {
+     "tp": 8,
+     "fp": 9,
+     "fn": 9,
+     "precision": 0.4706,
+     "recall": 0.4706,
+     "f1": 0.4706
+    },
+    "UNIT": {
+     "tp": 352,
+     "fp": 6,
+     "fn": 115,
+     "precision": 0.9832,
+     "recall": 0.7537,
+     "f1": 0.8533
+    }
+   }
+  },
+  "relaxed": {
+   "micro": {
+    "tp": 1710,
+    "fp": 92,
+    "fn": 308,
+    "precision": 0.9489,
+    "recall": 0.8474,
+    "f1": 0.8953
+   },
+   "macro_f1": 0.7767,
+   "per_label": {
+    "COLOR": {
+     "tp": 29,
+     "fp": 3,
+     "fn": 4,
+     "precision": 0.9062,
+     "recall": 0.8788,
+     "f1": 0.8923
+    },
+    "FOOD": {
+     "tp": 555,
+     "fp": 10,
+     "fn": 50,
+     "precision": 0.9823,
+     "recall": 0.9174,
+     "f1": 0.9487
+    },
+    "PART": {
+     "tp": 9,
+     "fp": 6,
+     "fn": 3,
+     "precision": 0.6,
+     "recall": 0.75,
+     "f1": 0.6667
+    },
+    "PHYSICAL_QUALITY": {
+     "tp": 62,
+     "fp": 28,
+     "fn": 52,
+     "precision": 0.6889,
+     "recall": 0.5439,
+     "f1": 0.6078
+    },
+    "PROCESS": {
+     "tp": 146,
+     "fp": 13,
+     "fn": 40,
+     "precision": 0.9182,
+     "recall": 0.7849,
+     "f1": 0.8464
+    },
+    "PURPOSE": {
+     "tp": 14,
+     "fp": 12,
+     "fn": 1,
+     "precision": 0.5385,
+     "recall": 0.9333,
+     "f1": 0.6829
+    },
+    "QUANTITY": {
+     "tp": 534,
+     "fp": 6,
+     "fn": 35,
+     "precision": 0.9889,
+     "recall": 0.9385,
+     "f1": 0.963
+    },
+    "TASTE": {
+     "tp": 9,
+     "fp": 8,
+     "fn": 8,
+     "precision": 0.5294,
+     "recall": 0.5294,
+     "f1": 0.5294
+    },
+    "UNIT": {
+     "tp": 352,
+     "fp": 6,
+     "fn": 115,
+     "precision": 0.9832,
+     "recall": 0.7537,
+     "f1": 0.8533
+    }
+   }
+  }
+ },
+ "test_split_micro_exact_f1_ci": {
+  "estimate": 0.7738,
+  "low": 0.7392,
+  "high": 0.8076,
+  "n_groups": 105,
+  "n_boot": 1000,
+  "seed": 20261018
  }
 }

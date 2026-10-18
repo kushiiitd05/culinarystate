@@ -9,9 +9,9 @@ from __future__ import annotations
 import random
 from collections import Counter, defaultdict
 from dataclasses import dataclass
-from typing import Callable, Hashable, Iterable, Sequence
+from typing import Callable, Hashable, Iterable, Sequence, Tuple
 
-Span = tuple[int, int, str]          # (start, end, label), end exclusive
+Span = Tuple[int, int, str]          # (start, end, label), end exclusive (typing.Tuple: py3.8 GPU env)
 
 
 @dataclass(frozen=True)
