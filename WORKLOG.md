@@ -494,3 +494,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/{targets`, `pipeline}.py`, `tests/unit/test_targets.py`
 - **Verified:** pytest 2879 fast + 40 ledgers pass
 - **Next:** RQ16-03 pilot record
+
+### S072 · 2026-10-18 23:51 IST · DEL-4 · RQ16-03 silver pilot (EXP-000006): structured compatibility vs generic cross-encoder
+- **Who:** Kush
+- **Did:** Pre-registered card committed before running. 800 queries with typed hard negatives (§241.4); CE scores on A100 (large 20 s, base 10 s). HARD AUROC: CE-large 0.924, structured oracle 0.995 (+0.071), structured predicted slots 0.975 (+0.051), struct+CE LR 0.996 (food-/process-cold). Verdict: success gate met on silver; mostly by construction; KEEP structured, no learned reranker; headline NEED_DATA.
+- **Files:** `experiments/EXP-000006/card.md`, `tools/{build_rq1603_pairs`, `score_pairs_ce`, `eval_rq1603}.py`, `reports/del4/rq1603_pilot_v1.{md`, `json}`, `docs/BUILD_TRACKER.md`
+- **Verified:** eval reproducible from pairs + CE files; ledger audit (card contract) passes
+- **Next:** benchmark authoring for human labels (D-008); C10/C15/C18 per tracker

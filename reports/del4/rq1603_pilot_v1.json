@@ -1,0 +1,408 @@
+{
+ "S0 BM25": {
+  "ALL": {
+   "estimate": 0.9665,
+   "low": 0.96,
+   "high": 0.9723,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "HARD": {
+   "estimate": 0.9179,
+   "low": 0.9019,
+   "high": 0.9332,
+   "n_groups": 767,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "R@1": {
+   "estimate": 0.8488,
+   "low": 0.8225,
+   "high": 0.8712,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_PROCESS": {
+   "estimate": 0.9321,
+   "low": 0.9141,
+   "high": 0.9487,
+   "n_groups": 751,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_TARGET": {
+   "estimate": 0.9961,
+   "low": 0.9909,
+   "high": 1.0,
+   "n_groups": 768,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "RELATED_FOOD": {
+   "estimate": 0.8746,
+   "low": 0.8413,
+   "high": 0.9032,
+   "n_groups": 315,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "EASY": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  }
+ },
+ "S2 structured": {
+  "ALL": {
+   "estimate": 0.9968,
+   "low": 0.9952,
+   "high": 0.9983,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "HARD": {
+   "estimate": 0.9951,
+   "low": 0.9919,
+   "high": 0.998,
+   "n_groups": 767,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "R@1": {
+   "estimate": 0.9788,
+   "low": 0.9675,
+   "high": 0.9888,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_PROCESS": {
+   "estimate": 0.9933,
+   "low": 0.9887,
+   "high": 0.9973,
+   "n_groups": 751,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_TARGET": {
+   "estimate": 0.9954,
+   "low": 0.9922,
+   "high": 0.9987,
+   "n_groups": 768,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "RELATED_FOOD": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 315,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "EASY": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  }
+ },
+ "S2p structured (predicted slots)": {
+  "ALL": {
+   "estimate": 0.9885,
+   "low": 0.9855,
+   "high": 0.9914,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "HARD": {
+   "estimate": 0.9752,
+   "low": 0.9681,
+   "high": 0.9817,
+   "n_groups": 767,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "R@1": {
+   "estimate": 0.9263,
+   "low": 0.9075,
+   "high": 0.9437,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_PROCESS": {
+   "estimate": 0.9687,
+   "low": 0.9601,
+   "high": 0.9767,
+   "n_groups": 751,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_TARGET": {
+   "estimate": 0.9922,
+   "low": 0.9876,
+   "high": 0.9961,
+   "n_groups": 768,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "RELATED_FOOD": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 315,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "EASY": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  }
+ },
+ "S1 CE bge-reranker-large": {
+  "ALL": {
+   "estimate": 0.9704,
+   "low": 0.9639,
+   "high": 0.9767,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "HARD": {
+   "estimate": 0.9237,
+   "low": 0.9061,
+   "high": 0.94,
+   "n_groups": 767,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "R@1": {
+   "estimate": 0.905,
+   "low": 0.885,
+   "high": 0.925,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_PROCESS": {
+   "estimate": 0.9374,
+   "low": 0.9201,
+   "high": 0.9547,
+   "n_groups": 751,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_TARGET": {
+   "estimate": 0.9974,
+   "low": 0.9935,
+   "high": 1.0,
+   "n_groups": 768,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "RELATED_FOOD": {
+   "estimate": 0.9048,
+   "low": 0.873,
+   "high": 0.9365,
+   "n_groups": 315,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "EASY": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  }
+ },
+ "S1 CE bge-reranker-base": {
+  "ALL": {
+   "estimate": 0.9592,
+   "low": 0.9516,
+   "high": 0.9661,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "HARD": {
+   "estimate": 0.895,
+   "low": 0.8761,
+   "high": 0.9146,
+   "n_groups": 767,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "R@1": {
+   "estimate": 0.8675,
+   "low": 0.8438,
+   "high": 0.8912,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_PROCESS": {
+   "estimate": 0.8921,
+   "low": 0.8695,
+   "high": 0.9134,
+   "n_groups": 751,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_TARGET": {
+   "estimate": 0.9974,
+   "low": 0.9935,
+   "high": 1.0,
+   "n_groups": 768,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "RELATED_FOOD": {
+   "estimate": 0.9143,
+   "low": 0.8825,
+   "high": 0.9429,
+   "n_groups": 315,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "EASY": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  }
+ },
+ "S3 struct+CE (food-cold)": {
+  "ALL": {
+   "estimate": 0.9981,
+   "low": 0.996,
+   "high": 0.9996,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "HARD": {
+   "estimate": 0.9961,
+   "low": 0.9909,
+   "high": 1.0,
+   "n_groups": 767,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "R@1": {
+   "estimate": 0.995,
+   "low": 0.99,
+   "high": 0.9988,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_PROCESS": {
+   "estimate": 0.996,
+   "low": 0.9907,
+   "high": 1.0,
+   "n_groups": 751,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_TARGET": {
+   "estimate": 0.9987,
+   "low": 0.9961,
+   "high": 1.0,
+   "n_groups": 768,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "RELATED_FOOD": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 315,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "EASY": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  }
+ },
+ "S3 struct+CE (process-cold)": {
+  "ALL": {
+   "estimate": 0.9981,
+   "low": 0.996,
+   "high": 0.9996,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "HARD": {
+   "estimate": 0.9961,
+   "low": 0.9909,
+   "high": 1.0,
+   "n_groups": 767,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "R@1": {
+   "estimate": 0.995,
+   "low": 0.99,
+   "high": 0.9988,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_PROCESS": {
+   "estimate": 0.996,
+   "low": 0.9907,
+   "high": 1.0,
+   "n_groups": 751,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "WRONG_TARGET": {
+   "estimate": 0.9987,
+   "low": 0.9961,
+   "high": 1.0,
+   "n_groups": 768,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "RELATED_FOOD": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 315,
+   "n_boot": 1000,
+   "seed": 20261018
+  },
+  "EASY": {
+   "estimate": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "n_groups": 800,
+   "n_boot": 1000,
+   "seed": 20261018
+  }
+ }
+}

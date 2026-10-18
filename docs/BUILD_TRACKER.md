@@ -36,7 +36,7 @@ baseline → keep only if it earns its place (§257B promotion rule) → log WOR
 |---|---|---|---|
 | 01 | Semantic state value | ⬜ | needs B3 vs B4 ladder on benchmark |
 | 02 | Structured retrieval | 🟡 | silver: structured MRR 0.856 vs hybrid 0.704 vs BM25 0.597 (`reports/del4/`) |
-| 03 | Compatibility reranker vs cross-encoder | 🟡 | bge-reranker large/base hurt their RRF input (Δ −0.056 / −0.091, CIs exclude 0) — `reports/del4/retrieval_silver_v2_analysis.md`; scientific hard negatives ⬜ |
+| 03 | Compatibility reranker vs cross-encoder | 🟡 | silver pilot EXP-000006: structured beats CE-large on hard negatives (oracle +0.071, predicted slots +0.051, CIs exclude 0); headline NEED_DATA (human-labelled pairs) |
 | 04 | Context restructuring | ⬜ | packet fields exist; generator needed |
 | 05 | Confidence vector | ✅ | `decision/confidence.py`; calibration needs verified labels |
 | 06 | Evidence sufficiency policy | ✅ | §242.6–8 modes + precision cap |
