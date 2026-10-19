@@ -678,3 +678,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `docs/MASTER_CHAT_HANDOFF_PROMPT.md`
 - **Verified:** git rm + commit
 - **Next:** user pastes update into SSOT chat
+
+### S100 · 2026-10-19 17:02 IST · DEL-3/4/5 · S100 state-awareness readiness audit + H_STATE pre-registration
+- **Who:** claude
+- **Did:** Audited the 12-stage raw-recipe-to-decision path. VERIFIED: replay determinism only. Not verified: text->events (n=3 single-annotator dev-contaminated examples; state-field acc 0.43/0.00/0.40, merge-split F1 1.0/0.35/1.0), coreference (runtime C2 not built), merge/split/observation sessions (30 AI_DRAFT, hand-authored events, 0 human-reviewed), calibration (no labels). Key finding: B4 did not exist - Query state fields were never populated and session only fed diagnosis history. Added minimum code: decision/state_conditioning.py + answer(use_state) + ask.py --use-state + 4 tests (default = B3). No test set exists for H_STATE (ladder Qs are AI-authored, single-turn). Wrote claim gate (12 rows), EXP-000007 card (20 Gold recipes, 60 state-dependent Qs + 20 controls, B3 vs B4-pred vs B4-oracle, CC@5 primary, paired grouped bootstrap, success/null/negative/invalid gates). Card kept in experiments/ (not registry/experiments, which does not exist); EXP-000005/6/7 not yet in EXP ledger. Not run: final experiment.
+- **Files:** `reports/state_awareness_readiness_v1.md`, `experiments/EXP-000007/card.md`, `src/culinarystate/decision/state_conditioning.py`, `src/culinarystate/decision/pipeline.py`, `tools/ask.py`, `tests/unit/test_state_conditioning.py`
+- **Verified:** 2951 passed, 40 deselected; B3 vs B4 smoke n=1 on a boiled-broccoli session
+- **Next:** Human Gold G1-G6 (adjudicate 20 pilot recipes, author 60+20 questions and cells); then build the cut-point harness and run EXP-000007. Recommended single step: Kush+Parv annotate the first 5 pilot_20 recipes in full (events + 3 questions each) as a dry run of G1-G3.
