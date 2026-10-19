@@ -615,3 +615,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/ingest_cosylab_permitted.py`, `DECISIONS.md`, `ledgers/data/*`
 - **Verified:** 2945 passed
 - **Next:** Download RecipeDB3 NER annotations for matched reproduction on A100 (needs VPN confirm); SustainableFoodDB/companion use
+
+### S091 · 2026-10-19 12:14 IST · B-NER · S091 RecipeDB3 NER data + reproduction harness
+- **Who:** claude
+- **Did:** Downloaded RecipeDB3 NER annotation + notebooks to data/external/recipedb3_ner (permission D-015). Finding: released Ingredient_Annotated_Dataset.csv == final_train_augmented (26,444 rows, 25,529 unique); their notebook random 80/20 split (seed 48) and selects best epoch on the TEST set (reported macro F1 0.9557, 15 ep, deberta-base). Local dry-run: 13.3% of their test rows have a masked family in train (4.9% exact); grouped split gives 0%. Wrote gpu/ner_recipedb3/repro.py (theirs vs clean, leaked/non-leaked breakdown) + run_all.sh
+- **Files:** `gpu/ner_recipedb3/*`
+- **Verified:** syntax ok; data prep dry-run local; not yet run on GPU
+- **Next:** VPN confirm -> scp + run on A100
