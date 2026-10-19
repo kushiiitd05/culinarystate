@@ -573,3 +573,17 @@ Presentation: **25–26 Nov 2026**.
 - **Did:** Replaced GLiNER stub with real implementation using eval results: threshold 0.2, confidence 0.40 (fallback-only). Labels mapped: 9 TASTEset types via natural-language prompts. Lazy model loading. 2940 tests pass.
 - **Files:** `src/culinarystate/ner/pipeline.py`
 - **Verified:** 2940 passed 0 failed; GLiNER default layers still (RULE, ENCODER)
+
+### S085 · 2026-10-19 11:37 IST · B-NER · S085 commit CoSyLab alignment + GLiNER wiring
+- **Who:** claude
+- **Did:** Committed S078-S084 work in 16 per-file commits; gitignored data/external (mixed licences incl AGPL)
+- **Files:** `.gitignore`, `tools/*`, `registry/*`, `reports/*`, `src/culinarystate/ner/pipeline.py`
+- **Verified:** git status clean; 2940 tests passed pre-commit
+- **Next:** Wire C10+C15 into decision/pipeline.answer()
+
+### S086 · 2026-10-19 11:38 IST · B-DEC · S086 C15 Pareto view wired into answer()
+- **Who:** claude
+- **Did:** pareto_view(): median MEASURED retention + feasibility -> selector.select; added as answer()['pareto'] for COMPARE/RECOMMEND; time axis not wired (neutral)
+- **Files:** `src/culinarystate/decision/pipeline.py`, `tests/test_pareto_view.py`
+- **Verified:** 2943 passed, 40 deselected
+- **Next:** Wire C10 substitution/sequence candidates; ingest 4,559 unmatched taste molecules; human queue
