@@ -9,7 +9,7 @@ slots stay None and the policy asks or abstains.
 from __future__ import annotations
 
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 from culinarystate.retrieval.compatibility import Query
@@ -53,6 +53,7 @@ class Lexicon:
     alternatives: dict = field(default_factory=dict)  # ING id -> ((ING id, confidence), ...) ING_ALTERNATIVE_TO (C10)
     followed_by: dict = field(default_factory=dict)   # PROC id -> ((PROC id, confidence), ...) PROC_FOLLOWED_BY (C10)
     ing_names: dict = field(default_factory=dict)     # ING id -> canonical name
+    carbon: dict = field(default_factory=dict)        # ING id -> typical kgCO2e/kg (p50 of ING_CARBON_FOOTPRINT)
     durations: dict = field(default_factory=dict)     # PROC id -> typical minutes (p50 of PROC_TYPICAL_DURATION)
 
 
@@ -122,6 +123,10 @@ def extra_candidates(q: str, s: Slots, lex: Lexicon) -> CandidateSet | None:
     pid = s.processes[0][1] if s.processes else None
     name_of = {v: n for n, v in lex.proc_ids.items()}
     subs = substitution_candidates(s.ingredient_id, lex.alternatives, lex.ing_names)
+    base = lex.carbon.get(s.ingredient_id)
+    if base is not None:                       # C15 sustainability context, only where both footprints are evidenced
+        subs = [replace(c, reason=f"{c.reason}; carbon {lex.carbon[c.id]:.1f} vs {base:.1f} kgCO2e/kg (literature median)")
+                if c.id in lex.carbon else c for c in subs]
     seqs = sequence_candidates(pid, lex.followed_by, name_of) if it in ("RECOVER", "COMPARE") else []
     if not (subs or seqs):
         return None
@@ -185,6 +190,7 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
     alts: dict = {}
     fol: dict = {}
     dur: dict = {}
+    carb: dict = {}
     for e in store.all_latest("KGE"):
         if e["status"] != "ACTIVE":
             continue
@@ -192,6 +198,8 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
             by.setdefault(e["subject_id"], []).append((-e["confidence"], e["object_id"]))
         elif e["predicate"] == "ING_ALTERNATIVE_TO":
             alts.setdefault(e["subject_id"], []).append((e["object_id"], e["confidence"]))
+        elif e["predicate"] == "ING_CARBON_FOOTPRINT" and (e.get("quantiles") or {}).get("p50") is not None:
+            carb[e["subject_id"]] = e["quantiles"]["p50"]
         elif e["predicate"] == "PROC_TYPICAL_DURATION" and (e.get("quantiles") or {}).get("p50") is not None:
             dur[e["subject_id"]] = e["quantiles"]["p50"]
         elif e["predicate"] == "PROC_FOLLOWED_BY":
@@ -208,5 +216,5 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
                   relations, targets,
                   {k: tuple(sorted(v, key=lambda x: -x[1])) for k, v in alts.items()},
                   {k: tuple(sorted(v, key=lambda x: -x[1])) for k, v in fol.items()},
-                  {i["id"]: i["canonical_name"] for i in ings}, dur)
+                  {i["id"]: i["canonical_name"] for i in ings}, carb, dur)
     return lex, family
