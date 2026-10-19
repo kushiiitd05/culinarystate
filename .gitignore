@@ -9,6 +9,7 @@ __pycache__/
 annotation/gold/*
 !annotation/gold/pilot_20_manifest.csv
 !annotation/gold/pilot_7_calibration_manifest.csv
+!annotation/gold/pilot_20_kush_ai_assisted_manifest.csv
 annotation/adjudication/
 # GPU job working copies (copied at package time; runs pulled back to reports/)
 gpu/*/metrics.py
@@ -19,3 +20,4 @@ data/external/
 gpu/ner_recipedb3/*.csv
 gpu/ner_recipedb3/runs/
 annotation/ai_review/
+annotation/parv_pack/
