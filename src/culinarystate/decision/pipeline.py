@@ -26,6 +26,7 @@ from .feasibility import Action, Constraints, Requirements, check
 from .ood import SupportIndex
 from .policy import decide
 from .relevance import intent
+from .candidates import CandidateSet, substitution_candidates, sequence_candidates
 from .selector import Option, Selection, select
 
 HEAT_FAMILIES = ("WET_HEAT", "DRY_HEAT", "FAT_HEAT")          # cooking-method candidates (+ microwave below)
@@ -49,6 +50,9 @@ class Lexicon:
     heat_procs: frozenset
     relations: dict = field(default_factory=dict)   # ING id -> ((ING id, relation), ...) from the R4 food graph
     targets: TargetLexicon | None = None             # ledger target names (closed world); regex list is the fallback
+    alternatives: dict = field(default_factory=dict)  # ING id -> ((ING id, confidence), ...) ING_ALTERNATIVE_TO (C10)
+    followed_by: dict = field(default_factory=dict)   # PROC id -> ((PROC id, confidence), ...) PROC_FOLLOWED_BY (C10)
+    ing_names: dict = field(default_factory=dict)     # ING id -> canonical name
 
 
 @dataclass(frozen=True)
@@ -107,6 +111,21 @@ def pareto_view(packets: dict, feas: dict, proc_ids: dict) -> Selection | None:
     return select(opts)
 
 
+def extra_candidates(q: str, s: Slots, lex: Lexicon) -> CandidateSet | None:
+    """C10: substitution (RECOMMEND/COMPARE/RECOVER) and next-step (RECOVER/COMPARE with a process) candidates.
+    Corpus edges only; None when the intent or slots give nothing to generate from."""
+    it = intent(q)
+    if it not in ("RECOMMEND", "COMPARE", "RECOVER"):
+        return None
+    pid = s.processes[0][1] if s.processes else None
+    name_of = {v: n for n, v in lex.proc_ids.items()}
+    subs = substitution_candidates(s.ingredient_id, lex.alternatives, lex.ing_names)
+    seqs = sequence_candidates(pid, lex.followed_by, name_of) if it in ("RECOVER", "COMPARE") else []
+    if not (subs or seqs):
+        return None
+    return CandidateSet(s.ingredient_id, pid, s.target, tuple(subs + seqs))
+
+
 def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements, proc_family: dict,
            constraints: Constraints | None = None, k: int = 10, support_index: SupportIndex | None = None,
            troubleshoot: TroubleshootIndex | None = None, session: SessionState | None = None) -> dict:
@@ -143,6 +162,7 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
     return {"slots": s, "decision": decide(q, packets, slots, feasibility=feas, support=support, numeric_target=s.numeric_target,
                               diagnosis=dg), "packets": packets,
             "feasibility": feas, "support": support, "session": session,
+            "candidates": extra_candidates(q, s, lex),
             "pareto": pareto_view(packets, feas, dict(options)) if intent(q) in ("COMPARE", "RECOMMEND") else None}
 
 
@@ -160,9 +180,17 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
     procs = [p for p in store.all_latest("PROC") if p["status"] == "ACTIVE"]
     family = {p["id"]: p["family"] for p in procs}
     by: dict = {}
+    alts: dict = {}
+    fol: dict = {}
     for e in store.all_latest("KGE"):
-        if e["status"] == "ACTIVE" and e["predicate"] == "ING_PROCESSED_BY":
+        if e["status"] != "ACTIVE":
+            continue
+        if e["predicate"] == "ING_PROCESSED_BY":
             by.setdefault(e["subject_id"], []).append((-e["confidence"], e["object_id"]))
+        elif e["predicate"] == "ING_ALTERNATIVE_TO":
+            alts.setdefault(e["subject_id"], []).append((e["object_id"], e["confidence"]))
+        elif e["predicate"] == "PROC_FOLLOWED_BY":
+            fol.setdefault(e["subject_id"], []).append((e["object_id"], e["confidence"]))
     ings = [i for i in store.all_latest("ING") if i["status"] == "ACTIVE"]
     off = {k: e.parents for k, e in parse_off(off_path).items()} if off_path and off_path.exists() else {}
     graph = FoodGraph(ings, off)
@@ -172,5 +200,8 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
                   {i["id"]: tuple(i.get("parent_ids") or ()) for i in store.all_latest("ING")},
                   {k: tuple(p for _, p in sorted(v)) for k, v in by.items()},
                   frozenset(p["id"] for p in procs if p["family"] in HEAT_FAMILIES or p["canonical_name"] in EXTRA_METHODS),
-                  relations, targets)
+                  relations, targets,
+                  {k: tuple(sorted(v, key=lambda x: -x[1])) for k, v in alts.items()},
+                  {k: tuple(sorted(v, key=lambda x: -x[1])) for k, v in fol.items()},
+                  {i["id"]: i["canonical_name"] for i in ings})
     return lex, family
