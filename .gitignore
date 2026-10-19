@@ -6,7 +6,8 @@ __pycache__/
 .pytest_cache/
 *.egg-info/
 # gold files and adjudication sheets contain third-party recipe text (D-007)
-annotation/gold/
+annotation/gold/*
+!annotation/gold/pilot_20_manifest.csv
 annotation/adjudication/
 # GPU job working copies (copied at package time; runs pulled back to reports/)
 gpu/*/metrics.py
