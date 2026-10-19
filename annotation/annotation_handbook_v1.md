@@ -120,3 +120,32 @@ Targets (plan AH6): pilot 20 hard recipes → course Deep Gold ≥ 40 double-ann
 - May not: pre-fill Gold, adjudicate, or be named as annotator/verifier. AI review is never human verification.
 
 See also `annotation/annotation_checklist.md`, `annotation/hard_examples.md`, `annotation/adjudication_template.csv`.
+
+---
+
+## Addendum A (S101, 2026-10-19) — clarifications for the pilot_20 double annotation
+
+Added before any annotator started; v1 rules above are unchanged. Required by the S100 state-awareness audit (the Gold must cover
+the whole recipe-local chain: spans → links → events → references → replayable state).
+
+1. **Where files live.** Work in your own folder only: `annotation/gold/pilot_20/Kush/<id>.Kush.json` or `…/Parv/<id>.Parv.json`
+   (blank copies already contain the raw text; never edit `text`). Do not open the other folder before both of you are DONE.
+2. **`Add` events are automatic.** Every ingredient line becomes an `Add` of its `entity` when compiled. Do not write `Add` in `events`.
+3. **`Observe` is not used in recipe text.** It exists for cook sessions. Never add it to these files.
+4. **Relations have no separate field; they are read from what you already write.**
+   action → target = `target`/`inputs` of the event; ingredient → intermediate membership = `inputs` → `output` of Merge;
+   cross-step reference = `coref` list (also for "the mixture", "the sauce", "them"); intermediate identity = the Merge/Split/Reserve
+   `output` label plus an INTERMEDIATE span where the text names it; reserve → recombine linkage = `Reserve.output` equals the later
+   `Recombine.target`. If a reference is unclear, entity `UNKNOWN` plus a note — never guess.
+5. **Canonical links.** `concept` = registry name from `registry/ingredients/ingredient_registry_v1.csv`, or `UNKNOWN`. Event `process` =
+   canonical name from `registry/processes/process_registry_v1.csv` when the verb is listed; otherwise the verb as written, and add
+   a note "not in PROC registry". Never write FoodOn / OFF / Wikidata / PROC IDs; never force a match.
+6. **Time, temperature, endpoint, tool, medium** go both as spans and in the event fields they belong to (see section 4); a span with no
+   event field is allowed only when no event carries that action (say why in `notes`).
+7. **Final state is not typed by hand.** Run `python tools/gold_cli.py replay <your file>` and check the printout against the text:
+   alive entities, composition (`qty`), form/state fields, location/container, what was reserved or discarded, process history. If it
+   looks wrong, fix the events; do not accept a state you cannot justify from the text. Quantities stay symbolic — no invented grams.
+8. **Finishing.** Set `"status": "DONE"` only when the file is complete and `validate` prints OK. Otherwise leave `DRAFT`. No LLM
+   pre-fill; AI may explain this handbook and check formatting, nothing else.
+9. **Disagreements discovered later** are resolved in adjudication only. A rule added after your pass (v1.1+) is recorded as such and
+   is not treated as if you had followed it.
