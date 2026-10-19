@@ -622,3 +622,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `gpu/ner_recipedb3/*`
 - **Verified:** syntax ok; data prep dry-run local; not yet run on GPU
 - **Next:** VPN confirm -> scp + run on A100
+
+### S092 · 2026-10-19 16:00 IST · B-NER · S092 RecipeDB3 protocol verified locally; server unreachable
+- **Who:** claude
+- **Did:** VPN not working (SSH timeout, no route; user confirmed). Verified locally: selection on test, random split, 13.5%+-0.4% masked-family leakage over 100 splits, SIZE excluded. Report section added; GPU runs deferred
+- **Files:** `reports/ner/recipedb3_vulnerability_analysis.md`
+- **Verified:** 100-split local stats
+- **Next:** when VPN works: scp gpu/ner_recipedb3 + data, run_all.sh
