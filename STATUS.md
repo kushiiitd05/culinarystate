@@ -1,6 +1,6 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-**Updated:** 2026-10-19 02:30 IST (after S077) · **Final presentation: 25–26 Nov 2026 (T-37 days)**
+**Updated:** 2026-10-19 11:30 IST (after S083) · **Final presentation: 25–26 Nov 2026 (T-37 days)**
 **Repo:** `~/Desktop/CGAS/culinarystate` (local git; GitHub push only after H7 approval)
 **Step-by-step log:** `WORKLOG.md` (timestamped, sequential). **Decisions:** `DECISIONS.md`.
 **Bible:** `docs/SSOT/…v15_0.md` (read via `docs/SSOT_INDEX.md`) · plan `docs/plan/CulinaryState_Final_Master_Plan_SSOT15_v4_0.md`
@@ -18,6 +18,8 @@
 | C16 template generator promoted; C17 checker/enforcer; C5 ingredient exclusions; retrieval paired study | `reports/del5/generator_c16_v1.md`, `reports/del4/retrieval_silver_v2_analysis.md` (S066–S068) |
 | NER runtime verified on Mac (base+CRF 0.9266); C18 session-state updater wired; C10 candidate action generator; C15 Pareto selector | S073–S076 |
 | E16-A error analysis (301 errors, frequency buckets), paired bootstrap significance (CRF sig, kNN null), hybrid NER pipeline module | S077 |
+| CoSyLab public data audit: 26 repos surveyed, 10 NER vulnerabilities found, 19K ingredient categories (9 mislabeling errors), data from 10 sources downloaded (bittersweet AGPL, companion NER, NER_DL, NOVA, SweetpredDB, hierarchical clustering) | S078–S079 |
+| CoSyLab data → ledger alignment: 616 MOL_HAS_TASTE + 809 ING_COSYLAB_CATEGORY + 481 ING_HEALTH_ASSOCIATION KG edges; KG 15,339→17,245; all 15 empty files filled (102MB total); V3 leakage verified: 128 exact (5.9%) + 322 masked (15.5%) duplicates | S080–S082 |
 
 **Not on this machine:** Parv's Max-plan work (old STATUS/DECISIONS, ~519 evidence candidate cells). Decision D-001: rebuild here; Parv continues from this repo.
 
@@ -54,7 +56,7 @@
 | X13 | FoodAtlas (MIT code; data CC BY-NC 4.0 since 2026-10-09) | ING↔chemical candidate observations | ⛔ manual download (bundles private; MANUAL_NEXT_STEPS #12) |
 | X15 | FDC raw/cooked matched pairs | EVD candidates (E6) | ✅ S050: 867 pairs, 16,365 dry-basis ratios; vs R6 group level within 0.10 for 46% (analytical) |
 | X7 | recipe-scrapers on robots-allowed sites | REC (Indian focus) | queued (needs `pip install recipe-scrapers`) |
-| X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | 🟡 TASTEset test exact F1: rules 0.774 → base+CRF 0.927 / large+CRF 0.933 (5 seeds); kNN Δ=0 (null); CRF sig p=0.003; FOOD F1: head 0.97 → unseen 0.69; hybrid pipeline module; GLiNER zero-shot pending |
+| X8 | SOTA ingredient NER (A100, VPN) | ING mentions across all REC sources | 🟡 TASTEset test exact F1: rules 0.774 → base+CRF 0.927 / large+CRF 0.933 (5 seeds); kNN Δ=0 (null); CRF sig p=0.003; FOOD F1: head 0.97 → unseen 0.69; hybrid pipeline module; GLiNER zero-shot: large 0.232 exact / 0.643 relaxed (FOOD 0.470/0.801); confirms fallback-only role in hybrid |
 
 ## 3. BLOCKED / WAITING
 | Blocker | Impact | Workaround |

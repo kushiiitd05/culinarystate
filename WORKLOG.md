@@ -531,3 +531,45 @@ Presentation: **25–26 Nov 2026**.
 - **Did:** Error analysis of 301 test errors (deberta-v3-base_crf seed 1): 46.5% boundary, FOOD↔PHYSICAL_QUALITY top confusion, PART/TASTE weakest. Paired bootstrap significance: CRF sig p=0.003, kNN-NER null (Δ=0 all 5 seeds, excluded). Built NER hybrid pipeline module (rules → encoder cascade, GLiNER/verifier stubs). 14 new tests (2940 total).
 - **Files:** `src/culinarystate/ner/pipeline.py`, `tools/ner_analysis.py`, `reports/ner/e16a_error_analysis.md`, `reports/ner/e16a_significance.md`, `tests/unit/test_ner_pipeline.py`
 - **Verified:** pytest 2940 pass; error analysis covers 7 models × 5 seeds; bootstrap CIs match report
+
+### S078 · 2026-10-19 10:29 IST · RS · S078: CoSyLab public data audit + RecipeDB3 NER vulnerability analysis
+- **Who:** Kush+Claude
+- **Did:** Surveyed all 26 cosylabiiit GitHub repos via API. Found 10 AI/data-science vulnerabilities in RecipeDB3 NER pipeline (test-set model selection, SIZE dropped, augmentation leakage, head-heavy test, no validation set, etc). Discovered RecipeDB2 category errors (shallot=Seafood). Mapped 18 CoSyLab web services. Identified Foodoscope as main API. Only 4/26 repos have licenses. Created vulnerability analysis + full data audit reports.
+- **Files:** `reports/ner/recipedb3_vulnerability_analysis.md reports/cosylab_data_audit.md`
+- **Verified:** All findings verifiable from public GitHub repos
+
+### S079 · 2026-10-19 11:00 IST · RS · S078: CoSyLab audit + data download
+- **Who:** Kush+Claude
+- **Did:** Surveyed 26 cosylabiiit repos, downloaded 10 datasets, found 10 NER vulnerabilities + category errors
+- **Files:** `reports/ner/recipedb3_vulnerability_analysis.md reports/cosylab_data_audit.md data/external/`
+- **Verified:** Analysis scripts prove claims
+
+### S080 · 2026-10-19 11:12 IST · S080 · CoSyLab data → ledger alignment
+- **Who:** Kush+Claude
+- **Did:** Aligned downloaded CoSyLab data with ledgers: (1) 5,191 taste molecule edges from bittersweet/SweetpredDB, 632 matched to MOL ledger; (2) 19,019 RecipeDB2 categories crosswalked to ING registry — 236 agree, 227 disagree, 582 no FoodOn; (3) NER tag distribution comparison confirms SIZE dropped; (4) Ingested 616 MOL_HAS_TASTE + 809 ING_COSYLAB_CATEGORY KG edges (KG: 15,339→16,764)
+- **Files:** `tools/align_cosylab_ledgers.py`, `tools/ingest_cosylab_kg.py`, `registry/molecules/taste_molecule_alignment.csv`, `registry/ingredients/cosylab_category_crosswalk.csv`, `registry/kg/kg_edges_v1.csv`
+- **Verified:** KG edge count 16764; taste alignment CSV 5191 rows; crosswalk CSV 19019 rows
+
+### S081 · 2026-10-19 11:24 IST · S081 · Clone large CoSyLab files + augmentation leakage verification
+- **Who:** Kush+Claude
+- **Did:** Cloned 5 CoSyLab repos (shallow), filled all 15 empty files (102MB total). Verified V3 augmentation leakage: 128 exact dupes (5.9%), 322 masked dupes (15.5%), 915 internal dupes. Machine_Annotated_train 84K rows zero overlap with manual data. New data: SustainableFoodDB 118K recipes + 1.15M recipe-ingredient pairs, spice-disease 6.7K sentences, AllerStack 4.3K proteins, NOVA 2970×103 nutrients.
+- **Files:** `data/external/recipe_ner_dl/*`, `data/external/sustainablefooddb/*`, `data/external/spice_disease/*`, `data/external/allerstack/*`, `data/external/nova_food_processing/*`, `reports/ner/recipedb3_vulnerability_analysis.md`
+- **Verified:** 0 empty files remain; V3 numbers verified from actual data
+
+### S082 · 2026-10-19 11:26 IST · S082 · Spice-disease KG + GLiNER script prep + SustainableFoodDB analysis
+- **Who:** Kush+Claude
+- **Did:** Ingested 481 ING_HEALTH_ASSOCIATION KG edges from spice-disease PubMed data (45 foods × diseases, ≥2 mentions). KG now 17,245 edges. Analyzed SustainableFoodDB: 118K recipes (26 cuisines), 1.15M ingredient pairs (86% coverage via substring match). Sueatable: 3,338 food items with CO2 data. Prepared GLiNER zero-shot run script for A100.
+- **Files:** `tools/ingest_spice_disease_kg.py`, `registry/kg/kg_edges_v1.csv`, `gpu/ner_tasteset/run_gliner.sh`
+- **Verified:** KG edges 17245; 481 health association edges; GLiNER script ready
+
+### S083 · 2026-10-19 11:30 IST · S083 · GLiNER zero-shot results retrieved from A100
+- **Who:** Kush+Claude
+- **Did:** GLiNER already ran on server. Results: large-v2.1 zero-shot exact F1 0.232 [0.212-0.254], relaxed 0.643. Per-label: FOOD exact 0.470/relaxed 0.801, PROCESS 0.532/0.631, QUANTITY 0.051/0.872. Confirms GLiNER is strong for entity detection (high relaxed) but weak for exact boundaries — validates hybrid pipeline design where GLiNER is fallback only. Copied results to gpu/ner_tasteset/runs/. Also ingested 481 ING_HEALTH_ASSOCIATION KG edges from spice-disease data.
+- **Files:** `gpu/ner_tasteset/runs/gliner_gliner_large-v2.1_zeroshot_seed1.json`, `gpu/ner_tasteset/runs/gliner_gliner_medium-v2.1_zeroshot_seed1.json`, `STATUS.md`
+- **Verified:** GLiNER large exact F1 0.2317; relaxed F1 0.6429; FOOD exact 0.4704
+
+### S084 · 2026-10-19 11:31 IST · S084 · GLiNER wired into hybrid NER pipeline
+- **Who:** Kush+Claude
+- **Did:** Replaced GLiNER stub with real implementation using eval results: threshold 0.2, confidence 0.40 (fallback-only). Labels mapped: 9 TASTEset types via natural-language prompts. Lazy model loading. 2940 tests pass.
+- **Files:** `src/culinarystate/ner/pipeline.py`
+- **Verified:** 2940 passed 0 failed; GLiNER default layers still (RULE, ENCODER)
