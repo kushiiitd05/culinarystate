@@ -1,5 +1,10 @@
 # pilot_20 — independent double annotation (Kush and Parv)  ·  STATUS: BLOCKED_HUMAN until both folders are DONE
 
+## Round 1 (S102) — calibration: annotate these 7 first (one per stratum, picked mechanically: first recipe_id per stratum)
+R003595 (baking) · R002919 (drain_discard) · R000387 (indian) · R002843 (multi_component) · R000312 (random) · R008469 (reserve_split) · R001894 (simple).
+After both of you have these 7 DONE: `/opt/anaconda3/bin/python tools/gold_pilot_agreement.py --calibration`. The other 13 wait for the handbook gate.
+
+
 Read first: `annotation/annotation_handbook_v1.md` (incl. **Addendum A**), `annotation/annotation_checklist.md`,
 `annotation/hard_examples.md`, `annotation/UNKNOWN_examples.md`, worked examples `annotation/examples/GOLD-EX-00{1,2,3}.Kush.json`.
 
