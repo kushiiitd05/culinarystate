@@ -769,3 +769,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/build_hstate_authoring_pack.py`, `tools/validate_hstate_questions.py`, `benchmark/h_state/questions_to_write.csv`, `reports/h_state/h_state_benchmark_v1.md`
 - **Verified:** 20 recipes cut; validator blocks with exit 2; suite passes
 - **Next:** Kush picks (a)/(b)/(c) and writes the 80 questions; validator; freeze.
+
+### S113 · 2026-10-19 22:51 IST · X-API · S113 API-RECON-01: public Foodoscope implementations audited; env-only client built
+- **Who:** claude
+- **Did:** GitHub code search + file reads (no API calls with anyone's key): 30 files/19 repos; hosts api.foodoscope.com/recipe2-api and /flavordb (current), cosylab web UIs + :6969 (legacy); auth Bearer (most) or x-api-key; 3 files hold committed keys (redacted, compromised, unused; 0 token-like strings in the registry). One unauthenticated probe of api.foodoscope.com/flavordb: 400 ApiKey is not provided, so FlavorDB also needs a key on the current host. Contract facts (paths, entity_alias_readable/page/size paging, flavor_profile mismatch) recorded as UNVERIFIED. Built src/culinarystate/sources/foodoscope_client.py (env-only key, configurable header, retries, rate limit 25/min, bounded paging, snapshots without key) with 5 mocked tests. SustainableFoodDB/DietRxDB reported coming-soon; SpiceRx/CocktailDB hosts not found. No ingestion.
+- **Files:** `tools/recon_foodoscope_public.py`, `src/culinarystate/sources/foodoscope_client.py`, `registry/sources/foodoscope_public_usage_registry.csv`, `reports/sources/foodoscope_public_implementations.md`
+- **Verified:** suite passes; registry has no token-like string
+- **Next:** Obtain our own Foodoscope key (H1/Starter plan), then verify the contracts with one request each.
