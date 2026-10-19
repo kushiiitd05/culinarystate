@@ -594,3 +594,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/pipeline.py`, `tests/test_extra_candidates.py`
 - **Verified:** 2945 passed
 - **Next:** Ingest unmatched taste molecules; human queue; H1 email
+
+### S088 · 2026-10-19 11:54 IST · B-LIC · S088 licence + ledger-bypass fix for CoSyLab ingests
+- **Who:** claude
+- **Did:** Found S080-S082 edges came from unlicensed sources (RecipeDB2, spice-disease, SweetpredDB) and bypassed ledger; reverted kg_edges CSV to ledger-derived, removed crosswalk/alignment CSVs and 2 ingesters; added ledger-based tools/ingest_bittersweet_kg.py (AGPL SRC, 524 MOL_HAS_TASTE edges, InChIKey match via rdkit); rdkit installed in base anaconda (user-approved)
+- **Files:** `tools/ingest_bittersweet_kg.py`, `ledgers/data/*`, `registry/kg/kg_edges_v1.csv`, `STATUS.md`
+- **Verified:** 2945 passed; build_kg_edges rebuild ok
+- **Next:** H1 email must request RecipeDB2/spice-disease/SweetpredDB/SustainableFoodDB/RecipeDB3 permission
