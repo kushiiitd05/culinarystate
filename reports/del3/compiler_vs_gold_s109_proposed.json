@@ -1,0 +1,2169 @@
+{
+ "n_recipes": 20,
+ "gold": "pilot_20 Gold-v1 (AI-assisted, human-reviewed; not independent; not a test set)",
+ "summary": {
+  "P": {
+   "state_field_accuracy": {
+    "mean": 0.1317,
+    "ci95": [
+     0.0517,
+     0.2183
+    ]
+   },
+   "alive_f1": {
+    "mean": 0.34,
+    "ci95": [
+     0.2433,
+     0.4467
+    ]
+   },
+   "merge_split_f1": {
+    "mean": 0.3795,
+    "ci95": [
+     0.2714,
+     0.5014
+    ]
+   },
+   "relation_f1": {
+    "mean": 0.3391,
+    "ci95": [
+     0.2516,
+     0.437
+    ]
+   },
+   "event_loose_f1": {
+    "mean": 0.2449,
+    "ci95": [
+     0.1678,
+     0.3347
+    ]
+   },
+   "event_type_f1": {
+    "mean": 0.6344,
+    "ci95": [
+     0.5383,
+     0.7284
+    ]
+   },
+   "recipes_with_replay_issues": 0
+  },
+  "O1": {
+   "state_field_accuracy": {
+    "mean": 0.1317,
+    "ci95": [
+     0.0517,
+     0.2183
+    ]
+   },
+   "alive_f1": {
+    "mean": 0.325,
+    "ci95": [
+     0.2267,
+     0.4317
+    ]
+   },
+   "merge_split_f1": {
+    "mean": 0.3655,
+    "ci95": [
+     0.2673,
+     0.4793
+    ]
+   },
+   "relation_f1": {
+    "mean": 0.3256,
+    "ci95": [
+     0.2401,
+     0.4244
+    ]
+   },
+   "event_loose_f1": {
+    "mean": 0.2355,
+    "ci95": [
+     0.1568,
+     0.3261
+    ]
+   },
+   "event_type_f1": {
+    "mean": 0.6196,
+    "ci95": [
+     0.5228,
+     0.7126
+    ]
+   },
+   "recipes_with_replay_issues": 0
+  },
+  "O2": {
+   "state_field_accuracy": {
+    "mean": 0.1317,
+    "ci95": [
+     0.0517,
+     0.2183
+    ]
+   },
+   "alive_f1": {
+    "mean": 0.34,
+    "ci95": [
+     0.2433,
+     0.4467
+    ]
+   },
+   "merge_split_f1": {
+    "mean": 0.3795,
+    "ci95": [
+     0.2714,
+     0.5014
+    ]
+   },
+   "relation_f1": {
+    "mean": 0.3391,
+    "ci95": [
+     0.2516,
+     0.437
+    ]
+   },
+   "event_loose_f1": {
+    "mean": 0.2449,
+    "ci95": [
+     0.1678,
+     0.3347
+    ]
+   },
+   "event_type_f1": {
+    "mean": 0.6344,
+    "ci95": [
+     0.5383,
+     0.7284
+    ]
+   },
+   "recipes_with_replay_issues": 0
+  },
+  "G": {
+   "state_field_accuracy": {
+    "mean": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "alive_f1": {
+    "mean": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "merge_split_f1": {
+    "mean": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "relation_f1": {
+    "mean": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "event_loose_f1": {
+    "mean": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "event_type_f1": {
+    "mean": 1.0,
+    "ci95": [
+     1.0,
+     1.0
+    ]
+   },
+   "recipes_with_replay_issues": 0
+  }
+ },
+ "event_types_P": {
+  "gold": {
+   "Merge": 87,
+   "Transform": 94,
+   "Split": 19,
+   "Transfer": 21,
+   "Discard": 10,
+   "Reserve": 1
+  },
+  "pred": {
+   "Merge": 60,
+   "Transform": 169,
+   "Transfer": 22,
+   "Split": 14,
+   "Reserve": 8,
+   "Discard": 10
+  }
+ },
+ "state_field_accuracy_by_stratum_P": {
+  "random": 0.0,
+  "indian": 0.1111,
+  "simple": 0.1111,
+  "multi_component": 0.1778,
+  "drain_discard": 0.1667,
+  "baking": 0.0,
+  "reserve_split": 0.3111
+ },
+ "per_recipe": {
+  "P": [
+   {
+    "recipe_id": "R000312",
+    "stratum": "random",
+    "n_gold_events": 23,
+    "n_pred_events": 24,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.3333,
+    "merge_split_f1": 0.3429,
+    "relation_f1": 0.2909,
+    "event_loose_f1": 0.1379,
+    "event_type_f1": 0.9655,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 8,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 5,
+     "Transform": 8,
+     "Transfer": 1,
+     "Split": 1
+    }
+   },
+   {
+    "recipe_id": "R000387",
+    "stratum": "indian",
+    "n_gold_events": 23,
+    "n_pred_events": 25,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.2759,
+    "relation_f1": 0.4255,
+    "event_loose_f1": 0.5833,
+    "event_type_f1": 0.9167,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 6,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transfer": 1,
+     "Transform": 7,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R001894",
+    "stratum": "simple",
+    "n_gold_events": 11,
+    "n_pred_events": 15,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.4,
+    "relation_f1": 0.2609,
+    "event_loose_f1": 0.125,
+    "event_type_f1": 0.375,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Transform": 9,
+     "Merge": 1
+    }
+   },
+   {
+    "recipe_id": "R002843",
+    "stratum": "multi_component",
+    "n_gold_events": 12,
+    "n_pred_events": 15,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.1333,
+    "relation_f1": 0.1429,
+    "event_loose_f1": 0.1176,
+    "event_type_f1": 0.3529,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Transform": 8,
+     "Merge": 1,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R002919",
+    "stratum": "drain_discard",
+    "n_gold_events": 21,
+    "n_pred_events": 20,
+    "state_field_accuracy": 0.5,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.6,
+    "relation_f1": 0.4651,
+    "event_loose_f1": 0.2609,
+    "event_type_f1": 0.7826,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 5,
+     "Split": 2,
+     "Discard": 1,
+     "Merge": 4
+    },
+    "pred_types": {
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 2,
+     "Transfer": 1,
+     "Transform": 6
+    }
+   },
+   {
+    "recipe_id": "R003456",
+    "stratum": "multi_component",
+    "n_gold_events": 9,
+    "n_pred_events": 7,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.0,
+    "relation_f1": 0.0,
+    "event_loose_f1": 0.0,
+    "event_type_f1": 0.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 2
+    },
+    "pred_types": {}
+   },
+   {
+    "recipe_id": "R003595",
+    "stratum": "baking",
+    "n_gold_events": 36,
+    "n_pred_events": 45,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.2857,
+    "relation_f1": 0.25,
+    "event_loose_f1": 0.2264,
+    "event_type_f1": 0.7925,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transfer": 2,
+     "Transform": 10,
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 8
+    },
+    "pred_types": {
+     "Merge": 7,
+     "Transfer": 5,
+     "Transform": 14,
+     "Split": 2,
+     "Discard": 2,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R004275",
+    "stratum": "drain_discard",
+    "n_gold_events": 35,
+    "n_pred_events": 29,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.05,
+    "relation_f1": 0.0964,
+    "event_loose_f1": 0.1667,
+    "event_type_f1": 0.8333,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 12,
+     "Discard": 1,
+     "Merge": 6,
+     "Reserve": 1,
+     "Split": 1,
+     "Transfer": 6
+    },
+    "pred_types": {
+     "Transform": 13,
+     "Merge": 4,
+     "Reserve": 1,
+     "Transfer": 2,
+     "Split": 1
+    }
+   },
+   {
+    "recipe_id": "R006967",
+    "stratum": "indian",
+    "n_gold_events": 21,
+    "n_pred_events": 24,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.9286,
+    "relation_f1": 0.7727,
+    "event_loose_f1": 0.56,
+    "event_type_f1": 0.8,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 5,
+     "Discard": 1
+    },
+    "pred_types": {
+     "Merge": 5,
+     "Transform": 7,
+     "Transfer": 2
+    }
+   },
+   {
+    "recipe_id": "R007017",
+    "stratum": "simple",
+    "n_gold_events": 9,
+    "n_pred_events": 11,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.5714,
+    "relation_f1": 0.4444,
+    "event_loose_f1": 0.2,
+    "event_type_f1": 0.4,
+    "replay_issues": 0,
+    "gold_types": {
+     "Split": 1,
+     "Merge": 3
+    },
+    "pred_types": {
+     "Split": 1,
+     "Merge": 1,
+     "Transform": 4
+    }
+   },
+   {
+    "recipe_id": "R007363",
+    "stratum": "random",
+    "n_gold_events": 24,
+    "n_pred_events": 30,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.6667,
+    "relation_f1": 0.566,
+    "event_loose_f1": 0.3571,
+    "event_type_f1": 0.6429,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 6,
+     "Transform": 4,
+     "Split": 1
+    },
+    "pred_types": {
+     "Transform": 11,
+     "Merge": 5,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R008469",
+    "stratum": "reserve_split",
+    "n_gold_events": 31,
+    "n_pred_events": 47,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.0909,
+    "relation_f1": 0.092,
+    "event_loose_f1": 0.1071,
+    "event_type_f1": 0.5357,
+    "replay_issues": 0,
+    "gold_types": {
+     "Split": 4,
+     "Merge": 6,
+     "Transform": 8,
+     "Discard": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 3,
+     "Transfer": 4,
+     "Transform": 25,
+     "Split": 2,
+     "Discard": 2
+    }
+   },
+   {
+    "recipe_id": "R008637",
+    "stratum": "baking",
+    "n_gold_events": 30,
+    "n_pred_events": 21,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.2,
+    "merge_split_f1": 0.3529,
+    "relation_f1": 0.2692,
+    "event_loose_f1": 0.1481,
+    "event_type_f1": 0.5926,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 6,
+     "Merge": 4,
+     "Transfer": 3,
+     "Split": 3,
+     "Discard": 2
+    },
+    "pred_types": {
+     "Reserve": 1,
+     "Transform": 3,
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 2,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R009484",
+    "stratum": "multi_component",
+    "n_gold_events": 20,
+    "n_pred_events": 20,
+    "state_field_accuracy": 0.2,
+    "alive_f1": 0.2,
+    "merge_split_f1": 0.25,
+    "relation_f1": 0.4516,
+    "event_loose_f1": 0.5,
+    "event_type_f1": 0.7,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 5,
+     "Discard": 1,
+     "Transfer": 1,
+     "Merge": 3
+    },
+    "pred_types": {
+     "Transform": 8,
+     "Merge": 2
+    }
+   },
+   {
+    "recipe_id": "R009647",
+    "stratum": "drain_discard",
+    "n_gold_events": 13,
+    "n_pred_events": 12,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.0,
+    "relation_f1": 0.0,
+    "event_loose_f1": 0.0,
+    "event_type_f1": 0.7273,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 2,
+     "Transform": 1,
+     "Split": 1,
+     "Discard": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 1,
+     "Transform": 2,
+     "Split": 1,
+     "Discard": 1
+    }
+   },
+   {
+    "recipe_id": "R009987",
+    "stratum": "reserve_split",
+    "n_gold_events": 17,
+    "n_pred_events": 22,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.4,
+    "relation_f1": 0.3077,
+    "event_loose_f1": 0.087,
+    "event_type_f1": 0.6087,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 3,
+     "Split": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transfer": 1,
+     "Transform": 9
+    }
+   },
+   {
+    "recipe_id": "R010426",
+    "stratum": "simple",
+    "n_gold_events": 12,
+    "n_pred_events": 15,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.4706,
+    "relation_f1": 0.4,
+    "event_loose_f1": 0.2353,
+    "event_type_f1": 0.7059,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Discard": 1
+    },
+    "pred_types": {
+     "Split": 1,
+     "Discard": 1,
+     "Transform": 6,
+     "Merge": 2
+    }
+   },
+   {
+    "recipe_id": "R010532",
+    "stratum": "baking",
+    "n_gold_events": 25,
+    "n_pred_events": 27,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.2703,
+    "relation_f1": 0.2642,
+    "event_loose_f1": 0.1333,
+    "event_type_f1": 0.6,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 7,
+     "Transform": 5,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 3,
+     "Reserve": 2,
+     "Transform": 7,
+     "Split": 2,
+     "Discard": 2
+    }
+   },
+   {
+    "recipe_id": "R011207",
+    "stratum": "reserve_split",
+    "n_gold_events": 15,
+    "n_pred_events": 22,
+    "state_field_accuracy": 0.6,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.8333,
+    "relation_f1": 0.6471,
+    "event_loose_f1": 0.2353,
+    "event_type_f1": 0.5882,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transfer": 1,
+     "Transform": 6,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R011481",
+    "stratum": "indian",
+    "n_gold_events": 24,
+    "n_pred_events": 31,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.2,
+    "merge_split_f1": 0.6667,
+    "relation_f1": 0.6349,
+    "event_loose_f1": 0.7179,
+    "event_type_f1": 0.7692,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 9,
+     "Transfer": 2
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transform": 16,
+     "Transfer": 2,
+     "Split": 1
+    }
+   }
+  ],
+  "O1": [
+   {
+    "recipe_id": "R000312",
+    "stratum": "random",
+    "n_gold_events": 23,
+    "n_pred_events": 25,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.3333,
+    "merge_split_f1": 0.2778,
+    "relation_f1": 0.25,
+    "event_loose_f1": 0.1333,
+    "event_type_f1": 0.9333,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 8,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 6,
+     "Transform": 8,
+     "Transfer": 1,
+     "Split": 1
+    }
+   },
+   {
+    "recipe_id": "R000387",
+    "stratum": "indian",
+    "n_gold_events": 23,
+    "n_pred_events": 25,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.2759,
+    "relation_f1": 0.4255,
+    "event_loose_f1": 0.5833,
+    "event_type_f1": 0.9167,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 6,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transfer": 1,
+     "Transform": 7,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R001894",
+    "stratum": "simple",
+    "n_gold_events": 11,
+    "n_pred_events": 15,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.4,
+    "relation_f1": 0.2609,
+    "event_loose_f1": 0.125,
+    "event_type_f1": 0.375,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Transform": 9,
+     "Merge": 1
+    }
+   },
+   {
+    "recipe_id": "R002843",
+    "stratum": "multi_component",
+    "n_gold_events": 12,
+    "n_pred_events": 15,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.1429,
+    "relation_f1": 0.1481,
+    "event_loose_f1": 0.1176,
+    "event_type_f1": 0.3529,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Transform": 8,
+     "Merge": 1,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R002919",
+    "stratum": "drain_discard",
+    "n_gold_events": 21,
+    "n_pred_events": 20,
+    "state_field_accuracy": 0.5,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.6,
+    "relation_f1": 0.4651,
+    "event_loose_f1": 0.2609,
+    "event_type_f1": 0.7826,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 5,
+     "Split": 2,
+     "Discard": 1,
+     "Merge": 4
+    },
+    "pred_types": {
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 2,
+     "Transfer": 1,
+     "Transform": 6
+    }
+   },
+   {
+    "recipe_id": "R003456",
+    "stratum": "multi_component",
+    "n_gold_events": 9,
+    "n_pred_events": 7,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.0,
+    "relation_f1": 0.0,
+    "event_loose_f1": 0.0,
+    "event_type_f1": 0.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 2
+    },
+    "pred_types": {}
+   },
+   {
+    "recipe_id": "R003595",
+    "stratum": "baking",
+    "n_gold_events": 36,
+    "n_pred_events": 45,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.2857,
+    "relation_f1": 0.25,
+    "event_loose_f1": 0.2264,
+    "event_type_f1": 0.7925,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transfer": 2,
+     "Transform": 10,
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 8
+    },
+    "pred_types": {
+     "Merge": 7,
+     "Transfer": 5,
+     "Transform": 14,
+     "Split": 2,
+     "Discard": 2,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R004275",
+    "stratum": "drain_discard",
+    "n_gold_events": 35,
+    "n_pred_events": 25,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.3333,
+    "merge_split_f1": 0.1579,
+    "relation_f1": 0.1026,
+    "event_loose_f1": 0.0909,
+    "event_type_f1": 0.7727,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 12,
+     "Discard": 1,
+     "Merge": 6,
+     "Reserve": 1,
+     "Split": 1,
+     "Transfer": 6
+    },
+    "pred_types": {
+     "Transform": 10,
+     "Reserve": 1,
+     "Transfer": 2,
+     "Merge": 3,
+     "Split": 1
+    }
+   },
+   {
+    "recipe_id": "R006967",
+    "stratum": "indian",
+    "n_gold_events": 21,
+    "n_pred_events": 23,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.7692,
+    "relation_f1": 0.6667,
+    "event_loose_f1": 0.4167,
+    "event_type_f1": 0.75,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 5,
+     "Discard": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transform": 7,
+     "Transfer": 2
+    }
+   },
+   {
+    "recipe_id": "R007017",
+    "stratum": "simple",
+    "n_gold_events": 9,
+    "n_pred_events": 10,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.3333,
+    "relation_f1": 0.25,
+    "event_loose_f1": 0.2222,
+    "event_type_f1": 0.2222,
+    "replay_issues": 0,
+    "gold_types": {
+     "Split": 1,
+     "Merge": 3
+    },
+    "pred_types": {
+     "Split": 1,
+     "Transform": 4
+    }
+   },
+   {
+    "recipe_id": "R007363",
+    "stratum": "random",
+    "n_gold_events": 24,
+    "n_pred_events": 29,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.6857,
+    "relation_f1": 0.5882,
+    "event_loose_f1": 0.3704,
+    "event_type_f1": 0.6667,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 6,
+     "Transform": 4,
+     "Split": 1
+    },
+    "pred_types": {
+     "Transform": 10,
+     "Merge": 5,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R008469",
+    "stratum": "reserve_split",
+    "n_gold_events": 31,
+    "n_pred_events": 47,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.0909,
+    "relation_f1": 0.092,
+    "event_loose_f1": 0.1071,
+    "event_type_f1": 0.5357,
+    "replay_issues": 0,
+    "gold_types": {
+     "Split": 4,
+     "Merge": 6,
+     "Transform": 8,
+     "Discard": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 3,
+     "Transfer": 4,
+     "Transform": 25,
+     "Split": 2,
+     "Discard": 2
+    }
+   },
+   {
+    "recipe_id": "R008637",
+    "stratum": "baking",
+    "n_gold_events": 30,
+    "n_pred_events": 21,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.2,
+    "merge_split_f1": 0.3529,
+    "relation_f1": 0.2692,
+    "event_loose_f1": 0.1481,
+    "event_type_f1": 0.5926,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 6,
+     "Merge": 4,
+     "Transfer": 3,
+     "Split": 3,
+     "Discard": 2
+    },
+    "pred_types": {
+     "Reserve": 1,
+     "Transform": 3,
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 2,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R009484",
+    "stratum": "multi_component",
+    "n_gold_events": 20,
+    "n_pred_events": 20,
+    "state_field_accuracy": 0.2,
+    "alive_f1": 0.2,
+    "merge_split_f1": 0.25,
+    "relation_f1": 0.4516,
+    "event_loose_f1": 0.5,
+    "event_type_f1": 0.7,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 5,
+     "Discard": 1,
+     "Transfer": 1,
+     "Merge": 3
+    },
+    "pred_types": {
+     "Transform": 8,
+     "Merge": 2
+    }
+   },
+   {
+    "recipe_id": "R009647",
+    "stratum": "drain_discard",
+    "n_gold_events": 13,
+    "n_pred_events": 12,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.0,
+    "relation_f1": 0.0,
+    "event_loose_f1": 0.0,
+    "event_type_f1": 0.7273,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 2,
+     "Transform": 1,
+     "Split": 1,
+     "Discard": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 1,
+     "Transform": 2,
+     "Split": 1,
+     "Discard": 1
+    }
+   },
+   {
+    "recipe_id": "R009987",
+    "stratum": "reserve_split",
+    "n_gold_events": 17,
+    "n_pred_events": 22,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.4,
+    "relation_f1": 0.3077,
+    "event_loose_f1": 0.087,
+    "event_type_f1": 0.6087,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 3,
+     "Split": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transfer": 1,
+     "Transform": 9
+    }
+   },
+   {
+    "recipe_id": "R010426",
+    "stratum": "simple",
+    "n_gold_events": 12,
+    "n_pred_events": 15,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.4706,
+    "relation_f1": 0.4,
+    "event_loose_f1": 0.2353,
+    "event_type_f1": 0.7059,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Discard": 1
+    },
+    "pred_types": {
+     "Split": 1,
+     "Discard": 1,
+     "Transform": 6,
+     "Merge": 2
+    }
+   },
+   {
+    "recipe_id": "R010532",
+    "stratum": "baking",
+    "n_gold_events": 25,
+    "n_pred_events": 27,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.2703,
+    "relation_f1": 0.2642,
+    "event_loose_f1": 0.1333,
+    "event_type_f1": 0.6,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 7,
+     "Transform": 5,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 3,
+     "Reserve": 2,
+     "Transform": 7,
+     "Split": 2,
+     "Discard": 2
+    }
+   },
+   {
+    "recipe_id": "R011207",
+    "stratum": "reserve_split",
+    "n_gold_events": 15,
+    "n_pred_events": 22,
+    "state_field_accuracy": 0.6,
+    "alive_f1": 0.8,
+    "merge_split_f1": 0.88,
+    "relation_f1": 0.6857,
+    "event_loose_f1": 0.2353,
+    "event_type_f1": 0.5882,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transfer": 1,
+     "Transform": 6,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R011481",
+    "stratum": "indian",
+    "n_gold_events": 24,
+    "n_pred_events": 31,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.2,
+    "merge_split_f1": 0.6667,
+    "relation_f1": 0.6349,
+    "event_loose_f1": 0.7179,
+    "event_type_f1": 0.7692,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 9,
+     "Transfer": 2
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transform": 16,
+     "Transfer": 2,
+     "Split": 1
+    }
+   }
+  ],
+  "O2": [
+   {
+    "recipe_id": "R000312",
+    "stratum": "random",
+    "n_gold_events": 23,
+    "n_pred_events": 24,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.3333,
+    "merge_split_f1": 0.3429,
+    "relation_f1": 0.2909,
+    "event_loose_f1": 0.1379,
+    "event_type_f1": 0.9655,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 8,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 5,
+     "Transform": 8,
+     "Transfer": 1,
+     "Split": 1
+    }
+   },
+   {
+    "recipe_id": "R000387",
+    "stratum": "indian",
+    "n_gold_events": 23,
+    "n_pred_events": 25,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.2759,
+    "relation_f1": 0.4255,
+    "event_loose_f1": 0.5833,
+    "event_type_f1": 0.9167,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 6,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transfer": 1,
+     "Transform": 7,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R001894",
+    "stratum": "simple",
+    "n_gold_events": 11,
+    "n_pred_events": 15,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.4,
+    "relation_f1": 0.2609,
+    "event_loose_f1": 0.125,
+    "event_type_f1": 0.375,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Transform": 9,
+     "Merge": 1
+    }
+   },
+   {
+    "recipe_id": "R002843",
+    "stratum": "multi_component",
+    "n_gold_events": 12,
+    "n_pred_events": 15,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.1333,
+    "relation_f1": 0.1429,
+    "event_loose_f1": 0.1176,
+    "event_type_f1": 0.3529,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Transform": 8,
+     "Merge": 1,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R002919",
+    "stratum": "drain_discard",
+    "n_gold_events": 21,
+    "n_pred_events": 20,
+    "state_field_accuracy": 0.5,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.6,
+    "relation_f1": 0.4651,
+    "event_loose_f1": 0.2609,
+    "event_type_f1": 0.7826,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 5,
+     "Split": 2,
+     "Discard": 1,
+     "Merge": 4
+    },
+    "pred_types": {
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 2,
+     "Transfer": 1,
+     "Transform": 6
+    }
+   },
+   {
+    "recipe_id": "R003456",
+    "stratum": "multi_component",
+    "n_gold_events": 9,
+    "n_pred_events": 7,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.0,
+    "relation_f1": 0.0,
+    "event_loose_f1": 0.0,
+    "event_type_f1": 0.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 2
+    },
+    "pred_types": {}
+   },
+   {
+    "recipe_id": "R003595",
+    "stratum": "baking",
+    "n_gold_events": 36,
+    "n_pred_events": 45,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.2857,
+    "relation_f1": 0.25,
+    "event_loose_f1": 0.2264,
+    "event_type_f1": 0.7925,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transfer": 2,
+     "Transform": 10,
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 8
+    },
+    "pred_types": {
+     "Merge": 7,
+     "Transfer": 5,
+     "Transform": 14,
+     "Split": 2,
+     "Discard": 2,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R004275",
+    "stratum": "drain_discard",
+    "n_gold_events": 35,
+    "n_pred_events": 29,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.4,
+    "merge_split_f1": 0.05,
+    "relation_f1": 0.0964,
+    "event_loose_f1": 0.1667,
+    "event_type_f1": 0.8333,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 12,
+     "Discard": 1,
+     "Merge": 6,
+     "Reserve": 1,
+     "Split": 1,
+     "Transfer": 6
+    },
+    "pred_types": {
+     "Transform": 13,
+     "Merge": 4,
+     "Reserve": 1,
+     "Transfer": 2,
+     "Split": 1
+    }
+   },
+   {
+    "recipe_id": "R006967",
+    "stratum": "indian",
+    "n_gold_events": 21,
+    "n_pred_events": 24,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.9286,
+    "relation_f1": 0.7727,
+    "event_loose_f1": 0.56,
+    "event_type_f1": 0.8,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 5,
+     "Discard": 1
+    },
+    "pred_types": {
+     "Merge": 5,
+     "Transform": 7,
+     "Transfer": 2
+    }
+   },
+   {
+    "recipe_id": "R007017",
+    "stratum": "simple",
+    "n_gold_events": 9,
+    "n_pred_events": 11,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.5714,
+    "relation_f1": 0.4444,
+    "event_loose_f1": 0.2,
+    "event_type_f1": 0.4,
+    "replay_issues": 0,
+    "gold_types": {
+     "Split": 1,
+     "Merge": 3
+    },
+    "pred_types": {
+     "Split": 1,
+     "Merge": 1,
+     "Transform": 4
+    }
+   },
+   {
+    "recipe_id": "R007363",
+    "stratum": "random",
+    "n_gold_events": 24,
+    "n_pred_events": 30,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.6667,
+    "relation_f1": 0.566,
+    "event_loose_f1": 0.3571,
+    "event_type_f1": 0.6429,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 6,
+     "Transform": 4,
+     "Split": 1
+    },
+    "pred_types": {
+     "Transform": 11,
+     "Merge": 5,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R008469",
+    "stratum": "reserve_split",
+    "n_gold_events": 31,
+    "n_pred_events": 47,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.0909,
+    "relation_f1": 0.092,
+    "event_loose_f1": 0.1071,
+    "event_type_f1": 0.5357,
+    "replay_issues": 0,
+    "gold_types": {
+     "Split": 4,
+     "Merge": 6,
+     "Transform": 8,
+     "Discard": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 3,
+     "Transfer": 4,
+     "Transform": 25,
+     "Split": 2,
+     "Discard": 2
+    }
+   },
+   {
+    "recipe_id": "R008637",
+    "stratum": "baking",
+    "n_gold_events": 30,
+    "n_pred_events": 21,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.2,
+    "merge_split_f1": 0.3529,
+    "relation_f1": 0.2692,
+    "event_loose_f1": 0.1481,
+    "event_type_f1": 0.5926,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 6,
+     "Merge": 4,
+     "Transfer": 3,
+     "Split": 3,
+     "Discard": 2
+    },
+    "pred_types": {
+     "Reserve": 1,
+     "Transform": 3,
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 2,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R009484",
+    "stratum": "multi_component",
+    "n_gold_events": 20,
+    "n_pred_events": 20,
+    "state_field_accuracy": 0.2,
+    "alive_f1": 0.2,
+    "merge_split_f1": 0.25,
+    "relation_f1": 0.4516,
+    "event_loose_f1": 0.5,
+    "event_type_f1": 0.7,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 5,
+     "Discard": 1,
+     "Transfer": 1,
+     "Merge": 3
+    },
+    "pred_types": {
+     "Transform": 8,
+     "Merge": 2
+    }
+   },
+   {
+    "recipe_id": "R009647",
+    "stratum": "drain_discard",
+    "n_gold_events": 13,
+    "n_pred_events": 12,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.0,
+    "relation_f1": 0.0,
+    "event_loose_f1": 0.0,
+    "event_type_f1": 0.7273,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 2,
+     "Transform": 1,
+     "Split": 1,
+     "Discard": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 1,
+     "Transform": 2,
+     "Split": 1,
+     "Discard": 1
+    }
+   },
+   {
+    "recipe_id": "R009987",
+    "stratum": "reserve_split",
+    "n_gold_events": 17,
+    "n_pred_events": 22,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.4,
+    "relation_f1": 0.3077,
+    "event_loose_f1": 0.087,
+    "event_type_f1": 0.6087,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 3,
+     "Split": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transfer": 1,
+     "Transform": 9
+    }
+   },
+   {
+    "recipe_id": "R010426",
+    "stratum": "simple",
+    "n_gold_events": 12,
+    "n_pred_events": 15,
+    "state_field_accuracy": 0.3333,
+    "alive_f1": 0.5,
+    "merge_split_f1": 0.4706,
+    "relation_f1": 0.4,
+    "event_loose_f1": 0.2353,
+    "event_type_f1": 0.7059,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Discard": 1
+    },
+    "pred_types": {
+     "Split": 1,
+     "Discard": 1,
+     "Transform": 6,
+     "Merge": 2
+    }
+   },
+   {
+    "recipe_id": "R010532",
+    "stratum": "baking",
+    "n_gold_events": 25,
+    "n_pred_events": 27,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.0,
+    "merge_split_f1": 0.2703,
+    "relation_f1": 0.2642,
+    "event_loose_f1": 0.1333,
+    "event_type_f1": 0.6,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 7,
+     "Transform": 5,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 3,
+     "Reserve": 2,
+     "Transform": 7,
+     "Split": 2,
+     "Discard": 2
+    }
+   },
+   {
+    "recipe_id": "R011207",
+    "stratum": "reserve_split",
+    "n_gold_events": 15,
+    "n_pred_events": 22,
+    "state_field_accuracy": 0.6,
+    "alive_f1": 0.6667,
+    "merge_split_f1": 0.8333,
+    "relation_f1": 0.6471,
+    "event_loose_f1": 0.2353,
+    "event_type_f1": 0.5882,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transfer": 1,
+     "Transform": 6,
+     "Reserve": 1
+    }
+   },
+   {
+    "recipe_id": "R011481",
+    "stratum": "indian",
+    "n_gold_events": 24,
+    "n_pred_events": 31,
+    "state_field_accuracy": 0.0,
+    "alive_f1": 0.2,
+    "merge_split_f1": 0.6667,
+    "relation_f1": 0.6349,
+    "event_loose_f1": 0.7179,
+    "event_type_f1": 0.7692,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 9,
+     "Transfer": 2
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transform": 16,
+     "Transfer": 2,
+     "Split": 1
+    }
+   }
+  ],
+  "G": [
+   {
+    "recipe_id": "R000312",
+    "stratum": "random",
+    "n_gold_events": 23,
+    "n_pred_events": 23,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 8,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transform": 8,
+     "Split": 1,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R000387",
+    "stratum": "indian",
+    "n_gold_events": 23,
+    "n_pred_events": 23,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 6,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transform": 6,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R001894",
+    "stratum": "simple",
+    "n_gold_events": 11,
+    "n_pred_events": 11,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R002843",
+    "stratum": "multi_component",
+    "n_gold_events": 12,
+    "n_pred_events": 12,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R002919",
+    "stratum": "drain_discard",
+    "n_gold_events": 21,
+    "n_pred_events": 21,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 5,
+     "Split": 2,
+     "Discard": 1,
+     "Merge": 4
+    },
+    "pred_types": {
+     "Transform": 5,
+     "Split": 2,
+     "Discard": 1,
+     "Merge": 4
+    }
+   },
+   {
+    "recipe_id": "R003456",
+    "stratum": "multi_component",
+    "n_gold_events": 9,
+    "n_pred_events": 9,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 2
+    },
+    "pred_types": {
+     "Merge": 2
+    }
+   },
+   {
+    "recipe_id": "R003595",
+    "stratum": "baking",
+    "n_gold_events": 36,
+    "n_pred_events": 36,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transfer": 2,
+     "Transform": 10,
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 8
+    },
+    "pred_types": {
+     "Transfer": 2,
+     "Transform": 10,
+     "Split": 1,
+     "Discard": 1,
+     "Merge": 8
+    }
+   },
+   {
+    "recipe_id": "R004275",
+    "stratum": "drain_discard",
+    "n_gold_events": 35,
+    "n_pred_events": 35,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 12,
+     "Discard": 1,
+     "Merge": 6,
+     "Reserve": 1,
+     "Split": 1,
+     "Transfer": 6
+    },
+    "pred_types": {
+     "Transform": 12,
+     "Discard": 1,
+     "Merge": 6,
+     "Reserve": 1,
+     "Split": 1,
+     "Transfer": 6
+    }
+   },
+   {
+    "recipe_id": "R006967",
+    "stratum": "indian",
+    "n_gold_events": 21,
+    "n_pred_events": 21,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 5,
+     "Discard": 1
+    },
+    "pred_types": {
+     "Merge": 5,
+     "Transform": 5,
+     "Discard": 1
+    }
+   },
+   {
+    "recipe_id": "R007017",
+    "stratum": "simple",
+    "n_gold_events": 9,
+    "n_pred_events": 9,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Split": 1,
+     "Merge": 3
+    },
+    "pred_types": {
+     "Split": 1,
+     "Merge": 3
+    }
+   },
+   {
+    "recipe_id": "R007363",
+    "stratum": "random",
+    "n_gold_events": 24,
+    "n_pred_events": 24,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 6,
+     "Transform": 4,
+     "Split": 1
+    },
+    "pred_types": {
+     "Merge": 6,
+     "Transform": 4,
+     "Split": 1
+    }
+   },
+   {
+    "recipe_id": "R008469",
+    "stratum": "reserve_split",
+    "n_gold_events": 31,
+    "n_pred_events": 31,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Split": 4,
+     "Merge": 6,
+     "Transform": 8,
+     "Discard": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Split": 4,
+     "Merge": 6,
+     "Transform": 8,
+     "Discard": 1,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R008637",
+    "stratum": "baking",
+    "n_gold_events": 30,
+    "n_pred_events": 30,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 6,
+     "Merge": 4,
+     "Transfer": 3,
+     "Split": 3,
+     "Discard": 2
+    },
+    "pred_types": {
+     "Transform": 6,
+     "Merge": 4,
+     "Transfer": 3,
+     "Split": 3,
+     "Discard": 2
+    }
+   },
+   {
+    "recipe_id": "R009484",
+    "stratum": "multi_component",
+    "n_gold_events": 20,
+    "n_pred_events": 20,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Transform": 5,
+     "Discard": 1,
+     "Transfer": 1,
+     "Merge": 3
+    },
+    "pred_types": {
+     "Transform": 5,
+     "Discard": 1,
+     "Transfer": 1,
+     "Merge": 3
+    }
+   },
+   {
+    "recipe_id": "R009647",
+    "stratum": "drain_discard",
+    "n_gold_events": 13,
+    "n_pred_events": 13,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 2,
+     "Transform": 1,
+     "Split": 1,
+     "Discard": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 2,
+     "Transform": 1,
+     "Split": 1,
+     "Discard": 1,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R009987",
+    "stratum": "reserve_split",
+    "n_gold_events": 17,
+    "n_pred_events": 17,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 3,
+     "Split": 1
+    },
+    "pred_types": {
+     "Merge": 5,
+     "Transform": 3,
+     "Split": 1
+    }
+   },
+   {
+    "recipe_id": "R010426",
+    "stratum": "simple",
+    "n_gold_events": 12,
+    "n_pred_events": 12,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Discard": 1
+    },
+    "pred_types": {
+     "Merge": 3,
+     "Transform": 2,
+     "Split": 1,
+     "Discard": 1
+    }
+   },
+   {
+    "recipe_id": "R010532",
+    "stratum": "baking",
+    "n_gold_events": 25,
+    "n_pred_events": 25,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 7,
+     "Transform": 5,
+     "Split": 1,
+     "Transfer": 1
+    },
+    "pred_types": {
+     "Merge": 7,
+     "Transform": 5,
+     "Split": 1,
+     "Transfer": 1
+    }
+   },
+   {
+    "recipe_id": "R011207",
+    "stratum": "reserve_split",
+    "n_gold_events": 15,
+    "n_pred_events": 15,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 4,
+     "Transform": 1
+    },
+    "pred_types": {
+     "Merge": 4,
+     "Transform": 1
+    }
+   },
+   {
+    "recipe_id": "R011481",
+    "stratum": "indian",
+    "n_gold_events": 24,
+    "n_pred_events": 24,
+    "state_field_accuracy": 1.0,
+    "alive_f1": 1.0,
+    "merge_split_f1": 1.0,
+    "relation_f1": 1.0,
+    "event_loose_f1": 1.0,
+    "event_type_f1": 1.0,
+    "replay_issues": 0,
+    "gold_types": {
+     "Merge": 5,
+     "Transform": 9,
+     "Transfer": 2
+    },
+    "pred_types": {
+     "Merge": 5,
+     "Transform": 9,
+     "Transfer": 2
+    }
+   }
+  ]
+ }
+}

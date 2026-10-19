@@ -1,48 +1,37 @@
-# Gold-v1 → v1.1 (proposed): reference repair and clean compiler rerun (S108)
+# Gold-v1 -> v1.1 (proposed): review gate, source audit and compiler rerun (S109)
 
-**Status: PROPOSED, NOT APPROVED.** Every correction below is `AI_PROPOSED_CORRECTION`; none is `HUMAN_VERIFIED`. Gold-v1 (`pilot_20_adjudicated`) is unchanged. The provisional set is `pilot_20_adjudicated_v1_1_proposed/` (status DRAFT). Final `pilot_20_adjudicated_v1_1/` is created only by `tools/apply_gold_corrections.py` from rows Kush marks `approve` in `annotation/gold/gold_v1_correction_queue.csv`. Provenance when approved: AI-assisted + human-reviewed development Gold (not independent, not a test set). The rule compiler was **not changed** (`git diff` on `rule_compiler.py` is empty).
+**Status: AWAITING KUSH'S DECISIONS. Gold-v1.1 has NOT been created.** Every proposal is `AI_PROPOSED_CORRECTION`; none is `HUMAN_VERIFIED`. Gold-v1 (`pilot_20_adjudicated`) is unchanged; the provisional set `pilot_20_adjudicated_v1_1_proposed/` (status DRAFT) exists only to show the effect of accepting everything. Final `pilot_20_adjudicated_v1_1/` is written only by `tools/apply_gold_corrections.py` from rows Kush marks `approve`. The compiler is the same as in S107/S108 (`rule_compiler.py` unchanged).
 
-## Queue (67 rows; local file with source text)
-Types: {'UNCONVERTED_EVENT+PADDED_REMAINDER': 1, 'UNCONVERTED_EVENT': 4, 'ANNOTATION_ERROR_FOUND_ON_AUDIT': 2, 'ANNOTATION_ERROR_FOUND_ON_AUDIT+UNCONVERTED_EVENT': 1, 'UNCONVERTED_EVENT+DOWNSTREAM_ARTEFACT': 2, 'DOWNSTREAM_ARTEFACT': 3, 'PADDED_REMAINDER+DOWNSTREAM_ARTEFACT': 1, 'PADDED_REMAINDER': 2, 'UNSUPPORTED_BY_SCHEMA': 1, 'COREF': 25, 'AUDIT_FLAG': 25}. Problem class (non-coref): {'CONVERTER_LIMITATION (name mismatch) + ANNOTATION/REPRESENTATION (pad)': 1, 'CONVERTER_LIMITATION (ambiguous fuzzy match between two almond lines)': 1, 'ANNOTATION_ERROR (draft); downstream effect on state': 1, 'ANNOTATION_ERROR (draft)': 1, 'CONVERTER_LIMITATION (named intermediates)': 1, 'CONVERTER_LIMITATION': 2, 'ANNOTATION_ERROR (draft) + CONVERTER_LIMITATION': 1, 'CONVERTER_LIMITATION (portion phrase) causing ANNOTATION ARTEFACT': 1, 'ANNOTATION ARTEFACT from the Reserve failure': 1, 'ANNOTATION ARTEFACT + REPRESENTATION (pad)': 1, 'ANNOTATION ARTEFACT': 1, 'CONVERTER_LIMITATION + ANNOTATION ARTEFACT': 1, 'REPRESENTATION (pad)': 2, 'ANNOTATION ARTEFACT (downstream of the step 1 pad)': 1, 'SCHEMA LIMITATION (documented; no change)': 1, 'AUDIT_FLAG': 25}. Recipes with step-level proposals: 7 (R002919, R003595, R004275, R006967, R007017, R009484, R011207).
-Items distinguish **annotation error** (draft contradicts the source text, found on reading) from **converter limitation** (valid content the converter could not represent) from **schema limitation** (not representable: R009647 'chill the glass', a tool state; documented, no change).
+Review material (local, contains source text): `annotation/gold/gold_v1_1_review_sheet.md` (per recipe: source, current vs proposed events, state effect) and `annotation/gold/gold_v1_correction_queue.csv` (decision / reviewer columns). Allowed decisions: APPROVE, REJECT, MODIFY, NEEDS_DISCUSSION.
 
-Important: reading the 8 affected recipes against the source text found annotation errors **beyond** the 13 unconvertible events (for example R003595's glaze built from the cake batter, an 'anti-curdle' event that merges all the flour although the text makes it conditional, R004275's purée made from the reserved peas). The other 12 recipes were only checked by automated flags (25 `AUDIT_FLAG` rows), not read line by line.
+## Queue (121 rows)
+{'UNCONVERTED_EVENT+PADDED_REMAINDER': 1, 'UNCONVERTED_EVENT': 4, 'ANNOTATION_ERROR_FOUND_ON_AUDIT': 2, 'ANNOTATION_ERROR_FOUND_ON_AUDIT+UNCONVERTED_EVENT': 1, 'UNCONVERTED_EVENT+DOWNSTREAM_ARTEFACT': 2, 'DOWNSTREAM_ARTEFACT': 3, 'PADDED_REMAINDER+DOWNSTREAM_ARTEFACT': 1, 'PADDED_REMAINDER': 2, 'UNSUPPORTED_BY_SCHEMA': 1, 'COREF_SPURIOUS': 41, 'COREF_NONREFERRING': 1, 'COREF': 4, 'AUDIT_FLAG': 25, 'AUDIT_CORRECTION': 33}. Rows needing a decision: **95** (42 remove coreference noise, 4 set a genuine coreference, 49 are event/line corrections). 25 AUDIT_FLAG rows are information; each flag is classified in `gold_v1_full20_source_audit.md`; their fixes are separate proposal rows.
 
-## Split / remainder audit (4 single-output splits)
-| recipe | what the text says | class | fix |
-|---|---|---|---|
-| R002919 | 'then halve' (cutting) | converter problem (my padding rule) | Transform sets form=halved; converter fixed + regression test |
-| R004275 | 'divide the mixture between the moulds' (6 moulds from step 0) | converter problem (count comes from equipment, not the output string) | Split into 6 outputs, fractions null (handbook H5) |
-| R007017 | 'divide guacamole between rye bread' (2 slices) | converter problem (same) | Split into 2 outputs, fractions null |
-| R011207 | 'drop spoonfuls ... in batches' | annotation problem (batches are not entities, handbook H16) | Transform fry, no Split |
-No engine representation limitation was found. No synthetic remainder entity remains in the proposed set.
+## Full source audit (20/20 recipes read against the source text)
+18 recipes need substantive corrections, 2 only the coreference-noise removal, 0 are clean. Details and the per-recipe PASS/CORRECTION_REQUIRED table: `reports/del3/gold_v1_full20_source_audit.md`.
+The audit changed the earlier picture: besides the 13 unconverted events, the draft has **lineage errors in most recipes** (wrong lot merged, set-aside items merged early, croutons built from soup, glaze built from batter), **9 ingredient lines whose ALTERNATIVE span is the word 'or'**, and an optional grill step recorded as an event.
 
-## Coreference audit (113 mentions)
-RESOLVABLE_EXPLICIT 1, RESOLVABLE_STRUCTURAL 26, GENUINELY_AMBIGUOUS 86, NOT_APPLICABLE 0. 25 proposals set an entity (rows type COREF); the rest remain `UNKNOWN` by design, with no target percentage. Structural = a pronoun or generic noun ('it', 'the mixture') with exactly one alive derived entity at the start of the step and no ingredient named earlier in the sentence. Of the 108 mentions still `UNKNOWN` in Gold-v1, 87 are pronouns (86 are the word 'it'); the rest are generic nouns ('the mixture' 4, 'the rest' 3, 'everything' 3, 'the sauce' 2, 'the dough' 2, 'the soup' 2). The draft supplied no entity antecedent for any of them, and the events carry no character offsets, so an 'it' cannot be tied to one event without a human reading the sentence.
+## Coreference audit (113 draft mentions, corrected)
+**78 are not references**: the draft matched the letters 'it' inside words ('with', 'little'). Genuine mentions: 35 = RESOLVABLE_EXPLICIT 2, RESOLVABLE_STRUCTURAL 4, NOT_APPLICABLE 1 (expletive 'it's important'), GENUINELY_AMBIGUOUS 28 (remain `UNKNOWN`; examples: 'the sauce' and 'the remaining butter' in a step with several candidate lots, 'the dough' after several merges). The S108 audit had counted these 78 as 'ambiguous' and proposed resolving some of them; that was wrong and is withdrawn: the S108 structural proposals are replaced by removal of the noise.
 
-## Compiler rerun (same compiler as S107; n=20; Gold = proposed v1.1)
-| metric | S107 P | S108 P | S107 O1 | S108 O1 | S108 O2 | gold sanity |
-|---|---|---|---|---|---|---|
-| state-field accuracy | 0.102 | 0.140 | 0.130 | 0.159 | 0.146 | 1.000 |
-| alive-entity F1 | 0.312 | 0.395 | 0.342 | 0.393 | 0.395 | 1.000 |
-| merge/split/reserve F1 | 0.343 | 0.368 | 0.349 | 0.353 | 0.368 | 1.000 |
-| relation F1 | 0.289 | 0.327 | 0.289 | 0.313 | 0.327 | 1.000 |
-| event F1 (loose) | 0.199 | 0.237 | 0.207 | 0.232 | 0.237 | 1.000 |
-| event-type F1 | 0.582 | 0.629 | 0.575 | 0.614 | 0.629 | 1.000 |
+## Split / remainder audit (unchanged from S108)
+3 converter problems, 1 annotation problem, 0 engine limitations; converter fixed and tested. No synthetic remainder remains in the proposed set.
 
-Event counts, gold → predicted: Merge 85 vs 60, Transform 83 vs 169, Split 16 vs 14, Transfer 21 vs 22, Discard 10 vs 10, Reserve 1 vs 8. Raw: `compiler_vs_gold_s108_proposed.json`.
+## Compiler rerun (same compiler; n=20; Gold = proposed v1.1, i.e. IF EVERYTHING IS APPROVED)
+| metric (P = raw text) | S107 (v1) | S108 proposed | S109 proposed | S109 O1 (gold concepts) | S109 O2 (gold Adds) |
+|---|---|---|---|---|---|
+| state-field accuracy | 0.102 | 0.140 | 0.132 | 0.132 | 0.132 |
+| alive-entity F1 | 0.312 | 0.395 | 0.340 | 0.325 | 0.340 |
+| merge/split/reserve F1 | 0.343 | 0.368 | 0.380 | 0.365 | 0.380 |
+| relation F1 | 0.289 | 0.327 | 0.339 | 0.326 | 0.339 |
+| event F1 (loose) | 0.199 | 0.237 | 0.245 | 0.235 | 0.245 |
+Event counts gold -> predicted (S109 proposed): Merge 87 vs 60, Transform 94 vs 169, Split 19 vs 14, Transfer 21 vs 22, Discard 10 vs 10, Reserve 1 vs 8.
+Gold-event replay (C) is 1.000 on every metric; no replay issue in 20/20 proposed files. Per-recipe numbers: `compiler_vs_gold_s109_proposed.json`. These are provisional until the corrections are approved.
 
-## Answers
-1. **Does oracle ingredient identity still give only a small gain?** Yes: O1 vs P is +0.019 state-field accuracy and -0.002 alive-entity F1 (S107: +0.028, +0.030).
-2. **Is event construction still the dominant bottleneck?** Yes. With gold Add events (O2) nothing improves, and all structural metrics stay around 0.33-0.39.
-3. **Over-produced:** Transform (about 2.0x Gold) and Reserve (8 predicted vs 1 in Gold).
-4. **Missed / under-produced:** Merge (60 vs 85).
-5. **How much did repair change the headline?** P state-field accuracy 0.102 → 0.140, alive F1 0.312 → 0.395, merge/split 0.343 → 0.368. The conclusions did not change; the numbers moved by roughly +0.03 to +0.08. These are provisional and still against AI-proposed corrections.
-6. **Is Gold-state trustworthy enough to be the oracle arm of H_STATE?** **Not yet.** (a) the corrections are unapproved; (b) 7 of the 8 recipes I read against the source text needed substantive fixes, so the other 12 (not read line by line) may carry similar errors that automated flags cannot see; (c) coreference is still mostly UNKNOWN; (d) the set is AI-assisted, not independent. It is usable as a development oracle only.
+## Reading the cascade
+- Oracle ingredient identity still adds nothing material (state-field accuracy +0.000, alive F1 -0.015).
+- The step-event construction remains the bottleneck: all structural metrics stay at about 0.34-0.38; the compiler writes about 1.8x the Gold Transform count and 8 Reserve events against 1.
+- Reference cleanup moved P state-field accuracy 0.102 -> 0.132, alive F1 0.312 -> 0.340, merge/split 0.343 -> 0.380: the conclusions are stable across three versions of the reference.
 
-No generalisation is claimed: 20 development recipes, one source.
-
-## Verdict
-**GOLD_ORACLE_NOT_READY**
-
-Next action (one): **Kush reviews `annotation/gold/gold_v1_correction_queue.csv` and fills the `decision` column (approve / reject) for the 41 proposal rows, then runs `tools/apply_gold_corrections.py`; read the 12 unread recipes' `AUDIT_FLAG` rows first.**
+## Oracle readiness
+**GOLD_ORACLE_NOT_READY** - blocking rows: all 95 proposal rows are unreviewed; until Kush decides, Gold-v1 still contains the lineage errors above. Provenance when approved: AI-assisted + human-reviewed development Gold (not independent, not blind, not a test set).
