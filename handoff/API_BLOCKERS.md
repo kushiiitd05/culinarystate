@@ -10,3 +10,5 @@
 | 6 | rdkit not installed in any conda env | ECFP/Morgan fingerprints, RDKit descriptors | PubChem CACTVS 881-bit fingerprint + PubChem descriptors | `conda install -n recsys_env -c conda-forge rdkit` (approve first) |
 | 7 | TabPFN not installed / GPU | DEL-2 D6 | recorded SKIPPED | install on A100 server only if a card justifies it |
 | 8 | Human verification | DEL-1 ≥40 verified literature rows; DEL-3 ≥40 Gold recipes; allergen + FDC link sign-off | queues prepared, tools ready | Kush + Parv: work the queues (see MANUAL_NEXT_STEPS.md) |
+
+| 9 | Foodoscope API key (RecipeDB2/3 API at api.foodoscope.com/recipe2-api) | live RecipeDB/FlavorDB/SpiceRx calls; name crosswalk | web UIs cannot serve API paths (404); unauthenticated API answers `ApiKey is not provided` | request our own key (H1 email item 1); never use keys found in public repos; hosts for FlavorDB/SpiceRx/SustainableFoodDB/DietRxDB/CocktailDB still unknown (S111, `reports/sources/foodoscope_api_audit_v1.md`) |
