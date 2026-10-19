@@ -53,6 +53,7 @@ class Lexicon:
     alternatives: dict = field(default_factory=dict)  # ING id -> ((ING id, confidence), ...) ING_ALTERNATIVE_TO (C10)
     followed_by: dict = field(default_factory=dict)   # PROC id -> ((PROC id, confidence), ...) PROC_FOLLOWED_BY (C10)
     ing_names: dict = field(default_factory=dict)     # ING id -> canonical name
+    durations: dict = field(default_factory=dict)     # PROC id -> typical minutes (p50 of PROC_TYPICAL_DURATION)
 
 
 @dataclass(frozen=True)
@@ -94,9 +95,9 @@ def parse_query(q: str, lex: Lexicon) -> Slots:
 FEAS_MAP = {"ALLOW": "ALLOWED", "REJECT": "REJECTED", "UNKNOWN": "UNKNOWN"}
 
 
-def pareto_view(packets: dict, feas: dict, proc_ids: dict) -> Selection | None:
+def pareto_view(packets: dict, feas: dict, proc_ids: dict, durations: dict | None = None) -> Selection | None:
     """C15: Pareto trade-off over the compared/recommended options. Retention = median MEASURED retention_factor
-    in the packet's evidence pool (None when unmeasured); time is not yet wired (None = neutral). Needs >=2 options."""
+    in the packet's evidence pool (None when unmeasured); time = typical minutes of the process when a duration profile exists (None = neutral). Needs >=2 options."""
     if len(packets) < 2:
         return None
     opts = []
@@ -107,7 +108,8 @@ def pareto_view(packets: dict, feas: dict, proc_ids: dict) -> Selection | None:
                       and isinstance(rf.get("value"), (int, float)))
         ret = vals[len(vals) // 2] if vals else None
         opts.append(Option(n, retention=ret, feasibility=FEAS_MAP.get(feas.get(n, {}).get("decision"), "UNKNOWN"),
-                           process_id=proc_ids.get(n), evidence_count=len(pool)))
+                           process_id=proc_ids.get(n), evidence_count=len(pool),
+                           time_minutes=(durations or {}).get(proc_ids.get(n))))
     return select(opts)
 
 
@@ -163,7 +165,7 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
                               diagnosis=dg), "packets": packets,
             "feasibility": feas, "support": support, "session": session,
             "candidates": extra_candidates(q, s, lex),
-            "pareto": pareto_view(packets, feas, dict(options)) if intent(q) in ("COMPARE", "RECOMMEND") else None}
+            "pareto": pareto_view(packets, feas, dict(options), lex.durations) if intent(q) in ("COMPARE", "RECOMMEND") else None}
 
 
 OFF_TAXONOMY = Path(__file__).resolve().parents[3] / "data" / "raw" / "off" / "ingredients_a1ce1d36.txt"
@@ -182,6 +184,7 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
     by: dict = {}
     alts: dict = {}
     fol: dict = {}
+    dur: dict = {}
     for e in store.all_latest("KGE"):
         if e["status"] != "ACTIVE":
             continue
@@ -189,6 +192,8 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
             by.setdefault(e["subject_id"], []).append((-e["confidence"], e["object_id"]))
         elif e["predicate"] == "ING_ALTERNATIVE_TO":
             alts.setdefault(e["subject_id"], []).append((e["object_id"], e["confidence"]))
+        elif e["predicate"] == "PROC_TYPICAL_DURATION" and (e.get("quantiles") or {}).get("p50") is not None:
+            dur[e["subject_id"]] = e["quantiles"]["p50"]
         elif e["predicate"] == "PROC_FOLLOWED_BY":
             fol.setdefault(e["subject_id"], []).append((e["object_id"], e["confidence"]))
     ings = [i for i in store.all_latest("ING") if i["status"] == "ACTIVE"]
@@ -203,5 +208,5 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
                   relations, targets,
                   {k: tuple(sorted(v, key=lambda x: -x[1])) for k, v in alts.items()},
                   {k: tuple(sorted(v, key=lambda x: -x[1])) for k, v in fol.items()},
-                  {i["id"]: i["canonical_name"] for i in ings})
+                  {i["id"]: i["canonical_name"] for i in ings}, dur)
     return lex, family
