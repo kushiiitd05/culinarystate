@@ -51,7 +51,7 @@ def test_valid_approved_patch_is_written_with_provenance_and_v1_untouched(tmp_pa
     n, errs = agc.apply(gd, q, tmp_path / "out")
     assert (n, errs) == (1, [])
     out = json.loads((tmp_path / "out" / "R9.ADJUDICATED.json").read_text())
-    assert "GC-001 approved by Kush" in out["notes"] and "not independent" in out["notes"]
+    assert "GC-001 decided by Kush" in out["notes"] and "not independent" in out["notes"]
     assert (gd / "R9.ADJUDICATED.json").read_text() == before
 
 

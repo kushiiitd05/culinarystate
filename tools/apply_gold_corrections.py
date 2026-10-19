@@ -19,35 +19,39 @@ sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.annotation.gold import to_events, validate_gold  # noqa: E402
 from culinarystate.state_graph.engine import replay  # noqa: E402
 
-APPROVE = {"approve", "approved", "accept"}
+APPROVE = ["approve", "approved", "accept"]
+MODIFIED = ["modify"]            # MODIFY rows carry the human-edited patch in patch_json
 
 
 def apply(gold_dir: Path, queue: Path, out_dir: Path, today: str = "2026-10-19",
           base_manifest: Path | None = None, out_manifest: Path | None = None) -> tuple[int, list[str]]:
     docs = {p.name.split(".")[0]: json.loads(p.read_text()) for p in sorted(gold_dir.glob("*.ADJUDICATED.json"))}
-    sel = [r for r in csv.DictReader(queue.open()) if r["decision"].strip().lower() in APPROVE
-           and json.loads(r["patch_json"]).get("op") not in (None, "none")]
+    def ops(r):
+        x = json.loads(r["patch_json"])
+        return [o for o in (x if isinstance(x, list) else [x]) if o.get("op") not in (None, "none")]
+    sel = [r for r in csv.DictReader(queue.open()) if r["decision"].strip().lower() in APPROVE + MODIFIED and ops(r)]
     new, seen, errs = copy.deepcopy(docs), {}, []
     for r in sel:
-        p = json.loads(r["patch_json"])
-        key = (p["recipe"], p.get("step"), p["op"], p.get("start") if p["op"] == "set_coref" else p.get("line"))
-        if key in seen:
-            errs.append(f"{r['item_id']} conflicts with {seen[key]} (same target)")
-            continue
-        seen[key] = r["item_id"]
-        if p["op"] == "replace_events":
-            new[p["recipe"]]["steps"][p["step"]]["events"] = p["events"]
-        elif p["op"] == "set_coref":
-            for c in new[p["recipe"]]["steps"][p["step"]]["coref"]:
-                if c["start"] == p["start"]:
-                    c["entity"] = p["entity"]
-        elif p["op"] == "drop_coref":
-            st = new[p["recipe"]]["steps"][p["step"]]
-            st["coref"] = [c for c in st["coref"] if c["start"] not in p["starts"]]
-        elif p["op"] == "set_line_alt":
-            ln = new[p["recipe"]]["ingredient_lines"][p["line"]]
-            ln["alternatives"] = p["alternatives"]
-            ln["spans"] = sorted([x for x in ln["spans"] if x["label"] != "ALTERNATIVE"] + p["spans"], key=lambda x: (x["start"], x["end"]))
+        for p in ops(r):
+            key = (p["recipe"], p.get("step"), p["op"],
+                   p.get("start") if p["op"] == "set_coref" else tuple(p["starts"]) if p["op"] == "drop_coref" else p.get("line"))
+            if key in seen:
+                errs.append(f"{r['item_id']} conflicts with {seen[key]} (same target)")
+                continue
+            seen[key] = r["item_id"]
+            if p["op"] == "replace_events":
+                new[p["recipe"]]["steps"][p["step"]]["events"] = p["events"]
+            elif p["op"] == "set_coref":
+                for c in new[p["recipe"]]["steps"][p["step"]]["coref"]:
+                    if c["start"] == p["start"]:
+                        c["entity"] = p["entity"]
+            elif p["op"] == "drop_coref":
+                st = new[p["recipe"]]["steps"][p["step"]]
+                st["coref"] = [c for c in st["coref"] if c["start"] not in p["starts"]]
+            elif p["op"] == "set_line_alt":
+                ln = new[p["recipe"]]["ingredient_lines"][p["line"]]
+                ln["alternatives"] = p["alternatives"]
+                ln["spans"] = sorted([x for x in ln["spans"] if x["label"] != "ALTERNATIVE"] + p["spans"], key=lambda x: (x["start"], x["end"]))
     changed = {k[0] for k in seen}
     if not changed and not errs:
         return 0, []                                   # nothing approved: write nothing
@@ -60,10 +64,10 @@ def apply(gold_dir: Path, queue: Path, out_dir: Path, today: str = "2026-10-19",
     if errs:
         return 0, errs
     out_dir.mkdir(exist_ok=True)
-    ids = {rid: [r["item_id"] for r in sel if json.loads(r["patch_json"])["recipe"] == rid] for rid in changed}
+    ids = {rid: [r["item_id"] for r in sel if any(o["recipe"] == rid for o in ops(r))] for rid in changed}
     for rid, d in new.items():
         if rid in changed:
-            d = {**d, "notes": f"GOLD-v1.1 (S108): corrections {', '.join(ids[rid])} approved by Kush {today}; AI-assisted + human-reviewed "
+            d = {**d, "notes": f"GOLD-v1.1 (S108): corrections {', '.join(ids[rid])} decided by Kush {today} (approve/modify); AI-assisted + human-reviewed "
                                f"development Gold, not independent. " + d.get("notes", "")}
         (out_dir / f"{rid}.ADJUDICATED.json").write_text(json.dumps(d, indent=2, ensure_ascii=False) + "\n")
     if base_manifest is None:
