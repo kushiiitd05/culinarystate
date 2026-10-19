@@ -650,3 +650,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/pipeline.py`, `tests/test_pareto_view.py`
 - **Verified:** 2946 passed
 - **Next:** SustainableFoodDB carbon attr as 2nd objective; contrastive linker fine-tune (needs VPN)
+
+### S096 · 2026-10-19 16:13 IST · B-KG · S096 carbon footprint edges + substitution context
+- **Who:** claude
+- **Did:** ING_CARBON_FOOTPRINT stat predicate; 134 ING with literature kgCO2e/kg quantiles (exact item match only); Lexicon.carbon; substitution candidate reasons show carbon vs original
+- **Files:** `tools/ingest_carbon_footprint.py`, `src/culinarystate/decision/pipeline.py`, `ledgers/data/*`
+- **Verified:** 2947 passed; 40 ledger tests passed
+- **Next:** contrastive linker fine-tune + RecipeDB3 runs (VPN); AllerStack/NOVA after sign-off; B0-B5 ladder prep
