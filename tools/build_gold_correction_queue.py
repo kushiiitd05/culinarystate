@@ -27,6 +27,7 @@ AI = ROOT / "annotation" / "ai_review" / "pilot_20"
 COLS = ["recipe_id", "step_index", "item_type", "current_value", "problem", "proposed_correction", "source_text", "reason",
         "human_review_required", "decision", "reviewer", "item_id", "patch_json", "problem_class"]
 rows: list[dict] = []
+COREF_DOCS: dict = {}
 docs = {p.name.split(".")[0]: json.loads(p.read_text()) for p in sorted(SRC.glob("*.ADJUDICATED.json"))}
 
 
@@ -188,9 +189,9 @@ def classify_coref():
     tool_re = re.compile(r"\b(pan|oven|tin|bowl|tray|dish|pot|sieve|colander|processor|jar|shaker|glass|mould|moulds|foil|board|spoon|fork)\b", re.I)
     pron_re = re.compile(r"^(it|them|they|this|that|these|those|one)$", re.I)
     generic = re.compile(r"\b(mixture|dough|batter|sauce|mix|paste|filling|dressing|base|purée|puree)\b", re.I)
-    out = {"RESOLVABLE_EXPLICIT": 0, "RESOLVABLE_STRUCTURAL": 0, "GENUINELY_AMBIGUOUS": 0, "NOT_APPLICABLE": 0}
+    out = {"RESOLVABLE_EXPLICIT": 0, "RESOLVABLE_STRUCTURAL": 0, "GENUINELY_AMBIGUOUS": 0, "NOT_APPLICABLE": 0, "SPURIOUS_SUBSTRING": 0}
     examples = {k: [] for k in out}
-    for rid, d in docs.items():
+    for rid, d in COREF_DOCS.items():
         ents_all = {l["entity"]: l for l in d["ingredient_lines"]}
         for st in d["steps"]:
             k = st["step_index"]
@@ -207,14 +208,44 @@ def classify_coref():
             except Exception:
                 alive = set()
             derived_alive = [a for a in alive if a not in ents_all]
+            t_ = st["text"]
+            spur = [c for c in st["coref"] if (c["start"] > 0 and t_[c["start"] - 1].isalnum())
+                    or (c["end"] < len(t_) and t_[c["end"]].isalnum())]
+            if spur:
+                out["SPURIOUS_SUBSTRING"] = out.get("SPURIOUS_SUBSTRING", 0) + len(spur)
+                if len(examples.setdefault("SPURIOUS_SUBSTRING", [])) < 4:
+                    examples["SPURIOUS_SUBSTRING"].append(f"{rid} s{k} '{spur[0]['mention']}' inside '{t_[max(0, spur[0]['start'] - 6):spur[0]['end'] + 6]}'")
+                rows.append({"recipe_id": rid, "step_index": k, "item_type": "COREF_SPURIOUS", "current_value": json.dumps([c["mention"] for c in spur]),
+                             "problem": f"{len(spur)} coref mention(s) are letters inside another word (e.g. 'it' in 'with'), not references",
+                             "proposed_correction": "AI_PROPOSED_CORRECTION: remove these coref entries",
+                             "source_text": t_[:200], "reason": "text at the offsets is a substring of a longer word",
+                             "human_review_required": "yes", "decision": "", "reviewer": "", "item_id": f"GC-{len(rows) + 1:03d}",
+                             "patch_json": json.dumps({"op": "drop_coref", "recipe": rid, "step": k, "starts": [c["start"] for c in spur]}),
+                             "problem_class": "ANNOTATION_ERROR (draft coref noise)"})
+            expl = [c for c in st["coref"] if c not in spur and c["mention"].lower().strip() == "it"
+                    and re.match(r"[\u2019']?s?\s*(important|worth|best|necessary|possible|better)", t_[c["end"]:c["end"] + 24], re.I)]
+            if expl:
+                out["NOT_APPLICABLE"] += len(expl)
+                examples["NOT_APPLICABLE"].append(f"{rid} s{k} 'it' + '{t_[expl[0]['end']:expl[0]['end'] + 14]}' (expletive)")
+                rows.append({"recipe_id": rid, "step_index": k, "item_type": "COREF_NONREFERRING", "current_value": json.dumps([c["mention"] for c in expl]),
+                             "problem": "expletive 'it' ('it's important ...') does not refer to an entity",
+                             "proposed_correction": "AI_PROPOSED_CORRECTION: remove these coref entries",
+                             "source_text": t_[max(0, expl[0]["start"] - 40):expl[0]["end"] + 40], "reason": "NOT_APPLICABLE",
+                             "human_review_required": "yes", "decision": "", "reviewer": "", "item_id": f"GC-{len(rows) + 1:03d}",
+                             "patch_json": json.dumps({"op": "drop_coref", "recipe": rid, "step": k, "starts": [c["start"] for c in expl]}),
+                             "problem_class": "ANNOTATION_ERROR (non-referring pronoun)"})
+            spur_starts = {c["start"] for c in spur} | {c["start"] for c in expl}
             for ci, c in enumerate(st["coref"]):
+                if c["start"] in spur_starts:
+                    continue
                 m = c["mention"]
                 head = norm(re.sub(r"^(the|a|an|its|their|this|that|these|those)\s+", "", m.lower()))
                 if tool_re.search(m):
                     cls, ent = "NOT_APPLICABLE", None
                 elif pron_re.match(m.strip()):
                     before = norm(st["text"][:c["start"]])
-                    named_before = [e for e, l in ents_all.items() if norm(l["concept"]) and norm(l["concept"]) in before]
+                    named_before = [e for e, l in ents_all.items()
+                                    if any(w in before.split() for w in norm(l["concept"]).split() if len(w) >= 4)]
                     cls, ent = (("RESOLVABLE_STRUCTURAL", derived_alive[0])
                                 if len(derived_alive) == 1 and k > 0 and not named_before else ("GENUINELY_AMBIGUOUS", None))
                 else:
@@ -224,7 +255,8 @@ def classify_coref():
                     if len(cands) == 1:
                         cls, ent = "RESOLVABLE_EXPLICIT", cands[0]
                     elif generic.search(m) and len(derived_alive) == 1 and k > 0 and not [
-                            e for e, l in ents_all.items() if norm(l["concept"]) and norm(l["concept"]) in norm(st["text"][:c["start"]])]:
+                            e for e, l in ents_all.items() if any(w in norm(st["text"][:c["start"]]).split()
+                                                      for w in norm(l["concept"]).split() if len(w) >= 4)]:
                         cls, ent = "RESOLVABLE_STRUCTURAL", derived_alive[0]
                     else:
                         cls, ent = "GENUINELY_AMBIGUOUS", None
@@ -236,7 +268,7 @@ def classify_coref():
                                  "problem": f"coref {cls}", "proposed_correction": f"AI_PROPOSED_CORRECTION: entity={ent}",
                                  "source_text": st["text"][max(0, c['start'] - 60):c['end'] + 40], "reason": cls,
                                  "human_review_required": "yes", "decision": "", "reviewer": "", "item_id": f"GC-{len(rows) + 1:03d}",
-                                 "patch_json": json.dumps({"op": "set_coref", "recipe": rid, "step": k, "index": ci, "entity": ent}),
+                                 "patch_json": json.dumps({"op": "set_coref", "recipe": rid, "step": k, "start": c["start"], "entity": ent}),
                                  "problem_class": cls})
     return out, examples
 
@@ -269,6 +301,205 @@ def audit_flags():
     return n
 
 
+def alt_rows():
+    """The draft marked the WORD 'or' as the ALTERNATIVE span and listed ['or'] as the alternatives (9 lines)."""
+    items = [("R003456", 6, "rapeseed oil"), ("R003595", 4, "marmalade"), ("R004275", 3, "2 tsp or powdered gelatine"),
+             ("R004275", 4, "lemon juice"), ("R008637", 3, "rapeseed oil"), ("R008637", 11, "rapeseed oil"),
+             ("R009484", 4, "crème fraîche"), ("R011207", 3, "cooked fresh corn"), ("R011207", 7, "vegetable oil")]
+    for rid, ln, alt in items:
+        line = docs[rid]["ingredient_lines"][ln]
+        i = line["text"].find(alt)
+        if i < 0:                                                  # source has 'cr me fra che' style damage: skip rather than guess
+            continue
+        patch = {"op": "set_line_alt", "recipe": rid, "line": ln, "alternatives": [alt],
+                 "spans": [{"start": i, "end": i + len(alt), "label": "ALTERNATIVE", "text": alt}]}
+        add_row(rid, None, "AUDIT_CORRECTION", {"alternatives": line.get("alternatives")},
+                f"line {ln}: the ALTERNATIVE span and `alternatives` hold the word 'or' instead of the alternative item",
+                {"alternatives": [alt]}, f"Source line: '{line['text']}' (handbook section 2: 'butter or margarine' -> ALTERNATIVE margarine)",
+                "ANNOTATION_ERROR (draft)", patch=patch)
+        rows[-1]["source_text"] = line["text"]
+
+
+def s109_proposals():
+    r = "R000312"
+    c = cur(r, 1)
+    add_row(r, 1, "AUDIT_CORRECTION", [e.get("type") for e in c],
+            "only dough ball 1 is rolled and used; balls 2-4 stay alive although the text uses each ball ('roll each one out ... Spread one side of each')",
+            [c[0], c[1]] + [T(0, f"dough ball {i}", "roll") for i in range(1, 5)] +
+            [M(["dough ball 1", "dough ball 2", "dough ball 3", "dough ball 4", "ricotta-garlic filling", "green olives",
+                "cooked artichoke-rosemary", "mozzarella"], "filled calzones", "fill"), c[4], c[5], c[6], c[7]],
+            "Text: 'Divide into 4 balls and roll each one out ... Spread one side of each with the ricotta, scatter with the olives, the artichokes and rosemary, then top with the mozzarella' (the four calzones are kept as one lot; shares of filling are unstated)",
+            "ANNOTATION_ERROR (draft)")
+    r = "R000387"
+    c = cur(r, 0)
+    add_row(r, 0, "AUDIT_CORRECTION", [e.get("process") for e in c],
+            "the two 'fry for a few mins' phases are not recorded as processes",
+            [c[0], c[1], c[2], T(0, "spiced base", "fry", time="a few mins"), c[3], T(0, "pickle base", "fry", time="a few mins more")],
+            "Text: 'Stir in the spices and curry leaves and fry for a few mins, then add the tomato purée and tamarind and fry for a few mins more'",
+            "ANNOTATION_ERROR (omitted process)")
+    r = "R001894"
+    c = cur(r, 1)
+    add_row(r, 1, "AUDIT_CORRECTION", [e.get("process") for e in c if e["type"] == "Merge"],
+            "Merge process is 'trim' (a mis-canonicalised verb)",
+            [c[0], M(["pizza base", "balsamic caramelised onions", "goat s cheese"], "topped pizza", "spoon"), c[2]],
+            "Text: 'Spoon the caramelised onions over the base and top with slices of goat's cheese'", "ANNOTATION_ERROR (event argument)")
+    r = "R002843"
+    add_row(r, 0, "AUDIT_CORRECTION", [e.get("target") for e in cur(r, 0)],
+            "'Butter the baking dish' transfers the SAUCE butter (butter 2) into the dish; the text does not say which butter or how much",
+            [], "Text: 'Butter the baking dish.' (L1 'butter for the fish', L2 'butter for the sauce'): amount and lot unstated -> no event; UNKNOWN",
+            "ANNOTATION_ERROR (wrong lot) + AMBIGUOUS")
+    add_row(r, 1, "AUDIT_CORRECTION", [e.get("inputs") for e in cur(r, 1)],
+            "the fish assembly uses the sauce butter (butter 2); it should use the fish butter",
+            [M(["cod fillets", "butter", "white wine"], "cod cooking assembly", "add")],
+            "Text: 'Add the cod, butter and white wine.' with L1 '50g butter for the fish'", "ANNOTATION_ERROR (lineage)")
+    c = cur(r, 5)
+    add_row(r, 5, "AUDIT_CORRECTION", [e.get("inputs") for e in c if e["type"] == "Merge"],
+            "the cooked cod is merged into the sauce, but the fish was removed and kept warm; the sauce is the juices plus the remaining butter",
+            [M(["cooking juices", "butter 2"], "butter sauce base", "add"), c[1]],
+            "Text: 'Remove fish ... and keep warm, Add the juices ... to a pan. Add the remaining butter and reduce until the sauce slightly thickens' (L2 '30g butter for the sauce')",
+            "ANNOTATION_ERROR (lineage)")
+    add_row(r, 6, "AUDIT_CORRECTION", [e.get("inputs") for e in cur(r, 6)],
+            "serving Merge omits the cooked cod",
+            [M(["cooked cod", "butter sauce base", "parsley"], "served cod with butter sauce", "serve")],
+            "Text: 'Serve with sprigs of parsley.' (the dish is cod with butter sauce)", "ANNOTATION_ERROR (lineage)")
+    r = "R007363"
+    c = cur(r, 0)
+    add_row(r, 0, "AUDIT_CORRECTION", [e.get("inputs") for e in c if e["type"] == "Merge"],
+            "the browned chicken, set aside, is merged into the aromatic base in step 0 but returned only in step 1",
+            [c[0], c[1], c[2], M(["onion", "garlic", "red chillies", "ginger"], "aromatic base", "add"), c[4]],
+            "Text: 'Brown the chicken in batches, setting aside once golden. Fry the onion ... add the garlic, chilli and ginger' ... step 1: 'Return the chicken to the pan'",
+            "ANNOTATION_ERROR (lineage)")
+    c = cur(r, 1)
+    add_row(r, 1, "AUDIT_CORRECTION", [e.get("inputs") for e in c if e["type"] == "Merge"],
+            "the chicken is never returned; the whole coriander lot is added although only half is chopped into the sauce",
+            [{"type": "Split", "target": "coriander", "outputs": [{"label": "chopped coriander", "fraction": "1/2"},
+                                                                  {"label": "coriander leaves", "fraction": "1/2"}]},
+             M(["spiced aromatic base", "peanut butter", "coconut milk", "tomatoes"], "peanut-coconut sauce", "stir"),
+             T(0, "peanut-coconut sauce", "simmer"),
+             M(["peanut-coconut sauce", "browned chicken", "chopped coriander"], "chicken in peanut sauce", "return"), c[3]],
+            "Text: coriander 'bunch of coriander 1/2 roughly chopped, 1/2 leaves picked'; 'Return the chicken to the pan and add the chopped coriander'; 'bring to a simmer'",
+            "ANNOTATION_ERROR (lineage, repeated lot)")
+    add_row(r, 2, "AUDIT_CORRECTION", [e.get("inputs") for e in cur(r, 2)],
+            "serving Merge omits the remaining coriander",
+            [M(["chicken in peanut sauce", "coriander leaves", "roasted peanuts", "cauliflower rice"], "served peanut butter chicken", "serve")],
+            "Text: 'Serve with the remaining coriander, roasted peanuts and rice, if you like.'", "ANNOTATION_ERROR (repeated lot)")
+    r = "R008469"
+    c0, c1, c2, c3 = cur(r, 0), cur(r, 1), cur(r, 2), cur(r, 3)
+    add_row(r, 0, "AUDIT_CORRECTION", [e.get("inputs") for e in c0 if e["type"] == "Merge"],
+            "the roasting Merge uses the croutons' drizzle oil (olive oil 2) instead of half of the 2 tbsp oil",
+            [{"type": "Split", "target": "olive oil", "outputs": [{"label": "roasting oil", "fraction": "1/2"},
+                                                                  {"label": "remaining oil", "fraction": "1/2"}]},
+             M(["carrot", "roasting oil", "garlic", "thyme"], "seasoned roasting mixture", "toss"), c0[1]],
+            "Text: 'Put the carrots, half the oil, the garlic and thyme in a roasting tin'; step 1: 'heat the remaining oil' (L10 'drizzle olive oil' is for the croutons)",
+            "ANNOTATION_ERROR (lineage, repeated lot)")
+    add_row(r, 1, "AUDIT_CORRECTION", [e.get("type") for e in c1],
+            "soft onions are Split into carrots/garlic/stalks (they are the onions); the roasted mixture is merged into the onions at the start; the remaining oil is unused",
+            [M(["onions", "remaining oil", "butter"], "onion base", "cook"),
+             T(0, "onion base", "cook", temperature="low heat", time="10 mins", endpoint="soft"),
+             {"type": "Split", "target": "seasoned roasting mixture", "outputs": [
+                 {"label": "roasted carrots", "fraction": None}, {"label": "roasted garlic flesh", "fraction": None},
+                 {"label": "garlic skins and woody thyme stalks", "fraction": None}]},
+             {"type": "Discard", "target": "garlic skins and woody thyme stalks"},
+             M(["onion base", "roasted carrots", "roasted garlic flesh", "chicken stock"], "soup base", "add"),
+             T(0, "soup base", "boil"), T(0, "soup base", "simmer", time="10 mins")],
+            "Text: 'heat the remaining oil and butter in a large saucepan. Tip in the onions and cook ... until soft. ... Squeeze the soft roasted garlic cloves out of their skins ... Tip in the carrots and discard any woody thyme stalks. Pour over the stock, bring to the boil, then simmer for 10 mins'",
+            "ANNOTATION_ERROR (lineage)")
+    add_row(r, 2, "AUDIT_CORRECTION", [e.get("inputs") for e in c2 if e["type"] == "Merge"],
+            "the croutons are built from the SOUP BASE and pancetta; the bread and the drizzle oil are never used",
+            [M(["pancetta", "rustic bread", "olive oil 2"], "pancetta croutons", "wrap"),
+             {"type": "Transfer", "target": "pancetta croutons", "location": "baking tray"},
+             T(0, "pancetta croutons", "bake", time="10 mins", endpoint="pancetta and bread edges crisp"),
+             T(0, "pancetta croutons", "drain", medium="kitchen paper")],
+            "Text: 'wrap the pancetta around the soldiers ... Put on a baking tray, drizzle with a little oil ... Bake for 10 mins until the pancetta and bread edges are crisp. Drain on kitchen paper'",
+            "ANNOTATION_ERROR (lineage)")
+    add_row(r, 3, "AUDIT_CORRECTION", [e.get("type") for e in c3],
+            "blending/sieving is applied to the croutons; the cream is added whole; the croutons are not served with the soup",
+            [T(0, "soup base", "blend", tool="hand blender"),
+             {"type": "Split", "target": "soup base", "outputs": [{"label": "sieved soup", "fraction": None},
+                                                                  {"label": "sieve residue", "fraction": None}]},
+             {"type": "Split", "target": "double cream", "outputs": [{"label": "cream for the soup", "fraction": None},
+                                                                    {"label": "remaining cream", "fraction": None}]},
+             M(["sieved soup", "cream for the soup"], "creamed carrot soup", "add"), T(0, "creamed carrot soup", "heat"),
+             M(["creamed carrot soup", "remaining cream", "pancetta croutons"], "served carrot soup", "serve")],
+            "Text: 'blitz the soup with a hand blender, then sieve into a clean saucepan ... Add 5 tbsp of the cream, heat through ... Serve drizzled with the remaining cream ... with the croutons' (what happens to the sieve residue is not stated: not discarded; 5 of 6 tbsp not turned into fractions)",
+            "ANNOTATION_ERROR (lineage)")
+    r = "R008637"
+    c0, c1 = cur(r, 0), cur(r, 1)
+    add_row(r, 0, "AUDIT_CORRECTION", [e.get("type") for e in c0],
+            "carrots and grapes are merged into one entity although the text keeps them apart on the tray (grapes later scattered over the salad)",
+            [c0[0], M(["baby carrot", "extra virgin olive oil or rapeseed oil"], "oiled carrots", "drizzle"),
+             {"type": "Transfer", "target": "oiled carrots", "location": "large baking tray"},
+             {"type": "Transfer", "target": "red seedless grape", "location": "large baking tray"},
+             T(0, "oiled carrots", "roast", time="10 mins", temperature="200C/180C fan/gas 6"),
+             T(0, "red seedless grape", "roast", time="10 mins", temperature="200C/180C fan/gas 6"),
+             T(0, "oiled carrots", "cool"), T(0, "red seedless grape", "cool"), c0[4], c0[5]],
+            "Text: 'Place the carrots and grapes on a large baking tray, keeping the grapes at one end and the carrots at the other ... Drizzle the carrots with the oil ... Roast for 10 mins ... set aside to cool'",
+            "ANNOTATION_ERROR (lineage)")
+    add_row(r, 1, "AUDIT_CORRECTION", [e.get("inputs") for e in c1 if e["type"] == "Merge"],
+            "the dressing contains the roasted carrots and grapes and omits the oil; the beans' water is not discarded; half the feta is not separated",
+            [c1[0], c1[1], {"type": "Discard", "target": "discarded bean water"},
+             M(["maple syrup", "balsamic vinegar", "lemon", "extra virgin olive oil or rapeseed oil 2"], "balsamic-maple dressing", "whisk"),
+             {"type": "Split", "target": "feta cheese", "outputs": [{"label": "feta for the salad", "fraction": "1/2"},
+                                                                   {"label": "remaining feta", "fraction": "1/2"}]},
+             M(["cooled drained rice", "balsamic-maple dressing", "oiled carrots", "drained green beans", "pecan", "rocket leaves",
+                "feta for the salad"], "rice salad base", "toss"),
+             {"type": "Transfer", "target": "rice salad base", "location": "serving plate"},
+             M(["rice salad base", "remaining feta", "red seedless grape"], "served rice salad", "scatter")],
+            "Text: 'whisk the dressing ingredients together ... Add the rice, carrots, beans, pecans, rocket and half the feta, and toss ... scatter over the remaining feta and the roasted grapes' (dressing ingredients = maple syrup, balsamic vinegar, lemon juice, 2 tbsp oil)",
+            "ANNOTATION_ERROR (lineage)")
+    r = "R010426"
+    c = cur(r, 0)
+    add_row(r, 0, "AUDIT_CORRECTION", [e.get("process") for e in c if e["type"] == "Transform"],
+            "the last event is the label 'finish with'; the stir-fry (3-4 mins, until the sprouts colour a little) is not recorded",
+            c[:-1] + [T(0, "stir-fried vegetables", "stir-fry", time="3-4 mins", endpoint="sprouts colour a little")],
+            "Text: 'add the vegetables and stir-fry for 3-4 mins until the sprouts colour a little'", "ANNOTATION_ERROR (event argument)")
+    r = "R011481"
+    c1, c2 = cur(r, 1), cur(r, 2)
+    add_row(r, 1, "AUDIT_CORRECTION", [e.get("type") for e in c1],
+            "dough is Split into 8 entities labelled 'or 10 dough portion N' (the text says 'eight or 10'); only portion 1 is ever used",
+            [c1[0], T(0, "raw naan dough", "divide", sets={"form": "8 or 10 balls, about 75g each"}), T(0, "raw naan dough", "roll"),
+             T(0, "raw naan dough", "rise", time="30-45 mins", endpoint="doubled in size again")],
+            "Text: 'Divide into eight or 10 pieces (about 75g each), and roll into balls. Cover and leave to rise for 30-45 mins' (count is an alternative: unstated; handbook H16 for batches)",
+            "ANNOTATION_ERROR + REPRESENTATION")
+    add_row(r, 2, "AUDIT_CORRECTION", [e.get("target") for e in c2],
+            "cooking is applied to 'dough portion 1' only; 'Repeat with the remaining dough balls' means batches, not separate entities",
+            [T(0, "raw naan dough", "roll", sets={"form": "oval"}), {"type": "Transfer", "target": "raw naan dough", "location": "hot dry pan"},
+             T(0, "raw naan dough", "cook", time="1-2 mins first side, then other side", endpoint="puffed up and blistered"),
+             T(0, "raw naan dough", "wrap", medium="tea towel")],
+            "Text: 'Roll one dough ball out at a time ... put in the hot pan ... cook for 1-2 mins until puffed up and blistered. Flip and cook on the other side, then wrap in a tea towel to keep warm. Repeat with the remaining dough balls.'",
+            "ANNOTATION_ERROR + REPRESENTATION")
+    add_row(r, 3, "AUDIT_CORRECTION", [e.get("inputs") for e in cur(r, 3) if e["type"] == "Merge"],
+            "the naan Merge refers to 'dough portion 1'",
+            [cur(r, 3)[0], cur(r, 3)[1], M(["raw naan dough", "coriander garlic butter"], "finished garlic-coriander naans", "brush")],
+            "Text: 'Brush this over the warm naans and serve.'", "ANNOTATION ARTEFACT (downstream)")
+    r = "R010532"
+    c2, c3 = cur(r, 2), cur(r, 3)
+    add_row(r, 2, "AUDIT_CORRECTION", [e.get("process") for e in c2],
+            "'tear into small pieces' is not recorded",
+            [c2[0], T(0, "mozzarella", "tear", sets={"form": "small pieces"}), c2[1]],
+            "Text: 'Drain and pat the mozzarella balls dry, tear into small pieces, then season.'", "ANNOTATION_ERROR (omitted process)")
+    add_row(r, 3, "AUDIT_CORRECTION", [e.get("process") for e in c3 if e["type"] == "Transform"],
+            "'Drain on kitchen paper' after frying is not recorded",
+            c3[:5] + [T(0, "fried stuffed courgette flowers", "drain", medium="kitchen paper")] + c3[5:],
+            "Text: 'Fry in batches of two or three until lightly golden. Drain on kitchen paper and season with salt.'",
+            "ANNOTATION_ERROR (omitted process)")
+    r = "R006967"
+    c = cur(r, 1)
+    add_row(r, 1, "AUDIT_CORRECTION", [e.get("process") for e in c],
+            "the 12-15 minute cook until the liquid is absorbed is not recorded",
+            [c[0], c[1], T(0, "rice cooking mixture", "cook", temperature="medium heat", time="12-15 minutes",
+                           endpoint="all the liquid absorbed and the rice tender")],
+            "Text: 'cover and bring to the boil. Reduce to a medium heat and cook for 12-15 minutes or until all the liquid has been absorbed and the rice is tender'",
+            "ANNOTATION_ERROR (omitted process)")
+    r = "R009484"
+    c = cur(r, 1)
+    add_row(r, 1, "AUDIT_CORRECTION", [e.get("process") for e in c if e["type"] == "Transform"],
+            "the optional grill step ('If you like things really grilled') is recorded as an unconditional Transform",
+            [e for e in c if not (e["type"] == "Transform" and e.get("process") == "grill")],
+            "Text: 'If you like things really grilled finish for a few minutes under the grill' (conditional/optional: not an event)",
+            "ANNOTATION_ERROR (conditional treated as unconditional)")
+
+
 def apply_patches(rows_sel):
     new = copy.deepcopy(docs)
     for r in rows_sel:
@@ -276,7 +507,17 @@ def apply_patches(rows_sel):
         if p["op"] == "replace_events":
             new[p["recipe"]]["steps"][p["step"]]["events"] = p["events"]
         elif p["op"] == "set_coref":
-            new[p["recipe"]]["steps"][p["step"]]["coref"][p["index"]]["entity"] = p["entity"]
+            for c in new[p["recipe"]]["steps"][p["step"]]["coref"]:
+                if c["start"] == p["start"]:
+                    c["entity"] = p["entity"]
+        elif p["op"] == "drop_coref":
+            st = new[p["recipe"]]["steps"][p["step"]]
+            st["coref"] = [c for c in st["coref"] if c["start"] not in p["starts"]]
+        elif p["op"] == "set_line_alt":
+            ln = new[p["recipe"]]["ingredient_lines"][p["line"]]
+            ln["alternatives"] = p["alternatives"]
+            ln["spans"] = [x for x in ln["spans"] if x["label"] != "ALTERNATIVE"] + p["spans"]
+            ln["spans"].sort(key=lambda x: (x["start"], x["end"]))
     return new
 
 
@@ -296,9 +537,15 @@ def main():
 
     def T(e, tgt, proc, **kw):                      # noqa: E306  (e is a throwaway positional)
         return {"type": "Transform", "target": tgt, "process": proc, **kw}
-    proposals()
+    global COREF_DOCS
+    proposals(); s109_proposals(); alt_rows()                 # pass 1: event/line proposals -> state the coref audit should read
+    COREF_DOCS = apply_patches(rows)
+    rows.clear()
+    proposals()                                              # pass 2: real ids (S108 ids stay stable)
     cs, ex = classify_coref()
     nflag = audit_flags()
+    s109_proposals()
+    alt_rows()
     with (G / "gold_v1_correction_queue.csv").open("w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=COLS)
         w.writeheader()
