@@ -16,6 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.annotation.gold import validate_gold, to_events  # noqa: E402
 from culinarystate.state_graph.engine import replay  # noqa: E402
+from culinarystate.state_graph.rule_compiler import step_processes  # noqa: E402
 from culinarystate.vocab.foodon import norm  # noqa: E402
 
 AI = ROOT / "annotation" / "ai_review" / "pilot_20"
@@ -59,6 +60,15 @@ def concept_for(rid, li, names):
                 return names[g]
     note(rid, f"line {li['line_index']}", "CONCEPT_UNKNOWN", f"'{cand}' not in ING registry")
     return "UNKNOWN"
+
+
+def canon_proc(rid, where, act):
+    """Addendum A5: event `process` = PROC registry name when the verb is listed (production verb matcher); else the verb as written."""
+    names = [n for _, n in step_processes(act or "")]
+    if names:
+        return names[0]
+    note(rid, where, "PROCESS_NOT_IN_REGISTRY", f"'{act}' kept as written")
+    return act
 
 
 def short(s):
@@ -193,13 +203,13 @@ def convert(x, names):
                 cond["medium"] = liquid[0]
             ev = None
             if op in ("TRANSFORM", "WAIT") and len(ins) == 1:
-                ev = {"type": "Transform", "target": ins[0], "process": act if op == "TRANSFORM" else "rest" if not act else act, **cond}
+                ev = {"type": "Transform", "target": ins[0], "process": canon_proc(rid, where, act if act else "rest"), **cond}
                 reg_out(outn, ins[0])
                 if op == "WAIT":
                     note(rid, where, "WAIT_AS_TRANSFORM", f"'{act}' recorded as Transform")
             elif op == "TRANSFORM":
                 out = label_for(short(outn) or "+".join(ins))
-                ev = {"type": "Merge", "inputs": ins, "output": out, "process": act}
+                ev = {"type": "Merge", "inputs": ins, "output": out, "process": canon_proc(rid, where, act)}
                 note(rid, where, "MULTI_INPUT_TRANSFORM_AS_MERGE", f"{act}: {e['inputs']} -> {out}")
                 evs.append(ev)
                 alive -= set(ins)
@@ -208,16 +218,16 @@ def convert(x, names):
                 alive.add(out)
                 alias[(outn or out).lower()] = out
                 if cond:
-                    ev = {"type": "Transform", "target": out, "process": act, **cond}
+                    ev = {"type": "Transform", "target": out, "process": canon_proc(rid, where, act), **cond}
                 else:
                     ev = None
             elif op == "MERGE":
                 if len(set(ins)) < 2 and ins:
-                    ev = {"type": "Transform", "target": ins[0], "process": act, **cond}
+                    ev = {"type": "Transform", "target": ins[0], "process": canon_proc(rid, where, act), **cond}
                     note(rid, where, "SINGLE_INPUT_MERGE_AS_TRANSFORM", f"{act} {e['inputs']}")
                 else:
                     out = label_for(short(outn) or "+".join(ins))
-                    ev = {"type": "Merge", "inputs": list(dict.fromkeys(ins)), "output": out, "process": act}
+                    ev = {"type": "Merge", "inputs": list(dict.fromkeys(ins)), "output": out, "process": canon_proc(rid, where, act)}
                     alive -= set(ins)
                     for i in ins:
                         succ[i] = out
@@ -225,10 +235,10 @@ def convert(x, names):
                     alias[(outn or out).lower()] = out
             elif op == "RECOMBINE":
                 if len(set(ins)) < 2:
-                    ev = {"type": "Transform", "target": ins[0], "process": act, **cond}
+                    ev = {"type": "Transform", "target": ins[0], "process": canon_proc(rid, where, act), **cond}
                 else:
                     out = label_for(short(outn) or "+".join(ins))
-                    ev = {"type": "Merge", "inputs": list(dict.fromkeys(ins)), "output": out, "process": act}
+                    ev = {"type": "Merge", "inputs": list(dict.fromkeys(ins)), "output": out, "process": canon_proc(rid, where, act)}
                     alive -= set(ins)
                     for i in ins:
                         succ[i] = out
