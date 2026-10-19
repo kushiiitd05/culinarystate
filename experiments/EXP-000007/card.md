@@ -49,3 +49,23 @@ for the source-disjoint check); food/process families those recipes contain; evi
 Harness that cuts a recipe at a step, replays predicted/gold events, runs B3/B4, writes pooled top-5 for blind judging, and scores CC@K/ModeF1/UCR with grouped bootstrap. Everything else needed (`answer(use_state)`, `state_conditioning`, scorer, claims checker, bootstrap helpers) exists.
 
 **Status:** PLANNED. Blocked on G1–G6 (human Gold). Registering in the EXP ledger is deferred (EXP-000005/6 also unregistered; register all in one step).
+
+---
+## Amendment A1 (S114, 2026-10-20) — evidence-coverage split (original text above is unchanged)
+
+AMENDMENT_REASON: empirical evidence coverage discovered before question authoring and before any B3/B4 system output
+was observed. Not performance-driven tuning. Only Gold-v1.1 state and EVD-ledger coverage were inspected.
+
+Finding (S112/S114): only 10/20 Gold recipes carry any compatible ingredient+process retention cell anywhere in their
+trajectory; 8 recipes carry one at a valid cut; 14 distinct (recipe, cell) pairs exist. The preregistered >=40 supported
+state-dependent questions is unreachable without repetitive/artificial questions.
+
+Design after amendment (target; actual maximum reported, never forced):
+- H_STATE-R (supported retrieval): up to 40 state-dependent questions with a compatible Gold evidence cell, distinct
+  cell per question within a recipe. Primary metric ConditionCompatible@5 (grouped by recipe/family); secondary MRR, ModeF1,
+  unsupported-claim rate. Actual maximum achievable under current ledger: 14.
+- H_STATE-A (unsupported/abstention): 20 state-dependent questions with Gold evidence UNSUPPORTED. Measures: correct
+  ASK/ABSTAIN, unsupported-claim rate, false-support rate. Excluded from ConditionCompatible@5.
+- CONTROL: 20 fully specified questions, one per recipe.
+Slot selection is deterministic (tools/build_hstate_r_candidates.py). Freeze (question, cut, Gold state, evidence labels,
+stratum, mode hashed) precedes any B3/B4 output. The H_STATE-R success gate must be re-read at n actually frozen.
