@@ -66,3 +66,16 @@ One bounded use that fits the ledgers and has a testable claim:
 
 ## 5. Claims discipline
 No "beats CoSyLab / SOTA" statement before H6 approval, a matched reproduction and a paired significant difference (Part K.8). Leakage numbers reproduce the merged plan's figures (5.1% exact / 13.6% masked) within noise: ours 5.4% ± 0.2% / 13.5% ± 0.4% over 100 splits.
+
+## 6. First result (S094): leave-one-alias-out surface linking, zero-shot
+`tools/eval_alias_linking.py` (recsys_env, MPS), 623 English alias queries vs 2,680 surfaces / 2,048 ING, `reports/ner/alias_linking_v1.json`.
+
+| Method | Acc@1 | R@5 | MRR |
+|---|---|---|---|
+| char 2–4-gram TF-IDF | 0.555 | 0.783 | 0.659 |
+| e5-large-v2 bi-encoder (zero-shot) | 0.607 | 0.820 | 0.699 |
+| RRF fusion | 0.586 | 0.809 | 0.687 |
+
+Paired Acc@1 bi-encoder − TF-IDF = +0.051, bootstrap 95% CI [0.014, 0.090] (excludes 0). Fusion does not beat the bi-encoder alone.
+Reading: headroom is large (~40% of held-out aliases miss at rank 1), so a contrastive fine-tune with sibling hard negatives is justified
+as the next bounded A100 experiment, evaluated ING-grouped. Caveat stands: surface-form generalisation only, not in-context linking.
