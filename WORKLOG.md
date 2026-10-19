@@ -706,3 +706,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `annotation/ai_review/pilot_20/review_status_log.csv`
 - **Verified:** 20/20 text==frozen; 0 replay issues; Gold folders untouched
 - **Next:** Kush decides design (blind vs AI-draft+review); Parv should not open ai_review if blind pass is kept.
+
+### S104 · 2026-10-19 18:48 IST · DEL-3 · S104 AI draft is not handbook-conformant; no Gold files written
+- **Who:** claude
+- **Did:** Tried to convert the OpenAI GPT-5.6 Sol review draft into gold-1.0 files (Kush DONE / Parv DRAFT per Kush's instruction). Aborted before writing: the draft uses another model (labels AMOUNT/FOOD_MENTION/HEAT_TEMPERATURE/DURATION/PREP_STATE/PURPOSE/QUALITATIVE_AMOUNT/INTERMEDIATE_MENTION; ingredient 'concept_candidate' surface strings, 58/179 not in ING registry, no 'concept'; events in free-text operation/action/inputs/output/conditions form where every event names an output, TRANSFORM with 2-3 inputs (15), RECOMBINE used for 'serve with' (18), RESERVE for 'keep warm' (6), plus WAIT). Mapping those to handbook Reserve/Recombine/Merge semantics needs human decisions; writing them as Kush DONE would put wrong state labels into Gold. Nothing in annotation/gold/pilot_20/Kush|Parv changed (still blank DRAFT). Draft kept in annotation/ai_review/pilot_20 as reading aid.
+- **Files:** `annotation/ai_review/pilot_20/`
+- **Verified:** validate_gold rejected all 20 (missing concept, extra fields) before any write
+- **Next:** Kush chooses: (a) AI-assisted conversion draft with every ambiguous event flagged, Kush reviews via replay and marks DONE himself; (b) annotate in gold schema using the draft as reading aid.
