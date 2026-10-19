@@ -21,6 +21,8 @@
 | CoSyLab public data audit: 26 repos surveyed, 10 NER vulnerabilities found, 19K ingredient categories (9 mislabeling errors), data from 10 sources downloaded (bittersweet AGPL, companion NER, NER_DL, NOVA, SweetpredDB, hierarchical clustering) | S078–S079 |
 | CoSyLab data (local raw, gitignored; use permitted by Prof. Bagler per Kush, D-015, licence ASSUMED / DERIVED_ONLY): bittersweet 524 + SweetpredDB MOL_HAS_TASTE, RecipeDB2 ING_COSYLAB_CATEGORY, spice-disease ING_HEALTH_ASSOCIATION — 1,470+ new KGE via LedgerStore (S088–S090). V3 leakage verified: 128 exact (5.9%) + 322 masked (15.5%) duplicates | S080–S090 |
 
+| S100–S101 state-awareness: readiness audit + H_STATE pre-registered (EXP-000007); B4 switch `answer(use_state)`; pilot_20 Gold frozen (hash-matched to REC), blank Kush/Parv copies, handbook Addendum A, agreement tooling. **Gold annotation BLOCKED_HUMAN (0/20)** | S100–S101 |
+
 **Not on this machine:** Parv's Max-plan work (old STATUS/DECISIONS, ~519 evidence candidate cells). Decision D-001: rebuild here; Parv continues from this repo.
 
 ## 2. DONE TODAY (S001–S029, see WORKLOG.md)
