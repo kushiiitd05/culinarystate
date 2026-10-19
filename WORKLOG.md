@@ -587,3 +587,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/decision/pipeline.py`, `tests/test_pareto_view.py`
 - **Verified:** 2943 passed, 40 deselected
 - **Next:** Wire C10 substitution/sequence candidates; ingest 4,559 unmatched taste molecules; human queue
+
+### S087 · 2026-10-19 11:42 IST · B-DEC · S087 C10 candidates wired into answer()
+- **Who:** claude
+- **Did:** Lexicon gains alternatives/followed_by/ing_names from KGE (220 ALT_TO, 63 FOLLOWED_BY); extra_candidates() -> answer()['candidates'] for RECOMMEND/COMPARE/RECOVER
+- **Files:** `src/culinarystate/decision/pipeline.py`, `tests/test_extra_candidates.py`
+- **Verified:** 2945 passed
+- **Next:** Ingest unmatched taste molecules; human queue; H1 email
