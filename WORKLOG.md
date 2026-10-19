@@ -629,3 +629,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `reports/ner/recipedb3_vulnerability_analysis.md`
 - **Verified:** 100-split local stats
 - **Next:** when VPN works: scp gpu/ner_recipedb3 + data, run_all.sh
+
+### S093 · 2026-10-19 16:03 IST · PLAN · S093 dataset+ledger status and model plan
+- **Who:** claude
+- **Did:** Read SSOT §190.4/§245/§257B + Plan Parts K/L/N + BUILD_TRACKER; wrote docs/plan/S093 (ledger counts, unused datasets and routes, sequence, NER/bi-encoder/AE reasoning)
+- **Files:** `docs/plan/S093_dataset_ledger_status_and_model_plan.md`
+- **Verified:** counts from LedgerStore
+- **Next:** mention->ING bi-encoder linking baseline (Mac MPS), C15 time axis, SustainableFoodDB carbon attr
