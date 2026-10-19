@@ -8,7 +8,7 @@ Cascade (SSOT 245.14 oracle decomposition):
   O1 oracle concepts  compile_recipe(raw text, names = gold concepts)         -> replay      (isolates ingredient linking)
   O2 gold Adds        gold Add events + predicted step events (relabelled)    -> replay      (isolates step-event construction)
   G  gold events      replay(gold)                                            -> sanity ceiling = 1.0
-Entity labels are aligned (scoring.align_entities) so naming choices are not errors. Outputs reports/del3/compiler_vs_gold_v1.{json,md}.
+Entity labels are aligned (scoring.align_entities) so naming choices are not errors. Outputs reports/del3/compiler_vs_gold_<tag>.json (--gold DIR --tag NAME; default v1 = pilot_20_adjudicated).
 """
 import csv
 import json
@@ -25,7 +25,10 @@ from culinarystate.scoring.state_metrics import aligned_state_scores, align_enti
 from culinarystate.state_graph.engine import Add, replay  # noqa: E402
 from culinarystate.state_graph.rule_compiler import compile_recipe  # noqa: E402
 
+import argparse  # noqa: E402
+
 GOLD = ROOT / "annotation" / "gold" / "pilot_20_adjudicated"
+TAG = "v1"
 LEVELS = ("P", "O1", "O2", "G")
 
 
@@ -69,6 +72,12 @@ def boot(vals, n=1000, seed=7):
 
 
 def main():
+    global GOLD, TAG
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gold", default=str(GOLD))
+    ap.add_argument("--tag", default="v1")
+    a = ap.parse_args()
+    GOLD, TAG = Path(a.gold), a.tag
     reg = {r["canonical_name"] for r in csv.DictReader((ROOT / "registry" / "ingredients" / "ingredient_registry_v1.csv").open())}
     docs = [json.loads(p.read_text()) for p in sorted(GOLD.glob("*.ADJUDICATED.json"))]
     man = {r["recipe_id"]: r["stratum"] for r in csv.DictReader((ROOT / "annotation" / "gold" / "pilot_20_manifest.csv").open())}
@@ -100,7 +109,7 @@ def main():
            "summary": summary, "event_types_P": {k: dict(v) for k, v in conf["P"].items()},
            "state_field_accuracy_by_stratum_P": {k: round(sum(v) / len(v), 4) for k, v in by_stratum.items()},
            "per_recipe": res}
-    (ROOT / "reports" / "del3" / "compiler_vs_gold_v1.json").write_text(json.dumps(out, indent=1))
+    (ROOT / "reports" / "del3" / f"compiler_vs_gold_{TAG}.json").write_text(json.dumps(out, indent=1))
     for lv in LEVELS:
         print(lv, {k: summary[lv][k]["mean"] for k in keys}, "replay-issue recipes", summary[lv]["recipes_with_replay_issues"])
     print("types P gold:", dict(conf["P"]["gold"]), "\n        pred:", dict(conf["P"]["pred"]))
