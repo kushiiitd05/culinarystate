@@ -692,3 +692,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/register_exp_cards.py`, `tools/freeze_gold_pilot.py`, `tools/gold_pilot_agreement.py`, `tools/gold_cli.py`, `src/culinarystate/annotation/pilot_agreement.py`, `annotation/PILOT_20_TASK.md`, `annotation/annotation_handbook_v1.md`, `annotation/gold/pilot_20_manifest.csv`, `reports/del3/gold_pilot_20_v1.md`, `ledgers/data/EXP.jsonl`
 - **Verified:** 2954 passed, 40 deselected; gold_pilot_agreement.py exits 2 BLOCKED_HUMAN (40/40 not DONE); blank files fail validate as intended
 - **Next:** S102: Kush and Parv annotate the same first 5 recipes (R011207, R002919, R010532, R006967, R007017), validate+replay, then request a partial agreement run to expose handbook gaps before the remaining 15.
+
+### S102 · 2026-10-19 17:35 IST · DEL-3 · S102 Gold calibration round: 7 recipes, one per stratum (BLOCKED_HUMAN)
+- **Who:** claude
+- **Did:** Accepted audit correction (7 strata, not 5). Selected the 7 mechanically before any annotation: first recipe_id per alphabetically sorted stratum -> R003595 baking, R002919 drain_discard, R000387 indian, R002843 multi_component, R000312 random, R008469 reserve_split, R001894 simple; recorded in text-free annotation/gold/pilot_7_calibration_manifest.csv. Added --only/--calibration/--tag to gold_pilot_agreement.py (default all 20; subset needs DONE+valid for selected recipes only), per-category rates and a mechanical >20% gate flag; 4 tests (a wrong dict key for relation F1 was caught by the identical-docs test and fixed). Both runs currently exit 2 BLOCKED_HUMAN. No annotation, agreement, adjudication, compiler tuning, H_STATE or B3/B4 work.
+- **Files:** `tools/gold_pilot_agreement.py`, `tests/unit/test_gold_pilot_runner.py`, `annotation/gold/pilot_7_calibration_manifest.csv`, `annotation/PILOT_20_TASK.md`, `reports/del3/gold_pilot_7_calibration.md`
+- **Verified:** full suite passes; --calibration and all-20 runs exit 2
+- **Next:** Kush and Parv annotate the 7 recipes, validate+replay, then run gold_pilot_agreement.py --calibration; gate verdict decides the other 13.
