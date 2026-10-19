@@ -608,3 +608,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `handoff/H1_email_bagler.md`
 - **Verified:** draft only; Kush sends
 - **Next:** Kush review+send H1
+
+### S090 · 2026-10-19 12:11 IST · B-LIC · S090 CoSyLab data re-ingested under D-015
+- **Who:** claude
+- **Did:** Kush reports Prof. Bagler permitted use. Recorded D-015 (ASSUMED/DERIVED_ONLY, written confirmation still requested); added 2 value predicates; ledger ingest of RecipeDB2 categories, spice-disease, SweetpredDB (1470 KGE created, 229 categories agree)
+- **Files:** `tools/ingest_cosylab_permitted.py`, `DECISIONS.md`, `ledgers/data/*`
+- **Verified:** 2945 passed
+- **Next:** Download RecipeDB3 NER annotations for matched reproduction on A100 (needs VPN confirm); SustainableFoodDB/companion use

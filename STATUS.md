@@ -19,7 +19,7 @@
 | NER runtime verified on Mac (base+CRF 0.9266); C18 session-state updater wired; C10 candidate action generator; C15 Pareto selector | S073–S076 |
 | E16-A error analysis (301 errors, frequency buckets), paired bootstrap significance (CRF sig, kNN null), hybrid NER pipeline module | S077 |
 | CoSyLab public data audit: 26 repos surveyed, 10 NER vulnerabilities found, 19K ingredient categories (9 mislabeling errors), data from 10 sources downloaded (bittersweet AGPL, companion NER, NER_DL, NOVA, SweetpredDB, hierarchical clustering) | S078–S079 |
-| CoSyLab data audit + downloads (local only, gitignored); bittersweet (AGPL-3.0) → 524 MOL_HAS_TASTE ledger edges via LedgerStore. RecipeDB2 / spice-disease / SweetpredDB / SustainableFoodDB are UNLICENSED: S080–S082 derived edges + crosswalk reverted (S088), local analysis only until Prof. Bagler permits (H1). V3 leakage verified: 128 exact (5.9%) + 322 masked (15.5%) duplicates | S080–S088 |
+| CoSyLab data (local raw, gitignored; use permitted by Prof. Bagler per Kush, D-015, licence ASSUMED / DERIVED_ONLY): bittersweet 524 + SweetpredDB MOL_HAS_TASTE, RecipeDB2 ING_COSYLAB_CATEGORY, spice-disease ING_HEALTH_ASSOCIATION — 1,470+ new KGE via LedgerStore (S088–S090). V3 leakage verified: 128 exact (5.9%) + 322 masked (15.5%) duplicates | S080–S090 |
 
 **Not on this machine:** Parv's Max-plan work (old STATUS/DECISIONS, ~519 evidence candidate cells). Decision D-001: rebuild here; Parv continues from this repo.
 
