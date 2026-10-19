@@ -25,3 +25,9 @@ def test_higher_retention_dominates_and_reject_excluded():
 def test_unmeasured_is_neutral():
     sel = pareto_view({"a": _pk([]), "b": _pk([0.7])}, {}, {})
     assert {o.name for o in sel.front} == {"a", "b"}
+
+
+def test_time_axis_from_durations():
+    pk = {"boil": _pk([0.5]), "steam": _pk([0.5])}
+    sel = pareto_view(pk, {}, {"boil": "PROC-1", "steam": "PROC-2"}, {"PROC-1": 15.0, "PROC-2": 20.0})
+    assert [o.name for o in sel.front] == ["boil"] and [o.name for o in sel.dominated] == ["steam"]
