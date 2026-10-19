@@ -7,10 +7,10 @@ Design (SSOT Part K, §245 E16-A):
   1. Rules/gazetteer — fast, high precision on known vocabulary
   2. Encoder ± CRF — DeBERTa fine-tuned on TASTEset (0.927 base+CRF, 0.933 large+CRF)
   3. kNN-NER — NEGATIVE RESULT (Δ=0 across 5 seeds); excluded from cascade
-  4. GLiNER — zero-shot for unseen labels; stub until eval completes
+  4. GLiNER — zero-shot fallback (exact 0.232, relaxed 0.643; FOOD 0.470/0.801; threshold 0.2)
   5. Verifier — confidence filter + conflict resolution
 
-Current: rules + encoder cascade. GLiNER and verifier are stubs returning empty.
+Current: rules + encoder cascade. GLiNER wired (threshold 0.2, confidence 0.40). Verifier stub.
 """
 from __future__ import annotations
 
@@ -103,9 +103,39 @@ def _encoder_spans(text: str, tagger) -> list[Span]:
     return spans
 
 
+GLINER_LABELS = {
+    "food ingredient": "FOOD", "quantity": "QUANTITY", "unit of measurement": "UNIT",
+    "cooking process": "PROCESS", "physical quality": "PHYSICAL_QUALITY",
+    "color": "COLOR", "taste": "TASTE", "purpose": "PURPOSE",
+    "part of food": "PART",
+}
+GLINER_THR = 0.2
+
+_gliner_model = None
+
+
+def _load_gliner(model_name: str = "urchade/gliner_large-v2.1"):
+    global _gliner_model
+    if _gliner_model is None:
+        try:
+            from gliner import GLiNER
+            _gliner_model = GLiNER.from_pretrained(model_name)
+        except ImportError:
+            return None
+    return _gliner_model
+
+
 def _gliner_spans(text: str) -> list[Span]:
-    """Layer 4: GLiNER zero-shot — STUB. Returns empty until A100 eval completes."""
-    return []
+    """Layer 4: GLiNER zero-shot fallback. Exact F1 0.232, but relaxed 0.643 on TASTEset."""
+    model = _load_gliner()
+    if model is None:
+        return []
+    ents = model.predict_entities(text, list(GLINER_LABELS.keys()), threshold=GLINER_THR, flat_ner=True)
+    spans = []
+    for e in ents:
+        label = GLINER_LABELS.get(e["label"], e["label"].upper())
+        spans.append(Span(e["start"], e["end"], label, 0.40, "GLINER"))
+    return spans
 
 
 def _verify(spans: list[Span]) -> list[Span]:
