@@ -25,3 +25,25 @@ Recommendation: (b) now, (c) later if H_STATE looks promising.
 ## Final report fields (all empty until Kush writes the questions)
 recipes represented 20/20 (slots) · state-dependent 0/60 · controls 0/20 · human-authored 0/80 · supported / unsupported / state-field and mode distributions: not yet · benchmark frozen: no.
 Next: Kush chooses (a), (b) or (c), then writes the questions into `questions_to_write.csv`; run `tools/validate_hstate_questions.py`; freeze only after it prints OK.
+
+## S114 — evidence-coverage amendment (EXP-000007 A1)
+Protocol amended before any question was written and before any B3/B4 output (reason: evidence coverage, not performance).
+Enumeration: `benchmark/h_state/evidence_cut_candidates.csv` (111 candidate rows, every Gold-v1.1 cut with a compatible
+ingredient+process retention cell). Selection: `tools/build_hstate_r_candidates.py` (deterministic, round-robin, cap 6/recipe).
+
+| item | value |
+|---|---|
+| recipes with any supported cut | 8 of 20 (R000387 R001894 R003595 R006967 R007363 R008469 R010426 R011207) |
+| distinct (recipe, cell) pairs = **maximum achievable H_STATE-R** | **14** (target 40: NOT reachable, not forced) |
+| H_STATE-R slots | 14 (R003595 x4; R007363, R008469, R010426 x2; others x1) |
+| H_STATE-A slots | 19 (one recipe has no uncovered cut; target 20) |
+| CONTROL slots | 20 |
+| total slots | 53 (target 80) |
+| process cells in R slots | fry PROC-000009 x4, PROC-000019 x5, PROC-000001 x2, PROC-000031/133/032 x1 |
+| state fields available in R slots | ENTITY, COMPOSITION, PRIOR_EVENT, PROCESS in all 14; LOCATION 4; FORM 1; TIME/TEMPERATURE/ENDPOINT 0 |
+
+Consequences, stated plainly: (1) the supported stratum is n=14 over 8 recipe families, so the planned CI will be wide and
+grouped inference has ~8 clusters; (2) diversity across TIME/TEMPERATURE/ENDPOINT is not available from Gold state at these
+cuts, so H_STATE-R cannot test those dependencies; (3) options to reach 40: add recipes covered by the ledger (annotate
+new Gold), or ingest retention evidence for more ingredient+process pairs. Neither is done. Kush authors all question text.
+Validator still expects the old 80-row layout and must be updated to strata before the freeze.
