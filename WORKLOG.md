@@ -671,3 +671,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `docs/MASTER_CHAT_HANDOFF_PROMPT.md`
 - **Verified:** numbers from WORKLOG/ledgers
 - **Next:** user pastes into master chat
+
+### S099 · 2026-10-19 16:19 IST · PLAN · S099 removed master-chat handoff file
+- **Who:** claude
+- **Did:** Deleted docs/MASTER_CHAT_HANDOFF_PROMPT.md on Kush's request (recoverable from git history, commit after S098); update prompt delivered in chat instead
+- **Files:** `docs/MASTER_CHAT_HANDOFF_PROMPT.md`
+- **Verified:** git rm + commit
+- **Next:** user pastes update into SSOT chat
