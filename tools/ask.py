@@ -41,7 +41,14 @@ def show(q: str, r: dict) -> dict:
                 "support": (r.get("support") or {}).get(k)}
             for k, p in r["packets"].items()}
     s = r["slots"]
-    return {"question": q, "answer": verbalize(q, d, r["packets"]), "mode": d["mode"], "reason": d.get("reason"), "precision": d.get("precision"),
+    pv, cs = r.get("pareto"), r.get("candidates")
+    tradeoff = None if pv is None else {
+        "front": [{"option": o.name, "retention": o.retention, "minutes": o.time_minutes, "feasibility": o.feasibility}
+                  for o in pv.front],
+        "dominated": [o.name for o in pv.dominated], "rejected": [o.name for o in pv.rejected]}
+    alternatives = None if cs is None else [{"type": c.type, "name": c.name, "confidence": c.confidence, "why": c.reason}
+                                            for c in cs.candidates]
+    return {"question": q, "tradeoff": tradeoff, "alternatives": alternatives, "answer": verbalize(q, d, r["packets"]), "mode": d["mode"], "reason": d.get("reason"), "precision": d.get("precision"),
             "gate": d["gate"]["reason"], "intent": d["intent"],
             "diagnosis": {k: d["diagnosis"][k] for k in ("failure", "causes", "recovery", "next_observations")}
             if d.get("diagnosis") else None, "recovery_options": d.get("recovery_options"),
