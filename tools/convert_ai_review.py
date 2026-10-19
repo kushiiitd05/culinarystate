@@ -288,20 +288,23 @@ def convert(x, names):
                         lab = label_for(short(re.sub(r"^\d+\s+", "", p)) or f"{tgt} part")
                         outs.append({"label": lab, "fraction": None})
                         plabels.append((p, lab))
-                    if len(outs) == 1:
-                        outs.append({"label": label_for(f"{tgt} remainder"), "fraction": None})
-                        note(rid, where, "SPLIT_SINGLE_OUTPUT_PADDED", f"{act}: one output named; remainder added")
-                ev = {"type": "Split", "target": tgt, "outputs": outs}
-                alive.discard(tgt)
-                for o in outs:
-                    alive.add(o["label"])
-                succ[tgt] = outs[0]["label"]
-                for p, lab in plabels:
-                    alias[p.lower()] = lab
-                    alias[re.sub(r"^\d+\s+", "", p).lower()] = lab
-                alias[(outn or "").lower()] = outs[0]["label"]
-                for nm in e["inputs"][1:]:                       # e.g. 'cooking water' separated by draining
-                    alias.setdefault(nm.lower(), outs[-1]["label"])
+                if len(outs) == 1:                                # S108: a single named output is not a split (no synthetic remainder)
+                    ev = {"type": "Transform", "target": tgt, "process": canon_proc(rid, where, act), **cond}
+                    used.discard(outs[0]["label"])
+                    reg_out(outn, tgt)
+                    note(rid, where, "SPLIT_SINGLE_OUTPUT_AS_TRANSFORM", f"{act}: one output named; written as Transform, no remainder")
+                else:
+                    ev = {"type": "Split", "target": tgt, "outputs": outs}
+                    alive.discard(tgt)
+                    for o in outs:
+                        alive.add(o["label"])
+                    succ[tgt] = outs[0]["label"]
+                    for p, lab in plabels:
+                        alias[p.lower()] = lab
+                        alias[re.sub(r"^\d+\s+", "", p).lower()] = lab
+                    alias[(outn or "").lower()] = outs[0]["label"]
+                    for nm in e["inputs"][1:]:                   # e.g. 'cooking water' separated by draining
+                        alias.setdefault(nm.lower(), outs[-1]["label"])
             else:
                 note(rid, where, "OPERATION_NOT_MAPPED", f"{op} {act}")
             if ev:
