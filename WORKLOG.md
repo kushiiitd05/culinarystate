@@ -699,3 +699,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/gold_pilot_agreement.py`, `tests/unit/test_gold_pilot_runner.py`, `annotation/gold/pilot_7_calibration_manifest.csv`, `annotation/PILOT_20_TASK.md`, `reports/del3/gold_pilot_7_calibration.md`
 - **Verified:** full suite passes; --calibration and all-20 runs exit 2
 - **Next:** Kush and Parv annotate the 7 recipes, validate+replay, then run gold_pilot_agreement.py --calibration; gate verdict decides the other 13.
+
+### S103 · 2026-10-19 18:45 IST · DEL-3 · S103 filed OpenAI GPT-5.6 Sol AI pre-annotation for pilot_20 as review material (not Gold)
+- **Who:** claude
+- **Did:** Moved pilot20_AI_REVIEW_combined.json and AI_REVIEW_INDEX.csv from Downloads to annotation/ai_review/pilot_20/ (local, gitignored). File self-declares blind_human_gold=false, human_verified=false, do-not-treat-as-independent. Checked: 20/20 recipe texts identical to the frozen input; schema-invalid only because of review wrapper fields; replay clean. Wrote review_status_log.csv: Kush = REVIEWED_ACCEPTED per Kush's statement (not independently verified), Parv = PENDING_PARV_REVIEW. Did NOT write into annotation/gold/pilot_20/Kush or Parv and did NOT set any Gold file DONE: the gate stays BLOCKED_HUMAN because an AI draft shown to a human is not a blind independent annotation. Decision needed from Kush: keep blind double annotation, or switch pilot_20 to an AI-draft + human-review design (new provenance class, agreement replaced by correction rates).
+- **Files:** `annotation/ai_review/pilot_20/review_status_log.csv`
+- **Verified:** 20/20 text==frozen; 0 replay issues; Gold folders untouched
+- **Next:** Kush decides design (blind vs AI-draft+review); Parv should not open ai_review if blind pass is kept.
