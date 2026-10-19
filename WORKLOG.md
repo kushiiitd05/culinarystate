@@ -636,3 +636,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `docs/plan/S093_dataset_ledger_status_and_model_plan.md`
 - **Verified:** counts from LedgerStore
 - **Next:** mention->ING bi-encoder linking baseline (Mac MPS), C15 time axis, SustainableFoodDB carbon attr
+
+### S094 · 2026-10-19 16:05 IST · B-LINK · S094 mention->ING bi-encoder baseline
+- **Who:** claude
+- **Did:** Leave-one-alias-out: 623 EN alias queries; e5-large-v2 zero-shot Acc@1 0.607 vs char TF-IDF 0.555 (paired +0.051 CI [0.014,0.090]); RRF no gain
+- **Files:** `tools/eval_alias_linking.py`, `reports/ner/alias_linking_v1.json`
+- **Verified:** ran on Mac MPS recsys_env
+- **Next:** contrastive fine-tune w/ sibling hard negatives (A100, ING-grouped); C15 time axis; SustainableFoodDB carbon attr
