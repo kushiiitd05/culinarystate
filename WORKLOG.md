@@ -643,3 +643,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/eval_alias_linking.py`, `reports/ner/alias_linking_v1.json`
 - **Verified:** ran on Mac MPS recsys_env
 - **Next:** contrastive fine-tune w/ sibling hard negatives (A100, ING-grouped); C15 time axis; SustainableFoodDB carbon attr
+
+### S095 · 2026-10-19 16:06 IST · B-DEC · S095 C15 time axis wired
+- **Who:** claude
+- **Did:** Lexicon.durations (PROC id -> p50 min from 39 duration KGE); pareto_view uses it as time objective
+- **Files:** `src/culinarystate/decision/pipeline.py`, `tests/test_pareto_view.py`
+- **Verified:** 2946 passed
+- **Next:** SustainableFoodDB carbon attr as 2nd objective; contrastive linker fine-tune (needs VPN)
