@@ -755,3 +755,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `annotation/gold/pilot_20_adjudicated_v1_1/`, `annotation/gold/gold_v1_1_pilot_manifest.csv`, `tools/apply_gold_corrections.py`, `tools/record_s109_decisions.py`, `reports/del3/gold_v1_to_v1_1_changes.md`
 - **Verified:** 2966 passed; v1.1 validate/replay/determinism 20/20; apply tool refuses invalid approvals
 - **Next:** Author the H_STATE question set for EXP-000007 (60 state-dependent + 20 control questions from the v1.1 cut points, with gold evidence cells), human-written, then run B3 vs B4-predicted vs B4-gold.
+
+### S111 · 2026-10-19 22:44 IST · X-API · S111 Foodoscope/CoSyLab API check (read-only, no key)
+- **Who:** claude
+- **Did:** Probed 19 endpoint rows with one unauthenticated request each (1 req/s). Findings: the cosylab.iiitd.edu.in/<db>/ bases from the integration sheet are web UIs (nginx HTML 404 on 12 API paths); SpiceRx search_plants is an HTML page; the real RecipeDB API host is api.foodoscope.com/recipe2-api (from public client code) and answers 400 {error: ApiKey is not provided} = AUTH_REQUIRED; auth header unverified (Bearer vs x-api-key both seen); FlavorDB/SpiceRx/SustainableFoodDB/DietRxDB/CocktailDB API hosts unknown, not guessed; id/region routes not called. A public repo hard-codes someone else's live key: not used, not stored. FOODOSCOPE_API_KEY not set. No ingestion.
+- **Files:** `tools/probe_foodoscope.py`, `registry/sources/foodoscope_api_registry.csv`, `reports/sources/foodoscope_api_audit_v1.md`, `handoff/API_BLOCKERS.md`
+- **Verified:** registry 19 rows; AUTH_REQUIRED x3 on api host; WRONG_HOST x12
+- **Next:** Get our own Foodoscope key (H1), then rerun the probe and record header, id routes and the other databases' hosts from the Playground.
