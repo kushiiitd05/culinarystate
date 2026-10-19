@@ -23,6 +23,8 @@
 
 | S100–S101 state-awareness: readiness audit + H_STATE pre-registered (EXP-000007); B4 switch `answer(use_state)`; pilot_20 Gold frozen (hash-matched to REC), blank Kush/Parv copies, handbook Addendum A, agreement tooling. **Gold annotation BLOCKED_HUMAN (0/20)** | S100–S101 |
 
+| S103–S106 pilot_20 Gold: Kush's 20 = AI-assisted human-reviewed (OpenAI GPT-5.6 Sol draft, converted to gold-1.0, 20/20 DONE, 0 corrections, D-016, NOT independent); Parv's 20 blank for a blind pass; Parv-safe package built. **Next: Parv blind-annotates the 7 calibration recipes, then agreement → handbook gate (BLOCKED_HUMAN)** | S103–S106 |
+
 **Not on this machine:** Parv's Max-plan work (old STATUS/DECISIONS, ~519 evidence candidate cells). Decision D-001: rebuild here; Parv continues from this repo.
 
 ## 2. DONE TODAY (S001–S029, see WORKLOG.md)

@@ -720,3 +720,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/convert_ai_review.py`, `tools/gold_pilot_agreement.py`, `DECISIONS.md`, `reports/del3/ai_review_conversion_v1.md`, `annotation/gold/pilot_20_manifest.csv`
 - **Verified:** 2959 passed; 20/20 Kush validate OK; --calibration exits 2 (Parv blank)
 - **Next:** Kush sends one-line corrections per recipe (applied + logged); Parv annotates the 7 calibration recipes blind; then gold_pilot_agreement.py --calibration.
+
+### S106 · 2026-10-19 18:56 IST · DEL-3 · S106 Kush approval recorded; Parv blind pack built; chain stops at Parv
+- **Who:** claude
+- **Did:** Kush reported all 20 AI-assisted annotations reviewed and good (no corrections). Recorded kush_correction_log.csv (20 x approve, 0 corrections; local) and hash-frozen annotation/gold/pilot_20_kush_ai_assisted_manifest.csv (sha256 per Kush file + source draft sha, set name Kush_AI_ASSISTED_REVIEWED). Built annotation/parv_pack/culinarystate_parv.zip (gitignored): src, gold_cli, handbook+Addendum A, checklists, examples, registries, 20 blank Parv files, PARV_START_HERE.md; no AI draft, Kush files, decisions or reports in it (scanned; only generic 'AI_DRAFT' status strings in library code); tested from a clean unzip (validate fails on blank as intended, passes on worked example). Plan steps 4-8 need Parv's blind pass and human adjudication; not run.
+- **Files:** `annotation/gold/pilot_20_kush_ai_assisted_manifest.csv`, `annotation/parv_pack/culinarystate_parv.zip`, `STATUS.md`
+- **Verified:** unzip test; leak scan; 20 recipes recorded
+- **Next:** Parv blind-annotates the 7 calibration recipes; then gold_pilot_agreement.py --calibration; handbook gate; remaining 13; adjudicate; freeze Gold-v1; then compiler/state evaluation; then H_STATE.
