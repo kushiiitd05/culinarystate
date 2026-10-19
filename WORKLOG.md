@@ -657,3 +657,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/ingest_carbon_footprint.py`, `src/culinarystate/decision/pipeline.py`, `ledgers/data/*`
 - **Verified:** 2947 passed; 40 ledger tests passed
 - **Next:** contrastive linker fine-tune + RecipeDB3 runs (VPN); AllerStack/NOVA after sign-off; B0-B5 ladder prep
+
+### S097 · 2026-10-19 16:15 IST · PLAN · S097 DONE_FROM_SSOT handoff list
+- **Who:** claude
+- **Did:** Wrote docs/DONE_FROM_SSOT.md from WORKLOG S001-S096, BUILD_TRACKER, ledgers; ask.py now shows tradeoff/alternatives
+- **Files:** `docs/DONE_FROM_SSOT.md`, `tools/ask.py`
+- **Verified:** counts from LedgerStore/WORKLOG
+- **Next:** user supplies continuation prompt
