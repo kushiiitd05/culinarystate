@@ -62,3 +62,14 @@ def test_unknown_only_id_is_rejected(tmp_path):
         assert "not in the frozen manifest" in str(e)
     else:
         raise AssertionError
+
+
+def test_ai_assisted_files_are_labelled_not_independent(tmp_path):
+    g = _setup(tmp_path, ["R1"], done={"R1"})
+    p = g / "pilot_20" / "Kush" / "R1.Kush.json"
+    d = json.loads(p.read_text())
+    d["notes"] = "AI_DRAFT_HUMAN_REVIEWED (D-016): x"
+    p.write_text(json.dumps(d))
+    assert gpa.main([], gold=g) == 0
+    kind = json.loads((g / "pilot_20_agreement.json").read_text())["pooled"]["agreement_kind"]
+    assert kind.startswith("NOT_INDEPENDENT: Kush")

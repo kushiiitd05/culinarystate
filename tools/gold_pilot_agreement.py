@@ -113,7 +113,11 @@ def main(argv=None, gold: Path = GOLD) -> int:
                                             / len(per), 4)
     macro["state_field_agreement_macro"] = round(sum(m["state_field_agreement"]["agree"] or 0 for m in per) / len(per), 4)
     macro["replay_consistent_fraction"] = round(sum(m["replay_consistent"]["ok"] for m in per) / len(per), 4)
-    pooled = {"recipes": ids, "spans_exact": corpus_span_scores(pairs, "exact"),
+    ai_assisted = sorted({w for (w, _), d in docs.items() if "AI_DRAFT_HUMAN_REVIEWED" in d.get("notes", "")})
+    kind = ("INDEPENDENT_HUMAN_VS_HUMAN" if not ai_assisted else
+            f"NOT_INDEPENDENT: {'+'.join(ai_assisted)} annotation(s) are AI-drafted and human-reviewed (D-016); "
+            f"read as concordance with the AI-assisted set, not inter-annotator agreement")
+    pooled = {"agreement_kind": kind, "recipes": ids, "spans_exact": corpus_span_scores(pairs, "exact"),
               "spans_relaxed": corpus_span_scores(pairs, "relaxed"), "macro_over_recipes": macro,
               "disagreements_by_category": by_cat, "disagreement_rate_by_category": rates,
               "denominators": dict(den), "handbook_gate": {"threshold": GATE_RATE, "flagged_categories": flagged,
@@ -128,6 +132,7 @@ def main(argv=None, gold: Path = GOLD) -> int:
         w.writeheader()
         w.writerows(rows)
     print(json.dumps(by_cat), f"total {len(rows)}; rates {json.dumps(rates)}")
+    print("kind:", kind)
     print("gate:", pooled["handbook_gate"]["verdict"], flagged)
     return 0
 
