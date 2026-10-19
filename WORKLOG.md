@@ -713,3 +713,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `annotation/ai_review/pilot_20/`
 - **Verified:** validate_gold rejected all 20 (missing concept, extra fields) before any write
 - **Next:** Kush chooses: (a) AI-assisted conversion draft with every ambiguous event flagged, Kush reviews via replay and marks DONE himself; (b) annotate in gold schema using the draft as reading aid.
+
+### S105 · 2026-10-19 18:54 IST · DEL-3 · S105 Kush's AI-assisted pilot_20 set written; Parv's folder restored to blank
+- **Who:** claude
+- **Did:** Per Kush's instruction and the GPT plan: converted the OpenAI GPT-5.6 Sol draft to gold-1.0 (tools/convert_ai_review.py): 20/20 Kush files DONE, validate OK, replay issue-free; 183 gold events from 189 draft events (13 draft events not convertible, 8 of them in R003595); 108 of 113 coref mentions stored as UNKNOWN (draft gave no entity labels); every rule decision logged locally in conversion_log.csv and summarised in reports/del3/ai_review_conversion_v1.md. Restored all 20 Parv files to blank drafts (blind pass; Parv must not see the draft or Kush's set). D-016 records the provenance: Kush set = AI_ASSISTED_HUMAN_REVIEWED, not independent. Agreement runner now labels such comparisons NOT_INDEPENDENT. calibration run still BLOCKED_HUMAN (Parv 0/7).
+- **Files:** `tools/convert_ai_review.py`, `tools/gold_pilot_agreement.py`, `DECISIONS.md`, `reports/del3/ai_review_conversion_v1.md`, `annotation/gold/pilot_20_manifest.csv`
+- **Verified:** 2959 passed; 20/20 Kush validate OK; --calibration exits 2 (Parv blank)
+- **Next:** Kush sends one-line corrections per recipe (applied + logged); Parv annotates the 7 calibration recipes blind; then gold_pilot_agreement.py --calibration.
