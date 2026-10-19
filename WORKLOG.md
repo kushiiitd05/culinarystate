@@ -776,3 +776,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/recon_foodoscope_public.py`, `src/culinarystate/sources/foodoscope_client.py`, `registry/sources/foodoscope_public_usage_registry.csv`, `reports/sources/foodoscope_public_implementations.md`
 - **Verified:** suite passes; registry has no token-like string
 - **Next:** Obtain our own Foodoscope key (H1/Starter plan), then verify the contracts with one request each.
+
+### S114 · 2026-10-20 00:50 IST · DEL-3 · S114 EXP-000007 amendment A1 + evidence cut candidates
+- **Who:** claude
+- **Did:** Registered amendment (card + EXP rev 2); 111 candidate rows; max supported H_STATE-R = 14 over 8 recipes (target 40 not forced); 14 R / 19 A / 20 CONTROL slots, blank for Kush. S115 API/dataset terms survey (Spoonacular ToS forbids storage; keys not stored).
+- **Files:** `tools/build_hstate_r_candidates.py`, `benchmark/h_state/evidence_cut_candidates.csv`, `reports/sources/api_and_dataset_survey_s115.md`
+- **Verified:** no B3/B4 run; no question text written
+- **Next:** Kush writes questions; update validator to strata; find retention/yield evidence sources
