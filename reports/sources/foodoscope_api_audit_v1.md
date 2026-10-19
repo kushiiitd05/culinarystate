@@ -1,6 +1,6 @@
 # Foodoscope / CoSyLab API audit v1 (S111) — read-only discovery, no key
 
-Method: one unauthenticated request per endpoint (1 req/s, no crawling, nothing downloaded beyond error bodies), plus reading public client code on GitHub for the host and auth pattern. `FOODOSCOPE_API_KEY` is **not set**, so nothing authenticated was tried. Registry: `registry/sources/foodoscope_api_registry.csv` (16 rows).
+Method: one unauthenticated request per endpoint (1 req/s, no crawling, nothing downloaded beyond error bodies), plus reading public client code on GitHub for the host and auth pattern. `FOODOSCOPE_API_KEY` is **not set**, so nothing authenticated was tried. Registry: `registry/sources/foodoscope_api_registry.csv` (19 rows).
 
 ## Findings
 1. **The base URLs in the integration sheet are wrong for the API.** `https://cosylab.iiitd.edu.in/recipedb/...` and `/flavordb/...` are the web UIs: every API path there returns an nginx HTML 404 (12 endpoints, status `WRONG_HOST`). `https://cosylab.iiitd.edu.in/spicerx/search_plants` is a public HTML page, not JSON (`WEB_PAGE_NOT_API`).
@@ -17,7 +17,7 @@ Method: one unauthenticated request per endpoint (1 req/s, no crawling, nothing 
 | RecipeDB (cosylab web host) | 3 | WRONG_HOST |
 | FlavorDB (cosylab web host) | 9 | WRONG_HOST; real host unknown |
 | SpiceRx | 1 | web page, not an API |
-| RecipeDB id-parameter routes (`/search-recipe/{id}`, `/instructions/{id}`, `/recipes_cuisine/cuisine/{region}`) | 0 | PARAMETER_UNKNOWN: need a real id from an authenticated call; not invented |
+| RecipeDB id-parameter routes (`/search-recipe/{id}`, `/instructions/{recipe_id}`, `/recipes_cuisine/cuisine/{region}`) | 0 (3 rows, not called) | PARAMETER_UNKNOWN: need a real id from an authenticated call; not invented |
 
 ## Next (needs a human)
 - Get our own Foodoscope key (H1 email) and put it in `FOODOSCOPE_API_KEY`.

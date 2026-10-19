@@ -78,7 +78,7 @@ def main():
                 row.update(requires_auth="NO" if not auth_used else "UNKNOWN", status="PARAMETER_UNKNOWN")
             elif r.ok:
                 row.update(requires_auth="NO" if not auth_used else "UNKNOWN",
-                           status="VERIFIED_WORKING" if body not in (None, [], {}) else "VERIFIED_EMPTY")
+                           status="WEB_PAGE_NOT_API" if body is None else "VERIFIED_WORKING" if body not in ([], {}) else "VERIFIED_EMPTY")
                 if body is not None:
                     (ROOT / "data" / "interim" / "foodoscope_probe" / f"{src}_{path.strip('/').replace('/', '_')}.json").write_text(
                         json.dumps(body)[:4000])
