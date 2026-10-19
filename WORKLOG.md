@@ -664,3 +664,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `docs/DONE_FROM_SSOT.md`, `tools/ask.py`
 - **Verified:** counts from LedgerStore/WORKLOG
 - **Next:** user supplies continuation prompt
+
+### S098 · 2026-10-19 16:17 IST · PLAN · S098 master-chat handoff prompt
+- **Who:** claude
+- **Did:** Wrote docs/MASTER_CHAT_HANDOFF_PROMPT.md: rules, built items with numbers, blockers, open units, asks for audit + ordered continuation prompt + re-plan
+- **Files:** `docs/MASTER_CHAT_HANDOFF_PROMPT.md`
+- **Verified:** numbers from WORKLOG/ledgers
+- **Next:** user pastes into master chat
