@@ -21,6 +21,7 @@ from culinarystate.vocab.line_link import LineLinker
 
 from .diagnosis import TroubleshootIndex, diagnose
 from .session_state import SessionState
+from .state_conditioning import condition_slots
 from .targets import TargetLexicon
 from .feasibility import Action, Constraints, Requirements, check
 from .ood import SupportIndex
@@ -135,8 +136,13 @@ def extra_candidates(q: str, s: Slots, lex: Lexicon) -> CandidateSet | None:
 
 def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements, proc_family: dict,
            constraints: Constraints | None = None, k: int = 10, support_index: SupportIndex | None = None,
-           troubleshoot: TroubleshootIndex | None = None, session: SessionState | None = None) -> dict:
+           troubleshoot: TroubleshootIndex | None = None, session: SessionState | None = None,
+           use_state: bool = False) -> dict:
+    """use_state=False is rung B3 (question slots only); True is B4 (empty slots filled from the reconstructed session state)."""
     s = parse_query(q, lex)
+    state_trace: dict = {}
+    if use_state and session:
+        s, state_trace = condition_slots(q, s, session, lex)
     t_opts = None
     if not s.target and s.processes and support_index and intent(q) in ("ANSWER", "COMPARE"):
         t_opts = [t for t, _ in support_index.targets_for(s.ingredient_id, s.parents, s.ingredient_name, s.processes[0][1])]
@@ -154,7 +160,9 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
                      process_family=proc_family.get(pid), target=s.target,
                      ingredient_relations=lex.relations.get(s.ingredient_id, ()))
 
-    packets = {n: retriever.packet(q, query(p), k) for n, p in options}
+    # B4: the retrieval text carries the state-filled slots too, so BM25 candidates are state-conditioned, not only the compat axes
+    qr = f"{q} {s.ingredient_name or ''} {' '.join(n for n, _ in s.processes)}".strip() if state_trace else q
+    packets = {n: retriever.packet(qr, query(p), k) for n, p in options}
     feas = {n: check(Action(p, (s.ingredient_id,) if s.ingredient_id else ()), constraints or Constraints(), req)
             for n, p in options}
     slots = {"ingredient": s.ingredient_id, "process": options[0][1] if options else None, "target": s.target,
@@ -168,7 +176,7 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
         if support_index else None
     return {"slots": s, "decision": decide(q, packets, slots, feasibility=feas, support=support, numeric_target=s.numeric_target,
                               diagnosis=dg), "packets": packets,
-            "feasibility": feas, "support": support, "session": session,
+            "feasibility": feas, "support": support, "session": session, "state_trace": state_trace,
             "candidates": extra_candidates(q, s, lex),
             "pareto": pareto_view(packets, feas, dict(options), lex.durations) if intent(q) in ("COMPARE", "RECOMMEND") else None}
 

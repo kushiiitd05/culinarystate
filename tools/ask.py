@@ -48,7 +48,7 @@ def show(q: str, r: dict) -> dict:
         "dominated": [o.name for o in pv.dominated], "rejected": [o.name for o in pv.rejected]}
     alternatives = None if cs is None else [{"type": c.type, "name": c.name, "confidence": c.confidence, "why": c.reason}
                                             for c in cs.candidates]
-    return {"question": q, "tradeoff": tradeoff, "alternatives": alternatives, "answer": verbalize(q, d, r["packets"]), "mode": d["mode"], "reason": d.get("reason"), "precision": d.get("precision"),
+    return {"question": q, "state_trace": r.get("state_trace"), "tradeoff": tradeoff, "alternatives": alternatives, "answer": verbalize(q, d, r["packets"]), "mode": d["mode"], "reason": d.get("reason"), "precision": d.get("precision"),
             "gate": d["gate"]["reason"], "intent": d["intent"],
             "diagnosis": {k: d["diagnosis"][k] for k in ("failure", "causes", "recovery", "next_observations")}
             if d.get("diagnosis") else None, "recovery_options": d.get("recovery_options"),
@@ -62,6 +62,7 @@ def main() -> None:
     ap.add_argument("--demo", action="store_true")
     ap.add_argument("--constraints", default="", help='free text, e.g. "no oven, gluten-free, 20 minutes"')
     ap.add_argument("--session", default="", help="path to a session JSON file (annotation/sessions/SES-*.json)")
+    ap.add_argument("--use-state", action="store_true", help="rung B4: fill empty slots from the reconstructed session state")
     ap.add_argument("--turn", type=int, default=None, help="replay only up to this turn number (inclusive)")
     a = ap.parse_args()
     st = LedgerStore()
@@ -81,7 +82,7 @@ def main() -> None:
             sd = {**sd, "turns": [t for t in sd.get("turns", []) if t.get("turn", 0) <= a.turn]}
         sess = SessionState.from_session(sd)
     out = [show(q, answer(q, lex, retriever, req, family, constraints=cons, support_index=sup,
-                          troubleshoot=ts, session=sess))
+                          troubleshoot=ts, session=sess, use_state=a.use_state))
            for q in qs if q]
     if a.constraints:
         out.append({"constraints": str(cons), "unresolved": info["unresolved"],
