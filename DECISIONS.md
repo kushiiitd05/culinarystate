@@ -102,3 +102,6 @@ Format: ID · date · decision · options considered · evidence · approver. Ap
   `tools/link_evidence.py` applies LINKED decisions on every run (idempotent; second pass writes nothing).
   The EVD schema is unchanged; link provenance for these rows is the decisions file.
 - **Approver:** Kush.
+
+### D-015 · 2026-10-19 · CoSyLab unlicensed datasets: use permitted by Prof. Bagler (reported by Kush)
+Kush reports that when the project was accepted Prof. Bagler said CoSyLab resources may be used. No written licence exists on RecipeDB2, spice-disease-associations, SweetpredDB, SustainableFoodDB, or the RecipeDB3 NER repo. Recorded as `licence_status: ASSUMED`, `storage_rule: DERIVED_ONLY` (derived edges in ledgers; raw files stay in gitignored `data/external/`). Supersedes the S088 revert for these sources. Still no GitHub push before H7; the H1 email asks for written confirmation. AI recorded this from Kush's statement; it is not independently verified.
