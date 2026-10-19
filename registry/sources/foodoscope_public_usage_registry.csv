@@ -1,0 +1,85 @@
+repository,file,hosts,endpoint_paths,auth_pattern,param_literals,committed_credential_seen,observed_on,works_reported,licence_of_repo
+AdrshGoyal/Recipe_Raistro,tool.py,https://api.foodoscope.com/recipe2-api,,Authorization: Bearer,"
+    'min': min_protein,
+    'max': max_protein,
+    'page': page,
+    'limit': 10
+ | 
+  'minCarbs': min_carbs,
+  'maxCarbs': max_carbs,
+  'limit': 10
+     | 
+  'minEnergy': min_energy,
+  'maxEnergy': max_energy,
+  'page': page,
+  'limit': 10
+     | 
+  'region': Region,
+  'diet': diet,
+  'limit': 10
+   | 
+  'title': title
+",no,2026-10-19,NOT_INFERRED,check before reuse
+Ananya2306/ACDSS_Foodoscope,README.md,https://api.foodoscope.com/flavordb;https://api.foodoscope.com/recipe2-api,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+AnmolBahuguna/FOOD-REC-SYSTEM-IIT-DELHI,API_to_Database_Mapping.md,http://cosylab.iiitd.edu.in:6969;http://cosylab.iiitd.edu.in:6969/flavordb;http://cosylab.iiitd.edu.in:6969/recipe2-api,/entities/by-nameAndCategory;/entities/by-naturalSource;/entities/by-readableName;/molecules_data/by-commonName;/molecules_data/by-flavorProfile;/molecules_data/by-functionalGroups;/molecules_data/by-heavyAtomCount-range;/molecules_data/by-monoisotopicMass-range;/molecules_data/by-pubchemId-range;/molecules_data/by-topologicalPolarSurfaceArea-range;/molecules_data/filter-by-hba-count-range;/molecules_data/filter-by-hbd-count-range;/molecules_data/filter-by-type;/molecules_data/filter-by-weight-range;/more_properties/by-alogp-range;/more_properties/by-aromaticBonds-range;/more_properties/by-aromaticRings-range;/more_properties/by-energy-range;/more_properties/by-numRings-range;/more_properties/by-numberOfAtoms-range;/more_properties/by-pubchemId-range;/more_properties/by-rotatableBonds-range;/more_properties/by-surfaceArea-range;/pairings/by-ingredient;/properties/by-aromaThresholdValues,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+AnmolBahuguna/FOOD-REC-SYSTEM-IIT-DELHI,IMPLEMENTATION_SUMMARY.md,http://cosylab.iiitd.edu.in:6969;http://cosylab.iiitd.edu.in:6969/flavordb,/flavordb/properties/by-description;/meals;/recipe2-api/recipe-nutri/nutritioninfo;/recipe2-api/recipe/mealplan;/recipe2-api/recipe/recipebycalories;/recipe2-api/recipe/recipebycuisine;/recipe2-api/recipe/recipebyid;/recipe2-api/recipe/recipebyrecipediet;/recipe2-api/recipe/recipebyreciperange;/recipe2-api/recipe/recipebytitle,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+AnmolBahuguna/FOOD-REC-SYSTEM-IIT-DELHI,Postman_Testing_Guide.md,http://cosylab.iiitd.edu.in:6969;http://cosylab.iiitd.edu.in:6969/flavordb,,none seen,,"YES (redacted, compromised, not used)",2026-10-19,NOT_INFERRED,check before reuse
+Fork-IT-2026/Codecatalysts,docs/02-APP-STRUCTURE.md,http://cosylab.iiitd.edu.in:6969/flavordb;https://cosylab.iiitd.edu.in,/api/entities/searchByCategory;/api/entities/searchByName;/api/foodPairing/searchByEntity;/api/molecules/searchByFlavorProfile;/flavordb/molecules_autocomplete;/spectrum;/twins,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Fork-IT-2026/ZenByte,setup_dev.py,https://api.foodoscope.com\n,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Fork-IT-2026/flavorshift,backend/app.py,,/transform,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Fork-IT-2026/flavorshift,backend/foodoscope_client.py,https://api.foodoscope.com/recipe2-api,,Authorization: Bearer;x-api-key,"""title"": ""Chicken Biryani"" | params","YES (redacted, compromised, not used)",2026-10-19,NOT_INFERRED,check before reuse
+Harshvishwa123/FORKIT-HACKATHON-FOODIES,README.md,http://cosylab.iiitd.edu.in:6969,/recipe2-api/recipe/recipesinfo,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Krisshna-16/SkillGenome,backend/app/api/v1/endpoints/recipes.py,,/calories;/info;/ingredients;/protein-range,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Krisshna-16/SkillGenome,backend/app/services/foodoscope.py,https://api.foodoscope.com,/recipes/calories;/recipes/complexSearch;/recipes/findByIngredients;/recipes/protein,Authorization: Bearer,"
+            ""ingredients"": ingredients,
+            ""page"": page,
+            ""limit"": limit
+         | 
+            ""min"": min_cals,
+            ""max"": max_cals,
+            ""page"": page,
+            ""limit"": limit
+         | 
+            ""min"": min_protein,
+            ""max"": max_protein,
+            ""page"": page,
+            ""limit"": limit
+   | 
+            ""page"": page,
+            ""limit"": limit
+        ",no,2026-10-19,NOT_INFERRED,check before reuse
+Niyati659/clone_crave_fit,lib/api.ts,https://api.foodoscope.com/flavordb;https://api.foodoscope.com/recipe2-api,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Niyati659/clone_crave_fit,lib/fetchNutrition.ts,https://api.foodoscope.com/recipe2-api,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Niyati659/clone_crave_fit,lib/recipes.ts,https://api.foodoscope.com/recipe2-api,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Niyati659/clone_crave_fit,lib/services/searchService.ts,https://api.foodoscope.com/recipe2-api,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Niyati659/crave-fit,lib/recipes.ts,,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Rahulchaudharyji2/VibeBite,debug_foodoscope_logic.js,https://api.foodoscope.com/recipe2-api,/recipe-nutri/nutritioninfo,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+Yashi-makerr/Commit-And-Cook,recipeService.js,,,none seen," min, max  |  page: 1, page_size: 10  |  title ",no,2026-10-19,NOT_INFERRED,check before reuse
+akshat60github/food-cf-imputation,README.md,,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+anshu-l/Frontend_new-frontend-updated,README.md,https://api.foodoscope.com;https://cosylab.iiitd.edu.in,/endpoint,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+anshu-l/Frontend_new-frontend-updated,src/api/axios.js,https://api.foodoscope.com,/login,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+dscherm/flavor-network,docs/archive/PAIRING_FORMULA_DESIGN.md,https://cosylab.iiitd.edu.in/flavordb,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+hunny0025/Flavourafit,backend/config.py,https://cosylab.iiitd.edu.in,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+hunny0025/_skillgenomeX12,backend/app/api/v1/endpoints/recipes.py,,/calories;/info;/ingredients;/protein-range,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+hunny0025/_skillgenomeX12,backend/app/services/foodoscope.py,https://api.foodoscope.com,/recipes/calories;/recipes/complexSearch;/recipes/findByIngredients;/recipes/protein,Authorization: Bearer,"
+            ""ingredients"": ingredients,
+            ""page"": page,
+            ""limit"": limit
+         | 
+            ""min"": min_cals,
+            ""max"": max_cals,
+            ""page"": page,
+            ""limit"": limit
+         | 
+            ""min"": min_protein,
+            ""max"": max_protein,
+            ""page"": page,
+            ""limit"": limit
+   | 
+            ""page"": page,
+            ""limit"": limit
+        ",no,2026-10-19,NOT_INFERRED,check before reuse
+moterodiaz/Recipe-Scrape,PRD/ARCHITECTURE_flavor_quantification.md,https://cosylab.iiitd.edu.in/flavordb,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+moterodiaz/Recipe-Scrape,PRD/PRD_recipe_flavor_quantification.md,https://cosylab.iiitd.edu.in/flavordb;https://cosylab.iiitd.edu.in/recipedb,,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+soumya10rai/flavorshiftfinal,app.py,,/transform,none seen,,no,2026-10-19,NOT_INFERRED,check before reuse
+soumya10rai/flavorshiftfinal,foodoscope_client.py,https://api.foodoscope.com/recipe2-api,,Authorization: Bearer;x-api-key,"""title"": ""Chicken Biryani"" | params","YES (redacted, compromised, not used)",2026-10-19,NOT_INFERRED,check before reuse
