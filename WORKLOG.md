@@ -601,3 +601,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/ingest_bittersweet_kg.py`, `ledgers/data/*`, `registry/kg/kg_edges_v1.csv`, `STATUS.md`
 - **Verified:** 2945 passed; build_kg_edges rebuild ok
 - **Next:** H1 email must request RecipeDB2/spice-disease/SweetpredDB/SustainableFoodDB/RecipeDB3 permission
+
+### S089 · 2026-10-19 11:58 IST · H1 · S089 H1 email draft updated
+- **Who:** claude
+- **Did:** Added item 4 (RecipeDB2, spice-disease, SweetpredDB, SustainableFoodDB permission); note to withhold NER findings (H6)
+- **Files:** `handoff/H1_email_bagler.md`
+- **Verified:** draft only; Kush sends
+- **Next:** Kush review+send H1
