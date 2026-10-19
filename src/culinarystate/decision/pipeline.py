@@ -26,6 +26,7 @@ from .feasibility import Action, Constraints, Requirements, check
 from .ood import SupportIndex
 from .policy import decide
 from .relevance import intent
+from .selector import Option, Selection, select
 
 HEAT_FAMILIES = ("WET_HEAT", "DRY_HEAT", "FAT_HEAT")          # cooking-method candidates (+ microwave below)
 EXTRA_METHODS = ("microwave",)                                   # in HEAT_GENERAL with cook/heat/melt
@@ -86,6 +87,25 @@ def parse_query(q: str, lex: Lexicon) -> Slots:
     return Slots(ing, name, tuple(lex.parents.get(ing, ())), tuple(procs), target, cands,
                  tuple(sorted(seen & negated)), numeric_target=not qual)
 
+FEAS_MAP = {"ALLOW": "ALLOWED", "REJECT": "REJECTED", "UNKNOWN": "UNKNOWN"}
+
+
+def pareto_view(packets: dict, feas: dict, proc_ids: dict) -> Selection | None:
+    """C15: Pareto trade-off over the compared/recommended options. Retention = median MEASURED retention_factor
+    in the packet's evidence pool (None when unmeasured); time is not yet wired (None = neutral). Needs >=2 options."""
+    if len(packets) < 2:
+        return None
+    opts = []
+    for n, pk in packets.items():
+        pool = pk.direct or pk.near
+        vals = sorted(rf["value"] for h in pool
+                      if (rf := h.row["derived"].get("retention_factor") or {}).get("status") == "MEASURED"
+                      and isinstance(rf.get("value"), (int, float)))
+        ret = vals[len(vals) // 2] if vals else None
+        opts.append(Option(n, retention=ret, feasibility=FEAS_MAP.get(feas.get(n, {}).get("decision"), "UNKNOWN"),
+                           process_id=proc_ids.get(n), evidence_count=len(pool)))
+    return select(opts)
+
 
 def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements, proc_family: dict,
            constraints: Constraints | None = None, k: int = 10, support_index: SupportIndex | None = None,
@@ -122,7 +142,8 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
         if support_index else None
     return {"slots": s, "decision": decide(q, packets, slots, feasibility=feas, support=support, numeric_target=s.numeric_target,
                               diagnosis=dg), "packets": packets,
-            "feasibility": feas, "support": support, "session": session}
+            "feasibility": feas, "support": support, "session": session,
+            "pareto": pareto_view(packets, feas, dict(options)) if intent(q) in ("COMPARE", "RECOMMEND") else None}
 
 
 OFF_TAXONOMY = Path(__file__).resolve().parents[3] / "data" / "raw" / "off" / "ingredients_a1ce1d36.txt"
