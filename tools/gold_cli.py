@@ -3,6 +3,7 @@
 
   python tools/gold_cli.py validate annotation/gold/R001.Kush.json
   python tools/gold_cli.py agree annotation/gold/R001.Kush.json annotation/gold/R001.Parv.json
+  python tools/gold_cli.py replay annotation/gold/pilot_20/Kush/R001.Kush.json   # print the replayed final state
   python tools/gold_cli.py schema            # writes annotation/gold_schema.json
   python tools/gold_cli.py examples          # writes annotation/examples/*.json
 """
@@ -39,6 +40,27 @@ def cmd_validate(path):
     return 1
 
 
+def cmd_replay(path):
+    """Print the state the annotation replays to, so the annotator can check it against the recipe text."""
+    doc = load(path)
+    errs = validate_gold(doc)
+    if errs:
+        print(f"FAIL {path} (run validate)")
+        return 1
+    g = replay(to_events(doc))
+    print(f"{doc['recipe_id']} ({doc['annotator']}, {doc['status']}): issues={list(g.issues)}")
+    for ent in g.versions:
+        v = g.current(ent)
+        flags = [] if v.alive else ["DEAD"]
+        print(f"  {ent}: {'/'.join(flags) or 'alive'} qty={v.qty.render()!r} location={v.location!r}")
+        for name, b in v.fields:
+            print(f"      {name} = {b.value!r} [{b.trajectory}]")
+    print("  process history:", sorted({e.process for e in to_events(doc) if getattr(e, 'process', None)}))
+    for e in g.edges:
+        print("  edge:", e.src, e.relation, e.dst)
+    return 0
+
+
 def cmd_agree(a, b):
     da, db = load(a), load(b)
     r = agreement(da, db)
@@ -63,6 +85,8 @@ if __name__ == "__main__":
     cmd, *args = sys.argv[1:] or ["help"]
     if cmd == "validate":
         sys.exit(max(cmd_validate(p) for p in args))
+    if cmd == "replay":
+        sys.exit(max(cmd_replay(p) for p in args))
     if cmd == "agree":
         sys.exit(cmd_agree(*args))
     if cmd == "schema":
