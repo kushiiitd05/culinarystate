@@ -30,7 +30,7 @@ def apply(gold_dir: Path, queue: Path, out_dir: Path, today: str = "2026-10-19",
     new, seen, errs = copy.deepcopy(docs), {}, []
     for r in sel:
         p = json.loads(r["patch_json"])
-        key = (p["recipe"], p.get("step"), p["op"], p.get("index"))
+        key = (p["recipe"], p.get("step"), p["op"], p.get("start") if p["op"] == "set_coref" else p.get("line"))
         if key in seen:
             errs.append(f"{r['item_id']} conflicts with {seen[key]} (same target)")
             continue
@@ -38,7 +38,16 @@ def apply(gold_dir: Path, queue: Path, out_dir: Path, today: str = "2026-10-19",
         if p["op"] == "replace_events":
             new[p["recipe"]]["steps"][p["step"]]["events"] = p["events"]
         elif p["op"] == "set_coref":
-            new[p["recipe"]]["steps"][p["step"]]["coref"][p["index"]]["entity"] = p["entity"]
+            for c in new[p["recipe"]]["steps"][p["step"]]["coref"]:
+                if c["start"] == p["start"]:
+                    c["entity"] = p["entity"]
+        elif p["op"] == "drop_coref":
+            st = new[p["recipe"]]["steps"][p["step"]]
+            st["coref"] = [c for c in st["coref"] if c["start"] not in p["starts"]]
+        elif p["op"] == "set_line_alt":
+            ln = new[p["recipe"]]["ingredient_lines"][p["line"]]
+            ln["alternatives"] = p["alternatives"]
+            ln["spans"] = sorted([x for x in ln["spans"] if x["label"] != "ALTERNATIVE"] + p["spans"], key=lambda x: (x["start"], x["end"]))
     changed = {k[0] for k in seen}
     if not changed and not errs:
         return 0, []                                   # nothing approved: write nothing
