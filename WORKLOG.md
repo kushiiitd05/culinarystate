@@ -727,3 +727,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `annotation/gold/pilot_20_kush_ai_assisted_manifest.csv`, `annotation/parv_pack/culinarystate_parv.zip`, `STATUS.md`
 - **Verified:** unzip test; leak scan; 20 recipes recorded
 - **Next:** Parv blind-annotates the 7 calibration recipes; then gold_pilot_agreement.py --calibration; handbook gate; remaining 13; adjudicate; freeze Gold-v1; then compiler/state evaluation; then H_STATE.
+
+### S107 · 2026-10-19 19:03 IST · DEL-3 · S107 Gold-v1 pilot frozen; first compiler vs Gold-v1 oracle cascade
+- **Who:** claude
+- **Did:** Per Kush: Parv's review was done by Kush on Parv's checklist, so Parv's 20 files = the AI-assisted set (annotator Parv, DONE, honest note), adjudicated files identical (vacuous), D-017. Agreement run: 0 disagreements, labelled NOT_INDEPENDENT; handbook gate NOT_EVALUATED. Applied Addendum A5 process canonicalisation (reconverted, refrozen, 60 files validate OK). Eval (tools/eval_compiler_vs_gold.py, no tuning, n=20, bootstrap CI): P state-field acc 0.102, alive F1 0.312, merge/split/reserve F1 0.343, relation F1 0.289, event loose F1 0.199; oracle concepts O1 0.130/0.342/0.349; gold Adds O2 ~same as P; gold sanity 1.0. Conclusion: ingredient linking not the bottleneck; step-event construction/state tracking is; compiler over-generates Transform (169 vs 64). Reference-noise caveats listed (13 unconverted events, padded remainders, coref 108/113 UNKNOWN). H_STATE question authoring and B3/B4 run not done (human-written questions required by EXP-000007).
+- **Files:** `tools/freeze_gold_v1_pilot.py`, `tools/eval_compiler_vs_gold.py`, `tools/convert_ai_review.py`, `annotation/gold/gold_v1_pilot_manifest.csv`, `reports/del3/compiler_vs_gold_v1.md`, `DECISIONS.md`
+- **Verified:** 60 gold files validate OK; gold-vs-gold sanity 1.0; suite passes
+- **Next:** Choose: (a) correction pass on the Gold artefacts, then re-run the cascade, or (b) author the H_STATE questions (human) and run B3 vs B4-pred vs B4-gold.
