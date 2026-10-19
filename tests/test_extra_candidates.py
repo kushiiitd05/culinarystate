@@ -19,3 +19,12 @@ def test_recommend_gives_substitutes_only():
 
 def test_none_for_answer_intent():
     assert extra_candidates("how much vitamin C is in butter?", _slots(), _lex()) is None
+
+
+def test_substitution_reason_carries_carbon_when_both_known():
+    lex = _lex()
+    lex = Lexicon(None, lex.proc_ids, {}, {}, frozenset(), alternatives=lex.alternatives, followed_by=lex.followed_by,
+                  ing_names=lex.ing_names, carbon={"ING-000001": 12.0, "ING-000002": 9.5})
+    cs = extra_candidates("what can I use instead of butter, any substitute to recover?", _slots(), lex)
+    assert cs is not None
+    assert any("carbon 9.5 vs 12.0" in c.reason for c in cs.candidates if c.type == "SUBSTITUTION")
