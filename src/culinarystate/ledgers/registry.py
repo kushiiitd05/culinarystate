@@ -405,7 +405,7 @@ KGE_PREDICATES = ["ING_HAS_CATEGORY", "ING_PARENT", "ING_PROCESSED_BY", "ING_CO_
                   "ING_MEASURED_IN_UNIT", "COMPONENT_CONTAINS_ING", "PROC_USES_TOOL", "PROC_FOLLOWED_BY",
                   "PROC_TYPICAL_DURATION", "PROC_TYPICAL_TEMPERATURE", "PROC_IN_FAMILY", "TOOL_HAS_CATEGORY",
                   "ING_ALTERNATIVE_TO", "ING_OFTEN_OPTIONAL", "ING_PREP_FORM", "PROC_USES_MEDIUM", "PROC_ENDPOINT_STATE",
-                  "MOL_HAS_TASTE"]
+                  "MOL_HAS_TASTE", "ING_HEALTH_ASSOCIATION", "ING_COSYLAB_CATEGORY"]
 ANY_ID = {"type": "string", "pattern": r"^[A-Z]{2,8}-\d{6}$"}
 _QUANT = {"type": "object", "additionalProperties": False, "required": ["n", "unit"],
           "properties": {"n": INT0, "unit": STR, "p10": NUM, "p50": NUM, "p90": NUM, "min": NUM, "max": NUM}}
