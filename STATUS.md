@@ -23,6 +23,7 @@
 
 | S100–S101 state-awareness: readiness audit + H_STATE pre-registered (EXP-000007); B4 switch `answer(use_state)`; pilot_20 Gold frozen (hash-matched to REC), blank Kush/Parv copies, handbook Addendum A, agreement tooling. **Gold annotation BLOCKED_HUMAN (0/20)** | S100–S101 |
 
+| S109 full 20-recipe source audit: 18 recipes need substantive corrections (lineage errors, 78/113 coref entries are spurious 'it' inside words, 9 alternative spans), 95 proposal rows AWAITING Kush's decisions (review sheet annotation/gold/gold_v1_1_review_sheet.md); Gold-v1.1 NOT created; **GOLD_ORACLE_NOT_READY** | S109 |
 | S108 Gold-v1 correction queue (67 rows, AI_PROPOSED, awaiting Kush decisions) + provisional v1.1; unchanged compiler: P state-field 0.140, alive F1 0.395, merge/split 0.368; oracle concepts still ≤+0.02; verdict **GOLD_ORACLE_NOT_READY** | S108 |
 | S107 Gold-v1 pilot frozen (AI-assisted, human-reviewed; Parv's review delegated to Kush; identical sets, agreement N/A, D-017). First compiler vs Gold-v1 cascade: state-field acc 0.10, alive F1 0.31, merge/split F1 0.34; oracle concepts/Adds change ≤0.03 (extraction of step events is the bottleneck; Gold artefacts caveat). H_STATE questions = human-gated | S107 |
 | S103–S106 pilot_20 Gold: Kush's 20 = AI-assisted human-reviewed (OpenAI GPT-5.6 Sol draft, converted to gold-1.0, 20/20 DONE, 0 corrections, D-016, NOT independent); Parv's 20 blank for a blind pass; Parv-safe package built. **Next: Parv blind-annotates the 7 calibration recipes, then agreement → handbook gate (BLOCKED_HUMAN)** | S103–S106 |
