@@ -1,0 +1,9 @@
+# Independent annotation protocol — evidence-first Gold (frozen S116)
+Status of every file in `Kush/` and `Parv/`: `DRAFT_HUMAN_INDEPENDENT`. Blank templates only: ingredient `entity`/`concept` = TODO, no spans, events or coreference. No AI, model, compiler, previous-Gold or B3/B4 content is embedded; AI only supplied metadata, ids, line/step indices and structure validation.
+1. Kush annotates all 20 PRIMARY recipes independently, then runs the freeze (hash every file, record in `annotation/gold/evidence_first_expansion/freeze_kush.csv`).
+2. Parv annotates all 20 independently, then freezes the same way (`freeze_parv.csv`).
+3. No discussion of labels, no sharing of files, screenshots, partial results or AI drafts until BOTH freezes exist. Questions about the handbook go to a shared question log without example labels; answers that change conventions become a dated Addendum B and apply to both.
+4. Only then: agreement analysis (`tools/gold_pilot_agreement.py`, B-cubed coreference, aligned state scores, per-category rates) -> disagreement queue -> adjudication with a written change log. If independence was violated, agreement is NOT computed and the violation is recorded.
+5. Handbook: `annotation/annotation_handbook_v1.md` + Addendum A, schema gold-1.0. Layers: ingredient concepts, lots, form/state, quantity where the text supports it, process/action, intermediates, tool/location where supported, duration, temperature/heat, endpoint, coreference, Merge, Split, Transform, Reserve, Transfer, Discard, Recombine, Wait, Serve, state lineage.
+6. UNKNOWN is valid. Do not infer hidden quantities, hidden temperatures, hidden chemistry, unwritten transformations, equal fractions unless explicit, or causal physical magnitudes from recipe instructions.
+7. Recipe text is Food.com user content: local only, never committed, never sent to a service.
