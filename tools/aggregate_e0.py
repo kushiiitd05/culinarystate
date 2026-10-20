@@ -51,7 +51,7 @@ def main():
         if f.endswith(".pred.json"):
             continue
         d = json.load(open(f))
-        key = d["model"].split("/")[-1] + ("+CRF" if d["crf"] else "")
+        key = d["model"].split("/")[-1] + ("+CRF" if d["crf"] and not d.get("fusion") else "") + (f"+{d['knowledge']}" if d.get("knowledge", "K0") != "K0" else "") + (f"+fusion-{d['fusion']}" if d.get("fusion") else "")
         pred = json.load(open(f.replace(".json", ".pred.json")))["test"]
         c = np.array([doc_counts(g, p, labels) for (_, g), p in zip(docs, pred)])
         per[key][d["seed"]] = c
@@ -63,13 +63,19 @@ def main():
     for k, rs in rows.items():
         m = lambda f: (round(st.mean(r[f] for r in rs), 4), round(st.stdev([r[f] for r in rs]), 4) if len(rs) > 1 else None)
         agg[k] = {"n_seeds": len(rs), **{f: m(f) for f in ("micro", "macro", "relaxed", "boundary", "unseen", "tail", "head", "min", "gb")}}
+    B0 = "deberta-base"
+    PAIRS = [(f"{B0}+CRF", B0, "E0 CRF vs softmax"), (f"{B0}+CRF+K1", f"{B0}+CRF", "K1 vs K0"), (f"{B0}+CRF+K2", f"{B0}+CRF", "K2 vs K0"),
+             (f"{B0}+CRF+K3", f"{B0}+CRF", "K3 vs K0"), (f"{B0}+fusion-concat", f"{B0}+CRF", "E3 concat vs E0 CRF"),
+             (f"{B0}+fusion-gated", f"{B0}+CRF", "E4 gated vs E0 CRF"), (f"{B0}+fusion-gated", f"{B0}+fusion-concat", "E4 gated vs E3 concat"),
+             (f"{B0}+fusion-gated", f"{B0}+fusion-zero", "metadata ON vs OFF (same architecture)"),
+             (f"{B0}+fusion-zero+span0.5", f"{B0}+fusion-zero", "span head vs none (CRF decodes)"),
+             ("deberta-v3-large+CRF", "deberta-v3-large", "v3-large CRF vs softmax")]
     tests, names = {}, []
-    for crf in sorted(k for k in per if k.endswith("+CRF")):
-        base = crf[:-4]
-        seeds = sorted(set(per[crf]) & set(per.get(base, {})))
+    for cand, base, label in PAIRS:
+        seeds = sorted(set(per.get(cand, {})) & set(per.get(base, {})))
         if len(seeds) < 2:
             continue
-        a = np.array([per[crf][s] for s in seeds])        # [S, D, 3]
+        a = np.array([per[cand][s] for s in seeds])        # [S, D, 3]
         b = np.array([per[base][s] for s in seeds])
         rng = np.random.RandomState(20261018)
         deltas = []
@@ -79,12 +85,17 @@ def main():
         deltas = np.sort(deltas)
         pt = np.mean([f1(*a[s].sum(0)) - f1(*b[s].sum(0)) for s in range(len(seeds))])
         p = max(2 * min((deltas <= 0).mean(), (deltas >= 0).mean()), 1e-3)
-        tests[crf] = {"seeds": seeds, "delta_micro": round(float(pt), 4), "ci95": [round(float(deltas[25]), 4), round(float(deltas[974]), 4)], "p": round(float(p), 4)}
-        names.append(crf)
+        wins = sum(f1(*a[s].sum(0)) > f1(*b[s].sum(0)) for s in range(len(seeds)))
+        key = f"{label}"
+        tests[key] = {"cand": cand, "base": base, "seeds": seeds, "delta_micro": round(float(pt), 4), "ci95": [round(float(deltas[25]), 4), round(float(deltas[974]), 4)], "p": round(float(p), 4),
+                      "seeds_won": f"{wins}/{len(seeds)}", "delta_unseen_f1": round(agg[cand]["unseen"][0] - agg[base]["unseen"][0], 4),
+                      "delta_macro": round(agg[cand]["macro"][0] - agg[base]["macro"][0], 4)}
+        names.append(key)
     ok = holm([tests[n]["p"] for n in names]) if names else []
     for n, o in zip(names, ok):
-        tests[n]["holm_significant"] = bool(o)
-        tests[n]["promoted"] = bool(o and tests[n]["delta_micro"] >= 0.003 and tests[n]["ci95"][0] > 0)
+        t = tests[n]
+        t["holm_significant"] = bool(o)
+        t["promoted"] = bool(o and t["delta_micro"] >= 0.003 and t["ci95"][0] > 0 and int(t["seeds_won"].split("/")[0]) >= 4 and t["delta_unseen_f1"] >= -0.005 and t["delta_macro"] >= -0.003)
     out = {"dataset": ds, "agg": agg, "crf_vs_softmax": tests}
     (ROOT / "reports" / "ner" / f"_e0_{ds}.json").write_text(json.dumps(out, indent=1) + "\n")
     print("| model | seeds | exact micro | exact macro | relaxed | boundary err | unseen F1 | tail F1 | min | GB |\n|---|---|---|---|---|---|---|---|---|---|")
