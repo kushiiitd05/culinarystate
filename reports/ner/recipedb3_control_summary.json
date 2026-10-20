@@ -161,6 +161,108 @@
    "split_hash": "5efabc682087ced2"
   },
   {
+   "protocol": "clean_size",
+   "seed": 1,
+   "selection": "DEV",
+   "best_epoch": 12,
+   "n": [
+    21038,
+    2738,
+    2668
+   ],
+   "test_macro_best": 0.9506071992499397,
+   "test_micro_best": 0.9554273728369166,
+   "test_macro_last": 0.9524632224270914,
+   "test_micro_last": 0.9567496723460027,
+   "per_label_best": {
+    "DF": 0.9582,
+    "NAME": 0.9227,
+    "QUANTITY": 0.9836,
+    "SIZE": 0.961,
+    "STATE": 0.9421,
+    "TEMP": 0.9109,
+    "UNIT": 0.9756
+   },
+   "exact_duplicate_frac_test": 0.0,
+   "masked_family_leak_frac_test": 0.0,
+   "leaked_micro": null,
+   "nonleaked_micro": 0.9554273728369166,
+   "leaked_macro": null,
+   "nonleaked_macro": 0.9506071992499397,
+   "runtime_s": 6287,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "e3e8fa592e894c9b"
+  },
+  {
+   "protocol": "clean_size",
+   "seed": 2,
+   "selection": "DEV",
+   "best_epoch": 10,
+   "n": [
+    21130,
+    2661,
+    2653
+   ],
+   "test_macro_best": 0.954436635146318,
+   "test_micro_best": 0.9612239514639935,
+   "test_macro_last": 0.9540910079629702,
+   "test_micro_last": 0.9602708564778077,
+   "per_label_best": {
+    "DF": 0.959,
+    "NAME": 0.9309,
+    "QUANTITY": 0.9898,
+    "SIZE": 0.9391,
+    "STATE": 0.9502,
+    "TEMP": 0.9346,
+    "UNIT": 0.9776
+   },
+   "exact_duplicate_frac_test": 0.0,
+   "masked_family_leak_frac_test": 0.0,
+   "leaked_micro": null,
+   "nonleaked_micro": 0.9612239514639935,
+   "leaked_macro": null,
+   "nonleaked_macro": 0.954436635146318,
+   "runtime_s": 4534,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "94b65351207353c0"
+  },
+  {
+   "protocol": "clean_size",
+   "seed": 3,
+   "selection": "DEV",
+   "best_epoch": 11,
+   "n": [
+    21187,
+    2652,
+    2605
+   ],
+   "test_macro_best": 0.9521456364129308,
+   "test_micro_best": 0.9565031298485902,
+   "test_macro_last": 0.9529456806426169,
+   "test_micro_last": 0.9599742115725568,
+   "per_label_best": {
+    "DF": 0.9641,
+    "NAME": 0.9245,
+    "QUANTITY": 0.9877,
+    "SIZE": 0.9589,
+    "STATE": 0.9377,
+    "TEMP": 0.9174,
+    "UNIT": 0.9747
+   },
+   "exact_duplicate_frac_test": 0.0,
+   "masked_family_leak_frac_test": 0.0,
+   "leaked_micro": null,
+   "nonleaked_micro": 0.9565031298485902,
+   "leaked_macro": null,
+   "nonleaked_macro": 0.9521456364129308,
+   "runtime_s": 6291,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "c945328253661f70"
+  },
+  {
    "protocol": "theirs",
    "seed": 1,
    "selection": "TEST",
@@ -402,6 +504,89 @@
     "UNIT": 0.9785
    }
   },
+  "clean_size": {
+   "test_macro_best": {
+    "n": 3,
+    "mean": 0.9524,
+    "sd": 0.0019,
+    "ci95": [
+     0.9476,
+     0.9572
+    ]
+   },
+   "test_micro_best": {
+    "n": 3,
+    "mean": 0.9577,
+    "sd": 0.0031,
+    "ci95": [
+     0.9501,
+     0.9654
+    ]
+   },
+   "test_macro_last": {
+    "n": 3,
+    "mean": 0.9532,
+    "sd": 0.0008,
+    "ci95": [
+     0.9511,
+     0.9552
+    ]
+   },
+   "test_micro_last": {
+    "n": 3,
+    "mean": 0.959,
+    "sd": 0.002,
+    "ci95": [
+     0.9541,
+     0.9638
+    ]
+   },
+   "nonleaked_micro": {
+    "n": 3,
+    "mean": 0.9577,
+    "sd": 0.0031,
+    "ci95": [
+     0.9501,
+     0.9654
+    ]
+   },
+   "nonleaked_macro": {
+    "n": 3,
+    "mean": 0.9524,
+    "sd": 0.0019,
+    "ci95": [
+     0.9476,
+     0.9572
+    ]
+   },
+   "exact_duplicate_frac_test": {
+    "n": 3,
+    "mean": 0.0,
+    "sd": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "masked_family_leak_frac_test": {
+    "n": 3,
+    "mean": 0.0,
+    "sd": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "per_label_mean_f1": {
+    "DF": 0.9604,
+    "NAME": 0.926,
+    "QUANTITY": 0.987,
+    "SIZE": 0.953,
+    "STATE": 0.9433,
+    "TEMP": 0.921,
+    "UNIT": 0.976
+   }
+  },
   "theirs": {
    "test_macro_best": {
     "n": 5,
@@ -497,5 +682,19 @@
  "theirs_vs_clean_macro": {
   "delta": 0.0039,
   "welch_p": 0.0674
+ },
+ "size_effect_paired_seeds": {
+  "seeds": [
+   1,
+   2,
+   3
+  ],
+  "macro_delta_mean": 0.0008,
+  "per_seed": [
+   0.002,
+   -0.0019,
+   0.0022
+  ],
+  "note": "macro averages over 7 labels with SIZE vs 6 without, so compare per-label F1 and micro too"
  }
 }
