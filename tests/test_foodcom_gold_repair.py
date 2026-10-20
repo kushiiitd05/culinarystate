@@ -32,7 +32,8 @@ def test_v1_1_has_no_mechanical_lineage_names_and_kush_parv_identical_events():
         assert "mixture step" not in json.dumps(d)
         p = json.loads((V1 / "Parv" / f.name.replace(".Kush.", ".Parv.")).read_text())
         assert [s["events"] for s in p["steps"]] == [s["events"] for s in d["steps"]]
-        assert "NOT human-verified" in d["notes"]
+        assert "AI_REAUTHORED_SOURCE_GROUNDED" in d["notes"] and "HUMAN_REVIEW_PENDING" in d["notes"]
+        assert "AI_ASSISTED_HUMAN_REVIEWED" not in d["notes"].split("Promote to")[0].split("PROVENANCE:")[1].split(";")[0]
 
 
 @have

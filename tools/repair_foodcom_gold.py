@@ -23,10 +23,11 @@ from culinarystate.state_graph.engine import replay  # noqa: E402
 
 V0 = ROOT / "annotation" / "gold" / "foodcom_ai_assisted"
 V1 = ROOT / "annotation" / "gold" / "foodcom_ai_assisted_v1_1"
-PROV = ("AI_ASSISTED_HUMAN_REVIEWED (v1.1 repair, S118): v1 = AI Pass-1 proposal batch-approved by Kush in chat (Parv relayed). v1.1 re-authors "
-        "every step's events from the source text by the AI (Claude), restoring the 126 events dropped in S117 and replacing mechanical output "
-        "names; step-only foods become entities with quantity UNKNOWN. NOT human-verified line by line and NOT independent; Kush and Parv "
-        "files are identical.")
+PROV = ("PROVENANCE: AI_REAUTHORED_SOURCE_GROUNDED; HUMAN_REVIEW_PENDING (v1.1, S118A). v1 = AI Pass-1 proposal batch-approved by Kush in chat "
+        "(Parv relayed); that approval covers v1 ONLY. v1.1 re-authors every step's events from the source text by the AI (Claude), restoring "
+        "the 126 events dropped in S117 and replacing mechanical output names; step-only foods become entities with quantity UNKNOWN. "
+        "NOT human-verified line by line, NOT independent; Kush and Parv files identical. Promote to AI_ASSISTED_HUMAN_REVIEWED only after "
+        "Kush reviews v1.1.")
 
 
 def load_spec():

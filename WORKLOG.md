@@ -818,3 +818,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/ner/benchmark.py`, `tools/freeze_ner_benchmark.py`, `benchmark/ner/semantic_benchmark_v1.json`, `benchmark/ner/semantic_benchmark_manifest.csv`, `tests/test_ner_benchmark.py`
 - **Verified:** 9 new tests pass
 - **Next:** S118B finish RecipeDB3 control from A100 results
+
+### S120 · 2026-10-20 12:25 IST · DEL-3 · S118 corrections (labels, counts, provenance, A100 launcher) per Kush review
+- **Who:** claude
+- **Did:** Correcting entry (WORKLOG is append-only): block labels are S118A = Food.com repair (worklog id S118), S118B = NER benchmark freeze (worklog id S119; its title mislabelled S118C), S118C = RecipeDB3 control (not complete). Worklog IDs are tool-sequential; 'S119 block' in the master prompt = backbone/CRF/KF experiments, starts only after S118C report. Canonical Food.com count: 410 proposed, 126 initially dropped, 284 written/by-design, 310 final v1.1 events (407 was wrong). Food.com v1.1 provenance = AI_REAUTHORED_SOURCE_GROUNDED + HUMAN_REVIEW_PENDING (Kush approval covered v1 only); coverage verdict H_STATE_COVERAGE_READY, H_STATE_GOLD_PROVENANCE_GATE not cleared until Kush reviews v1.1 and the S116 screen. A100: inspected job tree (no duplicate seeds), killed only the redundant 10:34 launcher shells (PIDs 2426075/2426076), 4 running jobs and 2 completed JSONs untouched; remaining seeds run from the 09:44 loops (theirs 3,4; clean 4,5).
+- **Files:** `tools/repair_foodcom_gold.py`, `tests/test_foodcom_gold_repair.py`, `reports/gold/foodcom_ai_assisted_v1_to_v1_1.md`
+- **Verified:** 3006 passed; v1.1 regenerated 20/20 DONE
+- **Next:** S118C: wait for the 8 remaining control runs, run SIZE analysis, write reports/ner/recipedb3_matched_reproduction.md, stop and report; no S119 before that
