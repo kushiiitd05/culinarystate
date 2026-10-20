@@ -70,6 +70,8 @@ def evaluate(model, tok, D, dev, tau=None):
             bal = 0.5 * (np.mean([p >= c for p in pos]) + np.mean([n < c for n in neg]))
             if bal > best:
                 best, tau = bal, float(c)
+    rd = np.array([next((i + 1 for i, (c, _) in enumerate(r["top"]) if c == r["gold"]), 10**6) for r in res["dev_alias"]])
+    dev_metrics = {"n": int(len(rd)), "acc1": float((rd == 1).mean()), "r5": float((rd <= 5).mean()), "mrr": float((1.0 / rd).mean())}   # SELECTION metric (dev_alias), not the held-out test queries
     pos = res["unseen_alias"]
     rk = np.array([next((i + 1 for i, (c, _) in enumerate(r["top"]) if c == r["gold"]), 10**6) for r in pos])
     bucket = lambda f: {"n": int(f.sum()), "acc1": float((rk[f] == 1).mean()) if f.any() else None, "r5": float((rk[f] <= 5).mean()) if f.any() else None}
@@ -79,7 +81,7 @@ def evaluate(model, tok, D, dev, tau=None):
     nil_neg = res["unseen_concept"]
     tp = sum(r["top"][0][1] < tau for r in nil_neg)                       # NIL correctly flagged
     fp_nil = sum(r["top"][0][1] < tau for r in pos)                       # real concept wrongly flagged NIL
-    out = {"tau": tau, "unseen_alias": {**bucket(np.ones(len(rk), bool)), "mrr": float((1.0 / rk).mean())},
+    out = {"tau": tau, "dev_alias_selection": dev_metrics, "unseen_alias": {**bucket(np.ones(len(rk), bool)), "mrr": float((1.0 / rk).mean())},
            "by_lang": {"en": bucket(en), "regional": bucket(~en)}, "by_concept_surfaces": {"head_ge6": bucket(nsf >= 6), "tail_le3": bucket(nsf <= 3)},
            "by_tokens": {"1": bucket(ntok == 1), "2": bucket(ntok == 2), "3plus": bucket(ntok >= 3)},
            "nil": {"precision": tp / max(tp + fp_nil, 1), "recall": tp / max(len(nil_neg), 1), "n_nil": len(nil_neg), "n_pos": len(pos)}}
