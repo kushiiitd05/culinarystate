@@ -14,3 +14,12 @@ def test_ladder_and_determinism():
 def test_no_test_text_leaks_into_context():
     other = TRAIN + [("9 tbsp zzzunseenword", [(2, 6, "UNIT"), (7, 20, "FOOD")])]
     assert "zzzunseenword" not in build_context(TRAIN, LAB, "K3") and "zzzunseenword" in build_context(other, LAB, "K2")
+
+
+def test_k4_is_contrastive_budgeted_and_train_only():
+    docs = [("fresh basil", [(0, 5, "PHYSICAL_QUALITY"), (6, 11, "FOOD")])] * 20 + [("fresh start", [(0, 5, "PROCESS")])] * 2 + [("olive oil", [(0, 9, "FOOD")])] * 5
+    labs = ["FOOD", "PHYSICAL_QUALITY", "PROCESS"]
+    c = build_context(docs, labs, "K4", budget=30)
+    assert "fresh is physical_quality not process" in c and "food olive oil" in c and len(c.split()) <= 30
+    assert len(build_context(docs, labs, "K4", budget=8).split()) <= 8
+    assert "zzzunseen" not in build_context(docs, labs, "K4") and "zzzunseen" in build_context(docs + [("zzzunseen xx", [(0, 12, "FOOD")])] * 30, labs, "K4", budget=60)

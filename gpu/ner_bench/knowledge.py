@@ -13,9 +13,50 @@ DEFS: Dict[str, str] = {
     "SIZE": "size such as large"}
 
 
-def build_context(train_docs: Sequence[tuple], labels: Sequence[str], kind: str, top_k: int = 5) -> str:
+def _k4(train_docs: Sequence[tuple], labels: Sequence[str], budget: int) -> str:
+    """K4: compact CONTRASTIVE few-shot context, TRAIN only, word-budgeted so it fits the encoder window next to short recipe lines.
+    Parts in priority order: (1) one whole-phrase example per type (most frequent multi-word span, else most frequent span: teaches boundaries),
+    (2) contrast pairs from real train ambiguity: surfaces seen under >1 type, 'surface: major type not minor type' (ranked by evidence),
+    (3) type definitions are used only as short labels. Stops adding items when the word budget is reached."""
+    surf, lab_of = defaultdict(Counter), defaultdict(Counter)
+    for text, spans in train_docs:
+        for s_, e_, lab in spans:
+            if lab in labels:
+                w = text[s_:e_].lower()
+                surf[lab][w] += 1
+                lab_of[w][lab] += 1
+    parts, used = [], 0
+
+    def add(piece: str) -> bool:
+        nonlocal used
+        n = len(piece.split()) + (1 if parts else 0)          # the " ;" separator counts as a word
+        if used + n > budget:
+            return False
+        parts.append(piece)
+        used += n
+        return True
+    for l in sorted(labels):
+        multi = [(c, w) for w, c in surf[l].items() if " " in w and c >= 3]
+        ex = max(multi)[1] if multi else (surf[l].most_common(1)[0][0] if surf[l] else "")
+        if ex and not add(f"{l.lower()} {ex}"):
+            break
+    pairs = []
+    for w, c in lab_of.items():
+        if len(c) > 1 and sum(c.values()) >= 5:
+            (a, na), (b, nb) = c.most_common(2)
+            if nb / (na + nb) >= 0.02:
+                pairs.append((nb * (na + nb) ** 0.5, w, a, b))
+    for _, w, a, b in sorted(pairs, reverse=True):
+        if not add(f"{w} is {a.lower()} not {b.lower()}"):
+            break
+    return " ; ".join(parts)
+
+
+def build_context(train_docs: Sequence[tuple], labels: Sequence[str], kind: str, top_k: int = 5, budget: int = 40) -> str:
     if kind == "K0":
         return ""
+    if kind == "K4":
+        return _k4(train_docs, labels, budget)
     parts = [f"{l.lower()}: {DEFS.get(l, l.lower())}" for l in sorted(labels)]
     if kind == "K1":
         return " ; ".join(parts)

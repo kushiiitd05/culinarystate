@@ -160,7 +160,7 @@ def main():
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--oof-fold", type=int, default=-1, help="k in 0..4: train on train minus fold k, predict fold k (out-of-fold span table for the calibrator); fold = RandomState(0).permutation(n_train) %% 5, same as the span-feature builder")
     ap.add_argument("--conf", action="store_true", help="also save per-span confidences (CRF marginal / softmax) for the calibrator")
-    ap.add_argument("--knowledge", default="K0", choices=["K0", "K1", "K2", "K3"], help="train-derived entity-type context prefix (Part VII)")
+    ap.add_argument("--knowledge", default="K0", choices=["K0", "K1", "K2", "K3", "K4"], help="train-derived entity-type context prefix (Part VII)")
     ap.add_argument("--out", default="runs")
     a = ap.parse_args()
     random.seed(a.seed), np.random.seed(a.seed), torch.manual_seed(a.seed)
@@ -185,7 +185,7 @@ def main():
     prefix = None
     if a.knowledge != "K0":
         import knowledge as K
-        ctx = K.build_context([docs[i] for i in split["train"]], sorted(B.VIEWS[view]), a.knowledge)
+        ctx = K.build_context([docs[i] for i in split["train"]], sorted(B.VIEWS[view]), a.knowledge, budget=min(60, int(0.28 * max_len)))
         prefix = [ctx[m.start():m.end()] for m in WORD.finditer(ctx)]
     enc = [encode(tok, t, [s for s in sp if s[2] in B.VIEWS[view]], tag2id, max_len, prefix) for t, sp in docs]
     model = AutoModelForTokenClassification.from_pretrained(a.model, num_labels=len(tags), id2label=id2tag, label2id=tag2id).to(dev)

@@ -7,7 +7,15 @@ Fusion is NOT shortlisted here: the contract requires the calibrator to show met
 import glob
 import json
 import statistics as st
+import time
 from pathlib import Path
+
+# K4 lane (jobs_k4.txt) is launched separately; wait for it (max 3 h) so K4 can be shortlisted on equal terms
+for _ in range(90):
+    q = Path("queue_k4.out")
+    if not q.exists() or "cmds-done" in q.read_text():
+        break
+    time.sleep(120)
 
 R = Path("runs")
 
@@ -29,7 +37,7 @@ def mean(v):
 M = "--dataset recipedb3 --model microsoft/deberta-base"
 base = dev("tasteset__deberta-base_crf__seed*.json")
 out, info = [], {"base_crf_dev": mean(base), "n_base": len(base)}
-ks = {k: dev(f"tasteset__deberta-base_crf_{k}__seed*.json") for k in ("K1", "K2", "K3")}
+ks = {k: dev(f"tasteset__deberta-base_crf_{k}__seed*.json") for k in ("K1", "K2", "K3", "K4")}
 info["knowledge_dev"] = {k: (mean(v), len(v)) for k, v in ks.items()}
 cand = [(mean(v), k) for k, v in ks.items() if len(v) >= 5 and base and mean(v) - mean(base) >= 0.003]
 kbest = max(cand)[1] if cand else None

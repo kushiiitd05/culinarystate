@@ -1,0 +1,8 @@
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K4 --seed 1 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K4 --seed 2 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K4 --seed 3 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K4 --seed 4 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K4 --seed 5 --out runs
+linker_train.py --seed 1 --epochs 4 --lr 1e-5 --fmt ing --tag _lr1e5e4_fmting --out runs
+linker_train.py --seed 2 --epochs 4 --lr 1e-5 --fmt ing --tag _lr1e5e4_fmting --out runs
+linker_train.py --seed 3 --epochs 4 --lr 1e-5 --fmt ing --tag _lr1e5e4_fmting --out runs

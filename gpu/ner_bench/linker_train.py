@@ -21,10 +21,14 @@ from transformers import AutoModel, AutoTokenizer
 MODEL = "intfloat/e5-large-v2"
 
 
+FMT = {"plain": "query: ", "ing": "query: ingredient name: "}
+PREFIX = FMT["plain"]
+
+
 def embed(model, tok, texts, dev, bs=256, grad=False):
     outs = []
     for i in range(0, len(texts), bs):
-        b = tok(["query: " + t for t in texts[i:i + bs]], padding=True, truncation=True, max_length=32, return_tensors="pt").to(dev)
+        b = tok([PREFIX + t for t in texts[i:i + bs]], padding=True, truncation=True, max_length=32, return_tensors="pt").to(dev)
         with torch.set_grad_enabled(grad), torch.autocast("cuda", dtype=torch.bfloat16, enabled=dev == "cuda"):
             h = model(**b).last_hidden_state
         m = b["attention_mask"].unsqueeze(-1)
@@ -102,10 +106,13 @@ def main():
     ap.add_argument("--bs", type=int, default=64)
     ap.add_argument("--lr", type=float, default=1e-5)
     ap.add_argument("--temp", type=float, default=0.05)
+    ap.add_argument("--fmt", choices=["plain", "ing"], default="plain", help="input prompt format for query/passage text")
     ap.add_argument("--tag", default="")
     ap.add_argument("--round2", type=int, default=0, help="extra epochs after mining EMBEDDING-neighbour hard negatives from the round-1 model (contract: nearest embedding candidates)")
     ap.add_argument("--out", default="runs")
     a = ap.parse_args()
+    global PREFIX
+    PREFIX = FMT[a.fmt]
     random.seed(a.seed), np.random.seed(a.seed), torch.manual_seed(a.seed)
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     D = json.loads(Path(a.data).read_text())
@@ -160,7 +167,7 @@ def main():
     out = Path(a.out)
     out.mkdir(exist_ok=True)
     (out / f"linker__e5-large-v2{a.tag}__seed{a.seed}.json").write_text(json.dumps({"zero_shot_e5": zero, "contrastive": final, "tfidf_char_acc1_unseen_alias": tfidf_baseline(D), "history": hist,
-                                                                           "minutes": round((time.time() - t0) / 60, 2), "hparams": vars(a)}, indent=1))
+                                                                           "minutes": round((time.time() - t0) / 60, 2), "hparams": vars(a), "fmt": a.fmt}, indent=1))
     (out / f"linker__e5-large-v2{a.tag}__seed{a.seed}.tables.json").write_text(json.dumps({k: res[k] for k in ("unseen_alias", "unseen_concept", "dev_alias", "dev")}))
     print("zero-shot acc1", zero["unseen_alias"]["acc1"], "contrastive acc1", final["unseen_alias"]["acc1"], "nil", final["nil"])
 
