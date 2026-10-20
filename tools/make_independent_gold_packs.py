@@ -44,7 +44,7 @@ def main():
     for rid in prim:
         docs = {}
         for who in ANNOTATORS:
-            p = D / who / f"{rid}.{who}.json"
+            p = D / "_split" / who / f"{rid}.{who}.json"
             p.parent.mkdir(parents=True, exist_ok=True)
             if p.exists() and not pristine(json.loads(p.read_text())):
                 docs[who] = (p, json.loads(p.read_text()), "HUMAN_WORK_PRESERVED")
@@ -64,6 +64,18 @@ def main():
         w = csv.DictWriter(fh, fieldnames=list(rows[0]))
         w.writeheader()
         w.writerows(rows)
+    for who in ANNOTATORS:                                                      # ONE file per annotator: the file the human edits
+        bundle = D / f"{who}_all_20.json"
+        docs = [json.loads((D / "_split" / who / f"{rid}.{who}.json").read_text()) for rid in prim]
+        if bundle.exists() and "--check-only" not in sys.argv:
+            cur = json.loads(bundle.read_text())
+            if not all(pristine(d) for d in cur["recipes"]):
+                print(f"{bundle.name}: human work present, NOT overwritten")
+                continue
+        if "--check-only" not in sys.argv:
+            bundle.write_text(json.dumps({"annotator": who, "annotation_status": STATUS, "schema_version": "gold-1.0", "n_recipes": len(docs),
+                                          "how_to_use": "edit recipes[i] in place (same gold-1.0 fields); split with tools/bundle_gold_packs.py split before validate/agree", "recipes": docs},
+                                         indent=1, ensure_ascii=False) + "\n")
     ok = all(r["recipe_hashes_match"] and r["kush_blank"] and r["parv_blank"] for r in rows)
     print(f"{len(rows)} recipes; hashes match + both blank for all: {ok}")
     sys.exit(0 if ok and len(rows) == sel.PRIMARY_N else 1)
