@@ -804,3 +804,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/convert_foodcom_sheet.py`, `reports/gold/foodcom_ai_assisted_human_review.md`
 - **Verified:** 2993 tests passed; 40/40 DONE
 - **Next:** Pass 2 audit of 126 dropped events; pull RecipeDB3 results and finish reproduction report; span-model bake-off
+
+### S118 · 2026-10-20 12:11 IST · DEL-3 · S118A Food.com Gold v1->v1.1 repair: 126 dropped events audited, all 20 recipes re-authored, H_STATE coverage recomputed
+- **Who:** claude
+- **Did:** Audit: 410 proposed events (not 407), 126 dropped (64 cascades, 22 root causes); S117 survivors also unsound (wrong inputs, mechanical output names) so all 20 recipes re-authored from source (310 events, step-only entities with UNKNOWN quantity, water/oil as medium). Outcomes: 57 restored, 36 superseded, 33 rejected by policy, 0 unresolved. 20/20 validate+replay+deterministic. H_STATE coverage observed: 15 recipes, 51 pairs, 37 cells (S114: 8/14). Verdict H_STATE_AUTHORING_READY with caveats (AI-authored, not human-verified; AI screen unconfirmed). No questions, no B3/B4.
+- **Files:** `tools/audit_foodcom_dropped.py`, `tools/repair_foodcom_gold.py`, `tools/score_foodcom_repair.py`, `tools/hstate_coverage_foodcom.py`, `reports/gold/foodcom_ai_assisted_v1_to_v1_1.md`
+- **Verified:** 2997 passed
+- **Next:** S118B RecipeDB3 control; S118C freeze semantic NER benchmark
