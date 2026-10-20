@@ -1,0 +1,5 @@
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --oof-fold 0 --seed 1 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --oof-fold 1 --seed 1 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --oof-fold 2 --seed 1 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --oof-fold 3 --seed 1 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --oof-fold 4 --seed 1 --out runs_conf

@@ -158,6 +158,7 @@ def main():
     ap.add_argument("--bs", type=int, default=16)
     ap.add_argument("--max-len", type=int, default=0, help="0 = 128 recipedb3 / 256 tasteset")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--oof-fold", type=int, default=-1, help="k in 0..4: train on train minus fold k, predict fold k (out-of-fold span table for the calibrator); fold = RandomState(0).permutation(n_train) %% 5, same as the span-feature builder")
     ap.add_argument("--conf", action="store_true", help="also save per-span confidences (CRF marginal / softmax) for the calibrator")
     ap.add_argument("--knowledge", default="K0", choices=["K0", "K1", "K2", "K3"], help="train-derived entity-type context prefix (Part VII)")
     ap.add_argument("--out", default="runs")
@@ -167,6 +168,10 @@ def main():
     data = a.data or str(HERE / ("TASTEset.csv" if a.dataset == "tasteset" else "Ingredient_Annotated_Dataset.csv"))
     split = json.loads(Path(a.splits or HERE / f"{a.dataset}_split_v1.json").read_text())["indices"]
     docs = load_docs(a.dataset, data)
+    if a.oof_fold >= 0:
+        fold = np.random.RandomState(0).permutation(len(split["train"])) % 5
+        split["oof"] = [i for i, f in zip(split["train"], fold) if f == a.oof_fold]
+        split["train"] = [i for i, f in zip(split["train"], fold) if f != a.oof_fold]
     view = PRIMARY[a.dataset]
     labels = sorted(B.VIEWS[view])
     tags = ["O"] + [f"{p}-{l}" for l in labels for p in ("B", "I")]
@@ -224,7 +229,7 @@ def main():
     if crf:
         crf.load_state_dict(best_crf)
     preds, pconf = {}, {}
-    for p in ("dev", "calibration", "test"):
+    for p in ("dev", "calibration", "test") + (("oof",) if a.oof_fold >= 0 else ()):
         it, dd = part(p)
         if a.conf:
             preds[p], pconf[p] = predict(model, it, dd, id2tag, dev, crf, conf=True, tag2id=tag2id)
@@ -235,7 +240,7 @@ def main():
     res = B.evaluate(ev_docs, counts, view)
     boot = M.grouped_bootstrap({i: [(g, p)] for i, (_, g, p) in enumerate(ev_docs)},
                                lambda ds: M.corpus_span_scores([x for x in ds], "exact", labels=B.VIEWS[view])["micro"]["f1"], n_boot=1000)
-    name = f"{a.dataset}__{a.model.split('/')[-1]}{'_crf' if a.crf else ''}{'_' + a.knowledge if a.knowledge != 'K0' else ''}__seed{a.seed}"
+    name = f"{a.dataset}__{a.model.split('/')[-1]}{'_crf' if a.crf else ''}{'_' + a.knowledge if a.knowledge != 'K0' else ''}{'_oof' + str(a.oof_fold) if a.oof_fold >= 0 else ''}__seed{a.seed}"
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     (out / f"{name}.json").write_text(json.dumps({

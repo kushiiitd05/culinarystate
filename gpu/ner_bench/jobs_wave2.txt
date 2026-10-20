@@ -1,0 +1,45 @@
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K1 --seed 1 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K2 --seed 1 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K3 --seed 1 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode concat --feats tasteset_span_feats_v1.npz --seed 1 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --feats tasteset_span_feats_v1.npz --seed 1 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --feats tasteset_span_feats_v1.npz --seed 1 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --span-lambda 0.5 --feats tasteset_span_feats_v1.npz --seed 1 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --seed 1 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --conf --seed 1 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K1 --seed 2 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K2 --seed 2 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K3 --seed 2 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode concat --feats tasteset_span_feats_v1.npz --seed 2 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --feats tasteset_span_feats_v1.npz --seed 2 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --feats tasteset_span_feats_v1.npz --seed 2 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --span-lambda 0.5 --feats tasteset_span_feats_v1.npz --seed 2 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --seed 2 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --conf --seed 2 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K1 --seed 3 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K2 --seed 3 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K3 --seed 3 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode concat --feats tasteset_span_feats_v1.npz --seed 3 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --feats tasteset_span_feats_v1.npz --seed 3 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --feats tasteset_span_feats_v1.npz --seed 3 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --span-lambda 0.5 --feats tasteset_span_feats_v1.npz --seed 3 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --seed 3 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --conf --seed 3 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K1 --seed 4 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K2 --seed 4 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K3 --seed 4 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode concat --feats tasteset_span_feats_v1.npz --seed 4 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --feats tasteset_span_feats_v1.npz --seed 4 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --feats tasteset_span_feats_v1.npz --seed 4 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --span-lambda 0.5 --feats tasteset_span_feats_v1.npz --seed 4 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --seed 4 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --conf --seed 4 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K1 --seed 5 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K2 --seed 5 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --knowledge K3 --seed 5 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode concat --feats tasteset_span_feats_v1.npz --seed 5 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --feats tasteset_span_feats_v1.npz --seed 5 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --feats tasteset_span_feats_v1.npz --seed 5 --out runs
+fusion_train.py --dataset tasteset --model microsoft/deberta-base --mode gated --zero-meta --span-lambda 0.5 --feats tasteset_span_feats_v1.npz --seed 5 --out runs
+bench_train.py --dataset tasteset --model microsoft/deberta-base --crf --conf --seed 5 --out runs_conf
+bench_train.py --dataset tasteset --model microsoft/deberta-base --conf --seed 5 --out runs_conf
