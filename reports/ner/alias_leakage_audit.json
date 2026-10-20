@@ -1,0 +1,52 @@
+{
+ "ledger_surfaces": 2725,
+ "provenance_counts": {
+  "ING:a1_ner+registry_build": 1951,
+  "ING:wikibooks_links": 97,
+  "ALIAS:a1_ner+registry_build": 2052,
+  "ALIAS:off_taxonomy": 1896,
+  "ALIAS:wikibooks_links": 155
+ },
+ "records_linked_to_benchmark_corpora": [],
+ "n_bad": 0,
+ "datasets": {
+  "tasteset:dev": {
+   "gold_food_spans": 618,
+   "ledger_exact_cover": 0.7071,
+   "unseen_spans": 144,
+   "ledger_cover_of_unseen": 0.375,
+   "tail_spans": 128,
+   "ledger_cover_of_tail": 0.5859
+  },
+  "tasteset:calibration": {
+   "gold_food_spans": 377,
+   "ledger_exact_cover": 0.6764,
+   "unseen_spans": 102,
+   "ledger_cover_of_unseen": 0.2647,
+   "tail_spans": 64,
+   "ledger_cover_of_tail": 0.5938
+  },
+  "recipedb3:dev": {
+   "gold_food_spans": 2938,
+   "ledger_exact_cover": 0.4568,
+   "unseen_spans": 784,
+   "ledger_cover_of_unseen": 0.0408,
+   "tail_spans": 488,
+   "ledger_cover_of_tail": 0.2398
+  },
+  "recipedb3:calibration": {
+   "gold_food_spans": 2940,
+   "ledger_exact_cover": 0.4595,
+   "unseen_spans": 798,
+   "ledger_cover_of_unseen": 0.0414,
+   "tail_spans": 488,
+   "ledger_cover_of_tail": 0.291
+  }
+ },
+ "verdict": "ALLOWED_AS_EXTERNAL_GAZETTEER",
+ "conditions": [
+  "use only for features/calibrator, ablated with and without (feature removed -> measure)",
+  "never include test surfaces when building or filtering the gazetteer",
+  "re-run this audit if the ledgers are rebuilt from any new corpus"
+ ]
+}
