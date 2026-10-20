@@ -35,7 +35,7 @@ GOLD_SCHEMA = {
     "properties": {
         "schema_version": {"const": "gold-1.0"},
         "recipe_id": {"type": "string"}, "source_ref": {"type": "string"},
-        "annotator": {"enum": ["Kush", "Parv", "ADJUDICATED"]},
+        "annotator": {"enum": ["Kush", "Parv", "ADJUDICATED", "JOINT"]},
         "status": {"enum": ["DRAFT", "DONE", "ADJUDICATED"]},
         "locale": {"type": "string"},
         "ingredient_lines": {"type": "array", "items": {

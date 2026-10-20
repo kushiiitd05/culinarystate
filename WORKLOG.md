@@ -825,3 +825,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/repair_foodcom_gold.py`, `tests/test_foodcom_gold_repair.py`, `reports/gold/foodcom_ai_assisted_v1_to_v1_1.md`
 - **Verified:** 3006 passed; v1.1 regenerated 20/20 DONE
 - **Next:** S118C: wait for the 8 remaining control runs, run SIZE analysis, write reports/ner/recipedb3_matched_reproduction.md, stop and report; no S119 before that
+
+### S121 · 2026-10-20 13:06 IST · DEL-3 · S118A format: Food.com v1.1 as ONE joint JSON (annotator JOINT)
+- **Who:** claude
+- **Did:** Per Kush: joint file from now on. Added JOINT to the gold-1.0 annotator enum; repair tool now writes foodcom_v1_1_joint.json (20 recipes, provenance block AI_REAUTHORED_SOURCE_GROUNDED / HUMAN_REVIEW_PENDING); removed the identical Kush/Parv per-recipe v1.1 copies; scorer, coverage tool and tests read the bundle. Results unchanged (310 events, 20/20 DONE, 15 recipes / 51 pairs / 37 cells). S117 files untouched.
+- **Files:** `src/culinarystate/annotation/gold.py`, `tools/repair_foodcom_gold.py`, `tools/score_foodcom_repair.py`, `tools/hstate_coverage_foodcom.py`, `tests/test_foodcom_gold_repair.py`
+- **Verified:** 3006 passed
+- **Next:** S118C when A100 control finishes

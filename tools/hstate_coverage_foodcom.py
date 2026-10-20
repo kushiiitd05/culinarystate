@@ -23,10 +23,16 @@ from culinarystate.vocab.foodon import norm  # noqa: E402
 G = ROOT / "annotation" / "gold"
 
 
-def pairs_for(files, ing, proc, cells):
+def load_docs(d):
+    joint = G / d / "foodcom_v1_1_joint.json"
+    if joint.exists():
+        return json.loads(joint.read_text())["recipes"]
+    return [json.loads(f.read_text()) for f in sorted((G / d / "Kush").glob("*.json"))]
+
+
+def pairs_for(docs, ing, proc, cells):
     pairs, per_recipe = set(), defaultdict(set)
-    for f in files:
-        d = json.loads(f.read_text())
+    for d in docs:
         rid, ev = d["recipe_id"], to_events(d)
         concept = {l["entity"]: l["concept"] for l in d["ingredient_lines"]}
         adds = {e.label for e in ev if isinstance(e, Add)}
@@ -58,7 +64,7 @@ def main():
             cells[(i, p)].append((e["id"], e["source_family_id"]))
     out = {}
     for name, d in (("v1_S117", "foodcom_ai_assisted"), ("v1_1_S118", "foodcom_ai_assisted_v1_1")):
-        pairs, per = pairs_for(sorted((G / d / "Kush").glob("*.json")), ing, proc, cells)
+        pairs, per = pairs_for(load_docs(d), ing, proc, cells)
         uniq = {(i, p) for _, i, p in pairs}
         out[name] = {"supported_recipes": len(per), "supported_recipe_evidence_pairs": len(pairs), "unique_ingredient_process_cells": len(uniq),
                      "process_families": sorted({str(pfam.get(p)) for _, p in uniq}), "evidence_source_families": sorted({s for c in uniq for _, s in cells[c]}),

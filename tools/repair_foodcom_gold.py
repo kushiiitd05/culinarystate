@@ -86,24 +86,27 @@ def build(old, sp, names):
 def main():
     spec, names = load_spec(), car.registry()
     log, stats = [], []
-    for who in ("Kush", "Parv"):
-        (V1 / who).mkdir(parents=True, exist_ok=True)
+    V1.mkdir(parents=True, exist_ok=True)
+    recipes = []
     for f in sorted((V0 / "Kush").glob("*.Kush.json")):
         old = json.loads(f.read_text())
         rid = old["recipe_id"]
         doc = build(old, spec[rid], names)
-        errs = validate_gold({**doc, "annotator": "Kush", "status": "DONE"})
+        errs = validate_gold({**doc, "annotator": "JOINT", "status": "DONE"})
         iss, det = [], True
         if not errs:
-            ev = to_events({**doc, "annotator": "Kush", "status": "DONE"})
-            r1, r2 = replay(ev), replay(to_events({**doc, "annotator": "Kush", "status": "DONE"}))
+            ev = to_events({**doc, "annotator": "JOINT", "status": "DONE"})
+            r1, r2 = replay(ev), replay(to_events({**doc, "annotator": "JOINT", "status": "DONE"}))
             iss = list(r1.issues)
             det = repr(r1.__dict__) == repr(r2.__dict__) if hasattr(r1, "__dict__") else True
         status = "DONE" if not errs and not iss and det else "DRAFT"
         n_ev = sum(len(s["events"]) for s in doc["steps"])
-        for who in ("Kush", "Parv"):
-            (V1 / who / f"{rid}.{who}.json").write_text(json.dumps({**doc, "annotator": who, "status": status}, indent=2, ensure_ascii=False) + "\n")
+        recipes.append({**doc, "annotator": "JOINT", "status": status})
         stats.append((rid, status, n_ev, errs[:2], [str(i) for i in iss[:4]], det))
+    bundle = {"annotator": "JOINT", "schema_version": "gold-1.0", "provenance": PROV, "n_recipes": len(recipes),
+              "note": "Kush and Parv sets are identical (one AI proposal); from S118 on there is ONE joint file. Per-recipe tool copies: tools/bundle_gold_packs.py-style split on demand.",
+              "recipes": recipes}
+    (V1 / "foodcom_v1_1_joint.json").write_text(json.dumps(bundle, indent=1, ensure_ascii=False) + "\n")
     for s in stats:
         print(s)
     print("DONE:", sum(s[1] == "DONE" for s in stats), "events:", sum(s[2] for s in stats))

@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.state_graph.rule_compiler import step_processes  # noqa: E402
 
 A = ROOT / "reports" / "gold" / "foodcom_dropped_event_audit.csv"
-V1 = ROOT / "annotation" / "gold" / "foodcom_ai_assisted_v1_1" / "Kush"
+V1 = ROOT / "annotation" / "gold" / "foodcom_ai_assisted_v1_1" / "foodcom_v1_1_joint.json"
 POLICY = {"CONVERTER_LIMITATION", "OPTIONAL_BRANCH", "ALTERNATIVE_BRANCH"}
 VESSEL = re.compile(r"^(heat|reduce|preheat|boil)$")
 
@@ -28,7 +28,7 @@ def canon(a):
 
 
 def main():
-    docs = {json.loads(p.read_text())["recipe_id"]: json.loads(p.read_text()) for p in V1.glob("*.json")}
+    docs = {d["recipe_id"]: d for d in json.loads(V1.read_text())["recipes"]}
     rows = list(csv.DictReader(open(A)))
     for r in rows:
         steps = {s["step_index"]: s for s in docs[r["recipe_id"]]["steps"]}
