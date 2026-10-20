@@ -47,23 +47,25 @@ def load_docs(dataset: str, data: str):
     return [B.words_to_spans(s.split(), B.tags_to_bio(t.split(), set(KNOWN_RDB3))) for s, t in zip(df.sentence, df.tags)]
 
 
-def encode(tok, text, spans, tag2id, max_len, prefix=None):
+def encode(tok, text, spans, tag2id, max_len, prefix=None, with_widx=False):
     words = [(m.start(), m.end()) for m in WORD.finditer(text)]
     wl = [text[a:b] for a, b in words]
     enc = tok(prefix, wl, is_split_into_words=True, truncation=True, max_length=max_len) if prefix else tok(wl, is_split_into_words=True, truncation=True, max_length=max_len)
     seq = enc.sequence_ids() if prefix else [0] * len(enc["input_ids"])
-    y, offs, prev = [], [], None
+    y, offs, prev, widx = [], [], None, []
     for w, sq in zip(enc.word_ids(), seq):
         if w is None or w == prev or sq != (1 if prefix else 0):
             y.append(-100)
             offs.append((0, 0))
+            widx.append(-1)
         else:
+            widx.append(w)
             s, e = words[w]
             lab = next(((a, lab) for a, b, lab in spans if a <= s < b), None)
             y.append(tag2id["O"] if lab is None else tag2id[("B-" if s == lab[0] else "I-") + lab[1]])
             offs.append((s, e))
         prev = w
-    return enc["input_ids"], enc["attention_mask"], offs, y
+    return (enc["input_ids"], enc["attention_mask"], offs, y) + ((widx,) if with_widx else ())
 
 
 def decode(pred_ids, offsets, id2tag):
