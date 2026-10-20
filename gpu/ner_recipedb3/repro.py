@@ -11,6 +11,8 @@ Both report seqeval entity macro/micro F1, plus the theirs-test split broken int
 in train ("leaked") and rows that do not. Assumption: tags -> BIO by starting a new entity when a tag differs from
 the previous word's tag (their BIO file is not released; consecutive identical tags are one entity).
 """
+from __future__ import annotations
+
 import argparse
 import json
 import random
