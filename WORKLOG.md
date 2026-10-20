@@ -839,3 +839,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/repair_foodcom_gold.py`, `tests/test_foodcom_gold_repair.py`, `reports/gold/foodcom_ai_assisted_v1_to_v1_1.md`, `reports/gold/foodcom_v1_1_review_record.json`
 - **Verified:** 3006 passed; 20/20 DONE
 - **Next:** S118C when A100 control finishes
+
+### S123 · 2026-10-20 16:14 IST · DEL-4 · S119 prep: execution plan, E0 trainer on frozen benchmark, TASTEset queue launched, laptop-side span/router/stats modules
+- **Who:** claude
+- **Did:** reports/ner/s119_execution_plan.md (A100 vs Mac split, rung ownership, gates, permissions needed: ModernBERT needs transformers>=4.48, gliner install, FoodBase). gpu/ner_bench/bench_train.py = E0 encoder(+CRF) on benchmark v1 splits (dev-only checkpoint, evaluate() metrics, CI, calibration/dev/test span predictions saved); smoke-tested; TASTEset queue (deberta-base+/-CRF, bert, roberta, v3-large+/-CRF, 5 seeds) running one job per GPU. Mac modules: ner/spans.py (n-gram candidates, train-only gazetteer, 5-fold cross-fit, B/I projection, metadata dropout), ner/router.py (cross-fitted calibrator, risk-control thresholds, ACCEPT/REVIEW/NOVEL/REJECT, paired bootstrap, Holm, promotion rule). 8 new tests.
+- **Files:** `gpu/ner_bench/`, `src/culinarystate/ner/spans.py`, `src/culinarystate/ner/router.py`, `tests/test_ner_spans_router.py`, `reports/ner/s119_execution_plan.md`
+- **Verified:** full suite passes
+- **Next:** aggregate TASTEset E0; finish S118C report after SIZE runs; amendment A1
