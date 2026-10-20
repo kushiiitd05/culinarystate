@@ -26,13 +26,13 @@ def test_v1_1_all_20_validate_replay_and_deterministic():
 
 
 @have
-def test_v1_1_is_one_joint_bundle_with_pending_review_provenance():
+def test_v1_1_is_one_joint_bundle_with_batch_reviewed_provenance():
     b = json.loads(J.read_text())
     assert b["annotator"] == "JOINT" and b["n_recipes"] == 20
-    assert "AI_REAUTHORED_SOURCE_GROUNDED" in b["provenance"] and "HUMAN_REVIEW_PENDING" in b["provenance"]
+    assert "AI_ASSISTED_HUMAN_REVIEWED (batch-level)" in b["provenance"] and "NOT independent" in b["provenance"]
     for d in b["recipes"]:
         assert "mixture step" not in json.dumps(d)
-        assert "HUMAN_REVIEW_PENDING" in d["notes"]
+        assert "batch-level" in d["notes"]
 
 
 @have

@@ -832,3 +832,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/annotation/gold.py`, `tools/repair_foodcom_gold.py`, `tools/score_foodcom_repair.py`, `tools/hstate_coverage_foodcom.py`, `tests/test_foodcom_gold_repair.py`
 - **Verified:** 3006 passed
 - **Next:** S118C when A100 control finishes
+
+### S122 · 2026-10-20 13:33 IST · DEL-3 · S118A Food.com v1.1 review ingested: AI_ASSISTED_HUMAN_REVIEWED (batch-level), provenance gate cleared
+- **Who:** claude
+- **Did:** Kush_Parv_foodcom_v1_1_joint_review.csv (474 rows: 258 ingredient, 157 step, 59 unknown) has no row-level decisions or remarks; Kush states he reviewed and approves v1.1, Parv approved (relayed). Recorded batch-level approval (reports/gold/foodcom_v1_1_review_record.json, sheet sha256 kept, sheet copy local), 0 events changed, joint bundle provenance updated to AI_ASSISTED_HUMAN_REVIEWED (batch-level, not independent). H_STATE_GOLD_PROVENANCE_GATE cleared at batch level; S116 eligibility screen still unconfirmed. Kush also shared the Aprilab metadata-fused NER strategy; its differences from the frozen benchmark v1 are logged for the S119 block.
+- **Files:** `tools/repair_foodcom_gold.py`, `tests/test_foodcom_gold_repair.py`, `reports/gold/foodcom_ai_assisted_v1_to_v1_1.md`, `reports/gold/foodcom_v1_1_review_record.json`
+- **Verified:** 3006 passed; 20/20 DONE
+- **Next:** S118C when A100 control finishes

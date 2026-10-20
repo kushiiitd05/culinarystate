@@ -23,11 +23,11 @@ from culinarystate.state_graph.engine import replay  # noqa: E402
 
 V0 = ROOT / "annotation" / "gold" / "foodcom_ai_assisted"
 V1 = ROOT / "annotation" / "gold" / "foodcom_ai_assisted_v1_1"
-PROV = ("PROVENANCE: AI_REAUTHORED_SOURCE_GROUNDED; HUMAN_REVIEW_PENDING (v1.1, S118A). v1 = AI Pass-1 proposal batch-approved by Kush in chat "
-        "(Parv relayed); that approval covers v1 ONLY. v1.1 re-authors every step's events from the source text by the AI (Claude), restoring "
-        "the 126 events dropped in S117 and replacing mechanical output names; step-only foods become entities with quantity UNKNOWN. "
-        "NOT human-verified line by line, NOT independent; Kush and Parv files identical. Promote to AI_ASSISTED_HUMAN_REVIEWED only after "
-        "Kush reviews v1.1.")
+PROV = ("PROVENANCE: AI_ASSISTED_HUMAN_REVIEWED (batch-level). v1.1 events were re-authored from the source steps by the AI (Claude) in S118A "
+        "(v1 = AI Pass-1 proposal, batch-approved by Kush in chat on S117). Kush reviewed v1.1 and approved it, and Parv reviewed and approved "
+        "(relayed by Kush) on 2026-10-20; the review sheet has no row-level decisions or remarks, so no events changed "
+        "(reports/gold/foodcom_v1_1_review_record.json). NOT independent annotation; Kush and Parv share one AI proposal; agreement non-informative. "
+        "S116 eligibility screen still unconfirmed.")
 
 
 def load_spec():
