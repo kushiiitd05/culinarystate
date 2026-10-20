@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import random
 import re
 import time
@@ -27,6 +28,13 @@ from seqeval.metrics import classification_report, f1_score
 from sklearn.model_selection import GroupShuffleSplit, train_test_split
 from torch.utils.data import DataLoader, Dataset
 from transformers import AutoModelForTokenClassification, AutoTokenizer
+
+def _jsonable(o):
+    """numpy scalars/arrays -> plain python (a run lost its result to int64 at the final dump)."""
+    if hasattr(o, "tolist"):
+        return o.tolist()
+    raise TypeError(f"not JSON serializable: {type(o)}")
+
 
 TAGS = ["NAME", "QUANTITY", "UNIT", "STATE", "TEMP", "DF"]            # SIZE absent in their label_dict
 LABELS = ["O"] + [f"{p}-{t}" for t in TAGS for p in "BI"]
@@ -87,7 +95,8 @@ def predict(model, loader, dev, df):
 
 def score(golds, preds):
     r = classification_report(golds, preds, output_dict=True, zero_division=0)
-    return {"macro_f1": r["macro avg"]["f1-score"], "micro_f1": r["micro avg"]["f1-score"], "n_entities": r["micro avg"]["support"]}
+    per = {k: {"f1": v["f1-score"], "precision": v["precision"], "recall": v["recall"], "support": v["support"]} for k, v in r.items() if k not in ("micro avg", "macro avg", "weighted avg")}
+    return {"macro_f1": r["macro avg"]["f1-score"], "micro_f1": r["micro avg"]["f1-score"], "n_entities": r["micro avg"]["support"], "per_label": per}
 
 
 def main():
@@ -102,7 +111,14 @@ def main():
     ap.add_argument("--max-len", type=int, default=128)
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--out", default="runs")
+    ap.add_argument("--with-size", action="store_true", help="include SIZE in the label map (their notebook drops it)")
     a = ap.parse_args()
+    global TAGS, LABELS, L2I
+    if a.with_size:
+        TAGS = TAGS + ["SIZE"]
+        LABELS = ["O"] + [f"{p}-{t}" for t in TAGS for p in "BI"]
+        L2I = {l: i for i, l in enumerate(LABELS)}
+    t_start = time.time()
     random.seed(a.seed); np.random.seed(a.seed); torch.manual_seed(a.seed)
     df = pd.read_csv(a.data).dropna()
     df = df[df.sentence.astype(str).str.strip() != ""].reset_index(drop=True)
@@ -151,7 +167,10 @@ def main():
            "n_test": len(test), "skipped_len_mismatch": skipped, "best_epoch": best_ep,
            "selection_split": "TEST" if a.protocol == "theirs" else "DEV",
            "test_at_best": score(*best_pred), "test_at_last": score(*last_pred), "log": log,
-           "leaked_frac_of_test": float(test.leaked.mean())}
+           "leaked_frac_of_test": float(test.leaked.mean()), "with_size": a.with_size, "labels": LABELS,
+           "exact_duplicate_frac_of_test": float(test.sentence.isin(set(train.sentence)).mean()), "n_train_families": int(train.fam.nunique()),
+           "runtime_s": round(time.time() - t_start), "gpu": torch.cuda.get_device_name(0) if torch.cuda.is_available() else "cpu",
+           "code_revision": os.environ.get("REV", "unknown"), "torch": torch.__version__, "lr": a.lr, "epochs": a.epochs, "bs": a.bs}
     lk = test.leaked.to_numpy()
     for name, m in (("leaked", lk), ("non_leaked", ~lk)):
         idx = np.where(m)[0]
@@ -159,8 +178,8 @@ def main():
             res[f"test_at_best_{name}"] = {**score([best_pred[0][i] for i in idx], [best_pred[1][i] for i in idx]),
                                            "n_sentences": int(len(idx))}
     Path(a.out).mkdir(exist_ok=True)
-    (Path(a.out) / f"{a.protocol}_seed{a.seed}.json").write_text(json.dumps(res, indent=1))
-    print(json.dumps({k: v for k, v in res.items() if k != "log"}, indent=1))
+    (Path(a.out) / f"{a.protocol}{'_size' if a.with_size else ''}_seed{a.seed}.json").write_text(json.dumps(res, indent=1, default=_jsonable))
+    print(json.dumps({k: v for k, v in res.items() if k != "log"}, indent=1, default=_jsonable))
 
 
 if __name__ == "__main__":
