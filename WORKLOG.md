@@ -797,3 +797,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `annotation/gold/evidence_first_expansion/selection_manifest_v1.csv`, `annotation/gold/evidence_first_expansion/preannotation_manifest.csv`, `evidence/queues/hstate_top5_process_state_evidence.csv`, `tools/select_evidence_first_gold.py`, `tools/make_independent_gold_packs.py`
 - **Verified:** 2992 tests passed (19 new in S115-S116); recipe text only in git-ignored local files; no secrets in tracked files
 - **Next:** Kush and Parv annotate the 20 recipes independently (no sharing), freeze, then agreement + adjudication; Kush confirms or overturns the AI eligibility screen BEFORE starting
+
+### S117 · 2026-10-20 11:38 IST · DEL-3 · S117 Food.com 20 recipes: sheet converted to gold-1.0 (AI-assisted, human batch-approved)
+- **Who:** claude
+- **Did:** Converted Kush_Parv_joint_review_sheet.csv (402 rows) to gold-1.0 for Kush and Parv: 40/40 validate+replay clean, 281 events, 126 proposed events not written (unresolved refs). Provenance AI_ASSISTED_HUMAN_REVIEWED: Kush chat batch approval, Parv relayed, no row-level remarks, sets identical so agreement non-informative. Blank independent bundles and freeze hashes untouched. A100 RecipeDB3 reproduction still running (epoch ~11/15 first seed per protocol, 2 logs).
+- **Files:** `tools/convert_foodcom_sheet.py`, `reports/gold/foodcom_ai_assisted_human_review.md`
+- **Verified:** 2993 tests passed; 40/40 DONE
+- **Next:** Pass 2 audit of 126 dropped events; pull RecipeDB3 results and finish reproduction report; span-model bake-off
