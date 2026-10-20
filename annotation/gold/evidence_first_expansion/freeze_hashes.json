@@ -1,11 +1,15 @@
 {
  "frozen_utc": "2026-10-20",
- "note": "hashes of the committed, text-free freeze artefacts; pack files hashed per recipe in preannotation_manifest.csv",
+ "note": "hashes of the committed, text-free freeze artefacts; pack files hashed per recipe in preannotation_manifest.csv; bundles Kush_all_20.json/Parv_all_20.json hold the same blank recipes",
  "sha256": {
   "selection_manifest_v1.csv": "9526975f7ac7c2259a7e85ad14a95f4bdf0da3788403baac40f6df8aa709cd88",
   "screening_log.csv": "b1d4140da7dec38ef0613a0d7af488e67b2da67d72e2796360685f6199133511",
   "preannotation_manifest.csv": "258ffea24f756642310a315b892ed2b33d6aed1ff0f091c1542643156d97d6ab",
   "selection_protocol_v1.md": "a6fdd467ecdd4bdb705687cd519e869442d8bb6bb9c8f4c4665a1d697d94a3b0",
-  "ANNOTATION_PROTOCOL.md": "3dede50979e201be1f1e648e4801af859465e1f2a59d9500d9c241244b0e5ba9"
+  "ANNOTATION_PROTOCOL.md": "b01b059faf7cc31d480f81515d70538151001307eb62c5d4c4129d35aa484260"
+ },
+ "bundle_sha256_blank": {
+  "Kush": "ca9ca7ba1a8c5e6ed0e032daea95469b5b1bcfe9348f5e901143dc75da05fdc3",
+  "Parv": "f54f75f32b0b3f5a8ec47dfa07c33e6ae9d9cc3e0eb1c6399f1722bf4c6c8471"
  }
 }
