@@ -83,3 +83,42 @@ def build_context(train_docs: Sequence[tuple], labels: Sequence[str], kind: str,
     neg = [w for w, n in freq.most_common(200) if n >= 5 and ent[w] / n < 0.1 and w.isalpha()][:top_k * 2]
     base = build_context(train_docs, labels, "K2", top_k)
     return base + " ; not entities: " + ", ".join(neg)
+
+
+def type_context(train_docs: Sequence[tuple], label: str, labels: Sequence[str], budget: int = 30) -> str:
+    """Entity-TYPE-SPECIFIC knowledge context (RecipeBERT-KA-style, our own implementation): definition of ONE type, its most informative train examples (whole phrases first),
+    and the real train ambiguities involving that type ('surface is X not Y'). TRAIN only, word-budgeted."""
+    surf, lab_of = Counter(), defaultdict(Counter)
+    for text, spans in train_docs:
+        for s_, e_, lab in spans:
+            if lab in labels:
+                w = text[s_:e_].lower()
+                lab_of[w][lab] += 1
+                if lab == label:
+                    surf[w] += 1
+    parts, used = [f"{label.lower()} means {DEFS.get(label, label.lower())}"], 0
+    used = len(parts[0].split())
+
+    def add(piece):
+        nonlocal used
+        n = len(piece.split()) + 1
+        if used + n > budget:
+            return False
+        parts.append(piece)
+        used += n
+        return True
+    multi = [(c, w) for w, c in surf.items() if " " in w and c >= 2]
+    singles = surf.most_common(12)
+    ex = [w for _, w in sorted(multi, reverse=True)[:2]] + [w for w, _ in singles if w not in {m for _, m in multi}][:3]
+    if ex:
+        add("e.g. " + ", ".join(ex[:5]))
+    pairs = []
+    for w, c in lab_of.items():
+        if label in c and len(c) > 1 and sum(c.values()) >= 5:
+            (a, na), (b, nb) = c.most_common(2)
+            if nb / (na + nb) >= 0.02:
+                pairs.append((nb * (na + nb) ** 0.5, w, a, b))
+    for _, w, a, b in sorted(pairs, reverse=True):
+        if not add(f"{w} is {a.lower()} not {b.lower()}"):
+            break
+    return " ; ".join(parts)

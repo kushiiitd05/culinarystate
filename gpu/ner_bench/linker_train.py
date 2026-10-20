@@ -21,8 +21,9 @@ from transformers import AutoModel, AutoTokenizer
 MODEL = "intfloat/e5-large-v2"
 
 
-FMT = {"plain": "query: ", "ing": "query: ingredient name: "}
+FMT = {"plain": "query: ", "ing": "query: ingredient name: ", "none": ""}
 PREFIX = FMT["plain"]
+POOL = "mean"
 
 
 def embed(model, tok, texts, dev, bs=256, grad=False):
@@ -32,7 +33,8 @@ def embed(model, tok, texts, dev, bs=256, grad=False):
         with torch.set_grad_enabled(grad), torch.autocast("cuda", dtype=torch.bfloat16, enabled=dev == "cuda"):
             h = model(**b).last_hidden_state
         m = b["attention_mask"].unsqueeze(-1)
-        outs.append(torch.nn.functional.normalize(((h * m).sum(1) / m.sum(1)).float(), dim=-1))
+        v = h[:, 0] if POOL == "cls" else (h * m).sum(1) / m.sum(1)
+        outs.append(torch.nn.functional.normalize(v.float(), dim=-1))
     return torch.cat(outs)
 
 
@@ -108,19 +110,21 @@ def main():
     ap.add_argument("--bs", type=int, default=64)
     ap.add_argument("--lr", type=float, default=1e-5)
     ap.add_argument("--temp", type=float, default=0.05)
-    ap.add_argument("--fmt", choices=["plain", "ing"], default="plain", help="input prompt format for query/passage text")
+    ap.add_argument("--fmt", choices=["plain", "ing", "none"], default="plain", help="input prompt format for query/passage text")
     ap.add_argument("--aug", default="", help="synthetic TRAIN-only augmentation json (tools/m31_linker_augment.py): extra training queries + LLM hard negatives; evaluation gallery stays real-only")
+    ap.add_argument("--model", default=MODEL, help="bi-encoder (e5-large-v2 mean-pool + 'query: ' prefix; for bge use --fmt none --pool cls)")
+    ap.add_argument("--pool", choices=["mean", "cls"], default="mean")
     ap.add_argument("--tag", default="")
     ap.add_argument("--round2", type=int, default=0, help="extra epochs after mining EMBEDDING-neighbour hard negatives from the round-1 model (contract: nearest embedding candidates)")
     ap.add_argument("--out", default="runs")
     a = ap.parse_args()
-    global PREFIX
-    PREFIX = FMT[a.fmt]
+    global PREFIX, POOL
+    PREFIX, POOL = FMT[a.fmt], a.pool
     random.seed(a.seed), np.random.seed(a.seed), torch.manual_seed(a.seed)
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     D = json.loads(Path(a.data).read_text())
-    tok = AutoTokenizer.from_pretrained(MODEL)
-    model = AutoModel.from_pretrained(MODEL).to(dev)
+    tok = AutoTokenizer.from_pretrained(a.model)
+    model = AutoModel.from_pretrained(a.model).to(dev)
     by = defaultdict(list)
     for s, i in D["train_gallery"]:
         by[i].append(s)
@@ -178,9 +182,9 @@ def main():
     final, res = evaluate(model, tok, D, dev)
     out = Path(a.out)
     out.mkdir(exist_ok=True)
-    (out / f"linker__e5-large-v2{a.tag}__seed{a.seed}.json").write_text(json.dumps({"zero_shot_e5": zero, "contrastive": final, "tfidf_char_acc1_unseen_alias": tfidf_baseline(D), "history": hist,
+    (out / f"linker__{a.model.split("/")[-1]}{a.tag}__seed{a.seed}.json").write_text(json.dumps({"zero_shot_e5": zero, "contrastive": final, "tfidf_char_acc1_unseen_alias": tfidf_baseline(D), "history": hist,
                                                                            "minutes": round((time.time() - t0) / 60, 2), "hparams": vars(a), "fmt": a.fmt}, indent=1))
-    (out / f"linker__e5-large-v2{a.tag}__seed{a.seed}.tables.json").write_text(json.dumps({k: res[k] for k in ("unseen_alias", "unseen_concept", "dev_alias", "dev")}))
+    (out / f"linker__{a.model.split("/")[-1]}{a.tag}__seed{a.seed}.tables.json").write_text(json.dumps({k: res[k] for k in ("unseen_alias", "unseen_concept", "dev_alias", "dev")}))
     print("zero-shot acc1", zero["unseen_alias"]["acc1"], "contrastive acc1", final["unseen_alias"]["acc1"], "nil", final["nil"])
 
 

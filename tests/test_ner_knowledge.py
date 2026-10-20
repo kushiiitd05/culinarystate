@@ -23,3 +23,12 @@ def test_k4_is_contrastive_budgeted_and_train_only():
     assert "fresh is physical_quality not process" in c and "food olive oil" in c and len(c.split()) <= 30
     assert len(build_context(docs, labs, "K4", budget=8).split()) <= 8
     assert "zzzunseen" not in build_context(docs, labs, "K4") and "zzzunseen" in build_context(docs + [("zzzunseen xx", [(0, 12, "FOOD")])] * 30, labs, "K4", budget=60)
+
+
+def test_type_specific_context_is_per_type_budgeted_train_only():
+    from culinarystate.ner.knowledge import type_context
+    docs = [("fresh basil", [(0, 5, "PHYSICAL_QUALITY"), (6, 11, "FOOD")])] * 20 + [("fresh start", [(0, 5, "PROCESS")])] * 2 + [("olive oil", [(0, 9, "FOOD")])] * 5
+    labs = ["FOOD", "PHYSICAL_QUALITY", "PROCESS"]
+    c = type_context(docs, "PHYSICAL_QUALITY", labs, budget=30)
+    assert c.startswith("physical_quality means") and "fresh is physical_quality not process" in c and "olive oil" not in c and len(c.split()) <= 30
+    assert "zzz" not in type_context(docs, "FOOD", labs) and "olive oil" in type_context(docs, "FOOD", labs)

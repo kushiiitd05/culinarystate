@@ -1,0 +1,17 @@
+typespec_train.py --dataset tasteset --model microsoft/deberta-base --seed 1 --out runs
+typespec_train.py --dataset tasteset --model microsoft/deberta-base --seed 2 --out runs
+typespec_train.py --dataset tasteset --model microsoft/deberta-base --seed 3 --out runs
+typespec_train.py --dataset tasteset --model microsoft/deberta-base --seed 4 --out runs
+typespec_train.py --dataset tasteset --model microsoft/deberta-base --seed 5 --out runs
+bench_train.py --dataset tasteset --model roberta-large --crf --seed 1 --out runs
+bench_train.py --dataset tasteset --model roberta-large --crf --seed 2 --out runs
+bench_train.py --dataset tasteset --model roberta-large --crf --seed 3 --out runs
+bench_train.py --dataset tasteset --model roberta-large --crf --seed 4 --out runs
+bench_train.py --dataset tasteset --model roberta-large --crf --seed 5 --out runs
+rerank_train.py --zero-shot --seed 1 --out runs
+rerank_train.py --seed 1 --epochs 2 --out runs
+rerank_train.py --seed 2 --epochs 2 --out runs
+rerank_train.py --seed 3 --epochs 2 --out runs
+linker_train.py --model BAAI/bge-large-en-v1.5 --fmt none --pool cls --seed 1 --epochs 4 --lr 1e-5 --tag _lr1e5e4 --out runs
+linker_train.py --model BAAI/bge-large-en-v1.5 --fmt none --pool cls --seed 2 --epochs 4 --lr 1e-5 --tag _lr1e5e4 --out runs
+linker_train.py --model BAAI/bge-large-en-v1.5 --fmt none --pool cls --seed 3 --epochs 4 --lr 1e-5 --tag _lr1e5e4 --out runs
