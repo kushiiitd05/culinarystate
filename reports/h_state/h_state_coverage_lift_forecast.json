@@ -1,0 +1,148 @@
+{
+ "baseline_s114": {
+  "supported_pairs": 14,
+  "recipes": 8
+ },
+ "precision_used": 0.25,
+ "B_conservative_pass_rate_ASSUMED": 0.3333333333333333,
+ "foodcom_candidate_families": 41606,
+ "foodcom_candidate_rows_deduped": 77747,
+ "A": {
+  "10": {
+   "candidate_recipe_families_available": 41606,
+   "selected_recipes": 10,
+   "unique_families": 10,
+   "unique_ingredients": 19,
+   "unique_process_families": 9,
+   "distinct_cells": 30,
+   "distinct_evidence_ids": 134,
+   "supported_cuts_pairs_optimistic": 30,
+   "supported_conservative": 7.5,
+   "screening_needed_to_reach_optimistic": 40,
+   "effective_independent_clusters_total": 18
+  },
+  "20": {
+   "candidate_recipe_families_available": 41606,
+   "selected_recipes": 20,
+   "unique_families": 20,
+   "unique_ingredients": 35,
+   "unique_process_families": 9,
+   "distinct_cells": 60,
+   "distinct_evidence_ids": 283,
+   "supported_cuts_pairs_optimistic": 60,
+   "supported_conservative": 15.0,
+   "screening_needed_to_reach_optimistic": 80,
+   "effective_independent_clusters_total": 28
+  },
+  "30": {
+   "candidate_recipe_families_available": 41606,
+   "selected_recipes": 30,
+   "unique_families": 30,
+   "unique_ingredients": 48,
+   "unique_process_families": 10,
+   "distinct_cells": 90,
+   "distinct_evidence_ids": 411,
+   "supported_cuts_pairs_optimistic": 90,
+   "supported_conservative": 22.5,
+   "screening_needed_to_reach_optimistic": 120,
+   "effective_independent_clusters_total": 38
+  },
+  "40": {
+   "candidate_recipe_families_available": 41606,
+   "selected_recipes": 40,
+   "unique_families": 40,
+   "unique_ingredients": 55,
+   "unique_process_families": 10,
+   "distinct_cells": 119,
+   "distinct_evidence_ids": 530,
+   "supported_cuts_pairs_optimistic": 120,
+   "supported_conservative": 30.0,
+   "screening_needed_to_reach_optimistic": 160,
+   "effective_independent_clusters_total": 48
+  }
+ },
+ "B": {
+  "5": {
+   "new_evidence_cells": 5,
+   "gold_recipes_newly_supported": 5,
+   "cuts_newly_supported": 56,
+   "new_supported_pairs_optimistic": 11,
+   "new_supported_pairs_conservative": 3.7,
+   "ingredients": 4,
+   "processes": 4,
+   "evidence_types": {
+    "THERMAL_RETENTION": 5
+   },
+   "verification_cost_mix": {
+    "MEDIUM (R6 gap: literature)": 5
+   }
+  },
+  "10": {
+   "new_evidence_cells": 10,
+   "gold_recipes_newly_supported": 6,
+   "cuts_newly_supported": 78,
+   "new_supported_pairs_optimistic": 19,
+   "new_supported_pairs_conservative": 6.3,
+   "ingredients": 6,
+   "processes": 5,
+   "evidence_types": {
+    "THERMAL_RETENTION": 10
+   },
+   "verification_cost_mix": {
+    "MEDIUM (R6 gap: literature)": 9,
+    "MEDIUM": 1
+   }
+  },
+  "20": {
+   "new_evidence_cells": 20,
+   "gold_recipes_newly_supported": 8,
+   "cuts_newly_supported": 99,
+   "new_supported_pairs_optimistic": 29,
+   "new_supported_pairs_conservative": 9.7,
+   "ingredients": 14,
+   "processes": 7,
+   "evidence_types": {
+    "THERMAL_RETENTION": 15,
+    "YIELD/MASS": 4,
+    "MOISTURE": 1
+   },
+   "verification_cost_mix": {
+    "MEDIUM (R6 gap: literature)": 11,
+    "MEDIUM": 5,
+    "LOW (compiled CC0 table, digitised)": 2,
+    "HIGH": 1,
+    "LOW-MEDIUM": 1
+   }
+  }
+ },
+ "C": {
+  "+10 Gold +5 cells": {
+   "supported_optimistic": 55,
+   "supported_conservative": 25.2,
+   "effective_clusters": 23,
+   "annotation_recipes": 10,
+   "evidence_cells_to_curate": 5
+  },
+  "+20 Gold +5 cells": {
+   "supported_optimistic": 85,
+   "supported_conservative": 32.7,
+   "effective_clusters": 33,
+   "annotation_recipes": 20,
+   "evidence_cells_to_curate": 5
+  },
+  "+20 Gold +10 cells": {
+   "supported_optimistic": 93,
+   "supported_conservative": 35.3,
+   "effective_clusters": 34,
+   "annotation_recipes": 20,
+   "evidence_cells_to_curate": 10
+  },
+  "+30 Gold +10 cells": {
+   "supported_optimistic": 123,
+   "supported_conservative": 42.8,
+   "effective_clusters": 44,
+   "annotation_recipes": 30,
+   "evidence_cells_to_curate": 10
+  }
+ }
+}
