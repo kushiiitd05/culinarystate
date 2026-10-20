@@ -182,9 +182,10 @@ def main():
     final, res = evaluate(model, tok, D, dev)
     out = Path(a.out)
     out.mkdir(exist_ok=True)
-    (out / f"linker__{a.model.split("/")[-1]}{a.tag}__seed{a.seed}.json").write_text(json.dumps({"zero_shot_e5": zero, "contrastive": final, "tfidf_char_acc1_unseen_alias": tfidf_baseline(D), "history": hist,
+    mname = a.model.split("/")[-1]
+    (out / f"linker__{mname}{a.tag}__seed{a.seed}.json").write_text(json.dumps({"zero_shot_e5": zero, "contrastive": final, "tfidf_char_acc1_unseen_alias": tfidf_baseline(D), "history": hist,
                                                                            "minutes": round((time.time() - t0) / 60, 2), "hparams": vars(a), "fmt": a.fmt}, indent=1))
-    (out / f"linker__{a.model.split("/")[-1]}{a.tag}__seed{a.seed}.tables.json").write_text(json.dumps({k: res[k] for k in ("unseen_alias", "unseen_concept", "dev_alias", "dev")}))
+    (out / f"linker__{mname}{a.tag}__seed{a.seed}.tables.json").write_text(json.dumps({k: res[k] for k in ("unseen_alias", "unseen_concept", "dev_alias", "dev")}))
     print("zero-shot acc1", zero["unseen_alias"]["acc1"], "contrastive acc1", final["unseen_alias"]["acc1"], "nil", final["nil"])
 
 
