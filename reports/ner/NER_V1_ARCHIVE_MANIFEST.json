@@ -1,0 +1,43 @@
+{
+ "purpose": "Immutable index of the CulinaryNER-KF v1 closeout (S128). Do not edit listed files; changes require a new version.",
+ "git_tag": "ner-v1-closeout",
+ "tag_commit": "499abfb3f2ff1bc68069988262792b8809055417",
+ "immutable_files_sha256": {
+  "reports/ner/culinaryner_kf_final_report.md": "2abafa7a713b9bc64dab3769ac3a587d5fcf5869ff5fb80027243fcdca513ab5",
+  "reports/ner/_final_test.json": "139ec6fb007d56f714db8338de47010272438441f79ed39a306c10c22684905e",
+  "reports/ner/test_freeze_manifest.json": "dd7d9318b446b8cc954f00e7a88baf4c2ce2a31d90061c20811d64978c78c3ac",
+  "reports/ner/router_and_freeze.md": "29720fefd3e1dcc6084b1f346b886c8de3ceb7980dac37a017e41a75a1e0c8bd",
+  "reports/ner/metadata_calibration_crossdataset.md": "e91bf7fcb064d8a28be9eb847e0bd97c4c1142572e321dec83a927dc8243f2a5",
+  "reports/ner/fusion_decision.md": "eab90a305642bf1157485b20cb1975b853c397cf40aa9df37dbc5ab65674103a",
+  "reports/ner/span_backbone_and_linker_freeze.md": "b6aa440e1c554e16e6979294f131ae690b0f3997001f29ed0ec66e8eefb5ebf4",
+  "reports/ner/_router_tasteset.json": "ddb54a37d99000fa1a3aca26f93b3e280cd9d555fddade65f02e4f0b44cd50bc",
+  "reports/ner/_router_recipedb3.json": "e8b5ec2c175ff153605754b56f4cab9f5062f11c10313f2b990697c7f0724686",
+  "reports/ner/_linker_v2_eval.json": "5d0ef822bac63f7079889c66928bea6f7ee75cb20236b36201a616aa8870b8ff",
+  "reports/ner/_latency_bench.json": "eca29514d29576ff1d459a6e160fd9b326824b0b1e9527f54eff2afe99c53dc8",
+  "reports/ner/recipedb3_matched_reproduction.md": "4c5af358f2b4ba49e5522cbbe2ab1f5c34723a05b4d036d636c1a6b6f1560cd3",
+  "reports/ner/culinaryner_kf_design_contract.md": "b57691fee8cd7cc5a13950f0291ff15ef4166f27c162466fb1d5de2e991fa685",
+  "tools/final_test_eval.py": "2c6ee95e3fb29a7e6353c65c8b5ebbed7604e8e5d786738691cdbfe9a36f88ba",
+  "tools/router_eval.py": "14ce23f4bff4a9f40b04a318cda2572809013a88fd6be1d54fda7da56146d41d",
+  "tools/e2_signal_calibration.py": "571dc6df00597d5da77814b1fb520c63b0f95d6d06cd2128ba98138ae6efb1c9",
+  "tools/write_final_report.py": "68ff70679383fcc639caeb89c5e382708bd5d6dc9444c5652d170b5bf02790e8",
+  "gpu/ner_bench/bench_train.py": "53e55596a993ad918a8f7399e45249d5c49274779889243b256791a3f7ad04e9",
+  "gpu/ner_bench/linker_train.py": "63e554ae14328b89808e9c73a2b12e0e00db351eb63a7c9b2ff74376e95e53b9",
+  "gpu/ner_bench/crf.py": "dc045e8663e66a7cdd1303bec4429f9e93c80cbec971bd4870a4d4bc5e43e96d",
+  "benchmark/ner/semantic_benchmark_v1.json": "b31f29d13b8b56cb3000b5a9dd8292a535e351ac835400e014a0d94b35481315",
+  "benchmark/ner/amendment_A1.json": "e242f6a8855343d02f0fd743901ff546dd355ae614fc615d93a349fd473db38b"
+ },
+ "local_archives_untracked_sha256": {
+  "archive/ner_v1_closeout/_raw_all.tar.gz": "6265bbe141bef238da62ea8c998bcd4d1fce6476541890c906589750ebd4bff7",
+  "archive/ner_v1_closeout/_raw_conf.tar.gz": "3004e6e2b0f9d02f46958dbbb505230e476744ae7831eb824708d5a988019311",
+  "archive/ner_v1_closeout/_raw_e0.tar.gz": "4afea7559dbeae16c33ac649f6c4c4062bc67eeee772393cbdb1e51026972fcb",
+  "archive/ner_v1_closeout/_raw_export.tar.gz": "054fa454b6824c5d091fafcc58d73ce6bbb9a313835797fe779cf6b72901db16",
+  "archive/ner_v1_closeout/_raw_linker.tar.gz": "64e206ef7bb1ffd2b9cc9b717fa9924cdb9c3426b9da3ce39e91dd0a84b2cae6",
+  "archive/ner_v1_closeout/_raw_rdb3.tar.gz": "93b9cefe2702302dc3dc06bba7a77f113fafbbb172c968dd5f26bd83646cae70",
+  "archive/ner_v1_closeout/_raw_v2.tar.gz": "204a4c563322472f0a8e9a3f92275695edbedc37cf94d21df5edcf07c7548084",
+  "archive/ner_v1_closeout/features_linker_and_spans.tar.gz": "a25d3baa5bb47f0e4ae34393bc5a8bfb297ecb6f7278b18a6b0d89fdd8ac8403"
+ },
+ "archive_notes": "tarballs hold raw run JSONs, pred/conf tables (offsets only, no recipe text), linker exports and feature tables; kept local (RecipeDB3 DERIVED_ONLY, features/ git-ignored); never pushed (H7).",
+ "frozen_architecture": "DeBERTa-base+CRF -> calibrated span confidence + M6 -> label x seen/unseen risk router (eps 0.02, REJECT P<1/3) -> BGE candidate linker + advisory NOVEL",
+ "h6": "H6-C",
+ "server_artifacts": "/home/vinayak23597/Kush/culinarystate-ner-bench (runs, runs_conf, runs_export, runs_v2): not deleted; no model weights were stored"
+}

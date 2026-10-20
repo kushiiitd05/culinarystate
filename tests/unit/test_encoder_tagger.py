@@ -14,4 +14,6 @@ def test_bio_to_spans_matches_training_decode():
 
 
 def test_runtime_crf_is_the_trained_crf():
-    assert (ROOT / "src/culinarystate/ner/crf.py").read_text() == (ROOT / "gpu/ner_tasteset/crf.py").read_text()
+    # the runtime module is the trained CRF verbatim (compact + CRF class); S119 appended forward-backward marginals after it, so compare the trained prefix
+    trained = (ROOT / "gpu/ner_tasteset/crf.py").read_text()
+    assert (ROOT / "src/culinarystate/ner/crf.py").read_text().startswith(trained)
