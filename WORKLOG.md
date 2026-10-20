@@ -783,3 +783,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/build_hstate_r_candidates.py`, `benchmark/h_state/evidence_cut_candidates.csv`, `reports/sources/api_and_dataset_survey_s115.md`
 - **Verified:** no B3/B4 run; no question text written
 - **Next:** Kush writes questions; update validator to strata; find retention/yield evidence sources
+
+### S115 · 2026-10-20 10:12 IST · DEL-3 · External data audit + H_STATE coverage-lift decision (evidence-first scan, forecasts A/B/C)
+- **Who:** claude
+- **Did:** Food.com downloaded (Kaggle CLI, CC0 declared, authority unverified); official FNDDS/uFiSh/Density/AnFooD/USDA Cooking Yields R2 downloaded; registry 27 sources; Kaggle 17 process queries -> none relevant; GH/HF 29 rows; evidence-first scan BBC 11,934 (4,256 hit), Wikibooks 3,797 (1,051), Food.com 150k on A100 (48,969 hit, 243/338 cells); calibration precision 0.25; cleaned missing cells 810->58; forecasts A/B/C; decision: Path A +20 evidence-first Gold with screening, parallel +5 curated cells, do not write H_STATE questions yet; simulator contract + ingest policy; RecipeDB3 NER repro launched on A100 (running).
+- **Files:** `registry/sources/external_data_source_registry.csv`, `reports/sources/external_data_landscape_v1.md`, `reports/h_state/h_state_coverage_lift_forecast.md`, `annotation/gold/evidence_first_gold_expansion_plan.md`, `tools/evidence_first_candidates.py`
+- **Verified:** 2984 tests passed (11 new); no credentials in tracked files; S114 freeze hashes verified; no B3/B4, no questions, no compiler tuning
+- **Next:** Kush approves Food.com local use + selection algorithm (Gate 1); then selection freeze and blinded A/B packs
