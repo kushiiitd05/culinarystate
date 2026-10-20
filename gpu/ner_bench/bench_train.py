@@ -29,7 +29,7 @@ import metrics as M  # noqa: E402  (copy of src/culinarystate/scoring/metrics.py
 _pkg, _sc = types.ModuleType("culinarystate"), types.ModuleType("culinarystate.scoring")
 sys.modules.update({"culinarystate": _pkg, "culinarystate.scoring": _sc, "culinarystate.scoring.metrics": M})
 import benchmark as B  # noqa: E402
-from crf import CRF, compact  # noqa: E402
+from crf import CRF, compact, _fb, span_prob  # noqa: E402
 
 WORD = re.compile(r"\w+|[^\w\s]")
 PRIMARY = {"recipedb3": "recipedb3_published", "tasteset": "tasteset_native"}
@@ -100,26 +100,49 @@ def batches(items, bs, shuffle, rng):
 
 
 @torch.no_grad()
-def predict(model, items, docs, id2tag, dev, crf=None, bs=64):
+def predict(model, items, docs, id2tag, dev, crf=None, bs=64, conf=False, tag2id=None):
+    """conf=True also returns per-span confidences: CRF -> forward-backward span marginal; softmax -> mean token max-prob."""
     model.eval()
     out = [None] * len(items)
+    confs = [None] * len(items)
     for ids, att, y, order in batches(items, bs, False, None):
         with torch.autocast("cuda", dtype=torch.bfloat16, enabled=dev == "cuda"):
             em = model(input_ids=ids.to(dev), attention_mask=att.to(dev)).logits
         em = em.float()
+        pm = em.softmax(-1).max(-1).values.cpu() if (conf and crf is None) else None
         if crf is None:
             rows = em.argmax(-1).cpu().tolist()
         else:
             e, cm, idx = compact(em, (y != -100).to(dev))
-            rows = []
-            for b, path in enumerate(crf.decode(e, cm)):
+            rows, paths = [], crf.decode(e, cm)
+            for b, path in enumerate(paths):
                 row = [0] * em.size(1)
                 for j, tag in enumerate(path):
                     row[int(idx[b, j])] = tag
                 rows.append(row)
-        for row, k in zip(rows, order):
+        for bi, (row, k) in enumerate(zip(rows, order)):
             out[k] = decode(row[:len(items[k][0])], items[k][2], id2tag)
-    return out
+            if not conf:
+                continue
+            if crf is None:
+                offs = items[k][2]
+                confs[k] = [float(np.mean([pm[bi, p].item() for p, (s, e) in enumerate(offs) if s != e and sp[0] <= s < sp[1]] or [0.0])) for sp in out[k]]
+            else:
+                n = len(paths[bi])
+                fb = _fb(crf, e[bi, :n]) if n else None
+                cs, cur = [], None
+                for j, tg in enumerate(paths[bi]):
+                    kind, lab = (id2tag[tg].split("-", 1) if id2tag[tg] != "O" else ("O", None))
+                    if kind == "I" and cur and cur[2] == lab:
+                        cur[1] = j
+                        continue
+                    if cur:
+                        cs.append(cur)
+                    cur = [j, j, lab] if kind != "O" else None
+                if cur:
+                    cs.append(cur)
+                confs[k] = [span_prob(crf, e[bi, :n], s, en, tag2id["B-" + lab], tag2id["I-" + lab], fb) for s, en, lab in cs]
+    return (out, confs) if conf else out
 
 
 def main():
@@ -135,6 +158,7 @@ def main():
     ap.add_argument("--bs", type=int, default=16)
     ap.add_argument("--max-len", type=int, default=0, help="0 = 128 recipedb3 / 256 tasteset")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--conf", action="store_true", help="also save per-span confidences (CRF marginal / softmax) for the calibrator")
     ap.add_argument("--knowledge", default="K0", choices=["K0", "K1", "K2", "K3"], help="train-derived entity-type context prefix (Part VII)")
     ap.add_argument("--out", default="runs")
     a = ap.parse_args()
@@ -199,10 +223,13 @@ def main():
     model.load_state_dict(best_state)
     if crf:
         crf.load_state_dict(best_crf)
-    preds = {}
+    preds, pconf = {}, {}
     for p in ("dev", "calibration", "test"):
         it, dd = part(p)
-        preds[p] = predict(model, it, dd, id2tag, dev, crf)
+        if a.conf:
+            preds[p], pconf[p] = predict(model, it, dd, id2tag, dev, crf, conf=True, tag2id=tag2id)
+        else:
+            preds[p] = predict(model, it, dd, id2tag, dev, crf)
     td = part("test")[1]
     ev_docs = [(t, g, pr) for (t, g), pr in zip(td, preds["test"])]
     res = B.evaluate(ev_docs, counts, view)
@@ -218,6 +245,8 @@ def main():
         "peak_gpu_gb": round(torch.cuda.max_memory_allocated() / 1e9, 2) if dev == "cuda" else 0,
         "gpu": torch.cuda.get_device_name(0) if dev == "cuda" else "cpu", "torch": torch.__version__}, indent=1, default=lambda o: o.tolist()))
     (out / f"{name}.pred.json").write_text(json.dumps({p: [[list(s) for s in pr] for pr in v] for p, v in preds.items()}))
+    if a.conf:
+        (out / f"{name}.conf.json").write_text(json.dumps(pconf))
     print(name, "dev", max(h["dev_micro_f1"] for h in hist), "test exact micro", res["exact"]["micro"]["f1"], "boundary", round(res["boundary_error_rate"], 4), boot)
 
 

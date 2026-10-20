@@ -62,3 +62,46 @@ class CRF(nn.Module):
                 best.append(int(bp[best[-1]]))
             out.append(best[::-1])
         return out
+
+
+def _fb(crf: "CRF", e: torch.Tensor):
+    """Forward/backward log-messages for ONE sequence e [M,T] (no mask; slice to its length first). Returns alpha, beta, logZ."""
+    M, T = e.shape
+    alpha = [crf.start + e[0]]
+    for t in range(1, M):
+        alpha.append(torch.logsumexp(alpha[-1].unsqueeze(1) + crf.trans, dim=0) + e[t])
+    beta = [crf.end]
+    for t in range(M - 1, 0, -1):
+        beta.append(torch.logsumexp(crf.trans + (e[t] + beta[-1]).unsqueeze(0), dim=1))
+    beta = beta[::-1]
+    return torch.stack(alpha), torch.stack(beta), torch.logsumexp(alpha[-1] + crf.end, dim=0)
+
+
+@torch.no_grad()
+def marginals(crf: "CRF", e: torch.Tensor) -> torch.Tensor:
+    """Per-position tag marginals [M,T] for one sequence (rows sum to 1)."""
+    a, b, z = _fb(crf, e)
+    return torch.exp(a + b - z)
+
+
+@torch.no_grad()
+def span_prob(crf: "CRF", e: torch.Tensor, start: int, end: int, b_tag: int, i_tag: int, fb=None) -> float:
+    """P(exactly the span [start, end] tagged B-X I-X ... I-X, with the next position NOT I-X). This is the span confidence the calibrator uses
+    (CRF forward-backward marginal of the span's B...I path, not a token softmax). `end` inclusive."""
+    a, b, z = fb if fb is not None else _fb(crf, e)
+    M = e.size(0)
+    tags = [b_tag] + [i_tag] * (end - start)
+    if start == 0:
+        s = crf.start[tags[0]] + e[start, tags[0]]
+    else:
+        s = torch.logsumexp(a[start - 1] + crf.trans[:, tags[0]], dim=0) + e[start, tags[0]]
+    for k in range(1, len(tags)):
+        s = s + crf.trans[tags[k - 1], tags[k]] + e[start + k, tags[k]]
+    if end == M - 1:
+        s = s + crf.end[tags[-1]]
+    else:
+        nxt = torch.ones(e.size(1), dtype=torch.bool)
+        nxt[i_tag] = False                                                   # boundary: the following tag must not continue the span
+        msg = crf.trans[tags[-1]] + e[end + 1] + b[end + 1]
+        s = s + torch.logsumexp(msg[nxt], dim=0)
+    return float(torch.exp(s - z))

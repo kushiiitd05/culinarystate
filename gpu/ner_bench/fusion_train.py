@@ -20,6 +20,7 @@ from torch import nn
 from transformers import AutoModel, AutoTokenizer, get_linear_schedule_with_warmup
 
 import bench_train as T
+from heads import SpanHead, bio_to_spans
 from bench_train import B, M, CRF, compact
 
 D_META_DROP = 0.3
@@ -38,14 +39,16 @@ class Fused(nn.Module):
             self.ln, self.cls = nn.LayerNorm(2 * H), nn.Linear(2 * H, n_tags)
         self.last_gate = None
 
-    def forward(self, ids, att, meta, keep):
+    def forward(self, ids, att, meta, keep, ret_z=False):
         h = self.enc(input_ids=ids, attention_mask=att).last_hidden_state
         m = self.meta(meta * keep.view(-1, 1, 1))
         if self.mode == "gated":
             g = torch.sigmoid(self.gate(torch.cat([h, m], -1)))
             self.last_gate = g.detach()
-            return self.cls(g * h + (1 - g) * self.proj(m))
-        return self.cls(self.ln(torch.cat([h, m], -1)))
+            z = g * h + (1 - g) * self.proj(m)
+            return (self.cls(z), z) if ret_z else self.cls(z)
+        z = self.ln(torch.cat([h, m], -1))
+        return (self.cls(z), z) if ret_z else self.cls(z)
 
 
 def item_meta(items, widx, table, off, doc_ids, d):
@@ -91,6 +94,7 @@ def main():
     ap.add_argument("--feats", required=True)
     ap.add_argument("--feats-eval", default="")
     ap.add_argument("--tag", default="")
+    ap.add_argument("--span-lambda", type=float, default=0.0, help="auxiliary span-boundary head weight (Part X); CRF still decodes")
     ap.add_argument("--zero-meta", action="store_true")
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--epochs", type=int, default=15)
@@ -123,10 +127,12 @@ def main():
     items = [e[:4] for e in enc]
     model = Fused(a.model, len(tags), d, a.mode).to(dev)
     crf = CRF(len(tags)).to(dev)
+    head = SpanHead(model.enc.config.hidden_size, len(labels)).to(dev) if a.span_lambda > 0 else None
+    lab_id = {l: i for i, l in enumerate(labels)}
     tr_ids = split["train"][:a.limit] if a.limit else split["train"]
     tr = [items[i] for i in tr_ids]
     tr_m = [metas_tr[i] for i in tr_ids]
-    new = [p for n, p in model.named_parameters() if not n.startswith("enc.")]
+    new = [p for n, p in model.named_parameters() if not n.startswith("enc.")] + (list(head.parameters()) if head else [])
     opt = torch.optim.AdamW([{"params": model.enc.parameters(), "lr": lr}, {"params": new, "lr": 1e-3}, {"params": crf.parameters(), "lr": 5e-3}], weight_decay=0.01)
     steps = a.epochs * ((len(tr) + a.bs - 1) // a.bs)
     sch = get_linear_schedule_with_warmup(opt, int(0.1 * steps), steps)
@@ -142,9 +148,15 @@ def main():
             if a.zero_meta:
                 keep = keep * 0
             with torch.autocast("cuda", dtype=torch.bfloat16, enabled=dev == "cuda"):
-                em = model(ids.to(dev), att.to(dev), meta, keep)
+                em, zz = model(ids.to(dev), att.to(dev), meta, keep, True)
             e, cm, idx = compact(em.float(), (y != -100).to(dev))
-            loss = crf.nll(e, y.to(dev).gather(1, idx), cm)
+            yc = y.to(dev).gather(1, idx)
+            loss = crf.nll(e, yc, cm)
+            if head is not None:
+                zc = zz.float().gather(1, idx.unsqueeze(-1).expand(-1, -1, zz.size(-1)))
+                lens = cm.sum(1).tolist()
+                gold = [[(s, en, lab_id[lb]) for s, en, lb in bio_to_spans(yc[b, :lens[b]].tolist(), id2tag)] for b in range(len(lens))]
+                loss = loss + a.span_lambda * head.loss(zc, gold, lens)
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             opt.step(), sch.step(), opt.zero_grad()
@@ -167,7 +179,7 @@ def main():
     ev = [(t, g, pr) for (t, g), pr in zip(td, preds["test"])]
     res = B.evaluate(ev, counts, view)
     boot = M.grouped_bootstrap({i: [(g, p)] for i, (_, g, p) in enumerate(ev)}, lambda ds: M.corpus_span_scores(ds, "exact", labels=B.VIEWS[view])["micro"]["f1"], n_boot=1000)
-    mode = ("zero" if a.zero_meta else a.mode) + a.tag
+    mode = ("zero" if a.zero_meta else a.mode) + (f"+span{a.span_lambda}" if head else "") + a.tag
     name = f"{a.dataset}__{a.model.split('/')[-1]}_fusion-{mode}__seed{a.seed}"
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
