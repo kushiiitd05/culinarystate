@@ -1,0 +1,108 @@
+{
+ "dataset": "tasteset",
+ "split_used": "test",
+ "agg": {
+  "deberta-base+CRF": {
+   "n_seeds": 5,
+   "micro": [
+    0.9371,
+    0.0024
+   ],
+   "macro": [
+    0.8772,
+    0.0122
+   ],
+   "relaxed": [
+    0.961,
+    0.0005
+   ],
+   "boundary": [
+    0.0268,
+    0.0031
+   ],
+   "unseen": [
+    0.7008,
+    0.0091
+   ],
+   "tail": [
+    0.8998,
+    0.0065
+   ],
+   "head": [
+    0.9877,
+    0.0009
+   ],
+   "min": [
+    2.354,
+    0.2109
+   ],
+   "gb": [
+    3.58,
+    0.0
+   ]
+  },
+  "deberta-v3-large+CRF": {
+   "n_seeds": 5,
+   "micro": [
+    0.9371,
+    0.0035
+   ],
+   "macro": [
+    0.8667,
+    0.0233
+   ],
+   "relaxed": [
+    0.961,
+    0.0023
+   ],
+   "boundary": [
+    0.0257,
+    0.0021
+   ],
+   "unseen": [
+    0.6936,
+    0.0214
+   ],
+   "tail": [
+    0.904,
+    0.0126
+   ],
+   "head": [
+    0.9873,
+    0.0013
+   ],
+   "min": [
+    3.742,
+    0.4448
+   ],
+   "gb": [
+    10.46,
+    0.0071
+   ]
+  }
+ },
+ "crf_vs_softmax": {
+  "v3-large+CRF vs base+CRF": {
+   "cand": "deberta-v3-large+CRF",
+   "base": "deberta-base+CRF",
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "delta_micro": 0.0,
+   "ci95": [
+    -0.0053,
+    0.0054
+   ],
+   "p": 0.996,
+   "seeds_won": "2/5",
+   "delta_unseen_f1": -0.0072,
+   "delta_macro": -0.0105,
+   "holm_significant": false,
+   "promoted": false
+  }
+ }
+}

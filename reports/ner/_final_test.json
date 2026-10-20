@@ -1,0 +1,1239 @@
+{
+ "tasteset": {
+  "n_test_spans": 2078,
+  "n_test_docs": 105,
+  "span_acc": 0.9249278152069298,
+  "calibration": {
+   "raw_conf": {
+    "all": {
+     "nll": 0.30897,
+     "brier": 0.05853,
+     "ece": 0.05861,
+     "n": 2078
+    },
+    "food": {
+     "nll": 0.40623,
+     "brier": 0.07364,
+     "ece": 0.07206,
+     "n": 610
+    },
+    "unseen_mention": {
+     "nll": 1.09337,
+     "brier": 0.21799,
+     "ece": 0.22478,
+     "n": 258
+    },
+    "seen_mention": {
+     "nll": 0.19777,
+     "brier": 0.03593,
+     "ece": 0.03506,
+     "n": 1820
+    },
+    "tail_mention": {
+     "nll": 0.47269,
+     "brier": 0.09615,
+     "ece": 0.09083,
+     "n": 164
+    }
+   },
+   "calibrated": {
+    "all": {
+     "nll": 0.19856,
+     "brier": 0.05056,
+     "ece": 0.03526,
+     "n": 2078
+    },
+    "food": {
+     "nll": 0.2623,
+     "brier": 0.06555,
+     "ece": 0.05314,
+     "n": 610
+    },
+    "unseen_mention": {
+     "nll": 0.6531,
+     "brier": 0.18395,
+     "ece": 0.15208,
+     "n": 258
+    },
+    "seen_mention": {
+     "nll": 0.13412,
+     "brier": 0.03165,
+     "ece": 0.01992,
+     "n": 1820
+    },
+    "tail_mention": {
+     "nll": 0.31138,
+     "brier": 0.08468,
+     "ece": 0.06491,
+     "n": 164
+    }
+   },
+   "calibrated+M6": {
+    "all": {
+     "nll": 0.18461,
+     "brier": 0.04857,
+     "ece": 0.03149,
+     "n": 2078
+    },
+    "food": {
+     "nll": 0.23953,
+     "brier": 0.06307,
+     "ece": 0.04293,
+     "n": 610
+    },
+    "unseen_mention": {
+     "nll": 0.52074,
+     "brier": 0.16443,
+     "ece": 0.10569,
+     "n": 258
+    },
+    "seen_mention": {
+     "nll": 0.13696,
+     "brier": 0.03214,
+     "ece": 0.02216,
+     "n": 1820
+    },
+    "tail_mention": {
+     "nll": 0.31847,
+     "brier": 0.08559,
+     "ece": 0.05355,
+     "n": 164
+    }
+   }
+  },
+  "risk_discrimination_aurc": {
+   "raw": 0.011827549785876182,
+   "calibrated": 0.012855662920802228,
+   "calibrated+M6": 0.012574997356505637
+  },
+  "routers": {
+   "R1_raw_span": {
+    "tau": 0.9989324808120728,
+    "coverage": 0.856111645813282,
+    "accept_error": 0.025295109612141653,
+    "review_rate": 0.143888354186718,
+    "novel_rate": 0.0,
+    "reject_rate": 0.0,
+    "error_capture_nonaccept": 0.7115384615384616,
+    "reject_error_rate": null,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.13709677419354838,
+    "n_accept_unseen": 124,
+    "cost_per_100_ce5": 25.21655437921078,
+    "cost_per_100_ce10": 36.04427333974976,
+    "cost_per_100_ce20": 57.69971126082772,
+    "accept_error_ci95": [
+     0.017091829015136385,
+     0.03491904502122375
+    ]
+   },
+   "R2_calibrated_span": {
+    "tau": 0.9852827265685515,
+    "coverage": 0.8585178055822906,
+    "accept_error": 0.0257847533632287,
+    "review_rate": 0.14148219441770934,
+    "novel_rate": 0.0,
+    "reject_rate": 0.0,
+    "error_capture_nonaccept": 0.7051282051282052,
+    "reject_error_rate": null,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.1349206349206349,
+    "n_accept_unseen": 126,
+    "cost_per_100_ce5": 25.21655437921078,
+    "cost_per_100_ce10": 36.28488931665063,
+    "cost_per_100_ce20": 58.42155919153032,
+    "accept_error_ci95": [
+     0.017532371072763734,
+     0.03515283647035618
+    ]
+   },
+   "R3_calibrated_span+M6": {
+    "tau": 0.9649595687331537,
+    "coverage": 0.8734359961501443,
+    "accept_error": 0.025895316804407712,
+    "review_rate": 0.12656400384985564,
+    "novel_rate": 0.0,
+    "reject_rate": 0.0,
+    "error_capture_nonaccept": 0.6987179487179487,
+    "reject_error_rate": null,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.09574468085106383,
+    "n_accept_unseen": 94,
+    "cost_per_100_ce5": 23.965351299326276,
+    "cost_per_100_ce10": 35.274302213666985,
+    "cost_per_100_ce20": 57.89220404234841,
+    "accept_error_ci95": [
+     0.0169478193165054,
+     0.03543159082853765
+    ]
+   },
+   "R3s_label_strata": {
+    "taus": {
+     "COLOR": 0.965,
+     "FOOD": null,
+     "PART": 0.965,
+     "PHYSICAL_QUALITY": null,
+     "PROCESS": 0.9895,
+     "PURPOSE": 0.965,
+     "QUANTITY": 0.2593,
+     "TASTE": 0.965,
+     "UNIT": 0.5207,
+     "__pooled__": 0.965
+    },
+    "coverage": 0.5789220404234842,
+    "accept_error": 0.02660016625103907,
+    "review_rate": 0.4210779595765159,
+    "novel_rate": 0.0,
+    "reject_rate": 0.0,
+    "error_capture_nonaccept": 0.7948717948717948,
+    "reject_error_rate": null,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.26666666666666666,
+    "n_accept_unseen": 30,
+    "cost_per_100_ce5": 49.80750721847931,
+    "cost_per_100_ce10": 57.50721847930703,
+    "cost_per_100_ce20": 72.90664100096247,
+    "accept_error_ci95": [
+     0.016504953737820356,
+     0.039594387755102024
+    ]
+   },
+   "R6_FINAL_label_x_unseen": {
+    "taus": {
+     "COLOR|S": 0.965,
+     "COLOR|U": 0.965,
+     "FOOD|S": null,
+     "FOOD|U": null,
+     "PART|S": 0.965,
+     "PHYSICAL_QUALITY|S": null,
+     "PHYSICAL_QUALITY|U": 0.965,
+     "PROCESS|S": 0.9888,
+     "PROCESS|U": 0.965,
+     "PURPOSE|S": 0.965,
+     "PURPOSE|U": 0.965,
+     "QUANTITY|S": 0.5207,
+     "QUANTITY|U": 0.965,
+     "TASTE|S": 0.965,
+     "TASTE|U": 0.965,
+     "UNIT|S": 0.5396,
+     "UNIT|U": 0.965,
+     "__pooled__": 0.965
+    },
+    "coverage": 0.5866217516843119,
+    "accept_error": 0.02132895816242822,
+    "review_rate": 0.4032723772858518,
+    "novel_rate": 0.0,
+    "reject_rate": 0.01010587102983638,
+    "error_capture_nonaccept": 0.8333333333333334,
+    "reject_error_rate": 1.0,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.10344827586206896,
+    "n_accept_unseen": 29,
+    "cost_per_100_ce5": 46.5832531280077,
+    "cost_per_100_ce10": 52.83926852743022,
+    "cost_per_100_ce20": 65.35129932627527,
+    "accept_error_ci95": [
+     0.013524015579420297,
+     0.03152516524566437
+    ],
+    "frozen_thresholds_match_S127": true,
+    "error_capture_review_only": 0.6987179487179487,
+    "per_label": {
+     "COLOR": {
+      "n": 32,
+      "accept_rate": 0.78125,
+      "accept_error": 0.04,
+      "span_error_rate": 0.15625,
+      "review_rate": 0.21875,
+      "reject_rate": 0.0
+     },
+     "FOOD": {
+      "n": 610,
+      "accept_rate": 0.0,
+      "accept_error": null,
+      "span_error_rate": 0.09344262295081968,
+      "review_rate": 0.9901639344262295,
+      "reject_rate": 0.009836065573770493
+     },
+     "PART": {
+      "n": 10,
+      "accept_rate": 0.0,
+      "accept_error": null,
+      "span_error_rate": 0.1,
+      "review_rate": 1.0,
+      "reject_rate": 0.0
+     },
+     "PHYSICAL_QUALITY": {
+      "n": 142,
+      "accept_rate": 0.0,
+      "accept_error": null,
+      "span_error_rate": 0.2676056338028169,
+      "review_rate": 0.9507042253521126,
+      "reject_rate": 0.04929577464788732
+     },
+     "PROCESS": {
+      "n": 193,
+      "accept_rate": 0.6994818652849741,
+      "accept_error": 0.014814814814814815,
+      "span_error_rate": 0.08290155440414508,
+      "review_rate": 0.2849740932642487,
+      "reject_rate": 0.015544041450777202
+     },
+     "PURPOSE": {
+      "n": 13,
+      "accept_rate": 0.5384615384615384,
+      "accept_error": 0.0,
+      "span_error_rate": 0.07692307692307693,
+      "review_rate": 0.46153846153846156,
+      "reject_rate": 0.0
+     },
+     "QUANTITY": {
+      "n": 580,
+      "accept_rate": 0.9810344827586207,
+      "accept_error": 0.019332161687170474,
+      "span_error_rate": 0.032758620689655175,
+      "review_rate": 0.013793103448275862,
+      "reject_rate": 0.005172413793103448
+     },
+     "TASTE": {
+      "n": 17,
+      "accept_rate": 0.47058823529411764,
+      "accept_error": 0.0,
+      "span_error_rate": 0.11764705882352941,
+      "review_rate": 0.5294117647058824,
+      "reject_rate": 0.0
+     },
+     "UNIT": {
+      "n": 481,
+      "accept_rate": 0.9875259875259875,
+      "accept_error": 0.02526315789473684,
+      "span_error_rate": 0.035343035343035345,
+      "review_rate": 0.008316008316008316,
+      "reject_rate": 0.004158004158004158
+     }
+    },
+    "seen_unseen": {
+     "seen": {
+      "n": 1820,
+      "accept_rate": 0.6538461538461539,
+      "accept_error": 0.019327731092436976,
+      "span_error_rate": 0.04120879120879121
+     },
+     "unseen": {
+      "n": 258,
+      "accept_rate": 0.1124031007751938,
+      "accept_error": 0.10344827586206896,
+      "span_error_rate": 0.313953488372093
+     }
+    },
+    "always_review_labels(never ACCEPT at eps=0.02)": [
+     "FOOD",
+     "PART",
+     "PHYSICAL_QUALITY"
+    ]
+   }
+  },
+  "novel_advisory": {
+   "n": 35,
+   "share_of_food_spans": 0.05737704918032787,
+   "correct_span_share": 0.7714285714285715,
+   "ledger_exact_hit_share": 0.05714285714285714,
+   "auto_accepted": 0
+  },
+  "span_quality": {
+   "PRIMARY deberta-base+CRF": {
+    "seeds": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "exact_micro_f1": [
+     0.9371,
+     0.0024
+    ],
+    "exact_macro_f1": [
+     0.8772,
+     0.0122
+    ],
+    "relaxed_micro_f1": [
+     0.961,
+     0.0005
+    ],
+    "boundary_error": [
+     0.0268,
+     0.0031
+    ],
+    "type_error": [
+     0.0192,
+     0.0011
+    ],
+    "seed1": {
+     "exact_micro_f1": 0.9385,
+     "exact_macro_f1": 0.889
+    },
+    "strata_f1": {
+     "head": [
+      0.9877,
+      0.0009
+     ],
+     "mid": [
+      0.9558,
+      0.0054
+     ],
+     "tail": [
+      0.8998,
+      0.0065
+     ],
+     "unseen": [
+      0.7008,
+      0.0091
+     ],
+     "seen_alias": [
+      0.97,
+      0.002
+     ],
+     "unseen_alias": [
+      0.7008,
+      0.0091
+     ]
+    },
+    "strata_n": {
+     "head": null,
+     "mid": null,
+     "tail": null,
+     "unseen": null,
+     "seen_alias": null,
+     "unseen_alias": null
+    },
+    "per_label_f1": {
+     "COLOR": [
+      0.8585,
+      0.0278
+     ],
+     "FOOD": [
+      0.9079,
+      0.0101
+     ],
+     "PART": [
+      0.7874,
+      0.0513
+     ],
+     "PHYSICAL_QUALITY": [
+      0.8007,
+      0.0084
+     ],
+     "PROCESS": [
+      0.9389,
+      0.0074
+     ],
+     "PURPOSE": [
+      0.8302,
+      0.0964
+     ],
+     "QUANTITY": [
+      0.9785,
+      0.0013
+     ],
+     "TASTE": [
+      0.8145,
+      0.0568
+     ],
+     "UNIT": [
+      0.978,
+      0.0014
+     ]
+    },
+    "train_minutes": [
+     2.354,
+     0.2109
+    ],
+    "peak_gpu_gb": [
+     3.58,
+     0.0
+    ]
+   },
+   "FROZEN ACCURACY/COMPUTE CHALLENGER deberta-v3-large+CRF": {
+    "seeds": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "exact_micro_f1": [
+     0.9371,
+     0.0035
+    ],
+    "exact_macro_f1": [
+     0.8667,
+     0.0233
+    ],
+    "relaxed_micro_f1": [
+     0.961,
+     0.0023
+    ],
+    "boundary_error": [
+     0.0257,
+     0.0021
+    ],
+    "type_error": [
+     0.0177,
+     0.0006
+    ],
+    "seed1": {
+     "exact_micro_f1": 0.937,
+     "exact_macro_f1": 0.8768
+    },
+    "strata_f1": {
+     "head": [
+      0.9873,
+      0.0013
+     ],
+     "mid": [
+      0.9607,
+      0.0019
+     ],
+     "tail": [
+      0.904,
+      0.0126
+     ],
+     "unseen": [
+      0.6936,
+      0.0214
+     ],
+     "seen_alias": [
+      0.9712,
+      0.0025
+     ],
+     "unseen_alias": [
+      0.6936,
+      0.0214
+     ]
+    },
+    "strata_n": {
+     "head": null,
+     "mid": null,
+     "tail": null,
+     "unseen": null,
+     "seen_alias": null,
+     "unseen_alias": null
+    },
+    "per_label_f1": {
+     "COLOR": [
+      0.8634,
+      0.0116
+     ],
+     "FOOD": [
+      0.9044,
+      0.004
+     ],
+     "PART": [
+      0.6493,
+      0.1104
+     ],
+     "PHYSICAL_QUALITY": [
+      0.8231,
+      0.0191
+     ],
+     "PROCESS": [
+      0.9387,
+      0.0093
+     ],
+     "PURPOSE": [
+      0.8599,
+      0.0381
+     ],
+     "QUANTITY": [
+      0.9778,
+      0.0026
+     ],
+     "TASTE": [
+      0.8047,
+      0.0795
+     ],
+     "UNIT": [
+      0.9788,
+      0.0027
+     ]
+    },
+    "train_minutes": [
+     3.742,
+     0.4448
+    ],
+    "peak_gpu_gb": [
+     10.46,
+     0.0071
+    ]
+   }
+  }
+ },
+ "recipedb3": {
+  "n_test_spans": 9017,
+  "n_test_docs": 2554,
+  "span_acc": 0.9513141843185094,
+  "calibration": {
+   "raw_conf": {
+    "all": {
+     "nll": 0.27365,
+     "brier": 0.04486,
+     "ece": 0.04434,
+     "n": 9017
+    },
+    "food": {
+     "nll": 0.41975,
+     "brier": 0.07006,
+     "ece": 0.06908,
+     "n": 2912
+    },
+    "unseen_mention": {
+     "nll": 0.82461,
+     "brier": 0.1412,
+     "ece": 0.14158,
+     "n": 881
+    },
+    "seen_mention": {
+     "nll": 0.214,
+     "brier": 0.03443,
+     "ece": 0.03391,
+     "n": 8136
+    },
+    "tail_mention": {
+     "nll": 0.53431,
+     "brier": 0.08932,
+     "ece": 0.09232,
+     "n": 409
+    }
+   },
+   "calibrated": {
+    "all": {
+     "nll": 0.14676,
+     "brier": 0.03654,
+     "ece": 0.00657,
+     "n": 9017
+    },
+    "food": {
+     "nll": 0.20938,
+     "brier": 0.05522,
+     "ece": 0.02088,
+     "n": 2912
+    },
+    "unseen_mention": {
+     "nll": 0.38816,
+     "brier": 0.10532,
+     "ece": 0.07406,
+     "n": 881
+    },
+    "seen_mention": {
+     "nll": 0.12062,
+     "brier": 0.02909,
+     "ece": 0.00543,
+     "n": 8136
+    },
+    "tail_mention": {
+     "nll": 0.27763,
+     "brier": 0.07302,
+     "ece": 0.04456,
+     "n": 409
+    }
+   },
+   "calibrated+M6": {
+    "all": {
+     "nll": 0.14521,
+     "brier": 0.03667,
+     "ece": 0.00564,
+     "n": 9017
+    },
+    "food": {
+     "nll": 0.21593,
+     "brier": 0.05718,
+     "ece": 0.01659,
+     "n": 2912
+    },
+    "unseen_mention": {
+     "nll": 0.33477,
+     "brier": 0.09693,
+     "ece": 0.04987,
+     "n": 881
+    },
+    "seen_mention": {
+     "nll": 0.12468,
+     "brier": 0.03014,
+     "ece": 0.00992,
+     "n": 8136
+    },
+    "tail_mention": {
+     "nll": 0.29668,
+     "brier": 0.07582,
+     "ece": 0.05713,
+     "n": 409
+    }
+   }
+  },
+  "risk_discrimination_aurc": {
+   "raw": 0.015476864760640037,
+   "calibrated": 0.02384603727507224,
+   "calibrated+M6": 0.01934238440175391
+  },
+  "routers": {
+   "R1_raw_span": {
+    "tau": 0.9998779296875,
+    "coverage": 0.9366751691249862,
+    "accept_error": 0.024508643144683873,
+    "review_rate": 0.06332483087501387,
+    "novel_rate": 0.0,
+    "reject_rate": 0.0,
+    "error_capture_nonaccept": 0.5284738041002278,
+    "reject_error_rate": null,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.08174386920980926,
+    "n_accept_unseen": 734,
+    "cost_per_100_ce5": 17.810801818786736,
+    "cost_per_100_ce10": 29.289120550072084,
+    "cost_per_100_ce20": 52.24575801264279,
+    "accept_error_ci95": [
+     0.020806805622162444,
+     0.028372285252472682
+    ]
+   },
+   "R2_calibrated_span": {
+    "tau": 0.8121827411167513,
+    "coverage": 0.940224021293113,
+    "accept_error": 0.025005897617362584,
+    "review_rate": 0.059775978706886994,
+    "novel_rate": 0.0,
+    "reject_rate": 0.0,
+    "error_capture_nonaccept": 0.5170842824601367,
+    "reject_error_rate": null,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.08221024258760108,
+    "n_accept_unseen": 742,
+    "cost_per_100_ce5": 17.73317067760896,
+    "cost_per_100_ce10": 29.488743484529223,
+    "cost_per_100_ce20": 52.99988909836975,
+    "accept_error_ci95": [
+     0.021115589834165324,
+     0.028987418549004048
+    ]
+   },
+   "R3_calibrated_span+M6": {
+    "tau": 0.8926848098822621,
+    "coverage": 0.9360097593434623,
+    "accept_error": 0.02772511848341232,
+    "review_rate": 0.06399024065653765,
+    "novel_rate": 0.0,
+    "reject_rate": 0.0,
+    "error_capture_nonaccept": 0.46697038724373574,
+    "reject_error_rate": null,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.05794392523364486,
+    "n_accept_unseen": 535,
+    "cost_per_100_ce5": 19.37451480536764,
+    "cost_per_100_ce10": 32.350005545081515,
+    "cost_per_100_ce20": 58.30098702450926,
+    "accept_error_ci95": [
+     0.023786562992599236,
+     0.03176576899496857
+    ]
+   },
+   "R3s_label_strata": {
+    "taus": {
+     "DF": null,
+     "NAME": null,
+     "QUANTITY": 0.4815,
+     "STATE": null,
+     "TEMP": null,
+     "UNIT": 0.2556,
+     "__pooled__": 0.8927
+    },
+    "coverage": 0.5037152046135078,
+    "accept_error": 0.020915896081021578,
+    "review_rate": 0.4962847953864922,
+    "novel_rate": 0.0,
+    "reject_rate": 0.0,
+    "error_capture_nonaccept": 0.7835990888382688,
+    "reject_error_rate": null,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.358974358974359,
+    "n_accept_unseen": 39,
+    "cost_per_100_ce5": 54.89630697571254,
+    "cost_per_100_ce10": 60.164134412775866,
+    "cost_per_100_ce20": 70.69978928690252,
+    "accept_error_ci95": [
+     0.01656277318852903,
+     0.025550573319095757
+    ]
+   },
+   "R6_FINAL_label_x_unseen": {
+    "taus": {
+     "DF|S": null,
+     "NAME|S": 0.9852,
+     "NAME|U": null,
+     "QUANTITY|S": 0.4815,
+     "QUANTITY|U": 0.8927,
+     "STATE|S": null,
+     "STATE|U": null,
+     "TEMP|S": null,
+     "TEMP|U": 0.8927,
+     "UNIT|S": 0.4424,
+     "UNIT|U": 0.8927,
+     "__pooled__": 0.8927
+    },
+    "coverage": 0.7168681379616281,
+    "accept_error": 0.02088490099009901,
+    "review_rate": 0.27847399356770547,
+    "novel_rate": 0.0,
+    "reject_rate": 0.004657868470666519,
+    "error_capture_nonaccept": 0.6924829157175398,
+    "reject_error_rate": 0.7857142857142857,
+    "novel_correct_span_share": null,
+    "accept_error_unseen": 0.125,
+    "n_accept_unseen": 16,
+    "cost_per_100_ce5": 35.63269380059887,
+    "cost_per_100_ce10": 43.11855384274149,
+    "cost_per_100_ce20": 58.09027392702673,
+    "accept_error_ci95": [
+     0.01720678169065791,
+     0.024914764901118346
+    ],
+    "frozen_thresholds_match_S127": true,
+    "error_capture_review_only": 0.6173120728929385,
+    "per_label": {
+     "DF": {
+      "n": 246,
+      "accept_rate": 0.0,
+      "accept_error": null,
+      "span_error_rate": 0.036585365853658534,
+      "review_rate": 1.0,
+      "reject_rate": 0.0
+     },
+     "NAME": {
+      "n": 2912,
+      "accept_rate": 0.6679258241758241,
+      "accept_error": 0.02673521850899743,
+      "span_error_rate": 0.07657967032967034,
+      "review_rate": 0.323489010989011,
+      "reject_rate": 0.008585164835164836
+     },
+     "QUANTITY": {
+      "n": 2488,
+      "accept_rate": 0.9979903536977492,
+      "accept_error": 0.011679420056383408,
+      "span_error_rate": 0.013665594855305467,
+      "review_rate": 0.0012057877813504824,
+      "reject_rate": 0.0008038585209003215
+     },
+     "STATE": {
+      "n": 1247,
+      "accept_rate": 0.0,
+      "accept_error": null,
+      "span_error_rate": 0.0817963111467522,
+      "review_rate": 0.991980753809142,
+      "reject_rate": 0.00801924619085806
+     },
+     "TEMP": {
+      "n": 67,
+      "accept_rate": 0.0,
+      "accept_error": null,
+      "span_error_rate": 0.1044776119402985,
+      "review_rate": 0.9850746268656716,
+      "reject_rate": 0.014925373134328358
+     },
+     "UNIT": {
+      "n": 2057,
+      "accept_rate": 0.9897909577053962,
+      "accept_error": 0.026522593320235755,
+      "span_error_rate": 0.031113271754982984,
+      "review_rate": 0.008264462809917356,
+      "reject_rate": 0.0019445794846864365
+     }
+    },
+    "seen_unseen": {
+     "seen": {
+      "n": 8136,
+      "accept_rate": 0.7925270403146509,
+      "accept_error": 0.020626550868486353,
+      "span_error_rate": 0.03662733529990167
+     },
+     "unseen": {
+      "n": 881,
+      "accept_rate": 0.018161180476730987,
+      "accept_error": 0.125,
+      "span_error_rate": 0.16004540295119182
+     }
+    },
+    "always_review_labels(never ACCEPT at eps=0.02)": [
+     "DF",
+     "STATE",
+     "TEMP"
+    ]
+   }
+  },
+  "novel_advisory": {
+   "n": 431,
+   "share_of_food_spans": 0.14800824175824176,
+   "correct_span_share": 0.8793503480278422,
+   "ledger_exact_hit_share": 0.060324825986078884,
+   "auto_accepted": 211
+  },
+  "span_quality": {
+   "PRIMARY deberta-base+CRF": {
+    "seeds": [
+     1,
+     2,
+     3
+    ],
+    "exact_micro_f1": [
+     0.9581,
+     0.0012
+    ],
+    "exact_macro_f1": [
+     0.9545,
+     0.0037
+    ],
+    "relaxed_micro_f1": [
+     0.9751,
+     0.0013
+    ],
+    "boundary_error": [
+     0.0181,
+     0.0002
+    ],
+    "type_error": [
+     0.003,
+     0.0002
+    ],
+    "seed1": {
+     "exact_micro_f1": 0.9568,
+     "exact_macro_f1": 0.9503
+    },
+    "strata_f1": {
+     "head": [
+      0.9787,
+      0.0004
+     ],
+     "mid": [
+      0.9338,
+      0.0024
+     ],
+     "tail": [
+      0.9124,
+      0.0043
+     ],
+     "unseen": [
+      0.8553,
+      0.007
+     ],
+     "seen_alias": [
+      0.9692,
+      0.0006
+     ],
+     "unseen_alias": [
+      0.8553,
+      0.007
+     ]
+    },
+    "strata_n": {
+     "head": null,
+     "mid": null,
+     "tail": null,
+     "unseen": null,
+     "seen_alias": null,
+     "unseen_alias": null
+    },
+    "per_label_f1": {
+     "DF": [
+      0.966,
+      0.0058
+     ],
+     "NAME": [
+      0.9295,
+      0.0009
+     ],
+     "QUANTITY": [
+      0.9869,
+      0.0
+     ],
+     "STATE": [
+      0.94,
+      0.0055
+     ],
+     "TEMP": [
+      0.9305,
+      0.0189
+     ],
+     "UNIT": [
+      0.9743,
+      0.0006
+     ]
+    },
+    "train_minutes": [
+     34.4967,
+     6.1974
+    ],
+    "peak_gpu_gb": [
+     3.0333,
+     0.0058
+    ]
+   },
+   "FROZEN ACCURACY/COMPUTE CHALLENGER deberta-v3-large+CRF": {
+    "seeds": [
+     1,
+     2,
+     3
+    ],
+    "exact_micro_f1": [
+     0.9595,
+     0.0004
+    ],
+    "exact_macro_f1": [
+     0.9505,
+     0.0032
+    ],
+    "relaxed_micro_f1": [
+     0.9755,
+     0.0003
+    ],
+    "boundary_error": [
+     0.0172,
+     0.0002
+    ],
+    "type_error": [
+     0.0029,
+     0.0006
+    ],
+    "seed1": {
+     "exact_micro_f1": 0.9599,
+     "exact_macro_f1": 0.9486
+    },
+    "strata_f1": {
+     "head": [
+      0.9784,
+      0.0011
+     ],
+     "mid": [
+      0.9378,
+      0.0028
+     ],
+     "tail": [
+      0.912,
+      0.0028
+     ],
+     "unseen": [
+      0.8678,
+      0.0084
+     ],
+     "seen_alias": [
+      0.9694,
+      0.001
+     ],
+     "unseen_alias": [
+      0.8678,
+      0.0084
+     ]
+    },
+    "strata_n": {
+     "head": null,
+     "mid": null,
+     "tail": null,
+     "unseen": null,
+     "seen_alias": null,
+     "unseen_alias": null
+    },
+    "per_label_f1": {
+     "DF": [
+      0.9606,
+      0.0041
+     ],
+     "NAME": [
+      0.9342,
+      0.0027
+     ],
+     "QUANTITY": [
+      0.9868,
+      0.0003
+     ],
+     "STATE": [
+      0.943,
+      0.003
+     ],
+     "TEMP": [
+      0.905,
+      0.0149
+     ],
+     "UNIT": [
+      0.9735,
+      0.0016
+     ]
+    },
+    "train_minutes": [
+     67.3767,
+     9.952
+    ],
+    "peak_gpu_gb": [
+     9.2967,
+     0.0115
+    ]
+   }
+  }
+ },
+ "linker": {
+  "models": {
+   "BGE": {
+    "minutes": 0.154,
+    "dev_alias": {
+     "acc1": 0.7081967213114754,
+     "r5": 0.8491803278688523,
+     "mrr": 0.7621859431693989
+    },
+    "unseen_alias": {
+     "acc1": 0.7041666666666667,
+     "r5": 0.8541666666666666,
+     "mrr": 0.7652432013888888
+    },
+    "unseen_alias_tail_acc1": 0.7114754098360656,
+    "unseen_alias_head_acc1": 0.6914285714285714,
+    "nil_auroc_dev": 0.7199973978662504,
+    "nil_auroc_heldout": 0.6645986801718846,
+    "tau_dev": 0.8620000000000001,
+    "nil_heldout": {
+     "precision": 0.8884350079655616,
+     "recall": 0.7955801104972375,
+     "false_nil_rate_on_aliases": 0.5666666666666668
+    },
+    "conf_heldout": {
+     "ece": 0.034184000000000006,
+     "brier": 0.08963739762011241,
+     "nll": 0.30721967449830134,
+     "auroc": 0.7473287418493146,
+     "n": 639.0,
+     "pos_rate": 0.10579029733959311
+    },
+    "acc1_dev_alias_sd": 0.012267729136963756
+   },
+   "E5": {
+    "minutes": 0.14,
+    "dev_alias": {
+     "acc1": 0.6819672131147541,
+     "r5": 0.8360655737704917,
+     "mrr": 0.7443171038251366
+    },
+    "unseen_alias": {
+     "acc1": 0.6625,
+     "r5": 0.8395833333333332,
+     "mrr": 0.7328126604166667
+    },
+    "unseen_alias_tail_acc1": 0.6524590163934425,
+    "unseen_alias_head_acc1": 0.68,
+    "nil_auroc_dev": 0.7249544626593807,
+    "nil_auroc_heldout": 0.6603245856353592,
+    "tau_dev": 0.858,
+    "nil_heldout": {
+     "precision": 0.8962171045528434,
+     "recall": 0.7230202578268876,
+     "false_nil_rate_on_aliases": 0.475
+    },
+    "conf_heldout": {
+     "ece": 0.0346988,
+     "brier": 0.0840937542056255,
+     "nll": 0.2920338176141189,
+     "auroc": 0.7531186621359393,
+     "n": 639.0,
+     "pos_rate": 0.09953051643192488
+    },
+    "acc1_dev_alias_sd": 0.022237147485656642
+   }
+  },
+  "paired": {
+   "dev_alias": {
+    "n": 61,
+    "acc1_diff_BGE_minus_E5": 0.02622950819672131,
+    "ci95": [
+     -0.02950819672131148,
+     0.08196721311475409
+    ]
+   },
+   "unseen_alias(report only)": {
+    "n": 96,
+    "acc1_diff_BGE_minus_E5": 0.041666666666666664,
+    "ci95": [
+     -0.008333333333333337,
+     0.09375
+    ]
+   },
+   "heldout_conf_nll_BGE_minus_E5": {
+    "diff": -0.00197749384745606,
+    "ci95": [
+     -0.012885680538558961,
+     0.00918774939771044
+    ]
+   }
+  }
+ },
+ "latency": {
+  "gpu": "NVIDIA A100-PCIE-40GB",
+  "tasteset_len48|deberta-base": {
+   "bs1": {
+    "encoder_ms": 19.522391143254936,
+    "encoder+crf_decode_ms": 21.015194477513433,
+    "encoder+crf_decode+marginals_ms": 50.85489037446678
+   },
+   "bs32": {
+    "encoder_ms": 19.291904056444764,
+    "encoder+crf_decode_ms": 128.913588472642,
+    "encoder+crf_decode+marginals_ms": 493.2703210506588
+   },
+   "peak_gb": 0.88
+  },
+  "tasteset_len48|deberta-v3-large": {
+   "bs1": {
+    "encoder_ms": 33.473004470579326,
+    "encoder+crf_decode_ms": 36.670308909378946,
+    "encoder+crf_decode+marginals_ms": 80.55305993184447
+   },
+   "bs32": {
+    "encoder_ms": 34.267351613380015,
+    "encoder+crf_decode_ms": 144.05621262267232,
+    "encoder+crf_decode+marginals_ms": 526.58741758205
+   },
+   "peak_gb": 2.63
+  },
+  "recipedb3_len24|deberta-base": {
+   "bs1": {
+    "encoder_ms": 18.558586481958628,
+    "encoder+crf_decode_ms": 20.782981999218464,
+    "encoder+crf_decode+marginals_ms": 44.283134513534606
+   },
+   "bs32": {
+    "encoder_ms": 20.441448548808694,
+    "encoder+crf_decode_ms": 78.5049854312092,
+    "encoder+crf_decode+marginals_ms": 273.2938639819622
+   },
+   "peak_gb": 0.83
+  },
+  "recipedb3_len24|deberta-v3-large": {
+   "bs1": {
+    "encoder_ms": 35.89277633000165,
+    "encoder+crf_decode_ms": 38.17157237790525,
+    "encoder+crf_decode+marginals_ms": 81.48669637739658
+   },
+   "bs32": {
+    "encoder_ms": 36.6029724245891,
+    "encoder+crf_decode_ms": 96.247628913261,
+    "encoder+crf_decode+marginals_ms": 307.3131615528837
+   },
+   "peak_gb": 2.54
+  },
+  "linker|bge-large-en-v1.5": {
+   "bs1_ms": 16.403135959990323,
+   "bs256_ms": 15.641224454157054,
+   "peak_gb": 2.06
+  },
+  "linker|e5-large-v2": {
+   "bs1_ms": 15.686514554545283,
+   "bs256_ms": 15.732905478216708,
+   "peak_gb": 2.08
+  }
+ }
+}

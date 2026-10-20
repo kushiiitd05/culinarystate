@@ -874,3 +874,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `reports/ner/router_and_freeze.md`, `tools/router_eval.py`, `tools/linker_v2_eval.py`, `tools/calibrator_robustness.py`, `tools/m6_analysis.py`, `tools/build_linker_data.py`, `gpu/ner_bench/latency_bench.py`
 - **Verified:** TEST untouched; thresholds on CALIBRATION only; NIL sets validated 0 overlap
 - **Next:** user go-ahead: TEST once, external/unseen validation, A-N report
+
+### S128 · 2026-10-21 01:55 IST · S119 · Final TEST (single run), challenger, A-N report, H6-C
+- **Who:** claude
+- **Did:** Frozen manifest committed first; TEST run once on TASTEset+RecipeDB3: router R6 ACCEPT err 2.13%/2.09%, coverage 0.59/0.72; v3-large challenger no TEST gain; BGE frozen linker; NOVEL advisory; H6-C
+- **Files:** `reports/ner/culinaryner_kf_final_report.md`, `reports/ner/_final_test.json`, `reports/ner/test_freeze_manifest.json`, `tools/final_test_eval.py`, `tools/write_final_report.py`
+- **Verified:** frozen thresholds matched S127 on both datasets; no post-TEST changes
+- **Next:** no more model development; external-domain validation (future work)

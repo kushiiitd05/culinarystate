@@ -1,0 +1,106 @@
+{
+ "dataset": "recipedb3",
+ "split_used": "test",
+ "agg": {
+  "deberta-base+CRF": {
+   "n_seeds": 3,
+   "micro": [
+    0.9581,
+    0.0012
+   ],
+   "macro": [
+    0.9545,
+    0.0037
+   ],
+   "relaxed": [
+    0.9751,
+    0.0013
+   ],
+   "boundary": [
+    0.0181,
+    0.0002
+   ],
+   "unseen": [
+    0.8553,
+    0.007
+   ],
+   "tail": [
+    0.9124,
+    0.0043
+   ],
+   "head": [
+    0.9787,
+    0.0004
+   ],
+   "min": [
+    34.4967,
+    6.1974
+   ],
+   "gb": [
+    3.0333,
+    0.0058
+   ]
+  },
+  "deberta-v3-large+CRF": {
+   "n_seeds": 3,
+   "micro": [
+    0.9595,
+    0.0004
+   ],
+   "macro": [
+    0.9505,
+    0.0032
+   ],
+   "relaxed": [
+    0.9755,
+    0.0003
+   ],
+   "boundary": [
+    0.0172,
+    0.0002
+   ],
+   "unseen": [
+    0.8678,
+    0.0084
+   ],
+   "tail": [
+    0.912,
+    0.0028
+   ],
+   "head": [
+    0.9784,
+    0.0011
+   ],
+   "min": [
+    67.3767,
+    9.952
+   ],
+   "gb": [
+    9.2967,
+    0.0115
+   ]
+  }
+ },
+ "crf_vs_softmax": {
+  "v3-large+CRF vs base+CRF": {
+   "cand": "deberta-v3-large+CRF",
+   "base": "deberta-base+CRF",
+   "seeds": [
+    1,
+    2,
+    3
+   ],
+   "delta_micro": 0.0014,
+   "ci95": [
+    -0.0009,
+    0.0039
+   ],
+   "p": 0.25,
+   "seeds_won": "3/3",
+   "delta_unseen_f1": 0.0125,
+   "delta_macro": -0.004,
+   "holm_significant": false,
+   "promoted": false
+  }
+ }
+}
