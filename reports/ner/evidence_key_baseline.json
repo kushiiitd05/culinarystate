@@ -1,0 +1,13 @@
+{
+ "gold_supported_pairs": 51,
+ "extracted_evidence_bearing_cells": 59,
+ "recovered": 30,
+ "recall": 0.588,
+ "precision_vs_gold_lineage": 0.508,
+ "miss_attribution": {
+  "NO_COOCCURRENCE": 20,
+  "ING_NEVER_MENTIONED": 1
+ },
+ "note": "precision here is vs Gold *lineage* pairs only; an extracted cell absent from Gold may still be textually valid, so precision is a LOWER bound",
+ "recipes": 20
+}
