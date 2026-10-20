@@ -74,7 +74,7 @@ def test_packs_blank_equal_and_leak_free():
     prim = sorted({r["source_recipe_id"] for r in csv.DictReader(man.open()) if r["selection_role"] == "PRIMARY"})
     assert len(prim) == 20
     for rid in prim:
-        k, p = json.loads((d / "Kush" / f"{rid}.Kush.json").read_text()), json.loads((d / "Parv" / f"{rid}.Parv.json").read_text())
+        k, p = json.loads((d / "_split" / "Kush" / f"{rid}.Kush.json").read_text()), json.loads((d / "_split" / "Parv" / f"{rid}.Parv.json").read_text())
         assert packs.pristine(k) and packs.pristine(p)                                    # no spans, events, coref, concepts, notes
         assert packs.raw_hash(k) == packs.raw_hash(p)                                     # identical recipe text
         assert k["annotator"] == "Kush" and p["annotator"] == "Parv" and k["status"] == p["status"] == "DRAFT"
@@ -110,3 +110,19 @@ def test_recipedb3_summary_handles_partial_and_complete(tmp_path, monkeypatch):
     s.main()
     txt = (tmp_path / "out.md").read_text()
     assert "COMPLETE" in txt and "0.953" in txt and "Leaked vs non-leaked" in txt and "NOT our final NER model" in txt
+
+
+def test_bundles_match_split_and_roundtrip(tmp_path):
+    import bundle_gold_packs as b
+    d = packs.D
+    if not (d / "Kush_all_20.json").exists():
+        pytest.skip("packs not generated on this machine")
+    for who in ("Kush", "Parv"):
+        bundle = json.loads((d / f"{who}_all_20.json").read_text())
+        assert bundle["n_recipes"] == len(bundle["recipes"]) == 20 and all(packs.pristine(r) for r in bundle["recipes"])
+        per = {r["recipe_id"]: r for r in bundle["recipes"]}
+        for f in (d / "_split" / who).glob("*.json"):
+            assert json.loads(f.read_text()) == per[f.name.split(".")[0]]
+    k, p = json.loads((d / "Kush_all_20.json").read_text()), json.loads((d / "Parv_all_20.json").read_text())
+    assert [packs.raw_hash(r) for r in k["recipes"]] == [packs.raw_hash(r) for r in p["recipes"]]
+    assert b.D == d
