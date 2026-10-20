@@ -1,0 +1,374 @@
+{
+ "dataset": "tasteset",
+ "split_used": "dev",
+ "agg": {
+  "bert-base-cased": {
+   "n_seeds": 5,
+   "micro": [
+    0.9269,
+    0.0017
+   ],
+   "macro": [
+    0.8697,
+    0.0057
+   ],
+   "relaxed": [
+    0.96,
+    0.0011
+   ],
+   "boundary": [
+    0.0382,
+    0.0022
+   ],
+   "unseen": [
+    0.6503,
+    0.0196
+   ],
+   "tail": [
+    0.8947,
+    0.0049
+   ],
+   "head": [
+    0.9846,
+    0.0023
+   ],
+   "min": [
+    0.718,
+    0.0753
+   ],
+   "gb": [
+    2.342,
+    0.0045
+   ]
+  },
+  "deberta-base": {
+   "n_seeds": 5,
+   "micro": [
+    0.939,
+    0.0027
+   ],
+   "macro": [
+    0.8803,
+    0.0078
+   ],
+   "relaxed": [
+    0.9664,
+    0.0013
+   ],
+   "boundary": [
+    0.031,
+    0.002
+   ],
+   "unseen": [
+    0.7059,
+    0.0204
+   ],
+   "tail": [
+    0.9154,
+    0.0099
+   ],
+   "head": [
+    0.9872,
+    0.0017
+   ],
+   "min": [
+    1.028,
+    0.0497
+   ],
+   "gb": [
+    3.58,
+    0.0
+   ]
+  },
+  "deberta-base+CRF": {
+   "n_seeds": 5,
+   "micro": [
+    0.9396,
+    0.0015
+   ],
+   "macro": [
+    0.8825,
+    0.0055
+   ],
+   "relaxed": [
+    0.9669,
+    0.0011
+   ],
+   "boundary": [
+    0.0313,
+    0.0011
+   ],
+   "unseen": [
+    0.7066,
+    0.0206
+   ],
+   "tail": [
+    0.9174,
+    0.0074
+   ],
+   "head": [
+    0.9871,
+    0.0008
+   ],
+   "min": [
+    2.354,
+    0.2109
+   ],
+   "gb": [
+    3.58,
+    0.0
+   ]
+  },
+  "deberta-v3-large": {
+   "n_seeds": 5,
+   "micro": [
+    0.9435,
+    0.0025
+   ],
+   "macro": [
+    0.882,
+    0.0146
+   ],
+   "relaxed": [
+    0.9681,
+    0.0014
+   ],
+   "boundary": [
+    0.0253,
+    0.0015
+   ],
+   "unseen": [
+    0.7363,
+    0.0191
+   ],
+   "tail": [
+    0.9103,
+    0.0054
+   ],
+   "head": [
+    0.9885,
+    0.001
+   ],
+   "min": [
+    2.432,
+    0.2212
+   ],
+   "gb": [
+    10.46,
+    0.0071
+   ]
+  },
+  "deberta-v3-large+CRF": {
+   "n_seeds": 5,
+   "micro": [
+    0.9443,
+    0.0037
+   ],
+   "macro": [
+    0.8889,
+    0.0066
+   ],
+   "relaxed": [
+    0.969,
+    0.0031
+   ],
+   "boundary": [
+    0.0261,
+    0.0018
+   ],
+   "unseen": [
+    0.7443,
+    0.0208
+   ],
+   "tail": [
+    0.911,
+    0.0054
+   ],
+   "head": [
+    0.9879,
+    0.0011
+   ],
+   "min": [
+    3.742,
+    0.4448
+   ],
+   "gb": [
+    10.46,
+    0.0071
+   ]
+  },
+  "roberta-base": {
+   "n_seeds": 5,
+   "micro": [
+    0.9346,
+    0.0029
+   ],
+   "macro": [
+    0.8781,
+    0.0066
+   ],
+   "relaxed": [
+    0.9634,
+    0.0023
+   ],
+   "boundary": [
+    0.032,
+    0.0016
+   ],
+   "unseen": [
+    0.6839,
+    0.0174
+   ],
+   "tail": [
+    0.9108,
+    0.0054
+   ],
+   "head": [
+    0.9865,
+    0.001
+   ],
+   "min": [
+    0.764,
+    0.0559
+   ],
+   "gb": [
+    2.544,
+    0.0055
+   ]
+  }
+ },
+ "crf_vs_softmax": {
+  "E0 CRF vs softmax": {
+   "cand": "deberta-base+CRF",
+   "base": "deberta-base",
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "delta_micro": 0.0006,
+   "ci95": [
+    -0.0015,
+    0.0026
+   ],
+   "p": 0.634,
+   "seeds_won": "3/5",
+   "delta_unseen_f1": 0.0007,
+   "delta_macro": 0.0022,
+   "holm_significant": false,
+   "promoted": false
+  },
+  "v3-large CRF vs softmax": {
+   "cand": "deberta-v3-large+CRF",
+   "base": "deberta-v3-large",
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "delta_micro": 0.0008,
+   "ci95": [
+    -0.0019,
+    0.0035
+   ],
+   "p": 0.52,
+   "seeds_won": "3/5",
+   "delta_unseen_f1": 0.008,
+   "delta_macro": 0.0069,
+   "holm_significant": false,
+   "promoted": false
+  },
+  "v3-large+CRF vs base+CRF": {
+   "cand": "deberta-v3-large+CRF",
+   "base": "deberta-base+CRF",
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "delta_micro": 0.0047,
+   "ci95": [
+    -0.0016,
+    0.0105
+   ],
+   "p": 0.12,
+   "seeds_won": "5/5",
+   "delta_unseen_f1": 0.0377,
+   "delta_macro": 0.0064,
+   "holm_significant": false,
+   "promoted": false
+  },
+  "v3-large vs base (softmax)": {
+   "cand": "deberta-v3-large",
+   "base": "deberta-base",
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "delta_micro": 0.0045,
+   "ci95": [
+    -0.001,
+    0.0096
+   ],
+   "p": 0.1,
+   "seeds_won": "5/5",
+   "delta_unseen_f1": 0.0304,
+   "delta_macro": 0.0017,
+   "holm_significant": false,
+   "promoted": false
+  },
+  "base vs roberta": {
+   "cand": "deberta-base",
+   "base": "roberta-base",
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "delta_micro": 0.0044,
+   "ci95": [
+    0.0001,
+    0.0093
+   ],
+   "p": 0.044,
+   "seeds_won": "5/5",
+   "delta_unseen_f1": 0.022,
+   "delta_macro": 0.0022,
+   "holm_significant": false,
+   "promoted": false
+  },
+  "base vs bert": {
+   "cand": "deberta-base",
+   "base": "bert-base-cased",
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "delta_micro": 0.0121,
+   "ci95": [
+    0.0061,
+    0.0186
+   ],
+   "p": 0.001,
+   "seeds_won": "5/5",
+   "delta_unseen_f1": 0.0556,
+   "delta_macro": 0.0106,
+   "holm_significant": true,
+   "promoted": true
+  }
+ }
+}

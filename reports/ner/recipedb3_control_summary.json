@@ -1,0 +1,501 @@
+{
+ "dataset_sha256": "09f61f8f30cf250764b2d187318da221ecace6599f294fece42d6fa7ae8edb8b",
+ "code_sha256_repro": "f8f4e13558d6b4a832957c3c0d5d21db1551ebe8a5fbaa2b148b2cb7852db21b",
+ "runs": [
+  {
+   "protocol": "clean",
+   "seed": 1,
+   "selection": "DEV",
+   "best_epoch": 14,
+   "n": [
+    21038,
+    2738,
+    2668
+   ],
+   "test_macro_best": 0.9486094225387464,
+   "test_micro_best": 0.9564013840830451,
+   "test_macro_last": 0.9499707293131557,
+   "test_micro_last": 0.9553528564570332,
+   "per_label_best": {},
+   "exact_duplicate_frac_test": 0.0,
+   "masked_family_leak_frac_test": 0.0,
+   "leaked_micro": null,
+   "nonleaked_micro": 0.9564013840830451,
+   "leaked_macro": null,
+   "nonleaked_macro": 0.9486094225387464,
+   "runtime_s": null,
+   "gpu": "A100 (not logged by this run)",
+   "model": "microsoft/deberta-base",
+   "split_hash": "e3e8fa592e894c9b"
+  },
+  {
+   "protocol": "clean",
+   "seed": 2,
+   "selection": "DEV",
+   "best_epoch": 15,
+   "n": [
+    21130,
+    2661,
+    2653
+   ],
+   "test_macro_best": 0.9563663289177512,
+   "test_micro_best": 0.9621232471928222,
+   "test_macro_last": 0.9563663289177512,
+   "test_micro_last": 0.9621232471928222,
+   "per_label_best": {
+    "DF": 0.9563,
+    "NAME": 0.9352,
+    "QUANTITY": 0.9884,
+    "STATE": 0.9441,
+    "TEMP": 0.9346,
+    "UNIT": 0.9796
+   },
+   "exact_duplicate_frac_test": 0.0,
+   "masked_family_leak_frac_test": 0.0,
+   "leaked_micro": null,
+   "nonleaked_micro": 0.9621232471928222,
+   "leaked_macro": null,
+   "nonleaked_macro": 0.9563663289177512,
+   "runtime_s": 5431,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "94b65351207353c0"
+  },
+  {
+   "protocol": "clean",
+   "seed": 3,
+   "selection": "DEV",
+   "best_epoch": 14,
+   "n": [
+    21187,
+    2652,
+    2605
+   ],
+   "test_macro_best": 0.9499405065910259,
+   "test_micro_best": 0.9585695595290012,
+   "test_macro_last": 0.9555899037012706,
+   "test_micro_last": 0.9642291518759216,
+   "per_label_best": {
+    "DF": 0.9657,
+    "NAME": 0.928,
+    "QUANTITY": 0.9882,
+    "STATE": 0.9373,
+    "TEMP": 0.902,
+    "UNIT": 0.9785
+   },
+   "exact_duplicate_frac_test": 0.0,
+   "masked_family_leak_frac_test": 0.0,
+   "leaked_micro": null,
+   "nonleaked_micro": 0.9585695595290012,
+   "leaked_macro": null,
+   "nonleaked_macro": 0.9499405065910259,
+   "runtime_s": 5474,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "c945328253661f70"
+  },
+  {
+   "protocol": "clean",
+   "seed": 4,
+   "selection": "DEV",
+   "best_epoch": 13,
+   "n": [
+    21141,
+    2685,
+    2618
+   ],
+   "test_macro_best": 0.9480944783768309,
+   "test_micro_best": 0.958927987798235,
+   "test_macro_last": 0.9535748195948562,
+   "test_micro_last": 0.9592514009031065,
+   "per_label_best": {
+    "DF": 0.9649,
+    "NAME": 0.9269,
+    "QUANTITY": 0.9888,
+    "STATE": 0.9473,
+    "TEMP": 0.8842,
+    "UNIT": 0.9764
+   },
+   "exact_duplicate_frac_test": 0.0,
+   "masked_family_leak_frac_test": 0.0,
+   "leaked_micro": null,
+   "nonleaked_micro": 0.958927987798235,
+   "leaked_macro": null,
+   "nonleaked_macro": 0.9480944783768309,
+   "runtime_s": 2573,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "082846ff22015f63"
+  },
+  {
+   "protocol": "clean",
+   "seed": 5,
+   "selection": "DEV",
+   "best_epoch": 15,
+   "n": [
+    21129,
+    2687,
+    2628
+   ],
+   "test_macro_best": 0.9488029869572016,
+   "test_micro_best": 0.96095897943473,
+   "test_macro_last": 0.9488029869572016,
+   "test_micro_last": 0.96095897943473,
+   "per_label_best": {
+    "DF": 0.956,
+    "NAME": 0.9343,
+    "QUANTITY": 0.9851,
+    "STATE": 0.9489,
+    "TEMP": 0.8889,
+    "UNIT": 0.9796
+   },
+   "exact_duplicate_frac_test": 0.0,
+   "masked_family_leak_frac_test": 0.0,
+   "leaked_micro": null,
+   "nonleaked_micro": 0.96095897943473,
+   "leaked_macro": null,
+   "nonleaked_macro": 0.9488029869572016,
+   "runtime_s": 2408,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "5efabc682087ced2"
+  },
+  {
+   "protocol": "theirs",
+   "seed": 1,
+   "selection": "TEST",
+   "best_epoch": 10,
+   "n": [
+    21155,
+    5289,
+    5289
+   ],
+   "test_macro_best": 0.9571908811873544,
+   "test_micro_best": 0.9631694314399372,
+   "test_macro_last": 0.9460817716301779,
+   "test_micro_last": 0.9591803633217993,
+   "per_label_best": {
+    "DF": 0.9664,
+    "NAME": 0.9319,
+    "QUANTITY": 0.9907,
+    "STATE": 0.9506,
+    "TEMP": 0.9224,
+    "UNIT": 0.9812
+   },
+   "exact_duplicate_frac_test": 0.0573,
+   "masked_family_leak_frac_test": 0.1418,
+   "leaked_micro": 0.9941035160515396,
+   "nonleaked_micro": 0.9587940940260703,
+   "leaked_macro": 0.9891820580714424,
+   "nonleaked_macro": 0.9542707970615524,
+   "runtime_s": 5875,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "ecd5f16ffa715403"
+  },
+  {
+   "protocol": "theirs",
+   "seed": 2,
+   "selection": "TEST",
+   "best_epoch": 12,
+   "n": [
+    21155,
+    5289,
+    5289
+   ],
+   "test_macro_best": 0.9549458594528556,
+   "test_micro_best": 0.959409196269743,
+   "test_macro_last": 0.9456865143488676,
+   "test_micro_last": 0.9601108635400248,
+   "per_label_best": {
+    "DF": 0.9645,
+    "NAME": 0.9314,
+    "QUANTITY": 0.9882,
+    "STATE": 0.9406,
+    "TEMP": 0.9298,
+    "UNIT": 0.9751
+   },
+   "exact_duplicate_frac_test": 0.055,
+   "masked_family_leak_frac_test": 0.1361,
+   "leaked_micro": 0.9915351178220088,
+   "nonleaked_micro": 0.9551190003360729,
+   "leaked_macro": 0.9876398357747269,
+   "nonleaked_macro": 0.9521796529768268,
+   "runtime_s": 5864,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "0ca783d739c5def1"
+  },
+  {
+   "protocol": "theirs",
+   "seed": 3,
+   "selection": "TEST",
+   "best_epoch": 13,
+   "n": [
+    21155,
+    5289,
+    5289
+   ],
+   "test_macro_best": 0.9539676025811629,
+   "test_micro_best": 0.9589493636609803,
+   "test_macro_last": 0.9482385351393737,
+   "test_micro_last": 0.9573743922204213,
+   "per_label_best": {
+    "DF": 0.9498,
+    "NAME": 0.9287,
+    "QUANTITY": 0.9873,
+    "STATE": 0.9459,
+    "TEMP": 0.9356,
+    "UNIT": 0.9765
+   },
+   "exact_duplicate_frac_test": 0.0537,
+   "masked_family_leak_frac_test": 0.1371,
+   "leaked_micro": 0.9941964285714284,
+   "nonleaked_micro": 0.9540832049306625,
+   "leaked_macro": 0.9960748951724753,
+   "nonleaked_macro": 0.9501152231835119,
+   "runtime_s": 2553,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "96e0bca85c3cdf9b"
+  },
+  {
+   "protocol": "theirs",
+   "seed": 4,
+   "selection": "TEST",
+   "best_epoch": 15,
+   "n": [
+    21155,
+    5289,
+    5289
+   ],
+   "test_macro_best": 0.9518301673070519,
+   "test_micro_best": 0.9579986477349561,
+   "test_macro_last": 0.9518301673070519,
+   "test_micro_last": 0.9579986477349561,
+   "per_label_best": {
+    "DF": 0.9688,
+    "NAME": 0.9267,
+    "QUANTITY": 0.9877,
+    "STATE": 0.9475,
+    "TEMP": 0.9075,
+    "UNIT": 0.9728
+   },
+   "exact_duplicate_frac_test": 0.056,
+   "masked_family_leak_frac_test": 0.1325,
+   "leaked_micro": 0.9940968122786303,
+   "nonleaked_micro": 0.9533292608430055,
+   "leaked_macro": 0.9960833300967439,
+   "nonleaked_macro": 0.9471969612254091,
+   "runtime_s": 2598,
+   "gpu": "NVIDIA A100-PCIE-40GB",
+   "model": "microsoft/deberta-base",
+   "split_hash": "29a9deaa069544c2"
+  },
+  {
+   "protocol": "theirs",
+   "seed": 48,
+   "selection": "TEST",
+   "best_epoch": 14,
+   "n": [
+    21155,
+    5289,
+    5289
+   ],
+   "test_macro_best": 0.953334834633781,
+   "test_micro_best": 0.9619926991625509,
+   "test_macro_last": 0.949975671206566,
+   "test_micro_last": 0.9580835074201687,
+   "per_label_best": {},
+   "exact_duplicate_frac_test": 0.0486,
+   "masked_family_leak_frac_test": 0.1335,
+   "leaked_micro": 0.9947041215749483,
+   "nonleaked_micro": 0.9576762981192842,
+   "leaked_macro": 0.9930826318351359,
+   "nonleaked_macro": 0.9495798213789776,
+   "runtime_s": null,
+   "gpu": "A100 (not logged by this run)",
+   "model": "microsoft/deberta-base",
+   "split_hash": "e8f17674dd812211"
+  }
+ ],
+ "agg": {
+  "clean": {
+   "test_macro_best": {
+    "n": 5,
+    "mean": 0.9504,
+    "sd": 0.0034,
+    "ci95": [
+     0.9461,
+     0.9546
+    ]
+   },
+   "test_micro_best": {
+    "n": 5,
+    "mean": 0.9594,
+    "sd": 0.0022,
+    "ci95": [
+     0.9566,
+     0.9622
+    ]
+   },
+   "test_macro_last": {
+    "n": 5,
+    "mean": 0.9529,
+    "sd": 0.0034,
+    "ci95": [
+     0.9487,
+     0.957
+    ]
+   },
+   "test_micro_last": {
+    "n": 5,
+    "mean": 0.9604,
+    "sd": 0.0033,
+    "ci95": [
+     0.9562,
+     0.9645
+    ]
+   },
+   "nonleaked_micro": {
+    "n": 5,
+    "mean": 0.9594,
+    "sd": 0.0022,
+    "ci95": [
+     0.9566,
+     0.9622
+    ]
+   },
+   "nonleaked_macro": {
+    "n": 5,
+    "mean": 0.9504,
+    "sd": 0.0034,
+    "ci95": [
+     0.9461,
+     0.9546
+    ]
+   },
+   "exact_duplicate_frac_test": {
+    "n": 5,
+    "mean": 0.0,
+    "sd": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "masked_family_leak_frac_test": {
+    "n": 5,
+    "mean": 0.0,
+    "sd": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ]
+   },
+   "per_label_mean_f1": {
+    "DF": 0.9607,
+    "NAME": 0.9311,
+    "QUANTITY": 0.9876,
+    "STATE": 0.9444,
+    "TEMP": 0.9024,
+    "UNIT": 0.9785
+   }
+  },
+  "theirs": {
+   "test_macro_best": {
+    "n": 5,
+    "mean": 0.9543,
+    "sd": 0.002,
+    "ci95": [
+     0.9518,
+     0.9567
+    ]
+   },
+   "test_micro_best": {
+    "n": 5,
+    "mean": 0.9603,
+    "sd": 0.0022,
+    "ci95": [
+     0.9576,
+     0.963
+    ]
+   },
+   "test_macro_last": {
+    "n": 5,
+    "mean": 0.9484,
+    "sd": 0.0026,
+    "ci95": [
+     0.9451,
+     0.9516
+    ]
+   },
+   "test_micro_last": {
+    "n": 5,
+    "mean": 0.9585,
+    "sd": 0.0011,
+    "ci95": [
+     0.9572,
+     0.9599
+    ]
+   },
+   "leaked_micro": {
+    "n": 5,
+    "mean": 0.9937,
+    "sd": 0.0013,
+    "ci95": [
+     0.9922,
+     0.9953
+    ]
+   },
+   "nonleaked_micro": {
+    "n": 5,
+    "mean": 0.9558,
+    "sd": 0.0023,
+    "ci95": [
+     0.9529,
+     0.9587
+    ]
+   },
+   "nonleaked_macro": {
+    "n": 5,
+    "mean": 0.9507,
+    "sd": 0.0027,
+    "ci95": [
+     0.9473,
+     0.954
+    ]
+   },
+   "exact_duplicate_frac_test": {
+    "n": 5,
+    "mean": 0.0541,
+    "sd": 0.0034,
+    "ci95": [
+     0.05,
+     0.0583
+    ]
+   },
+   "masked_family_leak_frac_test": {
+    "n": 5,
+    "mean": 0.1362,
+    "sd": 0.0036,
+    "ci95": [
+     0.1317,
+     0.1407
+    ]
+   },
+   "per_label_mean_f1": {
+    "DF": 0.9624,
+    "NAME": 0.9297,
+    "QUANTITY": 0.9885,
+    "STATE": 0.9462,
+    "TEMP": 0.9238,
+    "UNIT": 0.9764
+   }
+  }
+ },
+ "theirs_vs_clean_macro": {
+  "delta": 0.0039,
+  "welch_p": 0.0674
+ }
+}

@@ -1,0 +1,322 @@
+{
+ "dataset": "tasteset",
+ "model": "microsoft/deberta-v3-large",
+ "crf": true,
+ "knowledge": "K0",
+ "seed": 2,
+ "view": "tasteset_native",
+ "selected_epoch": 5,
+ "selection": "dev exact micro F1",
+ "history": [
+  {
+   "epoch": 1,
+   "dev_micro_f1": 0.7289,
+   "loss": 41.3657
+  },
+  {
+   "epoch": 2,
+   "dev_micro_f1": 0.9013,
+   "loss": 14.846
+  },
+  {
+   "epoch": 3,
+   "dev_micro_f1": 0.9262,
+   "loss": 6.7695
+  },
+  {
+   "epoch": 4,
+   "dev_micro_f1": 0.937,
+   "loss": 6.7454
+  },
+  {
+   "epoch": 5,
+   "dev_micro_f1": 0.9471,
+   "loss": 1.5819
+  },
+  {
+   "epoch": 6,
+   "dev_micro_f1": 0.9398,
+   "loss": 2.5025
+  },
+  {
+   "epoch": 7,
+   "dev_micro_f1": 0.9395,
+   "loss": 3.253
+  },
+  {
+   "epoch": 8,
+   "dev_micro_f1": 0.9407,
+   "loss": 0.3411
+  },
+  {
+   "epoch": 9,
+   "dev_micro_f1": 0.939,
+   "loss": 1.4905
+  },
+  {
+   "epoch": 10,
+   "dev_micro_f1": 0.9398,
+   "loss": 0.3617
+  },
+  {
+   "epoch": 11,
+   "dev_micro_f1": 0.9403,
+   "loss": 0.4382
+  },
+  {
+   "epoch": 12,
+   "dev_micro_f1": 0.9398,
+   "loss": 0.2223
+  },
+  {
+   "epoch": 13,
+   "dev_micro_f1": 0.9401,
+   "loss": 0.4792
+  },
+  {
+   "epoch": 14,
+   "dev_micro_f1": 0.9392,
+   "loss": 0.3825
+  },
+  {
+   "epoch": 15,
+   "dev_micro_f1": 0.9416,
+   "loss": 0.0824
+  }
+ ],
+ "test": {
+  "view": "tasteset_native",
+  "exact": {
+   "micro": {
+    "tp": 1918,
+    "fp": 176,
+    "fn": 100,
+    "precision": 0.916,
+    "recall": 0.9504,
+    "f1": 0.9329
+   },
+   "macro_f1": 0.83,
+   "per_label": {
+    "COLOR": {
+     "tp": 27,
+     "fp": 3,
+     "fn": 6,
+     "precision": 0.9,
+     "recall": 0.8182,
+     "f1": 0.8571
+    },
+    "FOOD": {
+     "tp": 555,
+     "fp": 64,
+     "fn": 50,
+     "precision": 0.8966,
+     "recall": 0.9174,
+     "f1": 0.9069
+    },
+    "PART": {
+     "tp": 5,
+     "fp": 3,
+     "fn": 7,
+     "precision": 0.625,
+     "recall": 0.4167,
+     "f1": 0.5
+    },
+    "PHYSICAL_QUALITY": {
+     "tp": 104,
+     "fp": 44,
+     "fn": 10,
+     "precision": 0.7027,
+     "recall": 0.9123,
+     "f1": 0.7939
+    },
+    "PROCESS": {
+     "tp": 177,
+     "fp": 16,
+     "fn": 9,
+     "precision": 0.9171,
+     "recall": 0.9516,
+     "f1": 0.934
+    },
+    "PURPOSE": {
+     "tp": 12,
+     "fp": 1,
+     "fn": 3,
+     "precision": 0.9231,
+     "recall": 0.8,
+     "f1": 0.8571
+    },
+    "QUANTITY": {
+     "tp": 562,
+     "fp": 21,
+     "fn": 7,
+     "precision": 0.964,
+     "recall": 0.9877,
+     "f1": 0.9757
+    },
+    "TASTE": {
+     "tp": 12,
+     "fp": 7,
+     "fn": 5,
+     "precision": 0.6316,
+     "recall": 0.7059,
+     "f1": 0.6667
+    },
+    "UNIT": {
+     "tp": 464,
+     "fp": 17,
+     "fn": 3,
+     "precision": 0.9647,
+     "recall": 0.9936,
+     "f1": 0.9789
+    }
+   }
+  },
+  "relaxed": {
+   "micro": {
+    "tp": 1968,
+    "fp": 126,
+    "fn": 50,
+    "precision": 0.9398,
+    "recall": 0.9752,
+    "f1": 0.9572
+   },
+   "macro_f1": 0.8736,
+   "per_label": {
+    "COLOR": {
+     "tp": 28,
+     "fp": 2,
+     "fn": 5,
+     "precision": 0.9333,
+     "recall": 0.8485,
+     "f1": 0.8889
+    },
+    "FOOD": {
+     "tp": 590,
+     "fp": 29,
+     "fn": 15,
+     "precision": 0.9532,
+     "recall": 0.9752,
+     "f1": 0.9641
+    },
+    "PART": {
+     "tp": 7,
+     "fp": 1,
+     "fn": 5,
+     "precision": 0.875,
+     "recall": 0.5833,
+     "f1": 0.7
+    },
+    "PHYSICAL_QUALITY": {
+     "tp": 107,
+     "fp": 41,
+     "fn": 7,
+     "precision": 0.723,
+     "recall": 0.9386,
+     "f1": 0.8168
+    },
+    "PROCESS": {
+     "tp": 180,
+     "fp": 13,
+     "fn": 6,
+     "precision": 0.9326,
+     "recall": 0.9677,
+     "f1": 0.9499
+    },
+    "PURPOSE": {
+     "tp": 12,
+     "fp": 1,
+     "fn": 3,
+     "precision": 0.9231,
+     "recall": 0.8,
+     "f1": 0.8571
+    },
+    "QUANTITY": {
+     "tp": 566,
+     "fp": 17,
+     "fn": 3,
+     "precision": 0.9708,
+     "recall": 0.9947,
+     "f1": 0.9826
+    },
+    "TASTE": {
+     "tp": 13,
+     "fp": 6,
+     "fn": 4,
+     "precision": 0.6842,
+     "recall": 0.7647,
+     "f1": 0.7222
+    },
+    "UNIT": {
+     "tp": 465,
+     "fp": 16,
+     "fn": 2,
+     "precision": 0.9667,
+     "recall": 0.9957,
+     "f1": 0.981
+    }
+   }
+  },
+  "boundary_error_rate": 0.02626362735381566,
+  "type_error_rate": 0.018830525272547076,
+  "strata": {
+   "head": {
+    "f1": 0.9869,
+    "tp": 1201,
+    "fp": 27,
+    "fn": 5
+   },
+   "mid": {
+    "f1": 0.9623,
+    "tp": 332,
+    "fp": 18,
+    "fn": 8
+   },
+   "tail": {
+    "f1": 0.9064,
+    "tp": 213,
+    "fp": 25,
+    "fn": 19
+   },
+   "unseen": {
+    "f1": 0.6641,
+    "tp": 172,
+    "fp": 106,
+    "fn": 68
+   },
+   "seen_alias": {
+    "f1": 0.9716
+   },
+   "unseen_alias": {
+    "f1": 0.6641,
+    "tp": 172,
+    "fp": 106,
+    "fn": 68
+   }
+  }
+ },
+ "test_micro_exact_f1_ci": {
+  "estimate": 0.9329,
+  "low": 0.9181,
+  "high": 0.947,
+  "n_groups": 105,
+  "n_boot": 1000,
+  "seed": 20261018
+ },
+ "hparams": {
+  "lr": 2e-05,
+  "bs": 16,
+  "epochs": 15,
+  "max_len": 256
+ },
+ "n": {
+  "train": 424,
+  "calibration": 65,
+  "dev": 106,
+  "test": 105,
+  "quarantined_duplicates": 0
+ },
+ "minutes": 3.24,
+ "peak_gpu_gb": 10.46,
+ "gpu": "NVIDIA A100-PCIE-40GB",
+ "torch": "2.4.1+cu121"
+}

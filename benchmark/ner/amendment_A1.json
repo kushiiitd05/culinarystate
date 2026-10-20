@@ -1,0 +1,17 @@
+{
+  "amendment": "A1",
+  "to": "semantic_ner_benchmark_v1",
+  "date": "2026-10-20",
+  "written_before": "any TEST evaluation of a frozen candidate; before RecipeDB3 candidate runs",
+  "frozen_files_unchanged": ["benchmark/ner/semantic_benchmark_v1.json", "benchmark/ner/splits/recipedb3_split_v1.json", "benchmark/ner/splits/tasteset_split_v1.json", "src/culinarystate/ner/benchmark.py"],
+  "changes": [
+    {"id": "A1.1", "what": "Mention-disjoint (unseen-surface) evaluation is defined as the span-level 'unseen' stratum of benchmark.strata_f1: gold spans whose (label, lower-cased surface) never occurs in TRAIN; predictions are stratified by their own surface. No split changes. A document-level mention-disjoint subset is not used because almost no document has only unseen surfaces.", "status": "in force"},
+    {"id": "A1.2", "what": "Training budget max_len is dataset-specific: TASTEset 256, RecipeDB3 128 (v1 spec said 128 for both; TASTEset recipes exceed 128 tokens).", "status": "in force"},
+    {"id": "A1.3", "what": "Model/component selection reads DEV only. Checkpoint rule stays dev exact micro-F1 (frozen). Dev unseen-surface F1 is a HARD GATE: a candidate may not fall more than 0.005 below its baseline on it, and is reported beside every selection.", "status": "in force"},
+    {"id": "A1.4", "what": "Linker setting selection uses dev_alias queries (Acc@1/Recall@5/MRR). The held-out unseen_alias and unseen_concept queries are reported only for the frozen linker.", "status": "in force"},
+    {"id": "A1.5", "what": "Knowledge-context prompts: K1-K3 (definitions, aliases) and K4 (contrastive, word-budgeted: min(60, 0.28*max_len) words) are all train-derived. K4 added after the observation that K2/K3 are 63-97 words for lines of 5-26 words.", "status": "in force"},
+    {"id": "A1.6", "what": "Source-disjoint test: not possible on RecipeDB3 (no source field); recorded as UNKNOWN. External evaluation (FoodBase) is deferred and required for H6.", "status": "open"},
+    {"id": "A1.7", "what": "Fusion trains from the pretrained encoder with the E0 budget (E0 weights are not stored), a deviation from 'warm-start from the encoder+CRF checkpoint'.", "status": "deviation recorded"}
+  ],
+  "test_exposure_record": {"tasteset_test": "EXPOSED at the E0 stage on 2026-10-20 (model-level comparison of 30 runs read TEST); selection was redone on DEV the same day. Final TASTEset TEST numbers must be labelled E0-exposed.", "recipedb3_test": "not exposed by any candidate run"}
+}

@@ -846,3 +846,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `gpu/ner_bench/`, `src/culinarystate/ner/spans.py`, `src/culinarystate/ner/router.py`, `tests/test_ner_spans_router.py`, `reports/ner/s119_execution_plan.md`
 - **Verified:** full suite passes
 - **Next:** aggregate TASTEset E0; finish S118C report after SIZE runs; amendment A1
+
+### S124 · 2026-10-20 17:24 IST · DEL-4 · S119 ladder: E0 TASTEset, DEV-only discipline, server chain, K4 prompt, linker grid, leakage audit, amendment A1
+- **Who:** claude
+- **Did:** TASTEset E0 (30 runs) done; model conclusions redone on DEV after a TEST-selection slip (CRF not significant on DEV; v3-large +0.0047 not significant). Design contract adopted (reports/ner/culinaryner_kf_design_contract.md). Built and tested: span candidates + cross-fitted features, calibrator/router/statistics, CRF span marginals, span head, gated/concat fusion, knowledge prompts K1-K4, contrastive linker (+0.035 Acc@1 over zero-shot e5), OOF mode, alias leakage audit (ledger ALLOWED), amendment A1. Automated server chain: lane A (wave2/3 -> DEV shortlist -> RecipeDB3 elimination -> OOF -> seeds), K4 lane, linker re-run with dev selection. No promotion yet; no TEST opened since E0.
+- **Files:** `benchmark/ner/amendment_A1.json`, `reports/ner/culinaryner_kf_design_contract.md`, `reports/ner/alias_leakage_audit.md`, `gpu/ner_bench/`, `tools/aggregate_e0.py`, `tools/e1_e2_calibration.py`
+- **Verified:** benchmark hash tests pass
+- **Next:** when VPN returns: pull results, close S118C, wave-2 DEV shortlist, linker report
