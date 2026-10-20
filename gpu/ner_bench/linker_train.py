@@ -109,6 +109,7 @@ def main():
     ap.add_argument("--lr", type=float, default=1e-5)
     ap.add_argument("--temp", type=float, default=0.05)
     ap.add_argument("--fmt", choices=["plain", "ing"], default="plain", help="input prompt format for query/passage text")
+    ap.add_argument("--aug", default="", help="synthetic TRAIN-only augmentation json (tools/m31_linker_augment.py): extra training queries + LLM hard negatives; evaluation gallery stays real-only")
     ap.add_argument("--tag", default="")
     ap.add_argument("--round2", type=int, default=0, help="extra epochs after mining EMBEDDING-neighbour hard negatives from the round-1 model (contract: nearest embedding candidates)")
     ap.add_argument("--out", default="runs")
@@ -127,6 +128,15 @@ def main():
     rng = random.Random(a.seed)
     opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=0.01)
     trq = [q for q in D["queries"]["train"] if len(by[q["ing"]]) >= 2]
+    if a.aug:
+        A = json.loads(Path(a.aug).read_text())
+        cats = {q["ing"]: q["cat"] for q in D["queries"]["train"]}
+        for i, ss in A["aug"].items():
+            for sv in ss:
+                trq.append({"s": sv, "ing": i, "lang": "en", "kind": "synthetic", "cat": cats.get(i, "?"), "n_surf": len(by[i]), "gold": i, "hard_neg": {"llm": A["hard_neg"].get(i, [])}})
+        for q in trq:
+            if "llm" not in q["hard_neg"]:
+                q["hard_neg"]["llm"] = A["hard_neg"].get(q["ing"], [])
     t0, hist = time.time(), []
     sur2ing = {sv: i for sv, i in D["train_gallery"]}
 
@@ -139,7 +149,7 @@ def main():
                 pos = [rng.choice([s_ for s_ in by[q["ing"]] if s_ != q["s"]] or [q["s"]]) for q in qs]
                 neg = []
                 for q in qs:
-                    hn = [c for k in ("lexical", "head_token", "category", "embed") for c in q["hard_neg"].get(k, []) if by.get(c)]
+                    hn = [c for k in ("lexical", "head_token", "category", "embed", "llm") for c in q["hard_neg"].get(k, []) if by.get(c)]
                     neg.append(rng.choice(by[rng.choice(hn)]) if hn else rng.choice(D["train_gallery"])[0])
                 Q = embed(model, tok, [q["s"] for q in qs], dev, grad=True)
                 P = embed(model, tok, pos, dev, grad=True)

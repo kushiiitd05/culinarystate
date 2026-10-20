@@ -25,6 +25,7 @@ CASES = ROOT / "reports" / "ner" / "m31_cases_tasteset_dev.json"
 LEDGER = ROOT / "reports" / "ner" / "m31_aux_ledger.jsonl"
 MODEL, URL = "minimax-m3.1-flash", "https://ollama.com/api/chat"
 PROMPT_VERSION = "v1"
+FEWSHOT = ""
 SYSTEM = ("You verify ingredient-text annotations. You are given one recipe ingredient text and TWO candidate annotations of the SAME text, A and B, "
           "each a span with an entity type. Entity types: FOOD (ingredient), QUANTITY (amount), UNIT (measure unit), PROCESS (preparation action), "
           "PHYSICAL_QUALITY (size/texture/form such as fresh, large), COLOR, TASTE, PURPOSE (intended use), PART (part of an ingredient). "
@@ -72,6 +73,39 @@ def build():
     print("decisive cases:", sum(base.values()), dict(base))
 
 
+def fewshot():
+    """Reference annotations drawn from TASTEset TRAIN only (never dev/test): per entity type, the shortest ingredient line with the most spans of that type."""
+    import pandas as pd
+    import freeze_ner_benchmark as F
+    sp = json.loads((ROOT / "benchmark/ner/splits/tasteset_split_v1.json").read_text())["indices"]["train"]
+    docs = F.docs_taste(pd.read_csv(F.TASTE), sp)
+    best = {}
+    for text, spans in docs:
+        pos = 0
+        for line in text.split("\n"):
+            lo, hi = pos, pos + len(line)
+            pos = hi + 1
+            ls = [(a - lo, b - lo, l) for a, b, l in spans if a >= lo and b <= hi]
+            for lab in {l for _, _, l in ls}:
+                score = (sum(1 for x in ls if x[2] == lab), -len(line))
+                if 4 <= len(line) <= 70 and (lab not in best or score > best[lab][0]):
+                    best[lab] = (score, line, ls)
+    out, seen_lines = [], set()
+    for lab in sorted(best):
+        _, line, ls = best[lab]
+        if line in seen_lines:
+            continue
+        seen_lines.add(line)
+        out.append(f'Text: "{line}"\nCorrect annotation: ' + "; ".join(f'"{line[a:b]}" = {l}' for a, b, l in ls))
+    return "\n\n".join(out)
+
+
+def system_v2():
+    return (SYSTEM + " Conventions of this dataset (learn them from the reference annotations, which come from the training data): spans are the minimal complete phrase for one entity; "
+            "quantities, units, foods, preparation words and qualities are separate spans. If NEITHER candidate matches these conventions exactly (boundaries and type), you MUST answer UNKNOWN. "
+            "Do not reason at length; answer directly.\n\nReference annotations:\n\n" + fewshot())
+
+
 def fmt(c):
     s = lambda x: "none (this model proposes no span here)" if not x else f'"{c["text"][x[0]:x[1]]}" as {x[2]}'
     return f'Ingredient text:\n"""{c["text"]}"""\nCandidate A: {s(c["A"])}\nCandidate B: {s(c["B"])}'
@@ -79,7 +113,7 @@ def fmt(c):
 
 def call(c, retries=2):
     import urllib.request
-    body = json.dumps({"model": MODEL, "stream": False, "options": {"temperature": 0}, "messages": [{"role": "system", "content": SYSTEM}, {"role": "user", "content": fmt(c)}]}).encode()
+    body = json.dumps({"model": MODEL, "stream": False, "think": False, "options": {"temperature": 0}, "messages": [{"role": "system", "content": FEWSHOT or SYSTEM}, {"role": "user", "content": fmt(c)}]}).encode()
     for i in range(retries + 1):
         t0 = time.time()
         try:
@@ -97,6 +131,9 @@ def call(c, retries=2):
 
 
 def run(split, n):
+    global FEWSHOT, PROMPT_VERSION
+    if "--prompt" in sys.argv and sys.argv[sys.argv.index("--prompt") + 1] == "v2":
+        FEWSHOT, PROMPT_VERSION = system_v2(), "v2"
     cases = [c for c in json.loads(CASES.read_text()) if c["split"] == split and c["gold_verdict"] != "BOTH"]
     cases = sorted(cases, key=lambda c: bucket(f"{c['doc']}{c['A']}{c['B']}"))[:n]
     res = []
@@ -133,5 +170,9 @@ if __name__ == "__main__":
         build()
     elif cmd == "smoke":
         run("PROMPT_DEV", 10)
+    elif cmd == "dev":
+        run("PROMPT_DEV", int(sys.argv[sys.argv.index("--n") + 1]) if "--n" in sys.argv else 60)
+    elif cmd == "show":
+        print(system_v2())
     else:
         run("EVAL", int(sys.argv[sys.argv.index("--n") + 1]) if "--n" in sys.argv else 100)
