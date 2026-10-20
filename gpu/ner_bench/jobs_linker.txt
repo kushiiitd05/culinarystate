@@ -1,0 +1,9 @@
+linker_train.py --seed 1 --epochs 4 --lr 1e-5 --tag _lr1e5e4 --out runs
+linker_train.py --seed 1 --epochs 6 --lr 2e-5 --tag _lr2e5e6 --out runs
+linker_train.py --seed 1 --epochs 4 --lr 1e-5 --tag _lr1e5e4_r2 --round2 3 --out runs
+linker_train.py --seed 2 --epochs 4 --lr 1e-5 --tag _lr1e5e4 --out runs
+linker_train.py --seed 2 --epochs 6 --lr 2e-5 --tag _lr2e5e6 --out runs
+linker_train.py --seed 2 --epochs 4 --lr 1e-5 --tag _lr1e5e4_r2 --round2 3 --out runs
+linker_train.py --seed 3 --epochs 4 --lr 1e-5 --tag _lr1e5e4 --out runs
+linker_train.py --seed 3 --epochs 6 --lr 2e-5 --tag _lr2e5e6 --out runs
+linker_train.py --seed 3 --epochs 4 --lr 1e-5 --tag _lr1e5e4_r2 --round2 3 --out runs

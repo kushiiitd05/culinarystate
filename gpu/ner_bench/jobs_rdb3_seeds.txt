@@ -1,0 +1,4 @@
+bench_train.py --dataset recipedb3 --model microsoft/deberta-base --crf --conf --seed 2 --out runs
+bench_train.py --dataset recipedb3 --model microsoft/deberta-base --crf --conf --seed 3 --out runs
+bench_train.py --dataset recipedb3 --model microsoft/deberta-base --seed 2 --out runs
+bench_train.py --dataset recipedb3 --model microsoft/deberta-base --seed 3 --out runs

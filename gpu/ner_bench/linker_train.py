@@ -102,6 +102,8 @@ def main():
     ap.add_argument("--bs", type=int, default=64)
     ap.add_argument("--lr", type=float, default=1e-5)
     ap.add_argument("--temp", type=float, default=0.05)
+    ap.add_argument("--tag", default="")
+    ap.add_argument("--round2", type=int, default=0, help="extra epochs after mining EMBEDDING-neighbour hard negatives from the round-1 model (contract: nearest embedding candidates)")
     ap.add_argument("--out", default="runs")
     a = ap.parse_args()
     random.seed(a.seed), np.random.seed(a.seed), torch.manual_seed(a.seed)
@@ -117,35 +119,49 @@ def main():
     opt = torch.optim.AdamW(model.parameters(), lr=a.lr, weight_decay=0.01)
     trq = [q for q in D["queries"]["train"] if len(by[q["ing"]]) >= 2]
     t0, hist = time.time(), []
-    for ep in range(1, a.epochs + 1):
-        model.train()
-        rng.shuffle(trq)
-        for i in range(0, len(trq) - a.bs + 1, a.bs):
-            qs = trq[i:i + a.bs]
-            pos = [rng.choice([s for s in by[q["ing"]] if s != q["s"]] or [q["s"]]) for q in qs]
-            neg = []
-            for q in qs:
-                hn = [c for k in ("lexical", "head_token", "category") for c in q["hard_neg"][k] if by.get(c)]
-                neg.append(rng.choice(by[rng.choice(hn)]) if hn else rng.choice(D["train_gallery"])[0])
-            Q = embed(model, tok, [q["s"] for q in qs], dev, grad=True)
-            P = embed(model, tok, pos, dev, grad=True)
-            N = embed(model, tok, neg, dev, grad=True)
-            logits = (Q @ torch.cat([P, N]).T) / a.temp
-            idl = [q["ing"] for q in qs]
-            same = torch.tensor([[x == y for y in idl + [None] * len(neg)] for x in idl], device=logits.device)
-            same[:, :len(qs)] &= ~torch.eye(len(qs), dtype=torch.bool, device=logits.device)       # other in-batch positives of the same concept are not negatives
-            logits = logits.masked_fill(same, -1e4)
-            loss = torch.nn.functional.cross_entropy(logits, torch.arange(len(qs), device=logits.device))
-            loss.backward(), opt.step(), opt.zero_grad()
-        hist.append({"epoch": ep, "loss": round(loss.item(), 4)})
-        print(hist[-1], flush=True)
+    sur2ing = {sv: i for sv, i in D["train_gallery"]}
+
+    def run_epochs(n, offset):
+        for ep in range(1, n + 1):
+            model.train()
+            rng.shuffle(trq)
+            for i in range(0, len(trq) - a.bs + 1, a.bs):
+                qs = trq[i:i + a.bs]
+                pos = [rng.choice([s_ for s_ in by[q["ing"]] if s_ != q["s"]] or [q["s"]]) for q in qs]
+                neg = []
+                for q in qs:
+                    hn = [c for k in ("lexical", "head_token", "category", "embed") for c in q["hard_neg"].get(k, []) if by.get(c)]
+                    neg.append(rng.choice(by[rng.choice(hn)]) if hn else rng.choice(D["train_gallery"])[0])
+                Q = embed(model, tok, [q["s"] for q in qs], dev, grad=True)
+                P = embed(model, tok, pos, dev, grad=True)
+                N = embed(model, tok, neg, dev, grad=True)
+                logits = (Q @ torch.cat([P, N]).T) / a.temp
+                idl = [q["ing"] for q in qs]
+                same = torch.tensor([[x == y for y in idl + [None] * len(neg)] for x in idl], device=logits.device)
+                same[:, :len(qs)] &= ~torch.eye(len(qs), dtype=torch.bool, device=logits.device)
+                logits = logits.masked_fill(same, -1e4)
+                loss = torch.nn.functional.cross_entropy(logits, torch.arange(len(qs), device=logits.device))
+                loss.backward(), opt.step(), opt.zero_grad()
+            hist.append({"epoch": offset + ep, "loss": round(loss.item(), 4)})
+            print(hist[-1], flush=True)
+
+    run_epochs(a.epochs, 0)
+    if a.round2 > 0:                                   # mine embedding-neighbour hard negatives (other concepts) from the round-1 model, train more
+        model.eval()
+        G = embed(model, tok, [s_ for s_, _ in D["train_gallery"]], dev)
+        gid = [i for _, i in D["train_gallery"]]
+        Qe = embed(model, tok, [q["s"] for q in trq], dev)
+        top = (Qe @ G.T).topk(12, dim=1).indices.cpu().tolist()
+        for q, t in zip(trq, top):
+            q["hard_neg"]["embed"] = [gid[k] for k in t if gid[k] != q["ing"]][:6]
+        run_epochs(a.round2, a.epochs)
     model.eval()
     final, res = evaluate(model, tok, D, dev)
     out = Path(a.out)
     out.mkdir(exist_ok=True)
-    (out / f"linker__e5-large-v2__seed{a.seed}.json").write_text(json.dumps({"zero_shot_e5": zero, "contrastive": final, "tfidf_char_acc1_unseen_alias": tfidf_baseline(D), "history": hist,
+    (out / f"linker__e5-large-v2{a.tag}__seed{a.seed}.json").write_text(json.dumps({"zero_shot_e5": zero, "contrastive": final, "tfidf_char_acc1_unseen_alias": tfidf_baseline(D), "history": hist,
                                                                            "minutes": round((time.time() - t0) / 60, 2), "hparams": vars(a)}, indent=1))
-    (out / f"linker__e5-large-v2__seed{a.seed}.tables.json").write_text(json.dumps({k: res[k] for k in ("unseen_alias", "unseen_concept", "dev_alias", "dev")}))
+    (out / f"linker__e5-large-v2{a.tag}__seed{a.seed}.tables.json").write_text(json.dumps({k: res[k] for k in ("unseen_alias", "unseen_concept", "dev_alias", "dev")}))
     print("zero-shot acc1", zero["unseen_alias"]["acc1"], "contrastive acc1", final["unseen_alias"]["acc1"], "nil", final["nil"])
 
 
