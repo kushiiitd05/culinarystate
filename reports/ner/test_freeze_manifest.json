@@ -1,0 +1,60 @@
+{
+ "frozen_at": "2026-10-21T01:49:09.511165+05:30",
+ "git_head": "18da69eddc6fff94b95cfa42721e0a9d6622ccdc",
+ "statement": "Written and committed BEFORE any TEST field of any run/pred/conf file was read in this stage. TEST is evaluated once, no changes afterwards.",
+ "primary_system": {
+  "name": "CulinaryNER-KF v1",
+  "encoder_decoder": "microsoft/deberta-base + CRF",
+  "seed_policy": "seed 1 model for calibrator/router (5-fold OOF seed 1); span-quality also reported over all trained seeds (TASTEset 5, RecipeDB3 3)",
+  "checkpoint_rule": "max dev exact micro F1 (benchmark rule)",
+  "hparams_tasteset": {
+   "lr": 5e-05,
+   "bs": 16,
+   "epochs": 15,
+   "max_len": 256
+  },
+  "hparams_recipedb3": {
+   "lr": 5e-05,
+   "bs": 16,
+   "epochs": 15,
+   "max_len": 128
+  },
+  "calibrator": "logistic+isotonic on [logit span conf, M6 exact, M6 fuzzy], fit on OOF train spans",
+  "router": "R6 eps=0.02 label x seen/unseen strata thresholds from CALIBRATION, REJECT if P<1/3, linker advisory only (NOVEL never an action)",
+  "linker": "FROZEN OPERATIONAL LINKER = BAAI/bge-large-en-v1.5, fmt none, cls pool, lr 1e-5, 4 epochs, linker_data_v2, seed 1 for export; E5-large-v2 documented Pareto alternative, NOT evaluated for selection on TEST"
+ },
+ "challenger": {
+  "label": "FROZEN ACCURACY/COMPUTE CHALLENGER",
+  "model": "microsoft/deberta-v3-large + CRF",
+  "hparams_tasteset": {
+   "lr": 2e-05,
+   "bs": 16,
+   "epochs": 15,
+   "max_len": 256
+  },
+  "hparams_recipedb3": {
+   "lr": 2e-05,
+   "bs": 16,
+   "epochs": 15,
+   "max_len": 128
+  },
+  "selection": "dev exact micro F1",
+  "seeds": "TASTEset 1-5, RecipeDB3 1-3",
+  "use": "span-quality + compute only; may not replace v1 based on TEST",
+  "note": "same benchmark-frozen training config as E0; no separate calibrator/router built"
+ },
+ "file_sha256": {
+  "reports/ner/_router_tasteset.json": "ddb54a37d99000fa1a3aca26f93b3e280cd9d555fddade65f02e4f0b44cd50bc",
+  "reports/ner/_router_recipedb3.json": "e8b5ec2c175ff153605754b56f4cab9f5062f11c10313f2b990697c7f0724686",
+  "tools/router_eval.py": "14ce23f4bff4a9f40b04a318cda2572809013a88fd6be1d54fda7da56146d41d",
+  "tools/e2_signal_calibration.py": "571dc6df00597d5da77814b1fb520c63b0f95d6d06cd2128ba98138ae6efb1c9",
+  "tools/e1_e2_calibration.py": "76f435f277394a6c2c425eebf8df220ddf563f9261ab144c178cc162751e79f8",
+  "benchmark/ner/semantic_benchmark_v1.json": "b31f29d13b8b56cb3000b5a9dd8292a535e351ac835400e014a0d94b35481315",
+  "reports/ner/router_and_freeze.md": "29720fefd3e1dcc6084b1f346b886c8de3ceb7980dac37a017e41a75a1e0c8bd"
+ },
+ "disclosures": [
+  "TASTEset TEST aggregates for E0 models were viewed once at E0 (corrected; recorded in contract/amendment A1); no selection since.",
+  "Run JSONs contain test metrics computed at training time; not read for any decision before this manifest.",
+  "linker unseen_alias / unseen_concept sets were viewed repeatedly as report-only sets during development; never used for selection."
+ ]
+}
