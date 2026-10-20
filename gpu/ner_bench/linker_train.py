@@ -116,6 +116,7 @@ def main():
     ap.add_argument("--pool", choices=["mean", "cls"], default="mean")
     ap.add_argument("--tag", default="")
     ap.add_argument("--round2", type=int, default=0, help="extra epochs after mining EMBEDDING-neighbour hard negatives from the round-1 model (contract: nearest embedding candidates)")
+    ap.add_argument("--export", default="", help="json list of query surfaces (normalised); writes top-10 concept scores per surface from the FINAL model (span-calibration features)")
     ap.add_argument("--out", default="runs")
     a = ap.parse_args()
     global PREFIX, POOL
@@ -186,6 +187,20 @@ def main():
     (out / f"linker__{mname}{a.tag}__seed{a.seed}.json").write_text(json.dumps({"zero_shot_e5": zero, "contrastive": final, "tfidf_char_acc1_unseen_alias": tfidf_baseline(D), "history": hist,
                                                                            "minutes": round((time.time() - t0) / 60, 2), "hparams": vars(a), "fmt": a.fmt}, indent=1))
     (out / f"linker__{mname}{a.tag}__seed{a.seed}.tables.json").write_text(json.dumps({k: res[k] for k in ("unseen_alias", "unseen_concept", "dev_alias", "dev")}))
+    if a.export:
+        surfs = json.loads(Path(a.export).read_text())
+        gal = D["full_gallery_seen_concepts"]
+        G, gid = embed(model, tok, [x for x, _ in gal], dev), np.array([i for _, i in gal])
+        ex = {}
+        for i in range(0, len(surfs), 512):
+            chunk = surfs[i:i + 512]
+            S = (embed(model, tok, chunk, dev) @ G.T).cpu().numpy()
+            for sf, row in zip(chunk, S):
+                best = {}
+                for k in np.argsort(-row)[:60]:
+                    best.setdefault(str(gid[k]), float(row[k]))
+                ex[sf] = sorted(best.items(), key=lambda t: -t[1])[:10]
+        (out / f"linker_export__{mname}{a.tag}__seed{a.seed}.json").write_text(json.dumps({"n_gallery_surfaces": len(gal), "scores": ex}))
     print("zero-shot acc1", zero["unseen_alias"]["acc1"], "contrastive acc1", final["unseen_alias"]["acc1"], "nil", final["nil"])
 
 

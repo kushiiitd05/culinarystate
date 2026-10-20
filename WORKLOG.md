@@ -853,3 +853,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `benchmark/ner/amendment_A1.json`, `reports/ner/culinaryner_kf_design_contract.md`, `reports/ner/alias_leakage_audit.md`, `gpu/ner_bench/`, `tools/aggregate_e0.py`, `tools/e1_e2_calibration.py`
 - **Verified:** benchmark hash tests pass
 - **Next:** when VPN returns: pull results, close S118C, wave-2 DEV shortlist, linker report
+
+### S125 · 2026-10-21 00:25 IST · S119 · NER block: Lane S, backbone+linker freeze, OOF BGE export, E2 linker calibration
+- **Who:** claude
+- **Did:** Pulled lane S; rejected K-TS, RoBERTa-large, ING-format, reranker; DeBERTa-base+CRF kept, v3-large Pareto challenger; fixed linker_train f-string bug; BGE export for 911 FOOD surfaces; feature-by-feature calibration on TASTEset DEV: M6 promote, M1 promote (FOOD scope), M2/M5 inconclusive, M3/M4 reject; BGE vs E5 not distinguishable (n=61)
+- **Files:** `reports/ner/linker_signal_calibration.md`, `reports/ner/span_backbone_and_linker_freeze.md`, `tools/e2_linker_calibration.py`, `gpu/ner_bench/linker_train.py`
+- **Verified:** TEST untouched; 3 linker seeds give identical decisions
+- **Next:** ledger alias leakage-gated test, rule agreement, fusion on promoted only
