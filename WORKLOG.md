@@ -811,3 +811,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `tools/audit_foodcom_dropped.py`, `tools/repair_foodcom_gold.py`, `tools/score_foodcom_repair.py`, `tools/hstate_coverage_foodcom.py`, `reports/gold/foodcom_ai_assisted_v1_to_v1_1.md`
 - **Verified:** 2997 passed
 - **Next:** S118B RecipeDB3 control; S118C freeze semantic NER benchmark
+
+### S119 · 2026-10-20 12:14 IST · DEL-4 · S118C Semantic NER benchmark v1 frozen (splits, views, metrics, seeds, selection/statistics/Pareto rules)
+- **Who:** claude
+- **Did:** Froze before any candidate run: RecipeDB3 grouped split by masked-sentence family (train 18700 / CALIBRATION 2592 / dev 2597 / test 2555, 0 group overlap), TASTEset legacy seed-7 recipe split plus grouped CALIBRATION (424/65/106/105, 0 identical-recipe leaks). Label views, adapter to unified core, metric code hashes, seeds 1-5, dev-only checkpoint rule, min effect 0.003 + paired grouped bootstrap + Holm, Pareto promotion rule, router epsilon 0.02, train-only/out-of-fold feature rules. No model output read.
+- **Files:** `src/culinarystate/ner/benchmark.py`, `tools/freeze_ner_benchmark.py`, `benchmark/ner/semantic_benchmark_v1.json`, `benchmark/ner/semantic_benchmark_manifest.csv`, `tests/test_ner_benchmark.py`
+- **Verified:** 9 new tests pass
+- **Next:** S118B finish RecipeDB3 control from A100 results

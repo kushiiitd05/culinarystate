@@ -4,7 +4,7 @@
 
 ## What the audit found
 - **Count correction (patch P1):** the sheet holds **410** proposed events, not 407. 126 were dropped (UNRESOLVED_REFERENCE); 284 were not dropped, of which 281 event objects were written (S117 reported 281) and 3 net by design (Reserve/unmapped ops).
-- 42 of the dropped-event occurrences trace to 22 root causes in 14 recipes; the other 64 are cascades (BROKEN_LINEAGE) of those roots. 20 more reference a "mixture of step N" that no proposed event creates.
+- 62 dropped events are root rows (22 named root causes in 14 recipes, plus 21 that reference a "mixture of step N" no proposed event creates); the other 64 are cascades (BROKEN_LINEAGE) of those roots.
 - **The 281 "survivors" were not trustworthy either.** The AI proposal contained wrong food inputs (e.g. "water" as the food in "soak in water" and "remove liver from water"), and output names built by mechanical concatenation ("remove water", "dried water"). So v1.1 re-authors every step of all 20 recipes rather than patching only the 126.
 - Source-list omissions are widespread (unlisted foods named in steps: beans, lasagne sheets, cannelloni, stuffing, oil, salt/pepper, tomato soup, summer squash, yams, marmite ...). They become step-only entities with quantity UNKNOWN (`STEP_ONLY_ENTITY` note). Unlisted water/oil used purely as a medium is a `medium` field, not an entity.
 

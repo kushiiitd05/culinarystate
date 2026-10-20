@@ -1,0 +1,200 @@
+{
+ "benchmark": "semantic_ner_v1",
+ "frozen": "2026-10-20",
+ "no_model_output_read": true,
+ "datasets": {
+  "recipedb3": {
+   "file": "data/external/recipedb3_ner/Ingredient_Annotated_Dataset.csv",
+   "sha256": "09f61f8f30cf250764b2d187318da221ecace6599f294fece42d6fa7ae8edb8b",
+   "licence": "CoSyLab/RecipeDB3 public notebook data; use per D-015 (ASSUMED / DERIVED_ONLY); text not redistributed here",
+   "diagnostics": {
+    "counts": {
+     "train": 18700,
+     "calibration": 2592,
+     "dev": 2597,
+     "test": 2555
+    },
+    "group_overlap_with_train": {
+     "calibration": 0,
+     "dev": 0,
+     "test": 0
+    },
+    "group_overlap_dev_test": 0,
+    "test_gold_strata": {
+     "head": 6640,
+     "unseen": 866,
+     "mid": 775,
+     "tail": 632
+    },
+    "test_gold_entities": 8913,
+    "skipped_len_mismatch": 0
+   }
+  },
+  "tasteset": {
+   "file": "gpu/ner_tasteset/TASTEset.csv",
+   "sha256": "e5d455b5ea4073e47220a7047a6d02d5fd07522b26f3a86336220ddd1868f2e4",
+   "licence": "MIT",
+   "diagnostics": {
+    "counts": {
+     "train": 424,
+     "calibration": 65,
+     "dev": 106,
+     "test": 105,
+     "quarantined_duplicates": 0
+    },
+    "group_overlap_with_train": {
+     "calibration": 0,
+     "dev": 0,
+     "test": 0
+    },
+    "group_overlap_dev_test": 0,
+    "test_gold_strata": {
+     "head": 1206,
+     "mid": 340,
+     "tail": 232,
+     "unseen": 240
+    },
+    "test_gold_entities": 2018,
+    "quarantined_identical_recipes": 0
+   }
+  }
+ },
+ "split_rules": {
+  "recipedb3": "sha256 bucket of the masked-sentence family: test <0.10, dev <0.20, CALIBRATION <0.30, train rest",
+  "tasteset": "legacy recipe split (seed 7, 70/15/15); train recipes byte-identical to a dev/test recipe quarantined; 12.5% grouped CALIBRATION carved from train"
+ },
+ "calibration_split_rule": "never used to fit encoder, calibrator, aliases, gazetteer or linker; thresholds are set on CALIBRATION only; calibrators are fit out-of-fold on train (5-fold)",
+ "dev_rule": "model/checkpoint selection only; max dev exact micro F1 on the primary view; ties -> earlier epoch; test never read during selection",
+ "train_only_statistics": "alias hits, surface frequencies, strata, gazetteers and linker indices are built from train; train-time features are 5-fold out-of-fold; test uses the full-train build; candidate spans (all n-grams <= 6 tokens) are generated before NER",
+ "label_views": {
+  "recipedb3_full": [
+   "DF",
+   "NAME",
+   "QUANTITY",
+   "SIZE",
+   "STATE",
+   "TEMP",
+   "UNIT"
+  ],
+  "recipedb3_published": [
+   "DF",
+   "NAME",
+   "QUANTITY",
+   "STATE",
+   "TEMP",
+   "UNIT"
+  ],
+  "recipedb3_form_state": [
+   "DF",
+   "STATE"
+  ],
+  "tasteset_native": [
+   "COLOR",
+   "FOOD",
+   "PART",
+   "PHYSICAL_QUALITY",
+   "PROCESS",
+   "PURPOSE",
+   "QUANTITY",
+   "TASTE",
+   "UNIT"
+  ],
+  "unified_core": [
+   "FOOD",
+   "QUANTITY",
+   "UNIT"
+  ]
+ },
+ "label_adapter_to_core": {
+  "NAME": "FOOD",
+  "FOOD": "FOOD",
+  "QUANTITY": "QUANTITY",
+  "UNIT": "UNIT"
+ },
+ "primary_views": {
+  "recipedb3": "recipedb3_published",
+  "tasteset": "tasteset_native"
+ },
+ "metrics": {
+  "implementation": [
+   "src/culinarystate/ner/benchmark.py",
+   "src/culinarystate/scoring/metrics.py",
+   "src/culinarystate/scoring/calibration.py"
+  ],
+  "list": [
+   "exact micro F1",
+   "exact macro F1",
+   "per-label F1",
+   "relaxed span F1",
+   "boundary error rate",
+   "type error rate",
+   "FOOD/NAME F1",
+   "SIZE",
+   "QUANTITY",
+   "UNIT",
+   "FORM/STATE (STATE, DF)",
+   "head/mid/tail/unseen surface F1 (train counts; head>=20, tail<=4)",
+   "seen/unseen alias F1",
+   "ECE/Brier/AURC/selective risk",
+   "runtime",
+   "peak GPU memory"
+  ],
+  "hash_of_code": {
+   "src/culinarystate/ner/benchmark.py": "8856a852227ad60825fbc612c416bf5d1af587b9aec95a52ebe24584dea98f37",
+   "src/culinarystate/scoring/metrics.py": "26eb022d6ae808db4d237ed6d22c3f20602dd01fd35c1ce57702606ace68d874",
+   "src/culinarystate/scoring/calibration.py": "65f70ce65243b068cb813d0e803236cad2514933e9a2769a80d9f2ce5aa6394f"
+  }
+ },
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "seed_semantics": "model-initialisation/shuffle seeds only; the split never changes",
+ "training_budget": {
+  "epochs": 15,
+  "batch_size": 16,
+  "max_len": 128,
+  "lr_base": 5e-05,
+  "lr_large": 2e-05,
+  "optimizer": "AdamW",
+  "note": "same budget for every encoder"
+ },
+ "checkpoint_selection": "max dev exact micro F1 on the primary view; ties -> earlier epoch; test never read during selection",
+ "statistics": {
+  "min_effect_delta_micro_f1": 0.003,
+  "ci": "paired grouped bootstrap 95% (groups = split groups), CI must exclude 0",
+  "multiplicity": "Holm across the ablation ladder",
+  "n_boot": 1000
+ },
+ "pareto_promotion_rule": {
+  "gain": "delta exact micro F1 >= 0.003 and Holm-adjusted CI excludes 0 (or delta >= 0 with strictly lower cost and better calibration)",
+  "macro_robustness": "exact macro F1 must not fall by more than 0.003",
+  "tail_unseen": "tail and unseen-surface F1 must not fall by more than 0.005",
+  "calibration": "ECE must not rise by more than 0.01 (when a confidence is produced)",
+  "cost": "inference latency <= 2x previous rung unless delta exact micro F1 >= 0.01",
+  "reproducibility": "gain present in >= 4 of 5 seeds"
+ },
+ "router": {
+  "scores": [
+   "entity",
+   "link"
+  ],
+  "outputs": [
+   "ACCEPT",
+   "REVIEW",
+   "NOVEL(NIL)",
+   "REJECT"
+  ],
+  "thresholds": "set by risk control on CALIBRATION so ACCEPT-set error <= epsilon, stratified by label and line type; epsilon declared before the first run: 0.02"
+ },
+ "fusion_guards": {
+  "metadata_dropout": 0.3,
+  "gate_bias_init": "g ~ 1",
+  "warm_start": "encoder+CRF checkpoint",
+  "feature_roles": "encoder confidence/entropy are calibrator-only (excluded from fusion inputs)"
+ },
+ "claims_policy": "no SOTA / superiority claim before H6; no test-set model selection; benchmark is not modified after any candidate sees test"
+}
