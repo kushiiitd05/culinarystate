@@ -23,12 +23,19 @@ import freeze_ner_benchmark as F  # noqa: E402
 import pandas as pd  # noqa: E402
 
 
-def test_docs(ds):
-    sp = json.loads((ROOT / "benchmark/ner/splits" / f"{ds}_split_v1.json").read_text())["indices"]["test"]
+def test_docs(ds, part="dev"):
+    sp = json.loads((ROOT / "benchmark/ner/splits" / f"{ds}_split_v1.json").read_text())["indices"][part]
     if ds == "tasteset":
         return sp, F.docs_taste(pd.read_csv(F.TASTE), sp)
     df, _ = F.load_rdb3()
     return sp, F.docs_rdb3(df, sp)
+
+
+def test_docs_for(ds, idx):
+    if ds == "tasteset":
+        return F.docs_taste(pd.read_csv(F.TASTE), idx)
+    df, _ = F.load_rdb3()
+    return F.docs_rdb3(df, idx)
 
 
 def doc_counts(gold, pred, labels):
@@ -43,19 +50,25 @@ def f1(tp, fp, fn):
 
 def main():
     ds = sys.argv[1]
+    part = "test" if "--final" in sys.argv else "dev"        # development decisions use DEV; TEST only with an explicit --final after the configuration is frozen
+    sys.argv = [x for x in sys.argv if x != "--final"]
     runs_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else ROOT / "reports" / "ner" / "_raw_e0"
     labels = B.VIEWS[{"tasteset": "tasteset_native", "recipedb3": "recipedb3_published"}[ds]]
-    _, docs = test_docs(ds)
+    _, docs = test_docs(ds, part)
+    tr = json.loads((ROOT / "benchmark/ner/splits" / f"{ds}_split_v1.json").read_text())["indices"]["train"]
+    counts = B.surface_counts(test_docs_for(ds, tr))
+    view = {"tasteset": "tasteset_native", "recipedb3": "recipedb3_published"}[ds]
     rows, per = defaultdict(list), defaultdict(dict)
     for f in sorted(glob.glob(str(runs_dir / f"{ds}__*__seed*.json"))):
         if f.endswith(".pred.json"):
             continue
         d = json.load(open(f))
         key = d["model"].split("/")[-1] + ("+CRF" if d["crf"] and not d.get("fusion") else "") + (f"+{d['knowledge']}" if d.get("knowledge", "K0") != "K0" else "") + (f"+fusion-{d['fusion']}" if d.get("fusion") else "")
-        pred = json.load(open(f.replace(".json", ".pred.json")))["test"]
+        pred = json.load(open(f.replace(".json", ".pred.json")))[part]
         c = np.array([doc_counts(g, p, labels) for (_, g), p in zip(docs, pred)])
         per[key][d["seed"]] = c
-        t = d["test"]
+        ev_docs = [(tx, g, [tuple(x[:3]) for x in p]) for (tx, g), p in zip(docs, pred)]
+        t = B.evaluate(ev_docs, counts, view)
         rows[key].append({"micro": t["exact"]["micro"]["f1"], "macro": t["exact"]["macro_f1"], "relaxed": t["relaxed"]["micro"]["f1"], "boundary": t["boundary_error_rate"],
                           "unseen": t["strata"]["unseen_alias"]["f1"], "tail": t["strata"]["tail"]["f1"], "head": t["strata"]["head"]["f1"],
                           "min": d["minutes"], "gb": d["peak_gpu_gb"], "per_label": {k: v["f1"] for k, v in t["exact"]["per_label"].items()}})
@@ -69,7 +82,8 @@ def main():
              (f"{B0}+fusion-gated", f"{B0}+CRF", "E4 gated vs E0 CRF"), (f"{B0}+fusion-gated", f"{B0}+fusion-concat", "E4 gated vs E3 concat"),
              (f"{B0}+fusion-gated", f"{B0}+fusion-zero", "metadata ON vs OFF (same architecture)"),
              (f"{B0}+fusion-zero+span0.5", f"{B0}+fusion-zero", "span head vs none (CRF decodes)"),
-             ("deberta-v3-large+CRF", "deberta-v3-large", "v3-large CRF vs softmax")]
+             ("deberta-v3-large+CRF", "deberta-v3-large", "v3-large CRF vs softmax"), ("deberta-v3-large+CRF", f"{B0}+CRF", "v3-large+CRF vs base+CRF"),
+             ("deberta-v3-large", B0, "v3-large vs base (softmax)"), (B0, "roberta-base", "base vs roberta"), (B0, "bert-base-cased", "base vs bert")]
     tests, names = {}, []
     for cand, base, label in PAIRS:
         seeds = sorted(set(per.get(cand, {})) & set(per.get(base, {})))
@@ -96,8 +110,8 @@ def main():
         t = tests[n]
         t["holm_significant"] = bool(o)
         t["promoted"] = bool(o and t["delta_micro"] >= 0.003 and t["ci95"][0] > 0 and int(t["seeds_won"].split("/")[0]) >= 4 and t["delta_unseen_f1"] >= -0.005 and t["delta_macro"] >= -0.003)
-    out = {"dataset": ds, "agg": agg, "crf_vs_softmax": tests}
-    (ROOT / "reports" / "ner" / f"_e0_{ds}.json").write_text(json.dumps(out, indent=1) + "\n")
+    out = {"dataset": ds, "split_used": part, "agg": agg, "crf_vs_softmax": tests}
+    (ROOT / "reports" / "ner" / f"_e0_{ds}_{part}.json").write_text(json.dumps(out, indent=1) + "\n")
     print("| model | seeds | exact micro | exact macro | relaxed | boundary err | unseen F1 | tail F1 | min | GB |\n|---|---|---|---|---|---|---|---|---|---|")
     for k, a_ in sorted(agg.items(), key=lambda kv: -kv[1]["micro"][0]):
         pm = lambda t: f"{t[0]:.4f}" + (f" ± {t[1]:.4f}" if t[1] is not None else "")
