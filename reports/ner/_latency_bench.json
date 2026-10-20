@@ -1,0 +1,65 @@
+{
+ "gpu": "NVIDIA A100-PCIE-40GB",
+ "tasteset_len48|deberta-base": {
+  "bs1": {
+   "encoder_ms": 19.522391143254936,
+   "encoder+crf_decode_ms": 21.015194477513433,
+   "encoder+crf_decode+marginals_ms": 50.85489037446678
+  },
+  "bs32": {
+   "encoder_ms": 19.291904056444764,
+   "encoder+crf_decode_ms": 128.913588472642,
+   "encoder+crf_decode+marginals_ms": 493.2703210506588
+  },
+  "peak_gb": 0.88
+ },
+ "tasteset_len48|deberta-v3-large": {
+  "bs1": {
+   "encoder_ms": 33.473004470579326,
+   "encoder+crf_decode_ms": 36.670308909378946,
+   "encoder+crf_decode+marginals_ms": 80.55305993184447
+  },
+  "bs32": {
+   "encoder_ms": 34.267351613380015,
+   "encoder+crf_decode_ms": 144.05621262267232,
+   "encoder+crf_decode+marginals_ms": 526.58741758205
+  },
+  "peak_gb": 2.63
+ },
+ "recipedb3_len24|deberta-base": {
+  "bs1": {
+   "encoder_ms": 18.558586481958628,
+   "encoder+crf_decode_ms": 20.782981999218464,
+   "encoder+crf_decode+marginals_ms": 44.283134513534606
+  },
+  "bs32": {
+   "encoder_ms": 20.441448548808694,
+   "encoder+crf_decode_ms": 78.5049854312092,
+   "encoder+crf_decode+marginals_ms": 273.2938639819622
+  },
+  "peak_gb": 0.83
+ },
+ "recipedb3_len24|deberta-v3-large": {
+  "bs1": {
+   "encoder_ms": 35.89277633000165,
+   "encoder+crf_decode_ms": 38.17157237790525,
+   "encoder+crf_decode+marginals_ms": 81.48669637739658
+  },
+  "bs32": {
+   "encoder_ms": 36.6029724245891,
+   "encoder+crf_decode_ms": 96.247628913261,
+   "encoder+crf_decode+marginals_ms": 307.3131615528837
+  },
+  "peak_gb": 2.54
+ },
+ "linker|bge-large-en-v1.5": {
+  "bs1_ms": 16.403135959990323,
+  "bs256_ms": 15.641224454157054,
+  "peak_gb": 2.06
+ },
+ "linker|e5-large-v2": {
+  "bs1_ms": 15.686514554545283,
+  "bs256_ms": 15.732905478216708,
+  "peak_gb": 2.08
+ }
+}

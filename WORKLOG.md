@@ -867,3 +867,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `reports/ner/metadata_calibration_crossdataset.md`, `reports/ner/fusion_decision.md`, `tools/e2_signal_calibration.py`
 - **Verified:** TEST and CALIBRATION untouched; tie-aware metrics unit-checked by hand
 - **Next:** linker data v2 (true dev NIL), final calibration of mainline, router on CALIBRATION
+
+### S127 · 2026-10-21 01:40 IST · S119 · Evidence-closing: linker v2, calibrator choice, M6 analysis, router baselines, latency; router frozen
+- **Who:** claude
+- **Did:** linker_data_v2 (valid NIL), BGE=E5 Pareto, calibrator = logistic+isotonic on conf+M6, M6 = unseen-mention detector, router R6 label x unseen strata + REJECT, linker advisory only, latency table
+- **Files:** `reports/ner/router_and_freeze.md`, `tools/router_eval.py`, `tools/linker_v2_eval.py`, `tools/calibrator_robustness.py`, `tools/m6_analysis.py`, `tools/build_linker_data.py`, `gpu/ner_bench/latency_bench.py`
+- **Verified:** TEST untouched; thresholds on CALIBRATION only; NIL sets validated 0 overlap
+- **Next:** user go-ahead: TEST once, external/unseen validation, A-N report

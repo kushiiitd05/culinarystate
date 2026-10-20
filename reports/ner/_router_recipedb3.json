@@ -1,0 +1,293 @@
+{
+ "dataset": "recipedb3",
+ "eps": 0.02,
+ "n_cal": 9145,
+ "n_dev": 9171,
+ "link_gate": {
+  "tau_l": 0.13,
+  "cos_candidate": 0.6594918370246887
+ },
+ "routers": {
+  "R1_raw_span": {
+   "tau": 0.9998779296875,
+   "coverage": 0.9388289172391233,
+   "accept_error": 0.015331010452961672,
+   "review_rate": 0.061171082760876676,
+   "novel_rate": 0.0,
+   "reject_rate": 0.0,
+   "error_capture_nonaccept": 0.5849056603773585,
+   "reject_error_rate": null,
+   "novel_correct_span_share": null,
+   "accept_error_unseen": 0.05364511691884457,
+   "n_accept_unseen": 727,
+   "cost_per_100_ce5": 13.313706247955512,
+   "cost_per_100_ce10": 20.510304219823357,
+   "cost_per_100_ce20": 34.903500163559045,
+   "accept_error_ci95": [
+    0.012585982598139972,
+    0.01830933618461211
+   ]
+  },
+  "R2_calibrated_span": {
+   "tau": 0.8121827411167513,
+   "coverage": 0.942209137498637,
+   "accept_error": 0.016201828492072676,
+   "review_rate": 0.05779086250136299,
+   "novel_rate": 0.0,
+   "reject_rate": 0.0,
+   "error_capture_nonaccept": 0.559748427672956,
+   "reject_error_rate": null,
+   "novel_correct_span_share": null,
+   "accept_error_unseen": 0.05449591280653951,
+   "n_accept_unseen": 734,
+   "cost_per_100_ce5": 13.411841674844618,
+   "cost_per_100_ce10": 21.044597099552938,
+   "cost_per_100_ce20": 36.31010794896958,
+   "accept_error_ci95": [
+    0.013335514654498165,
+    0.019216441052004252
+   ]
+  },
+  "R3_calibrated_span+M6": {
+   "tau": 0.8926848098822621,
+   "coverage": 0.9356667757060299,
+   "accept_error": 0.017363943596317447,
+   "review_rate": 0.06433322429397012,
+   "novel_rate": 0.0,
+   "reject_rate": 0.0,
+   "error_capture_nonaccept": 0.5314465408805031,
+   "reject_error_rate": null,
+   "novel_correct_span_share": null,
+   "accept_error_unseen": 0.04263565891472868,
+   "n_accept_unseen": 516,
+   "cost_per_100_ce5": 14.556754988550868,
+   "cost_per_100_ce10": 22.680187547704723,
+   "cost_per_100_ce20": 38.92705266601243,
+   "accept_error_ci95": [
+    0.014305095733626537,
+    0.02051246638568609
+   ]
+  },
+  "R3s_M6_strata[label]": {
+   "taus": {
+    "DF": null,
+    "NAME": null,
+    "QUANTITY": 0.4815,
+    "STATE": null,
+    "TEMP": null,
+    "UNIT": 0.2556,
+    "__pooled__": 0.8927
+   },
+   "coverage": 0.5089957474648348,
+   "accept_error": 0.010711225364181662,
+   "review_rate": 0.4910042525351652,
+   "novel_rate": 0.0,
+   "reject_rate": 0.0,
+   "error_capture_nonaccept": 0.8427672955974843,
+   "reject_error_rate": null,
+   "novel_correct_span_share": null,
+   "accept_error_unseen": 0.25925925925925924,
+   "n_accept_unseen": 27,
+   "cost_per_100_ce5": 51.82640933376949,
+   "cost_per_100_ce10": 54.55239341402246,
+   "cost_per_100_ce20": 60.0043615745284,
+   "accept_error_ci95": [
+    0.007639131031515224,
+    0.014113876295143612
+   ]
+  },
+  "R3s_M6_strata[label_x_unseen]": {
+   "taus": {
+    "DF|S": null,
+    "NAME|S": 0.9852,
+    "NAME|U": null,
+    "QUANTITY|S": 0.4815,
+    "QUANTITY|U": 0.8927,
+    "STATE|S": null,
+    "STATE|U": null,
+    "TEMP|S": null,
+    "TEMP|U": 0.8927,
+    "UNIT|S": 0.4424,
+    "UNIT|U": 0.8927,
+    "__pooled__": 0.8927
+   },
+   "coverage": 0.7215134663613565,
+   "accept_error": 0.01269457458062566,
+   "review_rate": 0.27848653363864356,
+   "novel_rate": 0.0,
+   "reject_rate": 0.0,
+   "error_capture_nonaccept": 0.7358490566037735,
+   "reject_error_rate": null,
+   "novel_correct_span_share": null,
+   "accept_error_unseen": 0.2,
+   "n_accept_unseen": 10,
+   "cost_per_100_ce5": 32.42830661868935,
+   "cost_per_100_ce10": 37.00795987351434,
+   "cost_per_100_ce20": 46.167266383164325,
+   "accept_error_ci95": [
+    0.010012522092673965,
+    0.015674630131476748
+   ]
+  },
+  "R4_M6+strata+linker_NIL[balanced tau_l=0.13]": {
+   "coverage": 0.6280667320902846,
+   "accept_error": 0.010763888888888889,
+   "review_rate": 0.3457638207392869,
+   "novel_rate": 0.026169447170428524,
+   "reject_rate": 0.0,
+   "error_capture_nonaccept": 0.8050314465408805,
+   "reject_error_rate": null,
+   "novel_correct_span_share": 0.9791666666666666,
+   "accept_error_unseen": 0.2,
+   "n_accept_unseen": 10,
+   "cost_per_100_ce5": 40.573547050485224,
+   "cost_per_100_ce10": 43.95376730999891,
+   "cost_per_100_ce20": 50.71420782902628,
+   "accept_error_ci95": [
+    0.008216347582654255,
+    0.013575148809523808
+   ]
+  },
+  "R4_M6+strata+linker_NIL[keep90 tau_l=0.05]": {
+   "coverage": 0.673427107185694,
+   "accept_error": 0.011819948186528498,
+   "review_rate": 0.3041107839930215,
+   "novel_rate": 0.022462108821284483,
+   "reject_rate": 0.0,
+   "error_capture_nonaccept": 0.7704402515723271,
+   "reject_error_rate": null,
+   "novel_correct_span_share": 0.9757281553398058,
+   "accept_error_unseen": 0.2,
+   "n_accept_unseen": 10,
+   "cost_per_100_ce5": 36.637226038599934,
+   "cost_per_100_ce10": 40.617162795769275,
+   "cost_per_100_ce20": 48.57703631010795,
+   "accept_error_ci95": [
+    0.008969511324895832,
+    0.014610948507737306
+   ]
+  },
+  "R5_final(+REJECT<0.33, tau_l=0.13)": {
+   "review_bar": 0.3333333333333333,
+   "coverage": 0.6280667320902846,
+   "accept_error": 0.010763888888888889,
+   "review_rate": 0.3434739941118744,
+   "novel_rate": 0.026169447170428524,
+   "reject_rate": 0.002289826627412496,
+   "error_capture_nonaccept": 0.8050314465408805,
+   "reject_error_rate": 0.9047619047619048,
+   "novel_correct_span_share": 0.9791666666666666,
+   "accept_error_unseen": 0.2,
+   "n_accept_unseen": 10,
+   "cost_per_100_ce5": 40.409988005670044,
+   "cost_per_100_ce10": 43.79020826518373,
+   "cost_per_100_ce20": 50.5506487842111,
+   "accept_error_ci95": [
+    0.008216347582654255,
+    0.013575148809523808
+   ]
+  },
+  "R6_FINAL(strata label x unseen, REJECT bar, linker advisory only)": {
+   "review_bar": 0.3333333333333333,
+   "coverage": 0.7215134663613565,
+   "accept_error": 0.01269457458062566,
+   "review_rate": 0.27619670701123106,
+   "novel_rate": 0.0,
+   "reject_rate": 0.002289826627412496,
+   "error_capture_nonaccept": 0.7358490566037735,
+   "reject_error_rate": 0.9047619047619048,
+   "novel_correct_span_share": null,
+   "accept_error_unseen": 0.2,
+   "n_accept_unseen": 10,
+   "cost_per_100_ce5": 32.26474757387417,
+   "cost_per_100_ce10": 36.84440082869916,
+   "cost_per_100_ce20": 46.003707338349145,
+   "accept_error_ci95": [
+    0.010012522092673965,
+    0.015674630131476748
+   ]
+  }
+ },
+ "reject_bar_check_on_calibration": {
+  "bar": 0.3333333333333333,
+  "n_cal_below": 35,
+  "wrong_rate_below": 0.7714285714285715
+ },
+ "final_per_label": {
+  "DF": {
+   "n": 261,
+   "accept_rate": 0.0,
+   "accept_error": null
+  },
+  "NAME": {
+   "n": 2948,
+   "accept_rate": 0.6668928086838535,
+   "accept_error": 0.019837232960325534
+  },
+  "QUANTITY": {
+   "n": 2529,
+   "accept_rate": 0.99644128113879,
+   "accept_error": 0.004761904761904762
+  },
+  "STATE": {
+   "n": 1227,
+   "accept_rate": 0.0,
+   "accept_error": null
+  },
+  "TEMP": {
+   "n": 62,
+   "accept_rate": 0.016129032258064516,
+   "accept_error": 0.0
+  },
+  "UNIT": {
+   "n": 2144,
+   "accept_rate": 0.9934701492537313,
+   "accept_error": 0.015492957746478873
+  }
+ },
+ "R3_global_per_label": {
+  "DF": {
+   "n": 261,
+   "accept_rate": 0.9348659003831418,
+   "accept_error": 0.020491803278688523
+  },
+  "NAME": {
+   "n": 2948,
+   "accept_rate": 0.8592265943012212,
+   "accept_error": 0.030003947887879984
+  },
+  "QUANTITY": {
+   "n": 2529,
+   "accept_rate": 0.9920917358639778,
+   "accept_error": 0.0039856516540454365
+  },
+  "STATE": {
+   "n": 1227,
+   "accept_rate": 0.9339853300733496,
+   "accept_error": 0.027923211169284468
+  },
+  "TEMP": {
+   "n": 62,
+   "accept_rate": 0.8709677419354839,
+   "accept_error": 0.037037037037037035
+  },
+  "UNIT": {
+   "n": 2144,
+   "accept_rate": 0.9771455223880597,
+   "accept_error": 0.011455847255369928
+  }
+ },
+ "novel_advisory": {
+  "n": 526,
+  "share_of_food_spans": 0.1784260515603799,
+  "correct_span_share": 0.9220532319391636,
+  "ledger_exact_hit_share": 0.055133079847908745,
+  "share_routed_accept": 0.45817490494296575
+ },
+ "aurc_dev": {
+  "raw": 0.009206195341558875,
+  "calibrated": 0.014984268328710167,
+  "calibrated+M6": 0.011967732993166736
+ },
+ "router_ms_per_1000_spans": 0.17
+}

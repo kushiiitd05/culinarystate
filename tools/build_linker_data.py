@@ -33,6 +33,9 @@ def bucket(key):
     return int(hashlib.sha256(f"LINK-v1|{key}".encode()).hexdigest()[:12], 16) / 16 ** 12
 
 
+V2 = len(sys.argv) > 1 and sys.argv[1] == "v2"          # v2: evaluation gallery = TRAIN concepts only, so dev/test NIL queries are genuinely absent (v1 kept dev concepts in the gallery)
+
+
 def main():
     st = LedgerStore()
     ings = {i["id"]: i for i in st.all_latest("ING") if i["status"] == "ACTIVE"}
@@ -71,7 +74,7 @@ def main():
                 queries["train"].append({**row, "gold": iid})
     held = {(q["s"], q["ing"]) for k in ("unseen_alias", "dev_alias") for q in queries[k]}
     gallery = {"train_gallery": sorted({(it["s"], iid) for iid, v in by.items() if split[iid] == "train" for it in v if (it["s"], iid) not in held}),
-               "full_gallery_seen_concepts": sorted({(it["s"], iid) for iid, v in by.items() if split[iid] != "test" for it in v if (it["s"], iid) not in held})}
+               "full_gallery_seen_concepts": sorted({(it["s"], iid) for iid, v in by.items() if (split[iid] == "train" if V2 else split[iid] != "test") for it in v if (it["s"], iid) not in held})}
     # hard negatives for train queries (lexical + category + head token), other concepts only
     tg = gallery["train_gallery"]
     texts = [s for s, _ in tg]
@@ -93,7 +96,7 @@ def main():
     out = {"n_ing": len(by), "split_counts": {k: sum(v == k for v in split.values()) for k in ("train", "dev", "test")},
            "queries": queries, **{k: [list(x) for x in v] for k, v in gallery.items()}, "ambiguous_surfaces_dropped": len(amb)}
     (ROOT / "features").mkdir(exist_ok=True)
-    (ROOT / "features" / "linker_data_v1.json").write_text(json.dumps(out))
+    (ROOT / "features" / ("linker_data_v2.json" if V2 else "linker_data_v1.json")).write_text(json.dumps(out))
     print({k: len(v) for k, v in queries.items()}, out["split_counts"], "gallery", {k: len(v) for k, v in gallery.items()}, "amb", len(amb))
 
 
