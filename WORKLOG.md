@@ -860,3 +860,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `reports/ner/linker_signal_calibration.md`, `reports/ner/span_backbone_and_linker_freeze.md`, `tools/e2_linker_calibration.py`, `gpu/ner_bench/linker_train.py`
 - **Verified:** TEST untouched; 3 linker seeds give identical decisions
 - **Next:** ledger alias leakage-gated test, rule agreement, fusion on promoted only
+
+### S126 · 2026-10-21 01:03 IST · S119 · Cross-dataset calibration, ledger aliases, M7, fusion rejected
+- **Who:** claude
+- **Did:** RecipeDB3 confirmation of M1/M2/M5/M6: M1,M2 reverse, M6 neutral; G1/G2 ledger aliases and M7 rejected; tie-aware AURC fix; linker dev-NIL set found invalid; M6-only fusion rejected (-0.0027/-0.0028, 1/5 seeds); metadata frozen = [M6]
+- **Files:** `reports/ner/metadata_calibration_crossdataset.md`, `reports/ner/fusion_decision.md`, `tools/e2_signal_calibration.py`
+- **Verified:** TEST and CALIBRATION untouched; tie-aware metrics unit-checked by hand
+- **Next:** linker data v2 (true dev NIL), final calibration of mainline, router on CALIBRATION
