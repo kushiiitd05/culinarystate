@@ -47,12 +47,14 @@ def load_docs(dataset: str, data: str):
     return [B.words_to_spans(s.split(), B.tags_to_bio(t.split(), set(KNOWN_RDB3))) for s, t in zip(df.sentence, df.tags)]
 
 
-def encode(tok, text, spans, tag2id, max_len):
+def encode(tok, text, spans, tag2id, max_len, prefix=None):
     words = [(m.start(), m.end()) for m in WORD.finditer(text)]
-    enc = tok([text[a:b] for a, b in words], is_split_into_words=True, truncation=True, max_length=max_len)
+    wl = [text[a:b] for a, b in words]
+    enc = tok(prefix, wl, is_split_into_words=True, truncation=True, max_length=max_len) if prefix else tok(wl, is_split_into_words=True, truncation=True, max_length=max_len)
+    seq = enc.sequence_ids() if prefix else [0] * len(enc["input_ids"])
     y, offs, prev = [], [], None
-    for w in enc.word_ids():
-        if w is None or w == prev:
+    for w, sq in zip(enc.word_ids(), seq):
+        if w is None or w == prev or sq != (1 if prefix else 0):
             y.append(-100)
             offs.append((0, 0))
         else:
@@ -131,6 +133,7 @@ def main():
     ap.add_argument("--bs", type=int, default=16)
     ap.add_argument("--max-len", type=int, default=0, help="0 = 128 recipedb3 / 256 tasteset")
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--knowledge", default="K0", choices=["K0", "K1", "K2", "K3"], help="train-derived entity-type context prefix (Part VII)")
     ap.add_argument("--out", default="runs")
     a = ap.parse_args()
     random.seed(a.seed), np.random.seed(a.seed), torch.manual_seed(a.seed)
@@ -148,7 +151,12 @@ def main():
     max_len = a.max_len or (256 if a.dataset == "tasteset" else 128)
     need_prefix = "roberta" in a.model or ("deberta" in a.model and "v3" not in a.model)
     tok = AutoTokenizer.from_pretrained(a.model, add_prefix_space=True) if need_prefix else AutoTokenizer.from_pretrained(a.model)
-    enc = [encode(tok, t, [s for s in sp if s[2] in B.VIEWS[view]], tag2id, max_len) for t, sp in docs]
+    prefix = None
+    if a.knowledge != "K0":
+        import knowledge as K
+        ctx = K.build_context([docs[i] for i in split["train"]], sorted(B.VIEWS[view]), a.knowledge)
+        prefix = [ctx[m.start():m.end()] for m in WORD.finditer(ctx)]
+    enc = [encode(tok, t, [s for s in sp if s[2] in B.VIEWS[view]], tag2id, max_len, prefix) for t, sp in docs]
     model = AutoModelForTokenClassification.from_pretrained(a.model, num_labels=len(tags), id2label=id2tag, label2id=tag2id).to(dev)
     crf = CRF(len(tags)).to(dev) if a.crf else None
     tr_ids = split["train"][:a.limit] if a.limit else split["train"]
@@ -198,11 +206,11 @@ def main():
     res = B.evaluate(ev_docs, counts, view)
     boot = M.grouped_bootstrap({i: [(g, p)] for i, (_, g, p) in enumerate(ev_docs)},
                                lambda ds: M.corpus_span_scores([x for x in ds], "exact", labels=B.VIEWS[view])["micro"]["f1"], n_boot=1000)
-    name = f"{a.dataset}__{a.model.split('/')[-1]}{'_crf' if a.crf else ''}__seed{a.seed}"
+    name = f"{a.dataset}__{a.model.split('/')[-1]}{'_crf' if a.crf else ''}{'_' + a.knowledge if a.knowledge != 'K0' else ''}__seed{a.seed}"
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
     (out / f"{name}.json").write_text(json.dumps({
-        "dataset": a.dataset, "model": a.model, "crf": a.crf, "seed": a.seed, "view": view, "selected_epoch": sel_ep, "selection": "dev exact micro F1",
+        "dataset": a.dataset, "model": a.model, "crf": a.crf, "knowledge": a.knowledge, "seed": a.seed, "view": view, "selected_epoch": sel_ep, "selection": "dev exact micro F1",
         "history": hist, "test": res, "test_micro_exact_f1_ci": boot, "hparams": {"lr": lr, "bs": a.bs, "epochs": a.epochs, "max_len": max_len},
         "n": {k: len(v) for k, v in split.items()}, "minutes": round((time.time() - t0) / 60, 2),
         "peak_gpu_gb": round(torch.cuda.max_memory_allocated() / 1e9, 2) if dev == "cuda" else 0,
