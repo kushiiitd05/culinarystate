@@ -4,7 +4,7 @@
   /opt/anaconda3/bin/python tools/e1_e2_calibration.py tasteset      # reads reports/ner/_raw_conf/*, writes reports/ner/_e1e2_<ds>.json
 Inputs (pulled from the A100): <ds>__<model>[_crf]__seed1.{pred,conf}.json for dev/calibration/test and <..>_oof{k}__seed1.* for the 5 out-of-fold TRAIN tables.
 Span table: one row per PREDICTED span {conf, correct (exact match to gold), label, length, train-only gazetteer features}. Gazetteer for OOF rows = built without that
-fold; for calibration/dev/test = full train. Calibrator fit on OOF rows only; temperature fit on OOF only; CALIBRATION/dev/test never fit anything here.
+fold; for calibration/dev/test = full train. Calibrator fit on OOF rows only; temperature fit on OOF only; CALIBRATION/dev never fit anything here; results are reported on DEV (TEST stays untouched until the configuration is frozen).
 A0 raw confidence | E1 temperature-scaled | A2 +gazetteer | A5 +frequency only | A7 all promoted combos. Metrics: ECE, Brier, AURC, precision@coverage 80/90/95."""
 import glob
 import json
@@ -101,20 +101,20 @@ def main():
     parts = {}
     pred_all = json.load(open(RAW / f"{ds}__{stem}__seed1.pred.json"))
     conf_all = json.load(open(RAW / f"{ds}__{stem}__seed1.conf.json"))
-    for p in ("calibration", "test"):
+    for p in ("calibration", "dev"):
         parts[p] = table(docs(sp[p]), pred_all[p], conf_all[p], lambda _k: full, labels, list(range(len(sp[p]))))
     yo = np.array([r["y"] for r in rows_oof])
     T = minimize_scalar(lambda t: -np.mean(np.log(np.clip(np.where(yo == 1, 1 / (1 + np.exp(-logit([r["conf"] for r in rows_oof]) / t)),
                                                                 1 - 1 / (1 + np.exp(-logit([r["conf"] for r in rows_oof]) / t))), 1e-9, 1))), bounds=(0.2, 10), method="bounded").x
     out = {"stem": stem, "temperature_fit_on_oof": round(float(T), 4), "n_oof_spans": len(rows_oof), "results": {}}
-    yt = np.array([r["y"] for r in parts["test"]])
+    yt = np.array([r["y"] for r in parts["dev"]])
     sig = lambda z: 1 / (1 + np.exp(-z))
-    res = {"A0_raw": metrics(np.array([r["conf"] for r in parts["test"]]), yt),
-           "E1_temperature": metrics(sig(logit([r["conf"] for r in parts["test"]]) / T), yt)}
+    res = {"A0_raw": metrics(np.array([r["conf"] for r in parts["dev"]]), yt),
+           "E1_temperature": metrics(sig(logit([r["conf"] for r in parts["dev"]]) / T), yt)}
     for kind in ("A2", "A5", "A7"):
         model, iso, _ = R.fit_calibrator(X_of(rows_oof, kind), yo)
-        res[f"E2_{kind}"] = metrics(R.calibrated(model, iso, X_of(parts["test"], kind)), yt)
-    out["results"]["test"] = res
+        res[f"E2_{kind}"] = metrics(R.calibrated(model, iso, X_of(parts["dev"], kind)), yt)
+    out["results"]["dev"] = res
     # calibration-split view (what the router thresholds will be set on): same models, reported for completeness
     model, iso, _ = R.fit_calibrator(X_of(rows_oof, "A7"), yo)
     ycal = np.array([r["y"] for r in parts["calibration"]])
