@@ -1,0 +1,11 @@
+task_id,type,artifact,rows_or_items,priority,primary_reviewer,secondary_reviewer,blind_required,adjudication_required,blocking_dependency,status
+HV-001,E4 evidence verification (first milestone),registry/evidence/verification_queue_ranked_v1.csv,"634 ranked literature rows (0 verified); first target >=40, aim 60-80 across several mechanisms",1,Kush,"Parv (audit sample, predeclared)",no,on disagreement,MP-1 contracts reviewed; MP-5A schema,NOT_STARTED
+HV-002,mechanism evidence verification (zero-row cells),"to be created in MP-5B (garlic/onion alliinase-LFS, potato acrylamide, broccoli/cabbage myrosinase, chlorophyll, PPO, dough, rice, beef)",TBD (not populated),1,Kush,Parv (two-person verification for benchmark-critical rows),yes for benchmark-critical rows,yes,HV-001 protocol; MP-5B extraction,PLANNED
+HV-003,E3 AI_PRECHECKED rows sample audit,ledgers/data/EVD.jsonl (Phenol-Explorer),"3,870 AI_PRECHECKED; audit sample size to be predeclared",2,Parv,Kush,no,on disagreement,none,NOT_STARTED
+HV-004,Gold recipe/state verification,annotation/gold/foodcom_ai_assisted_v1_1,"20 recipes (AI-assisted, not independent); 310 events",2,Parv (blind pass),Kush,yes,yes,none,BLOCKED_HUMAN
+HV-005,S116 Food.com eligibility,annotation/gold/evidence_first_expansion/s116_eligibility_confirmation_sheet.csv,84 rows (54 selected + 30 audit); 0 confirmed,2,Kush,-,no,no,none,BLOCKED_HUMAN
+HV-006,scripted session review,annotation/sessions/SES-*.json,30 AI-drafted sessions,3,Kush,Parv,no,no,none,NOT_STARTED
+HV-007,H_STATE question authoring (EXP-000007),benchmark/h_state/questions_to_write.csv,53 current slots (14 supported pairs max); layout update pending,3,Kush,-,no,no,ledger evidence coverage (MP-5),BLOCKED_HUMAN
+HV-008,EVD ingredient-link holds,registry/evidence/evd_ingredient_link_decisions.csv,"129 held, 23 concept-missing",3,Kush,-,no,no,none,NOT_STARTED
+HV-009,allergen table sign-off,registry/allergens/ing_allergen_review.csv,8 ALLERGEN records,4,Kush,-,no,no,none,NOT_STARTED
+HV-010,process mechanism-family verification,ledgers/data/PROC.jsonl,93 PROC with AI-drafted mechanism_families,3,Parv,Kush,no,no,HV-001 protocol,NOT_STARTED

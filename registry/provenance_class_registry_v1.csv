@@ -1,0 +1,9 @@
+provenance_class,answers: where did this value come from,typical tiers,example,evaluation use
+EXPLICIT_SOURCE,value stated in the cited source (table/figure/text),E1-E4,retention factor printed in USDA R6,yes if tier E1-E4
+EXTERNAL_VERIFIED,value checked against the cited source by an independent human or authority,E1-E4,Kush+Parv verified literature row,yes
+DERIVED_DETERMINISTIC,computed from stated values by a documented deterministic rule,E1-E4 (inherits),log_fold_change = ln(after/before); percent_change,yes if inputs eligible
+INFERRED_LLM,extracted/inferred by an LLM,E4 (after human verification) or E5,LLM-extracted literature candidate,only after human verification
+MODEL_ESTIMATED,predicted by a statistical/ML model or mechanism-family rule,E6,rule-based mechanism prior,no
+IMPUTED,filled by an imputation rule (including source-side imputation if declared),E6 or inherited,USDA values imputed from similar foods,no as Gold truth unless declared and censor-aware
+SIMULATED,output of a simulator,E7,heat-transfer simulation,no
+UNKNOWN,origin not recorded,any,legacy rows,no

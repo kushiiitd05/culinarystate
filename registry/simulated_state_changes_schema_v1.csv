@@ -1,0 +1,20 @@
+field,type,required,constraint / semantics
+simulation_id,string,yes,SIM-######; minted by ID minter; never reused
+ingredient_id_or_entity,string,yes,ING id or ENTITY version id
+matrix_descriptor,object,yes,"geometry, initial moisture, composition inputs actually used"
+process_id,string,yes,PROC id
+conditions,object,yes,"full COND-equivalent inputs (temperature trajectory, medium, time, pressure ...)"
+input_state,object,yes,factorised state S_t with masks
+predicted_output_state,object,yes,factorised S_t+1 for supported variables only; all else UNKNOWN
+state_variable_ids,array,yes,must be a subset of the simulator's declared validated scope
+simulator_id,string,yes,registry entry with equations/assumptions
+simulator_version,string,yes,code hash or release
+parameters,object,yes,all parameters with source or SIMULATED_PARAMETER flag
+uncertainty,object,yes,"interval or distribution; unquantified = UNKNOWN, not 0"
+validation_scope,object,yes,"variables, matrices, condition ranges where validated against E1-E4 data"
+extrapolation_flag,bool,yes,true outside validation_scope
+provenance_class,enum,yes,SIMULATED (only value allowed)
+evidence_tier,enum,yes,E7 (only value allowed)
+may_enter_gold_evaluation,bool,yes,always false
+created_at,datetime,yes,
+notes,string,no,

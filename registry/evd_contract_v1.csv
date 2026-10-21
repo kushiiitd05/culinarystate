@@ -1,0 +1,28 @@
+contract_field,required,current_ledger_field (ledgers/schemas/EVD.schema.json),current_population,action,semantics_when_unavailable
+evd_id,yes,id,100%,keep,n/a
+source_id,yes,source_id,100%,keep,n/a
+study_id,no (database aggregates),study_ids[] + study_id_status,"PE 3,870 PRESENT; others NOT_IDENTIFIABLE",keep,"study_id_status = NOT_IDENTIFIABLE, never blank"
+measurement_id,yes,measurement_method_id,USDA/Bognar 3 MEAS records; PE null,expand MEAS to study-level methods in MP-5A,UNKNOWN
+ingredient_id,yes (or explicit raw_name + UNRESOLVED),matrix.ingredient_id,"11,569 of 17,978 (64%)",keep; unresolved stays UNRESOLVED,null + matrix.raw_name
+matrix_id,no (v1),"NONE (matrix is an object: raw_name, food_group, variety, part, form, prior_processing, initial_state, geometry, storage_ripeness)",raw_name 100%; other facets mostly null,ADD matrix_id as a hash of the normalised matrix object in the export view; no ledger rewrite,null
+prior_state_id,no (v1),matrix.initial_state (free text) + matrix.prior_processing,PE initial_state populated; USDA/Bognar mostly null,ADD controlled vocabulary + id in MP-5A; free text kept,UNKNOWN
+process_id,yes,process.process_id,"17,821 of 17,978 (99%)",keep,null + process.raw_name
+condition_id,yes,process.condition_id,"100% (COND 4,414)",keep,COND completeness_mask axes UNKNOWN
+target_state_variable_id,yes,target.state_variable_id,100% (224 SVAR),keep; map duplicates to canonical_variable_id (state_variable_registry_v1),n/a
+before_value,no,"before.{status,value,low,high,unit,uncertainty,censor,raw}","PE 3,870 MEASURED; USDA/Bognar status None",keep nested form; export flattens,"status UNKNOWN or NOT_REPORTED, never 0"
+after_value,no,after.{...},same,keep,same
+delta_value,no,derived.delta,absent in all rows,derive deterministically where before and after both MEASURED (provenance DERIVED_DETERMINISTIC),absent
+direction,no,derived.direction,"100% (17,978; UNKNOWN allowed)",keep,UNKNOWN
+retention_fraction,no,derived.retention_factor,"USDA 4,374 measured / 2,620 censored / 24 unknown; Bognar 3,320 / 3,274 / 0; PE 3,870 measured",keep; censored kept censored,absent; never imputed to 0 or 1
+log_fold_change,no,derived.log_fold_change,absent in all rows,"derive deterministically where before, after > 0 (DERIVED_DETERMINISTIC); for retention-only rows ln(RF) only if RF > 0 and not censored",absent
+yield_fraction,no,derived.yield_factor,"Bognar 496 measured (food mass); PE 3,870 attached from a separate yield source",keep; PE yields carry yield_source in process.modifiers; not independent of the retention rows,absent
+unit,yes if a value exists,before.unit / after.unit / derived.*.unit,PE mg/100 g fresh weight|mL|dry weight; others fraction/percent,keep; no silent conversion across bases,null
+value_low / value_high,no,*.low / *.high,sparse,keep,null
+measurement_method,no,measurement_method_id -> MEAS,see measurement_id,see measurement_id,UNKNOWN
+evidence_tier,yes,tier,"E3 = 17,978",keep field name `tier`; export alias evidence_tier,n/a
+provenance_class,yes,NONE (origin_type + provenance.method only),"origin_type: DATABASE_AGGREGATE 14,108; PRIMARY_STUDY 3,870",ADD provenance_class (registry/provenance_class_registry_v1.csv) in the export view; backfill by rule: all current rows EXPLICIT_SOURCE except derived fields DERIVED_DETERMINISTIC,UNKNOWN
+censoring_flag,yes,censored (bool) + *.censor object,"5,894 censored",keep,false only if source states exact value
+lod / loq,no,NONE as columns (censor.kind/limit inside derived),censor limits only for USDA/Bognar,ADD explicit lod / loq in the export view where the source gives them,null
+condition_completeness,yes,COND.completeness_mask,"temperature known 6,015; duration known 3,083; moisture/pH/aw 0",keep; per-axis UNKNOWN is a valid value,UNKNOWN per axis
+confidence,no,NONE (applicability + verification.status),applicability EXACT/GENERIC/NEAR,ADD only if a calibrated definition is agreed; do not invent a score,null
+notes,no,notes,sparse,keep,null
