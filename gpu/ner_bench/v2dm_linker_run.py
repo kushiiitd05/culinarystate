@@ -7,11 +7,13 @@ import urllib.request
 
 tasks, MODEL, OUT = sys.argv[1], sys.argv[2], sys.argv[3]
 PORT = int(sys.argv[4]) if len(sys.argv) > 4 else 11500
-KEYS = ["A", "B", "C", "D", "E"]
+import string
+K = int(sys.argv[5]) if len(sys.argv) > 5 else 5
+KEYS = list(string.ascii_uppercase[:K])      # K = number of candidates shown (default 5 = TEV-LINK-v0)
 with open(OUT, "w") as f:
     for l in open(tasks):
         r = json.loads(l)
-        crit = {KEYS[i]: f'{c["name"]}' + (f' (also called: {", ".join(c["aliases"])})' if c["aliases"] else "") for i, c in enumerate(r["cands"])}
+        crit = {KEYS[i]: f'{c["name"]}' + (f' (also called: {", ".join(c["aliases"])})' if c["aliases"] else "") for i, c in enumerate(r["cands"][:K])}
         crit["NONE"] = "None of the candidates is the same ingredient as the mention."
         q = {"link": {"type": "choice", "instructions": f'Which ingredient from the ledger is the same ingredient as the recipe mention "{r["mention"]}"? Choose NONE if no candidate is the same ingredient.', "criteria": crit}}
         t0 = time.time()

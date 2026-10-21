@@ -1,0 +1,93 @@
+{
+ "tag": "tev4b",
+ "sets": {
+  "dev (selection/calibration)": {
+   "n": 61,
+   "top1_acc": 0.721,
+   "model_forced_acc": 0.82,
+   "top5_oracle": 0.852,
+   "reranker_efficiency": 0.75,
+   "decomposition_counts": {
+    "retrieval_failure(gold not in top5)": 9,
+    "reranking_failure(gold in top5, wrong pick)": 2,
+    "default_NONE_on_alias": 5,
+    "correct": 50
+   },
+   "by_frequency_acc": {
+    "head(n_surf>=6)": [
+     0.6,
+     10
+    ],
+    "tail(n_surf<=3)": [
+     0.838,
+     37
+    ]
+   }
+  },
+  "held-out (viewed; report only)": {
+   "n": 96,
+   "top1_acc": 0.688,
+   "model_forced_acc": 0.802,
+   "top5_oracle": 0.854,
+   "reranker_efficiency": 0.688,
+   "decomposition_counts": {
+    "retrieval_failure(gold not in top5)": 14,
+    "reranking_failure(gold in top5, wrong pick)": 5,
+    "default_NONE_on_alias": 15,
+    "correct": 77
+   },
+   "by_frequency_acc": {
+    "head(n_surf>=6)": [
+     0.846,
+     13
+    ],
+    "tail(n_surf<=3)": [
+     0.787,
+     61
+    ]
+   }
+  }
+ },
+ "NIL": {
+  "N0_cosine": {
+   "dev_AUROC": 0.723,
+   "dev_AUPRC": 0.892,
+   "dev_balanced_acc_at_dev_threshold": 0.675,
+   "heldout_AUROC": 0.665,
+   "heldout_AUPRC": 0.902,
+   "heldout_NIL_recall": 0.803,
+   "heldout_false_NONE_on_known_aliases": 0.562,
+   "heldout_balanced_acc": 0.62
+  },
+  "N1_raw_NONE_prob": {
+   "dev_AUROC": 0.876,
+   "dev_AUPRC": 0.945,
+   "dev_balanced_acc_at_dev_threshold": 0.849,
+   "heldout_AUROC": 0.836,
+   "heldout_AUPRC": 0.947,
+   "heldout_NIL_recall": 0.847,
+   "heldout_false_NONE_on_known_aliases": 0.24,
+   "heldout_balanced_acc": 0.804
+  },
+  "N2_calibrated_NONE": {
+   "dev_AUROC": 0.873,
+   "dev_AUPRC": 0.94,
+   "dev_balanced_acc_at_dev_threshold": 0.849,
+   "heldout_AUROC": 0.836,
+   "heldout_AUPRC": 0.947,
+   "heldout_NIL_recall": 0.849,
+   "heldout_false_NONE_on_known_aliases": 0.26,
+   "heldout_balanced_acc": 0.794
+  },
+  "N3_calibrated_NONE+retrieval": {
+   "dev_AUROC": 0.873,
+   "dev_AUPRC": 0.94,
+   "dev_balanced_acc_at_dev_threshold": 0.849,
+   "heldout_AUROC": 0.836,
+   "heldout_AUPRC": 0.947,
+   "heldout_NIL_recall": 0.847,
+   "heldout_false_NONE_on_known_aliases": 0.26,
+   "heldout_balanced_acc": 0.793
+  }
+ }
+}
