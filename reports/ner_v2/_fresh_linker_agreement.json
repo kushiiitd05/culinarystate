@@ -12,14 +12,14 @@
  "malformed": [],
  "byte_identical": false,
  "exact_agreement": [
-  137,
+  276,
   441
  ],
  "class_agreement": [
-  138,
+  284,
   441
  ],
- "kappa_class": 0.1299,
+ "kappa_class": 0.5003,
  "class_counts": {
   "Kush": {
    "MATCH": 174,
@@ -28,60 +28,65 @@
    "AMBIGUOUS": 138
   },
   "Parv": {
-   "MATCH": 71,
-   "NONE": 341,
-   "AMBIGUOUS": 29
+   "MATCH": 207,
+   "PARENT": 25,
+   "NONE": 157,
+   "AMBIGUOUS": 52
   }
  },
  "confusion_class(Kush->Parv)": {
-  "AMBIGUOUS->AMBIGUOUS": 7,
-  "AMBIGUOUS->MATCH": 1,
-  "AMBIGUOUS->NONE": 130,
-  "MATCH->AMBIGUOUS": 14,
-  "MATCH->MATCH": 67,
-  "MATCH->NONE": 93,
-  "NONE->AMBIGUOUS": 5,
-  "NONE->MATCH": 3,
-  "NONE->NONE": 64,
-  "PARENT->AMBIGUOUS": 3,
-  "PARENT->NONE": 54
+  "AMBIGUOUS->AMBIGUOUS": 50,
+  "AMBIGUOUS->MATCH": 29,
+  "AMBIGUOUS->NONE": 57,
+  "AMBIGUOUS->PARENT": 2,
+  "MATCH->MATCH": 153,
+  "MATCH->NONE": 18,
+  "MATCH->PARENT": 3,
+  "NONE->AMBIGUOUS": 1,
+  "NONE->MATCH": 2,
+  "NONE->NONE": 65,
+  "NONE->PARENT": 4,
+  "PARENT->AMBIGUOUS": 1,
+  "PARENT->MATCH": 23,
+  "PARENT->NONE": 17,
+  "PARENT->PARENT": 16
  },
  "concept_level_agreement_when_both_MATCH/PARENT": [
-  66,
-  67
+  180,
+  195
  ],
  "same_concept_given_both_MATCH": [
-  66,
-  67
+  145,
+  153
  ],
  "same_concept_given_both_PARENT": [
-  0,
-  0
+  16,
+  16
  ],
  "by_stratum": {
   "S1": {
    "n": 60,
-   "exact": 58,
-   "class": 58,
-   "kappa": 0.492
+   "exact": 60,
+   "class": 60,
+   "kappa": 1.0
   },
   "S2": {
    "n": 160,
-   "exact": 24,
-   "class": 25,
-   "kappa": -0.025
+   "exact": 88,
+   "class": 93,
+   "kappa": 0.443
   },
   "S3": {
    "n": 120,
-   "exact": 38,
-   "class": 38,
-   "kappa": 0.061
+   "exact": 77,
+   "class": 78,
+   "kappa": 0.473
   },
   "S4": {
    "n": 60,
-   "exact": 10,
-   "class": 10,
-   "kappa": -0.034
+   "exact": 26,
+   "class": 26,
+   "kappa": 0.262
   },
   "S5": {
    "n": 1,
@@ -91,46 +96,48 @@
   },
   "S6": {
    "n": 40,
-   "exact": 7,
-   "class": 7,
-   "kappa": -0.005
+   "exact": 25,
+   "class": 27,
+   "kappa": 0.521
   }
  },
  "by_confidence_group": {
   "both_3": {
-   "n": 58,
-   "exact": 58,
-   "class": 58
+   "n": 77,
+   "exact": 72,
+   "class": 74
   },
   "any_2(no 1)": {
-   "n": 283,
-   "exact": 62,
-   "class": 63
+   "n": 194,
+   "exact": 122,
+   "class": 128
   },
   "any_1": {
-   "n": 100,
-   "exact": 17,
-   "class": 17
+   "n": 170,
+   "exact": 82,
+   "class": 82
   }
  },
  "low_confidence_rate": {
   "Kush_conf1": 78,
-  "Parv_conf1": 29,
-  "either_conf<=2": 383,
-  "either_conf1": 100
+  "Parv_conf1": 118,
+  "either_conf<=2": 364,
+  "either_conf1": 170
  },
- "n_requiring_adjudication": 304,
+ "n_requiring_adjudication": 165,
  "disagreement_types": {
-  "AMBIGUOUS vs NONE": 135,
-  "MATCH vs NONE": 96,
-  "NONE vs PARENT": 54,
-  "AMBIGUOUS vs MATCH": 15,
-  "AMBIGUOUS vs PARENT": 3,
-  "MATCH vs different MATCH": 1
+  "AMBIGUOUS vs NONE": 58,
+  "AMBIGUOUS vs MATCH": 29,
+  "NONE vs PARENT": 21,
+  "MATCH vs NONE": 20,
+  "MATCH vs PARENT (same concept)": 19,
+  "MATCH vs different MATCH": 8,
+  "MATCH vs PARENT (different concepts)": 7,
+  "AMBIGUOUS vs PARENT": 3
  },
  "match_parent_boundary": {
-  "MATCH vs PARENT same concept": 0,
-  "MATCH vs PARENT different concepts": 0
+  "MATCH vs PARENT same concept": 19,
+  "MATCH vs PARENT different concepts": 7
  },
- "NONE_typed_names_differ_among_NONE_pairs": 50
+ "NONE_typed_names_differ_among_NONE_pairs": 52
 }
