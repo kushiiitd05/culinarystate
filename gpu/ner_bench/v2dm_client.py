@@ -56,6 +56,7 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--port", type=int, default=11500)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--sample", type=int, default=0, help="random subset of n rows (seed 0) instead of the first n")
     ap.add_argument("--prompt", default="p1", choices=["p1", "p2", "p3"])
     ap.add_argument("--exemplars", default="")
     ap.add_argument("--repeat", type=int, default=1, help="repeat each request n times (determinism check)")
@@ -70,6 +71,9 @@ def main():
     except FileNotFoundError:
         pass
     todo = [r for r in rows if r["part"] in parts and r["route"] in routes and r["id"] not in done]
+    if a.sample:
+        import random
+        todo = random.Random(0).sample(todo, min(a.sample, len(todo)))
     if a.limit:
         todo = todo[:a.limit]
     with open(a.out, "a") as f:
