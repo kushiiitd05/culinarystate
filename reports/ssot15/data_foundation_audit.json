@@ -1,0 +1,1258 @@
+{
+ "ledgers": {
+  "SRC": {
+   "versions_total": 609,
+   "ids_latest": 488,
+   "active": 488
+  },
+  "SNAP": {
+   "versions_total": 347,
+   "ids_latest": 346,
+   "active": 346
+  },
+  "ING": {
+   "versions_total": 5387,
+   "ids_latest": 2110,
+   "active": 2048
+  },
+  "ALIAS": {
+   "versions_total": 4183,
+   "ids_latest": 4116,
+   "active": 4103
+  },
+  "MOL": {
+   "versions_total": 1726,
+   "ids_latest": 1726,
+   "active": 1726
+  },
+  "IMAP": {
+   "versions_total": 31972,
+   "ids_latest": 30294,
+   "active": 30294
+  },
+  "PROC": {
+   "versions_total": 552,
+   "ids_latest": 156,
+   "active": 156
+  },
+  "TOOL": {
+   "versions_total": 297,
+   "ids_latest": 119,
+   "active": 119
+  },
+  "UNIT": {
+   "versions_total": 74,
+   "ids_latest": 74,
+   "active": 74
+  },
+  "COND": {
+   "versions_total": 4746,
+   "ids_latest": 4414,
+   "active": 4414
+  },
+  "SVAR": {
+   "versions_total": 355,
+   "ids_latest": 224,
+   "active": 224
+  },
+  "MEAS": {
+   "versions_total": 3,
+   "ids_latest": 3,
+   "active": 3
+  },
+  "STUDY": {
+   "versions_total": 125,
+   "ids_latest": 125,
+   "active": 125
+  },
+  "EVD": {
+   "versions_total": 57280,
+   "ids_latest": 18156,
+   "active": 17978
+  },
+  "REC": {
+   "versions_total": 107760,
+   "ids_latest": 89565,
+   "active": 89565
+  },
+  "KGE": {
+   "versions_total": 80607,
+   "ids_latest": 48181,
+   "active": 45201
+  },
+  "EXP": {
+   "versions_total": 8,
+   "ids_latest": 7,
+   "active": 7
+  },
+  "ALLERGEN": {
+   "versions_total": 11,
+   "ids_latest": 8,
+   "active": 8
+  },
+  "INST": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "EVT": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "STATE": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "REF": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "GRAPH": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "ENTITY": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "QNT": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "POR": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "ALLOC": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "RXN": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "WARN": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "CLM": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "DATASET": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "SPLIT": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "MODEL": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "GATE": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "RQ": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "RS": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  },
+  "API": {
+   "versions_total": 0,
+   "ids_latest": 0,
+   "active": 0,
+   "file": "MISSING (schema exists)"
+  }
+ },
+ "EVD": {
+  "n": 17978,
+  "tier": {
+   "E3": 17978
+  },
+  "origin_type": {
+   "DATABASE_AGGREGATE": 14108,
+   "PRIMARY_STUDY": 3870
+  },
+  "source_family": {
+   "USDA-RETN-R6": 7018,
+   "PHENOL-EXPLORER-3.6": 3870,
+   "BOGNAR-2002": 7090
+  },
+  "design": {
+   "DATABASE_AGGREGATE": 14108,
+   "UNKNOWN": 3870
+  },
+  "verification": {
+   "UNVERIFIED": 14108,
+   "AI_PRECHECKED": 3870
+  },
+  "censored": 5894,
+  "study_id_status": {
+   "NOT_IDENTIFIABLE": 14108,
+   "PRESENT": 3870
+  },
+  "with_ingredient_id": 11569,
+  "with_process_id": 17821,
+  "with_condition_id": 17978,
+  "svar_family": {
+   "CHEMICAL": 17482,
+   "PHYSICAL": 496
+  },
+  "target_basis": {
+   "RETENTION_TR_OR_AR": 7018,
+   "FRESH_WEIGHT": 3402,
+   "PER_VOLUME": 960,
+   "DRY": 4,
+   "TRUE_RETENTION": 6594
+  },
+  "derived_or_value_keys": {
+   "direction": 17978,
+   "retention_factor": 17482,
+   "percent_change": 3859,
+   "yield_factor": 4366,
+   "before": 3870,
+   "after": 3870
+  },
+  "unique_ingredients": 165,
+  "unique_matrix_raw_names": 619,
+  "unique_processes_linked": 36,
+  "unique_process_step_signatures": 70,
+  "unique_svars": 224,
+  "unique_studies": 125,
+  "unique_food_groups": 76,
+  "condition_completeness_by_axis": {
+   "duration": {
+    "UNKNOWN": 14895,
+    "MEASURED": 2607,
+    "RANGE": 476
+   },
+   "moisture": {
+    "UNKNOWN": 17978
+   },
+   "ph": {
+    "UNKNOWN": 17978
+   },
+   "pressure": {
+    "NOT_APPLICABLE": 7018,
+    "MEASURED": 129
+   },
+   "temperature": {
+    "UNKNOWN": 11963,
+    "MEASURED": 2430,
+    "RANGE": 3585
+   },
+   "power": {
+    "MEASURED": 60
+   }
+  },
+  "rows_with_temperature_known": 6015,
+  "rows_with_duration_known": 3083,
+  "eval_eligible_E1_E4": 17978,
+  "eval_eligible_E1_E4_ingredient_and_process_linked": 11413,
+  "eval_eligible_human_verified": 0
+ },
+ "SVAR": {
+  "n": 224,
+  "family": {
+   "CHEMICAL": 223,
+   "PHYSICAL": 1
+  },
+  "observable_in_session": 1,
+  "svars_with_evidence": 224
+ },
+ "PROC": {
+  "n_active": 156,
+  "families": {
+   "DRY_HEAT": 9,
+   "HEAT_GENERAL": 7,
+   "FAT_HEAT": 12,
+   "WET_HEAT": 14,
+   "HEAT_CONTROL": 2,
+   "COOLING": 4,
+   "RESTING": 1,
+   "MECHANICAL_CUT": 22,
+   "MECHANICAL_MIX": 14,
+   "SEPARATION": 11,
+   "COMBINATION": 13,
+   "FERMENT_LEAVEN": 5,
+   "TRANSFER": 15,
+   "SHAPING": 10,
+   "PRESERVATION": 6,
+   "RESERVATION": 1,
+   "SERVING": 1,
+   "ENDPOINT": 9
+  },
+  "with_mechanism_families": 93,
+  "with_evidence_coverage_gt0": 37,
+  "ssot_target": ">=300 process IDs"
+ },
+ "COND": {
+  "n": 4414
+ },
+ "ING": {
+  "n_active": 2048,
+  "with_parent": 323,
+  "scientific_identity_status": {
+   "UNKNOWN": 2110
+  },
+  "with_facets": 238
+ },
+ "MOL": {
+  "n": 1726,
+  "with_smiles": 1726,
+  "with_inchikey": 1726,
+  "with_pubchem_fp": 1726,
+  "with_descriptors": 1726,
+  "ecfp": 0,
+  "atom_level_graph_objects": 0
+ },
+ "IMAP": {
+  "n": 30294,
+  "relation": {
+   "MEASURED_CONCENTRATION": 219,
+   "PROCESS_CHANGE": 419,
+   "PRESENCE": 29656
+  },
+  "unique_ingredients": 313,
+  "unique_molecules": 1659
+ },
+ "KGE": {
+  "n_active": 45201,
+  "predicates": {
+   "ING_PROCESSED_BY": 2132,
+   "PROC_USES_TOOL": 543,
+   "PROC_FOLLOWED_BY": 63,
+   "ING_CO_OCCURS": 34394,
+   "ING_USED_IN_CUISINE": 2330,
+   "ING_MEASURED_IN_UNIT": 1150,
+   "COMPONENT_CONTAINS_ING": 49,
+   "PROC_TYPICAL_DURATION": 39,
+   "PROC_TYPICAL_TEMPERATURE": 10,
+   "ING_HAS_CATEGORY": 631,
+   "ING_PARENT": 315,
+   "PROC_IN_FAMILY": 156,
+   "TOOL_HAS_CATEGORY": 119,
+   "ING_ALTERNATIVE_TO": 220,
+   "ING_OFTEN_OPTIONAL": 40,
+   "ING_PREP_FORM": 596,
+   "PROC_USES_MEDIUM": 35,
+   "PROC_ENDPOINT_STATE": 47,
+   "MOL_HAS_TASTE": 737,
+   "ING_COSYLAB_CATEGORY": 964,
+   "ING_HEALTH_ASSOCIATION": 497,
+   "ING_CARBON_FOOTPRINT": 134
+  }
+ },
+ "coverage_cube": {
+  "cells_nonempty": 245,
+  "rows": 17978,
+  "cells_ge_30": 108,
+  "cells_ge_100": 58,
+  "top_cells": [
+   {
+    "food_group": "meat based dishes",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 916
+   },
+   {
+    "food_group": "meat based dishes",
+    "process_family": "FAT_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 812
+   },
+   {
+    "food_group": "Vegetables and Vegetable Products",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 598
+   },
+   {
+    "food_group": "vegetable based dishes",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 520
+   },
+   {
+    "food_group": "meat based dishes",
+    "process_family": "DRY_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 496
+   },
+   {
+    "food_group": "Legumes and Legume Products",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 468
+   },
+   {
+    "food_group": "fish based dishes",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 426
+   },
+   {
+    "food_group": "poultry based dishes",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 420
+   },
+   {
+    "food_group": "fish based dishes",
+    "process_family": "FAT_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 356
+   },
+   {
+    "food_group": "poultry based dishes",
+    "process_family": "FAT_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 352
+   },
+   {
+    "food_group": "Finfish and Shellfish Products",
+    "process_family": "DRY_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 338
+   },
+   {
+    "food_group": "Finfish and Shellfish Products",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 338
+   },
+   {
+    "food_group": "Pork Products",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 312
+   },
+   {
+    "food_group": "Pork Products",
+    "process_family": "FAT_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 312
+   },
+   {
+    "food_group": "Beef Products",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 312
+   },
+   {
+    "food_group": "Vegetables and Vegetable Products",
+    "process_family": "FAT_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 286
+   },
+   {
+    "food_group": "vegetable based dishes",
+    "process_family": "FAT_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 277
+   },
+   {
+    "food_group": "Vegetables and Vegetable Products",
+    "process_family": "DRY_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 260
+   },
+   {
+    "food_group": "Finfish and Shellfish Products",
+    "process_family": "FAT_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 234
+   },
+   {
+    "food_group": "Fruits and fruit products / Fruits - Berries",
+    "process_family": "COOLING",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 216
+   },
+   {
+    "food_group": "fish based dishes",
+    "process_family": "DRY_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 214
+   },
+   {
+    "food_group": "offal based dishes",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 213
+   },
+   {
+    "food_group": "crustaceans and molluscs based dishes",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 213
+   },
+   {
+    "food_group": "poultry based dishes",
+    "process_family": "DRY_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 212
+   },
+   {
+    "food_group": "Lamb, Veal, and Game Products",
+    "process_family": "WET_HEAT",
+    "svar_family": "CHEMICAL",
+    "tier": "E3",
+    "n": 208
+   }
+  ]
+ },
+ "EVD_exact_ING_PROC_cells": {
+  "cells": 485,
+  "cells_ge_3": 306,
+  "cells_ge_10": 220,
+  "top": [
+   {
+    "ING": "ING-000140",
+    "name": "strawberry",
+    "PROC": "PROC-000039",
+    "proc": "chill",
+    "n": 273
+   },
+   {
+    "ING": "ING-000374",
+    "name": "pork",
+    "PROC": "PROC-000020",
+    "proc": "simmer",
+    "n": 260
+   },
+   {
+    "ING": "ING-000027",
+    "name": "potato",
+    "PROC": "PROC-000019",
+    "proc": "boil",
+    "n": 224
+   },
+   {
+    "ING": "ING-000374",
+    "name": "pork",
+    "PROC": "PROC-000016",
+    "proc": "brown",
+    "n": 208
+   },
+   {
+    "ING": "ING-000105",
+    "name": "red wine",
+    "PROC": "PROC-000113",
+    "proc": "store",
+    "n": 172
+   },
+   {
+    "ING": "ING-000192",
+    "name": "cherry",
+    "PROC": "PROC-000039",
+    "proc": "chill",
+    "n": 171
+   },
+   {
+    "ING": "ING-000374",
+    "name": "pork",
+    "PROC": "PROC-000002",
+    "proc": "roast",
+    "n": 159
+   },
+   {
+    "ING": "ING-000267",
+    "name": "beef",
+    "PROC": "PROC-000020",
+    "proc": "simmer",
+    "n": 156
+   },
+   {
+    "ING": "ING-000038",
+    "name": "orange",
+    "PROC": "PROC-000113",
+    "proc": "store",
+    "n": 138
+   },
+   {
+    "ING": "ING-000301",
+    "name": "lamb",
+    "PROC": "PROC-000002",
+    "proc": "roast",
+    "n": 132
+   },
+   {
+    "ING": "ING-000482",
+    "name": "strawberry jam",
+    "PROC": "PROC-000113",
+    "proc": "store",
+    "n": 129
+   },
+   {
+    "ING": "ING-000027",
+    "name": "potato",
+    "PROC": "PROC-000001",
+    "proc": "bake",
+    "n": 116
+   },
+   {
+    "ING": "ING-001155",
+    "name": "tomato juice",
+    "PROC": "PROC-000113",
+    "proc": "store",
+    "n": 108
+   },
+   {
+    "ING": "ING-000247",
+    "name": "tomato ketchup",
+    "PROC": "PROC-000113",
+    "proc": "store",
+    "n": 108
+   },
+   {
+    "ING": "ING-000374",
+    "name": "pork",
+    "PROC": "PROC-000013",
+    "proc": "pan-fry",
+    "n": 107
+   },
+   {
+    "ING": "ING-000301",
+    "name": "lamb",
+    "PROC": "PROC-000013",
+    "proc": "pan-fry",
+    "n": 106
+   },
+   {
+    "ING": "ING-000199",
+    "name": "blueberry",
+    "PROC": "PROC-000113",
+    "proc": "store",
+    "n": 105
+   },
+   {
+    "ING": "ING-001927",
+    "name": "root",
+    "PROC": "PROC-000013",
+    "proc": "pan-fry",
+    "n": 105
+   },
+   {
+    "ING": "ING-000277",
+    "name": "sweet potato",
+    "PROC": "PROC-000019",
+    "proc": "boil",
+    "n": 104
+   },
+   {
+    "ING": "ING-000852",
+    "name": "veg",
+    "PROC": "PROC-000019",
+    "proc": "boil",
+    "n": 104
+   },
+   {
+    "ING": "ING-000267",
+    "name": "beef",
+    "PROC": "PROC-000016",
+    "proc": "brown",
+    "n": 104
+   },
+   {
+    "ING": "ING-002106",
+    "name": "veal",
+    "PROC": "PROC-000020",
+    "proc": "simmer",
+    "n": 104
+   },
+   {
+    "ING": "ING-000080",
+    "name": "chicken",
+    "PROC": "PROC-000002",
+    "proc": "roast",
+    "n": 96
+   },
+   {
+    "ING": "ING-000199",
+    "name": "blueberry",
+    "PROC": "PROC-000039",
+    "proc": "chill",
+    "n": 96
+   },
+   {
+    "ING": "ING-000192",
+    "name": "cherry",
+    "PROC": "PROC-000113",
+    "proc": "store",
+    "n": 92
+   }
+  ]
+ },
+ "recipe_event_to_evidence_proxy": {
+  "ING_PROCESSED_BY_edges": 2132,
+  "edges_with_exact_EVD_cell": 24,
+  "edges_with_only_near_evidence(ING or PROC seen elsewhere)": 738,
+  "edges_no_evidence": 1370,
+  "recipe_support_total": 259027,
+  "recipe_support_with_exact_EVD": 7666,
+  "share_recipe_support_exact": 0.0296
+ },
+ "top_missing_cells_by_recipe_support": [
+  {
+   "ING": "ING-000044",
+   "ingredient": "salt",
+   "PROC": "PROC-000097",
+   "process": "season",
+   "recipes": 20293
+  },
+  {
+   "ING": "ING-000256",
+   "ingredient": "cream",
+   "PROC": "PROC-000067",
+   "process": "beat",
+   "recipes": 14019
+  },
+  {
+   "ING": "ING-000139",
+   "ingredient": "pepper",
+   "PROC": "PROC-000097",
+   "process": "season",
+   "recipes": 11497
+  },
+  {
+   "ING": "ING-000001",
+   "ingredient": "butter",
+   "PROC": "PROC-000034",
+   "process": "melt",
+   "recipes": 7293
+  },
+  {
+   "ING": "ING-000005",
+   "ingredient": "onion",
+   "PROC": "PROC-000043",
+   "process": "chop",
+   "recipes": 4077
+  },
+  {
+   "ING": "ING-000030",
+   "ingredient": "baking powder",
+   "PROC": "PROC-000001",
+   "process": "bake",
+   "recipes": 3935
+  },
+  {
+   "ING": "ING-001669",
+   "ingredient": "baking",
+   "PROC": "PROC-000001",
+   "process": "bake",
+   "recipes": 3657
+  },
+  {
+   "ING": "ING-000013",
+   "ingredient": "parsley",
+   "PROC": "PROC-000043",
+   "process": "chop",
+   "recipes": 3547
+  },
+  {
+   "ING": "ING-000130",
+   "ingredient": "flour",
+   "PROC": "PROC-000080",
+   "process": "sift",
+   "recipes": 3535
+  },
+  {
+   "ING": "ING-000444",
+   "ingredient": "yolk",
+   "PROC": "PROC-000067",
+   "process": "beat",
+   "recipes": 3086
+  },
+  {
+   "ING": "ING-000109",
+   "ingredient": "water",
+   "PROC": "PROC-000129",
+   "process": "soak",
+   "recipes": 2972
+  },
+  {
+   "ING": "ING-001606",
+   "ingredient": "seasoning",
+   "PROC": "PROC-000097",
+   "process": "season",
+   "recipes": 2932
+  },
+  {
+   "ING": "ING-002042",
+   "ingredient": "dryfish",
+   "PROC": "PROC-000133",
+   "process": "dry",
+   "recipes": 2435
+  },
+  {
+   "ING": "ING-000045",
+   "ingredient": "sugar",
+   "PROC": "PROC-000080",
+   "process": "sift",
+   "recipes": 2183
+  },
+  {
+   "ING": "ING-000998",
+   "ingredient": "stuffing",
+   "PROC": "PROC-000098",
+   "process": "fill",
+   "recipes": 2158
+  },
+  {
+   "ING": "ING-000055",
+   "ingredient": "nutmeg",
+   "PROC": "PROC-000048",
+   "process": "grate",
+   "recipes": 2078
+  },
+  {
+   "ING": "ING-000006",
+   "ingredient": "lemon",
+   "PROC": "PROC-000085",
+   "process": "squeeze",
+   "recipes": 2034
+  },
+  {
+   "ING": "ING-001761",
+   "ingredient": "fat",
+   "PROC": "PROC-000009",
+   "process": "fry",
+   "recipes": 1984
+  },
+  {
+   "ING": "ING-000120",
+   "ingredient": "brown sugar",
+   "PROC": "PROC-000016",
+   "process": "brown",
+   "recipes": 1963
+  },
+  {
+   "ING": "ING-000002",
+   "ingredient": "garlic",
+   "PROC": "PROC-000032",
+   "process": "heat",
+   "recipes": 1897
+  },
+  {
+   "ING": "ING-000108",
+   "ingredient": "cheese",
+   "PROC": "PROC-000048",
+   "process": "grate",
+   "recipes": 1696
+  },
+  {
+   "ING": "ING-001280",
+   "ingredient": "whipped cream",
+   "PROC": "PROC-000067",
+   "process": "beat",
+   "recipes": 1671
+  },
+  {
+   "ING": "ING-000030",
+   "ingredient": "baking powder",
+   "PROC": "PROC-000080",
+   "process": "sift",
+   "recipes": 1590
+  },
+  {
+   "ING": "ING-001280",
+   "ingredient": "whipped cream",
+   "PROC": "PROC-000073",
+   "process": "whip",
+   "recipes": 1565
+  },
+  {
+   "ING": "ING-000006",
+   "ingredient": "lemon",
+   "PROC": "PROC-000048",
+   "process": "grate",
+   "recipes": 1545
+  },
+  {
+   "ING": "ING-000005",
+   "ingredient": "onion",
+   "PROC": "PROC-000050",
+   "process": "mince",
+   "recipes": 1441
+  },
+  {
+   "ING": "ING-001669",
+   "ingredient": "baking",
+   "PROC": "PROC-000096",
+   "process": "brush",
+   "recipes": 1421
+  },
+  {
+   "ING": "ING-000002",
+   "ingredient": "garlic",
+   "PROC": "PROC-000009",
+   "process": "fry",
+   "recipes": 1419
+  },
+  {
+   "ING": "ING-000004",
+   "ingredient": "egg",
+   "PROC": "PROC-000066",
+   "process": "whisk",
+   "recipes": 1415
+  },
+  {
+   "ING": "ING-000013",
+   "ingredient": "parsley",
+   "PROC": "PROC-000125",
+   "process": "decorate",
+   "recipes": 1412
+  }
+ ],
+ "REC": {
+  "n_active": 89565,
+  "by_external_ref_family": {
+   "A1": 11934,
+   "WIKIBOOKS": 3676,
+   "GUTENBERG": 73955
+  },
+  "with_cuisine": 60144,
+  "median_steps": 6,
+  "verification": {
+   "UNVERIFIED": 89565
+  }
+ },
+ "gold_and_state_objects": {
+  "foodcom_ai_assisted_v1_1": {
+   "recipes": 20,
+   "steps": 157,
+   "events": 310,
+   "event_types": {
+    "Transform": 155,
+    "Merge": 114,
+    "Reserve": 8,
+    "Split": 13,
+    "Transfer": 17,
+    "Discard": 1,
+    "Recombine": 2
+   },
+   "step_spans": 989,
+   "class": "AI-assisted human-reviewed development Gold (not independent)"
+  },
+  "scripted_sessions": {
+   "n": 30,
+   "human_reviewed": 0,
+   "provenance": "AI-drafted (STATUS: 0/30 human-reviewed)"
+  },
+  "pilot_20_manifest_rows": 20,
+  "evidence_first_expansion": {
+   "selection_manifest_rows": 54,
+   "candidate_pool_rows": 210,
+   "screening_rows": 210,
+   "s116_confirmation_rows": 84,
+   "s116_confirmed": 0
+  },
+  "openpi_food_states": {
+   "procedures": 197,
+   "state_changes": 7629,
+   "with_ING_link": 3898,
+   "top_attributes": {
+    "location": 1475,
+    "temperature": 823,
+    "weight": 602,
+    "cleanness": 600,
+    "composition": 362,
+    "volume": 327,
+    "moisture": 295,
+    "texture": 249,
+    "fullness": 246,
+    "wetness": 128,
+    "power": 116,
+    "size": 104,
+    "shape": 97,
+    "taste": 90,
+    "color": 74
+   },
+   "role": "external DEL-3 check, free-text states, not measured physics"
+  }
+ },
+ "data_external_file_counts": {
+  "allerstack": 3,
+  "bittersweet": 5,
+  "cosylab_companion": 7,
+  "drugadr": 1,
+  "fndds": 2,
+  "foodcom": 3,
+  "hierarchical_clustering": 2,
+  "infoods": 3,
+  "nova_food_processing": 9,
+  "recipe_knowledge_mining": 4,
+  "recipe_knowledge_mining_results.csv": 1,
+  "recipe_ner_dl": 6,
+  "recipedb2": 1,
+  "recipedb3_ner": 4,
+  "spice_disease": 2,
+  "sustainablefooddb": 4,
+  "sweetpreddb": 1,
+  "usda_yields": 2
+ },
+ "data_raw_dirs": [
+  "bognar",
+  "chemtastesdb",
+  "doi_resolve",
+  "fdc",
+  "flavorgraph",
+  "foodon",
+  "fsis",
+  "fssai",
+  "gutenberg",
+  "off",
+  "openalex",
+  "openpi",
+  "phenol_explorer",
+  "pubchem",
+  "tasteset",
+  "usda_r6",
+  "wikibooks",
+  "wikidata"
+ ],
+ "data_interim_dirs": [
+  "embeddings",
+  "evidence_first",
+  "foodoscope_probe",
+  "gutenberg",
+  "models",
+  "openpi",
+  "retrieval",
+  "rq1603",
+  "troubleshooting",
+  "wikibooks"
+ ],
+ "simulation": {
+  "simulated_state_changes_csv": "MISSING",
+  "files_matching_simulat*": [
+   "data/raw/doi_resolve/crossref/lombard_k_peffley_e_geoffriau_e_thompson_l_herring_a_2005_quercetin_in_onion_allium_cepa_l_after_heat_treatment_simulating_home_preparation_journal_of.json"
+  ],
+  "source_class_module": true,
+  "contract_doc": true
+ },
+ "trajectories": {
+  "recipe_state_trajectories": "MISSING",
+  "engine_module": true,
+  "rule_compiler_module": true,
+  "EVT/STATE/GRAPH/ENTITY/REF ledgers": "schemas exist, 0 persisted rows (engine keeps in-memory event-sourced state)"
+ },
+ "B06_priority_ingredients": {
+  "rice": {
+   "evd_rows": 129,
+   "tiers": {
+    "E3": 129
+   },
+   "svar_family": {
+    "CHEMICAL": 115,
+    "PHYSICAL": 14
+   },
+   "linked_ING_and_PROC": 24,
+   "temperature_known": 0
+  },
+  "potato": {
+   "evd_rows": 840,
+   "tiers": {
+    "E3": 840
+   },
+   "svar_family": {
+    "CHEMICAL": 827,
+    "PHYSICAL": 13
+   },
+   "linked_ING_and_PROC": 838,
+   "temperature_known": 94
+  },
+  "broccoli": {
+   "evd_rows": 355,
+   "tiers": {
+    "E3": 355
+   },
+   "svar_family": {
+    "CHEMICAL": 352,
+    "PHYSICAL": 3
+   },
+   "linked_ING_and_PROC": 49,
+   "temperature_known": 6
+  },
+  "garlic": {
+   "evd_rows": 0,
+   "tiers": {},
+   "svar_family": {},
+   "linked_ING_and_PROC": 0,
+   "temperature_known": 0
+  },
+  "beef": {
+   "evd_rows": 1785,
+   "tiers": {
+    "E3": 1785
+   },
+   "svar_family": {
+    "CHEMICAL": 1754,
+    "PHYSICAL": 31
+   },
+   "linked_ING_and_PROC": 939,
+   "temperature_known": 1261
+  },
+  "wheat": {
+   "evd_rows": 35,
+   "tiers": {
+    "E3": 35
+   },
+   "svar_family": {
+    "CHEMICAL": 25,
+    "PHYSICAL": 10
+   },
+   "linked_ING_and_PROC": 35,
+   "temperature_known": 1
+  },
+  "dough": {
+   "evd_rows": 0,
+   "tiers": {},
+   "svar_family": {},
+   "linked_ING_and_PROC": 0,
+   "temperature_known": 0
+  },
+  "cabbage": {
+   "evd_rows": 256,
+   "tiers": {
+    "E3": 256
+   },
+   "svar_family": {
+    "CHEMICAL": 241,
+    "PHYSICAL": 15
+   },
+   "linked_ING_and_PROC": 46,
+   "temperature_known": 12
+  }
+ },
+ "B06_mechanism_keyword_evd_rows": {
+  "acrylamide": 0,
+  "maillard": 0,
+  "glucose": 7,
+  "glycine": 0,
+  "ascorb": 270,
+  "vitamin c": 423,
+  "anthocyan": 34,
+  "chlorophyll": 0,
+  "pheophyt": 0,
+  "gelation": 0,
+  "ph ": 0,
+  "alliin": 0,
+  "allicin": 0,
+  "myrosinase": 0,
+  "isothiocyan": 0,
+  "lipoxygenase": 0,
+  "hydroperoxide": 0,
+  "polyphenol oxidase": 0,
+  "browning": 0,
+  "quercetin": 381
+ },
+ "IMAP_PROCESS_CHANGE_examples": [
+  {
+   "ING": "egg",
+   "MOL": "ethanol",
+   "state": null
+  },
+  {
+   "ING": "egg",
+   "MOL": "alpha-carotene",
+   "state": null
+  },
+  {
+   "ING": "egg",
+   "MOL": "beta-carotene",
+   "state": null
+  },
+  {
+   "ING": "egg",
+   "MOL": "beta-cryptoxanthin",
+   "state": null
+  },
+  {
+   "ING": "egg",
+   "MOL": "folic acid",
+   "state": null
+  },
+  {
+   "ING": "egg",
+   "MOL": "lycopene",
+   "state": null
+  },
+  {
+   "ING": "egg",
+   "MOL": "nicotinic acid",
+   "state": null
+  },
+  {
+   "ING": "egg",
+   "MOL": "riboflavin",
+   "state": null
+  }
+ ]
+}
