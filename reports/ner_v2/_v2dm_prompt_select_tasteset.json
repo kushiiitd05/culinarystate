@@ -1,0 +1,44 @@
+{
+ "dataset": "tasteset",
+ "rows": "OOF TRAIN REVIEW/REJECT random sample (seed 0)",
+ "prompts": {
+  "p1": {
+   "n_rows": 1500,
+   "n_ok": 1500,
+   "malformed": 0,
+   "err_rate": 0.1287,
+   "auroc_q3": 0.5465,
+   "auroc_q1_boundary": 0.6388,
+   "nll_raw": 0.5006,
+   "auroc_v1_calibrated_same_rows": 0.8657,
+   "auroc_raw_crf_same_rows": 0.8689,
+   "median_ms": 133.9
+  },
+  "p2": {
+   "n_rows": 1500,
+   "n_ok": 1500,
+   "malformed": 0,
+   "err_rate": 0.1287,
+   "auroc_q3": 0.5525,
+   "auroc_q1_boundary": 0.6391,
+   "nll_raw": 0.5029,
+   "auroc_v1_calibrated_same_rows": 0.8657,
+   "auroc_raw_crf_same_rows": 0.8689,
+   "median_ms": 132.4
+  },
+  "p3": {
+   "n_rows": 1500,
+   "n_ok": 1500,
+   "malformed": 0,
+   "err_rate": 0.1287,
+   "auroc_q3": 0.6019,
+   "auroc_q1_boundary": 0.6547,
+   "nll_raw": 0.4713,
+   "auroc_v1_calibrated_same_rows": 0.8657,
+   "auroc_raw_crf_same_rows": 0.8689,
+   "median_ms": 134.5
+  }
+ },
+ "selected_prompt": "p3",
+ "rule": "highest q3 AUROC; margin < 0.01 -> shorter prompt"
+}

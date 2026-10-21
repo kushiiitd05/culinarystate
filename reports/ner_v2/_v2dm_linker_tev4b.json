@@ -1,0 +1,30 @@
+{
+ "dev (selection)": {
+  "n": 61,
+  "BGE_top1_acc": 0.721,
+  "Tev1_4B_forced_choice_acc": 0.82,
+  "recall@5_ceiling": 0.852,
+  "paired_diff": 0.098,
+  "ci95": [
+   0.0,
+   0.197
+  ],
+  "NIL_AUROC_cosine": 0.723,
+  "NIL_AUROC_tev_pNONE": 0.876,
+  "NIL_AUROC_zsum_unfitted": 0.867
+ },
+ "held-out report-only": {
+  "n": 96,
+  "BGE_top1_acc": 0.688,
+  "Tev1_4B_forced_choice_acc": 0.802,
+  "recall@5_ceiling": 0.854,
+  "paired_diff": 0.115,
+  "ci95": [
+   0.031,
+   0.198
+  ],
+  "NIL_AUROC_cosine": 0.665,
+  "NIL_AUROC_tev_pNONE": 0.836,
+  "NIL_AUROC_zsum_unfitted": 0.823
+ }
+}
