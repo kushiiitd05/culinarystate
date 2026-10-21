@@ -8,22 +8,32 @@ import json
 import time
 import urllib.request
 
-PROMPT_VERSION = "p1"
+PROMPT_VERSION = "p1"   # overridden by --prompt; pre-listed variants: p1 text+label glossary | p2 = p1 + train-gold exemplars per label | p3 = p2 + CRF confidence band
 GLOSS = {"FOOD": "a food or ingredient name", "NAME": "an ingredient name", "QUANTITY": "an amount (number or fraction)", "UNIT": "a measurement unit", "PROCESS": "a cooking action",
          "PHYSICAL_QUALITY": "a physical property such as size, texture or form", "COLOR": "a colour", "TASTE": "a taste", "PURPOSE": "the purpose of an ingredient", "PART": "a part of a food",
          "STATE": "a preparation or processing state of the ingredient (e.g. chopped, ground)", "TEMP": "a temperature or temperature state (e.g. hot, frozen)", "DF": "dry or fresh state", "OTHER": "none of the labels"}
 
 
-def render(row):
+def band(c):
+    return "very high" if c >= 0.99 else "high" if c >= 0.9 else "medium" if c >= 0.7 else "low"
+
+
+def render(row, prompt="p1"):
     t = row["text"]
-    return f'Text: {t[:row["s"]]}[[{t[row["s"]:row["e"]]}]]{t[row["e"]:]}\nProposed label for the marked span: {row["label"]}'
+    s = f'Text: {t[:row["s"]]}[[{t[row["s"]:row["e"]]}]]{t[row["e"]:]}\nProposed label for the marked span: {row["label"]}'
+    if prompt == "p3":
+        s += f'\nThe tagging model\'s confidence in this span: {band(row["conf"])}'
+    return s
 
 
-def questions(row, labels):
+def questions(row, labels, prompt="p1", exemplars=None):
     lab = row["label"]
+    ex = ""
+    if prompt in ("p2", "p3") and exemplars and exemplars.get(lab):
+        ex = f" Typical correct {lab} spans in this annotation scheme: " + ", ".join(exemplars[lab][:6]) + "."
     return {
         "q3_exact": {"type": "noul", "instructions": "Is the marked span exactly right, meaning its boundaries cover the whole entity and nothing more, AND the proposed label is correct?",
-                     "criteria": {"true": f"The marked span is exactly one complete {lab} ({GLOSS.get(lab, lab)}) with correct boundaries.", "false": "The boundaries are too short, too long, or the label is wrong, or the span is not an entity."}},
+                     "criteria": {"true": f"The marked span is exactly one complete {lab} ({GLOSS.get(lab, lab)}) with correct boundaries.{ex}", "false": "The boundaries are too short, too long, or the label is wrong, or the span is not an entity."}},
         "q1_boundary": {"type": "noul", "instructions": "Ignoring the label, do the marked boundaries cover exactly one complete entity (no missing words, no extra words)?",
                         "criteria": {"true": "The boundaries are exactly right.", "false": "Words are missing or extra."}},
         "q2_label": {"type": "choice", "instructions": "Which label best describes the marked span?",
@@ -46,8 +56,11 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--port", type=int, default=11500)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--prompt", default="p1", choices=["p1", "p2", "p3"])
+    ap.add_argument("--exemplars", default="")
     ap.add_argument("--repeat", type=int, default=1, help="repeat each request n times (determinism check)")
     a = ap.parse_args()
+    EX = json.load(open(a.exemplars)) if a.exemplars else None
     parts, routes = set(a.parts.split(",")), set(a.routes.split(","))
     rows = [json.loads(l) for l in open(a.spans)]
     labels = sorted({r["label"] for r in rows})
@@ -64,10 +77,10 @@ def main():
             for rep in range(a.repeat):
                 t0 = time.time()
                 try:
-                    resp, err = post(a.port, {"model": a.model, "state": render(r), "questions": questions(r, labels)}), None
+                    resp, err = post(a.port, {"model": a.model, "state": render(r, a.prompt), "questions": questions(r, labels, a.prompt, EX)}), None
                 except Exception as e:  # noqa: BLE001 -- recorded as a malformed/failed call, not hidden
                     resp, err = None, repr(e)[:200]
-                f.write(json.dumps({"id": r["id"], "model": a.model, "prompt": PROMPT_VERSION, "rep": rep, "ms": round(1000 * (time.time() - t0), 1), "resp": resp, "error": err}) + "\n")
+                f.write(json.dumps({"id": r["id"], "model": a.model, "prompt": a.prompt, "rep": rep, "ms": round(1000 * (time.time() - t0), 1), "resp": resp, "error": err}) + "\n")
             if i % 200 == 0:
                 f.flush()
                 print(i, len(todo), flush=True)
