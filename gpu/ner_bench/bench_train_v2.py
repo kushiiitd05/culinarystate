@@ -163,6 +163,7 @@ def main():
     ap.add_argument("--knowledge", default="K0", choices=["K0", "K1", "K2", "K3", "K4"], help="train-derived entity-type context prefix (Part VII)")
     ap.add_argument("--save-ckpt", default="", help="save best-epoch weights (encoder + CRF) to this path")
     ap.add_argument("--nbest", type=int, default=0, help="k-best Viterbi paths for DEV docs (saved as .nbest_dev.json)")
+    ap.add_argument("--nbest-parts", default="dev", help="comma list of splits to k-best decode (dev,oof,calibration); never test")
     ap.add_argument("--no-test", action="store_true", help="skip TEST prediction/evaluation entirely")
     ap.add_argument("--out", default="runs")
     a = ap.parse_args()
@@ -235,24 +236,27 @@ def main():
         torch.save({"model": best_state, "crf": best_crf, "tags": tags, "args": vars(a), "selected_epoch": sel_ep}, a.save_ckpt)
     if a.nbest and crf:
         from crf_nbest import decode_nbest
-        it, dd = part("dev")
-        nb = [None] * len(it)
-        model.eval()
-        with torch.no_grad():
-            for ids, att, y, order in batches(it, 32, False, None):
-                with torch.autocast("cuda", dtype=torch.bfloat16, enabled=dev == "cuda"):
-                    em = model(input_ids=ids.to(dev), attention_mask=att.to(dev)).logits
-                e, cm, idx = compact(em.float(), (y != -100).to(dev))
-                for bi, (k_, paths) in enumerate(zip(order, decode_nbest(crf, e, cm, a.nbest))):
-                    outp = []
-                    for sc_, path in paths:
-                        row = [0] * em.size(1)
-                        for j, tg in enumerate(path):
-                            row[int(idx[bi, j])] = tg
-                        outp.append({"score": sc_, "spans": [list(x) for x in decode(row[:len(it[k_][0])], it[k_][2], id2tag)]})
-                    nb[k_] = outp
-        Path(a.out).mkdir(parents=True, exist_ok=True)
-        (Path(a.out) / f"{a.dataset}__{a.model.split('/')[-1]}_crf__seed{a.seed}.nbest_dev.json").write_text(json.dumps(nb))
+        for nbp in a.nbest_parts.split(","):
+            assert nbp in ("dev", "oof", "calibration"), nbp
+            it, dd = part(nbp)
+            nb = [None] * len(it)
+            model.eval()
+            with torch.no_grad():
+                for ids, att, y, order in batches(it, 32, False, None):
+                    with torch.autocast("cuda", dtype=torch.bfloat16, enabled=dev == "cuda"):
+                        em = model(input_ids=ids.to(dev), attention_mask=att.to(dev)).logits
+                    e, cm, idx = compact(em.float(), (y != -100).to(dev))
+                    for bi, (k_, paths) in enumerate(zip(order, decode_nbest(crf, e, cm, a.nbest))):
+                        outp = []
+                        for sc_, path in paths:
+                            row = [0] * em.size(1)
+                            for j, tg in enumerate(path):
+                                row[int(idx[bi, j])] = tg
+                            outp.append({"score": sc_, "spans": [list(x) for x in decode(row[:len(it[k_][0])], it[k_][2], id2tag)]})
+                        nb[k_] = outp
+            Path(a.out).mkdir(parents=True, exist_ok=True)
+            tag_ = ("_oof" + str(a.oof_fold)) if (nbp == "oof" and a.oof_fold >= 0) else ""
+            (Path(a.out) / f"{a.dataset}__{a.model.split('/')[-1]}_crf{tag_}__seed{a.seed}.nbest_{nbp}.json").write_text(json.dumps({"doc_indices": split[nbp], "nbest": nb}))
     preds, pconf = {}, {}
     for p in ("dev", "calibration") + (() if a.no_test else ("test",)) + (("oof",) if a.oof_fold >= 0 else ()):
         it, dd = part(p)
