@@ -1,0 +1,73 @@
+{
+ "name": "TEV-LINK-v0",
+ "frozen_at": "2026-10-21T12:11:43.546465+05:30",
+ "git_head": "330b65eeb4129140adf601953e052e1e5f97d99c",
+ "statement": "Frozen BEFORE any fresh linker evaluation set is built or opened. Not to be modified on the basis of the already-viewed unseen_alias / unseen_concept sets.",
+ "decision_model": {
+  "ollama": "0.40.7 (private instance, CUDA, GPU 0)",
+  "model": "tev1:4b",
+  "digest": "7954dce22bc6",
+  "endpoint": "/v1/systemone",
+  "question_type": "choice",
+  "options": "A-E = top-5 candidates in BGE rank order (no reshuffling) + NONE",
+  "none_definition": "None of the candidates is the same ingredient as the mention.",
+  "state": "Recipe ingredient mention: <mention> (mention only, no sentence context)",
+  "instruction": "Which ingredient from the ledger is the same ingredient as the recipe mention \"<mention>\"? Choose NONE if no candidate is the same ingredient.",
+  "candidate_text": "canonical name + up to 3 aliases ('also called: ...')",
+  "settings": "service defaults (deterministic: identical probabilities on 3 repeats), no temperature override, top-K = 5"
+ },
+ "retrieval": {
+  "model": "BAAI/bge-large-en-v1.5",
+  "fmt": "none",
+  "pool": "cls",
+  "lr": 1e-05,
+  "epochs": 4,
+  "seed": 1,
+  "data": "features/linker_data_v2.json",
+  "run_json": "reports/ner/_raw_v2/linker__bge-large-en-v1.5_v2final__seed1.json",
+  "gallery": "train concepts only (1,446 concepts, 1,770 surfaces)"
+ },
+ "ledger_version_sha256": "b44ba4e273a0015657fbe6e003507e9ae2830ccdd55ba76e6b5a8a6bbabb15ce",
+ "ledger_counts": {
+  "ING_active+ALIAS_records": 6226
+ },
+ "files_sha256": {
+  "features/v2dm/linker_tasks.jsonl": "eaff2aef04a13b6f65464a0a5481b62396ed90c0fef5c27fd1229c62d89404f5",
+  "gpu/ner_bench/v2dm_linker_run.py": "de0c70be7029359aa8845d8bc6d8dd1006578822b2f9186c242a929e7e69b34a",
+  "tools/v2dm_linker_tasks.py": "b2cc135ecd8f2e31248e16945e710e60345146569e376ae558906a80bb4f694d",
+  "features/linker_data_v2.json": "c9b1e4ed0809112775aab8bbd76f70c22167de455beaca27b04b192fac584f89",
+  "reports/ner/_raw_v2/linker__bge-large-en-v1.5_v2final__seed1.tables.json": "5a6c6a38a1afaa6b361867c475d0ca1e8b26ff6eadbc4ac2907b71756e91bceb",
+  "reports/ner_v2/_dm_raw/dm_linker_tev4b.jsonl": "4f5866768e3334ea3885df2c30ee80fdfa4fb84445c73dd189842beeb743f0de"
+ },
+ "observed_metrics_viewed_set": {
+  "dev (selection)": {
+   "n": 61,
+   "BGE_top1_acc": 0.721,
+   "Tev1_4B_forced_choice_acc": 0.82,
+   "recall@5_ceiling": 0.852,
+   "paired_diff": 0.098,
+   "ci95": [
+    0.0,
+    0.197
+   ],
+   "NIL_AUROC_cosine": 0.723,
+   "NIL_AUROC_tev_pNONE": 0.876,
+   "NIL_AUROC_zsum_unfitted": 0.867
+  },
+  "held-out report-only": {
+   "n": 96,
+   "BGE_top1_acc": 0.688,
+   "Tev1_4B_forced_choice_acc": 0.802,
+   "recall@5_ceiling": 0.854,
+   "paired_diff": 0.115,
+   "ci95": [
+    0.031,
+    0.198
+   ],
+   "NIL_AUROC_cosine": 0.665,
+   "NIL_AUROC_tev_pNONE": 0.836,
+   "NIL_AUROC_zsum_unfitted": 0.823
+  }
+ },
+ "rejected": "DM-REVIEW (Tev1-4B REVIEW-span correctness): REJECTED. AUROC 0.55-0.60 vs raw CRF 0.87; adding it to existing scores does not help (CV AUROC 0.8668 -> 0.8663). Kept as a negative finding."
+}
