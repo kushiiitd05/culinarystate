@@ -1,0 +1,80 @@
+{
+ "dataset": "recipedb3",
+ "n_review_dev": 2554,
+ "n_review_cal": 2614,
+ "arms": {
+  "D0_frozen_R6 (no promotion)": {
+   "newly_accepted": 0,
+   "note": "REVIEW stays REVIEW"
+  },
+  "D1_calibrated_conf_in_REVIEW": {
+   "name": "D1 p_cal",
+   "n": 2554,
+   "err_rate": 0.0916,
+   "auroc": 0.8362,
+   "aurc": 0.02759,
+   "nll": 0.2281,
+   "brier": 0.0642,
+   "promotion": {
+    "taus": {
+     "STATE|S": null,
+     "DF|S": null,
+     "QUANTITY|U": null,
+     "NAME|U": null,
+     "STATE|U": null,
+     "NAME|S": null,
+     "TEMP|U": null,
+     "TEMP|S": null,
+     "UNIT|U": null
+    },
+    "newly_accepted": 0,
+    "of_review": 2554,
+    "reduction": 0.0,
+    "damage_wrong_accepted": 0,
+    "newly_accepted_error": 0.0,
+    "cp95_upper": 1.0,
+    "correct_newly_accepted": 0,
+    "per_stratum": {}
+   }
+  },
+  "D1b_raw_crf_conf_in_REVIEW": {
+   "name": "D1b raw conf",
+   "n": 2554,
+   "err_rate": 0.0916,
+   "auroc": 0.8653,
+   "aurc": 0.02455,
+   "nll": 0.4574,
+   "brier": 0.0815,
+   "promotion": {
+    "taus": {
+     "STATE|S": 1.0,
+     "DF|S": 1.0,
+     "QUANTITY|U": null,
+     "NAME|U": null,
+     "STATE|U": null,
+     "NAME|S": null,
+     "TEMP|U": null,
+     "TEMP|S": null,
+     "UNIT|U": null
+    },
+    "newly_accepted": 1268,
+    "of_review": 2554,
+    "reduction": 0.4965,
+    "damage_wrong_accepted": 16,
+    "newly_accepted_error": 0.0126,
+    "cp95_upper": 0.0191,
+    "correct_newly_accepted": 1252,
+    "per_stratum": {
+     "DF|S": {
+      "n": 227,
+      "error": 0.0088
+     },
+     "STATE|S": {
+      "n": 1041,
+      "error": 0.0134
+     }
+    }
+   }
+  }
+ }
+}

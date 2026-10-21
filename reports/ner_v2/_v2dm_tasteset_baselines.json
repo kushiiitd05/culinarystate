@@ -1,0 +1,83 @@
+{
+ "dataset": "tasteset",
+ "n_review_dev": 836,
+ "n_review_cal": 516,
+ "arms": {
+  "D0_frozen_R6 (no promotion)": {
+   "newly_accepted": 0,
+   "note": "REVIEW stays REVIEW"
+  },
+  "D1_calibrated_conf_in_REVIEW": {
+   "name": "D1 p_cal",
+   "n": 836,
+   "err_rate": 0.1328,
+   "auroc": 0.8736,
+   "aurc": 0.0345,
+   "nll": 0.2886,
+   "brier": 0.082,
+   "promotion": {
+    "taus": {
+     "PART|S": null,
+     "UNIT|U": null,
+     "PROCESS|U": null,
+     "PROCESS|S": null,
+     "FOOD|S": null,
+     "PHYSICAL_QUALITY|U": null,
+     "PURPOSE|S": null,
+     "FOOD|U": null,
+     "COLOR|S": null,
+     "QUANTITY|U": null,
+     "TASTE|U": null,
+     "COLOR|U": null,
+     "TASTE|S": null,
+     "PHYSICAL_QUALITY|S": null,
+     "PURPOSE|U": null
+    },
+    "newly_accepted": 0,
+    "of_review": 836,
+    "reduction": 0.0,
+    "damage_wrong_accepted": 0,
+    "newly_accepted_error": 0.0,
+    "cp95_upper": 1.0,
+    "correct_newly_accepted": 0,
+    "per_stratum": {}
+   }
+  },
+  "D1b_raw_crf_conf_in_REVIEW": {
+   "name": "D1b raw conf",
+   "n": 836,
+   "err_rate": 0.1328,
+   "auroc": 0.8644,
+   "aurc": 0.03884,
+   "nll": 0.5038,
+   "brier": 0.1034,
+   "promotion": {
+    "taus": {
+     "PART|S": null,
+     "UNIT|U": null,
+     "PROCESS|U": null,
+     "PROCESS|S": null,
+     "FOOD|S": null,
+     "PHYSICAL_QUALITY|U": null,
+     "PURPOSE|S": null,
+     "FOOD|U": null,
+     "COLOR|S": null,
+     "QUANTITY|U": null,
+     "TASTE|U": null,
+     "COLOR|U": null,
+     "TASTE|S": null,
+     "PHYSICAL_QUALITY|S": null,
+     "PURPOSE|U": null
+    },
+    "newly_accepted": 0,
+    "of_review": 836,
+    "reduction": 0.0,
+    "damage_wrong_accepted": 0,
+    "newly_accepted_error": 0.0,
+    "cp95_upper": 1.0,
+    "correct_newly_accepted": 0,
+    "per_stratum": {}
+   }
+  }
+ }
+}
