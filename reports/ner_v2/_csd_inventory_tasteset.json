@@ -1,0 +1,120 @@
+{
+ "dataset": "tasteset",
+ "files": [
+  "tasteset__deberta-base_crf_oof0__seed1.nbest_oof.json",
+  "tasteset__deberta-base_crf_oof1__seed1.nbest_oof.json",
+  "tasteset__deberta-base_crf_oof2__seed1.nbest_oof.json",
+  "tasteset__deberta-base_crf_oof3__seed1.nbest_oof.json",
+  "tasteset__deberta-base_crf_oof4__seed1.nbest_oof.json"
+ ],
+ "oof": {
+  "docs": 424,
+  "gold_spans": 8047,
+  "paths_per_doc": {
+   "5": 424
+  },
+  "docs_where_paths2to5_differ_from_path1": 424,
+  "n_differing_paths_hist": {
+   "1": 6,
+   "2": 23,
+   "3": 126,
+   "4": 269
+  },
+  "path1_micro_F1": 0.9308,
+  "top5_oracle_doc_F1": 0.9474,
+  "oracle_gain": 0.0166,
+  "gold_spans_missed_by_path1": 474,
+  "of_which_present_in_top5_union": 131,
+  "recoverable_fraction": 0.276,
+  "missed_by_label": {
+   "FOOD": 211,
+   "PHYSICAL_QUALITY": 88,
+   "COLOR": 14,
+   "PROCESS": 51,
+   "UNIT": 48,
+   "QUANTITY": 31,
+   "TASTE": 14,
+   "PURPOSE": 7,
+   "PART": 10
+  },
+  "recoverable_by_label": {
+   "FOOD": 58,
+   "COLOR": 8,
+   "PROCESS": 16,
+   "TASTE": 5,
+   "PHYSICAL_QUALITY": 25,
+   "QUANTITY": 7,
+   "UNIT": 7,
+   "PART": 4,
+   "PURPOSE": 1
+  },
+  "missed_by_error_type": {
+   "BOUNDARY (overlap, different boundary) same-label": 250,
+   "MISSING (no overlapping predicted span)": 66,
+   "BOUNDARY (overlap, different boundary) diff-label": 69,
+   "LABEL (same boundary, wrong label)": 89
+  },
+  "recoverable_by_error_type": {
+   "BOUNDARY (overlap, different boundary) same-label": 72,
+   "LABEL (same boundary, wrong label)": 34,
+   "MISSING (no overlapping predicted span)": 13,
+   "BOUNDARY (overlap, different boundary) diff-label": 12
+  },
+  "determinism_vs_v1_oof_1best": {
+   "docs_compared": 424,
+   "identical": 424
+  }
+ },
+ "dev": {
+  "docs": 106,
+  "gold_spans": 2055,
+  "paths_per_doc": {
+   "5": 106
+  },
+  "docs_where_paths2to5_differ_from_path1": 106,
+  "n_differing_paths_hist": {
+   "1": 2,
+   "2": 9,
+   "3": 32,
+   "4": 63
+  },
+  "path1_micro_F1": 0.9403,
+  "top5_oracle_doc_F1": 0.9558,
+  "oracle_gain": 0.0155,
+  "gold_spans_missed_by_path1": 117,
+  "of_which_present_in_top5_union": 35,
+  "recoverable_fraction": 0.299,
+  "missed_by_label": {
+   "FOOD": 56,
+   "PHYSICAL_QUALITY": 27,
+   "QUANTITY": 10,
+   "PURPOSE": 3,
+   "UNIT": 9,
+   "PROCESS": 6,
+   "TASTE": 2,
+   "COLOR": 3,
+   "PART": 1
+  },
+  "recoverable_by_label": {
+   "PHYSICAL_QUALITY": 6,
+   "FOOD": 18,
+   "QUANTITY": 2,
+   "PROCESS": 3,
+   "UNIT": 3,
+   "COLOR": 2,
+   "PART": 1
+  },
+  "missed_by_error_type": {
+   "BOUNDARY (overlap, different boundary) same-label": 65,
+   "BOUNDARY (overlap, different boundary) diff-label": 20,
+   "MISSING (no overlapping predicted span)": 18,
+   "LABEL (same boundary, wrong label)": 14
+  },
+  "recoverable_by_error_type": {
+   "BOUNDARY (overlap, different boundary) same-label": 18,
+   "MISSING (no overlapping predicted span)": 7,
+   "LABEL (same boundary, wrong label)": 7,
+   "BOUNDARY (overlap, different boundary) diff-label": 3
+  }
+ }
+}
