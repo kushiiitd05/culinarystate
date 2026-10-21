@@ -1,0 +1,127 @@
+{
+ "rows": [
+  850,
+  850
+ ],
+ "ids_identical_order": true,
+ "dups": [
+  0,
+  0
+ ],
+ "byte_identical": false,
+ "candidate_columns_identical": true,
+ "malformed_count": 0,
+ "malformed_by_annotator": {},
+ "malformed_types": {},
+ "malformed_examples": [],
+ "exact_agreement": [
+  404,
+  850
+ ],
+ "class_agreement": [
+  431,
+  850
+ ],
+ "kappa_class": 0.317,
+ "class_counts": {
+  "Kush": {
+   "MATCH": 269,
+   "PARENT": 10,
+   "NONE": 490,
+   "AMBIGUOUS": 81
+  },
+  "Parv": {
+   "AMBIGUOUS": 332,
+   "MATCH": 178,
+   "PARENT": 84,
+   "NONE": 256
+  }
+ },
+ "confusion(Kush->Parv)": {
+  "AMBIGUOUS->AMBIGUOUS": 48,
+  "AMBIGUOUS->NONE": 19,
+  "AMBIGUOUS->PARENT": 14,
+  "MATCH->AMBIGUOUS": 23,
+  "MATCH->MATCH": 171,
+  "MATCH->NONE": 28,
+  "MATCH->PARENT": 47,
+  "NONE->AMBIGUOUS": 256,
+  "NONE->MATCH": 7,
+  "NONE->NONE": 208,
+  "NONE->PARENT": 19,
+  "PARENT->AMBIGUOUS": 5,
+  "PARENT->NONE": 1,
+  "PARENT->PARENT": 4
+ },
+ "ambiguous_both: identical acceptable sets / overlapping sets": [
+  24,
+  48,
+  48
+ ],
+ "concept_agreement_when_both_MATCH/PARENT": [
+  212,
+  222
+ ],
+ "by_stratum(from sampling frame)": {
+  "S1": {
+   "n": 150,
+   "exact": 149,
+   "class": 149,
+   "kappa": 0.664
+  },
+  "S2": {
+   "n": 250,
+   "exact": 70,
+   "class": 73,
+   "kappa": 0.047
+  },
+  "S3": {
+   "n": 180,
+   "exact": 103,
+   "class": 106,
+   "kappa": 0.227
+  },
+  "S4": {
+   "n": 120,
+   "exact": 37,
+   "class": 47,
+   "kappa": 0.148
+  },
+  "S6": {
+   "n": 150,
+   "exact": 45,
+   "class": 56,
+   "kappa": 0.115
+  }
+ },
+ "by_confidence": {
+  "both_3": {
+   "n": 163,
+   "exact": 163
+  },
+  "any_2(no 1)": {
+   "n": 536,
+   "exact": 181
+  },
+  "any_1": {
+   "n": 151,
+   "exact": 60
+  }
+ },
+ "conf1_counts": {
+  "Kush": 143,
+  "Parv": 34
+ },
+ "n_requiring_adjudication": 446,
+ "disagreement_types": {
+  "AMBIGUOUS vs NONE": 275,
+  "MATCH vs PARENT (same concept)": 40,
+  "MATCH vs NONE": 35,
+  "AMBIGUOUS vs AMBIGUOUS (different sets)": 24,
+  "AMBIGUOUS vs MATCH": 23,
+  "NONE vs PARENT": 20,
+  "AMBIGUOUS vs PARENT": 19,
+  "MATCH vs PARENT (different concepts)": 7,
+  "different PARENT": 3
+ }
+}
