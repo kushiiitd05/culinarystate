@@ -1,0 +1,25 @@
+{
+ "gold_rows": 850,
+ "class_counts": {
+  "NONE": 391,
+  "MATCH": 293,
+  "AMBIGUOUS": 137,
+  "PARENT": 29
+ },
+ "provenance_counts": {
+  "HUMAN_ADJUDICATED": 446,
+  "HUMAN_AGREED": 404
+ },
+ "ambiguous_sets_containing_NONE": 63,
+ "files_sha256": {
+  "Kush_ALL_850items_BLINDED_done.csv": "b85bb3605a7052017ddd4188c75eeb1784cdd1c7ed2d92e57b8a4cc80e11ed06",
+  "Parv_ALL_850items_BLINDED_ANNOTATED.csv": "089fe20a7d65f945ade3c12458ff9076dcaccd7163c5709c6f54de400611c10a",
+  "final_link_adjudication_FILLED_done.csv": "bf95e4621fc6328d58b6f1dff228954f513006de72622d46afe8be8347a8ab47",
+  "FINAL_LINK_GOLD.csv": "24d82ad9fb383fe867352cd04f58bf038cfc99753985a5e07b1d6ac999eb631b",
+  "RUBRIC_V2_INSTRUCTIONS.md": "3e3ad0928b4b7bfd7913a2a5849ec03db16fff465c4d9960c110bc5a2bc93343"
+ },
+ "provenance": "HUMAN_INDEPENDENT_DOUBLE_ANNOTATED + HUMAN_ADJUDICATED (adjudicator attests human decisions; adjudication_reason text is templated; summary counts were AI-tallied only)",
+ "scoring_rule_decided_before_scoring": "AMBIGUOUS acceptable set may contain NONE as a member: system answer NONE or any listed id is acceptable",
+ "pool_key_opened": false,
+ "models_scored": false
+}
