@@ -57,6 +57,7 @@ def main():
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--epochs", type=int, default=6)
     ap.add_argument("--lr", type=float, default=5e-5)
+    ap.add_argument("--save", default="", help="save the trained weights (final frozen checkpoints)")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     random.seed(a.seed), np.random.seed(a.seed), torch.manual_seed(a.seed)
@@ -90,6 +91,8 @@ def main():
                 T = torch.tensor(np.stack([teach[e["id"]] for e in bt]), device="cuda", dtype=torch.float32)
                 loss = loss + a.lam * torch.nn.functional.kl_div(lg.log_softmax(-1), T, reduction="batchmean")
             loss.backward(), torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0), opt.step(), opt.zero_grad()
+    if a.save:
+        torch.save(model.state_dict(), a.save)
     model.eval()
     res, lat = {"dev_alias": [], "dev": []}, []
     with torch.no_grad():

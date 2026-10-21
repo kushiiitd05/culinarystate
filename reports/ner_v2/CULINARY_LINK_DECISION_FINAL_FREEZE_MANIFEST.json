@@ -1,0 +1,90 @@
+{
+ "name": "CULINARY_LINK_DECISION_FINAL_FREEZE_MANIFEST",
+ "frozen_at": "2026-10-21T18:07:25.802841+05:30",
+ "git_head": "aef4b2df7af49e2cdf798526c8a96ec071ce45d1",
+ "statement": "Written BEFORE the new evaluation set is annotated or any system is run on its mentions. No tuning after this point.",
+ "protocol": "reports/ner_v2/culinary_link_decision_final_eval_protocol.md",
+ "student": {
+  "CD-L2": {
+   "encoder": "BAAI/bge-small-en-v1.5",
+   "params_M": 33.4,
+   "K": 10,
+   "lambda": 1.0,
+   "teacher": "TEV-LINK-v0 (tev1:4b)",
+   "epochs": 6,
+   "lr": 5e-05,
+   "batch": 16,
+   "seeds": [
+    1,
+    2,
+    3
+   ],
+   "options": "K candidates in BGE rank order + NONE",
+   "checkpoints_sha256": {
+    "cd_k10_lam1.0_s1.pt": "166f50c4a3353a7f3b73782242ff37bb514734e5be3381d02bdea690792a2021",
+    "cd_k10_lam1.0_s2.pt": "93c2ca05a62bfb96308208f62fb06f864ae582d7ca4c98974b59b99c93f0e7cf",
+    "cd_k10_lam1.0_s3.pt": "2f4be60210fc65ea92aac43421deaed3b5d6e73c6b350f20a04dd7f2d9b2df09"
+   },
+   "checkpoint_location": "server ~/Kush/culinarystate-ner-bench/v2dm/final_ckpt/"
+  },
+  "CD-L1 (non-teacher comparator)": {
+   "same": "as CD-L2 with lambda 0",
+   "checkpoints_sha256": {
+    "cd_k10_lam0_s1.pt": "c86e160c7e30941f4840560ca54d519100bae8031585d37ff54d8ef1f2939f39",
+    "cd_k10_lam0_s2.pt": "7c5f69338049036c65d533e11a26ac28f811a5fcbba3f9a67f256b5b811d5b39",
+    "cd_k10_lam0_s3.pt": "eb7af2a63df8a9abe7773f075ae6f9163c77e594a0f82329bf92dea4e9cf1e8f"
+   }
+  }
+ },
+ "dev_reproduction_forced_acc": {
+  "CD-L2": [
+   0.82,
+   0.836,
+   0.836
+  ],
+  "CD-L1": [
+   0.82,
+   0.77,
+   0.77
+  ],
+  "note": "matches the sweep means 0.831 / 0.787; not tuned"
+ },
+ "baselines": {
+  "BGE": "frozen v2 recipe (bge-large-en-v1.5, lr 1e-5, 4 ep, cls, seed 1), top-1, dev tau 0.862",
+  "E5": "e5-large-v2 same recipe, dev tau 0.858",
+  "cross-encoder": "zero-shot BAAI/bge-reranker-large over BGE top-10",
+  "Tev1-4B": "TEV-LINK-v0 (K=5)",
+  "Nimble": "nimble, same task (K=5)"
+ },
+ "not_included": [
+  "fine-tuned cross-encoder",
+  "calibrated NIL combination",
+  "synthetic augmentation (POST-FINAL v1.1)"
+ ],
+ "evaluation_frame": {
+  "file": "features/v2dm/final_link_frame.jsonl (local, git-ignored)",
+  "sha256": "c726e4dc0d849d72862543823873c903a5d13aa66637e44e6083223d78c5c926",
+  "n": 850,
+  "strata": {
+   "S1": 150,
+   "S2": 250,
+   "S3": 180,
+   "S4": 120,
+   "S6": 150,
+   "S5": "unavailable (no authentic regional mentions)"
+  }
+ },
+ "script_sha256": {
+  "gpu/ner_bench/link_student.py": "a7e14558e5337970a9106619a7817e9abb8ad73264408cfe0136ba6dc7484469",
+  "gpu/ner_bench/link_student_predict.py": "e7e6143d24cd93d906a896d13e75ded183c8f037c406979b8153b47381f1f6f4",
+  "gpu/ner_bench/link_oof.py": "fa9f1936cd0afc16c73eadf531f6f93635a5a602d8aa55086f53353f2213ce53",
+  "gpu/ner_bench/v2dm_linker_run.py": "ec67e05251b0e2dd69a389dbbd6280e8d8b89c9a21e64bbcfdc663aaa6e2ae4f",
+  "gpu/ner_bench/v2dm_cross_encoder.py": "971fba28ac8587e14abb7d35bce3bdde6a8624f756e35ffc722acb6f266f6485",
+  "tools/v2dm_final_frame_build.py": "1b90c90daa43e56f4fe35315da0393b2eda59da189df183829f66566cd84f2a8",
+  "reports/ner_v2/TEV_LINK_v0_freeze.json": "f9466e70fc64d921314c4ea4b8a72780c0fe6ed8107607c1cf09e933d5173e8f"
+ },
+ "sealed_sets_not_used": [
+  "fresh 441 gold",
+  "TASTEset/RecipeDB3 TEST labels"
+ ]
+}
