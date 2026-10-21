@@ -57,6 +57,8 @@ EXISTING: registry/{evidence,ingredients,processes,recipes,molecules,kg,tools,un
 MISSING: `simulated_state_changes.csv`; canonical `evd` export with the W4 columns; SVAR physical/sensory/procedural/safety expansion; RXN rows; `recipe_state_trajectories`; DATA-* release manifests (DATASET/SPLIT ledgers empty); molecule similarity hierarchy tables; Gold-Light; semantic Silver.
 
 ## SCHEMA CONFLICTS (current EVD vs SSOT W4 / the requested canonical table)
+**Correction (MP-1):** the live EVD JSON Schema already has nested `before`, `after`, `derived.{delta, percent_change, retention_factor, log_fold_change, yield_factor}` and `matrix.{initial_state, prior_processing, geometry, storage_ripeness}`; the real gaps are population (delta and log_fold_change empty in all rows) and missing `provenance_class`, `matrix_id`, `prior_state_id`, explicit LOD/LOQ. See `registry/evd_contract_v1.csv`.
+
 | Requested/SSOT field | Current | Action |
 |---|---|---|
 | evidence_tier | `tier` | rename in export, keep ledger name |
