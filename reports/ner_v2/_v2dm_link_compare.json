@@ -1,0 +1,131 @@
+[
+ {
+  "method": "Tev1-4B",
+  "K": 3,
+  "dev": {
+   "acc": 0.787,
+   "top1": 0.721,
+   "oracle@3": 0.82,
+   "efficiency": 0.667,
+   "NIL_AUROC": 0.871
+  },
+  "heldout": {
+   "acc": 0.802,
+   "top1": 0.688,
+   "oracle@3": 0.844,
+   "efficiency": 0.733,
+   "NIL_AUROC": 0.835
+  },
+  "median_ms": 44.4
+ },
+ {
+  "method": "cross-encoder (zero-shot)",
+  "K": 3,
+  "dev": {
+   "acc": 0.705,
+   "top1": 0.721,
+   "oracle@3": 0.82,
+   "efficiency": -0.167,
+   "NIL_AUROC": 0.719
+  },
+  "heldout": {
+   "acc": 0.677,
+   "top1": 0.688,
+   "oracle@3": 0.844,
+   "efficiency": -0.067,
+   "NIL_AUROC": 0.706
+  }
+ },
+ {
+  "method": "Tev1-4B",
+  "K": 5,
+  "dev": {
+   "acc": 0.82,
+   "top1": 0.721,
+   "oracle@5": 0.852,
+   "efficiency": 0.75,
+   "NIL_AUROC": 0.876
+  },
+  "heldout": {
+   "acc": 0.802,
+   "top1": 0.688,
+   "oracle@5": 0.854,
+   "efficiency": 0.688,
+   "NIL_AUROC": 0.836
+  },
+  "median_ms": 51.1
+ },
+ {
+  "method": "cross-encoder (zero-shot)",
+  "K": 5,
+  "dev": {
+   "acc": 0.705,
+   "top1": 0.721,
+   "oracle@5": 0.852,
+   "efficiency": -0.125,
+   "NIL_AUROC": 0.726
+  },
+  "heldout": {
+   "acc": 0.667,
+   "top1": 0.688,
+   "oracle@5": 0.854,
+   "efficiency": -0.125,
+   "NIL_AUROC": 0.716
+  }
+ },
+ {
+  "method": "Tev1-4B",
+  "K": 10,
+  "dev": {
+   "acc": 0.836,
+   "top1": 0.721,
+   "oracle@10": 0.869,
+   "efficiency": 0.778,
+   "NIL_AUROC": 0.895
+  },
+  "heldout": {
+   "acc": 0.844,
+   "top1": 0.688,
+   "oracle@10": 0.885,
+   "efficiency": 0.789,
+   "NIL_AUROC": 0.852
+  },
+  "median_ms": 67.1
+ },
+ {
+  "method": "cross-encoder (zero-shot)",
+  "K": 10,
+  "dev": {
+   "acc": 0.689,
+   "top1": 0.721,
+   "oracle@10": 0.869,
+   "efficiency": -0.222,
+   "NIL_AUROC": 0.714
+  },
+  "heldout": {
+   "acc": 0.677,
+   "top1": 0.688,
+   "oracle@10": 0.885,
+   "efficiency": -0.053,
+   "NIL_AUROC": 0.711
+  }
+ },
+ {
+  "method": "BGE top-1 (cosine NIL)",
+  "K": 1,
+  "dev": {
+   "acc": 0.721,
+   "top1": 0.721,
+   "oracle@1": 0.721,
+   "efficiency": 0.0,
+   "NIL_AUROC": 0.723
+  },
+  "heldout": {
+   "acc": 0.688,
+   "top1": 0.688,
+   "oracle@1": 0.688,
+   "efficiency": 0.0,
+   "NIL_AUROC": 0.665
+  }
+ }
+]
