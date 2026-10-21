@@ -881,3 +881,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `reports/ner/culinaryner_kf_final_report.md`, `reports/ner/_final_test.json`, `reports/ner/test_freeze_manifest.json`, `tools/final_test_eval.py`, `tools/write_final_report.py`
 - **Verified:** frozen thresholds matched S127 on both datasets; no post-TEST changes
 - **Next:** no more model development; external-domain validation (future work)
+
+### S129 · 2026-10-22 00:13 IST · ES-1.1 · EVD export implementing the frozen MP-1 contract (gate PASS)
+- **Who:** claude
+- **Did:** Built a non-destructive normalised EVD export (17,978 of 17,978 active rows; tier, verification, design strength, provenance class as separate fields; matrix_id, prior_state_id, explicit LOD/LOQ=null; deterministic delta/log_fold_change/log_retention only where defined), the reversible 11-pair duplicate-SVAR mapping, an independent validator, tests and the audit; ledgers byte-identical before/after; C1 ruling applied
+- **Files:** `src/culinarystate/evidence/evd_export.py`, `tools/build_evd_export_v1.py`, `tools/validate_evd_export_v1.py`, `tools/write_es1_1_report.py`, `registry/svar_duplicate_mapping_v1.csv`, `registry/schemas/evd_export_v1.schema.json`, `tests/unit/test_evd_export.py`, `reports/es1/es1_1_audit.md`, `DECISIONS.md`
+- **Verified:** validator PASS 9/9 gating checks; pytest tests/unit 575 passed + ledger integration test passed; export sha256 identical on two rebuilds
+- **Next:** ES-1.2 source acquisition manifest and literature/data-source census (not started)

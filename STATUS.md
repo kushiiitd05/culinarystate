@@ -1,6 +1,7 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-**Updated:** 2026-10-19 11:30 IST (after S083) · **Final presentation: 25–26 Nov 2026 (T-37 days)**
+**Updated:** 2026-10-22 (header only; sections below the line are as of S083 and STALE: WORKLOG.md is authoritative through S128+ and ES-1.1; see `reports/ner/ner_program_closeout.md` pending, `reports/h_state/ssot15_state_program_inventory.md`, `reports/ssot15/data_foundation_audit.md`)
+**Current stage:** ES-1 DATA & EVIDENCE FACTORY, ES-1.1 evidence-contract export: **PASS** (`reports/es1/es1_1_audit.md`). NER v1 / linker / span lanes closed (H6-C, D3, CSD-C). Next: ES-1.2 source acquisition manifest + source census (not started). · **Final presentation: 25–26 Nov 2026 (T-37 days)**
 **Repo:** `~/Desktop/CGAS/culinarystate` (local git; GitHub push only after H7 approval)
 **Step-by-step log:** `WORKLOG.md` (timestamped, sequential). **Decisions:** `DECISIONS.md`.
 **Bible:** `docs/SSOT/…v15_0.md` (read via `docs/SSOT_INDEX.md`) · plan `docs/plan/CulinaryState_Final_Master_Plan_SSOT15_v4_0.md`

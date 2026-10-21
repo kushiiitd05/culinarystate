@@ -1,0 +1,462 @@
+{
+ "gate": "PASS",
+ "failures": {},
+ "input_row_count_active": 17978,
+ "ledger_version_lines": 57280,
+ "ledger_ids_latest": 18156,
+ "output_row_count": 17978,
+ "validation_failures": 0,
+ "checks": {
+  "1_every_active_row_accounted": {
+   "pass": true,
+   "gating": true,
+   "detail": {
+    "ledger_version_lines": 57280,
+    "ledger_ids_latest": 18156,
+    "active": 17978,
+    "export_rows": 17978,
+    "excluded_latest_by_status": {
+     "DEPRECATED": 178
+    }
+   }
+  },
+  "2_schema_validation": {
+   "pass": true,
+   "gating": true,
+   "detail": {
+    "failures": 0,
+    "examples": []
+   }
+  },
+  "3_source_lineage_and_copied_values": {
+   "pass": true,
+   "gating": true,
+   "detail": {
+    "lineage_hash_ok": 17978,
+    "copied_value_mismatches": 0,
+    "examples": []
+   }
+  },
+  "4_derivations_reproducible_and_no_invention": {
+   "pass": true,
+   "gating": true,
+   "detail": {
+    "delta_value": 3870,
+    "log_fold_change": 3787,
+    "log_retention_factor": 11503,
+    "violations": 0,
+    "examples": []
+   }
+  },
+  "5_unknown_stays_unknown(lod,loq,prior_state)": {
+   "pass": true,
+   "gating": true,
+   "detail": {
+    "violations": 0
+   }
+  },
+  "6_duplicate_mapping_reversible": {
+   "pass": true,
+   "gating": true,
+   "detail": {
+    "duplicate_pairs": 11,
+    "equivalent_candidates_not_merged": 7,
+    "original_ids_preserved": true,
+    "canonical_consistent": true,
+    "group_counts_additive": true,
+    "evd_rows_on_duplicate_ids": 2048,
+    "evd_rows_after_canonical_merge_for_those": 5018
+   }
+  },
+  "7_canonical_ledgers_unchanged": {
+   "pass": true,
+   "gating": true,
+   "detail": {
+    "ledger_sha256_now": {
+     "EVD": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+     "SVAR": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697",
+     "COND": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+     "PROC": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+     "ING": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+     "SRC": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f"
+    }
+   }
+  },
+  "8_deterministic_rebuild_identical": {
+   "pass": true,
+   "gating": true,
+   "detail": {
+    "export_sha256": "e61d7db4dc709ff3a4cb95ec6889a63d491e7f10d30222b421761f428aedd457"
+   }
+  },
+  "9_tier_provenance_verification_design_separate_fields": {
+   "pass": true,
+   "gating": true,
+   "detail": {
+    "tier_vocab_ok": true
+   }
+  },
+  "D1_PE_retention\u2248(after/before)*yield (diagnostic)": {
+   "pass": true,
+   "gating": false,
+   "detail": {
+    "checked": 3859,
+    "outside_0.02": 278
+   }
+  },
+  "D2_percent_change\u2248(after-before)/before*100 (diagnostic)": {
+   "pass": true,
+   "gating": false,
+   "detail": {
+    "checked": 3859,
+    "outside_0.05": 0
+   }
+  }
+ },
+ "deterministic_derived_field_counts": {
+  "delta_value": 3870,
+  "log_fold_change": 3787,
+  "log_retention_factor": 11503
+ },
+ "unknown_counts": {
+  "prior_state_id": 5536,
+  "ingredient_id": 6409,
+  "process_id": 157,
+  "measurement_id": 3870,
+  "before_value": 14108,
+  "after_value": 14108,
+  "delta_value": 14108,
+  "log_fold_change": 14191,
+  "log_retention_factor": 6475,
+  "retention_fraction": 6414,
+  "yield_fraction": 13612,
+  "lod": 17978,
+  "loq": 17978,
+  "direction_UNKNOWN": 5918,
+  "condition_temperature_UNKNOWN": 11963,
+  "condition_duration_UNKNOWN": 14895,
+  "condition_moisture_UNKNOWN": 17978,
+  "condition_ph_UNKNOWN": 17978
+ },
+ "unknown_reasons": {
+  "delta_reason_if_unknown": {
+   "inputs_not_measured_or_censored": 14108
+  },
+  "log_fold_change_reason_if_unknown": {
+   "inputs_not_measured_or_censored": 14108,
+   "non_positive_value": 83
+  },
+  "log_retention_reason_if_unknown": {
+   "retention_not_measured_or_censored": 6414,
+   "non_positive_value": 61
+  }
+ },
+ "evidence_tier_counts": {
+  "E3": 17978
+ },
+ "provenance_counts": {
+  "EXPLICIT_SOURCE": 17978
+ },
+ "verification_counts": {
+  "UNVERIFIED": 14108,
+  "AI_PRECHECKED": 3870
+ },
+ "design_strength_counts": {
+  "DATABASE_AGGREGATE": 14108,
+  "UNKNOWN": 3870
+ },
+ "applicability_counts": {
+  "GENERIC": 14108,
+  "EXACT": 3870
+ },
+ "censoring_flag_counts": {
+  "false": 12084,
+  "true": 5894
+ },
+ "source_family_counts": {
+  "BOGNAR-2002": 7090,
+  "USDA-RETN-R6": 7018,
+  "PHENOL-EXPLORER-3.6": 3870
+ },
+ "duplicate_variable_mappings": [
+  {
+   "duplicate_id": "SVAR-000009",
+   "canonical_id": "",
+   "duplicate_name": "Vitamin C, total ascorbic acid content",
+   "canonical_name": "",
+   "relation": "EQUIVALENT_CANDIDATE_NOT_MERGED",
+   "rule": "one name is a comma-qualified form of the other; definitions may differ",
+   "evidence_rows_duplicate": "270",
+   "evidence_rows_canonical": "",
+   "source_families_duplicate": "USDA-RETN-R6",
+   "source_families_canonical": "",
+   "reversible": "n/a (not merged)",
+   "mapping_status": "NEEDS_HUMAN_OR_ANALYTICAL_CHECK",
+   "note": "equivalent-candidate (needs human/analytical check, NOT merged): SVAR-000215; USDA R6: %TR vs %AR not disclosed at row level; nearest 5%; many values imputed from similar foods"
+  },
+  {
+   "duplicate_id": "SVAR-000014",
+   "canonical_id": "",
+   "duplicate_name": "Folate, total content",
+   "canonical_name": "",
+   "relation": "EQUIVALENT_CANDIDATE_NOT_MERGED",
+   "rule": "one name is a comma-qualified form of the other; definitions may differ",
+   "evidence_rows_duplicate": "270",
+   "evidence_rows_canonical": "",
+   "source_families_duplicate": "USDA-RETN-R6",
+   "source_families_canonical": "",
+   "reversible": "n/a (not merged)",
+   "mapping_status": "NEEDS_HUMAN_OR_ANALYTICAL_CHECK",
+   "note": "equivalent-candidate (needs human/analytical check, NOT merged): SVAR-000212; USDA R6: %TR vs %AR not disclosed at row level; nearest 5%; many values imputed from similar foods"
+  },
+  {
+   "duplicate_id": "SVAR-000016",
+   "canonical_id": "",
+   "duplicate_name": "Folate, food content",
+   "canonical_name": "",
+   "relation": "EQUIVALENT_CANDIDATE_NOT_MERGED",
+   "rule": "one name is a comma-qualified form of the other; definitions may differ",
+   "evidence_rows_duplicate": "270",
+   "evidence_rows_canonical": "",
+   "source_families_duplicate": "USDA-RETN-R6",
+   "source_families_canonical": "",
+   "reversible": "n/a (not merged)",
+   "mapping_status": "NEEDS_HUMAN_OR_ANALYTICAL_CHECK",
+   "note": "equivalent-candidate (needs human/analytical check, NOT merged): SVAR-000212; USDA R6: %TR vs %AR not disclosed at row level; nearest 5%; many values imputed from similar foods"
+  },
+  {
+   "duplicate_id": "SVAR-000146",
+   "canonical_id": "",
+   "duplicate_name": "Naringenin content",
+   "canonical_name": "",
+   "relation": "EQUIVALENT_CANDIDATE_NOT_MERGED",
+   "rule": "one name is a comma-qualified form of the other; definitions may differ",
+   "evidence_rows_duplicate": "69",
+   "evidence_rows_canonical": "",
+   "source_families_duplicate": "PHENOL-EXPLORER-3.6",
+   "source_families_canonical": "",
+   "reversible": "n/a (not merged)",
+   "mapping_status": "NEEDS_HUMAN_OR_ANALYTICAL_CHECK",
+   "note": "equivalent-candidate (needs human/analytical check, NOT merged): SVAR-000178"
+  },
+  {
+   "duplicate_id": "SVAR-000178",
+   "canonical_id": "",
+   "duplicate_name": "Naringenin, total content",
+   "canonical_name": "",
+   "relation": "EQUIVALENT_CANDIDATE_NOT_MERGED",
+   "rule": "one name is a comma-qualified form of the other; definitions may differ",
+   "evidence_rows_duplicate": "3",
+   "evidence_rows_canonical": "",
+   "source_families_duplicate": "PHENOL-EXPLORER-3.6",
+   "source_families_canonical": "",
+   "reversible": "n/a (not merged)",
+   "mapping_status": "NEEDS_HUMAN_OR_ANALYTICAL_CHECK",
+   "note": "equivalent-candidate (needs human/analytical check, NOT merged): SVAR-000146"
+  },
+  {
+   "duplicate_id": "SVAR-000193",
+   "canonical_id": "SVAR-000006",
+   "duplicate_name": "Sodium content",
+   "canonical_name": "Sodium, Na content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000194",
+   "canonical_id": "SVAR-000005",
+   "duplicate_name": "Potassium content",
+   "canonical_name": "Potassium, K content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000195",
+   "canonical_id": "SVAR-000001",
+   "duplicate_name": "Calcium content",
+   "canonical_name": "Calcium, Ca content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000196",
+   "canonical_id": "SVAR-000003",
+   "duplicate_name": "Magnesium content",
+   "canonical_name": "Magnesium, Mg content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000197",
+   "canonical_id": "SVAR-000004",
+   "duplicate_name": "Phosphorus content",
+   "canonical_name": "Phosphorus, P content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000198",
+   "canonical_id": "SVAR-000002",
+   "duplicate_name": "Iron content",
+   "canonical_name": "Iron, Fe content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000199",
+   "canonical_id": "SVAR-000008",
+   "duplicate_name": "Copper content",
+   "canonical_name": "Copper, Cu content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000200",
+   "canonical_id": "SVAR-000007",
+   "duplicate_name": "Zinc content",
+   "canonical_name": "Zinc, Zn content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000209",
+   "canonical_id": "SVAR-000012",
+   "duplicate_name": "Niacin content",
+   "canonical_name": "Niacin content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000210",
+   "canonical_id": "SVAR-000013",
+   "duplicate_name": "Vitamin B6 content",
+   "canonical_name": "Vitamin B-6 content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000211",
+   "canonical_id": "SVAR-000018",
+   "duplicate_name": "Vitamin B12 content",
+   "canonical_name": "Vitamin B-12 content",
+   "relation": "DUPLICATE_SAME_ANALYTE",
+   "rule": "normalised analyte name equal (strip ' content', trailing element symbol, spaces/hyphens, case)",
+   "evidence_rows_duplicate": "178",
+   "evidence_rows_canonical": "270",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "USDA-RETN-R6",
+   "reversible": "yes: both ids kept in every export row (target_state_variable_id, canonical_variable_id)",
+   "mapping_status": "PROVISIONAL_NAME_RULE_MEASUREMENT_BASIS_EQUIVALENCE_NOT_VERIFIED",
+   "note": "no ledger id is deleted or rewritten"
+  },
+  {
+   "duplicate_id": "SVAR-000212",
+   "canonical_id": "",
+   "duplicate_name": "Folate content",
+   "canonical_name": "",
+   "relation": "EQUIVALENT_CANDIDATE_NOT_MERGED",
+   "rule": "one name is a comma-qualified form of the other; definitions may differ",
+   "evidence_rows_duplicate": "187",
+   "evidence_rows_canonical": "",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "",
+   "reversible": "n/a (not merged)",
+   "mapping_status": "NEEDS_HUMAN_OR_ANALYTICAL_CHECK",
+   "note": "equivalent-candidate (needs human/analytical check, NOT merged): SVAR-000014,SVAR-000016; Bognar true-retention rows: ~50% censored"
+  },
+  {
+   "duplicate_id": "SVAR-000215",
+   "canonical_id": "",
+   "duplicate_name": "Vitamin C content",
+   "canonical_name": "",
+   "relation": "EQUIVALENT_CANDIDATE_NOT_MERGED",
+   "rule": "one name is a comma-qualified form of the other; definitions may differ",
+   "evidence_rows_duplicate": "153",
+   "evidence_rows_canonical": "",
+   "source_families_duplicate": "BOGNAR-2002",
+   "source_families_canonical": "",
+   "reversible": "n/a (not merged)",
+   "mapping_status": "NEEDS_HUMAN_OR_ANALYTICAL_CHECK",
+   "note": "equivalent-candidate (needs human/analytical check, NOT merged): SVAR-000009; Bognar true-retention rows: ~50% censored"
+  }
+ ],
+ "export_sha256": "e61d7db4dc709ff3a4cb95ec6889a63d491e7f10d30222b421761f428aedd457",
+ "ledger_sha256": {
+  "EVD": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "SVAR": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697",
+  "COND": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "PROC": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+  "ING": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+  "SRC": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f"
+ }
+}
