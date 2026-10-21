@@ -1,0 +1,327 @@
+{
+ "oof": {
+  "S0": {
+   "system": "S0",
+   "path1_F1": 0.9308,
+   "chooser_F1": 0.9308,
+   "delta": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "recovered": 0,
+   "damaged": 0,
+   "net_recovered": 0,
+   "damage_recovery_ratio": null,
+   "extra_false_positives": 0,
+   "recovered_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "damaged_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "recovered_by_error_type": {},
+   "damaged_by_error_type": {},
+   "class": "-",
+   "recovery_efficiency_vs_doc_top5_oracle": 0.0,
+   "recovery_efficiency_vs_cluster_oracle": 0.0
+  },
+  "S1": {
+   "system": "S1",
+   "path1_F1": 0.9308,
+   "chooser_F1": 0.9311,
+   "delta": 0.0003,
+   "ci95": [
+    0.0,
+    0.0007
+   ],
+   "recovered": 3,
+   "damaged": 0,
+   "net_recovered": 3,
+   "damage_recovery_ratio": 0.0,
+   "extra_false_positives": -1,
+   "recovered_by_label": {
+    "FOOD": 2,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 1
+   },
+   "damaged_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "recovered_by_error_type": {
+    "same-label boundary error": 2,
+    "boundary+label error": 1
+   },
+   "damaged_by_error_type": {},
+   "class": "C",
+   "recovery_efficiency_vs_doc_top5_oracle": 0.018,
+   "recovery_efficiency_vs_cluster_oracle": 0.016
+  },
+  "S2": {
+   "system": "S2",
+   "path1_F1": 0.9308,
+   "chooser_F1": 0.9309,
+   "delta": 0.0001,
+   "ci95": [
+    -0.0005,
+    0.0006
+   ],
+   "recovered": 3,
+   "damaged": 1,
+   "net_recovered": 2,
+   "damage_recovery_ratio": 0.333,
+   "extra_false_positives": 1,
+   "recovered_by_label": {
+    "FOOD": 2,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 1
+   },
+   "damaged_by_label": {
+    "FOOD": 1,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "recovered_by_error_type": {
+    "same-label boundary error": 2,
+    "boundary+label error": 1
+   },
+   "damaged_by_error_type": {
+    "same-label boundary error": 1
+   },
+   "class": "C",
+   "recovery_efficiency_vs_doc_top5_oracle": 0.006,
+   "recovery_efficiency_vs_cluster_oracle": 0.005
+  },
+  "S3": {
+   "system": "S3",
+   "path1_F1": 0.9308,
+   "chooser_F1": 0.9306,
+   "delta": -0.0002,
+   "ci95": [
+    -0.0014,
+    0.001
+   ],
+   "recovered": 3,
+   "damaged": 28,
+   "net_recovered": -25,
+   "damage_recovery_ratio": 9.333,
+   "extra_false_positives": -25,
+   "recovered_by_label": {
+    "FOOD": 3,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "damaged_by_label": {
+    "FOOD": 12,
+    "PHYSICAL_QUALITY": 6,
+    "PROCESS": 1,
+    "other labels": 9
+   },
+   "recovered_by_error_type": {
+    "same-label boundary error": 3
+   },
+   "damaged_by_error_type": {
+    "same-label boundary error": 10,
+    "boundary+label error": 3,
+    "fully missed span": 15
+   },
+   "class": "C",
+   "recovery_efficiency_vs_doc_top5_oracle": -0.012,
+   "recovery_efficiency_vs_cluster_oracle": -0.011
+  }
+ },
+ "dev": {
+  "S0": {
+   "system": "S0",
+   "path1_F1": 0.9403,
+   "chooser_F1": 0.9403,
+   "delta": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "recovered": 0,
+   "damaged": 0,
+   "net_recovered": 0,
+   "damage_recovery_ratio": null,
+   "extra_false_positives": 0,
+   "recovered_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "damaged_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "recovered_by_error_type": {},
+   "damaged_by_error_type": {},
+   "class": "-",
+   "recovery_efficiency_vs_doc_top5_oracle": 0.0,
+   "recovery_efficiency_vs_cluster_oracle": 0.0
+  },
+  "S1": {
+   "system": "S1",
+   "path1_F1": 0.9403,
+   "chooser_F1": 0.9403,
+   "delta": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "recovered": 0,
+   "damaged": 0,
+   "net_recovered": 0,
+   "damage_recovery_ratio": null,
+   "extra_false_positives": 0,
+   "recovered_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "damaged_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "recovered_by_error_type": {},
+   "damaged_by_error_type": {},
+   "class": "C",
+   "recovery_efficiency_vs_doc_top5_oracle": 0.0,
+   "recovery_efficiency_vs_cluster_oracle": 0.0
+  },
+  "S2": {
+   "system": "S2",
+   "path1_F1": 0.9403,
+   "chooser_F1": 0.9403,
+   "delta": 0.0,
+   "ci95": [
+    0.0,
+    0.0
+   ],
+   "recovered": 0,
+   "damaged": 0,
+   "net_recovered": 0,
+   "damage_recovery_ratio": null,
+   "extra_false_positives": 0,
+   "recovered_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "damaged_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "recovered_by_error_type": {},
+   "damaged_by_error_type": {},
+   "class": "C",
+   "recovery_efficiency_vs_doc_top5_oracle": 0.0,
+   "recovery_efficiency_vs_cluster_oracle": 0.0
+  },
+  "S3": {
+   "system": "S3",
+   "path1_F1": 0.9403,
+   "chooser_F1": 0.9411,
+   "delta": 0.0008,
+   "ci95": [
+    -0.0006,
+    0.0025
+   ],
+   "recovered": 0,
+   "damaged": 3,
+   "net_recovered": -3,
+   "damage_recovery_ratio": null,
+   "extra_false_positives": -7,
+   "recovered_by_label": {
+    "FOOD": 0,
+    "PHYSICAL_QUALITY": 0,
+    "PROCESS": 0,
+    "other labels": 0
+   },
+   "damaged_by_label": {
+    "FOOD": 1,
+    "PHYSICAL_QUALITY": 1,
+    "PROCESS": 0,
+    "other labels": 1
+   },
+   "recovered_by_error_type": {},
+   "damaged_by_error_type": {
+    "fully missed span": 2,
+    "same-label boundary error": 1
+   },
+   "class": "C",
+   "recovery_efficiency_vs_doc_top5_oracle": 0.052,
+   "recovery_efficiency_vs_cluster_oracle": 0.045
+  }
+ },
+ "oracle": {
+  "oof_doc_top5": 0.9474,
+  "oof_cluster": 0.949,
+  "dev_doc_top5": 0.9558,
+  "dev_cluster": 0.9582
+ },
+ "n": {
+  "oof_docs": 424,
+  "oof_gold_spans": 8047,
+  "dev_docs": 106,
+  "dev_gold_spans": 2055,
+  "clusters_with_choice(oof)": 884,
+  "clusters_total(oof)": 8267
+ },
+ "S2_selected_grid_per_fold": [
+  [
+   0.5,
+   0.0
+  ],
+  [
+   0.5,
+   0.0
+  ],
+  [
+   0.5,
+   0.0
+  ],
+  [
+   2.0,
+   0.0
+  ],
+  [
+   0.5,
+   0.0
+  ]
+ ],
+ "S2_selected_grid_all_oof": [
+  0.5,
+  0.0
+ ],
+ "headline": {
+  "system": "S1",
+  "selected_on": "TRAIN-OOF CV delta only",
+  "oof_class": "C",
+  "dev_class": "C",
+  "RESULT": "CSD-C",
+  "rule": "class = lower of OOF-CV and DEV class; efficiency vs pre-registered top-5 per-document oracle"
+ }
+}
