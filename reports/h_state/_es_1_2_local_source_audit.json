@@ -1,0 +1,5032 @@
+{
+ "families": {
+  "USDA-RETN-R6": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000001",
+    "SRC-000001"
+   ],
+   "titles_sample": [
+    "USDA Table of Nutrient Retention Factors, Release 6"
+   ],
+   "licences": {
+    "US federal government work (public domain, 17 U.S.C. \u00a7105)": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "2007"
+   ],
+   "kinds": {
+    "DATABASE": 1
+   },
+   "records_by_ledger": {
+    "EVD": 7018,
+    "COND": 270,
+    "SVAR": 26,
+    "MEAS": 1
+   },
+   "url_sample": [
+    "https://www.ars.usda.gov/ARSUserFiles/80400525/Data/retn/retn06.pdf"
+   ]
+  },
+  "BBCGF-A1": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000002",
+    "SRC-000002"
+   ],
+   "titles_sample": [
+    "A1 BBC Good Food corpus \u2014 ingredient mentions (11,934 recipes, spaCy NER + normalization)"
+   ],
+   "licences": {
+    "Derived from bbcgoodfood.com pages (third-party copyright)": 1
+   },
+   "licence_status": {
+    "RESTRICTED": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2026"
+   ],
+   "kinds": {
+    "DATASET": 1
+   },
+   "records_by_ledger": {
+    "ING": 1951,
+    "ALIAS": 2052,
+    "PROC": 156,
+    "TOOL": 119,
+    "REC": 11934,
+    "KGE": 15339
+   },
+   "url_sample": []
+  },
+  "UNITSRC-NIST_HB44_APPC": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000003",
+    "SRC-000003"
+   ],
+   "titles_sample": [
+    "NIST Handbook 44, Appendix C \u2014 General Tables of Units of Measurement"
+   ],
+   "licences": {
+    "public standard / convention": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "AUTHORITY_STANDARD": 1
+   },
+   "records_by_ledger": {
+    "UNIT": 10
+   },
+   "url_sample": []
+  },
+  "UNITSRC-UK_WMA_1985_SCH1": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000004",
+    "SRC-000004"
+   ],
+   "titles_sample": [
+    "UK Weights and Measures Act 1985, Schedule 1 (imperial units)"
+   ],
+   "licences": {
+    "public standard / convention": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "AUTHORITY_STANDARD": 1
+   },
+   "records_by_ledger": {
+    "UNIT": 4
+   },
+   "url_sample": []
+  },
+  "UNITSRC-CFR21_101_9": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000005",
+    "SRC-000005"
+   ],
+   "titles_sample": [
+    "21 CFR 101.9(b)(5)(viii) \u2014 US nutrition-labeling household measures"
+   ],
+   "licences": {
+    "public standard / convention": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "AUTHORITY_STANDARD": 1
+   },
+   "records_by_ledger": {
+    "UNIT": 4
+   },
+   "url_sample": []
+  },
+  "UNITSRC-SI_BROCHURE": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000006",
+    "SRC-000006"
+   ],
+   "titles_sample": [
+    "BIPM SI Brochure (9th ed.) \u2014 SI prefixes; litre = 1 dm3"
+   ],
+   "licences": {
+    "public standard / convention": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "AUTHORITY_STANDARD": 1
+   },
+   "records_by_ledger": {
+    "UNIT": 9
+   },
+   "url_sample": []
+  },
+  "UNITSRC-CONV_METRIC_SPOON": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000007",
+    "SRC-000007"
+   ],
+   "titles_sample": [
+    "Metric culinary spoon convention (tsp 5 mL, tbsp 15 mL) \u2014 authority to cite"
+   ],
+   "licences": {
+    "public standard / convention": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "PROJECT": 1
+   },
+   "records_by_ledger": {
+    "UNIT": 2
+   },
+   "url_sample": []
+  },
+  "UNITSRC-CONV_AU_TBSP": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000008",
+    "SRC-000008"
+   ],
+   "titles_sample": [
+    "Australian tablespoon 20 mL convention \u2014 authority to cite"
+   ],
+   "licences": {
+    "public standard / convention": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "PROJECT": 1
+   },
+   "records_by_ledger": {
+    "UNIT": 1
+   },
+   "url_sample": []
+  },
+  "UNITSRC-CONV_METRIC_CUP": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000009",
+    "SRC-000009"
+   ],
+   "titles_sample": [
+    "Metric cup 250 mL convention (AU/NZ/CA/UK modern recipes) \u2014 authority to cite"
+   ],
+   "licences": {
+    "public standard / convention": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "PROJECT": 1
+   },
+   "records_by_ledger": {
+    "UNIT": 1
+   },
+   "url_sample": []
+  },
+  "UNITSRC-CONV_UK_DSP": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000010",
+    "SRC-000010"
+   ],
+   "titles_sample": [
+    "UK dessertspoon 10 mL convention \u2014 authority to cite"
+   ],
+   "licences": {
+    "public standard / convention": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "PROJECT": 1
+   },
+   "records_by_ledger": {
+    "UNIT": 1
+   },
+   "url_sample": []
+  },
+  "FSSAI-LD-2020": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000011",
+    "SRC-000011"
+   ],
+   "titles_sample": [
+    "Food Safety and Standards (Labelling and Display) Regulations, 2020 \u2014 Compendium Version-I (23.09.2021)"
+   ],
+   "licences": {
+    "Government of India publication": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "2021"
+   ],
+   "kinds": {
+    "AUTHORITY_STANDARD": 1
+   },
+   "records_by_ledger": {
+    "ALLERGEN": 8
+   },
+   "url_sample": [
+    "https://www.fssai.gov.in/upload/uploadfiles/files/Compendium_Labelling_Display_23_09_2021.pdf"
+   ]
+  },
+  "PHENOL-EXPLORER-3.6": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000012",
+    "SRC-000012"
+   ],
+   "titles_sample": [
+    "Phenol-Explorer 3.6 \u2014 polyphenol retention factors (food processing)"
+   ],
+   "licences": {
+    "Free public resource; commercial use/redistribution requires authors' permission; cite Phenol-Explorer and original publications": 1
+   },
+   "licence_status": {
+    "VERIFIED": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2013"
+   ],
+   "kinds": {
+    "DATABASE": 1
+   },
+   "records_by_ledger": {
+    "EVD": 3870,
+    "COND": 3870,
+    "SVAR": 161
+   },
+   "url_sample": [
+    "http://phenol-explorer.eu/retention-factors/polyphenols"
+   ]
+  },
+  "pe_pub:53f655df5e7a7407": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000013",
+    "SRC-000013"
+   ],
+   "titles_sample": [
+    "Lombard K., Peffley E., Geoffriau E., Thompson L., Herring A. (2005) Quercetin in onion (Allium cepa L.) after"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2005"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 4,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.jfca.2004.03.027"
+   ]
+  },
+  "pe_pub:edfb67935c62106b": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000014",
+    "SRC-000014"
+   ],
+   "titles_sample": [
+    "Rodrigues A.S., Perez-Gregorio M.R., Garcia-Falcon M.S., Simal-Gandara J. (2009) Effect of curing and cooking "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 4,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodres.2009.04.005"
+   ]
+  },
+  "pe_pub:8c028414c3066545": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000015",
+    "SRC-000015"
+   ],
+   "titles_sample": [
+    "Makris D.P., Rossiter J.T. (2001) Domestic processing of onion bulbs (Allium cepa) and asparagus spears (Aspar"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2001"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 3,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf001497z"
+   ]
+  },
+  "pe_pub:02612f2ae25740bc": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000016",
+    "SRC-000016"
+   ],
+   "titles_sample": [
+    "Xu B. (2009) Total Phenolic, Phenolic Acid, Anthocyanin, Flavan-3-ol, and flavonol profile and antioxidant pro"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 156,
+    "STUDY": 1
+   },
+   "url_sample": []
+  },
+  "pe_pub:fa910164e359bb67": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000017",
+    "SRC-000017"
+   ],
+   "titles_sample": [
+    "Price K.R., Casuscelli F., Colquhoun I.J., Rhodes M.J.C. (1998) Composition and content of flavonol glycosides"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1998"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 5,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1002/(sici)1097-0010(199808)77:4<468::aid-jsfa66>3.3.co;2-2"
+   ]
+  },
+  "pe_pub:f7f34d0052fb949e": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000018",
+    "SRC-000018"
+   ],
+   "titles_sample": [
+    "Gliszczynska-Swiglo A., Tyrakowska B. (2003) Quality of commercial apple juices evaluated on the basis of the "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2003"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 67,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2003.tb12340.x"
+   ]
+  },
+  "pe_pub:18c86f5c7fa99fda": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000019",
+    "SRC-000019"
+   ],
+   "titles_sample": [
+    "Korus A., Lisiewska Z. (2012) Effect of preliminary processing and method of preservation on the content of se"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 39,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2011.04.048"
+   ]
+  },
+  "pe_pub:83928d9a505afe90": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000020",
+    "SRC-000020"
+   ],
+   "titles_sample": [
+    "Koh E., Charoenprasert S., Mitchell A.E. (2012) Effects of industrial tomato paste processing on ascorbic acid"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 13,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1002/jsfa.4580"
+   ]
+  },
+  "pe_pub:f31c527f6358e1d4": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000021",
+    "SRC-000021"
+   ],
+   "titles_sample": [
+    "Barba A.A., Calabretti A., d'Amore M., Piccinelli A.L., Rastrelli L. (2008) Phenolic constituents levels in cv"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 9,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.lwt.2008.02.004"
+   ]
+  },
+  "pe_pub:c287a31b65d179ee": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000022",
+    "SRC-000022"
+   ],
+   "titles_sample": [
+    "Kreft I., Fabjan N., Yasumoto K. (2006) Rutin content in buckwheat (Fagopyrum esculentum Moench) food material"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2006"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 1,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2005.05.081"
+   ]
+  },
+  "pe_pub:c38ce3d35fd6a54b": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000023",
+    "SRC-000023"
+   ],
+   "titles_sample": [
+    "Andlauer W., Stumpf C., Hubert M., Rings A., Fuerst P. (2003) Influence of cooking process on phenolic marker "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2003"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 60,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://arodes.hes-so.ch/record/8584/files/Author%27s%20version.pdf"
+   ]
+  },
+  "pe_pub:ea72b5d3f7b36b70": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000024",
+    "SRC-000024"
+   ],
+   "titles_sample": [
+    "Tudela J.A., Cantos E., Espin J.C., Tomas-Barberan F.A., Gil M.I. (2002) Induction of antioxidant flavonol bio"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2002"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 12,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf020330y"
+   ]
+  },
+  "pe_pub:0a2a3d63a84b8a13": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000025",
+    "SRC-000025"
+   ],
+   "titles_sample": [
+    "Mazzeo T., N'Dri D., Chiavaro E., Visconti A., Fogliano V., Pellegrini N. (2011) Effect of two cooking procedu"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 49,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://research.wur.nl/en/publications/effect-of-two-cooking-procedures-on-phytochemical-compounds-"
+   ]
+  },
+  "pe_pub:67aa185a24af5ef7": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000026",
+    "SRC-000026"
+   ],
+   "titles_sample": [
+    "Fanasca S., Rouphael Y., Venneria E., Azzini E., Durazzo A., Maiani G. (2009) Antioxidant properties of raw an"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 12,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2008.01871.x"
+   ]
+  },
+  "pe_pub:9bf2badb630d0fb5": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000027",
+    "SRC-000027"
+   ],
+   "titles_sample": [
+    "Goncalves B., Landbo A.K., Knudsen D., Silva A.P., Moutinho-Pereira J., Rosa E., Meyer A.S. (2004) Effect of r"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2004"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 251,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "http://hdl.handle.net/10348/6559"
+   ]
+  },
+  "pe_pub:39cfdd1750fecea5": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000028",
+    "SRC-000028"
+   ],
+   "titles_sample": [
+    "Adefegha S.A., Oboh G. (2011) Enhancement of total phenolics and antioxidant properties of some tropical green"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 216,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1745-4549.2010.00509.x"
+   ]
+  },
+  "pe_pub:5f3209d1103ffdcb": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000029",
+    "SRC-000029"
+   ],
+   "titles_sample": [
+    "Baltacioglu C., Velioglu S., Karacabey E. (2011) Changes in total phenolic and flavonoid contents of rowanberr"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 5,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://hdl.handle.net/11511/66812"
+   ]
+  },
+  "pe_pub:26d1e31c0d253c01": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000030",
+    "SRC-000030"
+   ],
+   "titles_sample": [
+    "Zafrilla P., Morillas J., Mulero J., Cayuela J.M., Martinez-Cacha A., Pardo F., Nicolas J.M.L. (2003) Changes "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2003"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 200,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf021251p"
+   ]
+  },
+  "pe_pub:57d79f839990b8fb": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000031",
+    "SRC-000031"
+   ],
+   "titles_sample": [
+    "Cejudo-Bastante M.J., P\u00e9rez-Coello M.S., P\u00e9rez-Juan P.M., Hermos\u00edn-Guti\u00e9rrez I. (2012) Effects of hyper-oxygen"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 15,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s00217-011-1619-1"
+   ]
+  },
+  "pe_pub:50d18075c01d0ca4": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000032",
+    "SRC-000032"
+   ],
+   "titles_sample": [
+    "Ferracane R., Pellegrini N., Visconti A., Graziani G., Chiavaro E., Miglio C., Fogliano V. (2008) Effects of d"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 19,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://research.wur.nl/en/publications/effects-of-different-cooking-methods-on-antioxidant-profile-"
+   ]
+  },
+  "pe_pub:94adf257586e94e6": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000033",
+    "SRC-000033"
+   ],
+   "titles_sample": [
+    "Gil M.I., Ferreres F., Tomas-Barberan F.A. (1999) Effect of postharvest storage and processing on the antioxid"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1999"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 9,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf981200l"
+   ]
+  },
+  "pe_pub:02aade06d81a3ea6": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000034",
+    "SRC-000034"
+   ],
+   "titles_sample": [
+    "Ornelas-Paz J.D., Martinez-Burrola J.M., Ruiz-Cruz S., Santana-Rodriguez V., Ibarra-Junquera V., Olivas G.I., "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2010"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 71,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2009.09.054"
+   ]
+  },
+  "pe_pub:1304a496c006d426": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000035",
+    "SRC-000035"
+   ],
+   "titles_sample": [
+    "Xu X.Y., Li W.D., Lu Z.H., Beta T., Hydamaka A.W. (2009) Phenolic Content, Composition, Antioxidant Activity, "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 88,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf902532q"
+   ]
+  },
+  "pe_pub:83d5551436660767": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000036",
+    "SRC-000036"
+   ],
+   "titles_sample": [
+    "Goulas, V., Manganaris, G.A. (2011) The effect of postharvest ripening on strawberry bioactive composition and"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 3,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1002/jsfa.4406"
+   ]
+  },
+  "pe_pub:2746206c9604de8e": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000037",
+    "SRC-000037"
+   ],
+   "titles_sample": [
+    "\u0160avikin K., Zduni\u0107 G., Jankovi\u0107 T., Tasi\u0107 S., Menkovi\u0107 N., Stevi\u0107 T., \u0110or\u0111evi\u0107 B. (2009) Phenolic Content and "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 10,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s11130-009-0123-2"
+   ]
+  },
+  "pe_pub:da787c596c2797f3": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000038",
+    "SRC-000038"
+   ],
+   "titles_sample": [
+    "Syamaladevi, R.M., Andrews, P.K., Davies, N.M., Walters, T., Sablani, S.S. (2012) Storage effects on anthocyan"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 30,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1002/jsfa.4670"
+   ]
+  },
+  "pe_pub:82efd2e245d0d8e7": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000039",
+    "SRC-000039"
+   ],
+   "titles_sample": [
+    "Aaby K., Wrolstad R.E., Ekeberg D., Skrede G. (2007) Polyphenol composition and antioxidant activity in strawb"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2007"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 117,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf070467u"
+   ]
+  },
+  "pe_pub:4c6c0d1d5363d43a": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000040",
+    "SRC-000040"
+   ],
+   "titles_sample": [
+    "Chaovanalikit A., Wrolstad R.E. (2004) Total anthocyanins and total phenolics of fresh and processed cherries "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2004"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 14,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2004.tb17858.x"
+   ]
+  },
+  "pe_pub:becb4d8fa796ac50": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000041",
+    "SRC-000041"
+   ],
+   "titles_sample": [
+    "Landl A., Abadias A., S\u00e1rraga B.C., Vi\u00f1as A.I., Picouet P.A. (2010) Effect of high pressure processing on the "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2010"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 9,
+    "STUDY": 1
+   },
+   "url_sample": []
+  },
+  "pe_pub:71b9731ac1fef521": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000042",
+    "SRC-000042"
+   ],
+   "titles_sample": [
+    "Klimczak I., Malecka M., Szlachta M., Gliszczynska-Swiglo A. (2007) Effect of storage on the content of polyph"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2007"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 126,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.jfca.2006.02.012"
+   ]
+  },
+  "pe_pub:1b487e79faad144a": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000043",
+    "SRC-000043"
+   ],
+   "titles_sample": [
+    "Baiano A., Gambacorta G., Terracone C., Previtali M.A., Lamacchia C., La Notte E. (2009) Changes in Phenolic C"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 30,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1750-3841.2009.01072.x"
+   ]
+  },
+  "pe_pub:096f6d5dd977f48a": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000044",
+    "SRC-000044"
+   ],
+   "titles_sample": [
+    "Pirhayati M., Soltanizadeh N., Kadivar M. (2011) Chemical and microstructural evaluation of 'hard-to-cook' phe"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 6,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2011.02697.x"
+   ]
+  },
+  "pe_pub:709a412004b9f815": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000045",
+    "SRC-000045"
+   ],
+   "titles_sample": [
+    "Hurst W.J., Payne M.J., Miller K.B., Stuart D.A. (2009) Stability of Cocoa Antioxidants and Flavan-3-ols over "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 24,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf901457s"
+   ]
+  },
+  "pe_pub:607efdf11376e082": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000046",
+    "SRC-000046"
+   ],
+   "titles_sample": [
+    "Amakura Y, Umino Y, Tsuji S, Tonogai Y (2000) Influence of jam processing on the radical scavenging activity a"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2000"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 22,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf000849z"
+   ]
+  },
+  "pe_pub:75cba5a5f93b16e0": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000047",
+    "SRC-000047"
+   ],
+   "titles_sample": [
+    "Zafrilla P., Ferreres F., Tomas-Barberan F.A. (2001) Effect of processing and storage on the antioxidant ellag"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2001"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 6,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf010192x"
+   ]
+  },
+  "pe_pub:65d4525bbeb280eb": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000048",
+    "SRC-000048"
+   ],
+   "titles_sample": [
+    "Hakkinen S.H., Karenlampi S.O., Mykkanen H.M., Heinonen I.M., Torronen A.R. (2000) Ellagic acid content in ber"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2000"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 13,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s002170000184"
+   ]
+  },
+  "pe_pub:e850f24d26ae839e": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000049",
+    "SRC-000049"
+   ],
+   "titles_sample": [
+    "Kim D.-O., Padilla-Zakour O.I. (2004) Jam processing effect on phenolics and antioxidant capacity in anthocyan"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2004"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 14,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2004.tb09956.x"
+   ]
+  },
+  "pe_pub:44800ae261167772": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000050",
+    "SRC-000050"
+   ],
+   "titles_sample": [
+    "Lutz M., Henriquez C., Escobar M. (2011) Chemical composition and antioxidant properties of mature and baby ar"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 10,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.jfca.2010.06.001"
+   ]
+  },
+  "pe_pub:af330e06e1835836": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000051",
+    "SRC-000051"
+   ],
+   "titles_sample": [
+    "Miglio C., Chiavaro E., Visonti A. Fogliano V., Pellegrini N. (2008) Effects of different cooking methods on n"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 27,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://research.wur.nl/en/publications/effects-of-different-cooking-methods-on-nutritional-and-phys"
+   ]
+  },
+  "pe_pub:ff0ac3f9402bfb71": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000052",
+    "SRC-000052"
+   ],
+   "titles_sample": [
+    "Mattila P., Hellstrom J. (2007) Phenolic acids in potatoes , vegetables , and some of their products. Journal "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2007"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 14,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.jfca.2006.05.007"
+   ]
+  },
+  "pe_pub:96f91e2c36f70ab5": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000053",
+    "SRC-000053"
+   ],
+   "titles_sample": [
+    "Bunea A., Andjelkovic M., Socaciu C., Bobis O., Neacsu M., Verhe R., Van Camp J. (2008) Total and individual c"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 8,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2007.11.056"
+   ]
+  },
+  "pe_pub:1d3fc5448e542928": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000054",
+    "SRC-000054"
+   ],
+   "titles_sample": [
+    "Price K.R., Colquhoun I.J., Barnes K.A., Rhodes M.J.C. (1998) Composition and content of flavonol glycosides i"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1998"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 5,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf980687v"
+   ]
+  },
+  "pe_pub:9877735038b13475": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000055",
+    "SRC-000055"
+   ],
+   "titles_sample": [
+    "Vallverdu-Queralt A., Medina-Rem\u00f3n A., Andres-Lacueva C., Lamuela-Raventos R.M. (2011) Changes in phenolic pro"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 24,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2010.12.061"
+   ]
+  },
+  "pe_pub:612a38a1edaa3660": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000056",
+    "SRC-000056"
+   ],
+   "titles_sample": [
+    "Silva B.M., Branquinho-Andrade P., Goncalves A.C., Seabra R.M., Oliveira M.B., Ferreira M.A. (2004) Influence "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2004"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 6,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s00217-003-0845-6"
+   ]
+  },
+  "pe_pub:42e91f2ebcfa4ea4": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000057",
+    "SRC-000057"
+   ],
+   "titles_sample": [
+    "Perez-Jimenez J., Saura-Calixto F. (2005) Literature data may underestimate the actual antioxidant capacity of"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2005"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 1,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf050049u"
+   ]
+  },
+  "pe_pub:50a17a735a6735ab": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000058",
+    "SRC-000058"
+   ],
+   "titles_sample": [
+    "Massaretto I.L., Madureira Alves M.F., Mussi de Mira N.V., Carmona A.K., Lanfer Marquez U.M. (2011) Phenolic c"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 10,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.jcs.2011.06.006"
+   ]
+  },
+  "pe_pub:1c880fa955a1b88e": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000059",
+    "SRC-000059"
+   ],
+   "titles_sample": [
+    "McDougall G.J., Dobson P., Jordan-Mahy N. (2010) Effect of different cooking regimes on rhubarb polyphenols. F"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2010"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 15,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2009.07.030"
+   ]
+  },
+  "pe_pub:00804eca53732145": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000060",
+    "SRC-000060"
+   ],
+   "titles_sample": [
+    "Goncalves B., Borges O., Costa H.S., Bennett R., Santos M., Silva A.P. (2010) Metabolite composition of chestn"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2010"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 22,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://repositorio.utad.pt/bitstreams/6c5fde94-f6de-4148-b2c6-380cbfa25d17/download"
+   ]
+  },
+  "pe_pub:1947d82ef17a1a72": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000061",
+    "SRC-000061"
+   ],
+   "titles_sample": [
+    "Chukwumah Y., Walker L., Vogler B., Verghese M. (2007) Changes in the phytochemical composition and profile of"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2007"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 1,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf071877l"
+   ]
+  },
+  "pe_pub:50169df0321cd1c4": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000062",
+    "SRC-000062"
+   ],
+   "titles_sample": [
+    "Xu B. , Chang S.K.C. (2008) Effect of soaking, boiling, and steaming on total phenolic content and antioxidant"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 20,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2008.01.045"
+   ]
+  },
+  "pe_pub:0ac8922feae5bbcc": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000063",
+    "SRC-000063"
+   ],
+   "titles_sample": [
+    "Bishnoi S., Khetarpaul N., Yadav R.K. (1994) Effect of domestic processing and cooking methods on phytic acid "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1994"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 32,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/bf01088088"
+   ]
+  },
+  "pe_pub:3c0ab1dda005e158": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000064",
+    "SRC-000064"
+   ],
+   "titles_sample": [
+    "Duhan A., Khetarpaul N., Bishnoi S. (2000) Optimum domestic processing and cooking methods for reducing polyph"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2000"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 28,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1177/026010609901300404"
+   ]
+  },
+  "pe_pub:ad62930faa7d8725": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000065",
+    "SRC-000065"
+   ],
+   "titles_sample": [
+    "Sikora E., Cieslik E., Leszczynska T., Filipiak-Florkiewicz A., Pisulewski P.M. (2008) The antioxidant activit"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 10,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2007.07.023"
+   ]
+  },
+  "pe_pub:143a90e4b298f289": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000066",
+    "SRC-000066"
+   ],
+   "titles_sample": [
+    "Zhang D., Hamauzu Y. (2004) Phenolics, ascorbic acid, carotenoids and antioxidant activity of broccoli and the"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2004"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 10,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2004.01.065"
+   ]
+  },
+  "pe_pub:62e0d0304fd6b946": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000067",
+    "SRC-000067"
+   ],
+   "titles_sample": [
+    "Gawlik-Dziki U. (2008) Effect of hydrothermal treatment on the antioxidant properties of broccoli (Brassica ol"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 2,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2007.12.058"
+   ]
+  },
+  "pe_pub:a205d3a0a3f08cce": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000068",
+    "SRC-000068"
+   ],
+   "titles_sample": [
+    "Sultana B., Anwar F., Iqbal S. (2008) Effect of different cooking methods on the antioxidant activity of some "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 20,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2006.01504.x"
+   ]
+  },
+  "pe_pub:cdcb0dadcbe1dcbf": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000069",
+    "SRC-000069"
+   ],
+   "titles_sample": [
+    "Podsedek A., Sosnowska D., Redzynia M., Koziolkiewicz M. (2008) Effect of domestic cooking on the red cabbage "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 12,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2007.01697.x"
+   ]
+  },
+  "pe_pub:1707c32dd56fec7e": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000070",
+    "SRC-000070"
+   ],
+   "titles_sample": [
+    "Volden J., Borge G.I.A., Bengtsson G.B., Hansen M., Thygesen I.E., Wicklund T. (2008) Effect of thermal treatm"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 2,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2008.01.010"
+   ]
+  },
+  "pe_pub:599a7046e1ae2e2c": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000071",
+    "SRC-000071"
+   ],
+   "titles_sample": [
+    "Lo Scalzo R., Fibiani M., Mennella G., Rotino G.L., Dal Sasso M., Culici M., Spallino A., Braga P.C. (2010) Th"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2010"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 8,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf903881s"
+   ]
+  },
+  "pe_pub:2006a305ec91d9c1": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000072",
+    "SRC-000072"
+   ],
+   "titles_sample": [
+    "Sahlin E., Savage G.P., Lister C.E. (2004) Investigation of the antioxidant properties of tomatoes after proce"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2004"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 6,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.jfca.2003.10.003"
+   ]
+  },
+  "pe_pub:fe27ff551083d0fe": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000073",
+    "SRC-000073"
+   ],
+   "titles_sample": [
+    "Turkmen N., Sari F., Velioglu Y.S. (2005) The effect of cooking methods on total phenolics and antioxidant act"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2005"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 13,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2004.12.038"
+   ]
+  },
+  "pe_pub:11876ff9fe63334a": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000074",
+    "SRC-000074"
+   ],
+   "titles_sample": [
+    "Im M.H., Park Y.-S., Ham K.-S., Kang S.-G., Heo, B.-G., Leontowicz, H., Leontowicz, M., Namiesnik J., Najman K"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 4,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1080/10942911003687256"
+   ]
+  },
+  "pe_pub:8749e882b2c21eb7": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000075",
+    "SRC-000075"
+   ],
+   "titles_sample": [
+    "Papoulias E., Siomos A.S., Koukounaras A., Gerasopoulos D., Kazakis E. (2009) Effects of Genetic, Pre- and Pos"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 3,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://www.mdpi.com/1422-0067/10/12/5370/pdf?version=1403138869"
+   ]
+  },
+  "pe_pub:2a0788e0ad75e301": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000076",
+    "SRC-000076"
+   ],
+   "titles_sample": [
+    "Bakowska-Barczak A.M., Kolodziejczyk P.P. (2011) Black currant polyphenols: Their storage stability and microe"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 85,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.indcrop.2010.10.002"
+   ]
+  },
+  "pe_pub:f940aa9b53806e46": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000077",
+    "SRC-000077"
+   ],
+   "titles_sample": [
+    "Puuponen-Pimia R., Hakkinen S.T., Aarni M., Suortti T., Lampi A.M., Eurola M., Piironen V., Nuutila A.M., Oksm"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2003"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 56,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1002/jsfa.1589"
+   ]
+  },
+  "pe_pub:727c370b4c6e0bef": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000078",
+    "SRC-000078"
+   ],
+   "titles_sample": [
+    "Volden J., Bengtsson G.B., Wicklund T. (2009) Glucosinolates, L-ascorbic acid, total phenols, anthocyanins, an"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 20,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2008.07.018"
+   ]
+  },
+  "pe_pub:2f62c4c1c5b02267": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000079",
+    "SRC-000079"
+   ],
+   "titles_sample": [
+    "Mullen W., Stewart A.J., Lean M.E.J., Gardner P., Duthie G.G., Crozier A. (2002) Effect of freezing and storag"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2002"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 46,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf020141f"
+   ]
+  },
+  "pe_pub:982d6d206dc26fc4": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000080",
+    "SRC-000080"
+   ],
+   "titles_sample": [
+    "Rapisarda P., Lo Bianco M., Pannuzzo P., Timpanaro N. (2008) Effect of cold storage on vitamin C, phenolics an"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 15,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.postharvbio.2008.02.002"
+   ]
+  },
+  "pe_pub:00c03b1db07adecb": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000081",
+    "SRC-000081"
+   ],
+   "titles_sample": [
+    "Garcia-Parra J., Gonzalez-Cebrino F., Delgado J., Lozano M., Hernandez T., Ramirez R. (2011) Effect of Thermal"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 15,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1750-3841.2011.02129.x"
+   ]
+  },
+  "pe_pub:c01a06c6d2528a93": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000082",
+    "SRC-000082"
+   ],
+   "titles_sample": [
+    "Picouet P.A., Landl A. A., Abadias M. B., Castellari M. A., Vi\u00f1as I. (2009) Minimal processing of a Granny Smi"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 4,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.ifset.2009.05.007"
+   ]
+  },
+  "pe_pub:ec8cc38d518ba138": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000083",
+    "SRC-000083"
+   ],
+   "titles_sample": [
+    "Carbone K., Giannini B., Picchi V., Lo Scalzo R., Cecchini F. (2011) Phenolic composition and free radical sca"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 26,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2011.01.030"
+   ]
+  },
+  "pe_pub:0e5d3bb819517109": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000084",
+    "SRC-000084"
+   ],
+   "titles_sample": [
+    "Leja M., Mareczek A., Ben J. (2003) Antioxidant properties of two apple cultivars during long-term storage. Fo"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2003"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 8,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/s0308-8146(02)00263-7"
+   ]
+  },
+  "pe_pub:5b4531dfae40c576": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000085",
+    "SRC-000085"
+   ],
+   "titles_sample": [
+    "Piljac-Zegarac J., Valek L., Martinez S., Belscak A. (2009) Fluctuations in the phenolic content and antioxida"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 36,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2008.07.048"
+   ]
+  },
+  "pe_pub:d772d57592a4e6ec": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000086",
+    "SRC-000086"
+   ],
+   "titles_sample": [
+    "Barba F.J., J\u00e4ger H., Meneses N., Esteve M.J., Fr\u00edgola A., Knorr D. (2012) Evaluation of quality changes of bl"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 16,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.ifset.2011.12.004"
+   ]
+  },
+  "pe_pub:77e4762adfcca348": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000087",
+    "SRC-000087"
+   ],
+   "titles_sample": [
+    "Hagen S.F., Borge G.I.A., Solhaug K.A., Bengtsson G.B. (2009) Effect of cold storage and harvest date on bioac"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 9,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.postharvbio.2008.04.001"
+   ]
+  },
+  "pe_pub:55b4c992164b9673": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000088",
+    "SRC-000088"
+   ],
+   "titles_sample": [
+    "Donovan J.L., Meyer A.S., Waterhouse A.L. (1998) Phenolic composition and antioxidant activity of prunes and p"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1998"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 8,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf970831x"
+   ]
+  },
+  "pe_pub:1f5538db51361f45": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000089",
+    "SRC-000089"
+   ],
+   "titles_sample": [
+    "Ewald C., Fjelkner-Modig S., Johansson K., Sjoholm I., Akesson B. (1999) Effect of processing on major flavono"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1999"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 14,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/s0308-8146(98)00136-8"
+   ]
+  },
+  "pe_pub:b60c450144d95e42": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000090",
+    "SRC-000090"
+   ],
+   "titles_sample": [
+    "Slatnar A., Klancar U., Stampar F., Veberic R. (2011) Effect of drying of figs (Ficus carica L.) on the conten"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 42,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf202707y"
+   ]
+  },
+  "pe_pub:e19d456d3ffd3c06": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000091",
+    "SRC-000091"
+   ],
+   "titles_sample": [
+    "Gonzalez E.M., de Ancos B., Cano M.P. (2003) Relation between bioactive compounds and free radical-scavenging "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2003"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 80,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1002/jsfa.1359"
+   ]
+  },
+  "pe_pub:5d9d9b927acb8a61": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000092",
+    "SRC-000092"
+   ],
+   "titles_sample": [
+    "Odriozola-Serrano I., Soliva-Fortuny R., Martin-Belloso O. (2008) Phenolic acids, flavonoids, vitamin C and an"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 244,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s00217-008-0928-5"
+   ]
+  },
+  "pe_pub:2e081376ba21e6de": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000093",
+    "SRC-000093"
+   ],
+   "titles_sample": [
+    "Alighourchi H., Barzegar M., Abbasi S. (2008) Anthocyanins characterization of 15 Iranian pomegranate (Punica "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 48,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s00217-007-0799-1"
+   ]
+  },
+  "pe_pub:a579ceb2b58779c2": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000094",
+    "SRC-000094"
+   ],
+   "titles_sample": [
+    "Mrkic V., Cocci E., dalla Rosa M., Sacchetti G. (2006) Effect of drying conditions on bioactive compounds and "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2006"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 2,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1002/jsfa.2554"
+   ]
+  },
+  "pe_pub:175cf25af78469d9": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000095",
+    "SRC-000095"
+   ],
+   "titles_sample": [
+    "P\u00e9rez-Gregorio M.R., Regueiro J., Gonz\u00e1lez-Barreiro C., Rial-Otero R., Simal-G\u00e1ndara J. (2011) Changes in anti"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 13,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodcont.2011.01.006"
+   ]
+  },
+  "pe_pub:0abcce217ef6fae7": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000096",
+    "SRC-000096"
+   ],
+   "titles_sample": [
+    "Wolosiak R., Worobiej E., Piecyk M., Druzynska B., Nowak D., Lewicki P.P. (2010) Activities of amine and pheno"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2010"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 3,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2009.02099.x"
+   ]
+  },
+  "pe_pub:694944507ac1d6ce": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000097",
+    "SRC-000097"
+   ],
+   "titles_sample": [
+    "Wolosiak R., Druzynska B., Piecyk M., Worobiej E., Majewska E., Lewicki P.P. (2011) Influence of industrial st"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 2,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2010.02456.x"
+   ]
+  },
+  "pe_pub:1e172ee540f080bd": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000098",
+    "SRC-000098"
+   ],
+   "titles_sample": [
+    "Dragovic-Uzelac V., Pospisil J., Levaj B., Delonga K. (2005) The study of phenolic profiles of raw apricots an"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2005"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 16,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2004.09.004"
+   ]
+  },
+  "pe_pub:80d7140fd2d2cf10": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000099",
+    "SRC-000099"
+   ],
+   "titles_sample": [
+    "Kuti J.O., Konuru H.B. (2004) Antioxidant capacity and phenolic content in leaf extracts of tree spinach (Cnid"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2004"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 6,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf030246y"
+   ]
+  },
+  "pe_pub:3665554fcddf9fdb": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000100",
+    "SRC-000100"
+   ],
+   "titles_sample": [
+    "Paramjyothi S., Mulimani V.H. (2001) Effect of heat treatment and soaking on polyphenols of redgram (Cajanus c"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2001"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 18,
+    "STUDY": 1
+   },
+   "url_sample": []
+  },
+  "pe_pub:b63729af792fd693": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000101",
+    "SRC-000101"
+   ],
+   "titles_sample": [
+    "Bergquist S.A.M., Gertsson U.E., Knuthsen P., Olsson M.E. (2005) Flavonoids in baby spinach (Spinacia oleracea"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2005"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 84,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf051430h"
+   ]
+  },
+  "pe_pub:53fce8a457368c03": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000102",
+    "SRC-000102"
+   ],
+   "titles_sample": [
+    "Luthria D.L., Pastor-Corrales M.A. (2006) Phenolic acids content of fifteen dry edible bean (Phaseolus vulgari"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2006"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 4,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.jfca.2005.09.003"
+   ]
+  },
+  "pe_pub:7e7cd7e97f0e245d": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000103",
+    "SRC-000103"
+   ],
+   "titles_sample": [
+    "Harnly J.M., Doherty R.F., Beecher G.R., Holden J.M., Haytowitz D.B., Bhagwat S., Gebhardt S. (2006) Flavonoid"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2006"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 7,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf061478a"
+   ]
+  },
+  "pe_pub:8713556e247cad41": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000104",
+    "SRC-000104"
+   ],
+   "titles_sample": [
+    "Song T.T., Barua K., Buseman G., Murphy P.A. (1998) Soy isoflavone analysis: quality control and a new interna"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1998"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 11,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1093/ajcn/68.6.1474s"
+   ]
+  },
+  "pe_pub:3cab93eb270913d8": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000105",
+    "SRC-000105"
+   ],
+   "titles_sample": [
+    "Chan S.G., Murphy P.A., Ho S.C., Kreiger N., Darlington G., So E.K.F., Chong P.Y.Y. (2009) Isoflavonoid Conten"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 11,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf803870k"
+   ]
+  },
+  "pe_pub:95d54ea7abbc49a1": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000106",
+    "SRC-000106"
+   ],
+   "titles_sample": [
+    "Franke A.A., Custer L.J., Wang W., Shi C.Y. (1998) HPLC analysis of isoflavonoids and other phenolic agents fr"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1998"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 14,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.3181/00379727-217-44231"
+   ]
+  },
+  "pe_pub:a5a179c81d51c8be": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000107",
+    "SRC-000107"
+   ],
+   "titles_sample": [
+    "Franke A.A., Hankin J.H., Yu M.C., Maskarinec G., Low S.H., Custer L.J. (1999) Isoflavone levels in soy foods "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1999"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 33,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf9808832"
+   ]
+  },
+  "pe_pub:35e38429e01423d4": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000108",
+    "SRC-000108"
+   ],
+   "titles_sample": [
+    "Morandi S., D'Agostina A., Ferrario F., Arnoldi A. (2005) Isoflavone content of Italian soy food products and "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2005"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 7,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s00217-004-1116-x"
+   ]
+  },
+  "pe_pub:fe31046e71117bcb": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000109",
+    "SRC-000109"
+   ],
+   "titles_sample": [
+    "Murphy P.A., Song T.T., Buseman G., Barua K., Beecher G.R., Trainer D., Holden J. (1999) Isoflavones in retail"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1999"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 65,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf981144o"
+   ]
+  },
+  "pe_pub:9b8e069f1a1cc8c8": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000110",
+    "SRC-000110"
+   ],
+   "titles_sample": [
+    "Crozier, A., Lean, M.E.J., McDonald, M.S., Black, C. (1997) Quantitative analysis of the flavonoids content of"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1997"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 6,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf960339y"
+   ]
+  },
+  "pe_pub:19634300168fb687": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000111",
+    "SRC-000111"
+   ],
+   "titles_sample": [
+    "De la Parra C., Serna Salvidar S.O., Liu R.H. (2007) Effect of processing on the phytochemical profiles and an"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2007"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 15,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf063487p"
+   ]
+  },
+  "pe_pub:0d493960a41f5c07": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000112",
+    "SRC-000112"
+   ],
+   "titles_sample": [
+    "Hartmann G., Piber M., Koehler P. (2005) Isolation and chemical characterisation of water-extractable arabinox"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2005"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 6,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s00217-005-1154-z"
+   ]
+  },
+  "pe_pub:5c8386326ebdaadf": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000113",
+    "SRC-000113"
+   ],
+   "titles_sample": [
+    "Menga V., Fares C., Troccoli A., Cattivelli L., Baiano A. (2010) Effects of genotype, location and baking on t"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2010"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 21,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.2009.02072.x"
+   ]
+  },
+  "pe_pub:18e1b48b58f9a803": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000114",
+    "SRC-000114"
+   ],
+   "titles_sample": [
+    "Georg\u00e9 S., Tourniaire F., Gautier H., Goupy P., Rock E., Caris-Veyrat C. (2011) Changes in the contents of car"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 4,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2010.08.024"
+   ]
+  },
+  "pe_pub:fb602f86006243be": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000115",
+    "SRC-000115"
+   ],
+   "titles_sample": [
+    "Garcia-Viguera C., Zafrilla P., Romero F., Abellan P., Artes F., Tomas-Barberan F.A. (1999) Color stability of"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1999"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 156,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1111/j.1365-2621.1999.tb15874.x"
+   ]
+  },
+  "pe_pub:7ecd9a5e597206fb": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000116",
+    "SRC-000116"
+   ],
+   "titles_sample": [
+    "Jaiswal A.K., Gupta S., Abu-Ghannam N. (2012) Kinetic evaluation of colour, texture, polyphenols and antioxida"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 8,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://arrow.tudublin.ie/cgi/viewcontent.cgi?article=1090&context=schfsehart"
+   ]
+  },
+  "pe_pub:7073617fa387fe47": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000117",
+    "SRC-000117"
+   ],
+   "titles_sample": [
+    "Fuleki T., Ricardo-Da-Silva J.M. (2003) Effects of cultivar and processing method on the contents of catechins"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2003"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 39,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf020689m"
+   ]
+  },
+  "pe_pub:b5ad074fbe63963b": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000118",
+    "SRC-000118"
+   ],
+   "titles_sample": [
+    "Price K.R., Bacon J.R., Rhodes M.J.C. (1997) Effect of storage and domestic processing on the content and comp"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "1997"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 34,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf9605916"
+   ]
+  },
+  "pe_pub:83b1958b9c0e4a7e": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000119",
+    "SRC-000119"
+   ],
+   "titles_sample": [
+    "Quitao-Teixeira L.J., Odriozola-Serrano I., Soliva-Fortuny R., Mota-Ramos A., Martin-Belloso O. (2009) Compara"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2009"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 2,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1002/jsfa.3767"
+   ]
+  },
+  "pe_pub:b8f9bdfb83bae31a": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000120",
+    "SRC-000120"
+   ],
+   "titles_sample": [
+    "Vallverd\u00fa-Queralt A., Medina-Rem\u00f3n A., Casals-Ribes I., Andres-Lacueva C., Waterhouse A.L., Lamuela-Raventos R"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 32,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://www.sciencedirect.com/science/article/pii/S0023643811004208/pdf"
+   ]
+  },
+  "pe_pub:efd8f3bddfcc470f": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000121",
+    "SRC-000121"
+   ],
+   "titles_sample": [
+    "Barba F.J., Esteve M.J., Frigola A. (2011) Physicochemical and nutritional characteristics of blueberry juice "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 9,
+    "STUDY": 1
+   },
+   "url_sample": []
+  },
+  "pe_pub:e4dde2f6181533a6": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000122",
+    "SRC-000122"
+   ],
+   "titles_sample": [
+    "Lo Scalzo R., Genna A., Branca F., Chedin M., Chassaigne H. (2008) Anthocyanin composition of cauliflower (Bra"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2008"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 5,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2007.07.072"
+   ]
+  },
+  "pe_pub:64f8bedef2ec65a4": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000123",
+    "SRC-000123"
+   ],
+   "titles_sample": [
+    "Howard L.R., Castrodale C., Brownmiller C., Mauromoustakos A. (2010) Jam Processing and Storage Effects on Blu"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2010"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 186,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf902850h"
+   ]
+  },
+  "pe_pub:77ac33a32ba0da18": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000124",
+    "SRC-000124"
+   ],
+   "titles_sample": [
+    "Sharma, P., Gujral, H.S. (2011) Effect of sand roasting and microwave cooking on antioxidant activity of barle"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 8,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodres.2010.10.030"
+   ]
+  },
+  "pe_pub:29065bb01b7abacd": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000125",
+    "SRC-000125"
+   ],
+   "titles_sample": [
+    "Pernice R. (2010) Antioxidants profile of small tomato fruits : effect of irrigation and industrial process. S"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2010"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 6,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://research.wur.nl/en/publications/antioxidants-profile-of-small-tomato-fruits-effect-of-irriga"
+   ]
+  },
+  "pe_pub:ab4589cdc2d054a7": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000126",
+    "SRC-000126"
+   ],
+   "titles_sample": [
+    "Sentandreu E., Navarro J.L., Sendra J.M. (2007) Effect of technological processes and storage on flavonoids co"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2007"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 96,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s00217-006-0500-0"
+   ]
+  },
+  "pe_pub:ed74b83726178c86": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000127",
+    "SRC-000127"
+   ],
+   "titles_sample": [
+    "P\u00e9rez-Gregorio M.R., Garcia-Falcon M.S. (2011) Flavonoids changes in fresh-cut onions during storage in differ"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 8,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2010.06.090"
+   ]
+  },
+  "pe_pub:708565c31b98baf4": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000128",
+    "SRC-000128"
+   ],
+   "titles_sample": [
+    "Plaza L., Sanchez-Moreno C., De Ancos B., Elez-Martinez P., Martin-Belloso O., Cano M.P. (2011) Carotenoid and"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 38,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://www.sciencedirect.com/science/article/pii/S0023643810004378/pdf"
+   ]
+  },
+  "pe_pub:b1c1dacb21798c6e": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000129",
+    "SRC-000129"
+   ],
+   "titles_sample": [
+    "Fares C., Menga V. (2012) Effects of toasting on the carbohydrate profile and antioxidant properties of chickp"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 4,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2011.09.080"
+   ]
+  },
+  "pe_pub:bc8e3ab2fdab0b63": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000130",
+    "SRC-000130"
+   ],
+   "titles_sample": [
+    "Sharma P., Gujral H.S., Singh B. (2012) Antioxidant activity of barley as affected by extrusion cooking. Food "
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2012"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 32,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2011.10.009"
+   ]
+  },
+  "pe_pub:0b2f53f612d16ffd": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000131",
+    "SRC-000131"
+   ],
+   "titles_sample": [
+    "Zhang F., Hu L., Xu G., Chen Q. (2011) Changes of some chemical substances and antioxidant capacity of mandari"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 6,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://www.sciencedirect.com/science/article/pii/S1878029611010127/pdf"
+   ]
+  },
+  "pe_pub:ed07b3658bb28c86": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000132",
+    "SRC-000132"
+   ],
+   "titles_sample": [
+    "Lopez-Martinez, L.X., Parkin, K.L., Garcia, H.S. (2011) Phase II-Inducing, Polyphenols Content and Antioxidant"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 8,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1007/s11130-011-0210-z"
+   ]
+  },
+  "pe_pub:81561c54b581b75a": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000133",
+    "SRC-000133"
+   ],
+   "titles_sample": [
+    "Gitanjali, Yasoda Devi P., Shiva Prakash M. (2004) Effect of shallow frying on total phenolic content and anti"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2004"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 4,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2004.01.010"
+   ]
+  },
+  "pe_pub:73e209cb263f4e28": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000134",
+    "SRC-000134"
+   ],
+   "titles_sample": [
+    "Kim Y., Welt B.A., Talcott S.T. (2011) The impact of packaging materials on the antioxidant phytochemical stab"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 9,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf104799y"
+   ]
+  },
+  "pe_pub:18e97a4cf31de4b4": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000135",
+    "SRC-000135"
+   ],
+   "titles_sample": [
+    "Su\u00e1rez-Jacobo, A., Saldo, J., R\u00fcfer, C.E., Guamis, B., Roig-Sagu\u00e9s, A.X., Gervilla, R. (2011) Aseptically pack"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2011"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 1,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.jfoodeng.2011.09.007"
+   ]
+  },
+  "pe_pub:522d7a4c9256489d": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000136",
+    "SRC-000136"
+   ],
+   "titles_sample": [
+    "Diaz-Batalla L., Widholm J.M., Fahey G.C., Jr., Castano-Tostado E., Paredes-Lopez O. (2006) Chemical component"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2006"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 2,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1021/jf051706l"
+   ]
+  },
+  "pe_pub:aeab53e0cba0eaaa": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000137",
+    "SRC-000137"
+   ],
+   "titles_sample": [
+    "Talcott S.T., Passeretti S., Duncan C.E., Gorbet D.W. (2005) Polyphenolic content and sensory properties of no"
+   ],
+   "licences": {
+    "Publisher copyright (values cited via Phenol-Explorer)": 1
+   },
+   "licence_status": {
+    "UNKNOWN": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2005"
+   ],
+   "kinds": {
+    "PAPER": 1
+   },
+   "records_by_ledger": {
+    "EVD": 12,
+    "STUDY": 1
+   },
+   "url_sample": [
+    "https://doi.org/10.1016/j.foodchem.2004.04.011"
+   ]
+  },
+  "PUBCHEM": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000138",
+    "SRC-000138"
+   ],
+   "titles_sample": [
+    "PubChem PUG-REST (NCBI)"
+   ],
+   "licences": {
+    "Public domain data (NCBI); cite PubChem": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "API": 1
+   },
+   "records_by_ledger": {
+    "MOL": 1726,
+    "IMAP": 638
+   },
+   "url_sample": [
+    "https://pubchem.ncbi.nlm.nih.gov/rest/pug"
+   ]
+  },
+  "OFF-TAXONOMY": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000139",
+    "SRC-000139"
+   ],
+   "titles_sample": [
+    "Open Food Facts ingredients taxonomy (taxonomies/food/ingredients.txt)"
+   ],
+   "licences": {
+    "ODbL 1.0 (database) / DbCL (contents)": 1
+   },
+   "licence_status": {
+    "VERIFIED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "DATASET": 1
+   },
+   "records_by_ledger": {
+    "ALIAS": 1896
+   },
+   "url_sample": [
+    "https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-server/a1ce1d36214b8426548f18849f25c7b"
+   ]
+  },
+  "WIKIBOOKS-COOKBOOK": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000140",
+    "SRC-000140"
+   ],
+   "titles_sample": [
+    "Wikibooks Cookbook (en.wikibooks.org, Cookbook namespace) via MediaWiki API"
+   ],
+   "licences": {
+    "CC BY-SA 4.0 (attribute page + revision; share-alike)": 1
+   },
+   "licence_status": {
+    "VERIFIED": 1
+   },
+   "storage_rule": {
+    "LOCAL_ONLY": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "WEBSITE": 1
+   },
+   "records_by_ledger": {
+    "ING": 97,
+    "ALIAS": 155,
+    "TOOL": 97,
+    "REC": 3676,
+    "KGE": 15339
+   },
+   "url_sample": [
+    "https://en.wikibooks.org/wiki/Cookbook:Table_of_Contents"
+   ]
+  },
+  "BOGNAR-2002": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000141",
+    "SRC-000141"
+   ],
+   "titles_sample": [
+    "Bogn\u00e1r A. (2002) Tables on weight yield of food and retention factors of food constituents for the calculation"
+   ],
+   "licences": {
+    "Institutional report, open access in KIT repository; values cited, text not redistributed": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2002"
+   ],
+   "kinds": {
+    "DATABASE": 1
+   },
+   "records_by_ledger": {
+    "EVD": 7090,
+    "COND": 274,
+    "SVAR": 37,
+    "MEAS": 2
+   },
+   "url_sample": [
+    "https://publikationen.bibliothek.kit.edu/9642002/1928"
+   ]
+  },
+  "FOODON": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000142",
+    "SRC-000142"
+   ],
+   "titles_sample": [
+    "FoodOn food ontology (foodon.owl)"
+   ],
+   "licences": {
+    "CC BY 4.0": 1
+   },
+   "licence_status": {
+    "VERIFIED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "DATASET": 1
+   },
+   "records_by_ledger": {},
+   "url_sample": [
+    "https://raw.githubusercontent.com/FoodOntology/foodon/master/foodon.owl"
+   ]
+  },
+  "WIKIDATA": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000143",
+    "SRC-000143"
+   ],
+   "titles_sample": [
+    "Wikidata Query Service (SPARQL)"
+   ],
+   "licences": {
+    "CC0 1.0 (structured data)": 1
+   },
+   "licence_status": {
+    "VERIFIED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "API": 1
+   },
+   "records_by_ledger": {},
+   "url_sample": [
+    "https://query.wikidata.org/sparql"
+   ]
+  },
+  "GUTENBERG-PD": {
+   "n_src_records": 338,
+   "src_id_range": [
+    "SRC-000144",
+    "SRC-000483"
+   ],
+   "titles_sample": [
+    "12 Pies Husbands Like Best: Aunt Jenny's Recipe Book (Project Gutenberg #65508)",
+    "133 Quicker Ways to Homemade, with Bisquick (Project Gutenberg #61487)"
+   ],
+   "licences": {
+    "Public domain in the USA (Project Gutenberg licence for the eBook)": 338
+   },
+   "licence_status": {
+    "VERIFIED": 338
+   },
+   "storage_rule": {
+    "COMMIT_OK": 338
+   },
+   "years": [
+    "None"
+   ],
+   "kinds": {
+    "BOOK": 338
+   },
+   "records_by_ledger": {
+    "REC": 73955
+   },
+   "url_sample": [
+    "https://gutenberg.pglaf.org/1/0/0/1/10011/10011-0.txt"
+   ]
+  },
+  "FLAVORGRAPH": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000451",
+    "SRC-000451"
+   ],
+   "titles_sample": [
+    "FlavorGraph (Park et al. 2021, Sci Rep 11:931) released graph files"
+   ],
+   "licences": {
+    "Apache-2.0 (repository); data derived from Recipe1M + FlavorDB (CC BY-NC-SA 3.0)": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2021"
+   ],
+   "kinds": {
+    "REPO": 1
+   },
+   "records_by_ledger": {
+    "MOL": 1595,
+    "IMAP": 29656,
+    "KGE": 27530
+   },
+   "url_sample": [
+    "https://github.com/lamypark/FlavorGraph/tree/8d3472d0823f4542b2ce47f83e28046c41d2f06a/input"
+   ]
+  },
+  "CHEMTASTESDB": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000452",
+    "SRC-000452"
+   ],
+   "titles_sample": [
+    "ChemTastesDB: A Curated Database of Molecular Tastants (v2.1)"
+   ],
+   "licences": {
+    "CC BY 4.0": 1
+   },
+   "licence_status": {
+    "VERIFIED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "2025"
+   ],
+   "kinds": {
+    "DATABASE": 1
+   },
+   "records_by_ledger": {
+    "KGE": 204
+   },
+   "url_sample": [
+    "https://zenodo.org/records/15051366"
+   ]
+  },
+  "BITTERSWEET": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000484",
+    "SRC-000484"
+   ],
+   "titles_sample": [
+    "bittersweet: bitter/sweet molecule datasets (CoSyLab, IIIT Delhi)"
+   ],
+   "licences": {
+    "AGPL-3.0": 1
+   },
+   "licence_status": {
+    "VERIFIED": 1
+   },
+   "storage_rule": {
+    "COMMIT_OK": 1
+   },
+   "years": [
+    "2020"
+   ],
+   "kinds": {
+    "DATABASE": 1
+   },
+   "records_by_ledger": {
+    "KGE": 524
+   },
+   "url_sample": [
+    "https://github.com/cosylabiiit/bittersweet"
+   ]
+  },
+  "RECIPEDB2": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000485",
+    "SRC-000485"
+   ],
+   "titles_sample": [
+    "RecipeDB2 manually labelled ingredient categories (CoSyLab)"
+   ],
+   "licences": {
+    "No licence file; use permitted by Prof. Bagler (reported by Kush, D-015)": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2022"
+   ],
+   "kinds": {
+    "DATABASE": 1
+   },
+   "records_by_ledger": {
+    "KGE": 964
+   },
+   "url_sample": [
+    "https://github.com/cosylabiiit/RecipeDB2"
+   ]
+  },
+  "SPICEDISEASE": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000486",
+    "SRC-000486"
+   ],
+   "titles_sample": [
+    "spice-disease-associations annotated PubMed sentences (CoSyLab)"
+   ],
+   "licences": {
+    "No licence file; use permitted by Prof. Bagler (reported by Kush, D-015)": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2022"
+   ],
+   "kinds": {
+    "DATABASE": 1
+   },
+   "records_by_ledger": {
+    "KGE": 497
+   },
+   "url_sample": [
+    "https://github.com/cosylabiiit/spice-disease-associations"
+   ]
+  },
+  "SWEETPREDDB": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000487",
+    "SRC-000487"
+   ],
+   "titles_sample": [
+    "SweetpredDB sweetness database (CoSyLab)"
+   ],
+   "licences": {
+    "No licence file; use permitted by Prof. Bagler (reported by Kush, D-015)": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2022"
+   ],
+   "kinds": {
+    "DATABASE": 1
+   },
+   "records_by_ledger": {
+    "KGE": 9
+   },
+   "url_sample": [
+    "https://github.com/cosylabiiit/SweetpredDB"
+   ]
+  },
+  "SUEATABLE": {
+   "n_src_records": 1,
+   "src_id_range": [
+    "SRC-000488",
+    "SRC-000488"
+   ],
+   "titles_sample": [
+    "SU-EATABLE LIFE carbon footprint table (as bundled in CoSyLab SustainableFoodDB)"
+   ],
+   "licences": {
+    "No licence file in bundle; use permitted by Prof. Bagler (D-015); upstream SU-EATABLE LIFE licence UNVERIFIED": 1
+   },
+   "licence_status": {
+    "ASSUMED": 1
+   },
+   "storage_rule": {
+    "DERIVED_ONLY": 1
+   },
+   "years": [
+    "2021"
+   ],
+   "kinds": {
+    "DATABASE": 1
+   },
+   "records_by_ledger": {
+    "KGE": 134
+   },
+   "url_sample": [
+    "https://github.com/cosylabiiit/SustainableFoodDB"
+   ]
+  }
+ },
+ "local_dirs": {
+  "data/raw/bognar": {
+   "files": 3,
+   "MB": 1.9
+  },
+  "data/raw/chemtastesdb": {
+   "files": 1,
+   "MB": 0.4
+  },
+  "data/raw/doi_resolve": {
+   "files": 246,
+   "MB": 0.1
+  },
+  "data/raw/fdc": {
+   "files": 19,
+   "MB": 45.9
+  },
+  "data/raw/flavorgraph": {
+   "files": 2,
+   "MB": 5.5
+  },
+  "data/raw/foodon": {
+   "files": 1,
+   "MB": 40.8
+  },
+  "data/raw/fsis": {
+   "files": 2,
+   "MB": 0.0
+  },
+  "data/raw/fssai": {
+   "files": 2,
+   "MB": 1.1
+  },
+  "data/raw/gutenberg": {
+   "files": 696,
+   "MB": 132.5
+  },
+  "data/raw/off": {
+   "files": 3,
+   "MB": 6.8
+  },
+  "data/raw/openalex": {
+   "files": 25,
+   "MB": 5.2
+  },
+  "data/raw/openpi": {
+   "files": 4,
+   "MB": 11.4
+  },
+  "data/raw/phenol_explorer": {
+   "files": 1721,
+   "MB": 69.0
+  },
+  "data/raw/pubchem": {
+   "files": 164,
+   "MB": 1.0
+  },
+  "data/raw/tasteset": {
+   "files": 1,
+   "MB": 1.1
+  },
+  "data/raw/usda_r6": {
+   "files": 4,
+   "MB": 0.7
+  },
+  "data/raw/wikibooks": {
+   "files": 310,
+   "MB": 18.0
+  },
+  "data/raw/wikidata": {
+   "files": 2,
+   "MB": 0.1
+  },
+  "data/external/allerstack": {
+   "files": 3,
+   "MB": 16.7
+  },
+  "data/external/bittersweet": {
+   "files": 5,
+   "MB": 0.7
+  },
+  "data/external/cosylab_companion": {
+   "files": 7,
+   "MB": 1.1
+  },
+  "data/external/drugadr": {
+   "files": 1,
+   "MB": 0.0
+  },
+  "data/external/fndds": {
+   "files": 2,
+   "MB": 70.1
+  },
+  "data/external/foodcom": {
+   "files": 3,
+   "MB": 357.0
+  },
+  "data/external/hierarchical_clustering": {
+   "files": 2,
+   "MB": 0.0
+  },
+  "data/external/infoods": {
+   "files": 3,
+   "MB": 8.9
+  },
+  "data/external/nova_food_processing": {
+   "files": 9,
+   "MB": 8.4
+  },
+  "data/external/recipe_knowledge_mining": {
+   "files": 4,
+   "MB": 19.0
+  },
+  "data/external/recipe_knowledge_mining_results.csv": {
+   "files": 1,
+   "MB": 0.0
+  },
+  "data/external/recipe_ner_dl": {
+   "files": 6,
+   "MB": 9.1
+  },
+  "data/external/recipedb2": {
+   "files": 1,
+   "MB": 0.5
+  },
+  "data/external/recipedb3_ner": {
+   "files": 4,
+   "MB": 3.2
+  },
+  "data/external/spice_disease": {
+   "files": 2,
+   "MB": 8.9
+  },
+  "data/external/sustainablefooddb": {
+   "files": 4,
+   "MB": 41.5
+  },
+  "data/external/sweetpreddb": {
+   "files": 1,
+   "MB": 0.1
+  },
+  "data/external/usda_yields": {
+   "files": 2,
+   "MB": 0.0
+  },
+  "data/interim/embeddings": {
+   "files": 24,
+   "MB": 344.0
+  },
+  "data/interim/evidence_first": {
+   "files": 2,
+   "MB": 70.2
+  },
+  "data/interim/foodoscope_probe": {
+   "files": 0,
+   "MB": 0.0
+  },
+  "data/interim/gutenberg": {
+   "files": 1,
+   "MB": 141.9
+  },
+  "data/interim/models": {
+   "files": 9,
+   "MB": 746.5
+  },
+  "data/interim/openpi": {
+   "files": 1,
+   "MB": 1.2
+  },
+  "data/interim/retrieval": {
+   "files": 5,
+   "MB": 4.5
+  },
+  "data/interim/rq1603": {
+   "files": 3,
+   "MB": 1.3
+  },
+  "data/interim/troubleshooting": {
+   "files": 2,
+   "MB": 0.7
+  },
+  "data/interim/wikibooks": {
+   "files": 6,
+   "MB": 20.8
+  }
+ },
+ "ingest_scripts": [
+  "src/culinarystate/evidence/__init__.py",
+  "src/culinarystate/evidence/conditions.py",
+  "src/culinarystate/evidence/doi_resolve.py",
+  "src/culinarystate/evidence/evd_export.py",
+  "src/culinarystate/evidence/fdc_pairs.py",
+  "src/culinarystate/evidence/link_review.py",
+  "src/culinarystate/evidence/linker.py",
+  "src/culinarystate/evidence/literature.py",
+  "src/culinarystate/evidence/precheck.py",
+  "src/culinarystate/ingest/__init__.py",
+  "src/culinarystate/ingest/acquire.py",
+  "src/culinarystate/ingest/bognar.py",
+  "src/culinarystate/ingest/bognar_build.py",
+  "src/culinarystate/ingest/bognar_yield.py",
+  "src/culinarystate/ingest/gutenberg.py",
+  "src/culinarystate/ingest/old_recipes.py",
+  "src/culinarystate/ingest/phenol_explorer.py",
+  "src/culinarystate/ingest/phenol_explorer_build.py",
+  "src/culinarystate/ingest/recipe_families.py",
+  "src/culinarystate/ingest/usda_r6.py",
+  "src/culinarystate/ingest/usda_r6_build.py",
+  "src/culinarystate/ingest/wikibooks.py",
+  "src/culinarystate/sources/__init__.py",
+  "src/culinarystate/sources/foodoscope_client.py",
+  "src/culinarystate/sources/policy.py",
+  "src/culinarystate/vocab/__init__.py",
+  "src/culinarystate/vocab/fdc.py",
+  "src/culinarystate/vocab/foodon.py",
+  "src/culinarystate/vocab/line_link.py",
+  "src/culinarystate/vocab/off.py",
+  "src/culinarystate/vocab/registry_build.py",
+  "tools/download_cosylab_data.sh",
+  "tools/ingest_bittersweet_kg.py",
+  "tools/ingest_bognar.py",
+  "tools/ingest_bognar_yields.py",
+  "tools/ingest_carbon_footprint.py",
+  "tools/ingest_chemtastesdb.py",
+  "tools/ingest_cosylab_permitted.py",
+  "tools/ingest_flavorgraph.py",
+  "tools/ingest_gutenberg.py",
+  "tools/ingest_phenol_explorer.py",
+  "tools/ingest_usda_r6.py",
+  "tools/ingest_wikibooks.py"
+ ]
+}

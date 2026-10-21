@@ -888,3 +888,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/evidence/evd_export.py`, `tools/build_evd_export_v1.py`, `tools/validate_evd_export_v1.py`, `tools/write_es1_1_report.py`, `registry/svar_duplicate_mapping_v1.csv`, `registry/schemas/evd_export_v1.schema.json`, `tests/unit/test_evd_export.py`, `reports/es1/es1_1_audit.md`, `DECISIONS.md`
 - **Verified:** validator PASS 9/9 gating checks; pytest tests/unit 575 passed + ledger integration test passed; export sha256 identical on two rebuilds
 - **Next:** ES-1.2 source acquisition manifest and literature/data-source census (not started)
+
+### S130 · 2026-10-22 00:49 IST · ES-1.2 · Source acquisition manifest and evidence-source census (research/planning only)
+- **Who:** claude
+- **Did:** Built the 64-source acquisition manifest with explicit licence verification levels, the 20-claim capability matrix, 30 literature query templates with Europe PMC metadata counts, the 16-row priority-cell source coverage, the 21-item H2 approval queue and the census report; reconciled current EVD origins (USDA 7,018, Bognar 7,090, Phenol-Explorer 3,870 / 125 papers); nothing acquired or ingested
+- **Files:** `registry/data_source_acquisition_manifest.csv`, `registry/source_claim_capability_matrix.csv`, `registry/evidence_query_matrix_v1.csv`, `reports/h_state/es_1_2_priority_cell_source_coverage.csv`, `reports/h_state/es_1_2_h2_approval_queue.md`, `reports/h_state/es_1_2_source_census.md`, `docs/BACKLOG_NONBLOCKING.md`, `DECISIONS.md`
+- **Verified:** tests/unit/test_es12_registries.py 5 passed; ES-1.1 export and ledgers untouched
+- **Next:** STEP 10 / ES-1.3 pilot after review of the census and H2 decisions (not started)
