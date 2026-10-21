@@ -1,0 +1,190 @@
+{
+ "dataset": "tasteset",
+ "n_dev": 2067,
+ "n_review_dev": 836,
+ "arms": {
+  "R0_raw_conf": {
+   "auroc_all_dev": 0.9076,
+   "aurc_all_dev": 0.01091,
+   "auroc_in_v1_REVIEW": 0.8644,
+   "coverage": 0.5152,
+   "accept_error": 0.0131,
+   "cp95_upper": 0.0205,
+   "error_capture_nonaccept": 0.8915,
+   "released_from_v1_REVIEW": 0,
+   "of_v1_REVIEW": 836,
+   "released_error": null,
+   "accept_error_unseen": null,
+   "n_accept_unseen": 0,
+   "per_label": {
+    "COLOR": {
+     "n": 28,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "FOOD": {
+     "n": 622,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "PART": {
+     "n": 10,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "PHYSICAL_QUALITY": {
+     "n": 121,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "PROCESS": {
+     "n": 158,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "PURPOSE": {
+     "n": 7,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "QUANTITY": {
+     "n": 589,
+     "accept_rate": 0.954,
+     "accept_error": 0.0142
+    },
+    "TASTE": {
+     "n": 19,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "UNIT": {
+     "n": 513,
+     "accept_rate": 0.981,
+     "accept_error": 0.0119
+    }
+   }
+  },
+  "R1_frozen_v1_calibrated+M6": {
+   "auroc_all_dev": 0.9153,
+   "aurc_all_dev": 0.01026,
+   "auroc_in_v1_REVIEW": 0.8736,
+   "coverage": 0.5602,
+   "accept_error": 0.013,
+   "cp95_upper": 0.0199,
+   "error_capture_nonaccept": 0.8837,
+   "released_from_v1_REVIEW": 0,
+   "of_v1_REVIEW": 836,
+   "released_error": null,
+   "accept_error_unseen": null,
+   "n_accept_unseen": 0,
+   "per_label": {
+    "COLOR": {
+     "n": 28,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "FOOD": {
+     "n": 622,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "PART": {
+     "n": 10,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "PHYSICAL_QUALITY": {
+     "n": 121,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "PROCESS": {
+     "n": 158,
+     "accept_rate": 0.582,
+     "accept_error": 0.0109
+    },
+    "PURPOSE": {
+     "n": 7,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "QUANTITY": {
+     "n": 589,
+     "accept_rate": 0.954,
+     "accept_error": 0.0142
+    },
+    "TASTE": {
+     "n": 19,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "UNIT": {
+     "n": 513,
+     "accept_rate": 0.982,
+     "accept_error": 0.0119
+    }
+   }
+  },
+  "CD-S_gbm": {
+   "auroc_all_dev": 0.9188,
+   "aurc_all_dev": 0.00918,
+   "auroc_in_v1_REVIEW": 0.8795,
+   "coverage": 0.6502,
+   "accept_error": 0.0112,
+   "cp95_upper": 0.0171,
+   "error_capture_nonaccept": 0.8837,
+   "released_from_v1_REVIEW": 208,
+   "of_v1_REVIEW": 836,
+   "released_error": 0.0048,
+   "accept_error_unseen": null,
+   "n_accept_unseen": 0,
+   "per_label": {
+    "COLOR": {
+     "n": 28,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "FOOD": {
+     "n": 622,
+     "accept_rate": 0.333,
+     "accept_error": 0.0048
+    },
+    "PART": {
+     "n": 10,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "PHYSICAL_QUALITY": {
+     "n": 121,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "PROCESS": {
+     "n": 158,
+     "accept_rate": 0.462,
+     "accept_error": 0.0137
+    },
+    "PURPOSE": {
+     "n": 7,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "QUANTITY": {
+     "n": 589,
+     "accept_rate": 0.952,
+     "accept_error": 0.0125
+    },
+    "TASTE": {
+     "n": 19,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "UNIT": {
+     "n": 513,
+     "accept_rate": 0.981,
+     "accept_error": 0.0119
+    }
+   }
+  }
+ }
+}

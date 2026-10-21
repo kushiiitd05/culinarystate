@@ -1,0 +1,145 @@
+{
+ "dataset": "recipedb3",
+ "n_dev": 9171,
+ "n_review_dev": 2554,
+ "arms": {
+  "R0_raw_conf": {
+   "auroc_all_dev": 0.8624,
+   "aurc_all_dev": 0.00921,
+   "auroc_in_v1_REVIEW": 0.8653,
+   "coverage": 0.8284,
+   "accept_error": 0.0112,
+   "cp95_upper": 0.0134,
+   "error_capture_nonaccept": 0.7327,
+   "released_from_v1_REVIEW": 1268,
+   "of_v1_REVIEW": 2554,
+   "released_error": 0.0126,
+   "accept_error_unseen": null,
+   "n_accept_unseen": 0,
+   "per_label": {
+    "DF": {
+     "n": 261,
+     "accept_rate": 0.87,
+     "accept_error": 0.0088
+    },
+    "NAME": {
+     "n": 2948,
+     "accept_rate": 0.573,
+     "accept_error": 0.0154
+    },
+    "QUANTITY": {
+     "n": 2529,
+     "accept_rate": 0.995,
+     "accept_error": 0.0048
+    },
+    "STATE": {
+     "n": 1227,
+     "accept_rate": 0.848,
+     "accept_error": 0.0134
+    },
+    "TEMP": {
+     "n": 62,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "UNIT": {
+     "n": 2144,
+     "accept_rate": 0.991,
+     "accept_error": 0.0146
+    }
+   }
+  },
+  "R1_frozen_v1_calibrated+M6": {
+   "auroc_all_dev": 0.8249,
+   "aurc_all_dev": 0.01197,
+   "auroc_in_v1_REVIEW": 0.8362,
+   "coverage": 0.7204,
+   "accept_error": 0.0124,
+   "cp95_upper": 0.0149,
+   "error_capture_nonaccept": 0.7421,
+   "released_from_v1_REVIEW": 0,
+   "of_v1_REVIEW": 2554,
+   "released_error": null,
+   "accept_error_unseen": null,
+   "n_accept_unseen": 0,
+   "per_label": {
+    "DF": {
+     "n": 261,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "NAME": {
+     "n": 2948,
+     "accept_rate": 0.667,
+     "accept_error": 0.0198
+    },
+    "QUANTITY": {
+     "n": 2529,
+     "accept_rate": 0.995,
+     "accept_error": 0.0048
+    },
+    "STATE": {
+     "n": 1227,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "TEMP": {
+     "n": 62,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "UNIT": {
+     "n": 2144,
+     "accept_rate": 0.991,
+     "accept_error": 0.0146
+    }
+   }
+  },
+  "CD-S_gbm": {
+   "auroc_all_dev": 0.8743,
+   "aurc_all_dev": 0.00846,
+   "auroc_in_v1_REVIEW": 0.8726,
+   "coverage": 0.7572,
+   "accept_error": 0.0115,
+   "cp95_upper": 0.0139,
+   "error_capture_nonaccept": 0.7484,
+   "released_from_v1_REVIEW": 987,
+   "of_v1_REVIEW": 2554,
+   "released_error": 0.0142,
+   "accept_error_unseen": null,
+   "n_accept_unseen": 0,
+   "per_label": {
+    "DF": {
+     "n": 261,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "NAME": {
+     "n": 2948,
+     "accept_rate": 0.446,
+     "accept_error": 0.0175
+    },
+    "QUANTITY": {
+     "n": 2529,
+     "accept_rate": 0.996,
+     "accept_error": 0.0052
+    },
+    "STATE": {
+     "n": 1227,
+     "accept_rate": 0.804,
+     "accept_error": 0.0132
+    },
+    "TEMP": {
+     "n": 62,
+     "accept_rate": 0.0,
+     "accept_error": null
+    },
+    "UNIT": {
+     "n": 2144,
+     "accept_rate": 0.991,
+     "accept_error": 0.0146
+    }
+   }
+  }
+ }
+}
