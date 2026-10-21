@@ -1,6 +1,7 @@
 # Fresh linker set -- human annotation QC (stage 1)
 
-**Result: STOPPED at validation.** `Kush_ALL_441items_BLINDED.csv` and `Parv_ALL_441items_BLINDED_.csv` (note the trailing underscore in Parv's filename) are **byte-identical** (same SHA-256), so every one of the 441 decisions agrees by construction: they are the same file, not two independent annotations. Agreement, kappa, stratum breakdown and the adjudication file were **not computed or generated**, because any such number would be meaningless and would mislead.
-No model was scored, `pool_key_DO_NOT_SHARE.json` was not opened, no model provenance was inspected. Hashes in `fresh_linker_annotation_manifest.json`.
-Format validation of the (single distinct) file is reported in the session summary; no label was repaired.
-Action needed from the annotators: Parv's independently filled sheet (from the blank `Parv_*` CSVs) or an explanation of how the two files came to be identical (e.g. a copy/export error), before the agreement analysis can run.
+**Result: STOPPED; independence not established.** Both files validate syntactically (441 rows, same ids and order, 0 malformed rows, identical candidate columns), but:
+1. `Parv_ALL_441items_BLINDED_.csv` is byte-identical to `Kush_ALL_441items_BLINDED.csv` (same SHA-256).
+2. The replacement `Parv_ALL_441items_BLINDED_FILLED.csv` differs in bytes (formatting only) but **every parsed cell in every column is identical to Kush's**: decisions, confidences, notes, typed NONE names and AMBIGUOUS readings (0 cell differences). Computed on that pair: exact agreement 441/441, class agreement 441/441, Cohen's kappa 1.0, identical confidence profile (78 rows with confidence 1, 138 AMBIGUOUS, 57 PARENT, 72 NONE, 174 MATCH), identical free-text.
+Perfect agreement with identical free-text and confidence on 441 hard items (138 ambiguous) is not what two independent human annotations produce, so these numbers are **not reported as agreement** and no adjudication file was generated (it would be empty and misleading).
+No model was scored, `pool_key_DO_NOT_SHARE.json` was not opened, and no model provenance was inspected. Hashes: `fresh_linker_annotation_manifest.json`. Tooling: `tools/v2dm_fresh_agreement.py` (ready to run unchanged on a genuinely independent pair).

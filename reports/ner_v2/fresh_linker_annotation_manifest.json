@@ -1,11 +1,13 @@
 {
- "checked_at": "2026-10-21T14:12:45.920597+05:30",
+ "checked_at": "2026-10-21T15:53:15.132024+05:30",
  "files": {
   "Kush_ALL_441items_BLINDED.csv": "75feb3f4c6e906da5bd1f2dc14e415c61bd54fd3ba38ae273a0207ce778814aa",
   "Parv_ALL_441items_BLINDED_.csv": "75feb3f4c6e906da5bd1f2dc14e415c61bd54fd3ba38ae273a0207ce778814aa",
+  "Parv_ALL_441items_BLINDED_FILLED.csv": "43e2064b352fa84d318257ba6bc60d3643cb68b0ed0a258f211022aec4b6c942",
   "RUBRIC_AND_INSTRUCTIONS.md": "eef5893564781ad88a82f775eb565d9022cb22afd42598e271304c3dcb160664"
  },
- "finding": "Kush and Parv files are BYTE-IDENTICAL (same SHA-256): not independent annotations; agreement not computed; adjudication not generated.",
+ "finding": "Parv_ALL_441items_BLINDED_.csv is byte-identical to Kush's file. Parv_ALL_441items_BLINDED_FILLED.csv (15:51) differs in bytes but every parsed cell in every column (decisions, confidences, notes, NONE names, AMBIGUOUS readings) is identical to Kush's: 441/441 exact agreement, kappa 1.0, 0 cell differences. Not credible as independent annotation; no adjudication file generated.",
  "model_provenance_opened": false,
- "models_scored": false
+ "models_scored": false,
+ "pool_key_opened": false
 }
