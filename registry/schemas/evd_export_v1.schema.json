@@ -1,0 +1,469 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "evd_export_v1",
+ "title": "ES-1.1 normalised EVD export row (MP-1 contract)",
+ "type": "object",
+ "additionalProperties": false,
+ "required": [
+  "evd_id",
+  "ledger_version",
+  "export_version",
+  "source_row_sha256",
+  "source_id",
+  "source_family_id",
+  "study_ids",
+  "study_id_status",
+  "measurement_id",
+  "ingredient_id",
+  "matrix_id",
+  "matrix_raw_name",
+  "food_group",
+  "prior_state_id",
+  "prior_state_status",
+  "process_id",
+  "process_raw_name",
+  "process_steps",
+  "process_family",
+  "condition_id",
+  "condition_completeness",
+  "target_state_variable_id",
+  "canonical_variable_id",
+  "target_raw_name",
+  "target_basis",
+  "before_status",
+  "before_value",
+  "before_unit",
+  "after_status",
+  "after_value",
+  "after_unit",
+  "delta_value",
+  "delta_unit",
+  "delta_provenance",
+  "delta_status",
+  "delta_reason_if_unknown",
+  "direction",
+  "retention_status",
+  "retention_fraction",
+  "retention_unit",
+  "log_fold_change",
+  "log_fold_change_provenance",
+  "log_fold_change_reason_if_unknown",
+  "log_retention_factor",
+  "log_retention_provenance",
+  "log_retention_reason_if_unknown",
+  "percent_change",
+  "yield_status",
+  "yield_fraction",
+  "value_low",
+  "value_high",
+  "evidence_tier",
+  "provenance_class",
+  "provenance_note",
+  "verification_status",
+  "human_verified",
+  "design_strength",
+  "applicability",
+  "censoring_flag",
+  "censor_kind",
+  "censor_limit",
+  "lod",
+  "loq",
+  "lod_loq_status"
+ ],
+ "properties": {
+  "evd_id": {
+   "type": "string",
+   "pattern": "^EVD-\\d{6}$"
+  },
+  "ledger_version": {
+   "type": "integer",
+   "minimum": 1
+  },
+  "export_version": {
+   "const": "evd_export@1.0.0"
+  },
+  "source_row_sha256": {
+   "type": "string",
+   "pattern": "^[0-9a-f]{64}$"
+  },
+  "source_id": {
+   "type": "string"
+  },
+  "source_family_id": {
+   "type": "string"
+  },
+  "study_ids": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "study_id_status": {
+   "enum": [
+    "PRESENT",
+    "NOT_IDENTIFIABLE",
+    "NOT_APPLICABLE"
+   ]
+  },
+  "measurement_id": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "ingredient_id": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "matrix_id": {
+   "type": "string",
+   "pattern": "^MTX-[0-9a-f]{12}$"
+  },
+  "matrix_raw_name": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "food_group": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "prior_state_id": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "pattern": "^PST-[0-9a-f]{12}$"
+  },
+  "prior_state_status": {
+   "enum": [
+    "UNKNOWN",
+    "RAW_DESCRIPTOR_HASH"
+   ]
+  },
+  "process_id": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "process_raw_name": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "process_steps": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "process_family": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "condition_id": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "condition_completeness": {
+   "type": "object"
+  },
+  "target_state_variable_id": {
+   "type": "string",
+   "pattern": "^SVAR-\\d{6}$"
+  },
+  "canonical_variable_id": {
+   "type": "string",
+   "pattern": "^SVAR-\\d{6}$"
+  },
+  "target_raw_name": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "target_basis": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "before_status": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "before_value": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "before_unit": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "after_status": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "after_value": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "after_unit": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "delta_value": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "delta_unit": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "delta_provenance": {
+   "enum": [
+    "DERIVED_DETERMINISTIC",
+    null
+   ]
+  },
+  "delta_status": {
+   "enum": [
+    "DERIVED",
+    "UNKNOWN"
+   ]
+  },
+  "delta_reason_if_unknown": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "direction": {
+   "type": "string"
+  },
+  "retention_status": {
+   "type": "string"
+  },
+  "retention_fraction": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "retention_unit": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "log_fold_change": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "log_fold_change_provenance": {
+   "enum": [
+    "DERIVED_DETERMINISTIC",
+    null
+   ]
+  },
+  "log_fold_change_reason_if_unknown": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "log_retention_factor": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "log_retention_provenance": {
+   "enum": [
+    "DERIVED_DETERMINISTIC",
+    null
+   ]
+  },
+  "log_retention_reason_if_unknown": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "percent_change": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "yield_status": {
+   "type": "string"
+  },
+  "yield_fraction": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "value_low": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "value_high": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "evidence_tier": {
+   "enum": [
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E7"
+   ]
+  },
+  "provenance_class": {
+   "enum": [
+    "EXPLICIT_SOURCE",
+    "EXTERNAL_VERIFIED",
+    "DERIVED_DETERMINISTIC",
+    "INFERRED_LLM",
+    "MODEL_ESTIMATED",
+    "IMPUTED",
+    "SIMULATED",
+    "UNKNOWN"
+   ]
+  },
+  "provenance_note": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "verification_status": {
+   "enum": [
+    "UNVERIFIED",
+    "AI_PRECHECKED",
+    "HUMAN_VERIFIED",
+    "HUMAN_REJECTED",
+    "NEEDS_SOURCE",
+    "CONFLICT"
+   ]
+  },
+  "human_verified": {
+   "type": "boolean"
+  },
+  "design_strength": {
+   "enum": [
+    "CONTROLLED_EXPERIMENT",
+    "OBSERVATIONAL",
+    "DATABASE_AGGREGATE",
+    "REVIEW",
+    "AUTHORITY",
+    "UNKNOWN"
+   ]
+  },
+  "applicability": {
+   "type": "string"
+  },
+  "censoring_flag": {
+   "type": "boolean"
+  },
+  "censor_kind": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "censor_limit": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "lod": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "loq": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "lod_loq_status": {
+   "type": "string"
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "human_verified": {
+      "const": true
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "verification_status": {
+      "const": "HUMAN_VERIFIED"
+     }
+    }
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "delta_value": {
+      "type": "number"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "delta_provenance": {
+      "const": "DERIVED_DETERMINISTIC"
+     }
+    }
+   }
+  }
+ ]
+}
