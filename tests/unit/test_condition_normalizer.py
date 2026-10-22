@@ -47,7 +47,8 @@ def test_pressure_reference_and_units():
 
 def test_ph_aw_bounds_and_no_defaults():
     assert N.normalize_value("ph", value=3.5, unit="pH")["status"] == N.VALID
-    assert N.normalize_value("ph", value=15, unit="pH")["status"] == N.INVALID
+    r = N.normalize_value("ph", value=15, unit="pH")  # 07H: pH 0-14 is a food-domain plausibility bound, not a hard bound
+    assert r["status"] == N.AMBIGUOUS and N.R_PLAUS in r["reasons"] and r["canonical_value"] == 15
     assert N.normalize_value("water_activity", value=1.2, unit="aw")["status"] == N.INVALID
     assert N.normalize_value("water_activity")["status"] == N.UNKNOWN
 
@@ -64,10 +65,10 @@ def test_percent_fraction_and_moisture_basis():
 
 def test_interval_order_and_trajectory():
     assert N.normalize_value("temp_medium", low=190, high=170, unit="degC")["status"] == N.INVALID
-    t = N.normalize_value("temp_core", trajectory=[(0, 20), (60, 55), (120, 70)], location="CORE")
+    t = N.normalize_value("temp_core", trajectory=[(0, 20), (60, 55), (120, 70)], location="CORE", time_unit="s", unit="degC")
     assert t["value_type"] == "TRAJECTORY" and t["status"] == N.VALID
-    assert N.normalize_value("temp_core", trajectory=[(0, 20), (0, 55)], location="CORE")["status"] == N.INVALID
-    assert N.normalize_value("temp_core", trajectory=[(0, 20), (5, 30)])["status"] == N.AMBIGUOUS
+    assert N.normalize_value("temp_core", trajectory=[(0, 20), (0, 55)], location="CORE", time_unit="s", unit="degC")["status"] == N.INVALID
+    assert N.normalize_value("temp_core", trajectory=[(0, 20), (5, 30)], time_unit="s", unit="degC")["status"] == N.AMBIGUOUS
 
 
 def test_time_units_and_qvalue_adapter():
@@ -75,7 +76,7 @@ def test_time_units_and_qvalue_adapter():
     r = N.from_qvalue("time_duration", {"status": "RANGE", "low": 15, "high": 20, "unit": "min", "raw": "15/20MIN"})
     assert r["value_type"] == "INTERVAL" and r["raw"] == "15/20MIN"
     c = N.from_qvalue("temp_medium", {"status": "CENSORED", "unit": "degC", "censor": {"kind": "GT_STATED", "limit": 100}, "raw": ">100C"})
-    assert c["value_type"] == "INTERVAL" and c["open_high"] is True
+    assert c["value_type"] == "INTERVAL" and c["open_low"] is True and c["open_high"] is False and c["canonical_low"] == pytest.approx(373.15) and c["canonical_high"] is None  # `> 100` = (100, +inf)
     assert N.from_qvalue("pressure", {"status": "UNKNOWN", "raw": None})["value_type"] == "UNKNOWN"
 
 
@@ -146,3 +147,8 @@ def test_semicolon_duration_list_split_roles_unknown():
 def test_negative_tight_dash_is_documented_not_flagged():
     r = N.from_qvalue("temp_medium", {"status": "MEASURED", "value": -23, "unit": "degC", "raw": "-23°C"}, location="MEDIUM")
     assert r["status"] == N.VALID and N.R_SPACED_DASH not in r["reasons"]
+
+
+def test_unknown_temperature_unit_is_invalid_not_exception():  # 07H: found by property test (text '0A')
+    assert N.normalize_text("temp_medium", "0A", location="MEDIUM")["status"] == N.INVALID
+    assert N.normalize_value("temp_medium", value=1, unit="rankine", location="MEDIUM")["reasons"] == [N.R_UNIT_UNKNOWN]
