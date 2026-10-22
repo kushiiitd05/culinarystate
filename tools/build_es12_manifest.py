@@ -211,6 +211,15 @@ S("DS-063", "FSSAI Labelling & Display Regulations 2020 (allergens)", "N safety"
 # unit standards
 S("DS-064", "Unit standards (NIST HB44, UK WMA 1985, 21 CFR 101.9, SI brochure, culinary conventions)", "L quantity", "NIST / UK / FDA / BIPM", "https://www.nist.gov/", "QUANTITY (unit definitions)", "standards", "documents", "public standards / conventions", LED, "ASSUMED", "EXISTING", "done", C(quantity_conversion="YES"), (3, 1, 0, 3, 3, 2, 1), known_local_rows="74 UNIT", ledger_src_family="UNITSRC-*", existing_ingestion_status="INGESTED", local_copy_exists="partial", recommendation_rationale="existing")
 
+# Step-07 corrections to source-access notes (2026-10-22, by instruction; not acquisitions)
+STEP07_NOTES = {
+    "DS-032": "Step-07 correction: Europe PMC currently documents OA/bulk automated access routes; exact production route and per-article licensing must still be verified before capture.",
+    "DS-034": "Step-07 correction: E-utilities can be used at low rate without an API key; an API key raises the default rate limit; the tool/email usage policy must be respected.",
+    "DS-036": "Step-07 correction (stated in the Step-07 instruction; not independently re-verified here): Unpaywall search endpoint retired 2026-09-18 - use OpenAlex for search/discovery; Unpaywall DOI lookup may remain useful.",
+}
+for r in ROWS:
+    if r["source_id"] in STEP07_NOTES:
+        r["notes"] = (r["notes"] + " " if r["notes"] != UNK else "") + STEP07_NOTES[r["source_id"]]
 # normalise wave labels (qualifiers move to notes)
 for r in ROWS:
     w = str(r["acquisition_wave"])

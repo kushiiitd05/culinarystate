@@ -1,0 +1,8 @@
+censoring_id,name,definition,numeric_use
+CS-001,DETECTED,a quantified value is reported,value usable
+CS-002,NON_DETECT,analyte reported as not detected (limit may be unknown),NOT zero; left-censored
+CS-003,BELOW_LOD,below the stated limit of detection,left-censored at LOD (LOD must be stated)
+CS-004,BELOW_LOQ,below the stated limit of quantification,left-censored at LOQ (LOQ must be stated)
+CS-005,ABOVE_CAP,reported value is a cap/upper bound (e.g. >100% retention capped),right-censored at the cap
+CS-006,CENSORED_UNKNOWN,censored but type/limit unknown,no numeric use
+CS-007,NOT_REPORTED,no value or censoring information (UNKNOWN is not NON_DETECT),none

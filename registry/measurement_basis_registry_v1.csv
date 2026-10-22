@@ -1,0 +1,9 @@
+measurement_basis_id,name,definition,ledger_target_basis_aliases,combinable_with
+MB-001,WET_FRESH_WEIGHT,per mass of fresh/as-sampled (wet) material,FRESH_WEIGHT,MB-001 only
+MB-002,DRY_WEIGHT,per mass of dry matter,DRY,MB-002 only
+MB-003,AS_FED_AS_PREPARED,per mass of food as eaten/prepared,,MB-003 only
+MB-004,PER_MASS_UNSPECIFIED,"per mass, wet/dry not stated",,none (ambiguous; cannot be combined with MB-001/002)
+MB-005,PER_VOLUME,per volume of liquid/sample,PER_VOLUME,MB-005 only
+MB-006,PER_SERVING,per defined serving,,MB-006 only
+MB-007,RATIO_NO_BASIS,dimensionless ratio (e.g. retention fraction); basis is carried by the retention type,RETENTION_TR_OR_AR; TRUE_RETENTION,see retention type
+MB-008,UNKNOWN,basis not stated,,none

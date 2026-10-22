@@ -1,0 +1,7 @@
+retention_type_id,name,definition,assigned_when
+RT-001,TRUE_RETENTION,"fraction of the nutrient/compound in the whole food retained after processing, accounting for weight change",source names it true retention (Bognar TRUE_RETENTION)
+RT-002,APPARENT_RETENTION,"ratio of concentrations (per unit weight) after/before, no yield correction",source states apparent / concentration ratio
+RT-003,YIELD_ADJUSTED_RETENTION,retention including a yield/water-change correction as stated by the source,"source description says so (Phenol-Explorer: description reported by a secondary snippet, UNVERIFIED against the primary page)"
+RT-004,TR_OR_AR_UNDISCLOSED,source mixes true and apparent retention and does not mark which per row,USDA R6
+RT-005,UNKNOWN_RETENTION_BASIS,no information,default
+RT-006,NOT_APPLICABLE,row carries no retention value,

@@ -1,0 +1,6 @@
+value_type_id,name,definition,rule
+VT-001,POINT,single stated value,e.g. 180 C
+VT-002,INTERVAL,stated lower/upper bounds (either may be open),e.g. 170-190 C; '>100 C' is an interval with an open upper bound
+VT-003,TRAJECTORY,"ordered (time, value) pairs",time strictly increasing; location stated
+VT-004,QUALITATIVE,descriptive term,never converted to a number without an explicit sourced mapping
+VT-005,UNKNOWN,not stated,never defaulted

@@ -1,0 +1,41 @@
+condition_variable_id,name,group,dimension,canonical_unit,allowed_units,valid_min,valid_max,absolute_or_difference,notes
+CV-001,time_duration,TIME,time,s,s;min;h;d;week;month;year,0,,n/a,month/year use the repo convention (mean Gregorian); raw text kept
+CV-002,time_start_end,TIME,time,s,s;min;h;d,0,,n/a,start/end offsets within a process
+CV-003,time_hold_rest,TIME,time,s,s;min;h;d,0,,n/a,hold/rest periods between steps
+CV-004,time_trajectory,TIME,time,s,s;min;h,0,,n/a,time axis of a trajectory
+CV-005,temp_equipment_setpoint,TEMPERATURE,temperature,K,degC;degF;K,0,,absolute,oven/hob/fryer setpoint; never food temperature
+CV-006,temp_medium,TEMPERATURE,temperature,K,degC;degF;K,0,,absolute,water/oil/steam/air temperature
+CV-007,temp_surface,TEMPERATURE,temperature,K,degC;degF;K,0,,absolute,food surface
+CV-008,temp_core,TEMPERATURE,temperature,K,degC;degF;K,0,,absolute,food core / internal
+CV-009,temp_unspecified,TEMPERATURE,temperature,K,degC;degF;K,0,,absolute,location not stated in source (never promoted to core/surface)
+CV-010,temp_trajectory,TEMPERATURE,temperature,K,degC;degF;K,0,,absolute,T(t) series; location must be stated
+CV-011,temp_rate,TEMPERATURE,temperature_rate,K/s,K/s;K/min;degC/min;degF/min,,,difference,heating/cooling rate (a temperature DIFFERENCE per time)
+CV-012,preheat_status,TEMPERATURE,categorical,category,category,,,n/a,preheated / not / unknown
+CV-013,ph,CHEMICAL,dimensionless,pH,pH,0,14,n/a,0-14 bounds; never defaulted to 7; mixture pH never averaged
+CV-014,titratable_acidity,CHEMICAL,mass_fraction_or_conc,as stated,g/100g;g/L;percent;mmol/L,0,,n/a,expressed as an acid equivalent; acid must be named
+CV-015,water_activity,CHEMICAL,dimensionless,aw,aw,0,1,n/a,0-1; absent is UNKNOWN not 0
+CV-016,moisture_content,CHEMICAL,mass_fraction,fraction,percent;fraction;g/100g,0,,n/a,"basis (wet/dry) mandatory; wet-basis <=1, dry-basis may exceed 1"
+CV-017,dry_matter,CHEMICAL,mass_fraction,fraction,percent;fraction;g/100g,0,1,n/a,wet-basis fraction
+CV-018,salt_content,CHEMICAL,mass_fraction,fraction,percent;fraction;g/100g;g/L,0,,n/a,
+CV-019,sugar_content,CHEMICAL,mass_fraction,fraction,percent;fraction;g/100g;g/L;Brix,0,,n/a,
+CV-020,fat_oil_content,CHEMICAL,mass_fraction,fraction,percent;fraction;g/100g,0,,n/a,
+CV-021,oxygen_headspace,CHEMICAL,volume_fraction,fraction,percent;fraction;kPa,0,,n/a,absent is UNKNOWN not 0; atmosphere composition may be qualitative
+CV-022,solvent_medium,CHEMICAL,categorical,category,category,,,n/a,water / oil / steam / air / brine ...
+CV-023,additive_catalyst_enzyme,CHEMICAL,categorical,category,category,,,n/a,name + amount held separately
+CV-024,pressure,PHYSICAL,pressure,Pa,Pa;kPa;MPa;bar;atm;psi;mmHg;torr,0,,absolute,gauge vs absolute must be stated; bare psi/bar is AMBIGUOUS
+CV-025,relative_humidity,PHYSICAL,ratio,fraction,percent;fraction,0,1,n/a,
+CV-026,heat_transfer_mode,PHYSICAL,categorical,category,category,,,n/a,see heat_transfer_mode_registry_v1.csv
+CV-027,agitation_mixing,PHYSICAL,categorical_or_rate,as stated,rpm;category,0,,n/a,
+CV-028,flow_rate,PHYSICAL,flow,as stated,as stated,0,,n/a,
+CV-029,microwave_power,PHYSICAL,power,W,W;kW,0,,n/a,"nominal oven power, not absorbed power"
+CV-030,microwave_frequency,PHYSICAL,frequency,Hz,Hz;MHz;GHz,0,,n/a,
+CV-031,geometry_shape,PHYSICAL,categorical,category,category,,,n/a,slab / cylinder / sphere / irregular
+CV-032,thickness,PHYSICAL,length,m,mm;cm;m,0,,n/a,
+CV-033,particle_size,PHYSICAL,length,m,um;mm;cm,0,,n/a,
+CV-034,surface_area_volume_proxy,PHYSICAL,ratio,1/m,1/m;1/cm;1/mm,0,,n/a,only if stated or computable from stated geometry
+CV-035,batch_size,PHYSICAL,mass_or_volume,g,g;kg;mL;L;count,0,,n/a,
+CV-036,container_tool_material,PHYSICAL,categorical,category,category,,,n/a,TOOL ledger ids when available
+CV-037,organism_strain,BIOLOGICAL,categorical,category,category,,,n/a,
+CV-038,starter_inoculum,BIOLOGICAL,categorical_or_conc,as stated,CFU/g;CFU/mL;percent;category,0,,n/a,
+CV-039,maturity_ripeness,BIOLOGICAL,categorical,category,category,,,n/a,
+CV-040,storage_age,BIOLOGICAL,time,s,h;d;week;month,0,,n/a,storage time before processing

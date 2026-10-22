@@ -1,0 +1,160 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "condition_value_v1",
+ "title": "Step 07 normalised condition value",
+ "type": "object",
+ "required": [
+  "variable",
+  "value_type",
+  "status",
+  "reasons",
+  "raw"
+ ],
+ "properties": {
+  "variable": {
+   "type": "string"
+  },
+  "variable_id": {
+   "type": [
+    "string",
+    "null"
+   ],
+   "pattern": "^CV-\\d{3}$"
+  },
+  "value_type": {
+   "enum": [
+    "POINT",
+    "INTERVAL",
+    "TRAJECTORY",
+    "QUALITATIVE",
+    "UNKNOWN"
+   ]
+  },
+  "status": {
+   "enum": [
+    "VALID",
+    "INVALID",
+    "AMBIGUOUS",
+    "UNKNOWN"
+   ]
+  },
+  "reasons": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "raw": {},
+  "canonical_value": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "canonical_low": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "canonical_high": {
+   "type": [
+    "number",
+    "null"
+   ]
+  },
+  "canonical_unit": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "open_low": {
+   "type": "boolean"
+  },
+  "open_high": {
+   "type": "boolean"
+  },
+  "location": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "pressure_reference": {
+   "enum": [
+    "ABSOLUTE",
+    "GAUGE",
+    "UNSPECIFIED",
+    null
+   ]
+  },
+  "basis": {
+   "enum": [
+    "WET",
+    "DRY",
+    null
+   ]
+  },
+  "qualitative": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "mapping_source": {
+   "type": [
+    "string",
+    "null"
+   ]
+  },
+  "points": {
+   "type": "array"
+  }
+ },
+ "allOf": [
+  {
+   "if": {
+    "properties": {
+     "value_type": {
+      "enum": [
+       "QUALITATIVE",
+       "UNKNOWN"
+      ]
+     }
+    },
+    "required": [
+     "value_type"
+    ]
+   },
+   "then": {
+    "not": {
+     "required": [
+      "canonical_value"
+     ]
+    },
+    "description": "qualitative/unknown values carry no number unless an explicit sourced mapping produced a POINT"
+   }
+  },
+  {
+   "if": {
+    "properties": {
+     "value_type": {
+      "const": "UNKNOWN"
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "status": {
+      "enum": [
+       "UNKNOWN",
+       "INVALID",
+       "AMBIGUOUS"
+      ]
+     }
+    }
+   }
+  }
+ ]
+}
