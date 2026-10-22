@@ -926,3 +926,6 @@ Presentation: **25–26 Nov 2026**.
 
 ## S135 · 2026-10-22 · Usage decision D-026 and master-plan audit intake
 Recorded D-026 (owner decision: all 612,782 recipes usable for project use; overlay registry, frozen files untouched). Received the untracked master-plan research audit from manjot-server (reports/master_plan/, registry/master_plan_confidence_v2.csv): DRAFT, critique round skipped; staged outside the repo, not adopted. Step 08 still not started; condition gate still PENDING_HUMAN_REVIEW.
+
+## S136 · 2026-10-22 · Adapted Master Plan v2 and SSOT v16 change set (DRAFTS)
+Wrote `docs/plan/CulinaryState_Master_Plan_v2_ADAPTED_DRAFT.md` and `docs/SSOT/ssot_v16_change_set_DRAFT.md` from the master-plan audit (DRAFT, critique round skipped) plus the Claude and ChatGPT verdicts. Nothing adopted: SSOT v15 and Master Plan v4.0 untouched; all 65 CRs PROPOSED_ONLY. Audit raw files stay outside the repo. Needs human D-027 (07-DEP, Step 03/04 base, 04.L/04.K) before Step 08.
