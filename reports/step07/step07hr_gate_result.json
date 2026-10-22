@@ -1,0 +1,54 @@
+{
+ "gates": {
+  "G1_tests_pass_no_unexplained_failures": true,
+  "G2_4414_condition_regression_0_unexplained": true,
+  "G3_recipe_base_validators_all_pass": true,
+  "G4_scientific_and_vocab_ledgers_byte_identical": true,
+  "G5_two_complete_rebuilds_deterministic": true,
+  "G6_no_unsupported_abbreviation_promoted": true,
+  "G7_no_bulk_gold_promotion": true
+ },
+ "all_pass": true,
+ "test_groups": {
+  "condition_unit_schema_golden_bound_trajectory_property_dialect": {
+   "passed": 421,
+   "returncode": 0
+  },
+  "recipe_probe": {
+   "passed": 7,
+   "returncode": 0
+  },
+  "recipe_base_integrity_gold_silver_family_reference": {
+   "passed": 5,
+   "returncode": 0
+  },
+  "step07_other": {
+   "passed": 17,
+   "returncode": 0
+  }
+ },
+ "determinism": {
+  "ran": true,
+  "byte_identical_per_artifact": {
+   "ledgers/recipe_base/recipe_base_v1.parquet": true,
+   "ledgers/recipe_base/recipe_simulation_readiness_v1.parquet": true,
+   "ledgers/recipe_semantics/recipe_expression_probe_v1.parquet": true,
+   "ledgers/recipe_semantics/recipe_condition_mentions_v1.parquet": true,
+   "ledgers/recipe_semantics/recipe_ingredient_mentions_v1.parquet": true,
+   "ledgers/recipe_semantics/recipe_quantity_mentions_v1.parquet": true,
+   "ledgers/recipe_semantics/recipe_process_mentions_v1.parquet": true,
+   "registry/recipe_condition_surface_forms_v1.csv": true,
+   "registry/recipe_quantity_surface_forms_v1.csv": true,
+   "registry/recipe_temporal_surface_forms_v1.csv": true,
+   "registry/recipe_process_surface_forms_v1.csv": true
+  },
+  "all_identical": true
+ },
+ "regression": {
+  "conditions_audited": 4414,
+  "evd_references_covered": 17978,
+  "fields_compared": 15872,
+  "fields_changed": 1110,
+  "unexplained_field_changes": 0
+ }
+}

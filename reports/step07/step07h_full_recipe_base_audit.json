@@ -1,0 +1,480 @@
+{
+ "validators": {
+  "V01_recipe_id_unique": true,
+  "V02_every_REC_backed_recipe_maps_to_exactly_one_REC_row": true,
+  "V03_non_REC_members_documented_composites": true,
+  "V04_raw_content_hash_preserved_for_REC_rows": true,
+  "V05_raw_hash_and_derived_hash_present": true,
+  "V06_family_present_for_every_recipe": true,
+  "V07_gold_annotations_link_to_valid_recipe_ids": true,
+  "V08_quality_tiers_in_registry": true,
+  "V09_every_gold_tier_recipe_in_gold_index_and_no_bulk_promotion": true,
+  "V10_no_DEEP_GOLD_or_GOLD_LIGHT_assigned": true,
+  "V11_expr_recipe_ids_valid": true,
+  "V11_cond_recipe_ids_valid": true,
+  "V11_ing_recipe_ids_valid": true,
+  "V11_qty_recipe_ids_valid": true,
+  "V11_proc_recipe_ids_valid": true,
+  "V12_expression_ids_unique": true,
+  "V13_expressions_all_TEXT_STATED_RECIPE_plane": true,
+  "V14_no_evidence_tier_column_on_expressions": true,
+  "V15_total_base_is_not_gold": true
+ },
+ "validators_all_pass": true,
+ "totals": {
+  "recipe_base": 612782,
+  "by_source_family": {
+   "FOODCOM": 522517,
+   "GUTENBERG_SEGMENT": 73955,
+   "A1_BBC_GOOD_FOOD": 11934,
+   "WIKIBOOKS": 3676,
+   "TASTESET": 700
+  },
+  "unique_recipe_families": 611700,
+  "tiers_by_source_family": {
+   "A1_BBC_GOOD_FOOD": {
+    "GOLD_PENDING_INDEPENDENT_IAA": 20,
+    "SILVER_AUTO": 11914,
+    "SOURCE_RAW": 0
+   },
+   "FOODCOM": {
+    "GOLD_PENDING_INDEPENDENT_IAA": 20,
+    "SILVER_AUTO": 0,
+    "SOURCE_RAW": 522497
+   },
+   "GUTENBERG_SEGMENT": {
+    "GOLD_PENDING_INDEPENDENT_IAA": 0,
+    "SILVER_AUTO": 0,
+    "SOURCE_RAW": 73955
+   },
+   "TASTESET": {
+    "GOLD_PENDING_INDEPENDENT_IAA": 0,
+    "SILVER_AUTO": 0,
+    "SOURCE_RAW": 700
+   },
+   "WIKIBOOKS": {
+    "GOLD_PENDING_INDEPENDENT_IAA": 0,
+    "SILVER_AUTO": 0,
+    "SOURCE_RAW": 3676
+   }
+  },
+  "tier_totals": {
+   "SOURCE_RAW": 600828,
+   "SILVER_AUTO": 11914,
+   "GOLD_PENDING_INDEPENDENT_IAA": 40
+  },
+  "gold_index_rows": 50,
+  "gold_index_status": {
+   "GOLD_PENDING_INDEPENDENT_IAA": 40,
+   "GOLD_CANDIDATE_SCREENED_NOT_ANNOTATED": 10
+  }
+ },
+ "coverage_by_source_family": {
+  "A1_BBC_GOOD_FOOD": {
+   "has_ingredients": 1.0,
+   "has_quantities": 0.9968158203452321,
+   "has_instructions": 1.0,
+   "has_conditions": 0.9997486173956762,
+   "has_existing_events": 1.0,
+   "has_gold_annotations": 0.0016758840288252053
+  },
+  "FOODCOM": {
+   "has_ingredients": 0.9957532482196751,
+   "has_quantities": 0.9943599921150891,
+   "has_instructions": 0.999996172373339,
+   "has_conditions": 0.9995445124273469,
+   "has_existing_events": 3.8276266609507445e-05,
+   "has_gold_annotations": 3.8276266609507445e-05
+  },
+  "GUTENBERG_SEGMENT": {
+   "has_ingredients": 0.9976066526942059,
+   "has_quantities": 0.06954228922993712,
+   "has_instructions": 0.9976066526942059,
+   "has_conditions": 0.574849570684876,
+   "has_existing_events": 0.0,
+   "has_gold_annotations": 0.0
+  },
+  "TASTESET": {
+   "has_ingredients": 1.0,
+   "has_quantities": 0.73,
+   "has_instructions": 0.0,
+   "has_conditions": 0.002857142857142857,
+   "has_existing_events": 0.0,
+   "has_gold_annotations": 0.0
+  },
+  "WIKIBOOKS": {
+   "has_ingredients": 1.0,
+   "has_quantities": 0.8400435255712732,
+   "has_instructions": 1.0,
+   "has_conditions": 0.9167573449401524,
+   "has_existing_events": 0.0,
+   "has_gold_annotations": 0.0
+  }
+ },
+ "family_leakage": {
+  "method": "exact normalised-title match used ONLY as a leakage-warning proxy (no family algorithm invented; no thresholds)",
+  "unique_recipes": 612782,
+  "unique_family_ids": 611700,
+  "singleton_family_count": 610649,
+  "largest_families": [
+   [
+    "FAM-G77115_21",
+    18
+   ],
+   [
+    "FAM-G77115_101",
+    4
+   ],
+   [
+    "FAM-WB199312",
+    4
+   ],
+   [
+    "FAM-G13923_499",
+    3
+   ],
+   [
+    "FAM-G13923_279",
+    3
+   ]
+  ],
+  "by_source_family": {
+   "A1_BBC_GOOD_FOOD": {
+    "recipes": 11934,
+    "families": 11928,
+    "singleton_families": 11923,
+    "largest_family": 3
+   },
+   "FOODCOM": {
+    "recipes": 522517,
+    "families": 522517,
+    "singleton_families": 522517,
+    "largest_family": 1
+   },
+   "GUTENBERG_SEGMENT": {
+    "recipes": 73955,
+    "families": 72887,
+    "singleton_families": 71846,
+    "largest_family": 18
+   },
+   "TASTESET": {
+    "recipes": 700,
+    "families": 700,
+    "singleton_families": 700,
+    "largest_family": 1
+   },
+   "WIKIBOOKS": {
+    "recipes": 3676,
+    "families": 3668,
+    "singleton_families": 3663,
+    "largest_family": 4
+   }
+  },
+  "same_title_groups_over_1": 43063,
+  "cross_source_title_groups": 6249,
+  "cross_source_group_source_pairs": {
+   "FOODCOM+GUTENBERG_SEGMENT+WIKIBOOKS": 186,
+   "FOODCOM+GUTENBERG_SEGMENT": 3431,
+   "A1_BBC_GOOD_FOOD+FOODCOM": 1502,
+   "A1_BBC_GOOD_FOOD+FOODCOM+WIKIBOOKS": 90,
+   "FOODCOM+WIKIBOOKS": 726,
+   "A1_BBC_GOOD_FOOD+FOODCOM+GUTENBERG_SEGMENT": 171,
+   "A1_BBC_GOOD_FOOD+FOODCOM+GUTENBERG_SEGMENT+WIKIBOOKS": 49,
+   "GUTENBERG_SEGMENT+WIKIBOOKS": 53,
+   "A1_BBC_GOOD_FOOD+GUTENBERG_SEGMENT+WIKIBOOKS": 2,
+   "A1_BBC_GOOD_FOOD+GUTENBERG_SEGMENT": 29,
+   "A1_BBC_GOOD_FOOD+WIKIBOOKS": 10
+  },
+  "a1_bbc_cross_source_title_groups": 1853,
+  "gold_leakage_warnings": [
+   {
+    "gold_recipe_id": "FC100067",
+    "twin_count": 6,
+    "twin_source_families": [
+     "FOODCOM",
+     "WIKIBOOKS"
+    ],
+    "twin_tiers": {
+     "SOURCE_RAW": 6
+    },
+    "twin_examples": [
+     "REC-012482",
+     "FC25805",
+     "FC39465"
+    ]
+   },
+   {
+    "gold_recipe_id": "FC158166",
+    "twin_count": 4,
+    "twin_source_families": [
+     "FOODCOM"
+    ],
+    "twin_tiers": {
+     "SOURCE_RAW": 4
+    },
+    "twin_examples": [
+     "FC128169",
+     "FC187625",
+     "FC298622"
+    ]
+   },
+   {
+    "gold_recipe_id": "FC197059",
+    "twin_count": 2,
+    "twin_source_families": [
+     "FOODCOM"
+    ],
+    "twin_tiers": {
+     "SOURCE_RAW": 2
+    },
+    "twin_examples": [
+     "FC3457",
+     "FC519078"
+    ]
+   },
+   {
+    "gold_recipe_id": "REC-003595",
+    "twin_count": 2,
+    "twin_source_families": [
+     "FOODCOM",
+     "GUTENBERG_SEGMENT"
+    ],
+    "twin_tiers": {
+     "SOURCE_RAW": 2
+    },
+    "twin_examples": [
+     "REC-076688",
+     "FC14637"
+    ]
+   },
+   {
+    "gold_recipe_id": "REC-006967",
+    "twin_count": 1,
+    "twin_source_families": [
+     "FOODCOM"
+    ],
+    "twin_tiers": {
+     "SOURCE_RAW": 1
+    },
+    "twin_examples": [
+     "FC193817"
+    ]
+   },
+   {
+    "gold_recipe_id": "REC-007363",
+    "twin_count": 5,
+    "twin_source_families": [
+     "FOODCOM"
+    ],
+    "twin_tiers": {
+     "SOURCE_RAW": 5
+    },
+    "twin_examples": [
+     "FC48826",
+     "FC72125",
+     "FC176476"
+    ]
+   },
+   {
+    "gold_recipe_id": "REC-010532",
+    "twin_count": 1,
+    "twin_source_families": [
+     "A1_BBC_GOOD_FOOD"
+    ],
+    "twin_tiers": {
+     "SILVER_AUTO": 1
+    },
+    "twin_examples": [
+     "REC-010531"
+    ]
+   }
+  ],
+  "gold_with_bulk_title_twin": 7,
+  "gold_checked": 40,
+  "splits_frozen": false,
+  "warning": "Gold recipes with bulk-corpus relatives must be excluded/grouped when splits are built; NO split is frozen here"
+ },
+ "readiness": {
+  "A1_BBC_GOOD_FOOD": {
+   "PARTIAL_CONDITIONS": 6722,
+   "PROCEDURALLY_RICH": 5208,
+   "INSUFFICIENT_CONDITIONS": 3,
+   "QUALITATIVE_ONLY": 1
+  },
+  "FOODCOM": {
+   "PARTIAL_CONDITIONS": 430825,
+   "PROCEDURALLY_RICH": 91030,
+   "QUALITATIVE_ONLY": 407,
+   "INSUFFICIENT_CONDITIONS": 253,
+   "UNKNOWN": 2
+  },
+  "GUTENBERG_SEGMENT": {
+   "INSUFFICIENT_CONDITIONS": 36609,
+   "QUALITATIVE_ONLY": 28429,
+   "PARTIAL_CONDITIONS": 8717,
+   "UNKNOWN": 177,
+   "PROCEDURALLY_RICH": 23
+  },
+  "TASTESET": {
+   "UNKNOWN": 700
+  },
+  "WIKIBOOKS": {
+   "PARTIAL_CONDITIONS": 1829,
+   "PROCEDURALLY_RICH": 794,
+   "QUALITATIVE_ONLY": 710,
+   "INSUFFICIENT_CONDITIONS": 343
+  }
+ },
+ "readiness_total": {
+  "PARTIAL_CONDITIONS": 448093,
+  "PROCEDURALLY_RICH": 97055,
+  "INSUFFICIENT_CONDITIONS": 37208,
+  "QUALITATIVE_ONLY": 29547,
+  "UNKNOWN": 879
+ },
+ "ingredient_link_status": {
+  "A1_BBC_GOOD_FOOD": {
+   "ACCEPT": 84487,
+   "UNRESOLVED": 37614,
+   "REVIEW": 1497
+  },
+  "FOODCOM": {
+   "ACCEPT": 2601654,
+   "UNRESOLVED": 1263290,
+   "REVIEW": 264489
+  },
+  "GUTENBERG_SEGMENT": {
+   "REVIEW": 675103
+  },
+  "TASTESET": {
+   "ACCEPT": 2640,
+   "UNRESOLVED": 1213,
+   "REVIEW": 167
+  },
+  "WIKIBOOKS": {
+   "UNRESOLVED": 18572,
+   "ACCEPT": 12668,
+   "REVIEW": 796
+  }
+ },
+ "vocab_frequency": {
+  "rows": 5302,
+  "distinct_ING_matched": 1875,
+  "distinct_PROC_matched": 148,
+  "distinct_UNIT_keys": 70,
+  "top_ING": {
+   "ING-000044": 260162,
+   "ING-000001": 195507,
+   "ING-000045": 157911,
+   "ING-000109": 123449,
+   "ING-000005": 105847,
+   "ING-000139": 93573,
+   "ING-000130": 92279,
+   "ING-000003": 81572
+  },
+  "top_PROC": {
+   "PROC-000088": 859982,
+   "PROC-000065": 637604,
+   "PROC-000102": 627625,
+   "PROC-000032": 600255,
+   "PROC-000031": 501487,
+   "PROC-000064": 479394,
+   "PROC-000137": 326188,
+   "PROC-000106": 311840
+  }
+ },
+ "dataset_ledger": [
+  {
+   "dataset_id": "DATASET-000001",
+   "family": "A1_BBC_GOOD_FOOD",
+   "action": "created",
+   "n_rows": 11934
+  },
+  {
+   "dataset_id": "DATASET-000002",
+   "family": "WIKIBOOKS",
+   "action": "created",
+   "n_rows": 3676
+  },
+  {
+   "dataset_id": "DATASET-000003",
+   "family": "GUTENBERG_SEGMENT",
+   "action": "created",
+   "n_rows": 73955
+  },
+  {
+   "dataset_id": "DATASET-000004",
+   "family": "FOODCOM",
+   "action": "created",
+   "n_rows": 522517
+  },
+  {
+   "dataset_id": "DATASET-000005",
+   "family": "TASTESET",
+   "action": "created",
+   "n_rows": 700
+  }
+ ],
+ "scientific_and_vocab_ledgers_byte_identical": {
+  "EVD": true,
+  "COND": true,
+  "MEAS": true,
+  "SVAR": true,
+  "REC": true,
+  "SRC": true,
+  "ING": true,
+  "ALIAS": true,
+  "PROC": true,
+  "TOOL": true,
+  "UNIT": true
+ },
+ "row_counts": {
+  "base": 612782,
+  "gold": 50,
+  "ready": 612782,
+  "freq": 5302,
+  "expr": 8166098,
+  "cond": 3904986,
+  "ing": 4964190,
+  "qty": 4281956,
+  "proc": 12401784
+ },
+ "sync_matrix_rows": 46,
+ "hashes": {
+  "base": "5545da589d9c77891d3aefcebf21374d75a03632d14a4e8231603c68c9c824f0",
+  "gold": "4832d7a91bcfd01bd32d643e84f5dcc3afef9373ac4d65fe360390eff62429cb",
+  "ready": "411fd4e9028a0f0f73853ebec3e924c9cf5c1e99e1e972ecbf6d8b2266361536",
+  "freq": "7ed80a40b65a944a4861cb778b9ad9dfc4cb47822de7ca8b66c20eec76068160",
+  "expr": "636f67269d14dbdbeb6ca24972e5920a01e00007d2cc68ded7069e2ea7b48f0b",
+  "cond": "87714cd9480a2a70b1445d49ded2b2ce0852964d8b5b7a91cd987f6670b85627",
+  "ing": "98b3b43f41f4724105556d22bde5dbf90eb6fbc53b62d9b0b0571f19213ad612",
+  "qty": "536ca63112ad1f3cbfe44c993b530437b4bfb41ddaaf050af35338d6e62dc469",
+  "proc": "79fbd9c9eaa15e34ad7fd35a139a7ae171f5d31803494cb2188ce643487c7278"
+ },
+ "normalizer_fingerprint": {
+  "normalizer_version": "condition_normalizer@2.0.0-07H",
+  "code_sha256": {
+   "condition_normalizer.py": "d0ceaa91ac73a7aa748f82127211df7cb6229448ce4925b49b6dbf2419c10168",
+   "condition_parser.py": "5bc2e4400c423b8a9c3bec54c6dd2303d9a7d4e96c9418f85cad1b1bca57677b",
+   "condition_units.py": "fd3a3f433619d0f853d229b90b976b9cf29e272bce722fa354c07cb0b365abc9",
+   "source_dialect.py": "9b750341fa0264ca988a3e50118ac1b3d3302ee22ee85aa2b3533837136fa6f9"
+  },
+  "schema_sha256": "530bf87498d71ccbb0e2dbf57ec6efdfe996d1f4a85ca9d932ea3f628b0bede4",
+  "registry_sha256": {
+   "condition_variable_registry_v1.csv": "0c036cce18d8fbe87b6e9b6c76fa756448501a901f1b98eef925b42ccced57ac",
+   "condition_variable_bounds_registry_v1.csv": "f1b96e95ee77657b27edda142289ea166ccc8309a97017d1534dd2d5c2adaafa",
+   "notation_rule_registry_v1.csv": "6579f5a8d928bb2eb0dcd5f6a8a4389de53c198596210aa91250cd6a6a49f97d",
+   "source_dialect_mapping_registry_v1.csv": "41934ee6b92289ece51066c9a890cf0f5dbf9c89060b026304b9b6eceb5c9812",
+   "measurement_basis_registry_v1.csv": "b257186948d0a10ebda7bb5de4bf42c686495197648b61dc1641ec6919e81f0b",
+   "measurement_location_registry_v1.csv": "a36d6042138ac4b3e7e89c34554563426944ebea8397f34befa0471e685bd84b",
+   "measurement_method_registry_v1.csv": "6e75d96a2e000aa4dfc86bc0669a8fba35842a228af8d89cd7074cfbfacceb7d",
+   "censoring_registry_v1.csv": "bd3c4808771630efc608813b508816c0b4014001a61b4acb74b64a3b26c4c1a8",
+   "retention_type_registry_v1.csv": "3d4e74439158c4e1786033dd686a5e04252dee3548a1915ae0b71b8fcfc9fb82",
+   "value_type_registry_v1.csv": "ce667905e2b2bb2ceea5c307347b2faa40459faea28d84306240ff0f08d12f52",
+   "quantity_form_registry_v1.csv": "d70de93db2e79311b2990f1098e834577a88e6cc75a0a8f4e2c0b52460c6506f",
+   "value_origin_registry_v1.csv": "752f2db0b7f41aa524158fdf0951bf45b37836f65e321a887ec08c12fd76dbc4",
+   "heat_transfer_mode_registry_v1.csv": "de81739b583469f0bb808e493e7dd0c829e1e15ae455ab32a1e2ba1a59bd6d2a"
+  },
+  "combined_sha256": "e7d58913627534d51c2d92c2943f2a0117c9a9c4371465cba3515c3130276a5f"
+ }
+}

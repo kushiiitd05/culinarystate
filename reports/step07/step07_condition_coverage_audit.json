@@ -37,8 +37,8 @@
  "status_counts": {
   "duration": {
    "UNKNOWN": 1785,
-   "VALID": 2366,
-   "AMBIGUOUS": 263
+   "VALID": 1410,
+   "AMBIGUOUS": 1219
   },
   "temperature": {
    "UNKNOWN": 2025,
@@ -76,6 +76,8 @@
   "temperature:MEASUREMENT_LOCATION_MISSING": 2409,
   "temperature:NOT_STATED": 2025,
   "duration:NOT_STATED": 1785,
+  "duration:CALENDAR_DURATION_NOT_CONVERTED": 956,
+  "duration:CALENDAR_DURATION_CONVERTED_AT_SOURCE_INGEST": 956,
   "temperature:MULTIPLE_VALUES_SAME_LOCATION": 472,
   "duration:RAW_TEXT_PRESENT_BUT_NOT_PARSED": 245,
   "duration:MULTI_VALUE_LIST_ROLES_UNKNOWN": 245,

@@ -1,0 +1,47 @@
+object,canonical_path,exists,row_count_before,row_count_after,action,reason,source_plane,step_ownership
+SRC,ledgers/data/SRC.jsonl,True,609,609,NO_CHANGE_REQUIRED,488 sources unchanged; Food.com and TASTEset have NO SRC rows -> registered as UNREGISTERED:* in the recipe base; licence/ID registration is an H2 approval item (no new licence assumption),SOURCE,Step 06 / H2
+REC,ledgers/data/REC.jsonl,True,107760,107760,REINDEXED,"immutable source memory; 89,565 unique ids indexed into recipe_base_v1 (107,760 history lines = 89,565 ids + 18,195 version-2 lines)",RECIPE,existing
+FAM,ledgers/recipe_base/recipe_base_v1.parquet,True,0,612782,REBUILT_DERIVED,recipe_family_id/family_method columns in recipe_base_v1: existing REC.family_id kept; Food.com/TASTEset singleton identity families (no algorithm/threshold invented),RECIPE,07H-R
+ING,ledgers/data/ING.jsonl,True,5387,5387,VALIDATED_ONLY,canonical ingredient vocabulary unchanged; corpus occurrence counts moved to the derived vocab_corpus_frequency_v1 index,VOCAB,existing
+ALIAS,ledgers/data/ALIAS.jsonl,True,4183,4183,VALIDATED_ONLY,used read-only for exact alias lookup,VOCAB,existing
+PROC,ledgers/data/PROC.jsonl,True,552,552,VALIDATED_ONLY,used read-only for verb-form candidates; mechanism ontology not executed,VOCAB,existing
+TOOL,ledgers/data/TOOL.jsonl,True,297,297,VALIDATED_ONLY,unchanged; utensil mention extraction not run in this step,VOCAB,existing
+UNIT,ledgers/data/UNIT.jsonl,True,74,74,VALIDATED_ONLY,unchanged; unit keys counted in the derived frequency index,VOCAB,existing
+DATASET,ledgers/data/DATASET.jsonl,True,0,5,POPULATED,"5 recipe corpus releases registered (counts, hashes, tiers, allowed use, redistribution limits)",RECIPE,07H-R
+recipe_base_v1,ledgers/recipe_base/recipe_base_v1.parquet,True,0,612782,POPULATED,"canonical indexed view of all local recipes (pointers + hashes, no text copy)",RECIPE,07H-R
+gold_recipe_index_v1,ledgers/recipe_base/gold_recipe_index_v1.parquet,True,0,50,POPULATED,existing Gold/Gold-candidate recipes linked; all AI-drafted human-reviewed -> GOLD_PENDING_INDEPENDENT_IAA,RECIPE,07H-R
+recipe_expression_probe_v1,ledgers/recipe_semantics/recipe_expression_probe_v1.parquet,True,0,8166098,POPULATED,candidate surface expressions normalised with the final 07H parser/normalizer,RECIPE,07H-R
+recipe_condition_mentions_v1,ledgers/recipe_semantics/recipe_condition_mentions_v1.parquet,True,0,3904986,POPULATED,TEXT_STATED procedural condition mentions (no measurements),RECIPE,07H-R
+recipe_ingredient_mentions_v1,ledgers/recipe_semantics/recipe_ingredient_mentions_v1.parquet,True,0,4964190,POPULATED,mentions with exact-alias link status; frozen NER/linker/router not re-run (needs GPU server run),RECIPE,07H-R
+recipe_quantity_mentions_v1,ledgers/recipe_semantics/recipe_quantity_mentions_v1.parquet,True,0,4281956,POPULATED,existing deterministic quantity grammar v0 per ingredient line; no CQPO preemption,RECIPE,07H-R
+recipe_process_mentions_v1,ledgers/recipe_semantics/recipe_process_mentions_v1.parquet,True,0,12401784,POPULATED,PROC verb-form candidates (POS unchecked) + UNMAPPED leading tokens; no chemistry,RECIPE,07H-R
+recipe_simulation_readiness_v1,ledgers/recipe_base/recipe_simulation_readiness_v1.parquet,True,0,612782,POPULATED,text availability vector only; NOT permission to simulate,RECIPE,07H-R
+vocab_corpus_frequency_v1,ledgers/recipe_base/vocab_corpus_frequency_v1.parquet,True,0,5302,POPULATED,ING/PROC/UNIT occurrence counts over the recipe base by source family,RECIPE,07H-R
+COND,ledgers/data/COND.jsonl,True,4746,4746,NO_CHANGE_REQUIRED,scientific-source conditions byte-identical; recipe text conditions live in recipe_condition_mentions_v1 (never merged),SCIENTIFIC,Step 07
+EVD,ledgers/data/EVD.jsonl,True,57280,57280,NO_CHANGE_REQUIRED,recipes must not create measured evidence rows; byte-identical,SCIENTIFIC,ES-1.1
+MEAS,ledgers/data/MEAS.jsonl,True,3,3,NO_CHANGE_REQUIRED,scientific measurement methods; byte-identical,SCIENTIFIC,Step 07
+SVAR,ledgers/data/SVAR.jsonl,True,355,355,NO_CHANGE_REQUIRED,byte-identical,SCIENTIFIC,MP-1
+STUDY,ledgers/data/STUDY.jsonl,True,125,125,NO_CHANGE_REQUIRED,scientific studies; unaffected,SCIENTIFIC,existing
+MOL,ledgers/data/MOL.jsonl,True,1726,1726,NO_CHANGE_REQUIRED,not recipe-derived,CHEMISTRY,existing
+IMAP,ledgers/data/IMAP.jsonl,True,31972,31972,NO_CHANGE_REQUIRED,ingredient-molecule map not recipe-derived,CHEMISTRY,existing
+KGE,ledgers/data/KGE.jsonl,True,80607,80607,BLOCKED_FUTURE_STEP,co-occurrence graph rebuild from the enlarged corpus is a separate step; occurrence index provided instead,GRAPH,later
+SNAP,ledgers/data/SNAP.jsonl,True,347,347,NO_CHANGE_REQUIRED,no new scraping; snapshot ledger unchanged,SOURCE,existing
+EXP,ledgers/data/EXP.jsonl,True,8,8,NO_CHANGE_REQUIRED,experiment cards unchanged,EXPERIMENT,existing
+ALLERGEN,ledgers/data/ALLERGEN.jsonl,True,11,11,NO_CHANGE_REQUIRED,authority table unchanged,VOCAB,existing
+QNT,ledgers/data/QNT.jsonl,False,0,0,BLOCKED_FUTURE_STEP,canonical QNT ledger belongs to the CQPO programme; syntax-level rows are in recipe_quantity_mentions_v1,RECIPE,CQPO
+POR,ledgers/data/POR.jsonl,False,0,0,BLOCKED_FUTURE_STEP,portion/density evidence (CQPO); no grams invented,SCIENTIFIC,CQPO
+INST,ledgers/data/INST.jsonl,False,0,0,BLOCKED_FUTURE_STEP,instruction semantic records need event extraction (Steps 16-20); raw text not copied,RECIPE,Steps 16-20
+ENTITY,ledgers/data/ENTITY.jsonl,False,0,0,BLOCKED_FUTURE_STEP,no entity/state graph from this run,RECIPE,Steps 16-20
+EVT,ledgers/data/EVT.jsonl,False,0,0,BLOCKED_FUTURE_STEP,no EVT rows exist; none created from a parser run (no authoritative transitions),RECIPE,Steps 16-20
+STATE,ledgers/data/STATE.jsonl,False,0,0,BLOCKED_FUTURE_STEP,no STATE rows exist; none created,RECIPE,Steps 16-20
+SPLIT,ledgers/data/SPLIT.jsonl,False,0,0,BLOCKED_FUTURE_STEP,splits NOT frozen; leakage diagnostic only,EXPERIMENT,later
+RXN,ledgers/data/RXN.jsonl,False,0,0,BLOCKED_FUTURE_STEP,no reaction rows from recipes,SCIENTIFIC,mechanism steps
+WARN,ledgers/data/WARN.jsonl,False,0,0,BLOCKED_FUTURE_STEP,no inferred warnings,SCIENTIFIC,later
+HYP,ledgers/data/HYP.jsonl,False,0,0,BLOCKED_FUTURE_STEP,no hypotheses created,SCIENTIFIC,later
+SIM,ledgers/data/SIM.jsonl,False,0,0,BLOCKED_FUTURE_STEP,no simulation,SCIENTIFIC,later
+KINETIC,ledgers/data/KINETIC.jsonl,False,0,0,BLOCKED_FUTURE_STEP,no kinetic parameters from recipes,SCIENTIFIC,later
+LOT/ENT,ledgers/data/ENTITY.jsonl,False,0,0,BLOCKED_FUTURE_STEP,physical lot/entity layer not built,RECIPE,later
+GRAPH/CLM/REF/RQ/RS/GATE/MODEL/API/ALLOC,ledgers/schemas/*.schema.json,True,0,37,BLOCKED_FUTURE_STEP,"schemas designed, no data files, not recipe-derived",META,later
+data_source_acquisition_manifest,registry/data_source_acquisition_manifest.csv,True,0,64,NO_CHANGE_REQUIRED,ES-1.2 manifest unchanged (no new sources),SOURCE,ES-1.2
+recipe_quality_tier_registry_v1,registry/recipe_quality_tier_registry_v1.csv,True,0,8,POPULATED,8 tiers with use/IAA rules,RECIPE,07H-R
+recipe_*_surface_forms_v1 (condition/quantity/temporal/process),registry/recipe_condition_surface_forms_v1.csv,True,0,20000,POPULATED,surface-form registries from the full corpus probe,RECIPE,07H-R

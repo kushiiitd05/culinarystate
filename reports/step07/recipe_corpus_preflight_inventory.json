@@ -1,0 +1,106 @@
+{
+ "rec_ledger": {
+  "history_lines": 107760,
+  "unique_recipe_ids_latest": 89565,
+  "extra_version_lines": 18195,
+  "version_histogram_lines": {
+   "1": 89565,
+   "2": 18195
+  },
+  "latest_status_counts": {
+   "ACTIVE": 89565
+  },
+  "by_source_corpus": {
+   "A1_BBC_GOOD_FOOD": {
+    "recipes": 11934,
+    "with_ingredient_lines": 11934,
+    "with_steps": 11934,
+    "n_distinct_source_ids": 0
+   },
+   "WIKIBOOKS": {
+    "recipes": 3676,
+    "with_ingredient_lines": 3676,
+    "with_steps": 3676,
+    "n_distinct_source_ids": 0
+   },
+   "GUTENBERG_SEGMENTS": {
+    "recipes": 73955,
+    "with_ingredient_lines": 73955,
+    "with_steps": 73955,
+    "n_distinct_source_ids": 0
+   }
+  },
+  "families": {
+   "unique_family_ids": 88483,
+   "family_size_distribution": {
+    "1": 87432,
+    "2": 1037,
+    "3": 11,
+    "4": 2,
+    "18": 1
+   },
+   "largest": [
+    [
+     "FAM-G77115_21",
+     18
+    ],
+    [
+     "FAM-WB199312",
+     4
+    ],
+    [
+     "FAM-G77115_101",
+     4
+    ]
+   ]
+  },
+  "field_family_id_present": true,
+  "note": "REC.family_id exists on every row; no standalone FAM ledger file in ledgers/data"
+ },
+ "a1_processed": {
+  "recipes": 11934,
+  "instruction_events_rows": 11934,
+  "ingredient_mentions_rows": 123598,
+  "sha256_recipes_processed": "113172f424e612ca872c8aa34ab88e10b7b5cd1987b036e862d02e1c23b4bcc0"
+ },
+ "foodcom_local_parquet": {
+  "path": "data/external/foodcom/recipes.parquet",
+  "rows": 522517,
+  "in_REC": false,
+  "licence": "CC0 declared by Kaggle uploader; authority NOT verified; local/derived use only",
+  "sha256": "9f591abe9f8d1c691bbc630b0431ec6613f09fabe93f1789af87a06484aae9fb"
+ },
+ "tasteset": {
+  "path": "data/raw/tasteset/TASTEset.csv",
+  "recipes": 700,
+  "in_REC": false,
+  "annotation": "third-party human NER entity spans (ingredient-line level)"
+ },
+ "recipe1m_plus": {
+  "locally_present": false
+ },
+ "recipedb": {
+  "locally_present_as_recipe_corpus": false,
+  "note": "only referenced via ING crosswalk fields / RECIPEDB2 KGE edges (964), no recipe text"
+ },
+ "gold_annotation_file_counts": {
+  "pilot_20_adjudicated(A1 ids)": 20,
+  "pilot_20_adjudicated_v1_1": 20,
+  "foodcom_ai_assisted_Kush": 20,
+  "foodcom_ai_assisted_Parv": 20,
+  "evidence_first_expansion_Kush_all": 1
+ },
+ "existing_annotation_artifacts": {
+  "A1_ingredient_mentions_csv": "NER+rule extraction on 11,934 A1 recipes (course project, AI/model-produced, not human-verified)",
+  "A1_instruction_events_jsonl": "rule-based action/utensil/duration/temperature per step (course project)",
+  "foodcom_ai_assisted_gold": "AI-assisted event/state annotation, Kush/Parv labels not independently produced -> GOLD_PENDING_INDEPENDENT_IAA",
+  "pilot_20_adjudicated": "20 A1 recipes adjudicated Kush+Parv (v1, v1.1)",
+  "final_link_set/fresh_linker_set": "linker evaluation gold (ingredient spans); SEALED test sets - not recipe-level gold, never used for tuning"
+ },
+ "evt_state_ledgers": {
+  "EVT_exists": false,
+  "STATE_exists": false,
+  "RXN_exists": false
+ },
+ "disk_note": "derived parquet outputs are local, git-ignored (REC text is third-party); manifests/hashes are committed"
+}
