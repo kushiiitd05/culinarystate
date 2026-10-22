@@ -1,0 +1,152 @@
+{
+ "artifact_manifest": {
+  "ledgers/recipe_base/recipe_base_v1.parquet": {
+   "bytes": 84553667,
+   "rows": 612782
+  },
+  "ledgers/recipe_base/gold_recipe_index_v1.parquet": {
+   "bytes": 7689,
+   "rows": 50
+  },
+  "ledgers/recipe_base/recipe_simulation_readiness_v1.parquet": {
+   "bytes": 7250470,
+   "rows": 612782
+  },
+  "ledgers/recipe_base/vocab_corpus_frequency_v1.parquet": {
+   "bytes": 23760,
+   "rows": 5302
+  },
+  "ledgers/recipe_semantics/recipe_expression_probe_v1.parquet": {
+   "bytes": 229431539,
+   "rows": 8166098
+  },
+  "ledgers/recipe_semantics/recipe_condition_mentions_v1.parquet": {
+   "bytes": 137042383,
+   "rows": 3904986
+  },
+  "ledgers/recipe_semantics/recipe_ingredient_mentions_v1.parquet": {
+   "bytes": 71012177,
+   "rows": 4964190
+  },
+  "ledgers/recipe_semantics/recipe_quantity_mentions_v1.parquet": {
+   "bytes": 41927180,
+   "rows": 4281956
+  },
+  "ledgers/recipe_semantics/recipe_process_mentions_v1.parquet": {
+   "bytes": 104251908,
+   "rows": 12401784
+  },
+  "registry/condition_variable_registry_v1.csv": {
+   "bytes": 4147,
+   "rows": null
+  },
+  "registry/condition_variable_bounds_registry_v1.csv": {
+   "bytes": 2633,
+   "rows": null
+  },
+  "registry/notation_rule_registry_v1.csv": {
+   "bytes": 3457,
+   "rows": null
+  },
+  "registry/source_dialect_mapping_registry_v1.csv": {
+   "bytes": 3809,
+   "rows": null
+  },
+  "registry/recipe_location_cues_v1.csv": {
+   "bytes": 767,
+   "rows": null
+  },
+  "registry/recipe_quality_tier_registry_v1.csv": {
+   "bytes": 2201,
+   "rows": null
+  },
+  "registry/recipe_condition_surface_forms_v1.csv": {
+   "bytes": 2988024,
+   "rows": null
+  },
+  "registry/recipe_quantity_surface_forms_v1.csv": {
+   "bytes": 104266,
+   "rows": null
+  },
+  "registry/recipe_temporal_surface_forms_v1.csv": {
+   "bytes": 90073,
+   "rows": null
+  },
+  "registry/recipe_process_surface_forms_v1.csv": {
+   "bytes": 1039738,
+   "rows": null
+  }
+ },
+ "frozen": true,
+ "freeze_commit": "5476cf35a491c3e2381eaa3c70890f6ad6a9ee94",
+ "uncommitted_among_frozen_files": null,
+ "condition_normalizer_fingerprint": {
+  "normalizer_version": "condition_normalizer@2.0.0-07H",
+  "code_sha256": {
+   "condition_normalizer.py": "d0ceaa91ac73a7aa748f82127211df7cb6229448ce4925b49b6dbf2419c10168",
+   "condition_parser.py": "5bc2e4400c423b8a9c3bec54c6dd2303d9a7d4e96c9418f85cad1b1bca57677b",
+   "condition_units.py": "fd3a3f433619d0f853d229b90b976b9cf29e272bce722fa354c07cb0b365abc9",
+   "source_dialect.py": "9b750341fa0264ca988a3e50118ac1b3d3302ee22ee85aa2b3533837136fa6f9"
+  },
+  "schema_sha256": "530bf87498d71ccbb0e2dbf57ec6efdfe996d1f4a85ca9d932ea3f628b0bede4",
+  "registry_sha256": {
+   "condition_variable_registry_v1.csv": "0c036cce18d8fbe87b6e9b6c76fa756448501a901f1b98eef925b42ccced57ac",
+   "condition_variable_bounds_registry_v1.csv": "f1b96e95ee77657b27edda142289ea166ccc8309a97017d1534dd2d5c2adaafa",
+   "notation_rule_registry_v1.csv": "6579f5a8d928bb2eb0dcd5f6a8a4389de53c198596210aa91250cd6a6a49f97d",
+   "source_dialect_mapping_registry_v1.csv": "41934ee6b92289ece51066c9a890cf0f5dbf9c89060b026304b9b6eceb5c9812",
+   "measurement_basis_registry_v1.csv": "b257186948d0a10ebda7bb5de4bf42c686495197648b61dc1641ec6919e81f0b",
+   "measurement_location_registry_v1.csv": "a36d6042138ac4b3e7e89c34554563426944ebea8397f34befa0471e685bd84b",
+   "measurement_method_registry_v1.csv": "6e75d96a2e000aa4dfc86bc0669a8fba35842a228af8d89cd7074cfbfacceb7d",
+   "censoring_registry_v1.csv": "bd3c4808771630efc608813b508816c0b4014001a61b4acb74b64a3b26c4c1a8",
+   "retention_type_registry_v1.csv": "3d4e74439158c4e1786033dd686a5e04252dee3548a1915ae0b71b8fcfc9fb82",
+   "value_type_registry_v1.csv": "ce667905e2b2bb2ceea5c307347b2faa40459faea28d84306240ff0f08d12f52",
+   "quantity_form_registry_v1.csv": "d70de93db2e79311b2990f1098e834577a88e6cc75a0a8f4e2c0b52460c6506f",
+   "value_origin_registry_v1.csv": "752f2db0b7f41aa524158fdf0951bf45b37836f65e321a887ec08c12fd76dbc4",
+   "heat_transfer_mode_registry_v1.csv": "de81739b583469f0bb808e493e7dd0c829e1e15ae455ab32a1e2ba1a59bd6d2a"
+  },
+  "combined_sha256": "e7d58913627534d51c2d92c2943f2a0117c9a9c4371465cba3515c3130276a5f"
+ },
+ "code_sha256": {
+  "src/culinarystate/evidence/condition_parser.py": "5bc2e4400c423b8a9c3bec54c6dd2303d9a7d4e96c9418f85cad1b1bca57677b",
+  "src/culinarystate/evidence/condition_normalizer.py": "d0ceaa91ac73a7aa748f82127211df7cb6229448ce4925b49b6dbf2419c10168",
+  "src/culinarystate/evidence/condition_units.py": "fd3a3f433619d0f853d229b90b976b9cf29e272bce722fa354c07cb0b365abc9",
+  "src/culinarystate/evidence/source_dialect.py": "9b750341fa0264ca988a3e50118ac1b3d3302ee22ee85aa2b3533837136fa6f9",
+  "src/culinarystate/recipes/corpus.py": "d6a8f224d5eb249c10cb4657dccee1788e3bd39a6e6ceaedb59138061f2bea08",
+  "src/culinarystate/recipes/probe.py": "8a00ac6940adbdae914765e9e78b8ae1889ae503455b3f182c9cdcd489a1f6c8",
+  "src/culinarystate/recipes/ledgers.py": "31dbea67640e9b56af70074ffc7fb4028db0121d0259f3b765e633438aba2ab7",
+  "tools/build_recipe_base.py": "0306bc7d9d632ba4f2b2ff32432b3b15eac1c18bd1e3d4c2370f0f06caeb7453",
+  "tools/build_gold_index.py": "faf4f2b0c1d50fe00635222204abf8bd9c6ed822e33a1247df94cc6031bddfac",
+  "tools/step07hr_finalize.py": "91ea1208f1b9b4b4ddd7a54a7a0f8cfe050f4445329b3fe3fd754ff8e2e4b765"
+ },
+ "condition_schema_sha256": {
+  "registry/schemas/condition_value_v1.schema.json": "530bf87498d71ccbb0e2dbf57ec6efdfe996d1f4a85ca9d932ea3f628b0bede4"
+ },
+ "registry_sha256": {
+  "registry/condition_variable_registry_v1.csv": "0c036cce18d8fbe87b6e9b6c76fa756448501a901f1b98eef925b42ccced57ac",
+  "registry/condition_variable_bounds_registry_v1.csv": "f1b96e95ee77657b27edda142289ea166ccc8309a97017d1534dd2d5c2adaafa",
+  "registry/notation_rule_registry_v1.csv": "6579f5a8d928bb2eb0dcd5f6a8a4389de53c198596210aa91250cd6a6a49f97d",
+  "registry/source_dialect_mapping_registry_v1.csv": "41934ee6b92289ece51066c9a890cf0f5dbf9c89060b026304b9b6eceb5c9812",
+  "registry/recipe_location_cues_v1.csv": "ff9db5335136638f35ec80f1d651c10989927baae14437a8288afb98d76a72f6",
+  "registry/recipe_quality_tier_registry_v1.csv": "c64ef0b9c1948b4fc22700a156b9e55fb8fef751cdba0f9987cf4d803757f6f4",
+  "registry/recipe_condition_surface_forms_v1.csv": "cd497fb1431f66e8f6dba22cc10e90f9aafb9eb36ff5f511633034008921ecda",
+  "registry/recipe_quantity_surface_forms_v1.csv": "ad375d239d827ac98d372e1a495b4327825c4e0af859f26ae4dbbce65fb26ef4",
+  "registry/recipe_temporal_surface_forms_v1.csv": "7a27e8258eaff8533db3e9991e8c13f593f3166fa7141af9e7d786cab7537458",
+  "registry/recipe_process_surface_forms_v1.csv": "e406ebeb8a2556dd2fd3bc2dad99a11f7aa7664dfb3b76585e9c66ac344442ff"
+ },
+ "recipe_base_schema_sha256": "3074955ce967e32467d42e199e4db88efaa4239e1074530e9743639c1484cfc8",
+ "golden_suite_sha256": {
+  "tests/golden/condition_syntax_golden_v1.json": "99de186946cb23c7beb90ad068154082e6cb95acabb6285c4b10a0cca9d98cde"
+ },
+ "ledger_parquet_sha256": {
+  "ledgers/recipe_base/recipe_base_v1.parquet": "5545da589d9c77891d3aefcebf21374d75a03632d14a4e8231603c68c9c824f0",
+  "ledgers/recipe_base/gold_recipe_index_v1.parquet": "4832d7a91bcfd01bd32d643e84f5dcc3afef9373ac4d65fe360390eff62429cb",
+  "ledgers/recipe_base/recipe_simulation_readiness_v1.parquet": "411fd4e9028a0f0f73853ebec3e924c9cf5c1e99e1e972ecbf6d8b2266361536",
+  "ledgers/recipe_base/vocab_corpus_frequency_v1.parquet": "7ed80a40b65a944a4861cb778b9ad9dfc4cb47822de7ca8b66c20eec76068160",
+  "ledgers/recipe_semantics/recipe_expression_probe_v1.parquet": "636f67269d14dbdbeb6ca24972e5920a01e00007d2cc68ded7069e2ea7b48f0b",
+  "ledgers/recipe_semantics/recipe_condition_mentions_v1.parquet": "87714cd9480a2a70b1445d49ded2b2ce0852964d8b5b7a91cd987f6670b85627",
+  "ledgers/recipe_semantics/recipe_ingredient_mentions_v1.parquet": "98b3b43f41f4724105556d22bde5dbf90eb6fbc53b62d9b0b0571f19213ad612",
+  "ledgers/recipe_semantics/recipe_quantity_mentions_v1.parquet": "536ca63112ad1f3cbfe44c993b530437b4bfb41ddaaf050af35338d6e62dc469",
+  "ledgers/recipe_semantics/recipe_process_mentions_v1.parquet": "79fbd9c9eaa15e34ad7fd35a139a7ae171f5d31803494cb2188ce643487c7278"
+ },
+ "rule": "any change to these files after reviewers start invalidates the human audit; python tools/step07hr_freeze.py --verify"
+}

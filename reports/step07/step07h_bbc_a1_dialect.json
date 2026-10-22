@@ -1,0 +1,68 @@
+{
+ "a1_expressions": 209908,
+ "by_family": {
+  "QUANTITY": 107557,
+  "TIME": 32158,
+  "ENDPOINT": 27531,
+  "TIME_STRUCTURED_FIELD": 11924,
+  "TEMPERATURE": 11755,
+  "GAS_MARK": 5787,
+  "GEOMETRY": 4957,
+  "QUALITATIVE_HEAT": 4532,
+  "MEDIUM": 1975,
+  "TIME_QUALITATIVE": 1715,
+  "POWER": 17
+ },
+ "gas_mark_expressions": 5787,
+ "oven_compound_groups": 5726,
+ "fan_marked_temperatures": 4536,
+ "temperature_location": {
+  "SETPOINT": 11363,
+  "UNSPECIFIED": 259,
+  "MEDIUM": 70,
+  "CORE": 63
+ },
+ "top_temperature_patterns": {
+  "#c": 7109,
+  "#c fan": 4529,
+  "# degrees": 27,
+  "#°c": 22,
+  "# c": 15,
+  "#f": 10,
+  "#-#c": 8,
+  "# degrees c": 7
+ },
+ "top_time_patterns": {
+  "# mins": 15328,
+  "#-# mins": 7797,
+  "# min": 1421,
+  "# hr": 1213,
+  "# hrs": 1191,
+  "# minutes": 1156,
+  "#-# minutes": 691,
+  "# days": 516
+ },
+ "top_gas_patterns": {
+  "gas #": 5625,
+  "gas mark #": 60,
+  "gas ½": 30,
+  "gas ¼": 24,
+  "gas #½": 17
+ },
+ "top_endpoint_openers": {
+  "until smooth": 1061,
+  "until golden": 754,
+  "until golden and": 703,
+  "until you have": 628,
+  "until tender": 604,
+  "until the mixture": 545,
+  "until softened": 514,
+  "until golden brown": 433
+ },
+ "time_non_valid": {
+  "CALENDAR_DURATION_NOT_CONVERTED": 333,
+  "INTERVAL_REVERSED,SLASH_NOTATION_RANGE_OR_ALTERNATIVES": 30,
+  "RAW_TEXT_PRESENT_BUT_NOT_PARSED": 20,
+  "SLASH_NOTATION_RANGE_OR_ALTERNATIVES": 3
+ }
+}

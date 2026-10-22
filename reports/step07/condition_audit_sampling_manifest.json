@@ -30,13 +30,13 @@
   "PHENOL-EXPLORER-3.6": 73,
   "USDA-RETN-R6": 8
  },
- "packet_version": "v3 (frozen 07H normalizer; normalised columns now show canonical values, open/closed interval ends, approximate marker, pressure reference, calendar durations; same 100 conditions as v1/v2; v1/v2 invalid as audit inputs)",
+ "packet_version": "v4 (frozen 07H normalizer; normalised columns now show canonical values, open/closed interval ends, approximate marker, pressure reference, calendar durations; same 100 conditions as v1/v2; v1/v2 invalid as audit inputs)",
  "normalizer_fingerprint": {
   "normalizer_version": "condition_normalizer@2.0.0-07H",
   "code_sha256": {
-   "condition_normalizer.py": "74cb21d85362dcac39aa77309c5f4ce735bb131057e54a1145e9915d5bf882d3",
-   "condition_parser.py": "49b87c45aff248e5f456476b791f3e4d43c22203788f6143112c1baf13447e80",
-   "condition_units.py": "f348b72364e811720c123ce979498ff1e589bc6aa5a0c3d362b2be7a1440b4e1",
+   "condition_normalizer.py": "d0ceaa91ac73a7aa748f82127211df7cb6229448ce4925b49b6dbf2419c10168",
+   "condition_parser.py": "5bc2e4400c423b8a9c3bec54c6dd2303d9a7d4e96c9418f85cad1b1bca57677b",
+   "condition_units.py": "fd3a3f433619d0f853d229b90b976b9cf29e272bce722fa354c07cb0b365abc9",
    "source_dialect.py": "9b750341fa0264ca988a3e50118ac1b3d3302ee22ee85aa2b3533837136fa6f9"
   },
   "schema_sha256": "530bf87498d71ccbb0e2dbf57ec6efdfe996d1f4a85ca9d932ea3f628b0bede4",
@@ -55,10 +55,10 @@
    "value_origin_registry_v1.csv": "752f2db0b7f41aa524158fdf0951bf45b37836f65e321a887ec08c12fd76dbc4",
    "heat_transfer_mode_registry_v1.csv": "de81739b583469f0bb808e493e7dd0c829e1e15ae455ab32a1e2ba1a59bd6d2a"
   },
-  "combined_sha256": "a5991a9cda56a867b0a1b845ec5376a088840962dfc0b45c06a826cc2d2f646e"
+  "combined_sha256": "e7d58913627534d51c2d92c2943f2a0117c9a9c4371465cba3515c3130276a5f"
  },
- "sha256_packet_Kush": "8a859743c3937f5c4408c22deffcf67272d9df26dcd615dc6bec355371ccabc6",
- "sha256_packet_Parv": "8a859743c3937f5c4408c22deffcf67272d9df26dcd615dc6bec355371ccabc6",
+ "sha256_packet_Kush": "533c49ba9a55ec06f4c4a5f77a065d1946b4cc7ae787e36689ac1cbb56118571",
+ "sha256_packet_Parv": "533c49ba9a55ec06f4c4a5f77a065d1946b4cc7ae787e36689ac1cbb56118571",
  "audited_by_humans": false,
  "status": "PENDING_HUMAN_SUBGATE (kappa >= 0.8)"
 }

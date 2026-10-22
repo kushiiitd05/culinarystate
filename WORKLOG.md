@@ -909,3 +909,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/evidence/condition_*.py`, `source_dialect.py`, `registry/*bounds*`, `*dialect*`, `reports/step07/step07h_*`
 - **Verified:** gate 10/10 PASS; combined hash a5991a9cda56; freeze commit 4e7db13
 - **Next:** Kush+Parv blind review of packet v3, then tools/step07_agreement.py; Step 08 NOT authorised
+
+### S133 · 2026-10-22 09:13 IST · ES-1 · STEP 07H-R full recipe-base consolidation + ledger sync + parser freeze
+- **Who:** Kush
+- **Did:** 612,782 indexed recipes (89,565 REC ids + 522,517 Food.com + 700 TASTEset), 8.17M expressions via final parser, derived recipe ledgers, DATASET rows, sync matrix, Gold index (40 GOLD_PENDING), gate 7/7, deterministic x2, frozen, packet v4. Human gate pending; Step 08 NOT started.
+- **Files:** `src/culinarystate/recipes/*`, `tools/build_recipe_base.py`, `tools/step07hr_*.py`, `registry/recipe_*`, `ledgers/recipe_*`, `reports/step07/step07h*`
+- **Verified:** 450 tests pass; 4414 regression 0 unexplained; 2 rebuilds byte-identical; freeze fingerprint e7d58913
+- **Next:** Kush+Parv blind review of packet v4 -> tools/step07_agreement.py; Step 08 only after the gate
