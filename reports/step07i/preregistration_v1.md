@@ -34,3 +34,6 @@ RECIPE_SOURCE_ALL = every indexed record (with its usage scope); RECIPE_DEDUP_EX
 
 ## 9. Not allowed
 Editing the frozen Step-07H-R parser/normalizer/schema/mappings; tuning on family results; deleting or rewriting REC; promoting Gold to relatives; inventing licences; starting Step 08.
+
+## Amendment A1 (committed BEFORE the full-corpus identity run; feasibility only)
+A 1-in-20 sample test showed the ingredient-token LSH (8 bands x 4 rows) producing ~660k candidate pairs from 30k recipes, dominated by tiny ingredient sets, which scales to an infeasible number of pairs on 612k recipes. Amended candidate-generation parameters only: ingredient-LSH is restricted to representatives with >=4 ingredient tokens (consistent with the family rule's own >=4 requirement) and its bucket cap is 50 instead of 200 (steps-LSH cap stays 200). The amendment changes which pairs are *retrieved* for scoring; it does not change any decision rule, weight or threshold, was made from computational blow-up on a sample (no family/duplicate counts were consulted), and skipped buckets are reported as a recall diagnostic.
