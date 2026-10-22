@@ -923,3 +923,6 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/identity/*`, `tools/step07i_*.py`, `tests/unit/test_identity_pipeline.py`, `reports/step07i/*`, `registry/plan_authority_map_v1.csv`, `ledgers/recipe_identity/run_manifests/*`
 - **Verified:** 11 identity tests + 3482 suite tests pass (1 pre-existing unrelated hang in test_transition deselected); sample output bit-identical to old script; final_hash 963466d8f207
 - **Next:** Kush+Parv blind review of duplicate packet v1 and condition packet v4; Step 08 NOT authorised
+
+## S135 · 2026-10-22 · Usage decision D-026 and master-plan audit intake
+Recorded D-026 (owner decision: all 612,782 recipes usable for project use; overlay registry, frozen files untouched). Received the untracked master-plan research audit from manjot-server (reports/master_plan/, registry/master_plan_confidence_v2.csv): DRAFT, critique round skipped; staged outside the repo, not adopted. Step 08 still not started; condition gate still PENDING_HUMAN_REVIEW.
