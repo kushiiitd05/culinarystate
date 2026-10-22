@@ -1,0 +1,87 @@
+{
+ "recipes": 612782,
+ "exact_duplicate_groups": 1039,
+ "records_in_multi_member_groups": 2107,
+ "logical_recipes_exact_dedup": 611714,
+ "exact_stats": {
+  "EXACT_BINARY_COPY|raw_hash": {
+   "groups": 665,
+   "records": 1351
+  },
+  "EXACT_BINARY_COPY|rec_content_sha256": {
+   "groups": 230,
+   "records": 475
+  },
+  "EXACT_NORMALIZED_COPY|norm_text_hash": {
+   "groups": 1039,
+   "records": 2107
+  },
+  "MIRRORED_COPY|canonical_url": {
+   "groups": 0,
+   "records": 0
+  }
+ },
+ "candidate_pairs": 8639518,
+ "candidate_diag": {
+  "ing_lsh_buckets_skipped_over_cap": 4745,
+  "ing_lsh_records_in_skipped_buckets": 791511,
+  "pairs_by_source_bit": {
+   "1": 678114,
+   "2": 58612,
+   "4": 7940499,
+   "8": 716
+  },
+  "pairs_total_candidates": 8639518,
+  "partitions": 87,
+  "raw_pairs_by_source": {
+   "family": 716,
+   "ing": 8476318,
+   "steps": 256346,
+   "title": 678114
+  },
+  "steps_lsh_buckets_skipped_over_cap": 0,
+  "steps_lsh_records_in_skipped_buckets": 0,
+  "title_blocks_subblocked": 77,
+  "title_subblocks_skipped_over_60": 1
+ },
+ "diagnostics": {
+  "ing_lsh_buckets_skipped_over_cap": 4745,
+  "ing_lsh_records_in_skipped_buckets": 791511,
+  "pairs_by_source_bit": {
+   "1": 678114,
+   "2": 58612,
+   "4": 7940499,
+   "8": 716
+  },
+  "pairs_total_candidates": 8639518,
+  "partitions": 87,
+  "raw_pairs_by_source": {
+   "family": 716,
+   "ing": 8476318,
+   "steps": 256346,
+   "title": 678114
+  },
+  "steps_lsh_buckets_skipped_over_cap": 0,
+  "steps_lsh_records_in_skipped_buckets": 0,
+  "title_blocks_subblocked": 77,
+  "title_subblocks_skipped_over_60": 1
+ },
+ "scored_kept_pairs": 744615,
+ "provisional_family_edges": 6589,
+ "families": 605476,
+ "multi_member_families_over_reps": 5803,
+ "dish_family_candidates": 46697,
+ "family_review_status": {
+  "FAMILY_CANDIDATE_CONSISTENT": 5759,
+  "FAMILY_CANDIDATE_REVIEW": 44
+ },
+ "output_hashes": {
+  "duplicate_group_members_v1": "2d5919bd84956067efb5cfeaa1884c2f887a7b944c3092dd886ebb47c78c475b",
+  "recipe_family_members_v1": "45e8c0855290a962bb19496708013adf6e84c402346fd9f735d661473ea6de9d",
+  "dish_family_candidates_v1": "32c61135c703a3fc8597bfa8cba861f25db92ac754728a26ba1c3049f59ba1bb",
+  "candidate_pairs_v1": "af5d483b52a21b0468ba393ff754fc53abeffd4b83e5e29efab2067d935226a4",
+  "recipe_family_consistency_v1": "313db1bf1aab11aef75c89eff56cbcf9f36f0b1dfcaa5a9177fcac1588d75f2a"
+ },
+ "seconds": 54,
+ "final_hash": "963466d8f207ee960235454a91e3a2459688568552778c8f497bfab2c1516d4d"
+}
