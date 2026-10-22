@@ -1,0 +1,24 @@
+mapping_id,source_family,field,raw_pattern,canonical_target,status,evidence,verified_by,version
+DM-001,*,basis,FRESH_WEIGHT,MB-001,VERIFIED,internal ledger vocabulary -> measurement_basis_registry_v1 definition,step07 registry definition,1
+DM-002,*,basis,DRY,MB-002,VERIFIED,internal ledger vocabulary -> measurement_basis_registry_v1 definition,step07 registry definition,1
+DM-003,*,basis,PER_VOLUME,MB-005,VERIFIED,internal ledger vocabulary -> measurement_basis_registry_v1 definition,step07 registry definition,1
+DM-004,*,basis,RETENTION_TR_OR_AR,MB-007,VERIFIED,internal ledger vocabulary -> measurement_basis_registry_v1 definition,step07 registry definition,1
+DM-005,*,basis,TRUE_RETENTION,MB-007,VERIFIED,internal ledger vocabulary -> measurement_basis_registry_v1 definition,step07 registry definition,1
+DM-006,USDA-RETN-R6,retention_type,RETENTION_TR_OR_AR,RT-004,VERIFIED,SOURCE_STATES_MIXED_UNMARKED,step07 (ES-1.2 source note),1
+DM-007,BOGNAR-2002,retention_type,TRUE_RETENTION,RT-001,VERIFIED,NAMED_BY_SOURCE,step07 (ES-1.2 source note),1
+DM-008,PHENOL-EXPLORER-3.6,retention_type,*,RT-003,CANDIDATE,SOURCE_DESCRIPTION_SECONDARY_SNIPPET_UNVERIFIED; primary source check pending,,1
+DM-009,*,temperature_location,SETPOINT,temp_equipment_setpoint,VERIFIED,internal ledger location enum -> condition_variable_registry_v1,step07 registry definition,1
+DM-010,*,temperature_location,MEDIUM,temp_medium,VERIFIED,internal ledger location enum -> condition_variable_registry_v1,step07 registry definition,1
+DM-011,*,temperature_location,SURFACE,temp_surface,VERIFIED,internal ledger location enum -> condition_variable_registry_v1,step07 registry definition,1
+DM-012,*,temperature_location,CORE,temp_core,VERIFIED,internal ledger location enum -> condition_variable_registry_v1,step07 registry definition,1
+DM-013,*,temperature_location,UNSPECIFIED,temp_unspecified,VERIFIED,internal ledger location enum -> condition_variable_registry_v1,step07 registry definition,1
+DM-014,USDA-RETN-R6,source_abbreviation,CKD,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1
+DM-015,USDA-RETN-R6,source_abbreviation,BLD,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1
+DM-016,USDA-RETN-R6,source_abbreviation,BKD,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1
+DM-017,USDA-RETN-R6,source_abbreviation,DRND,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1
+DM-018,USDA-RETN-R6,source_abbreviation,DRAIND,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1
+DM-019,USDA-RETN-R6,source_abbreviation,FRIED,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1
+DM-020,USDA-RETN-R6,source_abbreviation,BRLD,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1
+DM-021,USDA-RETN-R6,source_abbreviation,STMD,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1
+DM-022,USDA-RETN-R6,source_abbreviation,BKD/SIMMRD,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1
+DM-023,USDA-RETN-R6,source_abbreviation,+,,UNVERIFIED,token seen in raw USDA strings; expansion NOT verified against USDA documentation; not guessed,step07 registry definition,1

@@ -13,7 +13,7 @@ SLASH = r"\d+(?:[.,]\d+)?\s*/\s*\d+(?:[.,]\d+)?\s*(?:s|sec|min|mins|h|hr|hrs|hou
 R = [
     ("NR-001", "duration", "/", SLASH, "INTERVAL", "", "range 15/20 min | alternatives | per-step times", "CANDIDATE_READINGS", "FLAG", "SLASH_NOTATION_RANGE_OR_ALTERNATIVES", "source legend for the database that uses it"),
     ("NR-002", "temperature", "- (spaced)", r"(?:^|[\s;,])[-−–]\s+\d", "", "temp_", "negative sign | range fragment of a preceding value", "CANDIDATE_READINGS", "FLAG", "SPACED_DASH_SIGN_OR_RANGE_FRAGMENT", "check the neighbouring value in the same COND record against the source"),
-    ("NR-003", "any", "~ / approx / around / about / ca.", r"(~|≈|\bapprox|\bca\.|\babout\b|\baround\b)", "", "", "approximate value (qualifier)", "STANDARD_CONVENTION", "QUALIFY", "APPROXIMATE", "none: value kept, approximate=True so downstream does not treat it as exact"),
+    ("NR-003", "any", "~ / approx / around / about / ca.", r"(~|≈|\bapprox\w*\.?|\bca\.|\babout\b|\baround\b|\broughly\b)", "", "", "approximate value (qualifier)", "STANDARD_CONVENTION", "QUALIFY", "APPROXIMATE", "none: value kept, approximate=True so downstream does not treat it as exact"),
     ("NR-004", "duration", ";", r";", "", "time_", "list of separate durations whose roles (e.g. cook vs storage) are not stated", "CANDIDATE_READINGS", "SPLIT", "MULTI_VALUE_LIST_ROLES_UNKNOWN", "source row context to assign a role per component"),
     ("NR-005", "temperature", "- (tight, leading)", r"(?:^|[\s;,(])[-−]\d", "", "temp_", "negative temperature (e.g. frozen storage)", "STANDARD_CONVENTION", "INFO", "", "location still required before use"),
     ("NR-006", "temperature", "- (between numbers)", r"\d\s*[-–−]\s*\d", "", "temp_", "range low-high", "STANDARD_CONVENTION", "INFO", "", ""),

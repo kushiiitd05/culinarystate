@@ -1,0 +1,32 @@
+variable,canonical_unit,hard_min,hard_max,hard_justification,plaus_min,plaus_max,plaus_justification,version
+time_duration,s,0,,duration cannot be negative,,,no upper plausibility bound (storage studies are long),1
+time_start_end,s,0,,offset within a process cannot be negative,,,,1
+time_hold_rest,s,0,,duration cannot be negative,,,,1
+time_trajectory,s,0,,time axis origin is 0,,,,1
+storage_age,s,0,,age cannot be negative,,,,1
+temp_equipment_setpoint,K,0,,absolute temperature below 0 K is impossible,,1773.15,above 1500 C is outside typical culinary equipment (warning only),1
+temp_medium,K,0,,absolute temperature below 0 K is impossible,,1773.15,outside typical culinary range (warning only),1
+temp_surface,K,0,,absolute temperature below 0 K is impossible,,1773.15,outside typical culinary range (warning only),1
+temp_core,K,0,,absolute temperature below 0 K is impossible,,1773.15,outside typical culinary range (warning only),1
+temp_unspecified,K,0,,absolute temperature below 0 K is impossible,,1773.15,outside typical culinary range (warning only),1
+temp_trajectory,K,0,,absolute temperature below 0 K is impossible,,1773.15,outside typical culinary range (warning only),1
+ph,pH,,,no hard bound: pH outside 0-14 is possible for concentrated acids/bases,0,14,food-domain expectation only (warning; the measurement is not discarded),1
+water_activity,aw,0,1,water activity is a ratio of vapour pressures in 0 to 1,,,,1
+relative_humidity,fraction,0,,relative humidity cannot be negative,,1,above 100 % is supersaturation (warning only),1
+moisture_content,fraction,0,,mass fraction cannot be negative (wet-basis upper bound 1 applied in code from the stated basis),,,,1
+dry_matter,fraction,0,1,mass fraction in 0 to 1,,,,1
+salt_content,fraction,0,1,mass fraction in 0 to 1,,,,1
+sugar_content,fraction,0,1,mass fraction in 0 to 1,,,,1
+fat_oil_content,fraction,0,1,mass fraction in 0 to 1,,,,1
+titratable_acidity,as stated,0,,concentration cannot be negative,,,,1
+oxygen_headspace,fraction,0,1,volume fraction in 0 to 1,,,,1
+pressure,Pa,,,absolute pressure >= 0 is enforced in code only when the reference is stated ABSOLUTE,,,,1
+microwave_power,W,0,,power cannot be negative,,,,1
+microwave_frequency,Hz,0,,frequency cannot be negative,,,,1
+thickness,m,0,,length cannot be negative,,,,1
+particle_size,m,0,,length cannot be negative,,,,1
+agitation_mixing,as stated,0,,rate cannot be negative,,,,1
+flow_rate,as stated,0,,flow cannot be negative,,,,1
+batch_size,g,0,,amount cannot be negative,,,,1
+starter_inoculum,as stated,0,,concentration cannot be negative,,,,1
+surface_area_volume_proxy,1/m,0,,ratio of positive quantities,,,,1
