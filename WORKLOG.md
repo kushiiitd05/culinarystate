@@ -902,3 +902,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/evidence/condition_normalizer.py`, `registry/*_registry_v1.csv`, `registry/schemas/condition_value_v1.schema.json`, `tools/step07_*.py`, `tools/build_step07_registries.py`, `tests/unit/test_condition_normalizer.py`, `reports/step07/*`, `DECISIONS.md`
 - **Verified:** pytest test_condition_normalizer 11 passed, test_es12_registries 5 passed; ledger sha256 unchanged
 - **Next:** STEP 08 source lineage (not started); human condition audit pending
+
+### S132 · 2026-10-22 07:41 IST · ES-1 · Step 07H normalizer hardening + packet v3
+- **Who:** Kush
+- **Did:** Raw parser/semantic/dialect layers; open-bound fix; calendar durations; hard vs plausibility bounds; first-class trajectories; uncertainty; strict schema; golden/property tests; regression 0 unexplained; frozen; packet v3 built. Human gate pending.
+- **Files:** `src/culinarystate/evidence/condition_*.py`, `source_dialect.py`, `registry/*bounds*`, `*dialect*`, `reports/step07/step07h_*`
+- **Verified:** gate 10/10 PASS; combined hash a5991a9cda56; freeze commit 4e7db13
+- **Next:** Kush+Parv blind review of packet v3, then tools/step07_agreement.py; Step 08 NOT authorised
