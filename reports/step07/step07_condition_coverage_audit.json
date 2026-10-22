@@ -1,0 +1,119 @@
+{
+ "conditions_audited": 4414,
+ "evd_rows": 17978,
+ "value_type_counts": {
+  "duration": {
+   "UNKNOWN": 2030,
+   "POINT": 2358,
+   "INTERVAL": 26
+  },
+  "temperature": {
+   "UNKNOWN": 2025,
+   "POINT": 2354,
+   "INTERVAL": 276
+  },
+  "pressure": {
+   "UNKNOWN": 4285,
+   "POINT": 129
+  },
+  "power": {
+   "UNKNOWN": 4354,
+   "POINT": 60
+  },
+  "medium": {
+   "NOT_STATED": 3455,
+   "STATED": 959
+  },
+  "ph": {
+   "UNKNOWN": 4414
+  },
+  "moisture": {
+   "UNKNOWN": 4414
+  },
+  "aw": {
+   "UNKNOWN": 4414
+  }
+ },
+ "status_counts": {
+  "duration": {
+   "UNKNOWN": 2030,
+   "VALID": 2384
+  },
+  "temperature": {
+   "UNKNOWN": 2025,
+   "AMBIGUOUS": 2409,
+   "VALID": 221
+  },
+  "pressure": {
+   "UNKNOWN": 4285,
+   "AMBIGUOUS": 129
+  },
+  "power": {
+   "UNKNOWN": 4354,
+   "VALID": 60
+  },
+  "medium": {
+   "UNKNOWN": 3455,
+   "VALID": 959
+  },
+  "ph": {
+   "UNKNOWN": 4414
+  },
+  "moisture": {
+   "UNKNOWN": 4414
+  },
+  "aw": {
+   "UNKNOWN": 4414
+  }
+ },
+ "reason_counts": {
+  "ph:NOT_STATED": 4414,
+  "moisture:NOT_STATED": 4414,
+  "aw:NOT_STATED": 4414,
+  "power:NOT_STATED": 4354,
+  "pressure:NOT_STATED": 4285,
+  "temperature:MEASUREMENT_LOCATION_MISSING": 2409,
+  "duration:NOT_STATED": 2030,
+  "temperature:NOT_STATED": 2025,
+  "pressure:PRESSURE_REFERENCE_UNSPECIFIED": 129
+ },
+ "temperature_location_counts": {
+  "(none stated)": 2025,
+  "UNSPECIFIED": 2409,
+  "MEDIUM": 21,
+  "SETPOINT": 35,
+  "CORE": 165
+ },
+ "measurement_basis_counts": {
+  "MB-007": 13612,
+  "MB-001": 3402,
+  "MB-005": 960,
+  "MB-002": 4
+ },
+ "retention_type_counts": {
+  "RT-004|VALID": 6994,
+  "RT-006|VALID": 520,
+  "RT-003|AMBIGUOUS": 3870,
+  "RT-001|VALID": 6594
+ },
+ "censoring_counts": {
+  "ABOVE_CAP": 5894,
+  "DETECTED": 11564,
+  "NOT_REPORTED": 520
+ },
+ "method_counts": {
+  "CALCULATION": 13612,
+  "UNKNOWN": 4366
+ },
+ "value_origin_counts": {
+  "SOURCE_IMPUTATION_POSSIBLE": 7018,
+  "REPORTED": 10960
+ },
+ "ledger_sha256_unchanged": true,
+ "ledger_sha256": {
+  "COND": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "EVD": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "MEAS": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+  "SVAR": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697"
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "seed": "step07-condition-audit-v1",
+ "n": 100,
+ "quota": {
+  "S1_temperature_location_stated": 20,
+  "S2_temperature_location_unspecified": 25,
+  "S3_interval": 15,
+  "S4_pressure_or_power": 15,
+  "S5_medium_only": 10,
+  "S6_all_unknown": 15
+ },
+ "pool_sizes": {
+  "S6_all_unknown": 1158,
+  "S5_medium_only": 677,
+  "S3_interval": 204,
+  "S2_temperature_location_unspecified": 1969,
+  "S4_pressure_or_power": 189,
+  "S1_temperature_location_stated": 217
+ },
+ "selected_by_stratum": {
+  "S1_temperature_location_stated": 20,
+  "S2_temperature_location_unspecified": 25,
+  "S3_interval": 15,
+  "S4_pressure_or_power": 15,
+  "S5_medium_only": 10,
+  "S6_all_unknown": 15
+ },
+ "source_family_counts": {
+  "BOGNAR-2002": 19,
+  "PHENOL-EXPLORER-3.6": 73,
+  "USDA-RETN-R6": 8
+ },
+ "sha256_packet_Kush": "4d1ed19bbd8cbc7486270a1efd2eb4a85f03b7a1c582c8f1ce4b1420f6d6a811",
+ "audited_by_humans": false,
+ "status": "PENDING_HUMAN_SUBGATE (kappa >= 0.8)"
+}

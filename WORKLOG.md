@@ -895,3 +895,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `registry/data_source_acquisition_manifest.csv`, `registry/source_claim_capability_matrix.csv`, `registry/evidence_query_matrix_v1.csv`, `reports/h_state/es_1_2_priority_cell_source_coverage.csv`, `reports/h_state/es_1_2_h2_approval_queue.md`, `reports/h_state/es_1_2_source_census.md`, `docs/BACKLOG_NONBLOCKING.md`, `DECISIONS.md`
 - **Verified:** tests/unit/test_es12_registries.py 5 passed; ES-1.1 export and ledgers untouched
 - **Next:** STEP 10 / ES-1.3 pilot after review of the census and H2 decisions (not started)
+
+### S131 · 2026-10-22 06:47 IST · STEP-07 · Condition and measurement normalization (automated gate PASS; human audit sub-gate pending)
+- **Who:** claude
+- **Did:** Built 10 controlled vocabularies, condition schema, deterministic normalizer (units, bases, retention types, censoring, methods), read-only coverage audit over 4,414 conditions / 17,978 EVD rows (0 invalid, ledgers unchanged), deterministic 100-condition human audit packet + protocol (kappa >= 0.8 pending), Step-06 source-note corrections, NER status correction
+- **Files:** `src/culinarystate/evidence/condition_normalizer.py`, `registry/*_registry_v1.csv`, `registry/schemas/condition_value_v1.schema.json`, `tools/step07_*.py`, `tools/build_step07_registries.py`, `tests/unit/test_condition_normalizer.py`, `reports/step07/*`, `DECISIONS.md`
+- **Verified:** pytest test_condition_normalizer 11 passed, test_es12_registries 5 passed; ledger sha256 unchanged
+- **Next:** STEP 08 source lineage (not started); human condition audit pending

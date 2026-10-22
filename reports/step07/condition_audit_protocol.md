@@ -1,0 +1,14 @@
+# Step 07 -- 100-condition human audit protocol (NOT yet conducted)
+
+Purpose: confirm that the deterministic normaliser represents source conditions without inference. Reviewers: Kush and Parv, independently and blind to each other. Packets (git-ignored, local): `annotation/condition_audit/condition_audit_packet_100_{Kush,Parv}.csv` (sampling manifest and seed: `condition_audit_sampling_manifest.json`; strata S1-S6, deterministic seed `step07-condition-audit-v1`).
+Per condition, judge each field (duration, temperature value, temperature location, pressure, power, medium) against the **raw source string shown** using exactly one code:
+- `CORRECT` -- the normalised value type/status matches what the raw text says.
+- `WRONG_TYPE` -- should be POINT / INTERVAL / QUALITATIVE / UNKNOWN (state which in the reason column).
+- `WRONG_VALUE` -- type right, number or unit wrong.
+- `WRONG_LOCATION` -- temperature assigned to a location the text does not support (setpoint vs medium vs surface vs core), or a location should have been left UNSPECIFIED.
+- `INFERRED` -- the normalised output contains information not in the raw text (any assumption).
+- `SHOULD_BE_AMBIGUOUS` -- the raw text is genuinely ambiguous (e.g. bare psi; "boiling"; percent vs fraction) and the normaliser should flag it.
+- `N/A` -- field not present in raw or output.
+`overall_judgement` = `ACCEPT` only if no field is WRONG_*/INFERRED. Do not look at the other reviewer's file. Do not use external sources; judge only against the raw string.
+Agreement: Cohen's kappa over per-field codes, and over overall ACCEPT/REJECT, computed with `tools/agreement.py` conventions once both packets are returned. **Gate: kappa >= 0.8 before any condition annotation is promoted for later scientific use.** Disagreements are adjudicated by a joint session; the adjudicated file is frozen with hashes before any normaliser change. The normaliser may not be modified based on a reviewer's file until the kappa and adjudication are recorded.
+Status: **PENDING_HUMAN_SUBGATE** (packets built, 0 judgements).
