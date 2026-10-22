@@ -1,0 +1,37 @@
+{
+ "frozen": true,
+ "freeze_commit": "4e7db137f70be32a03ea6e67cccb9a623e7969e4",
+ "fingerprint": {
+  "normalizer_version": "condition_normalizer@2.0.0-07H",
+  "code_sha256": {
+   "condition_normalizer.py": "74cb21d85362dcac39aa77309c5f4ce735bb131057e54a1145e9915d5bf882d3",
+   "condition_parser.py": "49b87c45aff248e5f456476b791f3e4d43c22203788f6143112c1baf13447e80",
+   "condition_units.py": "f348b72364e811720c123ce979498ff1e589bc6aa5a0c3d362b2be7a1440b4e1",
+   "source_dialect.py": "9b750341fa0264ca988a3e50118ac1b3d3302ee22ee85aa2b3533837136fa6f9"
+  },
+  "schema_sha256": "530bf87498d71ccbb0e2dbf57ec6efdfe996d1f4a85ca9d932ea3f628b0bede4",
+  "registry_sha256": {
+   "condition_variable_registry_v1.csv": "0c036cce18d8fbe87b6e9b6c76fa756448501a901f1b98eef925b42ccced57ac",
+   "condition_variable_bounds_registry_v1.csv": "f1b96e95ee77657b27edda142289ea166ccc8309a97017d1534dd2d5c2adaafa",
+   "notation_rule_registry_v1.csv": "6579f5a8d928bb2eb0dcd5f6a8a4389de53c198596210aa91250cd6a6a49f97d",
+   "source_dialect_mapping_registry_v1.csv": "41934ee6b92289ece51066c9a890cf0f5dbf9c89060b026304b9b6eceb5c9812",
+   "measurement_basis_registry_v1.csv": "b257186948d0a10ebda7bb5de4bf42c686495197648b61dc1641ec6919e81f0b",
+   "measurement_location_registry_v1.csv": "a36d6042138ac4b3e7e89c34554563426944ebea8397f34befa0471e685bd84b",
+   "measurement_method_registry_v1.csv": "6e75d96a2e000aa4dfc86bc0669a8fba35842a228af8d89cd7074cfbfacceb7d",
+   "censoring_registry_v1.csv": "bd3c4808771630efc608813b508816c0b4014001a61b4acb74b64a3b26c4c1a8",
+   "retention_type_registry_v1.csv": "3d4e74439158c4e1786033dd686a5e04252dee3548a1915ae0b71b8fcfc9fb82",
+   "value_type_registry_v1.csv": "ce667905e2b2bb2ceea5c307347b2faa40459faea28d84306240ff0f08d12f52",
+   "quantity_form_registry_v1.csv": "d70de93db2e79311b2990f1098e834577a88e6cc75a0a8f4e2c0b52460c6506f",
+   "value_origin_registry_v1.csv": "752f2db0b7f41aa524158fdf0951bf45b37836f65e321a887ec08c12fd76dbc4",
+   "heat_transfer_mode_registry_v1.csv": "de81739b583469f0bb808e493e7dd0c829e1e15ae455ab32a1e2ba1a59bd6d2a"
+  },
+  "combined_sha256": "a5991a9cda56a867b0a1b845ec5376a088840962dfc0b45c06a826cc2d2f646e"
+ },
+ "golden_suite_sha256": "ae660011e4caadd6913a85cbe69c6f3a0cdae1b3a2081fe9fe37a57844351a4d",
+ "packet_v3_sha256": {
+  "Kush": "8a859743c3937f5c4408c22deffcf67272d9df26dcd615dc6bec355371ccabc6",
+  "Parv": "8a859743c3937f5c4408c22deffcf67272d9df26dcd615dc6bec355371ccabc6"
+ },
+ "rule": "any change to code/schema/registries/parser rules after reviewers start invalidates the human audit; verify with fingerprint() == combined_sha256 below",
+ "verify_command": "python -c \"import sys;sys.path.insert(0,'src');from culinarystate.evidence import condition_normalizer as N;print(N.fingerprint()['combined_sha256'])\""
+}
