@@ -50,9 +50,7 @@ for cid in sorted(used):
     tally("duration", r)
     temps = c.get("temperatures") or []
     if temps:
-        for t in temps:
-            v = N.temperature_variable_for(t.get("location"))
-            res = N.from_qvalue(v, t.get("value"), location=t.get("location"))
+        for t, res in zip(temps, N.normalize_temperatures(temps)):
             tally("temperature", res)
             loc[t.get("location") or "UNSPECIFIED"] += 1
     else:

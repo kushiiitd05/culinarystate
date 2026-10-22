@@ -111,3 +111,19 @@ def test_outputs_validate_against_schema_and_registries_consistent():
         ids = [r[list(r)[0]] for r in rows]
         assert rows and len(ids) == len(set(ids)), name
     assert {r["name"] for r in csv.DictReader(open(root / "registry/value_type_registry_v1.csv"))} == set(N.VALUE_TYPES)
+
+
+def test_step07_fix_raw_text_guards_slash_dash_and_multi_values():
+    unparsed = N.from_qvalue("time_duration", {"status": "UNKNOWN", "raw": "60 s; 21 days"})
+    assert unparsed["status"] == N.AMBIGUOUS and N.R_RAW_UNPARSED in unparsed["reasons"] and unparsed["raw"] == "60 s; 21 days"
+    assert N.from_qvalue("time_duration", {"status": "UNKNOWN", "raw": None})["reasons"] == [N.R_NOT_STATED]
+    sl = N.from_qvalue("time_duration", {"status": "RANGE", "low": 45, "high": 75, "unit": "min", "raw": "LEGUMES,CKD 45/75MIN,BLD"})
+    assert sl["value_type"] == "INTERVAL" and sl["status"] == N.AMBIGUOUS and N.R_SLASH in sl["reasons"]
+    ok = N.from_qvalue("time_duration", {"status": "RANGE", "low": 15, "high": 20, "unit": "min", "raw": "15-20 min"})
+    assert ok["status"] == N.VALID
+    d = N.from_qvalue("temp_core", {"status": "MEASURED", "value": 75, "unit": "degC", "raw": "- 75 °C"}, location="CORE")
+    assert d["status"] == N.AMBIGUOUS and N.R_SPACED_DASH in d["reasons"]
+    two = N.normalize_temperatures([{"location": "CORE", "value": {"status": "MEASURED", "value": 66, "unit": "degC", "raw": "~ 66 °C"}}, {"location": "CORE", "value": {"status": "MEASURED", "value": 75, "unit": "degC", "raw": "- 75 °C"}}])
+    assert all(N.R_MULTI_SAME_LOC in r["reasons"] and r["status"] == N.AMBIGUOUS for r in two)
+    one = N.normalize_temperatures([{"location": "CORE", "value": {"status": "MEASURED", "value": 70, "unit": "degC", "raw": "70 °C"}}])
+    assert one[0]["status"] == N.VALID

@@ -57,26 +57,27 @@ for cid in sorted(fam):
 sample = []
 for s, q in QUOTA.items():
     sample += [(s, cid) for cid in sorted(pool.get(s, []), key=rank)[:q]]
-cols = ["audit_id", "condition_id", "stratum", "source_family", "raw_duration", "raw_temperatures(location|raw)", "raw_pressure", "raw_power", "medium", "normalised_duration", "normalised_temperatures", "normalised_pressure", "normalised_reasons"]
+cols = ["audit_id", "condition_id", "stratum", "source_family", "raw_duration", "raw_temperatures(location|raw)", "raw_pressure", "raw_power", "medium", "normalised_duration", "normalised_temperatures", "normalised_pressure", "normalised_power", "normalised_medium", "normalised_reasons"]
 rev = ["duration_judgement", "temperature_value_judgement", "temperature_location_judgement", "pressure_judgement", "power_judgement", "medium_judgement", "overall_judgement", "reason_if_not_correct"]
 (ROOT / "annotation/condition_audit").mkdir(parents=True, exist_ok=True)
 rows = []
 for i, (s, cid) in enumerate(sample, 1):
     c = cond[cid]
     d = N.from_qvalue("time_duration", c.get("duration"))
-    ts = [(t.get("location"), N.from_qvalue(N.temperature_variable_for(t.get("location")), t.get("value"), location=t.get("location"))) for t in (c.get("temperatures") or [])]
+    ts = list(zip([t.get("location") for t in (c.get("temperatures") or [])], N.normalize_temperatures(c.get("temperatures") or [])))
+    pw = N.from_qvalue("microwave_power", c.get("power") if isinstance(c.get("power"), dict) else None)
     p = N.from_qvalue("pressure", c.get("pressure") if isinstance(c.get("pressure"), dict) else None)
     rows.append({"audit_id": f"CA-{i:03d}", "condition_id": cid, "stratum": s, "source_family": fam[cid], "raw_duration": (c.get("duration") or {}).get("raw"),
                  "raw_temperatures(location|raw)": " ; ".join(f"{x.get('location')}|{(x.get('value') or {}).get('raw')}" for x in (c.get("temperatures") or [])), "raw_pressure": (c.get("pressure") or {}).get("raw") if isinstance(c.get("pressure"), dict) else None,
                  "raw_power": (c.get("power") or {}).get("raw") if isinstance(c.get("power"), dict) else None, "medium": c.get("medium"), "normalised_duration": f"{d['value_type']}/{d['status']}",
-                 "normalised_temperatures": " ; ".join(f"{loc}:{r['value_type']}/{r['status']}" for loc, r in ts) or "UNKNOWN", "normalised_pressure": f"{p['value_type']}/{p['status']}", "normalised_reasons": ",".join(sorted({x for _, r in ts for x in r['reasons']} | set(d['reasons']) | set(p['reasons'])))})
+                 "normalised_temperatures": " ; ".join(f"{loc}:{r['value_type']}/{r['status']}" for loc, r in ts) or "UNKNOWN", "normalised_pressure": f"{p['value_type']}/{p['status']}", "normalised_power": f"{pw['value_type']}/{pw['status']}" + (f" {pw.get('canonical_value')} W" if pw.get("canonical_value") is not None else ""), "normalised_medium": c.get("medium") or "NOT_STATED", "normalised_reasons": ",".join(sorted({x for _, r in ts for x in r['reasons']} | set(d['reasons']) | set(p['reasons']) | set(pw['reasons'])))})
 for who in ("Kush", "Parv"):
-    with open(ROOT / f"annotation/condition_audit/condition_audit_packet_100_{who}.csv", "w", newline="", encoding="utf-8-sig") as f:
+    with open(ROOT / f"annotation/condition_audit/condition_audit_packet_100_v2_{who}.csv", "w", newline="", encoding="utf-8-sig") as f:
         w = csv.DictWriter(f, fieldnames=cols + rev)
         w.writeheader()
         for r in rows:
             w.writerow(r)
 man = {"seed": SEED, "n": len(rows), "quota": QUOTA, "pool_sizes": {k: len(v) for k, v in pool.items()}, "selected_by_stratum": {s: sum(1 for x in rows if x["stratum"] == s) for s in QUOTA}, "source_family_counts": {f: sum(1 for x in rows if x["source_family"] == f) for f in sorted({x["source_family"] for x in rows})},
-       "sha256_packet_Kush": hashlib.sha256(open(ROOT / "annotation/condition_audit/condition_audit_packet_100_Kush.csv", "rb").read()).hexdigest(), "audited_by_humans": False, "status": "PENDING_HUMAN_SUBGATE (kappa >= 0.8)"}
+       "packet_version": "v2 (adds normalised_power and normalised_medium columns; v1 omitted them; same 100 conditions)", "sha256_packet_Kush": hashlib.sha256(open(ROOT / "annotation/condition_audit/condition_audit_packet_100_v2_Kush.csv", "rb").read()).hexdigest(), "audited_by_humans": False, "status": "PENDING_HUMAN_SUBGATE (kappa >= 0.8)"}
 (ROOT / "reports/step07/condition_audit_sampling_manifest.json").write_text(json.dumps(man, indent=1))
 print(json.dumps({k: man[k] for k in ("n", "pool_sizes", "selected_by_stratum", "source_family_counts")}))

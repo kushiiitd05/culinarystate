@@ -223,7 +223,50 @@ def normalize_value(var: str, *, value=None, low=None, high=None, unit=None, raw
 _TEMP_LOC = {"SETPOINT": "temp_equipment_setpoint", "MEDIUM": "temp_medium", "SURFACE": "temp_surface", "CORE": "temp_core", "UNSPECIFIED": "temp_unspecified"}
 
 
+_SLASH = re.compile(r"\d+(?:[.,]\d+)?\s*/\s*\d+(?:[.,]\d+)?\s*(?:s|sec|min|mins|h|hr|hrs|hours?|d|days?)\b", re.I)
+_SPACED_DASH = re.compile(r"(?:^|[\s;,])[-\u2212\u2013]\s+\d")
+R_RAW_UNPARSED, R_SLASH, R_SPACED_DASH, R_MULTI_SAME_LOC = "RAW_TEXT_PRESENT_BUT_NOT_PARSED", "SLASH_NOTATION_RANGE_OR_ALTERNATIVES", "SPACED_DASH_SIGN_OR_RANGE_FRAGMENT", "MULTIPLE_VALUES_SAME_LOCATION"
+
+
+def _flag(res: dict, code: str) -> dict:
+    res["reasons"] = list(dict.fromkeys(res["reasons"] + [code]))
+    if res["status"] in (VALID, UNKNOWN):
+        res["status"] = AMBIGUOUS
+    return res
+
+
 def from_qvalue(var: str, qv: dict | None, *, location: str | None = None, **kw) -> dict:
+    """Adapter with raw-text guards (Step 07 fix): a value is never reported as NOT_STATED when raw text exists; slash notation and spaced dashes are flagged, never silently read."""
+    res = _from_qvalue(var, qv, location=location, **kw)
+    raw = (qv or {}).get("raw")
+    if raw and res["value_type"] == "UNKNOWN" and res["reasons"] == [R_NOT_STATED]:
+        res["reasons"] = [R_RAW_UNPARSED]
+        res["status"] = AMBIGUOUS
+        res["raw"] = raw
+    if raw and res["value_type"] == "INTERVAL" and _SLASH.search(str(raw)):
+        _flag(res, R_SLASH)
+    if raw and var.startswith("temp_") and _SPACED_DASH.search(str(raw)):
+        _flag(res, R_SPACED_DASH)
+    return res
+
+
+def normalize_temperatures(temps: list[dict]) -> list[dict]:
+    """Normalise a COND `temperatures` list; repeated values at one location are flagged (could be a split range or alternatives)."""
+    out = []
+    seen: dict[str, int] = {}
+    for t in temps or []:
+        loc = (t.get("location") or "UNSPECIFIED").upper()
+        seen[loc] = seen.get(loc, 0) + 1
+    for t in temps or []:
+        loc = (t.get("location") or "UNSPECIFIED").upper()
+        r = from_qvalue(temperature_variable_for(loc), t.get("value"), location=loc)
+        if seen[loc] > 1:
+            _flag(r, R_MULTI_SAME_LOC)
+        out.append(r)
+    return out
+
+
+def _from_qvalue(var: str, qv: dict | None, *, location: str | None = None, **kw) -> dict:
     """QVALUE statuses: MEASURED -> POINT; RANGE -> INTERVAL; CENSORED -> INTERVAL with an open end; QUALITATIVE -> QUALITATIVE; anything else/None -> UNKNOWN."""
     if not qv or qv.get("status") in (None, "UNKNOWN", "NOT_APPLICABLE"):
         return normalize_value(var, raw=(qv or {}).get("raw"), **kw)
