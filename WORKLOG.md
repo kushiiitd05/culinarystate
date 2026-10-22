@@ -916,3 +916,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/recipes/*`, `tools/build_recipe_base.py`, `tools/step07hr_*.py`, `registry/recipe_*`, `ledgers/recipe_*`, `reports/step07/step07h*`
 - **Verified:** 450 tests pass; 4414 regression 0 unexplained; 2 rebuilds byte-identical; freeze fingerprint e7d58913
 - **Next:** Kush+Parv blind review of packet v4 -> tools/step07_agreement.py; Step 08 only after the gate
+
+### S134 · 2026-10-22 16:22 IST · ES-1 · STEP 07I-R recovery + MAX-plan consensus + memory-safe recipe identity
+- **Who:** Kush+Claude
+- **Did:** Plan authority map + MAX consensus (no SSOT conflict); stalled-run diagnosis (likely memory pressure/swap thrashing, not proven OOM); feature file COMPLETE_REUSABLE; identity redesigned as phased resumable pipeline (exact/candidates/features/score/family) with atomic partitions, manifest and memory guard; full run: 612,782 recipes -> 611,714 exact reps, 8,639,518 candidate pairs scored in 187 s at 1.9 GB peak, 744,615 kept, 6,589 provisional edges, 605,476 families, 46,697 dish candidates; identical hashes on rerun and after SIGKILL; consensus FK moved to recipe_identity_fk_v1 (frozen base untouched); 400-pair blind packet unlabeled
+- **Files:** `src/culinarystate/identity/*`, `tools/step07i_*.py`, `tests/unit/test_identity_pipeline.py`, `reports/step07i/*`, `registry/plan_authority_map_v1.csv`, `ledgers/recipe_identity/run_manifests/*`
+- **Verified:** 11 identity tests + 3482 suite tests pass (1 pre-existing unrelated hang in test_transition deselected); sample output bit-identical to old script; final_hash 963466d8f207
+- **Next:** Kush+Parv blind review of duplicate packet v1 and condition packet v4; Step 08 NOT authorised

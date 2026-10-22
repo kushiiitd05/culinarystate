@@ -1,0 +1,32 @@
+object,path,action,reason,rows_now
+REC,ledgers/data/REC.jsonl,UNCHANGED_CANONICAL,immutable source memory,107760
+SRC,ledgers/data/SRC.jsonl,UNCHANGED_CANONICAL,Food.com/TASTEset remain UNREGISTERED:* (H2); usage classes in recipe_source_usage_registry_v1,609
+DATASET,ledgers/data/DATASET.jsonl,UNCHANGED_CANONICAL,5 rows from 07H-R,5
+FAM,ledgers/recipe_identity/recipe_family_members_v1.parquet,FAMILY_AGGREGATE_CREATED,recipe_family_registry/members/consensus/field_support built; legacy family ids kept as legacy_family_id,612782
+recipe_base,ledgers/recipe_base/recipe_base_v1.parquet,FOREIGN_KEY_UPDATE,"duplicate_group_id, recipe_family_id, dish_family_candidate_id, representative_recipe_id, family_role, duplicate_relation, usage columns added",612782
+ING,ledgers/data/ING.jsonl,VALIDATED_ONLY,no ING auto-created from unmapped strings; queue CSV only,5387
+ALIAS,ledgers/data/ALIAS.jsonl,VALIDATED_ONLY,used read-only,4183
+PROC,ledgers/data/PROC.jsonl,VALIDATED_ONLY,used read-only; unmapped queue CSV,552
+TOOL,ledgers/data/TOOL.jsonl,VALIDATED_ONLY,structural class map registry + recipe_tool_mentions_v1 (derived),297
+UNIT,ledgers/data/UNIT.jsonl,VALIDATED_ONLY,unit coverage audited,74
+QTY,ledgers/data/QNT.jsonl,BLOCKED_FUTURE_STEP,CQPO programme; recipe_quantity_mentions_v1 is the syntax-level derived layer,0
+POR,ledgers/data/POR.jsonl,BLOCKED_FUTURE_STEP,no portion/density evidence created,0
+COND,ledgers/data/COND.jsonl,UNCHANGED_CANONICAL,scientific conditions byte-identical,4746
+EVT,ledgers/data/EVT.jsonl,BLOCKED_FUTURE_STEP,will use stable recipe/duplicate/family ids,0
+STATE,ledgers/data/STATE.jsonl,BLOCKED_FUTURE_STEP,not built,0
+ENTITY,ledgers/data/ENTITY.jsonl,BLOCKED_FUTURE_STEP,not built,0
+EVD,ledgers/data/EVD.jsonl,UNCHANGED_CANONICAL,recipes create no evidence rows,57280
+MEAS,ledgers/data/MEAS.jsonl,UNCHANGED_CANONICAL,,3
+SVAR,ledgers/data/SVAR.jsonl,UNCHANGED_CANONICAL,,355
+RXN,ledgers/data/RXN.jsonl,BLOCKED_FUTURE_STEP,,0
+WARN,ledgers/data/WARN.jsonl,BLOCKED_FUTURE_STEP,,0
+HYP,ledgers/data/HYP.jsonl,BLOCKED_FUTURE_STEP,,0
+SIM,ledgers/data/SIM.jsonl,BLOCKED_FUTURE_STEP,,0
+KINETIC,ledgers/data/KINETIC.jsonl,BLOCKED_FUTURE_STEP,,0
+KGE,ledgers/data/KGE.jsonl,BLOCKED_FUTURE_STEP,graph rebuild from the consolidated base is a later step,80607
+Gold index,ledgers/recipe_base/gold_recipe_index_v1.parquet,FOREIGN_KEY_UPDATE,gold_firewall_v1 attaches duplicate_group_id/recipe_family_id; no annotation propagated,50
+recipe expressions,ledgers/recipe_semantics/recipe_expression_probe_v1.parquet,UNCHANGED_CANONICAL,recipe-level observations; joined via recipe_id -> duplicate_group_id -> recipe_family_id (no rewrite),8166098
+ingredient mentions,ledgers/recipe_semantics/recipe_ingredient_mentions_v1.parquet,UNCHANGED_CANONICAL,audited,4964190
+quantity mentions,ledgers/recipe_semantics/recipe_quantity_mentions_v1.parquet,UNCHANGED_CANONICAL,audited,4281956
+process mentions,ledgers/recipe_semantics/recipe_process_mentions_v1.parquet,UNCHANGED_CANONICAL,audited,12401784
+tool mentions,ledgers/recipe_semantics/recipe_tool_mentions_v1.parquet,FAMILY_AGGREGATE_CREATED,new derived recipe-level layer (required for the tool audit),2745700
