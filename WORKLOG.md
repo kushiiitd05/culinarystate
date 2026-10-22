@@ -929,3 +929,6 @@ Recorded D-026 (owner decision: all 612,782 recipes usable for project use; over
 
 ## S136 · 2026-10-22 · Adapted Master Plan v2 and SSOT v16 change set (DRAFTS)
 Wrote `docs/plan/CulinaryState_Master_Plan_v2_ADAPTED_DRAFT.md` and `docs/SSOT/ssot_v16_change_set_DRAFT.md` from the master-plan audit (DRAFT, critique round skipped) plus the Claude and ChatGPT verdicts. Nothing adopted: SSOT v15 and Master Plan v4.0 untouched; all 65 CRs PROPOSED_ONLY. Audit raw files stay outside the repo. Needs human D-027 (07-DEP, Step 03/04 base, 04.L/04.K) before Step 08.
+
+## S137 · 2026-10-23 · Step-07 provenance precheck tool and unsigned planning drafts
+Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance_precheck.py` (6 tests, 8 passing with the agreement tests): read-only validity precheck for the two returned v4 files; the gate and `step07_agreement.py` are unchanged. Drafted (UNSIGNED, not in force): D-027 authority rulings, 07.A amendment v4.1, `registry/preregistered_thresholds_v1_DRAFT.csv`, next-steps runbook. Packet v4 untouched; STEP 08 NOT STARTED.
