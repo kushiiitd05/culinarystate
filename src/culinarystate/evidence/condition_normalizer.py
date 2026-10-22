@@ -223,9 +223,35 @@ def normalize_value(var: str, *, value=None, low=None, high=None, unit=None, raw
 _TEMP_LOC = {"SETPOINT": "temp_equipment_setpoint", "MEDIUM": "temp_medium", "SURFACE": "temp_surface", "CORE": "temp_core", "UNSPECIFIED": "temp_unspecified"}
 
 
-_SLASH = re.compile(r"\d+(?:[.,]\d+)?\s*/\s*\d+(?:[.,]\d+)?\s*(?:s|sec|min|mins|h|hr|hrs|hours?|d|days?)\b", re.I)
-_SPACED_DASH = re.compile(r"(?:^|[\s;,])[-\u2212\u2013]\s+\d")
-R_RAW_UNPARSED, R_SLASH, R_SPACED_DASH, R_MULTI_SAME_LOC = "RAW_TEXT_PRESENT_BUT_NOT_PARSED", "SLASH_NOTATION_RANGE_OR_ALTERNATIVES", "SPACED_DASH_SIGN_OR_RANGE_FRAGMENT", "MULTIPLE_VALUES_SAME_LOCATION"
+R_RAW_UNPARSED, R_MULTI_SAME_LOC = "RAW_TEXT_PRESENT_BUT_NOT_PARSED", "MULTIPLE_VALUES_SAME_LOCATION"
+R_SLASH, R_SPACED_DASH = "SLASH_NOTATION_RANGE_OR_ALTERNATIVES", "SPACED_DASH_SIGN_OR_RANGE_FRAGMENT"  # kept for importers; rules live in registry/notation_rule_registry_v1.csv
+
+
+def _load_notation_rules():
+    """Executable notation rules (action FLAG / QUALIFY / SPLIT) from the data-derived registry; INFO rows are documentation only."""
+    out = []
+    with open(REG / "notation_rule_registry_v1.csv", newline="", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            if r["action"] in ("FLAG", "QUALIFY", "SPLIT"):
+                r["_rx"] = re.compile(r["pattern"], re.I)
+                out.append(r)
+    return out
+
+
+NOTATION_RULES = _load_notation_rules()
+_COMPONENT = re.compile(r"(\d+(?:[.,]\d+)?)\s*([A-Za-z]+)")
+
+
+def _split_components(var: str, raw: str) -> list[dict]:
+    """';'-separated list -> one normalised component per part (roles unknown); a part without number+unit stays raw-unparsed."""
+    comps = []
+    for part in str(raw).split(";"):
+        m = _COMPONENT.search(part)
+        if m:
+            comps.append(normalize_value(var, value=float(m.group(1).replace(",", ".")), unit=m.group(2).lower(), raw=part.strip()))
+        else:
+            comps.append(_result(var, "UNKNOWN", AMBIGUOUS, [R_RAW_UNPARSED], part.strip()))
+    return comps
 
 
 def _flag(res: dict, code: str) -> dict:
@@ -233,6 +259,10 @@ def _flag(res: dict, code: str) -> dict:
     if res["status"] in (VALID, UNKNOWN):
         res["status"] = AMBIGUOUS
     return res
+
+
+def _field_of(var: str) -> str:
+    return "duration" if var.startswith("time_") else "temperature" if var.startswith("temp_") else "pressure" if var == "pressure" else "power" if "power" in var else var
 
 
 def from_qvalue(var: str, qv: dict | None, *, location: str | None = None, **kw) -> dict:
@@ -243,10 +273,20 @@ def from_qvalue(var: str, qv: dict | None, *, location: str | None = None, **kw)
         res["reasons"] = [R_RAW_UNPARSED]
         res["status"] = AMBIGUOUS
         res["raw"] = raw
-    if raw and res["value_type"] == "INTERVAL" and _SLASH.search(str(raw)):
-        _flag(res, R_SLASH)
-    if raw and var.startswith("temp_") and _SPACED_DASH.search(str(raw)):
-        _flag(res, R_SPACED_DASH)
+    for rule in NOTATION_RULES:
+        if not raw or rule["field"] not in ("any", _field_of(var)) or not rule["_rx"].search(str(raw)):
+            continue
+        if rule["requires_value_type"] and res["value_type"] != rule["requires_value_type"]:
+            continue
+        if rule["var_prefix"] and not var.startswith(rule["var_prefix"]):
+            continue
+        if rule["action"] == "FLAG":
+            _flag(res, rule["reason_code"])
+        elif rule["action"] == "QUALIFY":
+            res["approximate"] = True
+        elif rule["action"] == "SPLIT":
+            res["components"] = _split_components(var, raw)
+            _flag(res, rule["reason_code"])
     return res
 
 

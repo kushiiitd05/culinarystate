@@ -127,3 +127,22 @@ def test_step07_fix_raw_text_guards_slash_dash_and_multi_values():
     assert all(N.R_MULTI_SAME_LOC in r["reasons"] and r["status"] == N.AMBIGUOUS for r in two)
     one = N.normalize_temperatures([{"location": "CORE", "value": {"status": "MEASURED", "value": 70, "unit": "degC", "raw": "70 °C"}}])
     assert one[0]["status"] == N.VALID
+
+
+def test_notation_registry_drives_flags_and_qualifiers():
+    assert {r["action"] for r in N.NOTATION_RULES} == {"FLAG", "QUALIFY", "SPLIT"}
+    ap = N.from_qvalue("temp_medium", {"status": "MEASURED", "value": 66, "unit": "degC", "raw": "~ 66 °C"}, location="MEDIUM")
+    assert ap["approximate"] is True and ap["status"] == N.VALID and ap["canonical_value"] > 0
+    ex = N.from_qvalue("temp_medium", {"status": "MEASURED", "value": 66, "unit": "degC", "raw": "66 °C"}, location="MEDIUM")
+    assert "approximate" not in ex
+
+
+def test_semicolon_duration_list_split_roles_unknown():
+    r = N.from_qvalue("time_duration", {"status": "UNKNOWN", "raw": "2 min; 5 months"})
+    assert r["status"] == N.AMBIGUOUS and "MULTI_VALUE_LIST_ROLES_UNKNOWN" in r["reasons"]
+    assert len(r["components"]) == 2 and r["components"][0]["canonical_value"] == 120.0
+
+
+def test_negative_tight_dash_is_documented_not_flagged():
+    r = N.from_qvalue("temp_medium", {"status": "MEASURED", "value": -23, "unit": "degC", "raw": "-23°C"}, location="MEDIUM")
+    assert r["status"] == N.VALID and N.R_SPACED_DASH not in r["reasons"]
