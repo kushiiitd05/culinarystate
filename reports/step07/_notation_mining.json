@@ -1,0 +1,212 @@
+{
+ "fields_scanned": 5448,
+ "features": {
+  "temperature|degree_symbol_variants": {
+   "count": 2630,
+   "examples": [
+    "103°C",
+    "100°C",
+    "90°C"
+   ],
+   "current_normaliser": {
+    "POINT/AMBIGUOUS": 2231,
+    "POINT/VALID": 123,
+    "INTERVAL/AMBIGUOUS": 182,
+    "INTERVAL/VALID": 94
+   }
+  },
+  "duration|min_variants": {
+   "count": 631,
+   "examples": [
+    "ALC BEV,NOT STIRRED IN,BKD 25 MIN",
+    "ALC BEV,STIRRED,BKD/SIMMRD 15 MIN",
+    "ALC BEV,STIRRED,BKD/SIMMRD 30 MIN"
+   ],
+   "current_normaliser": {
+    "POINT/VALID": 548,
+    "UNKNOWN/AMBIGUOUS": 75,
+    "INTERVAL/VALID": 8
+   }
+  },
+  "temperature|tight_leading_dash": {
+   "count": 246,
+   "examples": [
+    "-23°C",
+    "-70°C",
+    "-18°C"
+   ],
+   "current_normaliser": {
+    "POINT/AMBIGUOUS": 245,
+    "INTERVAL/AMBIGUOUS": 1
+   }
+  },
+  "duration|semicolon_list": {
+   "count": 245,
+   "examples": [
+    "2 min; 5months",
+    "2 min; 4 months",
+    "2 min; 10 months"
+   ],
+   "current_normaliser": {
+    "UNKNOWN/AMBIGUOUS": 245
+   }
+  },
+  "temperature|dash_between_numbers": {
+   "count": 206,
+   "examples": [
+    "1-2°C",
+    "96-98°C",
+    "190-210°C"
+   ],
+   "current_normaliser": {
+    "INTERVAL/AMBIGUOUS": 181,
+    "INTERVAL/VALID": 25
+   }
+  },
+  "pressure|psi_bar_atm_unit": {
+   "count": 129,
+   "examples": [
+    "15 psi",
+    "400 Mpa",
+    "600 Mpa"
+   ],
+   "current_normaliser": {
+    "POINT/AMBIGUOUS": 129
+   }
+  },
+  "temperature|greater_than": {
+   "count": 69,
+   "examples": [
+    "> 75 °C",
+    "> 80 °C",
+    "> 90 °C"
+   ],
+   "current_normaliser": {
+    "INTERVAL/VALID": 69
+   }
+  },
+  "temperature|tilde_or_approx": {
+   "count": 68,
+   "examples": [
+    "around 100°C",
+    "~ 66 °C",
+    "~ 95 °C"
+   ],
+   "current_normaliser": {
+    "POINT/AMBIGUOUS": 2,
+    "POINT/VALID": 66
+   }
+  },
+  "power|watts": {
+   "count": 60,
+   "examples": [
+    "750 W",
+    "500 W",
+    "300 W"
+   ],
+   "current_normaliser": {
+    "POINT/VALID": 60
+   }
+  },
+  "duration|comma_list": {
+   "count": 28,
+   "examples": [
+    "MILK,HEATED APPROX 1 HOUR",
+    "MILK,HEATED APPROX 10MIN",
+    "MILK,HEATED APPROX 30MIN"
+   ],
+   "current_normaliser": {
+    "POINT/VALID": 10,
+    "INTERVAL/AMBIGUOUS": 18
+   }
+  },
+  "duration|usda_abbrev_cooking": {
+   "count": 25,
+   "examples": [
+    "ALC BEV,NOT STIRRED IN,BKD 25 MIN",
+    "ALC BEV,STIRRED,BKD/SIMMRD 1 HR",
+    "ALC BEV,STIRRED,BKD/SIMMRD 1.5 HR"
+   ],
+   "current_normaliser": {
+    "POINT/VALID": 7,
+    "INTERVAL/AMBIGUOUS": 18
+   }
+  },
+  "temperature|spaced_leading_dash": {
+   "count": 24,
+   "examples": [
+    "- 20°C",
+    "- 30°C",
+    "- 75 °C"
+   ],
+   "current_normaliser": {
+    "POINT/AMBIGUOUS": 24
+   }
+  },
+  "duration|slash_between_numbers": {
+   "count": 18,
+   "examples": [
+    "LEGUMES,CKD 15/20MIN,BLD,DRAIND,BKD",
+    "LEGUMES,CKD 15/20MIN,BLD,DRND,FRIED",
+    "LEGUMES,CKD 15/20MIN,BLD,WATER USED"
+   ],
+   "current_normaliser": {
+    "INTERVAL/AMBIGUOUS": 18
+   }
+  },
+  "duration|dash_between_numbers": {
+   "count": 8,
+   "examples": [
+    "12-15 min",
+    "4-5 min"
+   ],
+   "current_normaliser": {
+    "INTERVAL/VALID": 8
+   }
+  },
+  "duration|per_slash_unit": {
+   "count": 6,
+   "examples": [
+    "ALC BEV,STIRRED,BKD/SIMMRD 1 HR",
+    "ALC BEV,STIRRED,BKD/SIMMRD 1.5 HR",
+    "ALC BEV,STIRRED,BKD/SIMMRD 15 MIN"
+   ],
+   "current_normaliser": {
+    "POINT/VALID": 6
+   }
+  },
+  "duration|plus_sign": {
+   "count": 6,
+   "examples": [
+    "LEGUMES,CKD 15/20MIN,BOILED+BAKED",
+    "LEGUMES,CKD 15/20MIN,BOILED+FRIED",
+    "LEGUMES,CKD 2/2.5HRS,BOILED+BAKED"
+   ],
+   "current_normaliser": {
+    "INTERVAL/AMBIGUOUS": 6
+   }
+  },
+  "duration|hrs_variants": {
+   "count": 5,
+   "examples": [
+    "MILK,HEATED APPROX 1 HOUR",
+    "ALC BEV,STIRRED,BKD/SIMMRD 1 HR",
+    "ALC BEV,STIRRED,BKD/SIMMRD 1.5 HR"
+   ],
+   "current_normaliser": {
+    "POINT/VALID": 5
+   }
+  },
+  "duration|tilde_or_approx": {
+   "count": 3,
+   "examples": [
+    "MILK,HEATED APPROX 1 HOUR",
+    "MILK,HEATED APPROX 10MIN",
+    "MILK,HEATED APPROX 30MIN"
+   ],
+   "current_normaliser": {
+    "POINT/VALID": 3
+   }
+  }
+ }
+}
