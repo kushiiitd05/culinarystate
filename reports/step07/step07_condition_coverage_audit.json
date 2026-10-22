@@ -36,13 +36,14 @@
  },
  "status_counts": {
   "duration": {
-   "UNKNOWN": 2030,
-   "VALID": 2384
+   "UNKNOWN": 1785,
+   "VALID": 2366,
+   "AMBIGUOUS": 263
   },
   "temperature": {
    "UNKNOWN": 2025,
-   "AMBIGUOUS": 2409,
-   "VALID": 221
+   "AMBIGUOUS": 2417,
+   "VALID": 213
   },
   "pressure": {
    "UNKNOWN": 4285,
@@ -73,9 +74,13 @@
   "power:NOT_STATED": 4354,
   "pressure:NOT_STATED": 4285,
   "temperature:MEASUREMENT_LOCATION_MISSING": 2409,
-  "duration:NOT_STATED": 2030,
   "temperature:NOT_STATED": 2025,
-  "pressure:PRESSURE_REFERENCE_UNSPECIFIED": 129
+  "duration:NOT_STATED": 1785,
+  "temperature:MULTIPLE_VALUES_SAME_LOCATION": 472,
+  "duration:RAW_TEXT_PRESENT_BUT_NOT_PARSED": 245,
+  "pressure:PRESSURE_REFERENCE_UNSPECIFIED": 129,
+  "temperature:SPACED_DASH_SIGN_OR_RANGE_FRAGMENT": 24,
+  "duration:SLASH_NOTATION_RANGE_OR_ALTERNATIVES": 18
  },
  "temperature_location_counts": {
   "(none stated)": 2025,

@@ -12,8 +12,8 @@ Retention contract: reported retention factor, concentration ratio, log-fold-cha
 ## Current-data coverage (4,414 conditions referenced by 17,978 active EVD rows)
 | Field | Value-type counts | Status counts |
 |---|---|---|
-| duration | UNKNOWN 2,030; POINT 2,358; INTERVAL 26 | UNKNOWN 2,030; VALID 2,384 |
-| temperature (one entry per stated temperature) | UNKNOWN 2,025; POINT 2,354; INTERVAL 276 | UNKNOWN 2,025; AMBIGUOUS 2,409; VALID 221 |
+| duration | UNKNOWN 2,030; POINT 2,358; INTERVAL 26 | UNKNOWN 1,785; VALID 2,366; AMBIGUOUS 263 |
+| temperature (one entry per stated temperature) | UNKNOWN 2,025; POINT 2,354; INTERVAL 276 | UNKNOWN 2,025; AMBIGUOUS 2,417; VALID 213 |
 | pressure | UNKNOWN 4,285; POINT 129 | UNKNOWN 4,285; AMBIGUOUS 129 |
 | microwave power | UNKNOWN 4,354; POINT 60 | UNKNOWN 4,354; VALID 60 |
 | medium | NOT_STATED 3,455; STATED 959 | UNKNOWN 3,455; VALID 959 |
