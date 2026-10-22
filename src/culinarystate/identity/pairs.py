@@ -60,7 +60,19 @@ class Store:
         self.n_steps = df.n_steps.tolist()
         self.n_ing = df.n_ing_lines.tolist()
 
+    @classmethod
+    def from_lists(cls, **kw):
+        """store over an explicit subset of representatives (used per partition); keys mirror the attributes set in __init__"""
+        o = cls.__new__(cls)
+        o.__dict__.update(kw)
+        o.n = len(kw["id"])
+        return o
+
     def features(self, i, j):
+        """components + final score/edge (kept for tests and the legacy sample path)"""
+        return self.finalize(self.components(i, j))
+
+    def components(self, i, j):
         f = {}
         f["title_token"] = jacc(self.twords[i], self.twords[j])
         ti, tj = trigrams(self.title_norm[i]), trigrams(self.title_norm[j])
@@ -102,6 +114,11 @@ class Store:
         f["cross_source_family"] = self.src[i] != self.src[j]
         f["locale_agree"] = (self.locale[i] == self.locale[j]) if (self.locale[i] and self.locale[j]) else None
         f["cuisine_agree"] = (self.cuisine[i] == self.cuisine[j]) if (self.cuisine[i] and self.cuisine[j]) else None
+        f["min_tok_ok"] = len(self.tokset[i]) >= MIN_ING and len(self.tokset[j]) >= MIN_ING
+        f["proc3_ok"] = len(self.proc[i]) >= 3 and len(self.proc[j]) >= 3
+        return f
+
+    def finalize(self, f):
         num = den = 0.0
         for k, w_ in W.items():
             v = f.get(k)
@@ -110,17 +127,17 @@ class Store:
                 den += w_
         f["score"] = num / den if den else None
         f["features_available"] = sum(1 for k in W if f.get(k) is not None)
-        f["family_edge"] = self.family_edge(i, j, f)
+        f["family_edge"] = self.family_edge(None, None, f)
         return f
 
     def family_edge(self, i, j, f):
-        if len(self.tokset[i]) < MIN_ING or len(self.tokset[j]) < MIN_ING:
+        if not f["min_tok_ok"]:
             return False
         if f["ingredient_idf"] is None or f["ingredient_idf"] < T_IDF:
             return False
         if f["title_token"] is None or f["title_token"] < T_TITLE:
             return False
-        sup = (f["instruction_shingle"] is not None and f["instruction_shingle"] >= T_SHINGLE) or (f["process_seq"] is not None and f["process_seq"] >= T_PROC and len(self.proc[i]) >= 3 and len(self.proc[j]) >= 3)
+        sup = (f["instruction_shingle"] is not None and f["instruction_shingle"] >= T_SHINGLE) or (f["process_seq"] is not None and f["process_seq"] >= T_PROC and f["proc3_ok"])
         if not sup:
             return False
         if f["cuisine_agree"] is False:

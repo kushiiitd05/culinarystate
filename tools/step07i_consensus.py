@@ -53,7 +53,8 @@ def era_map(base):
             out[rid] = f"AUTHOR_BORN_{(int(m.group(1)) // 50) * 50}s" if m else "UNKNOWN"
     fc = pq.read_table(ROOT / "data/external/foodcom/recipes.parquet", columns=["RecipeId", "DatePublished"]).to_pandas()
     fcy = dict(zip(("FC%d" % int(r) for r in fc.RecipeId), (f"PUBLISHED_{d.year}" if pd.notna(d) else "UNKNOWN" for d in fc.DatePublished)))
-    out.update({k: v for k, v in fcy.items() if k in set(base.recipe_id)})
+    ids = set(base.recipe_id)
+    out.update({k: v for k, v in fcy.items() if k in ids})
     return out
 
 
@@ -175,8 +176,9 @@ def main():
     base2 = base.rename(columns={"recipe_family_id": "legacy_family_id", "family_method": "legacy_family_method"}).merge(keep, on="recipe_id", how="left", validate="1:1")
     base2["training_allowed"] = base2.source_id.map(lambda s: usage.get(s, {}).get("training_allowed", "UNKNOWN"))
     base2["raw_redistribution_allowed"] = base2.source_id.map(lambda s: usage.get(s, {}).get("raw_redistribution_allowed", "UNKNOWN"))
-    if not a.sample:
-        pq.write_table(pa.Table.from_pandas(base2, preserve_index=False), ROOT / "ledgers/recipe_base/recipe_base_v1.parquet", compression="zstd")
+    # the frozen 07H-R recipe base is NOT rewritten (its bytes/rows are in the 07H-R freeze manifest); identity foreign keys live in a separate join table keyed by recipe_id
+    fk_cols = ["recipe_id", "duplicate_group_id", "recipe_family_id", "dish_family_candidate_id", "representative_recipe_id", "family_role", "duplicate_relation", "duplicate_status", "usage_class", "training_allowed", "raw_redistribution_allowed"]
+    pq.write_table(pa.Table.from_pandas(base2[fk_cols], preserve_index=False), ID / f"recipe_identity_fk_v1{suf}.parquet", compression="zstd")
     # ---------------- views ----------------
     missing_raw = base2.annotation_status.eq("RAW_SEGMENT_MISSING_LOCALLY")
     v = pd.DataFrame({"recipe_id": base2.recipe_id, "usage_class": base2.usage_class, "in_SOURCE_ALL": True, "in_EXACT_DEDUP": base2.recipe_id == base2.duplicate_group_id.map(df.set_index("duplicate_group_id").group_representative_id[~df.set_index("duplicate_group_id").index.duplicated()]),

@@ -42,3 +42,14 @@ annotation/condition_audit/*.csv
 # STEP 07H-R derived recipe ledgers (large; third-party recipe-derived; hashes/manifests are committed instead)
 ledgers/recipe_base/*.parquet
 ledgers/recipe_semantics/*.parquet
+
+# 07I calibration packets contain third-party recipe text
+annotation/duplicate_calibration/
+ledgers/recipe_identity/*.parquet
+ledgers/recipe_identity/*.pkl
+# 07I-R run work dirs, benchmark manifests, logs (regenerable; committed manifest = run_manifests/step07i_identity_run_v1.json)
+ledgers/recipe_identity/run/
+ledgers/recipe_identity/run_manifests/_*
+logs/step07i/
+reports/step07i/_remote_cache/
+reports/step07i/_identity_summary*.json
