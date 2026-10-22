@@ -15,20 +15,21 @@ CALENDAR = {"month": "month", "months": "month", "year": "year", "years": "year"
 
 # --- pressure (to Pa). psi = lbf/in^2 exactly; torr = atm/760 exactly; mmHg = conventional 133.322387415.
 PRESSURE = {"pa": 1.0, "hpa": 100.0, "kpa": 1e3, "mpa": 1e6, "bar": 1e5, "mbar": 100.0, "atm": 101325.0, "psi": 0.45359237 * 9.80665 / (0.0254 ** 2), "mmhg": 133.322387415, "torr": 101325.0 / 760.0}
-LENGTH = {"um": 1e-6, "mm": 1e-3, "cm": 1e-2, "m": 1.0}
-POWER = {"w": 1.0, "kw": 1e3}
+LENGTH = {"um": 1e-6, "mm": 1e-3, "cm": 1e-2, "m": 1.0, "inch": 0.0254, "inches": 0.0254, '"': 0.0254}  # bare "in" is not accepted (ambiguous with the preposition)
+POWER = {"w": 1.0, "watt": 1.0, "watts": 1.0, "kw": 1e3, "kilowatt": 1e3, "kilowatts": 1e3}
 FREQUENCY = {"hz": 1.0, "mhz": 1e6, "ghz": 1e9}
 RATIO = {"percent": 0.01, "%": 0.01, "fraction": 1.0, "g/100g": 0.01, "aw": 1.0}
 PH = {"ph": 1.0}
 DIMS = {"time": ("s", TIME), "pressure": ("Pa", PRESSURE), "length": ("m", LENGTH), "power": ("W", POWER), "frequency": ("Hz", FREQUENCY), "mass_fraction": ("fraction", RATIO), "ratio": ("fraction", RATIO),
         "dimensionless": ("as stated", RATIO | PH), "volume_fraction": ("fraction", RATIO)}
 
-_TEMP_ALIASES = {"c": "degc", "celsius": "degc", "degc": "degc", "f": "degf", "fahrenheit": "degf", "degf": "degf", "k": "k", "kelvin": "k"}
+_TEMP_ALIASES = {"c": "degc", "celsius": "degc", "centigrade": "degc", "f": "degf", "fahrenheit": "degf", "k": "k", "kelvin": "k"}
 
 
 def temperature_unit(unit: str) -> str | None:
-    """canonical token degc / degf / k, else None. Accepts °C, ºC, ℃-normalised, 'deg C', 'degrees F', 'C', 'K'."""
-    u = re.sub(r"\s+", "", str(unit).strip().lower().replace("°", "deg").replace("º", "deg").replace("degrees", "deg"))
+    """canonical token degc / degf / k, else None. Accepts °C, ºC, 'deg C', 'degrees Fahrenheit', 'C', 'K', 'celsius'. A bare degree sign / 'degrees' carries NO scale -> None."""
+    u = re.sub(r"\s+", "", str(unit).strip().lower())
+    u = re.sub(r"^(?:degrees|degree|degs|deg|\u00b0|\u00ba)", "", u)
     return _TEMP_ALIASES.get(u)
 
 

@@ -310,6 +310,9 @@ def _flag(res: dict, code: str) -> dict:
     return res
 
 
+_CAL_RAW = re.compile(r"(\d+(?:[.,]\d+)?)\s*(months?|years?|yrs?)\b", re.I)
+
+
 def _field_of(var: str) -> str:
     return "duration" if var.startswith("time_") else "temperature" if var.startswith("temp_") else "pressure" if var == "pressure" else "power" if "power" in var else var
 
@@ -322,6 +325,12 @@ def from_qvalue(var: str, qv: dict | None, *, location: str | None = None, sourc
         res["reasons"] = [R_RAW_UNPARSED]
         res["status"] = AMBIGUOUS
         res["raw"] = raw
+    if raw and VARS.get(var, {}).get("dimension") == "time" and res["value_type"] == "POINT" and res.get("canonical_unit") == "s":
+        cm = _CAL_RAW.search(str(raw))
+        if cm and not res.get("calendar_unit"):  # the ledger stored a fixed-seconds value for a calendar duration at ingest: no fake precision
+            unit = U.calendar_unit(cm.group(2))
+            res = _result(var, "POINT", AMBIGUOUS, [R_CALENDAR, "CALENDAR_DURATION_CONVERTED_AT_SOURCE_INGEST"], raw, calendar_value=float(cm.group(1).replace(",", ".")), calendar_unit=unit, canonical_value=None, canonical_low=None, canonical_high=None,
+                          canonical_unit=res.get("canonical_unit"), open_low=False, open_high=False)
     for rule in NOTATION_RULES:
         if not raw or rule["field"] not in ("any", _field_of(var)) or not rule["_rx"].search(str(raw)):
             continue
@@ -488,6 +497,10 @@ def normalize_text(var: str, raw, *, location=None, basis=None, kind="absolute",
     if k == "LIST":
         r = _result(var, "UNKNOWN", AMBIGUOUS, ["MULTI_VALUE_LIST_ROLES_UNKNOWN"], raw, components=[normalize_text(var, q["raw"], location=location, basis=basis, kind=kind, pressure_reference=pressure_reference) for q in p["parts"]])
         return r
+    if k == "COMPOUND":
+        return _normalize_compound(var, raw, p["parts"])
+    if p["unit_text"] and p["unit_text"].strip().lower() in ("degrees", "degree", "deg", "degs", "\u00b0") and VARS.get(var, {}).get("dimension") == "temperature":
+        p = dict(p, unit_text=None, _scale_missing=True)  # scale not stated -> AMBIGUOUS (TEMPERATURE_SCALE_NOT_STATED), never INVALID
     unit = p["unit_text"] or (_LABEL_UNIT.get(p["variable_hint"]) if p["variable_hint"] == var else None)
     bs = basis or p["basis_hint"]
     kw = dict(unit=unit, raw=raw, location=location, basis=bs, kind=kind, pressure_reference=p["pressure_reference"] or pressure_reference, approximate=p["approximate"], uncertainty=p["uncertainty"])
@@ -497,12 +510,29 @@ def normalize_text(var: str, raw, *, location=None, basis=None, kind="absolute",
         r = normalize_value(var, low=p["low"], high=p["high"], **kw)
     else:  # BOUND
         r = normalize_bound(var, p["op"], p["low"] if p["low"] is not None else p["high"], censor_kind=p["censor_kind"], **kw)
+    if p.get("_scale_missing"):
+        r["reasons"] = ["TEMPERATURE_SCALE_NOT_STATED" if x == R_UNIT_MISSING else x for x in r["reasons"]]
     for a in p["ambiguities"]:
         _flag(r, _AMB_CODES.get(a, a))
     if p["variable_hint"] and p["variable_hint"] != var:
         _flag(r, "VARIABLE_HINT_MISMATCH")
     if basis and p["basis_hint"] and basis != p["basis_hint"]:
         _flag(r, "BASIS_CONFLICT")
+    return r
+
+
+def _normalize_compound(var: str, raw, parts) -> dict:
+    """'1 hr 30 mins' -> sum of fixed-length parts in seconds (time variables only). A calendar part (month/year) or a non-time unit -> AMBIGUOUS, no sum."""
+    if VARS.get(var, {}).get("dimension") != "time":
+        return _result(var, "UNKNOWN", AMBIGUOUS, ["COMPOUND_AMOUNT_NOT_SUPPORTED_FOR_VARIABLE"], raw, components=[])
+    total = 0.0
+    for q in parts:
+        kind, f = U.time_factor(q["unit_text"])
+        if kind != "FIXED":
+            return _result(var, "UNKNOWN", AMBIGUOUS, [R_CALENDAR if kind == "CALENDAR" else R_UNIT_UNKNOWN], raw, residual=str(raw))
+        total += q["value"] * f
+    r = normalize_value(var, value=total, unit="s", raw=raw)
+    r["reasons"] = list(dict.fromkeys(r["reasons"] + ["COMPOUND_DURATION_SUMMED"]))
     return r
 
 

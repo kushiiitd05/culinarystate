@@ -21,7 +21,7 @@ DASH = "-‐‑‒–—−"
 NUM = r"\d+(?:\.\d+)?|\.\d+|\d+,\d{1,2}(?!\d)"
 THOUSANDS = re.compile(r"\d{1,3},\d{3}(?!\d)")
 SIGNED = rf"[{DASH}+]?\s?(?:{NUM})"
-UNIT = r"(?:°\s*[CFKcfk]|deg(?:rees?)?\s*[CFKcfk]|[A-Za-zµμ%]+(?:/[A-Za-z0-9]+)?)(?:\s*\(\s*(?:a|g|d|abs|absolute|gauge|ga|diff)\s*\))?"
+UNIT = r"(?:°\s*(?:celsius|fahrenheit|centigrade|kelvin|[CFKcfk])\b|deg(?:rees?)?\s*(?:celsius|fahrenheit|centigrade|kelvin|[CFKcfk]\b)|°(?!\w)|[A-Za-zµμ%]+(?:/[A-Za-z0-9]+)?|[\"\u2033])(?:\s*\(\s*(?:a|g|d|abs|absolute|gauge|ga|diff)\s*\))?"
 
 _NOT_REPORTED = re.compile(r"^(?:not\s+(?:reported|stated|available|given|specified)|n\.?\s?/?\s?r\.?|n/?a|unknown|unreported|missing|nil|[-–—]+)$", re.I)
 _NON_DETECT = re.compile(r"^(?:n\.?d\.?|non[\s-]?detect(?:ed|able)?|not\s+detected|bdl)$", re.I)
@@ -52,8 +52,27 @@ def _num(s: str) -> float:
     return float(s.replace(",", "."))
 
 
+_VULGAR = {"\u00bc": 0.25, "\u00bd": 0.5, "\u00be": 0.75, "\u2150": 1 / 7, "\u2151": 1 / 9, "\u2152": 0.1, "\u2153": 1 / 3, "\u2154": 2 / 3, "\u2155": 0.2, "\u2156": 0.4, "\u2157": 0.6, "\u2158": 0.8, "\u2159": 1 / 6, "\u215a": 5 / 6,
+           "\u215b": 0.125, "\u215c": 0.375, "\u215d": 0.625, "\u215e": 0.875}
+_VULGAR_RX = re.compile(r"(?:(\d+)\s?)?([" + "".join(_VULGAR) + r"])")
+
+
+def _fractions(t: str) -> str:
+    """Deterministic fraction normalisation applied before NFKC: vulgar '2\u00bd'->2.5; mixed '2 1/2' and US '1-1/2' -> 1.5; common proper fractions 1/2 1/3 ... -> decimals.
+    Other a/b (e.g. '15/20 min', '45/75MIN') are NOT touched: they stay AMBIGUOUS slash notation."""
+    t = t.replace("\u2044", "/")  # fraction slash
+    def rep(m):
+        v = (int(m.group(1)) if m.group(1) else 0) + _VULGAR[m.group(2)]
+        return format(round(v, 6), "g")
+    t = _VULGAR_RX.sub(rep, t)
+    mixed = lambda m: format(round(int(m.group(1)) + int(m.group(2)) / int(m.group(3)), 6), "g") if int(m.group(2)) < int(m.group(3)) <= 8 else m.group(0)
+    t = re.sub(r"(?<![\d/.])(\d+)-(\d+)/(\d+)(?![\d/])", mixed, t)
+    t = re.sub(r"(?<![\d/.])(\d+)\s+(\d+)/(\d+)(?![\d/])", mixed, t)
+    return re.sub(r"(?<![\d/.])(1/2|1/3|2/3|1/4|3/4|1/8|3/8|5/8|7/8)(?![\d/])", lambda m: format(round(int(m.group(1).split("/")[0]) / int(m.group(1).split("/")[1]), 6), "g"), t)
+
+
 def _clean(text: str) -> str:
-    t = unicodedata.normalize("NFKC", str(text).replace("\u00ba", "\u00b0")).replace("\u00a0", " ")  # ordinal indicator -> degree sign
+    t = unicodedata.normalize("NFKC", _fractions(str(text).replace("\u00ba", "\u00b0").replace("\u2033", '"'))).replace("\u00a0", " ")  # ordinal indicator -> degree sign
     return re.sub(r"\s+", " ", t).strip()
 
 
@@ -133,13 +152,19 @@ def parse_raw(text) -> dict:
         utype = {"sd": "SD", "s.d.": "SD", "std": "SD", "se": "SE", "sem": "SE", "ci": "CI"}.get(kind_t, "REPORTED_UNSPECIFIED")
         amb = ["UNCERTAINTY_UNIT_CONFLICT"] if u1 and u2 and u1.lower() != u2.lower() else []
         return _result("NUMBER", raw, value=_num(u.group("v")), unit_text=u1 or u2, pressure_reference=ref1, uncertainty={"value": _num(u.group("e")), "unit_text": u2 or u1, "type": utype}, ambiguities=amb, **base)
+    # compound amounts: '1 hr 30 mins' / '2 hours and 15 minutes' (all parts NUMBER+unit)
+    UC = r"(?!(?:to|and|or|by|x)(?![A-Za-z]))(?:" + UNIT + ")"
+    cp = re.fullmatch(rf"(?:{NUM})\s*{UC}(?:\s*(?:and|,|&)?\s*(?:{NUM})\s*{UC})+", t, re.I)
+    if cp:
+        parts = [(_num(a), b) for a, b in re.findall(rf"({NUM})\s*({UC})", t, re.I)]
+        return _result("COMPOUND", raw, parts=[{"value": v, "unit_text": u} for v, u in parts], ambiguities=[], **base)
     # slash pair 15/20 min
     s = re.fullmatch(rf"(?P<a>{NUM})\s*/\s*(?P<b>{NUM})\s*(?P<u>{UNIT})?", t)
     if s:
         un, ref = _unit(s.group("u"))
         return _result("SLASH_PAIR", raw, low=_num(s.group("a")), high=_num(s.group("b")), unit_text=un, pressure_reference=ref, ambiguities=["SLASH_NOTATION_RANGE_OR_ALTERNATIVES"], **base)
     # range  a - b  |  a to b   (first number may carry a sign; a dash directly before the first number is its sign)
-    r = re.fullmatch(rf"(?P<a>{SIGNED})\s*(?P<u1>{UNIT})?\s*(?:[{DASH}]|\bto\b|\band\b)\s*(?P<b>{SIGNED})\s*(?P<u2>{UNIT})?", t, re.I)
+    r = re.fullmatch(rf"(?P<a>{SIGNED})\s*(?P<u1>{UNIT})?\s*(?:[{DASH}]|\bto(?![A-Za-z])|\band\b)\s*(?P<b>{SIGNED})\s*(?P<u2>{UNIT})?", t, re.I)
     if r:
         u1, ref1 = _unit(r.group("u1"))
         u2, ref2 = _unit(r.group("u2"))
@@ -150,7 +175,7 @@ def parse_raw(text) -> dict:
             amb.append("OPERATOR_WITH_RANGE")
         return _result("RANGE", raw, low=lo, high=hi, unit_text=un, pressure_reference=ref, ambiguities=amb, op=op, **base)
     # single number
-    n = re.fullmatch(rf"(?P<v>{SIGNED})\s*(?P<u>{UNIT})?", t)
+    n = re.fullmatch(rf"(?P<v>{SIGNED})\s*(?P<u>{UNIT})?", t, re.I)
     if n:
         un, ref = _unit(n.group("u"))
         amb = ["SPACED_DASH_SIGN_OR_RANGE_FRAGMENT"] if re.match(rf"^[{DASH}]\s+\d", t) else []

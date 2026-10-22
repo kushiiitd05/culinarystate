@@ -1640,5 +1640,331 @@
 "UNIT_MISSING"
 ]
 }
+},
+{
+"id": "G-123",
+"var": "temp_medium",
+"raw": "350 degrees",
+"location": "MEDIUM",
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "AMBIGUOUS",
+"reasons_include": [
+"TEMPERATURE_SCALE_NOT_STATED"
+],
+"absent_canonical": true
+}
+},
+{
+"id": "G-124",
+"var": "temp_medium",
+"raw": "350°",
+"location": "MEDIUM",
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "AMBIGUOUS",
+"reasons_include": [
+"TEMPERATURE_SCALE_NOT_STATED"
+],
+"absent_canonical": true
+}
+},
+{
+"id": "G-125",
+"var": "temp_medium",
+"raw": "350 degrees fahrenheit",
+"location": "MEDIUM",
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 449.81666666666666
+}
+},
+{
+"id": "G-126",
+"var": "temp_medium",
+"raw": "350 degree F",
+"location": "MEDIUM",
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 449.81666666666666
+}
+},
+{
+"id": "G-127",
+"var": "temp_medium",
+"raw": "350 DEGREES F",
+"location": "MEDIUM",
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 449.81666666666666
+}
+},
+{
+"id": "G-128",
+"var": "temp_medium",
+"raw": "180 degrees Celsius",
+"location": "MEDIUM",
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 453.15
+}
+},
+{
+"id": "G-129",
+"var": "temp_medium",
+"raw": "450°F",
+"location": "MEDIUM",
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 505.3722222222222
+}
+},
+{
+"id": "G-130",
+"var": "temp_medium",
+"raw": "350 ° F",
+"location": "MEDIUM",
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 449.81666666666666
+}
+},
+{
+"id": "G-131",
+"var": "time_duration",
+"raw": "1 1/2 hours",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 5400.0
+}
+},
+{
+"id": "G-132",
+"var": "time_duration",
+"raw": "1-1/2 hours",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 5400.0
+}
+},
+{
+"id": "G-133",
+"var": "time_duration",
+"raw": "1/2 hour",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 1800.0
+}
+},
+{
+"id": "G-134",
+"var": "time_duration",
+"raw": "2½ mins",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 150.0
+}
+},
+{
+"id": "G-135",
+"var": "time_duration",
+"raw": "1 hr 30 mins",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 5400.0
+}
+},
+{
+"id": "G-136",
+"var": "time_duration",
+"raw": "1 hour and 15 minutes",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 4500.0
+}
+},
+{
+"id": "G-137",
+"var": "time_duration",
+"raw": "2 hours 30 minutes",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 9000.0
+}
+},
+{
+"id": "G-138",
+"var": "time_duration",
+"raw": "¾ hour",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 2700.0
+}
+},
+{
+"id": "G-139",
+"var": "time_duration",
+"raw": "2-2¼ hrs",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "INTERVAL",
+"status": "VALID",
+"canonical_low": 7200.0,
+"canonical_high": 8100.0
+}
+},
+{
+"id": "G-140",
+"var": "time_duration",
+"raw": "3 months 2 days",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "UNKNOWN",
+"status": "AMBIGUOUS",
+"reasons_include": [
+"CALENDAR_DURATION_NOT_CONVERTED"
+]
+}
+},
+{
+"id": "G-141",
+"var": "time_duration",
+"raw": "45/75MIN",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "INTERVAL",
+"status": "AMBIGUOUS",
+"reasons_include": [
+"SLASH_NOTATION_RANGE_OR_ALTERNATIVES"
+]
+}
+},
+{
+"id": "G-142",
+"var": "microwave_power",
+"raw": "800 watts",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 800.0
+}
+},
+{
+"id": "G-143",
+"var": "microwave_power",
+"raw": "1.2 kW",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 1200.0
+}
+},
+{
+"id": "G-144",
+"var": "thickness",
+"raw": "8″",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 0.2032
+}
+},
+{
+"id": "G-145",
+"var": "thickness",
+"raw": "2 inches",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "POINT",
+"status": "VALID",
+"canonical_value": 0.0508
+}
+},
+{
+"id": "G-146",
+"var": "time_duration",
+"raw": "½ to ¾ hour",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "INTERVAL",
+"status": "VALID",
+"canonical_low": 1800.0,
+"canonical_high": 2700.0
+}
+},
+{
+"id": "G-147",
+"var": "time_duration",
+"raw": "5 to10 minutes",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "INTERVAL",
+"status": "VALID",
+"canonical_low": 300.0,
+"canonical_high": 600.0
+}
+},
+{
+"id": "G-148",
+"var": "time_duration",
+"raw": "1½ to 2 hours",
+"location": null,
+"basis": null,
+"expect": {
+"value_type": "INTERVAL",
+"status": "VALID",
+"canonical_low": 5400.0,
+"canonical_high": 7200.0
+}
 }
 ]
