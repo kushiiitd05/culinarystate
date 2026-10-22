@@ -1,0 +1,4 @@
+cue_id,cue_regex,location,window_chars_before,scope,status,note
+LC-001,\b(?:oven|preheat(?:ed)?|pre-heat(?:ed)?|grill|broil(?:er)?|bake|baked|baking|roast|roasting|fan|gas|air[- ]?fryer|hob)\b,SETPOINT,60,equipment wording,VERIFIED_DETERMINISTIC,wording supports an equipment setpoint; does NOT establish core or surface temperature
+LC-002,\b(?:internal|core|centre|center)\s+temp(?:erature)?\b|\bthermometer\b|\bprobe\b,CORE,60,probe wording,VERIFIED_DETERMINISTIC,wording supports a core/internal measurement location
+LC-003,"\b(?:oil|water|milk|syrup|stock|broth|liquid|sugar|custard|caramel)\b[^.;]{0,25}\b(?:to|reaches?|reach|at|until)\b",MEDIUM,40,medium wording,CANDIDATE,medium temperature only when a medium noun precedes the temperature; low confidence
