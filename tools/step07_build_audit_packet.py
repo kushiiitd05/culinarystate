@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.evidence import condition_normalizer as N  # noqa: E402
 
 SEED = "step07-condition-audit-v1"  # unchanged in v3: same deterministic stratified design, same 100 conditions
-VERSION = "v3"
+VERSION = "v4"
 FP = N.fingerprint()
 L = ROOT / "ledgers/data"
 

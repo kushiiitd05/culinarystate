@@ -38,3 +38,7 @@ reports/ner_v2/final_link_adjudication.csv
 exports/evd/evd_export_v1.jsonl
 
 annotation/condition_audit/*.csv
+
+# STEP 07H-R derived recipe ledgers (large; third-party recipe-derived; hashes/manifests are committed instead)
+ledgers/recipe_base/*.parquet
+ledgers/recipe_semantics/*.parquet
