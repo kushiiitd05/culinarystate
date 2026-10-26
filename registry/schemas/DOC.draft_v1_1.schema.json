@@ -1,0 +1,661 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/draft/DOC.draft_v1_1.schema.json",
+  "title": "DOC- concrete manifestation of a source that was actually read (DRAFT_PENDING_H4)",
+  "description": "schema_version 1.1.0-draft. STATUS DRAFT_PENDING_H4: not approved, not frozen, not copied into ledgers/schemas/. Entity 04.1: SRC 1-* DOC; SNAP 0..1-1 DOC. Licence/storage_rule are inherited from SRC unless stricter.",
+  "$comment": "DOC = file/page/record held locally and hashed. A cited-but-never-held publication is an SRC (kind PAPER), not a DOC. If snapshot_id is set, sha256 MUST equal SNAP.sha256 (semantic validator). Mint key: '<src_id>|sha256:<hex>' (SNAP's key is 'sha256:<hex>' alone; DOC adds the src_id because the same bytes may be held under two SRC; H4 decision D-11).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "src_id",
+    "snapshot_id",
+    "sha256",
+    "doc_kind",
+    "content_access",
+    "report_kind",
+    "is_compilation_hub",
+    "authorship",
+    "version_label",
+    "identifiers",
+    "licence_status",
+    "storage_rule"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^DOC-\\d{6}$"
+    },
+    "record_type": {
+      "const": "DOC"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^DOC-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "src_id": {
+      "type": "string",
+      "pattern": "^SRC-\\d{6}$"
+    },
+    "snapshot_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^SNAP-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "bytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "media_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "doc_kind": {
+      "type": "string",
+      "enum": [
+        "FULL_TEXT_PDF",
+        "FULL_TEXT_HTML",
+        "FULL_TEXT_XML",
+        "TABLE_FILE",
+        "DATABASE_RELEASE_FILE",
+        "WEB_PAGE_SNAPSHOT",
+        "METADATA_RECORD",
+        "SUPPLEMENT",
+        "OTHER",
+        "UNKNOWN"
+      ]
+    },
+    "content_access": {
+      "type": "string",
+      "enum": [
+        "FULL_TEXT",
+        "TABLES_ONLY",
+        "METADATA_ONLY",
+        "ABSTRACT_ONLY",
+        "UNKNOWN"
+      ]
+    },
+    "report_kind": {
+      "type": "string",
+      "enum": [
+        "PRIMARY_REPORT",
+        "THESIS",
+        "REVIEW",
+        "COMPILATION_DATABASE",
+        "SECONDARY_COPY",
+        "SUPPLEMENT",
+        "OTHER",
+        "UNKNOWN"
+      ]
+    },
+    "is_compilation_hub": {
+      "type": "string",
+      "enum": [
+        "YES",
+        "NO",
+        "UNKNOWN"
+      ],
+      "description": "Hub = a compilation / review / secondary copy that quotes many primaries. A hub is never a connecting node between its primaries (lineage contract 4.2 step 2a)."
+    },
+    "authorship": {
+      "type": "object",
+      "required": [
+        "status",
+        "authors_raw",
+        "affiliations_raw",
+        "corresponding_author_raw",
+        "year_published"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "READ_FROM_DOCUMENT",
+            "FROM_METADATA_RECORD",
+            "NOT_AVAILABLE",
+            "UNKNOWN"
+          ]
+        },
+        "authors_raw": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "affiliations_raw": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "corresponding_author_raw": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "year_published": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1000,
+              "maximum": 2999
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "READ_FROM_DOCUMENT",
+                  "FROM_METADATA_RECORD"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "authors_raw": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_AVAILABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "authors_raw": {
+                "maxItems": 0
+              },
+              "affiliations_raw": {
+                "maxItems": 0
+              },
+              "corresponding_author_raw": {
+                "type": "null"
+              },
+              "year_published": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Authorship as printed (raw), the only inputs from which a lab group (SAME_LAB_AS: shared corresponding / senior author, or the same affiliation unit within +-N years, N in THR-08A-22) can be computed. NOT_AVAILABLE / UNKNOWN keep the arrays empty: a lab is never guessed. A KIN whose DOC has no authorship cannot get lab_group_status ASSIGNED."
+    },
+    "version_label": {
+      "type": "string",
+      "enum": [
+        "PREPRINT",
+        "ACCEPTED_MANUSCRIPT",
+        "VERSION_OF_RECORD",
+        "DATABASE_RELEASE",
+        "CORRECTED",
+        "UNKNOWN"
+      ]
+    },
+    "edition_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "identifiers": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "doi": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pmid": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pmcid": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "isbn": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "other": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Identifiers AS PRINTED on this manifestation (a preprint and the published version may differ). Used by detector B1."
+    },
+    "retrieved_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "page_count": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "parser": {
+      "type": "object",
+      "required": [
+        "tool",
+        "tool_version",
+        "ocr_used"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tool": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tool_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ocr_used": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "UNKNOWN"
+          ]
+        }
+      }
+    },
+    "local_path": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "licence_status": {
+      "type": "string",
+      "enum": [
+        "VERIFIED",
+        "ASSUMED",
+        "UNKNOWN",
+        "RESTRICTED"
+      ]
+    },
+    "storage_rule": {
+      "type": "string",
+      "enum": [
+        "COMMIT_OK",
+        "DERIVED_ONLY",
+        "LOCAL_ONLY",
+        "DO_NOT_STORE"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "verification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "required": [
+              "verifier",
+              "verified_at"
+            ],
+            "properties": {
+              "verifier": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "report_kind": {
+            "enum": [
+              "COMPILATION_DATABASE",
+              "REVIEW",
+              "SECONDARY_COPY"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "is_compilation_hub": {
+            "const": "YES"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "report_kind": {
+            "enum": [
+              "PRIMARY_REPORT",
+              "THESIS"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "is_compilation_hub": {
+            "const": "NO"
+          }
+        }
+      }
+    }
+  ]
+}
