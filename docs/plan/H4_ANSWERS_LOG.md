@@ -38,3 +38,5 @@ Records the answers Kush gave in the 2026-10-26 session, in order. These are Kus
 | 32 | THR-08A-22: same-lab window N | N = 3 years. Signed. | 2026-10-26 | ANSWERED, signed |
 | 33 | Write D-029..D-031 into DECISIONS.md | Yes. Written 2026-10-26. | 2026-10-26 | DONE |
 | 34 | Authorise Step 08a (implement lineage library, run on Mac, new files only) | Yes. Recorded as D-032. | 2026-10-26 | DONE |
+| 35 | May 08a edit `registry.py` (schema port, D-029 D-6) and regenerate `ledgers/schemas`? | Yes. Recorded as an addendum to D-032. | 2026-10-26 | DONE |
+| 36 | May 08a's real run append new ids to `_ids.jsonl` (after a scratch dry run shown to Kush)? | Yes. Recorded as an addendum to D-032. | 2026-10-26 | DONE |
