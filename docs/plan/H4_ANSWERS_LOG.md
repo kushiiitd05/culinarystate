@@ -30,3 +30,7 @@ Records the answers Kush gave in the 2026-10-26 session, in order. These are Kus
 | 24 | 04.6-min PQ-1: plane-qualified split_group_id (SPLITGRP-EVD-/SPLITGRP-REC-), no cross-plane join | Ratified. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
 | 25 | 04.9-min: reserve the 13 prefixes (incl. THR-, NEG-, MECH-, DGP-, TASK-); no KINETIC- prefix | Accept all; no KINETIC-. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
 | 26 | 04.6-min item 5: create the data-plane registry now | Create now as DRAFT_PENDING_H4 (to be created by Claude as a draft). | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 27 | Sign THR-08A-01..15 (the original plan's own gate numbers) as written | Signed. signed_by=Kush Tokas, signed_at=2026-10-26 set in `registry/preregistered_thresholds_v1.csv`. | 2026-10-26 | ANSWERED |
+| 28 | Does `data_seen_before_registration = DESCRIPTIVE_COUNTS_SEEN` satisfy the Step 01.6 rule (only group sizes of source families were seen; no edge, label or lineage computed)? | Yes, it satisfies the rule. No second signer required. | 2026-10-26 | ANSWERED |
+| 29 | Sign the agent-drafted rows THR-08A-16, 17, 18, 20, 21, 23 as written | Signed (same fields). | 2026-10-26 | ANSWERED |
+| 30 | THR-08A-19 (recall threshold for the UNKNOWN-row screen) and THR-08A-22 (N years, same-lab rule) | Kush will give the numbers now. NOTE: row 19's own text says the value must be set before 08a runs, so it blocks 08a until set. Rows 19 and 22 remain unsigned. | 2026-10-26 | ANSWERED |
