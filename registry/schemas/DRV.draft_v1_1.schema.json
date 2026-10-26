@@ -1,0 +1,1922 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/draft/DRV.draft_v1_1.schema.json",
+  "title": "DRV- derived value: deterministic computation from >=1 parent evidence records (DRAFT_PENDING_H4)",
+  "description": "schema_version 1.1.0-draft. STATUS DRAFT_PENDING_H4: not approved, not frozen, not copied into ledgers/schemas/. Value is UNKNOWN (not computed) when a parent is censored and the formula needs an exact value (D-018 rule for log quantities).",
+  "$comment": "parent_ids lists ALL inputs, including a yield factor from another publication (Phenol-Explorer retention x yield). Parents are evidence-plane ids only (OBS, AGG, DRV, KIN, KINPT); a SIM- or model-estimated parent cannot be expressed. An endpoint/retention value derived from a time series is a DRV with the KIN (and chosen KINPT) as parent and never replaces the series. After 08a every DRV has ONE split group (union of parent groups). formula_id keys registry/derivation_formula_registry_v1.csv (prefix to be reserved at H4). A BASIS_CONVERSION needs its conversion input (moisture, yield, refuse fraction or a conversion factor) as a parent with a matching role; that input must sit on the same SMP or be a stated AGG (semantic check). Shared-input DRVs (one yield factor used by many rows) merge at split level as the PRIMARY analysis; a pre-registered sensitivity analysis with that merge switched off is reported side by side (THR-08A-21).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "evidence_level",
+    "derived_quantity",
+    "state_variable_id",
+    "formula_id",
+    "formula_version",
+    "parent_ids",
+    "value",
+    "dispersion",
+    "censoring",
+    "uncertainty_propagation",
+    "censor_propagation",
+    "basis_id",
+    "retention_definition",
+    "retention_definition_evidence",
+    "value_origin",
+    "licence_status",
+    "lineage"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^DRV-\\d{6}$"
+    },
+    "record_type": {
+      "const": "DRV"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^DRV-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "evidence_level": {
+      "const": "DRV"
+    },
+    "derived_quantity": {
+      "type": "string",
+      "enum": [
+        "DELTA",
+        "PERCENT_CHANGE",
+        "LOG_FOLD_CHANGE",
+        "LOG_RETENTION_FACTOR",
+        "RETENTION_FRACTION",
+        "TRUE_RETENTION_FROM_YIELD",
+        "APPARENT_RETENTION_FW",
+        "APPARENT_RETENTION_DW",
+        "BASIS_CONVERSION",
+        "ESTIMATED_DISPERSION",
+        "ENDPOINT_FROM_SERIES",
+        "OTHER"
+      ]
+    },
+    "state_variable_id": {
+      "type": "string",
+      "pattern": "^SVAR-\\d{6}$"
+    },
+    "formula_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "formula_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "parent_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(OBS|AGG|DRV|KIN|KINPT)-\\d{6}$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "parent_roles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "parent_id",
+          "role"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "parent_id": {
+            "type": "string",
+            "pattern": "^(OBS|AGG|DRV|KIN|KINPT)-\\d{6}$"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "BEFORE",
+              "AFTER",
+              "NUMERATOR",
+              "DENOMINATOR",
+              "YIELD_FACTOR",
+              "MOISTURE_CORRECTION",
+              "REFUSE_FRACTION",
+              "CONVERSION_FACTOR",
+              "SERIES",
+              "SERIES_POINT",
+              "OTHER"
+            ]
+          }
+        }
+      }
+    },
+    "value": {
+      "$ref": "#/$defs/value_obj"
+    },
+    "dispersion": {
+      "$ref": "#/$defs/dispersion"
+    },
+    "censoring": {
+      "$ref": "#/$defs/censoring"
+    },
+    "uncertainty_propagation": {
+      "type": "object",
+      "required": [
+        "status",
+        "method",
+        "correlation_assumption",
+        "shared_parent_set_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "PROPAGATED",
+            "NOT_PROPAGATED_PARENT_UNCERTAINTY_UNKNOWN",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "method": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "correlation_assumption": {
+          "type": "string",
+          "enum": [
+            "INDEPENDENT_ASSUMED",
+            "PAIRED_SAME_UNITS",
+            "SHARED_PARENT",
+            "UNKNOWN"
+          ]
+        },
+        "shared_parent_set_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^(OBS|AGG|DRV|KIN|KINPT)-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "correlation_assumption": {
+                "const": "SHARED_PARENT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "shared_parent_set_id": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "correlation_assumption": {
+                "enum": [
+                  "INDEPENDENT_ASSUMED",
+                  "PAIRED_SAME_UNITS",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "shared_parent_set_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Effect-size dependence (RVE / three-level models need it): several DRVs that reuse ONE control / before OBS are correlated (multi-arm against one control: SHARED_PARENT, shared_parent_set_id = the id of the shared parent record, identical on all DRVs of the set); paired before / after measurements on the same units are PAIRED_SAME_UNITS; INDEPENDENT_ASSUMED is an assumption, never a finding; UNKNOWN = not assessed."
+    },
+    "censor_propagation": {
+      "type": "string",
+      "enum": [
+        "NOT_NEEDED_ALL_PARENTS_UNCENSORED",
+        "PROPAGATED",
+        "NOT_COMPUTED_CENSORED_PARENT",
+        "UNKNOWN"
+      ]
+    },
+    "basis_id": {
+      "type": "string",
+      "pattern": "^MB-\\d{3}$"
+    },
+    "retention_definition": {
+      "type": "string",
+      "enum": [
+        "TRUE_MURPHY",
+        "APPARENT_FRESH_BASIS",
+        "APPARENT_DRY_BASIS",
+        "APPARENT_BASIS_UNSTATED",
+        "TR_OR_AR_UNDISCLOSED",
+        "UNKNOWN",
+        "NOT_APPLICABLE"
+      ],
+      "description": "TRUE_MURPHY = Murphy et al. 1975 true retention (nutrient content of the cooked portion x cooked mass / nutrient content of the raw portion x raw mass: weight change accounted for; the card's TRUE and YIELD_ADJUSTED are the same quantity and differ only in WHO states it, which is recorded in retention_definition_evidence). APPARENT_* = concentration ratio without yield correction, WITH the basis it was computed on (fresh vs dry weight differ by the water loss, often 10-50%). TR_OR_AR_UNDISCLOSED = the source mixes true and apparent retention without marking which. UNKNOWN = not assessed. NOT_APPLICABLE = the value is not a retention."
+    },
+    "retention_definition_evidence": {
+      "type": "string",
+      "enum": [
+        "STATED_IN_PRIMARY",
+        "STATED_IN_SECONDARY",
+        "INFERRED_FROM_FORMULA",
+        "ASSUMED",
+        "NOT_APPLICABLE",
+        "UNKNOWN"
+      ],
+      "description": "Who states the retention definition: primary paper, a secondary source (Phenol-Explorer: a secondary snippet, D-020), inferred from the formula, or assumed by the extractor. NOT_APPLICABLE when the value is not a retention."
+    },
+    "value_origin": {
+      "type": "string",
+      "enum": [
+        "DERIVED_DETERMINISTIC",
+        "ESTIMATED_FROM_SUMMARY"
+      ]
+    },
+    "licence_status": {
+      "type": "string",
+      "enum": [
+        "VERIFIED",
+        "ASSUMED",
+        "UNKNOWN",
+        "RESTRICTED"
+      ]
+    },
+    "lineage": {
+      "$ref": "#/$defs/lineage"
+    }
+  },
+  "$defs": {
+    "value_obj": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^UNIT-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_id_status": {
+          "type": "string",
+          "enum": [
+            "MAPPED",
+            "NOT_MAPPED",
+            "UNKNOWN"
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE",
+                  "CENSORED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "unit"
+            ],
+            "properties": {
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id_status": {
+                "const": "MAPPED"
+              }
+            },
+            "required": [
+              "unit_id_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "unit_id"
+            ],
+            "properties": {
+              "unit_id": {
+                "type": "string",
+                "pattern": "^UNIT-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id_status": {
+                "enum": [
+                  "NOT_MAPPED",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "unit_id_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "unit_id": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unit_id"
+            ]
+          },
+          "then": {
+            "required": [
+              "unit_id_status"
+            ],
+            "properties": {
+              "unit_id_status": {
+                "const": "MAPPED"
+              }
+            }
+          }
+        }
+      ],
+      "description": "UNKNOWN-aware value (same status vocabulary as ledgers/schemas/common QVALUE). A number is allowed only where the status says so; UNKNOWN/NOT_APPLICABLE/QUALITATIVE/CENSORED carry no number (the censoring limit lives in `censoring`). `raw` keeps the source string verbatim. `unit` is the raw unit string as printed and is never rewritten; `unit_id` (UNIT-) is the optional normalised pointer with an explicit mapping status (NOT_MAPPED / UNKNOWN keep it null; never a guessed id)."
+    },
+    "dispersion": {
+      "type": "object",
+      "required": [
+        "type",
+        "value",
+        "low",
+        "high",
+        "ci_level",
+        "unit",
+        "n_basis",
+        "scope",
+        "significance_raw",
+        "derivation"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "SD",
+            "SE",
+            "VARIANCE",
+            "CI",
+            "RANGE",
+            "IQR",
+            "INSTRUMENT",
+            "REPORTED_UNSPECIFIED",
+            "CV_PERCENT",
+            "POOLED_SE",
+            "LSD",
+            "NONE_REPORTED",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ci_level": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "n_basis": {
+          "type": "string",
+          "enum": [
+            "BIOLOGICAL",
+            "TECHNICAL",
+            "NOT_REPORTED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "PER_VALUE",
+            "POOLED_TABLE",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "significance_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "derivation": {
+          "type": "string",
+          "enum": [
+            "AS_REPORTED",
+            "ESTIMATED_FROM_SUMMARY",
+            "DIGITIZED",
+            "NOT_APPLICABLE"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SD",
+                  "SE",
+                  "VARIANCE",
+                  "INSTRUMENT",
+                  "REPORTED_UNSPECIFIED",
+                  "CV_PERCENT",
+                  "POOLED_SE",
+                  "LSD"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              },
+              "derivation": {
+                "type": "string",
+                "enum": [
+                  "AS_REPORTED",
+                  "ESTIMATED_FROM_SUMMARY",
+                  "DIGITIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CI"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "ci_level"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "ci_level": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 1
+              },
+              "derivation": {
+                "type": "string",
+                "enum": [
+                  "AS_REPORTED",
+                  "ESTIMATED_FROM_SUMMARY",
+                  "DIGITIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "RANGE",
+                  "IQR"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "derivation": {
+                "type": "string",
+                "enum": [
+                  "AS_REPORTED",
+                  "ESTIMATED_FROM_SUMMARY",
+                  "DIGITIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "NONE_REPORTED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              },
+              "ci_level": {
+                "type": "null"
+              },
+              "derivation": {
+                "const": "NOT_APPLICABLE"
+              },
+              "n_basis": {
+                "const": "NOT_APPLICABLE"
+              },
+              "scope": {
+                "const": "NOT_APPLICABLE"
+              },
+              "significance_raw": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CV_PERCENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "unit"
+            ],
+            "properties": {
+              "unit": {
+                "const": "%"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SE",
+                  "POOLED_SE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "n_basis": {
+                "enum": [
+                  "BIOLOGICAL",
+                  "TECHNICAL",
+                  "NOT_REPORTED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "POOLED_SE",
+                  "LSD"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "scope": {
+                "enum": [
+                  "POOLED_TABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SD",
+                  "SE",
+                  "VARIANCE",
+                  "CI",
+                  "RANGE",
+                  "IQR",
+                  "INSTRUMENT",
+                  "REPORTED_UNSPECIFIED",
+                  "CV_PERCENT"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "scope": {
+                "enum": [
+                  "PER_VALUE",
+                  "POOLED_TABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "description": "Dispersion with its TYPE always stated (SD vs SE vs CI cannot be confused). NONE_REPORTED = source gives none; UNKNOWN = not assessed. Estimates from median/range (Wan et al. 2014 type) are allowed only with derivation ESTIMATED_FROM_SUMMARY, never as AS_REPORTED. `unit` null means 'same unit as the value' (VARIANCE: squared unit, state it). `n_basis` says which n the SD/SE refers to (biological vs technical; needed for SE->SD conversion; NOT_REPORTED = source silent, UNKNOWN = not assessed). `scope` PER_VALUE vs POOLED_TABLE (one pooled SEM / LSD for a whole table). `significance_raw` keeps significance letters / p text verbatim. CV_PERCENT is stored as printed (unit '%'), never converted to an SD here."
+    },
+    "censoring": {
+      "type": "object",
+      "required": [
+        "kind",
+        "registry_id",
+        "limit_low",
+        "limit_high",
+        "limit_unit",
+        "limit_origin",
+        "resolution",
+        "basis_note"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "DETECTED",
+            "TRUE_ZERO",
+            "ND",
+            "LT_LOD",
+            "LT_LOQ",
+            "GT_ULOQ",
+            "GT_CAP",
+            "GT_STATED",
+            "LT_STATED",
+            "CENSORED_UNKNOWN",
+            "ROUNDED_INTERVAL",
+            "RANGE_ONLY",
+            "TRACE_BETWEEN_LOD_LOQ",
+            "NOT_REPORTED"
+          ]
+        },
+        "registry_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^CS-\\d{3}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "limit_low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "limit_high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "limit_unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "limit_origin": {
+          "type": "string",
+          "enum": [
+            "STATED_IN_SOURCE",
+            "FROM_METHOD_LOD_LOQ",
+            "FROM_CAP_RULE",
+            "NOT_STATED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "resolution": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "basis_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "LT_LOD",
+                  "LT_LOQ",
+                  "LT_STATED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "limit_high",
+              "limit_unit"
+            ],
+            "properties": {
+              "limit_high": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "limit_unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "GT_ULOQ",
+                  "GT_CAP",
+                  "GT_STATED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "limit_low",
+              "limit_unit"
+            ],
+            "properties": {
+              "limit_low": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "limit_unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "ROUNDED_INTERVAL"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "resolution"
+            ],
+            "properties": {
+              "resolution": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "TRUE_ZERO"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "basis_note"
+            ],
+            "properties": {
+              "basis_note": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "DETECTED",
+                  "NOT_REPORTED",
+                  "CENSORED_UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "limit_low": {
+                "type": "null"
+              },
+              "limit_high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "TRACE_BETWEEN_LOD_LOQ"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "limit_low",
+              "limit_high",
+              "limit_unit"
+            ],
+            "properties": {
+              "limit_low": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "limit_high": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "limit_unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ],
+      "description": "Censoring of ONE observation. kind NOT_REPORTED (CS-007) = no censoring information (UNKNOWN is not NON_DETECT); ND (CS-002) = reported not detected, limit may be unknown and is never zero; LT_LOD/LT_LOQ need the stated limit (limit_high); GT_CAP/GT_ULOQ/GT_STATED need limit_low; ROUNDED_INTERVAL needs the rounding `resolution` (e.g. 'nearest 5%'); RANGE_ONLY = only an interval was reported; TRUE_ZERO is allowed only with a basis_note naming why the zero is a real zero. Cross-field rules against value.status are in the parent schema. TRACE_BETWEEN_LOD_LOQ (proposed CS-011; INFOODS 'tr') = interval-censored between the stated LOD (limit_low) and LOQ (limit_high); value.status CENSORED, no number. Limits are strictly positive: a limit of 0 is not a limit and never a stand-in for a non-detect. GT_CAP together with a `resolution` (USDA: '> 100 reported as 100', rounded to the nearest 5%) keeps the cap AS PRINTED in limit_low; the analysis reads the effective bound limit_low - resolution/2 as a NEW derived quantity and never overwrites limit_low."
+    },
+    "lineage": {
+      "type": "object",
+      "required": [
+        "study_id",
+        "study_id_status",
+        "lineage_root_id",
+        "split_group_id",
+        "independence_resolution",
+        "assignment_status",
+        "rule_version",
+        "parent_union"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "study_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^STUDY-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "study_id_status": {
+          "type": "string",
+          "enum": [
+            "PRESENT",
+            "NOT_IDENTIFIABLE",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "lineage_root_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^LROOT-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "split_group_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^SPLITGRP-EVD-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "independence_resolution": {
+          "type": "string",
+          "enum": [
+            "STUDY",
+            "PUBLICATION_ONLY",
+            "SOURCE_FAMILY_ONLY",
+            "UNKNOWN"
+          ]
+        },
+        "assignment_status": {
+          "type": "string",
+          "enum": [
+            "ASSIGNED",
+            "PENDING"
+          ]
+        },
+        "rule_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parent_union": {
+          "type": "object",
+          "required": [
+            "parent_lineage_root_ids",
+            "parent_split_group_ids",
+            "union_status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "parent_lineage_root_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^LROOT-\\d{6}$"
+              },
+              "uniqueItems": true
+            },
+            "parent_split_group_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "pattern": "^SPLITGRP-EVD-\\d{6}$"
+              },
+              "uniqueItems": true
+            },
+            "union_status": {
+              "type": "string",
+              "enum": [
+                "SINGLE_GROUP",
+                "MERGED_BY_PARENT_UNION",
+                "PENDING",
+                "UNKNOWN"
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "union_status": {
+                    "const": "SINGLE_GROUP"
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "parent_split_group_ids": {
+                    "minItems": 1,
+                    "maxItems": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Parent lineage keys of an AGG/DRV. After 08a merging every DRV must have union_status SINGLE_GROUP or MERGED_BY_PARENT_UNION (gate G08-2)."
+        },
+        "lab_group_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^LABGRP-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lab_group_status": {
+          "type": "string",
+          "enum": [
+            "ASSIGNED",
+            "PENDING",
+            "UNKNOWN"
+          ]
+        },
+        "lab_group_basis": {
+          "type": "string",
+          "enum": [
+            "SHARED_CORRESPONDING_OR_SENIOR_AUTHOR",
+            "SAME_AFFILIATION_UNIT_WITHIN_N_YEARS",
+            "MANUAL",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "study_id_status": {
+                "const": "PRESENT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "study_id": {
+                "type": "string",
+                "pattern": "^STUDY-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "study_id_status": {
+                "enum": [
+                  "NOT_IDENTIFIABLE",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "study_id": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "independence_resolution": {
+                "const": "STUDY"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "study_id_status": {
+                "const": "PRESENT"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "assignment_status": {
+                "const": "ASSIGNED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "lineage_root_id",
+              "split_group_id",
+              "rule_version"
+            ],
+            "properties": {
+              "lineage_root_id": {
+                "type": "string",
+                "pattern": "^LROOT-\\d{6}$"
+              },
+              "split_group_id": {
+                "type": "string",
+                "pattern": "^SPLITGRP-EVD-\\d{6}$"
+              },
+              "rule_version": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "assignment_status": {
+                "const": "PENDING"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "lineage_root_id": {
+                "type": "null"
+              },
+              "split_group_id": {
+                "type": "null"
+              },
+              "independence_resolution": {
+                "const": "UNKNOWN"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "lab_group_status": {
+                "const": "ASSIGNED"
+              }
+            },
+            "required": [
+              "lab_group_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "lab_group_id"
+            ],
+            "properties": {
+              "lab_group_id": {
+                "type": "string",
+                "pattern": "^LABGRP-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "lab_group_status": {
+                "enum": [
+                  "PENDING",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "lab_group_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "lab_group_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Cached lineage keys of one evidence-level record as of `rule_version` (authoritative assignment = the independence registry at that rule_version). study_id / lineage_root_id / split_group_id are three SEPARATE keys and are never aliased. split_group_id is EVIDENCE-plane only (pattern SPLITGRP-EVD-); a recipe-plane SPLITGRP-REC- value is rejected by this pattern (no cross-plane join). ASSIGNED rows always carry both ids (gate G08-1); independence_resolution UNKNOWN on an ASSIGNED row means the ids are a conservative best-effort component and the row is TRAIN-ONLY (never validation/calibration/test). PENDING = not yet computed (ids null, resolution UNKNOWN). Optional lab-group fields (lab_group_id LABGRP-, lab_group_status, lab_group_basis) are MANDATORY when the DRV has a KIN / KINPT parent (kinetic plane: the unit of independence is the lab group; nesting study <= lineage_root <= split_group <= lab_group on those rows). Where authorship was not read, lab_group_status is UNKNOWN and the row is not SIM-VAL / DS-TEST eligible."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "verification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "required": [
+              "verifier",
+              "verified_at"
+            ],
+            "properties": {
+              "verifier": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "censor_propagation": {
+            "const": "NOT_COMPUTED_CENSORED_PARENT"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "value": {
+            "properties": {
+              "status": {
+                "const": "UNKNOWN"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "derived_quantity": {
+            "const": "ENDPOINT_FROM_SERIES"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "parent_ids": {
+            "contains": {
+              "type": "string",
+              "pattern": "^(KIN|KINPT)-\\d{6}$"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "derived_quantity": {
+            "enum": [
+              "LOG_FOLD_CHANGE",
+              "LOG_RETENTION_FACTOR"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "value": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "MEASURED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "lineage": {
+            "properties": {
+              "assignment_status": {
+                "const": "ASSIGNED"
+              }
+            },
+            "required": [
+              "assignment_status"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "lineage": {
+            "properties": {
+              "parent_union": {
+                "properties": {
+                  "union_status": {
+                    "enum": [
+                      "SINGLE_GROUP",
+                      "MERGED_BY_PARENT_UNION"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "retention_definition": {
+            "const": "NOT_APPLICABLE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "retention_definition_evidence": {
+            "const": "NOT_APPLICABLE"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "parent_ids": {
+            "contains": {
+              "type": "string",
+              "pattern": "^(KIN|KINPT)-\\d{6}$"
+            }
+          }
+        },
+        "required": [
+          "parent_ids"
+        ]
+      },
+      "then": {
+        "properties": {
+          "lineage": {
+            "required": [
+              "lab_group_id",
+              "lab_group_status",
+              "lab_group_basis"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "derived_quantity": {
+            "const": "BASIS_CONVERSION"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "parent_roles"
+        ],
+        "properties": {
+          "parent_roles": {
+            "contains": {
+              "type": "object",
+              "properties": {
+                "role": {
+                  "enum": [
+                    "MOISTURE_CORRECTION",
+                    "YIELD_FACTOR",
+                    "REFUSE_FRACTION",
+                    "CONVERSION_FACTOR"
+                  ]
+                }
+              },
+              "required": [
+                "role"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}
