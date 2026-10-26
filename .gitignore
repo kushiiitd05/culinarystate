@@ -53,3 +53,8 @@ ledgers/recipe_identity/run_manifests/_*
 logs/step07i/
 reports/step07i/_remote_cache/
 reports/step07i/_identity_summary*.json
+
+# NER linker raw score dumps (IDs + cosine scores, no recipe text; ~53 MB; regenerate on A100 via gpu/ner_bench/linker_train.py, jobs_linker*.txt; consumed by tools/final_test_eval.py, linker_v2_eval.py, router_eval.py)
+reports/ner/_raw_all/
+reports/ner/_raw_export/
+reports/ner/_raw_v2/
