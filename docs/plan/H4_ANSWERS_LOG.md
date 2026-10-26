@@ -26,3 +26,7 @@ Records the answers Kush gave in the 2026-10-26 session, in order. These are Kus
 | 20 | 04.2-min items 2 and 7: official censor ids CS-011..CS-014 | Add the ids. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
 | 21 | 04.2-min item 4: lod/loq storage | On each observation (OBS), method level as fallback. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
 | 22 | 04.2-min items 6 and 8: bases MB-009..011 with alias settlements; digitisation record with two-read rule (THR-04K-03) | Accept both. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 23 | 04.6-min items 1-3: six-plane codes; DOC in P-SRC; ESTIMATED_FROM_SUMMARY never a label/test value | Approve all three. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 24 | 04.6-min PQ-1: plane-qualified split_group_id (SPLITGRP-EVD-/SPLITGRP-REC-), no cross-plane join | Ratified. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 25 | 04.9-min: reserve the 13 prefixes (incl. THR-, NEG-, MECH-, DGP-, TASK-); no KINETIC- prefix | Accept all; no KINETIC-. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 26 | 04.6-min item 5: create the data-plane registry now | Create now as DRAFT_PENDING_H4 (to be created by Claude as a draft). | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
