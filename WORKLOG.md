@@ -923,3 +923,17 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `src/culinarystate/identity/*`, `tools/step07i_*.py`, `tests/unit/test_identity_pipeline.py`, `reports/step07i/*`, `registry/plan_authority_map_v1.csv`, `ledgers/recipe_identity/run_manifests/*`
 - **Verified:** 11 identity tests + 3482 suite tests pass (1 pre-existing unrelated hang in test_transition deselected); sample output bit-identical to old script; final_hash 963466d8f207
 - **Next:** Kush+Parv blind review of duplicate packet v1 and condition packet v4; Step 08 NOT authorised
+
+### S135 · 2026-10-26 12:45 IST · ES-1 · Execution Plan v2 reconciliation (original 36-step spine + selected Audit-v2 amendments; D-027) [server branch plan/v2-reconciliation; renumber on merge if this S-id is taken on the Mac]
+- **Who:** Kush+Claude
+- **Did:** Recorded Kush's rulings R-01..R-20 as D-027; four-way reconciliation (original spine titles / SSOT v15 / Final Master Plan v4.0 / Audit v2); wrote Definitive 36-Step Execution Plan v2 with per-step contracts, change log (139 CHG rows), artifact DAG, critical path, parallel lanes, human gates, cross-phase conflict register; Step-07 gate unchanged (pooled kappa>=0.80 AND no systematic critical-field failure); 07-DEP soft for 08 / hard for 15,23,26d-27,29-33; 08 split 08a/08b. Original 36-step card text not on this server (titles only).
+- **Files:** `docs/plan/CulinaryState_36_Step_Execution_Plan_v2.md`, `docs/plan/CulinaryState_36_Step_Execution_Plan_v2_changelog.md`, `registry/execution_spine_v2.csv`, `reports/master_plan/*`, `registry/master_plan_confidence_v2.csv`, `DECISIONS.md`
+- **Verified:** 36 top-level steps present; STEPDATA parsed (102 entries); two-persona review pending at time of logging
+- **Next:** Step 04 v1.1 contracts (04.1 lineage, 04.3 kinetic) + 01.6 thresholds + 02.4 negative-results register; then 08a only after Kush authorises; Step 08 NOT started
+
+### S136 · 2026-10-26 13:26 IST · ES-1 · Plan v2 two-persona review applied (corrects S135 counts)
+- **Who:** Kush+Claude
+- **Did:** Governance & Laws review (29 issues: 3 blocker) and Methods & DAG review (30 issues: 4 blocker) applied: 36 applied / 23 adapted / 0 rejected. Spine CSV normalised (0 unknown dependency tokens, 0 hard or soft cycles, topological order 123/123). Added review substeps marked needs-human-approval: 15a.R reserved-group seal, 08b-v0, 26g recipe-event to simulation adapter + link table + simulability census, 16a event-modifier/history fields, 35e similarity schema, 4.5 capacity table. Section 7 limited to contract/doc work; 07.A labelling only after 01.6 rows + pre-label decision. Corrects S135: 154 CHG rows (not 139), 123 STEPDATA rows (not 102).
+- **Files:** `docs/plan/CulinaryState_36_Step_Execution_Plan_v2.md`, `docs/plan/CulinaryState_36_Step_Execution_Plan_v2_changelog.md`, `registry/execution_spine_v2.csv`, `DECISIONS.md`
+- **Verified:** dagcheck: 0 unknown tokens, no cycles; 36 STEP headings; 4 STEPDATA blocks parse; changelog CHG rows identical to plan
+- **Next:** Step 04 v1.1 contracts (04.1 lineage + JSON schema drafts DOC/LIN/SEXP/SMP/OBS/AGG/DRV, 04.3 kinetic/trajectory), 04.2-min/04.6-min/04.9-min, 01.6 thresholds (PROPOSED_PILOT), 02.4 negative-results register, v3 agreement archive; Step 08 NOT started
