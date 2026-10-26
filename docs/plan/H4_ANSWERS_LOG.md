@@ -22,3 +22,7 @@ Records the answers Kush gave in the 2026-10-26 session, in order. These are Kus
 | 16 | 04.1 D-15: mandatory lab_group_id (UNKNOWN allowed); reserve LABGRP-, MBSET- | Accept default. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
 | 17 | 04.1 D-16: split `retention_definition` with an evidence field | Accept the split. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
 | 18 | 04.1 D-17: absent SEXP.context = UNKNOWN | Accept UNKNOWN. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 19 | 04.2-min item 1: approve field set and enumerations (method_indicator and dispersion lists are agent drafts) | Approved. Registry files (censoring, value origin, measurement basis v1.1) to be created after approval, by Claude, as drafts. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 20 | 04.2-min items 2 and 7: official censor ids CS-011..CS-014 | Add the ids. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 21 | 04.2-min item 4: lod/loq storage | On each observation (OBS), method level as fallback. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 22 | 04.2-min items 6 and 8: bases MB-009..011 with alias settlements; digitisation record with two-read rule (THR-04K-03) | Accept both. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
