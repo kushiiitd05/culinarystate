@@ -8,3 +8,17 @@ Records the answers Kush gave in the 2026-10-26 session, in order. These are Kus
 | 2 | Baseline sha256 of the seven ledger files (no human input needed) | Recorded by Claude in `registry/baseline_ledger_hashes_08a_v1.csv`. EVD, COND, SRC and MEAS match the hashes recorded earlier; STUDY, SNAP and `_ids` are new baselines. | 2026-10-26 | DONE (to be re-checked immediately before any 08a write) |
 | 3 | Must `registry/data_source_acquisition_manifest_v1_1.csv` exist before 08a runs? | No, the v1 manifest is enough; v1.1 is built later as step 06.3-min. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
 | 4 | Approve the Step 04.1 entity chain (SRC > DOC > STUDY > SEXP > SMP > OBS > AGG/DRV) and typed edges as drafted in `reports/step04/lineage_contract_v1_1.md` section 1? | Approved the chain. The sub-choices D-11..D-17 are asked one by one next. | 2026-10-26 | ANSWERED (main design only), not yet in DECISIONS.md |
+| 5 | 04.1 D-2: AGG/DRV storage | Accept default: extra fields on export-v2 rows, no separate ledgers. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 6 | 04.1 D-3: reserve LROOT-, CGRID-, DFORM- | Accept default: reserve all three. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 7 | 04.1 D-4: same-lab grouping only in optional strict tier; shared-reference grouping default | Accept default. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 8 | 04.1 D-5: UNKNOWN independence rows TRAIN-only | Accept the stricter rule. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 9 | 04.1 D-6: port approved schemas into `registry.py` at 08a | Accept default. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 10 | 04.1 D-8: unidentifiable-member aggregate = one lineage root per release | Accept default. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 11 | 04.1 D-9 and D-10: STUDY authoritative for DOC-STUDY links; Phenol-Explorer = PUBLICATION_ONLY | Accept both. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 12 | 04.1 D-11: DOC mint key `<src_id>|sha256:<hex>` | Accept default. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 13 | 04.1 D-12: hub rule | Accept default. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 14 | 04.1 D-13: UNKNOWN leakage screen plus sensitivity run | Accept default. Threshold value THR-08A-19 stays OPEN (must be set before that gate row can be signed). | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 15 | 04.1 D-14: giant-component rule (largest share <= 0.40, n_eff >= 10, weaker label wins) | Accept default. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 16 | 04.1 D-15: mandatory lab_group_id (UNKNOWN allowed); reserve LABGRP-, MBSET- | Accept default. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 17 | 04.1 D-16: split `retention_definition` with an evidence field | Accept the split. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
+| 18 | 04.1 D-17: absent SEXP.context = UNKNOWN | Accept UNKNOWN. | 2026-10-26 | ANSWERED, not yet in DECISIONS.md |
