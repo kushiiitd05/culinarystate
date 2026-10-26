@@ -1,0 +1,145 @@
+{
+ "gate": "NOT_COUNTED_PROVENANCE_INVALID",
+ "n_conditions": 100,
+ "pooled_kappa": 0.9978342425503961,
+ "pooled_raw_exact_agreement": 0.9988888888888889,
+ "overall_accept_reject_kappa": 1.0,
+ "overall_exact_agreement": 1.0,
+ "per_field": {
+  "duration_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 0.5,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "temperature_value_judgement": {
+   "kappa": 0.9799478644475637,
+   "exact_agreement": 0.99,
+   "dominant_code_prevalence": 0.57,
+   "disagreements": 1,
+   "top_disagreement_pairs": [
+    [
+     [
+      "WRONG_TYPE",
+      "INFERRED"
+     ],
+     1
+    ]
+   ]
+  },
+  "temperature_location_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 0.58,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "pressure_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 0.9,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "power_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 0.95,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "medium_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 0.76,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "basis_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "retention_type_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "censoring_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  }
+ },
+ "critical_field_flags": [
+  "basis_judgement: dominant code prevalence 1.00 (kappa paradox risk: inspect raw agreement)",
+  "retention_type_judgement: dominant code prevalence 1.00 (kappa paradox risk: inspect raw agreement)",
+  "censoring_judgement: dominant code prevalence 1.00 (kappa paradox risk: inspect raw agreement)"
+ ],
+ "disagreement_matrix_pooled": [
+  [
+   [
+    "WRONG_TYPE",
+    "INFERRED"
+   ],
+   1
+  ]
+ ],
+ "agreement_by_stratum": {
+  "S1_temperature_location_stated": 0.9944444444444445,
+  "S2_temperature_location_unspecified": 1.0,
+  "S3_interval": 1.0,
+  "S4_pressure_or_power": 1.0,
+  "S5_medium_only": 1.0,
+  "S6_all_unknown": 1.0
+ },
+ "agreement_by_normalised_status": {
+  "AMBIGUOUS": [
+   0.9891304347826086,
+   92
+  ],
+  "AMBIGUOUS;": [
+   1.0,
+   219
+  ],
+  "NA": [
+   1.0,
+   184
+  ],
+  "UNKNOWN": [
+   1.0,
+   235
+  ],
+  "VALID": [
+   1.0,
+   89
+  ],
+  "VALID;": [
+   1.0,
+   81
+  ]
+ },
+ "red_flag_identical_files": false,
+ "normalizer_fingerprint_12": "a5991a9cda56",
+ "note": "PASS requires kappa >= 0.80, no critical-field flag, and files not identical. A critical-field flag forces adjudication even when overall kappa passes.",
+ "gate_as_computed": "FAIL_OR_ADJUDICATE",
+ "counts_as_human_gate": false,
+ "provenance_check": {
+  "files": [
+   "condition_audit_packet_100_v3_Kush.csv",
+   "condition_audit_packet_100_v3_Parv (1).csv"
+  ],
+  "mtime_kush": "2026-10-22 07:53:11",
+  "mtime_parv": "2026-10-22 07:53:22",
+  "observation": "two files each with 1000 completed judgement cells were last written 11 s apart; judgement columns agree on 899/900 cells with identical code distributions (overall ACCEPT 83 / REJECT 17 in both); reason texts differ. Independent human annotation of this volume in 11 s is not plausible; authorship not verified. Per project rule, AI/script-produced labels do not count as the human audit.",
+  "action": "awaiting Kush's statement of how the files were produced; a genuine blind pass by Kush and Parv is still required"
+ },
+ "content_finding_independent_of_labels": "Packet rows show calendar months converted to fixed seconds (e.g. raw '6 months' -> POINT/VALID 1.57785e7 s): COND stored value+unit already in seconds at ingest, so the 07H calendar rule never fires. Verifiable from raw string vs ledger unit; spec section I gap. NOT fixed yet - awaiting go-ahead (fix would require freeze reset and packet v4)."
+}
