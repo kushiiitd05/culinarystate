@@ -1,3 +1,5 @@
+> **STATUS (2026-10-26): SUPERSEDED.** This prompt is the first part of `CulinaryState_Final_Master_Plan_SSOT15_v4_0.md`. Current governing documents are listed in `docs/plan/CONSOLIDATED_VERDICT_2026-10-26.md` section 3.
+
 # MASTER PROMPT — CulinaryState / Computational Gastronomy R&D Program
 ### Operating system for Claude (Max plan · Claude Code / agentic sessions) · v2.0 · built against SSOT v15.0 (6 Oct 2026)
 

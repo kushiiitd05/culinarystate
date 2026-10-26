@@ -1,3 +1,5 @@
+> **STATUS (2026-10-26): PROPOSALS ONLY.** Only D-027 R-01..R-20 are adopted from this audit. Hierarchy: `docs/plan/CONSOLIDATED_VERDICT_2026-10-26.md` section 3.
+
 # CulinaryState — Master Plan Research & Architecture Audit v2
 
 **PLAN ONLY · generated 2026-10-22 · STEP 08 NOT STARTED · DRAFT FOR HUMAN REVIEW (critique/revision round skipped for usage limits)**

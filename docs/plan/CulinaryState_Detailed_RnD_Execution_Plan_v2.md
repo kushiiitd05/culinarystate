@@ -1,3 +1,5 @@
+> **STATUS (2026-10-26): ADVISORY ONLY.** Built on SSOT v14. The working plan is `CulinaryState_36_Step_Execution_Plan_v2.md` (D-027). Hierarchy: `docs/plan/CONSOLIDATED_VERDICT_2026-10-26.md` section 3.
+
 # CulinaryState Recipe Semantic Compiler — Detailed R&D and Execution Plan
 
 **Research consensus · Execution plan · Experiments and sub-experiments · Affected deliverable plan · JEPA scope**
