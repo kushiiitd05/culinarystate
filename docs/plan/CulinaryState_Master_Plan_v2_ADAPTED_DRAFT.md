@@ -1,4 +1,5 @@
 # CulinaryState — Master Plan v2 (ADAPTED DRAFT)
+> **Governance note:** the server-side `36_Step_Execution_Plan_v2.md` (D-027) governs. This draft predates it and is kept for reference only.
 
 **Status: DRAFT FOR HUMAN APPROVAL. Not adopted. Does not replace SSOT v15 or `CulinaryState_Final_Master_Plan_SSOT15_v4_0.md`.**
 Drafted 2026-10-22. STEP 08 NOT STARTED. No gate threshold in this file is final until recorded in `DECISIONS.md` and the threshold registry.

@@ -18,6 +18,6 @@ For every field, report raw agreement, positive and negative agreement, and PABA
 Per-field kappa >= 0.80 as a mandatory criterion; separate per-reviewer packet IDs (would require editing the packet); any change to cases, fields or examples.
 
 ## 4. Order of operations
-Approve this amendment (D-027) -> reviewers work alone and blind from the unchanged v4 files -> each records the sha256 of the returned file -> run the precheck -> run the agreement tool -> report every disagreement without automatic adjudication -> only then, outcome PASS / FAIL_REVIEWER_DISAGREEMENT / INVALID_AUDIT. If the frozen files change after review starts, the audit is invalid (`python tools/step07hr_freeze.py --verify`).
+Approve this amendment (D-028) -> reviewers work alone and blind from the unchanged v4 files -> each records the sha256 of the returned file -> run the precheck -> run the agreement tool -> report every disagreement without automatic adjudication -> only then, outcome PASS / FAIL_REVIEWER_DISAGREEMENT / INVALID_AUDIT. If the frozen files change after review starts, the audit is invalid (`python tools/step07hr_freeze.py --verify`).
 
 Signed: ____________ (Kush)   ____________ (Parv)   Date: ____________

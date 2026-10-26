@@ -4,7 +4,7 @@ Principle: original 36-step spine governs; adapted plan in `CulinaryState_Master
 
 | # | Action | Owner | Gate / output | Blocks |
 |---|---|---|---|---|
-| 1 | Review and sign (or edit) `D-027_DRAFT_authority_rulings.md`, `condition_audit_protocol_amendment_v4_1_DRAFT.md`, `registry/preregistered_thresholds_v1_DRAFT.csv` | Kush + Parv (~1 h) | signed copies; D-027 entry in DECISIONS.md | 3, 5 |
+| 1 | Review and sign (or edit) `D-028_DRAFT_residual_rulings.md`, `condition_audit_protocol_amendment_v4_1_DRAFT.md`, `registry/preregistered_thresholds_v1.csv` | Kush + Parv (~1 h) | signed copies; D-027 entry in DECISIONS.md | 3, 5 |
 | 2 | Condition audit on UNCHANGED packet v4: each reviewer alone and blind; each records the sha256 of the returned file | Kush, Parv (3-5 h each, UNVERIFIED) | two completed files | 3 |
 | 3 | `step07_provenance_precheck.py` -> `step07_agreement.py` -> report every disagreement; no automatic adjudication | agent runs, humans adjudicate | PASS / FAIL_REVIEWER_DISAGREEMENT / INVALID_AUDIT | Step 15 condition fields, Steps 23, 29-33 (not Step 08 if D-027 item 1 is approved) |
 | 4 | 400-pair identity labels (07I-C), blind and independent | Kush, Parv (4-6 h each, UNVERIFIED) | labelled packet; sealed v2 test packet built after | recipe-level test splits |
