@@ -36,3 +36,5 @@ Records the answers Kush gave in the 2026-10-26 session, in order. These are Kus
 | 30 | THR-08A-19 (recall threshold for the UNKNOWN-row screen) and THR-08A-22 (N years, same-lab rule) | Kush will give the numbers now. NOTE: row 19's own text says the value must be set before 08a runs, so it blocks 08a until set. Rows 19 and 22 remain unsigned. | 2026-10-26 | ANSWERED |
 | 31 | THR-08A-19: cut-off for the UNKNOWN-row screen | Rule: the loosest B3 score with seeded-copy recall >= 0.95 on scratch seeded data, frozen before any real UNKNOWN row is screened. Signed. | 2026-10-26 | ANSWERED, signed |
 | 32 | THR-08A-22: same-lab window N | N = 3 years. Signed. | 2026-10-26 | ANSWERED, signed |
+| 33 | Write D-029..D-031 into DECISIONS.md | Yes. Written 2026-10-26. | 2026-10-26 | DONE |
+| 34 | Authorise Step 08a (implement lineage library, run on Mac, new files only) | Yes. Recorded as D-032. | 2026-10-26 | DONE |

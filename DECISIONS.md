@@ -159,3 +159,28 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Step 08 NOT started by this decision;** next authorised implementation step is defined in Plan v2 §7.
 - **Scope of authorisation:** Plan v2 §7 items are authorised only as contract/documentation work (Step 04 v1.1 contracts and schema drafts, 01.6 threshold pre-registration with PROPOSED_PILOT values, 02.4 negative-results register, archive of the v3 agreement output). Step 08a requires Kush's separate explicit authorisation. Step-07 gate reading confirmed against `tools/step07_agreement.py` L5/L68/L85 and `reports/step07/condition_audit_protocol.md` L25: the preregistered critical-field flag (per-field κ<0.8 unless prevalence≥0.95, raw agreement<0.9, or a repeated disagreement pair) is PART of the unchanged gate; only PABAK/AC1 and other added statistics are diagnostics.
 - **Approver:** Kush.
+
+### D-029 · 2026-10-26 · H4 approval: Step 04.1 lineage, 04.2-min value documentation, 04.6-min data planes, 04.9-min namespaces (decided by Kush; entered by the coding agent as scribe)
+- **Decision:** approved as drafted in `reports/step04/` (answers 4-26 in `docs/plan/H4_ANSWERS_LOG.md`). 04.1: entity chain SRC > DOC > STUDY > SEXP > SMP > OBS > AGG/DRV with typed edges; D-2 AGG/DRV as export-v2 fields (no separate ledgers); D-3 reserve LROOT-, CGRID-, DFORM-; D-4 same-lab grouping optional, shared-reference grouping default; D-5 UNKNOWN independence = TRAIN-only; D-6 port schemas into `registry.py` at 08a; D-8 unidentifiable-member aggregate = one lineage root per release; D-9 STUDY authoritative for DOC-STUDY links; D-10 Phenol-Explorer = PUBLICATION_ONLY; D-11 DOC key `<src_id>|sha256:<hex>`; D-12 hub rule; D-13 UNKNOWN leakage screen plus sensitivity run; D-14 giant-component rule (largest share <= 0.40, n_eff >= 10, weaker label wins); D-15 mandatory `lab_group_id` (UNKNOWN allowed), reserve LABGRP-, MBSET-; D-16 `retention_definition` split with evidence field; D-17 absent SEXP.context = UNKNOWN.
+- **04.2-min:** field set and enumerations approved; censor ids CS-011..CS-014 added; lod/loq on OBS; bases MB-009..011 with alias settlements; digitisation record with two-read rule (THR-04K-03). Registry files `censoring_registry_v1_1.csv`, `value_origin_registry_v1_1.csv`, `measurement_basis_registry_v1_1.csv` to be created as drafts.
+- **04.6-min:** six-plane codes; DOC in P-SRC; `ESTIMATED_FROM_SUMMARY` never a label or test value; PQ-1 ratified (`SPLITGRP-EVD-######` / `SPLITGRP-REC-######`, no cross-plane join); data-plane registry created now as DRAFT_PENDING_H4.
+- **04.9-min:** the 13 prefixes reserved (including THR-, NEG-, MECH-, DGP-, TASK-); no KINETIC- prefix. AGG- / DRV- are minted only as export-view keys (follows D-2).
+- **Not covered:** 04.3 kinetic/trajectory (needed before Step 09, not before 08a); D-7 numbers are covered by D-030. Parv has not reviewed; Kush approved alone.
+- **Approver:** Kush.
+
+### D-030 · 2026-10-26 · Step 08a.0 pre-registration signed: THR-08A-01..23 (decided by Kush; entered by the coding agent as scribe)
+- **Decision:** the 23 rows `THR-08A-01..23` in `registry/preregistered_thresholds_v1.csv` are signed (`signed_by` Kush Tokas, `signed_at` 2026-10-26, status `PREREGISTERED_2026-10-26`). Rows 01-15 are the original plan's numbers, unchanged. Rows 16-18, 20, 21, 23 are the agent drafts, signed as written. Row 19 (UNKNOWN-row screen) value set as a rule: the loosest B3 score with seeded-copy recall >= 0.95 on scratch seeded data (same level as THR-08A-05), frozen before any real UNKNOWN row is screened. Row 22 (SAME_LAB_AS): N = 3 years.
+- **Ruling:** `data_seen_before_registration = DESCRIPTIVE_COUNTS_SEEN` satisfies the Step 01.6 rule for these rows (only source-family group sizes were seen; no lineage component, edge or label was computed). No second signer required.
+- **Not signed:** the other 24 rows (07.A, 07I-C, 04.3 and pilot rows) stay `DRAFT_PENDING_H4`.
+- **Approver:** Kush.
+
+### D-031 · 2026-10-26 · Step 08a execution environment, manifest, baseline hashes (decided by Kush; entered by the coding agent as scribe)
+- **Environment:** 08a runs on the Mac (CPU, seconds to minutes); the vinayak server only if a run proves heavy (confirm VPN first). The Mac holds the authoritative ledgers and D-026.
+- **Manifest:** `registry/data_source_acquisition_manifest_v1_1.csv` (planned 06.3-min) is NOT a precondition of 08a; the v1 manifest suffices.
+- **Baseline hashes:** sha256 of the seven ledger files recorded in `registry/baseline_ledger_hashes_08a_v1.csv`. EVD, COND, SRC, MEAS match earlier recorded hashes; STUDY, SNAP and `_ids` are new baselines. Gate G08-5 (THR-08A-06) compares against this file.
+- **Approver:** Kush.
+
+### D-032 · 2026-10-26 · Written authorisation of Step 08a (decided by Kush)
+- **Decision:** Step 08a (lineage resolution for the existing 17,978 EVD rows) is AUTHORISED. The coding agent implements the lineage library and runs 08a on the Mac. It writes only NEW files. EVD, COND, SRC and MEAS must stay byte-identical (THR-08A-06), checked against D-031's baseline hashes; STUDY is append-only. 07.A and 07I-C labels are not used (D-027 R-05: soft dependency). The run stops and reports on any failed gate; no gate is loosened (D-027 R-20).
+- **Not authorised:** Step 08b, 07.A, 07I-C, 07I-S, any push to GitHub (H7).
+- **Approver:** Kush (answer to the walk-through question, 2026-10-26).
