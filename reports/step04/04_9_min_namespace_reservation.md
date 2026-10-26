@@ -52,6 +52,9 @@ LABGRP-,LABGRP-######,"lab group: connected component over SAME_LAB_AS edges (re
 MBSET-,MBSET-######,"mass-balance set: the series of one run (tissue, cooking medium, food mass / yield, medium volume) that close one mass balance",P-EVD,PROPOSED_ADDITION_H4,`KIN.mass_balance_set_id` (review B #13); no prefix exists for it,A-11 in kinetic_trajectory_contract_v1.md
 THR-,THR-<step>-<nn>,"threshold row key in registry/preregistered_thresholds_v1.csv (registry key, not a ledger id)",L-GOV,PROPOSED_ADDITION_H4,used by this step's draft register,confirm or rename
 NEG-,NEG-####,"row key in registry/negative_results_register_v1.csv (registry key, not a ledger id)",L-GOV,PROPOSED_ADDITION_H4,used by this step's draft register; `NR-` was rejected because it is the notation-rule registry prefix,confirm or rename
+MECH-,MECH-######,"mechanism registry entry (Step 21; minted from `mechanism_key`; draft schema registry/schemas/MECH.draft_v1.schema.json)",model plane (P-MOD) reference registry,PROPOSED_ADDITION_H4,"Step 21 needs an id for mechanism entries; the card reserves no prefix; scanned free in registry.py (37 prefixes) and in this file (round-3 Review A #9 / #23 / #24)",D21-1 in reports/step21/README.md
+DGP-,DGP-A-nnnn / DGP-B-nnnn,"Deep Gold pilot packet label (Step 19-D): a local file / packet label, never a ledger id and never minted",none (local label),PROPOSED_ADDITION_H4,"new packet id family used by the Step 19 pilot design; register it as a local label or rename it to a file-name token, then re-run the section 5 collision scan",Step 19 checklist (reports/step19)
+TASK-,TASK-ING-A / TASK-ING-B,"Step 35 task label (replaces the working names T-ING-A / T-ING-B, whose `T-` form section 5 rejected as close to the lane-plan and D-008 task ids T1-T8); a document label, not a ledger id",none (document label),PROPOSED_ADDITION_H4,"the Step 35 preregistration draft still uses T-ING-A / T-ING-B until its authors rename them; the reservation is recorded here only",reports/step35 (round-3 Review A #24)
 ```
 
 If H4 declines an addition, the corresponding draft field must be re-specified: `lineage_root_id` (LROOT-), `condition_grid_id` (CGRID-), `formula_id` (DFORM-), `lab_group_id` (LABGRP-), `mass_balance_set_id` (MBSET-), and the register row keys.
@@ -140,7 +143,7 @@ MTX- / PST-,exports/evd/*_table_v1.csv; evd_export_v1.schema.json,hash ids of no
 ## 7. Open decisions for H4
 
 1. Reserve the 13 prefixes (and confirm the id format `PREFIX-######`).
-2. Accept or decline `LROOT-`, `CGRID-`, `DFORM-`, `LABGRP-`, `MBSET-`, `THR-`, `NEG-` (section 4); note that `PARAM-` is referenced, not proposed.
+2. Accept or decline `LROOT-`, `CGRID-`, `DFORM-`, `LABGRP-`, `MBSET-`, `THR-`, `NEG-`, `MECH-`, `DGP-`, `TASK-` (section 4; the last three added in round 3); note that `PARAM-` is referenced, not proposed.
 3. Ratify the `split_group_id` homonym rule (section 3).
 4. Confirm that no `KINETIC-` prefix is intended (D-024 mentions a never-created KINETIC ledger).
 5. Whether AGG-/DRV- are minted for real (separate ledgers) or only as export-view keys (lineage contract D-2).

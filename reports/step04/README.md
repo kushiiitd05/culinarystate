@@ -40,7 +40,7 @@ Card outputs that are **not** created as files (their proposed content is embedd
 ## 3. Validation performed, and the Mac contract test
 
 - All 9 schema drafts parse (`python3 -I`), declare draft 2020-12, and keep `additionalProperties: false` on every nested object (checked by a structural test; the only open sub-schemas are `if` / `contains` matcher fragments) with the existing ledger envelope; no schema contains a `default` keyword.
-- `jsonschema` is **not installed** on this server (nor pytest, pandas, pyarrow). A throw-away stdlib checker (scratch, not in the repo) implementing the JSON Schema subset the drafts use was run on 2026-10-26 after revision r1: the proposed test below through a shim of the same checker, **220 test cases (135 negative controls, 56 accepted variants, 29 structural checks), all as expected**; every new negative control was also checked to fail for its intended reason. Representative law cases: an UNKNOWN digitisation uncertainty is accepted and an uncertainty of 0 is rejected; a MEASURED 0 with censoring NOT_REPORTED / DETECTED / ROUNDED_INTERVAL is rejected and TRUE_ZERO with a basis note is accepted; a raw `week` / `month` / `year` time unit is accepted (and a month converted EXACTLY to seconds is rejected). This is evidence about the drafts' logic, **not** a substitute for the real validator.
+- `jsonschema` 4.10.3 is installed for `/usr/bin/python3` on the Linux server (Python 3.12.3, with numpy 1.26.4 and scipy 1.11.4; Debian `python3-jsonschema`; round-3 review K-1a). It is **not** installed for the PATH `python3` there (`/home/manjot23309/miniconda3/bin/python3`, 3.13.13, stdlib only); pytest is absent from both; pandas and pyarrow exist only in the miniconda envs `fd27` / `manjot_env`. (On the Mac, `/opt/anaconda3/bin/python` has jsonschema 4.19.2 and pytest; the Mac `/usr/bin/python3` has none.) jsonschema 4.10.3 supports `Draft202012Validator` but cannot resolve `#/$defs/...` under a relative `$id` (< 4.18): validate against a copy without `$id`. The first run described next used a throw-away stdlib checker and was **not repeated with jsonschema 4.10.3**. A throw-away stdlib checker (scratch, not in the repo) implementing the JSON Schema subset the drafts use was run on 2026-10-26 after revision r1: the proposed test below through a shim of the same checker, **220 test cases (135 negative controls, 56 accepted variants, 29 structural checks), all as expected**; every new negative control was also checked to fail for its intended reason. Representative law cases: an UNKNOWN digitisation uncertainty is accepted and an uncertainty of 0 is rejected; a MEASURED 0 with censoring NOT_REPORTED / DETECTED / ROUNDED_INTERVAL is rejected and TRUE_ZERO with a basis note is accepted; a raw `week` / `month` / `year` time unit is accepted (and a month converted EXACTLY to seconds is rejected). This is evidence about the drafts' logic, **not** a substitute for the real validator.
 - **A contract test should be added on the Mac.** Proposed content for `tests/contract/test_step04_draft_schemas.py` (not created here):
 
 ```python
@@ -48,7 +48,7 @@ Card outputs that are **not** created as files (their proposed content is embedd
 
 PROPOSED content for tests/contract/test_step04_draft_schemas.py (not created in this step).
 Run on the Mac:  /opt/anaconda3/bin/python -m pytest -q tests/contract/test_step04_draft_schemas.py
-Needs jsonschema >= 4.18 (Draft 2020-12). Fixtures are SYNTHETIC SCHEMA FIXTURES: structure only, placeholder
+Needs jsonschema >= 4.0 (Draft 2020-12); with < 4.18 the schema must be loaded without its relative `$id` (see `errors` below). Fixtures are SYNTHETIC SCHEMA FIXTURES: structure only, placeholder
 strings and dummy numbers, never data. Nothing here reads a ledger.
 """
 import copy
@@ -73,7 +73,7 @@ def load(name):
 
 
 def errors(name, inst):
-    return sorted(e.message for e in Draft202012Validator(load(name)).iter_errors(inst))
+    return sorted(e.message for e in Draft202012Validator({k: v for k, v in load(name).items() if k != "$id"}).iter_errors(inst))
 
 
 def env(prefix, n=1):
@@ -608,7 +608,7 @@ Order follows the Step 08 preconditions: (i) 04.1 + 04.2-min + 04.6-min + 04.9-m
 - [ ] Sign (set `signed_by` / `signed_at`) or change each PROPOSED_PILOT value; none is signed. Rows for 07I-S, 08b and 09 are still to be registered before those steps start (Step 01 card).
 
 **C. Environment and authorisation (preconditions iii, iv)**
-- [ ] Execution environment for 08a / 08b / 07I-S: this server (CPU-only, stdlib Python only, no pytest / jsonschema) vs the Mac vs another approved environment (`reports/step02/r_min_08a_input_classification.md` §4). If the Mac: compare ledger hashes with this clone first (D-026 exists only there). Record the decision in DECISIONS.
+- [ ] Execution environment for 08a / 08b / 07I-S: this server (CPU-only; `/usr/bin/python3` has numpy, scipy and jsonschema 4.10.3, no pytest; pandas / pyarrow only in `envs/manjot_env`) vs the Mac vs another approved environment (`reports/step02/r_min_08a_input_classification.md` §4). If the Mac: compare ledger hashes with this clone first (D-026 exists only there). Record the decision in DECISIONS.
 - [ ] Baseline sha256 of the seven ledger files recorded before any 08a write (none found for STUDY and SNAP).
 - [ ] Whether `registry/data_source_acquisition_manifest_v1_1.csv` (planned 06.3-min) is a hidden precondition of 08a or v1 suffices.
 - [ ] Real DECISIONS ids for the rulings and registries (D-026 clash; X17).

@@ -282,7 +282,7 @@ From the Step 04 card, plus controls that the drafts make checkable:
 | endpoint DRV of a SIM-VAL / DS-TEST series inside a Step 29 / 30 / 33 TRAIN set | rejected | L-11b |
 | PROJECT_FIT parameter in the evidence plane | rejected | KIN schema (`fit_origin` admits AUTHOR_REPORTED only) |
 
-The JSON-Schema-expressible controls were exercised against the drafts with a throw-away stdlib checker on 2026-10-26 (revision r1: 220 cases, all as expected: baseline instances, accepted variants, rejected variants and structural checks); `jsonschema` is not installed on this server, so the proposed contract test for the Mac is in `README.md`.
+The JSON-Schema-expressible controls were exercised against the drafts with a throw-away stdlib checker on 2026-10-26 (revision r1: 220 cases, all as expected: baseline instances, accepted variants, rejected variants and structural checks); `jsonschema` 4.10.3 exists for `/usr/bin/python3` on this server (see the test section of `README.md`); the 220 cases were run with the stdlib checker, not with jsonschema. The proposed contract test for the Mac is in `README.md`.
 
 ---
 
