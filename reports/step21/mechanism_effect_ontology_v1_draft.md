@@ -1,6 +1,6 @@
 # Step 21 — Mechanism and effect ontology v1 (draft): mechanism classes, effect classes, activation conditions, three-valued applicability
 
-**Status: DRAFT_PENDING_H4.** Written 2026-10-26 under D-027 / Plan v2 §7 and **R-10** (Step 21 may run in parallel with Phases C / D where its input artifacts already exist): contract and documentation work only. Nothing is approved, frozen, signed, minted or applied. No ledger row exists or was created, no evidence was entered, no pipeline was run, no existing file was edited. **Step 08 is not started and not authorised.** Every row of the three vocabulary CSVs carries `registry_status = DRAFT_PENDING_H4`.
+**Status: DRAFT_PENDING_H4.** Written 2026-10-26 under D-027 ruling **R-10** (Plan v2 §4.2 lane L5: Step 21 may run in parallel with Phases C / D where its input artifacts already exist; Plan §7 lists no Step-21 item) and revised the same day after the round-3 reviews (`reports/step21/FIX_LOG_round3.md`): contract and documentation work only. Nothing is approved, frozen, signed, minted or applied. No ledger row exists or was created, no evidence was entered, no pipeline was run, no existing file was edited. **Step 08 is not started and not authorised.** Every row of the three vocabulary CSVs carries `registry_status = DRAFT_PENDING_H4`.
 
 Authority: R-10 (parallel lane), **R-15** (APPLICABLE / NOT_APPLICABLE / UNKNOWN; UNKNOWN never silently becomes SIMULATE), **R-14** (ascorbic acid leading, chlorophyll fallback, neither frozen), R-02 (needs are additive v1.1 contracts), R-05 (Step-07 gate is SOFT for 21: no COND value is consumed here), R-18 (no runtime change), R-19 (negative results and rejected items are kept), R-20 (UNKNOWN ≠ 0; recipes ≠ chemistry truth; simulation ≠ measured evidence; an LLM's knowledge is never evidence, SSOT §257A.5).
 
@@ -27,12 +27,12 @@ Step 23-M gates, and what each reads from a MECH record:
 | Gate (owner) | Question | Reads from MECH |
 |---|---|---|
 | G3 candidate effects (22) | which mechanisms, acting on which targets, in which directions | `affected_targets[]` (Step 22 reuses this object as `candidate_effects[]`; identical shape is a check Step 22a should add) |
-| G4 mechanism applicability (23) | preconditions ∧ NECESSARY gates ∧ no inhibitor, three-valued | `preconditions[]`, `condition_gates[]`, `inhibitors_mitigators[]`, `history_dependence[]`, `matrix_scope`, `gates_unknown`, `review_status` |
+| G4 mechanism applicability (23) | preconditions ∧ NECESSARY gates ∧ no inhibitor, three-valued (CATALYST / PROMOTER modifiers never change this verdict) | `preconditions[]`, `condition_gates[]`, `inhibitors_mitigators[]` (inhibitors, mitigators, catalysts, promoters), `history_dependence[]`, `matrix_scope`, `gates_unknown`, `review_status` |
 | G5 competing mechanisms (23) | ≥ 2 mechanisms APPLICABLE or UNKNOWN on one target with no joint FORM | `competes_with[]`, `consecutive_with[]` |
 | G6–G8 (24, 25, 23) | formula, inputs, parameters, domain | nothing: no formula, no parameter lives in MECH |
 | G0, G1, G2, G9 | evidence pre-check, event resolution, deterministic change, route | nothing |
 
-Step 22 derives its `required_state_inputs` and `required_condition_axes` as the union of the states named in `preconditions`, the CV axes (with location) of `condition_gates`, and `history_dependence`; no extra field is needed to list missing inputs.
+Step 22 derives its `required_state_inputs` and `required_condition_axes` as the union of the states named in `preconditions`, the CV axes (with location) of `condition_gates`, `history_dependence`, **and every modifier axis (inhibitor, mitigator, catalyst, promoter; rule M-1, §4.4)**, so that G7 (input observability) returns UNKNOWN when a catalyst or promoter input is missing; no extra field is needed to list missing inputs.
 
 **Plane (proposal, H4).** A MECH record is knowledge about mechanisms with citations, not an observation. It is proposed as a reference registry of the model plane (P-MOD, `registry/` data-plane rules in `reports/step04/04_6_min_data_plane_rules.md` §1) with `is_evidence = false` fixed by the schema, like EFFSIG and APPDEC (CHG-21-3). The 04.6-min draft has no row for MECH; one would have to be added.
 
@@ -57,10 +57,10 @@ A mechanism entry has three coordinates before any condition is stated: **kind**
 
 | kind | Meaning | Seed examples (roster) |
 |---|---|---|
-| `CHEMICAL_REACTION` | non-enzymatic reaction | Maillard–Strecker (lumped), caramelisation, acrylamide formation, lipid oxidation, ascorbic-acid aerobic / anaerobic pathways, chlorophyll → pheophytin |
-| `ENZYMATIC` | enzyme-catalysed; **requires** an `enzyme` object (EC / GO MF / Rhea xrefs) | alliinase, onion LFS, myrosinase, PPO browning, LOX / HPL, ascorbate-oxidase loss |
+| `CHEMICAL_REACTION` | non-enzymatic reaction | Maillard–Strecker (lumped), caramelisation, acrylamide formation, lipid oxidation, the ascorbic-acid pathway steps (§6.1), the chlorophyll pathway steps (§6.2) |
+| `ENZYMATIC` | enzyme-catalysed; **requires** an `enzyme` object (EC / GO MF / Rhea xrefs) | alliinase, onion LFS, myrosinase, PPO browning, LOX / HPL, ascorbate-oxidase oxidation, chlorophyllase (proposed, unsourced) |
 | `PHYSICAL_TRANSPORT` | material moves between compartments | leaching, volatilisation, moisture loss, oil uptake |
-| `PHASE_STRUCTURAL_TRANSITION` | structure or phase changes | protein denaturation / aggregation, collagen solubilisation, starch gelatinisation / retrogradation, cell-wall softening |
+| `PHASE_STRUCTURAL_TRANSITION` | structure or phase changes | protein denaturation / aggregation, collagen solubilisation, starch gelatinisation / retrogradation, cell-wall softening, enzyme thermal inactivation (proposed) |
 | `MICROBIAL` | organism-driven | lactic fermentation |
 | `MECHANICAL_DISRUPTION` | force changes cell integrity | cell disruption by cutting / crushing (proposed entry) |
 | `UNRESOLVED_SINK` (**proposed, H4**) | explicit accounting bucket for unexplained loss (SSOT §213.20); no participants, enzyme, gates or targets | `UNRESOLVED_LOSS` |
@@ -74,21 +74,21 @@ The card's six kinds come from the Step 21 Method field. The seventh exists beca
 | `MAILLARD_GLYCATION` | Maillard / glycation | Maillard–Strecker (lumped), acrylamide formation |
 | `SUGAR_THERMAL_DEGRADATION` | sugar thermal degradation / caramelisation | caramelisation |
 | `LIPID_OXIDATION_DECOMPOSITION` | lipid oxidation / decomposition | lipid oxidation |
-| `PROTEIN_STRUCTURAL` | protein unfolding, aggregation and gelation | protein denaturation / aggregation |
+| `PROTEIN_STRUCTURAL` | protein unfolding, aggregation and gelation | protein denaturation / aggregation, enzyme thermal inactivation (proposed) |
 | `COLLAGEN_TRANSITION` | collagen denaturation / solubilisation | collagen solubilisation |
 | `STARCH_TRANSITION` | starch gelatinisation / pasting / retrogradation | gelatinisation, retrogradation |
 | `CUTTING_TRIGGERED_ENZYMATIC` | cutting-triggered alliinase, LOX / HPL, myrosinase and PPO chemistry | five enzymatic entries, cell disruption |
 | `FERMENTATION` | fermentation | lactic fermentation |
 | `VOLATILE_MATERIAL_TRANSFER` | volatile / material transfer | leaching, volatilisation, moisture loss, oil uptake |
-| `PIGMENT_CELLWALL_TRANSITION` | pigment / cell-wall transitions | chlorophyll → pheophytin, cell-wall softening, (optional) pyropheophytin |
-| `MICRONUTRIENT_DEGRADATION` | *(not a §144.1 family)* | three ascorbic-acid pathways |
+| `PIGMENT_CELLWALL_TRANSITION` | pigment / cell-wall transitions | chlorophyll → pheophytin, cell-wall softening, the other chlorophyll steps of §6.2 |
+| `MICRONUTRIENT_DEGRADATION` | *(not a §144.1 family)* | the five ascorbic-acid entries of §6.1 |
 | `UNRESOLVED` | *(not a §144.1 family)* | sink |
 
 Two additions: `MICRONUTRIENT_DEGRADATION` because the card lists ascorbic-acid pathways that none of the ten families names, and `UNRESOLVED` for the sink. **Gap found:** G21.2 requires every §144.1 family to have an entry, but the card's 21b list covers only the pigment half of "pigment / cell-wall transitions" (chlorophyll). The roster therefore proposes `CELL_WALL_SOFTENING`; without it G21.2 cannot pass.
 
 ### 2.3 Edge semantics
 
-Card values `REACTION`, `TRANSPORT`, `EQUILIBRIUM`, `STATISTICAL` (SSOT §213.11: an edge must mean a known reaction, transport / exchange, equilibrium / interaction, or a validated statistical interaction labelled as such). Phase / structural transitions and mechanical disruption fit none cleanly, so the draft adds `STATE_TRANSITION`, and `NOT_APPLICABLE` for the sink (H4: accept, or collapse into the four). The roster's proposed values: REACTION 15, STATE_TRANSITION 6, TRANSPORT 4, NOT_APPLICABLE 1.
+Card values `REACTION`, `TRANSPORT`, `EQUILIBRIUM`, `STATISTICAL` (SSOT §213.11: an edge must mean a known reaction, transport / exchange, equilibrium / interaction, or a validated statistical interaction labelled as such). Phase / structural transitions and mechanical disruption fit none cleanly, so the draft adds `STATE_TRANSITION`, and `NOT_APPLICABLE` for the sink (H4: accept, or collapse into the four). The roster's proposed values: REACTION 20, STATE_TRANSITION 7, TRANSPORT 4, NOT_APPLICABLE 1.
 
 ### 2.4 Identity: `mechanism_key`
 
@@ -100,7 +100,7 @@ Card values `REACTION`, `TRANSPORT`, `EQUILIBRIUM`, `STATISTICAL` (SSOT §213.11
 
 ### 3.1 What an effect is
 
-An **effect** is stated on a *target*, not on the mechanism: `affected_target = {target_key, target (state_ref), analyte_form, compartment, effect_type, allowed_directions, trajectory_shape, evidence_ids, status}`. It says what the mechanism can do to that variable and in which direction. It never says how much or how fast: no magnitude, extent, rate, order, half-life or temperature coefficient exists anywhere in the schema (G21.8; the scan list is in the README test).
+An **effect** is stated on a *target*, not on the mechanism: `affected_target = {target_key, target (state_ref), target_role (SUBSTRATE | PRODUCT | UNKNOWN), analyte_form, compartment, effect_type, allowed_directions, trajectory_shape, evidence_ids, status}`. It says what the mechanism can do to that variable and in which direction. It never says how much or how fast: no magnitude, extent, rate, order, half-life or temperature coefficient exists anywhere in the schema (G21.8; the scan list is in the README test).
 
 ### 3.2 Target classes
 
@@ -110,6 +110,8 @@ An **effect** is stated on a *target*, not on the mechanism: `affected_target = 
 | `TRANSFERRED_AMOUNT` | an amount in one compartment of a transfer | LEACHED, VOLATILIZED, ABSORBED |
 | `OBSERVABLE` | colour, browning index, texture, force | STRUCTURE_ALTERED, DENATURED, AGGREGATED, GELATINIZED, UNKNOWN_TRANSFORMATION (when species are not asserted) |
 | `STATE` | `cell_integrity`, `enzyme_activity_state` | STATE_SET |
+
+`analyte_form` is free text in this draft; a controlled token list that makes the analyte basis machine-comparable is OPEN_QUESTION D21-22 (round-3 Review B 21-12).
 
 `target_class` is a column of the effect-type registry, a guide for reviewers, not a schema field. An observable target (e.g. PPO browning acting on colour) uses `UNKNOWN_TRANSFORMATION` or `STRUCTURE_ALTERED` rather than an invented species.
 
@@ -121,15 +123,17 @@ Aligned to `RXN.schema.json` relation verbs (13 reused verbatim) plus three prop
 |---|---|---|
 | FORMED | RXN | contains INCREASE (also DECREASE only for peak-then-decline or condition-dependent direction, evidence required) — *enforced: must contain INCREASE or be exactly [UNKNOWN]* |
 | DEGRADED, CONSUMED | RXN | DECREASE only — *enforced* |
-| OXIDIZED, REDUCED, ISOMERIZED | RXN | no fixed direction; state `analyte_form` |
-| LEACHED, VOLATILIZED | RXN | by compartment: TISSUE → DECREASE, COOKING_MEDIUM → INCREASE — *enforced*; LEACHED excludes WHOLE_SYSTEM (a transfer conserves the system) — *enforced* |
+| OXIDIZED, REDUCED | RXN | follows `target_role` — *enforced*: SUBSTRATE → DECREASE only (or [UNKNOWN]); PRODUCT → must contain INCREASE (or be [UNKNOWN]); UNKNOWN role → no fixed direction. State `analyte_form`. A stated species can no longer validate with the opposite sign (21-11) |
+| ISOMERIZED | RXN | no fixed direction; state `analyte_form` |
+| LEACHED | RXN | by compartment: TISSUE → DECREASE, COOKING_MEDIUM → INCREASE — *enforced*; WHOLE_SYSTEM is not admitted (a transfer conserves the system) — *enforced* |
+| VOLATILIZED | RXN | TISSUE → DECREASE — *enforced*; **COOKING_MEDIUM: no direction rule** (SSOT 210.22 gives the volatile loss −k_vol·c and names no receiving compartment; a gas phase is not a compartment value); **WHOLE_SYSTEM admitted, DECREASE only** (a loss from the system) — *enforced* (round-3 Review A #4; before it, the schema forced INCREASE in the medium and rejected WHOLE_SYSTEM while the CSV said the opposite) |
 | DENATURED, AGGREGATED, GELATINIZED, FERMENTED | RXN | no fixed direction |
 | UNKNOWN_TRANSFORMATION | RXN | any (the honest type when species are not asserted; MP W6 "never manufacture a balanced reaction") |
-| ABSORBED | **proposed** | inward transfer (oil uptake, water uptake): TISSUE → INCREASE, COOKING_MEDIUM → DECREASE — *enforced* |
+| ABSORBED | **proposed** | inward transfer (oil uptake, water uptake): TISSUE → INCREASE, COOKING_MEDIUM → DECREASE — *enforced*; WHOLE_SYSTEM not admitted — *enforced* |
 | STRUCTURE_ALTERED | **proposed** | texture / structure without specified chemistry (cell-wall softening, collagen solubilisation) |
 | STATE_SET | **proposed** | sets a non-analyte history state; may belong to Step-18 operators instead (H4) |
 
-`RETAINED` is the one RXN verb with no effect type: it is an outcome (EVD direction NO_CHANGE), not something a mechanism does. The README test asserts that every RXN verb except RETAINED has exactly one effect type.
+`RETAINED` is the one RXN verb with no effect type: it is an outcome (EVD direction NO_CHANGE), not something a mechanism does. The README test asserts that every RXN verb except RETAINED has exactly one effect type, and that every compartment rule written in the CSV is the rule the schema enforces.
 
 ### 3.4 Directions, and alignment with EVD `derived.direction`
 
@@ -162,14 +166,14 @@ An observed direction outside the allowed set is evidence about the matrix or th
 | What (the request) | Representation | UNKNOWN handling | Anchor |
 |---|---|---|---|
 | Temperature | gate on CV-005…008 (setpoint, medium, surface, core); the CV id *is* the location | no value, no location match → UNKNOWN | CV registry notes; 04.3 R04-6 (COND ML-001…006); MP W2 "oven setpoint ≠ core T" |
-| pH | gate on CV-013 with `location` TISSUE / MEDIUM (never averaged) | pH UNKNOWN → UNKNOWN | CV-013 note; MP L82 |
+| pH | gate on CV-013 with `location` TISSUE / MEDIUM (never averaged); for a chemical reaction MODULATING unless rule E-7 is met (§4.3) | pH UNKNOWN → UNKNOWN (at G4 for a NECESSARY gate, at G7 for a MODULATING one) | CV-013 note; MP L82 |
 | Water activity, moisture | gates on CV-015, CV-016 (CV-016 needs `basis` WET / DRY); moisture gating only where evidenced | absent is UNKNOWN, not 0 | SSOT §210.15 |
-| Oxygen | gate on CV-021 (`location` HEADSPACE / MEDIUM …) and history `oxygen_exposure` | absent is UNKNOWN, not 0 | CV-021 note; J1.2.1 |
+| Oxygen | gate on CV-021 (headspace oxygen volume fraction: `location` HEADSPACE or UNKNOWN only, *enforced*) and history `oxygen_exposure`; dissolved oxygen in the medium has no CV axis (gap G-8) | absent is UNKNOWN, not 0 | CV-021 note; J1.2.1 |
 | Time | gate on CV-001…003 with clock `PROCESS_TAU` only; time since an event is a history item | unknown clock or value → UNKNOWN | 04.3 R04-5; 03.3 pending |
 | Substrate | precondition over a per-substance state (`subject_entity`) | state UNKNOWN → UNKNOWN | SVAR-FUT-014 |
 | Enzyme state | precondition on `enzyme_activity_state`; the entry's `enzyme` object holds EC / GO MF / Rhea xrefs | UNKNOWN → UNKNOWN | J1.2.1; GO MF probes (F4.1) |
 | History | `history_dependence[]` (names owned by 16a) | UNKNOWN → UNKNOWN | SSOT §198.4, §210.13 |
-| Inhibitors, mitigators | `inhibitors_mitigators[]` (§4.4) | not formalised → entry UNKNOWN | F5.4(iii) |
+| Inhibitors, mitigators, catalysts, promoters | `inhibitors_mitigators[]` (§4.4) | not formalised → entry UNKNOWN | F5.4(iii); round-3 Review B 21-3 |
 | Competing / consecutive mechanisms | `competes_with[]`, `consecutive_with[]` (§4.5) | none declared is **not** "none exist" (§4.5) | SSOT §210.17–210.18, §210.21 |
 | Matrix scope | `matrix_scope` per entry and per gate (§4.7) | unlisted matrix → UNKNOWN | F5.3 |
 | Markers | `markers[]` with `marker_unique` fixed `false` | — | SSOT §144.1 frozen caution |
@@ -181,7 +185,7 @@ An observed direction outside the allowed set is evidence about the matrix or th
 
 ### 4.3 Condition gates
 
-`{gate_key, gate_type, cv_id, location, basis, clock, domain_kind, interval | categories, modulates, independence_assumed, matrix_scope, missing_input_verdict, evidence_ids, status, rationale_raw}`. Types (`registry/condition_gate_type_registry_draft_v1.csv`): **NECESSARY** (outside the evidenced window the mechanism does not act), **MODULATING** (changes direction / selectivity / rate, never the verdict), **INHIBITING** (inside the window the mechanism is blocked).
+`{gate_key, gate_type, cv_id, location, basis, clock, domain_kind, interval | categories, modulates, independence_assumed, matrix_scope, missing_input_verdict, evidence_ids, status, rationale_raw}`. Types (`registry/condition_gate_type_registry_draft_v1.csv`): **NECESSARY** (outside the evidenced window the mechanism does not act), **MODULATING** (changes direction / selectivity / rate, never the verdict), **INHIBITING** (inside the window the mechanism is blocked). An entry may state `gates_unknown = false` only if it has at least one precondition or at least one **NECESSARY** gate (§5.2 U-5): a MODULATING or an INHIBITING gate alone never lets an entry be APPLICABLE-capable, because Step 23 would then take a conjunction over an empty verdict-bearing set (a vacuous APPLICABLE; round-3 Review A #3, Review B 21-8).
 
 Axis rules enforced by the schema:
 
@@ -189,7 +193,7 @@ Axis rules enforced by the schema:
 |---|---|
 | CV-005 setpoint, CV-006 medium, CV-007 surface, CV-008 core | `location = NOT_APPLICABLE` (the id carries it; no second field to disagree). CV-005 stays a setpoint, never product temperature |
 | CV-009 temperature unspecified; CV-004, CV-010 trajectory axes | **never gate axes** (an unspecified location is never promoted; a gate needs a scalar or interval input, and trajectory dependence is a history item) |
-| CV-013 pH, CV-015 aw, CV-016 moisture, CV-021 oxygen | `location` must be stated (TISSUE, MEDIUM, HEADSPACE, WHOLE_ENTITY) or be `UNKNOWN`; CV-016 additionally needs `basis` WET_BASIS / DRY_BASIS (or UNKNOWN) |
+| CV-013 pH, CV-015 aw, CV-016 moisture, CV-021 oxygen | `location` must be stated (TISSUE, MEDIUM, HEADSPACE, WHOLE_ENTITY) or be `UNKNOWN`; CV-016 additionally needs `basis` WET_BASIS / DRY_BASIS (or UNKNOWN); **CV-021 is the headspace oxygen volume fraction, so its location is HEADSPACE or UNKNOWN only** |
 | CV-001…003 time | `clock = PROCESS_TAU` (the only clock admitted until 03.3 is approved, as in 04.3); every other axis has `clock = NOT_APPLICABLE` |
 | every other CV | `basis = NOT_APPLICABLE`, `clock = NOT_APPLICABLE` |
 
@@ -200,26 +204,28 @@ Checks that need the CV registry (id exists, `unit` equals the CV canonical unit
 | Bound status | Meaning | Query value inside the limit | Beyond the limit | No query value |
 |---|---|---|---|---|
 | `STATED` (value, inclusive) | the cited evidence gives this limit | APPLICABLE | NOT_APPLICABLE | UNKNOWN |
-| `OPEN_STATED` | the evidence states activity is not limited on this side within the studied range | APPLICABLE | — | UNKNOWN |
+| `OPEN_STATED` (value = the **studied extreme** on this side, required; inclusive) | the evidence states activity is not limited on this side within the studied range | APPLICABLE | **UNKNOWN** (extrapolation beyond the studied extreme; never APPLICABLE, U-4) | UNKNOWN |
 | `NOT_REPORTED` | the evidence is silent | UNKNOWN | UNKNOWN | UNKNOWN |
 
-A NECESSARY gate's verdict is the Kleene conjunction of its two sides (a certain violation on either side gives NOT_APPLICABLE; otherwise any UNKNOWN gives UNKNOWN). `opt` is an annotation (`STATED` or `NOT_REPORTED` only), never a verdict input. Any `STATED` bound requires `evidence_ids`; an ACCEPTED gate needs evidence, a known `location`, and a known `basis`. This is a **deviation from the card's wording** (nullable → status object) and is H4 item D21-6.
+A NECESSARY gate's verdict is the Kleene conjunction of its two sides (a certain violation on either side gives NOT_APPLICABLE; otherwise any UNKNOWN gives UNKNOWN). **No optimum is stored** (round-3 Review B 21-10): min / opt / max plus `independence_assumed = ASSUMED_INDEPENDENT` would be the complete parameter set of a cardinal-parameter model, a ready-made secondary kinetic model that bypasses FORM / PARAM (G21.8); `opt` was removed from the schema (deviation from the card's "min / opt / max", D21-6). Any `STATED` or `OPEN_STATED` bound requires `evidence_ids`; an ACCEPTED gate needs evidence, a known `location`, and a known `basis`. This is a **deviation from the card's wording** (nullable → status object) and is H4 item D21-6.
 
-`independence_assumed` ∈ {ASSUMED_INDEPENDENT, INTERACTION_REPORTED, UNKNOWN} (not a boolean, so "not assessed" cannot be coded as false): the cardinal-parameter pattern (Rosso et al. 1995) assumes independent axes; the registry records that assumption and does not exploit it (interaction terms are FORM matters).
+`independence_assumed` ∈ {ASSUMED_INDEPENDENT, INTERACTION_REPORTED, UNKNOWN} (not a boolean, so "not assessed" cannot be coded as false): the cardinal-parameter pattern (Rosso et al. 1995) assumes independent axes; the registry records that assumption and does not exploit it (interaction terms are FORM matters). Gate bounds are applicability limits, never FORM / PARAM inputs (rule L-21-7, §10).
+
+**Rule E-7 — which axes may be NECESSARY (OPEN_QUESTION D21-20: the humans confirm it against a PRIMARY source).** For kind `CHEMICAL_REACTION`, a temperature (CV-005…008), pH (CV-013) or water-activity (CV-015) axis is **MODULATING** unless PRIMARY evidence states that the reaction is *absent* (not merely slow) outside the window; a NECESSARY gate on such an axis then carries that evidence and a `rationale_raw`. NECESSARY gates are the natural form for kinds ENZYMATIC, MICROBIAL and PHASE_STRUCTURAL_TRANSITION and for substrate / phase absence. Basis in the repo: SSOT 144.1 frozen caution (no universal temperature switch) and the plan's SIM-CHL-1 text, which takes pH as a modifier g(pH) from the FORM entry with pH a required input, UNKNOWN ⇒ prohibited (plan L1184): that is a G7 input, not a G4 gate. Whether a given reaction can be called absent at some pH or T is chemistry that the repo does not state; it is not asserted here. The README test checks the rule as a semantic validator (`semantic_problems`).
 
 **Seeds carry no gates.** No window is drafted in this step: gates come from reviewed evidence (21b), and until then the entry says `gates_unknown = true`. Today's evidence could not populate gates anyway: pH, moisture and aw are UNKNOWN in all 4,414 conditions and only 213 temperatures have a stated location (r_mechanism_registry §0; Step 23 card), and K0 aggregates (USDA R6, Bognár) have no time or temperature to bound a window (R04-4 spirit). Gate evidence will come from Steps 10–14 (HV-002 "mechanism evidence verification").
 
 ### 4.4 Inhibitors and mitigators
 
-`{inhibitor_key, role INHIBITOR | MITIGATOR, agent_or_condition_raw, sbo_role (SBO:0000020 inhibitor | SBO:0000019 modifier), extent COMPLETE | PARTIAL | UNKNOWN, evaluated_via, ...}`. To avoid describing one fact twice, an inhibitor is **evaluated through exactly one route**: `GATE` (an INHIBITING gate of the same entry), `STATE_PREDICATE` (inline state + predicate, e.g. an enzyme state set by blanching), or `NOT_EVALUABLE_YET` (documented but not formalised). The last contributes UNKNOWN and **forces `gates_unknown = true`** on the entry (schema): a known but unformalised inhibitor means the entry cannot honestly be called APPLICABLE. `extent`: COMPLETE → NOT_APPLICABLE when present; PARTIAL → the "downgrade to QUALITATIVE" case that Step 23 owns; UNKNOWN → UNKNOWN (proposed reading, D21-11). Mitigations named in the sources (MP I3: chilling, knife sharpness, ventilation, acid, blanching; ES-1.2 PC-06: antioxidant / acid) are candidates for this list, each to be evidenced in review.
+`{inhibitor_key, role INHIBITOR | MITIGATOR | CATALYST | PROMOTER, agent_or_condition_raw, sbo_role (SBO:0000020 inhibitor | SBO:0000019 modifier | SBO:0000013 catalyst | SBO:0000459 stimulator), extent COMPLETE | PARTIAL | UNKNOWN | NOT_APPLICABLE, acts_on_modifier_key (optional), evaluated_via, ...}`. The list keeps the card's name `inhibitors_mitigators` but holds every **modifier** (round-3 Review B 21-3): a CATALYST or PROMOTER is something whose presence or amount enables or speeds the mechanism (a metal ion, a sensitising light, copper or iron cookware via CV-023 / CV-036). **Rule M-1:** a CATALYST or PROMOTER never changes the G4 verdict (it has `extent = NOT_APPLICABLE`; its gate is a MODULATING gate), but its axis is a required condition axis, so a missing metal or light input makes G7 return UNKNOWN instead of being silently ignored. `acts_on_modifier_key` lets an INHIBITOR / MITIGATOR (a chelator) point at a CATALYST. The SBO ids come from the schema's participant enum (to be human-verified as xrefs; OPEN_QUESTION D21-19: confirm 0000459 for PROMOTER). To avoid describing one fact twice, a modifier is **evaluated through exactly one route**: `GATE` (an INHIBITING gate of the same entry; a MODULATING gate for a CATALYST / PROMOTER), `STATE_PREDICATE` (inline state + predicate, e.g. an enzyme state set by blanching), or `NOT_EVALUABLE_YET` (documented but not formalised). The last contributes UNKNOWN and **forces `gates_unknown = true`** on the entry (schema): a known but unformalised inhibitor means the entry cannot honestly be called APPLICABLE. `extent`: COMPLETE → NOT_APPLICABLE when present; PARTIAL → the "downgrade to QUALITATIVE" case that Step 23 owns; UNKNOWN → UNKNOWN (proposed reading, D21-11). Mitigations named in the sources (MP I3: chilling, knife sharpness, ventilation, acid, blanching; ES-1.2 PC-06: antioxidant / acid) are candidates for this list, each to be evidenced in review.
 
 ### 4.5 Competing and consecutive mechanisms
 
-`competes_with[] = {mechanism_key, shared_target, relation, ...}` with relation ∈ {PARALLEL_PATHWAY (SSOT §210.18), SUBSTRATE_COMPETITION, TRANSPORT_VS_REACTION (degradation vs leaching, §210.21), LUMPED_OVERLAP (a lumped and a specific entry covering the same chemistry, e.g. Maillard–Strecker lumped vs acrylamide formation), UNKNOWN}. `consecutive_with[] = {mechanism_key, order, shared_species}` (§210.17: an intermediate rises, peaks, falls). Both must be declared **on both entries** (the converse order on the partner); a one-sided declaration could hide a competitor from the Step-23 G5 gate, so the symmetric closure is a semantic check. "No competitor declared" means "none recorded", not "none exist": until review, competing mechanisms on a target are an open UNKNOWN, which is one reason non-ACCEPTED entries contribute UNKNOWN.
+`competes_with[] = {mechanism_key, shared_target, relation, ...}` with relation ∈ {PARALLEL_PATHWAY (SSOT §210.18), SUBSTRATE_COMPETITION, TRANSPORT_VS_REACTION (degradation vs leaching, §210.21), LUMPED_OVERLAP (a lumped and a specific entry covering the same chemistry, e.g. Maillard–Strecker lumped vs acrylamide formation, or the lumped ascorbic-acid entry vs its specific steps), COUPLED_REDOX (one mechanism is consumed while it acts on another; round-3 Review B 21-14, which pairs exist is a 21b matter), UNKNOWN}. `consecutive_with[] = {mechanism_key, order, shared_species}` (§210.17: an intermediate rises, peaks, falls). Both must be declared **on both entries** (the converse order on the partner); a one-sided declaration could hide a competitor from the Step-23 G5 gate, so the symmetric closure is a semantic check. **Joint coverage (G5).** G5 stops at "one APPLICABLE plus an UNKNOWN competitor ⇒ UNKNOWN" unless the competitors are jointly fitted. A lumped entry (`LUMPED_OVERLAP` with the specific entries) records that the specific pathways are covered by one apparent-rate formulation; **proposal for Step 24 (README section 6, item 12):** G5 treats competitors on a target as resolved when a FORM declares `covers_mechanism_keys` ⊇ {every APPLICABLE-or-UNKNOWN competitor on that target}; FORM owns that field, MECH does not. Without it the ascorbic-acid route can never reach SIMULATE (the plan's SIM-AA-1 fits one apparent k_d, plan L1175, while the registry splits the loss into several pathways). "No competitor declared" means "none recorded", not "none exist": until review, competing mechanisms on a target are an open UNKNOWN, which is one reason non-ACCEPTED entries contribute UNKNOWN.
 
 ### 4.6 History dependence
 
-`history_dependence[] = {state_ref, role INPUT_REQUIRED | MODULATES_DIRECTION_OR_SELECTIVITY | UNKNOWN}`. Names assumed from r_mechanism_registry F5.4(v), Audit J1.2.1 and CHG-21-3, **owned by 16a** (not defined here):
+`history_dependence[] = {state_ref, role INPUT_REQUIRED | MODULATES_DIRECTION_OR_SELECTIVITY | ACTIVE_UNTIL_STATE_CHANGE | INPUT_REQUIRED_START_MODE | UNKNOWN}`. The two added roles (21-4) say that a state holds until a state change inside the same event (enzyme activity until thermal inactivation) and that the start mode (cold vs boiling water start, CHG-16-7 `start_mode`) and thermal dose of the event are required inputs; the decision unit (entity × event × target) otherwise takes one snapshot of `enzyme_activity_state`. Names assumed from r_mechanism_registry F5.4(v), Audit J1.2.1 and CHG-21-3, **owned by 16a** (not defined here):
 
 | Proposed key | Proposed value set (source) | Used for |
 |---|---|---|
@@ -240,7 +246,7 @@ A NECESSARY gate's verdict is the Kleene conjunction of its two sides (a certain
 
 ### 4.9 Evidence and sourcing
 
-- `evidence_refs[]` = `{evidence_id (EVD- / SRC- / DOC- / OBS- / KIN-), doc_type PRIMARY | REVIEW_CONTEXT, supports[], locator, lineage_root_id, lineage_status}`. A review gives context only; a numeric limit needs a PRIMARY source; a PRIMARY ref needs a locator.
+- `evidence_refs[]` = `{evidence_id (EVD- / SRC- / DOC- / OBS- / KIN-), doc_type PRIMARY | REVIEW_CONTEXT, supports[], locator, lineage_root_id, lineage_status}`. A review gives context only; a numeric limit needs a PRIMARY source; a PRIMARY ref needs a locator. **Prefix dependency (round-3 Review A #17):** `DOC-`, `OBS-` and `KIN-` are RESERVED_DRAFT_PENDING_H4 and `LROOT-` is PROPOSED_ADDITION_H4 in `reports/step04/04_9_min_namespace_reservation.md`; the `evidence_id` pattern is valid only if 04.9-min reserves them, otherwise it narrows to `(EVD|SRC)` (D21-1). Every ACCEPTED item of any of the eight item types needs at least one evidence id (round-3 Review A #2).
 - `derivation_anchors[]` say *why an entry is on the list* (SSOT section, master-plan line, step card, ES-1.2 cell, PROC label, research note). **An anchor is not evidence**; SSOT, master-plan and plan text never appear as evidence ids.
 - `ai_drafted = true` entries stay CANDIDATE; ACCEPTED requires `HUMAN_VERIFIED` (Kush or Parv), dual blind review done or adjudicated, a valid review-provenance check (the 07H v1–v3 provenance failures), ≥ 2 reviewer ids, and ≥ 1 PRIMARY evidence ref.
 
@@ -258,9 +264,9 @@ MECH holds no verdict. APPDEC (Step 23) holds, per gate, one of **APPLICABLE / N
 |---|---|---|
 | U-1 | UNKNOWN is a value of its own: never 0, never absent, never a default | status vocabularies; `UNKNOWN` tokens on every enumerated field that can be unknown |
 | U-2 | No imputation: no field can hold a default, midpoint or "typical" value; qualitative heat is never numeric | `additionalProperties: false` at every object; no `default` keyword anywhere (test) |
-| U-3 | A missing, unaudited or partly bracketed input gives UNKNOWN | `missing_input_verdict` is the constant `"UNKNOWN"` on every precondition, gate and inhibitor; bound statuses (§4.3) |
-| U-4 | An unlisted matrix or category is UNKNOWN; NOT_APPLICABLE arises only from an explicit exclusion, a violated STATED bound, a false precondition on a *known* state, or a COMPLETE inhibitor present | `unlisted_verdict` constants; bound statuses; `excluded` lists |
-| U-5 | An entry or item that is not ACCEPTED, or with `gates_unknown = true`, contributes UNKNOWN; Steps 22–23 consume only ACCEPTED entries | `review_status`, per-item `status`, `gates_unknown` (rule: no gate and no precondition ⇒ `gates_unknown` must be stated true) |
+| U-3 | A missing, unaudited or partly bracketed input gives UNKNOWN; the token UNKNOWN is never an admissible category or predicate value (any letter case), so an unknown query value cannot be "allowed" | `missing_input_verdict` is the constant `"UNKNOWN"` on every precondition, gate and modifier; bound statuses (§4.3); `not` pattern on `categories.allowed / excluded` and `predicate.values` |
+| U-4 | An unlisted matrix or category is UNKNOWN; a query beyond an OPEN_STATED studied extreme is UNKNOWN (extrapolation); NOT_APPLICABLE arises only from an explicit exclusion, a violated STATED bound, a false precondition on a *known* state, or a COMPLETE inhibitor present | `unlisted_verdict` constants; bound statuses; `excluded` lists |
+| U-5 | An entry or item that is not ACCEPTED, or with `gates_unknown = true`, contributes UNKNOWN; Steps 22–23 consume only ACCEPTED entries; an ACCEPTED item needs ≥ 1 evidence id | `review_status`, per-item `status`, `gates_unknown` (rule: `gates_unknown = false` needs ≥ 1 precondition or ≥ 1 NECESSARY gate; MODULATING or INHIBITING gates alone do not count) |
 | U-6 | Conjunction is Kleene strong: any NOT_APPLICABLE ⇒ NOT_APPLICABLE; else any UNKNOWN ⇒ UNKNOWN; else APPLICABLE | Step 23 (this draft only fixes what the records must permit) |
 | U-7 | MODULATING never changes the verdict | gate-type registry |
 | U-8 | UNKNOWN or NOT_APPLICABLE at any of G4–G8 never reaches SIMULATE | route rule and property test belong to Step 23 (G23.2). Step 21's share: no field can turn a missing input into APPLICABLE (test-local reference in the README test, 3,000 randomised entries) |
@@ -271,36 +277,47 @@ MECH holds no verdict. APPDEC (Step 23) holds, per gate, one of **APPLICABLE / N
 | Item | True / inside | False / outside | Else |
 |---|---|---|---|
 | Precondition on a KNOWN state | APPLICABLE | NOT_APPLICABLE | state UNKNOWN or item not ACCEPTED → UNKNOWN |
-| NECESSARY gate | inside both limits → APPLICABLE | beyond a STATED limit → NOT_APPLICABLE | NOT_REPORTED side, missing value, location mismatch → UNKNOWN |
+| NECESSARY gate | inside both limits (an OPEN_STATED side: inside its studied extreme) → APPLICABLE | beyond a STATED limit → NOT_APPLICABLE | NOT_REPORTED side, beyond an OPEN_STATED studied extreme, missing value, location mismatch → UNKNOWN |
 | INHIBITING gate / inhibitor | window not met (absent) → APPLICABLE | present and COMPLETE → NOT_APPLICABLE | extent PARTIAL → Step 23 downgrade; extent or presence UNKNOWN → UNKNOWN |
 | Matrix | in `included` → APPLICABLE | in `excluded` → NOT_APPLICABLE | unlisted or query matrix unknown → UNKNOWN |
 | Entry (G4) | all of the above APPLICABLE and `gates_unknown = false` | any NOT_APPLICABLE | otherwise UNKNOWN |
 
-**Illustration from the repo's own text.** Chlorophyll → pheophytin is "pH-gated"; pH "is usually UNKNOWN in recipes → abstain" (r_simulator_vv §Q1). A NECESSARY pH gate with the tissue pH UNKNOWN therefore yields UNKNOWN, hence no SIMULATE. The card expects ~100% UNKNOWN for pH- and aw-gated mechanisms on current data and calls that correct behaviour and a data-gap signal for Step 14, not an engine failure.
+**Illustration from the repo's own text.** Chlorophyll → pheophytin is "pH-gated" (card word); pH "is usually UNKNOWN in recipes → abstain" (r_simulator_vv §Q1), and the plan's SIM-CHL-1 takes pH as a modifier g(pH) with pH a required input (plan L1184). Under rule E-7 (§4.3) pH starts as a **MODULATING** axis for this chemical reaction: an UNKNOWN tissue pH then yields UNKNOWN at **G7** (input observability) and no SIMULATE, and a known pH can never produce a false NOT_APPLICABLE at G4 (the earlier draft of this paragraph used a NECESSARY pH window; that is withdrawn, round-3 Review B 21-7). If the humans find PRIMARY evidence that the reaction is absent outside a pH window (D21-20), the gate becomes NECESSARY with that evidence. The card expects ~100% UNKNOWN for pH- and aw-gated mechanisms on current data and calls that correct behaviour and a data-gap signal for Step 14, not an engine failure.
 
 ---
 
 ## 6. Candidate systems (R-14): mapping without freezing
 
-**Principle.** Ascorbic acid (SIM-AA-1) is the leading candidate, not frozen; chlorophyll (SIM-CHL-1) is the preregistered fallback; the choice is a single DECISIONS entry made once at 11.D from Step 10 / 11 evidence. Nothing in the schema or the vocabularies names either system. The roster column `r14_system_role` (AA_PATHWAY, CHL_PATHWAY, AA_RELATED_GENERIC, NEITHER) is a removable coverage tag; the README test asserts that both systems are represented and that no cell speaks of a selected or chosen system. All AA-specific criteria in later steps are conditional on the 26.0 selection.
+**Principle.** Ascorbic acid (SIM-AA-1) is the leading candidate, not frozen; chlorophyll (SIM-CHL-1) is the preregistered fallback; the choice is a single DECISIONS entry made once at 11.D from Step 10 / 11 evidence. Nothing in the schema or the vocabularies names either system. The roster column `r14_system_role` (AA_PATHWAY, CHL_PATHWAY, NEITHER) is a removable coverage tag; generic entries such as LEACHING carry NEITHER (round-3 Review A #19: the tag must not lean toward the leading candidate); the README test asserts that both systems are represented (symmetrically, 5 and 5 entries), that no cell speaks of a selected or chosen system, and that the schema text names neither system. All AA-specific criteria in later steps are conditional on the 26.0 selection.
 
 ### 6.1 Ascorbic-acid pathways (leading candidate)
 
+The card's lumped "aerobic oxidation" entry is split at the DHA node (round-3 Review B 21-1, 21-2, 21-5). The repo's own text gives the chain AA → DHA → DKG (r_simulator_vv Q1) and says that the analyte basis AA vs AA + DHA must stay explicit (SVAR-000009); a lumped entry cannot express "reduced AA decreases while total vitamin C does not". The chemistry beyond that chain (reversibility, O2 and metal dependence, hydrolytic nature of the second step, the enzyme's EC number) is **not in the repo**: it is marked OPEN_QUESTION in the roster rows and must be sourced from PRIMARY documents in 21b.
+
 | mechanism_key | Kind / family | What the entry must be able to express (sources) | Competes / consecutive (to be evidenced) |
 |---|---|---|---|
-| `ASCORBIC_ACID_AEROBIC_OXIDATION` | CHEMICAL_REACTION / MICRONUTRIENT_DEGRADATION | activation axes named for the AA group: T, O2, pH, metal ions, enzyme state (r_simulator_vv §4 item 7); oxygen exposure; pathway AA → DHA → DKG (r_simulator_vv Q1) | PARALLEL_PATHWAY with the anaerobic pathway and ascorbate-oxidase loss; TRANSPORT_VS_REACTION with LEACHING; consecutive steps via DHA |
-| `ASCORBIC_ACID_ANAEROBIC_DEGRADATION` | CHEMICAL_REACTION / MICRONUTRIENT_DEGRADATION | same axis group; oxygen as the expected discriminator, to be evidenced not assumed | as above |
-| `ASCORBATE_OXIDASE_LOSS` | ENZYMATIC / MICRONUTRIENT_DEGRADATION | enzyme state and cell integrity (the enzyme is "active before inactivation", Q1); plan Step 26 lists ascorbate-oxidase loss in raw / cut tissue and dry-heat / frying as an example of applicability UNKNOWN or NOT_APPLICABLE | as above |
-| `LEACHING` (generic) | PHYSICAL_TRANSPORT / VOLATILE_MATERIAL_TRANSFER | boiling-water transfer; the main confound of the AA candidate (leaching vs destruction, SSOT §144.2, §210.21) | TRANSPORT_VS_REACTION |
+| `ASCORBATE_TO_DHA_OXIDATION` (card label "ascorbic-acid aerobic oxidation" kept as synonym) | CHEMICAL_REACTION / MICRONUTRIENT_DEGRADATION | first step of the aerobic chain; activation axes named for the AA group: T, O2, pH, metal ions, enzyme state (r_simulator_vv §4 item 7); oxygen exposure; effect on reduced AA only (`analyte_form`), DHA as product | consecutive_with `DHA_HYDROLYSIS_TO_DKG` (shared species DHA); PARALLEL_PATHWAY with `ASCORBATE_OXIDASE_AA_OXIDATION` and the anaerobic pathway; TRANSPORT_VS_REACTION and consecutive with `LEACHING`; COUPLED_REDOX with PPO browning (OPEN_QUESTION) |
+| `DHA_HYDROLYSIS_TO_DKG` | CHEMICAL_REACTION / MICRONUTRIENT_DEGRADATION | second step of the chain; belongs to total vitamin C (AA + DHA) accounting | consecutive_with the first step and the oxidase entry |
+| `ASCORBIC_ACID_ANAEROBIC_DEGRADATION` | CHEMICAL_REACTION / MICRONUTRIENT_DEGRADATION | same axis group; oxygen as the expected discriminator, to be evidenced not assumed | PARALLEL_PATHWAY with the aerobic steps |
+| `ASCORBATE_OXIDASE_AA_OXIDATION` (card label "ascorbate oxidase loss" kept as synonym) | ENZYMATIC / MICRONUTRIENT_DEGRADATION | enzyme state and cell integrity (the enzyme is "active before inactivation", Q1); plan Step 26 lists ascorbate-oxidase loss in raw / cut tissue and dry-heat / frying as an example of applicability UNKNOWN or NOT_APPLICABLE; acts on the **same node** as the first step, so it is a PARALLEL_PATHWAY on reduced AA and feeds the same DHA hydrolysis (not a separate loss route) | as above |
+| `ASCORBIC_ACID_APPARENT_LOSS_LUMPED` | CHEMICAL_REACTION / MICRONUTRIENT_DEGRADATION | the lumped apparent-rate view that the plan's SIM-AA-1 uses (one k_d, plan L1175); makes joint coverage representable so that G5 can resolve (§4.5) | LUMPED_OVERLAP with the four specific entries above |
+| `LEACHING` (generic, tag NEITHER) | PHYSICAL_TRANSPORT / VOLATILE_MATERIAL_TRANSFER | boiling-water transfer; the main confound of the AA candidate (leaching vs destruction, SSOT §144.2, §210.21). The plan's equations also let leached AA degrade in the water (the k_dw term, plan L1175), so oxidation entries should carry targets in **both** compartments TISSUE and COOKING_MEDIUM and be consecutive with LEACHING (OTHER_PRECEDES_THIS, shared species reduced AA) in addition to the TRANSPORT_VS_REACTION competition (round-3 Review B 21-15) | TRANSPORT_VS_REACTION; consecutive |
 
-Which axis is NECESSARY, MODULATING or INHIBITING for which pathway is exactly what the 21b review must evidence; none is drafted.
+Which axis is NECESSARY, MODULATING or INHIBITING for which pathway is exactly what the 21b review must evidence; none is drafted. Catalysts (metal ions, via CV-023 / CV-036) and promoters are modifiers (rule M-1, §4.4), not participants nobody reads.
 
 ### 6.2 Chlorophyll pathways (fallback)
 
+Five entries, so that the two candidate systems are covered symmetrically (G-6). The first two are in the card or in r_simulator_vv Q1; the other three come from round-3 Review B (21-6, 21-16) and have **no repo source yet**: each is a PROPOSED_ADDITION with an OPEN_QUESTION in the roster and is dropped in 21b unless a PRIMARY source supports it.
+
 | mechanism_key | Kind / family | What the entry must be able to express | Competes / consecutive |
 |---|---|---|---|
-| `CHLOROPHYLL_TO_PHEOPHYTIN` | CHEMICAL_REACTION / PIGMENT_CELLWALL_TRANSITION | "pH-gated" (card 21b); temperature; pH is a required input and UNKNOWN pH gives UNKNOWN; tissue pH is not medium pH and is never averaged | consecutive_with the optional pyropheophytin entry |
+| `CHLOROPHYLL_TO_PHEOPHYTIN` | CHEMICAL_REACTION / PIGMENT_CELLWALL_TRANSITION | "pH-gated" (card 21b word, kept in `rationale_raw`); temperature; pH is a required input, handled as a MODULATING axis under rule E-7 (§4.3), and an UNKNOWN pH gives UNKNOWN at G7; tissue pH is not medium pH and is never averaged; effect types CONSUMED;FORMED (a named reactant with a known product) | consecutive_with the optional pyropheophytin entry |
 | `CHLOROPHYLL_PYROPHEOPHYTIN_FORMATION` (optional, beyond the card) | CHEMICAL_REACTION / PIGMENT_CELLWALL_TRANSITION | a pathway beyond pheophytin ("pyropheophytin dominates in heat-processed spinach", secondary source; plan Step 26: beyond the simulator's stated temperature limit) | consecutive |
+| `CHLOROPHYLLASE_DEPHYTYLATION` (proposed; OPEN_QUESTION) | ENZYMATIC / PIGMENT_CELLWALL_TRANSITION | the enzymatic branch that SIM-CHL-1 assumes away; by the UNKNOWN ≠ 0 rule applied to leaching in §6.2 below, a branch the simulator omits must be represented and then evidenced or excluded | PARALLEL_PATHWAY with `CHLOROPHYLL_TO_PHEOPHYTIN`; needs enzyme_activity_state and cell_integrity |
+| `CHLOROPHYLLIDE_TO_PHEOPHORBIDE` (proposed; OPEN_QUESTION) | CHEMICAL_REACTION / PIGMENT_CELLWALL_TRANSITION | Mg-free branch downstream of the enzymatic step | consecutive_with the enzymatic entry |
+| `METALLO_CHLOROPHYLL_COMPLEX_FORMATION` (proposed; OPEN_QUESTION) | CHEMICAL_REACTION / PIGMENT_CELLWALL_TRANSITION | a reaction that can reverse the colour observable; metal source only via categorical CV-023 / CV-036 | consecutive_with `CHLOROPHYLL_TO_PHEOPHYTIN`; SUBSTRATE_COMPETITION with the pyropheophytin entry |
+
+Colour (a*) is an observable, not a species; whether it is monotone early in blanching (21-17) is OPEN_QUESTION and is not encoded.
 
 **Leaching and chlorophyll.** The SIM-CHL-1 text says "no leaching term". That is a Step-26 scope assumption. The MECH registry does **not** assert it: whether LEACHING applies to chlorophyll is UNKNOWN unless an `excluded` target / matrix scope with evidence says otherwise (UNKNOWN ≠ 0).
 
@@ -309,30 +326,32 @@ Which axis is NECESSARY, MODULATING or INHIBITING for which pathway is exactly w
 | # | Finding | Consequence |
 |---|---|---|
 | G-1 | The SVAR registry has only "Vitamin C" content variables (SVAR-000009 "total ascorbic acid", SVAR-000215) and **no** species-level variables (reduced AA, DHA) and none for chlorophyll or pheophytin (colour L*a*b* is SVAR-FUT-008, `FUTURE`) | targets use `PROPOSED_KEY` and `analyte_form`; an additive SVAR proposal is needed (16a / H4) |
-| G-2 | No condition axis for metal ions (CV-023 `additive_catalyst_enzyme` is categorical; the 40-variable registry has no ion axis) | AA metal-ion gating can only be a categorical CV-023 gate until a CV is added (Step 07 registry v1.1, H4) |
+| G-2 | No condition axis for metal ions (CV-023 `additive_catalyst_enzyme` is categorical; the 40-variable registry has no ion axis; CV-036 `container_tool_material` is the categorical route for cookware) | metal-ion gating (a CATALYST modifier) can only be a categorical CV-023 / CV-036 gate until a CV is added (Step 07 registry v1.1, H4) |
 | G-3 | CV-013 pH has no tissue / medium split | handled by the gate's `location` field |
 | G-4 | `PROC.mechanism_families` has **no** vitamin or pigment label, so baseline B0 (PROC label lookup) can never propose an AA or chlorophyll mechanism | B0 recall for these cells is zero by construction; B1 (rules) is the only route; report it as such in Step 22 |
 | G-5 | The wet-heat PROC used by the candidate systems (boil, simmer, steam, blanch, parboil) have `required_condition_axes` = duration, temperature only; the six PROC with a pH axis are pickle, sterilise, can, dry, pasteurise, brine | PROC axes cannot seed gate axes; gate axes come from the mechanism evidence |
-| G-6 | Asymmetry: the card's list gives AA three pathways plus leaching and the chlorophyll fallback one (two with the optional entry) | not corrected: it reflects the card; schema completeness is symmetric, and chlorophyll's pH gate is the case that exercises UNKNOWN handling |
+| G-6 | Asymmetry of the card list: three AA pathways plus leaching against one chlorophyll pathway (two with the optional entry) | reduced in this revision: five AA entries and five chlorophyll entries (§6.1, §6.2); three of the chlorophyll entries are unsourced proposals (OPEN_QUESTION) |
 | G-7 | The repo holds 0 EVD rows for chlorophyll / pheophytin (plan Step 10 text) and AA only as K0 vitamin C aggregates | no gate for either system can be evidenced from existing rows |
+| G-8 | No dissolved-oxygen CV axis (mg/L, in the medium) and no water-ion axis; CV-021 is headspace oxygen (volume fraction) | CV-021 is restricted to location HEADSPACE / UNKNOWN; whether dissolved oxygen drives aqueous oxidation and how it varies with temperature is chemistry the repo does not state (OPEN_QUESTION); Step 07 registry v1.1 (D21-10) |
+| G-9 | The water:food ratio has no CV axis; it exists only as the EVT `water_ratio_expr` proposal (CHG-16-7), although the Step-10 ranking names it a required confounder and the plan's equations use r = V_w/m_t | leaching-vs-reaction entries cannot gate on it until a CV or EVT field exists (D21-10) |
 
 ---
 
 ## 7. Seed roster (`registry/mechanism_seed_roster_draft_v1.csv`)
 
-26 rows of **candidate entries to be authored**, not entries: 23 from the card's 21b list (the card's "starch gelatinisation / retrogradation" is split into two, a proposal), 2 proposed additions (`CELL_WALL_SOFTENING`, `CELL_DISRUPTION_DECOMPARTMENTALISATION`), 1 optional (`CHLOROPHYLL_PYROPHEOPHYTIN_FORMATION`). The card's target of about 20–40 entries is PROPOSED_PILOT.
+32 rows of **candidate entries to be authored**, not entries: 23 from the card's 21b list (the card's "starch gelatinisation / retrogradation" is split into two, and the lumped ascorbic-acid aerobic entry is renamed and split at the DHA node, both proposals; the two card labels survive in the new `synonyms` column), 8 proposed additions (`CELL_WALL_SOFTENING`, `CELL_DISRUPTION_DECOMPARTMENTALISATION`, and, after round-3 review, `DHA_HYDROLYSIS_TO_DKG`, `ASCORBIC_ACID_APPARENT_LOSS_LUMPED`, `CHLOROPHYLLASE_DEPHYTYLATION`, `CHLOROPHYLLIDE_TO_PHEOPHORBIDE`, `METALLO_CHLOROPHYLL_COMPLEX_FORMATION`, `ENZYME_THERMAL_INACTIVATION`; the chlorophyllase, pheophorbide and metallo entries have no repo source yet), 1 optional (`CHLOROPHYLL_PYROPHEOPHYTIN_FORMATION`). The card's target of about 20–40 entries is PROPOSED_PILOT.
 
 | By kind | n | By role (R-14) | n |
 |---|---|---|---|
-| CHEMICAL_REACTION | 8 | AA_PATHWAY | 3 |
-| ENZYMATIC | 6 | CHL_PATHWAY | 2 |
-| PHASE_STRUCTURAL_TRANSITION | 5 | AA_RELATED_GENERIC (leaching) | 1 |
-| PHYSICAL_TRANSPORT | 4 | NEITHER | 20 |
+| CHEMICAL_REACTION | 12 | AA_PATHWAY | 5 |
+| ENZYMATIC | 7 | CHL_PATHWAY | 5 |
+| PHASE_STRUCTURAL_TRANSITION | 6 | NEITHER (incl. LEACHING) | 22 |
+| PHYSICAL_TRANSPORT | 4 | | |
 | MICROBIAL / MECHANICAL_DISRUPTION / UNRESOLVED_SINK | 1 each | | |
 
-Every row has a source (`source_anchors`: SSOT line ranges, master-plan lines, ES-1.2 cells, the card), a proposed kind / family / edge semantics, the PROC label it corresponds to under baseline B0, typical effect types (from the cited ES-1.2 mechanism text where one exists, else `UNKNOWN_TRANSFORMATION`; **proposed, AI-drafted, for reviewers**), `entry_status = SEED_NOT_YET_AUTHORED` and `ai_drafted = TRUE`. No gate, parameter, evidence id or scientific value is on the roster.
+Every row has a source (`source_anchors`: SSOT line ranges, master-plan lines, ES-1.2 cells, the card), a proposed kind / family / edge semantics, the PROC label it corresponds to under baseline B0, typical effect types (from the cited ES-1.2 mechanism text or a cited repo statement where one exists, else `UNKNOWN_TRANSFORMATION`; CARAMELISATION and LIPID_OXIDATION were corrected to this rule in round 3; **proposed, AI-drafted, for reviewers**), `entry_status = SEED_NOT_YET_AUTHORED` and `ai_drafted = TRUE`. No gate, parameter, evidence id or scientific value is on the roster.
 
-**Open questions raised by the roster** (full list in the README): (a) cutting / crushing as a MECH entry versus a Step-18 deterministic operator on `cell_integrity`; (b) enzyme thermal inactivation (PC-02, and blanching as mitigation) as a STATE_SET entry versus a Step-18 operator; (c) the gelatinisation / retrogradation split; (d) `LOX_HPL_OXIDATION` has no ES-1.2 cell and no repo text on products, so its effect species must be sourced in review.
+**Open questions raised by the roster** (full list in the README): (a) cutting / crushing as a MECH entry versus a Step-18 deterministic operator on `cell_integrity`; (b) enzyme thermal inactivation (PC-02, and blanching as mitigation): now a roster entry `ENZYME_THERMAL_INACTIVATION` (STATE_SET), still open versus a Step-18 operator (D21-14); (c) the gelatinisation / retrogradation split; (d) `LOX_HPL_OXIDATION` has no ES-1.2 cell and no repo text on products, so its effect species must be sourced in review.
 
 ---
 
@@ -366,7 +385,7 @@ Result: 73 of the 93 labelled PROC carry at least one mapped label; 57 have all 
 
 ## 9. External cross-references (21e preview; no table drafted)
 
-External ontologies are cross-references only (no OWL backbone, no reasoner; OLS probes found no usable mechanism hierarchy, F4.1). The `xref` object: `{curie, relation (EXACT | BROADER | NARROWER | RELATED | NOT_EQUIVALENT_COLLISION), match_basis (LABEL_MATCH_ONLY | ID_FROM_SOURCE | HUMAN_CURATED | AI_PROPOSED), xref_status (PROPOSED | ACCEPTED | REJECTED), verification_status, verified_by (Kush | Parv), collision_note}`. Namespaces admitted by the CURIE pattern: GO, EC, RHEA, CHEBI, RXNO, MESH, SBO, FOODON, TRANSFORMON. **Label matching is unsafe**: RXNO contains both Strecker degradation (RXNO:0000224, food-aroma sense) and Strecker reaction (RXNO:0000207, amino-acid synthesis). The schema therefore makes an ACCEPTED xref require `HUMAN_VERIFIED` by Kush or Parv, and keeps a recorded collision as `REJECTED` with a note (not deleted, R-19). The fixture V-12 / N-35 / N-36 in the README test encode this canary. The card marks RXNO and SBO term ids and the GO / ChEBI / FoodOn licences as UNVERIFIED: only CURIEs are stored, never ontology text.
+External ontologies are cross-references only (no OWL backbone, no reasoner; OLS probes found no usable mechanism hierarchy, F4.1). The `xref` object: `{curie, relation (EXACT | BROADER | NARROWER | RELATED | NOT_EQUIVALENT_COLLISION), match_basis (LABEL_MATCH_ONLY | ID_FROM_SOURCE | HUMAN_CURATED | AI_PROPOSED), xref_status (PROPOSED | ACCEPTED | REJECTED), verification_status, verified_by (Kush | Parv), collision_note}`. Namespaces admitted by the CURIE pattern: GO, EC, RHEA, CHEBI, RXNO, SBO, FOODON (the card's list plus EC). `MESH` and `TRANSFORMON` were removed in round 3 (Review A #15): the TRANSFORMON CURIE form and licence are unverified and the card does not list either; adding them back is H4 item D21-19. **Label matching is unsafe**: RXNO contains both Strecker degradation (RXNO:0000224, food-aroma sense) and Strecker reaction (RXNO:0000207, amino-acid synthesis). The schema therefore makes an ACCEPTED xref require `HUMAN_VERIFIED` by Kush or Parv, and keeps a recorded collision as `REJECTED` with a note (not deleted, R-19). The fixture V-12 / N-35 / N-36 in the README test encode this canary. The card marks RXNO and SBO term ids and the GO / ChEBI / FoodOn licences as UNVERIFIED: only CURIEs are stored, never ontology text.
 
 ---
 
@@ -380,6 +399,7 @@ External ontologies are cross-references only (no OWL backbone, no reasoner; OLS
 | L-21-4 | Dual blind review with technical independence safeguards (07H provenance failures); a review with invalid provenance is redone, not counted | `review.review_provenance_valid` |
 | L-21-5 | LLM-proposed candidates (E5 / E6) are `ai_drafted`, CANDIDATE, and never ACCEPTED without a human verification against a PRIMARY source | schema rules in §4.9 |
 | L-21-6 | Rejected entries, items and xrefs are kept (`REJECTED`, `RETRACTED`), not deleted (R-19) | status vocabularies; append-only ledger rule |
+| L-21-7 | Gate bounds are applicability limits, never FORM / PARAM inputs: Steps 24 and 26 may not read `condition_gates[].interval` (lint: grep for `condition_gates` in Step 24 / 26 code) | no `opt`; documented here; lint to be added with Step 24 |
 
 ---
 
@@ -387,14 +407,14 @@ External ontologies are cross-references only (no OWL backbone, no reasoner; OLS
 
 | Gate | Support in this draft | What remains |
 |---|---|---|
-| G21.1 schema frozen, validator tests green | schema draft + proposed contract test (README); 60 negative controls, 18 accepted variants, mutation-checked | H4 approval; freeze; port to `ledgers/schemas/MECH.schema.json` and `registry.py` (not done: no prefix registered) |
+| G21.1 schema frozen, validator tests green | schema draft + proposed contract test (README); 87 negative controls, 23 accepted variants, 22 tests, mutation-checked | H4 approval; freeze; port to `ledgers/schemas/MECH.schema.json` and `registry.py` (not done: no prefix registered) |
 | G21.2 every §144.1 family + leaching, volatilisation, moisture loss ≥ 1 entry | roster covers all ten families and the three transport keys; test asserts it | the entries themselves; the cell-wall gap needs the proposed entry |
-| G21.3 ≥ 1 precondition or gate, or `GATES_UNKNOWN` | schema rule | entries |
+| G21.3 ≥ 1 precondition or NECESSARY gate, or `GATES_UNKNOWN = true` (a MODULATING or INHIBITING gate alone does not count) | schema rule | entries |
 | G21.4 ≥ 1 evidence id with document type | `evidence_refs`, `doc_type`; required for ACCEPTED | evidence (Steps 10–14, HV-002) |
 | G21.5 0 xrefs accepted without human verification; collisions resolved | `xref` rules; Strecker canary | 21e |
 | G21.6 dual blind review, adjudication, provenance validity | `review` object and ACCEPTED rules | review packet and the people (expert availability UNVERIFIED) |
 | G21.7 crosswalk 156 / 156 | label-level gap list (§8) | 21d / HV-010 |
-| G21.8 0 numeric kinetic fields | `additionalProperties: false` everywhere, forbidden-name scan, no numbers except evidenced condition bounds | — |
+| G21.8 0 numeric kinetic fields | `additionalProperties: false` everywhere, forbidden-name scan, no numbers except evidenced condition bounds (min / max only; no optimum) | — |
 
 ---
 
@@ -402,4 +422,6 @@ External ontologies are cross-references only (no OWL backbone, no reasoner; OLS
 
 The PROC → MECH crosswalk; the xref table; any mechanism entry; any gate limit; the route rule and reason codes (Step 23); EFFSIG fields (Step 22); FORM / PARAM / VAL (Step 24); history-state names and SVAR additions (16a); the first-simulator choice (R-14, 11.D); the benchmark and its sealing (22c); the id prefix registration (04.9-min covers other prefixes; `MECH-` is free in `src/culinarystate/ledgers/registry.py`, which lists 37 prefixes); `tests/` content.
 
-Open decisions for Kush and Parv are collected in `reports/step21/README.md`, section 4 (D21-1 … D21-18).
+**What Step 24 may read (round-3 Review B 21-20).** MECH network topology (`consecutive_with`, `order`, participants, `trajectory_shape`) and the direction signs may be read as FORM-structure hypotheses and as sign constraints in Step-26 fits and Step-27 sanity checks; gate bounds never (L-21-7).
+
+Open decisions for Kush and Parv are collected in `reports/step21/README.md`, section 4 (D21-1 … D21-23).

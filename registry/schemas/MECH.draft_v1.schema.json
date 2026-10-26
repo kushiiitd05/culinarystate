@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "culinarystate/draft/MECH.draft_v1.schema.json",
   "title": "MECH- mechanism registry entry: what acts, on what, when, blocked by what (class level; no numeric kinetic parameters) (DRAFT_PENDING_H4)",
-  "description": "schema_version 1.0.0-draft. STATUS DRAFT_PENDING_H4: not approved, not frozen, not copied into ledgers/schemas/, no ledger created, nothing minted. Step 21a (R-10: may run in parallel with Phases C / D). One MECH record is one mechanism entry of the small flat registry (target 20-40 entries, plan Step 21 card); it is a model-side knowledge record with is_evidence = false (plane assignment: H4 item), never a measurement. It states what the mechanism acts on (affected_targets), when it can act (preconditions over states; condition_gates over CV axes with location, matrix scope and evidence), what blocks or competes with it, which history it needs, and which markers are NOT unique identifiers. It holds NO numeric kinetic parameter (rate constants, activation energies, reaction orders, half-lives, Q10 ...: those are FORM / PARAM, Step 24, G21.8). The only numbers in this schema are the bounds of an evidenced condition window.",
-  "$comment": "R-15: every item that Step 23 evaluates carries missing_input_verdict = UNKNOWN (const) and no field can hold a default, midpoint or typical value (additionalProperties false everywhere, no 'default' keyword); an interval bound is never a bare null (STATED / OPEN_STATED / NOT_REPORTED); a category or matrix that is not listed is UNKNOWN; an entry with neither a precondition nor a gate must say gates_unknown = true; a documented-but-unformalised inhibitor forces gates_unknown = true. UNKNOWN therefore never turns into APPLICABLE by omission, and UNKNOWN never reaches SIMULATE (the route rule is Step 23's; the invariant is property-tested there). R-14: nothing in this schema names or prefers an ascorbic-acid or a chlorophyll pathway. R-20: recipes are not chemistry truth (is_evidence false; derivation anchors are not evidence); LLM knowledge is never evidence (SSOT 257A.5): ai_drafted entries stay CANDIDATE until a human has verified them against a PRIMARY source. Gate-limit circularity guard: each evidence_ref caches its lineage_root_id; a Step-22/23 case whose lineage root is cited here must not be used to test that gate. CV-registry-dependent checks (CV id exists, unit == canonical_unit, dimension agrees with domain_kind, min <= opt <= max, symmetric competes_with / consecutive_with, gate_key / precondition_key uniqueness and the INHIBITING-gate reference of an inhibitor) are semantic-validator work, not expressible here.",
+  "description": "schema_version 1.0.0-draft. STATUS DRAFT_PENDING_H4: not approved, not frozen, not copied into ledgers/schemas/, no ledger created, nothing minted. Step 21a (R-10: may run in parallel with Phases C / D). One MECH record is one mechanism entry of the small flat registry (target 20-40 entries, plan Step 21 card); it is a model-side knowledge record with is_evidence = false (plane assignment: H4 item), never a measurement. It states what the mechanism acts on (affected_targets), when it can act (preconditions over states; condition_gates over CV axes with location, matrix scope and evidence), what blocks or competes with it, which history it needs, and which markers are NOT unique identifiers. It holds NO numeric kinetic parameter (rate constants, activation energies, reaction orders, half-lives, Q10 ...: those are FORM / PARAM, Step 24, G21.8). The only numbers in this schema are the min / max bounds of an evidenced condition window (no optimum is stored: it would complete a cardinal-parameter model, which belongs to FORM / PARAM, Step 24, G21.8).",
+  "$comment": "R-15: every precondition, condition gate, inhibitor / modifier, matrix_scope and categories object carries missing_input_verdict (or unlisted_verdict) = UNKNOWN (const); competes_with, consecutive_with, history_item, affected_target and marker carry no verdict field and contribute UNKNOWN only while their status is not ACCEPTED (H4 item D21-21); an ACCEPTED item of any type needs at least one evidence id; and no field can hold a default, midpoint or typical value (additionalProperties false everywhere, no 'default' keyword); an interval bound is never a bare null (STATED / OPEN_STATED / NOT_REPORTED); a category or matrix that is not listed is UNKNOWN; gates_unknown may be false only if the entry has at least one precondition or at least one NECESSARY gate (a MODULATING or INHIBITING gate alone never makes an entry APPLICABLE-capable: no vacuous APPLICABLE); the UNKNOWN token is never an admissible category or predicate value (case-insensitive); a documented-but-unformalised inhibitor forces gates_unknown = true. UNKNOWN therefore never turns into APPLICABLE by omission, and UNKNOWN never reaches SIMULATE (the route rule is Step 23's; the invariant is property-tested there). R-14: no field, enum value, rule or description in this schema names or prefers either candidate system (the contract test greps the schema text for both families of terms and for the simulator ids). R-20: recipes are not chemistry truth (is_evidence false; derivation anchors are not evidence); LLM knowledge is never evidence (SSOT 257A.5): ai_drafted entries stay CANDIDATE until a human has verified them against a PRIMARY source. Gate-limit circularity guard: each evidence_ref caches its lineage_root_id; a Step-22/23 case whose lineage root is cited here must not be used to test that gate. CV-registry-dependent checks (CV id exists, unit == canonical_unit, dimension agrees with domain_kind, min <= max, symmetric competes_with / consecutive_with, gate_key / precondition_key uniqueness and the INHIBITING-gate reference of an inhibitor) are semantic-validator work, not expressible here.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -302,7 +302,8 @@
         ]
       },
       "minItems": 0,
-      "uniqueItems": true
+      "uniqueItems": true,
+      "description": "Values from SSOT 213.29 (L21024): coverage labels of the local process modules. Not a simulator selection (R-14)."
     },
     "is_evidence": {
       "const": false
@@ -849,7 +850,7 @@
             "type": "string",
             "minLength": 1,
             "not": {
-              "const": "UNKNOWN"
+              "pattern": "^[Uu][Nn][Kk][Nn][Oo][Ww][Nn]$"
             }
           }
         }
@@ -968,7 +969,10 @@
           "if": {
             "properties": {
               "status": {
-                "const": "STATED"
+                "enum": [
+                  "STATED",
+                  "OPEN_STATED"
+                ]
               }
             },
             "required": [
@@ -990,10 +994,7 @@
           "if": {
             "properties": {
               "status": {
-                "enum": [
-                  "OPEN_STATED",
-                  "NOT_REPORTED"
-                ]
+                "const": "NOT_REPORTED"
               }
             },
             "required": [
@@ -1012,32 +1013,13 @@
           }
         }
       ],
-      "description": "One end of an interval, with its epistemic status spelled out. STATED = the cited evidence gives this limit (value in the interval's unit). OPEN_STATED = the cited evidence states that activity is not limited on this side within the studied range. NOT_REPORTED = the evidence is silent, so nothing can be concluded beyond the other, stated side. A bare null is not admitted: it could be read as 'unbounded', which is an imputation."
-    },
-    "opt_bound": {
-      "allOf": [
-        {
-          "$ref": "#/$defs/bound"
-        },
-        {
-          "properties": {
-            "status": {
-              "enum": [
-                "STATED",
-                "NOT_REPORTED"
-              ]
-            }
-          }
-        }
-      ],
-      "description": "The optimum (cardinal-parameter pattern, Rosso et al. 1995). Only STATED or NOT_REPORTED: an optimum cannot be 'open'."
+      "description": "One end of an interval, with its epistemic status spelled out. STATED = the cited evidence gives this limit (value in the interval's unit). OPEN_STATED = the cited evidence states that activity is not limited on this side within the studied range; `value` is then the studied extreme on this side (the most extreme value the evidence covers, required) and a query beyond it is an extrapolation: UNKNOWN, never APPLICABLE (U-4). NOT_REPORTED = the evidence is silent, so nothing can be concluded beyond the other, stated side. A bare null is not admitted: it could be read as 'unbounded', which is an imputation."
     },
     "interval": {
       "type": "object",
       "required": [
         "unit",
         "min",
-        "opt",
         "max"
       ],
       "additionalProperties": false,
@@ -1050,14 +1032,11 @@
         "min": {
           "$ref": "#/$defs/bound"
         },
-        "opt": {
-          "$ref": "#/$defs/opt_bound"
-        },
         "max": {
           "$ref": "#/$defs/bound"
         }
       },
-      "description": "Evidenced activity window of the axis for the stated matrix scope: min and max are the limits beyond which the evidence reports no activity (cardinal values), opt the evidenced optimum. It is a window with provenance, not a universal switch (SSOT 144.1 frozen caution: no universal temperature switch). Semantic check: min <= opt <= max when STATED, and values lie within CV valid_min / valid_max."
+      "description": "Evidenced activity window of the axis for the stated matrix scope: min and max are the limits beyond which the evidence reports no activity (or, for OPEN_STATED, the studied extreme). It is a window with provenance, not a universal switch (SSOT 144.1 frozen caution: no universal temperature switch). No optimum is stored: min / opt / max would be a complete cardinal-parameter set (a ready-made secondary kinetic model), which belongs to FORM / PARAM (Step 24, G21.8); gate bounds are applicability limits and are never FORM / PARAM inputs (L-21-7). Semantic check: min <= max when both are STATED, and values lie within CV valid_min / valid_max."
     },
     "categories": {
       "type": "object",
@@ -1072,7 +1051,10 @@
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "not": {
+              "pattern": "^[Uu][Nn][Kk][Nn][Oo][Ww][Nn]$"
+            }
           },
           "minItems": 0,
           "uniqueItems": true
@@ -1081,7 +1063,10 @@
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "minLength": 1,
+            "not": {
+              "pattern": "^[Uu][Nn][Kk][Nn][Oo][Ww][Nn]$"
+            }
           },
           "minItems": 0,
           "uniqueItems": true
@@ -1090,7 +1075,7 @@
           "$ref": "#/$defs/missing_input_verdict"
         }
       },
-      "description": "Categorical gate domain (e.g. CV-023 additive / catalyst / enzyme, CV-022 solvent medium, CV-026 heat-transfer mode). A category in `allowed` passes, in `excluded` fails, in neither is UNKNOWN. Disjointness of the two lists is a semantic check."
+      "description": "Categorical gate domain (e.g. CV-023 additive / catalyst / enzyme, CV-022 solvent medium, CV-026 heat-transfer mode). A category in `allowed` passes, in `excluded` fails, in neither is UNKNOWN. Disjointness of the two lists is a semantic check. The token UNKNOWN (any letter case) is never an admissible allowed or excluded category: an unknown query value is UNKNOWN, it is never 'allowed' (R-15)."
     },
     "evidence_ref": {
       "type": "object",
@@ -1275,7 +1260,7 @@
       "properties": {
         "curie": {
           "type": "string",
-          "pattern": "^(GO:\\d{7}|EC:\\d+\\.\\d+\\.\\d+\\.(\\d+|-)|RHEA:\\d+|CHEBI:\\d+|RXNO:\\d{7}|MESH:[A-Z]\\d+|SBO:\\d{7}|FOODON:\\d+|TRANSFORMON:[A-Za-z0-9_.-]+)$"
+          "pattern": "^(GO:\\d{7}|EC:\\d+\\.\\d+\\.\\d+\\.(\\d+|-)|RHEA:\\d+|CHEBI:\\d+|RXNO:\\d{7}|SBO:\\d{7}|FOODON:\\d+)$"
         },
         "relation": {
           "type": "string",
@@ -1588,7 +1573,7 @@
       "properties": {
         "precondition_key": {
           "type": "string",
-          "pattern": "^P\\d{1,2}$"
+          "pattern": "^PRE\\d{2}$"
         },
         "state_ref": {
           "$ref": "#/$defs/state_ref"
@@ -1616,7 +1601,28 @@
           "$ref": "#/$defs/item_status"
         }
       },
-      "description": "A state predicate that must hold for the mechanism to be able to act (substrate present, enzyme active, cell integrity not intact, water present). `subject_entity` names the substance when the state is a per-substance one (SVAR-FUT-014 'concentration of a named precursor'); null otherwise. Evaluated three-valued by Step 23: predicate true / false on a KNOWN state gives APPLICABLE / NOT_APPLICABLE, an UNKNOWN state gives UNKNOWN."
+      "description": "A state predicate that must hold for the mechanism to be able to act (substrate present, enzyme active, cell integrity not intact, water present). `subject_entity` names the substance when the state is a per-substance one (SVAR-FUT-014 'concentration of a named precursor'); null otherwise. Evaluated three-valued by Step 23: predicate true / false on a KNOWN state gives APPLICABLE / NOT_APPLICABLE, an UNKNOWN state gives UNKNOWN.",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
     },
     "condition_gate": {
       "type": "object",
@@ -1642,7 +1648,7 @@
       "properties": {
         "gate_key": {
           "type": "string",
-          "pattern": "^G\\d{1,2}$"
+          "pattern": "^CG\\d{2}$"
         },
         "gate_type": {
           "type": "string",
@@ -2031,31 +2037,6 @@
                   "interval": {
                     "type": "object",
                     "properties": {
-                      "opt": {
-                        "properties": {
-                          "status": {
-                            "const": "STATED"
-                          }
-                        },
-                        "required": [
-                          "status"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "opt"
-                    ]
-                  }
-                },
-                "required": [
-                  "interval"
-                ]
-              },
-              {
-                "properties": {
-                  "interval": {
-                    "type": "object",
-                    "properties": {
                       "max": {
                         "properties": {
                           "status": {
@@ -2155,9 +2136,31 @@
               }
             }
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "cv_id": {
+                "const": "CV-021"
+              }
+            },
+            "required": [
+              "cv_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "location": {
+                "enum": [
+                  "HEADSPACE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
         }
       ],
-      "description": "An activation condition on one axis of registry/condition_variable_registry_v1.csv. NECESSARY: outside the window the mechanism does not act. MODULATING: changes direction / selectivity / rate and never changes the applicability verdict. INHIBITING: inside the window the mechanism is blocked. Location is carried by the CV id for temperature (CV-005..CV-008). Three axes are never gate axes: CV-009 'temperature, location unspecified' (never promoted to core or surface), and the two trajectory axes CV-004 / CV-010 (a gate needs a scalar or interval input; trajectory dependence is a history item, e.g. cumulative thermal dose) and stated here for pH, water activity, moisture and oxygen (tissue vs medium is never averaged); moisture needs a wet / dry basis; time axes use the process clock PROCESS_TAU only (03.3 clock vocabulary pending, as in 04.3). Matrix scope is stated per gate. The seed entries carry NO gates: gates come from reviewed evidence (21b), and until then the entry says gates_unknown = true."
+      "description": "An activation condition on one axis of registry/condition_variable_registry_v1.csv. NECESSARY: outside the window the mechanism does not act. MODULATING: changes direction / selectivity / rate and never changes the applicability verdict. INHIBITING: inside the window the mechanism is blocked. Location is carried by the CV id for temperature (CV-005..CV-008). Three axes are never gate axes: CV-009 'temperature, location unspecified' (never promoted to core or surface), and the two trajectory axes CV-004 / CV-010 (a gate needs a scalar or interval input; trajectory dependence is a history item, e.g. cumulative thermal dose) and stated here for pH, water activity, moisture and oxygen (tissue vs medium is never averaged); moisture needs a wet / dry basis; time axes use the process clock PROCESS_TAU only (03.3 clock vocabulary pending, as in 04.3). Matrix scope is stated per gate. The seed entries carry NO gates: gates come from reviewed evidence (21b), and until then the entry says gates_unknown = true. CV-021 is the headspace oxygen volume fraction, so its location is HEADSPACE or UNKNOWN only (dissolved oxygen in the medium has no CV axis: gap G-8)."
     },
     "inhibitor": {
       "type": "object",
@@ -2176,13 +2179,15 @@
       "properties": {
         "inhibitor_key": {
           "type": "string",
-          "pattern": "^I\\d{1,2}$"
+          "pattern": "^INH\\d{2}$"
         },
         "role": {
           "type": "string",
           "enum": [
             "INHIBITOR",
-            "MITIGATOR"
+            "MITIGATOR",
+            "CATALYST",
+            "PROMOTER"
           ]
         },
         "agent_or_condition_raw": {
@@ -2193,7 +2198,9 @@
           "type": "string",
           "enum": [
             "SBO:0000020",
-            "SBO:0000019"
+            "SBO:0000019",
+            "SBO:0000013",
+            "SBO:0000459"
           ]
         },
         "extent": {
@@ -2201,7 +2208,8 @@
           "enum": [
             "COMPLETE",
             "PARTIAL",
-            "UNKNOWN"
+            "UNKNOWN",
+            "NOT_APPLICABLE"
           ]
         },
         "evaluated_via": {
@@ -2226,7 +2234,7 @@
               "anyOf": [
                 {
                   "type": "string",
-                  "pattern": "^G\\d{1,2}$"
+                  "pattern": "^CG\\d{2}$"
                 },
                 {
                   "type": "null"
@@ -2270,7 +2278,7 @@
                 "properties": {
                   "gate_key": {
                     "type": "string",
-                    "pattern": "^G\\d{1,2}$"
+                    "pattern": "^CG\\d{2}$"
                   },
                   "state_ref": {
                     "type": "null"
@@ -2341,6 +2349,18 @@
         },
         "status": {
           "$ref": "#/$defs/item_status"
+        },
+        "acts_on_modifier_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^INH\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optional (absent = null). Key of another modifier in this entry that this one acts on, e.g. a chelating INHIBITOR pointing at a metal CATALYST. Semantic check: the key exists and names a CATALYST or PROMOTER."
         }
       },
       "allOf": [
@@ -2362,9 +2382,142 @@
               }
             }
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "CATALYST",
+                  "PROMOTER"
+                ]
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "extent": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "INHIBITOR",
+                  "MITIGATOR"
+                ]
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "extent": {
+                "enum": [
+                  "COMPLETE",
+                  "PARTIAL",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "CATALYST"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "sbo_role": {
+                "const": "SBO:0000013"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "PROMOTER"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "sbo_role": {
+                "const": "SBO:0000459"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "INHIBITOR",
+                  "MITIGATOR"
+                ]
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "sbo_role": {
+                "enum": [
+                  "SBO:0000020",
+                  "SBO:0000019"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "acts_on_modifier_key": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "acts_on_modifier_key"
+            ]
+          },
+          "then": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "INHIBITOR",
+                  "MITIGATOR"
+                ]
+              }
+            }
+          }
         }
       ],
-      "description": "Something that blocks (INHIBITOR) or reduces (MITIGATOR) the mechanism: an agent (acid, antioxidant, sulfite ...), a condition (chilling, oxygen exclusion) or an intervention (blanching: enzyme inactivation). It is evaluated through exactly one of: an INHIBITING gate of this entry (mode GATE; semantic check that the gate exists and is INHIBITING), an inline state predicate, or NOT_EVALUABLE_YET (documented but not yet formalised: the item then contributes UNKNOWN and the entry must carry gates_unknown = true). `extent` PARTIAL is the 'downgrade to QUALITATIVE' case of Step 23; an inhibitor that is present with extent UNKNOWN is UNKNOWN, not NOT_APPLICABLE (proposed reading, H4)."
+      "description": "MODIFIER of the mechanism (the list is still named inhibitors_mitigators after the card). INHIBITOR blocks and MITIGATOR reduces it: an agent (acid, antioxidant, sulfite ...), a condition (chilling, oxygen exclusion) or an intervention (blanching: enzyme inactivation). CATALYST (SBO:0000013) and PROMOTER (SBO:0000459) are things whose presence or amount speeds or enables the mechanism (a metal ion, a sensitising light); they never change the G4 verdict (Step 23), but every modifier axis must be listed in Step 22's required_condition_axes so that G7 (input observability) can return UNKNOWN when a catalyst or promoter input is missing (21-3). A CATALYST or PROMOTER has extent NOT_APPLICABLE. It is evaluated through exactly one of: a gate of this entry (mode GATE; semantic check: an INHIBITING gate for INHIBITOR / MITIGATOR, a MODULATING gate for CATALYST / PROMOTER), an inline state predicate, or NOT_EVALUABLE_YET (documented but not yet formalised: the item then contributes UNKNOWN and the entry must carry gates_unknown = true). `extent` PARTIAL is the 'downgrade to QUALITATIVE' case of Step 23; an inhibitor that is present with extent UNKNOWN is UNKNOWN, not NOT_APPLICABLE (proposed reading, H4)."
     },
     "competes_with": {
       "type": "object",
@@ -2391,6 +2544,7 @@
             "SUBSTRATE_COMPETITION",
             "TRANSPORT_VS_REACTION",
             "LUMPED_OVERLAP",
+            "COUPLED_REDOX",
             "UNKNOWN"
           ]
         },
@@ -2401,7 +2555,28 @@
           "$ref": "#/$defs/item_status"
         }
       },
-      "description": "Another mechanism that acts on the same target (SSOT 210.18 parallel pathways; 210.21 degradation vs leaching = TRANSPORT_VS_REACTION; LUMPED_OVERLAP = a lumped entry and a specific entry that cover the same chemistry, e.g. a Maillard-Strecker lumped entry and an acrylamide-formation entry). Declared on BOTH entries (semantic check: symmetric closure), because a one-sided declaration could hide a competitor from the Step-23 competing-mechanism gate. Referenced by mechanism_key (stable, human-readable) because ids are minted from keys and the partner may not be minted yet (H4 item)."
+      "description": "Another mechanism that acts on the same target (SSOT 210.18 parallel pathways; 210.21 degradation vs leaching = TRANSPORT_VS_REACTION; LUMPED_OVERLAP = a lumped entry and a specific entry that cover the same chemistry, e.g. a Maillard-Strecker lumped entry and an acrylamide-formation entry). Declared on BOTH entries (semantic check: symmetric closure), because a one-sided declaration could hide a competitor from the Step-23 competing-mechanism gate. Referenced by mechanism_key (stable, human-readable) because ids are minted from keys and the partner may not be minted yet (H4 item). COUPLED_REDOX = one mechanism is consumed while it acts on another (a sacrificial reductant or a pro-oxidant coupling): neither PARALLEL nor SUBSTRATE competition describes 'A inhibits B by being consumed' (21-14; which pairs exist is a 21b review matter).",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
     },
     "consecutive_with": {
       "type": "object",
@@ -2443,13 +2618,35 @@
           "$ref": "#/$defs/item_status"
         }
       },
-      "description": "Consecutive formation / degradation (SSOT 210.17): an intermediate that rises, peaks and falls. Also declared on both entries with the converse order (semantic check)."
+      "description": "Consecutive formation / degradation (SSOT 210.17): an intermediate that rises, peaks and falls. Also declared on both entries with the converse order (semantic check).",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
     },
     "affected_target": {
       "type": "object",
       "required": [
         "target_key",
         "target",
+        "target_role",
         "analyte_form",
         "compartment",
         "effect_type",
@@ -2462,10 +2659,19 @@
       "properties": {
         "target_key": {
           "type": "string",
-          "pattern": "^T\\d{1,2}$"
+          "pattern": "^TGT\\d{2}$"
         },
         "target": {
           "$ref": "#/$defs/state_ref"
+        },
+        "target_role": {
+          "type": "string",
+          "enum": [
+            "SUBSTRATE",
+            "PRODUCT",
+            "UNKNOWN"
+          ],
+          "description": "Role of this target in the mechanism: a reactant or substrate that the mechanism consumes, a product it forms, or UNKNOWN. For OXIDIZED / REDUCED the role fixes the sign (a substrate cannot increase; a product must be able to increase), so a stated species cannot validate with the opposite sign (21-11). UNKNOWN is a valid answer and leaves the direction open."
         },
         "analyte_form": {
           "type": "object",
@@ -2538,7 +2744,7 @@
               }
             }
           ],
-          "description": "Same convention as KIN.target.analyte_form (04.3): e.g. 'ascorbic acid' vs 'ascorbic acid + dehydroascorbic acid'; chlorophyll a / b vs a colour value. NOT_REPORTED is a valid answer."
+          "description": "Same convention as KIN.target.analyte_form (04.3): the exact chemical form the target names, e.g. 'parent compound' vs 'parent compound + its oxidised form', or 'pigment species' vs 'a colour value' (the form decides which basis a later comparison is on; free text here, a controlled token list is open question D21-22). NOT_REPORTED is a valid answer."
         },
         "compartment": {
           "type": "string",
@@ -2684,7 +2890,6 @@
               "effect_type": {
                 "enum": [
                   "LEACHED",
-                  "VOLATILIZED",
                   "ABSORBED"
                 ]
               }
@@ -2740,10 +2945,7 @@
           "if": {
             "properties": {
               "effect_type": {
-                "enum": [
-                  "LEACHED",
-                  "VOLATILIZED"
-                ]
+                "const": "LEACHED"
               },
               "compartment": {
                 "const": "COOKING_MEDIUM"
@@ -2822,9 +3024,124 @@
               }
             }
           }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "const": "VOLATILIZED"
+              },
+              "compartment": {
+                "const": "WHOLE_SYSTEM"
+              }
+            },
+            "required": [
+              "effect_type",
+              "compartment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "items": {
+                  "enum": [
+                    "DECREASE",
+                    "UNKNOWN"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "enum": [
+                  "OXIDIZED",
+                  "REDUCED"
+                ]
+              },
+              "target_role": {
+                "const": "SUBSTRATE"
+              }
+            },
+            "required": [
+              "effect_type",
+              "target_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "items": {
+                  "enum": [
+                    "DECREASE",
+                    "UNKNOWN"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "enum": [
+                  "OXIDIZED",
+                  "REDUCED"
+                ]
+              },
+              "target_role": {
+                "const": "PRODUCT"
+              }
+            },
+            "required": [
+              "effect_type",
+              "target_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "anyOf": [
+                  {
+                    "contains": {
+                      "const": "INCREASE"
+                    }
+                  },
+                  {
+                    "items": {
+                      "const": "UNKNOWN"
+                    }
+                  }
+                ]
+              }
+            }
+          }
         }
       ],
-      "description": "What the mechanism acts on and how. `effect_type` is the effect class (registry/effect_type_registry_draft_v1.csv, aligned to RXN relation verbs); `allowed_directions` is the set of directions the mechanism may push the target (INCREASE / DECREASE, or exactly [UNKNOWN]); EVD derived.direction NO_CHANGE and MIXED are outcomes, not mechanism directions (a set with both INCREASE and DECREASE, or trajectory_shape PEAK_THEN_DECLINE, is compatible with an observed MIXED; a products-can-peak-and-decline mechanism is SSOT 144.1 / 210.17). No magnitude, rate or extent of any kind is stored: those are FORM / PARAM (Step 24)."
+      "description": "What the mechanism acts on and how. `effect_type` is the effect class (registry/effect_type_registry_draft_v1.csv, aligned to RXN relation verbs); `allowed_directions` is the set of directions the mechanism may push the target (INCREASE / DECREASE, or exactly [UNKNOWN]); EVD derived.direction NO_CHANGE and MIXED are outcomes, not mechanism directions (a set with both INCREASE and DECREASE, or trajectory_shape PEAK_THEN_DECLINE, is compatible with an observed MIXED; a products-can-peak-and-decline mechanism is SSOT 144.1 / 210.17). No magnitude, rate or extent of any kind is stored: those are FORM / PARAM (Step 24). Compartment rules: LEACHED and ABSORBED never use WHOLE_SYSTEM (a transfer conserves the system); VOLATILIZED may (a loss from the system, DECREASE only; SSOT 210.22 gives the volatile loss -k_vol c and names no receiving compartment, so no COOKING_MEDIUM direction rule exists for it)."
     },
     "marker": {
       "type": "object",
@@ -2839,7 +3156,7 @@
       "properties": {
         "marker_key": {
           "type": "string",
-          "pattern": "^M\\d{1,2}$"
+          "pattern": "^MRK\\d{2}$"
         },
         "marker": {
           "$ref": "#/$defs/substance_ref"
@@ -2854,7 +3171,28 @@
           "$ref": "#/$defs/item_status"
         }
       },
-      "description": "A compound or observable associated with the mechanism (HMF, colour, pyrazines, hexanal are the SSOT 144.1 examples). marker_unique is the constant false in v1: a marker is never a unique pathway identifier, and an effect signature may not infer a mechanism from a marker alone. Admitting a unique marker would be a v1.1 schema change with an H4 decision."
+      "description": "A compound or observable associated with the mechanism (HMF, colour, pyrazines, hexanal are the SSOT 144.1 examples). marker_unique is the constant false in v1: a marker is never a unique pathway identifier, and an effect signature may not infer a mechanism from a marker alone. Admitting a unique marker would be a v1.1 schema change with an H4 decision.",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
     },
     "history_item": {
       "type": "object",
@@ -2874,6 +3212,8 @@
           "enum": [
             "INPUT_REQUIRED",
             "MODULATES_DIRECTION_OR_SELECTIVITY",
+            "ACTIVE_UNTIL_STATE_CHANGE",
+            "INPUT_REQUIRED_START_MODE",
             "UNKNOWN"
           ]
         },
@@ -2884,7 +3224,28 @@
           "$ref": "#/$defs/item_status"
         }
       },
-      "description": "A history-derived state variable that Step 18 must carry for this mechanism to be evaluable (enzyme activity state, cell integrity, time since disruption, cumulative thermal dose, oxygen exposure, precursor depletion, prior acid / salt exposure). Names are owned by 16a (CHG-21-3); this registry only references them. The thermal-dose definition (reference temperature, Ea) is a Step-24 matter and is not stored here."
+      "description": "A history-derived state variable that Step 18 must carry for this mechanism to be evaluable (enzyme activity state, cell integrity, time since disruption, cumulative thermal dose, oxygen exposure, precursor depletion, prior acid / salt exposure). Names are owned by 16a (CHG-21-3); this registry only references them. The thermal-dose definition (reference temperature, Ea) is a Step-24 matter and is not stored here. Roles ACTIVE_UNTIL_STATE_CHANGE (the state holds until a state change inside this event, e.g. enzyme activity until thermal inactivation) and INPUT_REQUIRED_START_MODE (the cold / boiling start mode and thermal dose of the event are required inputs; CHG-16-7 start_mode) were added after review (21-4); their names are owned by 16a.",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
     },
     "review": {
       "type": "object",
@@ -3022,7 +3383,16 @@
           {
             "properties": {
               "condition_gates": {
-                "minItems": 1
+                "contains": {
+                  "properties": {
+                    "gate_type": {
+                      "const": "NECESSARY"
+                    }
+                  },
+                  "required": [
+                    "gate_type"
+                  ]
+                }
               }
             },
             "required": [
