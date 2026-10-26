@@ -944,3 +944,10 @@ Presentation: **25–26 Nov 2026**.
 - **Files:** `reports/step04/*`, `registry/schemas/*draft*`, `registry/preregistered_thresholds_v1.csv`, `registry/negative_results_register_v1.csv`, `reports/step02/r_min_08a_input_classification.md`, `reports/step07/v3_not_counted_archive/*`
 - **Verified:** 9 schemas parse, no default keyword; stdlib contract shim 220 cases pass; sanity 48 checks OK; archive sha256 b1c856ba... matches; git diff on tracked files empty
 - **Next:** Human: H4 review of reports/step04/README.md checklist, sign 01.6 rows, pre-label decision then 07.A and 07I-C labelling; agent: Step 21 mechanism schema draft, 19-D pilot design, 35.0 pre-registration draft; Step 08 NOT started
+
+### S138 · 2026-10-26 16:23 IST · ES-1 · Round 3 DRAFTS (Step 21 mechanism ontology, 19-D Deep Gold pilot design, 35.0 pre-registration) + reviews; anchor for usage-limit stop
+- **Who:** Kush+Claude
+- **Did:** Drafted Step 21 MECH ontology/schema/vocab (R-15 property-tested), 19-D pilot design (20 recipes, blind, hash-committed, 40 h cap), 35.0 explicit-first pre-registration (nine notions, 35g deferred). Two-persona reviews written (governance 39 findings, science 43). Fix pass interrupted: step19/35 partially revised, step21 and K-1 jsonschema corrections pending. Resume file reports/master_plan/RESUME_ANCHOR_2026-10-26.md.
+- **Files:** `reports/step19/*`, `reports/step21/*`, `reports/step35/*`, `registry/schemas/MECH.draft_v1.schema.json`, `registry/*_draft_v1.csv`, `reports/master_plan/review_queue/*`, `reports/master_plan/RESUME_ANCHOR_2026-10-26.md`
+- **Verified:** Step-21 contract test 21/21 before review; reviews pending application; git diff on tracked files empty
+- **Next:** Re-run round-3 fixer over both reviews; then pause for human gates (H4, 01.6 signatures, 07.A, 07I-C, H2, 08a authorisation); Step 08 NOT started
