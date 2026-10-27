@@ -54,10 +54,12 @@ def test_study_prefix_change_detected(tmp_path):
 
 def test_size_change_and_missing_file(tmp_path):
     root, c = _mini(tmp_path)
-    p = root / "ledgers" / "data" / "STUDY.jsonl"
-    p.write_bytes(p.read_bytes() + b"x")
-    with pytest.raises(LedgerBaselineMismatch, match="STUDY.jsonl"):
+    q = root / "ledgers" / "data" / "SRC.jsonl"
+    q.write_bytes(q.read_bytes() + b"x")
+    with pytest.raises(LedgerBaselineMismatch, match="SRC.jsonl"):
         verify_baseline(c, root)
+    q.write_bytes(q.read_bytes()[:-1])
+    p = root / "ledgers" / "data" / "STUDY.jsonl"
     p.unlink()
     with pytest.raises(LedgerBaselineMismatch, match="STUDY.jsonl"):
         verify_baseline(c, root)
@@ -79,3 +81,21 @@ def test_scratch_paths_accepted(tmp_path):
     assert_safe_write_target(tmp_path / "x.jsonl")
     assert_safe_write_target(REPO / "reports" / "step08a" / "x.csv")
     assert_safe_write_target(REPO / "ledgers" / "schemas" / "x.json")
+
+
+def test_append_only_files_may_grow_but_not_change(tmp_path):
+    root, c = _mini(tmp_path)
+    study = root / "ledgers" / "data" / "STUDY.jsonl"
+    study.write_bytes(study.read_bytes() + b'{"c":3}\n')
+    assert verify_baseline(c, root) == 2
+    study.write_bytes(b'{"X":1}\n{"b":2}\n{"c":3}\n')
+    with pytest.raises(LedgerBaselineMismatch):
+        verify_baseline(c, root)
+
+
+def test_other_files_must_stay_exact(tmp_path):
+    root, c = _mini(tmp_path)
+    src = root / "ledgers" / "data" / "SRC.jsonl"
+    src.write_bytes(src.read_bytes() + b"x")
+    with pytest.raises(LedgerBaselineMismatch):
+        verify_baseline(c, root)
