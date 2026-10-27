@@ -976,3 +976,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Verified:** 34 lineage tests + 7 07I-C tests pass; 7 ledger hashes unchanged; precheck VALID; no label was edited by the agent
 - **Open:** 07.A statistical gate not met (hard gates for Steps 15, 23, 26d/27, 29-33 stay closed); Parv's confirmations (amendment signature, "go with Kush's") are relayed, unverified; 07I-C operating points cannot be chosen on these labels; 08a work packages 08a.1-08a.9 not built; edge audit and 200-pair recall review need two people
 - **Next:** build 08a.1-08a.3 on a scratch copy, show Kush the dry-run counts before the real run
+
+### S144 · 2026-10-27 15:37 IST · ES-1 · Step 08a built (08a.1-08a.9) and real run applied
+- **Who:** Kush+Claude
+- **Did:** Added --scratch-root to edge/keys/feasibility tools; built 08a.9 gate report + two-rebuild check (G08-6 pass, 0 diffs); real run published scratch rebuild: new DOC.jsonl (1967), SRC_08A_YIELD.jsonl, STUDY +125 versions +7 studies, _ids append. Gates: G08-1,2,4,5,6,8,10 PASS; G08-7 label forced publication-component CV, weakest leave-one-source-family-out; G08-9 recorded; G08-3 and G08-H PENDING_HUMAN. Keys marked SCRATCH_PROVISIONAL.
+- **Files:** `tools/step08a_gate.py`, `tools/step08a_publish.py`, `src/culinarystate/lineage/gates.py`, `src/culinarystate/lineage/publish.py`, `exports/lineage/step08a_v1/*`, `ledgers/data/{DOC`, `SRC_08A_YIELD`, `STUDY`, `_ids}.jsonl`
+- **Verified:** 233+4 lineage tests pass; EVD/COND/SRC/MEAS/SNAP hashes equal baseline; ledgers equal scratch rebuild
+- **Next:** Edge audit packets (Kush+Parv), 200-pair recall review, expert reading of USDA-Bognar; push only on Kush go
