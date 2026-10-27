@@ -1,0 +1,712 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/SEXP.schema.json",
+  "title": "SEXP- scientific experiment: one comparison set within a study (NOT the ML run EXP-)",
+  "description": "schema_version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^SEXP-\\d{6}$"
+    },
+    "record_type": {
+      "const": "SEXP"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^SEXP-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "study_id": {
+      "type": "string",
+      "pattern": "^STUDY-\\d{6}$"
+    },
+    "experiment_label_raw": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "comparison_type": {
+      "type": "string",
+      "enum": [
+        "BEFORE_AFTER",
+        "TIME_COURSE",
+        "MULTI_TREATMENT_VS_REFERENCE",
+        "FACTORIAL",
+        "SURVEY",
+        "OTHER",
+        "UNKNOWN"
+      ]
+    },
+    "factors_varied": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "factor",
+          "name",
+          "levels_raw"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "factor": {
+            "type": "string",
+            "enum": [
+              "PROCESS",
+              "TEMPERATURE",
+              "TIME",
+              "PH",
+              "MEDIUM",
+              "MATRIX",
+              "GEOMETRY",
+              "ATMOSPHERE",
+              "STORAGE",
+              "OTHER"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "levels_raw": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "reference_design": {
+      "type": "string",
+      "enum": [
+        "OWN_REFERENCE",
+        "BORROWED_REFERENCE",
+        "NO_REFERENCE",
+        "NOT_REPORTED",
+        "UNKNOWN"
+      ]
+    },
+    "borrowed_reference_sample_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^SMP-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "condition_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^COND-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "condition_status": {
+      "type": "string",
+      "enum": [
+        "LINKED",
+        "NOT_REPORTED",
+        "UNKNOWN"
+      ]
+    },
+    "protocol_locator": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/locator"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "equipment_tool_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^TOOL-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "context": {
+      "type": "object",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "water_food_ratio": {
+          "$ref": "#/$defs/context_item"
+        },
+        "lid_covered": {
+          "$ref": "#/$defs/context_item"
+        },
+        "start_mode": {
+          "$ref": "#/$defs/context_item"
+        },
+        "geometry_class_or_thickness": {
+          "$ref": "#/$defs/context_item"
+        },
+        "oxygen_headspace": {
+          "$ref": "#/$defs/context_item"
+        },
+        "ph_tissue": {
+          "$ref": "#/$defs/context_item"
+        },
+        "ph_medium": {
+          "$ref": "#/$defs/context_item"
+        },
+        "cooking_water_assayed": {
+          "$ref": "#/$defs/context_item"
+        },
+        "open_vs_sealed": {
+          "$ref": "#/$defs/context_item"
+        }
+      },
+      "description": "Optional context (Step 09 / 07.B interface). Absent key = UNKNOWN (not assessed); NOT_REPORTED must be written explicitly by an extractor that read the source (plan card says default NOT_REPORTED: H4 item). Needed later to separate leaching from degradation."
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "study_id",
+    "comparison_type",
+    "factors_varied",
+    "reference_design",
+    "borrowed_reference_sample_ids",
+    "condition_ids",
+    "condition_status",
+    "protocol_locator"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "verification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "required": [
+              "verifier",
+              "verified_at"
+            ],
+            "properties": {
+              "verifier": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reference_design": {
+            "const": "BORROWED_REFERENCE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "borrowed_reference_sample_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "reference_design": {
+            "enum": [
+              "OWN_REFERENCE",
+              "NO_REFERENCE",
+              "NOT_REPORTED",
+              "UNKNOWN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "borrowed_reference_sample_ids": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "condition_status": {
+            "const": "LINKED"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "condition_ids": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "condition_status": {
+            "enum": [
+              "NOT_REPORTED",
+              "UNKNOWN"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "condition_ids": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "locator": {
+      "type": "object",
+      "required": [
+        "doc_id",
+        "locator_type",
+        "raw_text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "doc_id": {
+          "type": "string",
+          "pattern": "^DOC-\\d{6}$"
+        },
+        "locator_type": {
+          "type": "string",
+          "enum": [
+            "TABLE_CELL",
+            "TEXT_SPAN",
+            "FIGURE_DIGITIZED",
+            "DATABASE_ROW",
+            "SUPPLEMENT_FILE",
+            "OTHER"
+          ]
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "table_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "row_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "column_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "figure_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "char_span": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Exact place in a DOC. raw_text is the verbatim cell/span/row (key required, null only when the source has no text form)."
+    },
+    "context_item": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "REPORTED",
+            "NOT_REPORTED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "value_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_number": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "REPORTED"
+              }
+            }
+          },
+          "then": {
+            "anyOf": [
+              {
+                "properties": {
+                  "value_text": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "required": [
+                  "value_text"
+                ]
+              },
+              {
+                "properties": {
+                  "value_number": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "value_number"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_REPORTED",
+                  "NOT_APPLICABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value_text": {
+                "type": "null"
+              },
+              "value_number": {
+                "type": "null"
+              },
+              "unit": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Optional experiment-context item. A key that is absent means UNKNOWN (not assessed); NOT_REPORTED is written explicitly when the source was read and is silent."
+    }
+  },
+  "$comment": "SEXP- is the scientific experiment; EXP- stays the ML/benchmark run. Reference samples are homed on SMP (role REFERENCE_BEFORE, sexp_id = home SEXP); a reference reused from another SEXP is listed in borrowed_reference_sample_ids (single source of truth, no cycle). Mint key: '<study_id>|<experiment_label_raw or ordinal>'."
+}

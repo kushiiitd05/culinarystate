@@ -1,0 +1,680 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/LIN.schema.json",
+  "title": "LIN- typed lineage / independence edge between two evidence-graph nodes",
+  "description": "schema_version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^LIN-\\d{6}$"
+    },
+    "record_type": {
+      "const": "LIN"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^LIN-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "from_id": {
+      "type": "string",
+      "pattern": "^(SRC|DOC|STUDY|SEXP|SMP|OBS|AGG|DRV|KIN|PARAM)-\\d{6}$"
+    },
+    "to_id": {
+      "type": "string",
+      "pattern": "^(SRC|DOC|STUDY|SEXP|SMP|OBS|AGG|DRV|KIN|PARAM)-\\d{6}$"
+    },
+    "edge_type": {
+      "type": "string",
+      "enum": [
+        "SAME_STUDY_AS",
+        "QUOTES_VALUES_FROM",
+        "ALTERNATE_OF",
+        "REVISION_OF",
+        "SHARES_SAMPLES_WITH",
+        "PRIMARY_SOURCE",
+        "SAME_LAB_AS",
+        "SHARES_REFERENCE_SAMPLE",
+        "CITES"
+      ]
+    },
+    "membership_status": {
+      "type": "string",
+      "enum": [
+        "KNOWN",
+        "UNKNOWN",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "detection_method": {
+      "type": "string",
+      "enum": [
+        "FILE_HASH_MATCH",
+        "DOI_MATCH",
+        "PMID_MATCH",
+        "TITLE_EXACT",
+        "TITLE_FUZZY",
+        "AUTHOR_OVERLAP",
+        "NUMERIC_FINGERPRINT",
+        "BIBLIOGRAPHY_LISTING",
+        "DECLARED_BY_SOURCE",
+        "SOURCE_FAMILY_RULE",
+        "MANUAL",
+        "OTHER"
+      ]
+    },
+    "detector_level": {
+      "type": "string",
+      "enum": [
+        "B0",
+        "B1",
+        "B2",
+        "B3",
+        "STRONG",
+        "MANUAL"
+      ]
+    },
+    "score": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "score_basis": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "matched_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "evidence_note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "edge_status": {
+      "type": "string",
+      "enum": [
+        "PROVISIONAL",
+        "HUMAN_CONFIRMED",
+        "REJECTED"
+      ]
+    },
+    "reviewer": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reviewed_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rejection_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rule_version": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "from_id",
+    "to_id",
+    "edge_type",
+    "detection_method",
+    "detector_level",
+    "score",
+    "edge_status",
+    "reviewer",
+    "rule_version"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "verification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "required": [
+              "verifier",
+              "verified_at"
+            ],
+            "properties": {
+              "verifier": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "SAME_STUDY_AS"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC|STUDY)-\\d{6}$"
+          },
+          "to_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC|STUDY)-\\d{6}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "QUOTES_VALUES_FROM"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC|STUDY|AGG|OBS|DRV|KIN|PARAM)-\\d{6}$"
+          },
+          "to_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC|STUDY|AGG|OBS|KIN|PARAM)-\\d{6}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "ALTERNATE_OF"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "pattern": "^(DOC)-\\d{6}$"
+          },
+          "to_id": {
+            "type": "string",
+            "pattern": "^(DOC)-\\d{6}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "REVISION_OF"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC)-\\d{6}$"
+          },
+          "to_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC)-\\d{6}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "SHARES_SAMPLES_WITH"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "pattern": "^(STUDY|SEXP|SMP|KIN)-\\d{6}$"
+          },
+          "to_id": {
+            "type": "string",
+            "pattern": "^(STUDY|SEXP|SMP|KIN)-\\d{6}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "PRIMARY_SOURCE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC|STUDY|AGG)-\\d{6}$"
+          },
+          "to_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC|STUDY)-\\d{6}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "SAME_LAB_AS"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC|STUDY)-\\d{6}$"
+          },
+          "to_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC|STUDY)-\\d{6}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "SHARES_REFERENCE_SAMPLE"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "pattern": "^(SEXP|SMP)-\\d{6}$"
+          },
+          "to_id": {
+            "type": "string",
+            "pattern": "^(SEXP|SMP)-\\d{6}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "CITES"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "from_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC)-\\d{6}$"
+          },
+          "to_id": {
+            "type": "string",
+            "pattern": "^(SRC|DOC)-\\d{6}$"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_type": {
+            "const": "PRIMARY_SOURCE"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "membership_status"
+        ],
+        "properties": {
+          "membership_status": {
+            "type": "string",
+            "enum": [
+              "KNOWN",
+              "UNKNOWN"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_status": {
+            "const": "HUMAN_CONFIRMED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "reviewed_at"
+        ],
+        "properties": {
+          "reviewer": {
+            "type": "string",
+            "enum": [
+              "Kush",
+              "Parv"
+            ]
+          },
+          "reviewed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "edge_status": {
+            "const": "REJECTED"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "rejection_reason"
+        ],
+        "properties": {
+          "rejection_reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "detection_method": {
+            "const": "MANUAL"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "detector_level": {
+            "const": "MANUAL"
+          }
+        }
+      }
+    }
+  ],
+  "$comment": "Edge semantics, merge classes and symmetric types are fixed by the edge-type registry in lineage_contract_v1_1.md. Symmetric types (SAME_STUDY_AS, SHARES_SAMPLES_WITH, SAME_LAB_AS, SHARES_REFERENCE_SAMPLE) are stored once with from_id < to_id (semantic validator). Status changes are NEW versions of the same LIN id (append-only). Mint key: '<edge_type>|<from>|<to>'. KIN (series) and PARAM (Step-24 fitted-parameter record; prefix not reserved by this step) may be nodes of QUOTES_VALUES_FROM (a review that re-plots a primary series, or a compendium that re-reports k / Ea, is a copy: MERGING) and KIN of SHARES_SAMPLES_WITH. No tenth edge type is added (card: nine types). SAME_STUDY_AS also accepts SRC: a publication that is cited but never held (the Phenol-Explorer primaries) has no DOC, so B1 DOI matching must be able to link SRC to SRC / DOC."
+}

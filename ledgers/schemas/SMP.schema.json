@@ -1,0 +1,761 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/SMP.schema.json",
+  "title": "SMP- sample: food material at a state within one scientific experiment",
+  "description": "schema_version 1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^SMP-\\d{6}$"
+    },
+    "record_type": {
+      "const": "SMP"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^SMP-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sexp_id": {
+      "type": "string",
+      "pattern": "^SEXP-\\d{6}$"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "REFERENCE_BEFORE",
+        "TREATED_AFTER",
+        "INTERMEDIATE",
+        "COOKING_MEDIUM",
+        "BLANK",
+        "UNKNOWN"
+      ]
+    },
+    "sample_label_raw": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "derived_from": {
+      "type": "object",
+      "required": [
+        "status",
+        "sample_id",
+        "process_id",
+        "process_raw_name",
+        "condition_id",
+        "condition_status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "ROOT",
+            "DERIVED",
+            "UNKNOWN"
+          ]
+        },
+        "sample_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^SMP-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "process_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^PROC-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "process_raw_name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "condition_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^COND-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "condition_status": {
+          "type": "string",
+          "enum": [
+            "LINKED",
+            "NOT_REPORTED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "DERIVED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "sample_id": {
+                "type": "string",
+                "pattern": "^SMP-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "ROOT",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "sample_id": {
+                "type": "null"
+              },
+              "process_id": {
+                "type": "null"
+              },
+              "condition_id": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "condition_status": {
+                "const": "LINKED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "condition_id": {
+                "type": "string",
+                "pattern": "^COND-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "condition_status": {
+                "enum": [
+                  "NOT_REPORTED",
+                  "NOT_APPLICABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "condition_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "State-transition edge from the parent sample: which process under which condition produced THIS sample."
+    },
+    "matrix": {
+      "$ref": "#/$defs/matrix"
+    },
+    "pooled": {
+      "type": "string",
+      "enum": [
+        "POOLED",
+        "NOT_POOLED",
+        "UNKNOWN"
+      ]
+    },
+    "material_origin": {
+      "type": "object",
+      "required": [
+        "status",
+        "batch_label_raw",
+        "cultivar_raw",
+        "purchase_or_harvest_raw"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "REPORTED",
+            "NOT_REPORTED",
+            "UNKNOWN"
+          ]
+        },
+        "batch_label_raw": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "cultivar_raw": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "purchase_or_harvest_raw": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "REPORTED"
+              }
+            }
+          },
+          "then": {
+            "anyOf": [
+              {
+                "required": [
+                  "batch_label_raw"
+                ],
+                "properties": {
+                  "batch_label_raw": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "cultivar_raw"
+                ],
+                "properties": {
+                  "cultivar_raw": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "required": [
+                  "purchase_or_harvest_raw"
+                ],
+                "properties": {
+                  "purchase_or_harvest_raw": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_REPORTED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "batch_label_raw": {
+                "type": "null"
+              },
+              "cultivar_raw": {
+                "type": "null"
+              },
+              "purchase_or_harvest_raw": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Material origin as printed: batch / lot, cultivar, purchase or harvest statement. Input of the B3 SHARES_SAMPLES_WITH detector and of matrix OOD. NOT_REPORTED is a valid answer."
+    },
+    "n_biological_units": {
+      "$ref": "#/$defs/count"
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "sexp_id",
+    "role",
+    "derived_from",
+    "matrix",
+    "pooled",
+    "material_origin",
+    "n_biological_units"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "verification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "required": [
+              "verifier",
+              "verified_at"
+            ],
+            "properties": {
+              "verifier": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "matrix": {
+      "type": "object",
+      "required": [
+        "ingredient_id",
+        "raw_name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ingredient_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^ING-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "food_group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "variety": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "part": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "form": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "prior_processing": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "initial_state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "geometry": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "storage_ripeness": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Same facets as EVD.matrix (non-destructive). raw_name is required (raw preserved); ingredient_id null = UNRESOLVED."
+    },
+    "count": {
+      "type": "object",
+      "required": [
+        "status",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "REPORTED",
+            "NOT_REPORTED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "REPORTED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_REPORTED",
+                  "NOT_APPLICABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Replicate/sample count with explicit status. NOT_REPORTED = the source was read and is silent; UNKNOWN = not assessed or cannot be told. Never 0 and never a default 1."
+    }
+  },
+  "$comment": "A sample is a physical (or pooled) material state. Several analytes measured on one sample = several OBS on one SMP. A time series = several SMP (one per time/condition) or one SMP measured repeatedly; any cell with >= 2 distinct numeric tau MUST also have a KIN (R04-1, kinetic contract); the cooking medium is a physical sample too (role COOKING_MEDIUM) so that tissue and medium series of one run can be paired on the same SMP. Mint key: '<sexp_id>|<sample_label_raw or ordinal>'."
+}
