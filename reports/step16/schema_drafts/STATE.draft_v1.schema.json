@@ -1,0 +1,3024 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/STATE.schema.json",
+  "title": "STATE- entity version / state (append-only)",
+  "description": "schema_version 1.0.0-rc (DRAFT_PENDING_H4, additive over v0 1.0.0; added 2 properties; meta triple on variables[*] and quantity; 5 history-key rules; 0 removed)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^STATE-\\d{6}$"
+    },
+    "record_type": {
+      "const": "STATE"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^STATE-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "entity_id": {
+      "type": "string",
+      "pattern": "^ENTITY-\\d{6}$"
+    },
+    "state_version": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "previous_state_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^STATE-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "produced_by_event_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^EVT-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "belief": {
+      "type": "string",
+      "enum": [
+        "PREDICTED",
+        "OBSERVED",
+        "PLANNED"
+      ]
+    },
+    "overrides_state_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^STATE-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "variables": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "MEASURED",
+              "RANGE",
+              "QUALITATIVE",
+              "CENSORED",
+              "UNKNOWN",
+              "NOT_APPLICABLE"
+            ]
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "low": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "high": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "uncertainty": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "qualitative": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "censor": {
+            "anyOf": [
+              {
+                "type": "object",
+                "required": [
+                  "kind",
+                  "limit"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "LT_LOD",
+                      "LT_LOQ",
+                      "GT_ULOQ",
+                      "GT_CAP",
+                      "ND",
+                      "GT_STATED",
+                      "LT_STATED"
+                    ]
+                  },
+                  "limit": {
+                    "anyOf": [
+                      {
+                        "type": "number"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "raw": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "meta": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "origin",
+              "status",
+              "claim_route"
+            ],
+            "description": "Step 16 card Method cell + 16-A layer 4: per-field metadata triple origin x status x claim_route, orthogonal axes. origin = the 8 provenance classes of registry/provenance_class_registry_v1.csv (SSOT 239.1). status here is the KNOWN/UNKNOWN/... axis, distinct from the v0 value-shape 'status'. UNKNOWN is never 0.",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "enum": [
+                  "EXPLICIT_SOURCE",
+                  "EXTERNAL_VERIFIED",
+                  "DERIVED_DETERMINISTIC",
+                  "INFERRED_LLM",
+                  "MODEL_ESTIMATED",
+                  "IMPUTED",
+                  "SIMULATED",
+                  "UNKNOWN"
+                ],
+                "description": "Card: origin (8-class provenance, 239.1); values copied from registry/provenance_class_registry_v1.csv."
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "KNOWN",
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "CONFLICTING",
+                  "CENSORED"
+                ],
+                "description": "Card: status {KNOWN, UNKNOWN, NOT_APPLICABLE, CONFLICTING, CENSORED}."
+              },
+              "claim_route": {
+                "type": "string",
+                "enum": [
+                  "EXPLICIT",
+                  "INFERRED_RULE",
+                  "INFERRED_LLM",
+                  "MODEL",
+                  "SIMULATED"
+                ],
+                "description": "Card: claim route {EXPLICIT, INFERRED_RULE, INFERRED_LLM, MODEL, SIMULATED}."
+              }
+            },
+            "$comment": "Card Method cell: metadata triple on every STATE field."
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "enum": [
+                    "UNKNOWN",
+                    "NOT_APPLICABLE",
+                    "QUALITATIVE"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "value": {
+                  "type": "null"
+                },
+                "low": {
+                  "type": "null"
+                },
+                "high": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "MEASURED"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "value",
+                "unit"
+              ],
+              "properties": {
+                "value": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "RANGE"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "low",
+                "high",
+                "unit"
+              ],
+              "properties": {
+                "low": {
+                  "type": "number"
+                },
+                "high": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "QUALITATIVE"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "qualitative"
+              ],
+              "properties": {
+                "qualitative": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "status": {
+                  "const": "CENSORED"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "censor"
+              ],
+              "properties": {
+                "censor": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "required": [
+                "meta"
+              ],
+              "properties": {
+                "meta": {
+                  "required": [
+                    "status"
+                  ],
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "UNKNOWN",
+                        "NOT_APPLICABLE"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "value": {
+                  "type": "null"
+                },
+                "low": {
+                  "type": "null"
+                },
+                "high": {
+                  "type": "null"
+                }
+              },
+              "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+            }
+          }
+        ]
+      },
+      "properties": {
+        "cell_integrity": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "GT_CAP",
+                        "ND",
+                        "GT_STATED",
+                        "LT_STATED"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "origin",
+                "status",
+                "claim_route"
+              ],
+              "description": "Step 16 card Method cell + 16-A layer 4: per-field metadata triple origin x status x claim_route, orthogonal axes. origin = the 8 provenance classes of registry/provenance_class_registry_v1.csv (SSOT 239.1). status here is the KNOWN/UNKNOWN/... axis, distinct from the v0 value-shape 'status'. UNKNOWN is never 0.",
+              "properties": {
+                "origin": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT_SOURCE",
+                    "EXTERNAL_VERIFIED",
+                    "DERIVED_DETERMINISTIC",
+                    "INFERRED_LLM",
+                    "MODEL_ESTIMATED",
+                    "IMPUTED",
+                    "SIMULATED",
+                    "UNKNOWN"
+                  ],
+                  "description": "Card: origin (8-class provenance, 239.1); values copied from registry/provenance_class_registry_v1.csv."
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "KNOWN",
+                    "UNKNOWN",
+                    "NOT_APPLICABLE",
+                    "CONFLICTING",
+                    "CENSORED"
+                  ],
+                  "description": "Card: status {KNOWN, UNKNOWN, NOT_APPLICABLE, CONFLICTING, CENSORED}."
+                },
+                "claim_route": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT",
+                    "INFERRED_RULE",
+                    "INFERRED_LLM",
+                    "MODEL",
+                    "SIMULATED"
+                  ],
+                  "description": "Card: claim route {EXPLICIT, INFERRED_RULE, INFERRED_LLM, MODEL, SIMULATED}."
+                }
+              },
+              "$comment": "Card Method cell: metadata triple on every STATE field."
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "status"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "UNKNOWN",
+                          "NOT_APPLICABLE"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                },
+                "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "MEASURED",
+                      "RANGE",
+                      "QUALITATIVE",
+                      "CENSORED"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "claim_route"
+                    ],
+                    "properties": {
+                      "claim_route": {
+                        "enum": [
+                          "MODEL",
+                          "SIMULATED"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "$comment": "Card 16-A layer 4 (L26288-26289): history-dependent fields are never filled from recipe text; a non-UNKNOWN value is allowed only via MODEL/SIMULATED claim route."
+            }
+          ],
+          "description": "Card 16-A layer 4 / 16a history-SVAR contract (CHG-16-7, PROPOSED): UNKNOWN-capable, never filled from recipe text."
+        },
+        "enzyme_activity_state": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "GT_CAP",
+                        "ND",
+                        "GT_STATED",
+                        "LT_STATED"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "origin",
+                "status",
+                "claim_route"
+              ],
+              "description": "Step 16 card Method cell + 16-A layer 4: per-field metadata triple origin x status x claim_route, orthogonal axes. origin = the 8 provenance classes of registry/provenance_class_registry_v1.csv (SSOT 239.1). status here is the KNOWN/UNKNOWN/... axis, distinct from the v0 value-shape 'status'. UNKNOWN is never 0.",
+              "properties": {
+                "origin": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT_SOURCE",
+                    "EXTERNAL_VERIFIED",
+                    "DERIVED_DETERMINISTIC",
+                    "INFERRED_LLM",
+                    "MODEL_ESTIMATED",
+                    "IMPUTED",
+                    "SIMULATED",
+                    "UNKNOWN"
+                  ],
+                  "description": "Card: origin (8-class provenance, 239.1); values copied from registry/provenance_class_registry_v1.csv."
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "KNOWN",
+                    "UNKNOWN",
+                    "NOT_APPLICABLE",
+                    "CONFLICTING",
+                    "CENSORED"
+                  ],
+                  "description": "Card: status {KNOWN, UNKNOWN, NOT_APPLICABLE, CONFLICTING, CENSORED}."
+                },
+                "claim_route": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT",
+                    "INFERRED_RULE",
+                    "INFERRED_LLM",
+                    "MODEL",
+                    "SIMULATED"
+                  ],
+                  "description": "Card: claim route {EXPLICIT, INFERRED_RULE, INFERRED_LLM, MODEL, SIMULATED}."
+                }
+              },
+              "$comment": "Card Method cell: metadata triple on every STATE field."
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "status"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "UNKNOWN",
+                          "NOT_APPLICABLE"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                },
+                "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "MEASURED",
+                      "RANGE",
+                      "QUALITATIVE",
+                      "CENSORED"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "claim_route"
+                    ],
+                    "properties": {
+                      "claim_route": {
+                        "enum": [
+                          "MODEL",
+                          "SIMULATED"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "$comment": "Card 16-A layer 4 (L26288-26289): history-dependent fields are never filled from recipe text; a non-UNKNOWN value is allowed only via MODEL/SIMULATED claim route."
+            }
+          ],
+          "description": "Card 16-A layer 4 / 16a history-SVAR contract (CHG-16-7, PROPOSED): UNKNOWN-capable, never filled from recipe text."
+        },
+        "time_since_disruption": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "GT_CAP",
+                        "ND",
+                        "GT_STATED",
+                        "LT_STATED"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "origin",
+                "status",
+                "claim_route"
+              ],
+              "description": "Step 16 card Method cell + 16-A layer 4: per-field metadata triple origin x status x claim_route, orthogonal axes. origin = the 8 provenance classes of registry/provenance_class_registry_v1.csv (SSOT 239.1). status here is the KNOWN/UNKNOWN/... axis, distinct from the v0 value-shape 'status'. UNKNOWN is never 0.",
+              "properties": {
+                "origin": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT_SOURCE",
+                    "EXTERNAL_VERIFIED",
+                    "DERIVED_DETERMINISTIC",
+                    "INFERRED_LLM",
+                    "MODEL_ESTIMATED",
+                    "IMPUTED",
+                    "SIMULATED",
+                    "UNKNOWN"
+                  ],
+                  "description": "Card: origin (8-class provenance, 239.1); values copied from registry/provenance_class_registry_v1.csv."
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "KNOWN",
+                    "UNKNOWN",
+                    "NOT_APPLICABLE",
+                    "CONFLICTING",
+                    "CENSORED"
+                  ],
+                  "description": "Card: status {KNOWN, UNKNOWN, NOT_APPLICABLE, CONFLICTING, CENSORED}."
+                },
+                "claim_route": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT",
+                    "INFERRED_RULE",
+                    "INFERRED_LLM",
+                    "MODEL",
+                    "SIMULATED"
+                  ],
+                  "description": "Card: claim route {EXPLICIT, INFERRED_RULE, INFERRED_LLM, MODEL, SIMULATED}."
+                }
+              },
+              "$comment": "Card Method cell: metadata triple on every STATE field."
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "status"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "UNKNOWN",
+                          "NOT_APPLICABLE"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                },
+                "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "MEASURED",
+                      "RANGE",
+                      "QUALITATIVE",
+                      "CENSORED"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "claim_route"
+                    ],
+                    "properties": {
+                      "claim_route": {
+                        "enum": [
+                          "MODEL",
+                          "SIMULATED"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "$comment": "Card 16-A layer 4 (L26288-26289): history-dependent fields are never filled from recipe text; a non-UNKNOWN value is allowed only via MODEL/SIMULATED claim route."
+            }
+          ],
+          "description": "Card 16-A layer 4 / 16a history-SVAR contract (CHG-16-7, PROPOSED): UNKNOWN-capable, never filled from recipe text."
+        },
+        "thermal_dose": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "GT_CAP",
+                        "ND",
+                        "GT_STATED",
+                        "LT_STATED"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "origin",
+                "status",
+                "claim_route"
+              ],
+              "description": "Step 16 card Method cell + 16-A layer 4: per-field metadata triple origin x status x claim_route, orthogonal axes. origin = the 8 provenance classes of registry/provenance_class_registry_v1.csv (SSOT 239.1). status here is the KNOWN/UNKNOWN/... axis, distinct from the v0 value-shape 'status'. UNKNOWN is never 0.",
+              "properties": {
+                "origin": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT_SOURCE",
+                    "EXTERNAL_VERIFIED",
+                    "DERIVED_DETERMINISTIC",
+                    "INFERRED_LLM",
+                    "MODEL_ESTIMATED",
+                    "IMPUTED",
+                    "SIMULATED",
+                    "UNKNOWN"
+                  ],
+                  "description": "Card: origin (8-class provenance, 239.1); values copied from registry/provenance_class_registry_v1.csv."
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "KNOWN",
+                    "UNKNOWN",
+                    "NOT_APPLICABLE",
+                    "CONFLICTING",
+                    "CENSORED"
+                  ],
+                  "description": "Card: status {KNOWN, UNKNOWN, NOT_APPLICABLE, CONFLICTING, CENSORED}."
+                },
+                "claim_route": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT",
+                    "INFERRED_RULE",
+                    "INFERRED_LLM",
+                    "MODEL",
+                    "SIMULATED"
+                  ],
+                  "description": "Card: claim route {EXPLICIT, INFERRED_RULE, INFERRED_LLM, MODEL, SIMULATED}."
+                }
+              },
+              "$comment": "Card Method cell: metadata triple on every STATE field."
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "status"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "UNKNOWN",
+                          "NOT_APPLICABLE"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                },
+                "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "MEASURED",
+                      "RANGE",
+                      "QUALITATIVE",
+                      "CENSORED"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "claim_route"
+                    ],
+                    "properties": {
+                      "claim_route": {
+                        "enum": [
+                          "MODEL",
+                          "SIMULATED"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "$comment": "Card 16-A layer 4 (L26288-26289): history-dependent fields are never filled from recipe text; a non-UNKNOWN value is allowed only via MODEL/SIMULATED claim route."
+            }
+          ],
+          "description": "Card 16-A layer 4 / 16a history-SVAR contract (CHG-16-7, PROPOSED): UNKNOWN-capable, never filled from recipe text."
+        },
+        "oxygen_exposure": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "GT_CAP",
+                        "ND",
+                        "GT_STATED",
+                        "LT_STATED"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "meta": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "origin",
+                "status",
+                "claim_route"
+              ],
+              "description": "Step 16 card Method cell + 16-A layer 4: per-field metadata triple origin x status x claim_route, orthogonal axes. origin = the 8 provenance classes of registry/provenance_class_registry_v1.csv (SSOT 239.1). status here is the KNOWN/UNKNOWN/... axis, distinct from the v0 value-shape 'status'. UNKNOWN is never 0.",
+              "properties": {
+                "origin": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT_SOURCE",
+                    "EXTERNAL_VERIFIED",
+                    "DERIVED_DETERMINISTIC",
+                    "INFERRED_LLM",
+                    "MODEL_ESTIMATED",
+                    "IMPUTED",
+                    "SIMULATED",
+                    "UNKNOWN"
+                  ],
+                  "description": "Card: origin (8-class provenance, 239.1); values copied from registry/provenance_class_registry_v1.csv."
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "KNOWN",
+                    "UNKNOWN",
+                    "NOT_APPLICABLE",
+                    "CONFLICTING",
+                    "CENSORED"
+                  ],
+                  "description": "Card: status {KNOWN, UNKNOWN, NOT_APPLICABLE, CONFLICTING, CENSORED}."
+                },
+                "claim_route": {
+                  "type": "string",
+                  "enum": [
+                    "EXPLICIT",
+                    "INFERRED_RULE",
+                    "INFERRED_LLM",
+                    "MODEL",
+                    "SIMULATED"
+                  ],
+                  "description": "Card: claim route {EXPLICIT, INFERRED_RULE, INFERRED_LLM, MODEL, SIMULATED}."
+                }
+              },
+              "$comment": "Card Method cell: metadata triple on every STATE field."
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "status"
+                    ],
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "UNKNOWN",
+                          "NOT_APPLICABLE"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                },
+                "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+              }
+            },
+            {
+              "if": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "MEASURED",
+                      "RANGE",
+                      "QUALITATIVE",
+                      "CENSORED"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "meta"
+                ],
+                "properties": {
+                  "meta": {
+                    "required": [
+                      "claim_route"
+                    ],
+                    "properties": {
+                      "claim_route": {
+                        "enum": [
+                          "MODEL",
+                          "SIMULATED"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "$comment": "Card 16-A layer 4 (L26288-26289): history-dependent fields are never filled from recipe text; a non-UNKNOWN value is allowed only via MODEL/SIMULATED claim route."
+            }
+          ],
+          "description": "Card 16-A layer 4 / 16a history-SVAR contract (CHG-16-7, PROPOSED): UNKNOWN-capable, never filled from recipe text."
+        }
+      }
+    },
+    "quantity": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "censor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "limit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "LT_LOD",
+                    "LT_LOQ",
+                    "GT_ULOQ",
+                    "GT_CAP",
+                    "ND",
+                    "GT_STATED",
+                    "LT_STATED"
+                  ]
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "origin",
+            "status",
+            "claim_route"
+          ],
+          "description": "Step 16 card Method cell + 16-A layer 4: per-field metadata triple origin x status x claim_route, orthogonal axes. origin = the 8 provenance classes of registry/provenance_class_registry_v1.csv (SSOT 239.1). status here is the KNOWN/UNKNOWN/... axis, distinct from the v0 value-shape 'status'. UNKNOWN is never 0.",
+          "properties": {
+            "origin": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT_SOURCE",
+                "EXTERNAL_VERIFIED",
+                "DERIVED_DETERMINISTIC",
+                "INFERRED_LLM",
+                "MODEL_ESTIMATED",
+                "IMPUTED",
+                "SIMULATED",
+                "UNKNOWN"
+              ],
+              "description": "Card: origin (8-class provenance, 239.1); values copied from registry/provenance_class_registry_v1.csv."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ],
+              "description": "Card: status {KNOWN, UNKNOWN, NOT_APPLICABLE, CONFLICTING, CENSORED}."
+            },
+            "claim_route": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT",
+                "INFERRED_RULE",
+                "INFERRED_LLM",
+                "MODEL",
+                "SIMULATED"
+              ],
+              "description": "Card: claim route {EXPLICIT, INFERRED_RULE, INFERRED_LLM, MODEL, SIMULATED}."
+            }
+          },
+          "$comment": "Card Method cell: metadata triple on every STATE field."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "censor"
+            ],
+            "properties": {
+              "censor": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "meta"
+            ],
+            "properties": {
+              "meta": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            },
+            "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+          }
+        }
+      ]
+    },
+    "location": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "form": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "existence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "meta"
+      ],
+      "description": "Card 16-A layer 4 / Method cell: existence layer of STATE v1 (closed vocabulary + OTHER, raw kept); layer vocabularies not in the card, so value is a free string here.",
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "origin",
+            "status",
+            "claim_route"
+          ],
+          "description": "Step 16 card Method cell + 16-A layer 4: per-field metadata triple origin x status x claim_route, orthogonal axes. origin = the 8 provenance classes of registry/provenance_class_registry_v1.csv (SSOT 239.1). status here is the KNOWN/UNKNOWN/... axis, distinct from the v0 value-shape 'status'. UNKNOWN is never 0.",
+          "properties": {
+            "origin": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT_SOURCE",
+                "EXTERNAL_VERIFIED",
+                "DERIVED_DETERMINISTIC",
+                "INFERRED_LLM",
+                "MODEL_ESTIMATED",
+                "IMPUTED",
+                "SIMULATED",
+                "UNKNOWN"
+              ],
+              "description": "Card: origin (8-class provenance, 239.1); values copied from registry/provenance_class_registry_v1.csv."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ],
+              "description": "Card: status {KNOWN, UNKNOWN, NOT_APPLICABLE, CONFLICTING, CENSORED}."
+            },
+            "claim_route": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT",
+                "INFERRED_RULE",
+                "INFERRED_LLM",
+                "MODEL",
+                "SIMULATED"
+              ],
+              "description": "Card: claim route {EXPLICIT, INFERRED_RULE, INFERRED_LLM, MODEL, SIMULATED}."
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "const": "OTHER"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          },
+          "then": {
+            "required": [
+              "raw"
+            ],
+            "properties": {
+              "raw": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "meta"
+            ],
+            "properties": {
+              "meta": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "container": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "meta"
+      ],
+      "description": "Card 16-A layer 4 / Method cell: location/container layer of STATE v1 (closed vocabulary + OTHER, raw kept); layer vocabularies not in the card, so value is a free string here.",
+      "properties": {
+        "value": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "origin",
+            "status",
+            "claim_route"
+          ],
+          "description": "Step 16 card Method cell + 16-A layer 4: per-field metadata triple origin x status x claim_route, orthogonal axes. origin = the 8 provenance classes of registry/provenance_class_registry_v1.csv (SSOT 239.1). status here is the KNOWN/UNKNOWN/... axis, distinct from the v0 value-shape 'status'. UNKNOWN is never 0.",
+          "properties": {
+            "origin": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT_SOURCE",
+                "EXTERNAL_VERIFIED",
+                "DERIVED_DETERMINISTIC",
+                "INFERRED_LLM",
+                "MODEL_ESTIMATED",
+                "IMPUTED",
+                "SIMULATED",
+                "UNKNOWN"
+              ],
+              "description": "Card: origin (8-class provenance, 239.1); values copied from registry/provenance_class_registry_v1.csv."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ],
+              "description": "Card: status {KNOWN, UNKNOWN, NOT_APPLICABLE, CONFLICTING, CENSORED}."
+            },
+            "claim_route": {
+              "type": "string",
+              "enum": [
+                "EXPLICIT",
+                "INFERRED_RULE",
+                "INFERRED_LLM",
+                "MODEL",
+                "SIMULATED"
+              ],
+              "description": "Card: claim route {EXPLICIT, INFERRED_RULE, INFERRED_LLM, MODEL, SIMULATED}."
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "value": {
+                "const": "OTHER"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          },
+          "then": {
+            "required": [
+              "raw"
+            ],
+            "properties": {
+              "raw": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "meta"
+            ],
+            "properties": {
+              "meta": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "entity_id",
+    "state_version",
+    "belief"
+  ]
+}
