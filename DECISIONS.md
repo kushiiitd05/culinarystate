@@ -210,3 +210,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Rules carried in:** derived labels are flagged `DERIVED_FROM_TAG` and never mixed with explicit labels in one claim; recipes with no mappable tag stay `UNKNOWN` (not guessed); source confound (cuisine = website) controlled as in the 35.0 draft section 7; Food.com remains LOCAL research use only (H2 licence open, source UNREGISTERED).
 - **Not decided here:** the mapping itself, the continent grouping, and the minimum tag support; these are drafted for review, unsigned.
 - **Approver:** Kush (message of 2026-10-27, answering the option 1 / option 2 question).
+
+### D-037 · 2026-10-27 · Pan-regional tags, text-strata computation, Gutenberg in the Deep-Gold pilot (decided by Kush by delegation; entered by the coding agent as scribe)
+- **Decision (Kush: "yes ... do as better as you can think"):** (1) pan-regional Food.com tags (European, Asian, African, Caribbean, Southwestern U.S., Middle East and similar) are kept as continent/region-level labels only (`DERIVED_FROM_TAG`, cuisine UNKNOWN); they are used for continent analysis and never for single-cuisine analysis. (2) The four text-regex strata of the 16b frame (baking, drain_discard, reserve_split, multi_component) are computed locally on the Mac by the coding agent with fixed, saved regexes; only per-recipe stratum flags are written, never recipe text; no external LLM service reads recipe text. (3) Gutenberg stays excluded from the Deep-Gold pilot frame (no ingredient lines, matches the Step 19 draft); a separate text-only track is not opened.
+- **Why delegated:** these are scope and mechanics choices inside the already-signed 35.0/16b design; the mapping itself and the strata regexes still go to Kush and Parv for review before any sample is drawn.
+- **Not decided here:** the final lookup terms, the continent grouping, any sample draw, Step 19 start.
+- **Approver:** Kush (message of 2026-10-27).
