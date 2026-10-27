@@ -1,0 +1,1428 @@
+{
+ "n_pairs": 400,
+ "six_class_raw_agreement": 0.4375,
+ "Y_copy": {
+  "n": 271,
+  "raw_agreement": 0.7933579335793358,
+  "cohen_kappa": 0.5707902030657844,
+  "gwet_ac1": 0.6105222635698704,
+  "positives_A": 123,
+  "positives_B": 81,
+  "pairs_excluded_uncertain_either": 129,
+  "all_uncertain_positive": {
+   "cohen_kappa": 0.4001199760047989,
+   "gwet_ac1": 0.40001499962500936,
+   "raw_agreement": 0.7
+  },
+  "all_uncertain_negative": {
+   "cohen_kappa": 0.5001017234865,
+   "gwet_ac1": 0.6331762247008894,
+   "raw_agreement": 0.785
+  },
+  "meets_kappa_target": false
+ },
+ "Y_dish_primary_related_is_0": {
+  "n": 271,
+  "raw_agreement": 0.8339483394833949,
+  "cohen_kappa": 0.588076338456342,
+  "gwet_ac1": 0.7223392265570747,
+  "positives_A": 202,
+  "positives_B": 189,
+  "pairs_excluded_uncertain_either": 129,
+  "all_uncertain_positive": {
+   "cohen_kappa": 0.5274172980271549,
+   "gwet_ac1": 0.7637806346989375,
+   "raw_agreement": 0.8425
+  },
+  "all_uncertain_negative": {
+   "cohen_kappa": 0.4027345870970926,
+   "gwet_ac1": 0.4115108001142933,
+   "raw_agreement": 0.6975
+  },
+  "meets_kappa_target": false
+ },
+ "Y_dish_sensitivity_related_is_1": {
+  "n": 271,
+  "raw_agreement": 0.9704797047970479,
+  "cohen_kappa": 0.48867924528301754,
+  "gwet_ac1": 0.9686854534687215,
+  "positives_A": 259,
+  "positives_B": 267,
+  "pairs_excluded_uncertain_either": 129,
+  "all_uncertain_positive": {
+   "cohen_kappa": 0.3902439024390255,
+   "gwet_ac1": 0.9684625492772667,
+   "raw_agreement": 0.97
+  },
+  "all_uncertain_negative": {
+   "cohen_kappa": 0.33389974511469817,
+   "gwet_ac1": 0.6206255806751316,
+   "raw_agreement": 0.755
+  },
+  "meets_kappa_target": false
+ },
+ "label_counts_A": {
+  "DISTINCT": 16,
+  "SAME_RECIPE_COPY": 88,
+  "RELATED": 67,
+  "SAME_DISH_DIFFERENT_RECIPE": 121,
+  "SAME_RECIPE_MINOR_VARIANT": 65,
+  "UNCERTAIN": 43
+ },
+ "label_counts_B": {
+  "DISTINCT": 4,
+  "SAME_DISH_DIFFERENT_RECIPE": 112,
+  "UNCERTAIN": 121,
+  "SAME_RECIPE_MINOR_VARIANT": 81,
+  "RELATED": 82
+ },
+ "six_class_confusion": [
+  [
+   [
+    "SAME_DISH_DIFFERENT_RECIPE",
+    "SAME_DISH_DIFFERENT_RECIPE"
+   ],
+   58
+  ],
+  [
+   [
+    "RELATED",
+    "RELATED"
+   ],
+   42
+  ],
+  [
+   [
+    "SAME_DISH_DIFFERENT_RECIPE",
+    "UNCERTAIN"
+   ],
+   42
+  ],
+  [
+   [
+    "SAME_RECIPE_COPY",
+    "SAME_RECIPE_MINOR_VARIANT"
+   ],
+   38
+  ],
+  [
+   [
+    "SAME_RECIPE_MINOR_VARIANT",
+    "SAME_RECIPE_MINOR_VARIANT"
+   ],
+   36
+  ],
+  [
+   [
+    "UNCERTAIN",
+    "UNCERTAIN"
+   ],
+   35
+  ],
+  [
+   [
+    "SAME_RECIPE_COPY",
+    "UNCERTAIN"
+   ],
+   28
+  ],
+  [
+   [
+    "SAME_RECIPE_MINOR_VARIANT",
+    "SAME_DISH_DIFFERENT_RECIPE"
+   ],
+   23
+  ],
+  [
+   [
+    "SAME_DISH_DIFFERENT_RECIPE",
+    "RELATED"
+   ],
+   18
+  ],
+  [
+   [
+    "SAME_RECIPE_COPY",
+    "SAME_DISH_DIFFERENT_RECIPE"
+   ],
+   15
+  ],
+  [
+   [
+    "RELATED",
+    "SAME_DISH_DIFFERENT_RECIPE"
+   ],
+   11
+  ],
+  [
+   [
+    "RELATED",
+    "UNCERTAIN"
+   ],
+   10
+  ],
+  [
+   [
+    "DISTINCT",
+    "RELATED"
+   ],
+   7
+  ],
+  [
+   [
+    "SAME_RECIPE_COPY",
+    "RELATED"
+   ],
+   7
+  ],
+  [
+   [
+    "DISTINCT",
+    "DISTINCT"
+   ],
+   4
+  ],
+  [
+   [
+    "SAME_RECIPE_MINOR_VARIANT",
+    "RELATED"
+   ],
+   4
+  ],
+  [
+   [
+    "UNCERTAIN",
+    "RELATED"
+   ],
+   4
+  ],
+  [
+   [
+    "RELATED",
+    "SAME_RECIPE_MINOR_VARIANT"
+   ],
+   4
+  ],
+  [
+   [
+    "UNCERTAIN",
+    "SAME_DISH_DIFFERENT_RECIPE"
+   ],
+   4
+  ],
+  [
+   [
+    "DISTINCT",
+    "UNCERTAIN"
+   ],
+   4
+  ],
+  [
+   [
+    "SAME_DISH_DIFFERENT_RECIPE",
+    "SAME_RECIPE_MINOR_VARIANT"
+   ],
+   3
+  ],
+  [
+   [
+    "SAME_RECIPE_MINOR_VARIANT",
+    "UNCERTAIN"
+   ],
+   2
+  ],
+  [
+   [
+    "DISTINCT",
+    "SAME_DISH_DIFFERENT_RECIPE"
+   ],
+   1
+  ]
+ ],
+ "disagreeing_pair_ids": [
+  {
+   "pair_id": "DP-0002",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0003",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0004",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0008",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0014",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0016",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0023",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0026",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0027",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0029",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0033",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0034",
+   "A": "DISTINCT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0035",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0036",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0039",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0041",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0043",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0045",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0046",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0047",
+   "A": "DISTINCT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0048",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0050",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0051",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0052",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0054",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0055",
+   "A": "DISTINCT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0057",
+   "A": "DISTINCT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0058",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0060",
+   "A": "SAME_RECIPE_COPY",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0062",
+   "A": "SAME_RECIPE_COPY",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0063",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0064",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0066",
+   "A": "DISTINCT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0068",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0069",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0070",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0072",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0073",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0075",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0079",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0081",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0082",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0083",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0084",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0086",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0087",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0089",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0090",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0091",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0092",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0093",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0094",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0095",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0096",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0098",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0101",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0103",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0106",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0107",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0108",
+   "A": "SAME_RECIPE_COPY",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0109",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0111",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0112",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0114",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0116",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0117",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0119",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0123",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0124",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0125",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0127",
+   "A": "UNCERTAIN",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0128",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0129",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0130",
+   "A": "RELATED",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0131",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0133",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0136",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0140",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0141",
+   "A": "UNCERTAIN",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0142",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0143",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0144",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0146",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0150",
+   "A": "DISTINCT",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0152",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0153",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0155",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0157",
+   "A": "DISTINCT",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0159",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0162",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0163",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0164",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0165",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0167",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0169",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0172",
+   "A": "UNCERTAIN",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0173",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0174",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0178",
+   "A": "DISTINCT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0179",
+   "A": "UNCERTAIN",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0180",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0181",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0182",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0184",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0185",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0187",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0188",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0189",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0190",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0191",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0194",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0195",
+   "A": "RELATED",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0196",
+   "A": "RELATED",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0197",
+   "A": "UNCERTAIN",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0198",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0199",
+   "A": "UNCERTAIN",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0203",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0204",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0205",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0207",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0209",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0210",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0211",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0213",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0214",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0215",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0218",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0221",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0222",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0223",
+   "A": "DISTINCT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0224",
+   "A": "SAME_RECIPE_COPY",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0226",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0227",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0229",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0230",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0231",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0233",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0235",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0237",
+   "A": "UNCERTAIN",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0238",
+   "A": "SAME_RECIPE_COPY",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0240",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0241",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0244",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0246",
+   "A": "DISTINCT",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0247",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0251",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0254",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0255",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0258",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0259",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0260",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0264",
+   "A": "SAME_RECIPE_COPY",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0265",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0266",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0269",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0270",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0272",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0276",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0278",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0282",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0285",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0286",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0287",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0288",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0289",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0292",
+   "A": "DISTINCT",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0294",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0296",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0297",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0301",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0302",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0304",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0307",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0308",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0309",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0312",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0313",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0314",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0315",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0316",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0320",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0322",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0323",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0324",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0329",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0332",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0333",
+   "A": "RELATED",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0335",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0338",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0339",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0340",
+   "A": "RELATED",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0342",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0345",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0346",
+   "A": "SAME_RECIPE_COPY",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0348",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0351",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0352",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0353",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0354",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0355",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0356",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0357",
+   "A": "RELATED",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0358",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0359",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0360",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0361",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0362",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0365",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0366",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0368",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0369",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0370",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0372",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0373",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0374",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0375",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0376",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0378",
+   "A": "SAME_RECIPE_COPY",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0385",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  },
+  {
+   "pair_id": "DP-0386",
+   "A": "UNCERTAIN",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0387",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0393",
+   "A": "SAME_DISH_DIFFERENT_RECIPE",
+   "B": "UNCERTAIN"
+  },
+  {
+   "pair_id": "DP-0395",
+   "A": "SAME_RECIPE_COPY",
+   "B": "SAME_RECIPE_MINOR_VARIANT"
+  },
+  {
+   "pair_id": "DP-0398",
+   "A": "DISTINCT",
+   "B": "RELATED"
+  },
+  {
+   "pair_id": "DP-0399",
+   "A": "SAME_RECIPE_MINOR_VARIANT",
+   "B": "SAME_DISH_DIFFERENT_RECIPE"
+  }
+ ],
+ "binary_disagreement_pair_ids_Y_copy": [
+  "DP-0002",
+  "DP-0003",
+  "DP-0008",
+  "DP-0026",
+  "DP-0029",
+  "DP-0033",
+  "DP-0036",
+  "DP-0039",
+  "DP-0060",
+  "DP-0062",
+  "DP-0069",
+  "DP-0073",
+  "DP-0081",
+  "DP-0083",
+  "DP-0084",
+  "DP-0093",
+  "DP-0107",
+  "DP-0108",
+  "DP-0111",
+  "DP-0117",
+  "DP-0125",
+  "DP-0130",
+  "DP-0131",
+  "DP-0152",
+  "DP-0173",
+  "DP-0182",
+  "DP-0184",
+  "DP-0191",
+  "DP-0195",
+  "DP-0196",
+  "DP-0203",
+  "DP-0213",
+  "DP-0222",
+  "DP-0224",
+  "DP-0231",
+  "DP-0235",
+  "DP-0238",
+  "DP-0247",
+  "DP-0251",
+  "DP-0264",
+  "DP-0276",
+  "DP-0297",
+  "DP-0301",
+  "DP-0309",
+  "DP-0315",
+  "DP-0345",
+  "DP-0346",
+  "DP-0348",
+  "DP-0351",
+  "DP-0357",
+  "DP-0360",
+  "DP-0372",
+  "DP-0373",
+  "DP-0385",
+  "DP-0387",
+  "DP-0399"
+ ],
+ "note": "UNCERTAIN pairs are excluded from kappa and reported with best/worst-case bounds (THR-07IC-03). CONTRACT-AMBIGUITY: THR-07IC-04 does not say whether the 0.70 target applies to Y_copy, Y_dish or both; both are reported and no pass/fail is declared here. Nothing is adjudicated automatically."
+}
