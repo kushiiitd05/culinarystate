@@ -1,13 +1,13 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-**As of:** WORKLOG S141 (2026-10-26 16:23 IST). Old body (as of S083) archived at `docs/archive/STATUS_as_of_S083.md`.
+**As of:** WORKLOG S145 (2026-10-27 20:50 IST). Old body (as of S083) archived at `docs/archive/STATUS_as_of_S083.md`.
 **Repo:** `~/Desktop/CGAS/culinarystate` (local; GitHub push only after H7 approval)
-**Logs:** `WORKLOG.md` (append-only) · `DECISIONS.md` (D-001..D-027 (D-028 draft unsigned)) · SSOT index `docs/SSOT_INDEX.md` (bible `docs/SSOT/computational_gastronomy_master_ssot_v15_0.md`)
+**Logs:** `WORKLOG.md` (append-only) · `DECISIONS.md` (D-001..D-034; D-028 draft unsigned) · SSOT index `docs/SSOT_INDEX.md` (bible `docs/SSOT/computational_gastronomy_master_ssot_v15_0.md`)
 **Plan:** `docs/plan/CulinaryState_36_Step_Execution_Plan_v2.md` (D-027: original 36-step spine governs; only R-01..R-20 adopted)
 **Resume file:** `reports/master_plan/RESUME_ANCHOR_2026-10-26.md`
 
 ## Current stage
-ES-1 data and evidence factory. Step 07H-R (612,782 recipes, parser frozen) and 07I-R (provisional identity layer, PASS) done (S133-S134; `reports/step07i/step07ir_gate_result.json`). Plan v2 reconciled (S138-S139); Step 04 v1.1 contracts drafted, DRAFT_PENDING_H4 (S140); Round-3 drafts (Steps 19, 21, 35) written, review fixes incomplete (S141). Nothing approved, signed or frozen since 07I-R. Step 08 NOT STARTED / NOT AUTHORISED.
+ES-1 data and evidence factory. Step 07H-R (612,782 recipes) and 07I-R done. 2026-10-27: H4 walk-through signed (D-029..D-032); Step 08a built (08a.1-08a.9) and the real run applied (new `DOC.jsonl`, `SRC_08A_YIELD.jsonl`, STUDY append, `_ids` append; EVD/COND/SRC/MEAS byte-identical). Edge audit returned by Kush and Parv: **G08-3 FAIL** (B3 weak; D-034 keeps the B3 cut 0.75, no gate loosened). 07.A statistic FAIL; 07I-C original kappa 0.571/0.588, D-033 records Kush's stated 0.88 on adjudicated labels. Step 16a draft registries and v1-rc schemas written (DRAFT_PENDING_H4). Step 08b NOT authorised; 08b draft authorisation package in preparation. A100 servers unreachable (VPN down at last check).
 
 ## Steps 01-08
 | Step | Title | State | Source |
@@ -19,7 +19,7 @@ ES-1 data and evidence factory. Step 07H-R (612,782 recipes, parser frozen) and 
 | 05 | Normalize EVD | DONE (ES-1.1 PASS, 17,978 rows); export v2 NOT STARTED (inside 08a.7) | S129; spine |
 | 06 | Source acquisition manifest | DONE (automated); 21 H2 items PENDING HUMAN | S130; `reports/h_state/es_1_2_h2_approval_queue.md` |
 | 07 | Condition and measurement normalization | Automated gate PASS (07H, 07H-R frozen); human condition audit PENDING HUMAN | S131-S133; `reports/step07/step07h_human_gate_result.json` |
-| 08 | Scientific source lineage (08a/08b) | NOT STARTED, NOT AUTHORISED (08a needs Kush's explicit written authorisation) | D-027; anchor |
+| 08 | Scientific source lineage (08a/08b) | 08a DONE on the machine side, G08-3 FAIL (B3/B2 edges PROVISIONAL), G08-9 expert reading pending; 08b NOT authorised | D-032, D-034; `reports/step08/step08a_audit_result_v2.json`, `exports/lineage/step08a_v1/` |
 
 Step 07 note: the returned v3 audit is `NOT_COUNTED_PROVENANCE_INVALID` (archived in `reports/step07/v3_not_counted_archive/`); v4 packet is frozen and unlabelled. Gate = pooled kappa >= 0.80 and no systematic critical-field failure (D-027).
 
