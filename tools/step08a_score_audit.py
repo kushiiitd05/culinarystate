@@ -52,13 +52,15 @@ def main() -> int:
     ap_ = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap_.add_argument("--dir", type=Path, default=ROOT / "annotation" / "lineage_audit")
     ap_.add_argument("--out", type=Path, default=ROOT / "reports" / "step08" / "step08a_audit_result_v1.json")
+    ap_.add_argument("--parv-edge", default="edge_audit_v1_Parv_1.csv")
+    ap_.add_argument("--parv-pair", default="parv_miss.csv")
     a = ap_.parse_args()
     d = a.dir
     m = d / "mapped"
     _mapped(d / "edge_audit_v1_Kush_1.csv", m / "edge_audit_v1_Kush.csv", ap.EDGE_JUDGEMENT_COL, EDGE_MAP)
-    _mapped(d / "edge_audit_v1_Parv_1.csv", m / "edge_audit_v1_Parv.csv", ap.EDGE_JUDGEMENT_COL, EDGE_MAP)
+    _mapped(d / a.parv_edge, m / "edge_audit_v1_Parv.csv", ap.EDGE_JUDGEMENT_COL, EDGE_MAP)
     _mapped(d / "missed_pair_v1_Kush_1.csv", m / "missed_pair_v1_Kush.csv", ap.PAIR_JUDGEMENT_COL, PAIR_MAP)
-    _mapped(d / "parv_miss.csv", m / "missed_pair_v1_Parv.csv", ap.PAIR_JUDGEMENT_COL, PAIR_MAP)
+    _mapped(d / a.parv_pair, m / "missed_pair_v1_Parv.csv", ap.PAIR_JUDGEMENT_COL, PAIR_MAP)
     ev = ap.validate_returned_edge_packets(d / "edge_audit_v1_Kush.csv", m / "edge_audit_v1_Kush.csv", m / "edge_audit_v1_Parv.csv")
     pv = ap.validate_returned_pair_packets(d / "missed_pair_v1_Kush.csv", m / "missed_pair_v1_Kush.csv", m / "missed_pair_v1_Parv.csv")
 
