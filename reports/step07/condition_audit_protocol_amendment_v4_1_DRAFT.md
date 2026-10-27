@@ -24,4 +24,4 @@ Approve this amendment (D-028) -> reviewers work alone and blind from the unchan
 **Time-gap ruling (Kush, 2026-10-27):** the mtime separation check is INFORMATIONAL, not a validity condition. The 48 s gap between the two returned files is disclosed; it reflects when each file was saved into the folder. The precheck was run at both 600 s (INVALID_PROVENANCE, only on this item: `step07_v4_provenance_precheck_gap600.json`) and with the gap rule informational (VALID: `step07_v4_provenance_precheck.json`).
 **Blind confirmation (Kush, 2026-10-27):** Kush confirms neither reviewer opened the other's returned file before the hashes were recorded.
 
-Signed: Kush Tokas, 2026-10-27   |   Parv: ____________ (signature pending; Parv has not signed)
+Signed: Kush Tokas, 2026-10-27   |   Parv: signature NOT SEEN by the scribe. Kush states (2026-10-27) that Parv signed on the night of 2026-10-26 at about 22:00; no signed file or message was provided. Recorded as reported, UNVERIFIED.
