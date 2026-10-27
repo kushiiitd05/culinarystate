@@ -115,8 +115,10 @@ def main() -> int:
     ap.add_argument("--ledgers-root", required=True, type=Path)
     ap.add_argument("--keys", required=True, type=Path)
     ap.add_argument("--out-dir", required=True, type=Path)
+    ap.add_argument("--scratch-root", type=Path, default=ALLOWED_OUT_ROOT,
+                    help="output must be under this directory (default: legacy scratch dir)")
     a = ap.parse_args()
-    rep = run(a.ledgers_root, a.keys, a.out_dir)
+    rep = run(a.ledgers_root, a.keys, a.out_dir, allowed=a.scratch_root)
     print(json.dumps(rep["label_verdict"], indent=2, sort_keys=True))
     return 0
 
