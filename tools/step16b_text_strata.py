@@ -32,11 +32,13 @@ A1_PROC = "../a1/A1 3/data/processed/recipes_processed.jsonl"
 # Verbatim from tools/make_gold_batch.py STRATA (text-regex entries only).
 STRATA = {
     "reserve_split": r"\b(reserv|set aside|remaining|the rest|divide|half the)\b",
+    # D-038: corrected twin of reserve_split; v1 above stays verbatim for comparability with the old pilot.
+    "reserve_split_v2": r"\b(reserv\w*|set aside|remaining|the rest|divide|half the)\b",
     "drain_discard": r"\b(drain|strain|discard)\b",
     "baking": r"\b(bake|oven)\b",
     "multi_component": r"\b(for the (sauce|dressing|topping|filling|marinade))\b",
 }
-FLAGS = ["baking", "drain_discard", "reserve_split", "multi_component"]
+FLAGS = ["baking", "drain_discard", "reserve_split", "reserve_split_v2", "multi_component"]
 COLUMNS = ["recipe_id"] + FLAGS
 
 
