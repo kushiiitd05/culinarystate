@@ -30,3 +30,6 @@ v0 1.0.0 records validate unchanged against the drafts. New fields are all optio
 - Quantile levels for EMPIRICAL_QUANTILES; dual_expression_check shape (only `conflict`, `notes`); implicit_args item payload (only `resolution_ref`); source_diversity type (int or string or null); tool_roles shape (array of {tool_id, role}).
 - ALLOC / REF / GRAPH additions (M.6), INST additions, STATE "SVAR attribute" layer beyond v0 `variables`.
 - Q-level for "other approved national table" and POR.basis CONVENTION mapping (open rulings, not adopted).
+
+## Resolved ambiguity (2026-10-27, Kush delegated the call; reviewed by the coding agent)
+ENTITY event links stay named `created_by_event_id` and `consumed_by_event_id`. Reason: v0 already uses `created_by` for the record author, so reusing the plan's literal "created_by / consumed_by event" would change the meaning of an existing required field. Still subject to H4 sign-off at the 16c freeze.
