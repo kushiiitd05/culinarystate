@@ -1,0 +1,29 @@
+{
+ "added_columns": [
+  "study_id",
+  "lineage_study_id_status",
+  "independence_resolution",
+  "lineage_root_id",
+  "split_group_id",
+  "lineage_rule_version",
+  "lineage_assignment_status",
+  "export_schema_version"
+ ],
+ "committed_v1": {
+  "file": "/Users/bournesmartasfuck_kush/Desktop/CGAS/culinarystate/exports/evd/evd_export_v1.jsonl",
+  "identical_to_regenerated_v1": true,
+  "present": true,
+  "sha256": "e61d7db4dc709ff3a4cb95ec6889a63d491e7f10d30222b421761f428aedd457",
+  "v1_columns_identical_to_committed_v1": true
+ },
+ "export_file": "evd_export_v2.jsonl",
+ "export_rows": 17978,
+ "export_sha256": "ffeefef915ba1ae9c048e055ba298a2ef1c6f9562a3327743c2b1e7856512203",
+ "export_version": "evd_export@2.0.0",
+ "keys_file_sha256": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90",
+ "ledger_sha256_evd": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+ "schema_version_bump": "evd_export@1.0.0 -> evd_export@2.0.0 (additive columns only)",
+ "v1_columns_policy": "all v1 columns unchanged in value; v1 export_version column kept at evd_export@1.0.0",
+ "v1_regenerated_sha256": "e61d7db4dc709ff3a4cb95ec6889a63d491e7f10d30222b421761f428aedd457",
+ "v1_rows_checked_identical": 17978
+}

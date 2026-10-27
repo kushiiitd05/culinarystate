@@ -1,0 +1,136 @@
+{
+  "edges_input": 25489,
+  "edges_input_by_level": {
+    "B1": 200,
+    "B2": 1031,
+    "B3": 24102,
+    "STRONG": 156
+  },
+  "exceeds_40pct_rule": false,
+  "gates": {
+    "G08-1": {
+      "covered": 17978,
+      "expected": 17978,
+      "pass": true
+    },
+    "G08-10": {
+      "examples": [],
+      "pass": true,
+      "violations": 0
+    },
+    "G08-2": {
+      "drv_rows": 0,
+      "note": "no DRV rows in the ledgers; rule tested on synthetic data",
+      "pass": true,
+      "violations": 0
+    },
+    "G08-8": {
+      "checked": 3678,
+      "fabricated": 0,
+      "pass": true
+    }
+  },
+  "independence_resolution": {
+    "PUBLICATION_ONLY": 3678,
+    "SOURCE_FAMILY_ONLY": 14108,
+    "UNKNOWN": 192
+  },
+  "inputs_sha256": {
+    "EVD": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+    "edges": "40110952afdc4e0b5d631677f486984f666d95ce7324a797e7343b9f2c895dac"
+  },
+  "lab_group_status": {
+    "UNKNOWN": 17978
+  },
+  "largest_split_group_rows": 7090,
+  "largest_split_group_share": 0.3943708977639337,
+  "level_sensitivity": {
+    "ALL": {
+      "edges_dropped_by_hub_rule": 294,
+      "edges_kept_merging": 25195,
+      "largest_group_rows": 7090,
+      "largest_group_share": 0.3943708977639337,
+      "lineage_roots": 127,
+      "split_groups": 127
+    },
+    "NONE": {
+      "edges_dropped_by_hub_rule": 0,
+      "edges_kept_merging": 0,
+      "largest_group_rows": 7090,
+      "largest_group_share": 0.3943708977639337,
+      "lineage_roots": 127,
+      "split_groups": 127
+    },
+    "STRONG+B1": {
+      "edges_dropped_by_hub_rule": 0,
+      "edges_kept_merging": 356,
+      "largest_group_rows": 7090,
+      "largest_group_share": 0.3943708977639337,
+      "lineage_roots": 127,
+      "split_groups": 127
+    },
+    "STRONG+B1+B2": {
+      "edges_dropped_by_hub_rule": 0,
+      "edges_kept_merging": 1387,
+      "largest_group_rows": 7090,
+      "largest_group_share": 0.3943708977639337,
+      "lineage_roots": 127,
+      "split_groups": 127
+    }
+  },
+  "lineage_roots": 127,
+  "rows_total": 17978,
+  "rule_version": "keys-v1",
+  "split_groups": 127,
+  "stats": {
+    "drv_parents_in_different_groups_after_union": 0,
+    "drv_parents_in_different_groups_before_union": 0,
+    "drv_rows": 0,
+    "edges_dropped_by_hub_rule": 294,
+    "edges_dropped_by_hub_rule_by_level": {
+      "B3": 294
+    },
+    "edges_grouping_default": 0,
+    "edges_kept_merging": 25195,
+    "edges_unmatched_endpoint": 0,
+    "hub_node_pairs_dropped": 1,
+    "largest_group_rows": 7090,
+    "largest_group_share": 0.3943708977639337,
+    "lineage_roots": 127,
+    "rows": 17978,
+    "split_groups": 127,
+    "study_ids_withheld_no_locator": 192
+  },
+  "study_id_status": {
+    "NOT_IDENTIFIABLE": 14300,
+    "PRESENT": 3678
+  },
+  "study_ids_distinct": 121,
+  "top5_split_groups": [
+    {
+      "id": "SPLITGRP-EVD-000122",
+      "rows": 7090,
+      "share": 0.3943708977639337
+    },
+    {
+      "id": "SPLITGRP-EVD-000123",
+      "rows": 7018,
+      "share": 0.39036600289242407
+    },
+    {
+      "id": "SPLITGRP-EVD-000014",
+      "rows": 251,
+      "share": 0.013961508510401602
+    },
+    {
+      "id": "SPLITGRP-EVD-000078",
+      "rows": 244,
+      "share": 0.013572143731227055
+    },
+    {
+      "id": "SPLITGRP-EVD-000015",
+      "rows": 216,
+      "share": 0.012014684614528868
+    }
+  ]
+}
