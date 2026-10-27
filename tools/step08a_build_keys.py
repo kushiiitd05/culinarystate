@@ -104,10 +104,12 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--ledgers-root", required=True, type=Path)
     ap.add_argument("--edges", required=True, type=Path)
     ap.add_argument("--out-dir", required=True, type=Path)
+    ap.add_argument("--scratch-root", type=Path, default=ALLOWED_OUT_ROOT,
+                    help="output must be under this directory (default: legacy scratch dir)")
     a = ap.parse_args(argv)
     t0 = time.perf_counter()
     try:
-        counts = run(a.ledgers_root, a.edges, a.out_dir)
+        counts = run(a.ledgers_root, a.edges, a.out_dir, allowed_out_root=a.scratch_root)
     except RefusedPathError as e:
         print(f"REFUSED: {e}", file=sys.stderr)
         return 2
