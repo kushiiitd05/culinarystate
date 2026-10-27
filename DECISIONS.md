@@ -216,3 +216,8 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Why delegated:** these are scope and mechanics choices inside the already-signed 35.0/16b design; the mapping itself and the strata regexes still go to Kush and Parv for review before any sample is drawn.
 - **Not decided here:** the final lookup terms, the continent grouping, any sample draw, Step 19 start.
 - **Approver:** Kush (message of 2026-10-27).
+
+### D-038 · 2026-10-27 · `reserve_split` regex boundary bug: add a corrected twin, keep v1 (decided by Kush, "ok" to the fix recommendation; entered by the coding agent as scribe)
+- **Decision:** the pilot stratum regex `\b(reserv|set aside|...)\b` never matches "reserve/reserved/reserving". A corrected column `reserve_split_v2` (`reserv\w*`) is added next to the unchanged v1 column in `registry/recipe_semantics/deep_gold_text_strata_v1_DRAFT.csv`.
+- **Open:** which column the pilot draw uses stays a pre-registration choice before any sample is drawn (recommended: v2 for the pilot, v1 reported for comparability). Nothing has been drawn.
+- **Approver:** Kush (message of 2026-10-27).
