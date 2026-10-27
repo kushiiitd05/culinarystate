@@ -204,3 +204,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Gates:** THR-08B-01..04 signed with those readings; unknown values stay `NOT GIVEN IN PLAN` (no number invented). THR-08B-05 (v1 release) NOT signed.
 - **Not authorised:** 08b v1 release; any edit to ledgers, `_ids`, `registry.py`, 08a detector modules, the B3 cut or signed THR-08A rows; wiring into Steps 10-14; 07.A, 07I-C, 07I-S; A100 use; any push (H7). No 08b-v0 output may be called detector precision/recall on real data or an 08a PASS.
 - **Approver:** Kush (message of 2026-10-27).
+
+### D-036 · 2026-10-27 · Food.com cuisine for Step 35 to be derived from Food.com tags (decided by Kush; entered by the coding agent as scribe)
+- **Decision:** Food.com recipes (522,517, no `cuisine_if_explicit`) get a cuisine label derived from Food.com's own tags through a written, pre-registered tag-to-cuisine mapping (and cuisine-to-continent grouping), signed by Kush and Parv BEFORE any cuisine statistic is computed (Step 35.0, 35d). Not "leave Food.com out".
+- **Rules carried in:** derived labels are flagged `DERIVED_FROM_TAG` and never mixed with explicit labels in one claim; recipes with no mappable tag stay `UNKNOWN` (not guessed); source confound (cuisine = website) controlled as in the 35.0 draft section 7; Food.com remains LOCAL research use only (H2 licence open, source UNREGISTERED).
+- **Not decided here:** the mapping itself, the continent grouping, and the minimum tag support; these are drafted for review, unsigned.
+- **Approver:** Kush (message of 2026-10-27, answering the option 1 / option 2 question).
