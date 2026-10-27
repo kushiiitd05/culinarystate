@@ -1,0 +1,330 @@
+id,name,proposed_parent_id,level,node_type,structural_class,evidence
+CAT:APPLIANCE,APPLIANCE,,1,category,,TOOL.category value (root)
+CAT:COOKWARE,COOKWARE,,1,category,,TOOL.category value (root)
+CAT:HEAT_SOURCE,HEAT_SOURCE,,1,category,,TOOL.category value (root)
+CAT:MEASURE,MEASURE,,1,category,,TOOL.category value (root)
+CAT:UTENSIL,UTENSIL,,1,category,,TOOL.category value (root)
+CAT:VESSEL,VESSEL,,1,category,,TOOL.category value (root)
+TOOL-000001,oven,CAT:HEAT_SOURCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000002,hob,CAT:HEAT_SOURCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000003,grill,CAT:HEAT_SOURCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000004,barbecue,CAT:HEAT_SOURCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000005,microwave,CAT:APPLIANCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000006,fridge,CAT:APPLIANCE,2,tool,COOLING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000007,freezer,CAT:APPLIANCE,2,tool,COOLING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000008,food processor,CAT:APPLIANCE,2,tool,MECHANICAL_APPLIANCE,TOOL.category (proposal only)
+TOOL-000009,blender,CAT:APPLIANCE,2,tool,MECHANICAL_APPLIANCE,TOOL.category (proposal only)
+TOOL-000010,electric whisk,CAT:APPLIANCE,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000011,stand mixer,CAT:APPLIANCE,2,tool,MECHANICAL_APPLIANCE,TOOL.category (proposal only)
+TOOL-000012,slow cooker,CAT:APPLIANCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000013,pressure cooker,CAT:APPLIANCE,2,tool,PRESSURE_EQUIPMENT,TOOL.category (proposal only)
+TOOL-000014,air fryer,CAT:APPLIANCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000015,deep-fat fryer,CAT:APPLIANCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000016,toaster,CAT:APPLIANCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000017,ice cream maker,CAT:APPLIANCE,2,tool,COOLING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000018,spice grinder,CAT:APPLIANCE,2,tool,MECHANICAL_APPLIANCE,TOOL.category (proposal only)
+TOOL-000019,frying pan,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000020,saucepan,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000021,griddle pan,CAT:COOKWARE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000022,wok,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000023,casserole,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000024,roasting tin,CAT:COOKWARE,2,tool,BAKEWARE,TOOL.category (proposal only)
+TOOL-000025,baking tray,CAT:COOKWARE,2,tool,BAKEWARE,TOOL.category (proposal only)
+TOOL-000026,baking dish,CAT:COOKWARE,2,tool,BAKEWARE,TOOL.category (proposal only)
+TOOL-000027,cake tin,CAT:COOKWARE,2,tool,BAKEWARE,TOOL.category (proposal only)
+TOOL-000028,loaf tin,CAT:COOKWARE,2,tool,BAKEWARE,TOOL.category (proposal only)
+TOOL-000029,muffin tin,CAT:COOKWARE,2,tool,BAKEWARE,TOOL.category (proposal only)
+TOOL-000030,tart tin,CAT:COOKWARE,2,tool,BAKEWARE,TOOL.category (proposal only)
+TOOL-000031,ramekin,CAT:COOKWARE,2,tool,BAKEWARE,TOOL.category (proposal only)
+TOOL-000032,pudding basin,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000033,steamer,CAT:COOKWARE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000034,tawa,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000035,kadai,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000036,handi,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000037,tadka pan,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000038,bowl,CAT:VESSEL,2,tool,CONTAINER,TOOL.category (proposal only)
+TOOL-000039,jug,CAT:VESSEL,2,tool,MEASUREMENT_TOOL,TOOL.category (proposal only)
+TOOL-000040,container,CAT:VESSEL,2,tool,CONTAINER,TOOL.category (proposal only)
+TOOL-000041,plate,CAT:VESSEL,2,tool,CONTAINER,TOOL.category (proposal only)
+TOOL-000042,glass,CAT:VESSEL,2,tool,CONTAINER,TOOL.category (proposal only)
+TOOL-000043,bag,CAT:VESSEL,2,tool,CONTAINER,TOOL.category (proposal only)
+TOOL-000044,wooden spoon,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000045,slotted spoon,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000046,ladle,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000047,spatula,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000048,tongs,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000049,whisk,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000050,knife,CAT:UTENSIL,2,tool,CUTTING_TOOL,TOOL.category (proposal only)
+TOOL-000051,fork,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000052,chopping board,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000053,rolling pin,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000054,grater,CAT:UTENSIL,2,tool,CUTTING_TOOL,TOOL.category (proposal only)
+TOOL-000055,peeler,CAT:UTENSIL,2,tool,CUTTING_TOOL,TOOL.category (proposal only)
+TOOL-000056,masher,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000057,sieve,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000058,colander,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000059,mortar and pestle,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000060,pastry brush,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000061,cutter,CAT:UTENSIL,2,tool,CUTTING_TOOL,TOOL.category (proposal only)
+TOOL-000062,piping bag,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000063,skewer,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000064,mandoline,CAT:UTENSIL,2,tool,CUTTING_TOOL,TOOL.category (proposal only)
+TOOL-000065,wire rack,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000066,lid,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000067,scissors,CAT:UTENSIL,2,tool,CUTTING_TOOL,TOOL.category (proposal only)
+TOOL-000068,baking parchment,,2,tool,BAKEWARE,NEEDS_HUMAN: TOOL.category=OTHER gives no parent
+TOOL-000069,foil,,2,tool,OTHER,NEEDS_HUMAN: TOOL.category=OTHER gives no parent
+TOOL-000070,cling film,,2,tool,OTHER,NEEDS_HUMAN: TOOL.category=OTHER gives no parent
+TOOL-000071,kitchen paper,,2,tool,OTHER,NEEDS_HUMAN: TOOL.category=OTHER gives no parent
+TOOL-000072,tea towel,,2,tool,OTHER,NEEDS_HUMAN: TOOL.category=OTHER gives no parent
+TOOL-000073,thermometer,CAT:MEASURE,2,tool,MEASUREMENT_TOOL,TOOL.category (proposal only)
+TOOL-000074,scales,CAT:MEASURE,2,tool,MEASUREMENT_TOOL,TOOL.category (proposal only)
+TOOL-000075,measuring spoon,CAT:MEASURE,2,tool,MEASUREMENT_TOOL,TOOL.category (proposal only)
+TOOL-000076,timer,CAT:MEASURE,2,tool,MEASUREMENT_TOOL,TOOL.category (proposal only)
+TOOL-000077,double boiler,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000078,idli steamer,CAT:COOKWARE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000079,tamagoyaki pan,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000080,fondue pot,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000081,bundt tin,CAT:COOKWARE,2,tool,BAKEWARE,TOOL.category (proposal only)
+TOOL-000082,pizza stone,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000083,sauté pan,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000084,tandoor,CAT:HEAT_SOURCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000085,blowtorch,CAT:APPLIANCE,2,tool,UNKNOWN,TOOL.category (proposal only)
+TOOL-000086,rice cooker,CAT:APPLIANCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000087,bread machine,CAT:APPLIANCE,2,tool,UNKNOWN,TOOL.category (proposal only)
+TOOL-000088,waffle iron,CAT:APPLIANCE,2,tool,UNKNOWN,TOOL.category (proposal only)
+TOOL-000089,juicer,CAT:APPLIANCE,2,tool,MECHANICAL_APPLIANCE,TOOL.category (proposal only)
+TOOL-000090,toaster oven,CAT:APPLIANCE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000091,pasta machine,CAT:APPLIANCE,2,tool,UNKNOWN,TOOL.category (proposal only)
+TOOL-000092,whipping siphon,CAT:APPLIANCE,2,tool,UNKNOWN,TOOL.category (proposal only)
+TOOL-000093,funnel,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000094,garlic press,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000095,can opener,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000096,egg separator,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000097,baster,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000098,food mill,CAT:UTENSIL,2,tool,MECHANICAL_APPLIANCE,TOOL.category (proposal only)
+TOOL-000099,citrus reamer,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000100,salad spinner,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000101,melon baller,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000102,pastry blender,CAT:UTENSIL,2,tool,MECHANICAL_APPLIANCE,TOOL.category (proposal only)
+TOOL-000103,bench scraper,CAT:UTENSIL,2,tool,MIXING_TOOL,TOOL.category (proposal only)
+TOOL-000104,pizza cutter,CAT:UTENSIL,2,tool,CUTTING_TOOL,TOOL.category (proposal only)
+TOOL-000105,skimmer,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000106,fat separator,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000107,sifter,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000108,sushi mat,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000109,chopsticks,CAT:UTENSIL,2,tool,HAND_TOOL,TOOL.category (proposal only)
+TOOL-000110,egg slicer,CAT:UTENSIL,2,tool,CUTTING_TOOL,TOOL.category (proposal only)
+TOOL-000111,knife sharpener,CAT:UTENSIL,2,tool,CUTTING_TOOL,TOOL.category (proposal only)
+TOOL-000112,proofing basket,CAT:UTENSIL,2,tool,FERMENTATION/STORAGE_EQUIPMENT,TOOL.category (proposal only)
+TOOL-000113,cheesecloth,,2,tool,OTHER,NEEDS_HUMAN: TOOL.category=OTHER gives no parent
+TOOL-000114,silicone baking mat,,2,tool,BAKEWARE,NEEDS_HUMAN: TOOL.category=OTHER gives no parent
+TOOL-000115,paper case,,2,tool,OTHER,NEEDS_HUMAN: TOOL.category=OTHER gives no parent
+TOOL-000116,measuring cup,CAT:MEASURE,2,tool,MEASUREMENT_TOOL,TOOL.category (proposal only)
+TOOL-000117,chafing dish,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+TOOL-000118,fish kettle,CAT:COOKWARE,2,tool,HEATING_APPLIANCE,TOOL.category (proposal only)
+TOOL-000119,preserving pan,CAT:COOKWARE,2,tool,COOKWARE,TOOL.category (proposal only)
+ALIAS:TOOL-000001:conventional oven,conventional oven,TOOL-000001,3,alias,,TOOL.aliases
+ALIAS:TOOL-000001:fan oven,fan oven,TOOL-000001,3,alias,,TOOL.aliases
+ALIAS:TOOL-000002:burner,burner,TOOL-000002,3,alias,,TOOL.aliases
+ALIAS:TOOL-000002:cooktop,cooktop,TOOL-000002,3,alias,,TOOL.aliases
+ALIAS:TOOL-000002:stove,stove,TOOL-000002,3,alias,,TOOL.aliases
+ALIAS:TOOL-000002:stovetop,stovetop,TOOL-000002,3,alias,,TOOL.aliases
+ALIAS:TOOL-000003:grill pan,grill pan,TOOL-000003,3,alias,,TOOL.aliases
+ALIAS:TOOL-000004:bbq,bbq,TOOL-000004,3,alias,,TOOL.aliases
+ALIAS:TOOL-000005:microwave oven,microwave oven,TOOL-000005,3,alias,,TOOL.aliases
+ALIAS:TOOL-000006:refrigerator,refrigerator,TOOL-000006,3,alias,,TOOL.aliases
+ALIAS:TOOL-000008:mini chopper,mini chopper,TOOL-000008,3,alias,,TOOL.aliases
+ALIAS:TOOL-000008:processor,processor,TOOL-000008,3,alias,,TOOL.aliases
+ALIAS:TOOL-000009:hand blender,hand blender,TOOL-000009,3,alias,,TOOL.aliases
+ALIAS:TOOL-000009:liquidiser,liquidiser,TOOL-000009,3,alias,,TOOL.aliases
+ALIAS:TOOL-000009:nutribullet,nutribullet,TOOL-000009,3,alias,,TOOL.aliases
+ALIAS:TOOL-000009:stick blender,stick blender,TOOL-000009,3,alias,,TOOL.aliases
+ALIAS:TOOL-000010:electric beaters,electric beaters,TOOL-000010,3,alias,,TOOL.aliases
+ALIAS:TOOL-000010:hand mixer,hand mixer,TOOL-000010,3,alias,,TOOL.aliases
+ALIAS:TOOL-000011:mixer,mixer,TOOL-000011,3,alias,,TOOL.aliases
+ALIAS:TOOL-000011:tabletop mixer,tabletop mixer,TOOL-000011,3,alias,,TOOL.aliases
+ALIAS:TOOL-000013:cooker,cooker,TOOL-000013,3,alias,,TOOL.aliases
+ALIAS:TOOL-000013:instant pot,instant pot,TOOL-000013,3,alias,,TOOL.aliases
+ALIAS:TOOL-000013:multicooker,multicooker,TOOL-000013,3,alias,,TOOL.aliases
+ALIAS:TOOL-000014:air-fryer,air-fryer,TOOL-000014,3,alias,,TOOL.aliases
+ALIAS:TOOL-000015:deep fat fryer,deep fat fryer,TOOL-000015,3,alias,,TOOL.aliases
+ALIAS:TOOL-000015:deep fryer,deep fryer,TOOL-000015,3,alias,,TOOL.aliases
+ALIAS:TOOL-000015:deep-fryer,deep-fryer,TOOL-000015,3,alias,,TOOL.aliases
+ALIAS:TOOL-000017:ice cream machine,ice cream machine,TOOL-000017,3,alias,,TOOL.aliases
+ALIAS:TOOL-000018:coffee grinder,coffee grinder,TOOL-000018,3,alias,,TOOL.aliases
+ALIAS:TOOL-000019:non-stick frying pan,non-stick frying pan,TOOL-000019,3,alias,,TOOL.aliases
+ALIAS:TOOL-000019:non-stick pan,non-stick pan,TOOL-000019,3,alias,,TOOL.aliases
+ALIAS:TOOL-000019:skillet,skillet,TOOL-000019,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:large pan,large pan,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:pan,pan,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:pot,pot,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:sauce pan,sauce pan,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:small pan,small pan,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:soup pot,soup pot,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:stew pan,stew pan,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:stewpan,stewpan,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:stock pot,stock pot,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000020:stockpot,stockpot,TOOL-000020,3,alias,,TOOL.aliases
+ALIAS:TOOL-000021:griddle,griddle,TOOL-000021,3,alias,,TOOL.aliases
+ALIAS:TOOL-000021:ridged griddle pan,ridged griddle pan,TOOL-000021,3,alias,,TOOL.aliases
+ALIAS:TOOL-000023:casserole dish,casserole dish,TOOL-000023,3,alias,,TOOL.aliases
+ALIAS:TOOL-000023:dutch oven,dutch oven,TOOL-000023,3,alias,,TOOL.aliases
+ALIAS:TOOL-000023:flameproof casserole,flameproof casserole,TOOL-000023,3,alias,,TOOL.aliases
+ALIAS:TOOL-000024:dripping pan,dripping pan,TOOL-000024,3,alias,,TOOL.aliases
+ALIAS:TOOL-000024:roasting pan,roasting pan,TOOL-000024,3,alias,,TOOL.aliases
+ALIAS:TOOL-000024:roasting tray,roasting tray,TOOL-000024,3,alias,,TOOL.aliases
+ALIAS:TOOL-000025:baking sheet,baking sheet,TOOL-000025,3,alias,,TOOL.aliases
+ALIAS:TOOL-000025:cookie sheet,cookie sheet,TOOL-000025,3,alias,,TOOL.aliases
+ALIAS:TOOL-000025:oven tray,oven tray,TOOL-000025,3,alias,,TOOL.aliases
+ALIAS:TOOL-000025:sheet,sheet,TOOL-000025,3,alias,,TOOL.aliases
+ALIAS:TOOL-000025:sheet pan,sheet pan,TOOL-000025,3,alias,,TOOL.aliases
+ALIAS:TOOL-000026:dish,dish,TOOL-000026,3,alias,,TOOL.aliases
+ALIAS:TOOL-000026:gratin dish,gratin dish,TOOL-000026,3,alias,,TOOL.aliases
+ALIAS:TOOL-000026:ovenproof dish,ovenproof dish,TOOL-000026,3,alias,,TOOL.aliases
+ALIAS:TOOL-000026:pie dish,pie dish,TOOL-000026,3,alias,,TOOL.aliases
+ALIAS:TOOL-000027:cake pan,cake pan,TOOL-000027,3,alias,,TOOL.aliases
+ALIAS:TOOL-000027:loose-bottomed tin,loose-bottomed tin,TOOL-000027,3,alias,,TOOL.aliases
+ALIAS:TOOL-000027:sandwich tin,sandwich tin,TOOL-000027,3,alias,,TOOL.aliases
+ALIAS:TOOL-000027:springform pan,springform pan,TOOL-000027,3,alias,,TOOL.aliases
+ALIAS:TOOL-000027:springform tin,springform tin,TOOL-000027,3,alias,,TOOL.aliases
+ALIAS:TOOL-000027:tin,tin,TOOL-000027,3,alias,,TOOL.aliases
+ALIAS:TOOL-000028:loaf pan,loaf pan,TOOL-000028,3,alias,,TOOL.aliases
+ALIAS:TOOL-000029:bun tin,bun tin,TOOL-000029,3,alias,,TOOL.aliases
+ALIAS:TOOL-000029:cupcake pan,cupcake pan,TOOL-000029,3,alias,,TOOL.aliases
+ALIAS:TOOL-000029:cupcake tin,cupcake tin,TOOL-000029,3,alias,,TOOL.aliases
+ALIAS:TOOL-000029:muffin pan,muffin pan,TOOL-000029,3,alias,,TOOL.aliases
+ALIAS:TOOL-000029:muffin tray,muffin tray,TOOL-000029,3,alias,,TOOL.aliases
+ALIAS:TOOL-000030:flan tin,flan tin,TOOL-000030,3,alias,,TOOL.aliases
+ALIAS:TOOL-000030:quiche ring,quiche ring,TOOL-000030,3,alias,,TOOL.aliases
+ALIAS:TOOL-000030:tart case,tart case,TOOL-000030,3,alias,,TOOL.aliases
+ALIAS:TOOL-000030:tart pan,tart pan,TOOL-000030,3,alias,,TOOL.aliases
+ALIAS:TOOL-000031:ramekins,ramekins,TOOL-000031,3,alias,,TOOL.aliases
+ALIAS:TOOL-000032:basin,basin,TOOL-000032,3,alias,,TOOL.aliases
+ALIAS:TOOL-000033:bamboo steamer,bamboo steamer,TOOL-000033,3,alias,,TOOL.aliases
+ALIAS:TOOL-000033:steamer basket,steamer basket,TOOL-000033,3,alias,,TOOL.aliases
+ALIAS:TOOL-000034:tava,tava,TOOL-000034,3,alias,,TOOL.aliases
+ALIAS:TOOL-000035:kadhai,kadhai,TOOL-000035,3,alias,,TOOL.aliases
+ALIAS:TOOL-000035:karahi,karahi,TOOL-000035,3,alias,,TOOL.aliases
+ALIAS:TOOL-000037:tempering pan,tempering pan,TOOL-000037,3,alias,,TOOL.aliases
+ALIAS:TOOL-000038:heatproof bowl,heatproof bowl,TOOL-000038,3,alias,,TOOL.aliases
+ALIAS:TOOL-000038:large bowl,large bowl,TOOL-000038,3,alias,,TOOL.aliases
+ALIAS:TOOL-000038:mixing bowl,mixing bowl,TOOL-000038,3,alias,,TOOL.aliases
+ALIAS:TOOL-000038:separate bowl,separate bowl,TOOL-000038,3,alias,,TOOL.aliases
+ALIAS:TOOL-000038:small bowl,small bowl,TOOL-000038,3,alias,,TOOL.aliases
+ALIAS:TOOL-000039:measuring jug,measuring jug,TOOL-000039,3,alias,,TOOL.aliases
+ALIAS:TOOL-000040:airtight container,airtight container,TOOL-000040,3,alias,,TOOL.aliases
+ALIAS:TOOL-000040:jar,jar,TOOL-000040,3,alias,,TOOL.aliases
+ALIAS:TOOL-000040:storage container,storage container,TOOL-000040,3,alias,,TOOL.aliases
+ALIAS:TOOL-000040:tub,tub,TOOL-000040,3,alias,,TOOL.aliases
+ALIAS:TOOL-000041:platter,platter,TOOL-000041,3,alias,,TOOL.aliases
+ALIAS:TOOL-000041:serving dish,serving dish,TOOL-000041,3,alias,,TOOL.aliases
+ALIAS:TOOL-000041:serving plate,serving plate,TOOL-000041,3,alias,,TOOL.aliases
+ALIAS:TOOL-000041:serving platter,serving platter,TOOL-000041,3,alias,,TOOL.aliases
+ALIAS:TOOL-000042:cocktail shaker,cocktail shaker,TOOL-000042,3,alias,,TOOL.aliases
+ALIAS:TOOL-000042:shaker,shaker,TOOL-000042,3,alias,,TOOL.aliases
+ALIAS:TOOL-000042:tumbler,tumbler,TOOL-000042,3,alias,,TOOL.aliases
+ALIAS:TOOL-000043:food bag,food bag,TOOL-000043,3,alias,,TOOL.aliases
+ALIAS:TOOL-000043:freezer bag,freezer bag,TOOL-000043,3,alias,,TOOL.aliases
+ALIAS:TOOL-000043:sandwich bag,sandwich bag,TOOL-000043,3,alias,,TOOL.aliases
+ALIAS:TOOL-000044:spoon,spoon,TOOL-000044,3,alias,,TOOL.aliases
+ALIAS:TOOL-000047:fish slice,fish slice,TOOL-000047,3,alias,,TOOL.aliases
+ALIAS:TOOL-000047:palette knife,palette knife,TOOL-000047,3,alias,,TOOL.aliases
+ALIAS:TOOL-000049:balloon whisk,balloon whisk,TOOL-000049,3,alias,,TOOL.aliases
+ALIAS:TOOL-000050:bread knife,bread knife,TOOL-000050,3,alias,,TOOL.aliases
+ALIAS:TOOL-000050:serrated knife,serrated knife,TOOL-000050,3,alias,,TOOL.aliases
+ALIAS:TOOL-000050:sharp knife,sharp knife,TOOL-000050,3,alias,,TOOL.aliases
+ALIAS:TOOL-000052:board,board,TOOL-000052,3,alias,,TOOL.aliases
+ALIAS:TOOL-000052:cutting board,cutting board,TOOL-000052,3,alias,,TOOL.aliases
+ALIAS:TOOL-000052:surface,surface,TOOL-000052,3,alias,,TOOL.aliases
+ALIAS:TOOL-000052:work surface,work surface,TOOL-000052,3,alias,,TOOL.aliases
+ALIAS:TOOL-000053:belan,belan,TOOL-000053,3,alias,,TOOL.aliases
+ALIAS:TOOL-000054:box grater,box grater,TOOL-000054,3,alias,,TOOL.aliases
+ALIAS:TOOL-000054:microplane,microplane,TOOL-000054,3,alias,,TOOL.aliases
+ALIAS:TOOL-000054:zester,zester,TOOL-000054,3,alias,,TOOL.aliases
+ALIAS:TOOL-000055:vegetable peeler,vegetable peeler,TOOL-000055,3,alias,,TOOL.aliases
+ALIAS:TOOL-000056:potato masher,potato masher,TOOL-000056,3,alias,,TOOL.aliases
+ALIAS:TOOL-000056:ricer,ricer,TOOL-000056,3,alias,,TOOL.aliases
+ALIAS:TOOL-000057:strainer,strainer,TOOL-000057,3,alias,,TOOL.aliases
+ALIAS:TOOL-000057:tea strainer,tea strainer,TOOL-000057,3,alias,,TOOL.aliases
+ALIAS:TOOL-000059:mortar,mortar,TOOL-000059,3,alias,,TOOL.aliases
+ALIAS:TOOL-000059:pestle,pestle,TOOL-000059,3,alias,,TOOL.aliases
+ALIAS:TOOL-000059:pestle and mortar,pestle and mortar,TOOL-000059,3,alias,,TOOL.aliases
+ALIAS:TOOL-000060:brush,brush,TOOL-000060,3,alias,,TOOL.aliases
+ALIAS:TOOL-000061:cookie cutter,cookie cutter,TOOL-000061,3,alias,,TOOL.aliases
+ALIAS:TOOL-000061:pastry cutter,pastry cutter,TOOL-000061,3,alias,,TOOL.aliases
+ALIAS:TOOL-000062:nozzle,nozzle,TOOL-000062,3,alias,,TOOL.aliases
+ALIAS:TOOL-000062:pastry bag,pastry bag,TOOL-000062,3,alias,,TOOL.aliases
+ALIAS:TOOL-000063:cocktail stick,cocktail stick,TOOL-000063,3,alias,,TOOL.aliases
+ALIAS:TOOL-000063:toothpick,toothpick,TOOL-000063,3,alias,,TOOL.aliases
+ALIAS:TOOL-000065:cooling rack,cooling rack,TOOL-000065,3,alias,,TOOL.aliases
+ALIAS:TOOL-000065:rack,rack,TOOL-000065,3,alias,,TOOL.aliases
+ALIAS:TOOL-000067:kitchen scissors,kitchen scissors,TOOL-000067,3,alias,,TOOL.aliases
+ALIAS:TOOL-000068:baking paper,baking paper,TOOL-000068,3,alias,,TOOL.aliases
+ALIAS:TOOL-000068:greaseproof paper,greaseproof paper,TOOL-000068,3,alias,,TOOL.aliases
+ALIAS:TOOL-000068:parchment,parchment,TOOL-000068,3,alias,,TOOL.aliases
+ALIAS:TOOL-000068:parchment paper,parchment paper,TOOL-000068,3,alias,,TOOL.aliases
+ALIAS:TOOL-000069:aluminium foil,aluminium foil,TOOL-000069,3,alias,,TOOL.aliases
+ALIAS:TOOL-000069:aluminum foil,aluminum foil,TOOL-000069,3,alias,,TOOL.aliases
+ALIAS:TOOL-000069:kitchen foil,kitchen foil,TOOL-000069,3,alias,,TOOL.aliases
+ALIAS:TOOL-000069:tin foil,tin foil,TOOL-000069,3,alias,,TOOL.aliases
+ALIAS:TOOL-000070:clingfilm,clingfilm,TOOL-000070,3,alias,,TOOL.aliases
+ALIAS:TOOL-000070:plastic wrap,plastic wrap,TOOL-000070,3,alias,,TOOL.aliases
+ALIAS:TOOL-000071:paper towel,paper towel,TOOL-000071,3,alias,,TOOL.aliases
+ALIAS:TOOL-000071:paper towels,paper towels,TOOL-000071,3,alias,,TOOL.aliases
+ALIAS:TOOL-000072:cloth,cloth,TOOL-000072,3,alias,,TOOL.aliases
+ALIAS:TOOL-000072:muslin,muslin,TOOL-000072,3,alias,,TOOL.aliases
+ALIAS:TOOL-000073:meat thermometer,meat thermometer,TOOL-000073,3,alias,,TOOL.aliases
+ALIAS:TOOL-000073:probe,probe,TOOL-000073,3,alias,,TOOL.aliases
+ALIAS:TOOL-000073:sugar thermometer,sugar thermometer,TOOL-000073,3,alias,,TOOL.aliases
+ALIAS:TOOL-000074:digital scales,digital scales,TOOL-000074,3,alias,,TOOL.aliases
+ALIAS:TOOL-000075:measuring spoons,measuring spoons,TOOL-000075,3,alias,,TOOL.aliases
+ALIAS:TOOL-000077:bain marie,bain marie,TOOL-000077,3,alias,,TOOL.aliases
+ALIAS:TOOL-000077:bain-marie,bain-marie,TOOL-000077,3,alias,,TOOL.aliases
+ALIAS:TOOL-000077:farina kettle,farina kettle,TOOL-000077,3,alias,,TOOL.aliases
+ALIAS:TOOL-000078:idli maker,idli maker,TOOL-000078,3,alias,,TOOL.aliases
+ALIAS:TOOL-000078:idli pan,idli pan,TOOL-000078,3,alias,,TOOL.aliases
+ALIAS:TOOL-000078:idli stand,idli stand,TOOL-000078,3,alias,,TOOL.aliases
+ALIAS:TOOL-000079:makiyakinabe,makiyakinabe,TOOL-000079,3,alias,,TOOL.aliases
+ALIAS:TOOL-000080:caquelon,caquelon,TOOL-000080,3,alias,,TOOL.aliases
+ALIAS:TOOL-000081:bundt mould,bundt mould,TOOL-000081,3,alias,,TOOL.aliases
+ALIAS:TOOL-000081:bundt pan,bundt pan,TOOL-000081,3,alias,,TOOL.aliases
+ALIAS:TOOL-000082:baking stone,baking stone,TOOL-000082,3,alias,,TOOL.aliases
+ALIAS:TOOL-000083:saute pan,saute pan,TOOL-000083,3,alias,,TOOL.aliases
+ALIAS:TOOL-000085:blow torch,blow torch,TOOL-000085,3,alias,,TOOL.aliases
+ALIAS:TOOL-000085:kitchen torch,kitchen torch,TOOL-000085,3,alias,,TOOL.aliases
+ALIAS:TOOL-000087:bread maker,bread maker,TOOL-000087,3,alias,,TOOL.aliases
+ALIAS:TOOL-000088:waffle maker,waffle maker,TOOL-000088,3,alias,,TOOL.aliases
+ALIAS:TOOL-000089:juice extractor,juice extractor,TOOL-000089,3,alias,,TOOL.aliases
+ALIAS:TOOL-000091:pasta maker,pasta maker,TOOL-000091,3,alias,,TOOL.aliases
+ALIAS:TOOL-000092:cream whipper,cream whipper,TOOL-000092,3,alias,,TOOL.aliases
+ALIAS:TOOL-000094:garlic crusher,garlic crusher,TOOL-000094,3,alias,,TOOL.aliases
+ALIAS:TOOL-000095:tin opener,tin opener,TOOL-000095,3,alias,,TOOL.aliases
+ALIAS:TOOL-000097:turkey baster,turkey baster,TOOL-000097,3,alias,,TOOL.aliases
+ALIAS:TOOL-000098:mouli,mouli,TOOL-000098,3,alias,,TOOL.aliases
+ALIAS:TOOL-000099:citrus juicer,citrus juicer,TOOL-000099,3,alias,,TOOL.aliases
+ALIAS:TOOL-000099:lemon squeezer,lemon squeezer,TOOL-000099,3,alias,,TOOL.aliases
+ALIAS:TOOL-000099:reamer,reamer,TOOL-000099,3,alias,,TOOL.aliases
+ALIAS:TOOL-000103:dough cutter,dough cutter,TOOL-000103,3,alias,,TOOL.aliases
+ALIAS:TOOL-000103:dough scraper,dough scraper,TOOL-000103,3,alias,,TOOL.aliases
+ALIAS:TOOL-000104:pizza wheel,pizza wheel,TOOL-000104,3,alias,,TOOL.aliases
+ALIAS:TOOL-000105:spider strainer,spider strainer,TOOL-000105,3,alias,,TOOL.aliases
+ALIAS:TOOL-000106:gravy separator,gravy separator,TOOL-000106,3,alias,,TOOL.aliases
+ALIAS:TOOL-000107:flour sifter,flour sifter,TOOL-000107,3,alias,,TOOL.aliases
+ALIAS:TOOL-000108:bamboo mat,bamboo mat,TOOL-000108,3,alias,,TOOL.aliases
+ALIAS:TOOL-000108:makisu,makisu,TOOL-000108,3,alias,,TOOL.aliases
+ALIAS:TOOL-000108:sushi roller,sushi roller,TOOL-000108,3,alias,,TOOL.aliases
+ALIAS:TOOL-000109:chopstick,chopstick,TOOL-000109,3,alias,,TOOL.aliases
+ALIAS:TOOL-000111:sharpening steel,sharpening steel,TOOL-000111,3,alias,,TOOL.aliases
+ALIAS:TOOL-000111:whetstone,whetstone,TOOL-000111,3,alias,,TOOL.aliases
+ALIAS:TOOL-000112:banneton,banneton,TOOL-000112,3,alias,,TOOL.aliases
+ALIAS:TOOL-000112:proofer,proofer,TOOL-000112,3,alias,,TOOL.aliases
+ALIAS:TOOL-000113:muslin cloth,muslin cloth,TOOL-000113,3,alias,,TOOL.aliases
+ALIAS:TOOL-000114:silpat,silpat,TOOL-000114,3,alias,,TOOL.aliases
+ALIAS:TOOL-000115:cupcake case,cupcake case,TOOL-000115,3,alias,,TOOL.aliases
+ALIAS:TOOL-000115:cupcake liner,cupcake liner,TOOL-000115,3,alias,,TOOL.aliases
+ALIAS:TOOL-000115:muffin case,muffin case,TOOL-000115,3,alias,,TOOL.aliases
+ALIAS:TOOL-000116:measuring cups,measuring cups,TOOL-000116,3,alias,,TOOL.aliases
+ALIAS:TOOL-000119:jam pan,jam pan,TOOL-000119,3,alias,,TOOL.aliases
+ALIAS:TOOL-000119:maslin pan,maslin pan,TOOL-000119,3,alias,,TOOL.aliases
+ALIAS:TOOL-000119:preserving kettle,preserving kettle,TOOL-000119,3,alias,,TOOL.aliases
