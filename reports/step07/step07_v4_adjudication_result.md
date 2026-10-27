@@ -14,3 +14,6 @@ The five critical fields flagged for prevalence (temperature_location, pressure,
 3. Parv's first file (`.txt`) used non-packet codes; his resubmission changed CA-037 from `INCORRECT` to `CORRECT` after the tool listed that row as invalid input.
 4. Parv's `overall_judgement` was mapped CORRECT->ACCEPT in a derived copy (rule written before computing; 0/100 rows contradicted his field codes).
 5. Parv's reported signature of the amendment and his "go with Kush's" are relayed statements.
+
+## Update 2026-10-27 (Kush, relayed)
+Kush reports that Parv said OK to the adjudication ("go with Kush's") and to the amendment. Still a relayed statement: Claude has not seen a message from Parv, so it stays marked relayed, not verified, until Parv's own line is filed.
