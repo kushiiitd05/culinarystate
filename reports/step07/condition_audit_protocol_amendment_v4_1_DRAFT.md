@@ -20,4 +20,8 @@ Per-field kappa >= 0.80 as a mandatory criterion; separate per-reviewer packet I
 ## 4. Order of operations
 Approve this amendment (D-028) -> reviewers work alone and blind from the unchanged v4 files -> each records the sha256 of the returned file -> run the precheck -> run the agreement tool -> report every disagreement without automatic adjudication -> only then, outcome PASS / FAIL_REVIEWER_DISAGREEMENT / INVALID_AUDIT. If the frozen files change after review starts, the audit is invalid (`python tools/step07hr_freeze.py --verify`).
 
-Signed: ____________ (Kush)   ____________ (Parv)   Date: ____________
+**Recorded deviation (2026-10-27):** signed AFTER both reviewers had returned their labels (the order of operations above requires approval before any v4 label exists). The primary gate (pooled kappa >= 0.80 and no systematic critical-field disagreement) is unchanged, and no label was edited after the file hashes were fixed (`step07_v4_hash_notes.md`). The report must state this deviation.
+**Time-gap ruling (Kush, 2026-10-27):** the mtime separation check is INFORMATIONAL, not a validity condition. The 48 s gap between the two returned files is disclosed; it reflects when each file was saved into the folder. The precheck was run at both 600 s (INVALID_PROVENANCE, only on this item: `step07_v4_provenance_precheck_gap600.json`) and with the gap rule informational (VALID: `step07_v4_provenance_precheck.json`).
+**Blind confirmation (Kush, 2026-10-27):** Kush confirms neither reviewer opened the other's returned file before the hashes were recorded.
+
+Signed: Kush Tokas, 2026-10-27   |   Parv: ____________ (signature pending; Parv has not signed)
