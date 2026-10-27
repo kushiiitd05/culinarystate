@@ -40,3 +40,5 @@ Records the answers Kush gave in the 2026-10-26 session, in order. These are Kus
 | 34 | Authorise Step 08a (implement lineage library, run on Mac, new files only) | Yes. Recorded as D-032. | 2026-10-26 | DONE |
 | 35 | May 08a edit `registry.py` (schema port, D-029 D-6) and regenerate `ledgers/schemas`? | Yes. Recorded as an addendum to D-032. | 2026-10-26 | DONE |
 | 36 | May 08a's real run append new ids to `_ids.jsonl` (after a scratch dry run shown to Kush)? | Yes. Recorded as an addendum to D-032. | 2026-10-26 | DONE |
+| 37 | 07.A: precheck, hash notes, agreement run (Kush file + Parv file with `overall` mapped CORRECT->ACCEPT in a derived copy) | Done 2026-10-27; amendment v4.1 signed as recorded deviation; THR-07A-01..08 signed; result FAIL_OR_ADJUDICATE (kappa paradox + 5 disagreements); adjudication sheet prepared. | 2026-10-27 | DONE, adjudication OPEN |
+| 38 | 07I-C: returned labels, kappa 0.571 (Y_copy) / 0.588 (Y_dish) vs target 0.70; options 1 adjudicate, 2 report as not met, 3 Parv relabels UNCERTAIN | "ok" to the recommendation: option 2, report as target not met and move on. Adjudication stays possible later. | 2026-10-27 | ANSWERED |
