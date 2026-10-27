@@ -983,3 +983,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `tools/step08a_gate.py`, `tools/step08a_publish.py`, `src/culinarystate/lineage/gates.py`, `src/culinarystate/lineage/publish.py`, `exports/lineage/step08a_v1/*`, `ledgers/data/{DOC`, `SRC_08A_YIELD`, `STUDY`, `_ids}.jsonl`
 - **Verified:** 233+4 lineage tests pass; EVD/COND/SRC/MEAS/SNAP hashes equal baseline; ledgers equal scratch rebuild
 - **Next:** Edge audit packets (Kush+Parv), 200-pair recall review, expert reading of USDA-Bognar; push only on Kush go
+
+### S145 · 2026-10-27 20:50 IST · ES-1 · 08a edge audit scored, G08-3 FAIL recorded, B3 cut kept (D-033, D-034)
+- **Who:** Kush+Claude
+- **Did:** Kush+Parv returned edge-audit (150) and unlinked-pair (200) files; code synonyms mapped by scribe (originals untouched); Parv rechecked. G08-3 FAIL (B3 13/50 Kush, 0/50 Parv; B2 49/50 vs 0/50 with 49 UNCERTAIN; STRONG 50/50 both). Recall report: Kush 2/200, Parv 0/200. D-033: 07I-C 0.88 recorded as Kush-stated adjudicated figure. D-034: B3 cut stays 0.75, no gate loosened.
+- **Files:** `tools/step08a_audit_packets.py`, `tools/step08a_score_audit.py`, `reports/step08/step08a_audit_result_v1.json`, `reports/step08/step08a_audit_result_v2.json`, `DECISIONS.md`
+- **Verified:** provenance VALID after mapping; sealed keys read only by the scorer
+- **Next:** Step 08a closes with G08-3 FAIL disclosed; Step 35.0 sign-off (cuisine = source confound, Food.com has no cuisine labels); Step 16 schema; A100 for 17/20 after VPN confirmation
