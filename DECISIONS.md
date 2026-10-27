@@ -191,3 +191,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Recorded as stated, not computed:** no file in the repo produces 0.88; the coding agent did not compute it. It is a Kush-declared adjudicated-basis figure, not an inter-reviewer kappa (agreement with Kush's own labels is 1.0 by construction).
 - **Kept unchanged:** the original blind-label values in `reports/step07i/step07ic_reviewer_agreement_v1.json` (Y_copy kappa 0.571, Y_dish 0.588) stay in the record and in any report next to this figure. Single-reviewer-basis caveat carries into reports.
 - **Approver:** Kush (message of 2026-10-27).
+
+### D-034 · 2026-10-27 · B3 cut stays at 0.75 after the edge audit; G08-3 recorded as FAIL (decided by Kush; entered by the coding agent as scribe)
+- **Decision:** the B3 detector cut stays at 0.75 (frozen on seeded recall, `detectors.py`). No retune, no change to the signed THR-08A-03/04/16 thresholds.
+- **Audit result stays as scored:** `reports/step08/step08a_audit_result_v2.json` (Parv rechecked files). G08-3 = FAIL: B3 correct 13/50 (Kush) and 0/50 (Parv; 14 UNCERTAIN, 2 NOT_SUPPORTED); B2 49/50 (Kush, Wilson lower 0.895) and 0/50 correct (Parv; 49 UNCERTAIN); STRONG 50/50 both. G08-H reviewer files valid after the code mapping. Unlinked-pair recall (report only): Kush 2/200, Parv 0/200.
+- **Consequence:** B3 and B2 edges stay PROVISIONAL and merge conservatively (THR-08A-14); keys stay `SCRATCH_PROVISIONAL`; no claim that depends on G08-3 passing (Step 08a "PASS", study-disjoint labels) may be made. R-20: no gate loosened.
+- **Approver:** Kush (message of 2026-10-27).
