@@ -1,0 +1,142 @@
+{
+ "gate": "FAIL_OR_ADJUDICATE",
+ "n_conditions": 100,
+ "pooled_kappa": 0.0,
+ "pooled_raw_exact_agreement": 0.9944444444444445,
+ "overall_accept_reject_kappa": 0.0,
+ "overall_exact_agreement": 0.95,
+ "per_field": {
+  "duration_judgement": {
+   "kappa": 0.0,
+   "exact_agreement": 0.96,
+   "dominant_code_prevalence": 0.98,
+   "disagreements": 4,
+   "top_disagreement_pairs": [
+    [
+     [
+      "SHOULD_BE_AMBIGUOUS",
+      "CORRECT"
+     ],
+     4
+    ]
+   ]
+  },
+  "temperature_value_judgement": {
+   "kappa": 0.0,
+   "exact_agreement": 0.99,
+   "dominant_code_prevalence": 0.995,
+   "disagreements": 1,
+   "top_disagreement_pairs": [
+    [
+     [
+      "SHOULD_BE_AMBIGUOUS",
+      "CORRECT"
+     ],
+     1
+    ]
+   ]
+  },
+  "temperature_location_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "pressure_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "power_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "medium_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "basis_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "retention_type_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  },
+  "censoring_judgement": {
+   "kappa": 1.0,
+   "exact_agreement": 1.0,
+   "dominant_code_prevalence": 1.0,
+   "disagreements": 0,
+   "top_disagreement_pairs": []
+  }
+ },
+ "critical_field_flags": [
+  "temperature_location_judgement: dominant code prevalence 1.00 (kappa paradox risk: inspect raw agreement)",
+  "pressure_judgement: dominant code prevalence 1.00 (kappa paradox risk: inspect raw agreement)",
+  "basis_judgement: dominant code prevalence 1.00 (kappa paradox risk: inspect raw agreement)",
+  "retention_type_judgement: dominant code prevalence 1.00 (kappa paradox risk: inspect raw agreement)",
+  "censoring_judgement: dominant code prevalence 1.00 (kappa paradox risk: inspect raw agreement)"
+ ],
+ "disagreement_matrix_pooled": [
+  [
+   [
+    "SHOULD_BE_AMBIGUOUS",
+    "CORRECT"
+   ],
+   5
+  ]
+ ],
+ "agreement_by_stratum": {
+  "S1_temperature_location_stated": 0.9944444444444445,
+  "S2_temperature_location_unspecified": 0.9955555555555555,
+  "S3_interval": 0.9777777777777777,
+  "S4_pressure_or_power": 1.0,
+  "S5_medium_only": 1.0,
+  "S6_all_unknown": 1.0
+ },
+ "agreement_by_normalised_status": {
+  "AMBIGUOUS": [
+   0.9537037037037037,
+   108
+  ],
+  "AMBIGUOUS;": [
+   1.0,
+   219
+  ],
+  "NA": [
+   1.0,
+   184
+  ],
+  "UNKNOWN": [
+   1.0,
+   235
+  ],
+  "VALID": [
+   1.0,
+   73
+  ],
+  "VALID;": [
+   1.0,
+   81
+  ]
+ },
+ "red_flag_identical_files": false,
+ "normalizer_fingerprint_12": "e7d589136275",
+ "note": "PASS requires kappa >= 0.80, no critical-field flag, and files not identical. A critical-field flag forces adjudication even when overall kappa passes."
+}
