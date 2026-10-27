@@ -1,0 +1,926 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/ENTITY.schema.json",
+  "title": "ENTITY- physical recipe/session entity (not the concept)",
+  "description": "schema_version 1.0.0-rc (DRAFT_PENDING_H4, additive over v0 1.0.0; added 6 properties; 0 removed)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^ENTITY-\\d{6}$"
+    },
+    "record_type": {
+      "const": "ENTITY"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^ENTITY-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "recipe_id": {
+      "type": "string",
+      "pattern": "^REC-\\d{6}$"
+    },
+    "ingredient_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^ING-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "INGREDIENT_LOT",
+        "INTERMEDIATE",
+        "TOOL_CONTENTS",
+        "FINAL_DISH",
+        "DISCARD",
+        "UNKNOWN"
+      ]
+    },
+    "ordinal": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": [
+        "INGREDIENT_LOT",
+        "INTERMEDIATE",
+        "MIXTURE",
+        "RESERVED_PORTION",
+        "DISCARDED_PORTION",
+        "TOOL_CONTENTS"
+      ],
+      "description": "Card 16-A layer 3 / Method cell: entity_type. v0 'kind' kept unchanged (its enum differs: FINAL_DISH, DISCARD, UNKNOWN)."
+    },
+    "parent_entity_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^ENTITY-\\d{6}$"
+      },
+      "uniqueItems": true,
+      "description": "Card 16-A layer 3: parent_entity_ids[]."
+    },
+    "created_by_event_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^EVT-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-A layer 3: created_by event. Renamed because v0 'created_by' is the record author (required string)."
+    },
+    "consumed_by_event_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^EVT-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-A layer 3: consumed_by event. Renamed to pair with created_by_event_id."
+    },
+    "lifecycle": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "RESERVED",
+        "INCORPORATED",
+        "DISCARDED",
+        "SERVED",
+        "UNRESOLVED"
+      ],
+      "description": "Card 16-A layer 3: lifecycle. Incorporated != vanished; UNRESOLVED keeps candidates, never forced (C2)."
+    },
+    "facets": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "V_VARIETY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_VARIETY mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "V_PART": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_PART mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "V_FORM": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_FORM mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "V_CUT_GEOMETRY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_CUT_GEOMETRY mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "V_SOURCE_STATE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_SOURCE_STATE mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "V_MATURITY": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_MATURITY mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "V_PRESERVATION": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_PRESERVATION mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "V_PACKING": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_PACKING mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "V_BRAND": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_BRAND mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "V_LOCALE_SENSE": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_LOCALE_SENSE mention facet copied to ENTITY.facets; unmapped -> OTHER + raw string; facets never mint concepts."
+        },
+        "size_class": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "value": {
+                    "const": "OTHER"
+                  }
+                },
+                "required": [
+                  "value"
+                ]
+              },
+              "then": {
+                "required": [
+                  "raw"
+                ],
+                "properties": {
+                  "raw": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Card 16-A layer 2: V_CUT_GEOMETRY (+ size class)."
+        }
+      },
+      "description": "Card 16-A layer 2/3: orthogonal mention facets copied to ENTITY.facets."
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "recipe_id",
+    "label",
+    "kind"
+  ]
+}
