@@ -1,0 +1,335 @@
+{
+  "by_analyte_summary": {
+    "analytes": 223,
+    "card_exceeds": 208,
+    "labels_A": {
+      "leave-one-source-family-out": 67,
+      "publication-component CV": 156
+    },
+    "pool_nonempty": 156,
+    "refined_pass_A": 1
+  },
+  "by_source_family": {
+    "BOGNAR-2002": {
+      "groups": 1,
+      "largest_group_rows": 7090,
+      "largest_share": 1.0,
+      "n_eff": 1.0,
+      "resolution": {
+        "SOURCE_FAMILY_ONLY": 7090
+      },
+      "rows": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+      "groups": 125,
+      "largest_group_rows": 251,
+      "largest_share": 0.0648578811369509,
+      "n_eff": 36.12373371924747,
+      "resolution": {
+        "PUBLICATION_ONLY": 3678,
+        "UNKNOWN": 192
+      },
+      "rows": 3870
+    },
+    "USDA-RETN-R6": {
+      "groups": 1,
+      "largest_group_rows": 7018,
+      "largest_share": 1.0,
+      "n_eff": 1.0,
+      "resolution": {
+        "SOURCE_FAMILY_ONLY": 7018
+      },
+      "rows": 7018
+    }
+  },
+  "by_target_family": {
+    "CHEMICAL": {
+      "A_tier_only": {
+        "all_pool_study": false,
+        "card_exceeds": true,
+        "fallback_pair": [
+          "publication-component CV",
+          "leave-one-source-family-out"
+        ],
+        "label": "publication-component CV",
+        "n_eff": 34.70612502501424,
+        "neff_pass": true,
+        "pool_groups": 121,
+        "pool_largest_group_rows": 251,
+        "pool_largest_share": 0.06824361065796629,
+        "pool_rows": 3678,
+        "refined_pass": true,
+        "share_pass": true
+      },
+      "B_tier_and_human_verified": {
+        "all_pool_study": false,
+        "card_exceeds": true,
+        "fallback_pair": null,
+        "label": "leave-one-source-family-out",
+        "n_eff": null,
+        "neff_pass": null,
+        "pool_groups": 0,
+        "pool_largest_group_rows": 0,
+        "pool_largest_share": null,
+        "pool_rows": 0,
+        "refined_pass": null,
+        "share_pass": null
+      },
+      "all_rows": {
+        "groups": 127,
+        "largest_group_rows": 7018,
+        "largest_share": 0.401441482667887,
+        "n_eff": 3.2810270907212367,
+        "rows": 17482
+      },
+      "card_exceeds": true
+    },
+    "PHYSICAL": {
+      "A_tier_only": {
+        "all_pool_study": false,
+        "card_exceeds": true,
+        "fallback_pair": null,
+        "label": "leave-one-source-family-out",
+        "n_eff": null,
+        "neff_pass": null,
+        "pool_groups": 0,
+        "pool_largest_group_rows": 0,
+        "pool_largest_share": null,
+        "pool_rows": 0,
+        "refined_pass": null,
+        "share_pass": null
+      },
+      "B_tier_and_human_verified": {
+        "all_pool_study": false,
+        "card_exceeds": true,
+        "fallback_pair": null,
+        "label": "leave-one-source-family-out",
+        "n_eff": null,
+        "neff_pass": null,
+        "pool_groups": 0,
+        "pool_largest_group_rows": 0,
+        "pool_largest_share": null,
+        "pool_rows": 0,
+        "refined_pass": null,
+        "share_pass": null
+      },
+      "all_rows": {
+        "groups": 1,
+        "largest_group_rows": 496,
+        "largest_share": 1.0,
+        "n_eff": 1.0,
+        "rows": 496
+      },
+      "card_exceeds": true
+    }
+  },
+  "cells_k5": {
+    "all_rows": {
+      "cells": 5259,
+      "cells_with_ge_2_source_families": 0,
+      "cells_with_ge_k_groups": 4,
+      "groups_per_cell_capped_at_10": {
+        "1": 5180,
+        "10": 1,
+        "2": 54,
+        "3": 10,
+        "4": 11,
+        "5": 2,
+        "7": 1
+      },
+      "k": 5,
+      "pool_only": false,
+      "surviving_rows": 135
+    },
+    "eligible_pool_A": {
+      "cells": 810,
+      "cells_with_ge_2_source_families": 0,
+      "cells_with_ge_k_groups": 4,
+      "groups_per_cell_capped_at_10": {
+        "1": 733,
+        "10": 1,
+        "2": 53,
+        "3": 9,
+        "4": 11,
+        "5": 2,
+        "7": 1
+      },
+      "k": 5,
+      "pool_only": true,
+      "surviving_rows": 135
+    }
+  },
+  "formulas": {
+    "card_rule": "largest split-group share of ALL rows of the target family > 0.40 (THR-08A-08)",
+    "kish_n_eff": "n_eff = (sum_g w_g)^2 / sum_g w_g^2 with w_g = n_g = number of rows of split group g inside the pool",
+    "label": "weaker of the two rules wins; study-disjoint needs every pool row = STUDY (L-06); a failed rule gives publication-component CV plus leave-one-source-family-out (THR-08A-15)",
+    "largest_share": "max_g n_g / sum_g n_g",
+    "refined_rule": "pool = independence_resolution in {STUDY, PUBLICATION_ONLY} and TEST-eligible tier; pass = n_eff >= 10 AND share <= 0.40 (THR-08A-20)"
+  },
+  "inputs_sha256": {
+    "EVD": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+    "keys": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90"
+  },
+  "lab_disjoint": "NEED_DATA",
+  "label_verdict": {
+    "headline_overall_A": "publication-component CV",
+    "readings": {
+      "CHEMICAL_A": "publication-component CV",
+      "CHEMICAL_B": "leave-one-source-family-out",
+      "PHYSICAL_A": "leave-one-source-family-out",
+      "PHYSICAL_B": "leave-one-source-family-out",
+      "overall_A": "publication-component CV",
+      "overall_B": "leave-one-source-family-out"
+    },
+    "weakest_across_all_readings": "leave-one-source-family-out",
+    "weakest_across_target_families_A": "leave-one-source-family-out"
+  },
+  "losfo": {
+    "families": [
+      "BOGNAR-2002",
+      "PHENOL-EXPLORER-3.6",
+      "USDA-RETN-R6"
+    ],
+    "groups_spanning_families": 0,
+    "per_family": {
+      "BOGNAR-2002": {
+        "groups": 1,
+        "heldout_rows": 7090,
+        "heldout_share": 0.3943708977639337,
+        "remaining_groups": 126,
+        "remaining_has_ge_k_groups": true,
+        "remaining_rows": 10888,
+        "rows": 7090
+      },
+      "PHENOL-EXPLORER-3.6": {
+        "groups": 125,
+        "heldout_rows": 3870,
+        "heldout_share": 0.21526309934364224,
+        "remaining_groups": 2,
+        "remaining_has_ge_k_groups": false,
+        "remaining_rows": 14108,
+        "rows": 3870
+      },
+      "USDA-RETN-R6": {
+        "groups": 1,
+        "heldout_rows": 7018,
+        "heldout_share": 0.39036600289242407,
+        "remaining_groups": 126,
+        "remaining_has_ge_k_groups": true,
+        "remaining_rows": 10960,
+        "rows": 7018
+      }
+    },
+    "structurally_feasible": true
+  },
+  "losfo_by_target_family": {
+    "CHEMICAL": {
+      "families": [
+        "BOGNAR-2002",
+        "PHENOL-EXPLORER-3.6",
+        "USDA-RETN-R6"
+      ],
+      "groups_spanning_families": 0,
+      "per_family": {
+        "BOGNAR-2002": {
+          "groups": 1,
+          "heldout_rows": 6594,
+          "heldout_share": 0.377187964763757,
+          "remaining_groups": 126,
+          "remaining_has_ge_k_groups": true,
+          "remaining_rows": 10888,
+          "rows": 6594
+        },
+        "PHENOL-EXPLORER-3.6": {
+          "groups": 125,
+          "heldout_rows": 3870,
+          "heldout_share": 0.22137055256835603,
+          "remaining_groups": 2,
+          "remaining_has_ge_k_groups": false,
+          "remaining_rows": 13612,
+          "rows": 3870
+        },
+        "USDA-RETN-R6": {
+          "groups": 1,
+          "heldout_rows": 7018,
+          "heldout_share": 0.401441482667887,
+          "remaining_groups": 126,
+          "remaining_has_ge_k_groups": true,
+          "remaining_rows": 10464,
+          "rows": 7018
+        }
+      },
+      "structurally_feasible": true
+    },
+    "PHYSICAL": {
+      "families": [
+        "BOGNAR-2002"
+      ],
+      "groups_spanning_families": 0,
+      "per_family": {
+        "BOGNAR-2002": {
+          "groups": 1,
+          "heldout_rows": 496,
+          "heldout_share": 1.0,
+          "remaining_groups": 0,
+          "remaining_has_ge_k_groups": false,
+          "remaining_rows": 0,
+          "rows": 496
+        }
+      },
+      "structurally_feasible": false
+    }
+  },
+  "overall": {
+    "A_tier_only": {
+      "all_pool_study": false,
+      "card_exceeds": false,
+      "fallback_pair": null,
+      "label": "publication-component CV",
+      "n_eff": 34.70612502501424,
+      "neff_pass": true,
+      "pool_groups": 121,
+      "pool_largest_group_rows": 251,
+      "pool_largest_share": 0.06824361065796629,
+      "pool_rows": 3678,
+      "refined_pass": true,
+      "share_pass": true
+    },
+    "B_tier_and_human_verified": {
+      "all_pool_study": false,
+      "card_exceeds": false,
+      "fallback_pair": null,
+      "label": "leave-one-source-family-out",
+      "n_eff": null,
+      "neff_pass": null,
+      "pool_groups": 0,
+      "pool_largest_group_rows": 0,
+      "pool_largest_share": null,
+      "pool_rows": 0,
+      "refined_pass": null,
+      "share_pass": null
+    },
+    "all_rows": {
+      "groups": 127,
+      "largest_group_rows": 7090,
+      "largest_share": 0.3943708977639337,
+      "n_eff": 3.234186284880464,
+      "rows": 17978
+    },
+    "card_exceeds": false
+  },
+  "rows": 17978,
+  "thresholds": {
+    "K_neff": 10,
+    "k_cell_groups": 5,
+    "share": 0.4
+  },
+  "unknowns": [
+    "UNKNOWN: 'target family' is not defined in the registry or contract; reported as whole ACTIVE set, SVAR.family, and analyte (SVAR canonical name).",
+    "UNKNOWN: 'TEST-eligible tiers' is not defined beyond L-08 (E5/E6/E7/IMPUTED excluded); readings A (tier only) and B (tier + HUMAN_VERIFIED) are both reported.",
+    "UNKNOWN: matrix-family and process-family taxonomies are not defined; raw matrix.food_group and the ordered process.steps tuple are used.",
+    "UNKNOWN: what 'enough rows' means for leave-one-source-family-out; structural feasibility and the k=5 remaining-group reading are both reported.",
+    "UNKNOWN: the FEASIBLE / DIAGNOSTIC_ONLY cut-offs of THR-08A-09 are not given; no cell verdict is issued, only counts at k=5 (k supplied by the work order).",
+    "UNKNOWN: STUDY resolution needs confirmed experiment boundaries (D-10); none confirmed, so study-disjoint is unreachable today (L-06)."
+  ]
+}

@@ -1,0 +1,45 @@
+08a.6 component-feasibility report (G08-7; THR-08A-08, 09, 15, 20)
+SCRATCH / PROVISIONAL: built on keys-v1 scratch assignments.
+
+Formulas:
+  kish_n_eff: n_eff = (sum_g w_g)^2 / sum_g w_g^2 with w_g = n_g = number of rows of split group g inside the pool
+  largest_share: max_g n_g / sum_g n_g
+  card_rule: largest split-group share of ALL rows of the target family > 0.40 (THR-08A-08)
+  refined_rule: pool = independence_resolution in {STUDY, PUBLICATION_ONLY} and TEST-eligible tier; pass = n_eff >= 10 AND share <= 0.40 (THR-08A-20)
+  label: weaker of the two rules wins; study-disjoint needs every pool row = STUDY (L-06); a failed rule gives publication-component CV plus leave-one-source-family-out (THR-08A-15)
+
+Rows 17978; split groups 127; largest group 7090 rows = 39.44% of all rows; card rule (>40%) exceeded: False.
+
+Overall, reading A_tier_only: pool rows 3678, groups 121, largest share 6.82%, n_eff 34.706, share<=40% True, n_eff>=10 True, label: publication-component CV
+Overall, reading B_tier_and_human_verified: pool rows 0, groups 0, largest share n/a, n_eff n/a, share<=40% None, n_eff>=10 None, label: leave-one-source-family-out
+
+By target family (SVAR.family):
+  CHEMICAL: rows 17482, largest share 40.14%, card_exceeds True; pool 3678 rows / 121 groups, n_eff 34.706, label A: publication-component CV, label B: leave-one-source-family-out
+  PHYSICAL: rows 496, largest share 100.00%, card_exceeds True; pool 0 rows / 0 groups, n_eff n/a, label A: leave-one-source-family-out, label B: leave-one-source-family-out
+
+By analyte: 223 analytes, card rule exceeded in 208, non-empty pool 156, refined pass (A) 1, labels {'leave-one-source-family-out': 67, 'publication-component CV': 156}
+
+By source family:
+  BOGNAR-2002: rows 7090, groups 1, largest group 7090 (100.00%), n_eff 1.000, resolution {'SOURCE_FAMILY_ONLY': 7090}
+  PHENOL-EXPLORER-3.6: rows 3870, groups 125, largest group 251 (6.49%), n_eff 36.124, resolution {'PUBLICATION_ONLY': 3678, 'UNKNOWN': 192}
+  USDA-RETN-R6: rows 7018, groups 1, largest group 7018 (100.00%), n_eff 1.000, resolution {'SOURCE_FAMILY_ONLY': 7018}
+
+Leave-one-source-family-out: structurally feasible True; split groups spanning families 0
+  hold out BOGNAR-2002: 7090 rows (39.44%); train keeps 10888 rows / 126 groups (>=5 groups: True)
+  hold out PHENOL-EXPLORER-3.6: 3870 rows (21.53%); train keeps 14108 rows / 2 groups (>=5 groups: False)
+  hold out USDA-RETN-R6: 7018 rows (39.04%); train keeps 10960 rows / 126 groups (>=5 groups: True)
+  target family CHEMICAL: structurally feasible True (source families ['BOGNAR-2002', 'PHENOL-EXPLORER-3.6', 'USDA-RETN-R6'])
+  target family PHYSICAL: structurally feasible False (source families ['BOGNAR-2002'])
+Cells (analyte x matrix-family x process-family), all_rows: 5259 cells, 4 with >= 5 groups (135 rows); 0 cells span >= 2 source families
+Cells (analyte x matrix-family x process-family), eligible_pool_A: 810 cells, 4 with >= 5 groups (135 rows); 0 cells span >= 2 source families
+
+Lab-disjoint: NEED_DATA
+LABEL VERDICT: headline (overall, reading A) = publication-component CV; weakest across target families (A) = leave-one-source-family-out; weakest across all readings = leave-one-source-family-out
+
+UNKNOWN / ambiguity register:
+  - UNKNOWN: 'target family' is not defined in the registry or contract; reported as whole ACTIVE set, SVAR.family, and analyte (SVAR canonical name).
+  - UNKNOWN: 'TEST-eligible tiers' is not defined beyond L-08 (E5/E6/E7/IMPUTED excluded); readings A (tier only) and B (tier + HUMAN_VERIFIED) are both reported.
+  - UNKNOWN: matrix-family and process-family taxonomies are not defined; raw matrix.food_group and the ordered process.steps tuple are used.
+  - UNKNOWN: what 'enough rows' means for leave-one-source-family-out; structural feasibility and the k=5 remaining-group reading are both reported.
+  - UNKNOWN: the FEASIBLE / DIAGNOSTIC_ONLY cut-offs of THR-08A-09 are not given; no cell verdict is issued, only counts at k=5 (k supplied by the work order).
+  - UNKNOWN: STUDY resolution needs confirmed experiment boundaries (D-10); none confirmed, so study-disjoint is unreachable today (L-06).
