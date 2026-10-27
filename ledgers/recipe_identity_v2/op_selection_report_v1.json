@@ -1,0 +1,338 @@
+{
+ "basis": "single_reviewer_basis",
+ "contract_ambiguities": [
+  "CA-1: plan silent on which binary target per operating point; used Y_copy for OP-MERGE (THR-07IC-01/05) and Y_dish primary (RELATED=0) for OP-SPLIT (THR-07IC-02/06). Alternates reported, not applied.",
+  "CA-2: THR-07IC-07 names 'grouped CV, stratum-weighted calibrator' but the calibrator is a single score cut-point; folds/grouping unspecified. The cut is selected on all non-UNCERTAIN labels; grouped 5-fold nested CV (recipe-connected components) is a diagnostic only.",
+  "CA-3: candidate_pairs_v1 holds only 'kept' pairs (score>=0.50, family edge, family-source, or title-source with title_token>=0.8) on duplicate-group representatives. Recall is relative to that set; if OP-SPLIT < 0.50, unretained low-score pairs cannot be linked (corpus-level recall lower than estimated). Recall on the sealed v2 probes does not exist yet.",
+  "CA-4: stratum pools may overlap; weights treat strata as disjoint.",
+  "CA-5: THR-07IC-06 is a target reported with CI, not a pass/fail; THR-07IC-08 uses the point estimate only.",
+  "CA-6: label file reasons are 'AI draft' text; the labels are Kush's but may be anchored on them.",
+  "CA-7: group edges = exact duplicate groups + candidate pairs with score >= OP-SPLIT cut (07I-S method); existing PROVISIONAL family edges are not added separately."
+ ],
+ "cut_rule": "predict positive iff score >= cut; candidate cuts = distinct observed labelled scores",
+ "estimator": "stratum inverse-probability weight w = pool_size/n_used_in_stratum; Wilson 95% on weighted proportion with Kish effective n = (sum w)^2 / sum w^2. Strata treated as disjoint (pools may overlap).",
+ "fallback_comparison_finding_only": {
+  "fallback_largest": 292,
+  "fallback_largest_share": 0.00047651530234243174,
+  "fallback_n_groups": 456518,
+  "fallback_size_mean_per_recipe": 6.458508898760081,
+  "recipes_compared": 612782,
+  "recipes_in_fallback_group_spanning_multiple_split_groups": 113541,
+  "recipes_in_split_group_spanning_multiple_fallback_groups": 116987
+ },
+ "grouped_cv": {
+  "folds": 5,
+  "grouping": "connected components of recipes across labelled pairs, assigned greedily to folds (largest first, lowest-load fold)",
+  "results": {
+   "op_merge_y_copy": {
+    "fold_cuts": [
+     0.8468567251461988,
+     null,
+     null,
+     null,
+     null
+    ],
+    "fold_sizes": [
+     72,
+     72,
+     71,
+     71,
+     71
+    ],
+    "oof_precision": 0.9118286433087625,
+    "oof_precision_ci95": [
+     0.6880934805625405,
+     0.9797891671844556
+    ],
+    "oof_recall": 0.021198033878447417,
+    "oof_recall_ci95": [
+     0.0010812718541394377,
+     0.30231327331360014
+    ]
+   },
+   "op_split_y_dish": {
+    "fold_cuts": [
+     0.17647058823529413,
+     0.17647058823529413,
+     0.17647058823529413,
+     0.17647058823529413,
+     0.17647058823529413
+    ],
+    "fold_sizes": [
+     72,
+     72,
+     71,
+     71,
+     71
+    ],
+    "oof_precision": 0.8823191051446385,
+    "oof_precision_ci95": [
+     0.7919452291981144,
+     0.9365804557598757
+    ],
+    "oof_recall": 1.0,
+    "oof_recall_ci95": [
+     0.943629428356922,
+     1.0
+    ]
+   },
+   "op_split_y_dish_sens": {
+    "fold_cuts": [
+     0.17647058823529413,
+     0.17647058823529413,
+     0.17647058823529413,
+     0.17647058823529413,
+     0.17647058823529413
+    ],
+    "fold_sizes": [
+     72,
+     72,
+     71,
+     71,
+     71
+    ],
+    "oof_precision": 0.9651079717949563,
+    "oof_precision_ci95": [
+     0.8976125496579189,
+     0.9886709218498714
+    ],
+    "oof_recall": 1.0,
+    "oof_recall_ci95": [
+     0.9506404309071514,
+     0.9999999999999998
+    ]
+   }
+  }
+ },
+ "input_sha256": {
+  "annotation/duplicate_calibration/duplicate_pairs_v1_ADJUDICATED_kush_basis.csv": "4344746d72926ddbf2e40586f34c2fce83f5b933383e3160bf192f7bbaf9a0fc",
+  "annotation/duplicate_calibration/duplicate_pairs_v1_KEY_SEALED.csv": "f7973d7db60ebb100bbfb803a116a23512564785a725bd061eeb3f2927479790",
+  "ledgers/recipe_identity/candidate_pairs_v1.parquet": "71f0c80044ae7282f69822da300725368052a92af01625efe1c3e62815040a11",
+  "ledgers/recipe_identity/candidate_pairs_v1_sample.parquet": "0a9084d5b72a2966715f82463e8b138783f84fd564fb0585668b498aca0601a4",
+  "ledgers/recipe_identity/dish_family_candidates_v1.parquet": "b1dce54e915cfc8bf2218b7c09c9080c8681ff7f3dc8c838f5df8628f171786b",
+  "ledgers/recipe_identity/dish_family_candidates_v1_sample.parquet": "3e630f5f1c1fe15ca3f133269d38791c6b968b46d7dd06c528b4c68d36f7c5ef",
+  "ledgers/recipe_identity/duplicate_group_members_v1.parquet": "7efe59a40bbcd8af86476ca0af23cf75902acf3f64e927dd391aea2916b96ad7",
+  "ledgers/recipe_identity/duplicate_group_members_v1_sample.parquet": "05db8efcccff8ed8f3df45a084ad943f0e2d1093b7e24ee0d3d72c855a7bd23a",
+  "ledgers/recipe_identity/gold_firewall_v1.parquet": "a4353f5c2dce2c3b1a269ea592205b1e25a03309b661a4b30f604a19ad343cd0",
+  "ledgers/recipe_identity/recipe_family_consensus_v1.parquet": "26d7f5e59c727fa03d509f98de8363c138db5da94788acba5073a3b5f5dce293",
+  "ledgers/recipe_identity/recipe_family_consistency_v1.parquet": "877b1c8ebd02d4f3eeeb3736055773c47a9593131012613b60e9a82fcd850022",
+  "ledgers/recipe_identity/recipe_family_consistency_v1_sample.parquet": "8d223e2d2507593bc19d6f1f88349a601cf84e0480f62f3f3e456952ef4b13ed",
+  "ledgers/recipe_identity/recipe_family_field_support_v1.parquet": "806e8554e50a32e715fceaf5730aaea2fa32726c5046dc0d3ff1585ad8d964db",
+  "ledgers/recipe_identity/recipe_family_members_v1.parquet": "28295ecf0434139acccfd429b1d794bee5686f7fa7b033067a63d2e9c7e7c34c",
+  "ledgers/recipe_identity/recipe_family_members_v1_sample.parquet": "4497fb9d9db49838eed30dc69b53f824dfed72a2af0a55c0c51c435c9d2eea4e",
+  "ledgers/recipe_identity/recipe_family_registry_v1.parquet": "e584597b27cdfb75cb41b9e188e18010450d739e7f9ad7545fe42d08ab3617ee",
+  "ledgers/recipe_identity/recipe_identity_features_v1.parquet": "10c15cd1b4169ac10d96ab3a745bc7c4d309a848009df3ad11a4a4a871e254f9",
+  "ledgers/recipe_identity/recipe_identity_fk_v1.parquet": "e3b2a9aef6afab4e609366a139b201399c4a810e919924ccf26322282fdf5a53",
+  "ledgers/recipe_identity/recipe_view_membership_v1.parquet": "858f3d8f807a4a49626c42208e9dcc68b2a4e730c7446289dc68c6e9872dcce1",
+  "registry/preregistered_thresholds_v1.csv": "cd293ed2879bfa706f035f8ac9626cd5e80df67140f4edfc9059bcabff8fd338",
+  "reports/step07i/step07ic_reviewer_agreement_v1.json": "c0a1c5367502eb7fc2b982aa435fc2db8083baf80e4eafc84d83022dd84318cb",
+  "tools/step16b_build_frame.py": "99c3cfba51deb64f90f5c264e64c36892969e0bbfe092deee6eb1f6083394b76"
+ },
+ "label_basis_caveat": "SINGLE-REVIEWER-BASIS ESTIMATES (D-033): labels are Kush's, Parv agreed after the fact; blind-agreement evidence is below target (Y_copy kappa 0.571, Y_dish 0.588 vs 0.70). Precision/recall carry that reviewer's bias.",
+ "n_pairs_total": 400,
+ "n_pairs_used": 357,
+ "n_per_stratum": {
+  "S01_very_high": {
+   "n_labelled_non_uncertain": 30,
+   "n_y_copy": 30,
+   "n_y_dish": 30,
+   "pool": 1542.0,
+   "weight": 51.4
+  },
+  "S02_high": {
+   "n_labelled_non_uncertain": 50,
+   "n_y_copy": 49,
+   "n_y_dish": 49,
+   "pool": 3276.0,
+   "weight": 65.52
+  },
+  "S03_boundary_family_rule": {
+   "n_labelled_non_uncertain": 54,
+   "n_y_copy": 9,
+   "n_y_dish": 36,
+   "pool": 26372.0,
+   "weight": 488.3703703703704
+  },
+  "S04_moderate": {
+   "n_labelled_non_uncertain": 38,
+   "n_y_copy": 14,
+   "n_y_dish": 30,
+   "pool": 29567.0,
+   "weight": 778.078947368421
+  },
+  "S05_same_title_low_structure": {
+   "n_labelled_non_uncertain": 40,
+   "n_y_copy": 1,
+   "n_y_dish": 38,
+   "pool": 524216.0,
+   "weight": 13105.4
+  },
+  "S06_cross_source": {
+   "n_labelled_non_uncertain": 19,
+   "n_y_copy": 5,
+   "n_y_dish": 12,
+   "pool": 457.0,
+   "weight": 24.05263157894737
+  },
+  "S07_same_source": {
+   "n_labelled_non_uncertain": 30,
+   "n_y_copy": 24,
+   "n_y_dish": 29,
+   "pool": 11462.0,
+   "weight": 382.06666666666666
+  },
+  "S09_high_ingredient_diff_process": {
+   "n_labelled_non_uncertain": 38,
+   "n_y_copy": 0,
+   "n_y_dish": 11,
+   "pool": 50430.0,
+   "weight": 1327.1052631578948
+  },
+  "S10_high_text_diff_ingredient": {
+   "n_labelled_non_uncertain": 38,
+   "n_y_copy": 21,
+   "n_y_dish": 21,
+   "pool": 2284.0,
+   "weight": 60.10526315789474
+  },
+  "S11_regional_cultural_hint": {
+   "n_labelled_non_uncertain": 20,
+   "n_y_copy": 0,
+   "n_y_dish": 18,
+   "pool": 127226.0,
+   "weight": 6361.3
+  }
+ },
+ "n_uncertain_excluded": 43,
+ "op_merge": {
+  "edges_at_cut_in_candidate_pairs": 4920,
+  "selected": {
+   "cut": 0.8468567251461988,
+   "n_pos": 153,
+   "n_pred_pos": 85,
+   "precision": 0.9740047792590493,
+   "precision_ci95": [
+    0.9002676145001918,
+    0.9936112372828981
+   ],
+   "precision_unweighted": 0.9529411764705882,
+   "recall": 0.11805009358487956,
+   "recall_ci95": [
+    0.024126889862561323,
+    0.42017700379793743
+   ],
+   "recall_unweighted": 0.5294117647058824
+  },
+  "target": "y_copy"
+ },
+ "op_merge_if_y_dish_target_NOT_APPLIED": {
+  "cut": 0.8468567251461988,
+  "n_pos": 274,
+  "n_pred_pos": 85,
+  "precision": 0.9830876239450551,
+  "precision_ci95": [
+   0.9141487304300818,
+   0.9968585621074291
+  ],
+  "precision_unweighted": 0.9764705882352941,
+  "recall": 0.0075964405829509135,
+  "recall_ci95": [
+   0.0007786972601266308,
+   0.069928324152626
+  ],
+  "recall_unweighted": 0.3029197080291971
+ },
+ "op_split": {
+  "selected": {
+   "cut": 0.17647058823529413,
+   "n_pos": 274,
+   "n_pred_pos": 357,
+   "precision": 0.8823191051446381,
+   "precision_ci95": [
+    0.7919452291981137,
+    0.9365804557598755
+   ],
+   "precision_unweighted": 0.7675070028011205,
+   "recall": 1.0,
+   "recall_ci95": [
+    0.943629428356922,
+    1.0
+   ],
+   "recall_unweighted": 1.0
+  },
+  "target": "y_dish (RELATED=0, THR-07IC-02 primary)"
+ },
+ "op_split_sensitivity_related_is_1_NOT_APPLIED": {
+  "cut": 0.17647058823529413,
+  "n_pos": 341,
+  "n_pred_pos": 357,
+  "precision": 0.9651079717949557,
+  "precision_ci95": [
+   0.8976125496579179,
+   0.9886709218498709
+  ],
+  "precision_unweighted": 0.9551820728291317,
+  "recall": 1.0,
+  "recall_ci95": [
+   0.9506404309071516,
+   1.0000000000000002
+  ],
+  "recall_unweighted": 1.0
+ },
+ "schema": "op_selection_report_v1",
+ "sealed_key_sha256_after": "f7973d7db60ebb100bbfb803a116a23512564785a725bd061eeb3f2927479790",
+ "sealed_key_sha256_before": "f7973d7db60ebb100bbfb803a116a23512564785a725bd061eeb3f2927479790",
+ "sealed_key_unchanged": true,
+ "split_groups": {
+  "groups_ge_2": 45154,
+  "largest": 42351,
+  "largest_share_of_recipes": 0.06911266975857645,
+  "n_groups": 450775,
+  "n_recipes": 612782,
+  "op_split_edges_applied": 727224,
+  "p50": 1.0,
+  "p90": 2.0,
+  "p99": 6.0,
+  "singletons": 405621
+ },
+ "split_groups_alternate": {
+  "related_is_1_sensitivity": {
+   "cut": 0.17647058823529413,
+   "groups_ge_2": 45154,
+   "largest": 42351,
+   "largest_share_of_recipes": 0.06911266975857645,
+   "n_groups": 450775,
+   "n_recipes": 612782,
+   "op_split_edges_applied": 727224,
+   "p50": 1.0,
+   "p90": 2.0,
+   "p99": 6.0,
+   "singletons": 405621
+  }
+ },
+ "thresholds": {
+  "THR-07IC-05_precision_LB_min": 0.9,
+  "THR-07IC-06_recall_target": 0.95
+ },
+ "uncertain_bounds": {
+  "y_copy": {
+   "base_positive_rate_non_uncertain_unweighted": 0.42857142857142855,
+   "note": "UNCERTAIN excluded from primary precision/recall (THR-07IC-03); never imputed",
+   "positive_labels": [
+    "SAME_RECIPE_COPY",
+    "SAME_RECIPE_MINOR_VARIANT"
+   ],
+   "uncertain_count": 43
+  },
+  "y_dish": {
+   "base_positive_rate_non_uncertain_unweighted": 0.7675070028011205,
+   "note": "UNCERTAIN excluded from primary precision/recall (THR-07IC-03); never imputed",
+   "positive_labels": [
+    "SAME_DISH_DIFFERENT_RECIPE",
+    "SAME_RECIPE_COPY",
+    "SAME_RECIPE_MINOR_VARIANT"
+   ],
+   "uncertain_count": 43
+  }
+ }
+}
