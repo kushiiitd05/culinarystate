@@ -1,0 +1,55 @@
+{
+  "bognar_cites_usda_retention_table": [
+    "usda|1998"
+  ],
+  "bognar_keys": [
+    "bergstrom|1999|nutrient losses and",
+    "bognar|1984|empirischer vergleich verschiedener",
+    "bognar|1988|nutrient losses of",
+    "bognar|1990|nahrwerttabellen fur verzehrfertige",
+    "bognar|1995|vitaminverluste bei der",
+    "bognar|2000|guidlines for recipe",
+    "bognar|2002|bundesforschungsanstalt fur ernahrung",
+    "german|2001|souci fachmann kraut",
+    "holland|1992|mccance and widdowson",
+    "karg|1986|nutrient content of",
+    "usda|1998|usda table of"
+  ],
+  "bognar_reference_count": 11,
+  "cells_affected_if_overlap": {
+    "L1": 67,
+    "L2": 249
+  },
+  "exact_match_count": 0,
+  "exact_matches": [],
+  "fuzzy_match_count": 0,
+  "fuzzy_matches": [],
+  "gate": "G08-9",
+  "inputs": {
+    "bognar_txt_sha256": "0e978960c85518ec32a4027f93c78f48c7c538cb4071963c7f66666312b9cc6c",
+    "usda_source_sha256": "53ea1b82008226d8f4d24998d10a19995268bf64cd63da87543d0b94e6c8af8f"
+  },
+  "limitations": [
+    "Only the two printed reference lists were compared; neither names the primary papers behind individual retention values.",
+    "Bibliography overlap is a necessary-not-sufficient signal: shared underlying data without shared citations is not detectable here.",
+    "USDA R6 retn06.txt is the data table; its bibliography comes from retn06.pdf via pdftotext (layout text, in memory).",
+    "Fuzzy matching is deliberately conservative (surname, year +-1, title overlap) and may miss differently transliterated or untitled entries.",
+    "Bognar [4] (online database) and [11] (unpublished data) are keyed like any other entry."
+  ],
+  "method": "Extract each reference list, normalise (lowercase, accent-fold, strip punctuation) to surname|year|first 3 title words. Exact = equal key. Fuzzy = same surname, year within 1, title-word Jaccard >= 0.5. NOT_DETERMINABLE if a list is empty or any entry lacks surname or year.",
+  "step": "08a.4",
+  "threshold": "THR-08A-11",
+  "usda_keys": [
+    "augustin|1992|alcohol retention in",
+    "haytowitz|2002|the identification of",
+    "howe|2004|usda database for",
+    "koc|2002|quantitation of choline",
+    "murphy|1975|comparison of methods",
+    "pehrsson|2000|usda s national",
+    "pehrsson|2003|the usda s",
+    "usda|1982|provisional table on"
+  ],
+  "usda_reference_count": 8,
+  "verdict": "NO_OVERLAP_FOUND_IN_BIBLIOGRAPHY",
+  "verdict_author": "AGENT; expert reading pending (human step of G08-9)"
+}
