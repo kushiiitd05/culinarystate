@@ -1,0 +1,509 @@
+# Food.com tag census v1 DRAFT; aggregate counts only; source rows=522517; cut: n_recipes>=20 (privacy/noise cut, not a science claim)
+tag,n_recipes,source_column
+Easy,276838,Keywords
+< 60 Mins,149589,Keywords
+< 30 Mins,112229,Keywords
+< 4 Hours,111071,Keywords
+Meat,103191,Keywords
+< 15 Mins,89340,Keywords
+Healthy,83305,Keywords
+Vegetable,81264,Keywords
+Low Cholesterol,74121,Keywords
+Beginner Cook,67092,Keywords
+Inexpensive,66052,Keywords
+Low Protein,63972,Keywords
+Dessert,62072,RecipeCategory
+Fruit,60523,Keywords
+Oven,54504,Keywords
+Kid Friendly,51296,Keywords
+European,47121,Keywords
+Poultry,46278,Keywords
+Weeknight,44914,Keywords
+Dessert,43342,Keywords
+For Large Groups,41337,Keywords
+Stove Top,38254,Keywords
+Brunch,36278,Keywords
+Lunch/Snacks,32586,RecipeCategory
+One Dish Meal,31345,RecipeCategory
+Chicken,28312,Keywords
+Cookie & Brownie,28039,Keywords
+Vegetable,27231,RecipeCategory
+Asian,25424,Keywords
+Free Of...,23158,Keywords
+High In...,22127,Keywords
+Sweet,21594,Keywords
+Breakfast,21101,RecipeCategory
+Cheese,20137,Keywords
+Savory,20028,Keywords
+Vegan,19057,Keywords
+Summer,18686,Keywords
+Potluck,18112,Keywords
+Breads,17371,Keywords
+Very Low Carbs,17287,Keywords
+Beverages,16076,RecipeCategory
+Christmas,15480,Keywords
+Small Appliance,15466,Keywords
+Spicy,14828,Keywords
+Beans,14250,Keywords
+Winter,13956,Keywords
+Nuts,13739,Keywords
+Chicken,13249,RecipeCategory
+Meat,13131,RecipeCategory
+High Protein,13003,Keywords
+Breads,12804,RecipeCategory
+Mexican,12620,Keywords
+Pork,12603,RecipeCategory
+Lunch/Snacks,12561,Keywords
+Pork,12276,Keywords
+Sauces,12166,RecipeCategory
+Berries,11587,Keywords
+Chicken Breast,11282,RecipeCategory
+No Cook,11077,Keywords
+Potato,10870,RecipeCategory
+Quick Breads,10387,RecipeCategory
+Tropical Fruits,10298,Keywords
+From Scratch,10293,Keywords
+Potato,9723,Keywords
+< 60 Mins,9719,RecipeCategory
+Toddler Friendly,9703,Keywords
+Egg Free,9690,Keywords
+Rice,9249,Keywords
+Grains,9187,Keywords
+< 30 Mins,9020,RecipeCategory
+Refrigerator,8949,Keywords
+Apple,8585,Keywords
+Cheese,8462,RecipeCategory
+Thanksgiving,8265,Keywords
+Kosher,7990,Keywords
+Pie,7775,RecipeCategory
+Citrus,7763,Keywords
+Canadian,7663,Keywords
+Breakfast,7595,Keywords
+Lactose Free,7290,Keywords
+Onions,7187,Keywords
+Bar Cookie,7029,RecipeCategory
+Beverages,7027,Keywords
+Spring,7016,Keywords
+Low Protein,6663,RecipeCategory
+< 15 Mins,6662,RecipeCategory
+Greens,6464,Keywords
+Southwestern U.S.,6420,Keywords
+Drop Cookies,6385,RecipeCategory
+Indian,5998,Keywords
+Stew,5679,RecipeCategory
+Yeast Breads,5523,RecipeCategory
+Beans,5463,RecipeCategory
+Chicken Breast,5403,Keywords
+Peppers,5298,Keywords
+Candy,5229,RecipeCategory
+Salad Dressings,5066,RecipeCategory
+< 4 Hours,4969,RecipeCategory
+Frozen Desserts,4804,RecipeCategory
+Australian,4782,Keywords
+Spreads,4694,RecipeCategory
+African,4474,Keywords
+Strawberry,4125,Keywords
+Poultry,3925,RecipeCategory
+Cheesecake,3915,RecipeCategory
+Low Cholesterol,3807,RecipeCategory
+Chinese,3795,Keywords
+European,3690,RecipeCategory
+Greek,3681,Keywords
+Microwave,3680,Keywords
+Smoothies,3562,RecipeCategory
+Pineapple,3460,Keywords
+Southwest Asia (middle East),3419,Keywords
+Very Low Carbs,3386,RecipeCategory
+Mixer,3282,Keywords
+Steak,3242,RecipeCategory
+Onions,3177,RecipeCategory
+One Dish Meal,3088,Keywords
+Savory Pies,3055,RecipeCategory
+Coconut,2969,Keywords
+Stir Fry,2963,Keywords
+Broil/Grill,2958,Keywords
+Freezer,2931,Keywords
+Camping,2845,Keywords
+Curries,2828,RecipeCategory
+Lemon,2809,Keywords
+Caribbean,2783,Keywords
+Rice,2735,RecipeCategory
+Corn,2700,Keywords
+Fruit,2568,RecipeCategory
+Tex Mex,2557,Keywords
+South American,2335,Keywords
+German,2332,Keywords
+Chowders,2331,RecipeCategory
+Oranges,2306,Keywords
+Scandinavian,2295,Keywords
+Grains,2280,RecipeCategory
+Corn,2274,RecipeCategory
+Yam/Sweet Potato,2238,RecipeCategory
+Asian,2196,RecipeCategory
+Crab,2171,RecipeCategory
+Punch Beverage,2169,RecipeCategory
+Thai,2162,Keywords
+Deep Fried,2157,Keywords
+Mexican,2119,RecipeCategory
+Canning,2108,Keywords
+Raspberries,2088,Keywords
+Lamb/Sheep,2050,RecipeCategory
+Cajun,2024,Keywords
+Spinach,1960,RecipeCategory
+Roast,1938,Keywords
+Spaghetti,1865,RecipeCategory
+Bread Machine,1861,Keywords
+Spanish,1836,Keywords
+Black Beans,1810,Keywords
+Chicken Thigh & Leg,1739,RecipeCategory
+Spinach,1735,Keywords
+Ham,1733,Keywords
+Healthy,1720,RecipeCategory
+Halloween,1663,Keywords
+Creole,1625,Keywords
+Ham,1614,RecipeCategory
+Spaghetti,1605,Keywords
+Japanese,1588,Keywords
+Tuna,1585,Keywords
+Roast Beef,1522,RecipeCategory
+Greens,1514,RecipeCategory
+Whole Chicken,1475,RecipeCategory
+Clear Soup,1474,RecipeCategory
+Chicken Thigh & Leg,1467,Keywords
+Soy/Tofu,1465,Keywords
+Tarts,1456,RecipeCategory
+Gelatin,1435,RecipeCategory
+Tuna,1413,RecipeCategory
+Peppers,1412,RecipeCategory
+St. Patrick's Day,1404,Keywords
+Cauliflower,1398,RecipeCategory
+Weeknight,1337,RecipeCategory
+Moroccan,1336,Keywords
+Black Beans,1325,RecipeCategory
+Apple,1287,RecipeCategory
+Lamb/Sheep,1279,Keywords
+Pears,1272,Keywords
+Baking,1269,Keywords
+Long Grain Rice,1252,Keywords
+Lentil,1245,Keywords
+Scottish,1221,Keywords
+New Zealand,1187,Keywords
+Scones,1165,RecipeCategory
+High Protein,1160,RecipeCategory
+Melons,1123,Keywords
+Wild Game,1112,Keywords
+Crab,1109,Keywords
+Lentil,1106,RecipeCategory
+Lime,1093,Keywords
+White Rice,1090,Keywords
+Penne,1088,RecipeCategory
+Quick Breads,1088,Keywords
+Steak,1086,Keywords
+Cherries,1083,Keywords
+Mango,1080,Keywords
+Hanukkah,1056,Keywords
+Long Grain Rice,1054,RecipeCategory
+Birthday,1038,Keywords
+White Rice,1024,RecipeCategory
+Shakes,1014,RecipeCategory
+Penne,949,Keywords
+Yam/Sweet Potato,949,Keywords
+Soy/Tofu,946,RecipeCategory
+Kid Friendly,939,RecipeCategory
+Stocks,925,RecipeCategory
+Roast Beef,918,Keywords
+Pineapple,910,RecipeCategory
+Cauliflower,870,Keywords
+Vegan,842,RecipeCategory
+High In...,828,RecipeCategory
+Whole Chicken,813,Keywords
+Hawaiian,802,Keywords
+Steam,795,Keywords
+Russian,729,Keywords
+Easy,727,RecipeCategory
+Brown Rice,722,RecipeCategory
+Peanut Butter,714,Keywords
+Brown Rice,688,Keywords
+Polish,653,Keywords
+Bath/Beauty,650,RecipeCategory
+Swedish,629,Keywords
+Swiss,602,Keywords
+Brunch,598,RecipeCategory
+Pressure Cooker,593,Keywords
+For Large Groups,586,RecipeCategory
+Vietnamese,586,Keywords
+Greek,557,RecipeCategory
+High Fiber,557,Keywords
+Portuguese,553,Keywords
+Pasta Shells,552,RecipeCategory
+Lemon,545,RecipeCategory
+Hungarian,543,Keywords
+Oranges,539,RecipeCategory
+Chinese,528,RecipeCategory
+Oysters,525,Keywords
+Veal,524,RecipeCategory
+Stew,522,Keywords
+Strawberry,509,RecipeCategory
+Berries,508,RecipeCategory
+Halibut,499,RecipeCategory
+Pasta Shells,495,Keywords
+Sauces,495,Keywords
+South African,476,Keywords
+Grapes,473,Keywords
+Gumbo,469,RecipeCategory
+Cajun,462,RecipeCategory
+Free Of...,462,RecipeCategory
+Chutneys,458,RecipeCategory
+Potluck,454,RecipeCategory
+Korean,453,Keywords
+Lebanese,449,Keywords
+Summer,447,RecipeCategory
+Cuban,445,Keywords
+Thai,439,RecipeCategory
+Meatloaf,435,RecipeCategory
+Turkish,430,Keywords
+Ramadan,428,Keywords
+Frozen Desserts,426,Keywords
+Jellies,425,RecipeCategory
+Canadian,415,RecipeCategory
+Lactose Free,411,RecipeCategory
+Nuts,408,RecipeCategory
+Danish,402,Keywords
+Christmas,396,RecipeCategory
+Tilapia,395,RecipeCategory
+Filipino,394,Keywords
+Meatballs,390,RecipeCategory
+Mashed Potatoes,386,RecipeCategory
+Short Grain Rice,382,Keywords
+Australian,381,RecipeCategory
+Brazilian,378,Keywords
+Dutch,376,Keywords
+Turkey Breasts,367,RecipeCategory
+Shakes,365,Keywords
+Deer,362,RecipeCategory
+Mussels,356,RecipeCategory
+Indonesian,353,Keywords
+Savory,351,RecipeCategory
+Welsh,347,Keywords
+Pumpkin,346,Keywords
+Whole Turkey,346,RecipeCategory
+Polynesian,345,Keywords
+Dairy Free Foods,343,Keywords
+Norwegian,343,Keywords
+Pennsylvania Dutch,342,Keywords
+Lobster,340,RecipeCategory
+No Shell Fish,339,Keywords
+Southwest Asia (middle East),333,RecipeCategory
+Plums,332,Keywords
+Japanese,329,RecipeCategory
+Short Grain Rice,327,RecipeCategory
+Melons,321,RecipeCategory
+Mango,320,RecipeCategory
+Duck,319,Keywords
+Turkey Breasts,314,Keywords
+Southwestern U.S.,310,RecipeCategory
+Native American,308,Keywords
+Catfish,304,RecipeCategory
+Austrian,303,Keywords
+Avocado,289,Keywords
+Belgian,289,Keywords
+Ice Cream,285,RecipeCategory
+Toddler Friendly,282,RecipeCategory
+Coconut,281,RecipeCategory
+Tex Mex,274,RecipeCategory
+African,267,RecipeCategory
+Spanish,265,RecipeCategory
+Egyptian,264,Keywords
+Kiwifruit,264,Keywords
+Macaroni And Cheese,264,RecipeCategory
+Czech,262,Keywords
+Papaya,259,Keywords
+Finnish,255,Keywords
+Spicy,254,RecipeCategory
+Winter,253,RecipeCategory
+Household Cleaner,251,RecipeCategory
+Cantonese,250,Keywords
+Tropical Fruits,248,RecipeCategory
+Citrus,247,RecipeCategory
+German,247,RecipeCategory
+Yeast Breads,243,Keywords
+Indian,241,RecipeCategory
+Reynolds Wrap Contest,232,Keywords
+Thanksgiving,231,RecipeCategory
+Caribbean,230,RecipeCategory
+Pakistani,229,RecipeCategory
+Creole,226,RecipeCategory
+Pears,225,RecipeCategory
+Candy,223,Keywords
+Chocolate Chip Cookies,222,RecipeCategory
+Sourdough Breads,220,RecipeCategory
+Peruvian,215,Keywords
+Trout,213,RecipeCategory
+Oatmeal,210,RecipeCategory
+Malaysian,207,Keywords
+Oven,207,RecipeCategory
+Deer,206,Keywords
+Spreads,205,Keywords
+Wild Game,194,RecipeCategory
+Manicotti,193,RecipeCategory
+Pakistani,193,Keywords
+Beginner Cook,191,RecipeCategory
+Moroccan,189,RecipeCategory
+Szechuan,189,Keywords
+Puerto Rican,183,Keywords
+Veal,182,Keywords
+Beef Organ Meats,179,RecipeCategory
+Lobster,173,Keywords
+Raspberries,173,RecipeCategory
+Crawfish,170,RecipeCategory
+Medium Grain Rice,166,Keywords
+Salad Dressings,165,Keywords
+Savory Pies,165,Keywords
+Beef Liver,163,Keywords
+Collard Greens,161,RecipeCategory
+Mussels,161,Keywords
+Labor Day,158,Keywords
+Squid,156,RecipeCategory
+Tilapia,155,Keywords
+Memorial Day,153,Keywords
+Pot Pie,153,RecipeCategory
+Crawfish,148,Keywords
+Homeopathy/Remedies,148,Keywords
+Mahi Mahi,147,RecipeCategory
+South American,147,RecipeCategory
+Colombian,145,Keywords
+Kosher,144,RecipeCategory
+Lime,144,RecipeCategory
+Bass,141,RecipeCategory
+Pumpkin,141,RecipeCategory
+Cheesecake,136,Keywords
+Iraqi,130,Keywords
+Homeopathy/Remedies,129,RecipeCategory
+Artichoke,125,Keywords
+Cherries,123,RecipeCategory
+Egg Free,123,RecipeCategory
+Avocado,121,RecipeCategory
+Chard,119,Keywords
+Duck,119,RecipeCategory
+Halibut,119,Keywords
+Chard,118,RecipeCategory
+Palestinian,118,Keywords
+Spring,117,RecipeCategory
+Chilean,116,Keywords
+Vietnamese,113,RecipeCategory
+Chicken Livers,112,RecipeCategory
+Manicotti,111,Keywords
+Stocks,110,Keywords
+Beef Organ Meats,109,Keywords
+Ice Cream,109,Keywords
+Dehydrator,108,Keywords
+Russian,108,RecipeCategory
+Pie,107,Keywords
+Ethiopian,105,Keywords
+Duck Breasts,102,RecipeCategory
+Korean,99,RecipeCategory
+Orange Roughy,98,RecipeCategory
+Sweet,98,RecipeCategory
+Whole Duck,98,RecipeCategory
+Peanut Butter,95,RecipeCategory
+Portuguese,94,RecipeCategory
+Rabbit,93,RecipeCategory
+Chicken Livers,90,Keywords
+Collard Greens,90,Keywords
+Chocolate Chip Cookies,89,Keywords
+Scandinavian,88,RecipeCategory
+Catfish,87,Keywords
+Nepalese,86,Keywords
+Broil/Grill,81,RecipeCategory
+Cambodian,81,Keywords
+Gelatin,77,Keywords
+Squid,77,Keywords
+Venezuelan,77,Keywords
+Whitefish,77,RecipeCategory
+Halloween,76,RecipeCategory
+High Fiber,76,RecipeCategory
+Icelandic,75,Keywords
+Medium Grain Rice,74,RecipeCategory
+Hawaiian,73,RecipeCategory
+Microwave,73,RecipeCategory
+Smoothies,73,Keywords
+Plums,70,RecipeCategory
+Ecuadorean,68,Keywords
+Costa Rican,66,Keywords
+Filipino,65,RecipeCategory
+Trout,65,Keywords
+Whole Turkey,65,Keywords
+Elk,63,Keywords
+Artichoke,62,RecipeCategory
+College Food,60,Keywords
+Papaya,60,RecipeCategory
+Cantonese,57,RecipeCategory
+Turkish,57,RecipeCategory
+Household Cleaner,56,Keywords
+Hungarian,56,RecipeCategory
+Lebanese,56,RecipeCategory
+Quail,56,RecipeCategory
+Tempeh,56,Keywords
+Tempeh,56,RecipeCategory
+Scottish,55,RecipeCategory
+New Zealand,54,RecipeCategory
+Nigerian,54,Keywords
+Pheasant,53,RecipeCategory
+Polish,53,RecipeCategory
+Brazilian,52,RecipeCategory
+Chowders,52,Keywords
+South African,51,RecipeCategory
+Bar Cookie,49,Keywords
+No Shell Fish,49,RecipeCategory
+Guatemalan,47,Keywords
+Native American,47,RecipeCategory
+Rabbit,47,Keywords
+Swedish,47,RecipeCategory
+Chinese New Year,46,Keywords
+Hunan,44,Keywords
+Camping,43,RecipeCategory
+Norwegian,43,RecipeCategory
+Szechuan,42,RecipeCategory
+Whitefish,41,Keywords
+Bath/Beauty,39,Keywords
+Georgian,39,Keywords
+Mahi Mahi,39,Keywords
+Canning,38,RecipeCategory
+Dutch,37,RecipeCategory
+Orange Roughy,36,Keywords
+Stove Top,36,RecipeCategory
+Goose,35,RecipeCategory
+Grapes,35,RecipeCategory
+Malaysian,35,RecipeCategory
+Moose,35,Keywords
+Punch Beverage,35,Keywords
+Swiss,35,RecipeCategory
+Honduran,34,Keywords
+Indonesian,34,RecipeCategory
+Cuban,32,RecipeCategory
+Bass,31,Keywords
+Danish,31,RecipeCategory
+Polynesian,31,RecipeCategory
+St. Patrick's Day,31,RecipeCategory
+Duck Breasts,30,Keywords
+Egyptian,29,RecipeCategory
+Mongolian,29,Keywords
+Puerto Rican,29,RecipeCategory
+Austrian,28,RecipeCategory
+Octopus,27,RecipeCategory
+Peruvian,26,RecipeCategory
+Elk,25,RecipeCategory
+Ethiopian,25,RecipeCategory
+Pennsylvania Dutch,24,RecipeCategory
+Perch,24,RecipeCategory
+Whole Duck,24,Keywords
+Birthday,23,RecipeCategory
+Meatloaf,23,Keywords
+Nepalese,23,RecipeCategory
+Kiwifruit,22,RecipeCategory
+Sudanese,22,Keywords
+Baking,20,RecipeCategory
+Czech,20,RecipeCategory
+Halloween Cocktail,20,Keywords
+Meatballs,20,Keywords
+Pressure Cooker,20,RecipeCategory
