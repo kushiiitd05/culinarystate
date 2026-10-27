@@ -1,0 +1,209 @@
+{
+  "G08-3": {
+    "per_reviewer_pass": {
+      "Kush": false,
+      "Parv": false
+    },
+    "status": "FAIL",
+    "strata_n_ok": true,
+    "threshold_wilson_lower": 0.9
+  },
+  "THR-08A-18_miss_rate": {
+    "Kush": {
+      "duplicates_found": 2,
+      "gate": "REPORT_ONLY",
+      "miss_rate": 0.01,
+      "n_reviewed": 200,
+      "wilson_lower_miss_rate": 0.00274665810884896,
+      "wilson_upper_miss_rate": 0.035721762026734716
+    },
+    "Parv": {
+      "duplicates_found": 0,
+      "gate": "REPORT_ONLY",
+      "miss_rate": 0.0,
+      "n_reviewed": 200,
+      "wilson_lower_miss_rate": 0.0,
+      "wilson_upper_miss_rate": 0.018845326668962936
+    },
+    "uncertain": {
+      "Kush": 1,
+      "Parv": 9
+    }
+  },
+  "agreement": {
+    "ALL": {
+      "crosstab": {
+        "CORRECT_EDGE|CORRECT_EDGE": 50,
+        "CORRECT_EDGE|UNCERTAIN": 62,
+        "UNCERTAIN|UNCERTAIN": 14,
+        "UNCERTAIN|WRONG_EDGE": 3,
+        "WRONG_EDGE|WRONG_EDGE": 21
+      },
+      "raw": 0.5666666666666667
+    },
+    "B2": {
+      "crosstab": {
+        "CORRECT_EDGE|UNCERTAIN": 49,
+        "UNCERTAIN|WRONG_EDGE": 1
+      },
+      "raw": 0.0
+    },
+    "B3": {
+      "crosstab": {
+        "CORRECT_EDGE|UNCERTAIN": 13,
+        "UNCERTAIN|UNCERTAIN": 14,
+        "UNCERTAIN|WRONG_EDGE": 2,
+        "WRONG_EDGE|WRONG_EDGE": 21
+      },
+      "raw": 0.7
+    },
+    "STRONG": {
+      "crosstab": {
+        "CORRECT_EDGE|CORRECT_EDGE": 50
+      },
+      "raw": 1.0
+    }
+  },
+  "edge_map": {
+    "CORRECT": "CORRECT_EDGE",
+    "INCORRECT": "WRONG_EDGE",
+    "NOT_SUPPORTED": "WRONG_EDGE",
+    "SUPPORTED": "CORRECT_EDGE",
+    "UNCERTAIN": "UNCERTAIN"
+  },
+  "edge_precision": {
+    "Kush": {
+      "ALL": {
+        "correct": 112,
+        "n": 150,
+        "precision": 0.7466666666666667,
+        "wilson_lower": 0.6715059061062735,
+        "wilson_upper": 0.8095087731493255
+      },
+      "B2": {
+        "correct": 49,
+        "n": 50,
+        "precision": 0.98,
+        "wilson_lower": 0.8950455630610349,
+        "wilson_upper": 0.9964607407674954
+      },
+      "B3": {
+        "correct": 13,
+        "n": 50,
+        "precision": 0.26,
+        "wilson_lower": 0.15871527430089563,
+        "wilson_upper": 0.39553157378483916
+      },
+      "STRONG": {
+        "correct": 50,
+        "n": 50,
+        "precision": 1.0,
+        "wilson_lower": 0.9286523998213857,
+        "wilson_upper": 0.9999999999999999
+      }
+    },
+    "Parv": {
+      "ALL": {
+        "correct": 50,
+        "n": 150,
+        "precision": 0.3333333333333333,
+        "wilson_lower": 0.26288764781230645,
+        "wilson_upper": 0.41210243377174827
+      },
+      "B2": {
+        "correct": 0,
+        "n": 50,
+        "precision": 0.0,
+        "wilson_lower": 0.0,
+        "wilson_upper": 0.07134760017861413
+      },
+      "B3": {
+        "correct": 0,
+        "n": 50,
+        "precision": 0.0,
+        "wilson_lower": 0.0,
+        "wilson_upper": 0.07134760017861413
+      },
+      "STRONG": {
+        "correct": 50,
+        "n": 50,
+        "precision": 1.0,
+        "wilson_lower": 0.9286523998213857,
+        "wilson_upper": 0.9999999999999999
+      }
+    },
+    "both_correct": {
+      "ALL": {
+        "correct": 50,
+        "n": 150,
+        "precision": 0.3333333333333333,
+        "wilson_lower": 0.26288764781230645,
+        "wilson_upper": 0.41210243377174827
+      },
+      "B2": {
+        "correct": 0,
+        "n": 50,
+        "precision": 0.0,
+        "wilson_lower": 0.0,
+        "wilson_upper": 0.07134760017861413
+      },
+      "B3": {
+        "correct": 0,
+        "n": 50,
+        "precision": 0.0,
+        "wilson_lower": 0.0,
+        "wilson_upper": 0.07134760017861413
+      },
+      "STRONG": {
+        "correct": 50,
+        "n": 50,
+        "precision": 1.0,
+        "wilson_lower": 0.9286523998213857,
+        "wilson_upper": 0.9999999999999999
+      }
+    },
+    "either_wrong_or_uncertain_is_error": {
+      "ALL": {
+        "correct": 50,
+        "n": 150,
+        "precision": 0.3333333333333333,
+        "wilson_lower": 0.26288764781230645,
+        "wilson_upper": 0.41210243377174827
+      },
+      "B2": {
+        "correct": 0,
+        "n": 50,
+        "precision": 0.0,
+        "wilson_lower": 0.0,
+        "wilson_upper": 0.07134760017861413
+      },
+      "B3": {
+        "correct": 0,
+        "n": 50,
+        "precision": 0.0,
+        "wilson_lower": 0.0,
+        "wilson_upper": 0.07134760017861413
+      },
+      "STRONG": {
+        "correct": 50,
+        "n": 50,
+        "precision": 1.0,
+        "wilson_lower": 0.9286523998213857,
+        "wilson_upper": 0.9999999999999999
+      }
+    }
+  },
+  "mapping_note": "scribe mapping of reviewer code synonyms, approved by Kush; originals untouched",
+  "pair_map": {
+    "CORRECT": "NOT_DUPLICATE",
+    "DISTINCT_EVIDENCE": "NOT_DUPLICATE",
+    "INCORRECT": "TRUE_DUPLICATE",
+    "UNCERTAIN": "UNCERTAIN"
+  },
+  "pair_map_assumption": "CORRECT/DISTINCT_EVIDENCE read as NOT_DUPLICATE",
+  "provenance": {
+    "edge": "VALID",
+    "pairs": "VALID",
+    "problems": []
+  }
+}
