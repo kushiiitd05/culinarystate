@@ -185,3 +185,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Not authorised:** Step 08b, 07.A, 07I-C, 07I-S, any push to GitHub (H7).
 - **Approver:** Kush (answer to the walk-through question, 2026-10-26).
 - **Addendum 2026-10-26 (Kush, answers to the 08a scoping questions):** (1) 08a MAY edit `src/culinarystate/ledgers/registry.py` to port the DOC/LIN/SEXP/SMP/OBS schemas (D-029 D-6) and regenerate `ledgers/schemas`; the edit is tested and touches no ledger data file. (2) The real run MAY append new ids to `ledgers/data/_ids.jsonl`, after a full dry run on a scratch copy whose counts are shown to Kush before the real run.
+
+### D-033 · 2026-10-27 · 07I-C agreement figure 0.88 on the adjudicated Kush-basis labels (decided by Kush; entered by the coding agent as scribe)
+- **Decision:** Kush states that the agreed 07I-C agreement score is 0.88, on the adjudicated label set (Kush's labels, Parv's after-the-fact agreement). 07I-C proceeds on that basis for calibration and operating-point work (THR-07IC-05..08) and for the Step 35 recipe/cuisine freeze dependency.
+- **Recorded as stated, not computed:** no file in the repo produces 0.88; the coding agent did not compute it. It is a Kush-declared adjudicated-basis figure, not an inter-reviewer kappa (agreement with Kush's own labels is 1.0 by construction).
+- **Kept unchanged:** the original blind-label values in `reports/step07i/step07ic_reviewer_agreement_v1.json` (Y_copy kappa 0.571, Y_dish 0.588) stay in the record and in any report next to this figure. Single-reviewer-basis caveat carries into reports.
+- **Approver:** Kush (message of 2026-10-27).
