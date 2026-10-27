@@ -48,7 +48,7 @@ def test_ids_equal_frame_exactly(run):
 def test_only_yn_na_and_no_text_columns(run):
     with open(run[0]) as fh:
         rd = csv.DictReader(fh)
-        assert rd.fieldnames == ["recipe_id", "baking", "drain_discard", "reserve_split", "multi_component"]
+        assert rd.fieldnames == ["recipe_id", "baking", "drain_discard", "reserve_split", "reserve_split_v2", "multi_component"]
         for r in rd:
             assert all(r[k] in {"Y", "N", "NA"} for k in ts.FLAGS)
 
@@ -60,7 +60,7 @@ def test_inputs_unchanged(run):
 def test_regexes_fire_and_not():
     f = ts.flags_for(["Preheat the OVEN.", "Drain well, then discard the water."],
                      ["1 cup flour", "Divide the dough"])
-    assert f == {"baking": "Y", "drain_discard": "Y", "reserve_split": "Y", "multi_component": "N"}
+    assert f == {"baking": "Y", "drain_discard": "Y", "reserve_split": "Y", "reserve_split_v2": "Y", "multi_component": "N"}
     g = ts.flags_for(["Make the sauce for the sauce base."], ["2 eggs"])
     assert g["multi_component"] == "Y" and g["baking"] == "N"
     n = ts.flags_for(["Stir gently.", "Serve with a baked potato? no: bakery"], ["1 onion", "salt"])
@@ -80,3 +80,13 @@ def test_reserv_quirk_kept_verbatim():
 def test_missing_text_is_na_not_n():
     assert ts.flags_for([], []) == {k: "NA" for k in ts.FLAGS}
     assert ts.flags_for(None, None) == {k: "NA" for k in ts.FLAGS}
+
+
+def test_reserve_split_v2_fixes_the_boundary_quirk_and_keeps_v1():
+    # D-038: v1 column stays verbatim (comparability); v2 also matches reserve/reserved/reserving.
+    for text in ("Reserve half.", "Add the reserved liquid.", "Reserving 1 cup of water."):
+        f = ts.flags_for([text], [])
+        assert f["reserve_split"] == "N" and f["reserve_split_v2"] == "Y"
+    assert ts.flags_for(["Keep the remaining sauce."], [])["reserve_split_v2"] == "Y"
+    assert ts.flags_for(["Stir well."], [])["reserve_split_v2"] == "N"
+    assert ts.flags_for([], [])["reserve_split_v2"] == "NA"
