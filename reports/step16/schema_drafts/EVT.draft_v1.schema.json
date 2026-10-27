@@ -1,0 +1,1313 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/EVT.schema.json",
+  "title": "EVT- atomic recipe/session event",
+  "description": "schema_version 1.0.0-rc (DRAFT_PENDING_H4, additive over v0 1.0.0; added 14 properties + 1 conditional rule; 0 removed)",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^EVT-\\d{6}$"
+    },
+    "record_type": {
+      "const": "EVT"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^EVT-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "recipe_id": {
+      "type": "string",
+      "pattern": "^REC-\\d{6}$"
+    },
+    "step_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "ordinal": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "process_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^PROC-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "action_raw": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "input_state_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^STATE-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "output_state_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^STATE-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "tool_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^TOOL-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "condition_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^COND-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "endpoint": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "optional": {
+      "type": "boolean"
+    },
+    "trajectory": {
+      "type": "string",
+      "enum": [
+        "PLANNED",
+        "OBSERVED_SESSION",
+        "PREDICTED"
+      ]
+    },
+    "omitted_step_candidate": {
+      "type": "boolean"
+    },
+    "span": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "event_kind": {
+      "type": "string",
+      "enum": [
+        "ACTION",
+        "ENDPOINT_CHECK",
+        "OBSERVATION",
+        "CONDITIONAL",
+        "WAIT_REST",
+        "CONTROL"
+      ],
+      "description": "Card Method cell EVT v1: event_kind {ACTION, ENDPOINT_CHECK, OBSERVATION, CONDITIONAL, WAIT_REST, CONTROL}."
+    },
+    "process_family_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^PROC-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card Method cell: process_id + process_family_id kept. Assumes family node is a PROC id (PROC parent_id hierarchy, card 16a); null when UNMAPPED."
+    },
+    "process_modifiers": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Card Method cell: process_modifiers {intensity, granularity, geometry, medium, endpoint_ref, lid_state, start_mode, water_ratio_expr, piece_size_class}; each UNKNOWN-capable. Last four added in v2 review (CHG-16-7, needs human approval). endpoint_ref stays a reference, never a state value (16-A routing rule).",
+      "properties": {
+        "intensity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "description": "Step 16 card EVT v1 process_modifiers.intensity: UNKNOWN when unstated (CHG-16-7 for the last four). value is null unless status KNOWN.",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "granularity": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "description": "Step 16 card EVT v1 process_modifiers.granularity: UNKNOWN when unstated (CHG-16-7 for the last four). value is null unless status KNOWN.",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "geometry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "description": "Step 16 card EVT v1 process_modifiers.geometry: UNKNOWN when unstated (CHG-16-7 for the last four). value is null unless status KNOWN.",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "medium": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "description": "Step 16 card EVT v1 process_modifiers.medium: UNKNOWN when unstated (CHG-16-7 for the last four). value is null unless status KNOWN.",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "endpoint_ref": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "description": "Step 16 card EVT v1 process_modifiers.endpoint_ref: UNKNOWN when unstated (CHG-16-7 for the last four). value is null unless status KNOWN.",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "lid_state": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "description": "Step 16 card EVT v1 process_modifiers.lid_state: UNKNOWN when unstated (CHG-16-7 for the last four). value is null unless status KNOWN.",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "start_mode": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "description": "Step 16 card EVT v1 process_modifiers.start_mode: UNKNOWN when unstated (CHG-16-7 for the last four). value is null unless status KNOWN.",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "water_ratio_expr": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "description": "Step 16 card EVT v1 process_modifiers.water_ratio_expr: UNKNOWN when unstated (CHG-16-7 for the last four). value is null unless status KNOWN.",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "piece_size_class": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status"
+          ],
+          "description": "Step 16 card EVT v1 process_modifiers.piece_size_class: UNKNOWN when unstated (CHG-16-7 for the last four). value is null unless status KNOWN.",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "KNOWN",
+                "UNKNOWN",
+                "NOT_APPLICABLE",
+                "CONFLICTING",
+                "CENSORED"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "KNOWN"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "required": [
+                  "value"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "transformation_mode": {
+      "type": "string",
+      "enum": [
+        "MECHANICAL",
+        "THERMAL",
+        "CHEMICAL_CURING",
+        "BIOCHEMICAL_FERMENTATION",
+        "TRANSFER",
+        "TEMPORAL_REST"
+      ],
+      "description": "Card Method cell: transformation_mode enum."
+    },
+    "tool_roles": {
+      "type": "array",
+      "description": "Card Method cell: tool_roles {INSTRUMENT, CONTAINER, HEAT_SOURCE, MEASURE}; pairing tool with role (array-of-pairs shape is a draft choice, card gives only the role enum).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "tool_id",
+          "role"
+        ],
+        "properties": {
+          "tool_id": {
+            "type": "string",
+            "pattern": "^TOOL-\\d{6}$"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "INSTRUMENT",
+              "CONTAINER",
+              "HEAT_SOURCE",
+              "MEASURE"
+            ]
+          }
+        }
+      }
+    },
+    "implicit_args": {
+      "type": "array",
+      "description": "Card Method cell: implicit_args with resolution_ref. Item payload beyond resolution_ref is not specified by the card (null = unresolved, never forced, 16-A C2).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resolution_ref"
+        ],
+        "properties": {
+          "resolution_ref": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "alternative_group_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card Method cell: alternative_group_id."
+    },
+    "modality": {
+      "type": "string",
+      "enum": [
+        "REQUIRED",
+        "OPTIONAL",
+        "NEGATED",
+        "CONDITIONAL",
+        "HYPOTHETICAL"
+      ],
+      "description": "Card Method cell: modality enum."
+    },
+    "temporal_relation": {
+      "type": "string",
+      "enum": [
+        "SEQUENTIAL",
+        "PARALLEL",
+        "OVERLAPS",
+        "UNTIL",
+        "REPEAT_UNTIL"
+      ],
+      "description": "Card Method cell: temporal_relation enum. 'repeat until smooth' never invents a count."
+    },
+    "depends_on": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^EVT-\\d{6}$"
+      },
+      "uniqueItems": true,
+      "description": "Card Method cell: depends_on[] execution DAG, separate from text order."
+    },
+    "condition_profile_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^COND-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card Method cell: condition_profile_id -> 07H COND (per-axis MEASURED/RANGE/UNKNOWN/NOT_APPLICABLE; setpoint != product temperature)."
+    },
+    "endpoint_state_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^STATE-\\d{6}$"
+      },
+      "uniqueItems": true,
+      "description": "Card Method cell: endpoint_state_refs."
+    },
+    "endpoint_leakage_flag": {
+      "type": "boolean",
+      "description": "Card Method cell: endpoint_leakage_flag."
+    },
+    "clock": {
+      "type": "string",
+      "enum": [
+        "TAU_PROCESS"
+      ],
+      "description": "Card Method cell: clock = TAU_PROCESS."
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "recipe_id",
+    "step_index",
+    "ordinal",
+    "trajectory"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "event_kind",
+          "process_id"
+        ],
+        "properties": {
+          "event_kind": {
+            "const": "ACTION"
+          },
+          "process_id": {
+            "type": "null"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "action_raw"
+        ],
+        "properties": {
+          "action_raw": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "$comment": "Card Method cell + 16-A layer 5 + G16.2: raw verb kept when UNMAPPED (v0 action_raw is the raw-verb field)."
+    }
+  ]
+}
