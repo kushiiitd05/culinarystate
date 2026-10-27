@@ -6,7 +6,7 @@ Written 2026-10-27 (after WORKLOG S145). Kush hands the day-to-day work to Parv 
 1. **Push to GitHub** (`kushiiitd05/culinarystate`). The GitHub copy is far behind: it stops at commit `4c2c829`, the local copy is about 113 commits ahead. Nothing is pushed until Kush says so (law H7). Parv cannot see the new work until this happens.
 2. **Check no Claude attribution** in the new commits: `declaude kushiiitd05/culinarystate --dry-run` after the push.
 3. **Tell Parv to re-clone** (do not pull): the history was rewritten earlier, so an old clone will not merge.
-4. **Give Parv the data that is NOT in git** (the folders `data/raw`, `data/interim`, `data/external` are git-ignored, about 2 GB): at least `data/external/foodcom/recipes.parquet` (Food.com, LOCAL research use only, never publish), `data/raw/*`, and the BBC files that the tools read from `../a1/A1 3/data/raw/recipes_raw.jsonl`. Easiest: copy the whole `data/` folder once (AirDrop, external drive, or the server). Everything in `ledgers/` is already in git.
+4. **Give Parv the data that is NOT in git** (about 3 GB; `data/`, parts of `ledgers/`, EVD export v1 and the BBC files in `../a1`). It is packed by `tools/make_parv_data_bundle.sh` into `~/Desktop/PARV_DATA_BUNDLE/` (required 1.0 GB, recommended 10 MB, optional 2.0 GB, plus `SHA256SUMS.txt`). Upload that folder to Google Drive, share it with Parv only (it holds Food.com data: LOCAL research use only, never public), and paste the link into `~/Desktop/PARV_CLAUDE_PROMPT.md`. Extraction commands are in that prompt.
 5. **Write the missing line**: Parv's own written confirmation of the 07.A and 07I-C adjudication ("I reviewed the disagreements and agree with Kush's labels") is still only relayed by Kush. Parv should put it in his own words in `docs/plan/H4_ANSWERS_LOG.md` (or a new file under `docs/plan/`), then commit it.
 6. If Parv needs the GPU servers, give him access details yourself. This guide holds no passwords or usernames.
 
@@ -74,7 +74,7 @@ Point it at `CLAUDE.md` first. Keep the same rules: one decision at a time, plai
 | Human to-do list | `handoff/MANUAL_NEXT_STEPS.md` |
 
 ## 9. Large files that are regenerated, not stored in git
-`exports/lineage/step08a_v1/{edge_candidates,keys,evd_export_v2}.jsonl`, `registry/recipe_semantics/deep_gold_sampling_frame_v1_DRAFT.csv` (78 MB) and `deep_gold_text_strata_v1_DRAFT.csv` (7 MB). Regenerate with `tools/step08a_gate.py`, `tools/step16b_build_frame.py`, `tools/step16b_text_strata.py`; hashes are in the matching README or freeze manifest.
+`exports/lineage/step08a_v1/{edge_candidates,keys,evd_export_v2}.jsonl`, `registry/recipe_semantics/deep_gold_sampling_frame_v1_DRAFT.csv` (78 MB) and `deep_gold_text_strata_v1_DRAFT.csv` (7 MB). They are also in the Drive bundle (`culinarystate_regenerable_outputs_...tar.gz`). To rebuild: `tools/step08a_gate.py`, `tools/step16b_build_frame.py`, `tools/step16b_text_strata.py`; hashes are in the matching README or freeze manifest. The three are listed in `.gitignore` so they are never committed by accident.
 
 ## 10. Refresh at the anchor
 Before the handover, update section 3, run the unit tests, append a WORKLOG entry, and tick the section-0 list.
