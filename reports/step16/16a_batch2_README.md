@@ -20,7 +20,7 @@ v0 1.0.0 records validate unchanged against the drafts. New fields are all optio
 2. Card's `split-group-disjoint` is lower-case hyphenated while sibling values are UPPER_SNAKE. Copied verbatim.
 3. Two distinct "status" axes: v0 value-shape status (MEASURED/RANGE/...) vs the card's KNOWN/UNKNOWN/... Kept both; triple lives in `meta`.
 4. `origin` enum = the 8 classes in registry/provenance_class_registry_v1.csv (card says "8-class provenance, 239.1"); not otherwise listed in the card.
-5. process_family_id typed as a PROC id (hierarchy via PROC parent_id); the card does not say.
+5. Original process_family_id assumption was a PROC id. The AI review on 2026-10-28 reconciles the draft to the existing `FAM:<family>` roots in process_hierarchy_v1_DRAFT.csv. This is a draft engineering correction, not an H4 freeze or a new ledger-ID namespace; the semantic review overlay checks membership against supplied roots.
 6. Q1-Q4 portion_id rule is my reading of "must trace to Q0 arithmetic or a SELECTED human-verified POR record". Q5 left unconstrained ("only if the task permits"). Human-verified status of the POR is not checkable inside a QNT record.
 7. History-key claim_route rule (MODEL/SIMULATED only) is my encoding of "never filled from recipe text"; history SVARs are PROPOSED (CHG-16-7).
 
@@ -33,3 +33,14 @@ v0 1.0.0 records validate unchanged against the drafts. New fields are all optio
 
 ## Resolved ambiguity (2026-10-27, Kush delegated the call; reviewed by the coding agent)
 ENTITY event links stay named `created_by_event_id` and `consumed_by_event_id`. Reason: v0 already uses `created_by` for the record author, so reusing the plan's literal "created_by / consumed_by event" would change the meaning of an existing required field. Still subject to H4 sign-off at the 16c freeze.
+
+## AI review follow-up (2026-10-28; pending expert/H4)
+
+EVT now accepts the draft hierarchy's FAM: family references and rejects PROC
+ledger IDs in that new field. Frozen v0 schemas remain untouched. The new pure
+`culinarystate.annotation.schema_review.review_record` overlay reports inverted
+intervals, nonfinite values, optional strict metadata issues, unknown family
+references and incomplete AST contracts without rewriting records. It is a
+review API, not yet integrated as a production acceptance gate. Top-level field
+provenance, arithmetic AST operands and history-route policy still need design
+and H4 review. See `reports/review/AI_REVIEW_2026-10-28.md` for evidence and limits.
