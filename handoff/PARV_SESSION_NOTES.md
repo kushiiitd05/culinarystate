@@ -15,3 +15,6 @@
 - EVD/COND/SRC/MEAS/SNAP full hashes match baseline; STUDY/_ids baseline prefixes match; D-038 strata hash matches.
 - WORKLOG S147 commit: 97cffaf; this session-note file is committed separately under the one-file rule.
 - No real Step 35 evaluation, sample draw, signature, human-label change, dependency install, GPU work or push.
+## 2026-10-28 — S148 (D-039)
+- Parv approved D2/D3/D4/D6/D7/D8 rules and explicitly instructed D5 go; existing RDKit 2026.3.6 pinned as optional step35 extra, no install. Cuisine mappings/continents/conflicts/coverage, reviewers, crosswalk owner, pilot column and own adjudication statement remain pending; follow-up batch sent. No signatures, real evaluation, ledger changes or push.
+- Synthetic Morgan/Murcko checks and TOML/version check pass; guard/registry 43 passed; prior full suite 1512 passed. Draft hash unchanged, record unsigned. Commits dc0701b (pin), 6cc8760 (environment), cd0c204 (review), bb1a245 (D-039), a2abe94 (S148); notes committed separately.
