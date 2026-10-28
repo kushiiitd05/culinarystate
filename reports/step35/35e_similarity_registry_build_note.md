@@ -23,3 +23,10 @@ Code: `src/culinarystate/representation/similarity_registry.py`. Tests: `tests/u
 - Level-specific split rules (for example `S-cui-*` at cuisine level only) are not enforced; the 8.2b check works per notion.
 - BAN-35-1 (`THR-35P-38`) is not checked here: rows carry no inputs field, and FlavorGraph-derived profiles are allowed while FlavorGraph edges and embeddings are banned, so a text check would be unreliable.
 - The 8.3 separation statistics (Spearman, kNN overlap) need real data and wait for the signature.
+
+## Takeover recheck (2026-10-28)
+CSV parsing now rejects duplicate headers before constructing rows. Previously,
+`csv.DictReader` silently retained only the final occurrence, so a duplicate
+`sim_id` or `decision_ref` header could overwrite the earlier value. Two synthetic
+regression cases failed before the fix and pass afterwards (22 registry tests).
+This changes parsing only; the six conventions and H4 questions above remain open.
