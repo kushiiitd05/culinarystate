@@ -1,0 +1,2437 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/QNT.draft_v2.schema.json",
+  "title": "QNT- parsed quantity expression",
+  "description": "schema_version 1.0.0-rc2, DRAFT_PENDING_H4; optional selection of a new contract with explicit semantic-field metadata and typed quantity AST; no automatic migration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^QNT-\\d{6}$"
+    },
+    "record_type": {
+      "const": "QNT"
+    },
+    "schema_version": {
+      "const": "1.0.0-rc2"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^QNT-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "raw": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recipe_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^REC-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "line_index": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "span": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "parsed": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "NUMBER",
+            "RANGE",
+            "FRACTION",
+            "MIXED",
+            "MULTIPLIER",
+            "PACKAGE",
+            "QUALITATIVE",
+            "NONE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "multiplier": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^UNIT-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "size": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "package_size": {
+          "type": "object",
+          "required": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "QUALITATIVE",
+                "CENSORED",
+                "UNKNOWN",
+                "NOT_APPLICABLE"
+              ]
+            },
+            "value": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "low": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "high": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "unit": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "uncertainty": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "qualitative": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "censor": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "required": [
+                    "kind",
+                    "limit"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "LT_LOD",
+                        "LT_LOQ",
+                        "GT_ULOQ",
+                        "GT_CAP",
+                        "ND",
+                        "GT_STATED",
+                        "LT_STATED"
+                      ]
+                    },
+                    "limit": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE",
+                      "QUALITATIVE"
+                    ]
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "value": {
+                    "type": "null"
+                  },
+                  "low": {
+                    "type": "null"
+                  },
+                  "high": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "MEASURED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "value",
+                  "unit"
+                ],
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "RANGE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "low",
+                  "high",
+                  "unit"
+                ],
+                "properties": {
+                  "low": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "QUALITATIVE"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "qualitative"
+                ],
+                "properties": {
+                  "qualitative": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "CENSORED"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "censor"
+                ],
+                "properties": {
+                  "censor": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "normalized": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "censor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "limit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "LT_LOD",
+                    "LT_LOQ",
+                    "GT_ULOQ",
+                    "GT_CAP",
+                    "ND",
+                    "GT_STATED",
+                    "LT_STATED"
+                  ]
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "meta": {
+          "$ref": "#/$defs/field_meta"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "censor"
+            ],
+            "properties": {
+              "censor": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "meta"
+            ],
+            "properties": {
+              "meta": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            },
+            "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+          }
+        }
+      ]
+    },
+    "mass_g": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "censor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "limit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "LT_LOD",
+                    "LT_LOQ",
+                    "GT_ULOQ",
+                    "GT_CAP",
+                    "ND",
+                    "GT_STATED",
+                    "LT_STATED"
+                  ]
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "meta": {
+          "$ref": "#/$defs/field_meta"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "censor"
+            ],
+            "properties": {
+              "censor": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "meta"
+            ],
+            "properties": {
+              "meta": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            },
+            "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+          }
+        }
+      ]
+    },
+    "volume_ml": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "censor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "limit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "LT_LOD",
+                    "LT_LOQ",
+                    "GT_ULOQ",
+                    "GT_CAP",
+                    "ND",
+                    "GT_STATED",
+                    "LT_STATED"
+                  ]
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "meta": {
+          "$ref": "#/$defs/field_meta"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "censor"
+            ],
+            "properties": {
+              "censor": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "meta"
+            ],
+            "properties": {
+              "meta": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            },
+            "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+          }
+        }
+      ]
+    },
+    "count": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "censor": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kind",
+                "limit"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "LT_LOD",
+                    "LT_LOQ",
+                    "GT_ULOQ",
+                    "GT_CAP",
+                    "ND",
+                    "GT_STATED",
+                    "LT_STATED"
+                  ]
+                },
+                "limit": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "meta": {
+          "$ref": "#/$defs/field_meta"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "censor"
+            ],
+            "properties": {
+              "censor": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "required": [
+              "meta"
+            ],
+            "properties": {
+              "meta": {
+                "required": [
+                  "status"
+                ],
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "UNKNOWN",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            },
+            "$comment": "Card 16-A/16-B: UNKNOWN / NOT_APPLICABLE never carry a number (UNKNOWN != 0; masks, never zeros)."
+          }
+        }
+      ]
+    },
+    "qualifiers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conversion_method": {
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [
+            "EXACT_PHYSICAL",
+            "LOCALE_CONVENTION",
+            "SOURCE_STATED",
+            "PORTION_RECORD",
+            "NONE"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "conversion_path": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "portion_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^POR-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "q_level": {
+      "type": "string",
+      "enum": [
+        "Q0",
+        "Q1",
+        "Q2",
+        "Q3",
+        "Q4",
+        "Q5",
+        "Q6"
+      ]
+    },
+    "locale": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "ingredient_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^ING-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "normalized_mass_low_g": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-B Intervals: normalized_mass_low_g (QNT v0 has scalar mass_g only). null = UNKNOWN, never 0."
+    },
+    "normalized_mass_high_g": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-B Intervals: normalized_mass_high_g. null = UNKNOWN, never 0."
+    },
+    "intervals": {
+      "type": "array",
+      "description": "Card 16-B Intervals: ranges stay ranges; the three interval kinds are separate records, never collapsed. Quantile level structure for EMPIRICAL_QUANTILES is not given by the card.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "low",
+          "high"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "SOURCE_RANGE",
+              "CONVERSION_UNCERTAINTY",
+              "EMPIRICAL_QUANTILES"
+            ]
+          },
+          "low": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "high": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "ast": {
+      "$ref": "#/$defs/ast_node"
+    },
+    "quantity_scope": {
+      "type": "string",
+      "enum": [
+        "INGREDIENT_LINE",
+        "INSTRUCTION_ALLOCATION",
+        "YIELD_SERVING"
+      ],
+      "description": "Card 16-B Structure: quantity_scope."
+    },
+    "measured_state": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-B Structure: measured_state (1 cup cooked rice != raw). Vocabulary not in card; free string, null = UNKNOWN."
+    },
+    "as_purchased_vs_edible": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-B Structure: as_purchased_vs_edible. Value vocabulary not in card; free string, null = UNKNOWN."
+    },
+    "multiplier": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-B Structure: multiplier (2 x 400 g). null = absent/UNKNOWN."
+    },
+    "dual_expression_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Card 16-B Structure: dual_expression_check ('1 cup (240 ml)', flag on conflict). Object shape is a draft choice.",
+      "properties": {
+        "conflict": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "unit_variant": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-B Locale/era: unit_variant."
+    },
+    "locale_evidence": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-B Locale/era: locale_evidence (no authoritative source for katori/glass; interval with evidence or UNKNOWN)."
+    },
+    "unit_system_era": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "description": "Card 16-B Locale/era: unit_system_era; historical units never forced to modern FDC portions."
+    },
+    "field_metadata": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^/"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/field_meta"
+      },
+      "description": "Exact JSON pointers to semantic claim targets; no inherited/backfilled metadata."
+    }
+  },
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "raw",
+    "parsed",
+    "normalized",
+    "q_level",
+    "field_metadata"
+  ],
+  "$defs": {
+    "ast_node": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "numerator",
+            "denominator",
+            "unit"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "RATIONAL"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "numerator": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "denominator": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "low",
+            "high",
+            "unit"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "RANGE"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "low": {
+              "type": "number",
+              "minimum": 0
+            },
+            "high": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "children"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "ADD"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string"
+            },
+            "children": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/ast_node"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "children"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "MULTIPLY"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string"
+            },
+            "children": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/ast_node"
+              },
+              "maxItems": 2
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "children"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "FRACTION_OF"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string"
+            },
+            "children": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/ast_node"
+              },
+              "maxItems": 2
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "children"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "REMAINDER_OF"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string"
+            },
+            "children": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/ast_node"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "children"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "PACKAGE_CONTENT"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string"
+            },
+            "children": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/ast_node"
+              },
+              "maxItems": 2
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "children"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "ALTERNATIVE"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string"
+            },
+            "children": {
+              "type": "array",
+              "minItems": 2,
+              "items": {
+                "$ref": "#/$defs/ast_node"
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "raw"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "QUALITATIVE"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta",
+            "raw"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "OPEN_AMOUNT"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "node_type",
+            "meta"
+          ],
+          "properties": {
+            "node_type": {
+              "const": "UNKNOWN"
+            },
+            "meta": {
+              "$ref": "#/$defs/field_meta"
+            },
+            "raw": {
+              "type": "string"
+            },
+            "unit": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            }
+          },
+          "allOf": [
+            {
+              "properties": {
+                "meta": {
+                  "properties": {
+                    "status": {
+                      "enum": [
+                        "UNKNOWN",
+                        "NOT_APPLICABLE"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "field_meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "origin",
+        "status",
+        "claim_route"
+      ],
+      "properties": {
+        "origin": {
+          "enum": [
+            "EXPLICIT_SOURCE",
+            "EXTERNAL_VERIFIED",
+            "DERIVED_DETERMINISTIC",
+            "INFERRED_LLM",
+            "MODEL_ESTIMATED",
+            "IMPUTED",
+            "SIMULATED",
+            "UNKNOWN"
+          ]
+        },
+        "status": {
+          "enum": [
+            "KNOWN",
+            "UNKNOWN",
+            "NOT_APPLICABLE",
+            "CONFLICTING",
+            "CENSORED"
+          ]
+        },
+        "claim_route": {
+          "enum": [
+            "EXPLICIT",
+            "INFERRED_RULE",
+            "INFERRED_LLM",
+            "MODEL",
+            "SIMULATED"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "q_level"
+        ],
+        "properties": {
+          "q_level": {
+            "const": "Q6"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "mass_g": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE"
+                ]
+              }
+            }
+          },
+          "normalized_mass_low_g": {
+            "type": "null"
+          },
+          "normalized_mass_high_g": {
+            "type": "null"
+          }
+        }
+      },
+      "$comment": "Card 16-B Ladder: Q6 = UNKNOWN; invented grams = 0."
+    },
+    {
+      "if": {
+        "required": [
+          "q_level",
+          "mass_g"
+        ],
+        "properties": {
+          "q_level": {
+            "enum": [
+              "Q1",
+              "Q2",
+              "Q3",
+              "Q4"
+            ]
+          },
+          "mass_g": {
+            "required": [
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "enum": [
+                  "MEASURED",
+                  "RANGE"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "portion_id"
+        ],
+        "properties": {
+          "portion_id": {
+            "type": "string",
+            "pattern": "^POR-\\d{6}$"
+          }
+        }
+      },
+      "$comment": "Card 16-B Invented grams = 0: a gram value at Q1-Q4 must trace to a POR record (Q0 is arithmetic). Q5 left open (only if task permits)."
+    }
+  ]
+}
