@@ -4,6 +4,12 @@ This separates implemented engineering from scientific acceptance. The source sp
 
 ## Critical path
 
+S151 engineering follow-up: Step 16 now has separate rc2 metadata/quantity-AST
+schemas and a combined validator with exact arithmetic and synthetic controls
+(`reports/step16/metadata_quantity_contract_v2_DRAFT.md`). H4/Step 19 remain open;
+no pilot or freeze follows automatically. A legacy zero-multiplier defect is
+recorded for a versioned normaliser/adapter correction before new extraction.
+
 1. Expert reviews the source-backed taste migration evidence, molecule-level negative amendment, triplet statistic and cuisine ontology. Human labels and unresolved cases remain explicit. Parv completes the crosswalk audit using the local 50-row and priority sheets and writes his own adjudication statement after review.
 2. Integrate accepted changes into a final Step 35 protocol/lookup package; bind all consumed inputs, hash exact bytes and obtain human signatures. Then run the eligible explicit baselines locally, preserve negative/NEED_DATA results and publish no restricted per-item data. Recipe/cuisine headline claims still require 07I-S.
 3. Resolve the remaining Step 16 metadata/AST/history contracts and prepare handbook/hard-case material. H5 authorises the Step 19 pilot; humans annotate independently. Pilot representability, timing, provenance and agreement evidence feed H4/16c. A technical review cannot replace this evidence.
