@@ -4,7 +4,7 @@ Code: `src/culinarystate/representation/prereg_guard.py`. Tests: `tests/unit/tes
 Status: the control is built; **nothing is signed**. The agent never signs; only Kush and Parv do.
 
 ## What is hashed
-The sha256 of the exact bytes of the pre-registration document (after approval: `reports/step35/preregistration_v1.md`, which should include the signed 01.6 rows; the draft itself is `preregistration_35_0_v1_draft.md`). Any edit, even one character or a trailing newline, changes the hash. The guard does not hash the registry CSV: if the 01.6 rows must be covered, keep them inside the hashed document (Appendix A) or sign a second record the same way.
+The sha256 of the exact bytes of the pre-registration document (after approval: `reports/step35/preregistration_v1.md`, which should include the signed 01.6 rows; the draft itself is `preregistration_35_0_v1_draft.md`). Any edit, even one character or a trailing newline, changes the hash. By default only this document is covered. The AI-review extension allows explicit `bound_files` to bind a reviewed lookup, map or addendum to their exact bytes. Keep threshold rows inside the hashed document (Appendix A) or explicitly bind their file too.
 
 ## How to sign (human steps)
 1. Finalise and freeze the document (no more edits after step 3).
@@ -46,3 +46,24 @@ The decorator consumes `prereg_path` and `hash_file` keyword arguments and runs 
 
 ## Two signers (review change)
 The guard requires two distinct signer names (Kush and Parv). If one author cannot sign, the hash record must carry `"single_signer_override": {"reason": "<why>", "by": "<who accepted it>"}`; an empty reason or name is refused. The guard still cannot check who the signers really are, only that the record names them.
+
+## Binding reviewed companion files (AI-review engineering extension)
+
+`sign_record_template(document, bound_files=[lookup, addendum])` adds relative
+paths and SHA256s to the unsigned record. It still takes no signer or date
+arguments. Bound files must exist and be distinct. Relative paths survive moving
+the repository/package together; the guard rejects missing, changed, malformed
+or duplicate bound-file records.
+
+Real evaluation entry points must name the exact inputs they consume using
+`require_signed_prereg(document, record, required_files=[lookup, addendum])`, or
+the decorator's `prereg_required_files=[lookup, addendum]` argument. Otherwise
+an entirely omitted companion file cannot be detected. This is caller policy,
+not automatic discovery of every dependency. Legacy document-only checks remain
+available for tasks with no companion inputs.
+
+`preregistration_35_0_review_package.sha256.UNSIGNED.json` is a new unsigned
+review package binding the existing protocol draft, D-040 lookup/map and proposed
+AI review addendum. It is not a final protocol or approval of the amendment.
+Regenerate the package after any accepted edit and obtain human signatures;
+the agent supplies neither a signature nor a single-signer override.
