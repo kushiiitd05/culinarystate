@@ -4,6 +4,13 @@ Source: `reports/step35/preregistration_35_0_v1_draft.md` (the full text; "s" = 
 
 ## 1. What Step 35 will and will not claim
 
+Review update 2026-10-28: Parv's answers are in
+`35_0_parv_review_DRAFT.md` and DECISIONS D-039/D-040. The questions below are
+retained as the review checklist; they are not a statement that all remain
+unanswered. D4's mapping choices and expanded REGION definition are recorded in
+`foodcom_cuisine_derivation_README.md`. Everything remains unsigned; no expert
+review or signature is inferred from Parv's single-reviewer choices.
+
 1. WILL: for molecules, ingredients, recipes and cuisines, say whether a simple, explicit representation (counts, overlaps, fingerprints) beats trivial baselines on leakage-safe tests, with confidence intervals. A "no" or "not enough data" is a valid result and is kept.
 2. WILL NOT: say anything about "flavour compatibility", "pairs well" or "tastes like". Shared compounds are only tested as a predictor of held-out recipe co-occurrence (a cultural statistic).
 3. WILL NOT: use or release FlavorGraph or Recipe1M-derived data in any comparison (rule BAN-35-1); FlavorGraph-derived profiles stay local and analysis-only.
