@@ -25,4 +25,7 @@ Status: DRAFT_PENDING_H4. Nothing frozen, nothing approved. Source: Step 16 card
 `/opt/anaconda3/bin/python tools/step16a_build_registries.py` (deterministic, sorted, byte-identical; reads ledgers/data/{PROC,TOOL}.jsonl and two registry CSVs read-only). Tests: `/opt/anaconda3/bin/python -m pytest tests/unit -k step16a -q`.
 
 ## Pre-existing issue (not caused by this batch)
-`tests/unit/test_lineage_guard.py::test_real_repo_matches_real_csv` fails: STUDY.jsonl grew (128347 B) past the 08a baseline (47500 B). STUDY is append-only; baseline CSV is stale for it.
+Historical note: an earlier version of `test_real_repo_matches_real_csv` failed
+after STUDY grew past its baseline. This is resolved in the current lineage
+guard: append-only STUDY/_ids growth is checked against the baseline byte prefix.
+The current test passes; protected non-append-only ledgers must still match fully.
