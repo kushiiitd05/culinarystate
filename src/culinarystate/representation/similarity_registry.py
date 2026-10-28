@@ -9,6 +9,7 @@ from __future__ import annotations
 import csv
 import io
 import re
+from collections import Counter
 from dataclasses import asdict, dataclass, fields
 from itertools import pairwise
 from typing import Iterable, Mapping, Sequence
@@ -205,6 +206,9 @@ def parse_registry_csv(text: str) -> list:
     """Rows from CSV text (the caller reads the file). Header must hold every core column and nothing unknown."""
     reader = csv.DictReader(io.StringIO(text))
     header = reader.fieldnames or []
+    duplicates = sorted(name for name, count in Counter(header).items() if count > 1)
+    if duplicates:
+        raise RegistryError(f"duplicate column(s): {', '.join(duplicates)}")
     missing = [f for f in CORE_FIELDS if f not in header]
     if missing:
         raise RegistryError(f"missing core column(s): {', '.join(missing)}")
