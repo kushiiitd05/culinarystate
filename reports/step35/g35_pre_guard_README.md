@@ -28,9 +28,10 @@ EOF
 - no valid 64-char `sha256` recorded;
 - recorded sha256 differs from the document's current sha256 (edited after signing);
 - `status` is `UNSIGNED_TEMPLATE`, or `signers` is empty, not a list, or has a blank or `<placeholder>` name;
+- fewer than two distinct signer names, unless a written `single_signer_override` is present;
 - `date` is not a valid ISO date.
 
-Note: the guard checks that names and a date are present, not that the people are who they claim; it enforces process, not identity. Two signers are the intended practice but the code requires at least one.
+Note: the guard requires two distinct signer names or a written override, and a date. It cannot verify the people's identities or whether the named override approver has authority. The project requires Kush and Parv to sign, or Kush to record the single-signer reason; the agent must not supply signatures or an override.
 
 ## Using it in evaluation code
 ```python
