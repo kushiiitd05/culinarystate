@@ -149,3 +149,27 @@ def test_inputs_not_mutated():
     t = {"b"}
     rr.r0_jaccard(s, t)
     assert s == {"a", "b"} and t == {"b"}
+
+
+@pytest.mark.parametrize("bad", [-1.0, float("nan"), float("inf")])
+def test_mass_shares_reject_invalid_physical_mass(bad):
+    with pytest.raises(ValueError, match="mass"):
+        rr.r3_mass_shares({"a": bad, "b": 10.0})
+
+
+@pytest.mark.parametrize("metric", [rr.hit_at_k, rr.recall_at_k, rr.ndcg_at_k])
+def test_rank_metrics_reject_repeated_candidates(metric):
+    # Repeated relevant candidates otherwise inflate nDCG beyond 1.
+    with pytest.raises(ValueError, match="duplicate"):
+        metric(["a", "a"], {"a"}, 2)
+
+
+def test_mrr_rejects_repeated_candidates():
+    with pytest.raises(ValueError, match="duplicate"):
+        rr.mrr(["a", "a"], {"a"})
+
+
+@pytest.mark.parametrize("profile", [(2.0, 3.0, 4.0), (float("nan"), 2.0)])
+def test_mean_profile_rejects_incompatible_or_nonfinite_vectors(profile):
+    with pytest.raises(ValueError, match="profile"):
+        rr.r1_mean_profile({"a", "b"}, {"a": (1.0, 2.0), "b": profile})
