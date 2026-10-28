@@ -19,3 +19,10 @@ Code: `src/culinarystate/representation/cuisine_rungs.py`. Tests: `tests/unit/te
 ## Blocked until signature (G35-PRE, THR-35P-01)
 - Any run on real labels/recipes; the evaluation entry point (must sit behind prereg_guard); Food.com tag-to-cuisine map and ontology review (D-036/D-037 mapping still DRAFT_PENDING_SIGN); THR-35P-22 class eligibility (>= 100 recipes and >= 2 source families), source-identity baseline, S-cui-src / S-cui-hold splits, classifier, metrics, BH/null-draw counts B, and the open choice for CONFLICTING recipes (dropped and counted here).
 - Headline claims also wait for the 07I-C split_group_id (THR-35P-03).
+# AI review follow-up (2026-10-28)
+
+NPMI now rejects impossible/nonfinite support counts rather than returning a
+score. The existing direct triplet generalisation can exceed 1; its formula is
+unchanged and explicitly queued for expert review. Existing CONFLICTING
+exclusion/counting agrees with D-040. No real cuisine score was computed.
+See `reports/review/AI_REVIEW_2026-10-28.md`.
