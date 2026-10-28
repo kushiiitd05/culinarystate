@@ -70,16 +70,18 @@ def test_lookup_unique_terms_and_valid_values():
     terms = [r["term"].casefold() for r in rows]
     assert len(terms) == len(set(terms))
     assert all(r["cuisine"] and r["continent"] and r["basis"] and r["label_level"] for r in rows)
-    ok = {"Africa", "Americas", "Asia", "Europe", "Oceania", "MIXED", "NEEDS_HUMAN"}
+    ok = {"Africa", "Americas", "Asia", "Europe", "Oceania", "MIXED", "NEEDS_HUMAN", "UNKNOWN"}
     assert {r["continent"] for r in rows} <= ok
-    assert {r["label_level"] for r in rows} <= {"CUISINE", "REGION", "NEEDS_HUMAN"}
+    assert {r["label_level"] for r in rows} <= {"CUISINE", "REGION", "NEEDS_HUMAN", "UNKNOWN"}
     for r in rows:
-        if r["label_level"] == "REGION":
+        if r["label_level"] in {"REGION", "UNKNOWN"}:
             assert r["cuisine"] == "UNKNOWN"
         else:
             assert r["cuisine"] != "UNKNOWN"
         if r["label_level"] == "CUISINE":
             assert r["cuisine"] not in census.PLACEHOLDERS and r["continent"] in census.CONTINENTS
+        if r["label_level"] == "UNKNOWN":
+            assert r["continent"] == "UNKNOWN"
 
 
 def test_region_terms_never_count_as_cuisine():
@@ -99,7 +101,9 @@ def test_unknown_tags_never_mapped_and_status_draft():
     for r in rows:
         assert r["status"] == "DRAFT_PENDING_SIGN"
         if r["label_level"] == "UNKNOWN":
-            assert r["proposed_cuisine"] == r["proposed_continent"] == "UNKNOWN" and r["tag"].casefold() not in lk
+            assert r["proposed_cuisine"] == r["proposed_continent"] == "UNKNOWN"
+            entry = lk.get(r["tag"].casefold())
+            assert entry is None or entry["label_level"] == "UNKNOWN"
         else:
             assert r["tag"].casefold() in lk
             assert r["label_level"] == lk[r["tag"].casefold()]["label_level"]
