@@ -1,6 +1,6 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-**As of:** 2026-10-28, takeover AI review (WORKLOG S150; DECISIONS through D-041).
+**As of:** 2026-10-28, Step 16 rc2 draft implementation (WORKLOG S151; DECISIONS through D-042).
 **Authoritative records:** DECISIONS.md, WORKLOG.md and the dated review artifacts.
 **Repo in this session:** `/Users/parvgoyal/wth/CGAS/takeover/culinarystate`.
 The previous S145 status snapshot is preserved in git history (before S150,
@@ -20,7 +20,7 @@ supply human annotation, independent agreement, scientific validation or signatu
 | 07.A | Returned audit's signed statistical gate FAILED. No alternative statistic is substituted to open dependent steps. |
 | 07I-C | Original blind kappas 0.571 / 0.588 retained. D-033's 0.88 is Kush-stated on an adjudicated single-reviewer basis, not computed inter-reviewer agreement. Parv's own written confirmation remains pending. |
 | 08a / 08b | 08a built and run, G08-3 FAIL remains; B2/B3 edges and keys provisional. D-035 authorised 08b-v0 only; v1 and downstream wiring still not authorised. Expert USDA/Bognar overlap reading remains pending. |
-| Step 16 | Draft registries, v1-rc schemas and frame/strata exist; EVT FAM: mismatch corrected in draft. Pure semantic review overlay added. Provenance wrappers, AST operands/history policy and H4 still open. 16c waits for Step 19 pilot evidence. |
+| Step 16 | Draft registries/frame/strata retained. Separate QNT/STATE rc2 proposals now implement claim metadata, all eleven AST payloads, exact arithmetic and combined validation. Earlier drafts/frozen schemas unchanged. Coverage/convention acceptance, grounding/integration and history policy still need review; 16c waits for Step 19 and H4. Legacy zero-multiplier defect recorded for versioned correction. |
 | Step 19 | Design exists; no new start/seal approval or sample draw. Human annotations/representability/IAA evidence not replaced by AI review. |
 | Step 35 | 35c/35d/35e synthetic-tested; existing RDKit 2026.3.6 pinned as optional step35 extra. Parv's D1–D8 review choices recorded. Protocol, mapping and new companion-bound review package remain unsigned; no real evaluations. Learned 35g deferred. |
 | Cuisine | D-040 single-reviewer lookup choices applied; REGION extended to reviewed below-country terms. Coverage 12.9% cuisine, 23.7% continent; cuisine conflicts 2,643 retained/excluded from single-cuisine scoring. Expert/signatures pending. |
@@ -36,12 +36,13 @@ supply human annotation, independent agreement, scientific validation or signatu
 - `reports/review/project_completion_roadmap.md`: critical path and all 36 planning-snapshot rows.
 - `reports/step35/35_0_parv_review_DRAFT.md`: Parv's answers, distinct from signatures.
 - `reports/step16/parv_review_comments.md`: AI findings; Parv's own comments pending.
+- `reports/step16/metadata_quantity_contract_v2_DRAFT.md`: proposed rc2 contract, API, synthetic examples, limits and remaining H4 choices.
 - `handoff/PARV_SESSION_NOTES.md`: append-only session record.
 
 Full unit-suite verification now includes transition tests under scoped CPU thread
 caps: `OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1` before the existing
 Python's `-m pytest tests/unit -q`. This is a reproducible hang workaround, not a
-proven root-cause fix. Exact final counts are in WORKLOG S150. The pytest config
+proven root-cause fix. Exact final counts are in WORKLOG S151. The pytest config
 still excludes tests marked ledgers unless explicitly requested.
 
 ## Human work and constraints
