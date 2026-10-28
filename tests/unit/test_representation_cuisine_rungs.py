@@ -111,6 +111,16 @@ def test_npmi_known_answer():
         cr.npmi(0, [1, 1], 4)
 
 
+@pytest.mark.parametrize("joint,marginals,total", [
+    (5, [5, 5], 4), (2, [1, 2], 4), (1, [5, 1], 4),
+    (1, [], 4), (1, [float("nan"), 1], 4),
+    (1, [3, 3], 4), (0.5, [1, 1], 4),
+])
+def test_npmi_rejects_impossible_or_nonfinite_support(joint, marginals, total):
+    with pytest.raises(ValueError, match="support"):
+        cr.npmi(joint, marginals, total)
+
+
 def test_c2_support_thresholds():
     recs = [R(f"a{i}", {"p", "q", "r"}, cuisine="A") for i in range(10)]
     recs += [R(f"a{i}x", {"p", "q"}, cuisine="A") for i in range(10, 20)]
