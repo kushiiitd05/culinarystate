@@ -109,6 +109,8 @@ def r1_mean_profile(recipe: Collection[str],
     if not prof:
         return R1Result(None, 0, len(ings), cov)
     dim = len(z[prof[0]])
+    if not dim or any(len(z[i]) != dim or any(not math.isfinite(v) for v in z[i]) for i in prof):
+        raise ValueError("profile vectors must have the same positive dimension and finite values")
     vec = tuple(sum(z[i][d] for i in prof) / len(prof) for d in range(dim))
     return R1Result(vec, len(prof), len(ings), cov)
 
@@ -116,9 +118,13 @@ def r1_mean_profile(recipe: Collection[str],
 # ---------------------------------------------------------------- R3
 def r3_mass_shares(mass: Mapping[str, Optional[float]]) -> Optional[dict[str, float]]:
     """Quantity-weighted mass shares; None (masked) if any mass is missing."""
+    if any(v is not None and (not math.isfinite(v) or v < 0) for v in mass.values()):
+        raise ValueError("mass must be finite and non-negative (or None when unknown)")
     if not mass or any(v is None for v in mass.values()):
         return None
     total = sum(mass.values())  # type: ignore[arg-type]
+    if not math.isfinite(total):
+        raise ValueError("total mass must be finite")
     if total <= 0:
         return None
     return {k: v / total for k, v in mass.items()}  # type: ignore[operator]
@@ -176,8 +182,14 @@ def _check_k(k: int) -> None:
         raise ValueError("k must be >= 1")
 
 
+def _check_ranking(ranked: Sequence[str]) -> None:
+    if len(ranked) != len(set(ranked)):
+        raise ValueError("ranking contains duplicate candidates")
+
+
 def hit_at_k(ranked: Sequence[str], relevant: Collection[str], k: int) -> Optional[float]:
     _check_k(k)
+    _check_ranking(ranked)
     rel = set(relevant)
     if not rel:
         return None
@@ -186,6 +198,7 @@ def hit_at_k(ranked: Sequence[str], relevant: Collection[str], k: int) -> Option
 
 def recall_at_k(ranked: Sequence[str], relevant: Collection[str], k: int) -> Optional[float]:
     _check_k(k)
+    _check_ranking(ranked)
     rel = set(relevant)
     if not rel:
         return None
@@ -193,6 +206,7 @@ def recall_at_k(ranked: Sequence[str], relevant: Collection[str], k: int) -> Opt
 
 
 def mrr(ranked: Sequence[str], relevant: Collection[str]) -> Optional[float]:
+    _check_ranking(ranked)
     rel = set(relevant)
     if not rel:
         return None
@@ -205,6 +219,7 @@ def mrr(ranked: Sequence[str], relevant: Collection[str]) -> Optional[float]:
 def ndcg_at_k(ranked: Sequence[str], relevant: Collection[str], k: int) -> Optional[float]:
     """Binary-gain nDCG with log2(rank+1) discount."""
     _check_k(k)
+    _check_ranking(ranked)
     rel = set(relevant)
     if not rel:
         return None
