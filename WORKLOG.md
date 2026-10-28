@@ -990,3 +990,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `tools/step08a_audit_packets.py`, `tools/step08a_score_audit.py`, `reports/step08/step08a_audit_result_v1.json`, `reports/step08/step08a_audit_result_v2.json`, `DECISIONS.md`
 - **Verified:** provenance VALID after mapping; sealed keys read only by the scorer
 - **Next:** Step 08a closes with G08-3 FAIL disclosed; Step 35.0 sign-off (cuisine = source confound, Food.com has no cuisine labels); Step 16 schema; A100 for 17/20 after VPN confirmation
+
+### S146 · 2026-10-28 18:24 IST · ES-1 · Step 35e typed similarity registry and lint built (synthetic fixtures only)
+- **Who:** Parv+Claude
+- **Did:** Built the 35e row schema (draft 8.1; nine notions, six statuses), registry lint (8.4: notion mixing, fusion, PROMOTED without decision, same own target for two notions, 8.2b split sharing, Open Babel never SIM-06) and column lint (one notion per sim/score column); tests first; no real registry rows (sim_id scheme H4, D35-12)
+- **Files:** `src/culinarystate/representation/similarity_registry.py`, `tests/unit/test_representation_similarity_registry.py`, `reports/step35/35e_similarity_registry_build_note.md`
+- **Verified:** 20 new tests pass; tests/unit 1510 passed, 1 skipped, test_transition deselected; no real data opened
+- **Next:** Kush: rule on the six conventions and open points in the build note; 35.0 sign-off D2-D8 continues
