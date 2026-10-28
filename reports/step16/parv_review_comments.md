@@ -9,6 +9,14 @@ fixed in the draft, and a pure semantic review overlay now reports several
 cross-field gaps. H4 is still pending. Parv selected pilot v2 in D-040, retaining
 v1 for comparison; only Kush's confirmation remains pending for that choice.
 
+S151 follow-up: the separate rc2 proposal now implements explicit claim metadata,
+all eleven typed AST payloads, arithmetic checks and exact rational serialisation.
+See `metadata_quantity_contract_v2_DRAFT.md` and its synthetic examples. This
+implements proposed solutions to the metadata/AST gaps without migrating rc1 or
+freezing them. Grounding/integration, history policy, coverage acceptance and the
+human pilot remain open. The additional legacy zero-multiplier defect is recorded
+in that build note; it is not silently patched in the older path.
+
 ## Checks completed
 
 - Baseline unit suite: 1,510 passed, 1 skipped, 8 deselected
