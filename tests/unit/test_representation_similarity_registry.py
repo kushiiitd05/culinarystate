@@ -172,3 +172,13 @@ def test_notion_coverage_lists_missing_notions():
     assert cov["CHEMICAL"]["rows"] == 1 and cov["CHEMICAL"]["statuses"] == {"BASELINE"}
     assert cov["STRUCTURAL"]["rows"] == 0
     assert set(sr.unlisted_notions([row()])) == set(sr.NOTIONS) - {"CHEMICAL"}
+
+
+@pytest.mark.parametrize("column", ["sim_id", "decision_ref"])
+def test_duplicate_csv_headers_cannot_silently_overwrite_values(column):
+    text = sr.to_csv([row()])
+    header, record = text.splitlines()
+    # DictReader otherwise keeps only the final occurrence of each column.
+    malformed = f"{header},{column}\n{record},overwritten\n"
+    with pytest.raises(sr.RegistryError, match="duplicate column"):
+        sr.parse_registry_csv(malformed)
