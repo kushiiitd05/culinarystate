@@ -3,6 +3,12 @@
 2026-10-28. The findings below are AI technical review, not Parv's comments,
 human labels, approval, or a freeze. Parv's review comments: PENDING.
 
+Follow-up AI review: `reports/review/AI_REVIEW_2026-10-28.md` is the current
+disposition of the initial findings below. The EVT FAM: namespace mismatch is
+fixed in the draft, and a pure semantic review overlay now reports several
+cross-field gaps. H4 is still pending. Parv selected pilot v2 in D-040, retaining
+v1 for comparison; only Kush's confirmation remains pending for that choice.
+
 ## Checks completed
 
 - Baseline unit suite: 1,510 passed, 1 skipped, 8 deselected
@@ -21,7 +27,7 @@ human labels, approval, or a freeze. Parv's review comments: PENDING.
   stale: the current lineage guard permits append-only growth and its test passes.
 - The text-strata file matches the D-038 hash
   `ddbd302801e5bebd1bccb563fe3223eadb24bca1f70bf09b3ca761e041580728`.
-  Pilot column choice remains pending; no sample drawn.
+  Parv's pilot-column choice is v2 (D-040, DRAFT_PENDING_KUSH); no sample drawn.
 
 ## Reproduced issues and review questions
 
@@ -60,6 +66,7 @@ human labels, approval, or a freeze. Parv's review comments: PENDING.
    interpretation of the recipe-text prohibition, not a newly approved policy.
    Confirm it at H4, including how externally measured history would be handled.
 
-No schema, vocabulary, sampling frame, or human annotation was changed by this
-review. The issues above are inputs to H4 and the Step 19 pilot problem log;
+The initial review changed no schema, vocabulary, sampling frame or human
+annotation. The later draft-only schema correction is identified above. The
+issues are inputs to H4 and the Step 19 pilot problem log;
 16c still waits for the pilot. The full SSOT was not loaded.
