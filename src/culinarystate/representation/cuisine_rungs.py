@@ -135,8 +135,12 @@ def npmi(n_joint: int, n_each: Sequence[int], n_total: int) -> float:
     Conventions: p(joint) = 1 gives 1.0. Triplet NPMI is the direct generalisation
     (draft says only "NPMI"; flagged for sign-off).
     """
-    if n_joint <= 0 or n_total <= 0 or any(n <= 0 for n in n_each):
-        raise ValueError("NPMI undefined for zero joint or marginal count")
+    supports = [n_joint, n_total, *n_each]
+    if (len(n_each) < 2 or any(not math.isfinite(n) or n <= 0 or isinstance(n, bool) or n != int(n)
+                             for n in supports)
+            or n_joint > n_total or any(n_joint > n or n > n_total for n in n_each)
+            or n_joint < sum(n_each) - (len(n_each) - 1) * n_total):
+        raise ValueError("NPMI support counts must be positive integers with feasible joint/marginal totals")
     pj = n_joint / n_total
     if pj >= 1.0:
         return 1.0
