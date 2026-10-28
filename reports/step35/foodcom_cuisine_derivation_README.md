@@ -4,10 +4,10 @@ Status: `DRAFT_PENDING_SIGN`. For review by Kush and Parv. No cuisine statistic 
 
 Files (all in `registry/cuisine/`): `foodcom_tag_census_v1.csv` (tag, n_recipes, source_column; cut n_recipes >= 20 is a privacy/noise cut, not a science claim), `explicit_cuisine_labels_v1.csv`, `cuisine_lookup_v1_DRAFT.csv` (the editable fixed lookup, 211 terms, with `label_level`), `foodcom_tag_cuisine_map_v1_DRAFT.csv` (columns: tag, n_recipes, n_recipes_keywords, n_recipes_category, proposed_cuisine, proposed_continent, label_level, match_basis, status).
 
-Method: tags = `Keywords` (list) and `RecipeCategory` (scalar), stripped, counted once per recipe. Match is exact on casefolded tag against the lookup (country name, nationality adjective / cuisine name); no fuzzy matching, no judgement. Continent = UN M49 continent (Africa, Americas, Asia, Europe, Oceania); `MIXED` / `NEEDS_HUMAN` for pan-regional or ambiguous terms (those carry cuisine `NEEDS_HUMAN` and never count as a mapped cuisine). Unmatched tags = `UNKNOWN`. Lookup terms are an editable proposal; terms absent from the data are harmless.
+Method: tags = `Keywords` (list) and `RecipeCategory` (scalar), stripped, counted once per recipe. Match is exact on casefolded tag against the lookup; no fuzzy matching or automatic judgement. Continent = UN M49 continent (Africa, Americas, Asia, Europe, Oceania); `MIXED` gives no continent label. Unmatched tags and explicitly reviewed ambiguous terms can be `UNKNOWN`. Lookup terms are an editable proposal; terms absent from the data are harmless. The mapping remains unsigned.
 
 ## Label levels (D-037 item 1)
-`label_level` in lookup and map: `CUISINE` (country / cuisine / nationality term: cuisine + continent), `REGION` (term names more than one country: `proposed_cuisine=UNKNOWN`, continent kept only if the whole region lies in one UN M49 continent, else `MIXED`), `NEEDS_HUMAN` (not decidable from the "more than one country" rule alone), `UNKNOWN` (tag not in lookup). All `DRAFT_PENDING_SIGN`. Cuisine analysis uses CUISINE terms only; continent analysis uses CUISINE or REGION terms with a real continent (MIXED / NEEDS_HUMAN give no continent).
+`label_level` in lookup and map: `CUISINE` (country / cuisine / nationality term: cuisine + continent), `REGION` (multi-country or below-country region: `proposed_cuisine=UNKNOWN`, continent kept only if the interpretation lies in one UN M49 continent, else `MIXED`), `NEEDS_HUMAN` (unreviewed ambiguity), `UNKNOWN` (unmatched tag or explicit ambiguous-term ruling, with cuisine and continent both UNKNOWN). All generated map rows stay `DRAFT_PENDING_SIGN`. Cuisine analysis uses CUISINE terms only; continent analysis uses CUISINE or REGION terms with a real continent. D-040 extends REGION to below-country terms following D-037's Southwestern U.S. precedent; this is Parv's single-reviewer choice, awaiting Kush/expert review, not a signed ontology.
 
 ### Pan-regional classification for human review (decided only by "names more than one country")
 | Term | Recipes (union) | level | continent | Note |
@@ -26,13 +26,37 @@ Method: tags = `Keywords` (list) and `RecipeCategory` (scalar), stripped, counte
 | Polynesian | 376 | REGION | Oceania | UNCERTAIN: Easter Island (Chile) is Polynesian; M49 puts Polynesia in Oceania |
 | Southwest Pacific | (<20) | REGION | MIXED | boundary undefined |
 | Oriental | (<20) | NEEDS_HUMAN | NEEDS_HUMAN | dated term; East Asia vs Asia unclear |
-Not pan-regional, kept NEEDS_HUMAN (single country or ambiguous sense, cuisine-fold question 2 still open): Tex Mex 2,831, Cajun 2,486, Creole 1,851 (continent MIXED), Hawaiian 875, Pennsylvania Dutch 366, Native American 355, Cantonese 307, Szechuan 231, Hunan 54, Georgian 41; in lookup only: American, Southern, Jewish, Roman.
+Parv accepted the existing regional continents above without exceptions in D-040.
+The historical uncertainty notes explain their origin; acceptance is single-reviewer,
+not expert verification.
+
+### Parv's lookup rulings (2026-10-28, D-040; single reviewer)
+
+| Terms | level | cuisine | continent |
+|---|---|---|---|
+| Tex Mex, Cajun, Pennsylvania Dutch, Native American | REGION | UNKNOWN | Americas |
+| Cantonese, Szechuan, Hunan | REGION | UNKNOWN | Asia |
+| Creole, Hawaiian, Jewish | REGION | UNKNOWN | MIXED |
+| American | CUISINE | American | Americas |
+| Georgian, Southern, Roman, Oriental | UNKNOWN | UNKNOWN | UNKNOWN |
+
+Creole retains the Louisiana/Caribbean/Indian Ocean ambiguity; Hawaiian retains
+the US-state/Polynesia ambiguity. American is Parv's explicit cuisine ruling;
+the other ambiguous terms are not guessed. `basis=PARV_REVIEW_D040_*` records the
+source of each changed lookup row. Expert cuisine reviewer remains pending.
 
 ## Counts (522,517 recipes)
 - Tags in census (>= 20 recipes): 507 tag-column rows (625 distinct before cut); 286 distinct tags in the map.
-- Map tags: 57 CUISINE, 9 REGION, 10 NEEDS_HUMAN, rest UNKNOWN (no lookup match).
-- Cuisine analysis (CUISINE terms only): recipes with a CUISINE-level mapping 67,216 (12.9%); with > 1 distinct cuisine 2,643 (flag `CONFLICTING`, not resolved); UNKNOWN 455,301 (87.1%), of which 59,286 carry only a REGION / NEEDS_HUMAN term. 67,216 + 455,301 = 522,517 (tested).
-- Continent analysis (CUISINE or REGION terms): recipes with a continent-level label 120,870 (23.1%); with conflicting continents 3,265 (flag, not resolved); UNKNOWN 401,647 (76.9%), of which 5,632 carry only MIXED / NEEDS_HUMAN terms. 120,870 + 401,647 = 522,517 (tested).
+- Map tags after D-040: 57 CUISINE, 18 REGION, 0 NEEDS_HUMAN, rest UNKNOWN (unmatched or explicitly ruled ambiguous).
+- Cuisine analysis (CUISINE terms only): recipes with a CUISINE-level mapping 67,216 (12.9%); with > 1 distinct cuisine 2,643 (flag `CONFLICTING`, not resolved); UNKNOWN 455,301 (87.1%), of which 59,286 carry lookup terms but no CUISINE-level label. 67,216 + 455,301 = 522,517 (tested).
+- Continent review counts (CUISINE or REGION terms): recipes with a continent-level label 123,812 (23.7%); with conflicting continents 3,386 (flag, not resolved); UNKNOWN 398,705 (76.3%), of which 2,690 carry lookup terms without a usable continent (including explicit UNKNOWN terms). 123,812 + 398,705 = 522,517 (tested). These are draft mapping-coverage counts, not scored cuisine results.
+
+Parv accepts the 20-recipe reporting cut and 12.9% cuisine coverage with this
+limitation disclosed. Country-cuisine coverage and its 2,643 conflicts did not
+change after his rulings. Conflicting cuisine recipes are to be excluded from
+single-cuisine scoring, with their CONFLICTING flag and count retained; CONFLICTING
+is not a scored class. The census writes aggregate counts only and implements no
+scoring or per-recipe label export.
 
 ## Count discrepancy census vs map (fixed)
 The census counts per (tag, source_column); the map counts a tag once per recipe over Keywords OR RecipeCategory. Example: Easy = 276,838 (Keywords) + 727 (RecipeCategory) = 277,565 (no recipe has it in both). Map `n_recipes` is now defined as that union, and the map carries `n_recipes_keywords` and `n_recipes_category`, which equal the census rows (tested; max(k,c) <= n <= k+c).
@@ -43,11 +67,7 @@ Not possible. `cuisine_if_explicit` is non-null for BBC 6,977, Gutenberg 51,492,
 ## Confound warning
 Food.com is 522,517 of 612,782 recipes (85.3%). Derived cuisine would exist almost only for Food.com, while explicit labels come almost only from Gutenberg/BBC/Wikibooks. Derived cuisine and source are therefore tied (cuisine = source, THR-35P-26), and derived labels (`DERIVED_FROM_TAG`) must never be pooled with explicit ones in one claim. Only 12.9% of Food.com recipes get a label and the tags are author-chosen, so label coverage is itself selective.
 
-## Top NEEDS_HUMAN terms
-See the classification tables above (superseded the earlier all-in-one list).
-
-## Open questions (max 4)
-1. (Answered by D-037 item 1: REGION labels, continent analysis only.) Review the REGION list above, esp. Southwest Asia and Polynesian.
-2. Subnational and US-regional terms (Cantonese, Szechuan, Cajun, Tex Mex, Southwestern U.S., Hawaiian, Creole): fold into a country cuisine, keep separate, or leave UNKNOWN?
-3. Conflicting recipes (2,643): drop from cuisine work, keep as a `CONFLICTING` class, or multi-label?
-4. Is the 20-recipe tag cut and the "mapped at all" coverage (12.9%) acceptable given THR-35P-22 (>= 100 recipes and >= 2 source families, which derived-only Food.com labels cannot satisfy alone)?
+## Remaining review gates
+1. Kush/expert review of Parv's lookup choices, including the expanded REGION definition; cuisine expert not yet appointed (plan estimates 4-6 h).
+2. Both humans sign the final mapping/protocol, or Kush records an authorised single-signer reason. No such signatures or override exist.
+3. No scored cuisine result until G35-PRE; derived-only Food.com classes still cannot meet the two-source-family headline requirement alone. The pending expert review is not waived by zero NEEDS_HUMAN map rows.
