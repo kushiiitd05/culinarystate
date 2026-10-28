@@ -28,3 +28,10 @@ The original `reserve_split` regex (verbatim from `make_gold_batch.py`) cannot m
 Y counts for v2: BBC 6,410; Food.com 155,694; Wikibooks 989.
 Output sha256 after the change: `ddbd302801e5bebd1bccb563fe3223eadb24bca1f70bf09b3ca761e041580728` (the earlier hash in this README, `fae4faca...`, is for the file before the column was added).
 Which column the pilot draws from (v1 for comparability or v2 for correctness) is a pre-registration choice for Kush and Parv before any sample is drawn; nothing was drawn.
+
+## Parv's pilot-column choice (2026-10-28, D-040; DRAFT_PENDING_KUSH)
+
+Parv selects `reserve_split_v2` for the pilot and retains `reserve_split` v1
+for comparison. This is a recorded draft choice for Kush to confirm, not Step 19
+start/seal approval. No sample has been drawn and neither strata column nor the
+sampling frame was changed. The D-038 output hash above remains current.
