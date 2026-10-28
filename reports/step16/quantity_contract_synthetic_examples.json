@@ -1,0 +1,386 @@
+{
+  "status": "AI_DRAFT_SYNTHETIC_ONLY_PENDING_H4",
+  "schema_version": "1.0.0-rc2",
+  "note": "Computed demonstrations, not independent Gold, real recipe annotations or human verification.",
+  "examples": [
+    {
+      "case": "exact_third",
+      "input_ast": {
+        "node_type": "RATIONAL",
+        "numerator": 1,
+        "denominator": 3,
+        "unit": "g",
+        "meta": {
+          "origin": "EXPLICIT_SOURCE",
+          "status": "KNOWN",
+          "claim_route": "EXPLICIT",
+          "evidence_refs": [
+            "synthetic:contract-example"
+          ]
+        }
+      },
+      "computed_result": {
+        "status": "KNOWN",
+        "low": {
+          "numerator": 1,
+          "denominator": 3
+        },
+        "high": {
+          "numerator": 1,
+          "denominator": 3
+        },
+        "unit": "g",
+        "alternatives": [],
+        "raw": null,
+        "reason": "",
+        "origins": [
+          "EXPLICIT_SOURCE"
+        ],
+        "interval_kinds": []
+      }
+    },
+    {
+      "case": "source_range_sum",
+      "input_ast": {
+        "node_type": "ADD",
+        "children": [
+          {
+            "node_type": "RATIONAL",
+            "numerator": 100,
+            "denominator": 1,
+            "unit": "g",
+            "meta": {
+              "origin": "EXPLICIT_SOURCE",
+              "status": "KNOWN",
+              "claim_route": "EXPLICIT",
+              "evidence_refs": [
+                "synthetic:contract-example"
+              ]
+            }
+          },
+          {
+            "node_type": "RANGE",
+            "low": 25,
+            "high": 50,
+            "unit": "g",
+            "meta": {
+              "origin": "EXPLICIT_SOURCE",
+              "status": "KNOWN",
+              "claim_route": "EXPLICIT",
+              "evidence_refs": [
+                "synthetic:contract-example"
+              ]
+            }
+          }
+        ],
+        "meta": {
+          "origin": "DERIVED_DETERMINISTIC",
+          "status": "KNOWN",
+          "claim_route": "INFERRED_RULE",
+          "evidence_refs": [
+            "synthetic:contract-example"
+          ]
+        }
+      },
+      "computed_result": {
+        "status": "RANGE",
+        "low": {
+          "numerator": 125,
+          "denominator": 1
+        },
+        "high": {
+          "numerator": 150,
+          "denominator": 1
+        },
+        "unit": "g",
+        "alternatives": [],
+        "raw": null,
+        "reason": "",
+        "origins": [
+          "DERIVED_DETERMINISTIC",
+          "EXPLICIT_SOURCE"
+        ],
+        "interval_kinds": [
+          "SOURCE_RANGE"
+        ]
+      }
+    },
+    {
+      "case": "explicit_packages",
+      "input_ast": {
+        "node_type": "PACKAGE_CONTENT",
+        "children": [
+          {
+            "node_type": "RATIONAL",
+            "numerator": 2,
+            "denominator": 1,
+            "unit": "1",
+            "meta": {
+              "origin": "EXPLICIT_SOURCE",
+              "status": "KNOWN",
+              "claim_route": "EXPLICIT",
+              "evidence_refs": [
+                "synthetic:contract-example"
+              ]
+            }
+          },
+          {
+            "node_type": "RATIONAL",
+            "numerator": 400,
+            "denominator": 1,
+            "unit": "g",
+            "meta": {
+              "origin": "EXPLICIT_SOURCE",
+              "status": "KNOWN",
+              "claim_route": "EXPLICIT",
+              "evidence_refs": [
+                "synthetic:contract-example"
+              ]
+            }
+          }
+        ],
+        "meta": {
+          "origin": "DERIVED_DETERMINISTIC",
+          "status": "KNOWN",
+          "claim_route": "INFERRED_RULE",
+          "evidence_refs": [
+            "synthetic:contract-example"
+          ]
+        }
+      },
+      "computed_result": {
+        "status": "KNOWN",
+        "low": {
+          "numerator": 800,
+          "denominator": 1
+        },
+        "high": {
+          "numerator": 800,
+          "denominator": 1
+        },
+        "unit": "g",
+        "alternatives": [],
+        "raw": null,
+        "reason": "",
+        "origins": [
+          "DERIVED_DETERMINISTIC",
+          "EXPLICIT_SOURCE"
+        ],
+        "interval_kinds": []
+      }
+    },
+    {
+      "case": "unselected_alternatives",
+      "input_ast": {
+        "node_type": "ALTERNATIVE",
+        "children": [
+          {
+            "node_type": "RATIONAL",
+            "numerator": 500,
+            "denominator": 1,
+            "unit": "g",
+            "meta": {
+              "origin": "EXPLICIT_SOURCE",
+              "status": "KNOWN",
+              "claim_route": "EXPLICIT",
+              "evidence_refs": [
+                "synthetic:contract-example"
+              ]
+            }
+          },
+          {
+            "node_type": "RATIONAL",
+            "numerator": 1,
+            "denominator": 1,
+            "unit": "cup",
+            "meta": {
+              "origin": "EXPLICIT_SOURCE",
+              "status": "KNOWN",
+              "claim_route": "EXPLICIT",
+              "evidence_refs": [
+                "synthetic:contract-example"
+              ]
+            }
+          }
+        ],
+        "meta": {
+          "origin": "DERIVED_DETERMINISTIC",
+          "status": "KNOWN",
+          "claim_route": "INFERRED_RULE",
+          "evidence_refs": [
+            "synthetic:contract-example"
+          ]
+        }
+      },
+      "computed_result": {
+        "status": "ALTERNATIVE",
+        "low": null,
+        "high": null,
+        "unit": null,
+        "alternatives": [
+          {
+            "status": "KNOWN",
+            "low": {
+              "numerator": 500,
+              "denominator": 1
+            },
+            "high": {
+              "numerator": 500,
+              "denominator": 1
+            },
+            "unit": "g",
+            "alternatives": [],
+            "raw": null,
+            "reason": "",
+            "origins": [
+              "EXPLICIT_SOURCE"
+            ],
+            "interval_kinds": []
+          },
+          {
+            "status": "KNOWN",
+            "low": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "high": {
+              "numerator": 1,
+              "denominator": 1
+            },
+            "unit": "cup",
+            "alternatives": [],
+            "raw": null,
+            "reason": "",
+            "origins": [
+              "EXPLICIT_SOURCE"
+            ],
+            "interval_kinds": []
+          }
+        ],
+        "raw": null,
+        "reason": "",
+        "origins": [
+          "DERIVED_DETERMINISTIC",
+          "EXPLICIT_SOURCE"
+        ],
+        "interval_kinds": []
+      }
+    },
+    {
+      "case": "uncertain_remainder",
+      "input_ast": {
+        "node_type": "REMAINDER_OF",
+        "children": [
+          {
+            "node_type": "RANGE",
+            "low": 10,
+            "high": 20,
+            "unit": "g",
+            "meta": {
+              "origin": "EXPLICIT_SOURCE",
+              "status": "KNOWN",
+              "claim_route": "EXPLICIT",
+              "evidence_refs": [
+                "synthetic:contract-example"
+              ]
+            }
+          },
+          {
+            "node_type": "RATIONAL",
+            "numerator": 15,
+            "denominator": 1,
+            "unit": "g",
+            "meta": {
+              "origin": "EXPLICIT_SOURCE",
+              "status": "KNOWN",
+              "claim_route": "EXPLICIT",
+              "evidence_refs": [
+                "synthetic:contract-example"
+              ]
+            }
+          }
+        ],
+        "meta": {
+          "origin": "DERIVED_DETERMINISTIC",
+          "status": "KNOWN",
+          "claim_route": "INFERRED_RULE",
+          "evidence_refs": [
+            "synthetic:contract-example"
+          ]
+        }
+      },
+      "computed_result": {
+        "status": "UNKNOWN",
+        "low": null,
+        "high": null,
+        "unit": "g",
+        "alternatives": [],
+        "raw": null,
+        "reason": "POSSIBLE_OVERALLOCATION",
+        "origins": [
+          "DERIVED_DETERMINISTIC",
+          "EXPLICIT_SOURCE"
+        ],
+        "interval_kinds": [
+          "SOURCE_RANGE"
+        ]
+      }
+    },
+    {
+      "case": "qualitative",
+      "input_ast": {
+        "node_type": "QUALITATIVE",
+        "raw": "a synthetic pinch",
+        "meta": {
+          "origin": "EXPLICIT_SOURCE",
+          "status": "KNOWN",
+          "claim_route": "EXPLICIT",
+          "evidence_refs": [
+            "synthetic:contract-example"
+          ]
+        }
+      },
+      "computed_result": {
+        "status": "QUALITATIVE",
+        "low": null,
+        "high": null,
+        "unit": null,
+        "alternatives": [],
+        "raw": "a synthetic pinch",
+        "reason": "",
+        "origins": [
+          "EXPLICIT_SOURCE"
+        ],
+        "interval_kinds": []
+      }
+    },
+    {
+      "case": "unknown",
+      "input_ast": {
+        "node_type": "UNKNOWN",
+        "raw": "not stated in synthetic example",
+        "meta": {
+          "origin": "UNKNOWN",
+          "status": "UNKNOWN",
+          "claim_route": "EXPLICIT",
+          "evidence_refs": [
+            "synthetic:contract-example"
+          ]
+        }
+      },
+      "computed_result": {
+        "status": "UNKNOWN",
+        "low": null,
+        "high": null,
+        "unit": null,
+        "alternatives": [],
+        "raw": "not stated in synthetic example",
+        "reason": "",
+        "origins": [
+          "UNKNOWN"
+        ],
+        "interval_kinds": []
+      }
+    }
+  ]
+}
