@@ -142,3 +142,66 @@ def test_single_signer_needs_a_recorded_override_reason(doc, tmp_path):
         require_signed_prereg(doc, h)
     _write(h, sha256=_sha(doc), signers=["Kush"], single_signer_override={"reason": "second author away", "by": "Kush"})
     assert require_signed_prereg(doc, h) == _sha(doc)
+
+
+def test_bound_lookup_edit_invalidates_a_signed_synthetic_package(doc, tmp_path):
+    lookup = tmp_path / "lookup.csv"
+    lookup.write_text("synthetic lookup\n")
+    h = tmp_path / "h.json"
+    rec = sign_record_template(doc, bound_files=[lookup])
+    rec.update(status="SIGNED", signers=["Synthetic A", "Synthetic B"], date="2026-10-28")
+    h.write_text(json.dumps(rec))
+    assert require_signed_prereg(doc, h, required_files=[lookup]) == _sha(doc)
+    lookup.write_text("changed lookup\n")
+    with pytest.raises(PreregNotSigned, match="bound file"):
+        require_signed_prereg(doc, h, required_files=[lookup])
+
+
+def test_required_lookup_cannot_be_omitted_from_hash_record(doc, tmp_path):
+    lookup = tmp_path / "lookup.csv"
+    lookup.write_text("synthetic lookup\n")
+    h = tmp_path / "h.json"
+    _write(h, sha256=_sha(doc))
+    with pytest.raises(PreregNotSigned, match="required bound"):
+        require_signed_prereg(doc, h, required_files=[lookup])
+
+
+def test_bound_file_paths_survive_relocating_the_whole_package(doc, tmp_path):
+    import shutil
+    lookup = tmp_path / "lookup.csv"
+    lookup.write_text("synthetic lookup\n")
+    h = tmp_path / "h.json"
+    rec = sign_record_template(doc, bound_files=[lookup])
+    rec.update(status="SIGNED", signers=["Synthetic A", "Synthetic B"], date="2026-10-28")
+    h.write_text(json.dumps(rec))
+    dest = tmp_path / "relocated"
+    dest.mkdir()
+    for path in (doc, lookup, h):
+        shutil.copyfile(path, dest / path.name)
+    assert require_signed_prereg(dest / doc.name, dest / h.name,
+                                 required_files=[dest / lookup.name]) == _sha(doc)
+
+
+@pytest.mark.parametrize("bad", [None, {}, [{"path": "missing", "sha256": "0" * 64}],
+                                [{"path": "lookup.csv", "sha256": "UNKNOWN"}]])
+def test_malformed_or_missing_bound_files_are_refused(doc, tmp_path, bad):
+    h = tmp_path / "h.json"
+    _write(h, sha256=_sha(doc), bound_files=bad)
+    with pytest.raises(PreregNotSigned, match="bound"):
+        require_signed_prereg(doc, h)
+
+
+def test_decorator_checks_required_bound_files_before_function_runs(doc, tmp_path):
+    lookup = tmp_path / "lookup.csv"
+    lookup.write_text("synthetic lookup\n")
+    h = tmp_path / "h.json"
+    _write(h, sha256=_sha(doc))
+    calls = []
+
+    @evaluation_entry
+    def run():
+        calls.append(True)
+
+    with pytest.raises(PreregNotSigned, match="required bound"):
+        run(prereg_path=doc, hash_file=h, prereg_required_files=[lookup])
+    assert not calls
