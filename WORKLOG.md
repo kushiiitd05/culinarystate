@@ -997,3 +997,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `src/culinarystate/representation/similarity_registry.py`, `tests/unit/test_representation_similarity_registry.py`, `reports/step35/35e_similarity_registry_build_note.md`
 - **Verified:** 20 new tests pass; tests/unit 1510 passed, 1 skipped, test_transition deselected; no real data opened
 - **Next:** Kush: rule on the six conventions and open points in the build note; 35.0 sign-off D2-D8 continues
+
+### S147 · 2026-10-28 21:54 IST · ES-1 · Takeover recheck, unsigned review workspace and Step 16 technical review
+- **Who:** Parv
+- **Did:** Reproduced and fixed duplicate CSV headers silently overwriting similarity registry fields, tests first on synthetic fixtures; aligned guard documentation; preserved D1 as an unsigned review choice with D2-D8 pending (D5 reserved to Kush); prepared unsigned draft hash template and confirmed guard refusal; reviewed Step 16 schemas, vocabularies and hierarchy structure without changing human labels or schema semantics.
+- **Files:** `tests/unit/test_representation_similarity_registry.py`, `src/culinarystate/representation/similarity_registry.py`, `reports/step35/35e_similarity_registry_build_note.md`, `reports/step35/g35_pre_guard_README.md`, `reports/step35/35_0_parv_review_DRAFT.md`, `reports/step35/preregistration_35_0_v1_draft.sha256.UNSIGNED.json`, `reports/step16/parv_review_comments.md`, `handoff/PARV_SESSION_NOTES.md`
+- **Verified:** Two regression cases failed before the fix; targeted suite 147 passed; final unit suite 1512 passed, 1 skipped, 8 deselected (test_transition). EVD/COND/SRC/MEAS/SNAP full baseline hashes match; STUDY/_ids baseline prefixes match. Hierarchies have no missing parents or cycles. Text-strata D-038 hash matches. No real Step 35 evaluations.
+- **Next:** Parv answers the batched review questions; apply explicit rulings and record draft pilot-column choice for Kush. Kush resolves 35e conventions, Step 16 family-ID/metadata/AST semantics, toolkit and licence decisions, and signature/override. No push.
