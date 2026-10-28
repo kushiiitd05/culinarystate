@@ -107,7 +107,7 @@ def evt(**kw):
 
 
 def test_evt_positive():
-    assert ok("EVT", evt(event_kind="ACTION", process_id=i("PROC"), process_family_id=i("PROC", 2),
+    assert ok("EVT", evt(event_kind="ACTION", process_id=i("PROC"), process_family_id="FAM:DRY_HEAT",
                          transformation_mode="THERMAL", modality="REQUIRED", temporal_relation="UNTIL",
                          clock="TAU_PROCESS", depends_on=[i("EVT", 2)], endpoint_leakage_flag=False,
                          tool_roles=[{"tool_id": i("TOOL"), "role": "HEAT_SOURCE"}],
@@ -131,6 +131,12 @@ def test_evt_unmapped_action_requires_raw_verb():
     assert not ok("EVT", evt(event_kind="ACTION", process_id=None))
     assert ok("EVT", evt(event_kind="ACTION", process_id=None, action_raw="spatchcock"))
     assert ok("EVT", evt(event_kind="OBSERVATION", process_id=None))
+
+
+def test_evt_family_reference_uses_existing_draft_hierarchy_namespace():
+    assert ok("EVT", evt(process_family_id="FAM:DRY_HEAT"))
+    assert ok("EVT", evt(process_family_id=None))
+    assert not ok("EVT", evt(process_family_id=i("PROC")))
 
 
 # ---- ENTITY
