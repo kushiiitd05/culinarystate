@@ -10,8 +10,9 @@ import functools
 import hashlib
 import json
 from datetime import date as _date
+from os.path import relpath
 from pathlib import Path
-from typing import Any, Callable, TypeVar
+from typing import Any, Callable, Iterable, TypeVar
 
 F = TypeVar("F", bound=Callable[..., Any])
 
@@ -33,18 +34,31 @@ def sha256_file(path: Path | str) -> str:
     return h.hexdigest()
 
 
-def sign_record_template(prereg_path: Path | str) -> dict[str, Any]:
+def sign_record_template(prereg_path: Path | str, *,
+                         bound_files: Iterable[Path | str] = ()) -> dict[str, Any]:
     """Return an UNSIGNED record: current sha256, empty signers, empty date."""
     p = Path(prereg_path)
     if not p.is_file():
         raise PreregNotSigned(f"pre-registration document not found: {p}")
-    return {
+    rec = {
         "status": UNSIGNED_STATUS,
         "document": p.name,
         "sha256": sha256_file(p),
         "signers": [],
         "date": "",
     }
+    bound = []
+    seen = set()
+    for path in bound_files:
+        target = Path(path).resolve()
+        if not target.is_file() or target in seen:
+            raise PreregNotSigned(f"missing or duplicate bound file: {path}")
+        seen.add(target)
+        bound.append({"path": Path(relpath(target, p.resolve().parent)).as_posix(),
+                      "sha256": sha256_file(target)})
+    if bound:
+        rec["bound_files"] = bound
+    return rec
 
 
 def _valid_signers(signers: Any) -> bool:
@@ -72,7 +86,33 @@ def _valid_date(value: Any) -> bool:
     return True
 
 
-def require_signed_prereg(prereg_path: Path | str, hash_file: Path | str) -> str:
+def _check_bound_files(rec, doc: Path, required_files: Iterable[Path | str]) -> None:
+    entries = rec.get("bound_files", [])
+    if not isinstance(entries, list):
+        raise PreregNotSigned("bound_files must be a list")
+    recorded = set()
+    for entry in entries:
+        if (not isinstance(entry, dict) or not isinstance(entry.get("path"), str)
+                or not entry["path"].strip() or Path(entry["path"]).is_absolute()
+                or not isinstance(entry.get("sha256"), str) or len(entry["sha256"]) != 64):
+            raise PreregNotSigned("malformed bound file record")
+        target = (doc.resolve().parent / entry["path"]).resolve()
+        if target in recorded:
+            raise PreregNotSigned(f"duplicate bound file: {entry['path']}")
+        recorded.add(target)
+        try:
+            current = sha256_file(target)
+        except OSError as exc:
+            raise PreregNotSigned(f"bound file unreadable: {entry['path']}") from exc
+        if current != entry["sha256"].lower():
+            raise PreregNotSigned(f"bound file sha256 differs: {entry['path']}")
+    for path in required_files:
+        if Path(path).resolve() not in recorded:
+            raise PreregNotSigned(f"required bound file absent from hash record: {path}")
+
+
+def require_signed_prereg(prereg_path: Path | str, hash_file: Path | str, *,
+                          required_files: Iterable[Path | str] = ()) -> str:
     """Return the verified sha256 or raise PreregNotSigned."""
     doc, hf = Path(prereg_path), Path(hash_file)
     if not hf.is_file():
@@ -101,6 +141,7 @@ def require_signed_prereg(prereg_path: Path | str, hash_file: Path | str) -> str
         )
     if not _valid_date(rec.get("date")):
         raise PreregNotSigned("no valid ISO signing date recorded")
+    _check_bound_files(rec, doc, required_files)
     return current
 
 
@@ -115,7 +156,8 @@ def evaluation_entry(fn: F) -> F:
             hash_file = kwargs.pop("hash_file")
         except KeyError as exc:
             raise PreregNotSigned(f"missing required argument {exc}") from exc
-        require_signed_prereg(prereg_path, hash_file)
+        required_files = kwargs.pop("prereg_required_files", ())
+        require_signed_prereg(prereg_path, hash_file, required_files=required_files)
         return fn(*args, **kwargs)
 
     return wrapper  # type: ignore[return-value]
