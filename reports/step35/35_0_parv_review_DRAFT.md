@@ -8,18 +8,21 @@ Source: `35_0_signoff_sheet_DRAFT.md`; full protocol:
 | Decision | Parv's recorded choice | Still needed |
 |---|---|---|
 | D1 | (a), all 43 threshold rows as drafted; reported in the session handoff | Human signature; Kush's review/signature or Kush's written single-signer reason |
-| D2 | Approved Sweet/Bitter/Sour, confirmed negatives only, and the database-source control | Deprecated-edge audit reviewer/disposition not specified; audit remains pending, not skipped |
+| D2 | Approved Sweet/Bitter/Sour, confirmed negatives only, and the database-source control | Reviewer pending; Kush to arrange someone who agrees to review; audit not skipped |
 | D3 | Yes: accept banned inputs and local-only handling | Kush retains H2 licence decisions; this does not approve a licence |
-| D4 | Yes: separate derived/explicit claims, source controls, possibly empty headline cuisine set | Cuisine-term mapping, conflicts, regional continents, coverage acceptance and reviewer remain unanswered |
+| D4 | Yes to separate derived/explicit claims, source controls and possibly empty headline set; D-040 records all lookup/continent/coverage rulings and conflict exclusion | Single-reviewer choices only; expert reviewer pending (plan expects 4-6 h); mapping still unsigned |
 | D5 | "Go. Dont wait, but record the decision" | Parv explicitly supersedes the earlier wait-for-Kush instruction for this toolkit choice; existing RDKit 2026.3.6 pinned as optional Step 35 dependency on this Mac; no real evaluation authorised |
-| D6 | "Yes to both rules": descriptive-only until 07I-S and linking floor 0.80 | Crosswalk audit owner/commitment not specified |
+| D6 | "Yes to both rules": descriptive-only until 07I-S and linking floor 0.80; Parv owns 50-crosswalk audit (~2 h, D35-7) | Audit not done yet |
 | D7 | Yes to all four: substitution remains hypothesis; taste classes for SENSORY; SIM-13 outside nine notions; five-compound headline floor | Protocol signatures still required |
 | D8 | Yes: learned models deferred until explicit results and signed addendum | No learned run authorised |
 
 Parv's batch reply: "D2 Approved D3 yes D4 yes d5 Go. Dont wait, but record the decision D6 Yes to both rules D7 yes to all D8 Yes".
-Cuisine-term rulings, pilot-column choice, Step 16 comments and Parv's own
-adjudication statement remain unanswered. The D6 answer is recorded as approval
-of the two rules, not an inferred commitment to perform the crosswalk audit.
+The follow-up reply explicitly supplied the cuisine-term rulings and selected
+`reserve_split_v2`, retaining v1 for comparison (DRAFT_PENDING_KUSH), and assigned
+the crosswalk audit to Parv, not yet done. See D-040 and
+`foodcom_cuisine_derivation_README.md` for the exact mapping and REGION extension.
+Chemistry and cuisine reviewers remain pending; Step 16 comments and Parv's own
+07.A/07I-C statement remain pending until he reviews and writes them himself.
 No unanswered item has been treated as agreement. No signature, date of signing,
 single-signer override, human label or licence approval has been supplied.
 
