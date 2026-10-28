@@ -320,13 +320,13 @@
       "anyOf": [
         {
           "type": "string",
-          "pattern": "^PROC-\\d{6}$"
+          "pattern": "^FAM:[A-Z][A-Z0-9_]*$"
         },
         {
           "type": "null"
         }
       ],
-      "description": "Card Method cell: process_id + process_family_id kept. Assumes family node is a PROC id (PROC parent_id hierarchy, card 16a); null when UNMAPPED."
+      "description": "Draft family-node reference matching registry/processes/process_hierarchy_v1_DRAFT.csv FAM:<family> roots; not a PROC ledger ID. Null when UNMAPPED. Draft-only reconciliation from AI review; H4 still required. Membership is checked by the semantic review validator."
     },
     "process_modifiers": {
       "type": "object",
