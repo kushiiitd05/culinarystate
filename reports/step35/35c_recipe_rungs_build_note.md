@@ -26,3 +26,9 @@ Any run on real recipes, mentions parquet, split groups or ledgers; PE-35c; kNN 
 7. Floor at exactly 0.80 is treated as kept ("below" is excluded); zero-line recipes excluded as a separate counted case.
 8. Idf-Jaccard with zero union weight returns None (by analogy with THR-35P-12 masking).
 9. Gold-firewall / DESIGN_PILOT group exclusion is not done here (needs real id lists); caller must pre-filter.
+# AI review follow-up (2026-10-28)
+
+Synthetic regression controls now reject duplicate ranking candidates (which
+could inflate nDCG above 1), invalid known masses and incompatible/nonfinite
+profile vectors. Missing quantities remain masked. No real recipe was scored.
+See `reports/review/AI_REVIEW_2026-10-28.md` and the updated recipe-rung tests.
