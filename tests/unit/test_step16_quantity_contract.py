@@ -262,3 +262,34 @@ def test_record_validator_checks_ast_arithmetic_as_well_as_payload_shape():
 def test_invalid_document_root_uses_the_empty_json_pointer():
     issues = validate_record(None, schema("QNT"))
     assert issues and issues[0].code == "SCHEMA" and issues[0].path == ""
+
+
+def test_integral_json_floats_do_not_crash_exact_rationals():
+    assert evaluate_ast(rat(1.0, 2.0)).low == Fraction(1, 2)
+
+
+@pytest.mark.parametrize("field", ["existence", "container"])
+def test_unknown_state_layers_with_null_value_remain_unknown(field):
+    r = record("STATE")
+    r[field] = {"value": None, "raw": None, "meta": meta("UNKNOWN", "UNKNOWN")}
+    assert validate_record(r, schema("STATE")) == []
+
+
+def test_record_cannot_omit_explicit_rc2_version():
+    r = record("QNT")
+    del r["schema_version"]
+    assert validate_record(r, schema("QNT"))
+
+
+def test_masked_parent_retains_descendant_provenance_and_source_intervals():
+    n = op("ADD", rat(1, meta=meta(origin="MODEL_ESTIMATED", route="MODEL")), interval(1, 2))
+    n["meta"]["status"] = "CONFLICTING"
+    result = evaluate_ast(n)
+    assert result.status == "UNKNOWN" and "MODEL_ESTIMATED" in result.origins
+    assert result.interval_kinds == ("SOURCE_RANGE",)
+
+
+def test_large_finite_json_integers_do_not_crash_semantic_checks():
+    r = record("STATE")
+    r["quantity"] = {"status": "RANGE", "low": 10**400, "high": 10**401, "unit": "g", "meta": meta()}
+    assert validate_record(r, schema("STATE")) == []
