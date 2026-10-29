@@ -93,7 +93,7 @@ def make_record_schema(v1_schema: Mapping, kind: str):
     out["description"] = ("schema_version 1.0.0-rc2, DRAFT_PENDING_H4; optional selection of a new "
                           "contract with explicit semantic-field metadata and typed quantity AST; no automatic migration")
     out["properties"]["schema_version"] = {"const": "1.0.0-rc2"}
-    out["required"] = list(dict.fromkeys([*out["required"], "field_metadata"]))
+    out["required"] = list(dict.fromkeys([*out["required"], "schema_version", "field_metadata"]))
     out["properties"]["field_metadata"] = {
         "type": "object", "propertyNames": {"pattern": "^/"},
         "additionalProperties": {"$ref": "#/$defs/field_meta"},
@@ -140,6 +140,8 @@ def _has_claim(value):
             return False  # expression structure can be known while its outcome is unknown
         if value.get("status") in {"UNKNOWN", "NOT_APPLICABLE"}:
             return any(value.get(k) is not None for k in ("value", "low", "high", "qualitative", "censor"))
+        if "value" in value and not any(value.get(k) is not None for k in ("value", "low", "high", "qualitative", "censor")):
+            return False
     return True
 
 
@@ -208,12 +210,22 @@ def evaluate_ast(node) -> QuantityResult:
         kind, meta = n["node_type"], n["meta"]
         own = (meta["origin"],)
         if meta["status"] in {"CONFLICTING", "CENSORED", "NOT_APPLICABLE"}:
+            def tags(child):
+                origins = {child["meta"]["origin"]}
+                bands = {"SOURCE_RANGE"} if child["node_type"] == "RANGE" else set()
+                for item in child.get("children", []):
+                    co, cb = tags(item)
+                    origins.update(co)
+                    bands.update(cb)
+                return origins, bands
+            origins, bands = tags(n)
             return QuantityResult("NOT_APPLICABLE" if meta["status"] == "NOT_APPLICABLE" else "UNKNOWN",
-                                  unit=n.get("unit"), reason=meta["status"], origins=own)
+                                  unit=n.get("unit"), reason=meta["status"], origins=tuple(sorted(origins)),
+                                  interval_kinds=tuple(sorted(bands)))
         if kind in {"QUALITATIVE", "OPEN_AMOUNT", "UNKNOWN"}:
             return QuantityResult(kind, unit=n.get("unit"), raw=n.get("raw"), origins=own)
         if kind == "RATIONAL":
-            v = Fraction(n["numerator"], n["denominator"])
+            v = Fraction(int(n["numerator"]), int(n["denominator"]))
             return QuantityResult("KNOWN", v, v, n["unit"], raw=n.get("raw"), origins=own)
         if kind == "RANGE":
             lo, hi = Fraction(str(n["low"])), Fraction(str(n["high"]))
