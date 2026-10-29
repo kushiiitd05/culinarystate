@@ -1,5 +1,18 @@
 # Step 19-D / 19-pilot — Deep Gold PILOT design: index and human-decision checklist
 
+## Current preparation update — 2026-10-28, S152
+
+The design description below is the historical 2026-10-26 snapshot. Engineering
+now includes a six-stage **synthetic-only rehearsal**, a draft handbook with
+17 synthetic hard cases, two delegated AI review reports, and
+`pilot_start_record.UNSIGNED.json`. See `pilot_readiness_and_ai_review.md`,
+`pilot_methods_agent_review.md` and the generated `synthetic_rehearsal/` report.
+The old "no tools" and "Step 08 not started" statements are historical; 08a has
+run and its G08-3 failure remains recorded. No actual Step 19 frame/draw, human
+annotation, timing/IAA result, pilot signature or H5 start has been supplied.
+AI recommendations and rc2/handbook-v2 proposals do not replace P1's current
+v0 + handbook-v1/Addendum-A instrument without an explicit reviewed change.
+
 **Status: DRAFT_PENDING_H4 / H5.** Written 2026-10-26 under D-027 ruling R-17 (Plan section 4.2 lane L7), with R-08, R-19 and R-20; revised the same day after the round-3 reviews (governance Review A, science Review B). Design only. No recipe was drawn, no packet built, no annotation exists, no tool was run or edited, nothing is signed, and **Step 08 is not started**. All numbers are PROPOSED_PILOT. Local ids in this lane: decisions `D19-n`, checks `PV-n`, packets `DGP-` (none is a ledger id or a DECISIONS id; the `D-0nn` ids below are DECISIONS entries).
 
 ## 1. Index
