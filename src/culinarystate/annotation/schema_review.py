@@ -26,7 +26,7 @@ def review_record(record: Mapping, *, family_ids: Collection[str] | None = None,
         issues.append(ReviewIssue(code, path, message))
 
     def numeric(v):
-        return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
+        return isinstance(v, int) and not isinstance(v, bool) or isinstance(v, float) and math.isfinite(v)
 
     def child_path(path, key):
         if pointer_paths:
