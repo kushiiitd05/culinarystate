@@ -1,0 +1,372 @@
+{
+  "counts_as_human_gate": false,
+  "planted_controls": {
+    "all_detected": true,
+    "controls": {
+      "group_leak": {
+        "counts_as_human_gate": false,
+        "detected": true,
+        "issues": [
+          "A:GROUP_LEAKAGE",
+          "A:HASH_MISMATCH",
+          "CROSS_CHANNEL_CONTENT_MISMATCH"
+        ],
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      },
+      "missing_file": {
+        "counts_as_human_gate": false,
+        "detected": true,
+        "issues": [
+          "A:MISSING_OR_WRONG_PACKET"
+        ],
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      },
+      "missing_snapshot": {
+        "counts_as_human_gate": false,
+        "detected": true,
+        "issues": [
+          "A:SNAPSHOT_INVALID"
+        ],
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      },
+      "tampered_label": {
+        "counts_as_human_gate": false,
+        "detected": true,
+        "issues": [
+          "A:HASH_MISMATCH"
+        ],
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      },
+      "wrong_hash": {
+        "counts_as_human_gate": false,
+        "detected": true,
+        "issues": [
+          "A:HASH_MISMATCH",
+          "A:SNAPSHOT_INVALID"
+        ],
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      },
+      "wrong_packet": {
+        "counts_as_human_gate": false,
+        "detected": true,
+        "issues": [
+          "A:MISSING_OR_WRONG_PACKET"
+        ],
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      }
+    },
+    "counts_as_human_gate": false,
+    "source": "AI_DRAFT_SYNTHETIC",
+    "status": "REHEARSAL_ONLY"
+  },
+  "rehearsal_version": "synthetic-six-stage-v1",
+  "simulated_observations": {
+    "A": [
+      {
+        "codes": [
+          "SYNTHETIC-CODE-1",
+          "SYNTHETIC-CODE-2"
+        ],
+        "counts_as_human_gate": false,
+        "packet_id": "SYNTHETIC-A-0001",
+        "recipe_id": "SYNTHETIC-RECIPE-2",
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      },
+      {
+        "codes": [
+          "SYNTHETIC-CODE-1",
+          "SYNTHETIC-CODE-2"
+        ],
+        "counts_as_human_gate": false,
+        "packet_id": "SYNTHETIC-A-0002",
+        "recipe_id": "SYNTHETIC-RECIPE-4",
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      }
+    ],
+    "B": [
+      {
+        "codes": [
+          "SYNTHETIC-CODE-1",
+          "SYNTHETIC-CODE-3"
+        ],
+        "counts_as_human_gate": false,
+        "packet_id": "SYNTHETIC-B-0001",
+        "recipe_id": "SYNTHETIC-RECIPE-2",
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      },
+      {
+        "codes": [
+          "SYNTHETIC-CODE-1",
+          "SYNTHETIC-CODE-3"
+        ],
+        "counts_as_human_gate": false,
+        "packet_id": "SYNTHETIC-B-0002",
+        "recipe_id": "SYNTHETIC-RECIPE-4",
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      }
+    ]
+  },
+  "source": "AI_DRAFT_SYNTHETIC",
+  "stages": [
+    {
+      "counts_as_human_gate": false,
+      "name": "synthetic_frame_group_draw",
+      "result": {
+        "algorithm": "synthetic-sha256-ranking-v1-not-real-pilot-draw",
+        "counts_as_human_gate": false,
+        "frame_sha256": "7d2e5a6a2f76e20221da65a84164c5bb93b71e296555633f666a7b3fc6fe70e7",
+        "nonce": "SYNTHETIC-DEMO-NONCE-NOT-KUSH",
+        "selected": [
+          {
+            "counts_as_human_gate": false,
+            "group_id": "SYNTHETIC-GROUP-1",
+            "recipe_id": "SYNTHETIC-RECIPE-2",
+            "source": "AI_DRAFT_SYNTHETIC",
+            "status": "REHEARSAL_ONLY"
+          },
+          {
+            "counts_as_human_gate": false,
+            "group_id": "SYNTHETIC-GROUP-3",
+            "recipe_id": "SYNTHETIC-RECIPE-4",
+            "source": "AI_DRAFT_SYNTHETIC",
+            "status": "REHEARSAL_ONLY"
+          }
+        ],
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      },
+      "source": "AI_DRAFT_SYNTHETIC",
+      "stage": 1,
+      "status": "REHEARSAL_ONLY"
+    },
+    {
+      "counts_as_human_gate": false,
+      "name": "blank_fixture_packets",
+      "result": {
+        "A": [
+          {
+            "annotations": [],
+            "counts_as_human_gate": false,
+            "fixture_content_sha256": "ba9e383d7407d7b8fad9b6dca11b451e77894c819d7a8f16ddabc260d0657466",
+            "group_id": "SYNTHETIC-GROUP-1",
+            "human_verdict": null,
+            "packet_id": "SYNTHETIC-A-0001",
+            "recipe_id": "SYNTHETIC-RECIPE-2",
+            "source": "AI_DRAFT_SYNTHETIC",
+            "status": "REHEARSAL_ONLY"
+          },
+          {
+            "annotations": [],
+            "counts_as_human_gate": false,
+            "fixture_content_sha256": "947f2dda2e342bfd8c8e174a8fddf08536ab1206220a8c8af7afb57d7179b611",
+            "group_id": "SYNTHETIC-GROUP-3",
+            "human_verdict": null,
+            "packet_id": "SYNTHETIC-A-0002",
+            "recipe_id": "SYNTHETIC-RECIPE-4",
+            "source": "AI_DRAFT_SYNTHETIC",
+            "status": "REHEARSAL_ONLY"
+          }
+        ],
+        "B": [
+          {
+            "annotations": [],
+            "counts_as_human_gate": false,
+            "fixture_content_sha256": "ba9e383d7407d7b8fad9b6dca11b451e77894c819d7a8f16ddabc260d0657466",
+            "group_id": "SYNTHETIC-GROUP-1",
+            "human_verdict": null,
+            "packet_id": "SYNTHETIC-B-0001",
+            "recipe_id": "SYNTHETIC-RECIPE-2",
+            "source": "AI_DRAFT_SYNTHETIC",
+            "status": "REHEARSAL_ONLY"
+          },
+          {
+            "annotations": [],
+            "counts_as_human_gate": false,
+            "fixture_content_sha256": "947f2dda2e342bfd8c8e174a8fddf08536ab1206220a8c8af7afb57d7179b611",
+            "group_id": "SYNTHETIC-GROUP-3",
+            "human_verdict": null,
+            "packet_id": "SYNTHETIC-B-0002",
+            "recipe_id": "SYNTHETIC-RECIPE-4",
+            "source": "AI_DRAFT_SYNTHETIC",
+            "status": "REHEARSAL_ONLY"
+          }
+        ]
+      },
+      "source": "AI_DRAFT_SYNTHETIC",
+      "stage": 2,
+      "status": "REHEARSAL_ONLY"
+    },
+    {
+      "counts_as_human_gate": false,
+      "name": "simulated_hash_commitments",
+      "result": {
+        "A": {
+          "channel": "A",
+          "commitment_time": 30,
+          "counts_as_human_gate": false,
+          "files": [
+            {
+              "counts_as_human_gate": false,
+              "packet_id": "SYNTHETIC-A-0001",
+              "packet_sha256": "b0be20d9004f26af32918d89ffb9b24a291187a8733e8ed5c6e230577885c109",
+              "sha256": "065bac6c8ad12942fa893e2f33342b3bf7c46f3e218bc070b1ba2f39041fcaea",
+              "snapshots": [
+                {
+                  "sha256": "002b2f340a6f04b902fe27a70bbc165b892c9b93a7ef21723a60d78f1173328a",
+                  "time": 10
+                },
+                {
+                  "sha256": "065bac6c8ad12942fa893e2f33342b3bf7c46f3e218bc070b1ba2f39041fcaea",
+                  "time": 20
+                }
+              ],
+              "source": "AI_DRAFT_SYNTHETIC",
+              "status": "REHEARSAL_ONLY"
+            },
+            {
+              "counts_as_human_gate": false,
+              "packet_id": "SYNTHETIC-A-0002",
+              "packet_sha256": "28f969883e03d26bff424bd854db8c977bd1d317be80b808771d049cb0b94519",
+              "sha256": "0518124df02c784835ea69592305badb367e29e6d5b370d2a6cb3061d3d4ac3f",
+              "snapshots": [
+                {
+                  "sha256": "75694ed57d4d0e1c04abbbb9cfd96c2dd5a5b275a1c788dbb67af94a9165e787",
+                  "time": 10
+                },
+                {
+                  "sha256": "0518124df02c784835ea69592305badb367e29e6d5b370d2a6cb3061d3d4ac3f",
+                  "time": 20
+                }
+              ],
+              "source": "AI_DRAFT_SYNTHETIC",
+              "status": "REHEARSAL_ONLY"
+            }
+          ],
+          "human_verdict": null,
+          "source": "AI_DRAFT_SYNTHETIC",
+          "status": "REHEARSAL_ONLY",
+          "timestamp_kind": "SIMULATED_TICKS_NOT_UTC",
+          "tracked_in_git": false
+        },
+        "B": {
+          "channel": "B",
+          "commitment_time": 30,
+          "counts_as_human_gate": false,
+          "files": [
+            {
+              "counts_as_human_gate": false,
+              "packet_id": "SYNTHETIC-B-0001",
+              "packet_sha256": "69a97906c7e70f8598f3918fb750d92e92d14e74e9012a4289d1d07a43ac190b",
+              "sha256": "8da5aeaa2417136e96a4947657535c24a2b4020e06fd768d9a2d93c93db6700d",
+              "snapshots": [
+                {
+                  "sha256": "bd600058f9f10ea54fc5be683b71974d0ae270cdbfb22db7b9d246dd4c9bec4a",
+                  "time": 10
+                },
+                {
+                  "sha256": "8da5aeaa2417136e96a4947657535c24a2b4020e06fd768d9a2d93c93db6700d",
+                  "time": 20
+                }
+              ],
+              "source": "AI_DRAFT_SYNTHETIC",
+              "status": "REHEARSAL_ONLY"
+            },
+            {
+              "counts_as_human_gate": false,
+              "packet_id": "SYNTHETIC-B-0002",
+              "packet_sha256": "2d7b39b1795fcf8fe55b9f53d38fdaf6c38ca485dbd2e5e6fc19d530d82ac82d",
+              "sha256": "ad133be69766b850491c6174a554b852edb3e357cc957ee6c610f4e76e0dfd43",
+              "snapshots": [
+                {
+                  "sha256": "9495f830735585b9b7ffa025248f60f9dd107cade8060405247295af6d43a90d",
+                  "time": 10
+                },
+                {
+                  "sha256": "ad133be69766b850491c6174a554b852edb3e357cc957ee6c610f4e76e0dfd43",
+                  "time": 20
+                }
+              ],
+              "source": "AI_DRAFT_SYNTHETIC",
+              "status": "REHEARSAL_ONLY"
+            }
+          ],
+          "human_verdict": null,
+          "source": "AI_DRAFT_SYNTHETIC",
+          "status": "REHEARSAL_ONLY",
+          "timestamp_kind": "SIMULATED_TICKS_NOT_UTC",
+          "tracked_in_git": false
+        }
+      },
+      "source": "AI_DRAFT_SYNTHETIC",
+      "stage": 3,
+      "status": "REHEARSAL_ONLY"
+    },
+    {
+      "counts_as_human_gate": false,
+      "name": "fixture_integrity_checks",
+      "result": {
+        "counts_as_human_gate": false,
+        "counts_as_pilot_provenance": false,
+        "issues": [],
+        "scope": "HASH_PACKET_GROUP_SNAPSHOT_FIXTURES_ONLY_NOT_PV1_TO_PV10",
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY",
+        "synthetic_checks_pass": true
+      },
+      "source": "AI_DRAFT_SYNTHETIC",
+      "stage": 4,
+      "status": "REHEARSAL_ONLY"
+    },
+    {
+      "counts_as_human_gate": false,
+      "name": "simulated_agreement_summary",
+      "result": {
+        "counts_as_human_gate": false,
+        "equal_cells": 2,
+        "interpretation": "SYNTHETIC_EQUALITY_ONLY_NOT_IAA",
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY",
+        "total_cells": 4
+      },
+      "source": "AI_DRAFT_SYNTHETIC",
+      "stage": 5,
+      "status": "REHEARSAL_ONLY"
+    },
+    {
+      "counts_as_human_gate": false,
+      "name": "report",
+      "result": {
+        "counts_as_human_gate": false,
+        "input_sha256": "7d2e5a6a2f76e20221da65a84164c5bb93b71e296555633f666a7b3fc6fe70e7",
+        "observations_sha256": "82d9e06db4ea37a1d8bfd9efdba809b5ca85a809841cdb043778b00049a6bd70",
+        "source": "AI_DRAFT_SYNTHETIC",
+        "status": "REHEARSAL_ONLY"
+      },
+      "source": "AI_DRAFT_SYNTHETIC",
+      "stage": 6,
+      "status": "REHEARSAL_ONLY"
+    }
+  ],
+  "status": "REHEARSAL_ONLY",
+  "unfulfilled_real_pilot_requirements": [
+    "H4_H5_AND_SIGNED_THR19P_ROWS",
+    "KUSH_PRE_FRAME_NONCE",
+    "APPROVED_REAL_FRAME_AND_DRAW_SPEC",
+    "SOURCE_ELIGIBILITY_AND_LOCAL_TEXT",
+    "TWO_BLIND_HUMAN_ANNOTATORS_AND_CAPACITY",
+    "PRIVATE_MACHINES_AND_REAL_TIMING",
+    "REAL_SNAPSHOTS_AND_TRACKED_COMMITMENTS_BEFORE_KEY",
+    "COMPLETE_PV1_TO_PV10",
+    "HUMAN_ADJUDICATION_AND_WAVE_SPECIFIC_IAA"
+  ]
+}
