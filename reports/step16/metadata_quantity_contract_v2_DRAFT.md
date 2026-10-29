@@ -140,7 +140,7 @@ is deterministic, and all seven stored examples reproduce from their ASTs.
 5. Step 19 pilot authorisation/annotations and H4 are still required before 16c.
    No real recipe, pilot selection or human annotation was processed here.
 
-### Additional legacy issue observed, not silently changed
+### Legacy issue and versioned engineering resolution
 
 A synthetic check of the existing v0 parser/normaliser with
 `0 x 400g cans synthetic ingredient` parses multiplier 0, but its
@@ -148,5 +148,13 @@ A synthetic check of the existing v0 parser/normaliser with
 represents a stated zero correctly; it is not automatically wired into that
 legacy normaliser. Preserve the historical/frozen path and fix this in an
 explicitly versioned normaliser/adapter with regression coverage before that
-path is used for new extraction. No existing recipe base was recomputed, and
-the frequency of this case in real data was not measured.
+path is used for new extraction. S152 now supplies that separate normaliser and
+an opt-in parsing bridge, with zero/invalid-input/precision controls. The frozen
+legacy path remains unchanged and no real recipe base was recomputed; incidence
+in real data was not measured. See `engineering_and_pilot_lane_build_note.md`.
+
+Independent S152 review also fixed integral-JSON-float handling, null UNKNOWN
+layers, descendant provenance retention, mandatory schema-version presence and
+large integer robustness. Original findings and final dispositions are retained
+in `rc2_independent_agent_review.md`. The earlier 54-case count is historical;
+the contract test file now contains 60 cases.
