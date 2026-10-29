@@ -1,0 +1,93 @@
+{
+  "status": "UNSIGNED_TEMPLATE",
+  "document": "deep_gold_pilot_design_v1_draft.md",
+  "sha256": "0af23c96e6ab21c142bb82c4fe785e979dc1f1fe58bc734d41a85beadd26d342",
+  "signers": [],
+  "date": "",
+  "bound_files": [
+    {
+      "path": "../../annotation/annotation_handbook_v1.md",
+      "sha256": "fa0fbedf0d18c777b339dc53cb9a2b9fef414630268ebd2ecf58448f4292a77d"
+    },
+    {
+      "path": "../../annotation/gold_schema.json",
+      "sha256": "0343121ab303a2570355ffc56b6d96c68ba6ea36a45416147a576f6e2b3fa82d"
+    },
+    {
+      "path": "pilot_methods_agent_review.md",
+      "sha256": "46efa3df1a8ab7efd5d09f2358b207f4b46113a5421f1aa6a892dfeafe9e3dab"
+    },
+    {
+      "path": "pilot_readiness_and_ai_review.md",
+      "sha256": "bd2798be040b1a8f482c74799d63203bbacf50c7f7d8eebf170aa2c92a3ece00"
+    },
+    {
+      "path": "../../ledgers/schemas/EVT.schema.json",
+      "sha256": "b666bca63b481d44703049e9586553a59fd7acbf1504efa081201bf3cf56cc61"
+    },
+    {
+      "path": "../../ledgers/schemas/ENTITY.schema.json",
+      "sha256": "9c1474b2024352361b8e56b1831a4b68a5fb04d5095ac3cb42d7e4ae46b45165"
+    },
+    {
+      "path": "../../ledgers/schemas/STATE.schema.json",
+      "sha256": "b3a2f0db4df0181db8ef45e6e45d7a9d9274c633fc596e78bba29e48f2373b86"
+    },
+    {
+      "path": "../../ledgers/schemas/QNT.schema.json",
+      "sha256": "c98870c01cbd23279b5c8992dd3219348cdb2fb0221afd7c0c7e351afd14ced0"
+    },
+    {
+      "path": "../../ledgers/schemas/POR.schema.json",
+      "sha256": "1e867ba4e92767d51bb8850f88b188805d01e4431b9c8cdfd8d3197defe451e3"
+    },
+    {
+      "path": "../../ledgers/schemas/INST.schema.json",
+      "sha256": "91e322de2cf3717e75b4890d4f8c12d64077288628e55b4104c18ab5b52eb7c3"
+    },
+    {
+      "path": "../../ledgers/schemas/ALLOC.schema.json",
+      "sha256": "e1d78d4c92c7b11390c0900ef1a728ea9476e348d20288a4933cd5304c4870f0"
+    },
+    {
+      "path": "../../ledgers/schemas/REF.schema.json",
+      "sha256": "f7aff1ac5fe579847024489a80796d1d52fa8171339078210644ee8e95a42865"
+    },
+    {
+      "path": "../../ledgers/schemas/GRAPH.schema.json",
+      "sha256": "9340e2bafdd704a1de4a3138fa8ce7f93638b45f17a3e17adfda24d6fe9da33a"
+    },
+    {
+      "path": "../../ledgers/schemas/SPLIT.schema.json",
+      "sha256": "eb66d1f63f78da564fee72118a7132cda524c9f9b53d8285949d411cd4d10f23"
+    }
+  ],
+  "purpose": "UNSIGNED_START_REVIEW_ONLY_NOT_PILOT_AUTHORIZATION",
+  "counts_as_human_gate": false,
+  "threshold_appendix": {
+    "rows": 35,
+    "sha256": "93d781ccbc142764c5be7f6e62cfb51465167b11d8b6f3e7e9330c82e9e4ac1a",
+    "registry_written": false
+  },
+  "recommended_instrument": "CURRENT_V0_PLUS_HANDBOOK_V1_ADDENDUM_A",
+  "selected_instrument": null,
+  "pre_frame_nonce": null,
+  "nonce_supplier": null,
+  "nonce_commitment": null,
+  "weekly_capacity_hours": {
+    "Kush": null,
+    "Parv": null
+  },
+  "per_annotator_budget_B_h": {
+    "Kush": null,
+    "Parv": null
+  },
+  "known_design_frame_metadata_seen": true,
+  "real_pilot_frame_built_in_this_session": false,
+  "pilot_column_parv_choice": "reserve_split_v2",
+  "pilot_column_confirmation": "PENDING_KUSH",
+  "methodological_amendments": "AI_DRAFT_PENDING_EXPERT_VERIFICATION",
+  "human_start_authorization": null,
+  "real_draw_performed": false,
+  "real_annotation_performed": false
+}
