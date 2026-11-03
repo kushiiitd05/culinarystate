@@ -11,8 +11,10 @@ Rules
   and are checked against ``ledgers/data/_ids.jsonl``; proposed mint keys are checked too. A file
   whose ``sha256:<hex>`` key is already minted is reported ALREADY_REGISTERED, not re-proposed.
 - Licence fields are copied from ``registry/data_source_acquisition_manifest.csv``; the SRC
-  ``licence_status`` mapping is conservative (only literal VERIFIED / ASSUMED survive, BLOCKED /
-  NC become RESTRICTED, every catalog-reported or unknown status becomes UNKNOWN). The raw manifest
+  ``licence_status`` mapping is conservative (only the literal tokens VERIFIED, VERIFIED_AT_INGESTION
+  and ASSUMED survive, a qualified status such as "...; re-check failed" becomes UNKNOWN, BLOCKED /
+  NC / RESTRICTED / RESTRICTIVE become RESTRICTED, every catalog-reported or unknown status becomes
+  UNKNOWN). The raw manifest
   values are kept beside each proposal.
 - A source with an open H2 item (``reports/h_state/es_1_2_h2_approval_queue.md``), a manifest
   ``human_approval_required = yes`` or a restricted licence is flagged LOCAL_ONLY. COMMIT_OK is
@@ -70,13 +72,17 @@ def load_h2_open(path: Path | str) -> dict[str, tuple[str, ...]]:
     return {k: tuple(v) for k, v in sorted(out.items())}
 
 
+VERIFIED_TOKENS = frozenset({"VERIFIED", "VERIFIED_AT_INGESTION"})
+
+
 def map_licence_status(raw: str | None) -> str:
+    """Literal tokens only: a qualified status (e.g. "VERIFIED_AT_INGESTION; re-check failed") is UNKNOWN (R3)."""
     s = (raw or "").strip().upper()
-    if s == "VERIFIED" or s.startswith("VERIFIED_"):
+    if s in VERIFIED_TOKENS:
         return "VERIFIED"
     if s == "ASSUMED":
         return "ASSUMED"
-    if s.startswith(("BLOCKED", "NC_")) or "RESTRICTED" in s:
+    if s.startswith(("BLOCKED", "NC_")) or "RESTRICTED" in s or "RESTRICTIVE" in s:
         return "RESTRICTED"
     return "UNKNOWN"
 
