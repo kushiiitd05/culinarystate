@@ -262,8 +262,30 @@ def rate_constant_dimension(order: Fraction | int | float) -> Dimension:
     return dimension("CONCENTRATION") ** (1 - n) * dimension("TIME^-1")
 
 
+_CONCENTRATION_LIKE = (Dimension.of({"MASS": 1}), Dimension.of({"AMOUNT": 1}), Dimension.of({"LENGTH": 3}))
+
+
+def undeclared_concentration_tokens(unit: str | None, *, opaque: Mapping[str, str] | None = None) -> tuple[str, ...]:
+    """Mass, amount or volume tokens not declared opaque. In a rate-constant unit they mean an undeclared
+    concentration basis: "mg/g/min" reduces to TIME^-1 and would pass as first order (S159 review R1)."""
+    if not isinstance(unit, str) or not unit.strip():
+        return ()
+    try:
+        toks = _lex(unit)
+    except UnitError:
+        return ()
+    op = opaque or {}
+    return tuple(sorted({t for t in toks if t not in op and t in _TOKENS
+                         and _TOKENS[t].dimension in _CONCENTRATION_LIKE}))
+
+
 def check_rate_constant_unit(unit: str | None, order: Fraction | int | float, *,
                              opaque: Mapping[str, str] | None = None) -> UnitCheck:
+    """UNKNOWN when the unit carries an undeclared concentration basis (declare it through ``opaque``)."""
+    undeclared = undeclared_concentration_tokens(unit, opaque=opaque)
+    if undeclared:
+        return UnitCheck(UNKNOWN, f"CONCENTRATION_TOKENS_UNDECLARED {list(undeclared)} in {unit!r}: declare the "
+                                  "series concentration unit through opaque (SSOT 210.30)")
     return check_unit(unit, rate_constant_dimension(order), opaque=opaque)
 
 
