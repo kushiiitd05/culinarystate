@@ -146,3 +146,24 @@ def test_r5_identifier_claims_are_checked_against_supplied_id_sets():
     assert [i.code for i in bad.issues] == ["IDENTIFIER_NOT_IN_ID_SET"]
     good = v3_vocabulary([graph(s, c)], id_sets={"PROC": frozenset({"PROC-999999"})})
     assert good.status == "PASS" and "ID_SET:PROC" not in good.not_checked
+
+
+# ---------------------------------------------------------------- R6 / R7
+def test_r6_span_offsets_must_be_integers_not_silently_truncated():
+    import pytest
+
+    from culinarystate.extraction.interfaces import InterfaceError
+    s = src()
+    for bad in ((1.7, 3), (True, 3), (0, 2.0)):
+        with pytest.raises(InterfaceError):
+            Span.of(s, *bad)
+
+
+def test_r7_event_order_must_be_two_integers_so_v4_cannot_crash():
+    import pytest
+
+    from culinarystate.extraction.interfaces import InterfaceError
+    for bad in ((0, "x"), (0,), (0, 1, 2), (True, 0), [0, 1]):
+        with pytest.raises(InterfaceError):
+            EventCandidate("E1", bad)
+    assert EventCandidate("E1", (0, 1)).order == (0, 1)
