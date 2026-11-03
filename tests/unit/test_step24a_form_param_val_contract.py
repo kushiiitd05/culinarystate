@@ -313,7 +313,9 @@ def test_val_study_disjoint_claim_checked_against_lineage() -> None:
 
 # ----------------------------------------------------------------------------- calibration eligibility
 def _verified(p: dict[str, Any]) -> dict[str, Any]:
-    p["verification"] = {"status": "HUMAN_VERIFIED", "verifier": "fixture-human", "verified_at": F.NOW}
+    # Schema-shaped placeholder only (KIN v1.1 admits verifier Kush / Parv; same pattern as the S158 KIN tests).
+    # No human verified anything: this is a SYNTHETIC SCHEMA FIXTURE.
+    p["verification"] = {"status": "HUMAN_VERIFIED", "verifier": "Kush", "verified_at": F.NOW}
     p["partition"] = "SIM_CALIBRATION"
     return p
 
