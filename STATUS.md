@@ -1,6 +1,6 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-**As of:** 2026-11-03, S158 mechanism stack on top of S154–S157 (WORKLOG S158; DECISIONS through D-049). Working order D-045: AI verdict first, then Kush and Parv review (final).
+**As of:** 2026-11-03, S159 simulator core on top of S154–S158 (WORKLOG S159; DECISIONS through D-051). Working order D-045: AI verdict first, then Kush and Parv review (final).
 **Authoritative records:** DECISIONS.md, WORKLOG.md and the dated review artifacts.
 **Repo in this session:** cloud container `/home/user/culinarystate`, branches `cloud/s154-step16-integration-2026-11-03` (pushed) and `cloud/s155-step17ab` (stacked on S154) (data bundle NOT available: Drive download blocked by network policy).
 The previous S145 status snapshot is preserved in git history (before S150,
@@ -26,6 +26,7 @@ supply human annotation, independent agreement, scientific validation or signatu
 | Step 18 / 26g | S156, DRAFT: append-only event log, deterministic replay (transactions and snapshot hashes, exact bounds, issue codes) and extraction→engine adapter; 26g simulation-input contract with null sim_run_id links and a counts-only simulability census. Old engine L1–L8 left unchanged (Kush). The test_transition hang does not reproduce in the cloud. G18 gates not evaluated. Block E pending review. |
 | Evidence 09/12/13a-0 | S157, PROVISIONAL: Step 09 verification-queue machinery (status only from a human review file; no code path to E4), 12.0 proposed SRC/SNAP rows in staging only, 12-local R2/Bognar parsers (raw text git-ignored; counts-only report), 13a-0 offline seed corpus with 713 exact-DOI seeds from tracked artifacts. No ledger write. Block F pending (re-baseline, H2, E4 rule). |
 | 04.3 / 21 / 22a / 23a | S158, DRAFT: KIN/KINPT v1.1 with a cross-record validator; MECH v1.1 with 14 expert questions (sources UNVERIFIED: hosts blocked); sign-only 22a signatures plus a case-seal helper (nothing sealed); three-valued 23a applicability engine (UNKNOWN never SIMULATE, APPDEC compatible with 26g); 23b BLOCKED. Block G pending (H4, expert answers). |
+| 24a / 26a–c | S159, DRAFT and data-free: FORM/PARAM/VAL schemas; kinetic fitting and identifiability library (synthetic recovery; NOT_IDENTIFIABLE designs refused); sim_aa_1 and sim_chl_1 behind one APPDEC-gated interface with no parameter values in code; 26c verification passing; 26.0 selection template unsigned (system not chosen). D-051 signed THR-04K-01..04; scipy declared as extra step26 (D-050). Block H pending. |
 | Step 35 | 35c/35d/35e synthetic-tested; existing RDKit 2026.3.6 pinned as optional step35 extra. Parv's D1–D8 review choices recorded. Protocol, mapping and new companion-bound review package remain unsigned; no real evaluations. Learned 35g deferred. |
 | Cuisine | D-040 single-reviewer lookup choices applied; REGION extended to reviewed below-country terms. Coverage 12.9% cuisine, 23.7% continent; cuisine conflicts 2,643 retained/excluded from single-cuisine scoring. Expert/signatures pending. |
 | Pilot column | Parv selects reserve_split_v2 and retains v1 for comparison, DRAFT_PENDING_KUSH. Strata/frame unchanged; no draw. |
