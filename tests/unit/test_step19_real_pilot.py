@@ -105,8 +105,10 @@ def test_real_unsigned_record_is_refused_for_every_missing_human_fact():
     before = REAL_RECORD.read_bytes()
     found = {b.code for b in R.check_prerequisites(REAL_RECORD, root=ROOT)}
     assert {"START_RECORD_UNSIGNED", "H5_START_AUTHORIZATION_MISSING", "NONCE_MISSING", "CAPACITY_MISSING",
-            "BUDGET_MISSING", "THRESHOLDS_NOT_SIGNED", "INSTRUMENT_NOT_SELECTED", "PILOT_COLUMN_NOT_CONFIRMED",
+            "BUDGET_MISSING", "INSTRUMENT_NOT_SELECTED", "PILOT_COLUMN_NOT_CONFIRMED",
             "METHOD_AMENDMENTS_UNRESOLVED", "DRAW_SPEC_NOT_BOUND"} <= found
+    # D-046 (2026-11-03): THR-19P-01..35 were signed in the registry; the unsigned record itself is unchanged.
+    assert "THRESHOLDS_NOT_SIGNED" not in found
     assert REAL_RECORD.read_bytes() == before
     assert all(b.owner for b in R.check_prerequisites(REAL_RECORD, root=ROOT))
 
