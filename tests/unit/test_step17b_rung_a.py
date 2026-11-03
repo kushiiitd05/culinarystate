@@ -21,7 +21,7 @@ from culinarystate.extraction import rung_a as ra
 from culinarystate.extraction import rung_a_lexicon as lx
 from culinarystate.extraction.auditor import audit_outputs
 from culinarystate.extraction.interfaces import (
-    FailureCode, InterfaceError, RungInterface, SourceText, StageConfig, TraceKind, ValueKind,
+    FailureCode, InterfaceError, RungInterface, SourceText, TraceKind, ValueKind,
 )
 from culinarystate.extraction.invariants import run_validators
 from culinarystate.quantity.rc2_grounding import GroundingContext, ground_quantity_rc2
