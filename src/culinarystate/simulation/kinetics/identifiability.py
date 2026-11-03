@@ -17,7 +17,8 @@ negative identifiability results retained):
   No crossing inside the caller's scan range = PROFILE_FLAT on that side = PRACTICALLY_NON_IDENTIFIABLE.
 - Verdicts: IDENTIFIABLE only when nothing above fires. A NOT_IDENTIFIABLE parameter keeps its raw estimate
   for diagnosis but is excluded from ``reportable_estimates`` and has no closed CI: it is never fitted
-  "confidently". A non-converged fit, or a profile that finds a lower objective than the fit, is UNKNOWN.
+  "confidently". A non-converged fit, a profile that finds a lower objective than the fit, or an unknown sigma
+  without residual degrees of freedom (n <= p), is UNKNOWN.
 
 All decision settings are caller-supplied ``IdentifiabilityCriteria`` without defaults. The G26-CAL numbers in
 the card (condition number < 1e6, >= 5 observations per parameter) are PROPOSED_PILOT and unsigned; they are
@@ -40,7 +41,7 @@ STATUS = "DRAFT_PENDING_26_0_H4"
 VERDICTS = ("IDENTIFIABLE", "NOT_IDENTIFIABLE", "UNKNOWN")
 CLASSES = ("PRACTICALLY_IDENTIFIABLE", "STRUCTURALLY_NON_IDENTIFIABLE", "PRACTICALLY_NON_IDENTIFIABLE", "UNKNOWN")
 REASONS = ("STRUCTURAL_RANK_DEFICIENT", "PROFILE_FLAT_LOWER", "PROFILE_FLAT_UPPER", "ILL_CONDITIONED",
-           "TOO_FEW_OBSERVATIONS", "FIT_NOT_CONVERGED", "PROFILE_BELOW_FIT_MINIMUM")
+           "TOO_FEW_OBSERVATIONS", "FIT_NOT_CONVERGED", "PROFILE_BELOW_FIT_MINIMUM", "NO_RESIDUAL_DOF_SIGMA_UNKNOWN")
 _NULL_LOADING = 1e-6
 _BISECT_STEPS = 60
 
@@ -280,8 +281,13 @@ def assess_identifiability(form: KineticForm, obs: Observations, fit: FitResult,
         raise IdentifiabilityError(f"profile_half_width missing for {missing}")
     if fit.form_name != form.name:
         raise IdentifiabilityError("fit and form differ")
-    if not fit.converged:
-        params = tuple(ParameterIdentifiability(s, "UNKNOWN", "UNKNOWN", ("FIT_NOT_CONVERGED",),
+    blocking = ("FIT_NOT_CONVERGED",) if not fit.converged else ()
+    if not fit.sigma_known and fit.dof <= 0:
+        # S159 review R2: with sigma unknown and n <= p the residual scale is not estimable; n*ln(SSR/SSR_min)
+        # on an exact fit collapses every profile CI to the estimate, which would read as IDENTIFIABLE.
+        blocking += ("NO_RESIDUAL_DOF_SIGMA_UNKNOWN",)
+    if blocking:
+        params = tuple(ParameterIdentifiability(s, "UNKNOWN", "UNKNOWN", blocking,
                                                 float(fit.estimates[s]), None, None, None) for s in form.symbols)
         return IdentifiabilityReport(form.name, fit.fit_id, "UNKNOWN", params, None, None, obs.n, criteria)
     sens = local_sensitivity(form, fit.estimates, obs.covariates, fit.fixed, sigma=obs.sigma,
