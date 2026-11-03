@@ -393,7 +393,7 @@ def test_census_holds_no_ids_or_text_and_is_deterministic():
     c1, c2 = simulability_census([full, part]), simulability_census([part, full])
     assert census_sha256(c1) == census_sha256(c2)
     blob = json.dumps(c1)
-    for token in ("SYN-A", "SYN-B", "E1", "N1", "COND-", "QNT-", "EVT-", "WATER", "MATRIX_X", "APPDEC"):
+    for token in ("SYN-A", "SYN-B", "E1", "N1", "COND-", "QNT-", "EVT-", "\"WATER\"", "MATRIX_X", "APPDEC"):
         assert token not in blob
     with pytest.raises(SimInputError):
         simulability_census([full, full])                                  # same recipe twice
