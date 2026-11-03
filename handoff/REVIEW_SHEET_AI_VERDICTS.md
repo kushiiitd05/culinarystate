@@ -108,3 +108,17 @@ Source: `reports/step09/S157_build_note.md`, `S157_09_audit.md`, `S157_ai_review
 | F6 | **Bognar values above 1.00.** MEASURED in the new parser, CENSORED in the old v1. Choose one at the G12 audit. Also decide the method-label rule (O-4) and the R2 "nearest 5%" censoring rule. |
 | F7 | Accept the R1–R4 fixes and the ksh audit open items O-1 to O-6: field classes, unit list and prompt-injection patterns as AI proposals; whether the T/t validators call the frozen Step 07 normaliser. |
 - 2026-11-03, Kush: "block F all ok by parv and me, keep going". Recorded as D-049 with the as-built conservative default for each option item (F1 re-baseline approved in principle, executed only after a real local run is reviewed).
+
+## Block G — S158 kinetic contract, mechanism schema, 22a and 23a (pending review)
+
+Source: `reports/step21/S158_build_note.md`, `S158_ai_review.md`, `S158_expert_questions.md`, `reports/step23/applicability_engine_23a_DRAFT.md`.
+
+| ID | Decision needed |
+|---|---|
+| G1 | H4 for 04.3 KIN/KINPT v1.1 as a whole. Step 09 must not freeze KIN/KINPT before it. |
+| G2 | Kinetic readings:<br>- THR-04K-01..04 are still unsigned;<br>- does a same-reader repeat count as an independent read? (currently UNKNOWN);<br>- does a missing inter-read SD give UNKNOWN or NOT_ELIGIBLE?;<br>- R1's choice of UNKNOWN vs NOT_ELIGIBLE for unverified series;<br>- review open items O-1 to O-3. |
+| G3 | MECH v1.1:<br>- `target_class` as a schema field departs from ontology §3.2;<br>- the class mismatch for STRUCTURE_ALTERED, DENATURED, AGGREGATED and GELATINIZED;<br>- where the analyte-form token registry lives and who approves it;<br>- the EQ21 id collision check. |
+| G4 | Chemistry expert: answer EQ21-01..14. Kush and Parv then close each answer with a decision. |
+| G5 | 22a:<br>- seal the shared 22c case set before any rule is coded (the helper exists);<br>- author real signature rules;<br>- approve a modifier vocabulary. |
+| G6 | 23a:<br>- the 8 AI readings in §4 of the 23a note;<br>- the 45 AI-draft reason codes;<br>- whether ASK and RESEARCH_ONLY belong in the route enum;<br>- pre-register the G22/G23 thresholds. |
+| G7 | Accept the R1–R6 fixes. |
