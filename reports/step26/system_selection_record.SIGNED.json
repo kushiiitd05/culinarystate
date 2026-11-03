@@ -1,0 +1,198 @@
+{
+  "record": "STEP26_0_SYSTEM_SELECTION",
+  "status": "SIGNED",
+  "template_version": "0.1.0-draft",
+  "prepared_by": "Kush and Parv decision D-052, entered by the coding agent as scribe from the S159 template",
+  "counts_as_human_gate": true,
+  "governing_rules": [
+    "D-027 (SIM-AA-1 leading candidate, chlorophyll pre-registered fallback, final choice after Step 10/11 evidence)",
+    "R-14 (do not freeze SIM-AA-1; one switch, no fishing)",
+    "Plan v2 Step 26 card, Selection rule (26.0): transcribe, do not re-decide, the single 11.D entry"
+  ],
+  "source_11d_decision": {
+    "decisions_entry_id": null,
+    "date": null,
+    "quota_set_applied": null,
+    "census_report": null,
+    "census_report_sha256": null
+  },
+  "selection": {
+    "allowed_values": [
+      "sim_aa_1",
+      "sim_chl_1",
+      "NEED_DATA"
+    ],
+    "system_id": "sim_aa_1",
+    "transcribed_11d_entry": null,
+    "need_data_route": "Step 14 when NEED_DATA",
+    "switch_used": false,
+    "switch_rationale": null,
+    "decision_basis": "DIRECT_HUMAN_SELECTION_BEFORE_11D (D-052): Kush+Parv selected sim_aa_1 before the Step 10/11 census exists; D-027 expected the final choice after Step 10/11 evidence. R-14 one-switch rule retained: at most one switch to sim_chl_1 after a recorded 11.D entry, with written rationale; no fishing."
+  },
+  "candidates": [
+    {
+      "system_id": "sim_aa_1",
+      "role": "LEADING_CANDIDATE_D027",
+      "model_structure_id": "SIM-AA-1-STRUCTURE-0.1.0-draft",
+      "implementation": "src/culinarystate/simulation/sim_aa_1.py (26b draft, DRAFT_PENDING_26_0_H4)",
+      "verification_refs": [
+        "tests/unit/test_step26c_verification.py",
+        "tests/unit/test_step26c_synthetic_recovery.py"
+      ],
+      "evidence_refs": [],
+      "notes": null
+    },
+    {
+      "system_id": "sim_chl_1",
+      "role": "PREREGISTERED_FALLBACK_D027",
+      "model_structure_id": "SIM-CHL-1-STRUCTURE-0.1.0-draft",
+      "implementation": "src/culinarystate/simulation/sim_chl_1.py (26b draft, DRAFT_PENDING_26_0_H4)",
+      "verification_refs": [
+        "tests/unit/test_step26c_verification.py"
+      ],
+      "evidence_refs": [],
+      "notes": null
+    }
+  ],
+  "criteria": [
+    {
+      "criterion_id": "Q-K1-SERIES",
+      "description": "K1+ kinetic series (count)",
+      "applies_to": [
+        "sim_aa_1",
+        "sim_chl_1"
+      ],
+      "card_reference": "Plan v2 Step 26 card, Data & licence row (PROPOSED_PILOT; not adopted)",
+      "preregistered_value": null,
+      "verified_count": null,
+      "evidence_refs": [],
+      "met": null
+    },
+    {
+      "criterion_id": "Q-LAB-GROUPS",
+      "description": "independent lab groups (count) and their SIM-CAL / SIM-VAL / DS-TEST allocation",
+      "applies_to": [
+        "sim_aa_1",
+        "sim_chl_1"
+      ],
+      "card_reference": "Plan v2 Step 26 card, Data & licence row (PROPOSED_PILOT; not adopted)",
+      "preregistered_value": null,
+      "verified_count": null,
+      "evidence_refs": [],
+      "met": null
+    },
+    {
+      "criterion_id": "Q-MATRICES",
+      "description": "distinct matrices (count)",
+      "applies_to": [
+        "sim_aa_1",
+        "sim_chl_1"
+      ],
+      "card_reference": "Plan v2 Step 26 card, Data & licence row (PROPOSED_PILOT; not adopted)",
+      "preregistered_value": null,
+      "verified_count": null,
+      "evidence_refs": [],
+      "met": null
+    },
+    {
+      "criterion_id": "Q-TEMPERATURES",
+      "description": "distinct temperatures (count)",
+      "applies_to": [
+        "sim_aa_1",
+        "sim_chl_1"
+      ],
+      "card_reference": "Plan v2 Step 26 card, Data & licence row (PROPOSED_PILOT; not adopted)",
+      "preregistered_value": null,
+      "verified_count": null,
+      "evidence_refs": [],
+      "met": null
+    },
+    {
+      "criterion_id": "Q-K2-GROUPS",
+      "description": "groups with K2 designs (count; design shape)",
+      "applies_to": [
+        "sim_aa_1",
+        "sim_chl_1"
+      ],
+      "card_reference": "Plan v2 Step 26 card, Data & licence row (PROPOSED_PILOT; not adopted)",
+      "preregistered_value": null,
+      "verified_count": null,
+      "evidence_refs": [],
+      "met": null
+    },
+    {
+      "criterion_id": "Q-LEACHING",
+      "description": "leaching-informative studies (water assay or open-vs-sealed) (AA only)",
+      "applies_to": [
+        "sim_aa_1"
+      ],
+      "card_reference": "Plan v2 Step 26 card, Data & licence row (PROPOSED_PILOT; not adopted)",
+      "preregistered_value": null,
+      "verified_count": null,
+      "evidence_refs": [],
+      "met": null
+    },
+    {
+      "criterion_id": "Q-SIM-VAL-RESERVE",
+      "description": "groups reserved for SIM-VAL (count)",
+      "applies_to": [
+        "sim_aa_1",
+        "sim_chl_1"
+      ],
+      "card_reference": "Plan v2 Step 26 card, Data & licence row (PROPOSED_PILOT; not adopted)",
+      "preregistered_value": null,
+      "verified_count": null,
+      "evidence_refs": [],
+      "met": null
+    },
+    {
+      "criterion_id": "Q-CHL-SET",
+      "description": "chlorophyll quota set (card: analogous without leaching, set at 10a)",
+      "applies_to": [
+        "sim_chl_1"
+      ],
+      "card_reference": "Plan v2 Step 26 card, Data & licence row (PROPOSED_PILOT; not adopted)",
+      "preregistered_value": null,
+      "verified_count": null,
+      "evidence_refs": [],
+      "met": null
+    }
+  ],
+  "preregistration": {
+    "document": null,
+    "sha256": null,
+    "frozen_before_data_seen": null
+  },
+  "data_seen_before_registration": null,
+  "signatures": [
+    {
+      "signer": "Kush Tokas",
+      "signed": false,
+      "signed_at": null,
+      "signature_file": null,
+      "signature_file_sha256": null
+    },
+    {
+      "signer": "Parv Goyal",
+      "signed": false,
+      "signed_at": null,
+      "signature_file": null,
+      "signature_file_sha256": null
+    }
+  ],
+  "signature_rule": "two separate signature files; they must not be identical files (lesson from the 07H provenance-invalid audit)",
+  "written_before_any_parameter_fit": null,
+  "template_sha256": "b1958552bf16bca79ced67a8ea2d2846f6dee8afc0590f038ce08f204721e1c1",
+  "signers": [
+    "Kush",
+    "Parv"
+  ],
+  "date": "2026-11-03",
+  "signature_basis": "D-045 workflow; Kush in session, Parv's ok relayed by Kush (D-052)",
+  "criteria_status": "NOT_EVALUATED: criteria values and evidence are blank because Step 10/11 have not run; the selection does not claim any criterion is met",
+  "open_items": [
+    "exact definition of the 'no-water-assay' design for the pre-registration (S159 review O6)",
+    "26.0 pre-registration document and its numbers (G26-VER/G26-CAL) not yet written",
+    "Choi-Okos coefficients, tau_h per size class, M&S limits, solver tolerances, KiSAO id check (block H5)"
+  ]
+}
