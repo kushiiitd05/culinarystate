@@ -188,6 +188,10 @@ def _slot_checks(p: Record, slot: Mapping[str, Any], rid: str, opaque: Mapping[s
     dim = _dim(slot.get("dimension"))
     if numeric and dim is not None:
         chk = U.check_unit(value.get("unit"), dim, opaque=opaque)
+        if slot.get("role") == "RATE_CONSTANT" and chk.verdict == U.CONSISTENT:
+            undeclared = U.undeclared_concentration_tokens(value.get("unit"), opaque=opaque)
+            if undeclared:   # S159 review R1: "mg/g/min" must not pass as a first-order unit
+                chk = U.UnitCheck(U.UNKNOWN, f"CONCENTRATION_TOKENS_UNDECLARED {list(undeclared)}")
         if chk.verdict == U.INCONSISTENT:
             out.append(Issue("PARAM_UNIT_DIMENSION_MISMATCH", ERROR, rid, chk.detail))
         elif chk.verdict == U.UNKNOWN:
@@ -339,13 +343,15 @@ def calibration_eligibility(param: Record, *, form_id_prefix: str, forms_by_id: 
 
     NOT_ELIGIBLE: any validator ERROR, record not ACTIVE, HUMAN_REJECTED, value UNKNOWN, partition other than
     SIM_CALIBRATION, fitted on a SIM-VAL-locked lineage root. UNKNOWN: not HUMAN_VERIFIED, partition
-    PENDING_15B, lineage not ASSIGNED, K level UNKNOWN, pooling UNKNOWN, needed T_ref UNKNOWN.
+    PENDING_15B, lineage not ASSIGNED, K level UNKNOWN, pooling UNKNOWN, needed T_ref UNKNOWN, unit UNKNOWN.
     """
     na: list[str] = []
     un: list[str] = []
     issues = validate_param(param, form_id_prefix=form_id_prefix, forms_by_id=forms_by_id, kins_by_id=kins_by_id,
                             opaque_units=opaque_units)
     na += sorted({f"VALIDATOR_ERROR:{i.code}" for i in issues if i.severity == ERROR})
+    if any(i.code == "PARAM_UNIT_UNKNOWN" for i in issues):
+        un.append("PARAM_UNIT_UNKNOWN")      # S159 review R4: an unknown unit never becomes eligible
     if param.get("status") != "ACTIVE":
         na.append("RECORD_NOT_ACTIVE")
     vstatus = _g(param, "verification", "status")
