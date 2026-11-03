@@ -122,3 +122,4 @@ Source: `reports/step21/S158_build_note.md`, `S158_ai_review.md`, `S158_expert_q
 | G5 | 22a:<br>- seal the shared 22c case set before any rule is coded (the helper exists);<br>- author real signature rules;<br>- approve a modifier vocabulary. |
 | G6 | 23a:<br>- the 8 AI readings in §4 of the 23a note;<br>- the 45 AI-draft reason codes;<br>- whether ASK and RESEARCH_ONLY belong in the route enum;<br>- pre-register the G22/G23 thresholds. |
 | G7 | Accept the R1–R6 fixes. |
+- 2026-11-03, Kush: "block G and scipy ok by parv and me". Recorded as D-050. G4 (expert answers) and G5 sealing (no case set yet) stay open; scipy declared as optional extra step26.
