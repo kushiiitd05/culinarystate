@@ -185,8 +185,8 @@ class Span:
     @classmethod
     def multi(cls, source: SourceText, segments: Sequence[tuple[int, int]],
               join_policy: str | None = None) -> "Span":
-        segs = tuple((int(s), int(e)) for s, e in segments)
-        problem = segment_problem(segs, len(source.raw), join_policy)
+        segs = tuple(tuple(seg) for seg in segments)
+        problem = segment_problem(segs, len(source.raw), join_policy)  # ints only: no silent truncation (R6)
         if problem:
             raise InterfaceError(problem)
         return cls(source.text_id, source.sha256, segs, tuple(source.raw[s:e] for s, e in segs), join_policy)
@@ -534,6 +534,8 @@ class EventCandidate:
 
     def __post_init__(self) -> None:
         _nonblank(self.event_id, "event_id")
+        if not (isinstance(self.order, tuple) and len(self.order) == 2 and all(type(x) is int for x in self.order)):
+            raise InterfaceError("Event order must be a (step_index, ordinal) tuple of two ints")
 
 
 @dataclass(frozen=True)
