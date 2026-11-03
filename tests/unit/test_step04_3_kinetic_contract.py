@@ -258,7 +258,7 @@ def test_clean_series_is_eligible_only_under_draft_rules() -> None:
     k["verification"] = {"status": "HUMAN_VERIFIED", "verifier": "Kush", "verified_at": F.NOW}
     v = KC.split_eligibility(k, pts, obs)
     assert v.verdict == KC.ELIGIBLE == "ELIGIBLE_UNDER_DRAFT_RULES", v.reasons
-    assert any(r.threshold_id == "THR-04K-03" and r.status == "DRAFT_PENDING_H4" for r in v.rule_refs)
+    assert any(r.threshold_id == "THR-04K-03" and r.status == "PREREGISTERED_2026-11-03" for r in v.rule_refs)
 
 
 @pytest.mark.parametrize("mutate,verdict,reason", [
@@ -360,15 +360,15 @@ def test_registry_token_needs_an_approved_registry() -> None:
 def test_mandate_follows_draft_thr_04k_01() -> None:
     assert KC.series_storage_required(2) and not KC.series_storage_required(1)
     ref = KC.DRAFT_THRESHOLDS["THR-04K-01"]
-    assert ref.status == "DRAFT_PENDING_H4"
+    assert ref.status == "PREREGISTERED_2026-11-03"
 
 
-def test_threshold_rows_are_still_unsigned_drafts_in_the_registry() -> None:
+def test_threshold_rows_are_signed_and_match_the_module_after_d051() -> None:
     with open(ROOT / "registry" / "preregistered_thresholds_v1.csv", newline="", encoding="utf-8") as fh:
         rows = {r["threshold_id"]: r for r in csv.DictReader(fh)}
     for tid, ref in KC.DRAFT_THRESHOLDS.items():
-        assert rows[tid]["registry_status"] == ref.status == "DRAFT_PENDING_H4", tid
-        assert not rows[tid].get("signed_by"), f"{tid} is signed: the module must be updated by a human decision"
+        assert rows[tid]["registry_status"] == ref.status == "PREREGISTERED_2026-11-03", tid
+        assert rows[tid]["signed_at"] == "2026-11-03" and "Kush Tokas" in rows[tid]["signed_by"], tid
 
 
 def test_module_is_pure() -> None:
