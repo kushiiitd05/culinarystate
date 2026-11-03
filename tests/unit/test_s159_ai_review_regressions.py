@@ -90,3 +90,13 @@ def test_r4_param_with_an_unknown_unit_is_never_calibration_eligible() -> None:
     for unit in ("1/fortnight", "mg/g/min"):
         e = elig(_verified(FX.param(unit=unit)))
         assert e.verdict == FPV.UNKNOWN and "PARAM_UNIT_UNKNOWN" in e.reasons, (unit, e)
+
+
+# ----------------------------------------------------------------------------- R5 malformed value_si crashes
+def test_r5_converted_exact_without_a_numeric_si_value_is_an_issue_not_a_crash() -> None:
+    form = FX.form()
+    for bad in (None, "x"):
+        p = FX.param(unit="1/min", value=2.0)
+        p["value_si"] = {"status": "CONVERTED_EXACT", "value": bad, "unit_si": "1/s"}
+        issues = FPV.validate_param(p, form_id_prefix="FORM", forms_by_id={form["id"]: form})
+        assert any(i.code == "PARAM_SI_NOT_EXACT" and i.severity == "ERROR" for i in issues)
