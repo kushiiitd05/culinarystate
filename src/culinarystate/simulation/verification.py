@@ -129,7 +129,14 @@ def simulator_kinetic_form(system_id: str, *, free: Sequence[str], fixed_theta: 
         for i, (tau, T) in enumerate(zip(cov["tau_s"], cov["T_K"])):
             key = (float(tau), float(T))
             if key not in cache:
-                cache[key] = SC.expm(spec.rate_matrix(theta, cond, key[1]) * key[0]) @ x0
+                with np.errstate(over="ignore", invalid="ignore"):
+                    A = spec.rate_matrix(theta, cond, key[1]) * key[0]
+                if not np.all(np.isfinite(A)):       # 26a treats ModelError as an infinite residual
+                    raise M.ModelError("rate matrix overflow at this parameter value")
+                try:
+                    cache[key] = SC.expm(A) @ x0
+                except (SC.SimulationError, OverflowError, np.linalg.LinAlgError) as exc:
+                    raise M.ModelError(f"propagator not computable: {exc}") from exc
             v = cache[key][spec.state_names.index(states[idx[i]])]
             out[i] = np.log(v) if v > 0 else -np.inf
         return out
