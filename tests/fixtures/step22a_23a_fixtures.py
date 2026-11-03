@@ -46,7 +46,9 @@ HIERARCHY_ROWS: list[dict[str, str]] = [
 
 def accepted_target(key: str = "TGT01", dirs: Iterable[str] = ("DECREASE",), state_key: str = TARGET_STATE,
                     **over: Any) -> dict[str, Any]:
-    return target(dirs=dirs, key=key, status="ACCEPTED", evidence_ids=["SRC-000001"], target=state(state_key), **over)
+    kw: dict[str, Any] = {"status": "ACCEPTED", "evidence_ids": ["SRC-000001"], "target": state(state_key)}
+    kw.update(over)
+    return target(dirs=dirs, key=key, **kw)
 
 
 def mech(key: str = "SYNTH_FIXTURE_ONE", mid: str = "MECH-000001", *, dirs: Iterable[str] = ("DECREASE",),
@@ -67,9 +69,11 @@ def inhibiting_gate(key: str = "CG02", mn: float = 20.0, mx: float = 30.0) -> di
 
 def necessary_gate(key: str = "CG01", cv: str = "CV-013", unit: str = "pH", mn: Any = None, mx: Any = None,
                    **over: Any) -> dict[str, Any]:
-    return gate(cv=cv, key=key, unit=unit, mn=mn or stated(1.0), mx=mx or open_(10.0), evidence_ids=["SRC-000001"],
-                status="ACCEPTED", matrix_scope=scope("FOOD_CLASS", inc=(MATRIX,)),
-                rationale_raw="synthetic: a PRIMARY source states absence outside this window", **over)
+    kw: dict[str, Any] = {"evidence_ids": ["SRC-000001"], "status": "ACCEPTED",
+                          "matrix_scope": scope("FOOD_CLASS", inc=(MATRIX,)),
+                          "rationale_raw": "synthetic: a PRIMARY source states absence outside this window"}
+    kw.update(over)
+    return gate(cv=cv, key=key, unit=unit, mn=mn or stated(1.0), mx=mx or open_(10.0), **kw)
 
 
 def accepted_competitor(key: str, relation: str = "PARALLEL_PATHWAY") -> dict[str, Any]:
