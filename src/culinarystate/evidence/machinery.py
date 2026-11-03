@@ -15,7 +15,8 @@ Laws applied (CLAUDE.md, D-045, card STEP 09)
   (a human-filled CSV, hashed) and ``write_queue_jsonl`` re-reads that file and refuses any review
   that is not present in it byte-for-byte. There is no sign-as / bulk-fill entry point.
 - No E5 -> E4 promotion happens here. ``evidence_tier_candidate`` can at most say
-  ``E4_ELIGIBLE_PENDING_ADJ`` (dual extraction + blind human confirmation with a checked locator);
+  ``E4_ELIGIBLE_PENDING_ADJ`` (dual extraction by two extractor families + blind confirmation with a
+  checked locator by a human who did not extract the item);
   the ADJ record and the promotion itself belong to the approved 09.1 schemas, which do not exist yet.
 - Span text is hashed, never stored, so a queue file carries no third-party passage.
 
@@ -287,8 +288,10 @@ def _derive_status(item: QueueItem) -> str:
 
 def _tier_candidate(item: QueueItem) -> str:
     rv = item.human_review
+    human_extractors = {p.extractor_id.strip() for p in item.proposals if p.extractor_kind == "HUMAN_EXTRACTOR"}
     if (rv is None or rv.decision != "CONFIRM" or rv.review_mode != "INDEPENDENT_BLIND" or rv.seen_model_output
             or not rv.checked_locator or len({p.family for p in item.proposals}) < 2
+            or rv.reviewer in human_extractors                     # review R2: no self-confirmation
             or BLOCKING_FLAGS & set(item.flags)):
         return "E5"
     return "E4_ELIGIBLE_PENDING_ADJ"
