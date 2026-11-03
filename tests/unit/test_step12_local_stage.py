@@ -101,7 +101,7 @@ def test_write_staging_files_and_refuse_overwrite(tmp_path: Path) -> None:
 def test_diff_counts(tmp_path: Path) -> None:
     r2, bog = parsed()
     d = S.diff_against_evd(evd_file(tmp_path), r2=r2, bognar=bog)
-    assert d["evd_rows_read_latest_active"] == 5
+    assert d["evd_rows_read_latest_active"] == 4            # EVD-900002 latest version is DEPRECATED
     bg = d["bognar_remaining"]
     assert set(bg["existing_evd_rows_in_remaining_tables"]) == {f"T{t}" for t in B.REMAINING_TABLES}
     assert set(bg["existing_evd_rows_in_remaining_tables"].values()) == {0}
