@@ -1074,3 +1074,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `src/culinarystate/evidence/{machinery`, `extraction_fields`, `registration`, `step12_local`, `seed_corpus}.py`, `src/culinarystate/ingest/{usda_yields_r2`, `bognar_remaining}.py`, `tools/step12_*.py`, `tools/step13a0_seed_corpus.py`, `registry/evidence/`, `registry/schemas/evidence_verification_queue_item.provisional_v1.schema.json`, `reports/step09/*`, `reports/step13/*`, `tests/unit/test_step09_*`, `test_step12_*`, `test_step13a0_*`, `test_s157_*`
 - **Verified:** Full unit suite 2341 passed, 17 skipped, 1 deselected; 1 failed + 11 errors = missing bundle files. Ledger guard 7/7; 0 pre-S157 files modified; 0 attribution lines.
 - **Next:** Kush/Parv: review block F (re-baseline, H2, E4 rule, review authenticity). Kush: run the three tools locally. Next S158 kinetic contract + mechanism stack (04.3, 21, 22a, 23a).
+
+### S158 · 2026-11-03 22:31 IST · ES-1 · Kinetic contract 04.3 v1.1, MECH v1.1, 22a signatures, 23a applicability engine (DRAFT; 23b blocked)
+- **Who:** Kush (cloud agent session; workers ksh/prv)
+- **Did:** ksh built KIN/KINPT v1.1 with cross-record validator and MECH v1.1 with expert question list (14, sources UNVERIFIED: hosts blocked). prv built sign-only 22a signatures + case-seal helper, three-valued 23a engine with APPDEC schema and 56 reason codes compatible with 26g, and cross-reviewed (R1-R6 fixed test-first).
+- **Files:** `registry/schemas/{KIN`, `KINPT`, `MECH}.draft_v1_1.schema.json`, `registry/schemas/APPDEC.draft_v1.schema.json`, `registry/mechanisms/*`, `src/culinarystate/lineage/kinetic_contract.py`, `src/culinarystate/mechanism/*`, `reports/step04/kinetic_trajectory_contract_v1_1_DRAFT.md`, `reports/step21/*`, `reports/step23/*`, `tests/unit/test_step04_3_*`, `test_step21_*`, `test_step22a_*`, `test_step23a_*`, `test_s158_*`
+- **Verified:** Full unit suite 2574 passed, 17 skipped, 1 deselected; 1 failed + 11 errors = missing bundle files. Ledger guard 7/7; 0 attribution lines.
+- **Next:** Kush/Parv/expert: block G. Next S159 simulator core (24a, 26a-c) data-free.
