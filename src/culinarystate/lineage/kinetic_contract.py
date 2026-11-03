@@ -386,6 +386,13 @@ def split_eligibility(kin: Record, kinpts: Sequence[Record], obs_by_id: Mapping[
     """TEST / SIM-VAL eligibility of one series under the DRAFT rules. Anything but ELIGIBLE_UNDER_DRAFT_RULES
     means "do not place in TEST / SIM-VAL"; UNKNOWN never becomes eligible."""
     lin, lv = kin["lineage"], []
+    if kin.get("status") != "ACTIVE":
+        lv.append((NOT_ELIGIBLE, "RECORD_NOT_ACTIVE"))             # a deprecated / superseded / retracted record
+    ver = (kin.get("verification") or {}).get("status")
+    if ver == "HUMAN_REJECTED":
+        lv.append((NOT_ELIGIBLE, "HUMAN_REJECTED"))
+    elif ver != "HUMAN_VERIFIED":
+        lv.append((UNKNOWN, "NOT_HUMAN_VERIFIED"))                 # 04.6-min KIN row: test / calibration only if human verified
     if lin["independence_resolution"] == "UNKNOWN":
         lv.append((NOT_ELIGIBLE, "INDEPENDENCE_UNKNOWN"))          # D-029 D-5: UNKNOWN independence = TRAIN only
     if lin["assignment_status"] == "PENDING":
@@ -421,7 +428,19 @@ def split_eligibility(kin: Record, kinpts: Sequence[Record], obs_by_id: Mapping[
 
 def arrhenius_eligibility(kin: Record) -> Eligibility:
     """R04-15: Arrhenius-eligible only with a MEDIUM / CORE / SURFACE profile, PRODUCT_ISOTHERMAL_STATED, or the
-    come-up time EXCLUDED and stated. UNSPECIFIED is never promoted; missing facts give UNKNOWN."""
+    come-up time EXCLUDED and stated. UNSPECIFIED is never promoted; missing facts give UNKNOWN. A positive verdict
+    needs a REPORTED temperature: with temperature NOT_REPORTED it becomes NOT_ELIGIBLE, with temperature status
+    UNKNOWN it becomes UNKNOWN, whatever the isothermality or come-up statement (S158 AI review R2)."""
+    v = _arrhenius_from_profile(kin)
+    status = kin["condition_profile"]["temperature_status"]
+    if v.verdict == ELIGIBLE and status == "NOT_REPORTED":             # no temperature: no route to ELIGIBLE
+        return Eligibility(NOT_ELIGIBLE, ("TEMPERATURE_NOT_REPORTED",))
+    if v.verdict == ELIGIBLE and status == "UNKNOWN":
+        return Eligibility(UNKNOWN, ("TEMPERATURE_STATUS_UNKNOWN",))
+    return v
+
+
+def _arrhenius_from_profile(kin: Record) -> Eligibility:
     cp, cut = kin["condition_profile"], kin["time_base"]["come_up_time"]["status"]
     locs = {p["location"] for p in cp["temperature_profiles"]}
     if locs & PRODUCT_PROFILE_LOCATIONS:
