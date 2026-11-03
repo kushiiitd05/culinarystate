@@ -93,3 +93,17 @@ Source: `reports/step18/S156_build_note.md`, `S156_engine_audit.md`, `S156_18_ai
 
 Responses:
 - 2026-11-03, Kush: the old-engine defects L1–L8 are not influential and are left unchanged; work continues on the new replay.
+
+## Block F — S157 evidence machinery (pending review)
+
+Source: `reports/step09/S157_build_note.md`, `S157_09_audit.md`, `S157_ai_review.md`.
+
+| ID | Decision needed |
+|---|---|
+| F1 | **Re-baseline SRC/SNAP.** Appending the proposed 12.0 rows changes the byte-identical protected ledgers. Approve a re-baseline after reviewing `registry/staging/step12_0_src_snap_proposed_v1.jsonl` from a local run, or keep them proposed only. |
+| F2 | **Licences (H2).** INFOODS (#9) stays LOCAL_ONLY. Re-check the Bognar licence before its 11 tables are ingested. Should catalog-reported CC0/PD count as ASSUMED or stay UNKNOWN? |
+| F3 | **E4 under D-045.** E4 needs a blind second review, and AI-draft-then-human-review is not blind, so as built no item can reach E4. Keep that, or name which review counts as blind. |
+| F4 | **Old tools that let code fill human fields.** `apply_link_review.py --sign-as` fills a human decision field; `apply_human_review.py` writes to EVD. Restrict, retire or keep them. |
+| F5 | **Review-file authenticity (O-1).** How does a review CSV prove it came from Kush or Parv? (Signed commit, separate account, or attestation.) |
+| F6 | **Bognar values above 1.00.** MEASURED in the new parser, CENSORED in the old v1. Choose one at the G12 audit. Also decide the method-label rule (O-4) and the R2 "nearest 5%" censoring rule. |
+| F7 | Accept the R1–R4 fixes and the ksh audit open items O-1 to O-6: field classes, unit list and prompt-injection patterns as AI proposals; whether the T/t validators call the frozen Step 07 normaliser. |
