@@ -193,3 +193,18 @@ def test_tool_defaults() -> None:
     assert mod.DEFAULT_R2 == "data/external/usda_yields/cooking_yields_meat_poultry_r2.csv"
     assert mod.DEFAULT_BOGNAR_TXT == "data/raw/bognar/bognar_2002.txt"
     assert mod.DEFAULT_REPORT == "reports/step12/step12_local_counts_v1.json"
+
+
+def test_existing_key_reads_methods_containing_a_comma(tmp_path: Path) -> None:
+    """Real v1 locators look like 'Part 2 table 3, stew, braise, A)': the basis letter must still be read."""
+    rows = [{"id": "EVD-900010", "status": "ACTIVE", "source_family_id": "BOGNAR-2002",
+             "matrix": {"raw_name": "x"}, "process": {"raw_name": "stew, braise", "modifiers": {}},
+             "target": {"raw_name": "Vitamin C"},
+             "provenance": {"locator": "bognar_2002.txt line 7 (Part 2 table 2, stew, braise, A)"}}]
+    p = tmp_path / "EVD.jsonl"
+    p.write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+    cell = {"table": 2, "constituent_raw": "Vitamin C", "method_raw": "stew, braise", "basis": "A"}
+    bog = B.BognarResult(cells=[cell])
+    d = S.diff_against_evd(p, bognar=bog)
+    assert d["bognar_remaining"]["staged_cells_exact_key_in_existing_evd"] == 1
+    assert d["bognar_remaining"]["existing_evd_rows_in_remaining_tables"]["T2"] == 1
