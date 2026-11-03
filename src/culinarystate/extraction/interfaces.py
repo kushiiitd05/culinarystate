@@ -303,7 +303,8 @@ class Provenance:
 
 @dataclass(frozen=True)
 class StageConfig:
-    """Rung configuration. ``config_hash`` covers rung, params, model id and schema version."""
+    """Rung configuration. ``config_hash`` covers rung, params, model id, schema version, claim route and
+    annotation provenance (labels, mode): every field that changes the outputs (S155 review R3)."""
     rung_id: str
     params: Mapping[str, Any]
     claim_route: str
@@ -318,8 +319,10 @@ class StageConfig:
 
     @property
     def config_hash(self) -> str:
+        labels = None if self.annotated_labels is None else sorted(self.annotated_labels)
         return config_hash({"rung_id": self.rung_id, "params": dict(self.params), "model_id": self.model_id,
-                            "schema_version": self.schema_version})
+                            "schema_version": self.schema_version, "claim_route": self.claim_route,
+                            "annotated_labels": labels, "annotation_mode": self.annotation_mode})
 
     def provenance(self, stage: str) -> Provenance:
         if stage not in STAGES:
