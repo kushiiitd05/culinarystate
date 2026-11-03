@@ -5,8 +5,9 @@ This auditor flags every numeric or categorical output value that does not trace
 to one of:
 
 - a raw source span that round-trips (V1) and literally contains the value
-  (``SPAN_LITERAL``; numbers are read with ``numbers_in_text``, a unit, when
-  given, must be raw unit text inside the span);
+  (``SPAN_LITERAL``; numbers are read with ``numbers_in_text``, the span may
+  hold no other number, and a unit, when given, must be a raw unit token inside
+  the span: S155 review R1);
 - a deterministic rule re-run on the span text by a caller-supplied recomputer
   returning ``(value, unit)`` (``SPAN_RULE``); an unregistered rule is not
   reproducible and counts as invented;
@@ -69,6 +70,7 @@ VULGAR = {"½": Fraction(1, 2), "⅓": Fraction(1, 3), "⅔": Fraction(2, 3), "�
           "⅚": Fraction(5, 6), "⅐": Fraction(1, 7), "⅛": Fraction(1, 8), "⅜": Fraction(3, 8), "⅝": Fraction(5, 8),
           "⅞": Fraction(7, 8), "⅑": Fraction(1, 9), "⅒": Fraction(1, 10)}
 _V = "[" + "".join(VULGAR) + "]"
+_MINUS = "-\u2212"
 _NUMBER = re.compile(rf"(?P<mixed>(?P<mi>\d+)[ \t ]+(?P<mn>\d+)[ \t]*/[ \t]*(?P<md>\d+))"
                      rf"|(?P<iv>(?P<ii>\d+)[ \t ]?(?P<iu>{_V}))"
                      rf"|(?P<frac>(?P<fn>\d+)[ \t]*/[ \t]*(?P<fd>\d+))"
@@ -77,32 +79,44 @@ _NUMBER = re.compile(rf"(?P<mixed>(?P<mi>\d+)[ \t ]+(?P<mn>\d+)[ \t]*/[ \t]*(?P
                      rf"|(?P<vul>{_V})")
 
 
+def _signed(text: str, start: int) -> bool:
+    """True when ``text[start-1]`` is an attached minus sign that is not a range dash."""
+    if start == 0 or text[start - 1] not in _MINUS:
+        return False
+    before = text[:start - 1].rstrip()
+    return not before or not (before[-1].isdigit() or before[-1] in VULGAR)
+
+
 def numbers_in_text(text: str) -> frozenset[Fraction]:
     """Exact values of literal numbers in ``text`` (greedy, left to right).
 
     Reads integers, decimals with a point, a/b, mixed numbers and Unicode vulgar
     fractions (Unicode decimal digits included). Number words and thousands
-    separators are not read: such values need a reproducible ``SPAN_RULE``.
+    separators are not read: such values need a reproducible ``SPAN_RULE``. A
+    hyphen-minus or U+2212 attached to a number is a sign unless it follows another
+    number (a range dash): "-18°C" reads -18, "20-25" and "1 - 2" read two
+    positive numbers (S155 review R2).
     """
     out: set[Fraction] = set()
     for m in _NUMBER.finditer(text):
+        sign = -1 if _signed(text, m.start()) else 1
         if m.group("mixed"):
             if int(m.group("md")):
-                out.add(int(m.group("mi")) + Fraction(int(m.group("mn")), int(m.group("md"))))
+                out.add(sign * (int(m.group("mi")) + Fraction(int(m.group("mn")), int(m.group("md")))))
         elif m.group("iv"):
-            out.add(int(m.group("ii")) + VULGAR[m.group("iu")])
+            out.add(sign * (int(m.group("ii")) + VULGAR[m.group("iu")]))
         elif m.group("frac"):
             if int(m.group("fd")):
-                out.add(Fraction(int(m.group("fn")), int(m.group("fd"))))
+                out.add(sign * Fraction(int(m.group("fn")), int(m.group("fd"))))
             else:
-                out.update({Fraction(int(m.group("fn"))), Fraction(0)})
+                out.update({sign * Fraction(int(m.group("fn"))), Fraction(0)})
         elif m.group("dec"):
             digits = m.group("df")
-            out.add(int(m.group("di")) + Fraction(int(digits), 10 ** len(digits)))
+            out.add(sign * (int(m.group("di")) + Fraction(int(digits), 10 ** len(digits))))
         elif m.group("int"):
-            out.add(Fraction(int(m.group("int"))))
+            out.add(sign * Fraction(int(m.group("int"))))
         else:
-            out.add(VULGAR[m.group("vul")])
+            out.add(sign * VULGAR[m.group("vul")])
     return frozenset(out)
 
 
@@ -120,6 +134,11 @@ def _numbers(value: Any) -> list[Fraction] | None:
     parts = list(value) if isinstance(value, tuple) else [value]
     exact = [_exact(p) for p in parts]
     return None if any(e is None for e in exact) or len(parts) not in (1, 2) else exact
+
+
+def _unit_token_in(unit: str, surface: str) -> bool:
+    """The unit occurs in the span as a whole token (not letters inside a longer word; S155 review R1)."""
+    return bool(unit) and re.search(rf"(?<![^\W\d_]){re.escape(unit)}(?![^\W\d_])", surface) is not None
 
 
 def _same(kind: ValueKind, a: Any, b: Any) -> bool:
@@ -198,7 +217,10 @@ def audit_claim(claim: ValueClaim, source: SourceText, *, recomputers: Mapping[s
             present = numbers_in_text(surface)
             if any(n not in present for n in nums):
                 return bad("NUMERIC_NOT_IN_SPAN", "Number does not appear literally in its span")
-            if claim.unit is not None and claim.unit not in surface:
+            if not present <= set(nums):
+                return bad("SPAN_HAS_OTHER_NUMBERS", "Literal span holds other numbers: number/unit pairing is "
+                                                     "not decidable (use a tight span or a SPAN_RULE)")
+            if claim.unit is not None and not _unit_token_in(claim.unit, surface):
                 return bad("UNIT_NOT_IN_SPAN", "Literal unit is not raw text of the span (normalise via SPAN_RULE)")
         elif str(claim.value) != surface:
             return bad("VALUE_NOT_IN_SPAN", "Literal value differs from its span text")
