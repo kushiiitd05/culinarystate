@@ -146,7 +146,7 @@ def _synthetic_root(tmp_path: Path) -> Path:
     return root
 
 
-def _sign(root: Path, rec: dict, signers=("Synthetic Signer A", "Synthetic Signer B")) -> Path:
+def _sign(root: Path, rec: dict, signers=("Kush Tokas (synthetic)", "Parv Goyal (synthetic)")) -> Path:
     rec = dict(rec, signers=list(signers), date="2026-11-03", status="SIGNED")
     out = root / er.SIGNED_RECORD
     out.write_text(json.dumps(rec), encoding="utf-8")
@@ -195,7 +195,7 @@ def test_synthetic_record_missing_a_required_input_is_refused(tmp_path):
 
 def test_synthetic_single_signer_and_edited_document_are_refused(tmp_path):
     root = _synthetic_root(tmp_path)
-    _sign(root, er.build_unsigned_record(root), signers=("Synthetic Signer A",))
+    _sign(root, er.build_unsigned_record(root), signers=("Kush Tokas (synthetic)",))
     with pytest.raises(PreregNotSigned, match="distinct signers"):
         er.authorise_explicit_run("35e", root=root)
     _sign(root, er.build_unsigned_record(root))
