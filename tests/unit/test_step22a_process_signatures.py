@@ -163,7 +163,7 @@ def test_build_is_deterministic_and_order_independent() -> None:
 
 # ----------------------------------------------------------------------------- validator
 def test_signature_validator_accepts_built_signatures_and_finds_tampering() -> None:
-    e = mech(affected_targets=[accepted_target(), accepted_target("TGT02", ("INCREASE",), "synthetic_other")])
+    e = mech(affected_targets=[accepted_target(), accepted_target("TGT02", ("INCREASE",), "synthetic_other", effect="FORMED")])
     (s,) = build([rule()], [e]).signatures
     good = s.to_canonical()
     assert PS.signature_problems(good, [e], hier()) == []
