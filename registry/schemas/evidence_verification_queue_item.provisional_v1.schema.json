@@ -1,0 +1,311 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/provisional/evidence_verification_queue_item_v1.schema.json",
+  "title": "Evidence verification queue item (Step 09 machinery)",
+  "description": "PROVISIONAL_PENDING_09_GATE. One field of one document with >= 1 extractor proposals, validator flags, at most one human review read from a human-filled review file, and statuses derived from that review. Not a ledger schema; not approved; XTR-/ADJ- (09.1) are still reserved only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record",
+    "status",
+    "machinery_version",
+    "queue_item_id",
+    "document_id",
+    "field_class",
+    "critical",
+    "span_sha256",
+    "licence_status",
+    "proposals",
+    "flags",
+    "human_review",
+    "verification_status",
+    "evidence_tier_candidate"
+  ],
+  "properties": {
+    "record": {
+      "const": "VERIFICATION_QUEUE_ITEM"
+    },
+    "status": {
+      "const": "PROVISIONAL_PENDING_09_GATE"
+    },
+    "machinery_version": {
+      "type": "string"
+    },
+    "queue_item_id": {
+      "type": "string",
+      "pattern": "^vq:[0-9a-f]{16}$"
+    },
+    "document_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "field_class": {
+      "enum": [
+        "numeric_value",
+        "unit",
+        "basis",
+        "n",
+        "dispersion",
+        "censoring",
+        "temperature",
+        "time",
+        "temperature_location",
+        "medium_water_ratio",
+        "matrix_identity",
+        "process",
+        "method_platform",
+        "k_level",
+        "kinetic_parameter"
+      ]
+    },
+    "critical": {
+      "type": "boolean"
+    },
+    "span_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "licence_status": {
+      "type": "string"
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "proposals": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "field_class",
+          "raw_value",
+          "extractor_id",
+          "extractor_kind",
+          "locator",
+          "attributes",
+          "flags",
+          "normalised"
+        ],
+        "properties": {
+          "field_class": {
+            "enum": [
+              "numeric_value",
+              "unit",
+              "basis",
+              "n",
+              "dispersion",
+              "censoring",
+              "temperature",
+              "time",
+              "temperature_location",
+              "medium_water_ratio",
+              "matrix_identity",
+              "process",
+              "method_platform",
+              "k_level",
+              "kinetic_parameter"
+            ]
+          },
+          "raw_value": {
+            "type": "string"
+          },
+          "extractor_id": {
+            "type": "string"
+          },
+          "extractor_kind": {
+            "enum": [
+              "AI_MODEL",
+              "RULE",
+              "HUMAN_EXTRACTOR"
+            ]
+          },
+          "locator": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "document_id",
+              "kind"
+            ],
+            "properties": {
+              "document_id": {
+                "type": "string"
+              },
+              "kind": {
+                "enum": [
+                  "SPAN",
+                  "TABLE_CELL",
+                  "FIGURE"
+                ]
+              },
+              "page": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "table": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "row": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "column": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "char_start": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "char_end": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "figure": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "flags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "normalised": {
+            "type": "object",
+            "required": [
+              "raw",
+              "status"
+            ]
+          }
+        }
+      }
+    },
+    "human_review": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "reviewer",
+            "reviewed_at",
+            "decision",
+            "review_mode",
+            "seen_model_output",
+            "review_source_sha256",
+            "checked_locator",
+            "corrected_raw_value",
+            "minutes",
+            "queue_item_id"
+          ],
+          "properties": {
+            "reviewer": {
+              "enum": [
+                "Kush",
+                "Parv"
+              ]
+            },
+            "reviewed_at": {
+              "type": "string"
+            },
+            "decision": {
+              "enum": [
+                "CONFIRM",
+                "REJECT",
+                "CORRECT",
+                "UNSURE"
+              ]
+            },
+            "review_mode": {
+              "enum": [
+                "INDEPENDENT_BLIND",
+                "AI_ASSISTED",
+                "JOINT"
+              ]
+            },
+            "seen_model_output": {
+              "type": "boolean"
+            },
+            "review_source_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "checked_locator": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "corrected_raw_value": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "minutes": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "queue_item_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "verification_status": {
+      "enum": [
+        "UNVERIFIED",
+        "AI_PROPOSED",
+        "HUMAN_VERIFIED",
+        "HUMAN_REJECTED",
+        "HUMAN_CORRECTED_PENDING_REEXTRACTION",
+        "HUMAN_UNSURE"
+      ]
+    },
+    "evidence_tier_candidate": {
+      "enum": [
+        "E5",
+        "E4_ELIGIBLE_PENDING_ADJ"
+      ]
+    }
+  }
+}
