@@ -172,7 +172,8 @@ class Proposal:
 
     @property
     def family(self) -> str:
-        return self.extractor_id.split("@", 1)[0]
+        """Extractor family: the id before ``@version``, whitespace-trimmed and casefolded (review R1)."""
+        return self.extractor_id.split("@", 1)[0].strip().casefold()
 
     def to_dict(self) -> dict:
         return {"field_class": self.field_class, "raw_value": self.raw_value, "extractor_id": self.extractor_id,
