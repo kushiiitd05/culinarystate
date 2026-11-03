@@ -1,0 +1,1664 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/draft/KINPT.draft_v1_1.schema.json",
+  "title": "KINPT- one time point of a series: (series, tau, replicate) -> one OBS v1.1 (DRAFT_PENDING_H4)",
+  "description": "schema_version 1.1.0-draft. STATUS DRAFT_PENDING_H4: not approved, not frozen, not copied into ledgers/schemas/. Entity 04.3: KIN 1-* KINPT; KINPT 1-1 OBS.",
+  "$comment": "The measured value, unit, basis, censoring, dispersion and n of the point live in the referenced OBS (one OBS per KINPT). A KINPT is never deleted or merged into an endpoint; endpoint rows are DRV records with the KIN as parent. Mint key: '<kin_id>|<sequence_index>|<run_id or SINGLE>|<unit_label or AGG>'. v1.1 (S158, 2026-11-03, still DRAFT_PENDING_H4): additive revision of the v1 draft, which is kept unchanged; every change and its reason is listed in reports/step04/kinetic_trajectory_contract_v1_1_DRAFT.md. Cross-record rules are implemented by the pure validator src/culinarystate/lineage/kinetic_contract.py. Thresholds THR-04K-01..04 are referenced, not signed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "kin_id",
+    "sequence_index",
+    "tau",
+    "point_role",
+    "replicate",
+    "obs_id",
+    "paired_kinpt_ids",
+    "temperature_at_point",
+    "digitized"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^KINPT-\\d{6}$"
+    },
+    "record_type": {
+      "const": "KINPT"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^KINPT-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "kin_id": {
+      "type": "string",
+      "pattern": "^KIN-\\d{6}$"
+    },
+    "sequence_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "tau": {
+      "type": "object",
+      "required": [
+        "clock",
+        "status",
+        "value",
+        "low",
+        "high",
+        "unit",
+        "unit_raw",
+        "derivation",
+        "uncertainty",
+        "uncertainty_unit",
+        "uncertainty_type",
+        "uncertainty_status",
+        "normalised_seconds"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "clock": {
+          "type": "string",
+          "enum": [
+            "PROCESS_TAU"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "REPORTED",
+            "RANGE",
+            "DEFINITIONAL_ZERO",
+            "NOT_APPLICABLE_REFERENCE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "s",
+            "min",
+            "h",
+            "d",
+            "week",
+            "month",
+            "year",
+            "OTHER",
+            "UNKNOWN"
+          ]
+        },
+        "unit_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "derivation": {
+          "type": "string",
+          "enum": [
+            "AS_REPORTED",
+            "DIGITIZED",
+            "ESTIMATED_FROM_SUMMARY"
+          ]
+        },
+        "uncertainty": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty_unit": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty_type": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "HALF_WIDTH",
+                "SD",
+                "AXIS_RESOLUTION",
+                "UNKNOWN"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "uncertainty_status": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "READ_FROM_TOOL",
+                "ESTIMATED_BY_READER",
+                "UNKNOWN"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "normalised_seconds": {
+          "$ref": "#/$defs/time_conversion"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "REPORTED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "DEFINITIONAL_ZERO"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "const": 0
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high"
+            ],
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "number",
+                "minimum": 0
+              },
+              "high": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "NOT_APPLICABLE_REFERENCE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "derivation": {
+                "const": "DIGITIZED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "uncertainty_status": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "uncertainty_status": {
+                "const": "UNKNOWN"
+              }
+            },
+            "required": [
+              "uncertainty_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "uncertainty": {
+                "type": "null"
+              },
+              "uncertainty_unit": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "uncertainty_status": {
+                "enum": [
+                  "READ_FROM_TOOL",
+                  "ESTIMATED_BY_READER"
+                ]
+              }
+            },
+            "required": [
+              "uncertainty_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "uncertainty",
+              "uncertainty_unit",
+              "uncertainty_type"
+            ],
+            "properties": {
+              "uncertainty": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "uncertainty_unit": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uncertainty_type": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "uncertainty": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "uncertainty"
+            ]
+          },
+          "then": {
+            "properties": {
+              "uncertainty_status": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit": {
+                "const": "OTHER"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "unit_raw"
+            ],
+            "properties": {
+              "unit_raw": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "month",
+                  "year"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalised_seconds": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_CONVERTED",
+                      "CONVERTED_BY_STATED_CONVENTION",
+                      "NOT_CONVERTIBLE",
+                      "UNKNOWN"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit": {
+                "enum": [
+                  "OTHER",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "normalised_seconds": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_CONVERTED",
+                      "NOT_CONVERTIBLE",
+                      "UNKNOWN"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "NOT_APPLICABLE_REFERENCE"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "normalised_seconds": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_CONVERTED",
+                      "NOT_CONVERTIBLE",
+                      "UNKNOWN"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "normalised_seconds": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_CONVERTED",
+                      "NOT_CONVERTIBLE",
+                      "UNKNOWN"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "DEFINITIONAL_ZERO"
+              },
+              "normalised_seconds": {
+                "properties": {
+                  "status": {
+                    "const": "CONVERTED_EXACT"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              }
+            },
+            "required": [
+              "status",
+              "normalised_seconds"
+            ]
+          },
+          "then": {
+            "properties": {
+              "normalised_seconds": {
+                "properties": {
+                  "value": {
+                    "const": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "tau with a clock tag, kept RAW: value + unit + the unit label as printed (week / month / year are valid raw units; calendar durations are never converted in this record). status REPORTED = a stated time; RANGE = a stated interval ('10-12 min': low / high, no point value); DEFINITIONAL_ZERO = the reference sample defined as t = 0; NOT_APPLICABLE_REFERENCE = an untreated reference sample with no defined tau (never a fabricated 0). A DIGITIZED tau states uncertainty_status; READ_FROM_TOOL / ESTIMATED_BY_READER need a number > 0 with unit and type, UNKNOWN keeps the number null (UNKNOWN is never forced to a number, never 0). Normalised seconds are the SEPARATE field normalised_seconds with a conversion status."
+    },
+    "point_role": {
+      "type": "string",
+      "enum": [
+        "INITIAL",
+        "INTERMEDIATE",
+        "FINAL",
+        "UNKNOWN"
+      ]
+    },
+    "replicate": {
+      "type": "object",
+      "required": [
+        "status",
+        "index",
+        "unit_label",
+        "run_status",
+        "run_id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "INDIVIDUAL_REPLICATE",
+            "AGGREGATED_OVER_REPLICATES",
+            "UNKNOWN"
+          ]
+        },
+        "index": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_label": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "run_status": {
+          "type": "string",
+          "enum": [
+            "SINGLE_RUN",
+            "REPLICATE_RUNS",
+            "NOT_REPORTED",
+            "UNKNOWN"
+          ]
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "INDIVIDUAL_REPLICATE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "index": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "AGGREGATED_OVER_REPLICATES",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "index": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "run_status": {
+                "const": "REPLICATE_RUNS"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "run_id": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "run_status": {
+                "enum": [
+                  "SINGLE_RUN",
+                  "NOT_REPORTED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "run_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "unit_label = a label of the experimental unit that is STABLE across tau (required, by the semantic validator, when the series design is REPEATED_MEASURES_SAME_UNITS: within-unit correlation cannot be modelled otherwise). run_id separates independent replicate RUNS of the whole series from replicate samples at one time point (hierarchical fits in Steps 26 / 32 need both)."
+    },
+    "obs_id": {
+      "type": "string",
+      "pattern": "^OBS-\\d{6}$"
+    },
+    "paired_kinpt_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^KINPT-\\d{6}$"
+      },
+      "description": "KINPT of companion series (tissue vs cooking medium, mass / yield) at the same tau of the same run; their OBS sit on the same SMP or are paired explicitly here. Needed for the mass balance (Step 26c) and k_L identifiability."
+    },
+    "temperature_at_point": {
+      "type": "object",
+      "required": [
+        "status",
+        "value",
+        "location"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "SAME_AS_PROFILE",
+            "MEASURED_AT_POINT",
+            "NOT_REPORTED",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/value_obj"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "location": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "SETPOINT",
+                "MEDIUM",
+                "SURFACE",
+                "CORE",
+                "AMBIENT",
+                "UNSPECIFIED"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED_AT_POINT"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "$ref": "#/$defs/value_obj"
+              },
+              "location": {
+                "type": "string",
+                "enum": [
+                  "SETPOINT",
+                  "MEDIUM",
+                  "SURFACE",
+                  "CORE",
+                  "AMBIENT",
+                  "UNSPECIFIED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "SAME_AS_PROFILE",
+                  "NOT_REPORTED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "location": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "digitized": {
+      "type": "object",
+      "required": [
+        "status",
+        "tool",
+        "tool_version",
+        "read_independence"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "UNKNOWN"
+          ]
+        },
+        "tool": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tool_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "read_independence": {
+          "type": "string",
+          "enum": [
+            "INDEPENDENT_READERS",
+            "SAME_READER_REPEATED",
+            "SINGLE_READ",
+            "NOT_REPORTED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "YES"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "tool": {
+                "type": "string",
+                "minLength": 1
+              },
+              "tool_version": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "NO"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "read_independence": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "UNKNOWN"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "read_independence": {
+                "const": "UNKNOWN"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "YES"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "read_independence": {
+                "not": {
+                  "const": "NOT_APPLICABLE"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "description": "Mirror of OBS.value_origin == DIGITIZED (semantic check). YES requires tool + version here too. v1.1: read_independence records how the reads of a digitised point were made (THR-04K-03 needs two INDEPENDENT reads for TEST / SIM-VAL; the read count and inter-read SD stay on OBS.digitization). Whether a repeated read by the same reader counts as independent is an open H4 question: SAME_READER_REPEATED is recorded, never upgraded."
+    }
+  },
+  "$defs": {
+    "value_obj": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^UNIT-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_id_status": {
+          "type": "string",
+          "enum": [
+            "MAPPED",
+            "NOT_MAPPED",
+            "UNKNOWN"
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE",
+                  "CENSORED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "unit"
+            ],
+            "properties": {
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id_status": {
+                "const": "MAPPED"
+              }
+            },
+            "required": [
+              "unit_id_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "unit_id"
+            ],
+            "properties": {
+              "unit_id": {
+                "type": "string",
+                "pattern": "^UNIT-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id_status": {
+                "enum": [
+                  "NOT_MAPPED",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "unit_id_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "unit_id": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unit_id"
+            ]
+          },
+          "then": {
+            "required": [
+              "unit_id_status"
+            ],
+            "properties": {
+              "unit_id_status": {
+                "const": "MAPPED"
+              }
+            }
+          }
+        }
+      ],
+      "description": "UNKNOWN-aware value (same status vocabulary as ledgers/schemas/common QVALUE). A number is allowed only where the status says so; UNKNOWN/NOT_APPLICABLE/QUALITATIVE/CENSORED carry no number (the censoring limit lives in `censoring`). `raw` keeps the source string verbatim. `unit` is the raw unit string as printed and is never rewritten; `unit_id` (UNIT-) is the optional normalised pointer with an explicit mapping status (NOT_MAPPED / UNKNOWN keep it null; never a guessed id)."
+    },
+    "time_conversion": {
+      "type": "object",
+      "required": [
+        "status",
+        "value",
+        "convention"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "NOT_CONVERTED",
+            "CONVERTED_EXACT",
+            "CONVERTED_BY_STATED_CONVENTION",
+            "NOT_CONVERTIBLE",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "convention": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "CONVERTED_EXACT",
+                  "CONVERTED_BY_STATED_CONVENTION"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_CONVERTED",
+                  "NOT_CONVERTIBLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CONVERTED_BY_STATED_CONVENTION"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "convention"
+            ],
+            "properties": {
+              "convention": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_CONVERTED",
+                  "CONVERTED_EXACT",
+                  "NOT_CONVERTIBLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "convention": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Normalised seconds as a SEPARATE field with a conversion status; the raw time value, raw unit token and printed unit label are never rewritten. s / min / h / d / week convert exactly (CONVERTED_EXACT); month and year are calendar durations and are NEVER exact: they stay NOT_CONVERTED, or are converted only under a stated convention (CONVERTED_BY_STATED_CONVENTION, convention text mandatory, e.g. '1 month = 30 d'); unit OTHER / UNKNOWN is not converted. Seconds are never produced from an unknown unit and never defaulted to 0 (07H-R lesson: calendar conversion at ingest was a failure class)."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "verification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "required": [
+              "verifier",
+              "verified_at"
+            ],
+            "properties": {
+              "verifier": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "digitized": {
+            "properties": {
+              "status": {
+                "const": "YES"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "digitized"
+        ]
+      },
+      "then": {
+        "properties": {
+          "tau": {
+            "properties": {
+              "derivation": {
+                "enum": [
+                  "DIGITIZED",
+                  "AS_REPORTED"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "tau": {
+            "properties": {
+              "derivation": {
+                "const": "DIGITIZED"
+              }
+            },
+            "required": [
+              "derivation"
+            ]
+          }
+        },
+        "required": [
+          "tau"
+        ]
+      },
+      "then": {
+        "properties": {
+          "digitized": {
+            "properties": {
+              "status": {
+                "const": "YES"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
