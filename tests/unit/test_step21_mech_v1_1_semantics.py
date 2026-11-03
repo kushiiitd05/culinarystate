@@ -94,7 +94,7 @@ def test_semantic_defects_are_found_on_schema_valid_fixtures() -> None:
         # v1.1
         "target class contradicts the effect type": entry(affected_targets=[target("LEACHED", ("DECREASE",), cls="SPECIES")]),
         "marker shared with itself": entry(markers=[marker(shared=("SYNTH_FIXTURE_ONE",))]),
-        "duplicate question ref": entry(open_questions=[open_question(), open_question()]),
+        "duplicate question ref": entry(open_questions=[open_question(), dict(open_question(), topic_raw="second topic")]),
         "registry token without an approved registry": entry(affected_targets=[target(analyte_form={
             "status": "STATED", "text": "x", "token": "SYNTH_FORM_A", "token_status": "REGISTRY_TOKEN"})]),
     }
