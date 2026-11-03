@@ -302,3 +302,10 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **F6 Bognar >1.00, method labels, R2 censoring:** both readings are reported until the G12 audit decides. No value is changed.
 - **F7:** R1–R4 fixes accepted; ksh's audit O-1–O-6 accepted as AI proposals pending H4.
 - **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-050 · 2026-11-03 · Kush and Parv accept S158 review block G and approve scipy for Step 26a (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "block G and scipy ok by parv and me, keep going".
+- **Accepted as drafted:** G1, H4 acceptance of the 04.3 KIN/KINPT v1.1 draft contract for continued engineering. THR-04K-01..04 are **not** signed by this entry (they were not part of block G's ok); Step 09 still must not freeze KIN/KINPT against unsigned thresholds. G2, the draft readings stand: a same-reader repeat is UNKNOWN; a missing inter-read SD and an unverified series are not eligible, as built. G3, MECH v1.1 drafted choices (target_class field, token-registry slot) stand pending a token registry. G6, the 8 AI readings of the 23a engine, the 45 AI-draft reason codes and the route enum as drafted. G7, fixes R1–R6.
+- **Cannot be closed by this ok:** G4 needs the chemistry expert's own answers to EQ21-01..14. G5 sealing needs an authored shared case set, which does not exist yet; sealing is approved in principle, to be run once the cases are written.
+- **scipy:** approved as a Step 26 dependency, declared as optional extra `step26 = ["scipy>=1.11"]` in `pyproject.toml`, following the existing `step35` RDKit pattern. The cloud container has scipy 1.18.1.
+- **Approver:** Kush and Parv (Parv relayed by Kush).
