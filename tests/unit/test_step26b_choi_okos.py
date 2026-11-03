@@ -18,7 +18,7 @@ COMP = {"WATER": 0.8, "SOLIDS": 0.2}
 
 def corr(component: str, prop: str, coeffs: tuple[float, ...], lo: float = 270.0, hi: float = 400.0):
     pid = f"SYNTH-PARAM-{component}-{prop}".upper()
-    return CO.PropertyCorrelation(pid, component, prop, coeffs, CO.PROPERTY_UNITS[prop], (lo, hi), "SYNTHETIC")
+    return CO.PropertyCorrelation(pid, component, prop, coeffs, CO.PROPERTY_UNITS.get(prop, "1"), (lo, hi), "SYNTHETIC")
 
 
 def corrs() -> list[CO.PropertyCorrelation]:
