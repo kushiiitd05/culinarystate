@@ -13,7 +13,7 @@ reads no ledger. The cross-record rules are those that reports/step04/kinetic_tr
 * censored points stay censored and the series summary agrees with them;
 * digitised series follow the two-read rule THR-04K-03.
 
-THR-04K-01..04 are DRAFT_PENDING_H4 / PROPOSED_PILOT rows of registry/preregistered_thresholds_v1.csv.
+THR-04K-01..04 rows of registry/preregistered_thresholds_v1.csv were signed 2026-11-03 (D-051); the KIN contract itself stays a draft.
 They are referenced here, never signed: every positive eligibility verdict is ELIGIBLE_UNDER_DRAFT_RULES,
 not a gate result. Synthetic tests: tests/unit/test_step04_3_kinetic_contract.py.
 """
@@ -59,10 +59,10 @@ class ThresholdRef:
 
 
 DRAFT_THRESHOLDS: Mapping[str, ThresholdRef] = {
-    "THR-04K-01": ThresholdRef("THR-04K-01", "DRAFT_PENDING_H4", ">= 2 distinct numeric tau make a KIN mandatory"),
-    "THR-04K-02": ThresholdRef("THR-04K-02", "DRAFT_PENDING_H4", ">= 3 distinct times at one temperature = K1 label"),
-    "THR-04K-03": ThresholdRef("THR-04K-03", "DRAFT_PENDING_H4", "two independent reads for TEST / SIM-VAL"),
-    "THR-04K-04": ThresholdRef("THR-04K-04", "DRAFT_PENDING_H4", "R04-1 verified by the second extractor"),
+    "THR-04K-01": ThresholdRef("THR-04K-01", "PREREGISTERED_2026-11-03", ">= 2 distinct numeric tau make a KIN mandatory"),
+    "THR-04K-02": ThresholdRef("THR-04K-02", "PREREGISTERED_2026-11-03", ">= 3 distinct times at one temperature = K1 label"),
+    "THR-04K-03": ThresholdRef("THR-04K-03", "PREREGISTERED_2026-11-03", "two independent reads for TEST / SIM-VAL"),
+    "THR-04K-04": ThresholdRef("THR-04K-04", "PREREGISTERED_2026-11-03", "R04-1 verified by the second extractor"),
 }
 _MANDATE_MIN_TAU = 2      # THR-04K-01 draft value
 _MIN_READS = 2            # THR-04K-03 draft value
