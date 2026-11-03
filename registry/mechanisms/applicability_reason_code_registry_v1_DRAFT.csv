@@ -5,6 +5,7 @@ PROCESS_NOT_IN_HIERARCHY,G1,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,
 NO_CANDIDATE_MECHANISM,G3,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,no 22a signature for this process names a mechanism acting on the query target (Step 22 fallback: Step 23 returns UNKNOWN)
 TRIGGER_MODIFIER_UNKNOWN,G3,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,a signature's modifier predicate could not be decided because the modifier is not stated
 MECH_NOT_CONSUMABLE,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the MECH entry fails consumable_for_applicability and is refused; the specific MECH_* reasons follow
+MECH_NOT_ACTIVE,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,refused entry: record status is not ACTIVE (deprecated / superseded / retracted; S158 AI review R3)
 MECH_NOT_ACCEPTED,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,refused entry: review_status is not ACCEPTED
 MECH_NOT_HUMAN_VERIFIED,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,refused entry: verification.status is not HUMAN_VERIFIED
 MECH_GATES_UNKNOWN,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,refused entry: gates_unknown is true
