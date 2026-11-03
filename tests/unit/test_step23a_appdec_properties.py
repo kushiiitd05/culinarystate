@@ -28,12 +28,13 @@ H = PS.hierarchy_from_rows(HIERARCHY_ROWS)
 ENTRIES = {
     "accepted": [mech()],
     "candidate": [entry()],
-    "open_question": [mech(open_questions=[open_question()])],
+    "open_question": [entry(open_questions=[open_question()])],
 }
 SIGS = {k: PS.build_signatures([PS.SignatureRule(**rule(mechanism_keys=(v[0]["mechanism_key"],)))], v, H,
                                heat_transfer_mode_ids=frozenset()).signatures for k, v in ENTRIES.items()}
 VERDICT_OR_NONE = [A, NA, U, None]
-REASON = {"G6": {NA: ("ASSUMPTION_VIOLATED",), U: ("NO_FORM",)}, "G7": {NA: ("INPUT_UNOBSERVED",), U: ("INPUT_UNOBSERVED",)},
+G7_OR_NONE = [A, U, None]                       # input observability is never NOT_APPLICABLE
+REASON = {"G6": {NA: ("ASSUMPTION_VIOLATED",), U: ("NO_FORM",)}, "G7": {U: ("INPUT_UNOBSERVED",)},
           "G8": {NA: ("NO_COMPATIBLE_PARAM",), U: ("PARAM_UNCONFIRMABLE",)}}
 
 
@@ -87,7 +88,7 @@ PARAMS = st.fixed_dictionaries({
                                {"synthetic_state": "UNKNOWN"}, {}]),
     "axis": st.sampled_from(["missing", "none", "wrong_location", "wrong_unit", "stated", "interval"]),
     "value": st.floats(min_value=-1.0, max_value=13.0, allow_nan=False),
-    "g6": st.sampled_from(VERDICT_OR_NONE), "g7": st.sampled_from(VERDICT_OR_NONE),
+    "g6": st.sampled_from(VERDICT_OR_NONE), "g7": st.sampled_from(G7_OR_NONE),
     "g8": st.sampled_from(VERDICT_OR_NONE), "g0": st.sampled_from(sorted(AP.EVIDENCE_PRECHECK)),
     "domain": st.sampled_from(sorted(AP.DOMAIN_FLAGS)), "safety": st.sampled_from(sorted(AP.SAFETY)),
     "observable": st.sampled_from([(), ("axis:CV-013@TISSUE",), ("state:synthetic_state",)]),
@@ -117,12 +118,16 @@ def test_seeded_ten_thousand_queries_never_simulate_from_unknown() -> None:
         "kind": sorted(ENTRIES), "process": ["PROC-SYN001", "PROC-SYN003", None], "matrix": [MATRIX, "x", None],
         "states": [{"synthetic_state": "SYNTH_A"}, {"synthetic_state": "SYNTH_B"}, {}],
         "axis": ["missing", "none", "wrong_location", "wrong_unit", "stated", "interval"],
-        "g6": VERDICT_OR_NONE, "g7": VERDICT_OR_NONE, "g8": VERDICT_OR_NONE, "g0": sorted(AP.EVIDENCE_PRECHECK),
+        "g6": VERDICT_OR_NONE, "g7": G7_OR_NONE, "g8": VERDICT_OR_NONE, "g0": sorted(AP.EVIDENCE_PRECHECK),
         "domain": sorted(AP.DOMAIN_FLAGS), "safety": sorted(AP.SAFETY),
         "observable": [(), ("axis:CV-013@TISSUE",)]}
+    good: dict[str, Any] = {"kind": "accepted", "process": "PROC-SYN001", "matrix": MATRIX,
+                            "states": {"synthetic_state": "SYNTH_A"}, "axis": "stated", "g6": A, "g7": A, "g8": A,
+                            "g0": "NOT_EVALUATED", "domain": "IN_VALIDATION_DOMAIN", "safety": "NO", "observable": ()}
     simulate = 0
     for _ in range(10_000):
-        p = {k: rng.choice(v) for k, v in choices.items()}
+        # biased toward the complete-input case so every branch, SIMULATE included, is exercised
+        p = {k: (good[k] if rng.random() < 0.85 else rng.choice(v)) for k, v in choices.items()}
         p["value"] = rng.uniform(-1.0, 13.0)
         rec = AP.evaluate(query(p), SIGS[p["kind"]], ENTRIES[p["kind"]], H)
         check(rec, p, p["kind"])
