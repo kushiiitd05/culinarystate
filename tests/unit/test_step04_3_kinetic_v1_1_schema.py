@@ -258,6 +258,6 @@ def test_r14_and_no_kinetic_value_in_the_new_text() -> None:
         added = {p: n for p, n in walk_schema(load(name))
                  if any(p.startswith(c) for c in DECLARED_CHANGES[name] if c not in ("/$id", "/required"))}
         text = json.dumps(added)
-        assert not re.search(r"ascorb|chlorophyll|pheoph|vitamin", text, re.I), name
+        assert not re.search(r"ascorb|chlorophyll|pheoph|vitamin", text, re.IGNORECASE), name
         numbers = re.findall(r'"(?:const|minimum|maximum|exclusiveMinimum)":\s*(-?\d+(?:\.\d+)?)', text)
         assert set(numbers) <= {"0", "1"}, (name, numbers)
