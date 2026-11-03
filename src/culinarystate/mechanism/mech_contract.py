@@ -11,7 +11,7 @@ cannot silently drop a gate, a modifier axis or an open question:
 * ``required_condition_axes``       every gate axis, marking gates a modifier is evaluated through (rule M-1);
 * ``required_state_inputs``         precondition, history and inline-modifier states;
 * ``candidate_effects``             (target, effect type, allowed sign set): never a magnitude (G21.8);
-* ``consumable_for_applicability``  only ACCEPTED, human-verified, gates-known entries with no open question.
+* ``consumable_for_applicability``  only ACTIVE, ACCEPTED, human-verified, gates-known entries with no open question.
 
 Synthetic tests: tests/unit/test_step21_mech_v1_1_semantics.py.
 """
@@ -154,13 +154,16 @@ def _gate_problems(entry: Entry, cv: Mapping[str, Row]) -> list[str]:
             iv = g["interval"]
             if iv["unit"] != row["canonical_unit"]:
                 out.append(f"{k}: unit {iv['unit']} is not the CV canonical unit {row['canonical_unit']}")
-            vals = [iv[s]["value"] for s in ("min", "max") if iv[s]["status"] == "STATED"]
+            vals = [iv[s]["value"] for s in ("min", "max") if iv[s]["status"] in ("STATED", "OPEN_STATED")]
             if vals != sorted(vals):
                 out.append(f"{k}: min <= max violated")
             if row["dimension"].startswith("categorical"):
                 out.append(f"{k}: numeric window on a categorical CV")
-        elif g["categories"] and set(g["categories"]["allowed"]) & set(g["categories"]["excluded"]):
-            out.append(f"{k}: allowed and excluded categories overlap")
+        else:
+            if not row["dimension"].startswith("categorical"):
+                out.append(f"{k}: categorical set on a non-categorical CV ({row['dimension']})")
+            if g["categories"] and set(g["categories"]["allowed"]) & set(g["categories"]["excluded"]):
+                out.append(f"{k}: allowed and excluded categories overlap")
     return out
 
 
@@ -286,6 +289,8 @@ def consumable_for_applicability(entry: Entry) -> tuple[bool, tuple[str, ...]]:
     """Whether Step 23 may evaluate this entry at all (plan Step 21 fail action: Steps 22-23 consume only
     ACCEPTED entries). False means the entry contributes UNKNOWN, never NOT_APPLICABLE and never APPLICABLE."""
     why: list[str] = []
+    if entry.get("status") != "ACTIVE":
+        why.append("NOT_ACTIVE")                 # deprecated, superseded or retracted (S158 AI review R3)
     if entry["review_status"] != "ACCEPTED":
         why.append("NOT_ACCEPTED")
     if entry["verification"].get("status") != "HUMAN_VERIFIED":
