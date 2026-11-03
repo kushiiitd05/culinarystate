@@ -1,0 +1,160 @@
+{
+  "abstracts_included": false,
+  "dedup_rule": "EXACT_NORMALISED_DOI_ONLY",
+  "doi_seed_overlap_by_artifact_pair": {
+    "doc_ledger_doi__human_review_pack_v1": 15,
+    "doc_ledger_doi__queue_v1": 121,
+    "doc_ledger_doi__rejected_v1": 2,
+    "doc_ledger_doi__route_a_precheck_v1": 121,
+    "doc_ledger_doi__src_ledger_pe_pub": 121,
+    "human_review_pack_v1__queue_v1": 15,
+    "human_review_pack_v1__rejected_v1": 2,
+    "human_review_pack_v1__route_a_precheck_v1": 15,
+    "human_review_pack_v1__src_ledger_pe_pub": 15,
+    "queue_v1__rejected_v1": 2,
+    "queue_v1__route_a_precheck_v1": 121,
+    "queue_v1__src_ledger_pe_pub": 121,
+    "rejected_v1__route_a_precheck_v1": 2,
+    "rejected_v1__src_ledger_pe_pub": 2,
+    "route_a_precheck_v1__src_ledger_pe_pub": 121
+  },
+  "doi_seeds_by_artifact": {
+    "doc_ledger_doi": 121,
+    "human_review_pack_v1": 15,
+    "queue_v1": 630,
+    "rejected_v1": 73,
+    "route_a_precheck_v1": 121,
+    "src_ledger_pe_pub": 121
+  },
+  "doi_transform_counts": {
+    "CASE_FOLD_ASCII": 0,
+    "PERCENT_DECODE_URL_FORM": 0,
+    "STRIP_DOI_SCHEME": 0,
+    "STRIP_RESOLVER_URL": 0,
+    "STRIP_WHITESPACE": 0
+  },
+  "fuzzy_report_only": {
+    "applied_to_dedup": false,
+    "doi_seed_groups_sharing_normalised_title": 0,
+    "doi_seeds_in_those_groups": 0,
+    "method": "EXACT_EQUALITY_OF_NORMALISED_TITLE",
+    "no_doi_seeds_sharing_normalised_title_with_another_seed": 12
+  },
+  "ids_minted": 0,
+  "inputs": {
+    "doc_ledger_doi": {
+      "bytes": 2305803,
+      "doi_absent": 0,
+      "doi_invalid_syntax": 0,
+      "doi_valid": 242,
+      "locator": "ledgers/data/DOC.jsonl",
+      "present": true,
+      "records_read": 242,
+      "sha256": "afa31f4b5c734c5bcdcb2e9bb279d5f873fad5dd3ea8bd33a8cbb151afbb4f74"
+    },
+    "human_review_pack_v1": {
+      "bytes": 29326,
+      "doi_absent": 0,
+      "doi_invalid_syntax": 0,
+      "doi_valid": 55,
+      "locator": "registry/evidence/human_review_pack_v1.csv",
+      "present": true,
+      "records_read": 55,
+      "rows_with_human_fields_filled": 0,
+      "sha256": "53510f01be5371c8ad840f4a02373a2f49dca816be334469a35cc3e0ef968c29"
+    },
+    "openalex_pages": {
+      "present": false,
+      "reason": "DISABLED",
+      "records_read": 0
+    },
+    "query_matrix_v1": {
+      "bytes": 30849,
+      "doi_absent": 0,
+      "doi_invalid_syntax": 0,
+      "doi_valid": 0,
+      "locator": "registry/evidence_query_matrix_v1.csv",
+      "present": true,
+      "reason": "NO_RECORD_LEVEL_IDENTIFIERS",
+      "records_read": 0,
+      "sha256": "3d870d52a2f7ef1c60643c7d6d08f7fdd56e79903edb171abd8e2b62c752d262",
+      "template_rows": 30
+    },
+    "queue_v1": {
+      "bytes": 297263,
+      "doi_absent": 4,
+      "doi_invalid_syntax": 0,
+      "doi_valid": 630,
+      "locator": "registry/evidence/verification_queue_ranked_v1.csv",
+      "present": true,
+      "records_read": 634,
+      "rows_with_human_fields_filled": 0,
+      "sha256": "469b622fd9a933878c031661a407c30e05a86f5f08ddd1ea1c08d30160d5cfc2"
+    },
+    "rejected_v1": {
+      "bytes": 26082,
+      "doi_absent": 0,
+      "doi_invalid_syntax": 0,
+      "doi_valid": 73,
+      "locator": "registry/evidence/rejected_candidates.csv",
+      "present": true,
+      "records_read": 73,
+      "rows_with_human_fields_filled": 0,
+      "sha256": "d96de2c4d77305b5afc32192fa13a750f9b55c8bfea004f68c8d022129d927fc"
+    },
+    "route_a_precheck_v1": {
+      "bytes": 38897,
+      "doi_absent": 4,
+      "doi_invalid_syntax": 0,
+      "doi_valid": 121,
+      "locator": "registry/evidence/route_a_paper_precheck.csv",
+      "present": true,
+      "records_read": 125,
+      "sha256": "df3598b3b170e085c0eea17bb271549d3aa4c9c3bf404865ed96850ee07f5a1e"
+    },
+    "src_ledger_pe_pub": {
+      "bytes": 526287,
+      "doi_absent": 4,
+      "doi_invalid_syntax": 0,
+      "doi_valid": 121,
+      "locator": "ledgers/data/SRC.jsonl",
+      "present": true,
+      "records_read": 125,
+      "sha256": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f"
+    }
+  },
+  "ledger_rows_appended": 0,
+  "licence_status_counts": {
+    "UNKNOWN": 713
+  },
+  "network_calls": 0,
+  "oa_flag_counts": {
+    "FALSE": 189,
+    "TRUE": 516,
+    "UNKNOWN": 8
+  },
+  "records_read_total": 1254,
+  "seeds": {
+    "absent": 12,
+    "by_n_source_records": {
+      "n_1": 592,
+      "n_5_plus": 121
+    },
+    "doi_records_merged_into_an_earlier_record": 541,
+    "doi_seeds_multi_artifact": 121,
+    "doi_seeds_multi_source_record": 121,
+    "doi_seeds_with_conflicting_years": 0,
+    "doi_seeds_with_several_raw_forms": 0,
+    "invalid_syntax": 0,
+    "total": 713,
+    "with_valid_doi": 701,
+    "without_valid_doi": 12
+  },
+  "status": "PROVISIONAL_PENDING_13A",
+  "tdm_status_counts": {
+    "UNKNOWN": 713
+  },
+  "versions": {
+    "seed_corpus": "seed_corpus_13a0@0.1-provisional"
+  }
+}
