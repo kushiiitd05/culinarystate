@@ -254,6 +254,8 @@ def test_same_reader_repeats_leave_the_two_read_status_not_assessed() -> None:
 # ----------------------------------------------------------------------------- eligibility (draft rules, never a signed gate)
 def test_clean_series_is_eligible_only_under_draft_rules() -> None:
     k, pts, obs = F.series(digitised=True)
+    # S158 AI review R1: only a human-verified series can be eligible (04.6-min KIN row)
+    k["verification"] = {"status": "HUMAN_VERIFIED", "verifier": "Kush", "verified_at": F.NOW}
     v = KC.split_eligibility(k, pts, obs)
     assert v.verdict == KC.ELIGIBLE == "ELIGIBLE_UNDER_DRAFT_RULES", v.reasons
     assert any(r.threshold_id == "THR-04K-03" and r.status == "DRAFT_PENDING_H4" for r in v.rule_refs)
