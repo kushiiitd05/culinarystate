@@ -234,6 +234,6 @@ def test_firewall_counters_are_zero_on_built_signatures_and_count_tampering() ->
 
 def test_module_is_pure_and_holds_no_chemistry_or_rules() -> None:
     src = Path(PS.__file__).read_text(encoding="utf-8")
-    assert not re.search(r"ascorb|chlorophyll|pheoph|vitamin|alliin|maillard|starch|sim_aa|sim_chl", src, re.I)
+    assert not re.search(r"ascorb|chlorophyll|pheoph|vitamin|alliin|maillard|starch|sim_aa|sim_chl", src, re.IGNORECASE)
     for banned in ("write_text", "write_bytes", "ledgers/data", "subprocess", "requests", "open("):
         assert banned not in src, banned
