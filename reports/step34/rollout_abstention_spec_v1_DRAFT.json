@@ -1,0 +1,58 @@
+{
+  "spec_id": "ROLLOUT-ABSTAIN-34c-v1",
+  "schema_version": "34c-abstention-schema-v1",
+  "status": "DRAFT_PENDING_34c_KUSH_SIGNATURE",
+  "source": "docs/plan/CulinaryState_36_Step_Execution_Plan_v2.md STEP 34, 'Abstention rule (34c)' (cites SSOT L20149-20158); registry/execution_spine_v2.csv row 34c",
+  "note": "AI draft by worker prv (an agent, not Kush or Parv). Every value is UNKNOWN; Kush supplies thresholds (with threshold ids), actions and the signature.",
+  "thresholds": {
+    "tau": {
+      "value": null,
+      "threshold_id": null,
+      "value_status": "UNKNOWN"
+    },
+    "eps_max": {
+      "value": null,
+      "threshold_id": null,
+      "value_status": "UNKNOWN"
+    },
+    "h_trust": {
+      "value": null,
+      "threshold_id": null,
+      "value_status": "UNKNOWN"
+    }
+  },
+  "triggers": [
+    {
+      "trigger": "EVIDENCE_DISTANCE_GT_TAU",
+      "reads": "evidence_distance",
+      "threshold": "tau",
+      "action": null
+    },
+    {
+      "trigger": "INTERVAL_WIDTH_GT_EPS_MAX",
+      "reads": "interval_width",
+      "threshold": "eps_max",
+      "action": null
+    },
+    {
+      "trigger": "CONSTRAINT_VIOLATION",
+      "reads": "constraint_violation",
+      "threshold": null,
+      "action": null
+    },
+    {
+      "trigger": "HORIZON_GT_H_TRUST",
+      "reads": "horizon",
+      "threshold": "h_trust",
+      "action": null
+    },
+    {
+      "trigger": "INPUT_STATE_INFERRED",
+      "reads": "input_state_observed",
+      "threshold": null,
+      "action": null
+    }
+  ],
+  "signed_by": null,
+  "signed_at": null
+}
