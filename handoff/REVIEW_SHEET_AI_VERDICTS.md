@@ -136,3 +136,4 @@ Source: `reports/step26/S159_build_note.md`, `S159_ai_review.md`.
 | H4 | sim_chl_1:<br>- the functional form of g(pH);<br>- whether one g is shared by Chl a and Chl b. |
 | H5 | Inputs only humans or sources can give:<br>- Choi–Okos coefficients, plus a check of the mixing rules (AI recollection);<br>- τ_h per size class;<br>- the M&S limits (26e);<br>- solver tolerances and G26-VER numbers;<br>- a check of the KiSAO ids (AI-recalled, UNVERIFIED). |
 | H6 | Accept the fixes R1–R5 and decide O1–O5 and O7. |
+- 2026-11-03, Kush: "block H ok by parv and me, AA selected". Recorded as D-052; signed selection record sim_aa_1 (direct selection before 11.D). Open: no-water-assay design definition, 26.0 pre-registration numbers, H5 inputs, FORM-/MODEL- prefix.
