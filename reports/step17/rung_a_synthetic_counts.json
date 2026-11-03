@@ -1,0 +1,223 @@
+{
+  "auditor_version": "STEP17A_INVENTED_VALUE_AUDITOR_V1_DRAFT",
+  "contains_ids": false,
+  "contains_text": false,
+  "counts_as_human_gate": false,
+  "fixtures": {
+    "allocations": {
+      "REMAINDER": 1,
+      "RESERVE": 1,
+      "SPLIT": 4
+    },
+    "ambiguity_count": 1,
+    "diagnostics": {
+      "AMBIGUOUS_REFERENCE": 1,
+      "BARE_TEMPERATURE_UNIT_AMBIGUOUS": 1,
+      "COMBINE_WITH_CURRENT": 3,
+      "DURATION_COMPLEX_NUMBER": 1,
+      "IMPLICIT_ARG_BOUND": 3,
+      "IMPLICIT_ARG_NONE": 3,
+      "INTERMEDIATE_NEW_ENTITY": 1,
+      "NEGATED_EVENT_NOT_APPLIED": 1,
+      "PLURAL_STRIP": 3,
+      "REF_ARG_UNRESOLVED": 1
+    },
+    "entities": {
+      "INGREDIENT_LOT": 20,
+      "INTERMEDIATE": 19,
+      "MIXTURE": 7,
+      "RESERVED_PORTION": 1
+    },
+    "events": 25,
+    "exceptions": {},
+    "failures": {
+      "build_events": {},
+      "extract_mentions": {},
+      "ground_quantity": {
+        "UNRESOLVED": 3
+      },
+      "link": {
+        "NO_VALID_CANDIDATE": 4
+      },
+      "resolve_refs": {
+        "NO_VALID_CANDIDATE": 1,
+        "UNRESOLVED": 1
+      }
+    },
+    "invented_by_code": {},
+    "invented_count": 0,
+    "links": {
+      "REFERRING_EXPRESSION": 4,
+      "SELECTED": 46
+    },
+    "mentions": {
+      "ACTION": 25,
+      "CONDITION_CUE": 1,
+      "DURATION": 6,
+      "ENDPOINT": 2,
+      "FOOD_MENTION": 24,
+      "INTERMEDIATE_MENTION": 2,
+      "QUANTITY_IN_STEP": 5,
+      "TEMPERATURE": 3,
+      "TOOL": 1
+    },
+    "quantities": {
+      "MASS_GROUNDED": 2,
+      "NO_INGREDIENT_LINK": 3
+    },
+    "references": {
+      "AMBIGUOUS_ANTECEDENT": 1,
+      "NO_LIVE_INTERMEDIATE": 1,
+      "RESOLVED": 4
+    },
+    "texts": 13,
+    "texts_empty": 1,
+    "texts_with_events": 11,
+    "texts_with_invented": 0,
+    "validators": {
+      "V1": {
+        "issues": {},
+        "not_checked": {},
+        "texts_failed": 0,
+        "unknown": {}
+      },
+      "V2": {
+        "issues": {},
+        "not_checked": {},
+        "texts_failed": 0,
+        "unknown": {}
+      },
+      "V3": {
+        "issues": {},
+        "not_checked": {
+          "CATEGORICAL_FIELD_NO_VOCAB__structural_class": 1
+        },
+        "texts_failed": 0,
+        "unknown": {}
+      },
+      "V4": {
+        "issues": {},
+        "not_checked": {
+          "INFERRED_EVENTS_NOT_IN_EXPLICIT_ONLY_QUERIES": 13,
+          "INVENTED_GRAMS_SEE_AUDITOR": 13,
+          "MASS_BALANCE_SCOPE": 13,
+          "SPAN_ROUNDTRIP_SEE_V1": 13,
+          "STATE_REPLAY_FROM_EVENT_HISTORY": 13
+        },
+        "texts_failed": 0,
+        "unknown": {
+          "FRACTION_BASIS_UNSPECIFIED": 2
+        }
+      }
+    },
+    "values_checked": 257
+  },
+  "hard_cases": {
+    "allocations": {
+      "SPLIT": 4
+    },
+    "ambiguity_count": 1,
+    "diagnostics": {
+      "AMBIGUOUS_REFERENCE": 1,
+      "BARE_TEMPERATURE_UNIT_AMBIGUOUS": 2,
+      "IMPLICIT_ARG_NONE": 7,
+      "INTERMEDIATE_NEW_ENTITY": 2,
+      "PLURAL_STRIP": 2,
+      "REF_ARG_UNRESOLVED": 2
+    },
+    "entities": {
+      "INGREDIENT_LOT": 12,
+      "INTERMEDIATE": 8,
+      "MIXTURE": 4
+    },
+    "events": 15,
+    "exceptions": {},
+    "failures": {
+      "build_events": {},
+      "extract_mentions": {},
+      "ground_quantity": {
+        "PARSE_FAIL": 1
+      },
+      "link": {
+        "NO_VALID_CANDIDATE": 2
+      },
+      "resolve_refs": {
+        "NO_VALID_CANDIDATE": 3,
+        "UNRESOLVED": 1
+      }
+    },
+    "invented_by_code": {},
+    "invented_count": 0,
+    "links": {
+      "REFERRING_EXPRESSION": 2,
+      "SELECTED": 28
+    },
+    "mentions": {
+      "ACTION": 15,
+      "DURATION": 2,
+      "ENDPOINT": 1,
+      "FOOD_MENTION": 14,
+      "INTERMEDIATE_MENTION": 2,
+      "QUANTITY_IN_STEP": 4,
+      "TOOL": 1
+    },
+    "quantities": {
+      "MASS_GROUNDED": 3,
+      "UNSUPPORTED_EXPRESSION": 1
+    },
+    "references": {
+      "AMBIGUOUS_ANTECEDENT": 1,
+      "NO_LIVE_ENTITY": 2,
+      "NO_LIVE_INTERMEDIATE": 1
+    },
+    "texts": 17,
+    "texts_empty": 0,
+    "texts_with_events": 11,
+    "texts_with_invented": 0,
+    "validators": {
+      "V1": {
+        "issues": {},
+        "not_checked": {},
+        "texts_failed": 0,
+        "unknown": {}
+      },
+      "V2": {
+        "issues": {},
+        "not_checked": {},
+        "texts_failed": 0,
+        "unknown": {}
+      },
+      "V3": {
+        "issues": {},
+        "not_checked": {
+          "CATEGORICAL_FIELD_NO_VOCAB__structural_class": 1
+        },
+        "texts_failed": 0,
+        "unknown": {}
+      },
+      "V4": {
+        "issues": {},
+        "not_checked": {
+          "INFERRED_EVENTS_NOT_IN_EXPLICIT_ONLY_QUERIES": 17,
+          "INVENTED_GRAMS_SEE_AUDITOR": 17,
+          "MASS_BALANCE_SCOPE": 17,
+          "SPAN_ROUNDTRIP_SEE_V1": 17,
+          "STATE_REPLAY_FROM_EVENT_HISTORY": 17
+        },
+        "texts_failed": 0,
+        "unknown": {
+          "FRACTION_BASIS_UNSPECIFIED": 1
+        }
+      }
+    },
+    "values_checked": 137
+  },
+  "interface_schema_version": "step17a-interface-0.1.0-draft",
+  "label": "SYNTHETIC_NOT_GOLD",
+  "lexicon_fingerprint": "9678937f6a9a0ff6f9ce4acbaaa20d85cb5da6138e956f4742189078b94903c3",
+  "lexicon_version": "STEP17B_RUNG_A_LEXICON_V1_DRAFT",
+  "report_version": "STEP17B_RUNG_A_COUNTS_V1_DRAFT",
+  "rules_version": "STEP17B_RUNG_A_RULES_V1_DRAFT",
+  "schema_sha256": "950f1ed089666af411fee7a17da696c7bc3b50d7256d7420fe40299195e819f4",
+  "status": "AI_ENGINEERING_SYNTHETIC_COUNTS"
+}
