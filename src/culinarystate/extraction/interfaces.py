@@ -489,6 +489,11 @@ class QuantityGroundingResult:
         if self.failure is None and self.record is None:
             raise InterfaceError("A successful ground_quantity result carries its rc2 record")
 
+    @property
+    def issues(self) -> tuple:
+        """rc2 validator and invented-value audit issues reported by the pipeline (never hidden)."""
+        return tuple(self.grounding.issues) if self.grounding is not None else ()
+
     def claims(self) -> tuple[ValueClaim, ...]:
         if self.record is None:
             return ()
