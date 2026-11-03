@@ -1067,3 +1067,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `src/culinarystate/state_graph/{event_log`, `replay`, `event_adapter}.py`, `src/culinarystate/simulation/*`, `tests/unit/test_step18_*.py`, `tests/unit/test_step26g_recipe_adapter.py`, `reports/step18/*`, `handoff/REVIEW_SHEET_AI_VERDICTS.md`
 - **Verified:** Full unit suite 2166 passed, 17 skipped, 1 deselected; 1 failed + 11 errors = missing bundle files. Ledger baseline 7/7; 0 existing engine files edited; 0 attribution lines.
 - **Next:** Kush/Parv: review block E; run Mac hang diagnostic. Next S157 evidence machinery (09, 12.0 staging rows only, 12-local parsers, 13a-0).
+
+### S157 · 2026-11-03 21:33 IST · ES-1 · Evidence machinery: Step 09 queue, 12.0 proposed registration, 12-local parsers, 13a-0 seed corpus (PROVISIONAL)
+- **Who:** Kush (cloud agent session; workers ksh/prv)
+- **Did:** ksh built Step 09 machinery (human-derived status only), 12.0 proposed SRC/SNAP rows in staging, R2 and Bognar 12-local parsers with read-only EVD diff. prv built 13a-0 offline exact-DOI seed corpus (713 seeds from tracked artifacts, no abstracts) and cross-reviewed (R1-R4 fixed test-first). No ledger write, no id minted.
+- **Files:** `src/culinarystate/evidence/{machinery`, `extraction_fields`, `registration`, `step12_local`, `seed_corpus}.py`, `src/culinarystate/ingest/{usda_yields_r2`, `bognar_remaining}.py`, `tools/step12_*.py`, `tools/step13a0_seed_corpus.py`, `registry/evidence/`, `registry/schemas/evidence_verification_queue_item.provisional_v1.schema.json`, `reports/step09/*`, `reports/step13/*`, `tests/unit/test_step09_*`, `test_step12_*`, `test_step13a0_*`, `test_s157_*`
+- **Verified:** Full unit suite 2341 passed, 17 skipped, 1 deselected; 1 failed + 11 errors = missing bundle files. Ledger guard 7/7; 0 pre-S157 files modified; 0 attribution lines.
+- **Next:** Kush/Parv: review block F (re-baseline, H2, E4 rule, review authenticity). Kush: run the three tools locally. Next S158 kinetic contract + mechanism stack (04.3, 21, 22a, 23a).
