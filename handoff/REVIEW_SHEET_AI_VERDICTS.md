@@ -137,3 +137,15 @@ Source: `reports/step26/S159_build_note.md`, `S159_ai_review.md`.
 | H5 | Inputs only humans or sources can give:<br>- Choi–Okos coefficients, plus a check of the mixing rules (AI recollection);<br>- τ_h per size class;<br>- the M&S limits (26e);<br>- solver tolerances and G26-VER numbers;<br>- a check of the KiSAO ids (AI-recalled, UNVERIFIED). |
 | H6 | Accept the fixes R1–R5 and decide O1–O5 and O7. |
 - 2026-11-03, Kush: "block H ok by parv and me, AA selected". Recorded as D-052; signed selection record sim_aa_1 (direct selection before 11.D). Open: no-water-assay design definition, 26.0 pre-registration numbers, H5 inputs, FORM-/MODEL- prefix.
+
+## Block I — S160, checkpoint H-A (pending review)
+
+Source: `reports/step15/S160_build_note.md`, `pre_freeze_rulings_DRAFT.md`, `S160_ai_review.md`, `reports/step35/35_0_v2_signature_sheet.md`.
+
+| ID | Decision or value needed |
+|---|---|
+| I1 | **15.0 rulings:**<br>- accept or replace the AI recommendations C2-a, H-3, X-1, G-1 and K-1;<br>- **supply the RESERVED fraction**;<br>- choose the unit (STUDY_THEN_CELL recommended) and the stratification (SOURCE_FAMILY recommended);<br>- say how the seed is generated: hard to guess, and only its sha256 published (O1).<br><br>The 15.0 entry must use the marker lines the seal expects (see the seal module). |
+| I2 | **15a.R:** decide whether and when to run the seal, and where the seed file and the sealed list live (outside git). Re-sealing (O2) and pandas availability on the server (I2) are open. |
+| I3 | **Step 35 v2 signature:**<br>- protocol `009c9047…`, record `8885a63a…`;<br>- answer P-1 to P-5 (D-041 amendments; P-5 also covers the unbound Food.com parquet and `pyproject.toml`, O4);<br>- conditions written into the rows "before signature": S-1, a chemistry reviewer for the taste map; S-2, a human finding on the 204 deprecated edges. Complete them, or record a deviation;<br>- choose Route A (sign the committed record: only 35a and 35e run) or Route B (regenerate on the Mac: all tasks);<br>- Q-1 to Q-4 on the signature sheet. |
+| I4 | **Scaffold values only humans can set:**<br>- the Step 30 margin δ_30;<br>- ρ and c_floor for 34a, and the 34a.0 circularity check;<br>- the 34c thresholds and actions, and Kush's signature;<br>- the formats for the 15a freeze record and the 29-diag pre-registration. |
+| I5 | Accept the fixes R1–R4 and decide O3 and O5. O5 is that signatures stop accidental or agent signing, not forgery: only the signer's own session commits a SIGNED file. |
