@@ -78,12 +78,13 @@ The validator is pure: no file writes, no ledger reads, no network. It loads onl
 
 **Eligibility verdicts.** There are three: `ELIGIBLE_UNDER_DRAFT_RULES`, `NOT_ELIGIBLE` and `UNKNOWN`. NOT_ELIGIBLE wins over UNKNOWN. Anything other than ELIGIBLE means "keep out of TEST / SIM-VAL". UNKNOWN never becomes eligible.
 
-- **NOT_ELIGIBLE:** independence UNKNOWN (D-029 D-5); lab group UNKNOWN (contract §10); evidence tier E5 (FW-09); a digitised point with fewer than 2 reads, read count not reported, or SINGLE_READ.
-- **UNKNOWN:** lineage or lab group PENDING; a same-reader repeat (H-1); read independence not reported; inter-read SD not stored.
+- **NOT_ELIGIBLE:** record status not ACTIVE; verification HUMAN_REJECTED; independence UNKNOWN (D-029 D-5); lab group UNKNOWN (contract §10); evidence tier E5 (FW-09); a digitised point with fewer than 2 reads, read count not reported, or SINGLE_READ.
+- **UNKNOWN:** verification not HUMAN_VERIFIED (04.6-min KIN row: test / calibration "only if human verified"); lineage or lab group PENDING; a point's OBS not supplied; a same-reader repeat (H-1); read independence not reported; inter-read SD not stored.
+- The record-status and verification rules were added after the S158 AI cross-review (`reports/step21/S158_ai_review.md`, R1).
 
 The positive verdict is named "under draft rules" because THR-04K-03 is unsigned.
 
-**Arrhenius eligibility (R04-15).** ELIGIBLE needs one of: a MEDIUM, CORE or SURFACE profile; PRODUCT_ISOTHERMAL_STATED; or come-up time EXCLUDED_FROM_TIME. UNKNOWN results when temperature status, isothermality or come-up is UNKNOWN, or when a profile is UNSPECIFIED (never promoted to a location). NOT_ELIGIBLE covers everything else, such as a setpoint only with the come-up included.
+**Arrhenius eligibility (R04-15).** ELIGIBLE needs one of: a MEDIUM, CORE or SURFACE profile; PRODUCT_ISOTHERMAL_STATED; or come-up time EXCLUDED_FROM_TIME. UNKNOWN results when temperature status, isothermality or come-up is UNKNOWN, or when a profile is UNSPECIFIED (never promoted to a location). NOT_ELIGIBLE covers everything else, such as a setpoint only with the come-up included. A positive verdict also needs `temperature_status = REPORTED`: with NOT_REPORTED it becomes NOT_ELIGIBLE and with UNKNOWN it becomes UNKNOWN (S158 AI cross-review R2).
 
 ## 3. Conformance tests K-1..K-16 of v1 §12: where they now run
 
