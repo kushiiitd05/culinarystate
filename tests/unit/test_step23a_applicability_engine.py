@@ -66,12 +66,13 @@ def sigs(entries: list[dict[str, Any]], rules: list[dict[str, Any]] | None = Non
 
 
 def q(**over: Any) -> AP.ApplicabilityQuery:
-    base: dict[str, Any] = dict(
-        case_id="SYNTH-CASE-001", entity_version_id="SYN-ENT@1", event_id="E1", target_svar_id=None,
-        target_state_key="synthetic_target", process_id="PROC-SYN001", matrix=MATRIX,
-        states={"synthetic_state": "SYNTH_A"}, axes=(AP.AxisValue("CV-013", "TISSUE", 5.0, "pH"),),
-        formula=AP.CaseGate(A, (), "SYNTH-FORM-1"), observability=AP.CaseGate(A, (), "SYNTH-OBS-1"),
-        parameters=AP.CaseGate(A, (), "SYNTH-PARAM-1"), domain_flag="IN_VALIDATION_DOMAIN", safety_critical="NO")
+    base: dict[str, Any] = {
+        "case_id": "SYNTH-CASE-001", "entity_version_id": "SYN-ENT@1", "event_id": "E1", "target_svar_id": None,
+        "target_state_key": "synthetic_target", "process_id": "PROC-SYN001", "matrix": MATRIX,
+        "states": {"synthetic_state": "SYNTH_A"}, "axes": (AP.AxisValue("CV-013", "TISSUE", 5.0, "pH"),),
+        "formula": AP.CaseGate(A, (), "SYNTH-FORM-1"), "observability": AP.CaseGate(A, (), "SYNTH-OBS-1"),
+        "parameters": AP.CaseGate(A, (), "SYNTH-PARAM-1"), "domain_flag": "IN_VALIDATION_DOMAIN",
+        "safety_critical": "NO"}
     base.update(over)
     return AP.ApplicabilityQuery(**base)
 
@@ -290,7 +291,7 @@ def test_non_consumable_entries_are_refused_with_reasons_propagated() -> None:
     assert {"NOT_ACCEPTED", "NOT_HUMAN_VERIFIED", "GATES_UNKNOWN"} <= set(m["refusal_reasons"])
     assert {"MECH_NOT_CONSUMABLE", "MECH_NOT_ACCEPTED", "MECH_GATES_UNKNOWN"} <= set(m["reasons"])
     assert rec["applicability"] == U and rec["route"] != "SIMULATE"
-    m = run(entries=[mech(open_questions=[open_question()])])["mechanisms"][0]
+    m = run(entries=[entry(open_questions=[open_question()])])["mechanisms"][0]
     assert m["verdict"] == U and "MECH_OPEN_QUESTIONS" in m["reasons"]
 
 
@@ -411,7 +412,7 @@ def test_every_emitted_reason_is_registered() -> None:
 # ----------------------------------------------------------------------------- 26g compatibility
 def test_projection_to_the_26g_applicability_binding() -> None:
     from culinarystate.simulation import recipe_adapter as ra
-    system = sorted(ra.SYSTEM_REQUIREMENTS)[0]
+    system = min(ra.SYSTEM_REQUIREMENTS)
     rec = run()
     b = AP.to_applicability_binding(rec, system)
     assert isinstance(b, ra.ApplicabilityBinding)
@@ -430,7 +431,7 @@ def test_26g_routes_simulate_only_from_an_appdec_simulate_record() -> None:
     from culinarystate.state_graph.replay import replay_events
     from culinarystate.state_graph.source_class import SourceClass
 
-    system = sorted(ra.SYSTEM_REQUIREMENTS)[0]
+    system = min(ra.SYSTEM_REQUIREMENTS)
     replay = replay_events([EngineEvent("INTRO/N1", (-1, 0), kind="INTRODUCE_LOT", produces=("N1",),
                                         produced_types=(("N1", "INGREDIENT_LOT"),)),
                             EngineEvent("E1", (0, 0), consumes=("N1",), produces=("N2",),
@@ -454,6 +455,6 @@ def test_26g_routes_simulate_only_from_an_appdec_simulate_record() -> None:
 # ----------------------------------------------------------------------------- purity
 def test_engine_module_is_pure_and_names_no_chemistry_or_system() -> None:
     src = Path(AP.__file__).read_text(encoding="utf-8")
-    assert not re.search(r"ascorb|chlorophyll|pheoph|vitamin|alliin|maillard|sim_aa|sim_chl", src, re.I)
+    assert not re.search(r"ascorb|chlorophyll|pheoph|vitamin|alliin|maillard|sim_aa|sim_chl", src, re.IGNORECASE)
     for banned in ("write_text", "write_bytes", "ledgers/data", "COND.jsonl", "subprocess", "requests"):
         assert banned not in src, banned
