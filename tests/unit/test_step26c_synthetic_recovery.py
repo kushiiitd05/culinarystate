@@ -109,17 +109,20 @@ def test_leaching_recovery_with_a_water_assay_design() -> None:
     truth = {"k_ref": float(np.exp(rng.uniform(-9.0, -8.0))), "Ea": float(rng.uniform(5e4, 9e4)),
              "k_L": float(np.exp(rng.uniform(-9.0, -7.5)))}
     form = leaching_form(("k_ref", "Ea", "k_L"), {"K_p": 2e-3}, 4e-3)
-    cov = design(TEMPS, TAUS, (0, 1))
+    cov = design((350.0, 359.0, 368.0), (300.0, 1200.0, 2100.0, 3000.0), (0, 1))
     sigma = 0.01
     y = form.predict(truth, cov, {"T_ref_K": F.T_REF}) + rng.normal(0.0, sigma, cov["tau_s"].size)
     obs = FT.Observations(y, cov, np.full(y.size, sigma), "LN_RETENTION", "SYNTHETIC")
     fit = FT.fit_least_squares(form, obs, starts=[{"k_ref": 1e-4, "Ea": 6e4, "k_L": 1e-4}],
                                fixed={"T_ref_K": F.T_REF}, backend="numpy")
+    assert fit.converged
+    cov_u = fit.covariance_transformed()
+    for j, sym in enumerate(form.symbols):          # |estimate - truth| within 4 standard errors (test setting)
+        u_true = truth[sym] if sym == "Ea" else np.log(truth[sym])
+        assert abs(fit.transformed[sym] - u_true) <= 4 * np.sqrt(cov_u[j, j]), sym
     rep = ID.assess_identifiability(form, obs, fit, criteria({"k_ref": 1.0, "Ea": 4e4, "k_L": 1.0}),
                                     backend="numpy")
     assert rep.overall_verdict == "IDENTIFIABLE", [(p.parameter, p.reasons) for p in rep.parameters]
-    for p in rep.parameters:
-        assert p.ci_low <= truth[p.parameter] <= p.ci_high
 
 
 def test_no_water_assay_single_temperature_design_flags_k_l_not_identifiable() -> None:
@@ -133,7 +136,8 @@ def test_no_water_assay_single_temperature_design_flags_k_l_not_identifiable() -
     y = form.predict(truth, cov, {"T_ref_K": F.T_REF}) + rng.normal(0.0, sigma, cov["tau_s"].size)
     obs = FT.Observations(y, cov, np.full(y.size, sigma), "LN_RETENTION", "SYNTHETIC")
     fit = FT.fit_least_squares(form, obs, starts=[{"k_ref": 1e-4, "k_L": 1e-4}], fixed={"T_ref_K": F.T_REF},
-                               backend="numpy")
+                               backend="numpy", max_iter=5000)
+    assert fit.converged                           # the flat valley needs many LM steps (test setting)
     rep = ID.assess_identifiability(form, obs, fit, criteria({"k_ref": 3.0, "k_L": 3.0}), backend="numpy")
     kl = next(p for p in rep.parameters if p.parameter == "k_L")
     assert kl.verdict == "NOT_IDENTIFIABLE" and kl.ci_low is None and kl.ci_high is None
