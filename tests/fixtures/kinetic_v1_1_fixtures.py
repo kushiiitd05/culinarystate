@@ -164,7 +164,7 @@ def series(times: tuple[float, ...] = (0.0, 10.0, 20.0), unit: str = "min", *, k
         pts.append(kinpt(n, kin=kin_n, seq=i, t=t, role=role, digitized="YES" if digitised else "NO",
                          reads=reads if digitised else None))
         o = obs(n, kinpt=n, origin="DIGITIZED" if digitised else "MEASURED",
-                digitization=DIG_TWO_READS if digitised else None)
+                digitization=DIG_TWO_READS if digitised else None, sample=n)
         obs_by_id[o["id"]] = o
     if digitised:
         k["series_origin_form"] = "FIGURE_DIGITIZED"
