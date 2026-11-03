@@ -262,9 +262,12 @@ class FitResult:
         return float(np.sqrt(self.objective / self.dof)) if self.dof > 0 else float("nan")
 
     def covariance_transformed(self) -> np.ndarray | None:
-        """Gauss-Newton covariance of u; None when J'J is singular to numpy's default rank tolerance."""
+        """Gauss-Newton covariance of u; None when J'J is singular to numpy's default rank tolerance, or when
+        sigma is unknown and there is no residual degree of freedom to estimate it (S159 review R3)."""
         A = self.jacobian.T @ self.jacobian
         if A.size == 0 or np.linalg.matrix_rank(A) < self.n_params:
+            return None
+        if not self.sigma_known and self.dof <= 0:
             return None
         s2 = 1.0 if self.sigma_known else (self.objective / self.dof if self.dof > 0 else float("nan"))
         return s2 * np.linalg.inv(A)
