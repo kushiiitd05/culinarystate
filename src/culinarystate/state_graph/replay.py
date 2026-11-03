@@ -51,7 +51,7 @@ LOT_EXPECTED_LIFECYCLE = {"USED": frozenset({"INCORPORATED"}), "DISCARDED": froz
                           "APPARENTLY_UNUSED": frozenset({"ACTIVE", "RESERVED"})}
 
 ISSUE_CODES = frozenset({
-    "ORDER_REGRESSION", "DEPENDENCY_NOT_APPLIED", "INFERRED_DEPENDENCY_IN_EXPLICIT_SCOPE", "TRAJECTORY_MISMATCH",
+    "EVENT_ID_REUSED", "ORDER_REGRESSION", "DEPENDENCY_NOT_APPLIED", "INFERRED_DEPENDENCY_IN_EXPLICIT_SCOPE", "TRAJECTORY_MISMATCH",
     "ENTITY_ROLE_CONFLICT", "ENTITY_UNKNOWN", "ENTITY_REUSED_AFTER_DISCARD", "ENTITY_ALREADY_CONSUMED",
     "ENTITY_ID_REUSED", "ALLOC_PARENT_NOT_CONSUMED", "ALLOC_CHILD_NOT_PRODUCED", "SPLIT_FRACTIONS_EXCEED_ONE",
     "QUANTITY_FOR_UNPRODUCED_ENTITY", "QUANTITY_CONFLICT", "MASS_BALANCE_FAIL", "LOT_STATUS_CONTRADICTS_REPLAY",
@@ -312,6 +312,7 @@ class _Run:
         self.applied_ids: set[str] = set()
         self.skipped_ids: set[str] = set()
         self.skipped_entities: set[str] = set()
+        self.seen_event_ids: set[str] = set()
         self.max_order: tuple[int, int] | None = None
         self.snap_sha = empty_snapshot().sha256
 
@@ -337,12 +338,16 @@ class _Run:
                                tuple(issues), tuple(unknown), mb, self.cfg, status, self.snap_sha)
 
         input_sha = self.snap_sha
+        reused = ev.event_id in self.seen_event_ids          # review R3: an event id names one event per replay
+        self.seen_event_ids.add(ev.event_id)
         regression = self.max_order is not None and ev.order < self.max_order
         self.max_order = ev.order if self.max_order is None else max(self.max_order, ev.order)
         if self.config.scope == "EXPLICIT_ONLY" and ev.claim_route != "EXPLICIT":
             self.skipped_ids.add(ev.event_id)
             self.skipped_entities.update(ev.produces)
             return tx("SKIPPED_SCOPE")
+        if reused:
+            fail("EVENT_ID_REUSED", f"event_id/{ev.event_id}")
         if ev.trajectory != self.config.trajectory:
             fail("TRAJECTORY_MISMATCH", "trajectory")
         if regression:
@@ -517,8 +522,8 @@ class _Run:
             return "UNKNOWN", "DIMENSION_MIXED"
         if parent is None or len(known) < len(outs):
             if parent is not None and known:
-                out_lo = sum((q.bounds()[1] for q in known), Fraction(0))
-                if out_lo > parent.bounds()[2]:
+                # review R6: correlated (exact) residual; unknown outputs are >= 0, so hi < 0 is a sure excess
+                if parent.minus(_sum(known)).bounds()[2] < 0:
                     return "FAIL", "OUTPUTS_EXCEED_INPUT"
             return "UNKNOWN", "TERM_UNKNOWN"
         _, lo, hi = parent.minus(_sum(known)).bounds()
