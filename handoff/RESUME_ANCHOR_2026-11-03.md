@@ -1,4 +1,4 @@
-# Resume anchor — 2026-11-03 cloud run (S154 → S160)
+# Resume anchor — 2026-11-03 cloud run (S154 → S160), STOPPED AT CHECKPOINT H-A
 
 Read this first when resuming. Then read `STATUS.md`, the WORKLOG tail (S154–S159),
 `DECISIONS.md` D-045 to D-052 and `handoff/REVIEW_SHEET_AI_VERDICTS.md`.
@@ -14,7 +14,7 @@ The plan being executed is Kush's cloud-prompt sequence S154 → S163, with chec
 | 4 | `cloud/s157-evidence-machinery` | e1efc17 | Step 09 queue, 12.0 proposed rows, 12-local parsers, 13a-0 seed corpus |
 | 5 | `cloud/s158-mechanism-stack` | e0b5702 | 04.3 KIN/KINPT v1.1, MECH v1.1, 22a signatures, 23a applicability |
 | 6 | `cloud/s159-simulator-core` | 56d3cab | 24a FORM/PARAM/VAL, 26a fitting, 26b sim_aa_1/sim_chl_1, 26c verification |
-| 7 | `cloud/s160-freeze-prep` | in progress | D-049..D-052 records, signed 26.0 selection (sim_aa_1); S160 work under way |
+| 7 | `cloud/s160-freeze-prep` | see the update below | D-049..D-052, signed 26.0 selection (sim_aa_1), 15.0 draft, 15a.R seal tool, Step 35 v2 package, evaluation scaffolds |
 
 All branches start from main `2154406`. Each branch contains the one before it.
 
@@ -101,3 +101,17 @@ python tools/step19_real_pilot.py draw --record reports/step19/pilot_start_recor
 | S163 | Consolidation and final handoff |
 
 The final report states every gate outcome as it is, including G08-3 FAIL and 07.A FAIL, and makes no SOTA wording without measured comparisons.
+
+## Update — S160 complete, run stopped (2026-11-03)
+
+- **S160 is done and pushed.** Build note: `reports/step15/S160_build_note.md`. Full suite: 3185 passed, 17 skipped, 1 deselected; the 1 failed + 11 errors are the missing bundle files. Ledger guard 7/7.
+- **The cloud run stopped here at Kush's request.** Nothing is running; no agent is active.
+- **Checkpoint H-A is block I of the review sheet:**
+  - 15.0 rulings, including the RESERVED fraction and the seed policy;
+  - the Step 35 v2 signature: protocol `009c9047ce78da21dd7d7061a64bc9fbb86d38d3eada5b3d8c9769ce5dd60145`, UNSIGNED record `8885a63a0dc0181d4aec5d05fea124776d6a0afbbe5a1e162da7cbb9a4b582e5`, with P-1..P-5, S-1/S-2 and Route A/B;
+  - the scaffold values (δ_30, ρ, c_floor, 34c thresholds).
+- **To resume:**
+  1. Record the H-A answers as new DECISIONS entries (D-053 onward), quoting the humans' own words.
+  2. The 15.0 entry must use the seal's marker lines: `RESERVED_FRACTION`, `RESERVED_UNIT`, `RESERVED_STRATIFY`, `SEED_SHA256`, and an Approver line naming Kush.
+  3. Signing Step 35 means creating `reports/step35/preregistration_35_0_v2_package.sha256.SIGNED.json`, committed from the signer's own session (O5).
+  4. Then run C1 and C2 where the data bundle exists, then H-B and S161–S163.
