@@ -1,0 +1,7 @@
+route,order,description,status
+DIRECT,1,compatible evidence exists for the query cell (G0; full lookup is Step 36),DRAFT_PENDING_21b_22a_H4
+INTERPOLATE,2,bracketing or near evidence exists (G0; full lookup is Step 36),DRAFT_PENDING_21b_22a_H4
+SIMULATE,3,narrowest branch: G1 and G4..G8 APPLICABLE and domain IN_VALIDATION_DOMAIN and not safety-critical; a design label only (no simulator run and no sim_run_id),DRAFT_PENDING_21b_22a_H4
+QUALITATIVE,4,direction only (or a RESEARCH_ONLY / EXTRAPOLATED label when only the domain blocks SIMULATE),DRAFT_PENDING_21b_22a_H4
+ASK,5,a missing input is user-observable (design only: needs a Step-36 session channel; value of information not computed),DRAFT_PENDING_21b_22a_H4
+UNKNOWN,6,abstain,DRAFT_PENDING_21b_22a_H4
