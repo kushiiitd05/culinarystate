@@ -165,4 +165,4 @@ def test_simulator_form_reports_overflow_as_a_model_error() -> None:
     form = leaching_form(("k_ref", "Ea", "k_L"), {"K_p": 2e-3}, 4e-3)
     cov = design((F.T_BATH,), (600.0,), (0,))
     with pytest.raises(M.ModelError):
-        form.predict({"k_ref": 1e300, "Ea": 7e4, "k_L": 1e300}, cov, {"T_ref_K": F.T_REF})
+        form.predict({"k_ref": 1e307, "Ea": 7e4, "k_L": 1e307}, cov, {"T_ref_K": F.T_REF})
