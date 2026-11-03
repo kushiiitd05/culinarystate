@@ -13,7 +13,6 @@ from pathlib import Path
 from typing import Any
 
 from culinarystate.mechanism import mech_contract as MC
-
 from tests.fixtures.mech_v1_1_fixtures import (
     accepted,
     bound,
