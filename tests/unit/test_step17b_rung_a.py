@@ -299,7 +299,7 @@ def test_rule_traced_values_need_the_registered_recomputers(rung):
     bad = replace(ev, attributes=tuple(replace(a, value="PROC-000001") if a.field == "proc_id" else a
                                        for a in ev.attributes))
     tampered = replace(out.graph, events=(bad, *out.graph.events[1:]))
-    r = audit_outputs(s, [tampered], recomputers=rung.recomputers())
+    r = audit_outputs(s, [*out.quantities, tampered], recomputers=rung.recomputers())
     assert r.invented_by_code == {"RULE_MISMATCH": 1}
 
 
@@ -342,3 +342,18 @@ def test_hard_case_prompts_run_without_invented_values_and_catalog_stays_blank(r
         assert reports["V1"].issues == () and reports["V2"].issues == () and reports["V3"].issues == ()
     assert CATALOG.read_bytes() == before
     assert all(r["observed_output"] is None and r["expert_decision"] is None for r in rows)
+
+
+def test_a_word_after_a_determiner_or_number_is_not_a_verb(rung):
+    _, _, out = run(rung, "Divide the dough into four portions. Add two stir sticks.")
+    assert surfaces(out, "ACTION") == ["Divide", "Add"]
+
+
+def test_unresolved_mixture_word_opens_a_new_flagged_entity_and_feeds_the_template(rung):
+    s, _, out = run(rung, "Divide the batter into 2 parts.")
+    g = out.graph
+    assert out.refs[0].failure.code is FailureCode.NO_VALID_CANDIDATE
+    assert "INTERMEDIATE_NEW_ENTITY" in g.diagnostics
+    assert [a.kind for a in g.allocations] == ["SPLIT", "SPLIT"]
+    assert event_attr(g.events[0], "split_count").trace.kind is TraceKind.SPAN_LITERAL
+    check_clean(rung, s, out)
