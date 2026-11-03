@@ -107,3 +107,4 @@ Source: `reports/step09/S157_build_note.md`, `S157_09_audit.md`, `S157_ai_review
 | F5 | **Review-file authenticity (O-1).** How does a review CSV prove it came from Kush or Parv? (Signed commit, separate account, or attestation.) |
 | F6 | **Bognar values above 1.00.** MEASURED in the new parser, CENSORED in the old v1. Choose one at the G12 audit. Also decide the method-label rule (O-4) and the R2 "nearest 5%" censoring rule. |
 | F7 | Accept the R1–R4 fixes and the ksh audit open items O-1 to O-6: field classes, unit list and prompt-injection patterns as AI proposals; whether the T/t validators call the frozen Step 07 normaliser. |
+- 2026-11-03, Kush: "block F all ok by parv and me, keep going". Recorded as D-049 with the as-built conservative default for each option item (F1 re-baseline approved in principle, executed only after a real local run is reviewed).
