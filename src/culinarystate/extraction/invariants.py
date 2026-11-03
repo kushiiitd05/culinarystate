@@ -3,7 +3,8 @@
 Implements only invariants stated in the sources, on the 17a ``EventGraph``
 candidate types (the Step 18 v1 ledgers do not exist yet; 16c is open):
 
-- referenced IDs exist (SSOT §240.2 "All referenced IDs exist"); duplicate ids;
+- referenced IDs exist (SSOT §240.2 "All referenced IDs exist"); duplicate ids; in
+  ``run_validators`` also across outputs (link/ref mention ids, ref entity ids; S155 review R4);
 - nothing is consumed before it is produced (RD invariant 3; SSOT §240.2);
 - nothing is consumed after DISCARD (RD invariant 3);
 - every new intermediate has a producing event (SSOT §240.2);
@@ -28,7 +29,10 @@ from dataclasses import dataclass
 from fractions import Fraction
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
-from .interfaces import EventCandidate, EventGraph, QuantityGroundingResult, SourceText, StageOutput
+from .interfaces import (
+    EventCandidate, EventGraph, LinkResult, MentionSet, QuantityGroundingResult, ReferenceResult, SourceText,
+    StageOutput,
+)
 from .validators import (
     ValidationReport, ValidatorIssue, Vocabulary, _Collector, v1_span_roundtrip, v2_quantity_records, v3_vocabulary,
 )
@@ -302,5 +306,36 @@ def run_validators(source: SourceText, outputs: Iterable[StageOutput], *, qnt_sc
                          for x in sub.unknown)
         for name in sub.not_checked:
             c.skip(name)
+    _cross_references(c, outs)
     reports["V4"] = c.report()
     return reports
+
+
+def _cross_references(c: _Collector, outs: Sequence[StageOutput]) -> None:
+    """S155 review R4: ids referenced across outputs exist ("All referenced IDs exist", SSOT §240.2).
+
+    Link / reference mention ids must name a mention of a supplied MentionSet; reference
+    candidates and antecedents must name entities of a supplied EventGraph. Without the
+    target output the check is reported as not checked.
+    """
+    mention_ids = {m.mention_id for o in outs if isinstance(o, MentionSet) for m in o.mentions}
+    has_mentions = any(isinstance(o, MentionSet) for o in outs)
+    entity_ids = {n.entity_id for o in outs if isinstance(o, EventGraph) for n in o.entities}
+    has_graph = any(isinstance(o, EventGraph) for o in outs)
+    for i, out in enumerate(outs):
+        if not isinstance(out, (LinkResult, ReferenceResult)):
+            continue
+        if not has_mentions:
+            c.skip("CROSS_REF_NO_MENTION_SET")
+        elif out.mention_id not in mention_ids:
+            c.fail("REFERENCED_ID_MISSING", f"outputs[{i}]/mention/{out.mention_id}",
+                   "Referenced mention id does not exist in the supplied mention sets")
+        if not isinstance(out, ReferenceResult):
+            continue
+        if not has_graph:
+            c.skip("CROSS_REF_NO_EVENT_GRAPH")
+            continue
+        for nid in dict.fromkeys((*out.candidates, *out.antecedent_ids)):
+            if nid not in entity_ids:
+                c.fail("REFERENCED_ID_MISSING", f"outputs[{i}]/entity/{nid}",
+                       "Referenced entity id does not exist in the supplied event graphs")
