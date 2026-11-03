@@ -106,7 +106,7 @@ def _is_data(t: str) -> bool:
 
 
 def _classify(header: list[tuple[int, str]]) -> dict[str, Any]:
-    basis, marks, methods, product = None, None, [], []
+    basis, marks, methods, product = None, [], [], []
     for _, t in header:
         s = t.strip()
         if not s or s.startswith("-"):
@@ -114,7 +114,7 @@ def _classify(header: list[tuple[int, str]]) -> dict[str, Any]:
         if letters_of(t):
             basis = t
         elif all(MARK.match(x) for x in s.split()):
-            marks = t
+            marks.append(t)                     # review R4: stacked mark lines are all kept
         elif methods_of(CONSTITUENTS.sub("", s)) and "such as" not in s and "retention" not in s.lower():
             methods.append(t)
         else:
@@ -164,10 +164,11 @@ def _parse_table(no: int, seg: list[tuple[int, str]]) -> tuple[list[dict], dict,
             method_of = [labels[i][1] for i in eq] if eq == pos else [None] * k
         else:
             mapping, method_of = "POSITIONAL_ONLY_UNCONFIRMED", [labels[i][1] for i in pos]
-    marks = per_column(cls["marks"])
+    mark_cols = [per_column(t) for t in cls["marks"]]
+    marks = [" ".join(m[c] for m in mark_cols if m[c]) or None for c in range(k)]
     product_cols = [per_column(t) for t in cls["product"]]
     subcol = [" / ".join(p[c] for p in product_cols if p[c]) or None for c in range(k)]
-    head_cols = [per_column(t) for t in (*cls["product"], cls["method"], cls["marks"], cls["basis"]) if t]
+    head_cols = [per_column(t) for t in (*cls["product"], cls["method"], *cls["marks"], cls["basis"]) if t]
     header_raw = [" | ".join(h[c] for h in head_cols if h[c]) or None for c in range(k)]
     basis = list(letters) if letters else ["UNKNOWN"] * k
     cells, problems = [], []
