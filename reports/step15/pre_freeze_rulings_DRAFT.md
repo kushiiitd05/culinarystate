@@ -50,7 +50,7 @@ Context that bounds every option:
 
 ## 4. Giant-component threshold
 
-**What exists (already signed).** `THR-08A-08` (`registry/preregistered_thresholds_v1.csv` L29, `PREREGISTERED_2026-10-26`, signed by Kush): "> 40%" share of a target family's rows in the largest split group, with the signer caution that USDA/Bognár hold 39.0% / 39.4% of all ACTIVE rows (knife-edge). `THR-08A-15` (L36): fallback naming "'publication-component CV' + leave-one-source-family-out; never 'study-disjoint'". `THR-08A-20` (L42): refinement on the evaluation-eligible pool with Kish n_eff >= K and largest share <= 0.40, "evaluated ONCE on the rule_version frozen at Step 15", the weaker label applies if either fails. Draft `T-08-01` (`registry/preregistered_thresholds_v1_DRAFT.csv` L8) is the unsigned earlier copy. Plan L556 / L564: "K=10 and the 40% giant-component threshold are PROPOSED_PILOT, pending pre-registration."
+**What exists (already signed).** `THR-08A-08` (`registry/preregistered_thresholds_v1.csv` L29, `PREREGISTERED_2026-10-26`, signed by Kush): "> 40%" share of a target family's rows in the largest split group, with the signer caution that USDA/Bognár hold 39.0% / 39.4% of all ACTIVE rows (knife-edge). `THR-08A-15` (L36): fallback naming "'publication-component CV' + leave-one-source-family-out; never 'study-disjoint'". `THR-08A-20` (L42): refinement on the evaluation-eligible pool with Kish n_eff >= K and largest share <= 0.40, "evaluated ONCE on the rule_version frozen at Step 15", the weaker label applies if either fails. Draft `T-08-01` (`registry/preregistered_thresholds_v1_DRAFT.csv` L8) is the unsigned earlier copy. Plan L564: "K=10 and the 40% giant-component threshold are PROPOSED_PILOT, pending pre-registration." (Plan L556 states the >40% rule itself.)
 
 | Option | Rule |
 |---|---|
@@ -70,7 +70,7 @@ Context that bounds every option:
 | K-2 | Another single K (human value; must not be chosen from observed cluster counts, R-08) |
 | K-3 | Family-specific K |
 
-**AI recommendation (not a decision):** K-1, with the inference rule "fewer than about 20–30 clusters: cluster sign-flip permutation, never cluster-robust SEs" (Plan L557) carried into the row. Reason: K = 10 is already inside a signed row; two different Ks for the same gate would be a forking path. K = 10 is a pilot convention, not a derived value, and the row must say so.
+**AI recommendation (not a decision):** K-1, with the inference rule "Fewer than ~20–30 clusters → cluster sign-flip permutation, not cluster-robust SEs" (Plan L558) carried into the row. Reason: K = 10 is already inside a signed row; two different Ks for the same gate would be a forking path. K = 10 is a pilot convention, not a derived value, and the row must say so.
 
 ## 6. RESERVED fraction (and the parameters the 15a.R seal needs)
 
