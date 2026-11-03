@@ -77,3 +77,4 @@ Source: `reports/step17/S155_17a_ai_review.md` (sent to Kush for Parv).
 - 2026-11-03, Kush relaying Parv: "parv said pass for the above file you gave me". Recorded as Parv's pass on the S154 bundle and branch (D-046).
 - Block D: pending.
 - 2026-11-03, Kush: "all given files seen and reviewed by parv ok and mine are also okay and passed". Block D (D1–D4) accepted and S155 passed; recorded as D-047. N1–N3 still needed.
+- 2026-11-03, Kush: N2 weekly capacity Kush 15 h, Parv 15 h ("we can spend 15-20 hrs per week"; 15 used as the planning figure); N3 budget B_h Kush 40 h, Parv 40 h. N1 nonce not yet supplied (Kush asked what it is; explained).
