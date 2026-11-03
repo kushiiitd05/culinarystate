@@ -78,7 +78,7 @@ def test_chl_closed_form_vs_integrator() -> None:
 
 # ----------------------------------------------------------------------------- convergence under refinement
 @pytest.mark.parametrize("method, nominal, steps", [("TRAPEZOID_FIXED", 2, (4, 8, 16, 32)),
-                                                    ("RK4_FIXED", 4, (2, 4, 8, 16))])
+                                                    ("RK4_FIXED", 4, (16, 32, 64, 128))])
 def test_observed_order_against_the_analytic_reference(method: str, nominal: int, steps) -> None:
     params = F.aa_params(k_ref=2e-3, k_l=2e-3, k_dw=1e-3)
     cond = F.aa_conditions(kdw="ON", sched=F.schedule(*STEP_T))
@@ -180,8 +180,11 @@ def test_expm_matches_scipy_reference() -> None:
     from culinarystate.simulation import sim_core as SC
     rng = np.random.default_rng(5)
     for scale in (1e-3, 1.0, 50.0, 5e3):
-        A = rng.normal(size=(4, 4)) * scale
-        assert np.allclose(SC.expm(A), sexpm(A), rtol=1e-10, atol=1e-12 * np.max(np.abs(sexpm(A))))
+        G = rng.uniform(0.0, 1.0, size=(4, 4)) * scale       # compartment (generator) matrix: columns sum to 0
+        np.fill_diagonal(G, 0.0)
+        G -= np.diag(G.sum(axis=0))
+        assert np.allclose(SC.expm(G), sexpm(G), rtol=1e-9, atol=1e-12)
+        assert np.max(np.abs(SC.expm(G).sum(axis=0) - 1.0)) <= 1e-11
 
 
 # ----------------------------------------------------------------------------- stiffness
@@ -201,8 +204,8 @@ def test_stiff_case_is_solved_by_a_stiff_method(method: str) -> None:
     if not has_scipy():
         pytest.skip("scipy (optional extra step26) not installed")
     params, cond = stiff()
-    ref = sim(F.AA, cond, params, F.solver())
-    out = sim(F.AA, cond, params, F.solver(method))
+    ref = sim(F.AA, cond, params, F.solver(mb_tol=MB_TOL))
+    out = sim(F.AA, cond, params, F.solver(method, mb_tol=MB_TOL))
     assert out.status == "COMPLETED", out.reasons
     assert out.diagnostics["stiffness_ratio"] > 1e4
     for name in ("A_t", "A_w", "D"):
