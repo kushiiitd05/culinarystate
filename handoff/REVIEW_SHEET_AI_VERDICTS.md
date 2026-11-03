@@ -79,3 +79,17 @@ Source: `reports/step17/S155_17a_ai_review.md` (sent to Kush for Parv).
 - 2026-11-03, Kush: "all given files seen and reviewed by parv ok and mine are also okay and passed". Block D (D1–D4) accepted and S155 passed; recorded as D-047. N1–N3 still needed.
 - 2026-11-03, Kush: N2 weekly capacity Kush 15 h, Parv 15 h ("we can spend 15-20 hrs per week"; 15 used as the planning figure); N3 budget B_h Kush 40 h, Parv 40 h. N1 nonce not yet supplied (Kush asked what it is; explained).
 - 2026-11-03, Parv: N1 string "BlindedByTheRecipes_05"; Kush: "Houdini_loves_hustin_crepes_07". Joint nonce recorded; B6/H5 recorded as D-048; signed start record written; gate check ready=true, 0 blockers.
+
+## Block E — S156 Step 18 and 26g (pending review)
+
+Source: `reports/step18/S156_build_note.md`, `S156_engine_audit.md`, `S156_18_ai_review.md`.
+
+| ID | AI verdict |
+|---|---|
+| E1 | Accept the fixes R1–R6 to ksh's Step 18 code. |
+| E2 | Decide the open items O1–O7. O2 matters most: replay PASS should account for issues the adapter reported. |
+| E3 | Engine policies left open:<br>- merge/transform mass;<br>- who assigns the split/reserve basis;<br>- how to read a REMAINDER with no fraction;<br>- count-unit identity;<br>- whether a rejected event cascades;<br>- text order vs execution order. |
+| E4 | 26g, all PROPOSED_PENDING_26b:<br>- the required-input lists for sim_aa_1 and sim_chl_1;<br>- the units;<br>- the name MEASURED;<br>- whether SYNTHETIC inputs are allowed;<br>- a replay issue blocks every event;<br>- the census reason codes. |
+
+Responses:
+- 2026-11-03, Kush: the old-engine defects L1–L8 are not influential and are left unchanged; work continues on the new replay.
