@@ -158,3 +158,11 @@ def test_shuffled_temperature_negative_control_does_not_recover_ea() -> None:
     ea = next(p for p in rep.parameters if p.parameter == "Ea")
     recovered = ea.verdict == "IDENTIFIABLE" and ea.ci_low <= truth["Ea"] <= ea.ci_high
     assert not recovered
+
+
+def test_simulator_form_reports_overflow_as_a_model_error() -> None:
+    # The 26a residual treats ModelError as an infinite residual; any other error would abort a profile scan.
+    form = leaching_form(("k_ref", "Ea", "k_L"), {"K_p": 2e-3}, 4e-3)
+    cov = design((F.T_BATH,), (600.0,), (0,))
+    with pytest.raises(M.ModelError):
+        form.predict({"k_ref": 1e300, "Ea": 7e4, "k_L": 1e300}, cov, {"T_ref_K": F.T_REF})
