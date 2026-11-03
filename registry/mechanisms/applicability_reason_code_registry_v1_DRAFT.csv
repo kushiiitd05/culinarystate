@@ -1,0 +1,56 @@
+reason_code,gate,verdict_effect,origin,emitted_in_23a,status,description
+G0_NOT_EVALUATED,G0,NOT_REQUIRED,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,evidence pre-check not run: no frozen DATA-EVIDENCE v1 and the full C8 lookup is Step 36; recorded so the absence of G0 is visible
+EVENT_UNRESOLVED,G1,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the event has no resolved process leaf
+PROCESS_NOT_IN_HIERARCHY,G1,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the stated process id is not a node of the PROC hierarchy draft
+NO_CANDIDATE_MECHANISM,G3,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,no 22a signature for this process names a mechanism acting on the query target (Step 22 fallback: Step 23 returns UNKNOWN)
+TRIGGER_MODIFIER_UNKNOWN,G3,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,a signature's modifier predicate could not be decided because the modifier is not stated
+MECH_NOT_CONSUMABLE,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the MECH entry fails consumable_for_applicability and is refused; the specific MECH_* reasons follow
+MECH_NOT_ACCEPTED,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,refused entry: review_status is not ACCEPTED
+MECH_NOT_HUMAN_VERIFIED,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,refused entry: verification.status is not HUMAN_VERIFIED
+MECH_GATES_UNKNOWN,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,refused entry: gates_unknown is true
+MECH_OPEN_QUESTIONS,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,refused entry: an open question is not closed by a human decision
+MECH_UNRESOLVED_SINK,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,refused entry: kind UNRESOLVED_SINK
+TARGET_NOT_ACCEPTED,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the affected target matching the query is not ACCEPTED (contributes UNKNOWN; D21-21)
+ITEM_NOT_ACCEPTED,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,a precondition / gate / inhibitor item is CANDIDATE or REJECTED and contributes UNKNOWN (MECH item_status)
+MATRIX_EXCLUDED,G4,NOT_APPLICABLE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the query matrix is in the entry's excluded matrix list
+MATRIX_UNLISTED,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the query matrix is in neither matrix list (unlisted is UNKNOWN)
+MATRIX_UNKNOWN,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the query states no matrix
+PRECONDITION_FAIL,G4,NOT_APPLICABLE,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,a stated state fails an ACCEPTED precondition predicate
+PRECONDITION_UNKNOWN,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the state a precondition reads is missing or UNKNOWN
+GATE_MATRIX_UNLISTED,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the query matrix is not in the included scope of a gate so the gate window is not established for it
+NECESSARY_AXIS_UNKNOWN,G4,UNKNOWN,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,no value for a NECESSARY gate axis at the gate's location
+NECESSARY_AXIS_OUTSIDE,G4,NOT_APPLICABLE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the stated value or interval lies fully outside a STATED side of a NECESSARY gate window
+AXIS_NOT_DECIDABLE,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the value straddles a bound or lies beyond an OPEN_STATED or NOT_REPORTED side (no extrapolation)
+AXIS_UNIT_MISMATCH,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the stated unit is not the gate unit; nothing is converted
+AXIS_BASIS_MISMATCH,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the stated basis (wet / dry) is not the gate basis
+AXIS_TYPE_MISMATCH,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,a category was stated for a numeric gate or a number for a categorical gate
+AXIS_CONFLICT,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,two different values were stated for one axis and location; none is picked
+CATEGORY_EXCLUDED,G4,NOT_APPLICABLE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the stated category is in the excluded list of a NECESSARY categorical gate
+CATEGORY_UNLISTED,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the stated category is in neither category list
+INHIBITOR_PRESENT,G4,NOT_APPLICABLE,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,an INHIBITING window or inhibitor predicate holds with extent COMPLETE (or no inhibitor item qualifies the gate)
+INHIBITOR_PARTIAL,G4,APPLICABLE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,an inhibitor with extent PARTIAL is present: the mechanism stays APPLICABLE but is QUALITATIVE only (plan 23-M downgrade)
+INHIBITOR_UNKNOWN,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,presence of an inhibiting agent or condition could not be decided
+INHIBITOR_EXTENT_UNKNOWN,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,an inhibitor is present but its extent is UNKNOWN (proposed reading in the MECH v1.1 inhibitor description)
+INHIBITOR_NOT_EVALUABLE,G4,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,an inhibitor or mitigator is NOT_EVALUABLE_YET
+CONDITION_UNAUDITED,G4,UNKNOWN,PLAN_23M,false,DRAFT_PENDING_21b_22a_H4,23b only: a COND-sourced axis value while the Step-07 gate has not passed; 23a consumes no COND and never emits it
+COMPETING_UNRESOLVED,G5,UNKNOWN,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,one APPLICABLE mechanism and at least one UNKNOWN competitor on the same target
+COMPETING_BOTH_APPLICABLE,G5,NOT_APPLICABLE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,two or more APPLICABLE mechanisms on the same target with no jointly fitted FORM (numeric prohibited)
+COMPETITION_NOT_ACCEPTED,G5,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,a declared competes_with item of the active mechanism is not ACCEPTED (D21-21)
+NO_SINGLE_APPLICABLE_MECHANISM,G5,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,no candidate mechanism is APPLICABLE so competition cannot be resolved
+NO_FORM,G6,UNKNOWN,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,no FORM is available (Step 24 absent) or none was stated by the constructed case
+ASSUMPTION_VIOLATED,G6,NOT_APPLICABLE,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,a FORM assumption is violated for the query (case-stated in 23a)
+INPUT_UNOBSERVED,G7,UNKNOWN,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,a FORM input or initial condition is not observed (FORM inputs are case-stated in 23a)
+MODIFIER_INPUT_UNOBSERVED,G7,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the axis or state of a MODULATING gate or catalyst / promoter is not stated (rule M-1)
+MODIFIER_ITEM_NOT_ACCEPTED,G7,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,a catalyst / promoter item or MODULATING gate is not ACCEPTED or not evaluable
+HISTORY_INPUT_UNOBSERVED,G7,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,a history-dependence state is not stated
+HISTORY_ITEM_NOT_ACCEPTED,G7,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,a history-dependence item is not ACCEPTED
+NO_COMPATIBLE_PARAM,G8,NOT_APPLICABLE,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,no compatible PARAM set exists (case-stated in 23a)
+PARAM_UNCONFIRMABLE,G8,UNKNOWN,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,parameter compatibility cannot be confirmed (Step 25 absent or axes unconfirmable)
+OUT_OF_MS_LIMITS,G9,ROUTE,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,domain flag SIM_PROHIBITED: outside the M&S limits
+SAFETY_CRITICAL,G9,ROUTE,PLAN_23M,true,DRAFT_PENDING_21b_22a_H4,the query is safety-critical so SIMULATE is not offered
+SAFETY_UNKNOWN,G9,ROUTE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,safety-criticality is not stated; treated as not cleared
+DOMAIN_UNKNOWN,G9,ROUTE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,no domain flag is stated; treated as not validated
+DOMAIN_NOT_VALIDATED,G9,ROUTE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,domain IN_CALIBRATION_ONLY or EXTRAPOLATED_WITHIN_LIMITS: QUALITATIVE with a RESEARCH_ONLY / EXTRAPOLATED label at most
+QUALITATIVE_ONLY_PARTIAL_INHIBITION,G9,ROUTE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the active mechanism is partially inhibited so the route is QUALITATIVE at most
+DIRECTION_AMBIGUOUS,G9,ROUTE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,the direction set over APPLICABLE / UNKNOWN candidates is not a single known sign
+EVIDENCE_PREEMPTS,G9,ROUTE,S158_AI_DRAFT,true,DRAFT_PENDING_21b_22a_H4,case-stated compatible evidence routes DIRECT or INTERPOLATE (compatible evidence dominates)
