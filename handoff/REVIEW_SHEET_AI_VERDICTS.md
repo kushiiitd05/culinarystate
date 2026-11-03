@@ -123,3 +123,16 @@ Source: `reports/step21/S158_build_note.md`, `S158_ai_review.md`, `S158_expert_q
 | G6 | 23a:<br>- the 8 AI readings in §4 of the 23a note;<br>- the 45 AI-draft reason codes;<br>- whether ASK and RESEARCH_ONLY belong in the route enum;<br>- pre-register the G22/G23 thresholds. |
 | G7 | Accept the R1–R6 fixes. |
 - 2026-11-03, Kush: "block G and scipy ok by parv and me". Recorded as D-050. G4 (expert answers) and G5 sealing (no case set yet) stay open; scipy declared as optional extra step26.
+
+## Block H — S159 simulator core (pending review)
+
+Source: `reports/step26/S159_build_note.md`, `S159_ai_review.md`.
+
+| ID | Decision needed |
+|---|---|
+| H1 | **26.0 system selection:** AA (leading) or chlorophyll (fallback). Write and sign the selection record (template provided) and the pre-registration, including an exact definition of the "no-water-assay" design (O6). This is a Kush+Parv / 11.D decision. |
+| H2 | 24a:<br>- FORM- vs MODEL- prefix;<br>- H4 approval of the FORM/PARAM/VAL v1 drafts;<br>- AI proposals: the `FITRUN-` namespace, `lifecycle_status`, "MEASURED" meaning a point value, `PENDING_15B`, the slot roles, the VAL verdicts and the draft calibration rules;<br>- the Weibull parameterisation (α scale, β shape). |
+| H3 | sim_aa_1 model questions (H4 or expert):<br>- the K_p dimension (m³/kg because r is in mL/g);<br>- k_L does not depend on temperature;<br>- k_dw is first order. |
+| H4 | sim_chl_1:<br>- the functional form of g(pH);<br>- whether one g is shared by Chl a and Chl b. |
+| H5 | Inputs only humans or sources can give:<br>- Choi–Okos coefficients, plus a check of the mixing rules (AI recollection);<br>- τ_h per size class;<br>- the M&S limits (26e);<br>- solver tolerances and G26-VER numbers;<br>- a check of the KiSAO ids (AI-recalled, UNVERIFIED). |
+| H6 | Accept the fixes R1–R5 and decide O1–O5 and O7. |
