@@ -291,3 +291,14 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Record:** `reports/step19/pilot_start_record.SIGNED.json`. It binds the same design and bound files as the unsigned template (kept unchanged), instrument v0 + handbook v1 / Addendum A, annotation mode MODEL_ASSISTED (D-045 W2), pilot column `reserve_split_v2`, draw spec `STEP19_P1_DRAW_SHA256_RANK_V1_DRAFT`, and the signed THR-19P-01..35.
 - **Next, unchanged by this entry:** the P1 frame must be (re)built **after** this commitment, where the data bundle exists; the gate refuses an older frame. No draw or annotation has happened. P2 stays unauthorised.
 - **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-049 · 2026-11-03 · Kush and Parv accept S157 review block F (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "block F all ok by parv and me, keep going". Where an item offered options, "ok" is recorded as the as-built conservative default written below. Kush may correct any reading by a later entry.
+- **F1 re-baseline:** approved in principle. It is executed only after Kush reviews `registry/staging/step12_0_src_snap_proposed_v1.jsonl` from a real local run. Real ids are minted, and `registry/baseline_ledger_hashes_08a_v1.csv` is re-baselined, in a separate recorded step. No rows exist yet, so nothing is appended now.
+- **F2 licences:** INFOODS (H2 #9) stays LOCAL_ONLY. The Bognar licence re-check is still required before ingestion. Catalog-reported CC0/PD stays UNKNOWN (not ASSUMED).
+- **F3 E4:** kept as built. Under D-045 (AI draft, then human review) no evidence item reaches E4; E4 needs a separately recorded blind review.
+- **F4 old tools:** `apply_link_review.py --sign-as` and `apply_human_review.py` stay unchanged and are not to be used for new reviews. New reviews go through the S157 machinery.
+- **F5 review authenticity:** a review CSV counts as a person's review only when that person commits it from their own git identity or session. The agent never writes reviewer fields.
+- **F6 Bognar >1.00, method labels, R2 censoring:** both readings are reported until the G12 audit decides. No value is changed.
+- **F7:** R1–R4 fixes accepted; ksh's audit O-1–O-6 accepted as AI proposals pending H4.
+- **Approver:** Kush and Parv (Parv relayed by Kush).
