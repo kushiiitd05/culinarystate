@@ -59,3 +59,20 @@ Facts only a human can supply, which no verdict can cover:
 ## Block D — S155 Step 17b and the 17a cross-review (worker prv)
 
 Added when prv finishes.
+
+### Block D content (added 2026-11-03 after prv finished; pending Parv review)
+
+Source: `reports/step17/S155_17a_ai_review.md` (sent to Kush for Parv).
+
+| ID | AI verdict |
+|---|---|
+| D1 | Accept the fixes R1–R7 to ksh's 17a, each with a failing test committed first:<br>- R1, R2: auditor unit/number pairing and minus sign;<br>- R3: `config_hash` coverage;<br>- R4: cross-output id references;<br>- R5: V3 categorical and identifier claims;<br>- R6: `Span.of` offset types;<br>- R7: malformed V4 order. |
+| D2 | Decide the open items O1–O9:<br>- O1: PASS when nothing was checked;<br>- O2: a unitless temperature or duration is accepted;<br>- O3: discard after discard is not flagged;<br>- O4: split fractions are summed per event;<br>- O5: a failed grounding can still carry a count or volume;<br>- O6: registry categoricals are checked only by V3;<br>- O7: H4 draft tables and validator numbering;<br>- O8: mutable `params`;<br>- O9: unused imports. |
+| D3 | Rung A draft choices:<br>- first instruction mentions are typed as ingredient lots;<br>- "into a/an X" is the product, "into the X" the destination;<br>- an unresolved mixture word opens a new mixture;<br>- the cue, adverb and auxiliary lists;<br>- "20 C" is flagged as ambiguous, not read as a temperature;<br>- the `t`/`c` unit tokens are excluded. |
+| D4 | Lexicon gaps seen in the hard cases ("liquid", "use", "hold") stay as gaps; no entries are invented. |
+
+## Responses recorded
+
+- 2026-11-03, Kush: "the pendings you have are okked by parv and me - kush". Blocks W, A, B1–B5 and C1–C7 accepted; recorded as D-045 and D-046. B6 waits for N1–N3.
+- 2026-11-03, Kush relaying Parv: "parv said pass for the above file you gave me". Recorded as Parv's pass on the S154 bundle and branch (D-046).
+- Block D: pending.
