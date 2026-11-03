@@ -68,16 +68,21 @@ contains no review or status code. Tests: `tests/unit/test_step09_machinery.py`,
   - the record carries minutes and the sha256 of the review file.
 
   Reviews enter only through `read_human_reviews` (a human-filled CSV). `write_queue_jsonl` re-reads
-  that file and refuses a review missing from it or different from it. This blocks forged or upgraded
-  reviews in code.
-- **Proof that code cannot mark VERIFIED:** an AST test shows the literal `HUMAN_VERIFIED` appears only
+  that file and refuses a review missing from it or different from it. This blocks a review that is
+  absent from, or upgraded relative to, the given review file. It does not authenticate the file:
+  code can still construct a `HumanReview` in memory, or write a CSV that names Kush or Parv, so the
+  authenticity of a review file rests on human provenance, not on this module (corrected after the
+  S157 AI cross-review, `reports/step09/S157_ai_review.md` O-1).
+- **Tests that code does not mark VERIFIED on its own** (tests, not a proof; see O-1 of the AI
+  cross-review for the in-memory and forged-file limits): an AST test shows the literal `HUMAN_VERIFIED` appears only
   in the derivation function and the vocabulary. Further tests show:
   - no sign/approve/autofill entry point exists;
   - no combination of AI, rule and human-extractor proposals reaches a HUMAN_* status;
   - `from_dict` rejects a stored HUMAN_VERIFIED without a review;
   - the writer rejects reviews whose file is not given.
 - **Tier:** never E4. `E4_ELIGIBLE_PENDING_ADJ` requires all of the following: a blind CONFIRM with a
-  checked locator, ≥ 2 extractor families and no blocking flag. Otherwise the tier is E5. Promotion
+  checked locator, ≥ 2 extractor families (compared case-insensitively, review R1), a confirming
+  human who is not one of the item's human extractors (review R2) and no blocking flag. Otherwise the tier is E5. Promotion
   needs the 09.1 ADJ record, which does not exist yet.
 - **Writers:** a new file only. They refuse `ledgers/`, `exports/`, `annotation/gold/` and ledger-like
   file names. The review sheet is blind by default (proposed values hidden).
