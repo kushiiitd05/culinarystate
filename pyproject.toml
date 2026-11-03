@@ -5,6 +5,7 @@ requires-python = ">=3.10"
 
 [project.optional-dependencies]
 step35 = ["rdkit==2026.3.6"]
+step26 = ["scipy>=1.11"]  # D-050: approved for 26a fitting/identifiability; numpy-only paths must still work
 
 [tool.pytest.ini_options]
 pythonpath = ["src", "."]
