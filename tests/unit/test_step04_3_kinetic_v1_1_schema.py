@@ -25,7 +25,7 @@ V1 = {"KIN": "KIN.draft_v1.schema.json", "KINPT": "KINPT.draft_v1.schema.json"}
 
 # Every path at which v1.1 may differ from v1 (the change list of kinetic_trajectory_contract_v1_1_DRAFT.md).
 DECLARED_CHANGES = {
-    "KIN": {"/$id", "/title", "/description", "/$comment", "/required", "/properties/digitisation_summary",
+    "KIN": {"/$id", "/title", "/description", "/$comment", "/required", "/allOf", "/properties/digitisation_summary",
             "/$defs/analyte_form/required", "/$defs/analyte_form/properties/token",
             "/$defs/analyte_form/properties/token_status", "/$defs/analyte_form/allOf",
             "/$defs/analyte_form/description", "/properties/censoring_summary/allOf",
