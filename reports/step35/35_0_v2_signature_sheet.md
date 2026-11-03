@@ -1,15 +1,15 @@
 # Step 35.0 v2 signature sheet for Kush and Parv (UNSIGNED)
 
-Prepared 2026-11-03 by AI worker "ksh" (an agent; it signs nothing). Under D-045 your review is final. Protocol: `reports/step35/preregistration_35_0_v2_draft.md` (v2). Nothing is signed; G35-PRE refuses every Step 35 run today (tested).
+Prepared 2026-11-03 by AI worker "ksh" (an agent; it signs nothing). Under D-045 your review is final. Protocol: `reports/step35/preregistration_35_0_v2_draft.md` (v2). Nothing is signed; G35-PRE refuses every Step 35 run today (tested). Hashes updated the same day by AI worker "prv" after the AI cross-review changed the protocol and runner (`reports/step15/S160_ai_review.md`, R2/R4).
 
 ## 1. What you sign (exact bytes)
 
 | Item | sha256 |
 |---|---|
-| v2 protocol `reports/step35/preregistration_35_0_v2_draft.md` | `4d63cea2408ddcac995c1112832588087ae70bc27cb295e734b6a63578cd1a53` |
+| v2 protocol `reports/step35/preregistration_35_0_v2_draft.md` | `009c9047ce78da21dd7d7061a64bc9fbb86d38d3eada5b3d8c9769ce5dd60145` |
 | v1 text it incorporates `reports/step35/preregistration_35_0_v1_draft.md` (unchanged) | `47c6ba6e6c567a3861c72625de28b78e0fa67c8a1462396fb1e18b421a03d933` |
 | 43 rows THR-35P-01..43 `reports/step35/35_0_v2_threshold_rows.csv` (= v1 Appendix A bytes) | `8b696b08661c8b630723e0512c82398ca6a1a24bcfe557ad752e80fb957f15e0` |
-| UNSIGNED template `reports/step35/preregistration_35_0_v2_package.sha256.UNSIGNED.json` (as committed; its bytes change when you fill it in) | `4f746e1a7af307c8ee1deac30d08ff40716b17015169c4b7f10eefe5609af0d7` |
+| UNSIGNED template `reports/step35/preregistration_35_0_v2_package.sha256.UNSIGNED.json` (as committed; its bytes change when you fill it in) | `8885a63a0dc0181d4aec5d05fea124776d6a0afbbe5a1e162da7cbb9a4b582e5` |
 
 The template binds 21 inputs (protocol texts, Parv's review record, the D-041 addendum as OPEN text, cuisine lookup/map/labels/census, the census tool, MOL/IMAP/KGE/ING ledgers, recipe split groups, two registries and the five Step 35 code files). Their full paths and 64-character hashes are in v2 section 6 and in the template; a test keeps the two identical. Check them there, not from a summary.
 
@@ -25,7 +25,7 @@ The template binds 21 inputs (protocol texts, Parv's review record, the D-041 ad
 ## 3. How to sign
 
 1. Copy the chosen template to `reports/step35/preregistration_35_0_v2_package.sha256.SIGNED.json` (the only name the runner reads).
-2. Each of you adds your own name to `signers`, sets `date` (YYYY-MM-DD) and sets `status` to `SIGNED`. Two distinct names are required; a single signer needs a written `single_signer_override` with reason and name.
+2. Each of you adds your own name to `signers` (each entry names exactly one of Kush or Parv; AI worker labels such as "ksh"/"prv" are refused), sets `date` (YYYY-MM-DD) and sets `status` to `SIGNED`. Both of you are required; a single signer needs a written `single_signer_override` with reason and name.
 3. Check: `PYTHONPATH=src python -c "from culinarystate.representation.explicit_runner import authorise_explicit_run as a; print(a('35e', root='.'))"` must print an Authorisation.
 4. Commit the SIGNED file from the session of the human who signed (D-049 F5). Never edit the protocol or any bound file afterwards: a change needs a new record (and, for protocol text, v3).
 5. Separately, append THR-35P-01..43 verbatim to `registry/preregistered_thresholds_v1.csv` with your signer fields (as D-046 did for THR-19P).
