@@ -6,7 +6,10 @@ entry is pinned: it always checks ``PACKAGE_DOCUMENT`` against ``SIGNED_RECORD``
 files; callers cannot substitute another document or record. It refuses (raises
 ``PreregNotSigned``) unless that record carries two distinct signers (or a written
 single-signer override), an ISO date, the current document sha256 and the current sha256
-of every required input.
+of every required input. On top of the guard, each signer must name exactly one of Kush
+or Parv and no AI worker/agent label (``ksh``/``prv`` are agents); both must sign unless
+the record carries a single-signer override (review R2). This is an engineering control,
+not a cryptographic signature: it stops accidental or agent "signing", not forgery.
 
 Only an UNSIGNED template exists (``UNSIGNED_RECORD``, built by ``build_unsigned_record``).
 This module never signs. ``MAC_ONLY_INPUTS`` are recipe files absent from the cloud
@@ -16,11 +19,13 @@ code must itself be one of the bound inputs (a new or changed scorer = a new rec
 """
 from __future__ import annotations
 
+import json
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Callable, TypeVar
 
-from culinarystate.representation.prereg_guard import require_signed_prereg, sign_record_template
+from culinarystate.representation.prereg_guard import PreregNotSigned, require_signed_prereg, sign_record_template
 
 T = TypeVar("T")
 
@@ -61,6 +66,8 @@ TASK_INPUTS: dict[str, tuple[str, ...]] = {
     "35e": (_REP + "similarity_registry.py", "registry/ssot15_similarity_registry.csv"),
 }
 MAC_ONLY_INPUTS: tuple[str, ...] = (_MENTIONS, _RECIPE_BASE, _FIREWALL)
+HUMAN_SIGNERS = ("kush", "parv")
+_AI_LABEL = re.compile(r"\b(ksh|prv|claude|anthropic|agent|ai|assistant|bot|gpt)\b", re.I)
 
 
 @dataclass(frozen=True)
@@ -96,12 +103,29 @@ def build_unsigned_record(root: Path | str) -> dict[str, Any]:
     return rec
 
 
+def check_signer_identity(record: dict[str, Any]) -> None:
+    """Each signer names exactly one of Kush/Parv and no AI label; both sign unless overridden."""
+    who: list[str] = []
+    for name in record.get("signers") or []:
+        if not isinstance(name, str) or _AI_LABEL.search(name):
+            raise PreregNotSigned(f"signer {name!r} is an AI worker or agent label, not a human signature")
+        found = [h for h in HUMAN_SIGNERS if re.search(rf"\b{h}\b", name, re.I)]
+        if len(found) != 1:
+            raise PreregNotSigned(f"signer {name!r} must name exactly one of Kush or Parv")
+        who.append(found[0])
+    if len(who) != len(set(who)):
+        raise PreregNotSigned("each human signer may appear once (Kush and Parv sign separately)")
+    if set(who) != set(HUMAN_SIGNERS) and not record.get("single_signer_override"):
+        raise PreregNotSigned("both Kush and Parv must be signers, or a single_signer_override is required")
+
+
 def authorise_explicit_run(task: str, *, root: Path | str) -> Authorisation:
     """Run the G35-PRE guard on the pinned v2 package; raises PreregNotSigned if not signed."""
     required = required_inputs(task)
     base = Path(root)
     digest = require_signed_prereg(base / PACKAGE_DOCUMENT, base / SIGNED_RECORD,
                                    required_files=[base / p for p in required])
+    check_signer_identity(json.loads((base / SIGNED_RECORD).read_text(encoding="utf-8")))
     return Authorisation(task, digest, SIGNED_RECORD, required)
 
 
