@@ -75,7 +75,7 @@ def test_v1_offset_fixtures_round_trip(raw, needle, occurrence):
 
 
 def test_v1_utf8_byte_offsets_are_rejected_as_mismatch():
-    raw = "🔥 Sear the steak."
+    raw = "🔥 Sear the steak, then rest it."
     s = src(raw)
     b = raw.encode("utf-8")
     start = b.index("steak".encode())
