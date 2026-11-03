@@ -95,7 +95,8 @@ def hierarchy_problems(rows: Sequence[Mapping[str, str]]) -> list[str]:
         if r["endpoint_flag"].strip().lower() == "true" and p is not None:
             out.append(f"{r['id']}: endpoint row has a parent (endpoints sit outside the hierarchy)")
     for start in parent:
-        seen, cur = set(), start
+        seen: set[str] = set()
+        cur: str | None = start
         while cur is not None and cur in parent:
             if cur in seen:
                 out.append(f"{start}: parent cycle")
@@ -280,7 +281,7 @@ def _canonical_bytes(x: Any) -> bytes:
 
 def _entry_problems(entries: Sequence[Mapping[str, Any]]) -> tuple[dict[str, Mapping[str, Any]], list[str]]:
     out: list[str] = []
-    dup = sorted(k for k, n in Counter(e.get("mechanism_key") for e in entries).items() if n > 1)
+    dup = sorted(str(k) for k, n in Counter(e.get("mechanism_key") for e in entries).items() if n > 1)
     if dup:
         out.append(f"duplicate mechanism_key in MECH set: {dup}")
     by: dict[str, Mapping[str, Any]] = {}
@@ -304,7 +305,7 @@ def rule_problems(r: SignatureRule, by_key: Mapping[str, Mapping[str, Any]], hie
         out.append(f"{k}: process_ref {ref} not in the PROC hierarchy")
     elif hierarchy.is_endpoint(ref):
         out.append(f"{k}: process_ref {ref} is an endpoint (outcome, never a trigger)")
-    elif not (ref.startswith("FAM:") or ref.startswith("PROC-")):
+    elif not ref.startswith(("FAM:", "PROC-")):
         out.append(f"{k}: process_ref {ref} is not a family or PROC node (aliases are surface forms)")
     elif not hierarchy.process_ids_under(ref, include_descendants=r.include_descendants):
         out.append(f"{k}: process_ref {ref} covers no PROC id")
