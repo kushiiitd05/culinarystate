@@ -11,9 +11,12 @@ Laws applied (CLAUDE.md, D-045, card STEP 09)
   A value must occur literally in the cited span (seeded fabricated values are caught).
 - A queue item's verification status has no setter and no constructor argument. It is derived by
   ``_derive_status`` from one ``HumanReview`` whose reviewer is a named human (Kush, Parv; AI names
-  and the worker labels "ksh"/"prv" are refused). Reviews enter only through ``read_human_reviews``
-  (a human-filled CSV, hashed) and ``write_queue_jsonl`` re-reads that file and refuses any review
-  that is not present in it byte-for-byte. There is no sign-as / bulk-fill entry point.
+  and the worker labels "ksh"/"prv" are refused). Reviews are meant to enter through
+  ``read_human_reviews`` (a human-filled CSV, hashed); ``write_queue_jsonl`` re-reads that file and
+  refuses any review that is not present in it byte-for-byte. There is no sign-as / bulk-fill entry
+  point. Limit (S157 AI cross-review O-1): ``HumanReview`` can still be constructed in memory and a
+  CSV naming Kush or Parv can be written by code, so a review file's authenticity is a human
+  provenance question that this module cannot settle.
 - No E5 -> E4 promotion happens here. ``evidence_tier_candidate`` can at most say
   ``E4_ELIGIBLE_PENDING_ADJ`` (dual extraction by two extractor families + blind confirmation with a
   checked locator by a human who did not extract the item);
