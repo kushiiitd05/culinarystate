@@ -278,3 +278,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **B5 signed:** THR-19P-01..35 appended to `registry/preregistered_thresholds_v1.csv` exactly as the design Appendix A bytes bound in the start record (sha256 93d781cc…), status `PREREGISTERED_2026-11-03`, signed_by Kush Tokas; Parv Goyal (relayed), `data_seen_before_registration` unchanged. No existing row edited.
 - **Not covered:** B6 (H5 start of wave P1) waits for N1 nonce (Kush), N2 weekly capacity and N3 budget B_h (both). Block D (S155 17b and prv's 17a review, R1–R7 / O1–O9) is pending Parv's review. The signed pilot start record is not yet written.
 - **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-047 · 2026-11-03 · Kush and Parv accept S155 (block D) (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "all given files seen and reviewed by parv ok and mine are also okay and passed". The files given were the S154 bundle, `reports/step17/S155_17a_ai_review.md` and the S155 bundle (branch `cloud/s155-step17ab`, head d026b80).
+- **Accepted as drafted (block D of `handoff/REVIEW_SHEET_AI_VERDICTS.md`):** D1, prv's fixes R1–R7 to the 17a code, confirmed. D2, O1–O9 kept as currently implemented and documented, so the listed open behaviours stand as draft behaviour until H4/16c. D3, the Rung A draft choices. D4, lexicon gaps stay gaps and no entries are invented. S155 work passed by both.
+- **Still not supplied:** N1 pilot nonce (Kush), N2 weekly capacity and N3 budget B_h (Kush and Parv). An "ok" cannot stand in for these values, so B6/H5 and the signed pilot start record still wait. Real-data dry-runs (S154, S155) have still not been run.
+- **Approver:** Kush and Parv (Parv relayed by Kush).
