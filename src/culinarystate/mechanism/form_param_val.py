@@ -232,7 +232,10 @@ def _si_checks(p: Record, rid: str, opaque: Mapping[str, str] | None) -> list[Is
     expect = U.to_si(value["value"], unit, opaque=opaque)
     if expect is None:
         return [Issue("PARAM_SI_NOT_EXACT", ERROR, rid, f"{unit} has no exact SI factor (month / year / opaque)")]
-    if not math.isclose(float(si.get("value")), expect, rel_tol=1e-12, abs_tol=0.0):
+    si_value = si.get("value")
+    if isinstance(si_value, bool) or not isinstance(si_value, (int, float)):   # S159 review R5: no crash
+        return [Issue("PARAM_SI_NOT_EXACT", ERROR, rid, f"value_si.value {si_value!r} is not a number")]
+    if not math.isclose(float(si_value), expect, rel_tol=1e-12, abs_tol=0.0):
         return [Issue("PARAM_SI_CONVERSION_MISMATCH", ERROR, rid, f"{si.get('value')} != {expect}")]
     return []
 
