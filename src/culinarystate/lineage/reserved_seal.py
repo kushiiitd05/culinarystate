@@ -6,7 +6,8 @@ hash-committed, 0 reads before 15b; needs no 08a.
 
 Refusal conditions (all collected, none skipped): no explicit ``execute``; no decision id;
 the decision is not a signed 15.0 entry in DECISIONS.md naming Kush as approver with exactly
-one of each marker line below; the seed file is missing or its sha256 differs from the
+one of each marker line below (lines inside fenced code blocks are ignored), and an Approver
+line that names Kush, no AI worker/agent, and no pending/draft wording; the seed file is missing or its sha256 differs from the
 committed one; the sealed-list path is missing, exists, is protected or could be tracked by
 git (inside the repository and not git-ignored, or tracked); the commitment path exists or is
 protected; the EVD ledger sha256 differs from the ES-1.1 manifest; the latest-ACTIVE row count
@@ -60,6 +61,9 @@ _MARKERS = {
 }
 _HEADING = re.compile(r"^#{1,3} ", re.M)
 _NOT_SIGNED = re.compile(r"\b(DRAFT|PROPOSED|UNSIGNED)\b", re.I)
+_PENDING = re.compile(r"\b(pending|to confirm|awaiting|not yet|tbd|to sign|draft|proposed|unsigned|later)\b", re.I)
+_AI_LABEL = re.compile(r"\b(ksh|prv|claude|anthropic|agent|ai|assistant|bot|gpt)\b", re.I)
+_FENCE = re.compile(r"^(```|~~~).*?^\1[^\n]*$", re.M | re.S)
 
 
 class SealRefused(RuntimeError):
@@ -146,14 +150,19 @@ def find_ruling(decisions_text: str, decision_id: str) -> Ruling:
     if entry is None:
         raise SealRefused([f"DECISION_NOT_FOUND: {decision_id} has no heading in DECISIONS.md"])
     heading, body = entry
+    body = _FENCE.sub("", body)  # a quoted template is not a ruling
     blockers: list[str] = []
     if "15.0" not in heading:
         blockers.append(f"DECISION_NOT_15_0: {decision_id} heading does not name step 15.0")
     if _NOT_SIGNED.search(heading):
         blockers.append(f"DECISION_NOT_SIGNED: {decision_id} heading is marked draft/proposed/unsigned")
     approvers = _marker_values(body, "Approver")
-    if len(approvers) != 1 or "kush" not in approvers[0].lower():
+    if len(approvers) != 1 or not re.search(r"\bkush\b", approvers[0], re.I):
         blockers.append(f"APPROVER_NOT_KUSH: {decision_id} needs exactly one Approver line naming Kush")
+    elif _AI_LABEL.search(approvers[0]):
+        blockers.append(f"APPROVER_NOT_HUMAN: {decision_id} Approver line names an AI worker or agent")
+    elif _PENDING.search(approvers[0]):
+        blockers.append(f"APPROVER_PENDING: {decision_id} Approver line is pending, draft or to be confirmed")
     values: dict[str, Optional[str]] = {}
     for name, pattern in _MARKERS.items():
         found = _marker_values(body, pattern)
