@@ -1060,3 +1060,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `src/culinarystate/extraction/*`, `tools/step17b_rung_a_dryrun.py`, `tools/step17b_rung_a_synthetic_report.py`, `reports/step17/*`, `tests/unit/test_step17a_*.py`, `tests/unit/test_step17b_*.py`, `DECISIONS.md`, `registry/preregistered_thresholds_v1.csv`, `handoff/REVIEW_SHEET_AI_VERDICTS.md`, `STATUS.md`
 - **Verified:** Full unit suite 2000 passed, 17 skipped, 1 deselected; 1 failed + 11 errors = missing bundle files (unchanged). invented_count 0 on synthetic fixtures and hard cases (SYNTHETIC_NOT_GOLD). Ledger baseline 7/7; 0 attribution lines; files < 800 lines; THR registry diff insertions only.
 - **Next:** Parv: review block D. Kush: run both dry-runs locally with data; supply N1-N3. Next session S156 Step 18 event engine + 26g adapter.
+
+### S156 · 2026-11-03 20:48 IST · ES-1 · Step18 event log/replay/adapter and 26g simulation-input contract (DRAFT); AI review R1-R6 fixed
+- **Who:** Kush (cloud agent session; workers ksh/prv)
+- **Did:** ksh audited the engine (L1-L8 left unchanged per Kush), could not reproduce the test_transition hang, built append-only event log, deterministic replay with transactions/snapshot hashes, and extraction->engine adapter. prv built 26g sim-input contract, null-sim_run_id link records and counts-only simulability census; cross-reviewed Step 18 (R1-R6 fixed test-first, O1-O7 open).
+- **Files:** `src/culinarystate/state_graph/{event_log`, `replay`, `event_adapter}.py`, `src/culinarystate/simulation/*`, `tests/unit/test_step18_*.py`, `tests/unit/test_step26g_recipe_adapter.py`, `reports/step18/*`, `handoff/REVIEW_SHEET_AI_VERDICTS.md`
+- **Verified:** Full unit suite 2166 passed, 17 skipped, 1 deselected; 1 failed + 11 errors = missing bundle files. Ledger baseline 7/7; 0 existing engine files edited; 0 attribution lines.
+- **Next:** Kush/Parv: review block E; run Mac hang diagnostic. Next S157 evidence machinery (09, 12.0 staging rows only, 12-local parsers, 13a-0).
