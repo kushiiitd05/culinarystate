@@ -142,13 +142,13 @@ def test_proposals_for_directory_and_file_entries(tmp_path: Path) -> None:
                                                       "data/external/synth_density/density.xlsx",
                                                       "data/raw/synth_report/report.pdf"]
     pdf = snaps[-1]
-    assert pdf["record"]["source_id"] == "SRC-000007" and pdf["src_ref_status"] == "EXISTING_SRC"
-    assert pdf["record"]["retrieved_at"] == "2026-10-18T05:00:00+00:00" and "SIDECAR_USED" in pdf["flags"]
+    assert pdf["proposed_record"]["source_id"] == "SRC-000007" and pdf["src_ref_status"] == "EXISTING_SRC"
+    assert pdf["proposed_record"]["retrieved_at"] == "2026-10-18T05:00:00+00:00" and "SIDECAR_USED" in pdf["flags"]
     y = snaps[0]
     data = (tmp_path / "data/external/synth_yields/yields.csv").read_bytes()
     assert y["file"]["sha256"] == hashlib.sha256(data).hexdigest() and y["file"]["bytes"] == len(data)
-    assert y["record"]["sha256"] == y["file"]["sha256"] and y["record"]["source_id"] == srcs[0]["proposal_id"]
-    assert "retrieved_at" in y["gaps"] and "retrieved_at" not in y["record"]   # never invented
+    assert y["proposed_record"]["sha256"] == y["file"]["sha256"] and y["proposed_record"]["source_id"] == srcs[0]["proposal_id"]
+    assert "retrieved_at" in y["gaps"] and "retrieved_at" not in y["proposed_record"]   # never invented
 
 
 def test_placeholder_ids_are_not_real_ids(tmp_path: Path) -> None:
@@ -157,9 +157,9 @@ def test_placeholder_ids_are_not_real_ids(tmp_path: Path) -> None:
     real = re.compile(r"^(SRC|SNAP)-\d{6}$")
     for r in by(rows, "PROPOSED_SRC") + by(rows, "PROPOSED_SNAP"):
         assert re.fullmatch(r"PROPOSED-(SRC|SNAP)-\d{4}", r["proposal_id"])
-        assert not real.match(r["proposal_id"]) and r["record"]["id"] == r["proposal_id"]
+        assert not real.match(r["proposal_id"]) and r["proposed_record"]["id"] == r["proposal_id"]
         assert r["id_check"] == {"placeholder_in_ids_ledger": False, "mint_key_in_ids_ledger": False}
-        assert r["record"]["verification"] == {"status": "UNVERIFIED"}
+        assert r["proposed_record"]["verification"] == {"status": "UNVERIFIED"}
         assert r["schema_errors"] == []
 
 
@@ -191,12 +191,12 @@ def test_licence_and_storage_rules(tmp_path: Path) -> None:
                             ("DS-904", tmp_path / "data/external/synth_blocked")])
     src = {s["manifest_source_id"]: s for s in by(rows, "PROPOSED_SRC")}
     y, d, b = src["DS-901"], src["DS-902"], src["DS-904"]
-    assert y["record"]["licence_status"] == "UNKNOWN" and y["record"]["storage_rule"] == "DERIVED_ONLY"
+    assert y["proposed_record"]["licence_status"] == "UNKNOWN" and y["proposed_record"]["storage_rule"] == "DERIVED_ONLY"
     assert y["licence_raw"]["licence_status"] == "CC0_REPORTED_BY_CATALOG"
-    assert d["record"]["licence"].startswith("UNKNOWN") and d["record"]["storage_rule"] == "LOCAL_ONLY"
+    assert d["proposed_record"]["licence"].startswith("UNKNOWN") and d["proposed_record"]["storage_rule"] == "LOCAL_ONLY"
     assert {"H2_OPEN", "LOCAL_ONLY"} <= set(d["flags"]) and d["h2_items"] == ["9"]
-    assert b["record"]["licence_status"] == "RESTRICTED" and b["record"]["storage_rule"] == "LOCAL_ONLY"
-    assert all(s["record"]["storage_rule"] != "COMMIT_OK" for s in src.values())   # COMMIT_OK needs a human
+    assert b["proposed_record"]["licence_status"] == "RESTRICTED" and b["proposed_record"]["storage_rule"] == "LOCAL_ONLY"
+    assert all(s["proposed_record"]["storage_rule"] != "COMMIT_OK" for s in src.values())   # COMMIT_OK needs a human
 
 
 def test_unknown_manifest_entry_and_missing_path(tmp_path: Path) -> None:
