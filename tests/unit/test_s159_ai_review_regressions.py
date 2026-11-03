@@ -80,3 +80,13 @@ def test_r2_known_sigma_with_zero_dof_still_uses_the_known_scale() -> None:
 def test_r3_covariance_is_none_without_a_variance_estimate() -> None:
     _, _, fit = _exact_fit()
     assert fit.covariance_transformed() is None
+
+
+# ----------------------------------------------------------------------------- R4 eligibility with an unknown unit
+def test_r4_param_with_an_unknown_unit_is_never_calibration_eligible() -> None:
+    from tests.unit.test_step24a_form_param_val_contract import _verified, elig
+
+    assert elig(_verified(FX.param(unit="1/min"))).verdict == FPV.ELIGIBLE
+    for unit in ("1/fortnight", "mg/g/min"):
+        e = elig(_verified(FX.param(unit=unit)))
+        assert e.verdict == FPV.UNKNOWN and "PARAM_UNIT_UNKNOWN" in e.reasons, (unit, e)
