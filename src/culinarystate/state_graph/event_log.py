@@ -345,7 +345,8 @@ class EventLog:
         log = cls()
         if text and not text.endswith("\n"):
             raise EventLogError("JSONL log must end with a newline")
-        for n, line in enumerate(text.splitlines()):
+        # Split on "\n" only: canonical JSON keeps U+2028 / U+2029 / U+0085 unescaped (review R4).
+        for n, line in enumerate(text[:-1].split("\n") if text else []):
             try:
                 rec = json.loads(line)
             except json.JSONDecodeError as exc:
@@ -358,6 +359,8 @@ class EventLog:
             if (rec.get("seq"), rec.get("prev_sha256"), rec.get("entry_sha256")) != \
                     (entry.seq, entry.prev_sha256, entry.entry_sha256):
                 raise EventLogError(f"line {n}: hash chain mismatch (log was edited or truncated)")
+            if canonical_json(entry.to_canonical()) != line:                 # review R2: no extra fields
+                raise EventLogError(f"line {n}: fields outside the log / event schema")
         return log
 
 
@@ -368,7 +371,7 @@ def guard_output_path(path: Path | str, *, root: Path = ROOT) -> Path:
     if target.name.upper() in LEDGER_FILE_NAMES:
         raise EventLogError("refusing to write a file named like an EVT/ENTITY/STATE/ALLOC/REF/GRAPH/INST ledger")
     try:
-        parts = target.relative_to(Path(root).resolve()).parts
+        parts = tuple(x.casefold() for x in target.relative_to(Path(root).resolve()).parts)  # review R5
     except ValueError:
         parts = ()
     if any(parts[:len(p)] == p for p in PROTECTED_PREFIXES):
