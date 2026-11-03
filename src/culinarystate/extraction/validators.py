@@ -16,7 +16,9 @@ the sources are checked:
 - V3: categorical codes are members of the draft registries in
   ``registry/recipe_semantics`` (all DRAFT_PENDING_H4), the ALLOC draft enums and
   the SSOT §239.1 provenance classes. A scope with no supplied vocabulary is
-  reported as not checked, never as passing.
+  reported as not checked, never as passing: this includes categorical claim
+  fields without a vocabulary and identifier claims without an id set (S155
+  review R5); identifiers are checked against supplied id sets by prefix.
 
 Validators return reports and never rewrite an output. They read draft files
 only and write nothing.
@@ -37,8 +39,8 @@ from culinarystate.annotation.schema_review import review_record
 from culinarystate.quantity.draft_contract import ORIGINS, validate_record
 
 from .interfaces import (
-    EventGraph, LinkResult, MentionSet, QuantityGroundingResult, QuantityParseResult, SourceText, Span,
-    StageOutput, segment_problem, sha256_text,
+    EventGraph, LinkResult, MentionSet, QuantityGroundingResult, QuantityParseResult, ReferenceResult, SourceText,
+    Span, StageOutput, ValueClaim, ValueKind, segment_problem, sha256_text,
 )
 
 STATUS = "DRAFT_PENDING_16c"
@@ -297,9 +299,12 @@ def v3_vocabulary(outputs: StageOutput | Iterable[StageOutput], vocabularies: Ma
             member("claim_route", claim.claim_route, "CLAIM_ROUTE_NOT_IN_VOCAB", path)
             member("field_status", claim.status, "CLAIM_STATUS_NOT_IN_VOCAB", path)
             member("origin", claim.origin, "CLAIM_ORIGIN_NOT_IN_VOCAB", path)
-            name = CLAIM_FIELD_VOCAB.get(claim.field.rsplit("/", 1)[-1])
+            last = claim.field.rsplit("/", 1)[-1]
+            name = CLAIM_FIELD_VOCAB.get(last)
             if name is not None and claim.value is not None:
                 member(name, claim.value, "VOCAB_MEMBERSHIP", path)
+            elif claim.value is not None:
+                _unvocabularied_claim(c, out, claim, last, path, id_sets)
         if isinstance(out, MentionSet):
             _mention_labels(c, out, prefix, mention_labels)
         elif isinstance(out, EventGraph):
@@ -322,6 +327,27 @@ def v3_vocabulary(outputs: StageOutput | Iterable[StageOutput], vocabularies: Ma
                 c.fail("LINK_TARGET_NOT_IN_VOCAB", f"{prefix}/{out.mention_id}/link",
                        f"Selected id is absent from the supplied {ns} id set")
     return c.report()
+
+
+def _unvocabularied_claim(c: _Collector, out: StageOutput, claim: ValueClaim, last: str, path: str,
+                          id_sets: Mapping[str, frozenset[str]] | None) -> None:
+    """S155 review R5: report categorical claims without a vocabulary; check identifiers against id sets.
+
+    Mention labels (``_mention_labels``), link selections and reference antecedents (local
+    entity ids, checked across outputs by V4) are handled elsewhere.
+    """
+    if isinstance(out, (LinkResult, ReferenceResult)) or (isinstance(out, MentionSet) and last == "label"):
+        return
+    if claim.kind is ValueKind.CATEGORICAL:
+        c.skip(f"CATEGORICAL_FIELD_NO_VOCAB:{last}")
+    elif claim.kind is ValueKind.IDENTIFIER and isinstance(claim.value, str):
+        match = _ID_PREFIX.match(claim.value)
+        ns = match.group(1) if match else "UNPREFIXED"
+        ids = (id_sets or {}).get(ns)
+        if ids is None:
+            c.skip(f"ID_SET:{ns}")
+        elif claim.value not in ids:
+            c.fail("IDENTIFIER_NOT_IN_ID_SET", path, f"Identifier is absent from the supplied {ns} id set")
 
 
 def _mention_labels(c: _Collector, out: MentionSet, prefix: str, labels: frozenset[str] | None) -> None:
