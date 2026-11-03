@@ -68,7 +68,7 @@ def test_r1_tight_literal_spans_still_pass():
 
 
 def test_r1_literal_unit_must_be_a_whole_unit_token_not_a_letter_inside_a_word():
-    s = SourceText.from_raw("SYN-REVIEW-U", "Cook 180 then rest.")
+    s = SourceText.from_raw("SYN-REVIEW-U", "Bake: Cook 180 then rest.")
     assert invented(s, graph(s, literal("temperature", ValueKind.TEMPERATURE, 180, at(s, "Cook 180"), "C"))) \
         == ["UNIT_NOT_IN_SPAN"]
 
