@@ -309,3 +309,8 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Cannot be closed by this ok:** G4 needs the chemistry expert's own answers to EQ21-01..14. G5 sealing needs an authored shared case set, which does not exist yet; sealing is approved in principle, to be run once the cases are written.
 - **scipy:** approved as a Step 26 dependency, declared as optional extra `step26 = ["scipy>=1.11"]` in `pyproject.toml`, following the existing `step35` RDKit pattern. The cloud container has scipy 1.18.1.
 - **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-051 · 2026-11-03 · THR-04K-01..04 signed (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "ok sign THR-04K too, keep going", after D-050 noted that these rows were not part of block G.
+- **Change:** in `registry/preregistered_thresholds_v1.csv`, only `registry_status` (now PREREGISTERED_2026-11-03), `signed_by` and `signed_at` changed on THR-04K-01..04. Value, rationale, source and data-seen fields are unchanged; no other row changed. `kinetic_contract.py` threshold references updated to match; its eligibility label stays `ELIGIBLE_UNDER_DRAFT_RULES`, because the KIN/KINPT v1.1 contract itself remains a draft (D-050 G1).
+- **Approver:** Kush and Parv (Parv relayed by Kush).
