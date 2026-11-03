@@ -104,10 +104,7 @@ class RungALexicon:
     unit_tokens: frozenset[str]
     fingerprint: str
     sources: Mapping[str, str]
-
-    @property
-    def max_n(self) -> int:
-        return max((len(k) for k in (*self.foods, *self.procs, *self.tools)), default=1)
+    max_n: int = 1
 
     # ------------------------------------------------------------ matching
     def _longest(self, table: Mapping[Key, frozenset[str]], words: list[str], i: int, plural: bool,
@@ -200,7 +197,7 @@ def build_lexicon(*, foods: Mapping[str, Iterable[str]], procs: Mapping[str, Ite
                        "units": sorted(unit_tokens)}, sort_keys=True, ensure_ascii=False)
     return RungALexicon(food_t, proc_t, info, {k: frozenset(v) for k, v in canonical.items()}, tool_t,
                         dict(tool_classes), unit_tokens, hashlib.sha256(blob.encode("utf-8")).hexdigest(),
-                        dict(sources or {}))
+                        dict(sources or {}), max((len(k) for k in (*food_t, *proc_t, *tool_t)), default=1))
 
 
 # ------------------------------------------------------------ read-only file loading
