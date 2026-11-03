@@ -19,6 +19,9 @@ Rules
   amounts are not mapped until count-unit identity is decided (OPEN).
 - Only CATEGORICAL / IDENTIFIER attribute values (codes and ids) are copied; text
   values and spans are not, so engine events and replay output carry no raw text.
+  A SPAN_LITERAL value is the source text itself (the auditor checks value == span
+  surface), so it is never copied either (``LITERAL_TEXT_ATTRIBUTE_NOT_COPIED``,
+  review R1); only rule-, candidate- or registry-traced codes enter.
 - Structural gaps (missing producer, orphan allocation, unknown allocation kind,
   source mismatch) are adapter issues, never repaired.
 """
@@ -47,7 +50,7 @@ ADAPTER_ISSUE_CODES = frozenset({"SOURCE_MISMATCH", "GRAPH_FAILED", "INVENTED_VA
                                  "ENTITY_WITHOUT_PRODUCER", "ALLOC_WITHOUT_EVENT", "ALLOC_NOT_ADAPTABLE",
                                  "EVENT_NOT_ADAPTABLE", "QUANTITY_NOT_ADAPTABLE"})
 ADAPTER_UNKNOWN_CODES = frozenset({"EVENT_QUANTITY_NOT_BOUND_TO_ENTITY", "COUNT_QUANTITY_NOT_MAPPED",
-                                   "FRACTION_NOT_EXACT"})
+                                   "FRACTION_NOT_EXACT", "LITERAL_TEXT_ATTRIBUTE_NOT_COPIED"})
 
 
 def _exact(v: Any) -> Fraction | None:
@@ -189,7 +192,14 @@ class _Adapter:
         for e in self.graph.events:
             attrs: dict[str, str] = {}
             for c in e.attributes:
-                if c.kind in ATTRIBUTE_KINDS and self.usable(c, f"{e.event_id}/{c.field}"):
+                if c.kind not in ATTRIBUTE_KINDS:
+                    continue
+                path = f"{e.event_id}/{c.field}"
+                if c.trace.kind is TraceKind.SPAN_LITERAL:                  # review R1: raw text, never copied
+                    if c.value is not None:
+                        self.unknown.append(Issue("LITERAL_TEXT_ATTRIBUTE_NOT_COPIED", path))
+                    continue
+                if self.usable(c, path):
                     attrs[c.field] = str(c.value)
             produced = tuple(dict.fromkeys(e.produces))
             try:
