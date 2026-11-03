@@ -1,0 +1,2379 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/draft/PARAM.draft_v1.schema.json",
+  "title": "PARAM- parameter value of one FORM slot v1 (DRAFT_PENDING_H4)",
+  "description": "schema_version 1.0.0-draft. STATUS DRAFT_PENDING_H4: not approved, not frozen, not copied into ledgers/schemas/. AI draft of worker ksh (S159), reviewed afterwards by Kush and Parv (D-045). FORM- versus MODEL- prefix (Step 24f, H4) is OPEN: the id pattern accepts both and the validator (culinarystate.mechanism.form_param_val) checks against the prefix the caller names. Step 24a schema, field list Part J1 J1.3.5 (rows are written by 24b / 26d only from verified K1+ series). UNKNOWN is a valid value; no default value exists.",
+  "$comment": "Shared $defs and envelope fields copied verbatim from KIN.draft_v1_1.schema.json. Rules: no PARAM from K0 aggregates; no cross-order unit harmonisation (unit dimension checked against the FORM slot by the validator); no cross-study pooling without a hierarchical fit; origin AUTHOR_REPORTED and PROJECT_REFIT never conflated.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "form_id",
+    "slot_symbol",
+    "symbol_source",
+    "symbol_canonical",
+    "conversion_note",
+    "value",
+    "value_si",
+    "distribution",
+    "reaction_order",
+    "T_ref",
+    "estimation_method",
+    "ci",
+    "ci_method",
+    "correlation_with",
+    "value_provenance",
+    "fitted_on",
+    "fit_T_range",
+    "fit_tau_range",
+    "effective_or_mechanistic",
+    "source_locator",
+    "extraction_version",
+    "partition"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^PARAM-\\d{6}$"
+    },
+    "record_type": {
+      "const": "PARAM"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^PARAM-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "form_id": {
+      "type": "string",
+      "pattern": "^(FORM|MODEL)-\\d{6}$"
+    },
+    "slot_symbol": {
+      "type": "string",
+      "minLength": 1
+    },
+    "symbol_source": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "symbol_canonical": {
+      "type": "string",
+      "minLength": 1
+    },
+    "conversion_note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "value": {
+      "$ref": "#/$defs/value_obj"
+    },
+    "value_si": {
+      "type": "object",
+      "required": [
+        "status",
+        "value",
+        "unit_si"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "NOT_CONVERTED",
+            "CONVERTED_EXACT",
+            "NOT_CONVERTIBLE",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_si": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CONVERTED_EXACT"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unit_si": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_CONVERTED",
+                  "NOT_CONVERTIBLE",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "unit_si": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "SI value as a SEPARATE field (raw value and unit in `value` are never rewritten), as KIN keeps raw time and normalised seconds apart."
+    },
+    "distribution": {
+      "anyOf": [
+        {
+          "type": "object",
+          "required": [
+            "family",
+            "scale",
+            "raw"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "family": {
+              "type": "string",
+              "enum": [
+                "NORMAL",
+                "LOGNORMAL",
+                "UNIFORM",
+                "OTHER"
+              ]
+            },
+            "scale": {
+              "type": "string",
+              "enum": [
+                "NATURAL",
+                "LOG"
+              ]
+            },
+            "raw": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reaction_order": {
+      "type": "object",
+      "required": [
+        "status",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "STATED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "STATED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_APPLICABLE",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "T_ref": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/value_obj"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "estimation_method": {
+      "type": "string",
+      "enum": [
+        "LINEARISED_LN",
+        "NONLINEAR_LS",
+        "WEIGHTED_NONLINEAR_LS",
+        "OTHER",
+        "NOT_REPORTED",
+        "UNKNOWN"
+      ],
+      "description": "Same vocabulary as KIN.fit.fit_method."
+    },
+    "ci": {
+      "$ref": "#/$defs/dispersion"
+    },
+    "ci_method": {
+      "type": "string",
+      "enum": [
+        "HESSIAN",
+        "CLUSTER_BOOTSTRAP",
+        "PROFILE",
+        "POSTERIOR",
+        "NOT_REPORTED",
+        "NOT_APPLICABLE",
+        "UNKNOWN"
+      ]
+    },
+    "correlation_with": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "param_id",
+          "value",
+          "status"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "param_id": {
+            "type": "string",
+            "pattern": "^PARAM-\\d{6}$"
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": -1,
+                "maximum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "REPORTED",
+              "NOT_REPORTED",
+              "UNKNOWN"
+            ]
+          }
+        }
+      }
+    },
+    "value_provenance": {
+      "type": "object",
+      "required": [
+        "source_class",
+        "kin_ids",
+        "author_fit_ref",
+        "fit_run_id",
+        "fitting_library_version"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "source_class": {
+          "type": "string",
+          "enum": [
+            "AUTHOR_REPORTED",
+            "PROJECT_REFIT",
+            "UNKNOWN"
+          ]
+        },
+        "kin_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^KIN-\\d{6}$"
+          }
+        },
+        "author_fit_ref": {
+          "anyOf": [
+            {
+              "type": "object",
+              "required": [
+                "kin_id",
+                "fit_index"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "kin_id": {
+                  "type": "string",
+                  "pattern": "^KIN-\\d{6}$"
+                },
+                "fit_index": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fit_run_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^FITRUN-[0-9a-f]{16}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fitting_library_version": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "source_class": {
+                "const": "AUTHOR_REPORTED"
+              }
+            },
+            "required": [
+              "source_class"
+            ]
+          },
+          "then": {
+            "properties": {
+              "kin_ids": {
+                "minItems": 1
+              },
+              "author_fit_ref": {
+                "type": "object"
+              },
+              "fit_run_id": {
+                "type": "null"
+              },
+              "fitting_library_version": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_class": {
+                "const": "PROJECT_REFIT"
+              }
+            },
+            "required": [
+              "source_class"
+            ]
+          },
+          "then": {
+            "properties": {
+              "kin_ids": {
+                "minItems": 1
+              },
+              "author_fit_ref": {
+                "type": "null"
+              },
+              "fit_run_id": {
+                "type": "string"
+              },
+              "fitting_library_version": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "source_class": {
+                "const": "UNKNOWN"
+              }
+            },
+            "required": [
+              "source_class"
+            ]
+          },
+          "then": {
+            "properties": {
+              "author_fit_ref": {
+                "type": "null"
+              },
+              "fit_run_id": {
+                "type": "null"
+              },
+              "fitting_library_version": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Where the value comes from. AUTHOR_REPORTED: the KIN series and the index of the author fit in KIN.fit. PROJECT_REFIT: the KIN series and the 26a fit_run_id (content id of the fit inputs). UNKNOWN only with an UNKNOWN value: a number without provenance is rejected (origin values are never conflated, J1.3.5)."
+    },
+    "fitted_on": {
+      "$ref": "#/$defs/fitted_on"
+    },
+    "fit_T_range": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/value_obj"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "fit_tau_range": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/tau_range"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "effective_or_mechanistic": {
+      "type": "string",
+      "enum": [
+        "EFFECTIVE",
+        "MECHANISTIC",
+        "UNKNOWN"
+      ]
+    },
+    "source_locator": {
+      "anyOf": [
+        {
+          "type": "object",
+          "required": [
+            "locator",
+            "data_origin",
+            "digitisation_uncertainty"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "locator": {
+              "$ref": "#/$defs/locator"
+            },
+            "data_origin": {
+              "type": "string",
+              "enum": [
+                "TABLE",
+                "TEXT",
+                "FIGURE_DIGITISED",
+                "SUPPLEMENT"
+              ]
+            },
+            "digitisation_uncertainty": {
+              "$ref": "#/$defs/dispersion"
+            }
+          }
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "extraction_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "partition": {
+      "type": "string",
+      "enum": [
+        "SIM_CALIBRATION",
+        "SIM_VALIDATION_LOCKED",
+        "DOWNSTREAM_TRAIN",
+        "PENDING_15B"
+      ],
+      "description": "Assigned from the Step-15 partitions before fitting; PENDING_15B until 15b exists."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "verification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "required": [
+              "verifier",
+              "verified_at"
+            ],
+            "properties": {
+              "verifier": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "SUPERSEDED"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "superseded_by"
+        ],
+        "properties": {
+          "superseded_by": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "properties": {
+        "value": {
+          "properties": {
+            "status": {
+              "enum": [
+                "MEASURED",
+                "RANGE",
+                "UNKNOWN"
+              ]
+            }
+          }
+        }
+      },
+      "description": "A parameter is a point (MEASURED = point-value shape), an interval (RANGE) or UNKNOWN."
+    },
+    {
+      "if": {
+        "properties": {
+          "value": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "MEASURED",
+                  "RANGE"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "then": {
+        "properties": {
+          "value_provenance": {
+            "properties": {
+              "source_class": {
+                "enum": [
+                  "AUTHOR_REPORTED",
+                  "PROJECT_REFIT"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "value_provenance": {
+            "properties": {
+              "source_class": {
+                "const": "UNKNOWN"
+              }
+            },
+            "required": [
+              "source_class"
+            ]
+          }
+        },
+        "required": [
+          "value_provenance"
+        ]
+      },
+      "then": {
+        "properties": {
+          "value": {
+            "properties": {
+              "status": {
+                "const": "UNKNOWN"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "value_provenance": {
+            "properties": {
+              "source_class": {
+                "const": "AUTHOR_REPORTED"
+              }
+            },
+            "required": [
+              "source_class"
+            ]
+          }
+        },
+        "required": [
+          "value_provenance"
+        ]
+      },
+      "then": {
+        "properties": {
+          "source_locator": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "value_obj": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^UNIT-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_id_status": {
+          "type": "string",
+          "enum": [
+            "MAPPED",
+            "NOT_MAPPED",
+            "UNKNOWN"
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE",
+                  "CENSORED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "unit"
+            ],
+            "properties": {
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id_status": {
+                "const": "MAPPED"
+              }
+            },
+            "required": [
+              "unit_id_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "unit_id"
+            ],
+            "properties": {
+              "unit_id": {
+                "type": "string",
+                "pattern": "^UNIT-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id_status": {
+                "enum": [
+                  "NOT_MAPPED",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "unit_id_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "unit_id": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unit_id"
+            ]
+          },
+          "then": {
+            "required": [
+              "unit_id_status"
+            ],
+            "properties": {
+              "unit_id_status": {
+                "const": "MAPPED"
+              }
+            }
+          }
+        }
+      ],
+      "description": "UNKNOWN-aware value (same status vocabulary as ledgers/schemas/common QVALUE). A number is allowed only where the status says so; UNKNOWN/NOT_APPLICABLE/QUALITATIVE/CENSORED carry no number (the censoring limit lives in `censoring`). `raw` keeps the source string verbatim. `unit` is the raw unit string as printed and is never rewritten; `unit_id` (UNIT-) is the optional normalised pointer with an explicit mapping status (NOT_MAPPED / UNKNOWN keep it null; never a guessed id)."
+    },
+    "dispersion": {
+      "type": "object",
+      "required": [
+        "type",
+        "value",
+        "low",
+        "high",
+        "ci_level",
+        "unit",
+        "n_basis",
+        "scope",
+        "significance_raw",
+        "derivation"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "SD",
+            "SE",
+            "VARIANCE",
+            "CI",
+            "RANGE",
+            "IQR",
+            "INSTRUMENT",
+            "REPORTED_UNSPECIFIED",
+            "CV_PERCENT",
+            "POOLED_SE",
+            "LSD",
+            "NONE_REPORTED",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ci_level": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "n_basis": {
+          "type": "string",
+          "enum": [
+            "BIOLOGICAL",
+            "TECHNICAL",
+            "NOT_REPORTED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "PER_VALUE",
+            "POOLED_TABLE",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "significance_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "derivation": {
+          "type": "string",
+          "enum": [
+            "AS_REPORTED",
+            "ESTIMATED_FROM_SUMMARY",
+            "DIGITIZED",
+            "NOT_APPLICABLE"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SD",
+                  "SE",
+                  "VARIANCE",
+                  "INSTRUMENT",
+                  "REPORTED_UNSPECIFIED",
+                  "CV_PERCENT",
+                  "POOLED_SE",
+                  "LSD"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              },
+              "derivation": {
+                "type": "string",
+                "enum": [
+                  "AS_REPORTED",
+                  "ESTIMATED_FROM_SUMMARY",
+                  "DIGITIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CI"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "ci_level"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "ci_level": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 1
+              },
+              "derivation": {
+                "type": "string",
+                "enum": [
+                  "AS_REPORTED",
+                  "ESTIMATED_FROM_SUMMARY",
+                  "DIGITIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "RANGE",
+                  "IQR"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "derivation": {
+                "type": "string",
+                "enum": [
+                  "AS_REPORTED",
+                  "ESTIMATED_FROM_SUMMARY",
+                  "DIGITIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "NONE_REPORTED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              },
+              "ci_level": {
+                "type": "null"
+              },
+              "derivation": {
+                "const": "NOT_APPLICABLE"
+              },
+              "n_basis": {
+                "const": "NOT_APPLICABLE"
+              },
+              "scope": {
+                "const": "NOT_APPLICABLE"
+              },
+              "significance_raw": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CV_PERCENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "unit"
+            ],
+            "properties": {
+              "unit": {
+                "const": "%"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SE",
+                  "POOLED_SE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "n_basis": {
+                "enum": [
+                  "BIOLOGICAL",
+                  "TECHNICAL",
+                  "NOT_REPORTED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "POOLED_SE",
+                  "LSD"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "scope": {
+                "enum": [
+                  "POOLED_TABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SD",
+                  "SE",
+                  "VARIANCE",
+                  "CI",
+                  "RANGE",
+                  "IQR",
+                  "INSTRUMENT",
+                  "REPORTED_UNSPECIFIED",
+                  "CV_PERCENT"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "scope": {
+                "enum": [
+                  "PER_VALUE",
+                  "POOLED_TABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "description": "Dispersion with its TYPE always stated (SD vs SE vs CI cannot be confused). NONE_REPORTED = source gives none; UNKNOWN = not assessed. Estimates from median/range (Wan et al. 2014 type) are allowed only with derivation ESTIMATED_FROM_SUMMARY, never as AS_REPORTED. `unit` null means 'same unit as the value' (VARIANCE: squared unit, state it). `n_basis` says which n the SD/SE refers to (biological vs technical; needed for SE->SD conversion; NOT_REPORTED = source silent, UNKNOWN = not assessed). `scope` PER_VALUE vs POOLED_TABLE (one pooled SEM / LSD for a whole table). `significance_raw` keeps significance letters / p text verbatim. CV_PERCENT is stored as printed (unit '%'), never converted to an SD here."
+    },
+    "count": {
+      "type": "object",
+      "required": [
+        "status",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "REPORTED",
+            "NOT_REPORTED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "REPORTED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_REPORTED",
+                  "NOT_APPLICABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Replicate/sample count with explicit status. NOT_REPORTED = the source was read and is silent; UNKNOWN = not assessed or cannot be told. Never 0 and never a default 1."
+    },
+    "locator": {
+      "type": "object",
+      "required": [
+        "doc_id",
+        "locator_type",
+        "raw_text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "doc_id": {
+          "type": "string",
+          "pattern": "^DOC-\\d{6}$"
+        },
+        "locator_type": {
+          "type": "string",
+          "enum": [
+            "TABLE_CELL",
+            "TEXT_SPAN",
+            "FIGURE_DIGITIZED",
+            "DATABASE_ROW",
+            "SUPPLEMENT_FILE",
+            "OTHER"
+          ]
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "table_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "row_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "column_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "figure_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "char_span": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Exact place in a DOC. raw_text is the verbatim cell/span/row (key required, null only when the source has no text form)."
+    },
+    "matrix": {
+      "type": "object",
+      "required": [
+        "ingredient_id",
+        "raw_name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ingredient_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^ING-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "food_group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "variety": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "part": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "form": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "prior_processing": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "initial_state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "geometry": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "storage_ripeness": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Same facets as EVD.matrix (non-destructive). raw_name is required (raw preserved); ingredient_id null = UNRESOLVED."
+    },
+    "process": {
+      "type": "object",
+      "required": [
+        "process_id",
+        "raw_name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "process_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^PROC-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "family": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "medium": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Process as in EVD.process; process_id null = UNRESOLVED."
+    },
+    "time_conversion": {
+      "type": "object",
+      "required": [
+        "status",
+        "value",
+        "convention"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "NOT_CONVERTED",
+            "CONVERTED_EXACT",
+            "CONVERTED_BY_STATED_CONVENTION",
+            "NOT_CONVERTIBLE",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "convention": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "CONVERTED_EXACT",
+                  "CONVERTED_BY_STATED_CONVENTION"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_CONVERTED",
+                  "NOT_CONVERTIBLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CONVERTED_BY_STATED_CONVENTION"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "convention"
+            ],
+            "properties": {
+              "convention": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_CONVERTED",
+                  "CONVERTED_EXACT",
+                  "NOT_CONVERTIBLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "convention": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Normalised seconds as a SEPARATE field with a conversion status; the raw time value, raw unit token and printed unit label are never rewritten. s / min / h / d / week convert exactly (CONVERTED_EXACT); month and year are calendar durations and are NEVER exact: they stay NOT_CONVERTED, or are converted only under a stated convention (CONVERTED_BY_STATED_CONVENTION, convention text mandatory, e.g. '1 month = 30 d'); unit OTHER / UNKNOWN is not converted. Seconds are never produced from an unknown unit and never defaulted to 0 (07H-R lesson: calendar conversion at ingest was a failure class)."
+    },
+    "fitted_on": {
+      "type": "object",
+      "required": [
+        "study_ids",
+        "lineage_root_ids",
+        "split_group_ids",
+        "lab_group_ids",
+        "lineage_status",
+        "matrix",
+        "matrix_class",
+        "composition_note",
+        "process",
+        "design_points",
+        "k_level",
+        "measurement",
+        "pooling"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "study_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^STUDY-\\d{6}$"
+          }
+        },
+        "lineage_root_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^LROOT-\\d{6}$"
+          }
+        },
+        "split_group_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^SPLITGRP-EVD-\\d{6}$"
+          }
+        },
+        "lab_group_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^LABGRP-\\d{6}$"
+          }
+        },
+        "lineage_status": {
+          "type": "string",
+          "enum": [
+            "ASSIGNED",
+            "PENDING",
+            "UNKNOWN"
+          ]
+        },
+        "matrix": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/matrix"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "matrix_class": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "composition_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "process": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/process"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "design_points": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/design_point"
+          }
+        },
+        "k_level": {
+          "type": "string",
+          "enum": [
+            "K0",
+            "K1",
+            "K2",
+            "K3",
+            "K4",
+            "UNKNOWN"
+          ],
+          "not": {
+            "const": "K0"
+          },
+          "description": "KIN k_level vocabulary; K0 is excluded (no PARAM from K0 aggregates, SSOT 211.48)."
+        },
+        "measurement": {
+          "type": "object",
+          "required": [
+            "meas_id",
+            "basis_id",
+            "analyte_raw"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "meas_id": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^MEAS-\\d{6}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "basis_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "analyte_raw": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          }
+        },
+        "pooling": {
+          "type": "string",
+          "enum": [
+            "SINGLE_SERIES",
+            "SINGLE_STUDY",
+            "HIERARCHICAL",
+            "POOLED_NON_HIERARCHICAL",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "pooling": {
+                "enum": [
+                  "SINGLE_SERIES",
+                  "SINGLE_STUDY"
+                ]
+              }
+            },
+            "required": [
+              "pooling"
+            ]
+          },
+          "then": {
+            "properties": {
+              "study_ids": {
+                "maxItems": 1
+              }
+            }
+          }
+        }
+      ],
+      "description": "Calibration context with the KIN lineage key names (study <= lineage root <= split group <= lab group, evidence plane only)."
+    },
+    "design_point": {
+      "type": "object",
+      "required": [
+        "T",
+        "tau_values",
+        "tau_unit",
+        "clock"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "T": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "tau_values": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "tau_unit": {
+          "type": "string",
+          "enum": [
+            "s",
+            "min",
+            "h",
+            "d",
+            "week",
+            "month",
+            "year",
+            "OTHER",
+            "UNKNOWN"
+          ]
+        },
+        "clock": {
+          "const": "PROCESS_TAU"
+        }
+      },
+      "description": "One design / condition point: a temperature (value_obj, raw unit kept) and the raw process times at it (clock PROCESS_TAU, raw time unit as in KIN.time_base.unit)."
+    },
+    "tau_range": {
+      "type": "object",
+      "required": [
+        "clock",
+        "unit",
+        "unit_raw",
+        "low",
+        "high",
+        "low_seconds",
+        "high_seconds"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "clock": {
+          "const": "PROCESS_TAU"
+        },
+        "unit": {
+          "type": "string",
+          "enum": [
+            "s",
+            "min",
+            "h",
+            "d",
+            "week",
+            "month",
+            "year",
+            "OTHER",
+            "UNKNOWN"
+          ]
+        },
+        "unit_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "type": "number",
+          "minimum": 0
+        },
+        "high": {
+          "type": "number",
+          "minimum": 0
+        },
+        "low_seconds": {
+          "$ref": "#/$defs/time_conversion"
+        },
+        "high_seconds": {
+          "$ref": "#/$defs/time_conversion"
+        }
+      },
+      "description": "Raw time range with the KIN clock and unit vocabulary; seconds are separate time_conversion fields (month / year never exact)."
+    }
+  }
+}
