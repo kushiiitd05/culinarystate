@@ -557,6 +557,7 @@
         "NO_CANDIDATE_MECHANISM",
         "TRIGGER_MODIFIER_UNKNOWN",
         "MECH_NOT_CONSUMABLE",
+        "MECH_NOT_ACTIVE",
         "MECH_NOT_ACCEPTED",
         "MECH_NOT_HUMAN_VERIFIED",
         "MECH_GATES_UNKNOWN",
@@ -778,6 +779,7 @@
           "uniqueItems": true,
           "items": {
             "enum": [
+              "NOT_ACTIVE",
               "NOT_ACCEPTED",
               "NOT_HUMAN_VERIFIED",
               "GATES_UNKNOWN",
