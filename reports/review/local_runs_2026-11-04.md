@@ -6,7 +6,8 @@ Branch `parv/local-real-runs-2026-11-04` on top of `cloud/s160-freeze-prep` (875
 |---|---|---|---|---|---|
 | 1 | Full unit suite | 2 min | 114 s | 3212 passed, 2 skipped, 1 deselected, 0 failed | this record |
 | 2 | Step 16 rc2 grounding dry-run, 612,782 recipes | 30-60 min | 28.9 min | 4,281,956 lines, 33,373 with rc2 mass, 0 exceptions | reports/step16/rc2_grounding_dryrun_counts.json |
-| 3 | Step 17b Rung A dry-run, 1,000 seeded recipes | 1-3 min | 15 s | 4 invented values (UNIT_NOT_IN_SPAN, 2 Food.com texts), 0 exceptions | reports/step17/rung_a_dryrun_counts.json |
+| 3 | Step 17b Rung A dry-run, 1,000 seeded recipes | 1-3 min | 15 s each | seed `dryrun-2026-11-04`: 4 invented values in 2 texts; **seed 20261104 (requested): 23 invented values in 9 texts**, all UNIT_NOT_IN_SPAN, 0 exceptions | reports/step17/rung_a_dryrun_counts.json (seed 20261104), rung_a_dryrun_counts_seed_dryrun-2026-11-04.json |
+| 8 | 26g simulability census via RungA -> event adapter -> replay -> sim_aa_1, same 1,000-recipe sample (seed `dryrun-2026-11-04`) | 2-5 min | 15 s | 998 texts, 23,943 engine events, all SIM_PROHIBITED (0 SIMULATE), 0 exceptions, 2 invented values excluded by the adapter | reports/step26/simulability_census_real_sample_counts.json |
 | 4 | Step 19 P1 frame, strata, draw | 5-10 min | about 1 min | 21 rows, 7 strata; frame and strata byte-identical to tracked drafts | registry/recipe_semantics/deep_gold_pilot_v1/manifest_P1.csv |
 | 5 | Step 13a-0 seed corpus with local OpenAlex | 1 min | under 1 s | 715 seeds (703 with DOI) | registry/evidence/seed_corpus_13a0_full_v0.jsonl, reports/step13/ |
 | 6 | Step 12-local staging | 1 min | under 1 s | 173 R2 rows, 1,693 Bognar cells, T36 unparsed, 0 ledger writes | reports/step12/step12_local_counts_v1.json |
@@ -19,8 +20,12 @@ Reproduced unchanged: cuisine census (`tools/step35_foodcom_tag_census.py`) and 
 - 29-diag: SNAPSHOT_NOT_FROZEN, NO_SIGNED_15_0, SEAL_COMMITMENT_MISSING, SEALED_LIST_MISSING, DIAG_PREREG_UNSIGNED.
 - Step 35 explicit baselines: PreregNotSigned (no `preregistration_35_0_v2_package.sha256.SIGNED.json`).
 
+## Attempted and refused (continued)
+- Step 34c abstention spec: SPEC_NOT_SIGNED, SIGNER_NOT_KUSH, SIGNED_AT_INVALID (status DRAFT_PENDING_34c_KUSH_SIGNATURE).
+- Step 35 tasks 35a-35e: all five PreregNotSigned (v2 package SIGNED record missing).
+- Step 30 bake-off: library only; no frozen 15a snapshot, no frozen model registry, no pre-registered margin; nothing to run on.
+
 ## Not runnable locally
-- 26g simulability census: needs extracted events (Step 17 extraction not done).
 - Step 19 packet maker and annotation: packet tools not built; annotation is human work.
 - Step 30 bake-off, 34a/34c: need frozen data and signed pre-registrations.
 - GPU and evidence-extraction jobs: VPN and human gates.
