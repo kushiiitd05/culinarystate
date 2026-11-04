@@ -23,7 +23,7 @@
 |---|---|---|---|
 | 1 | `tools/step16_rc2_grounding_dryrun.py --workers 4` | 0 (50 min) | `reports/step16/rc2_grounding_dryrun_counts.json` |
 | 2 | `tools/step17b_rung_a_dryrun.py --seed 20261104` | 0 | `reports/step17/rung_a_dryrun_counts.json` (pre-fix copy `rung_a_dryrun_counts_prefix_S161.json`) |
-| 2b | same, `--sample-size 612782` (full corpus, extra) | see 3.2b | `reports/step17/rung_a_dryrun_counts_full_corpus.json` |
+| 2b | same, `--sample-size 612782` (full corpus, extra) | **stopped** at the 2 h session limit | none written |
 | 3 | `tools/step12_0_register_local_files.py` | 0 | `registry/staging/step12_0_src_snap_proposed_v1.jsonl` |
 | 4 | `tools/step12_local_stage.py --defaults` | 0 | `reports/step12/step12_local_counts_v1.json`; staging in git-ignored `data/interim/step12_local_staging_v1/` |
 | 5 | `tools/step13a0_seed_corpus.py` | 0 | `registry/evidence/seed_corpus_13a0_full_v0.jsonl`, `reports/step13/S157_13a0_seed_corpus_full_{counts.json,report.md}` |
@@ -50,7 +50,8 @@
 
 ### 3.2b Step 17b Rung A over the full corpus (extra run; not the specified 1,000-recipe check)
 
-FULL_CORPUS_PLACEHOLDER
+- **Not completed.** The extra run over all 612,782 recipes (single-process; the tool has no worker option) was stopped by the cloud session's 2-hour limit for one background command. It had written no output, and nothing partial is reported. It was not restarted here.
+- The specified Step 17b check is the seeded 1,000-recipe sample (3.2); that run is complete. A full-corpus Rung A count needs a machine without that limit (for example the Mac: `python tools/step17b_rung_a_dryrun.py --seed 20261104 --sample-size 612782 --out reports/step17/rung_a_dryrun_counts_full_corpus.json`) or a sharded/parallel version of the tool, which does not exist yet.
 
 ### 3.3 Step 12.0 proposed registration
 
@@ -87,7 +88,7 @@ FULL_CORPUS_PLACEHOLDER
 
 ## 6. What this does and does not establish
 
-- Every S154–S160 tool that is allowed to run on real data has now run on the full local bundle: Step 16 (S154), Step 17b (S155), 12.0 / 12-local / 13a-0 (S157).
+- Every S154–S160 tool that is allowed to run on real data has now run on the full local bundle: Step 16 over all 612,782 recipes (S154), Step 17b on its specified seeded 1,000-recipe sample (S155), 12.0 / 12-local / 13a-0 (S157). The extra full-corpus Rung A count did not finish (3.2b).
 - Not run, by design or by gate:
   - S156 (event engine, 26g census), S158 (kinetic/mechanism contracts, 23a) and S159 (simulators) are libraries used by later steps; they have no standalone real-data run.
   - S160 tools refuse: 15a.R seal (no 15.0 marker lines, fraction or seed; `check --decision D-053` lists 7 blockers), the Step 35 runner (no SIGNED record), 29-diag and Step 30 (no human values).
