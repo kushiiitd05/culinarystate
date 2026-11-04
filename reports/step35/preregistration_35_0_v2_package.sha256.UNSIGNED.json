@@ -1,0 +1,98 @@
+{
+  "status": "UNSIGNED_TEMPLATE",
+  "document": "preregistration_35_0_v2_draft.md",
+  "sha256": "009c9047ce78da21dd7d7061a64bc9fbb86d38d3eada5b3d8c9769ce5dd60145",
+  "signers": [],
+  "date": "",
+  "bound_files": [
+    {
+      "path": "../../ledgers/data/IMAP.jsonl",
+      "sha256": "d09aeead076401e1325f3f588ce67251d8a84b5862e5418d5ac83d9cd2386c78"
+    },
+    {
+      "path": "../../ledgers/data/ING.jsonl",
+      "sha256": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574"
+    },
+    {
+      "path": "../../ledgers/data/KGE.jsonl",
+      "sha256": "1c9ffda0d74dcaaa71b9f45c0667489a4e5268759e9e1810067e54502cf39bd8"
+    },
+    {
+      "path": "../../ledgers/data/MOL.jsonl",
+      "sha256": "f9d25b373ae2a4a92ed625f81f3a6f642c34683ea3a59176f1ddb00d2a2489dc"
+    },
+    {
+      "path": "../../ledgers/recipe_identity_v2/recipe_split_groups_v1.parquet",
+      "sha256": "b0e26ddca5133882e33bf2f7b9cdbf2f28987d25b9f9965966e9b64953790868"
+    },
+    {
+      "path": "../../registry/cuisine/cuisine_lookup_v1_DRAFT.csv",
+      "sha256": "dbdc384f8d9d82f83a75d06ea39644a9b195e18f16e20d7626afd1af9413b7e5"
+    },
+    {
+      "path": "../../registry/cuisine/explicit_cuisine_labels_v1.csv",
+      "sha256": "3a47ba169783d04e487457cde7500a4eb4bf91d1b07fa05261eab1c25c8448ab"
+    },
+    {
+      "path": "../../registry/cuisine/foodcom_tag_census_v1.csv",
+      "sha256": "af4a401b4f02321cac8ea122f929ce4e3e8933d28da24f6dc5470f7eb3a103af"
+    },
+    {
+      "path": "../../registry/cuisine/foodcom_tag_cuisine_map_v1_DRAFT.csv",
+      "sha256": "f1b653f2d29125c55e1ed03812e90aefe9d5428742d73618ede4688db6d49645"
+    },
+    {
+      "path": "../../registry/recipe_source_usage_registry_v1.csv",
+      "sha256": "325238d610fffdcaffec768c4ee26abd3fe6a9f71396a3987b97f0007793f1c7"
+    },
+    {
+      "path": "../../registry/ssot15_similarity_registry.csv",
+      "sha256": "ecfe4886050aaac138be8b5ea99587e27db264ea9d02b43b0ce259b3de6bd26c"
+    },
+    {
+      "path": "../review/protocol_review_addendum_DRAFT.md",
+      "sha256": "2432500692bbdff0f83b1b229f88b5166fdface3e8aa30416a8005307d7b3c8c"
+    },
+    {
+      "path": "35_0_parv_review_DRAFT.md",
+      "sha256": "175a498fcaeea6281bbae709f101c2d01cc857e68c136efedba2b19d98899c11"
+    },
+    {
+      "path": "35_0_v2_threshold_rows.csv",
+      "sha256": "8b696b08661c8b630723e0512c82398ca6a1a24bcfe557ad752e80fb957f15e0"
+    },
+    {
+      "path": "preregistration_35_0_v1_draft.md",
+      "sha256": "47c6ba6e6c567a3861c72625de28b78e0fa67c8a1462396fb1e18b421a03d933"
+    },
+    {
+      "path": "../../src/culinarystate/representation/cuisine_rungs.py",
+      "sha256": "ce86e019ae0fb003852e11cd48eca000a1d68ea19d2252c0875456e3d581dff7"
+    },
+    {
+      "path": "../../src/culinarystate/representation/explicit_runner.py",
+      "sha256": "c548cdf3e84eae16738fa14bab44ef687ab41ec15d5930ddf965dc648dbf9d68"
+    },
+    {
+      "path": "../../src/culinarystate/representation/prereg_guard.py",
+      "sha256": "d617ff9b37655361431f2bd7d6dcf1b6a80b334a08eeee1491390c9c99789d32"
+    },
+    {
+      "path": "../../src/culinarystate/representation/recipe_rungs.py",
+      "sha256": "752e343d50cf5ebdf958f72a53802b2ea8c2d9357b49b8841869c477514de355"
+    },
+    {
+      "path": "../../src/culinarystate/representation/similarity_registry.py",
+      "sha256": "bb52549a821dce6be4308ac8ac8e29a1344af51cc146a33f37de8dcc00cd4cfc"
+    },
+    {
+      "path": "../../tools/step35_foodcom_tag_census.py",
+      "sha256": "de5c423bd2b9a032f8e61053a241fa68efe9f9d049a9c9b0f1ef547c69cf4b28"
+    }
+  ],
+  "not_bound_absent_here": [
+    "ledgers/recipe_base/recipe_base_v1.parquet",
+    "ledgers/recipe_identity/gold_firewall_v1.parquet",
+    "ledgers/recipe_semantics/recipe_ingredient_mentions_v1.parquet"
+  ]
+}

@@ -263,3 +263,61 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Instruction:** "Make a branch on Kush's repo and push changes on it". This explicit current instruction supersedes the earlier session restriction on pushing for this action. It is Parv's authorisation, not a claim that Kush personally approved.
 - **Scope:** publish reviewed, committed code/tests/draft reports on a new branch of `kushiiitd05/culinarystate`; do not force-push, update remote main, merge, publish restricted source data or supply any scientific signature. Include the preceding local takeover commits and this prepared engineering/pilot work.
 - **Branch:** `parv/engineering-pilot-prep-2026-10-29`. Remote outcome is recorded separately after the attempted publication; this decision itself is not evidence of a successful push.
+
+### D-045 · 2026-11-03 · Working order: AI verdict first, then Kush and Parv review (decided by Kush; Parv's agreement relayed by Kush; entered by the coding agent as scribe)
+- **Decision (Kush, 2026-11-03):** "the laws are decided by me and reviewed after the AI agents verdict and we got the permission from the prof ... after AI verdict me and parv will review and give the feedbacks and this is basically how we proceed in this order". Kush and Parv OK'd the workflow block W of `handoff/REVIEW_SHEET_AI_VERDICTS.md`.
+- **W1:** every gate, choice and label first gets an AI agent verdict, labelled as AI; Kush and Parv then review it, and their review is final. AI worker labels "ksh"/"prv" are agents, not the humans.
+- **W2:** annotations are first-pass AI labels reviewed by both humans, recorded as `MODEL_ASSISTED` with the AI pass and human edits kept separately; pilot agreement/timing is reported as "human review of AI drafts", not blind independent annotation (this changes the measurement the original Step 19 design assumed; reports must say so).
+- **W3:** the course professor's permission for this workflow is as stated by Kush; no written copy is in the repository.
+- **Unchanged:** historical failed gates (G08-3, 07.A) and earlier signed records stay as recorded; facts only a human can supply (nonce, capacity, budget) are not produced by any verdict.
+- **Approver:** Kush (Parv relayed).
+
+### D-046 · 2026-11-03 · Kush and Parv accept the S154/S155-17a AI verdicts and sign THR-19P-01..35 (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "the pendings you have are okked by parv and me - kush", applied to blocks W, A, B and C of `handoff/REVIEW_SHEET_AI_VERDICTS.md` (commit 6f267f6). Separately Kush relayed "parv said pass for the above file you gave me", recorded as Parv's pass on the S154 work (bundle and branch `cloud/s154-step16-integration-2026-11-03`).
+- **Accepted as drafted:** A1–A7 (S154 build-note engineering choices); B1 instrument `CURRENT_V0_PLUS_HANDBOOK_V1_ADDENDUM_A`; B2 pilot column `reserve_split_v2` confirmed by Kush; B3 AI methods/readiness recommendations PM-01..12 / PR01..10 as the method ruling under D-045 W2; B4 draw spec `STEP19_P1_DRAW_SHA256_RANK_V1_DRAFT`; C1–C7 (S155 Step 17a open items).
+- **B5 signed:** THR-19P-01..35 appended to `registry/preregistered_thresholds_v1.csv` exactly as the design Appendix A bytes bound in the start record (sha256 93d781cc…), status `PREREGISTERED_2026-11-03`, signed_by Kush Tokas; Parv Goyal (relayed), `data_seen_before_registration` unchanged. No existing row edited.
+- **Not covered:** B6 (H5 start of wave P1) waits for N1 nonce (Kush), N2 weekly capacity and N3 budget B_h (both). Block D (S155 17b and prv's 17a review, R1–R7 / O1–O9) is pending Parv's review. The signed pilot start record is not yet written.
+- **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-047 · 2026-11-03 · Kush and Parv accept S155 (block D) (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "all given files seen and reviewed by parv ok and mine are also okay and passed". The files given were the S154 bundle, `reports/step17/S155_17a_ai_review.md` and the S155 bundle (branch `cloud/s155-step17ab`, head d026b80).
+- **Accepted as drafted (block D of `handoff/REVIEW_SHEET_AI_VERDICTS.md`):** D1, prv's fixes R1–R7 to the 17a code, confirmed. D2, O1–O9 kept as currently implemented and documented, so the listed open behaviours stand as draft behaviour until H4/16c. D3, the Rung A draft choices. D4, lexicon gaps stay gaps and no entries are invented. S155 work passed by both.
+- **Still not supplied:** N1 pilot nonce (Kush), N2 weekly capacity and N3 budget B_h (Kush and Parv). An "ok" cannot stand in for these values, so B6/H5 and the signed pilot start record still wait. Real-data dry-runs (S154, S155) have still not been run.
+- **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-048 · 2026-11-03 · H5: Step 19 pilot wave P1 authorised; signed start record written (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** block B6 ("authorise wave P1 once N1–N3 are supplied"), OK'd by both (D-046). Kush then supplied N2/N3: "Kush 15h/week budget 40h; Parv 15h/week budget 40h" ("we can spend 15-20 hrs per week"). N1 strings were supplied by both: Parv "BlindedByTheRecipes_05", Kush "Houdini_loves_hustin_crepes_07".
+- **Nonce:** the joint nonce is `Houdini_loves_hustin_crepes_07|BlindedByTheRecipes_05` (Kush's string, then Parv's). Kush is the supplier per design §4.5 and Parv a co-contributor; the joining rule is the scribe's choice, recorded so that neither party alone determines the seed. Commitment = SHA-256 of its UTF-8 bytes, stored with a UTC commitment time in the signed record.
+- **Record:** `reports/step19/pilot_start_record.SIGNED.json`. It binds the same design and bound files as the unsigned template (kept unchanged), instrument v0 + handbook v1 / Addendum A, annotation mode MODEL_ASSISTED (D-045 W2), pilot column `reserve_split_v2`, draw spec `STEP19_P1_DRAW_SHA256_RANK_V1_DRAFT`, and the signed THR-19P-01..35.
+- **Next, unchanged by this entry:** the P1 frame must be (re)built **after** this commitment, where the data bundle exists; the gate refuses an older frame. No draw or annotation has happened. P2 stays unauthorised.
+- **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-049 · 2026-11-03 · Kush and Parv accept S157 review block F (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "block F all ok by parv and me, keep going". Where an item offered options, "ok" is recorded as the as-built conservative default written below. Kush may correct any reading by a later entry.
+- **F1 re-baseline:** approved in principle. It is executed only after Kush reviews `registry/staging/step12_0_src_snap_proposed_v1.jsonl` from a real local run. Real ids are minted, and `registry/baseline_ledger_hashes_08a_v1.csv` is re-baselined, in a separate recorded step. No rows exist yet, so nothing is appended now.
+- **F2 licences:** INFOODS (H2 #9) stays LOCAL_ONLY. The Bognar licence re-check is still required before ingestion. Catalog-reported CC0/PD stays UNKNOWN (not ASSUMED).
+- **F3 E4:** kept as built. Under D-045 (AI draft, then human review) no evidence item reaches E4; E4 needs a separately recorded blind review.
+- **F4 old tools:** `apply_link_review.py --sign-as` and `apply_human_review.py` stay unchanged and are not to be used for new reviews. New reviews go through the S157 machinery.
+- **F5 review authenticity:** a review CSV counts as a person's review only when that person commits it from their own git identity or session. The agent never writes reviewer fields.
+- **F6 Bognar >1.00, method labels, R2 censoring:** both readings are reported until the G12 audit decides. No value is changed.
+- **F7:** R1–R4 fixes accepted; ksh's audit O-1–O-6 accepted as AI proposals pending H4.
+- **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-050 · 2026-11-03 · Kush and Parv accept S158 review block G and approve scipy for Step 26a (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "block G and scipy ok by parv and me, keep going".
+- **Accepted as drafted:** G1, H4 acceptance of the 04.3 KIN/KINPT v1.1 draft contract for continued engineering. THR-04K-01..04 are **not** signed by this entry (they were not part of block G's ok); Step 09 still must not freeze KIN/KINPT against unsigned thresholds. G2, the draft readings stand: a same-reader repeat is UNKNOWN; a missing inter-read SD and an unverified series are not eligible, as built. G3, MECH v1.1 drafted choices (target_class field, token-registry slot) stand pending a token registry. G6, the 8 AI readings of the 23a engine, the 45 AI-draft reason codes and the route enum as drafted. G7, fixes R1–R6.
+- **Cannot be closed by this ok:** G4 needs the chemistry expert's own answers to EQ21-01..14. G5 sealing needs an authored shared case set, which does not exist yet; sealing is approved in principle, to be run once the cases are written.
+- **scipy:** approved as a Step 26 dependency, declared as optional extra `step26 = ["scipy>=1.11"]` in `pyproject.toml`, following the existing `step35` RDKit pattern. The cloud container has scipy 1.18.1.
+- **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-051 · 2026-11-03 · THR-04K-01..04 signed (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "ok sign THR-04K too, keep going", after D-050 noted that these rows were not part of block G.
+- **Change:** in `registry/preregistered_thresholds_v1.csv`, only `registry_status` (now PREREGISTERED_2026-11-03), `signed_by` and `signed_at` changed on THR-04K-01..04. Value, rationale, source and data-seen fields are unchanged; no other row changed. `kinetic_contract.py` threshold references updated to match; its eligibility label stays `ELIGIBLE_UNDER_DRAFT_RULES`, because the KIN/KINPT v1.1 contract itself remains a draft (D-050 G1).
+- **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-052 · 2026-11-03 · 26.0 system selection: sim_aa_1 (ascorbic acid); S159 review block H accepted (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "block H ok by parv and me, AA selected, keep going".
+- **Selection (H1):** `sim_aa_1` is the Step 26 system. Record: `reports/step26/system_selection_record.SIGNED.json`, written from the S159 template, which is left unchanged; the template's sha256 is stored in the record. This is a **direct human selection made before the Step 10/11 census (11.D)**; D-027 had expected the final choice after Step 10/11 evidence. The R-14 rule stays: at most one switch to `sim_chl_1`, only after a recorded 11.D entry with written rationale. No selection criterion is claimed as met: the criteria are NOT_EVALUATED.
+- **Accepted as drafted:** H2, the 24a drafts and AI vocabulary proposals and the Weibull (α scale, β shape) parameterisation. The FORM- vs MODEL- prefix is **not chosen** by this ok: both stay supported, and the decision stays open. H3, the sim_aa_1 assumptions as implemented: K_p in m³/kg with r in mL/g, temperature-independent k_L, first-order k_dw. H4, sim_chl_1: g(pH) caller-supplied, one g shared by Chl a and b as implemented (relevant only to the fallback). H6, fixes R1–R5; O1–O5 and O7 kept as currently implemented and documented.
+- **Cannot be closed by this ok (stay open):** the exact "no-water-assay" design definition and the 26.0 pre-registration numbers (O6, G26-VER/G26-CAL); H5 inputs (Choi–Okos coefficients and mixing-rule check, τ_h per size class, M&S limits, solver tolerances, KiSAO id check).
+- **Approver:** Kush and Parv (Parv relayed by Kush).

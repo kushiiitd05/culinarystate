@@ -1,0 +1,841 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://culinarystate.local/registry/schemas/APPDEC.draft_v1.schema.json",
+  "title": "APPDEC draft v1: Step 23a applicability decision record (DRAFT_PENDING_21b_22a_H4)",
+  "$comment": "S158 AI draft, not H4-approved. One record per (entity_version, event, target) query of the Step 23a engine (src/culinarystate/mechanism/applicability.py). Engine verification only: mode 23a, constructed cases, no COND value consumed (spine 23a); 23b is BLOCKED (07.A, 15b) and has no mode value here. R-15: every gate verdict is APPLICABLE / NOT_APPLICABLE / UNKNOWN (NOT_REQUIRED is a structural marker for G0 / G2 / G9). Route invariant encoded at record level: route SIMULATE, or cross_check SIMULATE, requires G1 and G4..G8 APPLICABLE, applicability APPLICABLE, domain IN_VALIDATION_DOMAIN and safety_critical NO; so no UNKNOWN or NOT_APPLICABLE gate reaches SIMULATE. Reason codes are closed to registry/mechanisms/applicability_reason_code_registry_v1_DRAFT.csv; routes to registry/mechanisms/route_enum_v1_DRAFT.csv. Signs only: no magnitude, rate or estimate field exists (additionalProperties false). appdec_id is a content id (APPDEC-DRAFT-<16 hex>), never a minted ledger id. is_evidence is false; sim_run_id is always null (no simulator exists). 26g consumes a record through applicability.to_applicability_binding: only route SIMULATE projects to APPLICABLE.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type",
+    "schema_version",
+    "appdec_id",
+    "status",
+    "mode",
+    "is_evidence",
+    "provenance_class",
+    "condition_source",
+    "query",
+    "evidence_precheck",
+    "deterministic_change_refs",
+    "mechanisms",
+    "gates",
+    "applicability",
+    "route",
+    "cross_check",
+    "model_estimate_label",
+    "domain_flag",
+    "safety_critical",
+    "direction_set",
+    "conflict_flag",
+    "missing_inputs",
+    "ask_candidates",
+    "registry_versions",
+    "code_sha256",
+    "input_sha256",
+    "sim_run_id"
+  ],
+  "properties": {
+    "record_type": {
+      "const": "APPDEC"
+    },
+    "schema_version": {
+      "const": "0.1.0-draft"
+    },
+    "appdec_id": {
+      "type": "string",
+      "pattern": "^APPDEC-DRAFT-[0-9a-f]{16}$"
+    },
+    "status": {
+      "const": "DRAFT_PENDING_21b_22a_H4"
+    },
+    "mode": {
+      "const": "23a"
+    },
+    "is_evidence": {
+      "const": false
+    },
+    "provenance_class": {
+      "const": "MODEL_ESTIMATED"
+    },
+    "condition_source": {
+      "const": "CONSTRUCTED_CASE"
+    },
+    "query": {
+      "$ref": "#/$defs/query"
+    },
+    "evidence_precheck": {
+      "enum": [
+        "DIRECT",
+        "BRACKETING",
+        "NONE",
+        "NOT_EVALUATED"
+      ]
+    },
+    "deterministic_change_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z][A-Z0-9_]*$"
+      },
+      "uniqueItems": true
+    },
+    "mechanisms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/mechanism"
+      }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "G0",
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6",
+        "G7",
+        "G8",
+        "G9"
+      ],
+      "properties": {
+        "G0": {
+          "$ref": "#/$defs/gate"
+        },
+        "G1": {
+          "$ref": "#/$defs/gate"
+        },
+        "G2": {
+          "$ref": "#/$defs/gate"
+        },
+        "G3": {
+          "$ref": "#/$defs/gate"
+        },
+        "G4": {
+          "$ref": "#/$defs/gate"
+        },
+        "G5": {
+          "$ref": "#/$defs/gate"
+        },
+        "G6": {
+          "$ref": "#/$defs/gate"
+        },
+        "G7": {
+          "$ref": "#/$defs/gate"
+        },
+        "G8": {
+          "$ref": "#/$defs/gate"
+        },
+        "G9": {
+          "$ref": "#/$defs/gate"
+        }
+      }
+    },
+    "applicability": {
+      "enum": [
+        "APPLICABLE",
+        "NOT_APPLICABLE",
+        "UNKNOWN"
+      ]
+    },
+    "route": {
+      "enum": [
+        "DIRECT",
+        "INTERPOLATE",
+        "SIMULATE",
+        "QUALITATIVE",
+        "ASK",
+        "UNKNOWN"
+      ]
+    },
+    "cross_check": {
+      "enum": [
+        "SIMULATE",
+        "NONE"
+      ]
+    },
+    "model_estimate_label": {
+      "enum": [
+        "NONE",
+        "RESEARCH_ONLY",
+        "EXTRAPOLATED"
+      ]
+    },
+    "domain_flag": {
+      "enum": [
+        "IN_VALIDATION_DOMAIN",
+        "IN_CALIBRATION_ONLY",
+        "EXTRAPOLATED_WITHIN_LIMITS",
+        "SIM_PROHIBITED",
+        "UNKNOWN"
+      ]
+    },
+    "safety_critical": {
+      "enum": [
+        "YES",
+        "NO",
+        "UNKNOWN"
+      ]
+    },
+    "direction_set": {
+      "$ref": "#/$defs/directions"
+    },
+    "conflict_flag": {
+      "type": "boolean"
+    },
+    "missing_inputs": {
+      "$ref": "#/$defs/input_tokens"
+    },
+    "ask_candidates": {
+      "$ref": "#/$defs/input_tokens"
+    },
+    "registry_versions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "engine",
+        "mech_schema",
+        "signature_contract",
+        "reason_code_registry_sha256",
+        "route_enum_sha256"
+      ],
+      "properties": {
+        "engine": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mech_schema": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signature_contract": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason_code_registry_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "route_enum_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "code_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sim_run_id": {
+      "type": "null"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "route": {
+            "const": "SIMULATE"
+          }
+        },
+        "required": [
+          "route"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gates": {
+            "type": "object",
+            "properties": {
+              "G1": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G4": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G5": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G6": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G7": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G8": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              }
+            },
+            "required": [
+              "G1",
+              "G4",
+              "G5",
+              "G6",
+              "G7",
+              "G8"
+            ]
+          },
+          "applicability": {
+            "const": "APPLICABLE"
+          },
+          "domain_flag": {
+            "const": "IN_VALIDATION_DOMAIN"
+          },
+          "safety_critical": {
+            "const": "NO"
+          },
+          "evidence_precheck": {
+            "enum": [
+              "NONE",
+              "NOT_EVALUATED"
+            ]
+          },
+          "cross_check": {
+            "const": "NONE"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "cross_check": {
+            "const": "SIMULATE"
+          }
+        },
+        "required": [
+          "cross_check"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gates": {
+            "type": "object",
+            "properties": {
+              "G1": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G4": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G5": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G6": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G7": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              },
+              "G8": {
+                "type": "object",
+                "properties": {
+                  "verdict": {
+                    "const": "APPLICABLE"
+                  }
+                },
+                "required": [
+                  "verdict"
+                ]
+              }
+            },
+            "required": [
+              "G1",
+              "G4",
+              "G5",
+              "G6",
+              "G7",
+              "G8"
+            ]
+          },
+          "applicability": {
+            "const": "APPLICABLE"
+          },
+          "domain_flag": {
+            "const": "IN_VALIDATION_DOMAIN"
+          },
+          "safety_critical": {
+            "const": "NO"
+          },
+          "route": {
+            "enum": [
+              "DIRECT",
+              "INTERPOLATE"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "applicability": {
+            "enum": [
+              "UNKNOWN",
+              "NOT_APPLICABLE"
+            ]
+          }
+        },
+        "required": [
+          "applicability"
+        ]
+      },
+      "then": {
+        "properties": {
+          "route": {
+            "not": {
+              "const": "SIMULATE"
+            }
+          },
+          "cross_check": {
+            "const": "NONE"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "model_estimate_label": {
+            "enum": [
+              "RESEARCH_ONLY",
+              "EXTRAPOLATED"
+            ]
+          }
+        },
+        "required": [
+          "model_estimate_label"
+        ]
+      },
+      "then": {
+        "properties": {
+          "route": {
+            "const": "QUALITATIVE"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "route": {
+            "const": "DIRECT"
+          }
+        },
+        "required": [
+          "route"
+        ]
+      },
+      "then": {
+        "properties": {
+          "evidence_precheck": {
+            "const": "DIRECT"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "route": {
+            "const": "INTERPOLATE"
+          }
+        },
+        "required": [
+          "route"
+        ]
+      },
+      "then": {
+        "properties": {
+          "evidence_precheck": {
+            "const": "BRACKETING"
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "reason_code": {
+      "enum": [
+        "G0_NOT_EVALUATED",
+        "EVENT_UNRESOLVED",
+        "PROCESS_NOT_IN_HIERARCHY",
+        "NO_CANDIDATE_MECHANISM",
+        "TRIGGER_MODIFIER_UNKNOWN",
+        "MECH_NOT_CONSUMABLE",
+        "MECH_NOT_ACTIVE",
+        "MECH_NOT_ACCEPTED",
+        "MECH_NOT_HUMAN_VERIFIED",
+        "MECH_GATES_UNKNOWN",
+        "MECH_OPEN_QUESTIONS",
+        "MECH_UNRESOLVED_SINK",
+        "TARGET_NOT_ACCEPTED",
+        "ITEM_NOT_ACCEPTED",
+        "MATRIX_EXCLUDED",
+        "MATRIX_UNLISTED",
+        "MATRIX_UNKNOWN",
+        "PRECONDITION_FAIL",
+        "PRECONDITION_UNKNOWN",
+        "GATE_MATRIX_UNLISTED",
+        "NECESSARY_AXIS_UNKNOWN",
+        "NECESSARY_AXIS_OUTSIDE",
+        "AXIS_NOT_DECIDABLE",
+        "AXIS_UNIT_MISMATCH",
+        "AXIS_BASIS_MISMATCH",
+        "AXIS_TYPE_MISMATCH",
+        "AXIS_CONFLICT",
+        "CATEGORY_EXCLUDED",
+        "CATEGORY_UNLISTED",
+        "INHIBITOR_PRESENT",
+        "INHIBITOR_PARTIAL",
+        "INHIBITOR_UNKNOWN",
+        "INHIBITOR_EXTENT_UNKNOWN",
+        "INHIBITOR_NOT_EVALUABLE",
+        "CONDITION_UNAUDITED",
+        "COMPETING_UNRESOLVED",
+        "COMPETING_BOTH_APPLICABLE",
+        "COMPETITION_NOT_ACCEPTED",
+        "NO_SINGLE_APPLICABLE_MECHANISM",
+        "NO_FORM",
+        "ASSUMPTION_VIOLATED",
+        "INPUT_UNOBSERVED",
+        "MODIFIER_INPUT_UNOBSERVED",
+        "MODIFIER_ITEM_NOT_ACCEPTED",
+        "HISTORY_INPUT_UNOBSERVED",
+        "HISTORY_ITEM_NOT_ACCEPTED",
+        "NO_COMPATIBLE_PARAM",
+        "PARAM_UNCONFIRMABLE",
+        "OUT_OF_MS_LIMITS",
+        "SAFETY_CRITICAL",
+        "SAFETY_UNKNOWN",
+        "DOMAIN_UNKNOWN",
+        "DOMAIN_NOT_VALIDATED",
+        "QUALITATIVE_ONLY_PARTIAL_INHIBITION",
+        "DIRECTION_AMBIGUOUS",
+        "EVIDENCE_PREEMPTS"
+      ]
+    },
+    "verdict_or_marker": {
+      "enum": [
+        "APPLICABLE",
+        "NOT_APPLICABLE",
+        "UNKNOWN",
+        "NOT_REQUIRED"
+      ]
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "verdict",
+        "reasons"
+      ],
+      "properties": {
+        "verdict": {
+          "$ref": "#/$defs/verdict_or_marker"
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reason_code"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "directions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "INCREASE",
+          "DECREASE",
+          "UNKNOWN"
+        ]
+      }
+    },
+    "input_tokens": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^(axis:CV-\\d{3}@[A-Z_]+|state:[A-Za-z0-9_-]+|event:process|modifier:[A-Z_]+)$"
+      }
+    },
+    "query": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "case_id",
+        "entity_version_id",
+        "event_id",
+        "target",
+        "process_id",
+        "event_resolved",
+        "matrix",
+        "modifiers"
+      ],
+      "properties": {
+        "case_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entity_version_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "svar_id",
+            "state_key"
+          ],
+          "properties": {
+            "svar_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "state_key": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "process_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "event_resolved": {
+          "type": "boolean"
+        },
+        "matrix": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "modifiers": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "INTENSITY",
+              "GEOMETRY",
+              "GRANULARITY",
+              "MEDIUM"
+            ]
+          },
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "mechanism": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mechanism_key",
+        "mechanism_id",
+        "signature_keys",
+        "consumable",
+        "refusal_reasons",
+        "verdict",
+        "reasons",
+        "directions",
+        "qualitative_only",
+        "missing_inputs"
+      ],
+      "properties": {
+        "mechanism_key": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "mechanism_id": {
+          "type": "string",
+          "pattern": "^MECH-\\d{6}$"
+        },
+        "signature_keys": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "consumable": {
+          "type": "boolean"
+        },
+        "refusal_reasons": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "NOT_ACTIVE",
+              "NOT_ACCEPTED",
+              "NOT_HUMAN_VERIFIED",
+              "GATES_UNKNOWN",
+              "OPEN_QUESTIONS",
+              "UNRESOLVED_SINK"
+            ]
+          }
+        },
+        "verdict": {
+          "enum": [
+            "APPLICABLE",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "reasons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reason_code"
+          },
+          "uniqueItems": true
+        },
+        "directions": {
+          "$ref": "#/$defs/directions"
+        },
+        "qualitative_only": {
+          "type": "boolean"
+        },
+        "missing_inputs": {
+          "$ref": "#/$defs/input_tokens"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "consumable": {
+                "const": false
+              }
+            },
+            "required": [
+              "consumable"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verdict": {
+                "const": "UNKNOWN"
+              },
+              "refusal_reasons": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

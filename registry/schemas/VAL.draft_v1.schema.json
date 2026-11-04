@@ -1,0 +1,1713 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/draft/VAL.draft_v1.schema.json",
+  "title": "VAL- held-out validation record of a FORM + PARAM set v1 (DRAFT_PENDING_H4)",
+  "description": "schema_version 1.0.0-draft. STATUS DRAFT_PENDING_H4: not approved, not frozen, not copied into ledgers/schemas/. AI draft of worker ksh (S159), reviewed afterwards by Kush and Parv (D-045). FORM- versus MODEL- prefix (Step 24f, H4) is OPEN: the id pattern accepts both and the validator (culinarystate.mechanism.form_param_val) checks against the prefix the caller names. Step 24a schema, field list Part J1 J1.3.6; rows are written by Step 27 only.",
+  "$comment": "Shared $defs and envelope fields copied verbatim from KIN.draft_v1_1.schema.json. may_define_validated_domain is false for V3, for a non-disjoint or unknown-disjoint record and for any verdict other than MEETS_PREREGISTERED_CRITERIA.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "form_id",
+    "param_set_ids",
+    "eval_series_ids",
+    "study_disjoint",
+    "matrix_relation",
+    "tier",
+    "condition_points",
+    "metrics",
+    "verdict",
+    "preregistration_ref",
+    "val_plan_sha256",
+    "may_define_validated_domain"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^VAL-\\d{6}$"
+    },
+    "record_type": {
+      "const": "VAL"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^VAL-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "form_id": {
+      "type": "string",
+      "pattern": "^(FORM|MODEL)-\\d{6}$"
+    },
+    "param_set_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^PARAM-\\d{6}$"
+      },
+      "minItems": 1
+    },
+    "eval_series_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^KIN-\\d{6}$"
+      },
+      "minItems": 1
+    },
+    "study_disjoint": {
+      "type": "object",
+      "required": [
+        "status",
+        "lineage_proof"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "YES",
+            "NO",
+            "UNKNOWN"
+          ]
+        },
+        "lineage_proof": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "YES"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "lineage_proof": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "matrix_relation": {
+      "type": "string",
+      "enum": [
+        "SAME",
+        "SAME_CLASS",
+        "DIFFERENT",
+        "UNKNOWN"
+      ]
+    },
+    "tier": {
+      "type": "string",
+      "enum": [
+        "V1_IN_DOMAIN",
+        "V2_HELDOUT_T",
+        "V3_HELDOUT_MATRIX"
+      ]
+    },
+    "condition_points": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/condition_point"
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "required": [
+        "ln_ret_err",
+        "rmse_natural",
+        "bias_factor",
+        "accuracy_factor",
+        "cov80",
+        "cov95",
+        "width",
+        "crps",
+        "vv20_E_vs_uval"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ln_ret_err": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "rmse_natural": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "bias_factor": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "accuracy_factor": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "cov80": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "cov95": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "width": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "crps": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "vv20_E_vs_uval": {
+          "$ref": "#/$defs/value_obj"
+        }
+      },
+      "description": "External predictive metrics only (ln-retention error, Ross 1996 bias / accuracy factors, interval coverage and width, CRPS, V&V 20 comparison error). Fit statistics (R2, AIC, SSR ...) never appear in VAL."
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "MEETS_PREREGISTERED_CRITERIA",
+        "FAILS_PREREGISTERED_CRITERIA",
+        "NOT_EVALUATED",
+        "UNKNOWN"
+      ]
+    },
+    "preregistration_ref": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "val_plan_sha256": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "may_define_validated_domain": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "verification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "required": [
+              "verifier",
+              "verified_at"
+            ],
+            "properties": {
+              "verifier": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "SUPERSEDED"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "superseded_by"
+        ],
+        "properties": {
+          "superseded_by": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "verdict": {
+            "enum": [
+              "MEETS_PREREGISTERED_CRITERIA",
+              "FAILS_PREREGISTERED_CRITERIA"
+            ]
+          }
+        },
+        "required": [
+          "verdict"
+        ]
+      },
+      "then": {
+        "properties": {
+          "preregistration_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "tier": {
+            "const": "V3_HELDOUT_MATRIX"
+          }
+        },
+        "required": [
+          "tier"
+        ]
+      },
+      "then": {
+        "properties": {
+          "may_define_validated_domain": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "not": {
+          "properties": {
+            "verdict": {
+              "const": "MEETS_PREREGISTERED_CRITERIA"
+            }
+          },
+          "required": [
+            "verdict"
+          ]
+        }
+      },
+      "then": {
+        "properties": {
+          "may_define_validated_domain": {
+            "const": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "not": {
+          "properties": {
+            "study_disjoint": {
+              "properties": {
+                "status": {
+                  "const": "YES"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            }
+          },
+          "required": [
+            "study_disjoint"
+          ]
+        }
+      },
+      "then": {
+        "properties": {
+          "may_define_validated_domain": {
+            "const": false
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "value_obj": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "MEASURED",
+            "RANGE",
+            "QUALITATIVE",
+            "CENSORED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^UNIT-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit_id_status": {
+          "type": "string",
+          "enum": [
+            "MAPPED",
+            "NOT_MAPPED",
+            "UNKNOWN"
+          ]
+        },
+        "qualitative": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "UNKNOWN",
+                  "NOT_APPLICABLE",
+                  "QUALITATIVE",
+                  "CENSORED"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "MEASURED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value",
+              "unit"
+            ],
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "RANGE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "unit"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "QUALITATIVE"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "qualitative"
+            ],
+            "properties": {
+              "qualitative": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CENSORED"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "unit"
+            ],
+            "properties": {
+              "unit": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id_status": {
+                "const": "MAPPED"
+              }
+            },
+            "required": [
+              "unit_id_status"
+            ]
+          },
+          "then": {
+            "required": [
+              "unit_id"
+            ],
+            "properties": {
+              "unit_id": {
+                "type": "string",
+                "pattern": "^UNIT-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id_status": {
+                "enum": [
+                  "NOT_MAPPED",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "unit_id_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "unit_id": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "unit_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "unit_id"
+            ]
+          },
+          "then": {
+            "required": [
+              "unit_id_status"
+            ],
+            "properties": {
+              "unit_id_status": {
+                "const": "MAPPED"
+              }
+            }
+          }
+        }
+      ],
+      "description": "UNKNOWN-aware value (same status vocabulary as ledgers/schemas/common QVALUE). A number is allowed only where the status says so; UNKNOWN/NOT_APPLICABLE/QUALITATIVE/CENSORED carry no number (the censoring limit lives in `censoring`). `raw` keeps the source string verbatim. `unit` is the raw unit string as printed and is never rewritten; `unit_id` (UNIT-) is the optional normalised pointer with an explicit mapping status (NOT_MAPPED / UNKNOWN keep it null; never a guessed id)."
+    },
+    "dispersion": {
+      "type": "object",
+      "required": [
+        "type",
+        "value",
+        "low",
+        "high",
+        "ci_level",
+        "unit",
+        "n_basis",
+        "scope",
+        "significance_raw",
+        "derivation"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "SD",
+            "SE",
+            "VARIANCE",
+            "CI",
+            "RANGE",
+            "IQR",
+            "INSTRUMENT",
+            "REPORTED_UNSPECIFIED",
+            "CV_PERCENT",
+            "POOLED_SE",
+            "LSD",
+            "NONE_REPORTED",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "low": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "high": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ci_level": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "n_basis": {
+          "type": "string",
+          "enum": [
+            "BIOLOGICAL",
+            "TECHNICAL",
+            "NOT_REPORTED",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "scope": {
+          "type": "string",
+          "enum": [
+            "PER_VALUE",
+            "POOLED_TABLE",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "significance_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "derivation": {
+          "type": "string",
+          "enum": [
+            "AS_REPORTED",
+            "ESTIMATED_FROM_SUMMARY",
+            "DIGITIZED",
+            "NOT_APPLICABLE"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SD",
+                  "SE",
+                  "VARIANCE",
+                  "INSTRUMENT",
+                  "REPORTED_UNSPECIFIED",
+                  "CV_PERCENT",
+                  "POOLED_SE",
+                  "LSD"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              },
+              "derivation": {
+                "type": "string",
+                "enum": [
+                  "AS_REPORTED",
+                  "ESTIMATED_FROM_SUMMARY",
+                  "DIGITIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CI"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high",
+              "ci_level"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "ci_level": {
+                "type": "number",
+                "exclusiveMinimum": 0,
+                "exclusiveMaximum": 1
+              },
+              "derivation": {
+                "type": "string",
+                "enum": [
+                  "AS_REPORTED",
+                  "ESTIMATED_FROM_SUMMARY",
+                  "DIGITIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "RANGE",
+                  "IQR"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "low",
+              "high"
+            ],
+            "properties": {
+              "low": {
+                "type": "number"
+              },
+              "high": {
+                "type": "number"
+              },
+              "derivation": {
+                "type": "string",
+                "enum": [
+                  "AS_REPORTED",
+                  "ESTIMATED_FROM_SUMMARY",
+                  "DIGITIZED"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "NONE_REPORTED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "low": {
+                "type": "null"
+              },
+              "high": {
+                "type": "null"
+              },
+              "ci_level": {
+                "type": "null"
+              },
+              "derivation": {
+                "const": "NOT_APPLICABLE"
+              },
+              "n_basis": {
+                "const": "NOT_APPLICABLE"
+              },
+              "scope": {
+                "const": "NOT_APPLICABLE"
+              },
+              "significance_raw": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "CV_PERCENT"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "unit"
+            ],
+            "properties": {
+              "unit": {
+                "const": "%"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SE",
+                  "POOLED_SE"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "n_basis": {
+                "enum": [
+                  "BIOLOGICAL",
+                  "TECHNICAL",
+                  "NOT_REPORTED",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "POOLED_SE",
+                  "LSD"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "scope": {
+                "enum": [
+                  "POOLED_TABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "SD",
+                  "SE",
+                  "VARIANCE",
+                  "CI",
+                  "RANGE",
+                  "IQR",
+                  "INSTRUMENT",
+                  "REPORTED_UNSPECIFIED",
+                  "CV_PERCENT"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "scope": {
+                "enum": [
+                  "PER_VALUE",
+                  "POOLED_TABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "description": "Dispersion with its TYPE always stated (SD vs SE vs CI cannot be confused). NONE_REPORTED = source gives none; UNKNOWN = not assessed. Estimates from median/range (Wan et al. 2014 type) are allowed only with derivation ESTIMATED_FROM_SUMMARY, never as AS_REPORTED. `unit` null means 'same unit as the value' (VARIANCE: squared unit, state it). `n_basis` says which n the SD/SE refers to (biological vs technical; needed for SE->SD conversion; NOT_REPORTED = source silent, UNKNOWN = not assessed). `scope` PER_VALUE vs POOLED_TABLE (one pooled SEM / LSD for a whole table). `significance_raw` keeps significance letters / p text verbatim. CV_PERCENT is stored as printed (unit '%'), never converted to an SD here."
+    },
+    "count": {
+      "type": "object",
+      "required": [
+        "status",
+        "value"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "REPORTED",
+            "NOT_REPORTED",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "REPORTED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_REPORTED",
+                  "NOT_APPLICABLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Replicate/sample count with explicit status. NOT_REPORTED = the source was read and is silent; UNKNOWN = not assessed or cannot be told. Never 0 and never a default 1."
+    },
+    "locator": {
+      "type": "object",
+      "required": [
+        "doc_id",
+        "locator_type",
+        "raw_text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "doc_id": {
+          "type": "string",
+          "pattern": "^DOC-\\d{6}$"
+        },
+        "locator_type": {
+          "type": "string",
+          "enum": [
+            "TABLE_CELL",
+            "TEXT_SPAN",
+            "FIGURE_DIGITIZED",
+            "DATABASE_ROW",
+            "SUPPLEMENT_FILE",
+            "OTHER"
+          ]
+        },
+        "page": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "table_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "row_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "column_label": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "figure_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "char_span": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "minItems": 2,
+              "maxItems": 2
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Exact place in a DOC. raw_text is the verbatim cell/span/row (key required, null only when the source has no text form)."
+    },
+    "matrix": {
+      "type": "object",
+      "required": [
+        "ingredient_id",
+        "raw_name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ingredient_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^ING-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "food_group": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "variety": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "part": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "form": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "prior_processing": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "initial_state": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "geometry": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "storage_ripeness": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Same facets as EVD.matrix (non-destructive). raw_name is required (raw preserved); ingredient_id null = UNRESOLVED."
+    },
+    "process": {
+      "type": "object",
+      "required": [
+        "process_id",
+        "raw_name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "process_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^PROC-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "family": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "medium": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "description": "Process as in EVD.process; process_id null = UNRESOLVED."
+    },
+    "time_conversion": {
+      "type": "object",
+      "required": [
+        "status",
+        "value",
+        "convention"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "NOT_CONVERTED",
+            "CONVERTED_EXACT",
+            "CONVERTED_BY_STATED_CONVENTION",
+            "NOT_CONVERTIBLE",
+            "UNKNOWN"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "convention": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "CONVERTED_EXACT",
+                  "CONVERTED_BY_STATED_CONVENTION"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "value"
+            ],
+            "properties": {
+              "value": {
+                "type": "number",
+                "minimum": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_CONVERTED",
+                  "NOT_CONVERTIBLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CONVERTED_BY_STATED_CONVENTION"
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "convention"
+            ],
+            "properties": {
+              "convention": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "NOT_CONVERTED",
+                  "CONVERTED_EXACT",
+                  "NOT_CONVERTIBLE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "convention": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Normalised seconds as a SEPARATE field with a conversion status; the raw time value, raw unit token and printed unit label are never rewritten. s / min / h / d / week convert exactly (CONVERTED_EXACT); month and year are calendar durations and are NEVER exact: they stay NOT_CONVERTED, or are converted only under a stated convention (CONVERTED_BY_STATED_CONVENTION, convention text mandatory, e.g. '1 month = 30 d'); unit OTHER / UNKNOWN is not converted. Seconds are never produced from an unknown unit and never defaulted to 0 (07H-R lesson: calendar conversion at ingest was a failure class)."
+    },
+    "condition_point": {
+      "type": "object",
+      "required": [
+        "T",
+        "tau_values",
+        "tau_unit",
+        "clock"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "T": {
+          "$ref": "#/$defs/value_obj"
+        },
+        "tau_values": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "tau_unit": {
+          "type": "string",
+          "enum": [
+            "s",
+            "min",
+            "h",
+            "d",
+            "week",
+            "month",
+            "year",
+            "OTHER",
+            "UNKNOWN"
+          ]
+        },
+        "clock": {
+          "const": "PROCESS_TAU"
+        }
+      },
+      "description": "One design / condition point: a temperature (value_obj, raw unit kept) and the raw process times at it (clock PROCESS_TAU, raw time unit as in KIN.time_base.unit)."
+    }
+  }
+}

@@ -1,0 +1,4003 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "culinarystate/draft/MECH.draft_v1_1.schema.json",
+  "title": "MECH- mechanism registry entry: what acts, on what, when, blocked by what (class level; no numeric kinetic parameters) v1.1 (DRAFT_PENDING_H4)",
+  "description": "schema_version 1.1.0-draft. STATUS DRAFT_PENDING_H4: not approved, not frozen, not copied into ledgers/schemas/, no ledger created, nothing minted. Step 21a (R-10: may run in parallel with Phases C / D). One MECH record is one mechanism entry of the small flat registry (target 20-40 entries, plan Step 21 card); it is a model-side knowledge record with is_evidence = false (plane assignment: H4 item), never a measurement. It states what the mechanism acts on (affected_targets), when it can act (preconditions over states; condition_gates over CV axes with location, matrix scope and evidence), what blocks or competes with it, which history it needs, and which markers are NOT unique identifiers. It holds NO numeric kinetic parameter (rate constants, activation energies, reaction orders, half-lives, Q10 ...: those are FORM / PARAM, Step 24, G21.8). The only numbers in this schema are the min / max bounds of an evidenced condition window (no optimum is stored: it would complete a cardinal-parameter model, which belongs to FORM / PARAM, Step 24, G21.8).",
+  "$comment": "R-15: every precondition, condition gate, inhibitor / modifier, matrix_scope and categories object carries missing_input_verdict (or unlisted_verdict) = UNKNOWN (const); competes_with, consecutive_with, history_item, affected_target and marker carry no verdict field and contribute UNKNOWN only while their status is not ACCEPTED (H4 item D21-21); an ACCEPTED item of any type needs at least one evidence id; and no field can hold a default, midpoint or typical value (additionalProperties false everywhere, no 'default' keyword); an interval bound is never a bare null (STATED / OPEN_STATED / NOT_REPORTED); a category or matrix that is not listed is UNKNOWN; gates_unknown may be false only if the entry has at least one precondition or at least one NECESSARY gate (a MODULATING or INHIBITING gate alone never makes an entry APPLICABLE-capable: no vacuous APPLICABLE); the UNKNOWN token is never an admissible category or predicate value (case-insensitive); a documented-but-unformalised inhibitor forces gates_unknown = true. UNKNOWN therefore never turns into APPLICABLE by omission, and UNKNOWN never reaches SIMULATE (the route rule is Step 23's; the invariant is property-tested there). R-14: no field, enum value, rule or description in this schema names or prefers either candidate system (the contract test greps the schema text for both families of terms and for the simulator ids). R-20: recipes are not chemistry truth (is_evidence false; derivation anchors are not evidence); LLM knowledge is never evidence (SSOT 257A.5): ai_drafted entries stay CANDIDATE until a human has verified them against a PRIMARY source. Gate-limit circularity guard: each evidence_ref caches its lineage_root_id; a Step-22/23 case whose lineage root is cited here must not be used to test that gate. CV-registry-dependent checks (CV id exists, unit == canonical_unit, dimension agrees with domain_kind, min <= max, symmetric competes_with / consecutive_with, gate_key / precondition_key uniqueness and the INHIBITING-gate reference of an inhibitor) are semantic-validator work, not expressible here. v1.1 (S158, 2026-11-03, still DRAFT_PENDING_H4): additive revision of the v1 draft, which is kept unchanged; changes and reasons in reports/step21/mechanism_ontology_v1_1_DRAFT_changes.md. Added: affected_target.target_class with an evidence burden on MONOTONIC observable / unknown-class targets (round-3 21-17); an analyte-form token slot without any token list (21-12, D21-22); declared marker sharing (21-19; absence of sharing is never recorded, marker_unique stays false); entry-level open_questions, so an entry with an unresolved expert question can never be ACCEPTED (D21-23). R-15 reading unchanged: none of the additions carries a verdict and none can turn UNKNOWN into APPLICABLE.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "record_type",
+    "version",
+    "status",
+    "created_at",
+    "created_by",
+    "provenance",
+    "verification",
+    "mechanism_key",
+    "label",
+    "family",
+    "kind",
+    "edge_semantics",
+    "is_evidence",
+    "ai_drafted",
+    "provenance_class",
+    "review_status",
+    "review",
+    "derivation_anchors",
+    "participants",
+    "enzyme",
+    "gates_unknown",
+    "preconditions",
+    "condition_gates",
+    "inhibitors_mitigators",
+    "competes_with",
+    "consecutive_with",
+    "affected_targets",
+    "markers",
+    "history_dependence",
+    "matrix_scope",
+    "xrefs",
+    "evidence_refs",
+    "open_questions"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^MECH-\\d{6}$"
+    },
+    "record_type": {
+      "const": "MECH"
+    },
+    "schema_version": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ACTIVE",
+        "DEPRECATED",
+        "SUPERSEDED",
+        "RETRACTED"
+      ]
+    },
+    "superseded_by": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^MECH-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "method",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "method": {
+          "type": "string",
+          "enum": [
+            "MANUAL",
+            "IMPORT",
+            "RULE",
+            "LLM",
+            "MODEL",
+            "DERIVED",
+            "SCRAPE"
+          ]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SRC-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "snapshot_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^SNAP-\\d{6}$"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "agent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "required": [
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "AI_PRECHECKED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED",
+            "NEEDS_SOURCE",
+            "CONFLICT"
+          ]
+        },
+        "verifier": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "ai_reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "notes": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "external_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "mechanism_key": {
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9_]{2,63}$",
+      "description": "Mint key and stable human-readable name (idempotent minting: the same key never mints a second id; a rename is a new entry). Entries refer to each other by this key."
+    },
+    "label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "synonyms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "family": {
+      "type": "string",
+      "enum": [
+        "MAILLARD_GLYCATION",
+        "SUGAR_THERMAL_DEGRADATION",
+        "LIPID_OXIDATION_DECOMPOSITION",
+        "PROTEIN_STRUCTURAL",
+        "COLLAGEN_TRANSITION",
+        "STARCH_TRANSITION",
+        "CUTTING_TRIGGERED_ENZYMATIC",
+        "FERMENTATION",
+        "VOLATILE_MATERIAL_TRANSFER",
+        "PIGMENT_CELLWALL_TRANSITION",
+        "MICRONUTRIENT_DEGRADATION",
+        "UNRESOLVED"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "CHEMICAL_REACTION",
+        "ENZYMATIC",
+        "PHYSICAL_TRANSPORT",
+        "PHASE_STRUCTURAL_TRANSITION",
+        "MICROBIAL",
+        "MECHANICAL_DISRUPTION",
+        "UNRESOLVED_SINK"
+      ]
+    },
+    "edge_semantics": {
+      "type": "string",
+      "enum": [
+        "REACTION",
+        "TRANSPORT",
+        "EQUILIBRIUM",
+        "STATISTICAL",
+        "STATE_TRANSITION",
+        "NOT_APPLICABLE"
+      ]
+    },
+    "local_process_module": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "BOILING_RETENTION",
+          "FRYING_ACRYLAMIDE",
+          "ROASTING_BROWNING",
+          "FERMENTATION",
+          "MECHANICAL_MERGE"
+        ]
+      },
+      "minItems": 0,
+      "uniqueItems": true,
+      "description": "Values from SSOT 213.29 (L21024): coverage labels of the local process modules. Not a simulator selection (R-14)."
+    },
+    "is_evidence": {
+      "const": false
+    },
+    "ai_drafted": {
+      "type": "boolean"
+    },
+    "provenance_class": {
+      "type": "string",
+      "enum": [
+        "EXPLICIT_SOURCE",
+        "EXTERNAL_VERIFIED",
+        "INFERRED_LLM",
+        "UNKNOWN"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "CANDIDATE",
+        "ACCEPTED",
+        "REJECTED"
+      ]
+    },
+    "review": {
+      "$ref": "#/$defs/review"
+    },
+    "derivation_anchors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/derivation_anchor"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "participants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/participant"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "enzyme": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/enzyme"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "gates_unknown": {
+      "type": "boolean"
+    },
+    "preconditions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/precondition"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "condition_gates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/condition_gate"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "inhibitors_mitigators": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/inhibitor"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "competes_with": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/competes_with"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "consecutive_with": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/consecutive_with"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "affected_targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/affected_target"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "markers": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/marker"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "history_dependence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/history_item"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "matrix_scope": {
+      "$ref": "#/$defs/matrix_scope"
+    },
+    "xrefs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/xref"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence_ref"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "open_questions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/open_question"
+      },
+      "description": "v1.1. Open expert / H4 questions of this entry (may be empty). An ACCEPTED entry has none open."
+    }
+  },
+  "$defs": {
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^(EVD|SRC|DOC|OBS|KIN)-\\d{6}$"
+      },
+      "minItems": 0,
+      "uniqueItems": true,
+      "description": "Ids of entries in this record's evidence_refs[] (EVD-/SRC-/DOC-/OBS-/KIN- pattern). SSOT, master-plan and plan text are derivation anchors, never evidence ids (an LLM's or a plan's knowledge is not evidence, SSOT 257A.5). A case id of the sealed Step-22/23 case set (22c) must use a prefix outside this set, so that it cannot be cited here (21 leakage rule; 22c to honour)."
+    },
+    "item_status": {
+      "type": "string",
+      "enum": [
+        "CANDIDATE",
+        "ACCEPTED",
+        "REJECTED"
+      ],
+      "description": "Per-item review state. Steps 22/23 consume only ACCEPTED entries (and, within them, only ACCEPTED items); a CANDIDATE or REJECTED item contributes UNKNOWN, never a default."
+    },
+    "missing_input_verdict": {
+      "const": "UNKNOWN",
+      "description": "R-15 made explicit in the record: when the input this item needs is missing, unaudited, or only partly bracketed, the item's verdict is UNKNOWN. There is no field that could carry an imputed, default or 'typical' value, and no value other than UNKNOWN is admitted here. Relaxing this const is a schema change (H4)."
+    },
+    "substance_ref": {
+      "type": "object",
+      "required": [
+        "ref_type",
+        "ref",
+        "label_raw"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ref_type": {
+          "type": "string",
+          "enum": [
+            "MOL_ID",
+            "CHEBI_CURIE",
+            "CLASS_LABEL"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label_raw": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "ref_type": {
+                "const": "MOL_ID"
+              }
+            },
+            "required": [
+              "ref_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "type": "string",
+                "pattern": "^MOL-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "ref_type": {
+                "const": "CHEBI_CURIE"
+              }
+            },
+            "required": [
+              "ref_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "type": "string",
+                "pattern": "^CHEBI:\\d+$"
+              }
+            }
+          }
+        }
+      ],
+      "description": "A participant, marker or named precursor. A MOL- id where the ledger has one, a ChEBI CURIE (cross-reference only), or a class label as written. A class label is not a molecule identity."
+    },
+    "matrix_item": {
+      "type": "object",
+      "required": [
+        "ref_type",
+        "ref",
+        "label_raw"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ref_type": {
+          "type": "string",
+          "enum": [
+            "ING_ID",
+            "FOODON_CURIE",
+            "CLASS_LABEL"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label_raw": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "ref_type": {
+                "const": "ING_ID"
+              }
+            },
+            "required": [
+              "ref_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "type": "string",
+                "pattern": "^ING-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "ref_type": {
+                "const": "FOODON_CURIE"
+              }
+            },
+            "required": [
+              "ref_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "ref": {
+                "type": "string",
+                "pattern": "^FOODON:\\d+$"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "matrix_scope": {
+      "type": "object",
+      "required": [
+        "scope_kind",
+        "included",
+        "excluded",
+        "unlisted_verdict",
+        "note_raw"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "scope_kind": {
+          "type": "string",
+          "enum": [
+            "MODEL_SYSTEM",
+            "FOOD_MATRIX_SPECIFIC",
+            "FOOD_CLASS",
+            "GENERIC_MECHANISM",
+            "UNKNOWN"
+          ]
+        },
+        "included": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/matrix_item"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "excluded": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/matrix_item"
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "unlisted_verdict": {
+          "$ref": "#/$defs/missing_input_verdict"
+        },
+        "note_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "scope_kind": {
+                "enum": [
+                  "FOOD_MATRIX_SPECIFIC",
+                  "FOOD_CLASS"
+                ]
+              }
+            },
+            "required": [
+              "scope_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "included": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "scope_kind": {
+                "const": "UNKNOWN"
+              }
+            },
+            "required": [
+              "scope_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "included": {
+                "maxItems": 0
+              },
+              "excluded": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ],
+      "description": "Where the cited evidence applies. A matrix in `included` is in scope; a matrix in `excluded` is out of scope (this is the only route to NOT_APPLICABLE by matrix); a matrix in neither list is UNKNOWN, never in scope by default and never out of scope by default (the SSOT 199.6 REQUIRED / INCOMPATIBLE / UNKNOWN pattern applied to matrix). Lab or model-system evidence is flagged MODEL_SYSTEM and does not extend to food matrices by itself (van Boekel 2008; Pin 2004 via r_mechanism_registry F5.3). GENERIC_MECHANISM is the SSOT 241.3 match type, a retrieval label, not an applicability grant."
+    },
+    "state_ref": {
+      "type": "object",
+      "required": [
+        "ref_status",
+        "svar_id",
+        "state_key",
+        "label_raw"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "ref_status": {
+          "type": "string",
+          "enum": [
+            "SVAR_ACTIVE",
+            "SVAR_FUTURE",
+            "PROPOSED_KEY"
+          ]
+        },
+        "svar_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^SVAR-(\\d{6}|FUT-\\d{3})$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "state_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]{2,47}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "label_raw": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "ref_status": {
+                "const": "SVAR_ACTIVE"
+              }
+            },
+            "required": [
+              "ref_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "svar_id": {
+                "type": "string",
+                "pattern": "^SVAR-\\d{6}$"
+              },
+              "state_key": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "ref_status": {
+                "const": "SVAR_FUTURE"
+              }
+            },
+            "required": [
+              "ref_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "svar_id": {
+                "type": "string",
+                "pattern": "^SVAR-FUT-\\d{3}$"
+              },
+              "state_key": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "ref_status": {
+                "const": "PROPOSED_KEY"
+              }
+            },
+            "required": [
+              "ref_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "svar_id": {
+                "type": "null"
+              },
+              "state_key": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{2,47}$"
+              }
+            }
+          }
+        }
+      ],
+      "description": "A state variable the record refers to. SVAR_ACTIVE = an SVAR- id in ledgers/data/SVAR.jsonl; SVAR_FUTURE = an SVAR-FUT-### row of registry/state_variable_registry_v1.csv (status FUTURE, not yet a ledger row); PROPOSED_KEY = a name that no registry holds yet (the history variables owned by 16a, CHG-21-3, and analyte-specific variables that the SVAR registry lacks). A PROPOSED_KEY is a request to the SVAR owner, never a minted id."
+    },
+    "predicate": {
+      "type": "object",
+      "required": [
+        "operator",
+        "values"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "operator": {
+          "type": "string",
+          "enum": [
+            "IS",
+            "IS_NOT",
+            "IN",
+            "NOT_IN",
+            "PRESENT",
+            "ABSENT"
+          ]
+        },
+        "values": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "not": {
+              "pattern": "^[Uu][Nn][Kk][Nn][Oo][Ww][Nn]$"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "operator": {
+                "enum": [
+                  "PRESENT",
+                  "ABSENT"
+                ]
+              }
+            },
+            "required": [
+              "operator"
+            ]
+          },
+          "then": {
+            "properties": {
+              "values": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operator": {
+                "enum": [
+                  "IS",
+                  "IS_NOT"
+                ]
+              }
+            },
+            "required": [
+              "operator"
+            ]
+          },
+          "then": {
+            "properties": {
+              "values": {
+                "minItems": 1,
+                "maxItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operator": {
+                "enum": [
+                  "IN",
+                  "NOT_IN"
+                ]
+              }
+            },
+            "required": [
+              "operator"
+            ]
+          },
+          "then": {
+            "properties": {
+              "values": {
+                "minItems": 2
+              }
+            }
+          }
+        }
+      ],
+      "description": "Categorical predicate over a state. UNKNOWN is not an admissible satisfying value: a state that is UNKNOWN makes the precondition UNKNOWN whatever the predicate says. Numeric conditions are gates, not predicates."
+    },
+    "bound": {
+      "type": "object",
+      "required": [
+        "status",
+        "value",
+        "inclusive"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "STATED",
+            "OPEN_STATED",
+            "NOT_REPORTED"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "inclusive": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "STATED",
+                  "OPEN_STATED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "number"
+              },
+              "inclusive": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "NOT_REPORTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "null"
+              },
+              "inclusive": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "One end of an interval, with its epistemic status spelled out. STATED = the cited evidence gives this limit (value in the interval's unit). OPEN_STATED = the cited evidence states that activity is not limited on this side within the studied range; `value` is then the studied extreme on this side (the most extreme value the evidence covers, required) and a query beyond it is an extrapolation: UNKNOWN, never APPLICABLE (U-4). NOT_REPORTED = the evidence is silent, so nothing can be concluded beyond the other, stated side. A bare null is not admitted: it could be read as 'unbounded', which is an imputation."
+    },
+    "interval": {
+      "type": "object",
+      "required": [
+        "unit",
+        "min",
+        "max"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "unit": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The CV registry canonical_unit of the axis (registry/condition_variable_registry_v1.csv); conversions belong to ingestion, not to this registry. A semantic validator checks unit == canonical_unit."
+        },
+        "min": {
+          "$ref": "#/$defs/bound"
+        },
+        "max": {
+          "$ref": "#/$defs/bound"
+        }
+      },
+      "description": "Evidenced activity window of the axis for the stated matrix scope: min and max are the limits beyond which the evidence reports no activity (or, for OPEN_STATED, the studied extreme). It is a window with provenance, not a universal switch (SSOT 144.1 frozen caution: no universal temperature switch). No optimum is stored: min / opt / max would be a complete cardinal-parameter set (a ready-made secondary kinetic model), which belongs to FORM / PARAM (Step 24, G21.8); gate bounds are applicability limits and are never FORM / PARAM inputs (L-21-7). Semantic check: min <= max when both are STATED, and values lie within CV valid_min / valid_max."
+    },
+    "categories": {
+      "type": "object",
+      "required": [
+        "allowed",
+        "excluded",
+        "unlisted_verdict"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "not": {
+              "pattern": "^[Uu][Nn][Kk][Nn][Oo][Ww][Nn]$"
+            }
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "excluded": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "not": {
+              "pattern": "^[Uu][Nn][Kk][Nn][Oo][Ww][Nn]$"
+            }
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "unlisted_verdict": {
+          "$ref": "#/$defs/missing_input_verdict"
+        }
+      },
+      "description": "Categorical gate domain (e.g. CV-023 additive / catalyst / enzyme, CV-022 solvent medium, CV-026 heat-transfer mode). A category in `allowed` passes, in `excluded` fails, in neither is UNKNOWN. Disjointness of the two lists is a semantic check. The token UNKNOWN (any letter case) is never an admissible allowed or excluded category: an unknown query value is UNKNOWN, it is never 'allowed' (R-15)."
+    },
+    "evidence_ref": {
+      "type": "object",
+      "required": [
+        "evidence_id",
+        "doc_type",
+        "supports",
+        "locator",
+        "lineage_root_id",
+        "lineage_status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "evidence_id": {
+          "type": "string",
+          "pattern": "^(EVD|SRC|DOC|OBS|KIN)-\\d{6}$"
+        },
+        "doc_type": {
+          "type": "string",
+          "enum": [
+            "PRIMARY",
+            "REVIEW_CONTEXT"
+          ]
+        },
+        "supports": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "MECHANISM_EXISTENCE",
+              "PARTICIPANTS",
+              "ENZYME",
+              "PRECONDITION",
+              "GATE",
+              "INHIBITOR",
+              "COMPETITION",
+              "TARGET_EFFECT",
+              "MARKER",
+              "MATRIX_SCOPE",
+              "XREF"
+            ]
+          }
+        },
+        "locator": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lineage_root_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^LROOT-\\d{6}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lineage_status": {
+          "type": "string",
+          "enum": [
+            "PRESENT",
+            "PENDING",
+            "NOT_IDENTIFIABLE",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "doc_type": {
+                "const": "PRIMARY"
+              }
+            },
+            "required": [
+              "doc_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "locator": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "lineage_status": {
+                "const": "PRESENT"
+              }
+            },
+            "required": [
+              "lineage_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "lineage_root_id": {
+                "type": "string",
+                "pattern": "^LROOT-\\d{6}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "lineage_status": {
+                "enum": [
+                  "PENDING",
+                  "NOT_IDENTIFIABLE",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "lineage_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "lineage_root_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "Evidence behind a claim in this entry. PRIMARY = the document itself reports the measurement or observation; REVIEW_CONTEXT = a review or compendium, context only (a numeric gate limit needs a PRIMARY source). `lineage_root_id` caches the lineage root of the cited evidence (04.1 key, LROOT- is a PROPOSED prefix) so that Step 23 / 27 can exclude any test case whose lineage root contributed to a gate (circularity guard). The ids point to evidence-plane records; this entry is not itself evidence."
+    },
+    "derivation_anchor": {
+      "type": "object",
+      "required": [
+        "anchor_kind",
+        "ref"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "anchor_kind": {
+          "type": "string",
+          "enum": [
+            "SSOT_SECTION",
+            "MASTER_PLAN",
+            "STEP_CARD",
+            "ES_1_2_PRIORITY_CELL",
+            "PROC_LABEL",
+            "RESEARCH_NOTE"
+          ]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "description": "Where the existence of this seed entry comes from (e.g. 'SSOT 144.1 L8976-8986', 'ES-1.2 PC-08'). An anchor says why the entry is on the list; it is not evidence that the mechanism operates in any matrix or condition."
+    },
+    "xref": {
+      "type": "object",
+      "required": [
+        "curie",
+        "relation",
+        "match_basis",
+        "xref_status",
+        "verification_status",
+        "verified_by",
+        "collision_note"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "curie": {
+          "type": "string",
+          "pattern": "^(GO:\\d{7}|EC:\\d+\\.\\d+\\.\\d+\\.(\\d+|-)|RHEA:\\d+|CHEBI:\\d+|RXNO:\\d{7}|SBO:\\d{7}|FOODON:\\d+)$"
+        },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "EXACT",
+            "BROADER",
+            "NARROWER",
+            "RELATED",
+            "NOT_EQUIVALENT_COLLISION"
+          ]
+        },
+        "match_basis": {
+          "type": "string",
+          "enum": [
+            "LABEL_MATCH_ONLY",
+            "ID_FROM_SOURCE",
+            "HUMAN_CURATED",
+            "AI_PROPOSED"
+          ]
+        },
+        "xref_status": {
+          "type": "string",
+          "enum": [
+            "PROPOSED",
+            "ACCEPTED",
+            "REJECTED"
+          ]
+        },
+        "verification_status": {
+          "type": "string",
+          "enum": [
+            "UNVERIFIED",
+            "HUMAN_VERIFIED",
+            "HUMAN_REJECTED"
+          ]
+        },
+        "verified_by": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "Kush",
+                "Parv"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "collision_note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "xref_status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "xref_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verification_status": {
+                "const": "HUMAN_VERIFIED"
+              },
+              "verified_by": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "relation": {
+                "not": {
+                  "const": "NOT_EQUIVALENT_COLLISION"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "verification_status": {
+                "const": "UNVERIFIED"
+              }
+            },
+            "required": [
+              "verification_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verified_by": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "verification_status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "verification_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "verified_by": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "verification_status": {
+                "const": "HUMAN_REJECTED"
+              }
+            },
+            "required": [
+              "verification_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "xref_status": {
+                "const": "REJECTED"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "relation": {
+                "const": "NOT_EQUIVALENT_COLLISION"
+              }
+            },
+            "required": [
+              "relation"
+            ]
+          },
+          "then": {
+            "properties": {
+              "xref_status": {
+                "const": "REJECTED"
+              },
+              "collision_note": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ],
+      "description": "Cross-reference to an external ontology (xref only; no external ontology is a backbone). Label matching is unsafe (RXNO has both Strecker degradation, RXNO:0000224, and Strecker reaction, RXNO:0000207): a label match is only ever PROPOSED, and an ACCEPTED xref needs a human (Kush or Parv). A recorded collision is kept as REJECTED with a note, not deleted (R-19 spirit)."
+    },
+    "participant": {
+      "type": "object",
+      "required": [
+        "role_label",
+        "entity",
+        "sbo_role"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "role_label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "entity": {
+          "$ref": "#/$defs/substance_ref"
+        },
+        "sbo_role": {
+          "type": "string",
+          "enum": [
+            "SBO:0000010",
+            "SBO:0000011",
+            "SBO:0000013",
+            "SBO:0000019",
+            "SBO:0000020",
+            "SBO:0000459",
+            "SBO:0000461",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "description": "SBO participant roles (reactant 0000010, product 0000011, catalyst 0000013, modifier 0000019, inhibitor 0000020, stimulator 0000459, essential activator 0000461; per r_mechanism_registry F4.1, to be human-verified as xrefs). UNKNOWN is admitted. No stoichiometry: this registry never manufactures a balanced reaction (MP W6)."
+    },
+    "enzyme": {
+      "type": "object",
+      "required": [
+        "label_raw",
+        "ec",
+        "go_mf",
+        "rhea"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "label_raw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "ec": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/xref"
+                },
+                {
+                  "properties": {
+                    "curie": {
+                      "type": "string",
+                      "pattern": "^EC:"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "go_mf": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/xref"
+                },
+                {
+                  "properties": {
+                    "curie": {
+                      "type": "string",
+                      "pattern": "^GO:"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rhea": {
+          "anyOf": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/xref"
+                },
+                {
+                  "properties": {
+                    "curie": {
+                      "type": "string",
+                      "pattern": "^RHEA:"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "precondition": {
+      "type": "object",
+      "required": [
+        "precondition_key",
+        "state_ref",
+        "subject_entity",
+        "predicate",
+        "missing_input_verdict",
+        "evidence_ids",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "precondition_key": {
+          "type": "string",
+          "pattern": "^PRE\\d{2}$"
+        },
+        "state_ref": {
+          "$ref": "#/$defs/state_ref"
+        },
+        "subject_entity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/substance_ref"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "predicate": {
+          "$ref": "#/$defs/predicate"
+        },
+        "missing_input_verdict": {
+          "$ref": "#/$defs/missing_input_verdict"
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_ids"
+        },
+        "status": {
+          "$ref": "#/$defs/item_status"
+        }
+      },
+      "description": "A state predicate that must hold for the mechanism to be able to act (substrate present, enzyme active, cell integrity not intact, water present). `subject_entity` names the substance when the state is a per-substance one (SVAR-FUT-014 'concentration of a named precursor'); null otherwise. Evaluated three-valued by Step 23: predicate true / false on a KNOWN state gives APPLICABLE / NOT_APPLICABLE, an UNKNOWN state gives UNKNOWN.",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "condition_gate": {
+      "type": "object",
+      "required": [
+        "gate_key",
+        "gate_type",
+        "cv_id",
+        "location",
+        "basis",
+        "clock",
+        "domain_kind",
+        "interval",
+        "categories",
+        "modulates",
+        "independence_assumed",
+        "matrix_scope",
+        "missing_input_verdict",
+        "evidence_ids",
+        "status",
+        "rationale_raw"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "gate_key": {
+          "type": "string",
+          "pattern": "^CG\\d{2}$"
+        },
+        "gate_type": {
+          "type": "string",
+          "enum": [
+            "NECESSARY",
+            "MODULATING",
+            "INHIBITING"
+          ]
+        },
+        "cv_id": {
+          "type": "string",
+          "pattern": "^CV-\\d{3}$"
+        },
+        "location": {
+          "type": "string",
+          "enum": [
+            "NOT_APPLICABLE",
+            "TISSUE",
+            "MEDIUM",
+            "HEADSPACE",
+            "WHOLE_ENTITY",
+            "UNKNOWN"
+          ]
+        },
+        "basis": {
+          "type": "string",
+          "enum": [
+            "NOT_APPLICABLE",
+            "WET_BASIS",
+            "DRY_BASIS",
+            "UNKNOWN"
+          ]
+        },
+        "clock": {
+          "type": "string",
+          "enum": [
+            "NOT_APPLICABLE",
+            "PROCESS_TAU"
+          ]
+        },
+        "domain_kind": {
+          "type": "string",
+          "enum": [
+            "NUMERIC_INTERVAL",
+            "CATEGORICAL_SET"
+          ]
+        },
+        "interval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/interval"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "categories": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/categories"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "modulates": {
+          "type": "string",
+          "enum": [
+            "NOT_APPLICABLE",
+            "RATE",
+            "SELECTIVITY",
+            "DIRECTION",
+            "UNKNOWN"
+          ]
+        },
+        "independence_assumed": {
+          "type": "string",
+          "enum": [
+            "ASSUMED_INDEPENDENT",
+            "INTERACTION_REPORTED",
+            "UNKNOWN"
+          ]
+        },
+        "matrix_scope": {
+          "$ref": "#/$defs/matrix_scope"
+        },
+        "missing_input_verdict": {
+          "$ref": "#/$defs/missing_input_verdict"
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_ids"
+        },
+        "status": {
+          "$ref": "#/$defs/item_status"
+        },
+        "rationale_raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "not": {
+            "properties": {
+              "cv_id": {
+                "enum": [
+                  "CV-004",
+                  "CV-009",
+                  "CV-010"
+                ]
+              }
+            },
+            "required": [
+              "cv_id"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "domain_kind": {
+                "const": "NUMERIC_INTERVAL"
+              }
+            },
+            "required": [
+              "domain_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "interval": {
+                "$ref": "#/$defs/interval"
+              },
+              "categories": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "domain_kind": {
+                "const": "CATEGORICAL_SET"
+              }
+            },
+            "required": [
+              "domain_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "categories": {
+                "$ref": "#/$defs/categories"
+              },
+              "interval": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "gate_type": {
+                "const": "MODULATING"
+              }
+            },
+            "required": [
+              "gate_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "modulates": {
+                "enum": [
+                  "RATE",
+                  "SELECTIVITY",
+                  "DIRECTION",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "gate_type": {
+                "enum": [
+                  "NECESSARY",
+                  "INHIBITING"
+                ]
+              }
+            },
+            "required": [
+              "gate_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "modulates": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "cv_id": {
+                "enum": [
+                  "CV-005",
+                  "CV-006",
+                  "CV-007",
+                  "CV-008"
+                ]
+              }
+            },
+            "required": [
+              "cv_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "location": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "cv_id": {
+                "enum": [
+                  "CV-013",
+                  "CV-015",
+                  "CV-016",
+                  "CV-021"
+                ]
+              }
+            },
+            "required": [
+              "cv_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "location": {
+                "not": {
+                  "const": "NOT_APPLICABLE"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "cv_id": {
+                "const": "CV-016"
+              }
+            },
+            "required": [
+              "cv_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "basis": {
+                "not": {
+                  "const": "NOT_APPLICABLE"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "cv_id": {
+                "not": {
+                  "const": "CV-016"
+                }
+              }
+            },
+            "required": [
+              "cv_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "basis": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "cv_id": {
+                "enum": [
+                  "CV-001",
+                  "CV-002",
+                  "CV-003"
+                ]
+              }
+            },
+            "required": [
+              "cv_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "clock": {
+                "const": "PROCESS_TAU"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "cv_id": {
+                "not": {
+                  "enum": [
+                    "CV-001",
+                    "CV-002",
+                    "CV-003"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "cv_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "clock": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "anyOf": [
+              {
+                "properties": {
+                  "interval": {
+                    "type": "object",
+                    "properties": {
+                      "min": {
+                        "properties": {
+                          "status": {
+                            "const": "STATED"
+                          }
+                        },
+                        "required": [
+                          "status"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "min"
+                    ]
+                  }
+                },
+                "required": [
+                  "interval"
+                ]
+              },
+              {
+                "properties": {
+                  "interval": {
+                    "type": "object",
+                    "properties": {
+                      "max": {
+                        "properties": {
+                          "status": {
+                            "const": "STATED"
+                          }
+                        },
+                        "required": [
+                          "status"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "max"
+                    ]
+                  }
+                },
+                "required": [
+                  "interval"
+                ]
+              }
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "categories": {
+                "type": "object",
+                "anyOf": [
+                  {
+                    "properties": {
+                      "allowed": {
+                        "minItems": 1
+                      }
+                    },
+                    "required": [
+                      "allowed"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "excluded": {
+                        "minItems": 1
+                      }
+                    },
+                    "required": [
+                      "excluded"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "categories"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              },
+              "location": {
+                "not": {
+                  "const": "UNKNOWN"
+                }
+              },
+              "basis": {
+                "not": {
+                  "const": "UNKNOWN"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "cv_id": {
+                "const": "CV-021"
+              }
+            },
+            "required": [
+              "cv_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "location": {
+                "enum": [
+                  "HEADSPACE",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "description": "An activation condition on one axis of registry/condition_variable_registry_v1.csv. NECESSARY: outside the window the mechanism does not act. MODULATING: changes direction / selectivity / rate and never changes the applicability verdict. INHIBITING: inside the window the mechanism is blocked. Location is carried by the CV id for temperature (CV-005..CV-008). Three axes are never gate axes: CV-009 'temperature, location unspecified' (never promoted to core or surface), and the two trajectory axes CV-004 / CV-010 (a gate needs a scalar or interval input; trajectory dependence is a history item, e.g. cumulative thermal dose) and stated here for pH, water activity, moisture and oxygen (tissue vs medium is never averaged); moisture needs a wet / dry basis; time axes use the process clock PROCESS_TAU only (03.3 clock vocabulary pending, as in 04.3). Matrix scope is stated per gate. The seed entries carry NO gates: gates come from reviewed evidence (21b), and until then the entry says gates_unknown = true. CV-021 is the headspace oxygen volume fraction, so its location is HEADSPACE or UNKNOWN only (dissolved oxygen in the medium has no CV axis: gap G-8)."
+    },
+    "inhibitor": {
+      "type": "object",
+      "required": [
+        "inhibitor_key",
+        "role",
+        "agent_or_condition_raw",
+        "sbo_role",
+        "extent",
+        "evaluated_via",
+        "missing_input_verdict",
+        "evidence_ids",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "inhibitor_key": {
+          "type": "string",
+          "pattern": "^INH\\d{2}$"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "INHIBITOR",
+            "MITIGATOR",
+            "CATALYST",
+            "PROMOTER"
+          ]
+        },
+        "agent_or_condition_raw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sbo_role": {
+          "type": "string",
+          "enum": [
+            "SBO:0000020",
+            "SBO:0000019",
+            "SBO:0000013",
+            "SBO:0000459"
+          ]
+        },
+        "extent": {
+          "type": "string",
+          "enum": [
+            "COMPLETE",
+            "PARTIAL",
+            "UNKNOWN",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "evaluated_via": {
+          "type": "object",
+          "required": [
+            "mode",
+            "gate_key",
+            "state_ref",
+            "predicate"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "mode": {
+              "type": "string",
+              "enum": [
+                "GATE",
+                "STATE_PREDICATE",
+                "NOT_EVALUABLE_YET"
+              ]
+            },
+            "gate_key": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^CG\\d{2}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "state_ref": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/state_ref"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "predicate": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/predicate"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "mode": {
+                    "const": "GATE"
+                  }
+                },
+                "required": [
+                  "mode"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "gate_key": {
+                    "type": "string",
+                    "pattern": "^CG\\d{2}$"
+                  },
+                  "state_ref": {
+                    "type": "null"
+                  },
+                  "predicate": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "mode": {
+                    "const": "STATE_PREDICATE"
+                  }
+                },
+                "required": [
+                  "mode"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "gate_key": {
+                    "type": "null"
+                  },
+                  "state_ref": {
+                    "$ref": "#/$defs/state_ref"
+                  },
+                  "predicate": {
+                    "$ref": "#/$defs/predicate"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "mode": {
+                    "const": "NOT_EVALUABLE_YET"
+                  }
+                },
+                "required": [
+                  "mode"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "gate_key": {
+                    "type": "null"
+                  },
+                  "state_ref": {
+                    "type": "null"
+                  },
+                  "predicate": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "missing_input_verdict": {
+          "$ref": "#/$defs/missing_input_verdict"
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_ids"
+        },
+        "status": {
+          "$ref": "#/$defs/item_status"
+        },
+        "acts_on_modifier_key": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^INH\\d{2}$"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "description": "Optional (absent = null). Key of another modifier in this entry that this one acts on, e.g. a chelating INHIBITOR pointing at a metal CATALYST. Semantic check: the key exists and names a CATALYST or PROMOTER."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "CATALYST",
+                  "PROMOTER"
+                ]
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "extent": {
+                "const": "NOT_APPLICABLE"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "INHIBITOR",
+                  "MITIGATOR"
+                ]
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "extent": {
+                "enum": [
+                  "COMPLETE",
+                  "PARTIAL",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "CATALYST"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "sbo_role": {
+                "const": "SBO:0000013"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "const": "PROMOTER"
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "sbo_role": {
+                "const": "SBO:0000459"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "INHIBITOR",
+                  "MITIGATOR"
+                ]
+              }
+            },
+            "required": [
+              "role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "sbo_role": {
+                "enum": [
+                  "SBO:0000020",
+                  "SBO:0000019"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "acts_on_modifier_key": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "acts_on_modifier_key"
+            ]
+          },
+          "then": {
+            "properties": {
+              "role": {
+                "enum": [
+                  "INHIBITOR",
+                  "MITIGATOR"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "description": "MODIFIER of the mechanism (the list is still named inhibitors_mitigators after the card). INHIBITOR blocks and MITIGATOR reduces it: an agent (acid, antioxidant, sulfite ...), a condition (chilling, oxygen exclusion) or an intervention (blanching: enzyme inactivation). CATALYST (SBO:0000013) and PROMOTER (SBO:0000459) are things whose presence or amount speeds or enables the mechanism (a metal ion, a sensitising light); they never change the G4 verdict (Step 23), but every modifier axis must be listed in Step 22's required_condition_axes so that G7 (input observability) can return UNKNOWN when a catalyst or promoter input is missing (21-3). A CATALYST or PROMOTER has extent NOT_APPLICABLE. It is evaluated through exactly one of: a gate of this entry (mode GATE; semantic check: an INHIBITING gate for INHIBITOR / MITIGATOR, a MODULATING gate for CATALYST / PROMOTER), an inline state predicate, or NOT_EVALUABLE_YET (documented but not yet formalised: the item then contributes UNKNOWN and the entry must carry gates_unknown = true). `extent` PARTIAL is the 'downgrade to QUALITATIVE' case of Step 23; an inhibitor that is present with extent UNKNOWN is UNKNOWN, not NOT_APPLICABLE (proposed reading, H4)."
+    },
+    "competes_with": {
+      "type": "object",
+      "required": [
+        "mechanism_key",
+        "shared_target",
+        "relation",
+        "evidence_ids",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "mechanism_key": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "shared_target": {
+          "$ref": "#/$defs/state_ref"
+        },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "PARALLEL_PATHWAY",
+            "SUBSTRATE_COMPETITION",
+            "TRANSPORT_VS_REACTION",
+            "LUMPED_OVERLAP",
+            "COUPLED_REDOX",
+            "UNKNOWN"
+          ]
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_ids"
+        },
+        "status": {
+          "$ref": "#/$defs/item_status"
+        }
+      },
+      "description": "Another mechanism that acts on the same target (SSOT 210.18 parallel pathways; 210.21 degradation vs leaching = TRANSPORT_VS_REACTION; LUMPED_OVERLAP = a lumped entry and a specific entry that cover the same chemistry, e.g. a Maillard-Strecker lumped entry and an acrylamide-formation entry). Declared on BOTH entries (semantic check: symmetric closure), because a one-sided declaration could hide a competitor from the Step-23 competing-mechanism gate. Referenced by mechanism_key (stable, human-readable) because ids are minted from keys and the partner may not be minted yet (H4 item). COUPLED_REDOX = one mechanism is consumed while it acts on another (a sacrificial reductant or a pro-oxidant coupling): neither PARALLEL nor SUBSTRATE competition describes 'A inhibits B by being consumed' (21-14; which pairs exist is a 21b review matter).",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "consecutive_with": {
+      "type": "object",
+      "required": [
+        "mechanism_key",
+        "order",
+        "shared_species",
+        "evidence_ids",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "mechanism_key": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+        },
+        "order": {
+          "type": "string",
+          "enum": [
+            "THIS_PRECEDES_OTHER",
+            "OTHER_PRECEDES_THIS",
+            "UNKNOWN"
+          ]
+        },
+        "shared_species": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/state_ref"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_ids"
+        },
+        "status": {
+          "$ref": "#/$defs/item_status"
+        }
+      },
+      "description": "Consecutive formation / degradation (SSOT 210.17): an intermediate that rises, peaks and falls. Also declared on both entries with the converse order (semantic check).",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "affected_target": {
+      "type": "object",
+      "required": [
+        "target_key",
+        "target",
+        "target_role",
+        "analyte_form",
+        "compartment",
+        "effect_type",
+        "allowed_directions",
+        "trajectory_shape",
+        "evidence_ids",
+        "status",
+        "target_class"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "target_key": {
+          "type": "string",
+          "pattern": "^TGT\\d{2}$"
+        },
+        "target": {
+          "$ref": "#/$defs/state_ref"
+        },
+        "target_role": {
+          "type": "string",
+          "enum": [
+            "SUBSTRATE",
+            "PRODUCT",
+            "UNKNOWN"
+          ],
+          "description": "Role of this target in the mechanism: a reactant or substrate that the mechanism consumes, a product it forms, or UNKNOWN. For OXIDIZED / REDUCED the role fixes the sign (a substrate cannot increase; a product must be able to increase), so a stated species cannot validate with the opposite sign (21-11). UNKNOWN is a valid answer and leaves the direction open."
+        },
+        "analyte_form": {
+          "type": "object",
+          "required": [
+            "status",
+            "text",
+            "token",
+            "token_status"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "STATED",
+                "NOT_REPORTED",
+                "UNKNOWN"
+              ]
+            },
+            "text": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "token": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[A-Z][A-Z0-9_]{1,63}$",
+                  "not": {
+                    "const": "UNKNOWN"
+                  }
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "token_status": {
+              "type": "string",
+              "enum": [
+                "NO_APPROVED_REGISTRY",
+                "REGISTRY_TOKEN",
+                "NOT_APPLICABLE"
+              ]
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "STATED"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_REPORTED",
+                      "UNKNOWN"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "text": {
+                    "type": "null"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "const": "STATED"
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "token_status": {
+                    "enum": [
+                      "NO_APPROVED_REGISTRY",
+                      "REGISTRY_TOKEN"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "NOT_REPORTED",
+                      "UNKNOWN"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "token_status": {
+                    "const": "NOT_APPLICABLE"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "token_status": {
+                    "const": "REGISTRY_TOKEN"
+                  }
+                },
+                "required": [
+                  "token_status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "token_status": {
+                    "enum": [
+                      "NO_APPROVED_REGISTRY",
+                      "NOT_APPLICABLE"
+                    ]
+                  }
+                },
+                "required": [
+                  "token_status"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "token": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Same convention as KIN.target.analyte_form (04.3): the exact chemical form the target names, e.g. 'parent compound' vs 'parent compound + its oxidised form', or 'pigment species' vs 'a colour value' (the form decides which basis a later comparison is on; free text here, a controlled token list is open question D21-22). NOT_REPORTED is a valid answer. v1.1: `token` slot (same convention as KIN v1.1 target.analyte_form): a machine-comparable token from an APPROVED analyte-form registry (token_status REGISTRY_TOKEN). No registry is approved; the token list is expert question EQ21-06 and is not defined in this schema. UNKNOWN is never a token."
+        },
+        "compartment": {
+          "type": "string",
+          "enum": [
+            "TISSUE",
+            "COOKING_MEDIUM",
+            "WHOLE_SYSTEM",
+            "NOT_APPLICABLE",
+            "UNKNOWN"
+          ]
+        },
+        "effect_type": {
+          "type": "string",
+          "enum": [
+            "FORMED",
+            "DEGRADED",
+            "CONSUMED",
+            "OXIDIZED",
+            "REDUCED",
+            "ISOMERIZED",
+            "LEACHED",
+            "VOLATILIZED",
+            "DENATURED",
+            "AGGREGATED",
+            "GELATINIZED",
+            "FERMENTED",
+            "UNKNOWN_TRANSFORMATION",
+            "ABSORBED",
+            "STRUCTURE_ALTERED",
+            "STATE_SET"
+          ]
+        },
+        "allowed_directions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "enum": [
+              "INCREASE",
+              "DECREASE",
+              "UNKNOWN"
+            ]
+          }
+        },
+        "trajectory_shape": {
+          "type": "string",
+          "enum": [
+            "MONOTONIC",
+            "PEAK_THEN_DECLINE",
+            "UNKNOWN"
+          ]
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_ids"
+        },
+        "status": {
+          "$ref": "#/$defs/item_status"
+        },
+        "target_class": {
+          "type": "string",
+          "enum": [
+            "SPECIES",
+            "TRANSFERRED_AMOUNT",
+            "OBSERVABLE",
+            "STATE",
+            "UNKNOWN"
+          ],
+          "description": "v1.1. The target class of ontology section 3.2 (in v1 only a reviewer guide in the effect-type CSV column target_class). UNKNOWN is a valid answer. A MONOTONIC trajectory on an OBSERVABLE or UNKNOWN-class target is a claim and needs at least one evidence id (round-3 Review B 21-17: an observable can be non-monotone for reasons outside the mechanism); without evidence write trajectory_shape UNKNOWN. This rule asserts nothing about any particular observable. The class / effect-type agreement with the CSV is a semantic check."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "allowed_directions": {
+                "contains": {
+                  "const": "UNKNOWN"
+                }
+              }
+            },
+            "required": [
+              "allowed_directions"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "maxItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "const": "FORMED"
+              }
+            },
+            "required": [
+              "effect_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "anyOf": [
+                  {
+                    "contains": {
+                      "const": "INCREASE"
+                    }
+                  },
+                  {
+                    "items": {
+                      "const": "UNKNOWN"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "enum": [
+                  "DEGRADED",
+                  "CONSUMED"
+                ]
+              }
+            },
+            "required": [
+              "effect_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "items": {
+                  "enum": [
+                    "DECREASE",
+                    "UNKNOWN"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "enum": [
+                  "LEACHED",
+                  "ABSORBED"
+                ]
+              }
+            },
+            "required": [
+              "effect_type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "compartment": {
+                "enum": [
+                  "TISSUE",
+                  "COOKING_MEDIUM",
+                  "UNKNOWN"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "enum": [
+                  "LEACHED",
+                  "VOLATILIZED"
+                ]
+              },
+              "compartment": {
+                "const": "TISSUE"
+              }
+            },
+            "required": [
+              "effect_type",
+              "compartment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "items": {
+                  "enum": [
+                    "DECREASE",
+                    "UNKNOWN"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "const": "LEACHED"
+              },
+              "compartment": {
+                "const": "COOKING_MEDIUM"
+              }
+            },
+            "required": [
+              "effect_type",
+              "compartment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "items": {
+                  "enum": [
+                    "INCREASE",
+                    "UNKNOWN"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "const": "ABSORBED"
+              },
+              "compartment": {
+                "const": "TISSUE"
+              }
+            },
+            "required": [
+              "effect_type",
+              "compartment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "items": {
+                  "enum": [
+                    "INCREASE",
+                    "UNKNOWN"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "const": "ABSORBED"
+              },
+              "compartment": {
+                "const": "COOKING_MEDIUM"
+              }
+            },
+            "required": [
+              "effect_type",
+              "compartment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "items": {
+                  "enum": [
+                    "DECREASE",
+                    "UNKNOWN"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "const": "VOLATILIZED"
+              },
+              "compartment": {
+                "const": "WHOLE_SYSTEM"
+              }
+            },
+            "required": [
+              "effect_type",
+              "compartment"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "items": {
+                  "enum": [
+                    "DECREASE",
+                    "UNKNOWN"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "enum": [
+                  "OXIDIZED",
+                  "REDUCED"
+                ]
+              },
+              "target_role": {
+                "const": "SUBSTRATE"
+              }
+            },
+            "required": [
+              "effect_type",
+              "target_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "items": {
+                  "enum": [
+                    "DECREASE",
+                    "UNKNOWN"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "effect_type": {
+                "enum": [
+                  "OXIDIZED",
+                  "REDUCED"
+                ]
+              },
+              "target_role": {
+                "const": "PRODUCT"
+              }
+            },
+            "required": [
+              "effect_type",
+              "target_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_directions": {
+                "anyOf": [
+                  {
+                    "contains": {
+                      "const": "INCREASE"
+                    }
+                  },
+                  {
+                    "items": {
+                      "const": "UNKNOWN"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "trajectory_shape": {
+                "const": "MONOTONIC"
+              },
+              "target_class": {
+                "enum": [
+                  "OBSERVABLE",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "required": [
+              "trajectory_shape",
+              "target_class"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ],
+      "description": "What the mechanism acts on and how. `effect_type` is the effect class (registry/effect_type_registry_draft_v1.csv, aligned to RXN relation verbs); `allowed_directions` is the set of directions the mechanism may push the target (INCREASE / DECREASE, or exactly [UNKNOWN]); EVD derived.direction NO_CHANGE and MIXED are outcomes, not mechanism directions (a set with both INCREASE and DECREASE, or trajectory_shape PEAK_THEN_DECLINE, is compatible with an observed MIXED; a products-can-peak-and-decline mechanism is SSOT 144.1 / 210.17). No magnitude, rate or extent of any kind is stored: those are FORM / PARAM (Step 24). Compartment rules: LEACHED and ABSORBED never use WHOLE_SYSTEM (a transfer conserves the system); VOLATILIZED may (a loss from the system, DECREASE only; SSOT 210.22 gives the volatile loss -k_vol c and names no receiving compartment, so no COOKING_MEDIUM direction rule exists for it)."
+    },
+    "marker": {
+      "type": "object",
+      "required": [
+        "marker_key",
+        "marker",
+        "marker_unique",
+        "sharing_status",
+        "shared_with_mechanism_keys",
+        "evidence_ids",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "marker_key": {
+          "type": "string",
+          "pattern": "^MRK\\d{2}$"
+        },
+        "marker": {
+          "$ref": "#/$defs/substance_ref"
+        },
+        "marker_unique": {
+          "const": false
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_ids"
+        },
+        "status": {
+          "$ref": "#/$defs/item_status"
+        },
+        "sharing_status": {
+          "type": "string",
+          "enum": [
+            "SHARED_DECLARED",
+            "NOT_ASSESSED"
+          ]
+        },
+        "shared_with_mechanism_keys": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]{2,63}$"
+          }
+        }
+      },
+      "description": "A compound or observable associated with the mechanism (HMF, colour, pyrazines, hexanal are the SSOT 144.1 examples). marker_unique is the constant false in v1: a marker is never a unique pathway identifier, and an effect signature may not infer a mechanism from a marker alone. Admitting a unique marker would be a v1.1 schema change with an H4 decision. v1.1 (round-3 Review B 21-19): sharing_status / shared_with_mechanism_keys declare other entries that can produce the same marker, so that reviewers and Step 22 see the ambiguity. There is no 'not shared' value: not knowing of another source never makes a marker unique.",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "sharing_status": {
+                "const": "SHARED_DECLARED"
+              }
+            },
+            "required": [
+              "sharing_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "shared_with_mechanism_keys": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "sharing_status": {
+                "const": "NOT_ASSESSED"
+              }
+            },
+            "required": [
+              "sharing_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "shared_with_mechanism_keys": {
+                "maxItems": 0
+              }
+            }
+          }
+        }
+      ]
+    },
+    "history_item": {
+      "type": "object",
+      "required": [
+        "state_ref",
+        "role",
+        "evidence_ids",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "state_ref": {
+          "$ref": "#/$defs/state_ref"
+        },
+        "role": {
+          "type": "string",
+          "enum": [
+            "INPUT_REQUIRED",
+            "MODULATES_DIRECTION_OR_SELECTIVITY",
+            "ACTIVE_UNTIL_STATE_CHANGE",
+            "INPUT_REQUIRED_START_MODE",
+            "UNKNOWN"
+          ]
+        },
+        "evidence_ids": {
+          "$ref": "#/$defs/evidence_ids"
+        },
+        "status": {
+          "$ref": "#/$defs/item_status"
+        }
+      },
+      "description": "A history-derived state variable that Step 18 must carry for this mechanism to be evaluable (enzyme activity state, cell integrity, time since disruption, cumulative thermal dose, oxygen exposure, precursor depletion, prior acid / salt exposure). Names are owned by 16a (CHG-21-3); this registry only references them. The thermal-dose definition (reference temperature, Ea) is a Step-24 matter and is not stored here. Roles ACTIVE_UNTIL_STATE_CHANGE (the state holds until a state change inside this event, e.g. enzyme activity until thermal inactivation) and INPUT_REQUIRED_START_MODE (the cold / boiling start mode and thermal dose of the event are required inputs; CHG-16-7 start_mode) were added after review (21-4); their names are owned by 16a.",
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "ACCEPTED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "evidence_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "review": {
+      "type": "object",
+      "required": [
+        "dual_blind_status",
+        "reviewer_ids",
+        "adjudication_ref",
+        "review_provenance_valid",
+        "review_packet_row_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "dual_blind_status": {
+          "type": "string",
+          "enum": [
+            "NOT_STARTED",
+            "ONE_REVIEWER",
+            "DUAL_BLIND_DONE",
+            "ADJUDICATED"
+          ]
+        },
+        "reviewer_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Kush",
+              "Parv",
+              "EXPERT"
+            ]
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "adjudication_ref": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "review_provenance_valid": {
+          "type": "string",
+          "enum": [
+            "VALID",
+            "INVALID",
+            "NOT_CHECKED"
+          ]
+        },
+        "review_packet_row_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        }
+      },
+      "description": "G21.6 record: every ACCEPTED entry is dual-reviewed blind with a recorded adjudication and a passed provenance-validity check (07H v1-v3 provenance failures). The review packet itself is annotation/mechanism_review/step21_review_packet_v1.csv (not created here)."
+    },
+    "open_question": {
+      "type": "object",
+      "required": [
+        "question_ref",
+        "topic_raw",
+        "status",
+        "answer_locator",
+        "decision_ref"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "question_ref": {
+          "type": "string",
+          "pattern": "^EQ21-\\d{2}$"
+        },
+        "topic_raw": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "OPEN",
+            "EXPERT_ANSWER_RECORDED_PENDING_HUMAN_REVIEW",
+            "CLOSED_BY_HUMAN_DECISION"
+          ]
+        },
+        "answer_locator": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "decision_ref": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^D-\\d{3}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "EXPERT_ANSWER_RECORDED_PENDING_HUMAN_REVIEW"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "answer_locator": {
+                "type": "string",
+                "minLength": 1
+              },
+              "decision_ref": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "CLOSED_BY_HUMAN_DECISION"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision_ref": {
+                "type": "string",
+                "pattern": "^D-\\d{3}$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "OPEN"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "decision_ref": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ],
+      "description": "v1.1. A chemistry or scope question that must be answered before this entry may be ACCEPTED (question_ref = an EQ21-nn item of reports/step21/S158_expert_questions.md). An expert answer is recorded but does not close the question: only a human decision of Kush and Parv (a DECISIONS.md id) does (D-045). An AI review never closes it."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "HUMAN_VERIFIED",
+                  "HUMAN_REJECTED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        },
+        "required": [
+          "verification"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "required": [
+              "verifier",
+              "verified_at"
+            ],
+            "properties": {
+              "verifier": {
+                "type": "string",
+                "enum": [
+                  "Kush",
+                  "Parv"
+                ]
+              },
+              "verified_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "gates_unknown": {
+            "const": false
+          }
+        },
+        "required": [
+          "gates_unknown"
+        ]
+      },
+      "then": {
+        "anyOf": [
+          {
+            "properties": {
+              "preconditions": {
+                "minItems": 1
+              }
+            },
+            "required": [
+              "preconditions"
+            ]
+          },
+          {
+            "properties": {
+              "condition_gates": {
+                "contains": {
+                  "properties": {
+                    "gate_type": {
+                      "const": "NECESSARY"
+                    }
+                  },
+                  "required": [
+                    "gate_type"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "condition_gates"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "inhibitors_mitigators": {
+            "contains": {
+              "properties": {
+                "evaluated_via": {
+                  "properties": {
+                    "mode": {
+                      "const": "NOT_EVALUABLE_YET"
+                    }
+                  },
+                  "required": [
+                    "mode"
+                  ]
+                }
+              },
+              "required": [
+                "evaluated_via"
+              ]
+            }
+          }
+        },
+        "required": [
+          "inhibitors_mitigators"
+        ]
+      },
+      "then": {
+        "properties": {
+          "gates_unknown": {
+            "const": true
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "ENZYMATIC"
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "enzyme": {
+            "$ref": "#/$defs/enzyme"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "not": {
+              "const": "ENZYMATIC"
+            }
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "enzyme": {
+            "type": "null"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "not": {
+              "const": "UNRESOLVED_SINK"
+            }
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "affected_targets": {
+            "minItems": 1
+          },
+          "family": {
+            "not": {
+              "const": "UNRESOLVED"
+            }
+          },
+          "edge_semantics": {
+            "not": {
+              "const": "NOT_APPLICABLE"
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "UNRESOLVED_SINK"
+          }
+        },
+        "required": [
+          "kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "family": {
+            "const": "UNRESOLVED"
+          },
+          "edge_semantics": {
+            "const": "NOT_APPLICABLE"
+          },
+          "gates_unknown": {
+            "const": true
+          },
+          "enzyme": {
+            "type": "null"
+          },
+          "participants": {
+            "maxItems": 0
+          },
+          "preconditions": {
+            "maxItems": 0
+          },
+          "condition_gates": {
+            "maxItems": 0
+          },
+          "inhibitors_mitigators": {
+            "maxItems": 0
+          },
+          "competes_with": {
+            "maxItems": 0
+          },
+          "consecutive_with": {
+            "maxItems": 0
+          },
+          "affected_targets": {
+            "maxItems": 0
+          },
+          "markers": {
+            "maxItems": 0
+          },
+          "history_dependence": {
+            "maxItems": 0
+          },
+          "xrefs": {
+            "maxItems": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "provenance_class": {
+            "const": "EXTERNAL_VERIFIED"
+          }
+        },
+        "required": [
+          "provenance_class"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "const": "HUMAN_VERIFIED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "review_status": {
+            "const": "ACCEPTED"
+          }
+        },
+        "required": [
+          "review_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "verification": {
+            "properties": {
+              "status": {
+                "const": "HUMAN_VERIFIED"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "review": {
+            "properties": {
+              "dual_blind_status": {
+                "enum": [
+                  "DUAL_BLIND_DONE",
+                  "ADJUDICATED"
+                ]
+              },
+              "review_provenance_valid": {
+                "const": "VALID"
+              },
+              "reviewer_ids": {
+                "minItems": 2
+              }
+            }
+          },
+          "evidence_refs": {
+            "minItems": 1,
+            "contains": {
+              "properties": {
+                "doc_type": {
+                  "const": "PRIMARY"
+                }
+              },
+              "required": [
+                "doc_type"
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "review_status": {
+            "const": "ACCEPTED"
+          }
+        },
+        "required": [
+          "review_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "open_questions": {
+            "items": {
+              "properties": {
+                "status": {
+                  "const": "CLOSED_BY_HUMAN_DECISION"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
