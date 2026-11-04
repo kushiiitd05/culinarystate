@@ -75,15 +75,31 @@ def test_unsigned_record_matches_current_bytes_and_is_refused():
     bound = {_rel_to_root(b["path"]): b["sha256"] for b in rec["bound_files"]}
     for rel, digest in bound.items():
         assert _sha(REPO / rel) == digest, rel
-    present = {p for p in er.package_inputs() if (REPO / p).is_file()}
-    assert set(bound) == present
-    assert sorted(rec["not_bound_absent_here"]) == sorted(set(er.package_inputs()) - present)
+    # Self-consistency of the committed record, independent of which machine runs the test
+    # (the Mac holds MAC_ONLY_INPUTS; the cloud container does not).
+    absent = set(rec["not_bound_absent_here"])
+    assert not set(bound) & absent
+    assert set(bound) | absent == set(er.package_inputs())
+    assert absent <= set(er.MAC_ONLY_INPUTS)
     with pytest.raises(PreregNotSigned, match="no valid signer"):
-        require_signed_prereg(V2, UNSIGNED, required_files=[REPO / p for p in present])
+        require_signed_prereg(V2, UNSIGNED, required_files=[REPO / p for p in bound])
 
 
 def test_unsigned_record_is_reproducible_from_the_builder():
-    assert json.loads(UNSIGNED.read_text(encoding="utf-8")) == er.build_unsigned_record(REPO)
+    committed = json.loads(UNSIGNED.read_text(encoding="utf-8"))
+    rebuilt = er.build_unsigned_record(REPO)
+    if set(rebuilt["not_bound_absent_here"]) == set(committed["not_bound_absent_here"]):
+        assert rebuilt == committed
+        return
+    # Machine with the Mac-only recipe files present (Route B): the rebuilt record keeps every
+    # committed hash unchanged and additionally binds only Mac-only inputs.
+    cb = {_rel_to_root(b["path"]): b["sha256"] for b in committed["bound_files"]}
+    rb = {_rel_to_root(b["path"]): b["sha256"] for b in rebuilt["bound_files"]}
+    assert {k: rb.get(k) for k in cb} == cb
+    assert set(rb) - set(cb) <= set(er.MAC_ONLY_INPUTS)
+    assert set(rebuilt["not_bound_absent_here"]) <= set(committed["not_bound_absent_here"])
+    same = {k: v for k, v in committed.items() if k not in {"bound_files", "not_bound_absent_here"}}
+    assert {k: rebuilt[k] for k in same} == same
 
 
 def test_signed_record_absent():
