@@ -1,0 +1,100 @@
+{
+ "contains_ids": false,
+ "contains_text": false,
+ "evd_latest_rows": 18156,
+ "label": "EXPLORATORY_DIAGNOSTIC_ONLY",
+ "loss": "absolute error on retention fraction",
+ "mae_test": {
+  "D0": 0.8846991037131883,
+  "D1": 0.9679641485275289,
+  "D2": 0.9826952624839949
+ },
+ "measured_rows_used": 11564,
+ "not_preregistered": true,
+ "paired_comparisons": {
+  "D0->D1": {
+   "confidence": 0.95,
+   "delta_definition": "baseline_loss - challenger_loss (positive = challenger better)",
+   "estimate": -0.06142025076028183,
+   "interval_rule": "percentile: lower = sorted[floor(a/2*B)], upper = sorted[ceil((1-a/2)*B)-1], a = 1-confidence",
+   "labels": [
+    "DIAGNOSTIC_ONLY"
+   ],
+   "lower": -0.10155688034188037,
+   "margin": 0.0,
+   "n_clusters": 25,
+   "n_resamples": 2000,
+   "n_rows": 781,
+   "seed_sha256": "7e556412c6b0524ad9ff04fcbbbf06a89ea51614a070927cbea97a87ebe36da1",
+   "status": "DRAFT_PENDING_30_0",
+   "upper": -0.027022165532879838,
+   "verdict": "NOT_ABOVE_MARGIN",
+   "weighting": "CLUSTER"
+  },
+  "D0->D2": {
+   "confidence": 0.95,
+   "delta_definition": "baseline_loss - challenger_loss (positive = challenger better)",
+   "estimate": -0.0804932531529892,
+   "interval_rule": "percentile: lower = sorted[floor(a/2*B)], upper = sorted[ceil((1-a/2)*B)-1], a = 1-confidence",
+   "labels": [
+    "DIAGNOSTIC_ONLY"
+   ],
+   "lower": -0.14365138676540856,
+   "margin": 0.0,
+   "n_clusters": 25,
+   "n_resamples": 2000,
+   "n_rows": 781,
+   "seed_sha256": "7e556412c6b0524ad9ff04fcbbbf06a89ea51614a070927cbea97a87ebe36da1",
+   "status": "DRAFT_PENDING_30_0",
+   "upper": -0.029115057732122963,
+   "verdict": "NOT_ABOVE_MARGIN",
+   "weighting": "CLUSTER"
+  },
+  "D1->D2": {
+   "confidence": 0.95,
+   "delta_definition": "baseline_loss - challenger_loss (positive = challenger better)",
+   "estimate": -0.019073002392707362,
+   "interval_rule": "percentile: lower = sorted[floor(a/2*B)], upper = sorted[ceil((1-a/2)*B)-1], a = 1-confidence",
+   "labels": [
+    "DIAGNOSTIC_ONLY"
+   ],
+   "lower": -0.07198355442176868,
+   "margin": 0.0,
+   "n_clusters": 25,
+   "n_resamples": 2000,
+   "n_rows": 781,
+   "seed_sha256": "7e556412c6b0524ad9ff04fcbbbf06a89ea51614a070927cbea97a87ebe36da1",
+   "status": "DRAFT_PENDING_30_0",
+   "upper": 0.01585047175391895,
+   "verdict": "NOT_ABOVE_MARGIN",
+   "weighting": "CLUSTER"
+  }
+ },
+ "registry_manifest_sha256": "bd459598bf64f2eb99689b350fdcc97ceacd127883743e20e9abdc68720bc1fe",
+ "split": {
+  "assignment_sha256": "29fe6a73570f782e3b21c375041b0f4130e7656b00ef85c878cc3eb9ab07e1be",
+  "group_columns": [
+   "grp"
+  ],
+  "n_components": {
+   "TEST": 25,
+   "TRAIN": 102
+  },
+  "n_excluded_components": 0,
+  "n_rows": {
+   "TEST": 781,
+   "TRAIN": 10783
+  },
+  "note": "",
+  "roles": [
+   "TRAIN",
+   "TEST"
+  ],
+  "rule_id": "eval-split-sha256-rank-v1",
+  "seed": "exploratory-split-2026-11-04",
+  "status": "DRAFT_PENDING_15_0"
+ },
+ "test_source_families": [
+  "PE"
+ ]
+}
