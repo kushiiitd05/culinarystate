@@ -29,3 +29,10 @@ Reproduced unchanged: cuisine census (`tools/step35_foodcom_tag_census.py`) and 
 - Step 19 packet maker and annotation: packet tools not built; annotation is human work.
 - Step 30 bake-off, 34a/34c: need frozen data and signed pre-registrations.
 - GPU and evidence-extraction jobs: VPN and human gates.
+
+## Final attempts and why the rest stops here
+- 15a.R seal, `check` with a seed-file and sealed-out path outside git: still refuses. The 15.0 decision must carry `15.0 RESERVED_FRACTION`, `RESERVED_UNIT`, `RESERVED_STRATIFY` and `15a.R SEED_SHA256` lines (none exist; a human writes them) and the seed file must be human-supplied. Running `seal --execute` would need an agent-chosen fraction and seed, so it was not run.
+- 29-diag: same 15.0 and seal dependency, plus a signed 29-diag pre-registration (Kush) and a frozen 15a snapshot (`frozen snapshots: []`). Not run.
+- Step 30 bake-off: `ModelRegistry` holds 0 models and is unfrozen; `GroupSplit` needs the frozen 15a assignment; `paired_cluster_bootstrap` requires a pre-registered `margin` with no default. An agent-built split and margin would be a post-hoc rule choice, so no bake-off was run.
+- Step 34a/34c, Step 35 a-e: signature gates, refused as recorded above.
+- Step 19 packet maker: no tool exists (`tools/` has only the Step 07/08a packet builders). Building it is new engineering, not a run; annotation itself is human work.
