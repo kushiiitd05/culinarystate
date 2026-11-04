@@ -1,0 +1,711 @@
+{
+  "auditor_version": "STEP17A_INVENTED_VALUE_AUDITOR_V1_DRAFT",
+  "baseline_check": "PASS_BEFORE_AND_AFTER",
+  "by_family": {
+    "A1_BBC_GOOD_FOOD": {
+      "allocations": {
+        "RESERVE": 2,
+        "SPLIT": 8
+      },
+      "ambiguity_count": 58,
+      "diagnostics": {
+        "AMBIGUOUS_ACTION": 4,
+        "AMBIGUOUS_REFERENCE": 6,
+        "BARE_TEMPERATURE_UNIT_AMBIGUOUS": 8,
+        "COMBINE_WITH_CURRENT": 60,
+        "IMPLICIT_ARG_AMBIGUOUS": 44,
+        "IMPLICIT_ARG_BOUND": 183,
+        "IMPLICIT_ARG_NONE": 7,
+        "INTERMEDIATE_NEW_ENTITY": 1,
+        "LEXICAL_COREF_DESCENDANT": 115,
+        "LEXICAL_COREF_REUSE": 5,
+        "LEXICAL_REPEAT_NEW_LOT": 1,
+        "PLURAL_STRIP": 64,
+        "PROC_LEMMA_GUESS": 1,
+        "REF_ARG_UNRESOLVED": 4,
+        "SPLIT_COUNT_UNKNOWN": 9
+      },
+      "entities": {
+        "INGREDIENT_LOT": 234,
+        "INTERMEDIATE": 388,
+        "MIXTURE": 87,
+        "RESERVED_PORTION": 2
+      },
+      "events": 470,
+      "exceptions": {},
+      "failures": {
+        "build_events": {},
+        "extract_mentions": {},
+        "ground_quantity": {
+          "UNRESOLVED": 18
+        },
+        "link": {
+          "NO_VALID_CANDIDATE": 27,
+          "UNRESOLVED": 4
+        },
+        "resolve_refs": {
+          "NO_VALID_CANDIDATE": 2,
+          "UNRESOLVED": 6
+        }
+      },
+      "invented_by_code": {},
+      "invented_count": 0,
+      "links": {
+        "AMBIGUOUS_CANDIDATES": 4,
+        "REFERRING_EXPRESSION": 27,
+        "SELECTED": 1004
+      },
+      "mentions": {
+        "ACTION": 470,
+        "CONDITION_CUE": 8,
+        "DURATION": 57,
+        "ENDPOINT": 44,
+        "FOOD_MENTION": 391,
+        "INTERMEDIATE_MENTION": 12,
+        "QUANTITY_IN_STEP": 18,
+        "TOOL": 174
+      },
+      "quantities": {
+        "NO_INGREDIENT_LINK": 18
+      },
+      "recipes_sampled": 21,
+      "recipes_with_steps": 21,
+      "recipes_without_steps": 0,
+      "references": {
+        "AMBIGUOUS_ANTECEDENT": 6,
+        "NO_LIVE_ENTITY": 1,
+        "NO_LIVE_INTERMEDIATE": 1,
+        "RESOLVED": 31
+      },
+      "rule_compiler_floor": {
+        "event_Add": 215,
+        "event_Discard": 6,
+        "event_Merge": 47,
+        "event_Reserve": 11,
+        "event_Split": 17,
+        "event_Transfer": 34,
+        "event_Transform": 207,
+        "events": 537
+      },
+      "texts": 21,
+      "texts_empty": 0,
+      "texts_with_events": 21,
+      "texts_with_invented": 0,
+      "validators": {
+        "V1": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V2": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V3": {
+          "issues": {},
+          "not_checked": {
+            "CATEGORICAL_FIELD_NO_VOCAB__structural_class": 21
+          },
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V4": {
+          "issues": {},
+          "not_checked": {
+            "INFERRED_EVENTS_NOT_IN_EXPLICIT_ONLY_QUERIES": 21,
+            "INVENTED_GRAMS_SEE_AUDITOR": 21,
+            "MASS_BALANCE_SCOPE": 21,
+            "SPAN_ROUNDTRIP_SEE_V1": 21,
+            "STATE_REPLAY_FROM_EVENT_HISTORY": 21
+          },
+          "texts_failed": 0,
+          "unknown": {
+            "FRACTION_BASIS_UNSPECIFIED": 3
+          }
+        }
+      },
+      "values_checked": 4683
+    },
+    "FOODCOM": {
+      "allocations": {
+        "RESERVE": 126,
+        "SPLIT": 60
+      },
+      "ambiguity_count": 1170,
+      "diagnostics": {
+        "AMBIGUOUS_ACTION": 119,
+        "AMBIGUOUS_REFERENCE": 122,
+        "BARE_TEMPERATURE_UNIT_AMBIGUOUS": 34,
+        "COMBINE_WITH_CURRENT": 1928,
+        "DURATION_COMPLEX_NUMBER": 77,
+        "IMPLICIT_ARG_AMBIGUOUS": 810,
+        "IMPLICIT_ARG_BOUND": 6058,
+        "IMPLICIT_ARG_NONE": 557,
+        "INTERMEDIATE_NEW_ENTITY": 15,
+        "LEXICAL_COREF_DESCENDANT": 2658,
+        "LEXICAL_COREF_REUSE": 229,
+        "LEXICAL_REPEAT_NEW_LOT": 28,
+        "NEGATED_EVENT_NOT_APPLIED": 29,
+        "PLURAL_STRIP": 1955,
+        "PROC_LEMMA_GUESS": 5,
+        "REF_ARG_UNRESOLVED": 104,
+        "SPLIT_COUNT_UNKNOWN": 45
+      },
+      "entities": {
+        "INGREDIENT_LOT": 7357,
+        "INTERMEDIATE": 10682,
+        "MIXTURE": 2669,
+        "RESERVED_PORTION": 126
+      },
+      "events": 13783,
+      "exceptions": {},
+      "failures": {
+        "build_events": {},
+        "extract_mentions": {},
+        "ground_quantity": {
+          "PARSE_FAIL": 7,
+          "UNRESOLVED": 558
+        },
+        "link": {
+          "NO_VALID_CANDIDATE": 544,
+          "UNRESOLVED": 119
+        },
+        "resolve_refs": {
+          "NO_VALID_CANDIDATE": 47,
+          "UNRESOLVED": 122
+        }
+      },
+      "invented_by_code": {
+        "UNIT_NOT_IN_SPAN": 4
+      },
+      "invented_count": 4,
+      "links": {
+        "AMBIGUOUS_CANDIDATES": 119,
+        "REFERRING_EXPRESSION": 544,
+        "SELECTED": 28085
+      },
+      "mentions": {
+        "ACTION": 13783,
+        "CONDITION_CUE": 285,
+        "DURATION": 1426,
+        "ENDPOINT": 1299,
+        "FOOD_MENTION": 11215,
+        "INTERMEDIATE_MENTION": 776,
+        "QUANTITY_IN_STEP": 604,
+        "TEMPERATURE": 145,
+        "TOOL": 3750
+      },
+      "quantities": {
+        "ALTERNATIVE": 2,
+        "MASS_GROUNDED": 39,
+        "NO_INGREDIENT_LINK": 556,
+        "UNSUPPORTED_EXPRESSION": 7
+      },
+      "recipes_sampled": 875,
+      "recipes_with_steps": 875,
+      "recipes_without_steps": 0,
+      "references": {
+        "AMBIGUOUS_ANTECEDENT": 122,
+        "NO_LIVE_ENTITY": 39,
+        "NO_LIVE_INTERMEDIATE": 8,
+        "RESOLVED": 1043
+      },
+      "rule_compiler_floor": {
+        "event_Add": 6815,
+        "event_Discard": 196,
+        "event_Merge": 1690,
+        "event_Reserve": 205,
+        "event_Split": 244,
+        "event_Transfer": 417,
+        "event_Transform": 5993,
+        "events": 15560
+      },
+      "texts": 875,
+      "texts_empty": 0,
+      "texts_with_events": 874,
+      "texts_with_invented": 2,
+      "validators": {
+        "V1": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V2": {
+          "issues": {
+            "INVERTED_INTERVAL": 2
+          },
+          "not_checked": {},
+          "texts_failed": 2,
+          "unknown": {}
+        },
+        "V3": {
+          "issues": {},
+          "not_checked": {
+            "CATEGORICAL_FIELD_NO_VOCAB__structural_class": 808,
+            "CATEGORICAL_FIELD_NO_VOCAB__temporal_relation_1": 2
+          },
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V4": {
+          "issues": {},
+          "not_checked": {
+            "INFERRED_EVENTS_NOT_IN_EXPLICIT_ONLY_QUERIES": 875,
+            "INVENTED_GRAMS_SEE_AUDITOR": 875,
+            "MASS_BALANCE_SCOPE": 875,
+            "SPAN_ROUNDTRIP_SEE_V1": 875,
+            "STATE_REPLAY_FROM_EVENT_HISTORY": 875
+          },
+          "texts_failed": 0,
+          "unknown": {
+            "FRACTION_BASIS_UNSPECIFIED": 138
+          }
+        }
+      },
+      "values_checked": 129688
+    },
+    "GUTENBERG_SEGMENT": {
+      "allocations": {
+        "RESERVE": 8
+      },
+      "ambiguity_count": 184,
+      "diagnostics": {
+        "AMBIGUOUS_ACTION": 4,
+        "AMBIGUOUS_REFERENCE": 62,
+        "COMBINE_WITH_CURRENT": 116,
+        "DURATION_COMPLEX_NUMBER": 6,
+        "IMPLICIT_ARG_AMBIGUOUS": 114,
+        "IMPLICIT_ARG_BOUND": 406,
+        "IMPLICIT_ARG_NONE": 21,
+        "INTERMEDIATE_NEW_ENTITY": 2,
+        "LEXICAL_COREF_DESCENDANT": 425,
+        "LEXICAL_COREF_REUSE": 126,
+        "NEGATED_EVENT_NOT_APPLIED": 3,
+        "PLURAL_STRIP": 254,
+        "REF_ARG_UNRESOLVED": 43,
+        "SPLIT_COUNT_UNKNOWN": 1
+      },
+      "entities": {
+        "INGREDIENT_LOT": 804,
+        "INTERMEDIATE": 1116,
+        "MIXTURE": 181,
+        "RESERVED_PORTION": 8
+      },
+      "events": 1260,
+      "exceptions": {},
+      "failures": {
+        "build_events": {},
+        "extract_mentions": {},
+        "ground_quantity": {
+          "PARSE_FAIL": 3,
+          "UNRESOLVED": 65
+        },
+        "link": {
+          "NO_VALID_CANDIDATE": 324,
+          "UNRESOLVED": 4
+        },
+        "resolve_refs": {
+          "NO_VALID_CANDIDATE": 14,
+          "UNRESOLVED": 62
+        }
+      },
+      "invented_by_code": {},
+      "invented_count": 0,
+      "links": {
+        "AMBIGUOUS_CANDIDATES": 4,
+        "REFERRING_EXPRESSION": 324,
+        "SELECTED": 2796
+      },
+      "mentions": {
+        "ACTION": 1260,
+        "CONDITION_CUE": 1,
+        "DURATION": 22,
+        "ENDPOINT": 31,
+        "FOOD_MENTION": 1689,
+        "INTERMEDIATE_MENTION": 31,
+        "QUANTITY_IN_STEP": 91,
+        "TOOL": 175
+      },
+      "quantities": {
+        "ALTERNATIVE": 3,
+        "MASS_GROUNDED": 23,
+        "NO_INGREDIENT_LINK": 62,
+        "UNSUPPORTED_EXPRESSION": 3
+      },
+      "recipes_sampled": 100,
+      "recipes_with_steps": 100,
+      "recipes_without_steps": 0,
+      "references": {
+        "AMBIGUOUS_ANTECEDENT": 62,
+        "NO_LIVE_ENTITY": 13,
+        "NO_LIVE_INTERMEDIATE": 1,
+        "RESOLVED": 274
+      },
+      "rule_compiler_floor": {
+        "events": 0
+      },
+      "texts": 100,
+      "texts_empty": 0,
+      "texts_with_events": 98,
+      "texts_with_invented": 0,
+      "validators": {
+        "V1": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V2": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V3": {
+          "issues": {},
+          "not_checked": {
+            "CATEGORICAL_FIELD_NO_VOCAB__structural_class": 66
+          },
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V4": {
+          "issues": {},
+          "not_checked": {
+            "INFERRED_EVENTS_NOT_IN_EXPLICIT_ONLY_QUERIES": 100,
+            "INVENTED_GRAMS_SEE_AUDITOR": 100,
+            "MASS_BALANCE_SCOPE": 100,
+            "SPAN_ROUNDTRIP_SEE_V1": 100,
+            "STATE_REPLAY_FROM_EVENT_HISTORY": 100
+          },
+          "texts_failed": 0,
+          "unknown": {
+            "FRACTION_BASIS_UNSPECIFIED": 8
+          }
+        }
+      },
+      "values_checked": 11632
+    },
+    "TASTESET": {
+      "allocations": {},
+      "ambiguity_count": 0,
+      "diagnostics": {},
+      "entities": {},
+      "events": 0,
+      "exceptions": {},
+      "failures": {
+        "build_events": {},
+        "extract_mentions": {},
+        "ground_quantity": {},
+        "link": {},
+        "resolve_refs": {}
+      },
+      "invented_by_code": {},
+      "invented_count": 0,
+      "links": {},
+      "mentions": {},
+      "quantities": {},
+      "recipes_sampled": 2,
+      "recipes_with_steps": 0,
+      "recipes_without_steps": 2,
+      "references": {},
+      "rule_compiler_floor": {
+        "event_Add": 6,
+        "events": 6
+      },
+      "texts": 0,
+      "texts_empty": 0,
+      "texts_with_events": 0,
+      "texts_with_invented": 0,
+      "validators": {
+        "V1": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V2": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V3": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V4": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        }
+      },
+      "values_checked": 0
+    },
+    "WIKIBOOKS": {
+      "allocations": {},
+      "ambiguity_count": 0,
+      "diagnostics": {
+        "COMBINE_WITH_CURRENT": 2,
+        "IMPLICIT_ARG_BOUND": 13,
+        "LEXICAL_COREF_DESCENDANT": 7,
+        "PLURAL_STRIP": 4
+      },
+      "entities": {
+        "INGREDIENT_LOT": 11,
+        "INTERMEDIATE": 25,
+        "MIXTURE": 3
+      },
+      "events": 24,
+      "exceptions": {},
+      "failures": {
+        "build_events": {},
+        "extract_mentions": {},
+        "ground_quantity": {},
+        "link": {},
+        "resolve_refs": {}
+      },
+      "invented_by_code": {},
+      "invented_count": 0,
+      "links": {
+        "SELECTED": 46
+      },
+      "mentions": {
+        "ACTION": 24,
+        "DURATION": 5,
+        "FOOD_MENTION": 18,
+        "INTERMEDIATE_MENTION": 1,
+        "TOOL": 4
+      },
+      "quantities": {},
+      "recipes_sampled": 2,
+      "recipes_with_steps": 2,
+      "recipes_without_steps": 0,
+      "references": {
+        "RESOLVED": 1
+      },
+      "rule_compiler_floor": {
+        "event_Add": 21,
+        "event_Merge": 2,
+        "event_Reserve": 1,
+        "event_Transform": 10,
+        "events": 34
+      },
+      "texts": 2,
+      "texts_empty": 0,
+      "texts_with_events": 2,
+      "texts_with_invented": 0,
+      "validators": {
+        "V1": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V2": {
+          "issues": {},
+          "not_checked": {},
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V3": {
+          "issues": {},
+          "not_checked": {
+            "CATEGORICAL_FIELD_NO_VOCAB__structural_class": 1
+          },
+          "texts_failed": 0,
+          "unknown": {}
+        },
+        "V4": {
+          "issues": {},
+          "not_checked": {
+            "INFERRED_EVENTS_NOT_IN_EXPLICIT_ONLY_QUERIES": 2,
+            "INVENTED_GRAMS_SEE_AUDITOR": 2,
+            "MASS_BALANCE_SCOPE": 2,
+            "SPAN_ROUNDTRIP_SEE_V1": 2,
+            "STATE_REPLAY_FROM_EVENT_HISTORY": 2
+          },
+          "texts_failed": 0,
+          "unknown": {}
+        }
+      },
+      "values_checked": 212
+    }
+  },
+  "contains_ids": false,
+  "contains_text": false,
+  "counts_as_human_gate": false,
+  "families_requested": [
+    "A1_BBC_GOOD_FOOD",
+    "WIKIBOOKS",
+    "GUTENBERG_SEGMENT",
+    "FOODCOM",
+    "TASTESET"
+  ],
+  "family_status": {
+    "A1_BBC_GOOD_FOOD": "READ",
+    "FOODCOM": "READ",
+    "GUTENBERG_SEGMENT": "READ",
+    "TASTESET": "READ",
+    "WIKIBOOKS": "READ"
+  },
+  "interface_schema_version": "step17a-interface-0.1.0-draft",
+  "label": "REAL_BASE_SAMPLE_COUNTS_NOT_GOLD",
+  "lexicon_fingerprint": "9678937f6a9a0ff6f9ce4acbaaa20d85cb5da6138e956f4742189078b94903c3",
+  "lexicon_version": "STEP17B_RUNG_A_LEXICON_V1_DRAFT",
+  "locale_source": "LEGACY_SOURCE_FAMILY_LOCALE_MAP",
+  "report_version": "STEP17B_RUNG_A_COUNTS_V1_DRAFT",
+  "rules_version": "STEP17B_RUNG_A_RULES_V1_DRAFT",
+  "sample_rule": "SHA256_SEED_CONCAT_RECIPE_ID_ASC",
+  "sample_seed_sha256": "ce7a938d0fd7bd19e0bbeea014dfa6a586dd193ad10adf75cc122f0d0842c106",
+  "sample_size_requested": 1000,
+  "schema_sha256": "950f1ed089666af411fee7a17da696c7bc3b50d7256d7420fe40299195e819f4",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "totals": {
+    "allocations": {
+      "RESERVE": 136,
+      "SPLIT": 68
+    },
+    "ambiguity_count": 1412,
+    "diagnostics": {
+      "AMBIGUOUS_ACTION": 127,
+      "AMBIGUOUS_REFERENCE": 190,
+      "BARE_TEMPERATURE_UNIT_AMBIGUOUS": 42,
+      "COMBINE_WITH_CURRENT": 2106,
+      "DURATION_COMPLEX_NUMBER": 83,
+      "IMPLICIT_ARG_AMBIGUOUS": 968,
+      "IMPLICIT_ARG_BOUND": 6660,
+      "IMPLICIT_ARG_NONE": 585,
+      "INTERMEDIATE_NEW_ENTITY": 18,
+      "LEXICAL_COREF_DESCENDANT": 3205,
+      "LEXICAL_COREF_REUSE": 360,
+      "LEXICAL_REPEAT_NEW_LOT": 29,
+      "NEGATED_EVENT_NOT_APPLIED": 32,
+      "PLURAL_STRIP": 2277,
+      "PROC_LEMMA_GUESS": 6,
+      "REF_ARG_UNRESOLVED": 151,
+      "SPLIT_COUNT_UNKNOWN": 55
+    },
+    "entities": {
+      "INGREDIENT_LOT": 8406,
+      "INTERMEDIATE": 12211,
+      "MIXTURE": 2940,
+      "RESERVED_PORTION": 136
+    },
+    "events": 15537,
+    "exceptions": {},
+    "failures": {
+      "build_events": {},
+      "extract_mentions": {},
+      "ground_quantity": {
+        "PARSE_FAIL": 10,
+        "UNRESOLVED": 641
+      },
+      "link": {
+        "NO_VALID_CANDIDATE": 895,
+        "UNRESOLVED": 127
+      },
+      "resolve_refs": {
+        "NO_VALID_CANDIDATE": 63,
+        "UNRESOLVED": 190
+      }
+    },
+    "invented_by_code": {
+      "UNIT_NOT_IN_SPAN": 4
+    },
+    "invented_count": 4,
+    "links": {
+      "AMBIGUOUS_CANDIDATES": 127,
+      "REFERRING_EXPRESSION": 895,
+      "SELECTED": 31931
+    },
+    "mentions": {
+      "ACTION": 15537,
+      "CONDITION_CUE": 294,
+      "DURATION": 1510,
+      "ENDPOINT": 1374,
+      "FOOD_MENTION": 13313,
+      "INTERMEDIATE_MENTION": 820,
+      "QUANTITY_IN_STEP": 713,
+      "TEMPERATURE": 145,
+      "TOOL": 4103
+    },
+    "quantities": {
+      "ALTERNATIVE": 5,
+      "MASS_GROUNDED": 62,
+      "NO_INGREDIENT_LINK": 636,
+      "UNSUPPORTED_EXPRESSION": 10
+    },
+    "recipes_sampled": 1000,
+    "recipes_seen": 612782,
+    "recipes_with_steps": 998,
+    "recipes_without_steps": 2,
+    "references": {
+      "AMBIGUOUS_ANTECEDENT": 190,
+      "NO_LIVE_ENTITY": 53,
+      "NO_LIVE_INTERMEDIATE": 10,
+      "RESOLVED": 1349
+    },
+    "rule_compiler_floor": {
+      "event_Add": 7057,
+      "event_Discard": 202,
+      "event_Merge": 1739,
+      "event_Reserve": 217,
+      "event_Split": 261,
+      "event_Transfer": 451,
+      "event_Transform": 6210,
+      "events": 16137
+    },
+    "texts": 998,
+    "texts_empty": 0,
+    "texts_with_events": 995,
+    "texts_with_invented": 2,
+    "validators": {
+      "V1": {
+        "issues": {},
+        "not_checked": {},
+        "texts_failed": 0,
+        "unknown": {}
+      },
+      "V2": {
+        "issues": {
+          "INVERTED_INTERVAL": 2
+        },
+        "not_checked": {},
+        "texts_failed": 2,
+        "unknown": {}
+      },
+      "V3": {
+        "issues": {},
+        "not_checked": {
+          "CATEGORICAL_FIELD_NO_VOCAB__structural_class": 896,
+          "CATEGORICAL_FIELD_NO_VOCAB__temporal_relation_1": 2
+        },
+        "texts_failed": 0,
+        "unknown": {}
+      },
+      "V4": {
+        "issues": {},
+        "not_checked": {
+          "INFERRED_EVENTS_NOT_IN_EXPLICIT_ONLY_QUERIES": 998,
+          "INVENTED_GRAMS_SEE_AUDITOR": 998,
+          "MASS_BALANCE_SCOPE": 998,
+          "SPAN_ROUNDTRIP_SEE_V1": 998,
+          "STATE_REPLAY_FROM_EVENT_HISTORY": 998
+        },
+        "texts_failed": 0,
+        "unknown": {
+          "FRACTION_BASIS_UNSPECIFIED": 149
+        }
+      }
+    },
+    "values_checked": 146215
+  }
+}
