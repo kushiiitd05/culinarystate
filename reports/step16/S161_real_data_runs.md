@@ -15,7 +15,7 @@
 `OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest tests/unit -q -p no:cacheprovider`
 
 - Before the S161 fix: **3212 passed, 2 skipped, 1 deselected, 0 failed, 0 errors** (329 s). The cloud-without-data baseline was 3185 passed, 17 skipped, 1 deselected, 1 failed + 11 errors; those 12 now pass, and 15 tests that skipped without data now run.
-- After the S161 fix (3 new tests): see section 5.
+- After the S161 fix (3 new tests): **3215 passed, 2 skipped, 1 deselected, 0 failed** (section 5).
 
 ## 3. Runs and real numbers
 
@@ -82,7 +82,7 @@ FULL_CORPUS_PLACEHOLDER
 ## 5. Verification
 
 - Targeted: the 3 new tests plus the 17a auditor and review-fix tests: 54 passed; all `-k 17` tests: 208 passed, 1 skipped.
-- Full suite after the fix: TESTS_AFTER_FIX_PLACEHOLDER
+- Full suite after the fix: **3215 passed, 2 skipped, 1 deselected, 0 failed, 0 errors** (346 s; the 3,212 before plus the 3 new tests).
 - Every committed output was inspected: counts, hashes, codes and ids only (`contains_recipe_text`/`contains_text` false, `contains_recipe_ids`/`contains_ids` false in the 16/17b reports; the 13a-0 seed file has paper metadata only). No recipe text, ingredient line, recipe title or abstract is in git, a commit message or this report.
 
 ## 6. What this does and does not establish
