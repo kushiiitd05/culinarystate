@@ -36,3 +36,10 @@ Reproduced unchanged: cuisine census (`tools/step35_foodcom_tag_census.py`) and 
 - Step 30 bake-off: `ModelRegistry` holds 0 models and is unfrozen; `GroupSplit` needs the frozen 15a assignment; `paired_cluster_bootstrap` requires a pre-registered `margin` with no default. An agent-built split and margin would be a post-hoc rule choice, so no bake-off was run.
 - Step 34a/34c, Step 35 a-e: signature gates, refused as recorded above.
 - Step 19 packet maker: no tool exists (`tools/` has only the Step 07/08a packet builders). Building it is new engineering, not a run; annotation itself is human work.
+
+## Approved follow-ups (Parv, 2026-11-04: "use the commonly agreed fractions for 1 and 2; all 3 approved; fewer branches")
+| # | Job | Estimate | Actual | Result | File |
+|---|---|---|---|---|---|
+| 9 | 15.0 ruling draft, fraction 1/5, STUDY_THEN_CELL, SOURCE_FAMILY, secret seed outside git (hash only published) | 5 min | 1 min | DRAFT for Kush's signature; the seal was NOT run because the tool needs Kush as approver and an agent cannot write that | reports/step15/15_0_ruling_DRAFT_FOR_KUSH_SIGNATURE.md |
+| 10 | Exploratory Step 30 bake-off D0-D2, 80/20 group split, paired cluster bootstrap | 10 min | 0.7 s | 11,564 measured rows; test = 25 Phenol-Explorer publications (781 rows); global median (MAE 0.885) beat nutrient (0.968) and nutrient x process (0.983) medians; D0->D1 delta -0.061 [-0.102, -0.027]. DIAGNOSTIC_ONLY, split seed and margin chosen by the agent, not pre-registered; PE has a heavy tail (max 102) | reports/step30/exploratory_bakeoff_counts.json |
+| 11 | Step 19 packet maker (7 tests) and P1 packets for annotator B | 30 min | about 3 s to run | 7 blank packets DGP-B-0001..0007, validator accepts structure and flags TODO guards; content git-ignored; annotator A's set must be built on Kush's machine | tools/step19_packet_maker.py, registry/recipe_semantics/deep_gold_pilot_v1/packets_P1_B.csv |
