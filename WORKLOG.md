@@ -1095,3 +1095,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `reports/step15/*`, `src/culinarystate/lineage/reserved_seal.py`, `tools/step15a_R_seal.py`, `reports/step35/*v2*`, `src/culinarystate/representation/explicit_runner.py`, `src/culinarystate/evaluation/*`, `reports/step34/*`, `reports/step26/system_selection_record.SIGNED.json`, `tests/unit/test_step15a_*`, `test_step35_v2_*`, `test_eval_*`, `test_s160_*`, `DECISIONS.md`, `handoff/*`
 - **Verified:** Full unit suite 3185 passed, 17 skipped, 1 deselected; 1 failed + 11 errors = missing bundle files. Ledger guard 7/7; 0 attribution lines; no SIGNED Step 35 record (all tasks refused).
 - **Next:** STOP at checkpoint H-A: Kush/Parv review block I (15.0 rulings + RESERVED fraction + seed policy; Step 35 v2 signature with P-1..P-5 and S-1/S-2; scaffold values). Then C1/C2 where the data bundle exists, H-B, S161-S163.
+
+### S161 · 2026-11-04 15:16 IST · ES-1 · Fix Step 35 v2 package tests that failed on the Mac with real data present
+- **Who:** Kush (cloud agent session)
+- **Did:** Parv was blocked by a failing data/approval test on the Mac. Reproduced in a simulated Mac tree: test_step35_v2_package::test_unsigned_record_matches_current_bytes_and_is_refused and ::test_unsigned_record_is_reproducible_from_the_builder assumed the three Mac-only recipe files were absent (true only in the cloud). Rewrote both to check record self-consistency and, where Mac-only files exist, that a rebuild keeps every committed hash and adds only Mac-only inputs (Route B). Tampering is still detected. No data, record, signature or threshold changed; no human review supplied.
+- **Files:** `tests/unit/test_step35_v2_package.py`
+- **Verified:** 22/22 pass in the cloud and in the Mac simulation; tampering a bound ledger byte still fails both tests; all 1,532 tests added since main pass in the Mac simulation; full cloud suite 3185 passed, 17 skipped, 1 deselected, 1 failed + 11 errors = missing bundle files (unchanged).
+- **Next:** Parv pulls cloud/s160-freeze-prep and reruns tests; checkpoint H-A (block I) continues.
