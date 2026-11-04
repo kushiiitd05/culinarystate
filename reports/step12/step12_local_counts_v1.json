@@ -1,0 +1,249 @@
+{
+  "bognar_remaining": {
+    "basis_counts": {
+      "A": 705,
+      "B": 810,
+      "UNKNOWN": 178
+    },
+    "cells_staged": 1693,
+    "estimated_cells": 528,
+    "method_mapping_counts": {
+      "EQUAL_GROUPS_AND_POSITION_AGREE": 247,
+      "POSITIONAL_ONLY_UNCONFIRMED": 1268,
+      "UNMAPPED_NO_METHOD_LINE": 178
+    },
+    "per_table": {
+      "T13": {
+        "basis_line": false,
+        "cells": 108,
+        "columns": 3,
+        "method_mapping": "UNMAPPED_NO_METHOD_LINE",
+        "skipped_non_retention_rows": 2,
+        "skipped_ragged_rows": 1,
+        "table_problem": null
+      },
+      "T16": {
+        "basis_line": true,
+        "cells": 385,
+        "columns": 11,
+        "method_mapping": "POSITIONAL_ONLY_UNCONFIRMED",
+        "skipped_non_retention_rows": 2,
+        "skipped_ragged_rows": 1,
+        "table_problem": null
+      },
+      "T2": {
+        "basis_line": true,
+        "cells": 108,
+        "columns": 3,
+        "method_mapping": "POSITIONAL_ONLY_UNCONFIRMED",
+        "skipped_non_retention_rows": 1,
+        "skipped_ragged_rows": 1,
+        "table_problem": null
+      },
+      "T29": {
+        "basis_line": false,
+        "cells": 70,
+        "columns": 2,
+        "method_mapping": "UNMAPPED_NO_METHOD_LINE",
+        "skipped_non_retention_rows": 2,
+        "skipped_ragged_rows": 2,
+        "table_problem": null
+      },
+      "T31": {
+        "basis_line": true,
+        "cells": 306,
+        "columns": 9,
+        "method_mapping": "POSITIONAL_ONLY_UNCONFIRMED",
+        "skipped_non_retention_rows": 2,
+        "skipped_ragged_rows": 1,
+        "table_problem": null
+      },
+      "T32": {
+        "basis_line": true,
+        "cells": 1,
+        "columns": 1,
+        "method_mapping": "POSITIONAL_ONLY_UNCONFIRMED",
+        "skipped_non_retention_rows": 0,
+        "skipped_ragged_rows": 37,
+        "table_problem": null
+      },
+      "T35": {
+        "basis_line": true,
+        "cells": 175,
+        "columns": 5,
+        "method_mapping": "EQUAL_GROUPS_AND_POSITION_AGREE",
+        "skipped_non_retention_rows": 1,
+        "skipped_ragged_rows": 0,
+        "table_problem": null
+      },
+      "T36": {
+        "basis_line": false,
+        "cells": 0,
+        "columns": 0,
+        "method_mapping": null,
+        "skipped_non_retention_rows": 0,
+        "skipped_ragged_rows": 0,
+        "table_problem": "NO_ROW_MATCHES_COLUMN_COUNT"
+      },
+      "T37": {
+        "basis_line": true,
+        "cells": 216,
+        "columns": 6,
+        "method_mapping": "POSITIONAL_ONLY_UNCONFIRMED",
+        "skipped_non_retention_rows": 1,
+        "skipped_ragged_rows": 0,
+        "table_problem": null
+      },
+      "T38": {
+        "basis_line": true,
+        "cells": 252,
+        "columns": 7,
+        "method_mapping": "POSITIONAL_ONLY_UNCONFIRMED",
+        "skipped_non_retention_rows": 2,
+        "skipped_ragged_rows": 0,
+        "table_problem": null
+      },
+      "T39": {
+        "basis_line": true,
+        "cells": 72,
+        "columns": 2,
+        "method_mapping": "EQUAL_GROUPS_AND_POSITION_AGREE",
+        "skipped_non_retention_rows": 0,
+        "skipped_ragged_rows": 14,
+        "table_problem": null
+      }
+    },
+    "rows_skipped_or_table_problems": 58,
+    "tables_found": [
+      2,
+      13,
+      16,
+      29,
+      31,
+      32,
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "tables_missing": [],
+    "value_status_counts": {
+      "CENSORED_GT_CAP_CANDIDATE": 914,
+      "MEASURED": 766,
+      "NOT_AVAILABLE": 13
+    }
+  },
+  "diff": {
+    "bognar_remaining": {
+      "existing_evd_rows_in_remaining_tables": {
+        "T13": 0,
+        "T16": 0,
+        "T2": 0,
+        "T29": 0,
+        "T31": 0,
+        "T32": 0,
+        "T35": 0,
+        "T36": 0,
+        "T37": 0,
+        "T38": 0,
+        "T39": 0
+      },
+      "g08_9_context_constituents_shared_with_usda_r6": 11,
+      "staged_cells_exact_key_in_existing_evd": 0,
+      "staged_constituent_method_pairs": 396,
+      "staged_constituent_method_pairs_seen_in_existing_bognar": 251
+    },
+    "context_gate": "G08-9",
+    "evd_rows_read_latest_active": 17978,
+    "r2": {
+      "existing_evd_rows_with_yield_factor_by_family": {
+        "BOGNAR-2002": 496,
+        "PHENOL-EXPLORER-3.6": 3870
+      },
+      "pe_rows_with_usda_yield_source": 368,
+      "staged_rows_description_exact_match_in_evd_by_family": {}
+    },
+    "resolution": "NOT_RESOLVED_REPORT_ONLY"
+  },
+  "ids_minted": 0,
+  "inputs": {
+    "bognar_txt": {
+      "bytes": 367934,
+      "locator": "data/raw/bognar/bognar_2002.txt",
+      "sha256": "0e978960c85518ec32a4027f93c78f48c7c538cb4071963c7f66666312b9cc6c"
+    },
+    "evd": {
+      "bytes": 88833782,
+      "locator": "ledgers/data/EVD.jsonl",
+      "sha256": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56"
+    },
+    "r2_csv": {
+      "bytes": 21559,
+      "locator": "data/external/usda_yields/cooking_yields_meat_poultry_r2.csv",
+      "sha256": "e6144d36488781c3eab2428bd4fd576d85092a93fc709aa05868d20fe6ba1f4f"
+    }
+  },
+  "ledger_rows_appended": 0,
+  "r2": {
+    "dispersion_type_counts": {
+      "NOT_REPORTED": 63,
+      "SD": 110
+    },
+    "header_columns": 12,
+    "release_year_1975_rows": 16,
+    "rows_skipped": 0,
+    "rows_staged": 173,
+    "rows_with_flags": 70,
+    "status_counts_by_role": {
+      "cooking_yield_pct": {
+        "MEASURED": 173
+      },
+      "description": {
+        "PRESENT": 173
+      },
+      "fat_change_pct": {
+        "MEASURED": 150,
+        "NOT_REPORTED": 22,
+        "UNPARSED": 1
+      },
+      "max": {
+        "NOT_PRESENT_IN_FILE": 173
+      },
+      "min": {
+        "NOT_PRESENT_IN_FILE": 173
+      },
+      "moisture_change_pct": {
+        "MEASURED": 150,
+        "NOT_REPORTED": 22,
+        "UNPARSED": 1
+      },
+      "n": {
+        "MEASURED": 158,
+        "NOT_REPORTED": 15
+      },
+      "ndb": {
+        "NOT_REPORTED": 10,
+        "PRESENT": 163
+      },
+      "preparation_method": {
+        "PRESENT": 173
+      },
+      "release_year": {
+        "MEASURED": 173
+      },
+      "sd": {
+        "MEASURED": 110,
+        "UNPARSED": 63
+      }
+    },
+    "unmapped_columns": 3
+  },
+  "raw_text_included": false,
+  "status": "PROVISIONAL_PENDING_G12_AUDIT",
+  "versions": {
+    "bognar_parser": "bognar_remaining_staging@0.1-provisional",
+    "r2_parser": "usda_yields_r2_staging@0.1-provisional",
+    "stage": "step12_local_stage@0.1-provisional"
+  }
+}

@@ -129,3 +129,17 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest test
 ```
 
 On the Mac with the data bundle, the 12 cloud-only data failures should also pass. Report any other failing test.
+
+## Update — 2026-11-04 evening: real-data runs done (branch `cloud/s161-real-data-runs`, WORKLOG S162)
+
+- **Numbering:** the branch and report are named S161 as Kush asked; the WORKLOG entry is S162, because S161 was already used by the Mac test fix earlier the same day.
+- **Data bundle:** downloaded in the cloud after Kush allowed `drive.usercontent.google.com`; checksums OK; 3,814 macOS `._*` files removed; baseline 7/7.
+- **Done on real data** (details in `reports/step16/S161_real_data_runs.md`):
+  - Step 16 rc2 grounding: 612,782 recipes, 4,281,956 lines, 0 exceptions, invented grams 0;
+  - Step 17b, seed 20261104, 1,000 sample: invented_count 0 after the test-first `ºF`/`ºC` auditor fix (23 before);
+  - 12.0 proposed rows, 12-local staging, 13a-0 seed corpus.
+  - Not finished: the extra full-corpus Rung A run (stopped at the cloud's 2 h limit); rerun it on the Mac if wanted.
+- **Tests with data:** 3215 passed, 2 skipped, 1 deselected, 0 failed.
+- **D-053:** Kush and Parv accepted the block I AI recommendations. Still open: the RESERVED fraction and seed; δ_30, ρ, c_floor and the 34c values; P-1..P-5, S-1 and S-2; the Step 35 signature (Route B, committed from the signer's own session).
+- **Branches:** s154–s160 are contained in `main` (PR #2). Kush chose to delete the nine old branches; the git proxy refused the delete from the cloud, so Kush deletes them on GitHub.
+- **Resume point:** checkpoint H-A remainder, then C2 (rebuild the P1 frame and strata with data, then the draw, on Kush's go) and C1 (after the Step 35 signature).

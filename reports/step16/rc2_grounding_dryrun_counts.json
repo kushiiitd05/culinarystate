@@ -1,0 +1,449 @@
+{
+  "adapter_version": "CQPO_PARSE_TO_AST_V2",
+  "baseline_check": "PASS_BEFORE_AND_AFTER",
+  "by_family": {
+    "A1_BBC_GOOD_FOOD": {
+      "arithmetic_status": {
+        "ALTERNATIVE": 12,
+        "KNOWN": 89555,
+        "QUALITATIVE": 4265,
+        "RANGE": 1147,
+        "UNKNOWN": 21720
+      },
+      "ast_root": {
+        "ADD": 2138,
+        "ALTERNATIVE": 12,
+        "PACKAGE_CONTENT": 5209,
+        "QUALITATIVE": 4265,
+        "RANGE": 1147,
+        "RATIONAL": 84346,
+        "UNKNOWN": 19582
+      },
+      "exceptions": {},
+      "flags": {
+        "APPROXIMATE_SOURCE_AMOUNT": 3928,
+        "COMPATIBILITY_CHANNEL_MASKED": 4966,
+        "CONVENTION_NEEDS_SOURCE": 26902,
+        "LOCALE_AMBIGUOUS": 76,
+        "MASS_FLOAT_REPRESENTATION": 48,
+        "NORMALIZATION_FLOAT_PRECISION_LIMIT": 66,
+        "OPEN_EXTRA_AMOUNT": 2138,
+        "PARENTHETICAL_EXPRESSION_SEPARATE": 1096,
+        "PART_AMOUNT_UNGROUNDED": 1519,
+        "QUALIFIED_FILL_UNCERTAINTY": 451,
+        "REGIONAL_VESSEL_NO_STANDARD_VOLUME": 28,
+        "SIZE_IS_NOT_QUANTITY": 230,
+        "UNCONSUMED_UNIT": 508,
+        "UNRESOLVED_ALTERNATIVE": 7672,
+        "UNSUPPORTED_COMPOUND_AMOUNT": 1979,
+        "UNSUPPORTED_DUAL_EXPRESSION": 796,
+        "UNSUPPORTED_MULTIPLIER": 150,
+        "UNSUPPORTED_OR_UNSTATED_QUANTITY": 6728,
+        "alt_unit_disagrees": 18,
+        "contradictory_stated_mass": 30,
+        "locale_ambiguous": 85,
+        "non_standard_vessel": 32,
+        "second_unit_ignored": 43
+      },
+      "issue_codes": {},
+      "legacy_vs_rc2_mass": {
+        "legacy_MEASURED__rc2_MEASURED": 29788,
+        "legacy_MEASURED__rc2_UNKNOWN": 4907,
+        "legacy_QUALITATIVE__rc2_UNKNOWN": 4799,
+        "legacy_RANGE__rc2_RANGE": 68,
+        "legacy_RANGE__rc2_UNKNOWN": 59,
+        "legacy_UNKNOWN__rc2_UNKNOWN": 77078
+      },
+      "lines_blank": 0,
+      "lines_contract_valid": 116699,
+      "lines_flagged": 51786,
+      "lines_grounded": 116699,
+      "lines_total": 116699,
+      "lines_with_rc2_count": 32672,
+      "lines_with_rc2_mass": 29856,
+      "lines_with_rc2_volume": 33347,
+      "mass_route": {
+        "ALTERNATIVE": 12,
+        "AST_EXACT_PHYSICAL": 24595,
+        "AST_PACKAGE_SOURCE_STATED": 4560,
+        "NO_INGREDIENT_LINK": 60834,
+        "NO_QUANTITY": 5237,
+        "OPEN_OR_UNAVAILABLE_OPERAND": 2150,
+        "PARENTHETICAL_SOURCE_STATED": 701,
+        "QUALITATIVE": 4265,
+        "UNSUPPORTED_EXPRESSION": 14345
+      },
+      "q_level": {
+        "Q0": 29856,
+        "Q6": 86843
+      },
+      "recipes": 11934,
+      "recipes_without_ingredient_lines": 0,
+      "unit_resolution": {
+        "COUNT": 27822,
+        "MASS_PHYSICAL": 29155,
+        "NONE": 25997,
+        "PACKAGE": 262,
+        "REGIONAL_NO_STANDARD": 28,
+        "UNKNOWN_UNIT": 12,
+        "VOLUME_LOCALE_AMBIGUOUS": 76,
+        "VOLUME_LOCALE_CONVENTION": 26914,
+        "VOLUME_PHYSICAL": 6433
+      }
+    },
+    "FOODCOM": {
+      "arithmetic_status": {
+        "KNOWN": 3873285,
+        "RANGE": 62433,
+        "UNKNOWN": 193715
+      },
+      "ast_root": {
+        "RANGE": 62433,
+        "RATIONAL": 3873285,
+        "UNKNOWN": 193715
+      },
+      "exceptions": {},
+      "flags": {
+        "APPROXIMATE_SOURCE_AMOUNT": 1,
+        "SIZE_IS_NOT_QUANTITY": 4,
+        "UNCONSUMED_UNIT": 178,
+        "UNRESOLVED_ALTERNATIVE": 66,
+        "UNSUPPORTED_COMPOUND_AMOUNT": 2155,
+        "UNSUPPORTED_OR_UNSTATED_QUANTITY": 191312
+      },
+      "issue_codes": {},
+      "legacy_vs_rc2_mass": {
+        "legacy_MEASURED__rc2_MEASURED": 83,
+        "legacy_RANGE__rc2_RANGE": 4,
+        "legacy_UNKNOWN__rc2_UNKNOWN": 4129346
+      },
+      "lines_blank": 0,
+      "lines_contract_valid": 4129433,
+      "lines_flagged": 193716,
+      "lines_grounded": 4129433,
+      "lines_total": 4129433,
+      "lines_with_rc2_count": 3935631,
+      "lines_with_rc2_mass": 87,
+      "lines_with_rc2_volume": 0,
+      "mass_route": {
+        "AST_EXACT_PHYSICAL": 87,
+        "NO_INGREDIENT_LINK": 3935631,
+        "NO_QUANTITY": 191228,
+        "UNSUPPORTED_EXPRESSION": 2487
+      },
+      "q_level": {
+        "Q0": 87,
+        "Q6": 4129346
+      },
+      "recipes": 522517,
+      "recipes_without_ingredient_lines": 2219,
+      "unit_resolution": {
+        "COUNT": 3935631,
+        "MASS_PHYSICAL": 87,
+        "NONE": 193715
+      }
+    },
+    "GUTENBERG_SEGMENT": {
+      "arithmetic_status": {},
+      "ast_root": {},
+      "exceptions": {},
+      "flags": {},
+      "issue_codes": {},
+      "legacy_vs_rc2_mass": {},
+      "lines_blank": 0,
+      "lines_contract_valid": 0,
+      "lines_flagged": 0,
+      "lines_grounded": 0,
+      "lines_total": 0,
+      "lines_with_rc2_count": 0,
+      "lines_with_rc2_mass": 0,
+      "lines_with_rc2_volume": 0,
+      "mass_route": {},
+      "q_level": {},
+      "recipes": 73955,
+      "recipes_without_ingredient_lines": 73955,
+      "unit_resolution": {}
+    },
+    "TASTESET": {
+      "arithmetic_status": {
+        "KNOWN": 3043,
+        "QUALITATIVE": 102,
+        "RANGE": 33,
+        "UNKNOWN": 610
+      },
+      "ast_root": {
+        "QUALITATIVE": 102,
+        "RANGE": 33,
+        "RATIONAL": 3043,
+        "UNKNOWN": 610
+      },
+      "exceptions": {},
+      "flags": {
+        "APPROXIMATE_SOURCE_AMOUNT": 38,
+        "COMPATIBILITY_CHANNEL_MASKED": 40,
+        "LOCALE_AMBIGUOUS": 1399,
+        "MASS_FLOAT_REPRESENTATION": 345,
+        "NORMALIZATION_FLOAT_PRECISION_LIMIT": 233,
+        "PARENTHETICAL_EXPRESSION_SEPARATE": 22,
+        "QUALIFIED_FILL_UNCERTAINTY": 1,
+        "SIZE_IS_NOT_QUANTITY": 1,
+        "UNCONSUMED_UNIT": 1,
+        "UNRESOLVED_ALTERNATIVE": 232,
+        "UNSUPPORTED_COMPOUND_AMOUNT": 9,
+        "UNSUPPORTED_DUAL_EXPRESSION": 1,
+        "UNSUPPORTED_MULTIPLIER": 1,
+        "UNSUPPORTED_OR_UNSTATED_QUANTITY": 365,
+        "locale_ambiguous": 1510,
+        "second_unit_ignored": 1
+      },
+      "issue_codes": {},
+      "legacy_vs_rc2_mass": {
+        "legacy_MEASURED__rc2_MEASURED": 408,
+        "legacy_MEASURED__rc2_UNKNOWN": 38,
+        "legacy_QUALITATIVE__rc2_UNKNOWN": 103,
+        "legacy_RANGE__rc2_RANGE": 2,
+        "legacy_RANGE__rc2_UNKNOWN": 2,
+        "legacy_UNKNOWN__rc2_UNKNOWN": 3235
+      },
+      "lines_blank": 0,
+      "lines_contract_valid": 3788,
+      "lines_flagged": 2376,
+      "lines_grounded": 3788,
+      "lines_total": 3788,
+      "lines_with_rc2_count": 1264,
+      "lines_with_rc2_mass": 410,
+      "lines_with_rc2_volume": 16,
+      "mass_route": {
+        "AST_EXACT_PHYSICAL": 397,
+        "NO_INGREDIENT_LINK": 2666,
+        "NO_QUANTITY": 321,
+        "PARENTHETICAL_SOURCE_STATED": 13,
+        "QUALITATIVE": 102,
+        "UNSUPPORTED_EXPRESSION": 289
+      },
+      "q_level": {
+        "Q0": 410,
+        "Q6": 3378
+      },
+      "recipes": 700,
+      "recipes_without_ingredient_lines": 0,
+      "unit_resolution": {
+        "COUNT": 1264,
+        "MASS_PHYSICAL": 397,
+        "NONE": 712,
+        "VOLUME_LOCALE_AMBIGUOUS": 1399,
+        "VOLUME_PHYSICAL": 16
+      }
+    },
+    "WIKIBOOKS": {
+      "arithmetic_status": {
+        "ALTERNATIVE": 3,
+        "KNOWN": 21313,
+        "QUALITATIVE": 1546,
+        "RANGE": 818,
+        "UNKNOWN": 8356
+      },
+      "ast_root": {
+        "ADD": 13,
+        "ALTERNATIVE": 3,
+        "PACKAGE_CONTENT": 22,
+        "QUALITATIVE": 1546,
+        "RANGE": 818,
+        "RATIONAL": 21291,
+        "UNKNOWN": 8343
+      },
+      "exceptions": {},
+      "flags": {
+        "APPROXIMATE_SOURCE_AMOUNT": 342,
+        "COMPATIBILITY_CHANNEL_MASKED": 1121,
+        "INVALID_NUMBER": 2,
+        "INVALID_NUMERIC_INPUT": 2,
+        "LOCALE_AMBIGUOUS": 12910,
+        "MASS_FLOAT_REPRESENTATION": 1202,
+        "NONTERMINATING_RANGE_BOUND": 9,
+        "NORMALIZATION_FLOAT_PRECISION_LIMIT": 732,
+        "OPEN_EXTRA_AMOUNT": 13,
+        "PARENTHETICAL_EXPRESSION_SEPARATE": 2879,
+        "PART_AMOUNT_UNGROUNDED": 72,
+        "QUALIFIED_FILL_UNCERTAINTY": 29,
+        "REGIONAL_VESSEL_NO_STANDARD_VOLUME": 29,
+        "SIZE_IS_NOT_QUANTITY": 29,
+        "UNCONSUMED_UNIT": 27,
+        "UNRESOLVED_ALTERNATIVE": 2616,
+        "UNSUPPORTED_COMPOUND_AMOUNT": 234,
+        "UNSUPPORTED_DUAL_EXPRESSION": 651,
+        "UNSUPPORTED_MULTIPLIER": 16,
+        "UNSUPPORTED_OR_UNSTATED_QUANTITY": 4687,
+        "contradictory_stated_mass": 15,
+        "locale_ambiguous": 14352,
+        "non_standard_vessel": 30,
+        "second_unit_ignored": 6
+      },
+      "issue_codes": {
+        "INVERTED_INTERVAL": 2
+      },
+      "legacy_vs_rc2_mass": {
+        "legacy_MEASURED__rc2_MEASURED": 2960,
+        "legacy_MEASURED__rc2_UNKNOWN": 1102,
+        "legacy_QUALITATIVE__rc2_UNKNOWN": 1617,
+        "legacy_RANGE__rc2_RANGE": 60,
+        "legacy_RANGE__rc2_UNKNOWN": 19,
+        "legacy_UNKNOWN__rc2_UNKNOWN": 26278
+      },
+      "lines_blank": 0,
+      "lines_contract_valid": 32034,
+      "lines_flagged": 22859,
+      "lines_grounded": 32036,
+      "lines_total": 32036,
+      "lines_with_rc2_count": 6142,
+      "lines_with_rc2_mass": 3020,
+      "lines_with_rc2_volume": 532,
+      "mass_route": {
+        "ALTERNATIVE": 3,
+        "AST_EXACT_PHYSICAL": 2547,
+        "AST_PACKAGE_SOURCE_STATED": 7,
+        "NO_INGREDIENT_LINK": 19111,
+        "NO_QUANTITY": 4292,
+        "OPEN_OR_UNAVAILABLE_OPERAND": 13,
+        "PARENTHETICAL_SOURCE_STATED": 466,
+        "QUALITATIVE": 1546,
+        "UNSUPPORTED_EXPRESSION": 4051
+      },
+      "q_level": {
+        "Q0": 3020,
+        "Q6": 29016
+      },
+      "recipes": 3676,
+      "recipes_without_ingredient_lines": 0,
+      "unit_resolution": {
+        "COUNT": 6070,
+        "MASS_PHYSICAL": 2554,
+        "NONE": 9905,
+        "PACKAGE": 36,
+        "REGIONAL_NO_STANDARD": 29,
+        "VOLUME_LOCALE_AMBIGUOUS": 12910,
+        "VOLUME_PHYSICAL": 532
+      }
+    }
+  },
+  "contains_recipe_ids": false,
+  "contains_recipe_text": false,
+  "counts_as_human_gate": false,
+  "families_requested": [
+    "A1_BBC_GOOD_FOOD",
+    "WIKIBOOKS",
+    "GUTENBERG_SEGMENT",
+    "FOODCOM",
+    "TASTESET"
+  ],
+  "family_status": {
+    "A1_BBC_GOOD_FOOD": "READ",
+    "FOODCOM": "READ",
+    "GUTENBERG_SEGMENT": "READ",
+    "TASTESET": "READ",
+    "WIKIBOOKS": "READ"
+  },
+  "ingredient_links_supplied": false,
+  "limit": null,
+  "locale_source": "LEGACY_SOURCE_FAMILY_LOCALE_MAP",
+  "normalizer_version": "CQPO_NORMALIZE_V2",
+  "pipeline_version": "CQPO_RC2_GROUNDING_V1_DRAFT",
+  "por_records_supplied": 0,
+  "report_version": "STEP16_RC2_GROUNDING_DRYRUN_V1",
+  "schema_sha256": "950f1ed089666af411fee7a17da696c7bc3b50d7256d7420fe40299195e819f4",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "totals": {
+    "arithmetic_status": {
+      "ALTERNATIVE": 15,
+      "KNOWN": 3987196,
+      "QUALITATIVE": 5913,
+      "RANGE": 64431,
+      "UNKNOWN": 224401
+    },
+    "ast_root": {
+      "ADD": 2151,
+      "ALTERNATIVE": 15,
+      "PACKAGE_CONTENT": 5231,
+      "QUALITATIVE": 5913,
+      "RANGE": 64431,
+      "RATIONAL": 3981965,
+      "UNKNOWN": 222250
+    },
+    "exceptions": {},
+    "flags": {
+      "APPROXIMATE_SOURCE_AMOUNT": 4309,
+      "COMPATIBILITY_CHANNEL_MASKED": 6127,
+      "CONVENTION_NEEDS_SOURCE": 26902,
+      "INVALID_NUMBER": 2,
+      "INVALID_NUMERIC_INPUT": 2,
+      "LOCALE_AMBIGUOUS": 14385,
+      "MASS_FLOAT_REPRESENTATION": 1595,
+      "NONTERMINATING_RANGE_BOUND": 9,
+      "NORMALIZATION_FLOAT_PRECISION_LIMIT": 1031,
+      "OPEN_EXTRA_AMOUNT": 2151,
+      "PARENTHETICAL_EXPRESSION_SEPARATE": 3997,
+      "PART_AMOUNT_UNGROUNDED": 1591,
+      "QUALIFIED_FILL_UNCERTAINTY": 481,
+      "REGIONAL_VESSEL_NO_STANDARD_VOLUME": 57,
+      "SIZE_IS_NOT_QUANTITY": 264,
+      "UNCONSUMED_UNIT": 714,
+      "UNRESOLVED_ALTERNATIVE": 10586,
+      "UNSUPPORTED_COMPOUND_AMOUNT": 4377,
+      "UNSUPPORTED_DUAL_EXPRESSION": 1448,
+      "UNSUPPORTED_MULTIPLIER": 167,
+      "UNSUPPORTED_OR_UNSTATED_QUANTITY": 203092,
+      "alt_unit_disagrees": 18,
+      "contradictory_stated_mass": 45,
+      "locale_ambiguous": 15947,
+      "non_standard_vessel": 62,
+      "second_unit_ignored": 50
+    },
+    "issue_codes": {
+      "INVERTED_INTERVAL": 2
+    },
+    "legacy_vs_rc2_mass": {
+      "legacy_MEASURED__rc2_MEASURED": 33239,
+      "legacy_MEASURED__rc2_UNKNOWN": 6047,
+      "legacy_QUALITATIVE__rc2_UNKNOWN": 6519,
+      "legacy_RANGE__rc2_RANGE": 134,
+      "legacy_RANGE__rc2_UNKNOWN": 80,
+      "legacy_UNKNOWN__rc2_UNKNOWN": 4235937
+    },
+    "lines_blank": 0,
+    "lines_contract_valid": 4281954,
+    "lines_flagged": 270737,
+    "lines_grounded": 4281956,
+    "lines_total": 4281956,
+    "lines_with_rc2_count": 3975709,
+    "lines_with_rc2_mass": 33373,
+    "lines_with_rc2_volume": 33895,
+    "mass_route": {
+      "ALTERNATIVE": 15,
+      "AST_EXACT_PHYSICAL": 27626,
+      "AST_PACKAGE_SOURCE_STATED": 4567,
+      "NO_INGREDIENT_LINK": 4018242,
+      "NO_QUANTITY": 201078,
+      "OPEN_OR_UNAVAILABLE_OPERAND": 2163,
+      "PARENTHETICAL_SOURCE_STATED": 1180,
+      "QUALITATIVE": 5913,
+      "UNSUPPORTED_EXPRESSION": 21172
+    },
+    "q_level": {
+      "Q0": 33373,
+      "Q6": 4248583
+    },
+    "recipes": 612782,
+    "recipes_without_ingredient_lines": 76174,
+    "unit_resolution": {
+      "COUNT": 3970787,
+      "MASS_PHYSICAL": 32193,
+      "NONE": 230329,
+      "PACKAGE": 298,
+      "REGIONAL_NO_STANDARD": 57,
+      "UNKNOWN_UNIT": 12,
+      "VOLUME_LOCALE_AMBIGUOUS": 14385,
+      "VOLUME_LOCALE_CONVENTION": 26914,
+      "VOLUME_PHYSICAL": 6981
+    }
+  }
+}
