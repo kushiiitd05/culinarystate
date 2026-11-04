@@ -115,3 +115,17 @@ The final report states every gate outcome as it is, including G08-3 FAIL and 07
   2. The 15.0 entry must use the seal's marker lines: `RESERVED_FRACTION`, `RESERVED_UNIT`, `RESERVED_STRATIFY`, `SEED_SHA256`, and an Approver line naming Kush.
   3. Signing Step 35 means creating `reports/step35/preregistration_35_0_v2_package.sha256.SIGNED.json`, committed from the signer's own session (O5).
   4. Then run C1 and C2 where the data bundle exists, then H-B and S161–S163.
+
+## Update — 2026-11-04 (fix for Parv's Mac test failure)
+
+- **Problem:** two Step 35 v2 package tests failed on the Mac because they assumed the three Mac-only recipe files were absent. The fix is in `1276cae`; the tests now pass on both the cloud and the Mac. No data, record, signature or threshold changed.
+- **Branch to resume from:** `cloud/s160-freeze-prep` (the latest; it contains S154–S160 plus this fix).
+- **Next step for whoever starts:** checkpoint H-A, which is block I of `handoff/REVIEW_SHEET_AI_VERDICTS.md`. Nothing else is in progress.
+- **First commands when resuming:**
+
+```bash
+git fetch origin && git checkout cloud/s160-freeze-prep && git pull
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest tests/unit -q
+```
+
+On the Mac with the data bundle, the 12 cloud-only data failures should also pass. Report any other failing test.
