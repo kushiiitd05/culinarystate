@@ -50,7 +50,12 @@
 
 ### 3.2b Step 17b Rung A over the full corpus (extra run; not the specified 1,000-recipe check)
 
-- **Completed 2026-11-05 (S163)** on vinayak-server (CPU only, one process, `nice 10`, no GPU), `--seed 20261104 --sample-size 612782`, from the Mac working tree at commit `4608c4c` (bundle sha256 `c07f5c74…`, 14 parts, checksums OK). The cloud's 2-hour limit stopped the first attempt (S162). Wall time about 3.5 h per run. The tool keeps the whole sample in memory (about 3.3 GB RSS), so the 8 GB Mac swapped and that run was stopped.
+- **Completed 2026-11-05 (S163)** on vinayak-server (CPU only, one process, `nice 10`, no GPU), `--seed 20261104 --sample-size 612782`, from the Mac working tree at commit `4608c4c` (bundle sha256 `c07f5c74…`, 14 parts, checksums OK). Provenance per file:
+  - the 626 run used a copy of that tree with `src/culinarystate/extraction/auditor.py` replaced by its `020d877` version;
+  - the 4 run used the tree as is (`4608c4c`);
+  - the final 0 run used the same tree with the `a567a92` auditor copied in (sha256 `709b4351…`).
+
+  The JSONs do not record this: `auditor_version` is the same string in all three. Recording the code commit or auditor hash in the report is a follow-up for the tool (S163 AI review, prv P2). The cloud's 2-hour limit stopped the first attempt (S162). Wall time about 3.5 h per run. The tool keeps the whole sample in memory (about 3.3 GB RSS), so the 8 GB Mac swapped and that run was stopped.
 - Server setup check before the run: `verify_baseline` 7. The 1,000-recipe run there was identical to `rung_a_dryrun_counts.json` (no `totals` key differs).
 - **Recipes:** 612,782 seen and sampled (A1/BBC 11,934; Food.com 522,517; Gutenberg segments 73,955; TASTEset 700; Wikibooks 3,676). 611,902 have steps, 880 do not. All five families `READ`. Exceptions **0**. Baseline check PASS before and after. `contains_text` and `contains_ids` are false.
 - **Invented values:**
@@ -69,7 +74,10 @@
   - linking: `NO_VALID_CANDIDATE` 569,839, `UNRESOLVED` 80,096;
   - references: `UNRESOLVED` 108,716, `NO_VALID_CANDIDATE` 41,316.
 - **Output sizes:** 9,470,190 events. Entities: 5,124,622 ingredient lots, 7,428,106 intermediates, 1,782,741 mixtures, 83,901 reserved portions. Ambiguity count 801,279.
-- **Root cause of the 626 (shape masks only, no text printed; same method as section 4):** auditor false positives, not invented values.
+- **Root cause of the 626 (no text printed):** auditor false positives, not invented values. The evidence differs by group (S163 AI review, prv P2):
+  - Shape masks and boolean checks covered 8 values: the 4 in the seeded 2,000 sample and the last 4.
+  - The other 618 rest on the before/after difference. The fixes only let a C/F/c/f literal unit count after a token-initial deg prefix. The number checks run first and are unchanged. Every other count in the three JSONs is identical.
+  - The 2,000-sample masks and the 62-shard census used scratch scripts that are not committed.
   - `TEMP_RE` accepts `deg`, `degree(s)` or `deg.` written straight before C/F. A seeded 2,000 sample showed the shape `999aaaa` (`<digits>degF`). The whole-token check read `degF` as one word.
   - Rung A keeps the unit's case from the text (`TEMP_RE` group 3). The last 4 values had the shape `999 aaaaaaa` = `<digits> degree<c|f>` with a lowercase unit, which the first fix's C/F-only rule refused.
 - **Fix (test first):** `_unit_token_in` accepts a token-initial `deg`/`degree(s)`/`deg.` prefix only before the literal temperature units `C`/`F`/`c`/`f`.

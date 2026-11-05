@@ -149,3 +149,20 @@ Source: `reports/step15/S160_build_note.md`, `pre_freeze_rulings_DRAFT.md`, `S16
 | I3 | **Step 35 v2 signature:**<br>- protocol `009c9047…`, record `8885a63a…`;<br>- answer P-1 to P-5 (D-041 amendments; P-5 also covers the unbound Food.com parquet and `pyproject.toml`, O4);<br>- conditions written into the rows "before signature": S-1, a chemistry reviewer for the taste map; S-2, a human finding on the 204 deprecated edges. Complete them, or record a deviation;<br>- choose Route A (sign the committed record: only 35a and 35e run) or Route B (regenerate on the Mac: all tasks);<br>- Q-1 to Q-4 on the signature sheet. |
 | I4 | **Scaffold values only humans can set:**<br>- the Step 30 margin δ_30;<br>- ρ and c_floor for 34a, and the 34a.0 circularity check;<br>- the 34c thresholds and actions, and Kush's signature;<br>- the formats for the 15a freeze record and the 29-diag pre-registration. |
 | I5 | Accept the fixes R1–R4 and decide O3 and O5. O5 is that signatures stop accidental or agent signing, not forgery: only the signer's own session commits a SIGNED file. |
+
+## Block J — S163 cross-review: full-corpus Rung A, auditor fixes, Parv's local runs (pending review)
+
+Source: `reports/review/S163_ai_review.md` (AI reviewers ksh and prv, read-only, cross-review). Reply per item, or `ok all`.
+
+| ID | AI verdict | Human decision needed |
+|---|---|---|
+| J1 | Accept the S163 auditor fixes in `_unit_token_in` (prv P1: tests fail before each fix; risky direction probed). Regression refusals added. | ok / change. Also: is `350 degreef` (lowercase unit after a case-insensitive prefix) acceptable as a literal °F? |
+| J2 | Accept the full-corpus results 626 → 4 → 0 (prv P2: the three JSONs differ only in auditor counts; every document number matches). 3.2b now states per-file provenance and evidence scope. | ok / change. Follow-up: the tool should record the code commit or auditor hash in its JSON. |
+| J3 | Accept the PR #5 merge (prv P3: Parv's pre-fix file is byte-identical to `_prefix_S161`). STATUS wording corrected: 1/5 was agent-drafted, not Parv-stated. | Parv: confirm the 1/5 was not his own value, or state it is. |
+| J4 | V2 `INVERTED_INTERVAL` 4,511: AI census by family and shape mask (counts only), then a human-read stratified sample: the 5 in the 1,000 sample, all A1 and Wikibooks cases, about 30 Food.com and 30 Gutenberg. Then decide whether an inverted quantity becomes UNKNOWN. | ok to run the census? Who reads the sample? |
+| J5 | 15.0 draft parses in the seal and 1/5 is defensible (ksh K1). Recommended changes: Kush-generated or two-part joint seed; seal on Kush's Mac; record the pre-seal bake-off exposure; a seed reveal-or-escrow rule at 15b; D-054 from Kush's own session. | **Kush:** fraction (1/5, 1/4, …); seed source (own / joint two-part / Parv's existing); where the seal runs. |
+| J6 | **Accept Parv's P1 draw as C2** (ksh K2: independent re-draw identical; gate 0 blockers; D-048 authorised). | Kush + Parv: ratify. |
+| J7 | Packet "sealed" key can be rebuilt from public data (ksh K3). Recommended: a secret per-annotator salt committed by hash (or say the key is public); a git-ignore check; a one-letter-per-machine guard; build the commit/snapshot step (PV-10) before annotation; then build A on Kush's Mac. | Fix the salt now (B's packets re-issued) or accept a public key? OK to build the snapshot step? When may P1 annotation start? |
+| J8 | Step 26g/30/34a records: labels honest. The Step 30 bake-off is a pre-seal exposure and is not citable (STATUS updated). The 26g census is stale (pre-fix Rung A). | Record the bake-off as a deviation in D-054? Rerun 26g on the fixed Rung A? |
+
+Still open from block I and not covered here: δ_30, ρ, c_floor, the 34a.0 circularity check, the 34c values; Step 35 P-1..P-5, S-1, S-2 and the signature.
