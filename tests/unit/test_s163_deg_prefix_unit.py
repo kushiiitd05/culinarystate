@@ -52,6 +52,20 @@ def test_letter_boundaries_still_refuse():
     assert invented(s, literal(180, at(s, "Cook 180"), "C")) == ["UNIT_NOT_IN_SPAN"]
 
 
+def test_lowercase_literal_unit_after_degree_prefix():
+    """Full-corpus finding: Rung A keeps the unit's case from the text (TEMP_RE group 3), so
+    "<number> degreef" yields the literal unit "f"; 4 Food.com values (2 texts) were refused."""
+    s = SourceText.from_raw("SYN-S163-D", "Bake at 350 degreef. Bake at 180 degreec. Bake at 200degc.")
+    assert invented(s, literal(350, at(s, "350 degreef"), "f")) == []
+    assert invented(s, literal(180, at(s, "180 degreec"), "c")) == []
+    assert invented(s, literal(200, at(s, "200degc"), "c")) == []
+    rung = RungA()
+    t = SourceText.from_raw("SYN-S163-E", "Preheat oven to 350 degreef.\nBake the dough for 20 minutes at 180 degreec.")
+    report = aud.audit_outputs(t, rung.run(t, rung.config(), schema=D.load_schema()).all(),
+                               recomputers=rung.recomputers())
+    assert report.invented_count == 0, report.invented_by_code
+
+
 def test_deg_prefix_only_counts_before_a_temperature_unit():
     """TEMP_RE allows the deg prefix only before C/F; other units after "deg" are not whole tokens."""
     assert aud._unit_token_in("F", "350degF") and aud._unit_token_in("C", "180DEGC")
