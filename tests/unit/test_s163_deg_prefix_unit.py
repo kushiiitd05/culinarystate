@@ -80,3 +80,10 @@ def test_rung_a_on_deg_prefix_text_invents_nothing():
     res = rung.run(s, rung.config(), schema=D.load_schema())
     report = aud.audit_outputs(s, res.all(), recomputers=rung.recomputers())
     assert report.invented_count == 0, report.invented_by_code
+
+
+def test_deg_prefix_refuses_case_mismatch_and_wrong_unit():
+    """S163 AI review (prv P1): the prefix rule must not accept a unit whose case or letter differs from the text."""
+    for unit, surface in (("C", "350degF"), ("f", "350degF"), ("F", "350degf"), ("C", "350degc"), ("c", "350degC"),
+                          ("F", "350degreessF"), ("F", "350degFé"), ("F", "350degFahrenheit")):
+        assert not aud._unit_token_in(unit, surface), (unit, surface)
