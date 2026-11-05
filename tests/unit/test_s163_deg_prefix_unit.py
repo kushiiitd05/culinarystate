@@ -52,6 +52,14 @@ def test_letter_boundaries_still_refuse():
     assert invented(s, literal(180, at(s, "Cook 180"), "C")) == ["UNIT_NOT_IN_SPAN"]
 
 
+def test_deg_prefix_only_counts_before_a_temperature_unit():
+    """TEMP_RE allows the deg prefix only before C/F; other units after "deg" are not whole tokens."""
+    assert aud._unit_token_in("F", "350degF") and aud._unit_token_in("C", "180DEGC")
+    for unit, surface in (("g", "5degg"), ("min", "5degmin"), ("W", "100degW"), ("s", "5 degs"),
+                          ("F", "350degFx"), ("F", "350undegF")):
+        assert not aud._unit_token_in(unit, surface), (unit, surface)
+
+
 def test_rung_a_on_deg_prefix_text_invents_nothing():
     s = SourceText.from_raw("SYN-S163-C", "Preheat oven to 350degF.\nBake the dough for 20 minutes at 180degC.")
     rung = RungA()
