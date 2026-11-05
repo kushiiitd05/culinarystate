@@ -173,3 +173,40 @@ On the Mac with the data bundle, the 12 cloud-only data failures should also pas
 - **Lessons:**
   - The 8 GB Mac cannot run the full test suite or a full-corpus run (it swaps). Use the server.
   - Large Mac→server transfers: minimal bundle → 50 MB parts → Drive folder → `gdown`.
+
+## Update — 2026-11-06 00:55 IST: day closed after S165; sequence for the next session
+
+- **Branch to resume from:** `kush/s164-step19-salt-commit` (head `b74eb51` before this anchor commit), pushed, **PR #8 open** (S165: Step 19 packet salt, guards and commit step; V2 census). Main is at PR #7. Nothing is running on the Mac or on vinayak-server.
+- **Stray file:** `tests/unit/.probe` (empty, untracked, from 2026-10-27). Not part of any session; delete or ignore.
+- **Mac note:** after a macOS update the terminal lost Desktop access (TCC, `Operation not permitted`); fixed under Privacy & Security → Files and Folders. Check this first if git fails with that error.
+
+### Order for tomorrow (each step unblocks the next; A = agent, K = Kush, P = Parv)
+
+| # | Who | Task | Unblocks | Done when |
+|---|---|---|---|---|
+| 1 | A → K | Review PR #8 against main; run the step19/pilot/gold/annotation/s163/s164 subset on the Mac and the full suite on vinayak-server; Kush merges | everything below builds on main | PR #8 merged, suite green apart from the known server-only failures |
+| 2 | K | Generate the 15a.R seed in Kush's own session (seed custody, block J5; Parv's agent-made seed `d3075c68…` is not used unless Kush says so) | 3 | seed file private, only its sha256 known |
+| 3 | K (A records) | D-054: sign 15.0 with the seal's marker lines `RESERVED_FRACTION`, `RESERVED_UNIT`, `RESERVED_STRATIFY`, `SEED_SHA256`, Approver Kush; record the Step 30 bake-off as a pre-seal deviation (J8) | 4 | D-054 in DECISIONS with Kush's own words |
+| 4 | K | `tools/step15a_R_seal.py` check, then seal, on Kush's Mac | 29-diag, Step 30 | seal record committed, check reports 0 blockers |
+| 5 | K + P (parallel with 2–4) | P1 salts (private 0600 file outside the repo; commit only `salt_P1_<letter>.sha256`); Kush builds annotator A packets; Parv re-issues B with his salt | 6 | both packet sets issued, packet maker refusals clean |
+| 6 | K + P | P1 annotation, then `tools/step19_commit_step.py` snapshots/commitments per wave | H-B, pilot scoring | commitments_<letter>_<wave>.json for both |
+| 7 | A | Write the auditor code commit (`a567a92`) into the Step 17b reports (JSONs + 3.2b) | traceability | reports name the exact code commit |
+| 8 | A | Build a committed, test-first Step 26g census tool; run it on vinayak-server on the fixed Rung A output (counts only) | J8 closed, block E | tool + tests + counts JSON committed |
+| 9 | K + P (A drafts the sample) | J4 human sample of V2 `INVERTED_INTERVAL`, focused on the `9-9/9 <unit>` shape (~94 %); then decide the rc2 quantity-grammar change (versioned, test-first) | Step 16/17 quality | decision recorded as a DECISIONS entry |
+| 10 | K + P | Block I values: δ_30, ρ, c_floor, 34a.0 circularity check, 34c thresholds | Step 30/34 | values recorded with the humans' words |
+| 11 | K + P | Step 35: P-1..P-5, S-1/S-2, then Route B signature from the signer's own session | C1 (explicit baselines) | `preregistration_35_0_v2_package.sha256.SIGNED.json` committed |
+| 12 | A | After 6 and 11: H-B review pack, pilot scoring/16c audit, C1 runs on the server | final report | — |
+
+- **Optional, low priority:** a sharded Step 17b tool (the current one is single-process, ~3.5 h, ~3.3 GB in memory).
+- **Still open, outside this order:** expert EQ21-01..14 and the 26.0 inputs; 12.0 review / D-049 re-baseline; G12 audit; old branches s154–s158 to delete on GitHub.
+- **Deadline:** presentation 25–26 Nov. Aim for annotation (6) to finish by ~Nov 15 and C1 (12) by ~Nov 19, leaving ~Nov 20–24 for the report, figures and slides. The report states every gate as it is (G08-3 FAIL, 07.A FAIL stay).
+
+### First commands next session
+
+```bash
+cd ~/Desktop/CGAS/culinarystate && git fetch origin && git checkout kush/s164-step19-salt-commit && git pull
+gh pr view 8
+OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest tests/unit -q -k "step19 or pilot or gold or annotation or s163 or s164"
+```
+
+Run the full suite on vinayak-server only (VPN first); the 8 GB Mac swaps.
