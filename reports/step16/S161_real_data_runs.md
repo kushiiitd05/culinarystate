@@ -50,8 +50,35 @@
 
 ### 3.2b Step 17b Rung A over the full corpus (extra run; not the specified 1,000-recipe check)
 
-- **Not completed.** The extra run over all 612,782 recipes (single-process; the tool has no worker option) was stopped by the cloud session's 2-hour limit for one background command. It had written no output, and nothing partial is reported. It was not restarted here.
-- The specified Step 17b check is the seeded 1,000-recipe sample (3.2); that run is complete. A full-corpus Rung A count needs a machine without that limit (for example the Mac: `python tools/step17b_rung_a_dryrun.py --seed 20261104 --sample-size 612782 --out reports/step17/rung_a_dryrun_counts_full_corpus.json`) or a sharded/parallel version of the tool, which does not exist yet.
+- **Completed 2026-11-05 (S163)** on vinayak-server (CPU only, one process, `nice 10`, no GPU), `--seed 20261104 --sample-size 612782`, from the Mac working tree at commit `4608c4c` (bundle sha256 `c07f5c74…`, 14 parts, checksums OK). The cloud's 2-hour limit stopped the first attempt (S162). Wall time about 3.5 h per run. The tool keeps the whole sample in memory (about 3.3 GB RSS), so the 8 GB Mac swapped and that run was stopped.
+- Server setup check before the run: `verify_baseline` 7. The 1,000-recipe run there was identical to `rung_a_dryrun_counts.json` (no `totals` key differs).
+- **Recipes:** 612,782 seen and sampled (A1/BBC 11,934; Food.com 522,517; Gutenberg segments 73,955; TASTEset 700; Wikibooks 3,676). 611,902 have steps, 880 do not. All five families `READ`. Exceptions **0**. Baseline check PASS before and after. `contains_text` and `contains_ids` are false.
+- **Invented values:**
+  - Original auditor (`020d877`): **626** (`rung_a_dryrun_counts_full_corpus_prefix_S163.json`), all `UNIT_NOT_IN_SPAN`, in 226 texts: 624 Food.com, 2 A1/BBC.
+  - After the first S163 fix (`4608c4c`): **4** (`rung_a_dryrun_counts_full_corpus.json`), all `UNIT_NOT_IN_SPAN`, in 2 Food.com texts.
+  - After the second fix (`a567a92`): **0** over all 612,782 recipes. This was measured by a sharded shape-mask census (62 shards, same Rung A + `audit_outputs`), not by this tool; the tool's own full rerun on `a567a92` was still running when this was written.
+  - The 1,000-recipe check on `a567a92` gives invented_count 0 and is identical to the committed file.
+- **Values checked:** 89,316,045.
+- **Validators:**
+  - V1: 0 texts failed.
+  - **V2: 3,848 texts failed (`INVERTED_INTERVAL` 4,511).**
+  - V3: 0 failed.
+  - V4: 0 failed (unknown `FRACTION_BASIS_UNSPECIFIED` 91,606; its scope items are listed as not checked, as designed).
+- **Stage failures:**
+  - quantity grounding: `UNRESOLVED` 397,989, `PARSE_FAIL` 10,028;
+  - linking: `NO_VALID_CANDIDATE` 569,839, `UNRESOLVED` 80,096;
+  - references: `UNRESOLVED` 108,716, `NO_VALID_CANDIDATE` 41,316.
+- **Output sizes:** 9,470,190 events. Entities: 5,124,622 ingredient lots, 7,428,106 intermediates, 1,782,741 mixtures, 83,901 reserved portions. Ambiguity count 801,279.
+- **Root cause of the 626 (shape masks only, no text printed; same method as section 4):** auditor false positives, not invented values.
+  - `TEMP_RE` accepts `deg`, `degree(s)` or `deg.` written straight before C/F. A seeded 2,000 sample showed the shape `999aaaa` (`<digits>degF`). The whole-token check read `degF` as one word.
+  - Rung A keeps the unit's case from the text (`TEMP_RE` group 3). The last 4 values had the shape `999 aaaaaaa` = `<digits> degree<c|f>` with a lowercase unit, which the first fix's C/F-only rule refused.
+- **Fix (test first):** `_unit_token_in` accepts a token-initial `deg`/`degree(s)`/`deg.` prefix only before the literal temperature units `C`/`F`/`c`/`f`.
+  - Test `tests/unit/test_s163_deg_prefix_unit.py` (synthetic text). Commits: `32d9a90` test, `24bb227` fix; `fa0d19e` test, `4608c4c` limit to C/F (code review: the prefix must not count before g/min/W/s); `f40a982` test, `a567a92` lowercase c/f.
+  - Letter-boundary refusals (`90aF`, `90xdegF`, `Cook 180`) are unchanged.
+- **Tests:**
+  - Server (Python 3.11, same pandas/numpy/pyarrow as the Mac): 5,656 passed. The 5 failed + 11 errors are server-only: no `.git` and bundle-excluded identity files. The same 42 tests pass on the Mac.
+  - Auditor/Rung A subset on the Mac at `a567a92`: 212 passed, 1 skipped.
+- Engineering counts only; not a G16/G17 gate result and not a human gate.
 
 ### 3.3 Step 12.0 proposed registration
 
@@ -88,7 +115,7 @@
 
 ## 6. What this does and does not establish
 
-- Every S154–S160 tool that is allowed to run on real data has now run on the full local bundle: Step 16 over all 612,782 recipes (S154), Step 17b on its specified seeded 1,000-recipe sample (S155), 12.0 / 12-local / 13a-0 (S157). The extra full-corpus Rung A count did not finish (3.2b).
+- Every S154–S160 tool that is allowed to run on real data has now run on the full local bundle: Step 16 over all 612,782 recipes (S154), Step 17b on its specified seeded 1,000-recipe sample (S155), 12.0 / 12-local / 13a-0 (S157). The extra full-corpus Rung A count finished in S163 on vinayak-server (3.2b: 626 → 4 → 0 invented after two test-first auditor fixes).
 - Not run, by design or by gate:
   - S156 (event engine, 26g census), S158 (kinetic/mechanism contracts, 23a) and S159 (simulators) are libraries used by later steps; they have no standalone real-data run.
   - S160 tools refuse: 15a.R seal (no 15.0 marker lines, fraction or seed; `check --decision D-053` lists 7 blockers), the Step 35 runner (no SIGNED record), 29-diag and Step 30 (no human values).
