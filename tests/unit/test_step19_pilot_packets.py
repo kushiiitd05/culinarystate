@@ -11,10 +11,12 @@ RECS = {
     "R3": {"source_family": "WIKIBOOKS", "ingredient_lines": ["salt"], "steps": ["Add salt.", "Stir."]},
 }
 SEED = "9fa0008602a39537"
+SALT = "fedcba9876543210" * 4  # S164: salt required (block J7). With 3 recipes a seed change can keep the order by
+# chance (1/6); this fixed salt avoids that coincidence. Robust 7-recipe order checks: test_s164_pilot_salt_commit.
 
 
 def build(letter, recs=RECS, seed=SEED):
-    return pp.build_packets(sorted(recs), recs, letter=letter, seed_hex=seed)
+    return pp.build_packets(sorted(recs), recs, letter=letter, seed_hex=seed, salt_hex=SALT)
 
 
 def test_packets_are_blank_and_carry_no_model_output():
@@ -67,9 +69,9 @@ def test_refuses_bad_letter_empty_and_missing_text():
     with pytest.raises(pp.PacketError, match="seed"):
         build("A", seed="")
     with pytest.raises(pp.PacketError, match="no text"):
-        pp.build_packets(["R9"], RECS, letter="A", seed_hex=SEED)
+        pp.build_packets(["R9"], RECS, letter="A", seed_hex=SEED, salt_hex=SALT)
     with pytest.raises(pp.PacketError, match="no text"):
-        pp.build_packets(["R1"], {"R1": {"source_family": "FOODCOM", "ingredient_lines": [], "steps": []}}, letter="A", seed_hex=SEED)
+        pp.build_packets(["R1"], {"R1": {"source_family": "FOODCOM", "ingredient_lines": [], "steps": []}}, letter="A", seed_hex=SEED, salt_hex=SALT)
 
 
 def test_pristine_detects_human_work():
