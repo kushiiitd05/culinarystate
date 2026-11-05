@@ -1,0 +1,120 @@
+{
+ "adapter_invented_excluded": 2,
+ "adapter_issue_codes": {
+  "ENTITY_WITHOUT_PRODUCER": 18
+ },
+ "census": {
+  "binding_counts": {
+   "APPLICABILITY_CONFLICT": 0,
+   "APPLICABILITY_EVENT_NOT_IN_REPLAY": 0,
+   "APPLICABILITY_OTHER_SYSTEM": 0,
+   "BINDING_EVENT_NOT_IN_REPLAY": 0,
+   "BINDING_INPUT_NOT_REQUIRED": 0,
+   "SOURCE_CLASS_NOT_PERMITTED": 0
+  },
+  "census_version": "step26g-census-0.1.0-draft",
+  "draft_status": "DRAFT_PENDING_16c_23a_26b",
+  "estimates_emitted": 0,
+  "not_checked": [
+   "MS_LIMITS_SEE_26B_26E_MODEL_CARD",
+   "NO_COMPATIBLE_SET_SEE_24_25",
+   "DIRECT_INTERPOLATE_PREEMPTION_SEE_36",
+   "DURATION_VS_PROFILE_END_NOT_CROSS_CHECKED"
+  ],
+  "record": "SIMULABILITY_CENSUS",
+  "requirements_status": "PROPOSED_PENDING_26b",
+  "sets": 998,
+  "sim_run_ids_minted": 0,
+  "simulator_status": "NOT_BUILT_PENDING_26b",
+  "systems": {
+   "sim_aa_1": {
+    "all_inputs_present": 0,
+    "applicability": {
+     "APPLICABLE": 0,
+     "NOT_APPLICABLE": 0,
+     "UNKNOWN": 23943
+    },
+    "events": 23943,
+    "input_status": {
+     "duration": {
+      "MEASURED": 0,
+      "RANGE": 0,
+      "UNKNOWN": 23943
+     },
+     "lid_state": {
+      "MEASURED": 0,
+      "RANGE": 0,
+      "UNKNOWN": 23943
+     },
+     "matrix_class": {
+      "MEASURED": 0,
+      "RANGE": 0,
+      "UNKNOWN": 23943
+     },
+     "medium": {
+      "MEASURED": 0,
+      "RANGE": 0,
+      "UNKNOWN": 23943
+     },
+     "piece_size_class": {
+      "MEASURED": 0,
+      "RANGE": 0,
+      "UNKNOWN": 23943
+     },
+     "start_mode": {
+      "MEASURED": 0,
+      "RANGE": 0,
+      "UNKNOWN": 23943
+     },
+     "temperature_profile": {
+      "MEASURED": 0,
+      "RANGE": 0,
+      "UNKNOWN": 23943
+     },
+     "water_ratio": {
+      "MEASURED": 0,
+      "RANGE": 0,
+      "UNKNOWN": 23943
+     }
+    },
+    "missing_input_count": {
+     "8": 23943
+    },
+    "reasons": {
+     "APPLICABILITY_UNKNOWN": 23943,
+     "EVENT_REJECTED_IN_REPLAY": 131,
+     "MISSING_DURATION": 23943,
+     "MISSING_LID_STATE": 23943,
+     "MISSING_MATRIX_CLASS": 23943,
+     "MISSING_MEDIUM": 23943,
+     "MISSING_PIECE_SIZE_CLASS": 23943,
+     "MISSING_START_MODE": 23943,
+     "MISSING_TEMPERATURE_PROFILE": 23943,
+     "MISSING_WATER_RATIO": 23943,
+     "NO_CONSUMED_ENTITY": 10109,
+     "REPLAY_HAS_ISSUES": 339
+    },
+    "route": {
+     "SIMULATE": 0,
+     "SIM_PROHIBITED": 23943
+    },
+    "synthetic_input_events": 0,
+    "transaction_status": {
+     "APPLIED": 23812,
+     "REJECTED": 131
+    }
+   }
+  }
+ },
+ "census_sha256": "7e66063462308cca381254207929c353285e831ea3efb749055905b706f5bb26",
+ "chain": "RungA->event_adapter->replay->26g(sim_aa_1)",
+ "contains_ids": false,
+ "contains_text": false,
+ "engine_events": 23943,
+ "exceptions_by_class": {},
+ "label": "REAL_BASE_SAMPLE_COUNTS_NOT_GOLD",
+ "recipes_sampled": 1000,
+ "seed_sha256": "ce7a938d0fd7bd19e0bbeea014dfa6a586dd193ad10adf75cc122f0d0842c106",
+ "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+ "texts_with_steps": 998
+}
