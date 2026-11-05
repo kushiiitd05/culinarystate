@@ -136,7 +136,8 @@ def _numbers(value: Any) -> list[Fraction] | None:
     return None if any(e is None for e in exact) or len(parts) not in (1, 2) else exact
 
 
-_TEMP_UNITS = frozenset({"C", "F"})  # units TEMP_RE emits; the only ones a "deg" prefix may precede
+# literal units TEMP_RE emits (group 3 keeps the text's case); the only ones a "deg" prefix may precede
+_TEMP_UNITS = frozenset({"C", "F", "c", "f"})
 
 
 def _unit_token_in(unit: str, surface: str) -> bool:
@@ -146,8 +147,8 @@ def _unit_token_in(unit: str, surface: str) -> bool:
     accepts it as a degree marker, so "350ºF" holds the unit token "F" (S161 real-data finding).
     The same rule accepts "deg", "degree(s)" and "deg." written straight before the unit, so
     "350degF" holds the unit token "F" too (S163 real-data finding). As in TEMP_RE, that prefix
-    counts only before the temperature units C/F, and the marker itself must start a token.
-    The unit stays case-sensitive (stricter than TEMP_RE's IGNORECASE; the safe direction).
+    counts only before the temperature units C/F (either case, as written), and the marker itself
+    must start a token. The unit is matched case-sensitively against the span text.
     """
     u = re.escape(unit)
     return bool(unit) and (
