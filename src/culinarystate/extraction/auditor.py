@@ -141,8 +141,14 @@ def _unit_token_in(unit: str, surface: str) -> bool:
 
     "º" (U+00BA) is a Unicode letter, but the temperature rule (``evidence.conditions.TEMP_RE``)
     accepts it as a degree marker, so "350ºF" holds the unit token "F" (S161 real-data finding).
+    The same rule accepts "deg", "degree(s)" and "deg." written straight before the unit, so
+    "350degF" holds the unit token "F" too (S163 real-data finding); the marker itself must
+    start a token.
     """
-    return bool(unit) and re.search(rf"(?:(?<=º)|(?<![^\W\d_])){re.escape(unit)}(?![^\W\d_])", surface) is not None
+    u = re.escape(unit)
+    return bool(unit) and (
+        re.search(rf"(?:(?<=º)|(?<![^\W\d_])){u}(?![^\W\d_])", surface) is not None
+        or re.search(rf"(?<![^\W\d_])(?i:deg(?:rees?)?\.?){u}(?![^\W\d_])", surface) is not None)
 
 
 def _same(kind: ValueKind, a: Any, b: Any) -> bool:
