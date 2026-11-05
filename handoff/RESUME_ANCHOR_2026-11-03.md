@@ -143,3 +143,33 @@ On the Mac with the data bundle, the 12 cloud-only data failures should also pas
 - **D-053:** Kush and Parv accepted the block I AI recommendations. Still open: the RESERVED fraction and seed; δ_30, ρ, c_floor and the 34c values; P-1..P-5, S-1 and S-2; the Step 35 signature (Route B, committed from the signer's own session).
 - **Branches:** s154–s160 are contained in `main` (PR #2). Kush chose to delete the nine old branches; the git proxy refused the delete from the cloud, so Kush deletes them on GitHub.
 - **Resume point:** checkpoint H-A remainder, then C2 (rebuild the P1 frame and strata with data, then the draw, on Kush's go) and C1 (after the Step 35 signature).
+
+## Update — 2026-11-05: full-corpus Rung A done; Parv's local runs merged (PRs #4, #5; WORKLOG S163)
+
+- **Full-corpus Step 17b Rung A** ran on vinayak-server (CPU only, no GPU). The data went there as a 14-part Drive bundle, because the VPN dropped rsync and scp.
+  - Result: 612,782 recipes, 0 exceptions, baseline check PASS.
+  - invented_count **626 → 4 → 0** after two test-first auditor fixes: the `deg`/`degree` prefix before C/F, and lowercase c/f. These were false positives.
+  - V2 `INVERTED_INTERVAL` 4,511 in 3,848 texts. Report section 3.2b.
+  - The tool's own full rerun on `a567a92` was still running on the server at merge time: `~/Kush/culinarystate/reports/step17/rung_a_dryrun_counts_full_corpus_final.json`. Commit it when done.
+- **Parv's branch `parv/local-real-runs-2026-11-04` is merged (PR #5).** Parv started from `8759550`, in parallel with S162.
+  - 6 of Parv's files were byte-identical to PR #3.
+  - The 17b conflict was resolved to main's post-fix file; Parv's pre-fix copy has the same totals as `_prefix_S161`.
+  - New from Parv:
+    - **Step 19 P1 frame rebuilt and drawn under D-048** (21 rows, 7 strata), so **C2 is done**;
+    - the packet maker and annotator B's packets;
+    - the **15.0 draft** for Kush's signature (1/5, STUDY_THEN_CELL, SOURCE_FAMILY, seed hash `d3075c68…`, seed on Parv's Mac);
+    - the 26g census on a real 1,000 sample;
+    - the Step 30 exploratory bake-off (DIAGNOSTIC_ONLY, not citable);
+    - the Step 34a attempt (refused: 34a.0, ρ, c_floor).
+- **Resume point, in unblocking order:**
+  1. Kush signs 15.0 as a D-054 entry (Approver Kush).
+  2. Run the 15a.R check and seal on Parv's Mac.
+  3. Build annotator A's P1 packets on Kush's Mac.
+  4. P1 annotation (both).
+  5. δ_30, ρ, c_floor, the 34a.0 circularity check and the 34c values.
+  6. Step 35: P-1..P-5, S-1, S-2, then the signature from the signer's own session (unlocks C1).
+  7. Reviews: 12.0 rows / D-049 re-baseline, G12 audit, V2 intervals.
+  8. Expert: EQ21-01..14 and the 26.0 inputs.
+- **Lessons:**
+  - The 8 GB Mac cannot run the full test suite or a full-corpus run (it swaps). Use the server.
+  - Large Mac→server transfers: minimal bundle → 50 MB parts → Drive folder → `gdown`.
