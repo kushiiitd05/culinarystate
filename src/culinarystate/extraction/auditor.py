@@ -136,19 +136,24 @@ def _numbers(value: Any) -> list[Fraction] | None:
     return None if any(e is None for e in exact) or len(parts) not in (1, 2) else exact
 
 
+_TEMP_UNITS = frozenset({"C", "F"})  # units TEMP_RE emits; the only ones a "deg" prefix may precede
+
+
 def _unit_token_in(unit: str, surface: str) -> bool:
     """The unit occurs in the span as a whole token (not letters inside a longer word; S155 review R1).
 
     "º" (U+00BA) is a Unicode letter, but the temperature rule (``evidence.conditions.TEMP_RE``)
     accepts it as a degree marker, so "350ºF" holds the unit token "F" (S161 real-data finding).
     The same rule accepts "deg", "degree(s)" and "deg." written straight before the unit, so
-    "350degF" holds the unit token "F" too (S163 real-data finding); the marker itself must
-    start a token.
+    "350degF" holds the unit token "F" too (S163 real-data finding). As in TEMP_RE, that prefix
+    counts only before the temperature units C/F, and the marker itself must start a token.
+    The unit stays case-sensitive (stricter than TEMP_RE's IGNORECASE; the safe direction).
     """
     u = re.escape(unit)
     return bool(unit) and (
         re.search(rf"(?:(?<=º)|(?<![^\W\d_])){u}(?![^\W\d_])", surface) is not None
-        or re.search(rf"(?<![^\W\d_])(?i:deg(?:rees?)?\.?){u}(?![^\W\d_])", surface) is not None)
+        or (unit in _TEMP_UNITS
+            and re.search(rf"(?<![^\W\d_])(?i:deg(?:rees?)?\.?){u}(?![^\W\d_])", surface) is not None))
 
 
 def _same(kind: ValueKind, a: Any, b: Any) -> bool:
