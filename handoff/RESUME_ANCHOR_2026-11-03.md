@@ -150,7 +150,7 @@ On the Mac with the data bundle, the 12 cloud-only data failures should also pas
   - Result: 612,782 recipes, 0 exceptions, baseline check PASS.
   - invented_count **626 → 4 → 0** after two test-first auditor fixes: the `deg`/`degree` prefix before C/F, and lowercase c/f. These were false positives.
   - V2 `INVERTED_INTERVAL` 4,511 in 3,848 texts. Report section 3.2b.
-  - The tool's own full rerun on `a567a92` was still running on the server at merge time: `~/Kush/culinarystate/reports/step17/rung_a_dryrun_counts_full_corpus_final.json`. Commit it when done.
+  - The tool's own full rerun on `a567a92` gives invented_count 0, exceptions 0 (`reports/step17/rung_a_dryrun_counts_full_corpus_final.json`).
 - **Parv's branch `parv/local-real-runs-2026-11-04` is merged (PR #5).** Parv started from `8759550`, in parallel with S162.
   - 6 of Parv's files were byte-identical to PR #3.
   - The 17b conflict was resolved to main's post-fix file; Parv's pre-fix copy has the same totals as `_prefix_S161`.
