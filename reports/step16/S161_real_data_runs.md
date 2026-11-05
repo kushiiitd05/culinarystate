@@ -56,7 +56,7 @@
 - **Invented values:**
   - Original auditor (`020d877`): **626** (`rung_a_dryrun_counts_full_corpus_prefix_S163.json`), all `UNIT_NOT_IN_SPAN`, in 226 texts: 624 Food.com, 2 A1/BBC.
   - After the first S163 fix (`4608c4c`): **4** (`rung_a_dryrun_counts_full_corpus.json`), all `UNIT_NOT_IN_SPAN`, in 2 Food.com texts.
-  - After the second fix (`a567a92`): **0** over all 612,782 recipes. This was measured by a sharded shape-mask census (62 shards, same Rung A + `audit_outputs`), not by this tool; the tool's own full rerun on `a567a92` was still running when this was written.
+  - After the second fix (`a567a92`): **0** over all 612,782 recipes. The tool's own full rerun on `a567a92` confirms it (`rung_a_dryrun_counts_full_corpus_final.json`: 612,782 recipes, invented_count 0, exceptions 0, 89,316,045 values checked, baseline PASS before and after), as did a sharded shape-mask census (62 shards).
   - The 1,000-recipe check on `a567a92` gives invented_count 0 and is identical to the committed file.
 - **Values checked:** 89,316,045.
 - **Validators:**
