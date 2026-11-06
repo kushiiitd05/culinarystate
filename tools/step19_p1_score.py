@@ -35,19 +35,22 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     for name in ("key-a", "key-b", "labels-a", "labels-b", "out"):
         ap.add_argument(f"--{name}", required=True, type=Path)
-    ap.add_argument("--commitment-a", type=Path, default=TRACKED / "commitments_A_P1.json")
-    ap.add_argument("--commitment-b", type=Path, default=TRACKED / "commitments_B_P1.json")
+    ap.add_argument("--wave", default="P1", help="wave to score (S168); selects the default commitments and key hashes")
+    ap.add_argument("--commitment-a", type=Path, default=None)
+    ap.add_argument("--commitment-b", type=Path, default=None)
     ap.add_argument("--root", type=Path, default=ROOT)
     ap.add_argument("--salt-a", type=Path, help="A's private salt file: verifies the sealed key against its commitment")
     ap.add_argument("--salt-b", type=Path, help="B's private salt file")
     a = ap.parse_args(argv)
+    a.commitment_a = a.commitment_a or TRACKED / f"commitments_A_{a.wave}.json"
+    a.commitment_b = a.commitment_b or TRACKED / f"commitments_B_{a.wave}.json"
     try:
         verified = bool(a.salt_a and a.salt_b)
         if verified:
             from culinarystate.annotation import pilot_packets as pp
             probs = []
             for letter, key, salt in (("A", a.key_a, a.salt_a), ("B", a.key_b, a.salt_b)):
-                line = (TRACKED / f"sealed_key_P1_{letter}.sha256").read_text(encoding="utf-8")
+                line = (TRACKED / f"sealed_key_{a.wave}_{letter}.sha256").read_text(encoding="utf-8")
                 probs += S.key_problems(_load(key), salt_hex=pp.read_salt(salt.expanduser(), repo_root=ROOT),
                                         tracked_line=line, letter=letter)
             if probs:
@@ -55,6 +58,7 @@ def main(argv=None) -> int:
         rep = S.score(_load(a.key_a), _load(a.key_b), labels_a=a.labels_a.expanduser(), labels_b=a.labels_b.expanduser(),
                       commitment_a=_load(a.commitment_a), commitment_b=_load(a.commitment_b))
         rep["key_commitments_verified"] = verified
+        rep["wave"] = a.wave
         D.write_report(a.out, rep, root=a.root)
     except (OSError, S.ScoreError, D.DryRunError, pp_error()) as exc:
         ap.error(str(exc))
