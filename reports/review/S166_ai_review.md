@@ -35,3 +35,15 @@ errors, all no-`.git` or Mac-only git-ignored files (identity parquets, `deep_go
 | K7 | ACCEPT_WITH_CHANGES | All 23,943 events SIM_PROHIBITED is true by construction (no condition or applicability bindings exist yet), but only the module docstring says so; add `bindings_supplied` / `prohibited_by_construction` to the JSON. |
 
 Correction to the main session's S166 summary: it attributed the 2 → 0 to the S163 auditor fixes; K2 shows it is the S161 `º` rule.
+
+## Annotator A's P1 packet build (2026-11-06, commits 0c5b494, ba843f0, 5e5782a): ksh (owner view) and prv (attacker view)
+
+Built on Kush's Mac with the fixed maker and the D-057 salt. prv used only public and tracked data and did not open A's key, packets or salt.
+
+| ID | Verdict | Reason |
+|---|---|---|
+| KA1–KA5 | ACCEPT | ksh: salt and salted key commitments verify; all 7 rows' salted file/content hashes verify; 7 pristine gold-1.0 packets (annotator Kush, DGP-A-0001..0007, no AI prefill); key recipe set = the 7 PRIMARY ids of `manifest_P1.csv` (sha256 verified); salt 0600 in a 0700 directory outside the repo; key, packets and snapshot log git-ignored; no B material on the Mac. |
+| KA7 | ACCEPT | `gold_cli.py validate` runs (blank packet fails as unfinished, as expected); the commit step reads `packets_P1_A.csv`. |
+| PA1–PA6 | ACCEPT | prv: 0/28 tracked salted hashes match any of 49 rebuilt (packet id, recipe) docs or 7 content hashes (plain or re-hashed); 0/5,040 key mappings match; ~300k low-entropy salt guesses fail; no ids, counts or text in the three files; row order and sizes non-informative; build used the fixed code path. |
+| PA7 | ACCEPT_WITH_CHANGES | `superseded_s164_unsalted/` (B's old unsalted list) is still tracked and still links B's old packets to recipes; unused by A's build. |
+| KA8 / PA8 | Recommendation | `tools/step19_packet_maker.py` calls `main()` without an `if __name__ == "__main__"` guard (importing it runs the tool). |
