@@ -24,11 +24,42 @@ LOCALE = {"FOODCOM": "US", "A1_BBC_GOOD_FOOD": "UK", "WIKIBOOKS": "US"}
 
 
 SALT_RE = re.compile(r"[0-9a-f]{64,}")  # generate with secrets.token_hex(32)
-SALT_MIN_DISTINCT = 8
+SALT_MIN_DISTINCT = 12  # token_hex(32) has fewer than 12 distinct digits with probability about 2e-7
+SALT_MAX_PERIOD = 32
+
+
+def _periodic(s: str) -> bool:
+    return any(s == (s[:k] * (len(s) // k + 1))[:len(s)] for k in range(1, min(SALT_MAX_PERIOD, len(s) - 1) + 1))
 
 
 def salt_ok(salt_hex: object) -> bool:
-    return isinstance(salt_hex, str) and bool(SALT_RE.fullmatch(salt_hex)) and len(set(salt_hex)) >= SALT_MIN_DISTINCT
+    """Long lower-case hex that looks generated: >= 12 distinct digits and no short repeating pattern (S166 P2)."""
+    return (isinstance(salt_hex, str) and bool(SALT_RE.fullmatch(salt_hex))
+            and len(set(salt_hex)) >= SALT_MIN_DISTINCT and not _periodic(salt_hex))
+
+
+def salted(salt_hex: str, digest: str) -> str:
+    """Commitment to a hash that outsiders cannot recompute from public data (S166, prv P1)."""
+    return hashlib.sha256(f"{salt_hex}|{digest}".encode("utf-8")).hexdigest()
+
+
+def key_bytes(key: Mapping[str, str]) -> bytes:
+    return (json.dumps(dict(key), indent=1, sort_keys=True) + "\n").encode("utf-8")
+
+
+def key_commitment(key: Mapping[str, str], *, salt_hex: str) -> str:
+    """Tracked sealed-key commitment; a plain hash would fall to trying all 7! = 5,040 mappings."""
+    return salted(salt_hex, hashlib.sha256(key_bytes(key)).hexdigest())
+
+
+def salt_reuse_problems(salt_hex: str, *, tracked_dir: Path, letter: str, wave: str) -> list[str]:
+    """Each annotator needs their own salt: refuse one whose tracked commitment belongs to the other letter."""
+    out = []
+    for other in sorted(set(ANNOTATOR) - {letter}):
+        f = Path(tracked_dir) / f"salt_{wave}_{other}.sha256"
+        if f.is_file() and f.read_text(encoding="utf-8").split()[:1] == [salt_commitment(salt_hex)]:
+            out.append(f"SALT_REUSED: this is annotator {other}'s salt")
+    return out
 
 
 class PacketError(ValueError):
@@ -52,7 +83,7 @@ def read_salt(path: Path, *, repo_root: Path) -> str:
     text = Path(path).read_text(encoding="utf-8")
     salt = text[:-1] if text.endswith("\n") else text
     if not salt_ok(salt):
-        raise PacketError("salt must be at least 64 lower-case hex characters with >= 8 distinct digits")
+        raise PacketError("salt must be at least 64 lower-case hex characters that look generated")
     return salt
 
 
@@ -90,7 +121,7 @@ def build_packets(recipe_ids: Sequence[str], records: Mapping[str, Mapping[str, 
     if not isinstance(seed_hex, str) or not seed_hex:
         raise PacketError("seed is required")
     if not salt_ok(salt_hex):
-        raise PacketError("salt must be at least 64 lower-case hex characters with >= 8 distinct digits")
+        raise PacketError("salt must be at least 64 lower-case hex characters that look generated")
     ordered = sorted(set(recipe_ids), key=lambda rid: (_sha(seed_hex, letter, salt_hex, rid), rid))
     packets, key = [], {}
     for n, rid in enumerate(ordered, 1):
@@ -111,10 +142,16 @@ def build_packets(recipe_ids: Sequence[str], records: Mapping[str, Mapping[str, 
     return packets, key
 
 
-def manifest_rows(packets: Sequence[Mapping[str, Any]]) -> list[dict]:
-    """Text-free rows for the tracked manifest (no recipe id, no text)."""
+def manifest_rows(packets: Sequence[Mapping[str, Any]], *, salt_hex: str) -> list[dict]:
+    """Text-free rows for the tracked manifest: no recipe id, no text, nothing recomputable from public data.
+
+    S166 (prv P1): the plain file/content hashes and per-packet line/step counts let anyone map packets to the
+    public recipe ids, so only salted commitments are tracked; they are checked after the salt is revealed.
+    """
+    if not salt_ok(salt_hex):
+        raise PacketError("salt must be at least 64 lower-case hex characters that look generated")
     return [{"packet_id": p["packet_id"],
-             "file_sha256": hashlib.sha256((json.dumps(p["doc"], indent=2, ensure_ascii=False) + "\n").encode()).hexdigest(),
-             "content_sha256": p["content_sha256"], "n_ingredient_lines": len(p["doc"]["ingredient_lines"]),
-             "n_steps": len(p["doc"]["steps"]), "ai_prefill": "NONE", "model_outputs_embedded": "NONE",
-             "status": STATUS} for p in packets]
+             "file_sha256_salted": salted(salt_hex, hashlib.sha256(
+                 (json.dumps(p["doc"], indent=2, ensure_ascii=False) + "\n").encode()).hexdigest()),
+             "content_sha256_salted": salted(salt_hex, p["content_sha256"]), "ai_prefill": "NONE",
+             "model_outputs_embedded": "NONE", "status": STATUS} for p in packets]
