@@ -402,3 +402,10 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Deviation from the one-annotator-per-machine rule (design; S164 guard):** A's and B's private material are on the same Mac. Mitigations: B was built only after `commitments_A_P1.json` was committed (A's labels cannot change); B's AI pass (prv) runs only inside the B clone and must not read A's packets, drafts, key or salt; the packet maker's folder guard is satisfied per clone but its intent is not, and reports must say so. Parv stamps B's labels (relayed) when available.
 - **Next free D-number for the 15.0 ruling:** D-065.
 - **Approver:** Kush.
+
+### D-065 · 2026-11-06 · ksh cross-check package for annotator B accepted (decided by Kush; Parv's stamp relayed by Kush per D-064; entered by the coding agent as scribe)
+- **Source:** after ksh graded B-0001..0007 ACCEPT_WITH_EDITS (18 must-fix) and proposed SP-002..SP-004, Kush: "all passedd across th ksh pacakge".
+- **Package:** prv AI pass 2 applies only the 18 must-fix items in `B_ai_draft_v2/` (pass 1 kept); ksh re-checks; SP-002 (U+2044 fraction slash parsed as count 1; also affects the committed A labels, whose affected quantities must be treated as unreliable in scoring), SP-003 (unstated shares) and SP-004 (alternative/conditional values) logged; representability per ksh: all seven WORKAROUND (B-0004 and B-0005 WORKAROUND, strict reading IMPOSSIBLE); then copy into `B/` as `MODEL_ASSISTED_HUMAN_ACCEPTED`, DONE snapshots and `commitments_B_P1.json`.
+- **Limits:** as D-060/D-061/D-064 (human-accepted AI drafts; no timing; same machine; same model family for both passes).
+- **Next free D-number for the 15.0 ruling:** D-066.
+- **Approver:** Kush (Parv relayed).
