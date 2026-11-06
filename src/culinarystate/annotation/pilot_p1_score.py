@@ -14,13 +14,49 @@ from collections import Counter
 from pathlib import Path
 from typing import Mapping
 
+from culinarystate.annotation.gold import to_events
 from culinarystate.annotation.pilot_agreement import CATEGORIES, disagreements, recipe_metrics
+from culinarystate.scoring.state_metrics import final_fields
+from culinarystate.state_graph.engine import replay
 from culinarystate.quantity import rc2_dryrun as D
 
 LABEL_BASIS = "HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND"
 METRICS = ("spans_exact_f1", "spans_relaxed_f1", "concept_agreement", "unknown_disagreement_rate", "process_link_f1",
            "event_f1_strict", "event_f1_loose", "relation_f1", "structural_relation_f1", "coref_b_cubed_f1",
            "intermediate_entity_f1", "alive_entity_f1", "state_field_agreement")
+
+
+GATE_RATE = 0.20  # THR-19P-16 / -31
+# THR-19P-16 tool denominators, as tools/gold_pilot_agreement.py CAT_DENOM / denominators():
+CAT_DENOM = {"boundary": "spans", "entity_type": "spans", "quantity": "spans", "canonical_identity": "lines",
+             "event_type": "events", "event_argument": "events", "intermediate_identity": "events", "coref": "coref",
+             "final_state": "state"}
+SUMMED = ("spans", "events", "coref", "state")  # both annotators' units; "lines" counts annotator A only
+
+
+def unit_counts(a: dict, b: dict) -> Counter:
+    """Per-pair units exactly as the existing tool's denominators() (block M4; THR-19P-16)."""
+    n = Counter()
+    units = list(a["ingredient_lines"]) + list(a["steps"]) + list(b["ingredient_lines"]) + list(b["steps"])
+    n["spans"] += sum(len(u["spans"]) for u in units)
+    n["events"] += sum(len(s["events"]) for d in (a, b) for s in d["steps"])
+    n["lines"] += len(a["ingredient_lines"])
+    n["coref"] += sum(len(s.get("coref", [])) for d in (a, b) for s in d["steps"])
+    n["state"] += len(final_fields(replay(to_events(a)))) + len(final_fields(replay(to_events(b))))
+    return n
+
+
+def handbook_gate(cats: Mapping[str, int], den: Mapping[str, int]) -> dict:
+    """THR-19P-16 tool rate and THR-19P-31 per-pair rate (one annotator's units = summed / 2); gate on the max."""
+    def rate(c, one):
+        d = den.get(CAT_DENOM[c], 0)
+        d = d / 2 if one and CAT_DENOM[c] in SUMMED else d
+        return round(cats[c] / d, 4) if d else None
+    tool = {c: rate(c, False) for c in CATEGORIES}
+    pair = {c: rate(c, True) for c in CATEGORIES}
+    flagged = sorted(c for c in CATEGORIES if max(tool[c] or 0, pair[c] or 0) > GATE_RATE)
+    return {"threshold": GATE_RATE, "tool_rate": tool, "per_pair_rate": pair, "flagged_categories": flagged,
+            "verdict": "HANDBOOK_REVISION_REQUIRED" if flagged else "NO_MECHANICAL_FLAG"}
 
 
 class ScoreError(ValueError):
@@ -89,11 +125,12 @@ def score(key_a: Mapping[str, str], key_b: Mapping[str, str], *, labels_a: Path,
                 + _coverage_problems(key_a, commitment_a, "A") + _coverage_problems(key_b, commitment_b, "B"))
     if problems:
         raise ScoreError("; ".join(problems))
-    per, cats = [], Counter({c: 0 for c in CATEGORIES})
+    per, cats, den = [], Counter({c: 0 for c in CATEGORIES}), Counter()
     for n, (pa, pb) in enumerate(pair_packets(key_a, key_b), 1):
         doc_a = json.loads((Path(labels_a) / f"{pa}.json").read_text(encoding="utf-8"))
         doc_b = json.loads((Path(labels_b) / f"{pb}.json").read_text(encoding="utf-8"))
         m = recipe_metrics(doc_a, doc_b)
+        den.update(unit_counts(doc_a, doc_b))
         rows = disagreements(doc_a, doc_b, m["alignment"])
         c = Counter(r["category"] for r in rows)
         cats.update(c)
@@ -103,6 +140,7 @@ def score(key_a: Mapping[str, str], key_b: Mapping[str, str], *, labels_a: Path,
     report = {"record": "STEP19_P1_AGREEMENT_COUNTS", "status": "AI_ENGINEERING_SCORE_COUNTS_ONLY",
               "label_basis": LABEL_BASIS, "counts_as_human_gate": False, "contains_ids": False, "contains_text": False,
               "pairs": len(per), "replay_ok_pairs": sum(p["replay_ok"] for p in per), "mean": mean,
-              "disagreement_categories": dict(sorted(cats.items())), "per_pair": per}
+              "disagreement_categories": dict(sorted(cats.items())), "denominators": dict(sorted(den.items())),
+              "handbook_gate": handbook_gate(cats, den), "per_pair": per}
     D.assert_counts_only(report)
     return report
