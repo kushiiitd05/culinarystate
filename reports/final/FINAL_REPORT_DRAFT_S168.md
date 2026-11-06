@@ -157,7 +157,7 @@ Source: `reports/step26/simulability_census_full_corpus_S166.json`; `CENSUS_FILE
 - 612,782 recipes; 611,902 texts with steps; **14,594,812 engine events**; 14,507,823 transactions applied and 86,989 rejected in replay.
 - **SIMULATE: 0. SIM_PROHIBITED: 14,594,812.** All 8 inputs (`duration`, `lid_state`, `matrix_class`, `medium`, `piece_size_class`, `start_mode`, `temperature_profile`, `water_ratio`) are UNKNOWN for every event; applicability UNKNOWN 14,594,812.
 - Other reasons: `NO_CONSUMED_ENTITY` 6,152,456; `REPLAY_HAS_ISSUES` 269,062; `EVENT_REJECTED_IN_REPLAY` 86,989. Exceptions 0; invented 0; baseline PASS before and after.
-- Independently of the missing bindings, 42 % of events (6,152,456 of 14,594,812) have no consumed entity, so even with bindings those events could not be simulated.
+- The census 0.1.0 reason NO_CONSUMED_ENTITY (6,152,456 of 14,594,812 events, 42 %) mostly counted the synthetic lot-introduction events, which consume nothing by design (an AI engine diagnosis, S168, D-071). With census 0.2.0 these carry LOT_INTRODUCTION: on the seeded 1,000-recipe sample, 35.1 % of events are lot introductions and **7.1 % are real actions with no consumed entity** (verbs without a stated object, e.g. "stir", "bake until done"; `reports/step26/simulability_census_real_sample_counts_S168.json`). Even with bindings, those 7 % could not be simulated until Rung A binds an implicit object (two candidate binding rules are proposed, pending a precision check). The full-corpus 0.2.0 rerun is pending.
 - Engine events = 9,470,190 Rung A events + 5,124,622 synthetic lot-introduction events (one INTRODUCE_LOT per ingredient lot; `src/culinarystate/state_graph/event_adapter.py`).
 - **All-prohibited is by construction** (no condition or applicability bindings exist yet). It is not a finding about the corpus, and it is not a simulator result. The simulators exist as data-free code with no parameter values; no simulator has been validated on real held-out data.
 - `git_commit` is null (no `.git` on the server copy); module and tree hashes pin the code.
@@ -248,7 +248,7 @@ All DECISIONS.md entries were typed by the coding agent as scribe from the human
 1. **Problem:** recipe-as-text assistants do not track state, ignore evidence limits, answer without support; central question and H1-H4.
 2. **Proposed vs achieved:** the section 2 table. Partial D1 and the D3 engine layer delivered; D2, D4, D5 and H1-H4 unaddressed; time went to upstream hardening.
 3. **Pipeline:** ledgers, 612,782-recipe base, quantity grounding, Rung A, event engine, pilot gold, simulator contract.
-4. **Funnel:** 4.28 M ingredient lines to 33 k exact mass (0.78 %), with the 29.8 % U+2044 flag; 14.6 M events to 0 SIMULATE, 42 % with no consumed entity. `invented_count 0` is a span check, not correctness.
+4. **Funnel:** 4.28 M ingredient lines to 33 k exact mass (0.78 %), with the 29.8 % U+2044 flag; 14.6 M events to 0 SIMULATE; 35 % are lot introductions (by design) and 7 % real actions with no consumed entity (census 0.2.0, 1,000 sample). `invented_count 0` is a span check, not correctness.
 5. **Gates:** 07.A FAIL, G08-3 FAIL, P1 handbook gate HANDBOOK_REVISION_REQUIRED; 07I-C 0.88 single-reviewer, not computed.
 6. **P1 panel:** 7 pairs; spans 0.84, strict events 0.56, state fields 0.26; stamped "human-accepted AI drafts, not IAA".
 7. **Governance:** D-045, AI verdict first, decisions log typed by the coding agent as scribe, salted commitments, leak safety, what AI cannot supply.
