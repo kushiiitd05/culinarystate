@@ -352,3 +352,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Custody note (J5):** the salt was made by an agent process, not typed by Kush; Kush authorised this. Annotator B's salt is Parv's to make on his own Mac.
 - **Not covered:** building A's packets, the 15a.R seed, the 15.0 ruling (next free D-number: D-058).
 - **Approver:** Kush.
+
+### D-058 · 2026-11-06 · Review block L passed: annotator A's packet build and the L2–L5 AI verdicts (decided by Kush; L3 as Parv's item relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "ok passe dblock l coniutnue".
+- **Passed:** L1 A's P1 packet build (Kush may annotate); L2 packet-maker `main()` guard (`5580b93`); L3 keep `superseded_s164_unsalted/` with a "superseded, never use" README (prv verdict); L4 Kush's question log and representability file live in `~/.culinarystate_private/` as CSVs with the design Appendix C headers, no recipe text, only their sha256 in `commitments_A_P1.json`, handbook version `v1+AddendumA` (ksh verdict); L5 delete `tests/unit/.probe`.
+- **Still open:** K10 (who reads the J4 sample: ksh said both with Parv first, prv said Parv only; both say drop the 14 P1 recipes and extract on vinayak-server). Parv's own salt and B re-issue. The 15a.R seed and the 15.0 ruling (next free D-number: D-059).
+- **Approver:** Kush (L3 relayed for Parv).
