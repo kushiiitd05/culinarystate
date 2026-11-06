@@ -139,7 +139,7 @@ def check_prerequisites(record_path: Path, *, root: Path, wave: str = "P1") -> l
     def block(code, owner, detail):
         out.append(Blocker(code, owner, detail))
 
-    if wave != "P1":
+    if not re.fullmatch(r"P1[a-z]?", wave):  # S168: P1b allowed when the signed record authorises it
         block("WAVE_P2_NOT_SUPPORTED", "Kush+Parv",
               "P2 needs the reviewed tag-rule spec, D19-10, a finished P1 and closed 07I-C labelling")
     try:
@@ -228,14 +228,37 @@ def _guard_out(out_dir: Path, root: Path) -> None:
 
 def draw_p1(record_path: Path, frame_csv: Path, strata_csv: Path, *, out_dir: Path, root: Path) -> dict:
     """Draw P1 per the bound specification, or raise PilotGateError naming every blocker."""
-    blockers = check_prerequisites(record_path, root=root, wave="P1")
+    return draw_wave(record_path, frame_csv, strata_csv, out_dir=out_dir, root=root, wave="P1")
+
+
+def draw_wave(record_path: Path, frame_csv: Path, strata_csv: Path, *, out_dir: Path, root: Path, wave: str = "P1",
+              cells: list[str] | None = None, exclude_manifests: list[Path] = ()) -> dict:
+    """Draw a P1-family wave (S168). P1: all seven cells, unchanged. Later waves (P1b): a human-chosen subset of
+    P1's cells, the wave name in the seed, and every recipe and group of the given earlier manifests excluded."""
+    blockers = check_prerequisites(record_path, root=root, wave=wave)
     if blockers:
         raise PilotGateError("PREREQUISITES_MISSING: " + ", ".join(b.code for b in blockers))
     _guard_out(out_dir, root)
     out_dir = Path(out_dir)
-    manifest = out_dir / "manifest_P1.csv"
-    if manifest.exists() or (out_dir / "manifest_P1.csv.sha256").exists():
-        raise PilotGateError("MANIFEST_EXISTS: P1 was already drawn; no redraw")
+    all_cells = [c for c, *_ in P1_CELLS]
+    if wave == "P1":
+        cells_used = list(P1_CELLS)
+    else:
+        if not cells or any(c not in all_cells for c in cells) or len(set(cells)) != len(cells):
+            raise PilotGateError(f"CELLS_INVALID: {wave} needs a non-empty subset of {all_cells}")
+        if not exclude_manifests:
+            raise PilotGateError(f"PRIOR_MANIFEST_MISSING: {wave} must exclude every earlier wave")
+        cells_used = [c for c in P1_CELLS if c[0] in cells]
+    prior_ids, prior_groups = set(), set()
+    for m in exclude_manifests:
+        if not Path(m).is_file():
+            raise PilotGateError(f"PRIOR_MANIFEST_MISSING: {Path(m).name}")
+        for r in csv.DictReader(open(m, encoding="utf-8")):
+            prior_ids.add(r["recipe_id"])
+            prior_groups.add(r["group_key"])
+    manifest = out_dir / f"manifest_{wave}.csv"
+    if manifest.exists() or (out_dir / f"manifest_{wave}.csv.sha256").exists():
+        raise PilotGateError(f"MANIFEST_EXISTS: {wave} was already drawn; no redraw")
     rec = json.loads(Path(record_path).read_text(encoding="utf-8"))
     committed = _utc(rec["nonce_committed_at"])
     for path in (frame_csv, strata_csv):
@@ -248,7 +271,7 @@ def draw_p1(record_path: Path, frame_csv: Path, strata_csv: Path, *, out_dir: Pa
     if len({r["recipe_id"] for r in frame}) != len(frame):
         raise PilotGateError("FRAME_DUPLICATE_RECIPE_ID")
     frame_sha = hashlib.sha256(f"{_sha_file(frame_csv)}\n{_sha_file(strata_csv)}\n".encode()).hexdigest()
-    seed = hashlib.sha256(frame_sha.encode() + b"P1" + rec["pre_frame_nonce"].encode("utf-8")).digest()[:8]
+    seed = hashlib.sha256(frame_sha.encode() + wave.encode("utf-8") + rec["pre_frame_nonce"].encode("utf-8")).digest()[:8]
     pilot_col = rec["pilot_column_parv_choice"]
 
     def tagged(row, stratum):
@@ -257,9 +280,10 @@ def draw_p1(record_path: Path, frame_csv: Path, strata_csv: Path, *, out_dir: Pa
         column = pilot_col if stratum == "reserve_split" else stratum
         return strata.get(row["recipe_id"], {}).get(column) == "Y"
 
-    used, rows = set(), []
-    for cell, stratum, source, tier in P1_CELLS:
-        eligible = [r for r in frame if r["source_family"] == source and r["complexity_tier"] == tier and tagged(r, stratum)]
+    used, rows = set(prior_groups), []
+    for cell, stratum, source, tier in cells_used:
+        eligible = [r for r in frame if r["source_family"] == source and r["complexity_tier"] == tier and tagged(r, stratum)
+                    and r["recipe_id"] not in prior_ids]
         if len(eligible) < MIN_ELIGIBLE_PER_CELL:
             raise PilotGateError(f"CELL_UNDERFILLED: {cell} has {len(eligible)} < {MIN_ELIGIBLE_PER_CELL} eligible; "
                                  "fall-through would change signed quotas and needs a human decision")
@@ -276,7 +300,7 @@ def draw_p1(record_path: Path, frame_csv: Path, strata_csv: Path, *, out_dir: Pa
         if len(picked) < 3:
             raise PilotGateError(f"CELL_GROUPS_EXHAUSTED: {cell} lacks three distinct unused groups")
         for role, (r, key) in zip(("PRIMARY", "RESERVE_1", "RESERVE_2"), picked):
-            rows.append({"wave": "P1", "cell_id": cell, "stratum": stratum,
+            rows.append({"wave": wave, "cell_id": cell, "stratum": stratum,
                          "stratum_column": pilot_col if stratum == "reserve_split" else stratum,
                          "source_family": source, "tier": tier, "role": role, "recipe_id": r["recipe_id"],
                          "group_key": key, "eligible_count": len(eligible), "seed_hex": seed.hex(),
@@ -286,8 +310,8 @@ def draw_p1(record_path: Path, frame_csv: Path, strata_csv: Path, *, out_dir: Pa
         w = csv.DictWriter(fh, fieldnames=MANIFEST_COLUMNS, lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
-    with open(out_dir / "manifest_P1.csv.sha256", "x", encoding="utf-8") as fh:
-        fh.write(f"{_sha_file(manifest)}  manifest_P1.csv\n")
+    with open(out_dir / f"manifest_{wave}.csv.sha256", "x", encoding="utf-8") as fh:
+        fh.write(f"{_sha_file(manifest)}  manifest_{wave}.csv\n")
     return {"rows": rows, "frame_sha256": frame_sha, "seed_hex": seed.hex(), "manifest": str(manifest)}
 
 
