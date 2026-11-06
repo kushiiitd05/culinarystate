@@ -379,3 +379,10 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Held:** the tracked commitment `commitments_A_P1.json` is written only after prv's cross-check reports no must-fix error (it cannot be overwritten). The question log and representability file are still header-only.
 - **Next free D-number for the 15.0 ruling:** D-062.
 - **Approver:** Kush.
+
+### D-062 · 2026-11-06 · Kush passes prv's cross-check of A's AI pass; must-fix edits applied as AI pass 2; representability all FAITHFUL (decided by Kush; entered by the coding agent as scribe)
+- **Source:** after prv graded 0001 ACCEPT and 0002–0007 ACCEPT_WITH_EDITS (21 must-fix, mostly missing spans/coref, plus an inferred "hot" value, an unused `oil` entity in 0006 and no crescent-roll entity in 0007), Kush: "all faithfukll as said by the ksh flags adn all from prv said all ok adn passed adn faithfull as well".
+- **Read as:** ksh's own flagged judgement calls stay; prv's verdict (with its must-fix edits) is passed, so ksh applies only the 21 must-fix items as AI pass 2 in `A_ai_draft_v2/` (pass 1 in `A_ai_draft/` kept unchanged); every representability rating is FAITHFUL. Kush to correct if "passed" meant committing pass 1 unchanged.
+- **Sequence:** prv re-checks pass 2; if no must-fix remains, pass 2 is copied into `A/` as `MODEL_ASSISTED_HUMAN_ACCEPTED`, new DONE snapshots are logged, and `commitments_A_P1.json` is written and committed. D-061's limits (accepted AI drafts, no timing) still apply.
+- **Next free D-number for the 15.0 ruling:** D-063.
+- **Approver:** Kush.
