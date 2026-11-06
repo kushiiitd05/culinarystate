@@ -458,3 +458,13 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Done:** `recipe_adapter` labels lot introductions LOT_INTRODUCTION; census/contract 0.2.0-draft; 1,000 sample rerun: NO_CONSUMED_ENTITY 7.1 %, LOT_INTRODUCTION 35.1 % (`reports/step26/simulability_census_real_sample_counts_S168.json`); full-corpus 0.2.0 rerun running on vinayak-server; the final report draft and figure 2 corrected (the earlier "42 % extraction gap" reading was wrong).
 - **Pending:** Rung A binding rules for implicit objects (bind the current entity when the tier is ambiguous; bind the last-produced intermediate when none is live) — upper bound ~1.5 % of events; each needs a precision check on a labelled sample before landing (RULES_VERSION bump), because a wrong binding is worse than UNKNOWN.
 - **Approver:** ksh (Kush), AI under D-071.
+
+### D-068 · 2026-11-06 · Step 15.0 pre-freeze rulings (decided by Kush; entered by the coding agent at Kush's explicit instruction "seal signed ok and passe dby parv and kush", Kush waiving the 15a.R self-append rule)
+- **Source:** Kush: "2 ok whatever might be the best" (the drafted values in reports/step15/15_0_ruling_DRAFT_FOR_KUSH_SIGNATURE.md are accepted as best).
+- **Decision:** C2-a, H-3 (15b) with TB-V0 order for 15a diagnostics, X-1, G-1, K-1 as in reports/step15/pre_freeze_rulings_DRAFT.md.
+- **15.0 RESERVED_FRACTION:** 1/5
+- **15.0 RESERVED_UNIT:** STUDY_THEN_CELL
+- **15.0 RESERVED_STRATIFY:** SOURCE_FAMILY
+- **15a.R SEED_SHA256:** 73d3ed4de7ba9d46f09c7fb408805a78f3c8189044a71de3d2da3a85461932d5
+- **Seed custody:** Kush's seed on Kush's Mac (`~/.culinarystate_private/15aR_seed_kush.txt`, 0600, 48 hex, made with Python `secrets` by the agent at Kush's instruction, never printed); it replaces the agent-made seed on Parv's Mac (`d3075c68…`, block J5).
+- **Approver:** Kush
