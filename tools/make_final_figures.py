@@ -62,17 +62,18 @@ def main():
     ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v / 1e6:g}M"))
     _save(fig, "fig1_quantity_funnel.png")
 
-    cen = json.loads((ROOT / "reports/step26/simulability_census_full_corpus_S166.json").read_text())
+    cen = json.loads((ROOT / "reports/step26/simulability_census_real_sample_counts_S168.json").read_text())
     sysc = cen["census"]["systems"]["sim_aa_1"]
-    ev, nce, sim = cen["engine_events"], sysc["reasons"]["NO_CONSUMED_ENTITY"], sysc["route"]["SIMULATE"]
-    fig, ax = plt.subplots(figsize=(8, 2.6), facecolor=SURFACE)
+    ev, sim = cen["engine_events"], sysc["route"]["SIMULATE"]
+    lot, nce = sysc["reasons"]["LOT_INTRODUCTION"], sysc["reasons"]["NO_CONSUMED_ENTITY"]
+    fig, ax = plt.subplots(figsize=(8, 3.0), facecolor=SURFACE)
     _style(ax)
-    _hbar(ax, ["Engine events", "No consumed entity\n(extraction/linking gap)", "Routed to SIMULATE"], [ev, nce, sim],
-          lambda v: f"{v:,}  ({v / ev:.0%})" if v not in (ev, 0) else (f"{v:,}" if v else "0  (no condition bindings yet)"))
+    _hbar(ax, ["Engine events", "Lot introductions\n(consume nothing by design)", "Actions with no consumed entity\n(binding gap)",
+               "Routed to SIMULATE"], [ev, lot, nce, sim],
+          lambda v: f"{v:,}  ({v / ev:.1%})" if v not in (ev, 0) else (f"{v:,}" if v else "0  (no condition bindings yet)"))
     ax.set_title("Step 26g simulability census (sim_aa_1): nothing is simulable yet", loc="left", color=INK, fontsize=12)
-    ax.text(0, -0.32, "Source: simulability_census_full_corpus_S166.json (612,782 recipes). SIMULATE = 0 by construction; "
-            "42 % of events would still lack a consumed entity.", transform=ax.transAxes, color=INK2, fontsize=8)
-    ax.xaxis.set_major_formatter(matplotlib.ticker.FuncFormatter(lambda v, _: f"{v / 1e6:g}M"))
+    ax.text(0, -0.28, "Source: simulability_census_real_sample_counts_S168.json (census 0.2.0, seeded 1,000-recipe sample). "
+            "SIMULATE = 0 by construction (no bindings).", transform=ax.transAxes, color=INK2, fontsize=8)
     _save(fig, "fig2_census_funnel.png")
 
     p1 = json.loads((ROOT / "reports/step19/p1_agreement_counts_S166.json").read_text())
