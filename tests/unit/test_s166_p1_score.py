@@ -210,3 +210,28 @@ def test_report_carries_a_sensitivity_block_beside_the_headline(tmp_path):
     assert sens["basis"] == "U2044_NORMALISED_AT_SCORING_LABELS_UNCHANGED"
     assert sens["mean"] == rep["mean"] and sens["disagreement_categories"] == rep["disagreement_categories"]  # no U+2044
     D.assert_counts_only(rep)
+
+
+# ------------------------------------------------ S168: any wave
+def test_cli_wave_selects_the_wave_commitments(tmp_path, monkeypatch):
+    import importlib.util
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[2]
+    spec = importlib.util.spec_from_file_location("p1score_w", root / "tools/step19_p1_score.py")
+    tool = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(tool)
+    tracked = tmp_path / "tracked"
+    tracked.mkdir()
+    monkeypatch.setattr(tool, "TRACKED", tracked)
+    da, ca = _write(tmp_path, "A", _docs("A", "Kush"))
+    db, cb = _write(tmp_path, "B", _docs("B", "Parv"))
+    ka, kb = _keys()
+    (tracked / "commitments_A_P1b.json").write_text(json.dumps(ca))
+    (tracked / "commitments_B_P1b.json").write_text(json.dumps(cb))
+    for n, o in (("ka", ka), ("kb", kb)):
+        (tmp_path / f"{n}.json").write_text(json.dumps(o))
+    out = tmp_path / "s.json"
+    assert tool.main(["--wave", "P1b", "--key-a", str(tmp_path / "ka.json"), "--key-b", str(tmp_path / "kb.json"),
+                      "--labels-a", str(da), "--labels-b", str(db), "--out", str(out), "--root", str(tmp_path)]) == 0
+    rep = json.loads(out.read_text())
+    assert rep["wave"] == "P1b" and rep["pairs"] == 2
