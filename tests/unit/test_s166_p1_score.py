@@ -188,3 +188,25 @@ def test_gate_uses_the_max_of_tool_and_per_pair_rates(tmp_path):
     flagged = sorted(c for c in cats if max(g["tool_rate"][c] or 0, g["per_pair_rate"][c] or 0) > 0.2)
     assert g["flagged_categories"] == flagged
     D.assert_counts_only(rep)
+
+
+# ------------------------------------------------ block N7: SP-002 sensitivity column (D-069)
+def test_sp002_normalisation_keeps_offsets_and_only_touches_fraction_slashes():
+    doc = white_sauce("Kush")
+    doc["ingredient_lines"][0]["text"] = doc["ingredient_lines"][0]["text"].replace("50", "1⁄2", 1)
+    out = S.sp002_normalised(doc)
+    assert out is not doc and "⁄" in doc["ingredient_lines"][0]["text"]
+    assert out["ingredient_lines"][0]["text"] == doc["ingredient_lines"][0]["text"].replace("⁄", "/")
+    assert [len(x["text"]) for x in out["ingredient_lines"]] == [len(x["text"]) for x in doc["ingredient_lines"]]
+    assert out["steps"] == doc["steps"]
+
+
+def test_report_carries_a_sensitivity_block_beside_the_headline(tmp_path):
+    da, ca = _write(tmp_path, "A", _docs("A", "Kush"))
+    db, cb = _write(tmp_path, "B", _docs("B", "Parv", perturb=True))
+    ka, kb = _keys()
+    rep = S.score(ka, kb, labels_a=da, labels_b=db, commitment_a=ca, commitment_b=cb)
+    sens = rep["sensitivity_sp002"]
+    assert sens["basis"] == "U2044_NORMALISED_AT_SCORING_LABELS_UNCHANGED"
+    assert sens["mean"] == rep["mean"] and sens["disagreement_categories"] == rep["disagreement_categories"]  # no U+2044
+    D.assert_counts_only(rep)
