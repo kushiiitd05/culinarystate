@@ -1,0 +1,42 @@
+{
+ "agreement": 69,
+ "by_stratum": {
+  "S1_IN_1000_SAMPLE": {
+   "MIXED_NUMBER_MISREAD": 5
+  },
+  "S2_A1_ALL": {
+   "OTHER": 2
+  },
+  "S3_WIKIBOOKS_ALL": {
+   "TRUE_INVERTED_RANGE": 2
+  },
+  "S4_FOODCOM_30": {
+   "MIXED_NUMBER_MISREAD": 27,
+   "OTHER": 2,
+   "TRUE_INVERTED_RANGE": 1
+  },
+  "S5_GUTENBERG_30": {
+   "MIXED_NUMBER_MISREAD": 30
+  }
+ },
+ "cases": 69,
+ "cohen_kappa": 1.0,
+ "limits": "AI readers of one model family; agreement is not independent human evidence (D-071)",
+ "mixed_shape_9-9/9_a": {
+  "MIXED_NUMBER_MISREAD": 62
+ },
+ "readers": "prv (Parv, first) then ksh (Kush), independent; both AI, same model family",
+ "reading": "MIXED_NUMBER_MISREAD for every hyphenated mixed-number shape (62/62); 3 true reversed ranges; 4 OTHER (cut-off leading unicode fraction x2, decimal split at the point, a pan size)",
+ "record": "J4_READING_COUNTS",
+ "status": "AI_READING_UNDER_DELEGATION_D071",
+ "verdict_kush": {
+  "MIXED_NUMBER_MISREAD": 62,
+  "OTHER": 4,
+  "TRUE_INVERTED_RANGE": 3
+ },
+ "verdict_parv": {
+  "MIXED_NUMBER_MISREAD": 62,
+  "OTHER": 4,
+  "TRUE_INVERTED_RANGE": 3
+ }
+}
