@@ -48,6 +48,18 @@ def commitment_problems(commitment: Mapping, *, letter: str, label_dir: Path) ->
     return out
 
 
+def key_problems(key: Mapping[str, str], *, salt_hex: str, tracked_line: str, letter: str) -> list[str]:
+    """The sealed key must match its tracked salted commitment (ksh review KS2b; checkable once salts are revealed)."""
+    from culinarystate.annotation import pilot_packets as pp
+    want = (tracked_line.split() or [""])[0]
+    return [] if pp.key_commitment(key, salt_hex=salt_hex) == want else [f"KEY_COMMITMENT_MISMATCH: {letter}"]
+
+
+def _coverage_problems(key: Mapping[str, str], commitment: Mapping, letter: str) -> list[str]:
+    files = {row["packet_id"] for row in commitment.get("files", [])}
+    return [] if set(key) == files else [f"KEY_VS_COMMITMENT: annotator {letter}'s key and commitment list different packets"]
+
+
 def _f1(x) -> float | None:
     if isinstance(x, Mapping):
         if "f1" in x:
@@ -73,7 +85,8 @@ def _numbers(m: Mapping) -> dict:
 def score(key_a: Mapping[str, str], key_b: Mapping[str, str], *, labels_a: Path, labels_b: Path,
           commitment_a: Mapping, commitment_b: Mapping) -> dict:
     problems = (commitment_problems(commitment_a, letter="A", label_dir=labels_a)
-                + commitment_problems(commitment_b, letter="B", label_dir=labels_b))
+                + commitment_problems(commitment_b, letter="B", label_dir=labels_b)
+                + _coverage_problems(key_a, commitment_a, "A") + _coverage_problems(key_b, commitment_b, "B"))
     if problems:
         raise ScoreError("; ".join(problems))
     per, cats = [], Counter({c: 0 for c in CATEGORIES})
