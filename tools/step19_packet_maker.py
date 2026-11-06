@@ -1,16 +1,25 @@
 #!/usr/bin/env python3
 """Step 19 P1 packet maker for ONE annotator (A = Kush, B = Parv). DRAFT_PENDING_H4.
 
-  python tools/step19_packet_maker.py --letter B
+  python tools/step19_packet_maker.py --letter A --salt-file ~/.culinarystate_private/p1_salt_A.txt
+  (make the salt once: python3 -c "import secrets;print(secrets.token_hex(32))" > that file; chmod 600 it)
 Reads registry/recipe_semantics/deep_gold_pilot_v1/manifest_P1.csv (checked against its .sha256), takes the PRIMARY
 recipes, reads their text from the local corpora and writes, outside git: annotation/gold/deep_gold_pilot_v1/<letter>/<packet>.json
 (blank gold-1.0) and sealed_key_P1_<letter>.json. Tracked, text-free: packets_P1_<letter>.csv and sealed_key_P1_<letter>.sha256.
 Refuses to overwrite anything. Run each letter on that annotator's own machine; never build both on one filesystem.
+S164 (block J7): the order also uses the annotator's secret salt (file outside the repo; only its sha256 is tracked as
+salt_P1_<letter>.sha256); refuses if the local folder is not git-ignored or the other letter's packets/key are present.
+S166 (prv review P1-P3 of PR #8): tracked rows and the key hash are salted commitments sha256(salt | hash), so they
+cannot link packets to the public recipe ids; per-packet line/step counts are no longer tracked; the other
+annotator's salt is refused. Re-issue after an earlier build: first move the old local
+annotation/gold/deep_gold_pilot_v1/<letter>/ folder and sealed_key_P1_<letter>.json out of the repository
+(e.g. to ~/.culinarystate_private/superseded/), otherwise the tool refuses to overwrite them.
 """
 import argparse
 import csv
 import hashlib
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -37,7 +46,19 @@ def records(wanted):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--letter", required=True, choices=sorted(pp.ANNOTATOR))
+    ap.add_argument("--salt-file", required=True, type=Path, help="private salt file outside the repo")
     a = ap.parse_args()
+    try:
+        salt = pp.read_salt(a.salt_file.expanduser(), repo_root=ROOT)
+    except (OSError, pp.PacketError) as exc:
+        raise SystemExit(f"salt: {exc}")
+    problems = pp.independence_problems(LOCAL, a.letter) + pp.salt_reuse_problems(
+        salt, tracked_dir=TRACKED, letter=a.letter, wave="P1")
+    for probe in (LOCAL / a.letter / "probe.json", LOCAL / f"sealed_key_P1_{a.letter}.json"):
+        if subprocess.run(["git", "-C", str(ROOT), "check-ignore", "-q", str(probe)]).returncode != 0:
+            problems.append(f"LOCAL_NOT_GIT_IGNORED: {probe.relative_to(ROOT)}")
+    if problems:
+        raise SystemExit("refusing: " + "; ".join(problems))
     manifest = TRACKED / "manifest_P1.csv"
     if hashlib.sha256(manifest.read_bytes()).hexdigest() != (TRACKED / "manifest_P1.csv.sha256").read_text().split()[0]:
         raise SystemExit("manifest_P1.csv does not match its recorded sha256")
@@ -45,23 +66,26 @@ def main():
     seed = rows[0]["seed_hex"]
     ids = [r["recipe_id"] for r in rows]
     recs = records(set(ids))
-    packets, key = pp.build_packets(ids, recs, letter=a.letter, seed_hex=seed)
+    packets, key = pp.build_packets(ids, recs, letter=a.letter, seed_hex=seed, salt_hex=salt)
     outs = [LOCAL / a.letter / f"{p['packet_id']}.json" for p in packets]
     keyf = LOCAL / f"sealed_key_P1_{a.letter}.json"
-    tracked = [TRACKED / f"packets_P1_{a.letter}.csv", TRACKED / f"sealed_key_P1_{a.letter}.sha256"]
+    tracked = [TRACKED / f"packets_P1_{a.letter}.csv", TRACKED / f"sealed_key_P1_{a.letter}.sha256",
+               TRACKED / f"salt_P1_{a.letter}.sha256"]
     for p in outs + [keyf] + tracked:
         if p.exists():
             raise SystemExit(f"refusing to overwrite {p.name}")
     (LOCAL / a.letter).mkdir(parents=True, exist_ok=True)
     for p, path in zip(packets, outs):
         path.write_text(json.dumps(p["doc"], indent=2, ensure_ascii=False) + "\n")
-    keyf.write_text(json.dumps(key, indent=1, sort_keys=True) + "\n")
-    rowsout = pp.manifest_rows(packets)
+    keyf.write_bytes(pp.key_bytes(key))  # same bytes the salted key commitment hashes
+    rowsout = pp.manifest_rows(packets, salt_hex=salt)
     with tracked[0].open("w", newline="") as fh:
         w = csv.DictWriter(fh, fieldnames=list(rowsout[0]))
         w.writeheader()
         w.writerows(rowsout)
-    tracked[1].write_text(hashlib.sha256(keyf.read_bytes()).hexdigest() + "  sealed_key_P1_" + a.letter + ".json\n")
+    tracked[1].write_text(pp.key_commitment(key, salt_hex=salt) + "  sealed_key_P1_" + a.letter
+                          + ".json (salted: sha256(salt|sha256(key file)))\n")
+    tracked[2].write_text(pp.salt_commitment(salt) + "  salt_P1_" + a.letter + " (secret, outside git)\n")
     print(json.dumps({"letter": a.letter, "packets": len(packets), "blank": all(pp.is_pristine(p["doc"]) for p in packets),
                       "recipes_found": len(recs), "outside_git": str(LOCAL.relative_to(ROOT))}))
 
