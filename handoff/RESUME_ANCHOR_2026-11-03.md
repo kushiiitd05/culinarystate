@@ -210,3 +210,25 @@ OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest test
 ```
 
 Run the full suite on vinayak-server only (VPN first); the 8 GB Mac swaps.
+
+## Update — 2026-11-07 00:20 IST: day closed after S169 (resume here)
+
+- **Branch:** `kush/s169-seal-p1b` (pushed; head `6501c6a`, no PR yet). Main has PR #8, #9, #10. DECISIONS through **D-073**; WORKLOG through **S169**. Review sheet blocks through **Q**.
+- **Rules in force:** D-045 (AI verdict first), **D-071: ksh = Kush, prv = Parv** (their verdicts are recorded as the humans' decisions under delegation); still human-only: signatures, pre-draw nonces, person-only facts. Commits one file each, tests first, authored Kush Tokas; push each session.
+- **Done since the last anchor:** P1 end to end (A and B committed, scored: HANDBOOK_REVISION_REQUIRED); SP-001..004 stamped; Addendum B issued (8 rules); J4 read (62/69 mixed numbers) and decided (D-072); SP-002 measured (29.8 % of ingredient lines) with a versioned fix design (after the presentation); census reason fix (lot introductions; census 0.2.0; real binding gap 7.1 % on the 1,000 sample); **15.0 ruling D-068 entered and 15a.R SEALED** (177 groups / 3,555 rows; sealed list private at `~/.culinarystate_private/15aR_sealed_list.json`; commitment `reports/step15/15a_R_seal_commitment_v1.json`); P1b tooling (wave paths, draw_wave); final report draft + 3 figures (`reports/final/`).
+- **Running:** full-corpus census 0.2.0 on vinayak-server → `~/Kush/cs_runs/step26g_census_full_corpus_S168.json` (tree `~/Kush/culinarystate_s166`, launched 2026-11-07 ~00:00). Commit it as `reports/step26/simulability_census_full_corpus_S169.json` after the counts-only check.
+- **Machines:** B annotator clone `~/Desktop/CGAS/cs_annotator_B` (+ `~/.culinarystate_private_B/`) — never mix with A's material; delete its `scratchpad/` when done.
+
+### Order for next session
+1. **Kush:** write the P1b nonce phrase (`nonce: …`). Then the agent: commit its sha256, write the P1b start-record amendment (Kush's OK of 2026-11-07), ksh picks 4 cells, draw, packets A + B (B in the clone), ksh/prv AI passes and cross-checks, stamp, commitments, score with the gate.
+2. **Kush:** Step 35 v2 signature (P-1..P-5, S-1/S-2, then the SIGNED record from his own session) — unlocks C1 explicit baselines.
+3. Agent: commit the census 0.2.0 full run; check what the 15a.R seal now unlocks (29-diag and Step 30 checks: `SNAPSHOT_NOT_FROZEN`, `DIAG_PREREG_UNSIGNED`?).
+4. Agent: precision check for the two Rung A implicit-object binding rules (D-073) on a labelled sample, then land them with a RULES_VERSION bump if precise.
+5. Report: humans edit block Q items (contributions, 5 UNVERIFIED); build the slide deck from the 9-slide outline and `reports/final/figures/`.
+6. After the presentation: the versioned rc2 change (SP-002 U+2044 + J4 mixed numbers), reruns as new versions beside S161.
+
+### First commands
+```bash
+cd ~/Desktop/CGAS/culinarystate && git fetch origin && git checkout kush/s169-seal-p1b && git pull
+ssh vinayak-server 'ls -la ~/Kush/cs_runs/step26g_census_full_corpus_S168.json; tail -c 400 ~/Kush/cs_runs/step26g_full_S168.log'
+```
