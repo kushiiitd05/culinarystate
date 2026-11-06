@@ -17,7 +17,9 @@ Default output: reports/step17/rung_a_dryrun_counts.json (refuses overwrite).
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -66,6 +68,54 @@ def _baseline(root):
     verify_baseline(Path(root) / BASELINE, Path(root))
 
 
+def _sha(path: Path) -> str:
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def src_tree_sha256(code_root: Path) -> str:
+    """One hash over every file under src/ except __pycache__ (sorted posix path + file hash)."""
+    h = hashlib.sha256()
+    files = [q for q in (Path(code_root) / "src").rglob("*") if q.is_file() and "__pycache__" not in q.parts
+             and q.name != ".DS_Store" and not q.name.startswith("._")]  # macOS Finder/AppleDouble (prv P8)
+    for p in sorted(files, key=lambda q: q.relative_to(code_root).as_posix()):
+        h.update(f"{p.relative_to(code_root).as_posix()}\0{_sha(p)}\n".encode("utf-8"))
+    return h.hexdigest()
+
+
+def _git(*args: str):
+    """git output for THIS checkout, or None when git is missing or ROOT is not a repository's top level.
+
+    The vinayak-server copy has no .git; ``git -C`` would otherwise report an enclosing repository instead.
+    """
+    def run(*a: str):
+        try:
+            r = subprocess.run(["git", "-C", str(ROOT), *a], capture_output=True, text=True, timeout=30)
+        except (OSError, subprocess.SubprocessError):
+            return None
+        return r.stdout if r.returncode == 0 else None
+
+    top = run("rev-parse", "--show-toplevel")
+    if top is None or Path(top.strip()).resolve() != ROOT.resolve():
+        return None
+    return run(*args)
+
+
+def code_provenance() -> dict:
+    """Which code produced the report (S166; S163 review prv P2): paths and hashes only.
+
+    Always describes this tool's own checkout (ROOT), never --root (the data location).
+    git_dirty: any tracked change in the checkout, or an untracked file under src/ or tools/.
+    """
+    files = sorted((ROOT / "src/culinarystate/extraction").glob("*.py")) + [Path(__file__).resolve()]
+    head = _git("rev-parse", "HEAD")
+    tracked = _git("status", "--porcelain", "--untracked-files=no") if head else None
+    untracked = _git("ls-files", "--others", "--exclude-standard", "--", "src", "tools") if head else None
+    dirty = None if tracked is None or untracked is None else bool(tracked.strip() or untracked.strip())
+    return {"git_commit": head.strip() if head else None, "git_dirty": dirty,
+            "code_sha256": [{"path": p.relative_to(ROOT).as_posix(), "sha256": _sha(p)} for p in files],
+            "src_tree_sha256": src_tree_sha256(ROOT)}
+
+
 def main(argv=None, record_source=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--seed", required=True, help="sampling seed (only its SHA-256 is reported)")
@@ -89,6 +139,11 @@ def main(argv=None, record_source=None) -> int:
             print(json.dumps({"status": "REFUSED", "reason": "PROTECTED_LEDGER_BASELINE_CHECK_FAILED_BEFORE_RUN"}))
             return 2
         baseline = "PENDING_AFTER_RUN"
+    provenance = code_provenance()
+    try:
+        D.assert_counts_only({"code_provenance": provenance})
+    except D.DryRunError as exc:
+        ap.error(f"code provenance would fail the counts-only guard: {exc}")
     status = {}
     report = M.summarise_records(_stream(a.families, root, record_source or corpus_records, status), seed=a.seed,
                                  size=a.sample_size, schema=D.load_schema(ROOT))
@@ -99,7 +154,8 @@ def main(argv=None, record_source=None) -> int:
         except (LedgerBaselineMismatch, OSError, KeyError, ValueError):
             baseline = "FAILED_AFTER_RUN"
     report.update(family_status=dict(sorted(status.items())), baseline_check=baseline,
-                  families_requested=list(a.families))
+                  families_requested=list(a.families), code_provenance=provenance,
+                  code_unchanged_during_run=code_provenance() == provenance)  # prv P8: re-checked after the run
     try:
         D.write_report(out, report, root=root)
     except D.DryRunError as exc:

@@ -171,3 +171,80 @@ Still open from block I and not covered here: δ_30, ρ, c_floor, the 34a.0 circ
   - J7: packet salt, guards and commit step built in S165; B's unsalted packet list superseded, to be re-issued by Parv with his own salt.
   - J4: census run in S165.
   - J8: 26g rerun deferred, because no committed tool exists.
+
+## Block K — S166 cross-review: PR #8 leak fix, Step 17b provenance, Step 26g census tool (prv items passed; ksh items pending)
+
+Source: `reports/review/S166_ai_review.md`. prv items K1–K3 below were passed by Kush and Parv on 2026-11-06 (D-054). Reply to K4–K10 per item, or `ok all`.
+
+| ID | AI verdict | Human decision needed |
+|---|---|---|
+| K1 | prv P1–P7: PR #8 leaked the packet→recipe map through plain hashes; fixed with salted commitments, salt checks, required issued list, re-issue note. | **Passed (D-054).** J7 re-confirmed on the fixed design. |
+| K2 | Merge PR #8 (now including the fix). | **Passed (D-054).** |
+| K3 | Nobody builds or re-issues packets from the superseded unsalted list; Parv re-issues B and Kush builds A only with the fixed maker. | **Passed (D-054).** |
+| K4 | ksh K1/K3/K6: accept the committed 26g census tool; close J8 (census block identical to Parv's; only invented 2 → 0). | ok / change |
+| K5 | ksh K2: the 2 → 0 is the S161 `º` rule, not the S163 fixes (wording corrected). | ok |
+| K6 | ksh K4/K7: add stage-order, locale and sample tests; write `bindings_supplied` and `prohibited_by_construction` into the census JSON (AI remit). | ok |
+| K7 | ksh K5: rerun the 1,000 census from a clean commit before citing it; mark Parv's file "superseded by S166". | ok / keep both |
+| K8 | Full-corpus 26g census (612,782 recipes, seed 20261104) is running on vinayak-server, counts only. Commit its JSON when done. | ok |
+| K9 | prv P8: recompute provenance after long runs; keep `.DS_Store`/`._*` out of the tree hash (AI remit). | ok |
+| K10 | J4 sample (from block J): the stratified inverted-interval sample needs recipe-text excerpts in a git-ignored file. Who reads it (Kush, Parv, both)? Build the extraction on vinayak-server? | person(s) + ok |
+
+## Block L — Annotator A's P1 packet build (pending review)
+
+Source: `reports/review/S166_ai_review.md` (last section). Reply per item, or `ok all`.
+
+| ID | AI verdict | Human decision needed |
+|---|---|---|
+| L1 | Accept A's build: all commitments verify (ksh) and nothing links a packet to a recipe from public data (prv). Kush may start annotating. | ok |
+| L2 | Guard `main()` in the packet maker (AI remit, test-first). | ok |
+| L3 | B's old unsalted list in `superseded_s164_unsalted/` still links B's old packets to recipes. Since B is re-issued with a new salt and order, keep it as a record, or delete it? | Parv: keep / delete |
+| L4 | Before Kush's first commit step: where the question log and representability files live (non-empty, private), and the handbook version string (`v1+AddendumA`?). | Kush |
+| L5 | `tests/unit/.probe` (empty, untracked, 2026-10-27): delete? | Kush |
+
+### Block L — AI verdicts on L2–L5 and K10 (ksh and prv, read-only, 2026-11-06)
+
+At Kush's request the AI reviewers answered the open items first; Kush and Parv review these verdicts (D-045). Reply per item, or `ok all`.
+
+| ID | ksh (Kush side) | prv (Parv side) | Human decision needed |
+|---|---|---|---|
+| L2 | ACCEPT: test fails on the pre-fix maker (argparse exit on import), passes on `5580b93`; CLI unchanged. | ACCEPT: same, independent temp-tree check. | ok |
+| L3 | — | KEEP `superseded_s164_unsalted/` with a README "superseded; never use to build or re-issue". The old mapping reveals only which 7 recipes B annotates (public in the manifest), nothing about the new salted order; deleting cannot remove it from git history; it is J7/D-054 evidence. | Parv: keep / delete |
+| L4a | Question log and representability file in `~/.culinarystate_private/` on Kush's Mac, never in the repo; only their sha256 enters `commitments_A_P1.json`. | — | Kush ok |
+| L4b | Formats from design Appendix C. Question log CSV: `entry_id,packet_id,utc_time,question,minutes_spent,answered_after_commitments`. Representability CSV: `packet_id,annotator_letter,wave,hardcase_class,rating,sp_id_if_logged,note` (rating FAITHFUL/WORKAROUND/IMPOSSIBLE; filled after labelling). No recipe text. If no questions: one line "no questions in P1". | — | Kush ok |
+| L4c | `--handbook-version "v1+AddendumA"` (design 5.6; handbook v1 "Addendum A (S101)"; not v2 DRAFT, not Addendum B). | — | Kush ok |
+| L5 | DELETE `tests/unit/.probe` (empty, untracked, unreferenced). | — | Kush ok |
+| K10 | Both read independently, Parv first; drop the 14 P1 primary recipes (A and B) from the sample; extract on vinayak-server (VPN first), excerpts git-ignored. | Parv reads; drop any P1 recipe; extract on the server, git-ignored. | Kush + Parv: who reads |
+
+B re-issue on Parv's Mac (prv, checked against the tool's refusals):
+1. `mkdir -p ~/.culinarystate_private && chmod 700 ~/.culinarystate_private && (umask 077; /opt/anaconda3/bin/python -c "import secrets;print(secrets.token_hex(32))" > ~/.culinarystate_private/p1_salt_B.txt) && chmod 600 ~/.culinarystate_private/p1_salt_B.txt` (never print the file).
+2. If B was built before: `mkdir -p ~/.culinarystate_private/superseded && mv annotation/gold/deep_gold_pilot_v1/B annotation/gold/deep_gold_pilot_v1/sealed_key_P1_B.json ~/.culinarystate_private/superseded/`.
+3. `/opt/anaconda3/bin/python tools/step19_packet_maker.py --letter B --salt-file ~/.culinarystate_private/p1_salt_B.txt` (prints `"blank": true`).
+4. Commit only `registry/recipe_semantics/deep_gold_pilot_v1/{packets_P1_B.csv,sealed_key_P1_B.sha256,salt_P1_B.sha256}`. Never commit `annotation/gold/`, the salt, `sealed_key_P1_B.json` or `~/.culinarystate_private/`. Never run `--letter A` on Parv's Mac.
+
+## Block M — P1 annotation, scoring and the THR-19P reading (pending review)
+
+Sources: DECISIONS D-060..D-066; `reports/step19/p1_agreement_counts_S166.json`; `reports/step19/pilot_schema_problem_log.md`; ksh audit KS1–KS6 and prv THR-19P reading (2026-11-06). Reply per item, or `ok all`.
+
+| ID | AI verdict | Human decision needed |
+|---|---|---|
+| M1 | ksh KS1–KS6: P1 scoring code correct and leak-safe; rerun reproduces the committed numbers; the S101 `disagreements()` arity crash is fixed. KS2/KS6 hardening applied test-first (key ⇔ commitment coverage, salted sealed-key check, key-based pairing test); the regenerated report has `key_commitments_verified: true`, numbers unchanged. | ok |
+| M2 | P1 result (7 pairs, human-accepted AI drafts, not blind): spans exact F1 0.84, concept 0.90, coref B³ 0.84, process 0.80, strict events 0.56, final-state fields 0.26; disagreements coref 108, entity_type 104, event_type 74, quantity 35 (partly SP-002), final_state 29. | ok |
+| M3 | prv THR-19P reading: most rows NOT_EVALUABLE under W2/D-064 (THR-11/12 provenance, 13–15 timing, 18 alpha, 19 falsification, 20/34 CIs, 21/22 class stats); THR-23 PASS; **THR-25 FAIL** (SP-001..004 not yet triaged); THR-26/32 STOP-SCHEMA not triggered (no BLOCKING); THR-35 bands descriptive only. | ok |
+| M4 | P1→P2: the result supports **REVISE HANDBOOK (Addendum B) before P2**, not proceed; schema/tooling decisions first on SP-001 (step-introduced entities) and SP-002 (U+2044 parser). THR-16/31 (> 20 % of units) cannot be computed because the report has no denominators: add per-category unit denominators to the scorer (AI remit). | ok / proceed instead |
+| M5 | Triage SP-001..SP-004 (THR-24/25) as ksh/prv AI verdicts first, then your stamp. | ok |
+| M6 | Report wording (prv): "P1 was scored on seven recipe pairs whose labels are human-accepted AI drafts from the same model family, produced on one machine; the result is an engineering score, not blind inter-annotator agreement, and provides no timing or reliability evidence. Agreement is low on state fields (0.26) and strict events (0.56), with disagreements concentrated in coreference and entity type, and four open schema or tooling problems (SP-001..004) point to handbook and tool revisions before P2. No state-of-the-art or reliability claim is made." | ok / edit |
+
+## Block N — SP triage, Addendum B draft, gate denominators, J4 extraction (pending review)
+
+Sources: `reports/step19/pilot_schema_problem_log.md` (AI triage section), `annotation/annotation_handbook_v1_addendum_B_DRAFT.md`, `reports/step19/p1_agreement_counts_S166.json` (`handbook_gate`), `tools/j4_inverted_interval_sample.py`. Reply per item, or `ok all` plus the choices.
+
+| ID | AI verdict | Human decision needed |
+|---|---|---|
+| N1 | M4 done: the P1 score now carries the tool denominators and the THR-19P-16/-31 gate. Verdict **HANDBOOK_REVISION_REQUIRED**: coref 0.48 / 0.96 (tool / per-pair), final_state 0.41 / 0.82, event_type 0.38 / 0.76, entity_type 0.12 / 0.24, event_argument 0.11 / 0.23. | ok |
+| N2 | SP triage (ksh/prv): SP-001 WORKAROUND now, candidate BLOCKING; SP-002 WORKAROUND (parser fix recommended); SP-003 WORKAROUND (handbook gap); SP-004 WORKAROUND with BLOCKING risk (schema gap → Step 16). STOP-SCHEMA not triggered. This answers THR-19P-25 once stamped. | stamp severities; SP-001: WORKAROUND or BLOCKING |
+| N3 | Addendum B DRAFT (B.1–B.23) written; three overlaps to merge (B.5≈B.11/12, B.8≈B.15, B.9≈B.20); each rule needs its P1 recurrence count before stamping. | stamp / edit |
+| N4 | SP-002 parser fix in `quantity/grammar.py normalize_text` (U+2044 → ASCII), test-first, after a before/after diff of every ledger parsed with `parse_line` (several callers). Not applied yet: it changes shared parsing. | approve the fix + diff |
+| N5 | SP-001 long-term: a step-sourced `Introduce` event (gold-1.1) — defer to Step 16 until ≥ 2 recipes (ksh) | defer / adopt |
+| N6 | P1b: prv suggests a short P1b (3–4 NEW recipes, fresh packets and salts) as a rule check of Addendum B before P2; it is a design amendment and changes the 40 h arithmetic. | P1b yes/no, size |
+| N7 | A's SP-002 quantity cells: report a corrected-parse sensitivity column beside the raw P1 numbers (never overwrite the headline). | ok |
+| N8 | J4: the extraction tool (sharded, text-free manifest, private excerpts with reader columns `verdict_parv`, `verdict_kush`) is built and tested; the full run is on vinayak-server. Once it lands, Parv reads first, then Kush (D-059). | ok |

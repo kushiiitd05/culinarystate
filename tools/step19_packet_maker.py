@@ -90,4 +90,5 @@ def main():
                       "recipes_found": len(recs), "outside_git": str(LOCAL.relative_to(ROOT))}))
 
 
-main()
+if __name__ == "__main__":
+    main()
