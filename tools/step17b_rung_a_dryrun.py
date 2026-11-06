@@ -17,7 +17,9 @@ Default output: reports/step17/rung_a_dryrun_counts.json (refuses overwrite).
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import subprocess
 import sys
 from pathlib import Path
 
@@ -66,6 +68,37 @@ def _baseline(root):
     verify_baseline(Path(root) / BASELINE, Path(root))
 
 
+def _sha(path: Path) -> str:
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def src_tree_sha256(code_root: Path) -> str:
+    """One hash over every src/**/*.py (sorted posix path + file hash), so any source change is visible."""
+    h = hashlib.sha256()
+    for p in sorted((Path(code_root) / "src").rglob("*.py"), key=lambda q: q.relative_to(code_root).as_posix()):
+        h.update(f"{p.relative_to(code_root).as_posix()}\0{_sha(p)}\n".encode("utf-8"))
+    return h.hexdigest()
+
+
+def _git(*args: str):
+    """git output in the code checkout, or None when git or .git is unavailable (e.g. vinayak-server copy)."""
+    try:
+        r = subprocess.run(["git", "-C", str(ROOT), *args], capture_output=True, text=True, timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return r.stdout if r.returncode == 0 else None
+
+
+def code_provenance() -> dict:
+    """Which code produced the report (S166; S163 review prv P2): paths and hashes only."""
+    files = sorted((ROOT / "src/culinarystate/extraction").glob("*.py")) + [Path(__file__).resolve()]
+    head = _git("rev-parse", "HEAD")
+    dirty = _git("status", "--porcelain", "--untracked-files=no", "--", "src", "tools") if head else None
+    return {"git_commit": head.strip() if head else None, "git_dirty": bool(dirty.strip()) if dirty is not None else None,
+            "code_sha256": [{"path": p.relative_to(ROOT).as_posix(), "sha256": _sha(p)} for p in files],
+            "src_tree_sha256": src_tree_sha256(ROOT)}
+
+
 def main(argv=None, record_source=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--seed", required=True, help="sampling seed (only its SHA-256 is reported)")
@@ -99,7 +132,7 @@ def main(argv=None, record_source=None) -> int:
         except (LedgerBaselineMismatch, OSError, KeyError, ValueError):
             baseline = "FAILED_AFTER_RUN"
     report.update(family_status=dict(sorted(status.items())), baseline_check=baseline,
-                  families_requested=list(a.families))
+                  families_requested=list(a.families), code_provenance=code_provenance())
     try:
         D.write_report(out, report, root=root)
     except D.DryRunError as exc:
