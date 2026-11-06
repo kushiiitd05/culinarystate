@@ -75,3 +75,18 @@ def manifest_rows(rows: Iterable[Mapping]) -> list[dict]:
     return [{"case_id": f"J4-{n:04d}", "recipe_id_sha256": hashlib.sha256(r["recipe_id"].encode("utf-8")).hexdigest(),
              "source_family": r["source_family"], "stratum": r["stratum"], "shape": r.get("shape", "")}
             for n, r in enumerate(rows, 1)]
+
+
+CONTEXT = 80
+
+
+def scan_record(item: tuple[str, str, str | None, str]) -> list[dict]:
+    """Worker (picklable, top level): every inverted-interval case of one recipe text, with shape and excerpt."""
+    rid, family, locale, text = item
+    out = []
+    for start, end in inverted_spans(text, locale=locale):
+        lo, hi = max(0, start - CONTEXT), min(len(text), end + CONTEXT)
+        out.append({"recipe_id": rid, "source_family": family, "start": start, "end": end,
+                    "shape": shape(text[start:end]),
+                    "excerpt": (text[lo:start] + "[[" + text[start:end] + "]]" + text[end:hi]).replace("\n", " ⏎ ")})
+    return out
