@@ -154,3 +154,37 @@ def test_sealed_key_is_checked_against_its_salted_commitment():
     good = pp.key_commitment(ka, salt_hex=salt) + "  sealed_key_P1_A.json (salted)\n"
     assert S.key_problems(ka, salt_hex=salt, tracked_line=good, letter="A") == []
     assert S.key_problems({**ka, "DGP-A-0001": "X"}, salt_hex=salt, tracked_line=good, letter="A")
+
+
+# ------------------------------------------------ block M4: THR-19P-16 / -31 rates (D-067)
+def _tool_module():
+    import importlib.util
+    from pathlib import Path
+    spec = importlib.util.spec_from_file_location("gpa_tool", Path(__file__).resolve().parents[2] / "tools/gold_pilot_agreement.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def test_denominators_equal_the_existing_tool(tmp_path):
+    a, b = white_sauce("Kush"), white_sauce("Parv")
+    b["steps"][0]["events"] = b["steps"][0]["events"][:-1]
+    tool = _tool_module()
+    want = tool.denominators({("Kush", "R"): a, ("Parv", "R"): b}, ["R"])
+    assert dict(S.unit_counts(a, b)) == dict(want)
+
+
+def test_gate_uses_the_max_of_tool_and_per_pair_rates(tmp_path):
+    da, ca = _write(tmp_path, "A", _docs("A", "Kush"))
+    db, cb = _write(tmp_path, "B", _docs("B", "Parv", perturb=True))
+    ka, kb = _keys()
+    rep = S.score(ka, kb, labels_a=da, labels_b=db, commitment_a=ca, commitment_b=cb)
+    g = rep["handbook_gate"]
+    den, cats = rep["denominators"], rep["disagreement_categories"]
+    ev = cats["event_type"] + 0
+    assert g["tool_rate"]["event_type"] == round(ev / den["events"], 4)
+    assert g["per_pair_rate"]["event_type"] == round(ev / (den["events"] / 2), 4)
+    assert g["threshold"] == 0.2 and g["verdict"] in ("HANDBOOK_REVISION_REQUIRED", "NO_MECHANICAL_FLAG")
+    flagged = sorted(c for c in cats if max(g["tool_rate"][c] or 0, g["per_pair_rate"][c] or 0) > 0.2)
+    assert g["flagged_categories"] == flagged
+    D.assert_counts_only(rep)
