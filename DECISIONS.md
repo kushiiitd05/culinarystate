@@ -431,3 +431,12 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **15.0:** Kush's 15a.R seed generated on Kush's Mac (`~/.culinarystate_private/15aR_seed_kush.txt`, never printed; sha256 `73d3ed4d…`); the 15.0 ruling block (D-068) is prepared for Kush to append himself, because the 15a.R rule says no agent may write it.
 - **P1b: yes**; size and draw follow (prv suggested 3–4 NEW recipes, fresh packets and salts; a design amendment).
 - **Approver:** Kush.
+
+### D-070 · 2026-11-06 · Review block O passed as proposed (decided by Kush; Parv relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "passok continue".
+- **O1 SP-002:** ksh's design approved (adapter-level pre-normalisation in `parse_quantity_v2`, version bumps, `grammar.py` untouched, glued "11⁄2" REFUSE, legacy ledgers/KGE keep the defect with a documented caveat); implemented **after the presentation** as a new versioned rc2 result beside S161; until then every quantity figure carries the SP-002 caveat.
+- **O2 SP stamp:** SP-001 WORKAROUND / SCHEMA_GAP → 16A; SP-002 WORKAROUND / TOOLING → parser fix (TOOLING_BACKLOG); SP-003 WORKAROUND / HANDBOOK_GAP → Addendum B; SP-004 WORKAROUND (BLOCKING risk) / SCHEMA_GAP → 16B. THR-19P-25 (100 % triage) satisfied. STOP-SCHEMA not triggered.
+- **O3 Addendum B:** the 8 issued rules of `annotation_handbook_v1_addendum_B_PROPOSED.md` are stamped and in force from P1b/P2; the 10 held rules (incl. H.1) stay held. P1 labels are never edited or re-scored.
+- **O4 15.0:** unchanged — waits for Kush to append D-068 himself (15a.R rule); the seal runs only after a clean check.
+- **O5 P1b:** design amendment approved in principle (fresh draw excluding all 21 P1 rows, new salts, `--wave` support); the size (3–4) and the draw nonce/seed still come from a human.
+- **Approver:** Kush (Parv relayed).
