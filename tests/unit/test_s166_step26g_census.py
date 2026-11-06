@@ -107,3 +107,58 @@ def test_cli_refuses_when_the_ledger_baseline_cannot_be_checked(tmp_path, capsys
                      record_source=lambda fams, root: iter(records()))
     assert code == 2 and "PROTECTED_LEDGER_BASELINE_CHECK_FAILED_BEFORE_RUN" in capsys.readouterr().out
     assert not (tmp_path / "r.json").exists()
+
+
+# ------------------------------------------------ ksh review K4/K7 (S166)
+def test_stages_run_in_chain_order_on_exactly_the_seeded_sample(monkeypatch):
+    calls = []
+    real_adapt, real_build = C.adapt_event_graph, C.build_simulation_inputs
+
+    def adapt(*a, **k):
+        calls.append("adapt")
+        return real_adapt(*a, **k)
+
+    def build(replay, **k):
+        calls.append(("build", type(replay).__name__, k["recipe_id"]))
+        return real_build(replay, **k)
+
+    monkeypatch.setattr(C, "adapt_event_graph", adapt)
+    monkeypatch.setattr(C, "build_simulation_inputs", build)
+    C.census_from_records(records(), seed="7", size=4)
+    from culinarystate.extraction.rung_a_measure import seeded_sample
+    want = [r["recipe_id"] for r in seeded_sample(records(), "7", 4) if r["steps"]]
+    builds = [c for c in calls if c != "adapt"]
+    assert [c[2] for c in builds] == want and all(c[1] == "ReplayResult" for c in builds)
+    assert calls == [x for rid in want for x in ("adapt", ("build", "ReplayResult", rid))]
+
+
+def test_locale_follows_the_source_family(monkeypatch):
+    seen = []
+
+    class Spy(C.RungA):
+        def config(self, locale=None):
+            seen.append(locale)
+            return super().config(locale=locale)
+
+    C.census_from_records(records(), seed="7", size=6, rung=Spy())
+    assert sorted(set(seen)) == ["UK", "US"] and len(seen) == 5
+
+
+def test_report_says_the_all_prohibited_result_is_structural():
+    rep = C.census_from_records(records(), seed="7", size=6)
+    assert rep["bindings_supplied"] == 0 and rep["applicability_supplied"] == 0
+    assert rep["prohibited_by_construction"] is True
+    assert rep["reading"] == "NO_CONDITION_OR_APPLICABILITY_BINDINGS_YET_ALL_EVENTS_SIM_PROHIBITED_BY_CONSTRUCTION"
+
+
+def test_cli_exit_code_3_when_a_family_is_missing(tmp_path):
+    tool = _tool()
+
+    def src(fams, root):
+        if fams == ("TASTESET",):
+            raise FileNotFoundError("absent")
+        return iter(records())
+
+    assert tool.main(["--seed", "7", "--sample-size", "3", "--out", str(tmp_path / "c.json"), "--no-baseline-check"],
+                     record_source=src) == 3
+    assert json.loads((tmp_path / "c.json").read_text())["family_status"]["TASTESET"] == "INPUT_MISSING"
