@@ -200,3 +200,23 @@ Source: `reports/review/S166_ai_review.md` (last section). Reply per item, or `o
 | L3 | B's old unsalted list in `superseded_s164_unsalted/` still links B's old packets to recipes. Since B is re-issued with a new salt and order, keep it as a record, or delete it? | Parv: keep / delete |
 | L4 | Before Kush's first commit step: where the question log and representability files live (non-empty, private), and the handbook version string (`v1+AddendumA`?). | Kush |
 | L5 | `tests/unit/.probe` (empty, untracked, 2026-10-27): delete? | Kush |
+
+### Block L — AI verdicts on L2–L5 and K10 (ksh and prv, read-only, 2026-11-06)
+
+At Kush's request the AI reviewers answered the open items first; Kush and Parv review these verdicts (D-045). Reply per item, or `ok all`.
+
+| ID | ksh (Kush side) | prv (Parv side) | Human decision needed |
+|---|---|---|---|
+| L2 | ACCEPT: test fails on the pre-fix maker (argparse exit on import), passes on `5580b93`; CLI unchanged. | ACCEPT: same, independent temp-tree check. | ok |
+| L3 | — | KEEP `superseded_s164_unsalted/` with a README "superseded; never use to build or re-issue". The old mapping reveals only which 7 recipes B annotates (public in the manifest), nothing about the new salted order; deleting cannot remove it from git history; it is J7/D-054 evidence. | Parv: keep / delete |
+| L4a | Question log and representability file in `~/.culinarystate_private/` on Kush's Mac, never in the repo; only their sha256 enters `commitments_A_P1.json`. | — | Kush ok |
+| L4b | Formats from design Appendix C. Question log CSV: `entry_id,packet_id,utc_time,question,minutes_spent,answered_after_commitments`. Representability CSV: `packet_id,annotator_letter,wave,hardcase_class,rating,sp_id_if_logged,note` (rating FAITHFUL/WORKAROUND/IMPOSSIBLE; filled after labelling). No recipe text. If no questions: one line "no questions in P1". | — | Kush ok |
+| L4c | `--handbook-version "v1+AddendumA"` (design 5.6; handbook v1 "Addendum A (S101)"; not v2 DRAFT, not Addendum B). | — | Kush ok |
+| L5 | DELETE `tests/unit/.probe` (empty, untracked, unreferenced). | — | Kush ok |
+| K10 | Both read independently, Parv first; drop the 14 P1 primary recipes (A and B) from the sample; extract on vinayak-server (VPN first), excerpts git-ignored. | Parv reads; drop any P1 recipe; extract on the server, git-ignored. | Kush + Parv: who reads |
+
+B re-issue on Parv's Mac (prv, checked against the tool's refusals):
+1. `mkdir -p ~/.culinarystate_private && chmod 700 ~/.culinarystate_private && (umask 077; /opt/anaconda3/bin/python -c "import secrets;print(secrets.token_hex(32))" > ~/.culinarystate_private/p1_salt_B.txt) && chmod 600 ~/.culinarystate_private/p1_salt_B.txt` (never print the file).
+2. If B was built before: `mkdir -p ~/.culinarystate_private/superseded && mv annotation/gold/deep_gold_pilot_v1/B annotation/gold/deep_gold_pilot_v1/sealed_key_P1_B.json ~/.culinarystate_private/superseded/`.
+3. `/opt/anaconda3/bin/python tools/step19_packet_maker.py --letter B --salt-file ~/.culinarystate_private/p1_salt_B.txt` (prints `"blank": true`).
+4. Commit only `registry/recipe_semantics/deep_gold_pilot_v1/{packets_P1_B.csv,sealed_key_P1_B.sha256,salt_P1_B.sha256}`. Never commit `annotation/gold/`, the salt, `sealed_key_P1_B.json` or `~/.culinarystate_private/`. Never run `--letter A` on Parv's Mac.
