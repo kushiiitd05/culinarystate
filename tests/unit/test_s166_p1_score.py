@@ -119,3 +119,38 @@ def test_cli_writes_once_and_refuses_overwrite(tmp_path):
     assert tool.main(args) == 0 and json.loads(out.read_text())["pairs"] == 2
     with pytest.raises(SystemExit):
         tool.main(args)
+
+
+# ------------------------------------------------ ksh review KS2 / KS6
+def test_key_packets_must_equal_the_committed_files(tmp_path):
+    da, ca = _write(tmp_path, "A", _docs("A", "Kush"))
+    db, cb = _write(tmp_path, "B", _docs("B", "Parv"))
+    ka, kb = _keys()
+    cb_short = {**cb, "files": cb["files"][:1]}
+    with pytest.raises(S.ScoreError, match="KEY_VS_COMMITMENT"):
+        S.score(ka, kb, labels_a=da, labels_b=db, commitment_a=ca, commitment_b=cb_short)
+
+
+def test_missing_label_file_is_refused(tmp_path):
+    da, ca = _write(tmp_path, "A", _docs("A", "Kush"))
+    (da / "DGP-A-0002.json").unlink()
+    assert any("MISSING_LABEL_FILE" in p for p in S.commitment_problems(ca, letter="A", label_dir=da))
+
+
+def test_score_uses_the_key_pairing_not_packet_numbers(tmp_path):
+    a = _docs("A", "Kush")
+    b = _docs("B", "Parv", perturb=True)  # B-0002 is the perturbed one
+    da, ca = _write(tmp_path, "A", a)
+    db, cb = _write(tmp_path, "B", b)
+    ka, kb = _keys(swap=True)  # A-0001 <-> B-0002 (perturbed), A-0002 <-> B-0001 (identical)
+    rep = S.score(ka, kb, labels_a=da, labels_b=db, commitment_a=ca, commitment_b=cb)
+    assert rep["per_pair"][0]["event_f1_strict"] < 1.0 and rep["per_pair"][1]["event_f1_strict"] == 1.0
+
+
+def test_sealed_key_is_checked_against_its_salted_commitment():
+    from culinarystate.annotation import pilot_packets as pp
+    salt = "3f9c1e7a5b2d8064c1a9e3f75b0d2c8e6a4f1b9d7c3e5a0f8b2d6c4e1a7f9b3d"
+    ka, _ = _keys()
+    good = pp.key_commitment(ka, salt_hex=salt) + "  sealed_key_P1_A.json (salted)\n"
+    assert S.key_problems(ka, salt_hex=salt, tracked_line=good, letter="A") == []
+    assert S.key_problems({**ka, "DGP-A-0001": "X"}, salt_hex=salt, tracked_line=good, letter="A")
