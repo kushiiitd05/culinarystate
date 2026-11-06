@@ -12,8 +12,12 @@ import hashlib
 import importlib.util
 import json
 import re
+import shutil
 import subprocess
+import sys
 from pathlib import Path
+
+import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 SENTINEL = "ZQXSENTINEL"
@@ -83,6 +87,74 @@ def test_src_tree_hash_changes_when_any_source_file_changes(tmp_path):
     src = tmp_path / "src/culinarystate/x"
     src.mkdir(parents=True)
     (src / "a.py").write_text("A = 1\n")
+    (src / "lex.json").write_text("{}\n")
     before = tool.src_tree_sha256(tmp_path)
     (src / "a.py").write_text("A = 2\n")
-    assert tool.src_tree_sha256(tmp_path) != before
+    after_py = tool.src_tree_sha256(tmp_path)
+    (src / "lex.json").write_text('{"a": 1}\n')
+    assert len({before, after_py, tool.src_tree_sha256(tmp_path)}) == 3  # non-.py source files count too
+    (src / "__pycache__").mkdir()
+    (src / "__pycache__/a.cpython-311.pyc").write_bytes(b"x")
+    assert tool.src_tree_sha256(tmp_path) == tool.src_tree_sha256(tmp_path)
+
+
+def test_report_tree_hash_is_the_tree_hash_of_this_checkout(tmp_path):
+    tool = _tool()
+    prov = json.loads(_run(tmp_path, tool))["code_provenance"]
+    assert prov["src_tree_sha256"] == tool.src_tree_sha256(ROOT)
+    paths = {row["path"] for row in prov["code_sha256"]}
+    assert {"src/culinarystate/extraction/auditor.py", "src/culinarystate/extraction/rung_a.py",
+            "src/culinarystate/extraction/rung_a_rules.py", "tools/step17b_rung_a_dryrun.py"} <= paths
+
+
+# ------------------------------------------------- git state, in throwaway repositories
+def _git(cwd: Path, *args: str) -> str:
+    return subprocess.run(["git", "-C", str(cwd), *args], check=True, capture_output=True, text=True).stdout
+
+
+def _mini_checkout(root: Path, monkeypatch):
+    """A tiny checkout holding a copy of the tool, so ROOT is ``root``; returns the loaded copy."""
+    (root / "tools").mkdir(parents=True)
+    (root / "src/culinarystate/extraction").mkdir(parents=True)
+    (root / "src/culinarystate/extraction/auditor.py").write_text("A = 1\n")
+    (root / "tools/step17b_rung_a_dryrun.py").write_bytes((ROOT / "tools/step17b_rung_a_dryrun.py").read_bytes())
+    monkeypatch.setattr(sys, "path", list(sys.path))  # the copy prepends its own src/; undo after the test
+    spec = importlib.util.spec_from_file_location("s166_copy", root / "tools/step17b_rung_a_dryrun.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _init_repo(path: Path) -> None:
+    _git(path, "init", "-q")
+    _git(path, "-c", "user.name=t", "-c", "user.email=t@t", "add", "-A")
+    _git(path, "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "init")
+
+
+@pytest.mark.skipif(shutil.which("git") is None, reason="git not installed")
+def test_dirty_flag_tracks_tracked_edits_and_untracked_source_files(tmp_path, monkeypatch):
+    root = tmp_path / "repo"
+    tool = _mini_checkout(root, monkeypatch)
+    (root / "notes").mkdir()
+    _init_repo(root)
+    prov = tool.code_provenance()
+    assert prov["git_commit"] == _git(root, "rev-parse", "HEAD").strip() and prov["git_dirty"] is False
+    (root / "notes/junk.txt").write_text("x\n")  # untracked, outside src/ and tools/
+    assert tool.code_provenance()["git_dirty"] is False
+    (root / "src/culinarystate/extraction/new_rule.py").write_text("B = 1\n")  # untracked source file
+    assert tool.code_provenance()["git_dirty"] is True
+    (root / "src/culinarystate/extraction/new_rule.py").unlink()
+    (root / "src/culinarystate/extraction/auditor.py").write_text("A = 2\n")  # tracked edit
+    assert tool.code_provenance()["git_dirty"] is True
+
+
+@pytest.mark.skipif(shutil.which("git") is None, reason="git not installed")
+def test_a_copy_nested_inside_another_repository_reports_no_commit(tmp_path, monkeypatch):
+    outer = tmp_path / "outer"
+    outer.mkdir()
+    (outer / "README").write_text("unrelated\n")
+    _init_repo(outer)
+    tool = _mini_checkout(outer / "culinarystate", monkeypatch)  # like ~/Kush/culinarystate_pr8: no own .git
+    prov = tool.code_provenance()
+    assert prov["git_commit"] is None and prov["git_dirty"] is None
+    assert HEX64.fullmatch(prov["src_tree_sha256"])
