@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from culinarystate.annotation.pilot_real import (  # noqa: E402
-    DRAW_ALGORITHM_ID, TOOL_VERSION, PilotGateError, blockers_as_json, check_prerequisites, draw_p1,
+    DRAW_ALGORITHM_ID, TOOL_VERSION, PilotGateError, blockers_as_json, check_prerequisites, draw_p1, draw_wave,
 )
 
 OUT_DIR = "registry/recipe_semantics/deep_gold_pilot_v1"
@@ -34,12 +34,14 @@ def main(argv=None) -> int:
         p = sub.add_parser(name)
         p.add_argument("--root", default=str(ROOT))
         p.add_argument("--record", required=True)
-        p.add_argument("--wave", default="P1", choices=["P1", "P2"])
+        p.add_argument("--wave", default="P1", choices=["P1", "P1b", "P2"])
         if name == "draw":
             p.add_argument("--frame", required=True)
             p.add_argument("--strata", required=True)
             p.add_argument("--out-dir", default=None)
             p.add_argument("--execute", action="store_true", help="actually draw (only if every prerequisite holds)")
+            p.add_argument("--cells", default="", help="P1b only: comma-separated P1 cell ids chosen by a human")
+            p.add_argument("--exclude", action="append", default=[], help="P1b only: earlier manifest(s) to exclude")
     a = ap.parse_args(argv)
     root = Path(a.root)
     blockers = check_prerequisites(Path(a.record), root=root, wave=a.wave)
@@ -56,8 +58,12 @@ def main(argv=None) -> int:
         print(json.dumps(report, indent=2))
         return 1
     try:
-        result = draw_p1(Path(a.record), Path(a.frame), Path(a.strata),
-                         out_dir=Path(a.out_dir) if a.out_dir else root / OUT_DIR, root=root)
+        out = Path(a.out_dir) if a.out_dir else root / OUT_DIR
+        if a.wave == "P1":
+            result = draw_p1(Path(a.record), Path(a.frame), Path(a.strata), out_dir=out, root=root)
+        else:  # S168: P1b (P1b amendment); refused unless the signed record authorises the wave
+            result = draw_wave(Path(a.record), Path(a.frame), Path(a.strata), out_dir=out, root=root, wave=a.wave,
+                               cells=[c for c in a.cells.split(",") if c], exclude_manifests=[Path(x) for x in a.exclude])
     except PilotGateError as exc:
         report.update(draw="REFUSED", reason=str(exc))
         print(json.dumps(report, indent=2))

@@ -256,5 +256,67 @@
   ],
   "record": "STEP19_P1_AGREEMENT_COUNTS",
   "replay_ok_pairs": 7,
+  "sensitivity_sp002": {
+    "basis": "U2044_NORMALISED_AT_SCORING_LABELS_UNCHANGED",
+    "disagreement_categories": {
+      "boundary": 14,
+      "canonical_identity": 6,
+      "coref": 108,
+      "entity_type": 104,
+      "event_argument": 22,
+      "event_type": 74,
+      "final_state": 29,
+      "intermediate_identity": 0,
+      "quantity": 35
+    },
+    "handbook_gate": {
+      "flagged_categories": [
+        "coref",
+        "entity_type",
+        "event_argument",
+        "event_type",
+        "final_state"
+      ],
+      "per_pair_rate": {
+        "boundary": 0.0318,
+        "canonical_identity": 0.1053,
+        "coref": 0.9558,
+        "entity_type": 0.2361,
+        "event_argument": 0.2268,
+        "event_type": 0.7629,
+        "final_state": 0.8169,
+        "intermediate_identity": 0.0,
+        "quantity": 0.0795
+      },
+      "threshold": 0.2,
+      "tool_rate": {
+        "boundary": 0.0159,
+        "canonical_identity": 0.1053,
+        "coref": 0.4779,
+        "entity_type": 0.118,
+        "event_argument": 0.1134,
+        "event_type": 0.3814,
+        "final_state": 0.4085,
+        "intermediate_identity": 0.0,
+        "quantity": 0.0397
+      },
+      "verdict": "HANDBOOK_REVISION_REQUIRED"
+    },
+    "mean": {
+      "alive_entity_f1": 0.619,
+      "concept_agreement": 0.9037,
+      "coref_b_cubed_f1": 0.8363,
+      "event_f1_loose": 0.5994,
+      "event_f1_strict": 0.5592,
+      "intermediate_entity_f1": 0.8178,
+      "process_link_f1": 0.7979,
+      "relation_f1": 0.6648,
+      "spans_exact_f1": 0.8427,
+      "spans_relaxed_f1": 0.8797,
+      "state_field_agreement": 0.2643,
+      "structural_relation_f1": 0.7492,
+      "unknown_disagreement_rate": 0.0476
+    }
+  },
   "status": "AI_ENGINEERING_SCORE_COUNTS_ONLY"
 }

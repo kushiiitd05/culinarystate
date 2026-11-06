@@ -23,7 +23,7 @@ from culinarystate.annotation.pilot_packets import ANNOTATOR
 from culinarystate.state_graph.engine import replay
 
 EVENTS = ("FIRST_VALIDATE", "DONE")
-WAVE_RE = re.compile(r"P[0-9]+")
+WAVE_RE = re.compile(r"P[0-9]+[a-z]?")  # S168: P1b (P1b amendment)
 
 
 def valid_wave(wave: str) -> bool:

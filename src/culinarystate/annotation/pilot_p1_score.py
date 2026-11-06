@@ -118,6 +118,27 @@ def _numbers(m: Mapping) -> dict:
             "replay_ok": bool(m["replay_consistent"]["ok"])}
 
 
+def sp002_normalised(doc: Mapping) -> dict:
+    """Copy of a label doc with U+2044 FRACTION SLASH -> "/" in ingredient-line text (same length, offsets kept)."""
+    out = json.loads(json.dumps(doc))
+    for line in out["ingredient_lines"]:
+        line["text"] = line["text"].replace("\u2044", "/")
+    return out
+
+
+def _summarise(pairs):
+    per, cats, den = [], Counter({c: 0 for c in CATEGORIES}), Counter()
+    for n, (doc_a, doc_b) in enumerate(pairs, 1):
+        m = recipe_metrics(doc_a, doc_b)
+        den.update(unit_counts(doc_a, doc_b))
+        c = Counter(r["category"] for r in disagreements(doc_a, doc_b, m["alignment"]))
+        cats.update(c)
+        per.append({"pair": f"pair_{n:02d}", **_numbers(m), "disagreements": dict(sorted(c.items()))})
+    mean = {k: (round(sum(p[k] for p in per if p[k] is not None) / max(1, sum(p[k] is not None for p in per)), 4)
+                if any(p[k] is not None for p in per) else None) for k in METRICS}
+    return per, cats, den, mean
+
+
 def score(key_a: Mapping[str, str], key_b: Mapping[str, str], *, labels_a: Path, labels_b: Path,
           commitment_a: Mapping, commitment_b: Mapping) -> dict:
     problems = (commitment_problems(commitment_a, letter="A", label_dir=labels_a)
@@ -125,22 +146,20 @@ def score(key_a: Mapping[str, str], key_b: Mapping[str, str], *, labels_a: Path,
                 + _coverage_problems(key_a, commitment_a, "A") + _coverage_problems(key_b, commitment_b, "B"))
     if problems:
         raise ScoreError("; ".join(problems))
-    per, cats, den = [], Counter({c: 0 for c in CATEGORIES}), Counter()
-    for n, (pa, pb) in enumerate(pair_packets(key_a, key_b), 1):
-        doc_a = json.loads((Path(labels_a) / f"{pa}.json").read_text(encoding="utf-8"))
-        doc_b = json.loads((Path(labels_b) / f"{pb}.json").read_text(encoding="utf-8"))
-        m = recipe_metrics(doc_a, doc_b)
-        den.update(unit_counts(doc_a, doc_b))
-        rows = disagreements(doc_a, doc_b, m["alignment"])
-        c = Counter(r["category"] for r in rows)
-        cats.update(c)
-        per.append({"pair": f"pair_{n:02d}", **_numbers(m), "disagreements": dict(sorted(c.items()))})
-    mean = {k: (round(sum(p[k] for p in per if p[k] is not None) / max(1, sum(p[k] is not None for p in per)), 4)
-                if any(p[k] is not None for p in per) else None) for k in METRICS}
+    pairs = []
+    for pa, pb in pair_packets(key_a, key_b):
+        pairs.append((json.loads((Path(labels_a) / f"{pa}.json").read_text(encoding="utf-8")),
+                      json.loads((Path(labels_b) / f"{pb}.json").read_text(encoding="utf-8"))))
+    per, cats, den, mean = _summarise(pairs)
+    s_per, s_cats, s_den, s_mean = _summarise([(sp002_normalised(a), sp002_normalised(b)) for a, b in pairs])
     report = {"record": "STEP19_P1_AGREEMENT_COUNTS", "status": "AI_ENGINEERING_SCORE_COUNTS_ONLY",
               "label_basis": LABEL_BASIS, "counts_as_human_gate": False, "contains_ids": False, "contains_text": False,
               "pairs": len(per), "replay_ok_pairs": sum(p["replay_ok"] for p in per), "mean": mean,
               "disagreement_categories": dict(sorted(cats.items())), "denominators": dict(sorted(den.items())),
-              "handbook_gate": handbook_gate(cats, den), "per_pair": per}
+              "handbook_gate": handbook_gate(cats, den), "per_pair": per,
+              # block N7 (D-069): SP-002 sensitivity, never replacing the headline numbers above
+              "sensitivity_sp002": {"basis": "U2044_NORMALISED_AT_SCORING_LABELS_UNCHANGED", "mean": s_mean,
+                                    "disagreement_categories": dict(sorted(s_cats.items())),
+                                    "handbook_gate": handbook_gate(s_cats, s_den)}}
     D.assert_counts_only(report)
     return report

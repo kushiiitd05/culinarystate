@@ -177,7 +177,7 @@ def test_no_bindings_gives_all_unknown_and_sim_prohibited_for_every_event():
         assert all(i.status == "UNKNOWN" and i.value is None and i.provenance == () for i in r.inputs)
         assert "APPLICABILITY_UNKNOWN" in r.reasons
         assert {f"MISSING_{n.upper()}" for n in ra.SYSTEM_REQUIREMENTS[AA]} <= set(r.reasons)
-    assert "NO_CONSUMED_ENTITY" in by_event(s)["INTRO/N1"].reasons
+    assert "LOT_INTRODUCTION" in by_event(s)["INTRO/N1"].reasons  # S168: was NO_CONSUMED_ENTITY
 
 
 def test_complete_inputs_and_applicable_give_simulate_with_provenance_and_null_sim_run():
@@ -381,7 +381,7 @@ def test_census_counts_routes_reasons_and_inputs_only():
     assert s["route"] == {"SIMULATE": 1, "SIM_PROHIBITED": 5}
     assert s["all_inputs_present"] == 1
     assert s["reasons"]["MISSING_LID_STATE"] == 5 and s["reasons"]["MISSING_WATER_RATIO"] == 5
-    assert s["reasons"]["APPLICABILITY_UNKNOWN"] == 4 and s["reasons"]["NO_CONSUMED_ENTITY"] == 2
+    assert s["reasons"]["APPLICABILITY_UNKNOWN"] == 4 and s["reasons"]["LOT_INTRODUCTION"] == 2  # S168: intro events
     assert s["input_status"]["duration"] == {"MEASURED": 2, "RANGE": 0, "UNKNOWN": 4}
     assert s["missing_input_count"]["0"] == 1 and s["missing_input_count"]["2"] == 1
     assert s["applicability"] == {"APPLICABLE": 2, "NOT_APPLICABLE": 0, "UNKNOWN": 4}

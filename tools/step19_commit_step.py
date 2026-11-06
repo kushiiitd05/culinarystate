@@ -30,13 +30,18 @@ TRACKED = ROOT / "registry/recipe_semantics/deep_gold_pilot_v1"
 LOCAL = ROOT / "annotation/gold/deep_gold_pilot_v1"
 
 
-def _log(letter: str) -> Path:
-    return LOCAL / letter / "_snapshots.jsonl"
+def _paths(letter: str, wave: str = "P1") -> dict:
+    return pp.wave_paths(wave, letter, tracked=TRACKED, local=LOCAL)  # S168: P1 paths unchanged
 
 
-def _guard(letter: str) -> None:
-    problems = pp.independence_problems(LOCAL, letter)
-    for probe in (_log(letter), LOCAL / letter / "probe.json", LOCAL / f"sealed_key_P1_{letter}.json"):
+def _log(letter: str, wave: str = "P1") -> Path:
+    return _paths(letter, wave)["snapshots"]
+
+
+def _guard(letter: str, wave: str = "P1") -> None:
+    w = _paths(letter, wave)
+    problems = pp.independence_problems(w["local_dir"].parent, letter)
+    for probe in (w["snapshots"], w["local_dir"] / "probe.json", w["key"]):
         if subprocess.run(["git", "-C", str(ROOT), "check-ignore", "-q", str(probe)]).returncode != 0:
             problems.append(f"NOT_GIT_IGNORED: {probe.relative_to(ROOT)}")
     if problems:
@@ -44,10 +49,12 @@ def _guard(letter: str) -> None:
 
 
 def snapshot(a) -> None:
+    if not pc.valid_wave(a.wave):
+        raise SystemExit("invalid wave name")
     if not pc.valid_packet_id(a.packet, a.letter):
         raise SystemExit(f"invalid packet id for letter {a.letter}")
-    _guard(a.letter)
-    f = LOCAL / a.letter / f"{a.packet}.json"
+    _guard(a.letter, a.wave)
+    f = _paths(a.letter, a.wave)["local_dir"] / f"{a.packet}.json"
     if not f.is_file():
         raise SystemExit(f"no label file {a.packet}.json for letter {a.letter}")
     if a.event == "DONE":
@@ -58,7 +65,7 @@ def snapshot(a) -> None:
         if problems:
             raise SystemExit("refusing DONE snapshot: " + "; ".join(problems))
     entry = {"packet_id": a.packet, **pc.snapshot_entry(f, a.event, pc.utc_now())}
-    with _log(a.letter).open("a", encoding="utf-8") as fh:
+    with _log(a.letter, a.wave).open("a", encoding="utf-8") as fh:
         fh.write(json.dumps(entry) + "\n")
     print(json.dumps({"snapshot": a.event, "packet_id": a.packet}))
 
@@ -66,21 +73,21 @@ def snapshot(a) -> None:
 def commit(a) -> None:
     if not pc.valid_wave(a.wave):
         raise SystemExit("invalid wave name (expected P<number>)")
-    _guard(a.letter)
-    out = TRACKED / f"commitments_{a.letter}_{a.wave}.json"
-    issued = TRACKED / f"packets_{a.wave}_{a.letter}.csv"
+    _guard(a.letter, a.wave)
+    w = _paths(a.letter, a.wave)
+    out, issued = w["commitment"], w["packets_csv"]
     if not issued.is_file():
         raise SystemExit(f"refusing: no issued packet list {issued.name}")
     expected = [r["packet_id"] for r in csv.DictReader(issued.open(encoding="utf-8"))]
     snaps: dict[str, list] = {}
     try:
-        if _log(a.letter).is_file():
-            for line in _log(a.letter).read_text(encoding="utf-8").splitlines():
+        if w["snapshots"].is_file():
+            for line in w["snapshots"].read_text(encoding="utf-8").splitlines():
                 e = json.loads(line)
                 snaps.setdefault(e.pop("packet_id"), []).append(e)
     except (OSError, json.JSONDecodeError, KeyError, AttributeError):
         raise SystemExit("refusing: snapshot log is unreadable or corrupt")
-    files = [(p.stem, p, snaps.get(p.stem, [])) for p in sorted((LOCAL / a.letter).glob(f"DGP-{a.letter}-*.json"))]
+    files = [(p.stem, p, snaps.get(p.stem, [])) for p in sorted(w["local_dir"].glob(f"DGP-{a.letter}-*.json"))]
     try:
         c = pc.build_commitment(files, letter=a.letter, wave=a.wave, handbook_version=a.handbook_version,
                                 question_log=a.question_log, representability=a.representability, now=pc.utc_now(),
@@ -92,7 +99,7 @@ def commit(a) -> None:
             fh.write(json.dumps(c, indent=1, sort_keys=True) + "\n")
     except FileExistsError:
         raise SystemExit(f"refusing to overwrite {out.name}")
-    print(json.dumps({"commitment": str(out.relative_to(ROOT)), "files": len(c["files"]),
+    print(json.dumps({"commitment": str(out.relative_to(ROOT)) if out.is_relative_to(ROOT) else str(out), "files": len(c["files"]),
                       "next": "git add + commit this file from your own session before any key is opened"}))
 
 
@@ -103,6 +110,7 @@ def main() -> None:
     s.add_argument("--letter", required=True, choices=sorted(pp.ANNOTATOR))
     s.add_argument("--packet", required=True)
     s.add_argument("--event", required=True, choices=pc.EVENTS)
+    s.add_argument("--wave", default="P1", help="wave name (P1 keeps its original paths)")
     c = sub.add_parser("commit")
     c.add_argument("--letter", required=True, choices=sorted(pp.ANNOTATOR))
     c.add_argument("--wave", required=True)

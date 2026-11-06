@@ -47,34 +47,38 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--letter", required=True, choices=sorted(pp.ANNOTATOR))
     ap.add_argument("--salt-file", required=True, type=Path, help="private salt file outside the repo")
+    ap.add_argument("--wave", default="P1", help="wave name; P1 keeps its original paths (S168)")
     a = ap.parse_args()
     try:
         salt = pp.read_salt(a.salt_file.expanduser(), repo_root=ROOT)
     except (OSError, pp.PacketError) as exc:
         raise SystemExit(f"salt: {exc}")
-    problems = pp.independence_problems(LOCAL, a.letter) + pp.salt_reuse_problems(
-        salt, tracked_dir=TRACKED, letter=a.letter, wave="P1")
-    for probe in (LOCAL / a.letter / "probe.json", LOCAL / f"sealed_key_P1_{a.letter}.json"):
+    try:
+        w = pp.wave_paths(a.wave, a.letter, tracked=TRACKED, local=LOCAL)
+    except pp.PacketError as exc:
+        raise SystemExit(str(exc))
+    problems = pp.independence_problems(w["local_dir"].parent, a.letter) + pp.salt_reuse_problems(
+        salt, tracked_dir=TRACKED, letter=a.letter, wave=a.wave)
+    for probe in (w["local_dir"] / "probe.json", w["key"]):
         if subprocess.run(["git", "-C", str(ROOT), "check-ignore", "-q", str(probe)]).returncode != 0:
             problems.append(f"LOCAL_NOT_GIT_IGNORED: {probe.relative_to(ROOT)}")
     if problems:
         raise SystemExit("refusing: " + "; ".join(problems))
-    manifest = TRACKED / "manifest_P1.csv"
-    if hashlib.sha256(manifest.read_bytes()).hexdigest() != (TRACKED / "manifest_P1.csv.sha256").read_text().split()[0]:
-        raise SystemExit("manifest_P1.csv does not match its recorded sha256")
+    manifest = w["manifest"]
+    if hashlib.sha256(manifest.read_bytes()).hexdigest() != w["manifest_sha"].read_text().split()[0]:
+        raise SystemExit(f"{manifest.name} does not match its recorded sha256")
     rows = [r for r in csv.DictReader(manifest.open()) if r["role"] == "PRIMARY"]
     seed = rows[0]["seed_hex"]
     ids = [r["recipe_id"] for r in rows]
     recs = records(set(ids))
     packets, key = pp.build_packets(ids, recs, letter=a.letter, seed_hex=seed, salt_hex=salt)
-    outs = [LOCAL / a.letter / f"{p['packet_id']}.json" for p in packets]
-    keyf = LOCAL / f"sealed_key_P1_{a.letter}.json"
-    tracked = [TRACKED / f"packets_P1_{a.letter}.csv", TRACKED / f"sealed_key_P1_{a.letter}.sha256",
-               TRACKED / f"salt_P1_{a.letter}.sha256"]
+    outs = [w["local_dir"] / f"{p['packet_id']}.json" for p in packets]
+    keyf = w["key"]
+    tracked = [w["packets_csv"], w["key_sha"], w["salt_sha"]]
     for p in outs + [keyf] + tracked:
         if p.exists():
             raise SystemExit(f"refusing to overwrite {p.name}")
-    (LOCAL / a.letter).mkdir(parents=True, exist_ok=True)
+    w["local_dir"].mkdir(parents=True, exist_ok=True)
     for p, path in zip(packets, outs):
         path.write_text(json.dumps(p["doc"], indent=2, ensure_ascii=False) + "\n")
     keyf.write_bytes(pp.key_bytes(key))  # same bytes the salted key commitment hashes
@@ -83,9 +87,9 @@ def main():
         w = csv.DictWriter(fh, fieldnames=list(rowsout[0]))
         w.writeheader()
         w.writerows(rowsout)
-    tracked[1].write_text(pp.key_commitment(key, salt_hex=salt) + "  sealed_key_P1_" + a.letter
+    tracked[1].write_text(pp.key_commitment(key, salt_hex=salt) + f"  sealed_key_{a.wave}_" + a.letter
                           + ".json (salted: sha256(salt|sha256(key file)))\n")
-    tracked[2].write_text(pp.salt_commitment(salt) + "  salt_P1_" + a.letter + " (secret, outside git)\n")
+    tracked[2].write_text(pp.salt_commitment(salt) + f"  salt_{a.wave}_" + a.letter + " (secret, outside git)\n")
     print(json.dumps({"letter": a.letter, "packets": len(packets), "blank": all(pp.is_pristine(p["doc"]) for p in packets),
                       "recipes_found": len(recs), "outside_git": str(LOCAL.relative_to(ROOT))}))
 
