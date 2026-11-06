@@ -188,3 +188,15 @@ Source: `reports/review/S166_ai_review.md`. prv items K1–K3 below were passed 
 | K8 | Full-corpus 26g census (612,782 recipes, seed 20261104) is running on vinayak-server, counts only. Commit its JSON when done. | ok |
 | K9 | prv P8: recompute provenance after long runs; keep `.DS_Store`/`._*` out of the tree hash (AI remit). | ok |
 | K10 | J4 sample (from block J): the stratified inverted-interval sample needs recipe-text excerpts in a git-ignored file. Who reads it (Kush, Parv, both)? Build the extraction on vinayak-server? | person(s) + ok |
+
+## Block L — Annotator A's P1 packet build (pending review)
+
+Source: `reports/review/S166_ai_review.md` (last section). Reply per item, or `ok all`.
+
+| ID | AI verdict | Human decision needed |
+|---|---|---|
+| L1 | Accept A's build: all commitments verify (ksh) and nothing links a packet to a recipe from public data (prv). Kush may start annotating. | ok |
+| L2 | Guard `main()` in the packet maker (AI remit, test-first). | ok |
+| L3 | B's old unsalted list in `superseded_s164_unsalted/` still links B's old packets to recipes. Since B is re-issued with a new salt and order, keep it as a record, or delete it? | Parv: keep / delete |
+| L4 | Before Kush's first commit step: where the question log and representability files live (non-empty, private), and the handbook version string (`v1+AddendumA`?). | Kush |
+| L5 | `tests/unit/.probe` (empty, untracked, 2026-10-27): delete? | Kush |
