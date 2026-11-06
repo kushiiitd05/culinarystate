@@ -260,3 +260,10 @@ Sources: `reports/step16/sp002_fix_design_ksh_S168.md`, `reports/step19/sp_stamp
 | O3 | Addendum B (proposed): 8 issued rules (B.1 quantity override, B.2 coref, B.3 intermediate re-mention, B.4 partial use, B.5 alternatives, B.6 implicit events, B.7 FOOD span, B.8 UNIT vs TOOL), 10 held for recurrence < 3; H.1 (step-only food) held at 2. | stamp; issue H.1 anyway? |
 | O4 | 15.0 ruling: Kush's seed made on his Mac (never printed; sha256 `73d3ed4d…`); D-068 block prepared with the drafted values (1/5, STUDY_THEN_CELL, SOURCE_FAMILY). The 15a.R rule needs Kush to append it himself; then the agent runs `step15a_R_seal.py check`, and `seal --execute` only after a clean check and Kush's go. | append D-068; ok to seal after check |
 | O5 | P1b (yes, D-069): THR-19P-09 forbids using P1 reserves for a new wave, so P1b needs a fresh draw from the frame excluding all 21 P1 rows (design amendment: size 3–4, new seed/nonce from a human, new salts, packet maker `--wave` support), and Addendum B stamped first because P1b tests it. | size; nonce/seed; ok to amend the design |
+
+## Block P — P1b amendment and the 15.0 signature (pending Kush)
+
+| ID | Item | Kush decides |
+|---|---|---|
+| P1 | `reports/step19/P1b_design_amendment_PROPOSED.md`: size 3–4, fresh draw excluding all P1 groups, a new nonce from Kush, a signed start-record amendment (H5 for P1b, budget), same W2 workflow; tooling changes listed (AI remit after the human facts). | size; write the nonce; sign the amendment |
+| P2 | D-068 (15.0 ruling with Kush's seed `73d3ed4d…`) is prepared but not in DECISIONS: Kush appends it himself, then the agent runs the 15a.R check and seals only after a clean check. | append D-068; "seal" |
