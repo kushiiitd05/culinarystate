@@ -21,3 +21,14 @@ Design classes: BLOCKING / WORKAROUND / COSMETIC (design s9). THR-19P-25 needs e
 | SP-004 | WORKAROUND with a BLOCKING risk (a conditional that changes the cooking path is lost in free text) | SCHEMA_GAP: an ALTERNATIVE span exists but event fields hold one value | Addendum B (first-stated value in the field, the other as ALTERNATIVE span + note); TRIAGED_TO_16B for an optional `alternatives[]` field | Deferred to Step 16 |
 
 STOP-SCHEMA (THR-19P-26/32) is not triggered: no item is adjudicated BLOCKING, and SP-001 is logged in one recipe per annotator. ksh notes the coref (0.96 per-pair) and event_type (0.76) rates are mostly not explained by SP-001/002; a separate adjudication is needed for the true causes.
+
+## Human stamp (D-070, 2026-11-06)
+
+All four items are triaged; THR-19P-25 is satisfied. Status for every row above: TRIAGED (route as stamped).
+
+| SP | Severity | Adjudication class | Route |
+|---|---|---|---|
+| SP-001 | WORKAROUND | SCHEMA_GAP | TRIAGED_TO_16A |
+| SP-002 | WORKAROUND | TOOLING | TOOLING_BACKLOG (parser fix after the presentation, D-070 O1) |
+| SP-003 | WORKAROUND | HANDBOOK_GAP | ADDENDUM_B (B.4) |
+| SP-004 | WORKAROUND (BLOCKING risk) | SCHEMA_GAP | TRIAGED_TO_16B (Addendum B.5 meanwhile) |
