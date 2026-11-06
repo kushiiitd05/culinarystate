@@ -11,7 +11,7 @@ RECS = {
     "R3": {"source_family": "WIKIBOOKS", "ingredient_lines": ["salt"], "steps": ["Add salt.", "Stir."]},
 }
 SEED = "9fa0008602a39537"
-SALT = "fedcba9876543210" * 4  # S164: salt required (block J7). With 3 recipes a seed change can keep the order by
+SALT = "3f9c1e7a5b2d8064c1a9e3f75b0d2c8e6a4f1b9d7c3e5a0f8b2d6c4e1a7f9b3d"  # S166: generated-looking. S164: salt required (block J7). With 3 recipes a seed change can keep the order by
 # chance (1/6); this fixed salt avoids that coincidence. Robust 7-recipe order checks: test_s164_pilot_salt_commit.
 
 
@@ -57,7 +57,7 @@ def test_same_recipe_has_the_same_content_hash_for_both_annotators():
 
 def test_manifest_rows_are_text_free():
     packets, key = build("B")
-    rows = pp.manifest_rows(packets)
+    rows = pp.manifest_rows(packets, salt_hex=SALT)
     blob = json.dumps(rows)
     assert "flour" not in blob and not any(rid in blob for rid in RECS)
     assert all(r["ai_prefill"] == "NONE" and r["model_outputs_embedded"] == "NONE" for r in rows)
