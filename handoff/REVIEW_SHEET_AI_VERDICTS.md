@@ -233,3 +233,18 @@ Sources: DECISIONS D-060..D-066; `reports/step19/p1_agreement_counts_S166.json`;
 | M4 | P1→P2: the result supports **REVISE HANDBOOK (Addendum B) before P2**, not proceed; schema/tooling decisions first on SP-001 (step-introduced entities) and SP-002 (U+2044 parser). THR-16/31 (> 20 % of units) cannot be computed because the report has no denominators: add per-category unit denominators to the scorer (AI remit). | ok / proceed instead |
 | M5 | Triage SP-001..SP-004 (THR-24/25) as ksh/prv AI verdicts first, then your stamp. | ok |
 | M6 | Report wording (prv): "P1 was scored on seven recipe pairs whose labels are human-accepted AI drafts from the same model family, produced on one machine; the result is an engineering score, not blind inter-annotator agreement, and provides no timing or reliability evidence. Agreement is low on state fields (0.26) and strict events (0.56), with disagreements concentrated in coreference and entity type, and four open schema or tooling problems (SP-001..004) point to handbook and tool revisions before P2. No state-of-the-art or reliability claim is made." | ok / edit |
+
+## Block N — SP triage, Addendum B draft, gate denominators, J4 extraction (pending review)
+
+Sources: `reports/step19/pilot_schema_problem_log.md` (AI triage section), `annotation/annotation_handbook_v1_addendum_B_DRAFT.md`, `reports/step19/p1_agreement_counts_S166.json` (`handbook_gate`), `tools/j4_inverted_interval_sample.py`. Reply per item, or `ok all` plus the choices.
+
+| ID | AI verdict | Human decision needed |
+|---|---|---|
+| N1 | M4 done: the P1 score now carries the tool denominators and the THR-19P-16/-31 gate. Verdict **HANDBOOK_REVISION_REQUIRED**: coref 0.48 / 0.96 (tool / per-pair), final_state 0.41 / 0.82, event_type 0.38 / 0.76, entity_type 0.12 / 0.24, event_argument 0.11 / 0.23. | ok |
+| N2 | SP triage (ksh/prv): SP-001 WORKAROUND now, candidate BLOCKING; SP-002 WORKAROUND (parser fix recommended); SP-003 WORKAROUND (handbook gap); SP-004 WORKAROUND with BLOCKING risk (schema gap → Step 16). STOP-SCHEMA not triggered. This answers THR-19P-25 once stamped. | stamp severities; SP-001: WORKAROUND or BLOCKING |
+| N3 | Addendum B DRAFT (B.1–B.23) written; three overlaps to merge (B.5≈B.11/12, B.8≈B.15, B.9≈B.20); each rule needs its P1 recurrence count before stamping. | stamp / edit |
+| N4 | SP-002 parser fix in `quantity/grammar.py normalize_text` (U+2044 → ASCII), test-first, after a before/after diff of every ledger parsed with `parse_line` (several callers). Not applied yet: it changes shared parsing. | approve the fix + diff |
+| N5 | SP-001 long-term: a step-sourced `Introduce` event (gold-1.1) — defer to Step 16 until ≥ 2 recipes (ksh) | defer / adopt |
+| N6 | P1b: prv suggests a short P1b (3–4 NEW recipes, fresh packets and salts) as a rule check of Addendum B before P2; it is a design amendment and changes the 40 h arithmetic. | P1b yes/no, size |
+| N7 | A's SP-002 quantity cells: report a corrected-parse sensitivity column beside the raw P1 numbers (never overwrite the headline). | ok |
+| N8 | J4: the extraction tool (sharded, text-free manifest, private excerpts with reader columns `verdict_parv`, `verdict_kush`) is built and tested; the full run is on vinayak-server. Once it lands, Parv reads first, then Kush (D-059). | ok |
