@@ -386,3 +386,12 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Sequence:** prv re-checks pass 2; if no must-fix remains, pass 2 is copied into `A/` as `MODEL_ASSISTED_HUMAN_ACCEPTED`, new DONE snapshots are logged, and `commitments_A_P1.json` is written and committed. D-061's limits (accepted AI drafts, no timing) still apply.
 - **Next free D-number for the 15.0 ruling:** D-063.
 - **Approver:** Kush.
+
+### D-063 · 2026-11-06 · Annotator A's P1 labels committed: prv re-check package accepted (decided by Kush; entered by the coding agent as scribe)
+- **Source:** after prv's re-check of AI pass 2 (0001–0005 ACCEPT; 0006 one new must-fix, an inferred oil Merge input; 0007 crescent rolls cannot be an entity), Kush: "pk ok conyinuew as per it".
+- **Done:** 0006 AI pass 3 drops the inferred oil input (oil stays the brown Transform's medium); final set = 0001 pass 1, 0002–0005 and 0007 pass 2, 0006 pass 3, copied into `A/` as `MODEL_ASSISTED_HUMAN_ACCEPTED; human_edits=NONE`; DONE snapshots logged; `commitments_A_P1.json` written by `tools/step19_commit_step.py` (7 files, handbook `v1+AddendumA`, 0 recipe ids) and committed from Kush's session.
+- **Representability (prv's verdict, overriding D-062's "all FAITHFUL"):** 0001, 0004, 0005 FAITHFUL; 0002, 0003 WORKAROUND (process vocabulary); 0006 WORKAROUND (implicit herbs Merge); 0007 WORKAROUND with SP-001 (strict reading IMPOSSIBLE). Question log: one line "no questions in P1". Both files stay private; only their sha256 are in the commitment.
+- **SP-001 opened** in `reports/step19/pilot_schema_problem_log.md`: an ingredient absent from the ingredient lines cannot be an entity; needs a schema/engine decision before P2.
+- **Limits (D-060/D-061):** labels are human-accepted AI drafts; snapshot times are not annotation timing; A–B agreement will not be independent evidence.
+- **Next free D-number for the 15.0 ruling:** D-064.
+- **Approver:** Kush.
