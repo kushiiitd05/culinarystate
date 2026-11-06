@@ -75,7 +75,8 @@ def _sha(path: Path) -> str:
 def src_tree_sha256(code_root: Path) -> str:
     """One hash over every file under src/ except __pycache__ (sorted posix path + file hash)."""
     h = hashlib.sha256()
-    files = [q for q in (Path(code_root) / "src").rglob("*") if q.is_file() and "__pycache__" not in q.parts]
+    files = [q for q in (Path(code_root) / "src").rglob("*") if q.is_file() and "__pycache__" not in q.parts
+             and q.name != ".DS_Store" and not q.name.startswith("._")]  # macOS Finder/AppleDouble (prv P8)
     for p in sorted(files, key=lambda q: q.relative_to(code_root).as_posix()):
         h.update(f"{p.relative_to(code_root).as_posix()}\0{_sha(p)}\n".encode("utf-8"))
     return h.hexdigest()
@@ -153,7 +154,8 @@ def main(argv=None, record_source=None) -> int:
         except (LedgerBaselineMismatch, OSError, KeyError, ValueError):
             baseline = "FAILED_AFTER_RUN"
     report.update(family_status=dict(sorted(status.items())), baseline_check=baseline,
-                  families_requested=list(a.families), code_provenance=provenance)
+                  families_requested=list(a.families), code_provenance=provenance,
+                  code_unchanged_during_run=code_provenance() == provenance)  # prv P8: re-checked after the run
     try:
         D.write_report(out, report, root=root)
     except D.DryRunError as exc:
