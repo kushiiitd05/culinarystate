@@ -267,3 +267,14 @@ Sources: `reports/step16/sp002_fix_design_ksh_S168.md`, `reports/step19/sp_stamp
 |---|---|---|
 | P1 | `reports/step19/P1b_design_amendment_PROPOSED.md`: size 3–4, fresh draw excluding all P1 groups, a new nonce from Kush, a signed start-record amendment (H5 for P1b, budget), same W2 workflow; tooling changes listed (AI remit after the human facts). | size; write the nonce; sign the amendment |
 | P2 | D-068 (15.0 ruling with Kush's seed `73d3ed4d…`) is prepared but not in DECISIONS: Kush appends it himself, then the agent runs the 15a.R check and seals only after a clean check. | append D-068; "seal" |
+
+## Block Q — final report draft (pending Kush and Parv)
+
+Source: `reports/final/FINAL_REPORT_DRAFT_S168.md` (AI draft; ksh fact-check ~190/192 claims matched, 2 corrected; prv honesty review: 2 MUST_FIX + 6 SHOULD_FIX applied; 5 UNVERIFIED left: professor permission (D-045 W3), DEL authorship, Parv's 07.A relay, MECH v1.1 sources, current-head full-suite count).
+
+| ID | Item | Humans decide |
+|---|---|---|
+| Q1 | Proposed-vs-achieved table: D1 partial, D2 not run, D3 engine only, D4 not started, D5 not run; H1–H4 untested. | ok / correct |
+| Q2 | Section 10 contributions (agent vs human work separated). | correct names and roles |
+| Q3 | 9-slide outline and the 3 key figures (proposed vs achieved; the two funnels; gates + P1 panel). | ok / reorder |
+| Q4 | Resolve the 5 UNVERIFIED items (only humans can for W3, authorship and the 07.A relay). | supply |
