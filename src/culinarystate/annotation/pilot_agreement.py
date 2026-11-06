@@ -115,8 +115,8 @@ def disagreements(doc_a: dict, doc_b: dict, mapping: dict[str, str]) -> list[dic
                     used.add(j)
                     diff = [k for k in ARG_KEYS if e.get(k) != eb[j].get(k)]
                     if diff:
-                        add("event_argument", where, "event", e["type"] + ":" + ",".join(diff),
-                            {k: e.get(k) for k in diff} or "", {k: eb[j].get(k) for k in diff})
+                        add("event_argument", where, e["type"] + ":" + ",".join(diff),  # S166: was 6 args
+                            {k: e.get(k) for k in diff}, {k: eb[j].get(k) for k in diff})
                     continue
                 j = next((j for j, f in enumerate(eb) if j not in used and _evkey_loose(f) == _evkey_loose(e)), None)
                 if j is not None:
