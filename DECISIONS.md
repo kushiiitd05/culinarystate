@@ -417,3 +417,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Limits:** as D-060, D-061, D-063, D-064 (human-accepted AI drafts; no timing; same machine; same model family; SP-002 affects A's committed quantities).
 - **Next free D-number for the 15.0 ruling:** D-067.
 - **Approver:** Kush (Parv relayed).
+
+### D-067 · 2026-11-06 · Review block M passed (decided by Kush; Parv relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "ok sll snf conitnue working i will b joining back after few hrs yo u keep wroking".
+- **Passed:** M1 (P1 scoring code, fixes and hardening), M2 (P1 numbers as an engineering score of human-accepted AI drafts), M3 (prv's THR-19P reading: mostly NOT_EVALUABLE under W2/D-064; THR-23 PASS; THR-25 FAIL until SP triage; STOP-SCHEMA not triggered), M4 (revise the handbook — Addendum B — before P2; schema/tooling decisions on SP-001/SP-002 first; add per-category denominators to the scorer), M5 (ksh/prv triage SP-001..SP-004 as AI verdicts, then human stamp), M6 (prv's report wording).
+- **Next free D-number for the 15.0 ruling:** D-068.
+- **Approver:** Kush (Parv relayed).
