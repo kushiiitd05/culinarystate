@@ -371,3 +371,11 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Measurement consequence (W2):** P1 agreement and timing are reported as "human review of AI drafts", not blind independent annotation. Both AI passes come from the same model family, so A–B agreement is not independent evidence; reports must say so.
 - **Next free D-number for the 15.0 ruling:** D-061.
 - **Approver:** Kush.
+
+### D-061 · 2026-11-06 · Kush stamps ksh's AI pass for annotator A's 7 P1 packets without edits (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "ksh all passed and ok no flags".
+- **Done:** the 7 drafts in `A_ai_draft/` (kept unchanged as the AI pass) were copied into Kush's packet files `A/DGP-A-0001..0007.json` with `annotation_status=MODEL_ASSISTED_HUMAN_ACCEPTED; human_edits=NONE`; each validates with 0 replay issues; FIRST_VALIDATE and DONE snapshots were logged by the agent in one run.
+- **Stated limits (W2):** Kush accepted ksh's 62 flagged judgement calls without line-by-line edits, so P1 A labels are "human-accepted AI drafts", not human annotation; the snapshot times are seconds apart and are not annotation timing; P1 timing must not be reported from them.
+- **Held:** the tracked commitment `commitments_A_P1.json` is written only after prv's cross-check reports no must-fix error (it cannot be overwritten). The question log and representability file are still header-only.
+- **Next free D-number for the 15.0 ruling:** D-062.
+- **Approver:** Kush.
