@@ -358,3 +358,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Passed:** L1 A's P1 packet build (Kush may annotate); L2 packet-maker `main()` guard (`5580b93`); L3 keep `superseded_s164_unsalted/` with a "superseded, never use" README (prv verdict); L4 Kush's question log and representability file live in `~/.culinarystate_private/` as CSVs with the design Appendix C headers, no recipe text, only their sha256 in `commitments_A_P1.json`, handbook version `v1+AddendumA` (ksh verdict); L5 delete `tests/unit/.probe`.
 - **Still open:** K10 (who reads the J4 sample: ksh said both with Parv first, prv said Parv only; both say drop the 14 P1 recipes and extract on vinayak-server). Parv's own salt and B re-issue. The 15a.R seed and the 15.0 ruling (next free D-number: D-059).
 - **Approver:** Kush (L3 relayed for Parv).
+
+### D-059 · 2026-11-06 · K10: both humans read the J4 inverted-interval sample (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "both passsed k10" (answering "Parv only or both").
+- **Decided:** Kush and Parv each read the J4 sample independently, Parv first (ksh verdict); every P1 manifest recipe is dropped from the sample; extraction runs on vinayak-server; recipe excerpts stay in a git-ignored file; git gets a text-free manifest only.
+- **Next free D-number for the 15.0 ruling:** D-060.
+- **Approver:** Kush and Parv (Parv relayed by Kush).
