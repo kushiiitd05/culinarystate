@@ -19,7 +19,7 @@ IDS = [f"R{i}" for i in range(1, 8)]
 RECS = {rid: {"source_family": "FOODCOM", "ingredient_lines": [f"{i} cup flour"], "steps": ["Mix."]}
         for i, rid in enumerate(IDS, 1)}
 SEED = "9fa0008602a39537"
-SALT1, SALT2 = "0123456789abcdef" * 4, "fedcba9876543210" * 4
+SALT1, SALT2 = "3f9c1e7a5b2d8064c1a9e3f75b0d2c8e6a4f1b9d7c3e5a0f8b2d6c4e1a7f9b3d", "b8e2d4f6a1c3e5079d2b4f6a8c0e1d3f5b7a9c2e4d6f8a0b1c3d5e7f9a2b4c6d"  # S166: generated-looking (patterned salts are refused)
 
 
 def order(letter, salt):
@@ -102,7 +102,7 @@ def build(tmp_path, files, **kw):
     rep = tmp_path / "representability.csv"
     rep.write_text("item,answer\n")
     args = dict(letter="A", wave="P1", handbook_version="v1+AddendumA", question_log=ql, representability=rep,
-                now="2026-11-06T11:00:00Z")
+                now="2026-11-06T11:00:00Z", expected_ids=[f[0] for f in files])  # required since S166
     args.update(kw)
     return pc.build_commitment(files, **args)
 
@@ -208,7 +208,7 @@ def test_low_entropy_or_short_salts_are_refused(salt):
 
 
 def test_read_salt_refuses_symlink_into_repo_case_variants_and_open_permissions(tmp_path):
-    good = "0123456789abcdef" * 4
+    good = SALT1
     repo = tmp_path / "Repo"
     repo.mkdir()
     (repo / "salt.txt").write_text(good + "\n")
