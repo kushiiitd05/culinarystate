@@ -57,3 +57,46 @@ def test_manifest_rows_are_text_free():
     assert set(man[0]) == {"case_id", "recipe_id_sha256", "source_family", "stratum", "shape"}
     assert man[0]["recipe_id_sha256"] == hashlib.sha256(rows[0]["recipe_id"].encode()).hexdigest()
     assert not any(r["recipe_id"] in str(man) for r in rows)
+
+
+# ------------------------------------------------ CLI (sharded, private excerpts git-ignored)
+def _tool():
+    import importlib.util
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[2]
+    spec = importlib.util.spec_from_file_location("j4tool", root / "tools/j4_inverted_interval_sample.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _recs():
+    out = []
+    for i in range(12):
+        fam = ("FOODCOM", "GUTENBERG_SEGMENT", "WIKIBOOKS")[i % 3]
+        out.append({"recipe_id": f"R{i}", "source_family": fam,
+                    "steps": [MIXED if i % 2 == 0 else RANGE, "Serve."]})
+    return out
+
+
+def test_cli_one_and_two_workers_agree_and_keep_text_private(tmp_path):
+    tool = _tool()
+    res = []
+    for w in (1, 2):
+        man, priv = tmp_path / f"m{w}.csv", tmp_path / f"p{w}.csv"
+        assert tool.main(["--seed", "s", "--workers", str(w), "--out-manifest", str(man), "--out-private", str(priv),
+                          "--exclude-manifest", ""], record_source=lambda fams, root: iter(_recs())) == 0
+        res.append((man.read_text(), priv.read_text()))
+    assert res[0] == res[1]
+    man_text, priv_text = res[0]
+    assert "flour" not in man_text and "R0" not in man_text and "flour" in priv_text
+    assert man_text.count("\n") - 1 == 6  # six recipes carry the mixed number
+
+
+def test_cli_refuses_a_private_file_that_git_would_track(tmp_path):
+    import pytest as _pt
+    tool = _tool()
+    with _pt.raises(SystemExit):
+        tool.main(["--seed", "s", "--out-manifest", str(tmp_path / "m.csv"),
+                   "--out-private", str(tool.ROOT / "reports/step17/j4_private_TEST.csv"), "--exclude-manifest", ""],
+                  record_source=lambda fams, root: iter(_recs()))
