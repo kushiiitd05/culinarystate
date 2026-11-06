@@ -87,6 +87,22 @@ def read_salt(path: Path, *, repo_root: Path) -> str:
     return salt
 
 
+def wave_paths(wave: str, letter: str, *, tracked: Path, local: Path) -> dict:
+    """Step 19 file locations for one wave and annotator (S168). P1 keeps its original paths; any other wave gets
+    `local/<wave>/<letter>/` and wave-named tracked files so waves never mix."""
+    if not (isinstance(wave, str) and re.fullmatch(r"P[0-9]+[a-z]?", wave)):
+        raise PacketError(f"invalid wave {wave!r}")
+    if letter not in ANNOTATOR:
+        raise PacketError(f"letter must be one of {tuple(ANNOTATOR)}")
+    tracked, local = Path(tracked), Path(local)
+    base = local if wave == "P1" else local / wave
+    return {"local_dir": base / letter, "key": base / f"sealed_key_{wave}_{letter}.json",
+            "snapshots": base / letter / "_snapshots.jsonl",
+            "manifest": tracked / f"manifest_{wave}.csv", "manifest_sha": tracked / f"manifest_{wave}.csv.sha256",
+            "packets_csv": tracked / f"packets_{wave}_{letter}.csv", "key_sha": tracked / f"sealed_key_{wave}_{letter}.sha256",
+            "salt_sha": tracked / f"salt_{wave}_{letter}.sha256", "commitment": tracked / f"commitments_{letter}_{wave}.json"}
+
+
 def independence_problems(local_root: Path, letter: str) -> list[str]:
     """The other annotator's packets or key must not exist on this filesystem."""
     out = []
