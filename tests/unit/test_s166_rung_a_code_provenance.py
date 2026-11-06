@@ -158,3 +158,31 @@ def test_a_copy_nested_inside_another_repository_reports_no_commit(tmp_path, mon
     prov = tool.code_provenance()
     assert prov["git_commit"] is None and prov["git_dirty"] is None
     assert HEX64.fullmatch(prov["src_tree_sha256"])
+
+
+# ------------------------------------------------ prv review P8 (S166)
+def test_finder_and_appledouble_files_do_not_enter_the_tree_hash(tmp_path):
+    tool = _tool()
+    src = tmp_path / "src/culinarystate"
+    src.mkdir(parents=True)
+    (src / "a.py").write_text("A = 1\n")
+    before = tool.src_tree_sha256(tmp_path)
+    (src / ".DS_Store").write_bytes(b"\x00")
+    (src / "._a.py").write_bytes(b"\x00")
+    assert tool.src_tree_sha256(tmp_path) == before
+
+
+def test_report_flags_code_that_changed_during_the_run(tmp_path, monkeypatch):
+    tool = _tool()
+    real = tool.code_provenance
+    calls = []
+
+    def changing():
+        calls.append(1)
+        p = real()
+        return p if len(calls) == 1 else {**p, "src_tree_sha256": "0" * 64}
+
+    monkeypatch.setattr(tool, "code_provenance", changing)
+    rep = json.loads(_run(tmp_path, tool))
+    assert len(calls) == 2 and rep["code_unchanged_during_run"] is False
+    assert json.loads(_run(tmp_path / "b", _tool()))["code_unchanged_during_run"] is True
