@@ -409,3 +409,11 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Limits:** as D-060/D-061/D-064 (human-accepted AI drafts; no timing; same machine; same model family for both passes).
 - **Next free D-number for the 15.0 ruling:** D-066.
 - **Approver:** Kush (Parv relayed).
+
+### D-066 · 2026-11-06 · Annotator B's P1 labels committed (decided by Kush; Parv's stamp relayed by Kush per D-064/D-065; entered by the coding agent as scribe)
+- **Source:** after ksh's re-check of prv's pass 2 (18/18 must-fix fixed, no new must-fix, 7/7 validate and replay clean), Kush: "okkconintue as planed and keep working".
+- **Done (in the B clone):** pass 2 copied into `B/` as `MODEL_ASSISTED_HUMAN_ACCEPTED; human_edits=NONE` (ksh's nit applied: a stale `unknowns[0]` wording in B-0003); FIRST_VALIDATE and DONE snapshots; `commitments_B_P1.json` written by the commit step (7 files, `v1+AddendumA`, 0 recipe ids) and committed to the main repository. Private question log and representability file in `~/.culinarystate_private_B/` (all WORKAROUND; B-0004/B-0005 strict IMPOSSIBLE).
+- **Both P1 commitments now exist** (A: D-063; B: this entry), so the sealed keys may be opened for P1 scoring (PV-6, PV-9).
+- **Limits:** as D-060, D-061, D-063, D-064 (human-accepted AI drafts; no timing; same machine; same model family; SP-002 affects A's committed quantities).
+- **Next free D-number for the 15.0 ruling:** D-067.
+- **Approver:** Kush (Parv relayed).
