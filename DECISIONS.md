@@ -440,3 +440,10 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **O4 15.0:** unchanged — waits for Kush to append D-068 himself (15a.R rule); the seal runs only after a clean check.
 - **O5 P1b:** design amendment approved in principle (fresh draw excluding all 21 P1 rows, new salts, `--wave` support); the size (3–4) and the draw nonce/seed still come from a human.
 - **Approver:** Kush (Parv relayed).
+
+### D-071 · 2026-11-06 · Kush delegates decisions to the AI personas: "prv is Parv and ksh is Kush" (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "ok then prv i parv and ksh is kush this is the rule and keep workkking dont disturb untill very urgent or importna keep working hogh on the engines".
+- **Rule from now on:** a ksh verdict counts as Kush's decision and a prv verdict as Parv's (Parv relayed by Kush), so review blocks no longer wait for the humans. Every such entry is recorded as "decided by ksh/prv (AI) under D-071", never as the humans' own words, and reports must say that these decisions were AI-made under delegation (amends D-045 W1 for decisions; W2 stands).
+- **Still human-only (the project's own rules; recording an AI output as a human signature would misstate the record):** signatures and signed records (the 15.0 ruling D-068, which the 15a.R rule requires Kush to append himself; the Step 35 SIGNED record, O5; amendments to the signed pilot start record), pre-draw nonces (design 4.5: the drawing agent must not choose them), and facts only a person knows (the professor's permission, D-045 W3; DEL authorship; Parv's own written confirmations).
+- **Work mode:** the agent keeps working without asking, and contacts Kush only for urgent or important items.
+- **Approver:** Kush.
