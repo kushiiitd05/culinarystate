@@ -77,7 +77,8 @@ def main(argv=None, record_source=None) -> int:
         except (LedgerBaselineMismatch, OSError, KeyError, ValueError):
             baseline = "FAILED_AFTER_RUN"
     report.update(family_status=dict(sorted(status.items())), baseline_check=baseline,
-                  families_requested=list(a.families), code_provenance=prov)
+                  families_requested=list(a.families), code_provenance=prov,
+                  code_unchanged_during_run=provenance() == prov)  # prv P8: re-checked after the run
     try:
         D.write_report(out, report, root=root)
     except D.DryRunError as exc:
