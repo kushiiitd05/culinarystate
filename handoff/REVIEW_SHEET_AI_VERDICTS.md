@@ -248,3 +248,15 @@ Sources: `reports/step19/pilot_schema_problem_log.md` (AI triage section), `anno
 | N6 | P1b: prv suggests a short P1b (3–4 NEW recipes, fresh packets and salts) as a rule check of Addendum B before P2; it is a design amendment and changes the 40 h arithmetic. | P1b yes/no, size |
 | N7 | A's SP-002 quantity cells: report a corrected-parse sensitivity column beside the raw P1 numbers (never overwrite the headline). | ok |
 | N8 | J4: the extraction tool (sharded, text-free manifest, private excerpts with reader columns `verdict_parv`, `verdict_kush`) is built and tested; the full run is on vinayak-server. Once it lands, Parv reads first, then Kush (D-059). | ok |
+
+## Block O — SP-002 fix, SP stamp, Addendum B, 15.0, P1b (pending Kush)
+
+Sources: `reports/step16/sp002_fix_design_ksh_S168.md`, `reports/step19/sp_stamp_proposal_ksh_S168.md`, `annotation/annotation_handbook_v1_addendum_B_PROPOSED.md`, D-069.
+
+| ID | AI verdict (ksh unless noted) | Kush decides |
+|---|---|---|
+| O1 | SP-002: adapter-level fix in `parse_quantity_v2` with version bumps; `grammar.py` untouched; glued "11⁄2" REFUSE; legacy ledgers/KGE keep the defect with a documented caveat; **after the presentation**, as a new versioned rc2 result beside S161. | approve design; now vs after; 11⁄2 rule |
+| O2 | SP stamp: SP-001 WORKAROUND/SCHEMA_GAP → 16A; SP-002 WORKAROUND/TOOLING → parser fix; SP-003 WORKAROUND/HANDBOOK_GAP → Addendum B; SP-004 WORKAROUND (BLOCKING risk)/SCHEMA_GAP → 16B. Satisfies THR-19P-25 once stamped. | stamp / change |
+| O3 | Addendum B (proposed): 8 issued rules (B.1 quantity override, B.2 coref, B.3 intermediate re-mention, B.4 partial use, B.5 alternatives, B.6 implicit events, B.7 FOOD span, B.8 UNIT vs TOOL), 10 held for recurrence < 3; H.1 (step-only food) held at 2. | stamp; issue H.1 anyway? |
+| O4 | 15.0 ruling: Kush's seed made on his Mac (never printed; sha256 `73d3ed4d…`); D-068 block prepared with the drafted values (1/5, STUDY_THEN_CELL, SOURCE_FAMILY). The 15a.R rule needs Kush to append it himself; then the agent runs `step15a_R_seal.py check`, and `seal --execute` only after a clean check and Kush's go. | append D-068; ok to seal after check |
+| O5 | P1b (yes, D-069): THR-19P-09 forbids using P1 reserves for a new wave, so P1b needs a fresh draw from the frame excluding all 21 P1 rows (design amendment: size 3–4, new seed/nonce from a human, new salts, packet maker `--wave` support), and Addendum B stamped first because P1b tests it. | size; nonce/seed; ok to amend the design |
