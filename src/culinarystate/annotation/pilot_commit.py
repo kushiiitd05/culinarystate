@@ -90,7 +90,7 @@ def _nonempty_file_problem(path: Path, code: str) -> list[str]:
 
 def build_commitment(files: Iterable[tuple[str, Path, Sequence[dict]]], *, letter: str, wave: str,
                      handbook_version: str, question_log: Path, representability: Path, now: str,
-                     expected_ids: Sequence[str] | None = None) -> dict:
+                     expected_ids: Sequence[str]) -> dict:
     """The commitment dict for one annotator and wave, or CommitError listing every problem.
 
     ``expected_ids`` (the issued packet ids of this letter and wave) must equal the committed file set (PV-6).
@@ -117,12 +117,11 @@ def build_commitment(files: Iterable[tuple[str, Path, Sequence[dict]]], *, lette
         rows.append({"packet_id": packet_id, "sha256": file_sha, "size_bytes": len(data),
                      "mtime_utc": datetime.fromtimestamp(st.st_mtime, timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                      "committed_utc": now, "snapshots": [dict(s) for s in snapshots]})
-    if expected_ids is not None:
-        have, want = {pid for pid, _, _ in files}, set(expected_ids)
-        if want - have:
-            problems.append(f"MISSING_PACKETS: {len(want - have)} issued packet(s) not committed")
-        if have - want:
-            problems.append(f"EXTRA_PACKETS: {len(have - want)} file(s) not in the issued packet list")
+    have, want = {pid for pid, _, _ in files}, set(expected_ids)  # required since S166 (prv P5)
+    if want - have:
+        problems.append(f"MISSING_PACKETS: {len(want - have)} issued packet(s) not committed")
+    if have - want:
+        problems.append(f"EXTRA_PACKETS: {len(have - want)} file(s) not in the issued packet list")
     if not rows and not problems:
         problems.append("NO_FILES")
     if problems:
