@@ -1,0 +1,45 @@
+{
+  "decision_id": "D-068",
+  "fraction": "1/5",
+  "group_key_rule": "15aR-group-v1",
+  "n_groups": 886,
+  "n_reserved": 177,
+  "n_reserved_rows": 3555,
+  "payload_sha256": "80c2f04daeafdc1ffac190c4a92782b9aff5d1b5351934f5c76565ea6e8e51e6",
+  "record_type": "RESERVED_SEAL_COMMITMENT_15A_R",
+  "reserved_list_sha256": "1dee62541ab8caa3463796f47e11e8e609953309e1f266f6b426fc2ce857fc27",
+  "rule_id": "15aR-sha256-rank-v1",
+  "sealed_at_utc": "2026-11-06T18:38:13+00:00",
+  "sealed_list_location": "NOT_RECORDED (kept outside git)",
+  "seed_sha256": "73d3ed4de7ba9d46f09c7fb408805a78f3c8189044a71de3d2da3a85461932d5",
+  "snapshot": {
+    "active_rows": 17978,
+    "evd_path": "ledgers/data/EVD.jsonl",
+    "evd_sha256": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+    "manifest_path": "exports/evd/evd_export_v1.manifest.json"
+  },
+  "strata": {
+    "BOGNAR-2002": {
+      "n_groups": 540,
+      "n_reserved": 108,
+      "n_reserved_rows": 1510,
+      "n_rows": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+      "n_groups": 125,
+      "n_reserved": 25,
+      "n_reserved_rows": 693,
+      "n_rows": 3870
+    },
+    "USDA-RETN-R6": {
+      "n_groups": 221,
+      "n_reserved": 44,
+      "n_reserved_rows": 1352,
+      "n_rows": 7018
+    }
+  },
+  "stratify": "SOURCE_FAMILY",
+  "tool_version": "0.1.0",
+  "unit": "STUDY_THEN_CELL",
+  "universe_sha256": "c89e81c1733798647f648e4fcf9e6850c2fd838d2d8276a2a575dba1c84b5a71"
+}
