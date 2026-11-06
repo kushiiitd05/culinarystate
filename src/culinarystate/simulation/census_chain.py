@@ -79,6 +79,9 @@ def census_from_records(records: Iterable[Mapping], *, seed: str, size: int = 10
         "recipes_seen": seen, "recipes_sampled": len(sample), "texts_with_steps": totals["texts_with_steps"],
         "engine_events": totals["engine_events"], "adapter_invented_excluded": totals["adapter_invented_excluded"],
         "adapter_issue_codes": dict(sorted(issues.items())), "exceptions_by_class": dict(sorted(exceptions.items())),
+        # ksh review K7: the all-SIM_PROHIBITED result is structural, not a finding about the corpus
+        "bindings_supplied": 0, "applicability_supplied": 0, "prohibited_by_construction": True,
+        "reading": "NO_CONDITION_OR_APPLICABILITY_BINDINGS_YET_ALL_EVENTS_SIM_PROHIBITED_BY_CONSTRUCTION",
         "census": census, "census_sha256": census_sha256(census),
     }
     D.assert_counts_only(report)
