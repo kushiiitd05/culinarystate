@@ -364,3 +364,10 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Decided:** Kush and Parv each read the J4 sample independently, Parv first (ksh verdict); every P1 manifest recipe is dropped from the sample; extraction runs on vinayak-server; recipe excerpts stay in a git-ignored file; git gets a text-free manifest only.
 - **Next free D-number for the 15.0 ruling:** D-060.
 - **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-060 · 2026-11-06 · P1 annotation runs as D-045 W2 model-assisted: AI first pass (ksh for A, prv for B), then human stamp (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "what3wver is left conintue doing annotation anad aks for stamo use ksh adn prv for it we need to pusht eh working speed".
+- **Applied under D-045 W2:** ksh drafts annotator A's 7 P1 packets on Kush's Mac into the git-ignored `annotation/gold/deep_gold_pilot_v1/A_ai_draft/` (source_ref `annotation_status=MODEL_ASSISTED_AI_PASS; ai_prefill=ksh_sonnet_2026-11-06`); Kush's blank packets in `A/` are not touched until Kush reviews; prv cross-checks the drafts; Kush stamps (accepts or edits) and his edits are kept separately from the AI pass. B's AI pass is made by prv in Parv's own session on Parv's Mac (B packets must not be on Kush's Mac).
+- **Measurement consequence (W2):** P1 agreement and timing are reported as "human review of AI drafts", not blind independent annotation. Both AI passes come from the same model family, so A–B agreement is not independent evidence; reports must say so.
+- **Next free D-number for the 15.0 ruling:** D-061.
+- **Approver:** Kush.
