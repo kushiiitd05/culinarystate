@@ -48,11 +48,12 @@ from culinarystate.state_graph.replay import ReplayResult
 from culinarystate.state_graph.source_class import SourceClass
 
 STATUS = "DRAFT_PENDING_16c_23a_26b"
-CONTRACT_VERSION = "step26g-sim-input-0.1.0-draft"
+CONTRACT_VERSION = "step26g-sim-input-0.2.0-draft"  # S168: LOT_INTRODUCTION
 LINK_SCHEMA_VERSION = "step26g-simlink-0.1.0-draft"
-CENSUS_VERSION = "step26g-census-0.1.0-draft"
+CENSUS_VERSION = "step26g-census-0.2.0-draft"  # S168: LOT_INTRODUCTION
 REQUIREMENTS_STATUS = "PROPOSED_PENDING_26b"
 SIMULATOR_STATUS = "NOT_BUILT_PENDING_26b"
+INTRO_PREFIX = "INTRO/"  # state_graph/event_adapter.py names lot introductions INTRO/<entity_id>
 
 INPUT_STATUSES = ("MEASURED", "RANGE", "UNKNOWN")
 APPLICABILITY_STATUSES = ("APPLICABLE", "NOT_APPLICABLE", "UNKNOWN")
@@ -96,6 +97,7 @@ SYSTEM_REQUIREMENTS: dict[str, tuple[str, ...]] = {
     "sim_chl_1": ("temperature_profile", "duration", "medium", "medium_ph", "piece_size_class", "matrix_class"),
 }
 EVENT_REASONS = ("REPLAY_HAS_ISSUES", "EVENT_REJECTED_IN_REPLAY", "EVENT_SKIPPED_SCOPE", "NO_CONSUMED_ENTITY",
+                 "LOT_INTRODUCTION",
                  "APPLICABILITY_UNKNOWN", "APPLICABILITY_NOT_APPLICABLE")
 INPUT_REASON_PREFIXES = ("MISSING_", "CONFLICTING_", "SOURCE_NOT_PERMITTED_")
 REASON_CODES = frozenset(EVENT_REASONS) | frozenset(p + n.upper() for p in INPUT_REASON_PREFIXES for n in INPUT_SPECS)
@@ -391,7 +393,8 @@ def build_simulation_inputs(replay: ReplayResult, *, recipe_id: str, system_id: 
         targets = tuple((v.entity_id, v.version, v.entity_type) for v in t.output_entity_versions
                         if v.version > 0 and v.lifecycle == "INCORPORATED")
         if t.status == "APPLIED" and not targets:
-            reasons.append("NO_CONSUMED_ENTITY")
+            # S168: the adapter's synthetic INTRO/<entity> lot introductions consume nothing by design
+            reasons.append("LOT_INTRODUCTION" if t.event_id.startswith(INTRO_PREFIX) else "NO_CONSUMED_ENTITY")
         verdicts = apps.get(t.event_id, [])
         statuses = {a.status for a in verdicts}
         if len(statuses) > 1:
