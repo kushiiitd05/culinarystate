@@ -334,3 +334,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Passed:** block K items K1–K3: the S166 fix of prv P1–P7 (tracked packet rows and key hash are salted commitments `sha256(salt|hash)`; no per-packet counts; patterned or reused salts refused; issued list required; re-issue note); J7 re-confirmed on this design (the S165 acceptance rested on an order that the tracked csv leaked); merge of PR #8; no packets built or re-issued from the superseded unsalted list.
 - **Not covered:** ksh items (block K4–K8), prv P8 (K9) and the J4 reader question (K10), which reached the humans after this pass. No value, seed, salt or signature is supplied by this entry. This entry is not the 15.0 ruling; that ruling takes the next free D-number.
 - **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-055 · 2026-11-06 · S166 review block K4–K9 passed (decided by Kush and Parv; Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "passed by prv and ksh". Read as Kush's pass and, relayed, Parv's ("prv"/"ksh" taken as Parv and Kush, as in D-054; under D-045 the AI reviewer labels cannot approve anything, so correct this entry if the AI reviewers were meant).
+- **Passed:** K4 (accept the committed 26g census tool; J8 closed), K5 (2 → 0 attributed to the S161 `º` rule), K6 (stage-order/locale/sample tests and the structural-reading fields), K7 (rerun the 1,000 census from a clean commit; mark Parv's file superseded, keep both), K8 (commit the full-corpus census JSON when done), K9 (post-run provenance re-check; Finder files out of the tree hash).
+- **Still open:** K10 (who reads the J4 sample; extraction on vinayak-server).
+- **Approver:** Kush and Parv (Parv relayed by Kush).
