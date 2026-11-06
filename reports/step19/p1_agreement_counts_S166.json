@@ -2,6 +2,13 @@
   "contains_ids": false,
   "contains_text": false,
   "counts_as_human_gate": false,
+  "denominators": {
+    "coref": 226,
+    "events": 194,
+    "lines": 57,
+    "spans": 881,
+    "state": 71
+  },
   "disagreement_categories": {
     "boundary": 14,
     "canonical_identity": 6,
@@ -12,6 +19,39 @@
     "final_state": 29,
     "intermediate_identity": 0,
     "quantity": 35
+  },
+  "handbook_gate": {
+    "flagged_categories": [
+      "coref",
+      "entity_type",
+      "event_argument",
+      "event_type",
+      "final_state"
+    ],
+    "per_pair_rate": {
+      "boundary": 0.0318,
+      "canonical_identity": 0.1053,
+      "coref": 0.9558,
+      "entity_type": 0.2361,
+      "event_argument": 0.2268,
+      "event_type": 0.7629,
+      "final_state": 0.8169,
+      "intermediate_identity": 0.0,
+      "quantity": 0.0795
+    },
+    "threshold": 0.2,
+    "tool_rate": {
+      "boundary": 0.0159,
+      "canonical_identity": 0.1053,
+      "coref": 0.4779,
+      "entity_type": 0.118,
+      "event_argument": 0.1134,
+      "event_type": 0.3814,
+      "final_state": 0.4085,
+      "intermediate_identity": 0.0,
+      "quantity": 0.0397
+    },
+    "verdict": "HANDBOOK_REVISION_REQUIRED"
   },
   "key_commitments_verified": true,
   "label_basis": "HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND",
