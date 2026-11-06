@@ -220,3 +220,16 @@ B re-issue on Parv's Mac (prv, checked against the tool's refusals):
 2. If B was built before: `mkdir -p ~/.culinarystate_private/superseded && mv annotation/gold/deep_gold_pilot_v1/B annotation/gold/deep_gold_pilot_v1/sealed_key_P1_B.json ~/.culinarystate_private/superseded/`.
 3. `/opt/anaconda3/bin/python tools/step19_packet_maker.py --letter B --salt-file ~/.culinarystate_private/p1_salt_B.txt` (prints `"blank": true`).
 4. Commit only `registry/recipe_semantics/deep_gold_pilot_v1/{packets_P1_B.csv,sealed_key_P1_B.sha256,salt_P1_B.sha256}`. Never commit `annotation/gold/`, the salt, `sealed_key_P1_B.json` or `~/.culinarystate_private/`. Never run `--letter A` on Parv's Mac.
+
+## Block M — P1 annotation, scoring and the THR-19P reading (pending review)
+
+Sources: DECISIONS D-060..D-066; `reports/step19/p1_agreement_counts_S166.json`; `reports/step19/pilot_schema_problem_log.md`; ksh audit KS1–KS6 and prv THR-19P reading (2026-11-06). Reply per item, or `ok all`.
+
+| ID | AI verdict | Human decision needed |
+|---|---|---|
+| M1 | ksh KS1–KS6: P1 scoring code correct and leak-safe; rerun reproduces the committed numbers; the S101 `disagreements()` arity crash is fixed. KS2/KS6 hardening applied test-first (key ⇔ commitment coverage, salted sealed-key check, key-based pairing test); the regenerated report has `key_commitments_verified: true`, numbers unchanged. | ok |
+| M2 | P1 result (7 pairs, human-accepted AI drafts, not blind): spans exact F1 0.84, concept 0.90, coref B³ 0.84, process 0.80, strict events 0.56, final-state fields 0.26; disagreements coref 108, entity_type 104, event_type 74, quantity 35 (partly SP-002), final_state 29. | ok |
+| M3 | prv THR-19P reading: most rows NOT_EVALUABLE under W2/D-064 (THR-11/12 provenance, 13–15 timing, 18 alpha, 19 falsification, 20/34 CIs, 21/22 class stats); THR-23 PASS; **THR-25 FAIL** (SP-001..004 not yet triaged); THR-26/32 STOP-SCHEMA not triggered (no BLOCKING); THR-35 bands descriptive only. | ok |
+| M4 | P1→P2: the result supports **REVISE HANDBOOK (Addendum B) before P2**, not proceed; schema/tooling decisions first on SP-001 (step-introduced entities) and SP-002 (U+2044 parser). THR-16/31 (> 20 % of units) cannot be computed because the report has no denominators: add per-category unit denominators to the scorer (AI remit). | ok / proceed instead |
+| M5 | Triage SP-001..SP-004 (THR-24/25) as ksh/prv AI verdicts first, then your stamp. | ok |
+| M6 | Report wording (prv): "P1 was scored on seven recipe pairs whose labels are human-accepted AI drafts from the same model family, produced on one machine; the result is an engineering score, not blind inter-annotator agreement, and provides no timing or reliability evidence. Agreement is low on state fields (0.26) and strict events (0.56), with disagreements concentrated in coreference and entity type, and four open schema or tooling problems (SP-001..004) point to handbook and tool revisions before P2. No state-of-the-art or reliability claim is made." | ok / edit |
