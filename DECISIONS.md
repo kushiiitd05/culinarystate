@@ -340,3 +340,8 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Passed:** K4 (accept the committed 26g census tool; J8 closed), K5 (2 → 0 attributed to the S161 `º` rule), K6 (stage-order/locale/sample tests and the structural-reading fields), K7 (rerun the 1,000 census from a clean commit; mark Parv's file superseded, keep both), K8 (commit the full-corpus census JSON when done), K9 (post-run provenance re-check; Finder files out of the tree hash).
 - **Still open:** K10 (who reads the J4 sample; extraction on vinayak-server).
 - **Approver:** Kush and Parv (Parv relayed by Kush).
+
+### D-056 · 2026-11-06 · Parv confirms the D-054/D-055 reading and the PR #8 merge (Parv's ok relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush: "ok merge" (PR #8 merged as `db2cd3e`), then "yes parv say it slright conitue".
+- **Confirmed:** "prv" in D-054/D-055 meant Parv; his passes of block K1–K9 stand. K10 (J4 reader) stays open. The 15.0 ruling takes the next free D-number (D-057 or later).
+- **Approver:** Kush and Parv (Parv relayed by Kush).
