@@ -171,3 +171,20 @@ Still open from block I and not covered here: δ_30, ρ, c_floor, the 34a.0 circ
   - J7: packet salt, guards and commit step built in S165; B's unsalted packet list superseded, to be re-issued by Parv with his own salt.
   - J4: census run in S165.
   - J8: 26g rerun deferred, because no committed tool exists.
+
+## Block K — S166 cross-review: PR #8 leak fix, Step 17b provenance, Step 26g census tool (prv items passed; ksh items pending)
+
+Source: `reports/review/S166_ai_review.md`. prv items K1–K3 below were passed by Kush and Parv on 2026-11-06 (D-054). Reply to K4–K10 per item, or `ok all`.
+
+| ID | AI verdict | Human decision needed |
+|---|---|---|
+| K1 | prv P1–P7: PR #8 leaked the packet→recipe map through plain hashes; fixed with salted commitments, salt checks, required issued list, re-issue note. | **Passed (D-054).** J7 re-confirmed on the fixed design. |
+| K2 | Merge PR #8 (now including the fix). | **Passed (D-054).** |
+| K3 | Nobody builds or re-issues packets from the superseded unsalted list; Parv re-issues B and Kush builds A only with the fixed maker. | **Passed (D-054).** |
+| K4 | ksh K1/K3/K6: accept the committed 26g census tool; close J8 (census block identical to Parv's; only invented 2 → 0). | ok / change |
+| K5 | ksh K2: the 2 → 0 is the S161 `º` rule, not the S163 fixes (wording corrected). | ok |
+| K6 | ksh K4/K7: add stage-order, locale and sample tests; write `bindings_supplied` and `prohibited_by_construction` into the census JSON (AI remit). | ok |
+| K7 | ksh K5: rerun the 1,000 census from a clean commit before citing it; mark Parv's file "superseded by S166". | ok / keep both |
+| K8 | Full-corpus 26g census (612,782 recipes, seed 20261104) is running on vinayak-server, counts only. Commit its JSON when done. | ok |
+| K9 | prv P8: recompute provenance after long runs; keep `.DS_Store`/`._*` out of the tree hash (AI remit). | ok |
+| K10 | J4 sample (from block J): the stratified inverted-interval sample needs recipe-text excerpts in a git-ignored file. Who reads it (Kush, Parv, both)? Build the extraction on vinayak-server? | person(s) + ok |
