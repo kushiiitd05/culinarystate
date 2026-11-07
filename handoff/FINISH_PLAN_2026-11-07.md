@@ -45,6 +45,9 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 
 ## Progress log
 
+- 2026-11-08 S171: **M1 full corpus** (vinayak, 32 workers, ~25 min): 612,782 recipes, 36,359,902 checks, DIRECT
+  274,058 (0.754 %), 0 exceptions, baseline PASS; 172,350 recipes have at least one DIRECT check; 103/115 EVD vit-C pairs
+  used, among 130,886 distinct pairs.
 - 2026-11-08 S171: **M1 done.** Router demo census, 1,000 seeded recipes, vitamin C: 60,882 route checks, DIRECT 421
   (0.69 %), UNKNOWN 60,461, exceptions 0, baseline PASS. EVD has 115 vitamin-C (ingredient, process) pairs over 25
   ingredients; the sample used 53 of them, but those are 53 of its 13,652 distinct pairs (0.39 %). Every UNKNOWN names
