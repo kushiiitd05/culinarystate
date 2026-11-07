@@ -68,6 +68,14 @@ class EvidenceIndex:
             return []
         return [s for s in self._by_key.get((ingredient_id, process_id), ()) if s["svar_id"] == svar_id]
 
+    def pairs(self, svar_id: str) -> set[tuple[str, str]]:
+        """(ingredient_id, process_id) keys holding a MEASURED or CENSORED row for ``svar_id``."""
+        return {k for k, rows in self._by_key.items()
+                if any(s["svar_id"] == svar_id and s["status"] in EVIDENCE_STATUSES for s in rows)}
+
+    def ingredients(self, svar_id: str) -> set[str]:
+        return {ing for ing, _ in self.pairs(svar_id)}
+
 
 def precheck(hits: Iterable[Mapping[str, Any]]) -> str:
     """G0: DIRECT when a measured or censored row matches exactly; no bracketing in the demo (conservative)."""
@@ -95,13 +103,14 @@ def _lot_ingredients(graph, entity_ids: Iterable[str]) -> list[str]:
 
 
 def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str | None = None,
-               rung: RungA | None = None, hierarchy: PS.ProcessHierarchy | None = None) -> dict:
+               rung: RungA | None = None, hierarchy: PS.ProcessHierarchy | None = None,
+               schema: Mapping[str, Any] | None = None) -> dict:
     """Per (event, linked ingredient): the 23a route for ``target_svar``, its reasons and the matching EVD rows."""
     if not isinstance(target_svar, str) or not target_svar.strip():
         raise ValueError("target_svar is required (e.g. SVAR-000009, vitamin C)")
     rung, hierarchy = rung or RungA(), hierarchy or PS.read_process_hierarchy()
     source = SourceText.from_raw("DEMO", raw)
-    graph = rung.run(source, rung.config(locale=locale), schema=D.load_schema()).graph
+    graph = rung.run(source, rung.config(locale=locale), schema=schema or D.load_schema()).graph
     items = []
     for ev in graph.events:
         proc = _attr(ev.attributes, "proc_id")
