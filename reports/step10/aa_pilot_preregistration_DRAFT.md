@@ -38,8 +38,13 @@ sha256(`aa-pilot-split-2026-11-08` ‖ DOI) ascending; the first 4 are **SIM-VAL
 
 A paper dropped later (licence, no kinetic data) leaves the others in place, with no re-draw. If two papers share a
 corresponding author or lab, both go to the partition of the lower-ranked one, and the move is logged. SIM-VAL rows are
-extracted and verified like the others but are not opened by the fitting step until the SIM-CAL fit is frozen
-(hash committed).
+extracted and verified like the others, but **only after** the SIM-CAL fit is frozen (hash committed): the agent is both
+extractor and fitter, so it does not open a SIM-VAL full text before the freeze (Step 11.L firewall).
+
+Acquisition (S171): 7 of 12 PDFs fetched from their OA locations (AAK-01, 03, 06, 07, 09, 11, 12; SHA-256 recorded
+at extraction). AAK-02, 04, 05, 08 and 10 refuse scripted downloads; a human downloads them in a browser, and the agent
+does not work around the sites' checks. AAK-09's repository copy is labelled CC-BY-NC-ND; the publisher's version is
+CC-BY. The licence is confirmed on the publisher's page.
 
 ## 4. Verification (human only)
 
