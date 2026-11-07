@@ -232,3 +232,16 @@ Run the full suite on vinayak-server only (VPN first); the 8 GB Mac swaps.
 cd ~/Desktop/CGAS/culinarystate && git fetch origin && git checkout kush/s169-seal-p1b && git pull
 ssh vinayak-server 'ls -la ~/Kush/cs_runs/step26g_census_full_corpus_S168.json; tail -c 400 ~/Kush/cs_runs/step26g_full_S168.log'
 ```
+
+## Update — 2026-11-07 21:30 IST: S170 (resume here)
+
+- **Branch:** `kush/s169-seal-p1b` (pushed). DECISIONS through **D-074**; WORKLOG through **S170**.
+- **Done S170:** census 0.2.0 full run committed (`reports/step26/simulability_census_full_corpus_S169.json`: NO_CONSUMED_ENTITY 7.0 %, LOT_INTRODUCTION 35.1 %, exact split of S166); report s6.6 and figure 2 now use it. Seal unlock check: 29-diag left with SNAPSHOT_NOT_FROZEN (no freeze-record format exists) and DIAG_PREREG_UNSIGNED (Kush); Step 30 does not gate on the seal. D-073 precision check pre-registered and run: R1 4/60 CORRECT, not landed; R2 withdrawn (D-074). Binder and RULES_VERSION unchanged.
+- **Private:** labelled sample `data/interim/d073/d073_r1_sample_private.csv` (git-ignored, third-party text).
+
+### Order for next session
+1. **Kush:** P1b nonce phrase → agent runs P1b end to end (as in the 00:20 order, item 1).
+2. **Kush:** Step 35 v2 signature → C1 baselines.
+3. Humans: report block Q items (contributions, 5 UNVERIFIED); agent: slide deck from the 9-slide outline + `reports/final/figures/`.
+4. Optional before the presentation: define a 15a freeze-record format (unblocks SNAPSHOT_NOT_FROZEN) and draft the 29-diag pre-registration for Kush to sign.
+5. After the presentation: versioned rc2 change (SP-002 + J4).
