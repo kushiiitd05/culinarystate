@@ -1,0 +1,172 @@
+{
+  "baseline_check": "PASS_BEFORE_AND_AFTER",
+  "census_version": "router-demo-census-0.1.0-draft",
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/extraction/__init__.py",
+        "sha256": "b57b6cc94e8e6810f01f96a9c5671ad864fe0fb067d18930571b9ec694e97bf0"
+      },
+      {
+        "path": "src/culinarystate/extraction/auditor.py",
+        "sha256": "709b4351379e848229279218e7343c3c5fb45d16af8cd81b81892778e6341e21"
+      },
+      {
+        "path": "src/culinarystate/extraction/d073_current_sample.py",
+        "sha256": "c472911050fde29509bbba2b4bf24bb62e962b8f845681a3b23525e663e84a5b"
+      },
+      {
+        "path": "src/culinarystate/extraction/interfaces.py",
+        "sha256": "543dfcb5a36f67abea810ebcfd94427759c4ebdd4bf11736e950b48de240407d"
+      },
+      {
+        "path": "src/culinarystate/extraction/invariants.py",
+        "sha256": "b2e45c3dfd61da10982ade1a78e5458fa0a161c2cb1be454a923f56768da1b8b"
+      },
+      {
+        "path": "src/culinarystate/extraction/j4_inverted_sample.py",
+        "sha256": "84628577169426e01e955405e4ca18a3a43830f93f2bd64017ffefed36e55657"
+      },
+      {
+        "path": "src/culinarystate/extraction/quantity_stages.py",
+        "sha256": "5d3e79f9ba6e50709384ccde8d052dd7a5d39f6be0e6dd4e07994ccada77f899"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a.py",
+        "sha256": "b274feed81bf18f5ef9332761cde0d6231b2e84480eb2a61ebccb5816e19d630"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_binding.py",
+        "sha256": "957471c26dd726468bba7967c3ffc7027390c56777ea90b5abcfb7f2f396ddbf"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_lexicon.py",
+        "sha256": "8973f0eb2d78bd64c6ba4723120a540c3a016707b4178ba6b95e041f14bf0430"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_measure.py",
+        "sha256": "d4c42e85248f626c6a2ea9fad9062f18952785456fbb63d981dede9b64add56b"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_rules.py",
+        "sha256": "12cf0ce00d9e469ef4a77293e86539c5ac8610b41ecc2b499f955ca7f9f93752"
+      },
+      {
+        "path": "src/culinarystate/extraction/validators.py",
+        "sha256": "4ccb60e43b06afab22654baf82d8e1e1ec679e1356c2a63cdeccd8353d6091d9"
+      },
+      {
+        "path": "tools/step17b_rung_a_dryrun.py",
+        "sha256": "9290d52369f9302f92da469bd337c974f29287f3af057eb1cae1fb7a8445b158"
+      },
+      {
+        "path": "src/culinarystate/mechanism/router_demo.py",
+        "sha256": "752ebe8eb601c0223a39e7151725e949846097cc93d7cc6718d5d39fd1790aa3"
+      },
+      {
+        "path": "src/culinarystate/mechanism/router_census.py",
+        "sha256": "27f5beeb4d2c4faa895acaa03949d144e9a2349d1439d070901a5264f9c5bccf"
+      },
+      {
+        "path": "src/culinarystate/mechanism/applicability.py",
+        "sha256": "09fa8aa220bf6038aadf90c48fb0dc20d7075611e1d70d107bbe69d76063f589"
+      },
+      {
+        "path": "tools/router_demo_census.py",
+        "sha256": "a981d17fb5074aaa2db2476e6714f042a7d475b96cc6c493bb795f0bc3b63b64"
+      }
+    ],
+    "git_commit": "2bc25959266fbf81234a905aa3b4b9bffc46062f",
+    "git_dirty": false,
+    "src_tree_sha256": "345fdf33546e073940a1165da5a8b66e1a14d4e59f31e92cd85d0a2418d03cdd"
+  },
+  "code_unchanged_during_run": false,
+  "conditions_consumed": false,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts_as_human_gate": false,
+  "demo_version": "router-demo-0.1.0-draft",
+  "direct_by_process": {
+    "PROC__000001": 200,
+    "PROC__000002": 6,
+    "PROC__000003": 19,
+    "PROC__000009": 28,
+    "PROC__000014": 4,
+    "PROC__000016": 19,
+    "PROC__000019": 41,
+    "PROC__000020": 21,
+    "PROC__000021": 2,
+    "PROC__000025": 2,
+    "PROC__000031": 29,
+    "PROC__000032": 32,
+    "PROC__000033": 5,
+    "PROC__000071": 11,
+    "PROC__000133": 2
+  },
+  "engine_mode": "23a",
+  "engine_version": "step23a-engine-0.1.0-draft",
+  "events": 15690,
+  "evidence_coverage": {
+    "evd_ingredients_for_target": 25,
+    "evd_pairs_for_target": 115,
+    "evd_pairs_seen_in_sample": 53,
+    "sample_distinct_ingredients": 667,
+    "sample_distinct_pairs": 13652,
+    "sample_ingredients_with_target_evidence": 22
+  },
+  "exceptions_by_class": {},
+  "families_requested": [
+    "A1_BBC_GOOD_FOOD",
+    "WIKIBOOKS",
+    "GUTENBERG_SEGMENT",
+    "FOODCOM",
+    "TASTESET"
+  ],
+  "family_status": {
+    "A1_BBC_GOOD_FOOD": "READ",
+    "FOODCOM": "READ",
+    "GUTENBERG_SEGMENT": "READ",
+    "TASTESET": "READ",
+    "WIKIBOOKS": "READ"
+  },
+  "items": 60882,
+  "items_linked": 59164,
+  "items_unlinked": 1718,
+  "items_with_process": 60408,
+  "items_without_process": 474,
+  "label": "REAL_BASE_SAMPLE_COUNTS_NOT_GOLD",
+  "labels": [
+    "NON_CITABLE",
+    "DEMO_ONLY",
+    "EVIDENCE_E3_UNVERIFIED",
+    "NO_REVIEWED_MECHANISM",
+    "NO_CONDITIONS_CONSUMED"
+  ],
+  "reason_counts": {
+    "DOMAIN_UNKNOWN": 60882,
+    "EVENT_UNRESOLVED": 474,
+    "EVIDENCE_PREEMPTS": 421,
+    "INPUT_UNOBSERVED": 60882,
+    "NO_CANDIDATE_MECHANISM": 60882,
+    "NO_FORM": 60882,
+    "NO_LINKED_INGREDIENT": 1718,
+    "NO_SINGLE_APPLICABLE_MECHANISM": 60882,
+    "PARAM_UNCONFIRMABLE": 60882,
+    "SAFETY_UNKNOWN": 60882
+  },
+  "recipes_sampled": 1000,
+  "recipes_seen": 612782,
+  "recipes_with_any_direct": 267,
+  "record": "ROUTER_DEMO_CENSUS",
+  "route": {
+    "DIRECT": 421,
+    "UNKNOWN": 60461
+  },
+  "sample_rule": "SHA256_SEED_CONCAT_RECIPE_ID_ASC",
+  "sample_size_requested": 1000,
+  "seed_sha256": "d17378866e074edcd4985e06bc7b0702b8c70d9fbee3ffba000f2c01f634e7a2",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "target_svar": "SVAR-000009",
+  "texts_with_steps": 999
+}
