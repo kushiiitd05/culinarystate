@@ -48,7 +48,7 @@ def test_relationship_answer_says_corpus_pattern_not_equivalence():
                        source_predicate="ING_ALTERNATIVE_TO", reason="r")]
     out = DC.relationship_answer("buttermilk", cands)
     assert out["mode"] == "ANSWER_CORPUS_PATTERN" and out["cited"] == []
-    assert "yogurt" in out["answer"] and "42%" in out["answer"] and "not" in out["answer"].lower()
+    assert "yogurt" in out["answer"] and "score 0.420" in out["answer"] and "%" not in out["answer"] and "not" in out["answer"].lower()
     none = DC.relationship_answer("buttermilk", [])
     assert none["mode"] == "ABSTAIN_NO_EDGES"
     assert DC.relationship_answer(None, cands)["mode"] == "ASK"
