@@ -42,7 +42,7 @@ def test_select_ranks_by_seed_and_respects_quota():
 
 
 def test_select_excludes_before_ranking_and_is_disjoint():
-    pool = _pool()
+    pool = _pool(n=60)
     first = P.select(pool, seed="s", exclude=frozenset())
     excl = frozenset(c for _, c in first)
     second = P.select(pool, seed="s", exclude=excl)
@@ -59,7 +59,7 @@ def test_fmt_point_interval_and_calendar():
     assert P.fmt({"value_type": "POINT", "status": "VALID", "canonical_value": 453.15, "canonical_unit": "K"}) \
         == "POINT/VALID 453.15 K"
     assert P.fmt({"value_type": "INTERVAL", "status": "VALID", "canonical_low": 348.15, "canonical_high": None,
-                  "canonical_unit": "K"}) == "INTERVAL/VALID (348.15, +inf) K"
+                  "open_low": True, "canonical_unit": "K"}) == "INTERVAL/VALID (348.15, +inf) K"
     assert P.fmt({"value_type": "POINT", "status": "AMBIGUOUS", "calendar_unit": "month", "calendar_value": 6.0}) \
         == "POINT/AMBIGUOUS calendar:6.0 month"
 
