@@ -120,3 +120,13 @@ def test_cli_writes_once_and_refuses_protected_places(tmp_path):
     bad = argv[:5] + [str(tmp_path / "ledgers" / "x.json")] + argv[6:]
     with pytest.raises(SystemExit):
         tool.main(bad, record_source=src)
+
+
+def test_parallel_workers_give_the_identical_report():
+    ing, proc = _boil_key()
+    idx = RD.EvidenceIndex.from_rows([_row("E1", ing, proc)])
+    one = RC.census_from_records(records(9), seed="7", size=9, index=idx, target_svar=VC)
+    two = RC.census_from_records(records(9), seed="7", size=9, index=idx, target_svar=VC, workers=2)
+    assert one == two and one["route"]["DIRECT"] > 0
+    with pytest.raises(ValueError):
+        RC.census_from_records(records(), seed="7", size=4, index=idx, target_svar=VC, workers=0)
