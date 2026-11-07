@@ -27,7 +27,7 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 | M1 | Router demo mode on real recipes: 23a NON_CITABLE mode + G0 evidence pre-check from the 17,978 EVD rows (DIRECT / INTERPOLATE / ASK / UNKNOWN per event) | 23 | agent | 10 Nov | ✅ DONE (S171): demo + census on 1,000 recipes |
 | M2 | 07.A redo: pre-registered statistic robust to the kappa paradox (e.g. Gwet AC1) + fresh 100-condition packet → Kush and Parv label independently (~3–4 h each) → score; a pass is the valid 07.A (23b also needs 15b frozen, R-05) | 07.A, 23b | agent packet; **Kush + Parv labels** | packet 9 Nov; labels 13 Nov | ⏳ packet + prereg + scorer READY (S171); **waiting: both sign prereg, then label** |
 | M3 | Step 10 ascorbic-acid kinetics pilot: OA source list, AI extraction of ~20 rows with spans → **Kush + Parv verify** (~2–3 h each) → PARAM rows → fit sim_aa_1 on the calibration split → held-out check (Step 27) | 10, 24–27 | agent extract/fit; **Kush + Parv verify** | extract 12 Nov; verify 15 Nov; sim 17 Nov | ☐ TODO |
-| M4 | D4 evidence-aware retrieval with abstention (router + EVD + retriever + claim enforcement) | 36 (D4) | agent | 14 Nov | ☐ TODO |
+| M4 | D4 evidence-aware retrieval with abstention (router + EVD + retriever + claim enforcement) | 36 (D4) | agent | 14 Nov | ⏳ core DONE (S171): §39 router + front door + TRANSFORMATION/RELATIONSHIP handlers on real data; METADATA/SEMANTIC abstain |
 | M5 | D5 benchmark (~80 questions, AI draft → **Kush + Parv review**) + B0–B5 runs → **H1** (state-aware vs text RAG) and **H3** (abstention lowers unsupported claims) | 36 (D5) | agent; **humans review questions** | questions 13 Nov; review 16 Nov; results 19 Nov | ☐ TODO |
 | M6 | Hosted web demo: recipe → state timeline → router decision → cited answer or abstention (FastAPI + UI on a free host; hosted LLM API key from Kush) | demo | agent; **Kush: host account + API key** | 21 Nov | ☐ TODO |
 | M7 | P1b pilot wave (needs the nonce) and Step 35 v2 signature | 19, 35 | **Kush** first, then agent | when supplied | ⏸ WAITING ON KUSH |
@@ -45,6 +45,10 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 
 ## Progress log
 
+- 2026-11-08 S171: **M4 core.** `decision/query_router.py` (SSOT §39), `front_door.py` (explicit abstention),
+  `demo_context.py` (load once; DEL-5 pipeline + B5T template + router demo per recipe step; corpus substitution
+  patterns labelled as patterns). Real-ledger test passes (38 s load). Router accuracy is unmeasured: it is scored on
+  the M5 questions, never tuned on them.
 - 2026-11-08 S171: **M1 full corpus** (vinayak, 32 workers, ~25 min): 612,782 recipes, 36,359,902 checks, DIRECT
   274,058 (0.754 %), 0 exceptions, baseline PASS; 172,350 recipes have at least one DIRECT check; 103/115 EVD vit-C pairs
   used, among 130,886 distinct pairs.
