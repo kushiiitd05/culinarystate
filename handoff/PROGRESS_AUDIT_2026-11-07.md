@@ -3,7 +3,7 @@
 AI audit (coding agent) for Kush and Parv to check. Sources: `docs/SSOT/computational_gastronomy_master_ssot_v15_0.md`
 (§0, §6, §12–14, §39 via `docs/SSOT_INDEX.md`), `docs/plan/CulinaryState_36_Step_Execution_Plan_v2.md`,
 `reports/review/project_completion_roadmap.md`, STATUS.md, DECISIONS.md through D-076, WORKLOG through S170, the
-committed reports. **Not yet read:** manjot-server `~/kush_work/` (VPN dropped in S170) — add its pipelines here.
+committed reports, manjot-server `~/kush_work/culinarystate` (read S171, see below).
 
 **Scoring rubric (agent's judgment, fixed before scoring):** 1.0 done and accepted · 0.6–0.8 built and run on real
 data, gate not passed or addenda pending · 0.3–0.5 built, tested on synthetic data or a partial real run · 0.1–0.2
@@ -83,3 +83,12 @@ human evaluation). Remaining after 25 Nov: H2, H4, D2, Steps 20 and 28–34, Fla
 - §12 task types to cover in the M5 benchmark (3–5 of 9): current-state tracking, next action, process
   substitution, process comparison, chemistry relevance.
 - §0 scope rule: no universal "best process"; quality is relative to intent, state, target and constraints.
+
+## manjot-server review (S171, 2026-11-08, read-only)
+
+`~/kush_work/culinarystate` is a 26 Oct snapshot (= local commit `f963895`); a size-only dry-run rsync found **0 files
+absent locally** in gpu/, features/, data/interim/, reports/, registry/, tools/. Its pipelines are the October NER and
+linker GPU benches (`gpu/ner_bench`, `gpu/ner_tasteset`, `gpu/ner_recipedb3`), already local. Nothing to pull, so no
+score changes. Reusable for M4: the 18 Oct retrieval stack in `data/interim/retrieval/` (EVD texts, BM25 top-100,
+bge-reranker base/large) and `data/interim/embeddings/` (bge-small/base/large, e5-small/large, gte-large). Other
+folders on that host are unrelated projects. GPU 1 was free at review time; GPU 0 was 38/40 GB in use.
