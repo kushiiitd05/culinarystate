@@ -7,6 +7,7 @@ integer counts and codes (no recipe text, id or seed) and refuses to overwrite o
 exports/ or annotation/gold/. Not a gold score, not a human gate, never citable.
 
     python tools/router_demo_census.py --seed router-demo-2026-11-08 --out reports/step23/<new>.json
+    python tools/router_demo_census.py --seed 20261104 --sample-size 612782 --workers 32 --out ...  (server)
 """
 from __future__ import annotations
 
@@ -53,6 +54,7 @@ def main(argv=None, record_source=None) -> int:
     ap.add_argument("--seed", required=True, help="sampling seed (only its SHA-256 is reported)")
     ap.add_argument("--sample-size", type=int, default=1000)
     ap.add_argument("--target", default="SVAR-000009", help="target state variable (default: vitamin C)")
+    ap.add_argument("--workers", type=int, default=1, help="fork-pool workers (server: e.g. 32)")
     ap.add_argument("--evd", default=str(RD.EVD_PATH), help="EVD ledger (read only)")
     ap.add_argument("--root", default=str(ROOT))
     ap.add_argument("--out", required=True, help="new counts-only JSON (refuses overwrite)")
@@ -60,8 +62,8 @@ def main(argv=None, record_source=None) -> int:
     ap.add_argument("--no-baseline-check", action="store_true",
                     help="skip the protected-ledger hash check (recorded in the report; tests only)")
     a = ap.parse_args(argv)
-    if a.sample_size < 1:
-        ap.error("--sample-size must be positive")
+    if a.sample_size < 1 or a.workers < 1:
+        ap.error("--sample-size and --workers must be positive")
     root, out = Path(a.root), Path(a.out)
     if out.exists():
         ap.error("refusing to overwrite an existing report")
@@ -76,7 +78,8 @@ def main(argv=None, record_source=None) -> int:
     index = RD.EvidenceIndex.from_ledger(Path(a.evd))
     status: dict = {}
     report = RC.census_from_records(T17._stream(a.families, root, record_source or T17.corpus_records, status),
-                                    seed=a.seed, size=a.sample_size, index=index, target_svar=a.target)
+                                    seed=a.seed, size=a.sample_size, index=index, target_svar=a.target,
+                                    workers=a.workers)
     if baseline == "PENDING_AFTER_RUN":
         baseline = "PASS_BEFORE_AND_AFTER" if _baseline_ok(root) else "FAILED_AFTER_RUN"
     report.update(family_status=dict(sorted(status.items())), baseline_check=baseline,
