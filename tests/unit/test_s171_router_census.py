@@ -23,7 +23,7 @@ VC = "SVAR-000009"
 def records(n: int = 6) -> list[dict]:
     return [{"recipe_id": f"SYN-{SENTINEL}-{i}", "source_family": ("FOODCOM", "A1_BBC_GOOD_FOOD")[i % 2],
              "ingredient_lines": ["500 g potatoes", "2 carrots"],
-             "steps": ["Boil the potatoes for 20 minutes.", f"Roast the carrots {SENTINEL}. Stir well."]
+             "steps": [f"Stir well {SENTINEL}.", "Boil the potatoes for 20 minutes.", "Roast the carrots."]
              if i != 3 else []}
             for i in range(n)]
 
@@ -82,7 +82,7 @@ def test_direct_counted_and_coverage_reported_with_evidence():
     idx = RD.EvidenceIndex.from_rows([_row("E1", ing, proc), _row("E2", "ING-ZZ", proc)])
     rep = RC.census_from_records(records(), seed="7", size=6, index=idx, target_svar=VC)
     assert rep["route"]["DIRECT"] == 5 and rep["recipes_with_any_direct"] == 5
-    assert rep["direct_by_process"] == {proc: 5}
+    assert rep["direct_by_process"] == {proc.replace("-", "__"): 5}  # report keys are codes
     cov = rep["evidence_coverage"]
     assert cov["evd_pairs_for_target"] == 2 and cov["evd_pairs_seen_in_sample"] == 1
     assert cov["evd_ingredients_for_target"] == 2 and cov["sample_ingredients_with_target_evidence"] == 1
