@@ -59,6 +59,29 @@ Fit `sim_aa_1` (first-order, Arrhenius in T) on verified SIM-CAL rows only, and 
 retention and report the error with no threshold (pilot, descriptive). Report everything, including rows lost at each
 step.
 
+## 6. Fit specification (added S171 after CAL extraction, before any verification or fit)
+
+The agent has seen the extracted CAL values (16 rows, 4 papers), so this section is **not blind to the data**. It
+is fixed before verification and before any fit, and the report must say so.
+
+- **Inclusion:** `K_AT_T` rows with both verdicts VERIFIED (or the same CORRECTED value), first order, and
+  60 °C ≤ T ≤ 100 °C (cooking range). Rows below 60 °C are reported but not fitted. `AUTHOR_FIT_EA` rows are never
+  fitted; they are compared with our estimate afterwards.
+- **Model A (primary):** ln k_ij = a_i − (Ea/R)(1/T_ij − 1/T_ref), with a separate intercept a_i per paper (matrix),
+  one shared Ea, T_ref = 363.15 K (90 °C), unweighted least squares on ln k (dispersion is missing for most rows).
+  Report Ea with SE, each a_i, the residual SD, and the between-paper SD of the a_i (σ_b).
+- **Model B (sensitivity):** a separate Ea per paper wherever the paper has ≥ 3 included temperatures. Also an
+  all-rows sensitivity fit, including the < 60 °C rows and the AI-flagged AAK-11.
+- **Prediction for an unseen matrix (SIM-VAL, Step 27):** ln k(T) = mean(a_i) − (Ea/R)(1/T − 1/T_ref), with a
+  95 % interval from σ_b, the residual SD and the parameter covariance. For each SIM-VAL row, record whether its
+  verified k lies inside the interval and its ln-k error. Descriptive only: no threshold, no tuning after SIM-VAL is
+  opened.
+- **Freeze:** the Model A fit JSON (inputs, row ids, estimates, code hash) is committed and its SHA-256 recorded
+  before any SIM-VAL full text is opened.
+- **What sim_aa_1 may use:** only Model A estimates, labelled `PILOT_MODEL_ASSISTED`, n = (papers, rows); leaching
+  (k_L, K_p) stays UNKNOWN (no included CAL paper identifies it), so WATER_IMMERSION runs return UNKNOWN for the
+  leaching part.
+
 ## Signatures (human only; D-071)
 
 - Kush Tokas: ______ date ______
