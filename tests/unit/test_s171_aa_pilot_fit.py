@@ -93,3 +93,31 @@ def test_fit_is_deterministic_and_carries_its_inputs():
     a, b = F.fit_model_a(rows), F.fit_model_a(rows)
     assert a == b and a["row_ids"] == sorted(r["row_id"] for r in rows)
     assert a["label"] == "PILOT_MODEL_ASSISTED" and a["model"] == "A_SHARED_EA_PAPER_INTERCEPTS"
+
+
+def test_cli_freezes_once_and_reports_exclusions(tmp_path):
+    import csv
+    import importlib.util
+    import json
+    from pathlib import Path
+    spec = importlib.util.spec_from_file_location("aa_pilot_fit_tool",
+                                                  Path(__file__).resolve().parents[2] / "tools/aa_pilot_fit.py")
+    tool = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(tool)
+    rows = _synthetic(noise=0.05) + [_row("R900", "P0", 30, 0.001)]
+    paths = []
+    for who in ("Kush", "Parv"):
+        p = tmp_path / f"{who}.csv"
+        with open(p, "w", newline="", encoding="utf-8-sig") as fh:
+            w = csv.DictWriter(fh, fieldnames=list(rows[0]))
+            w.writeheader()
+            w.writerows(rows)
+        paths.append(p)
+    out = tmp_path / "fit.json"
+    argv = ["--kush", str(paths[0]), "--parv", str(paths[1]), "--out", str(out)]
+    assert tool.main(argv) == 0
+    rep = json.loads(out.read_text())
+    assert rep["fit"]["n_rows"] == 12 and rep["excluded_by_inclusion"] == {"BELOW_60C": 1}
+    assert rep["sim_val_opened"] is False and len(rep["returned_sha256"]["Kush"]) == 64
+    with pytest.raises(SystemExit):
+        tool.main(argv)
