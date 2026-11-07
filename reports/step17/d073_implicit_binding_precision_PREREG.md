@@ -47,8 +47,13 @@ worse than UNKNOWN).
 ## Landing rule (fixed now)
 
 LAND R1 (RULES_VERSION bump, tests first, census rerun as a new version) iff CORRECT >= 54 of 60 (point precision
->= 0.90; Wilson 95 % lower bound >= 0.80). With n < 60 items, land iff the Wilson 95 % lower bound >= 0.80.
+>= 0.90; Wilson 95 % lower bound 0.7985). With n < 60 items, land iff the Wilson 95 % lower bound >= 0.80.
 Otherwise do not land; record the label counts and leave the binder unchanged.
 
 Labeller: ksh (AI) under D-071. A prv cross-check is welcome but not required for this engineering rule; same-model
 caveat as J4 applies.
+
+## Amendment 1 (S170, before any draw)
+
+The first version said 54/60 gives a Wilson 95 % lower bound >= 0.80; it is 0.7985. The operative rule
+(CORRECT >= 54 of 60) is unchanged; only the parenthetical was corrected. Found by the scorer's unit test.
