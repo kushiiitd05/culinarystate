@@ -28,7 +28,7 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 | M2 | 07.A redo: pre-registered statistic robust to the kappa paradox (e.g. Gwet AC1) + fresh 100-condition packet → Kush and Parv label independently (~3–4 h each) → score; a pass is the valid 07.A (23b also needs 15b frozen, R-05) | 07.A, 23b | agent packet; **Kush + Parv labels** | packet 9 Nov; labels 13 Nov | ⏳ packet + prereg + scorer READY (S171); **waiting: both sign prereg, then label** |
 | M3 | Step 10 ascorbic-acid kinetics pilot: OA source list, AI extraction of ~20 rows with spans → **Kush + Parv verify** (~2–3 h each) → PARAM rows → fit sim_aa_1 on the calibration split → held-out check (Step 27) | 10, 24–27 | agent extract/fit; **Kush + Parv verify** | extract 12 Nov; verify 15 Nov; sim 17 Nov | ☐ TODO |
 | M4 | D4 evidence-aware retrieval with abstention (router + EVD + retriever + claim enforcement) | 36 (D4) | agent | 14 Nov | ⏳ core DONE (S171): §39 router + front door + TRANSFORMATION/RELATIONSHIP handlers on real data; METADATA/SEMANTIC abstain |
-| M5 | D5 benchmark (~80 questions, AI draft → **Kush + Parv review**) + B0–B5 runs → **H1** (state-aware vs text RAG) and **H3** (abstention lowers unsupported claims) | 36 (D5) | agent; **humans review questions** | questions 13 Nov; review 16 Nov; results 19 Nov | ☐ TODO |
+| M5 | D5 benchmark (~80 questions, AI draft → **Kush + Parv review**) + B0–B5 runs → **H1** (state-aware vs text RAG) and **H3** (abstention lowers unsupported claims) | 36 (D5) | agent; **humans review questions** | questions 13 Nov; review 16 Nov; results 19 Nov | ⏳ prereg + 100 drafted questions READY (S171); **waiting: both sign prereg, review sheets** |
 | M6 | Hosted web demo: recipe → state timeline → router decision → cited answer or abstention (FastAPI + UI on a free host; hosted LLM API key from Kush) | demo | agent; **Kush: host account + API key** | 21 Nov | ☐ TODO |
 | M7 | P1b pilot wave (needs the nonce) and Step 35 v2 signature | 19, 35 | **Kush** first, then agent | when supplied | ⏸ WAITING ON KUSH |
 | M8 | Final report + slides from real M1–M6 results (deck started, paused at the cover) | — | agent draft; humans edit block Q | 22–24 Nov | ⏸ PAUSED |
@@ -39,12 +39,15 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 2. M2: Kush and Parv sign `reports/step07/07A_R1_preregistration_DRAFT.md`, then label
    `annotation/condition_audit/condition_audit_packet_100_R1_{Kush,Parv}.csv` independently (~3–4 h each) by 13 Nov.
 3. M3 verification: Kush and Parv, ~2–3 h each, by 15 Nov.
-4. M5 question review: by 16 Nov.
+4. M5: sign `reports/del5/d5_benchmark_preregistration_DRAFT.md`; review `annotation/d5_review/d5_review_v1_{Kush,Parv}.csv` (100 rows, KEEP/EDIT/DROP) independently by 16 Nov.
 5. M6: a hosting account and an LLM API key (or approve the A100 + tunnel route).
 6. M7: P1b nonce; Step 35 signature.
 
 ## Progress log
 
+- 2026-11-08 S171: **M5 drafts.** D5/H1/H3 prereg (McNemar for H1 B4 vs B1/B2; question-bootstrap UCR test for H3);
+  100 AI-drafted questions (P1/P2/P3/C 15 each from EVD strata; S1/S2 20 each from Wikibooks/Gutenberg with Rung A
+  gold), ranked overdraft so drops don't shrink blocks. Review sheets for Kush and Parv (git-ignored).
 - 2026-11-08 S171: **M4 core.** `decision/query_router.py` (SSOT §39), `front_door.py` (explicit abstention),
   `demo_context.py` (load once; DEL-5 pipeline + B5T template + router demo per recipe step; corpus substitution
   patterns labelled as patterns). Real-ledger test passes (38 s load). Router accuracy is unmeasured: it is scored on
