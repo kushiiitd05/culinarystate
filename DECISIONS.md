@@ -468,3 +468,10 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **15a.R SEED_SHA256:** 73d3ed4de7ba9d46f09c7fb408805a78f3c8189044a71de3d2da3a85461932d5
 - **Seed custody:** Kush's seed on Kush's Mac (`~/.culinarystate_private/15aR_seed_kush.txt`, 0600, 48 hex, made with Python `secrets` by the agent at Kush's instruction, never printed); it replaces the agent-made seed on Parv's Mac (`d3075c68…`, block J5).
 - **Approver:** Kush
+
+### D-074 · 2026-11-07 · D-073 implicit-object rules: R2 withdrawn, R1 not landed (decided by ksh (AI) under D-071; entered by the coding agent as scribe)
+- **Pre-registered** before any draw: `reports/step17/d073_implicit_binding_precision_PREREG.md` (+ Amendment 1, a parenthetical Wilson-bound correction; rule unchanged).
+- **R2 (last-produced intermediate when none is live): withdrawn untested.** On the exploration seed it could fire on at most ~0.3 % of events, and there the only live candidates are reserved portions, which are never implicit by design; the other IMPLICIT_ARG_NONE events come before any food exists (UNKNOWN is correct).
+- **R1 `RA_IMPLICIT_CURRENT_V1` (current mixture when the tier is ambiguous): DO_NOT_LAND.** 60 items from 400 recipes (seed `d073-precision-2026-11-07-r1`), labelled by ksh: CORRECT 4, WRONG_OBJECT 43, NOT_AN_ACTION 8, UNCLEAR 3, NO_OBJECT 2; precision 0.067, Wilson 95 % lower 0.026 (`reports/step17/d073_r1_precision_S170.json`). The verdict does not depend on how strictly the items were labelled: a lenient reading adds at most ~12. In ambiguous tiers the current mixture is usually stale (the action acts on a separately prepared food) or lacks foods added since; ~13 % of firings are nouns tagged as verbs.
+- **Consequence:** binder unchanged, RULES_VERSION unchanged; the ~7.0 % real binding gap stays UNKNOWN. Rung A's ambiguous-tier events need a richer combine/attachment model, not a recency default (after the presentation, if at all).
+- **Approver:** ksh (Kush), AI under D-071; same-model caveat as J4; no prv cross-check.
