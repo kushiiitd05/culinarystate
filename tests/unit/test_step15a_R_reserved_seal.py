@@ -314,9 +314,10 @@ def test_refuses_snapshot_rowcount_mismatch(world):
 
 # ---------------------------------------------------------------- the real repository: refusal only
 
-def test_real_decisions_contain_no_15_0_ruling():
+def test_real_decisions_contain_exactly_the_signed_15_0_ruling():
+    # pre-seal this asserted []; D-068 (2026-11-06) is the signed 15.0 ruling the 15a.R seal used
     text = (REPO / "DECISIONS.md").read_text(encoding="utf-8")
-    assert rs.find_15_0_rulings(text) == []
+    assert rs.find_15_0_rulings(text) == ["D-068"]
 
 
 def test_real_repository_refuses_before_reading_rows(tmp_path, monkeypatch):
