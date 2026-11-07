@@ -36,7 +36,7 @@ B3 and B6 are not built and are reported as NOT_RUN.
 
 The agent drafts every question and gold answer. Kush and Parv each review all 80 independently (keep, edit or
 drop, with a reason), then reconcile. A question enters the benchmark only if both keep it, or keep it after the
-same edit. The P and C blocks are overdrafted (15 per block, seeded rank order); the first 10 by rank that enter form the block, so drops do not shrink the block and reviewers cannot pick which ones replace them. Gold retention ranges are fractions (USDA % values ÷ 100). The benchmark is labelled **MODEL_ASSISTED_GOLD** (D-045), not independent human gold. It is frozen
+same edit. The P and C blocks are overdrafted (15 per block, seeded rank order); the first 10 by rank that enter form the block, so drops do not shrink the block and reviewers cannot pick which ones replace them. Gold retention ranges are fractions (USDA % values ÷ 100). The S blocks are overdrafted the same way (20 per block, 15 enter). Review sheets: `annotation/d5_review/d5_review_v1_{Kush,Parv}.csv` (git-ignored: recipe text); verdict KEEP, EDIT (with the edited question and/or gold) or DROP, with a reason. Drafts: `benchmark/d5/d5_draft_{PC,S}_v1.csv`. The benchmark is labelled **MODEL_ASSISTED_GOLD** (D-045), not independent human gold. It is frozen
 (SHA-256 committed) before any rung is run on it. No question is changed after a rung is run.
 
 ## 4. Metrics and decision rules (fixed now)
