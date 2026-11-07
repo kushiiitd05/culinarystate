@@ -1,7 +1,8 @@
 """DRAFT_PENDING_29diag_PREREG -- tests for the 29-diag TRANSITION_BOOTSTRAP_V0 runner.
 
-On the real repository the runner must refuse (no frozen bootstrap snapshot, no signed
-15.0 ruling, no 15a.R seal, no signed 29-diag pre-registration). The success path is
+On the real repository the runner must refuse. Since the 15a.R seal (S165-S170) the signed 15.0
+ruling and the seal commitment exist, so the remaining blockers are no frozen bootstrap snapshot, no
+signed 29-diag pre-registration and, when the private sealed list is not supplied, SEALED_LIST_MISSING. The success path is
 exercised only on a synthetic root with the freeze/pre-registration hooks monkeypatched
 inside the test; nothing here reads EVD.
 """
@@ -37,14 +38,13 @@ def test_real_repository_refuses_every_snapshot(snap):
     with pytest.raises(bd.DiagRefused) as exc:
         bd.run_bootstrap_diag(snap, calls.append, root=REPO)
     codes = _codes(exc)
-    assert {"SNAPSHOT_NOT_FROZEN", "NO_SIGNED_15_0", "DIAG_PREREG_UNSIGNED"} <= codes
-    assert "SEAL_COMMITMENT_MISSING" in codes
+    assert {"SNAPSHOT_NOT_FROZEN", "DIAG_PREREG_UNSIGNED", "SEALED_LIST_MISSING"} <= codes
     assert calls == []
 
 
 def test_blockers_are_all_collected_not_first_only():
     blockers = bd.collect_diag_blockers(root=REPO, snapshot_id="x", commitment_path=None, sealed_list_path=None)
-    assert len(blockers) >= 4
+    assert len(blockers) >= 3
 
 
 # ---------------------------------------------------------------- synthetic root
