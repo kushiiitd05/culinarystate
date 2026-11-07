@@ -40,3 +40,15 @@ def test_real_transformation_answer_cites_evidence_and_routes_recipe():
     assert out["cited"] and all(c.startswith("EVD-") for c in out["cited"])
     assert out["detail"]["recipe"]["target_svar"] == "SVAR-000009"
     assert ctx.respond("Here is a photo of my bread")["mode"] == "ABSTAIN_UNSUPPORTED"
+
+
+def test_relationship_answer_says_corpus_pattern_not_equivalence():
+    from culinarystate.decision.candidates import Candidate
+    cands = [Candidate(type="SUBSTITUTION", id="ING-2", name="yogurt", confidence=0.42, evidence_count=0,
+                       source_predicate="ING_ALTERNATIVE_TO", reason="r")]
+    out = DC.relationship_answer("buttermilk", cands)
+    assert out["mode"] == "ANSWER_CORPUS_PATTERN" and out["cited"] == []
+    assert "yogurt" in out["answer"] and "42%" in out["answer"] and "not" in out["answer"].lower()
+    none = DC.relationship_answer("buttermilk", [])
+    assert none["mode"] == "ABSTAIN_NO_EDGES"
+    assert DC.relationship_answer(None, cands)["mode"] == "ASK"
