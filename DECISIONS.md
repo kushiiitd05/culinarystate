@@ -475,3 +475,15 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **R1 `RA_IMPLICIT_CURRENT_V1` (current mixture when the tier is ambiguous): DO_NOT_LAND.** 60 items from 400 recipes (seed `d073-precision-2026-11-07-r1`), labelled by ksh: CORRECT 4, WRONG_OBJECT 43, NOT_AN_ACTION 8, UNCLEAR 3, NO_OBJECT 2; precision 0.067, Wilson 95 % lower 0.026 (`reports/step17/d073_r1_precision_S170.json`). The verdict does not depend on how strictly the items were labelled: a lenient reading adds at most ~12. In ambiguous tiers the current mixture is usually stale (the action acts on a separately prepared food) or lacks foods added since; ~13 % of firings are nouns tagged as verbs.
 - **Consequence:** binder unchanged, RULES_VERSION unchanged; the ~7.0 % real binding gap stays UNKNOWN. Rung A's ambiguous-tier events need a richer combine/attachment model, not a recency default (after the presentation, if at all).
 - **Approver:** ksh (Kush), AI under D-071; same-model caveat as J4; no prv cross-check.
+
+### D-075 · 2026-11-07 · Router demo mode now; redo 07.A to open 23b; finish D4 + D5 + H1/H3 + hosted demo before the presentation (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, S170 (answers to the agent's questions): "Both: demo mode now + redo 07.A"; scope "D4 + D5 + H1/H3"; live = "Hosted web demo".
+- **Router:** add a NON_CITABLE demo/diagnostic mode to the Step 23a engine so it runs on real recipe events for the demo only; its output can never feed a claim (same pattern as 29-diag). `23b` stays BLOCKED until 07.A validly passes and 15b is frozen (R-05 unchanged).
+- **07.A redo:** a fresh condition-audit packet labelled independently by Kush and Parv, with the statistic pre-registered before labelling and chosen to be robust to the kappa paradox. The failed 07.A result stays on record (R-20); the new run is a new gate attempt, not a reinterpretation.
+- **Scope to 25 Nov:** D4 evidence-aware retrieval with abstention; D5 end-to-end RAG with B0-B5 on an ~80-question benchmark (human-reviewed by Kush and Parv); H1 and H3; a hosted web demo. Slides wait until these exist.
+- **Approver:** Kush
+
+### D-076 · 2026-11-07 · Step 10 ascorbic-acid kinetics pilot (~20 rows), AI-extracted, verified by Kush and Parv (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, S170: "Yes, ~20 rows".
+- **Decision:** AI extracts AA degradation kinetic series (k, Ea, T_ref, order, fit range, matrix, conditions) from lawful open-access papers with source spans; Kush and Parv each verify every row (MODEL_ASSISTED under D-045). Verified rows become the first PARAM rows for sim_aa_1; part is held out for Step 27 validation, split fixed before fitting. No value without a source span; unverified rows never reach SIMULATE.
+- **Approver:** Kush
