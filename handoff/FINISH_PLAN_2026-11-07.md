@@ -11,6 +11,14 @@ About 35–40 % of the 36-step plan. Done or run on the full corpus: Steps 01–
 census. Code only, never run on real data: 21–26 (mechanisms, router, formulas, simulators), 29–35 scaffolds.
 Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the physics chain), 20, D2, D4, D5, H1–H4.
 
+## Progress snapshot (see `PROGRESS_AUDIT_2026-11-07.md`)
+
+| Lens | 7 Nov | If M1–M6 land |
+|---|---|---|
+| 36-step plan | ≈ 35 % | ≈ 43 % |
+| Proposal deliverables (D1–D5) | ≈ 25 %, H1–H4 untested | ≈ 60 %, H1 + H3 tested |
+| SSOT §14 minimum publishable unit | ≈ 20 % | ≈ 65 % |
+
 ## Milestones
 
 | # | Milestone | Plan steps | Owner | Target | Status |
@@ -36,4 +44,5 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 
 ## Progress log
 
+- 2026-11-07 S170: M1 core landed (`mechanism/router_demo.py`, 6 tests): real recipe events through the unchanged 23a engine, EVD G0 pre-check, DIRECT / UNKNOWN with reasons. Next in M1: CLI + full-corpus route census + EVD ingredient/process coverage. Progress audit written.
 - 2026-11-07 S170: M0 done (census 0.2.0 full run committed; D-074 R1 rejected 4/60; report refreshed). D-075 / D-076 recorded. M1 started. VPN dropped mid-session (manjot review pending).
