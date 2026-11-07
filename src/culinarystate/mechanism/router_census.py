@@ -34,14 +34,74 @@ def _coverage(index: RD.EvidenceIndex, target_svar: str, pairs: set, ingredients
             "sample_distinct_pairs": len(pairs), "sample_distinct_ingredients": len(ingredients)}
 
 
+_CTX: dict = {}  # set before forking; workers read it (fork start method shares it copy-on-write)
+
+
+def _empty() -> dict:
+    return {"tot": Counter(), "route": Counter(), "reasons": Counter(), "direct_proc": Counter(), "exc": Counter(),
+            "pairs": set(), "ingredients": set()}
+
+
+def _route_chunk(recs: list[Mapping]) -> dict:
+    c, part = _CTX, _empty()
+    tot = part["tot"]
+    for rec in recs:
+        steps = _steps(rec)
+        if not steps:
+            continue
+        tot["texts_with_steps"] += 1
+        try:
+            out = RD.route_text("\n".join(steps), index=c["index"], target_svar=c["target_svar"],
+                                locale=LOCALE.get(rec.get("source_family")), rung=c["rung"],
+                                hierarchy=c["hierarchy"], schema=c["schema"])
+        except Exception as e:  # noqa: BLE001 - counted by class name; the message may contain text
+            part["exc"][code(type(e).__name__)] += 1
+            continue
+        tot["events"] += len({i["event_id"] for i in out["items"]})
+        any_direct = False
+        for it in out["items"]:
+            tot["items"] += 1
+            part["route"][code(it["route"])] += 1
+            part["reasons"].update(code(r) for r in it["reasons"])
+            ing, proc = it["ingredient_id"], it["process_id"]
+            tot["items_linked" if ing else "items_unlinked"] += 1
+            tot["items_with_process" if proc else "items_without_process"] += 1
+            if ing:
+                part["ingredients"].add(ing)
+            if ing and proc:
+                part["pairs"].add((ing, proc))
+            if it["route"] == "DIRECT":
+                any_direct = True
+                part["direct_proc"][code(proc)] += 1
+        tot["recipes_with_any_direct"] += any_direct
+    return part
+
+
+def _merge(parts: Iterable[dict]) -> dict:
+    acc = _empty()
+    for p in parts:
+        for k, v in p.items():
+            acc[k].update(v)  # Counter.update adds; set.update unions
+    return acc
+
+
+def _run(sample: list[Mapping], workers: int) -> dict:
+    if workers == 1:
+        return _route_chunk(sample)
+    import multiprocessing as mp
+    chunks = [sample[i::workers * 8] for i in range(workers * 8)]
+    with mp.get_context("fork").Pool(workers) as pool:
+        return _merge(pool.map(_route_chunk, chunks))
+
+
 def census_from_records(records: Iterable[Mapping], *, seed: str, size: int, index: RD.EvidenceIndex,
                         target_svar: str, rung: RungA | None = None, schema: Mapping | None = None,
-                        hierarchy: PS.ProcessHierarchy | None = None) -> dict:
-    """Counts-only router-demo census for ``target_svar`` over the seeded sample."""
+                        hierarchy: PS.ProcessHierarchy | None = None, workers: int = 1) -> dict:
+    """Counts-only router-demo census for ``target_svar`` over the seeded sample (``workers`` > 1: fork pool)."""
     if not isinstance(target_svar, str) or not target_svar.strip():
         raise ValueError("target_svar is required (e.g. SVAR-000009, vitamin C)")
-    rung, schema = rung or RungA(), schema or D.load_schema()
-    hierarchy = hierarchy or PS.read_process_hierarchy()
+    if not isinstance(workers, int) or workers < 1:
+        raise ValueError("workers must be a positive integer")
     seen = 0
 
     def counted(it: Iterable[Mapping]) -> Iterator[Mapping]:
@@ -51,37 +111,15 @@ def census_from_records(records: Iterable[Mapping], *, seed: str, size: int, ind
             yield rec
 
     sample = seeded_sample(counted(records), seed, size)
-    tot, route, reasons, direct_proc, exc = Counter(), Counter(), Counter(), Counter(), Counter()
-    pairs, ingredients = set(), set()
-    for rec in sample:
-        steps = _steps(rec)
-        if not steps:
-            continue
-        tot["texts_with_steps"] += 1
-        try:
-            out = RD.route_text("\n".join(steps), index=index, target_svar=target_svar,
-                                locale=LOCALE.get(rec.get("source_family")), rung=rung, hierarchy=hierarchy,
-                                schema=schema)
-        except Exception as e:  # noqa: BLE001 - counted by class name; the message may contain text
-            exc[code(type(e).__name__)] += 1
-            continue
-        tot["events"] += len({i["event_id"] for i in out["items"]})
-        any_direct = False
-        for it in out["items"]:
-            tot["items"] += 1
-            route[code(it["route"])] += 1
-            reasons.update(code(r) for r in it["reasons"])
-            ing, proc = it["ingredient_id"], it["process_id"]
-            tot["items_linked" if ing else "items_unlinked"] += 1
-            tot["items_with_process" if proc else "items_without_process"] += 1
-            if ing:
-                ingredients.add(ing)
-            if ing and proc:
-                pairs.add((ing, proc))
-            if it["route"] == "DIRECT":
-                any_direct = True
-                direct_proc[code(proc)] += 1
-        tot["recipes_with_any_direct"] += any_direct
+    _CTX.clear()
+    _CTX.update(index=index, target_svar=target_svar, rung=rung or RungA(), schema=schema or D.load_schema(),
+                hierarchy=hierarchy or PS.read_process_hierarchy())
+    try:
+        acc = _run(sample, workers)
+    finally:
+        _CTX.clear()
+    tot, route, reasons, direct_proc, exc = (acc[k] for k in ("tot", "route", "reasons", "direct_proc", "exc"))
+    pairs, ingredients = acc["pairs"], acc["ingredients"]
     report = {
         "record": "ROUTER_DEMO_CENSUS", "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
         "label": "REAL_BASE_SAMPLE_COUNTS_NOT_GOLD", "census_version": CENSUS_VERSION,
