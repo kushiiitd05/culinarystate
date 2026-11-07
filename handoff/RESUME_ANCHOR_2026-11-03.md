@@ -245,3 +245,5 @@ ssh vinayak-server 'ls -la ~/Kush/cs_runs/step26g_census_full_corpus_S168.json; 
 3. Humans: report block Q items (contributions, 5 UNVERIFIED); agent: slide deck from the 9-slide outline + `reports/final/figures/`.
 4. Optional before the presentation: define a 15a freeze-record format (unblocks SNAPSHOT_NOT_FROZEN) and draft the 29-diag pre-registration for Kush to sign.
 5. After the presentation: versioned rc2 change (SP-002 + J4).
+
+> **2026-11-07 S170:** the live plan is now `handoff/FINISH_PLAN_2026-11-07.md` (D-075, D-076). Read it first.
