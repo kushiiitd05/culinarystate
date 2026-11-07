@@ -48,6 +48,21 @@ def recipe_summary(out: Mapping[str, Any]) -> dict:
             "steps": steps}
 
 
+def relationship_answer(ingredient_name: str | None, candidates: Sequence[Any]) -> dict:
+    """Substitutes from recipe-corpus ING_ALTERNATIVE_TO edges: a usage pattern, not tested equivalence; no EVD."""
+    if not ingredient_name:
+        return {"mode": "ASK", "answer": "Which ingredient do you want to replace?", "cited": []}
+    if not candidates:
+        return {"mode": "ABSTAIN_NO_EDGES", "cited": [],
+                "answer": f"I have no substitution pattern for {ingredient_name} in the recipe corpus, so I won't guess."}
+    names = ", ".join(f"{c.name} (co-occurrence score {c.confidence:.3f})" for c in candidates)
+    return {"mode": "ANSWER_CORPUS_PATTERN", "cited": [],
+            "answer": (f"In the recipe corpus, cooks use these in place of {ingredient_name}: {names}. "
+                       "This is how recipes are written, not a tested equivalence: the result can differ in taste, "
+                       "texture or chemistry."),
+            "candidates": [{"id": c.id, "name": c.name, "confidence": c.confidence} for c in candidates]}
+
+
 class DemoContext:
     def __init__(self, **parts: Any) -> None:
         self.__dict__.update(parts)
@@ -94,5 +109,13 @@ class DemoContext:
                           "processes": [n for n, _ in s.processes], "target": s.target},
                 "options": {k: p.evidence_class for k, p in r["packets"].items()}, "recipe": recipe}
 
+    def _relationship(self, q: str) -> dict:
+        from culinarystate.decision.candidates import substitution_candidates
+        from culinarystate.decision.pipeline import parse_query
+        s = parse_query(q, self.lex)
+        return relationship_answer(s.ingredient_name if s.ingredient_id else None,
+                                   substitution_candidates(s.ingredient_id, self.lex.alternatives, self.lex.ing_names))
+
     def respond(self, query: str, recipe_text: str | None = None) -> dict:
-        return FD.respond(query, handlers={"TRANSFORMATION": self._transform}, recipe_text=recipe_text)
+        return FD.respond(query, handlers={"TRANSFORMATION": self._transform, "RELATIONSHIP": self._relationship},
+                          recipe_text=recipe_text)
