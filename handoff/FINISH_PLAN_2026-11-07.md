@@ -44,5 +44,7 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 
 ## Progress log
 
+- 2026-11-08 S171: manjot-server reviewed (read-only): stale 26 Oct snapshot, 0 server-only files; M4 reuses the local
+  retrieval stack (EVD texts, 6 encoder embeddings, BM25, bge rerankers). Continuing M1 census.
 - 2026-11-07 S170: M1 core landed (`mechanism/router_demo.py`, 6 tests): real recipe events through the unchanged 23a engine, EVD G0 pre-check, DIRECT / UNKNOWN with reasons. Next in M1: CLI + full-corpus route census + EVD ingredient/process coverage. Progress audit written.
 - 2026-11-07 S170: M0 done (census 0.2.0 full run committed; D-074 R1 rejected 4/60; report refreshed). D-075 / D-076 recorded. M1 started. VPN dropped mid-session (manjot review pending).
