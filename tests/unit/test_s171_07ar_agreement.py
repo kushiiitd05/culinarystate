@@ -9,7 +9,7 @@ FIELDS, CRITICAL = CA.FIELDS, CA.CRITICAL
 
 
 def issued(n=100):
-    return [{"audit_id": f"CA-{i:03d}", "condition_id": f"C{i}", "stratum": "S1", "raw_duration": f"{i} ZQXSENTINEL",
+    return [{"audit_id": f"CA-{i:03d}", "condition_id": f"CONDZQX{i}", "stratum": "S1", "raw_duration": f"{i} ZQXSENTINEL",
              "normalizer_fingerprint_12": "e7d589136275", **{f: "" for f in FIELDS},
              "overall_judgement": "", "reason_if_not_correct": ""} for i in range(1, n + 1)]
 
@@ -117,4 +117,4 @@ def test_output_carries_no_condition_ids_or_raw_text():
     a = labelled(rows)
     b = labelled(rows, {"CA-001": {"duration_judgement": "INFERRED"}})
     text = repr(CA.score(rows, a, b))
-    assert "C1'" not in text and "ZQXSENTINEL" not in text
+    assert "CONDZQX" not in text and "ZQXSENTINEL" not in text
