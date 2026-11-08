@@ -65,6 +65,8 @@ def _chunk(args: tuple[int, list[Mapping]]) -> dict:
                         ba[(name, x["basis"])] += 1
                 if inp["duration"]["status"] == "MEASURED" and inp["temperature_profile"]["status"] != "UNKNOWN":
                     tot["driver_ready_events"] += 1
+                if inp["duration"]["status"] != "UNKNOWN" and inp["temperature_profile"]["status"] != "UNKNOWN":
+                    tot["driver_bounded_events"] += 1
                 if ev["oven_setpoint_code"]:
                     tot["gas_mark_only_events"] += 1
                 if fh:
@@ -123,7 +125,7 @@ def census_from_records(records: Iterable[Mapping], *, seed: str, size: int, wor
               "layer": "TEXT_STATED", "contains_ids": False, "contains_text": False, "counts_as_human_gate": False,
               "seed_sha256": hashlib.sha256(seed.encode()).hexdigest(), "sample_rule": "SHA256_SEED_CONCAT_RECIPE_ID_ASC",
               "sample_size_requested": int(size), "recipes_seen": seen, "recipes_sampled": len(sample),
-              **{k: tot[k] for k in ("texts_with_steps", "events", "heat_events", "driver_ready_events",
+              **{k: tot[k] for k in ("texts_with_steps", "events", "heat_events", "driver_ready_events", "driver_bounded_events",
                                      "gas_mark_only_events", "contract_bindings")},
               "heat_events_by_family": dict(sorted(acc["fam"].items())),
               "input_status": {k: dict(sorted(v.items())) for k, v in sorted(st.items())},
