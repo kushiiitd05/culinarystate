@@ -149,7 +149,10 @@ def _presence(sr: SRLegacy, ms: Sequence[Member], usable: Sequence[Member], all_
 
 
 # ---------------------------------------------------------------- solute load
-SOLUTES = {"salt_g_per_g_water": ("sodium", NACL_PER_NA / 1000), "sugar_g_per_g_water": ("sugars", Fraction(1, 100))}
+# sodium is mg per 100 g food -> g NaCl per g food = mg * 2.5421 / 1000 (mg->g) / 100 (per 100 g -> per g);
+# sugars are g per 100 g -> g per g = / 100; water is divided by 100 below (g water per g food). Fixed S175 (FINAL-SCI #1:
+# the earlier /1000 made salt loads 100x too high).
+SOLUTES = {"salt_g_per_g_water": ("sodium", NACL_PER_NA / 100000), "sugar_g_per_g_water": ("sugars", Fraction(1, 100))}
 
 
 def solute_load(members: Sequence[Member], sr: SRLegacy, cfg: CompositionConfig = CompositionConfig()) -> dict:

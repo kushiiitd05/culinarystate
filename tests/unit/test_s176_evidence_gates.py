@@ -452,3 +452,12 @@ def test_sensitivity_tool_runs_variants_counts_only(tmp_path):
         tool.main(["--seed", "7", "--root", str(tmp_path), "--out", str(out)], record_source=lambda f, r: iter(recs))
     with pytest.raises(ValueError):
         tool.run_variants([], ["1.0"], seed="7", index=RD.EvidenceIndex.from_rows([]), gates=_gates({}))
+
+
+def test_medium_band_rank1_never_absent_s175():
+    """S175 interim (FINAL-SCI #6): a below-floor value on a MEDIUM-band rank-1 identity is UNKNOWN, not ABSENT."""
+    scr = _screen({"ING-HIGH": "0", "ING-MED": "0"}, bands={"ING-MED": "MEDIUM"})
+    svar = next(iter(scr.floors))
+    assert scr.member_state(svar, "ING-HIGH") == EG.ABSENT
+    assert scr.member_state(svar, "ING-MED") == EG.UNKNOWN
+    assert scr.lot_state(svar, ["ING-MED"]) == EG.UNKNOWN

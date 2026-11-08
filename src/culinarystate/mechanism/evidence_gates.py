@@ -236,7 +236,10 @@ class TargetPresenceScreen:
         if all(v >= fl.value for v in vals):
             return PRESENT
         if all(v < fl.value for v in vals):
-            return ABSENT
+            # S175 interim (FINAL-SCI #6): ABSENT is a negative claim; require a HIGH-band rank-1 identity.
+            # MEDIUM-only identities (~67 % plausible in the L-LOT audit) stay UNKNOWN.
+            cs = self.cands.get(ing_id) or ()
+            return ABSENT if cs and cs[0][1] == "HIGH" else UNKNOWN
         return UNKNOWN                              # plausible identities disagree
 
     def lot_state(self, svar_id: str | None, ings: Iterable[str], n_unknown: int = 0) -> str:

@@ -83,8 +83,9 @@ def test_solute_load_exact():
     s = sol["sugar_g_per_g_water"]
     assert s["type"] == "POINT" and abs(s["value"] - (100 + 4) / 89) < 1e-12
     salt = sol["salt_g_per_g_water"]
-    # sodium: onion 4 mg/100g -> 4 mg x 2.5421 / 1000 g per 100 g; sugar 0
-    assert abs(salt["value"] - (4 * 2.5421 / 1000) / 0.89 / 1.0) < 1e-9 * 100
+    # sodium: onion 4 mg/100g -> 4 x 2.5421 / 1000 g NaCl per 100 g -> / 100 per g; water 0.89 g per g (S175 fix)
+    assert abs(salt["value"] - (4 * 2.5421 / 1000 / 100) / 0.89) < 1e-12
+    assert salt["value"] < 0.36  # never above NaCl saturation in water for a moist food
 
 
 def test_solute_load_unbounded_without_water():
