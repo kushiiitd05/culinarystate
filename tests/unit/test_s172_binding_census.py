@@ -22,7 +22,7 @@ def test_counts_only_and_add_up():
     assert rep["texts_with_steps"] == 5 and rep["heat_events"] > 0
     for name, st in rep["input_status"].items():
         assert sum(st.values()) == rep["heat_events"], name
-    assert rep["driver_ready_events"] <= rep["heat_events"]
+    assert rep["driver_ready_events"] <= rep["driver_bounded_events"] <= rep["heat_events"]
     assert rep["input_basis"]["temperature_profile"]["PHYSICAL_DEFINITION"] == 5
     assert rep["input_basis"]["temperature_profile"]["CARRIED_SETPOINT"] == 5
 
