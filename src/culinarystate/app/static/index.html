@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CulinaryState</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F2F5F6; --ink: #16232A; --steel: #6E7C84; --rule: #CFD8DC; --teal: #1F5F66; --teal-ink: #FFFFFF;
+  --direct: #2E7D4F; --unknown: #7A8790; --abstain: #9A6B12; --cool: #3A6EA5; --warm: #E3B23C; --hot: #C0392B;
+  --panel: #FFFFFF; --focus: #E3B23C;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --paper: #0F1A1F; --ink: #E6EEF1; --steel: #9AA9B0; --rule: #2A3A41; --teal: #4FA3AC; --teal-ink: #0F1A1F;
+          --panel: #15232A; --direct: #5DBB84; --unknown: #8D9AA1; --abstain: #E0A93A; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink);
+       font: 17px/1.5 "Atkinson Hyperlegible", system-ui, sans-serif; font-variant-numeric: tabular-nums; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 32px 20px 56px; }
+header h1 { font-size: 40px; line-height: 1.1; margin: 0 0 6px; letter-spacing: -0.5px; }
+header p { margin: 0; color: var(--steel); max-width: 62ch; }
+.grid { display: grid; grid-template-columns: minmax(300px, 420px) 1fr; gap: 32px; margin-top: 28px; }
+@media (max-width: 860px) { .grid { grid-template-columns: 1fr; } header h1 { font-size: 32px; } }
+label { display: block; font-weight: 700; margin: 0 0 6px; }
+.hint { color: var(--steel); font-size: 15px; margin: -2px 0 8px; }
+input[type=text], textarea { width: 100%; font: inherit; color: var(--ink); background: var(--panel);
+  border: 1.5px solid var(--rule); border-radius: 6px; padding: 10px 12px; }
+textarea { min-height: 170px; resize: vertical; }
+.field { margin-bottom: 18px; }
+button { font: inherit; cursor: pointer; border-radius: 6px; }
+.ask { background: var(--teal); color: var(--teal-ink); border: 0; font-weight: 700; padding: 11px 20px; }
+.ask[disabled] { opacity: .6; cursor: progress; }
+.examples { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.examples button { background: transparent; color: var(--teal); border: 1.5px solid var(--rule); padding: 6px 10px; font-size: 15px; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.out { min-height: 200px; }
+.empty { color: var(--steel); border-left: 3px solid var(--rule); padding: 6px 0 6px 14px; }
+.badge { display: inline-block; font-weight: 700; font-size: 15px; padding: 3px 10px; border-radius: 999px; color: #fff; }
+.b-ANSWER, .b-COMPARE, .b-ANSWER_CORPUS_PATTERN { background: var(--direct); }
+.b-ASK { background: var(--teal); }
+.b-other { background: var(--abstain); }
+.route { color: var(--steel); font-size: 15px; margin-left: 8px; }
+.answer { font-size: 19px; line-height: 1.55; white-space: pre-wrap; margin: 14px 0 6px; max-width: 70ch; }
+.cites { color: var(--steel); font-size: 15px; }
+h2 { font-size: 20px; margin: 30px 0 4px; }
+.sub { color: var(--steel); font-size: 15px; margin: 0 0 12px; max-width: 70ch; }
+.step { display: grid; grid-template-columns: 110px 1fr; gap: 6px 16px; padding: 12px 0; border-top: 1px solid var(--rule); }
+.step .act { font-weight: 700; }
+.chip { font-size: 14px; font-weight: 700; }
+.chip.DIRECT { color: var(--direct); } .chip.UNKNOWN { color: var(--unknown); }
+.facts { font-size: 15px; color: var(--ink); }
+.facts span { margin-right: 14px; white-space: nowrap; }
+.why { color: var(--steel); font-size: 14px; }
+.heatwrap { grid-column: 2; position: relative; height: 22px; margin-top: 2px; }
+.heatwrap .band { position: absolute; top: 0; height: 22px; border-radius: 4px;
+  background: linear-gradient(90deg, var(--cool), var(--warm) 55%, var(--hot)); }
+.heatwrap .track { position: absolute; inset: 0; border: 1px solid var(--rule); border-radius: 4px; }
+.heatwrap .tick { position: absolute; top: -3px; width: 2px; height: 28px; background: var(--ink); }
+.scale { grid-column: 2; display: flex; justify-content: space-between; color: var(--steel); font-size: 13px; }
+.foot { margin-top: 36px; color: var(--steel); font-size: 14px; max-width: 80ch; }
+.err { color: var(--hot); font-weight: 700; }
+@media (prefers-reduced-motion: no-preference) { .band { transition: left .4s ease, width .4s ease; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>CulinaryState</h1>
+    <p>Ask what cooking does to a food. It answers from measured data and says so when it has none. Paste recipe steps to see what happens to the food at each step.</p>
+  </header>
+  <div class="grid">
+    <form id="f" autocomplete="off">
+      <div class="field">
+        <label for="q">Your question</label>
+        <input id="q" type="text" maxlength="500" placeholder="How much vitamin C does boiled cabbage keep?" required>
+      </div>
+      <div class="field">
+        <label for="r">Recipe steps <span style="font-weight:400;color:var(--steel)">(optional)</span></label>
+        <p class="hint">One step per line. Times and temperatures help.</p>
+        <textarea id="r" maxlength="6000" placeholder="Dice the potatoes.&#10;Boil the potatoes for 20 minutes.&#10;Preheat the oven to 200C.&#10;Roast for 25 minutes."></textarea>
+      </div>
+      <button class="ask" id="go" type="submit">Ask</button>
+      <div class="examples" aria-label="Example questions">
+        <button type="button" data-q="How much vitamin C does boiled cabbage keep?" data-r="Shred the cabbage.&#10;Boil the cabbage for 10 minutes.&#10;Drain and serve.">Boiled cabbage</button>
+        <button type="button" data-q="Is steaming or boiling better for keeping vitamin C in broccoli?" data-r="">Steam or boil broccoli</button>
+        <button type="button" data-q="What can I use instead of buttermilk?" data-r="">Swap buttermilk</button>
+        <button type="button" data-q="Here is a photo of my bread, is it proofed?" data-r="">A photo question</button>
+      </div>
+    </form>
+    <section class="out" id="out" aria-live="polite">
+      <p class="empty">Ask a question to see the answer, the evidence it used and, if you add steps, what happens to the food at each step.</p>
+    </section>
+  </div>
+  <p class="foot">Demo for a course project. Evidence rows come from public food-composition tables and are not yet checked by hand. The heat ranges are model estimates from typical cooking values, not measurements. Nothing here is advice you can cite.</p>
+</div>
+<script>
+const $ = (s) => document.querySelector(s);
+const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+const MODES = { ANSWER: "Answered from data", COMPARE: "Compared from data", ANSWER_CORPUS_PATTERN: "From recipe patterns",
+  ASK: "Needs more detail", ABSTAIN_NOT_BUILT: "Not supported yet", ABSTAIN_UNSUPPORTED: "Not supported",
+  ABSTAIN_NO_EDGES: "No data", ABSTAIN_ERROR: "Not answered" };
+const BRANCH = { TRANSFORMATION: "cooking effect", RELATIONSHIP: "substitution", METADATA: "food facts",
+  SEMANTIC: "recipe search", MULTIMODAL: "photo or sound", UNKNOWN: "unclear", MALFORMED: "empty" };
+const REASON = { EVIDENCE_PREEMPTS: "measured data for this food and process", NO_LINKED_INGREDIENT: "no food named in this step",
+  EVENT_UNRESOLVED: "action not recognised", NO_CANDIDATE_MECHANISM: "no reviewed mechanism yet" };
+const TMIN = 0, TMAX = 200, pct = (t) => Math.max(0, Math.min(100, (t - TMIN) / (TMAX - TMIN) * 100));
+
+function stepRow(s, phys) {
+  const row = el("div", "step");
+  row.append(el("div", "act", s.action));
+  const right = el("div");
+  const chip = el("span", "chip " + s.route, s.route === "DIRECT" ? "Measured data" : "No measured data");
+  right.append(chip);
+  const why = s.reasons.map((r) => REASON[r]).filter(Boolean);
+  if (why.length) right.append(el("span", "why", "  " + why[0]));
+  if (phys) {
+    const st = phys.stated, f = el("div", "facts");
+    if (st.temperature_c) f.append(el("span", null, "Heat " + fmtT(st.temperature_c) + (st.temperature_basis === "PHYSICAL_DEFINITION" ? " (boiling)" : st.temperature_basis === "CARRIED_SETPOINT" ? " (oven setting)" : "")));
+    if (st.duration_min) f.append(el("span", null, "Time " + fmtRange(st.duration_min) + " min"));
+    if (st.medium) f.append(el("span", null, "In " + st.medium.toLowerCase().replaceAll("_", " ")));
+    if (st.lid) f.append(el("span", null, "Lid " + st.lid.toLowerCase()));
+    if (st.piece_size) f.append(el("span", null, st.piece_size.toLowerCase()));
+    right.append(f);
+  }
+  row.append(right);
+  const sc = phys && phys.scenario;
+  if (sc && sc.range_core_end_c && sc.range_core_end_c[0] != null) {
+    const [lo, hi] = sc.range_core_end_c, wrap = el("div", "heatwrap");
+    wrap.setAttribute("role", "img");
+    wrap.setAttribute("aria-label", `Estimated centre temperature at the end: ${Math.round(lo)} to ${Math.round(hi)} °C, typical ${Math.round(sc.typical_core_end_c)} °C`);
+    wrap.append(el("div", "track"));
+    const band = el("div", "band"); band.style.left = pct(lo) + "%"; band.style.width = Math.max(1, pct(hi) - pct(lo)) + "%";
+    const tick = el("div", "tick"); tick.style.left = pct(sc.typical_core_end_c) + "%";
+    wrap.append(band, tick); row.append(el("div"), wrap);
+    const scale = el("div", "scale"); scale.append(el("span", null, "0 °C"), el("span", null, `centre ${Math.round(lo)}–${Math.round(hi)} °C (estimate)`), el("span", null, "200 °C"));
+    row.append(el("div"), scale);
+  } else if (sc && sc.status === "SCENARIO_COMPUTED") {
+    row.append(el("div"), el("div", "why", `Typical heat ${Math.round(sc.typical_bath_c)} °C for ${Math.round(sc.typical_duration_min)} min (estimate). Add a cut size to see the centre temperature.`));
+  }
+  return row;
+}
+function fmtT(v) { return Array.isArray(v) ? `${Math.round(+frac(v[0]))}–${Math.round(+frac(v[1]))} °C` : `${Math.round(+frac(v))} °C`; }
+function fmtRange(v) { return Array.isArray(v) ? `${+frac(v[0])}–${+frac(v[1])}` : `${+frac(v)}`; }
+function frac(s) { s = String(s); if (s.includes("/")) { const [a, b] = s.split("/"); return a / b; } return s; }
+
+function render(d) {
+  const out = $("#out"); out.replaceChildren();
+  const top = el("div");
+  const known = ["ANSWER", "COMPARE", "ANSWER_CORPUS_PATTERN"].includes(d.mode) ? "b-" + d.mode : d.mode === "ASK" ? "b-ASK" : "b-other";
+  top.append(el("span", "badge " + known, MODES[d.mode] || d.mode), el("span", "route", "Read as a " + (BRANCH[d.route && d.route.branch] || "question") + " question"));
+  out.append(top, el("p", "answer", d.answer || ""));
+  if (d.cited && d.cited.length) out.append(el("p", "cites", "Evidence rows: " + d.cited.join(", ")));
+  const rec = d.detail && d.detail.recipe;
+  if (rec && rec.steps && rec.steps.length) {
+    out.append(el("h2", null, "What happens at each step"), el("p", "sub", "Measured data means a table row exists for this exact food and process. The coloured band is the estimated temperature at the centre of a piece by the end of the step, from gentle to intense typical settings."));
+    const phys = Object.fromEntries(((rec.physics && rec.physics.steps) || []).map((p) => [p.event_id, p]));
+    const seen = new Set();
+    for (const s of rec.steps) { if (seen.has(s.event_id)) continue; seen.add(s.event_id); out.append(stepRow(s, phys[s.event_id])); }
+  }
+}
+$("#f").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const go = $("#go"); go.disabled = true; go.textContent = "Asking…";
+  try {
+    const res = await fetch("/api/ask", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question: $("#q").value, recipe_text: $("#r").value || null }) });
+    const d = await res.json();
+    if (!res.ok) { $("#out").replaceChildren(el("p", "err", d.error || "The server refused the question.")); return; }
+    render(d);
+  } catch (err) {
+    $("#out").replaceChildren(el("p", "err", "Couldn't reach the server. Check that it is running, then ask again."));
+  } finally { go.disabled = false; go.textContent = "Ask"; }
+});
+document.querySelectorAll(".examples button").forEach((b) => b.addEventListener("click", () => {
+  $("#q").value = b.dataset.q; $("#r").value = b.dataset.r; $("#q").focus();
+}));
+</script>
+</body>
+</html>
