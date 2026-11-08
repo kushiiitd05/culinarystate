@@ -7,20 +7,23 @@ Bi = hL/k, Fo = αt/L². The slab bounds faster-heating shapes (cylinder, sphere
 here is a function of caller inputs, and the inputs (h, k, α, L, T_0) are scenario values with registry ids.
 Thermal dose: equivalent minutes at T_ref, ∫ 10^((T - T_ref)/z) dt (z = 10 °C for the F-value convention,
 z = 33 °C for the cook-value convention), on a piecewise-constant temperature history.
+
+S176 L-PHYS additions (the functions above keep their behaviour): the slab VOLUME-AVERAGE temperature (the zone quality
+doses use, SSOT v16 DRAFT 284.4) and ``zone_trajectory``. The evaporation cap itself lives in ``phase_change``: callers pass
+the capped boundary temperature min(T_medium, T_boil) as ``bath_c``, so nothing here knows about it.
 """
 from __future__ import annotations
 
 import math
+from functools import lru_cache
 from typing import Sequence
 
 N_TERMS = 60
 FO_FRONT = 0.02
 
 
-def slab_eigenvalues(bi: float, n: int) -> list[float]:
-    """First n roots of ζ tan ζ = Bi (one per interval ((k-1)π, (k-1)π + π/2)), by bisection."""
-    if not bi > 0 or n < 1:
-        raise ValueError("Bi must be positive and n >= 1")
+@lru_cache(maxsize=16384)
+def _eigenvalues(bi: float, n: int) -> tuple[float, ...]:
     out = []
     for k in range(n):
         lo, hi = k * math.pi + 1e-12, k * math.pi + math.pi / 2 - 1e-12
@@ -32,7 +35,14 @@ def slab_eigenvalues(bi: float, n: int) -> list[float]:
             else:
                 lo = mid
         out.append(0.5 * (lo + hi))
-    return out
+    return tuple(out)
+
+
+def slab_eigenvalues(bi: float, n: int) -> list[float]:
+    """First n roots of ζ tan ζ = Bi (one per interval ((k-1)π, (k-1)π + π/2)), by bisection (cached per Bi and n)."""
+    if not bi > 0 or n < 1:
+        raise ValueError("Bi must be positive and n >= 1")
+    return list(_eigenvalues(float(bi), int(n)))
 
 
 def slab_center_theta(*, fo: float, bi: float, n_terms: int = N_TERMS) -> float:
@@ -59,6 +69,52 @@ def core_temperature(*, t0_c: float, bath_c: float, time_s: float, half_thicknes
     return bath_c + (t0_c - bath_c) * slab_center_theta(fo=fo, bi=bi)
 
 
+def _erfcx(u: float) -> float:
+    """exp(u²) erfc(u) for u >= 0 (direct below 26, asymptotic series above)."""
+    if u < 26.0:
+        return math.exp(u * u) * math.erfc(u)
+    x2 = 1.0 / (2 * u * u)
+    return (1.0 - x2 + 3 * x2 ** 2 - 15 * x2 ** 3 + 105 * x2 ** 4) / (u * math.sqrt(math.pi))
+
+
+def slab_mean_theta(*, fo: float, bi: float, n_terms: int = N_TERMS) -> float:
+    """Dimensionless VOLUME-AVERAGE temperature θ̄ of the slab, θ = (T - T_bath)/(T_0 - T_bath).
+
+    Fo >= FO_FRONT: θ̄ = Σ C_n (sin ζ_n / ζ_n) exp(-ζ_n² Fo) with the centre-temperature C_n (the mean of cos(ζ x) over the
+    half-thickness is sin ζ / ζ). Fo < FO_FRONT (the two heat fronts have not met): the semi-infinite solid with a convective
+    surface, θ̄ = 1 - (1/Bi)[exp(u²) erfc(u) - 1 + 2u/√π], u = Bi √Fo, whose integral is closed form.
+    """
+    if fo < 0:
+        raise ValueError("Fo must be >= 0")
+    if fo == 0:
+        return 1.0
+    if fo < FO_FRONT:
+        u = bi * math.sqrt(fo)
+        sp = math.sqrt(math.pi)
+        g = (u * u - 4 * u ** 3 / (3 * sp) + u ** 4 / 2 - 8 * u ** 5 / (15 * sp)) if u < 1e-3 else \
+            _erfcx(u) - 1.0 + 2.0 * u / sp  # the series avoids cancellation for tiny u
+        return min(1.0, max(0.0, 1.0 - g / bi))
+    s = 0.0
+    for z in slab_eigenvalues(bi, n_terms):
+        s += 4 * math.sin(z) / (2 * z + math.sin(2 * z)) * math.sin(z) / z * math.exp(-z * z * fo)
+    return min(1.0, max(0.0, s))
+
+
+def core_and_mean_temperature(*, t0_c: float, bath_c: float, time_s: float, half_thickness_m: float, alpha_m2_s: float,
+                              h_w_m2k: float, k_w_mk: float) -> tuple[float, float]:
+    """(centre °C, volume-average °C) of the slab at one time, same inputs as ``core_temperature``."""
+    for name, v in (("half_thickness_m", half_thickness_m), ("alpha_m2_s", alpha_m2_s), ("h_w_m2k", h_w_m2k),
+                    ("k_w_mk", k_w_mk)):
+        if not v > 0:
+            raise ValueError(f"{name} must be positive")
+    if time_s < 0:
+        raise ValueError("time must be >= 0")
+    fo = alpha_m2_s * time_s / half_thickness_m ** 2
+    bi = h_w_m2k * half_thickness_m / k_w_mk
+    d = t0_c - bath_c
+    return bath_c + d * slab_center_theta(fo=fo, bi=bi), bath_c + d * slab_mean_theta(fo=fo, bi=bi)
+
+
 def core_trajectory(*, t0_c: float, bath_c: float, duration_min: float, steps: int = 60, **props) -> list[tuple]:
     """[(minute, core °C)] at steps+1 evenly spaced times over [0, duration]."""
     if duration_min <= 0 or steps < 1:
@@ -66,6 +122,18 @@ def core_trajectory(*, t0_c: float, bath_c: float, duration_min: float, steps: i
     return [(duration_min * i / steps,
              core_temperature(t0_c=t0_c, bath_c=bath_c, time_s=60.0 * duration_min * i / steps, **props))
             for i in range(steps + 1)]
+
+
+def zone_trajectory(*, t0_c: float, bath_c: float, duration_min: float, steps: int = 60, **props) -> list[tuple]:
+    """[(minute, centre °C, volume-average °C)] at steps+1 evenly spaced times over [0, duration] (S176 L-PHYS)."""
+    if duration_min <= 0 or steps < 1:
+        raise ValueError("duration must be positive and steps >= 1")
+    out = []
+    for i in range(steps + 1):
+        m = duration_min * i / steps
+        c, a = core_and_mean_temperature(t0_c=t0_c, bath_c=bath_c, time_s=60.0 * m, **props)
+        out.append((m, c, a))
+    return out
 
 
 def minutes_above(traj: Sequence[tuple[float, float]], threshold_c: float) -> float:

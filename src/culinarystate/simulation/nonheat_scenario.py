@@ -22,7 +22,9 @@ Families and drivers (FORM candidate classes in nonheat_binding.FORM_CANDIDATE):
 - MECHANICAL_CUT: characteristic half-thickness and surface/volume from the cut class, disruption level, enzyme-system
   flag and the stated lower bound of the time until the next heat step.
 - MECHANICAL_MIX: qualitative flags AERATED / EMULSIFIED / DEVELOPED only.
-- RESTING: carry-over after a linked heat step (finite-difference slab, heat stage then still-air stage).
+- RESTING: carry-over after a linked heat step (finite-difference slab, heat stage then still-air stage). From 0.2.0
+  (S176 L-PHYS) both stages carry the evaporation cap of ``phase_change`` for a moist matrix (boundary min(T_medium, T_boil)),
+  so the core, peak and volume average never exceed T_boil unless the prior heat was a pressure process.
 - STORAGE: storage temperature and the stated time bound; kinetics stay UNKNOWN pending PARAM rows (no model).
 
 Under SSOT §141 every output is a temperature, a time, a geometry value or a dimensionless transport fraction, with
@@ -36,11 +38,13 @@ from typing import Any, Mapping
 
 from culinarystate.simulation import nonheat_binding as NB
 from culinarystate.simulation import nonheat_drivers as ND
+from culinarystate.simulation import phase_change as PC
 from culinarystate.simulation import physics_drivers as PD
 from culinarystate.simulation import scenario_layer as SL
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "nonheat-scenario-L2-0.1.0-draft"
+VERSION = "nonheat-scenario-L2-0.2.0-draft"
+VERSION_UNCAPPED = "nonheat-scenario-L2-0.1.0-draft"  # SUPERSEDED RESTING model (no evaporation cap)
 LABELS = list(SL.LABELS)
 BRACKETS = SL.BRACKETS
 REGISTRY = "registry/scenario_defaults_nonheat_v1.csv"
@@ -95,8 +99,12 @@ class NonHeatScenario:
         self.heat, self.nh = heat, nh
 
     @classmethod
-    def load(cls, root: Path = ROOT) -> "NonHeatScenario":
-        return cls(heat=SL.ScenarioLayer.load(root), nh=load_registry(root / REGISTRY))
+    def load(cls, root: Path = ROOT, policy: PC.CapPolicy | None = None) -> "NonHeatScenario":
+        return cls(heat=SL.ScenarioLayer.load(root, policy=policy), nh=load_registry(root / REGISTRY))
+
+    @property
+    def capped(self) -> bool:
+        return self.heat.capped
 
     # ------------------------------------------------------------------------------------------ lookups
     def row(self, quantity: str, key: str | None) -> tuple | None:
@@ -136,11 +144,11 @@ class NonHeatScenario:
         return self._out("SCENARIO_UNKNOWN", "unsupported", {}, missing=missing)
 
     # ------------------------------------------------------------------------------------------ main
-    @staticmethod
-    def _base(rec: Mapping[str, Any]) -> dict:
+    def _base(self, rec: Mapping[str, Any]) -> dict:
         return {"recipe_id": rec.get("recipe_id"), "event_id": rec.get("event_id"), "process_id": rec["process_id"],
                 "nh_family": rec["nh_family"], "process_role": rec["process_role"],
-                "form_candidate": rec["form_candidate"], "layer": "SCENARIO", "version": VERSION, "labels": list(LABELS)}
+                "form_candidate": rec["form_candidate"], "layer": "SCENARIO",
+                "version": VERSION if self.capped else VERSION_UNCAPPED, "labels": list(LABELS)}
 
     def run(self, rec: Mapping[str, Any]) -> dict:
         rec = _norm(rec)  # a copy: the Layer 1 record is never written to
@@ -497,24 +505,51 @@ class NonHeatScenario:
                                ("half_thickness", size), ("rest_duration_min", rdur), ("rest_air", h_air and t_air)) if not v]
         if miss:
             return self._unknown(miss)
+        hm = ph["inputs"].get("matrix_class") or {}
+        matrix = hm.get("value") if hm.get("status", "UNKNOWN") != "UNKNOWN" else None
         out = {}
         for i, name in enumerate(BRACKETS):
             L = size[2 - i]  # as in the heat layer: the thickest piece is the least exposed (GENTLE)
-            res = ND.slab_two_stage(t0_c=t0[i], half_thickness_m=L, alpha_m2_s=a[1], k_w_mk=k[1],
-                                    stages=[(hdur[i], bath[i], h_heat[i]), (rdur[i], _p(t_air, i, +1), _p(h_air, i, -1))])
+            stages = [(hdur[i], bath[i], h_heat[i]), (rdur[i], _p(t_air, i, +1), _p(h_air, i, -1))]
+            cap_flags: list[str] = []
+            caps = None
+            t_cap = None
+            if self.capped:
+                pol = self.heat.policy
+                c1 = self.heat.pc.cap(medium=medium, matrix_class=matrix, bracket=i, policy=pol)
+                c2 = self.heat.pc.cap(medium=env_key, matrix_class=matrix, bracket=i, policy=pol)  # rest: atmospheric
+                caps, t_cap = [c1.t_c, c2.t_c], c1.t_c
+                cap_flags = list(c1.flags)
+                if c1.active:
+                    cap_flags.append("EVAPORATION_CAP_APPLIED" if c1.binding(bath[i]) else "EVAPORATION_CAP_NOT_BINDING")
+                if c1.regime == PC.DRY:
+                    cap_flags.append("DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY")
+                if c2.active and c1.active and c1.t_c > c2.t_c:
+                    cap_flags.append("PRESSURE_RELEASE_PROFILE_CLIPPED_TO_ATMOSPHERIC_TBOIL")
+                if b_basis == "L1:PHYSICAL_DEFINITION" and "PRESSURE_ASSUMED_1ATM" not in cap_flags:
+                    cap_flags.append("PRESSURE_ASSUMED_1ATM")
+            res = ND.slab_two_stage(t0_c=t0[i], half_thickness_m=L, alpha_m2_s=a[1], k_w_mk=k[1], stages=stages, caps=caps)
             e1, e2 = res["stage_end"]
-            out[name] = {"core_end_of_heat_c": round(e1["centre_c"], 3), "core_peak_c": round(res["centre_peak_last_stage_c"], 3),
-                         "carryover_rise_c": round(max(0.0, res["centre_peak_last_stage_c"] - e1["centre_c"]), 3),
-                         "core_end_c": round(e2["centre_c"], 3), "surface_end_c": round(e2["surface_c"], 3),
-                         "rest_duration_min": rdur[i], "heat_duration_min": hdur[i], "heat_bath_c": bath[i],
-                         "half_thickness_m": L,
-                         "bases": {"heat_bath_c": b_basis, "heat_duration_min": hd_basis, "heat_h": h_heat[3],
-                                   "half_thickness_m": size_basis + "|" + size[3], "rest_duration_min": rd_basis,
-                                   "rest_air_c": t_air[3], "rest_h": h_air[3], "k": k[3], "alpha": a[3],
-                                   "initial_c": t0[3], "prior_heat_link": f"L1:{ph['basis']}"},
-                         "flags": ["FINITE_DIFFERENCE_SLAB_HEAT_THEN_STILL_AIR", "HIGH_MOISTURE_PROPERTIES_ASSUMED",
-                                   "SLAB_GEOMETRY_ASSUMED", "UNIFORM_START_ASSUMED", "NO_EVAPORATION_CAP_AT_100C",
-                                   "BRACKETS_ORDERED_BY_HEAT_DOSE_CARRYOVER_RISE_NOT_MONOTONE", *dflags]}
+            rec_out = {"core_end_of_heat_c": round(e1["centre_c"], 3), "core_peak_c": round(res["centre_peak_last_stage_c"], 3),
+                       "carryover_rise_c": round(max(0.0, res["centre_peak_last_stage_c"] - e1["centre_c"]), 3),
+                       "core_end_c": round(e2["centre_c"], 3), "surface_end_c": round(e2["surface_c"], 3),
+                       "rest_duration_min": rdur[i], "heat_duration_min": hdur[i], "heat_bath_c": bath[i],
+                       "half_thickness_m": L,
+                       "bases": {"heat_bath_c": b_basis, "heat_duration_min": hd_basis, "heat_h": h_heat[3],
+                                 "half_thickness_m": size_basis + "|" + size[3], "rest_duration_min": rd_basis,
+                                 "rest_air_c": t_air[3], "rest_h": h_air[3], "k": k[3], "alpha": a[3],
+                                 "initial_c": t0[3], "prior_heat_link": f"L1:{ph['basis']}"},
+                       "flags": ["FINITE_DIFFERENCE_SLAB_HEAT_THEN_STILL_AIR", "HIGH_MOISTURE_PROPERTIES_ASSUMED",
+                                 "SLAB_GEOMETRY_ASSUMED", "UNIFORM_START_ASSUMED",
+                                 *(cap_flags if self.capped else ["NO_EVAPORATION_CAP_AT_100C"]),
+                                 "BRACKETS_ORDERED_BY_HEAT_DOSE_CARRYOVER_RISE_NOT_MONOTONE", *dflags]}
+            if self.capped:
+                rec_out.update(volume_avg_end_c=round(e2["volume_avg_c"], 3),
+                               volume_avg_end_of_heat_c=round(e1["volume_avg_c"], 3), t_cap_c=t_cap,
+                               boundary_c=bath[i] if t_cap is None else min(bath[i], t_cap))
+                if t_cap is not None:
+                    rec_out["bases"]["t_cap_c"] = c1.basis
+            out[name] = rec_out
         return self._out("SCENARIO_COMPUTED", "physically_possible", out)
 
     # ------------------------------------------------------------------------------------------ storage
