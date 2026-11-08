@@ -114,7 +114,7 @@ const MODES = { ANSWER: "Answered", COMPARE: "Compared", ANSWER_CORPUS_PATTERN: 
   ABSTAIN_ERROR: "Not answered", RECOMMEND: "Options, not ranked", DIAGNOSE: "Possible causes", RECOVER: "Recovery notes" };
 const BRANCH = { TRANSFORMATION: "cooking effect", RELATIONSHIP: "substitution", METADATA: "food facts",
   SEMANTIC: "recipe search", MULTIMODAL: "photo or sound", UNKNOWN: "unclear", MALFORMED: "empty" };
-const REASON = { TARGET_ABSENT: "this food has none of this nutrient, so nothing to retain",
+const REASON = { TARGET_ABSENT: "the reference table lists too little of this nutrient to track a retention figure (a screening limit, not a measurement of this food)",
   MERGED_LOT_CONTEXT: "measured for the food cooked on its own; here it is mixed with other foods",
   TARGET_PRESENCE_UNKNOWN: "cannot tell whether this food contains the nutrient",
   EVIDENCE_PREEMPTS: "measured data for this food on its own and this process", NO_LINKED_INGREDIENT: "no food named in this step",
@@ -169,7 +169,7 @@ function badgeFor(d) {
   if (d.mode === "ABSTAIN_SAFETY") return { text: MODES[d.mode], cls: "b-safety", note: null };
   if (d.mode === "ASK") return { text: MODES[d.mode], cls: "b-ASK", note: null };
   const tp = d.detail && d.detail.target_presence;
-  if (tp && tp.state === "ABSENT") return { text: "No such nutrient in this food", cls: "b-other", note: null };
+  if (tp && tp.state === "ABSENT") return { text: "Too little listed in the reference table", cls: "b-other", note: null };
   return { text: MODES[d.mode] || "Not answered", cls: "b-other", note: null };
 }
 function render(d) {

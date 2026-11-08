@@ -46056,7 +46056,7 @@ Every family uses the same two layers (TEXT_STATED, then SCENARIO). Under §141 
 
 The S176 lane drafts `src/culinarystate/simulation/{nonheat_binding,nonheat_drivers,nonheat_scenario}.py` and `registry/scenario_defaults_nonheat_v1.csv` (all rows `SOURCE_UNVERIFIED_AGENT_RECALLED`) are uncommitted AI drafts. Nothing in this section depends on their content.
 
-## 284.7 Defaults and corpus statistics **[ADOPTED D-077 / project law 5]** + **[PROPOSED V16-P12]**
+## 284.7 Defaults and corpus statistics **[ADOPTED D-077 (no value without a source; Layer 2 = defaults with source and range, as recorded in D-077)]** + **[PROPOSED V16-P12]**
 
 Adopted: defaults carry a source and a range; a recalled number is marked `SOURCE_UNVERIFIED_AGENT_RECALLED` and is never presented as sourced.
 
@@ -46223,7 +46223,7 @@ Validation: a curated set of two-arm literature contrasts (with and without salt
 
 ## 285.13 Computed versus learned, and owner steps
 
-**[ADOPTED principle: §233.7, packet §5.3]** Members, masses, composition, solute load, the pH bound, temperatures, the mechanism screen and interaction edges are computed deterministically. All of them are MODEL_DERIVED / NON_CITABLE unless a measurement backs them. Transition magnitudes (Steps 29–33) and representations (Step 35) are learned later, under gates, and never write back.
+**[PROPOSED — REV-A §E.4 / packet §5.3; needs Kush's approval (SSOT §233.7 is the existing law on recipe state)]** Members, masses, composition, solute load, the pH bound, temperatures, the mechanism screen and interaction edges are computed deterministically. All of them are MODEL_DERIVED / NON_CITABLE unless a measurement backs them. Transition magnitudes (Steps 29–33) and representations (Step 35) are learned later, under gates, and never write back.
 
 | Field group | Owner step(s) (REV-A §E.4) |
 |---|---|
@@ -46239,7 +46239,7 @@ Validation: a curated set of two-arm literature contrasts (with and without salt
 | Routes and nutrient values | 23, 25–27, 36 |
 | Safety and allergens | 18, 31, 36 + human gate |
 
-The leak register L-01…L-20 (REV-A §E.8) lists every place where a default or an AI guess could reach a claim, with its control and owner step. It is adopted by reference as the checklist for V16-P15…P22.
+The leak register L-01…L-20 (REV-A §E.8) lists every place where a default or an AI guess could reach a claim, with its control and owner step. It is the PROPOSED checklist for V16-P15…P22 (not adopted until Kush approves).
 
 ---
 

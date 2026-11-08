@@ -88,7 +88,7 @@ surviving DIRECT was DIRECT before and still carries its rows.
 - **"Boiled cabbage" is honest but weak.** With the new label it reads "Similar foods only" (rows for leafy vegetables, measured for stew
   and steam, not boil) and the four recipe steps are UNKNOWN. It is kept as an example because it now shows the system declining to
   over-claim; the stronger demo is "fried potatoes" (below).
-- The substitution branch is untouched: 414 of 420 ACTIVE `ING_ALTERNATIVE_TO` edges are BBC-supported (`support.by_source_family`), so any
+- The substitution branch is untouched: 412 of 420 (governance recount; 8 edges are non-BBC) ACTIVE `ING_ALTERNATIVE_TO` edges are BBC-supported (`support.by_source_family`), so any
   other "instead of X" question still returns a BBC-derived score (flag F4).
 
 ## 5. Demo behaviour on the real ledgers (smoke, one process, `lxml` stub only on `PYTHONPATH`, not installed)

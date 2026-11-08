@@ -21,7 +21,7 @@ in order and stop to ask Kush only where a step says so.
 ```bash
 cd ~/Desktop/CGAS/culinarystate
 git status                      # commit or stash your own work first
-scp manjot23309@192.168.3.19:~/kush_work/culinarystate_s176_orchestration.bundle ~/Desktop/CGAS/
+scp <user>@<manjot-server>:~/kush_work/culinarystate_s176_orchestration.bundle ~/Desktop/CGAS/
 git bundle verify ~/Desktop/CGAS/culinarystate_s176_orchestration.bundle
 git fetch ~/Desktop/CGAS/culinarystate_s176_orchestration.bundle max/s176-orchestration:max/s176-orchestration
 git log --oneline 07fc0d2..max/s176-orchestration
@@ -48,7 +48,7 @@ git log --oneline 07fc0d2..max/s176-orchestration
 git push origin max/s176-orchestration          # or your merged branch
 gh pr create --base main --head max/s176-orchestration \
   --title "Gather the stack: s169-seal-p1b + manjot orchestration (S175)" \
-  --body-file handoff/MAC_CLAUDE_MERGE_PROMPT_2026-11-08.md
+  --body "Merges kush/s169-seal-p1b and the S175 manjot orchestration branch. All S175 content is AI_DRAFTED; see handoff/RESUME_ANCHOR_2026-11-08_ORCH.md."
 ```
 `main` is 165+ commits behind `kush/s169-seal-p1b`; every other GitHub branch is already contained in it, so this
 one PR gathers the whole stack. **Ask Kush before merging into `main`.** After merge, log a WORKLOG step.

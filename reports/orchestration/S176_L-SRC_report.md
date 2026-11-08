@@ -39,14 +39,14 @@ The lane lead covered the culinary bath temperatures, oven, air fryer and pan ro
 - Reviews are REVIEW_CONTEXT: they give a direction only, never a bound.
 - ExPASy ENZYME entries are labelled DATABASE. They are used only for reaction definitions (co-substrates), never for numbers.
 
-**Verification flag (strict definition).** `VERIFIED_OPENED` means three things:
+**Verification flag (strict definition).** `SOURCE_OPENED_BY_AI` means three things:
 1. The cited page was fetched in this session and its text holds the statement.
 2. The locator says where, with **"Abstract"** written whenever only the abstract was read.
 3. Every number in `proposed_range` is either printed in such a source, derived from printed numbers by arithmetic stated in `notes` (unit conversion, interpolation, Arrhenius evaluation, midpoint), or a stated pick inside a printed band (flagged as a pick).
 
 Anything else is `UNVERIFIED_CANDIDATE`, with the candidate source and where to look.
 - If a row has a sourced bound but an unsourced bracket value, it stays UNVERIFIED and the sourced part is noted as a "partial anchor".
-- A bound status other than NOT_REPORTED is used only with a PRIMARY source and `VERIFIED_OPENED`. The validator enforces this.
+- A bound status other than NOT_REPORTED is used only with a PRIMARY source and `SOURCE_OPENED_BY_AI`. The validator enforces this.
 
 **Access routes.**
 - Europe PMC REST abstracts (PubMed, AGRICOLA, AGRIS), the OpenAlex abstract index (11 rows, marked "reconstructed")
@@ -80,7 +80,7 @@ Anything else is `UNVERIFIED_CANDIDATE`, with the candidate source and where to 
 
 ## 3. What is verified versus candidate
 
-| Group | Rows | VERIFIED_OPENED | UNVERIFIED_CANDIDATE |
+| Group | Rows | SOURCE_OPENED_BY_AI | UNVERIFIED_CANDIDATE |
 |---|---|---|---|
 | Heat defaults (SD-001..SD-060) | 27 | 13 | 14 |
 | Non-heat quantities (NH-*, LSRC-*) | 70 | 45 | 25 |

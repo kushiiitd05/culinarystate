@@ -2,7 +2,7 @@
 
 **Status: DRAFT · AI_DRAFTED (S176 lane V16) · pending Kush's approval of v16.** v15.0 remains authoritative until approved.
 
-Source: `docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md` · sha256 `0c4d8409cd2cca55271f26b3f9400fd1aebe26ab75d0fe5276895ab5ad66b529` · 1,933,278 bytes · 46,833 lines
+Source: `docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md` · sha256 `3a49731081daa9860ae15f235ccbaef70837d3eea5fd4b1570d8837ea30c4072` · 1,933,446 bytes · 46,833 lines
 
 Base: `docs/SSOT/computational_gastronomy_master_ssot_v15_0.md` · sha256 `1c9262bfe51a9f97090b1c2874757de535866c9c8b428df6be67df95a3675644` · 1,799,542 bytes · 45,697 lines (indexed by `docs/SSOT_INDEX.md`)
 
