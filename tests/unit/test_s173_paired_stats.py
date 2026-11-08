@@ -32,3 +32,14 @@ def test_paired_counts_from_vectors():
     assert PS.paired_counts([1, 1, 0, 0, 1], [1, 0, 1, 0, 0]) == (1, 2, 1, 1)
     with pytest.raises(ValueError):
         PS.paired_counts([1], [1, 0])
+
+
+def test_ucr_and_cluster_bootstrap_upper_bound():
+    x = [(4, 0), (3, 0), (5, 1), (2, 0)] * 5       # B7: (claims, unsupported) per question
+    y = [(4, 2), (3, 1), (5, 2), (2, 1)] * 5       # B2
+    assert PS.ucr(x) == pytest.approx(5 / 70) and PS.ucr(y) == pytest.approx(30 / 70)
+    ub = PS.ucr_diff_upper95(x, y, n_boot=2000, seed="d5-h3")
+    assert ub < 0
+    assert ub == PS.ucr_diff_upper95(x, y, n_boot=2000, seed="d5-h3")
+    same = PS.ucr_diff_upper95(y, y, n_boot=2000, seed="d5-h3")
+    assert same == pytest.approx(0.0, abs=1e-12)
