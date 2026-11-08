@@ -85,7 +85,7 @@ class Binder:
             mm = {r["process_id"]: r for r in csv.DictReader(fh)}
         procs = _latest(root / "ledgers/data/PROC.jsonl")
         ings = _latest(root / "ledgers/data/ING.jsonl")
-        groups = {i: (r.get("food_group") or (r.get("facets") or {}).get("food_group")) for i, r in ings.items()}
+        groups = {i: (r.get("category") or r.get("food_group")) for i, r in ings.items() if r.get("status") == "ACTIVE"}
         return cls(rung=RungA(), schema=D.load_schema(root), medium_map=mm,
                    family={p: r.get("family") for p, r in procs.items()},
                    food_group={i: g for i, g in groups.items() if g})
