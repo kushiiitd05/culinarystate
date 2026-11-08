@@ -46,6 +46,11 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 
 ## Progress log
 
+- 2026-11-08 S174: **Servers back.** vinayak: Food.com L1+L2 running (64 workers, `~/Kush/cs_runs/*_S174*`), then
+  ingredient-line export → NER on GPU 0 (Food.com) + GPU 1 (Gutenberg, Wikibooks, TASTESET) with
+  `ckpt_tasteset_base_crf_s1.pt`. manjot: tree synced (tracked files), `.venv312` being built; it takes the non-heat
+  family layers (`PROCESS_COVERAGE_PLAN_2026-11-08.md`; Fickian uptake + Plank freezing drivers added) and is the
+  CPU overflow; manjot GPU 1 needs a torch env before it can share NER.
 - 2026-11-08 S173: **Demo stopped** (Kush: core first). M9: L1+L2 done on the Mac for BBC 11,934, Wikibooks 3,676,
   Gutenberg 73,955 (66 % of 182,049 heat events get scenario drivers), TASTESET has no steps; Food.com waits for
   vinayak (VPN route missing: traffic goes via en0). NER export + GPU inference script ready. H1 rungs + paired
