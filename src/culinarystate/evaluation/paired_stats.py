@@ -6,7 +6,9 @@ newcombe_paired(a, b, c, d): 95 % interval for p_x - p_y, Newcombe (1998) method
 """
 from __future__ import annotations
 
+import hashlib
 import math
+import random
 from typing import Sequence
 
 Z95 = 1.959963984540054
@@ -58,3 +60,24 @@ def newcombe_paired(a: int, b: int, c: int, d: int, z: float = Z95) -> tuple[flo
     dl = math.sqrt(max(0.0, (p1 - l1) ** 2 - 2 * phi * (p1 - l1) * (u2 - p2) + (u2 - p2) ** 2))
     du = math.sqrt(max(0.0, (u1 - p1) ** 2 - 2 * phi * (u1 - p1) * (p2 - l2) + (p2 - l2) ** 2))
     return max(-1.0, diff - dl), min(1.0, diff + du)
+
+
+def ucr(per_question: Sequence[tuple[int, int]]) -> float:
+    """Unsupported-claim rate: sum unsupported / sum numeric claims over questions (0 when no claim)."""
+    claims = sum(c for c, _ in per_question)
+    return sum(u for _, u in per_question) / claims if claims else 0.0
+
+
+def ucr_diff_upper95(x: Sequence[tuple[int, int]], y: Sequence[tuple[int, int]], *, n_boot: int = 10_000,
+                     seed: str = "d5-h3") -> float:
+    """One-sided 95 % upper bound of UCR(x) - UCR(y), resampling questions (paired, same indices for x and y)."""
+    if len(x) != len(y) or not x:
+        raise ValueError("paired, non-empty question lists required")
+    rng = random.Random(int(hashlib.sha256(seed.encode()).hexdigest(), 16))
+    n = len(x)
+    diffs = []
+    for _ in range(n_boot):
+        idx = [rng.randrange(n) for _ in range(n)]
+        diffs.append(ucr([x[i] for i in idx]) - ucr([y[i] for i in idx]))
+    diffs.sort()
+    return diffs[int(math.ceil(0.95 * n_boot)) - 1]
