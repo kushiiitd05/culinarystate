@@ -29,7 +29,7 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 | M3 | Step 10 ascorbic-acid kinetics pilot: OA source list, AI extraction of ~20 rows with spans → **Kush + Parv verify** (~2–3 h each) → PARAM rows → fit sim_aa_1 on the calibration split → held-out check (Step 27) | 10, 24–27 | agent extract/fit; **Kush + Parv verify** | extract 12 Nov; verify 15 Nov; sim 17 Nov | ☐ TODO |
 | M4 | D4 evidence-aware retrieval with abstention (router + EVD + retriever + claim enforcement) | 36 (D4) | agent | 14 Nov | ⏳ core DONE (S171): §39 router + front door + TRANSFORMATION/RELATIONSHIP handlers on real data; METADATA/SEMANTIC abstain |
 | M5 | D5 benchmark (~80 questions, AI draft → **Kush + Parv review**) + B0–B5 runs → **H1** (state-aware vs text RAG) and **H3** (abstention lowers unsupported claims) | 36 (D5) | agent; **humans review questions** | questions 13 Nov; review 16 Nov; results 19 Nov | ⏳ prereg + 100 drafted questions READY (S171); **waiting: both sign prereg, review sheets** |
-| M6 | Hosted web demo: recipe → state timeline → router decision → cited answer or abstention (FastAPI + UI on a free host; hosted LLM API key from Kush) | demo | agent; **Kush: host account + API key** | 21 Nov | ☐ TODO |
+| M6 | Hosted web demo: recipe → state timeline → router decision → cited answer or abstention (FastAPI + UI on a free host; hosted LLM API key from Kush) | demo | agent; **Kush: host account + API key** | 21 Nov | ⏳ local app DONE (S173, stdlib server, no LLM key needed); hosting left |
 | M7 | P1b pilot wave (needs the nonce) and Step 35 v2 signature | 19, 35 | **Kush** first, then agent | when supplied | ⏸ WAITING ON KUSH |
 | M9 | Physical-state dataset (D-077): C binding (Layer 1 TEXT_STATED) → Layer 2 SCENARIO (cited defaults, ranged) → physics drivers θ(t); NER over the corpus; all runs in `registry/compute_runs_v1.csv` | 26g, 31, 35 | agent (servers + Mac) | L1 full run when VPN is up; L2/θ 18 Nov | ⏳ L1 binder + census DONE on 1,000 (S172) |
 | M8 | Final report + slides from real M1–M6 results (deck started, paused at the cover) | — | agent draft; humans edit block Q | 22–24 Nov | ⏸ PAUSED |
@@ -46,6 +46,11 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 
 ## Progress log
 
+- 2026-11-08 S173: **M6 local demo** (`python -m culinarystate.app.server`): cited answers, per-step router chips and
+  heat strip, refusals; phone layout checked. **Bug found via the demo and fixed test-first:** the template answer
+  cited boil/stew rows as steaming evidence without saying so (verbalize@0.2 now names other-process rows). The
+  October silver-ladder B5T results used @0.1. M9: BBC (11,934) + Wikibooks (3,676) L1/L2 done on the Mac;
+  servers unreachable (VPN route missing), Food.com waits for vinayak.
 - 2026-11-08 S172: **M9 started (D-077).** Verdict doc `PROJECT_FLOW_VERDICT_2026-11-08.md`. Layer 1 binder
   (`simulation/condition_binding.py`, no Rung A change) + census: 1,000 recipes → 2,850 heat events; duration 27 %,
   bath T 18 % (definition 310, text 107, carried setpoint 99), medium 56 %, matrix class 33 %, lid 9 %, size 8 %;
