@@ -63,6 +63,41 @@ def relationship_answer(ingredient_name: str | None, candidates: Sequence[Any]) 
             "candidates": [{"id": c.id, "name": c.name, "confidence": c.confidence} for c in candidates]}
 
 
+def _str(v):
+    if v is None or isinstance(v, str):
+        return v
+    if isinstance(v, tuple):
+        return [_str(x) for x in v]
+    return str(v)
+
+
+def physics_summary(recipe_text: str, binder: Any, layer: Any) -> dict:
+    """Per heat step: Layer 1 stated values (with basis) and the Layer 2 TYPICAL bracket. D-077; never evidence."""
+    res = binder.bind_text(recipe_text)
+    steps = []
+    for ev in res["events"]:
+        if not ev["heat"]:
+            continue
+        inp = ev["inputs"]
+        rec = {"process_id": ev["process_id"], "family": ev["family"], "oven_setpoint_code": ev["oven_setpoint_code"],
+               "inputs": {k: {**v, "value": _str(v["value"])} for k, v in inp.items()}}
+        sc = layer.run(rec)
+        typ = sc["scenarios"].get("TYPICAL") or {}
+        t = inp["temperature_profile"]
+        steps.append({"event_id": ev["event_id"], "action": ev["action"], "process_id": ev["process_id"],
+                      "stated": {"duration_min": _str(inp["duration"]["value"]),
+                                 "temperature_c": _str(t["value"]), "temperature_basis": t["basis"],
+                                 "medium": inp["medium"]["value"], "lid": inp["lid_state"]["value"],
+                                 "piece_size": inp["piece_size_class"]["value"]},
+                      "scenario": {"status": sc["status"], "typical_bath_c": typ.get("bath_c"),
+                                   "typical_duration_min": typ.get("duration_min"),
+                                   "typical_core_end_c": typ.get("core_end_c"),
+                                   "range_core_end_c": [sc["scenarios"][b].get("core_end_c") for b in ("GENTLE", "INTENSE")]
+                                   if sc["scenarios"] else None,
+                                   "bases": typ.get("bases"), "flags": typ.get("flags")}})
+    return {"labels": ["TEXT_STATED", "SCENARIO", "MODEL_DERIVED", "NON_CITABLE"], "steps": steps}
+
+
 class DemoContext:
     def __init__(self, **parts: Any) -> None:
         self.__dict__.update(parts)
@@ -79,6 +114,8 @@ class DemoContext:
         from culinarystate.mechanism import router_demo as RD
         from culinarystate.quantity import rc2_dryrun as D
         from culinarystate.retrieval.retriever import EvidenceRetriever
+        from culinarystate.simulation import condition_binding as CB
+        from culinarystate.simulation import scenario_layer as SL
         st = LedgerStore()
         lex, family = load_lexicon(st)
         cond = {c["id"]: c for c in st.all_latest("COND")}
@@ -88,7 +125,7 @@ class DemoContext:
         return cls(lex=lex, family=family, retriever=EvidenceRetriever(evd, cond, family), sup=SupportIndex(evd),
                    req=load_requirements(st), ts=TroubleshootIndex.from_registry(ROOT), registry=registry,
                    index=RD.EvidenceIndex.from_rows(evd), rung=RungA(), schema=D.load_schema(),
-                   hierarchy=PS.read_process_hierarchy())
+                   hierarchy=PS.read_process_hierarchy(), binder=CB.Binder.load(), layer=SL.ScenarioLayer.load())
 
     def _transform(self, q: str, recipe_text: str | None = None) -> dict:
         from culinarystate.decision.pipeline import answer
@@ -103,6 +140,7 @@ class DemoContext:
             recipe = recipe_summary(RD.route_text(recipe_text, index=self.index, target_svar=svar, rung=self.rung,
                                                   hierarchy=self.hierarchy, schema=self.schema)) if svar else \
                 {"target_svar": None, "reason": "NO_TARGET_STATE_VARIABLE", "routes": {}, "steps": []}
+            recipe["physics"] = physics_summary(recipe_text, self.binder, self.layer)
         return {"mode": d["mode"], "answer": text, "cited": cited_ids(text), "reason": d.get("reason"),
                 "precision": d.get("precision"), "intent": d.get("intent"),
                 "slots": {"ingredient": s.ingredient_id, "ingredient_name": s.ingredient_name,
