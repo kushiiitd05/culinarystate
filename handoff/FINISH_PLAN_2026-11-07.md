@@ -46,6 +46,13 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 
 ## Progress log
 
+- 2026-11-08 S173: **Demo stopped** (Kush: core first). M9: L1+L2 done on the Mac for BBC 11,934, Wikibooks 3,676,
+  Gutenberg 73,955 (66 % of 182,049 heat events get scenario drivers), TASTESET has no steps; Food.com waits for
+  vinayak (VPN route missing: traffic goes via en0). NER export + GPU inference script ready. H1 rungs + paired
+  stats (McNemar, Newcombe) + H3 bootstrap ready. **29-diag unblocked on the agent side:** freeze-record and
+  prereg-signature formats wired into the gate, proposed freeze `registry/freezes/15A-BOOT-2026-11-08.json`
+  (hashes match), prereg draft `reports/step29/29diag_preregistration_DRAFT.md`, runner `diag29_runner.py`.
+  **Kush: approve the freeze record + sign the prereg → 29-diag runs on the Mac.**
 - 2026-11-08 S173: **M6 local demo** (`python -m culinarystate.app.server`): cited answers, per-step router chips and
   heat strip, refusals; phone layout checked. **Bug found via the demo and fixed test-first:** the template answer
   cited boil/stew rows as steaming evidence without saying so (verbalize@0.2 now names other-process rows). The
