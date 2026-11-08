@@ -494,3 +494,10 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Also:** deploy the trained DeBERTa-CRF NER over the corpus's ingredient lines (MENTION ledger draft, agreement with Rung A); every run is logged in `registry/compute_runs_v1.csv` (host, commit, code/input/output hashes, times, status).
 - **Unchanged:** ledgers EVD/COND/SRC/MEAS/SNAP byte-identical; R-05, R-13, R-20; no value without a source.
 - **Approver:** Kush
+
+### D-078 · 2026-11-08 · Orchestration moves to the manjot-server Claude session (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-08: "you need to take over the baton and use all the resources and multiple agents to work on each part of the progress … main orchestrator and other agents taking up the other tasks as well … using wisely"; later: "look at the SSOT in detail … get a consensus … what requires compute, code building, training, analysis, downloading"; "finish the SSOT v16 and the plan consensus"; "drop the anchor only after all agents finish".
+- **Decision:** the manjot-server session is the main orchestrator from S175. It works on branch `max/s176-orchestration` (worktree `~/kush_work/culinarystate/.orch`; the main folder stays the Mac's rsync target). The Mac agent keeps BBC-only jobs (D-003), vinayak jobs, git merge/push and human-gate scribing until the branch is merged (`handoff/ORCHESTRATION_TAKEOVER_2026-11-08.md`).
+- **Not decided here:** everything the S175 lanes produced is AI_DRAFTED (consensus plan, v16 draft, registries, code). None of it is a human signature, approval or nonce; D-071 limits unchanged. SSOT v15 remains authoritative until Kush approves v16.
+- **Numbering note:** D-028 is absent from this file (gap in the sequence, kept as is; ids are never reused).
+- **Approver:** Kush.
