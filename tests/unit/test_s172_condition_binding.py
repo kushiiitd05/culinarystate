@@ -83,3 +83,8 @@ def test_only_heat_events_get_heat_inputs(binder):
     res = binder.bind_text("Chop the onions. Boil the potatoes for 20 minutes.")
     chop = _ev(res, "chop")
     assert chop["inputs"] == {} and chop["heat"] is False
+
+
+def test_matrix_class_from_ing_category(binder):
+    ev = _ev(binder.bind_text("Melt the butter in a pan."), "melt")
+    assert ev["inputs"]["matrix_class"]["value"] == "DAIRY" and ev["inputs"]["matrix_class"]["basis"] == "FOOD_GROUP"
