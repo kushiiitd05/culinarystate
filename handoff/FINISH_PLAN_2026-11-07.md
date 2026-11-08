@@ -46,6 +46,11 @@ Not started: 09–11 verified kinetics (0 PARAM rows: the root blocker of the ph
 
 ## Progress log
 
+- 2026-11-08 S174: **Heating layers done on the full corpus** (Mac: BBC, Wikibooks, Gutenberg; vinayak: Food.com):
+  612,782 recipes, 1,746,405 heat events, 810,951 (46 %) with SCENARIO drivers; all baselines PASS. **Corpus NER done**
+  (vinayak, 2 GPUs): 4.16 M ingredient lines tagged (Food.com 4.13 M, Wikibooks 32k, TASTESET 3.8k; Gutenberg has
+  no separate lines; BBC stays off servers). Finding to check: Food.com UNIT tags far below QUANTITY. manjot set up
+  and verified for non-BBC jobs. Next: non-heat family bindings → manjot; NER vs Rung A agreement.
 - 2026-11-08 S174: **Servers back.** vinayak: Food.com L1+L2 running (64 workers, `~/Kush/cs_runs/*_S174*`), then
   ingredient-line export → NER on GPU 0 (Food.com) + GPU 1 (Gutenberg, Wikibooks, TASTESET) with
   `ckpt_tasteset_base_crf_s1.pt`. manjot: tree synced (tracked files), `.venv312` being built; it takes the non-heat
