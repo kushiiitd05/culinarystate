@@ -52,3 +52,15 @@ def test_relationship_answer_says_corpus_pattern_not_equivalence():
     none = DC.relationship_answer("buttermilk", [])
     assert none["mode"] == "ABSTAIN_NO_EDGES"
     assert DC.relationship_answer(None, cands)["mode"] == "ASK"
+
+
+def test_physics_summary_per_heat_step_is_labelled_and_layered():
+    from culinarystate.simulation.condition_binding import Binder
+    from culinarystate.simulation.scenario_layer import ScenarioLayer
+    out = DC.physics_summary("Dice the potatoes. Boil the potatoes for 20 minutes. Simmer the sauce.",
+                             Binder.load(), ScenarioLayer.load())
+    boil, simmer = [s for s in out["steps"] if s["action"].lower() in ("boil", "simmer")]
+    assert boil["stated"]["temperature_c"] == "100" and boil["stated"]["temperature_basis"] == "PHYSICAL_DEFINITION"
+    assert boil["scenario"]["status"] == "SCENARIO_COMPUTED" and boil["scenario"]["typical_core_end_c"] is not None
+    assert simmer["stated"]["temperature_c"] is None and simmer["scenario"]["typical_bath_c"] == 90
+    assert "SCENARIO" in out["labels"] and "NON_CITABLE" in out["labels"]
