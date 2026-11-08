@@ -26,7 +26,7 @@ from .targets import TargetLexicon
 from .feasibility import Action, Constraints, Requirements, check
 from .ood import SupportIndex
 from .policy import decide
-from .relevance import intent
+from .relevance import fold_accents, intent
 from .candidates import CandidateSet, substitution_candidates, sequence_candidates
 from .selector import Option, Selection, select
 
@@ -73,15 +73,16 @@ class Slots:
 def parse_query(q: str, lex: Lexicon) -> Slots:
     ments = lex.linker.mentions(q)
     ing = ments[0] if ments else None
+    qp = fold_accents(q)                          # S176: the process lexicon is ASCII ("sautéed" was missed)
     seen, procs, negated = set(), [], set()
-    for pos, name in step_processes(q):          # one hit per process: the affirmed reading
+    for pos, name in step_processes(qp):         # one hit per process: the affirmed reading
         pid = lex.proc_ids.get(name)
         if pid and name not in QUESTION_NOT_PROCESS and pid not in seen and \
-                not NEGATION.search(q[max(0, pos - 24):pos].lower()):
+                not NEGATION.search(qp[max(0, pos - 24):pos].lower()):
             seen.add(pid)
             procs.append((name, pid))
-    for m in re.finditer(r"[A-Za-z]+(?:-[A-Za-z]+)?", q):     # every mention, for negations ("not boiled")
-        if NEGATION.search(q[max(0, m.start() - 24):m.start()].lower()):
+    for m in re.finditer(r"[A-Za-z]+(?:-[A-Za-z]+)?", qp):    # every mention, for negations ("not boiled")
+        if NEGATION.search(qp[max(0, m.start() - 24):m.start()].lower()):
             negated |= {lex.proc_ids[n] for _, n in step_processes(m.group(0)) if n in lex.proc_ids}
     lt = lex.targets.find(q) if lex.targets else None
     tm = None if lt else next((m for pat, _ in NUTRIENT if (m := re.search(pat, q.lower()))), None)

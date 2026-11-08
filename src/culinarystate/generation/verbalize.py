@@ -11,6 +11,7 @@ from __future__ import annotations
 import re
 from collections import Counter
 
+from culinarystate.decision import safety as SF
 from culinarystate.generation.claims import row_value
 from culinarystate.retrieval.retriever import EvidencePacket
 
@@ -20,6 +21,9 @@ ABSTAIN_TEXT = {
     "NO_CORROBORATED_CAUSE": "No cause for this is stated by at least two independent sources in the corpus.",
     "NO_CORROBORATED_RECOVERY": "No recovery step for this is stated by at least two independent sources in the corpus.",
     "NO_EVIDENCE_FOR_ANY_TARGET": "There is not enough evidence about this food to answer.",
+    SF.REASON: SF.MESSAGE,
+    "TARGET_ABSENT": "The reference food-composition table lists no meaningful amount of this nutrient in this food, so "
+                     "a retention figure for it would mean nothing and I won't give one.",
     "OUT_OF_SCOPE": "That is outside what CulinaryState answers: cooking processes, their effects and recipe state.",
 }
 VERDICT = {"OVERLAPPING": "The ranges overlap, so the evidence does not show that one method keeps more.",

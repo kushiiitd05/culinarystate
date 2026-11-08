@@ -4,6 +4,10 @@ Per sampled recipe with steps: ``router_demo.route_text`` (Rung A -> unchanged 2
 target state variable). The report holds integer counts, route/reason codes and registry codes (PROC-, SVAR-) only:
 no recipe id, recipe text or seed. Sampling is the Step 17b rule (smallest sha256(seed || recipe_id)).
 Not a gold score, not a human gate, not citable; EVD rows are tier E3 and unverified.
+
+S176 (L-ROUTER): with ``gates`` (``evidence_gates.EvidenceGates``) the census also counts, in the SAME pass, what the
+S171 engine would have said (``route_ungated``) next to the gated ``route``, the presence / lot-context codes, and the
+fate of every ungated DIRECT (``direct_ungated_cross``: presence | lot context | final route). Counts and codes only.
 """
 from __future__ import annotations
 
@@ -14,12 +18,13 @@ from typing import Iterable, Iterator, Mapping
 from culinarystate.extraction.rung_a import RungA
 from culinarystate.extraction.rung_a_measure import code, seeded_sample
 from culinarystate.mechanism import applicability as AP
+from culinarystate.mechanism import evidence_gates as EG
 from culinarystate.mechanism import process_signatures as PS
 from culinarystate.mechanism import router_demo as RD
 from culinarystate.quantity import rc2_dryrun as D
 from culinarystate.recipes.ledgers import LOCALE
 
-CENSUS_VERSION = "router-demo-census-0.1.0-draft"
+CENSUS_VERSION = "router-demo-census-0.2.0-draft"
 
 
 def _steps(rec: Mapping) -> list[str]:
@@ -39,7 +44,8 @@ _CTX: dict = {}  # set before forking; workers read it (fork start method shares
 
 def _empty() -> dict:
     return {"tot": Counter(), "route": Counter(), "reasons": Counter(), "direct_proc": Counter(), "exc": Counter(),
-            "pairs": set(), "ingredients": set()}
+            "route_ungated": Counter(), "gate_cross": Counter(), "direct_ungated_cross": Counter(),
+            "direct_ungated_proc": Counter(), "pairs": set(), "ingredients": set()}
 
 
 def _route_chunk(recs: list[Mapping]) -> dict:
@@ -53,12 +59,12 @@ def _route_chunk(recs: list[Mapping]) -> dict:
         try:
             out = RD.route_text("\n".join(steps), index=c["index"], target_svar=c["target_svar"],
                                 locale=LOCALE.get(rec.get("source_family")), rung=c["rung"],
-                                hierarchy=c["hierarchy"], schema=c["schema"])
+                                hierarchy=c["hierarchy"], schema=c["schema"], gates=c.get("gates"))
         except Exception as e:  # noqa: BLE001 - counted by class name; the message may contain text
             part["exc"][code(type(e).__name__)] += 1
             continue
         tot["events"] += len({i["event_id"] for i in out["items"]})
-        any_direct = False
+        any_direct = any_direct_ungated = False
         for it in out["items"]:
             tot["items"] += 1
             part["route"][code(it["route"])] += 1
@@ -73,7 +79,18 @@ def _route_chunk(recs: list[Mapping]) -> dict:
             if it["route"] == "DIRECT":
                 any_direct = True
                 part["direct_proc"][code(proc)] += 1
+            g = it.get("gates")
+            ungated = it.get("route_ungated", it["route"])
+            part["route_ungated"][code(ungated)] += 1
+            if g is not None:
+                part["gate_cross"][code(f"{g['presence']}|{g['lot_context']}")] += 1
+            if ungated == "DIRECT":
+                any_direct_ungated = True
+                part["direct_ungated_proc"][code(proc)] += 1
+                if g is not None:
+                    part["direct_ungated_cross"][code(f"{g['presence']}|{g['lot_context']}|{it['route']}")] += 1
         tot["recipes_with_any_direct"] += any_direct
+        tot["recipes_with_any_direct_ungated"] += any_direct_ungated
     return part
 
 
@@ -96,8 +113,11 @@ def _run(sample: list[Mapping], workers: int) -> dict:
 
 def census_from_records(records: Iterable[Mapping], *, seed: str, size: int, index: RD.EvidenceIndex,
                         target_svar: str, rung: RungA | None = None, schema: Mapping | None = None,
-                        hierarchy: PS.ProcessHierarchy | None = None, workers: int = 1) -> dict:
-    """Counts-only router-demo census for ``target_svar`` over the seeded sample (``workers`` > 1: fork pool)."""
+                        hierarchy: PS.ProcessHierarchy | None = None, workers: int = 1,
+                        gates: EG.EvidenceGates | None = None) -> dict:
+    """Counts-only router-demo census for ``target_svar`` over the seeded sample (``workers`` > 1: fork pool).
+
+    ``gates`` (S176): evidence gates before G0; the report then also holds the ungated counts of the same pass."""
     if not isinstance(target_svar, str) or not target_svar.strip():
         raise ValueError("target_svar is required (e.g. SVAR-000009, vitamin C)")
     if not isinstance(workers, int) or workers < 1:
@@ -113,12 +133,13 @@ def census_from_records(records: Iterable[Mapping], *, seed: str, size: int, ind
     sample = seeded_sample(counted(records), seed, size)
     _CTX.clear()
     _CTX.update(index=index, target_svar=target_svar, rung=rung or RungA(), schema=schema or D.load_schema(),
-                hierarchy=hierarchy or PS.read_process_hierarchy())
+                hierarchy=hierarchy or PS.read_process_hierarchy(), gates=gates)
     try:
         acc = _run(sample, workers)
     finally:
         _CTX.clear()
     tot, route, reasons, direct_proc, exc = (acc[k] for k in ("tot", "route", "reasons", "direct_proc", "exc"))
+    gated = gates is not None
     pairs, ingredients = acc["pairs"], acc["ingredients"]
     report = {
         "record": "ROUTER_DEMO_CENSUS", "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
@@ -131,9 +152,17 @@ def census_from_records(records: Iterable[Mapping], *, seed: str, size: int, ind
         "recipes_seen": seen, "recipes_sampled": len(sample),
         **{k: tot[k] for k in ("texts_with_steps", "events", "items", "items_linked", "items_unlinked",
                                "items_with_process", "items_without_process", "recipes_with_any_direct")},
+        "gates": gates.describe() if gated else {"enabled": False},
         "route": dict(sorted(route.items())), "reason_counts": dict(sorted(reasons.items())),
         "direct_by_process": dict(sorted(direct_proc.items())), "exceptions_by_class": dict(sorted(exc.items())),
         "evidence_coverage": _coverage(index, target_svar, pairs, ingredients),
     }
+    if gated:
+        report.update(
+            recipes_with_any_direct_ungated=tot["recipes_with_any_direct_ungated"],
+            route_ungated=dict(sorted(acc["route_ungated"].items())),
+            gate_cross=dict(sorted(acc["gate_cross"].items())),
+            direct_ungated_cross=dict(sorted(acc["direct_ungated_cross"].items())),
+            direct_ungated_by_process=dict(sorted(acc["direct_ungated_proc"].items())))
     D.assert_counts_only(report)
     return report

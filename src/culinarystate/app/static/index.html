@@ -10,11 +10,13 @@
 :root {
   --paper: #F2F5F6; --ink: #16232A; --steel: #6E7C84; --rule: #CFD8DC; --teal: #1F5F66; --teal-ink: #FFFFFF;
   --direct: #2E7D4F; --unknown: #7A8790; --abstain: #9A6B12; --cool: #3A6EA5; --warm: #E3B23C; --hot: #C0392B;
+  --near: #2F5F8F; --pattern: #55646C; --na: #5E6B73;
   --panel: #FFFFFF; --focus: #E3B23C;
 }
 @media (prefers-color-scheme: dark) {
   :root { --paper: #0F1A1F; --ink: #E6EEF1; --steel: #9AA9B0; --rule: #2A3A41; --teal: #4FA3AC; --teal-ink: #0F1A1F;
-          --panel: #15232A; --direct: #5DBB84; --unknown: #8D9AA1; --abstain: #E0A93A; }
+          --panel: #15232A; --direct: #5DBB84; --unknown: #8D9AA1; --abstain: #E0A93A;
+          --near: #6FA8DC; --pattern: #9AA9B0; --na: #9AA9B0; }
 }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--paper); color: var(--ink);
@@ -39,9 +41,13 @@ button { font: inherit; cursor: pointer; border-radius: 6px; }
 .out { min-height: 200px; }
 .empty { color: var(--steel); border-left: 3px solid var(--rule); padding: 6px 0 6px 14px; }
 .badge { display: inline-block; font-weight: 700; font-size: 15px; padding: 3px 10px; border-radius: 999px; color: #fff; }
-.b-ANSWER, .b-COMPARE, .b-ANSWER_CORPUS_PATTERN { background: var(--direct); }
+.b-data { background: var(--direct); }          /* only for answers measured for this food (evidence.from_data) */
+.b-near { background: var(--near); }            /* similar foods, other process, other foods, direction only, conflict */
+.b-pattern { background: var(--pattern); }      /* recipe-corpus pattern: how recipes are written, not data */
 .b-ASK { background: var(--teal); }
 .b-other { background: var(--abstain); }
+.b-safety { background: var(--hot); }
+@media (prefers-color-scheme: dark) { .badge { color: #0F1A1F; } .b-safety { color: #fff; } }   /* after .badge: later rule wins */
 .route { color: var(--steel); font-size: 15px; margin-left: 8px; }
 .answer { font-size: 19px; line-height: 1.55; white-space: pre-wrap; margin: 14px 0 6px; max-width: 70ch; }
 .cites { color: var(--steel); font-size: 15px; }
@@ -50,7 +56,8 @@ h2 { font-size: 20px; margin: 30px 0 4px; }
 .step { display: grid; grid-template-columns: 110px 1fr; gap: 6px 16px; padding: 12px 0; border-top: 1px solid var(--rule); }
 .step .act { font-weight: 700; }
 .chip { font-size: 14px; font-weight: 700; }
-.chip.DIRECT { color: var(--direct); } .chip.UNKNOWN { color: var(--unknown); }
+.chip.DIRECT { color: var(--direct); } .chip.UNKNOWN { color: var(--unknown); } .chip.NOT_APPLICABLE { color: var(--na); }
+.note { color: var(--steel); font-size: 14px; max-width: 70ch; margin: 4px 0 0; }
 .facts { font-size: 15px; color: var(--ink); }
 .facts span { margin-right: 14px; white-space: nowrap; }
 .why { color: var(--steel); font-size: 14px; }
@@ -69,7 +76,7 @@ h2 { font-size: 20px; margin: 30px 0 4px; }
 <div class="wrap">
   <header>
     <h1>CulinaryState</h1>
-    <p>Ask what cooking does to a food. It answers from measured data and says so when it has none. Paste recipe steps to see what happens to the food at each step.</p>
+    <p>Ask what cooking does to a food. It answers from measured data when it has some for that food, labels anything weaker, and says so when it has none. Paste recipe steps to see what happens to the food at each step.</p>
   </header>
   <div class="grid">
     <form id="f" autocomplete="off">
@@ -86,7 +93,9 @@ h2 { font-size: 20px; margin: 30px 0 4px; }
       <div class="examples" aria-label="Example questions">
         <button type="button" data-q="How much vitamin C does boiled cabbage keep?" data-r="Shred the cabbage.&#10;Boil the cabbage for 10 minutes.&#10;Drain and serve.">Boiled cabbage</button>
         <button type="button" data-q="Is steaming or boiling better for keeping vitamin C in broccoli?" data-r="">Steam or boil broccoli</button>
-        <button type="button" data-q="What can I use instead of buttermilk?" data-r="">Swap buttermilk</button>
+        <button type="button" data-q="What can I use instead of ricotta?" data-r="">Swap ricotta</button>
+        <button type="button" data-q="How much vitamin C do fried potatoes keep?" data-r="Cut the potatoes into chips.&#10;Fry the chips for 8 minutes.">Fried potatoes</button>
+        <button type="button" data-q="Is chicken safe to eat if it is still pink inside?" data-r="">A safety question</button>
         <button type="button" data-q="Here is a photo of my bread, is it proofed?" data-r="">A photo question</button>
       </div>
     </form>
@@ -99,20 +108,25 @@ h2 { font-size: 20px; margin: 30px 0 4px; }
 <script>
 const $ = (s) => document.querySelector(s);
 const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
-const MODES = { ANSWER: "Answered from data", COMPARE: "Compared from data", ANSWER_CORPUS_PATTERN: "From recipe patterns",
-  ASK: "Needs more detail", ABSTAIN_NOT_BUILT: "Not supported yet", ABSTAIN_UNSUPPORTED: "Not supported",
-  ABSTAIN_NO_EDGES: "No data", ABSTAIN_ERROR: "Not answered" };
+const MODES = { ANSWER: "Answered", COMPARE: "Compared", ANSWER_CORPUS_PATTERN: "From recipe patterns, not data",
+  ASK: "Needs more detail", ABSTAIN: "Not answered", ABSTAIN_SAFETY: "Food safety: use official guidance",
+  ABSTAIN_NOT_BUILT: "Not supported yet", ABSTAIN_UNSUPPORTED: "Not supported", ABSTAIN_NO_EDGES: "No data",
+  ABSTAIN_ERROR: "Not answered", RECOMMEND: "Options, not ranked", DIAGNOSE: "Possible causes", RECOVER: "Recovery notes" };
 const BRANCH = { TRANSFORMATION: "cooking effect", RELATIONSHIP: "substitution", METADATA: "food facts",
   SEMANTIC: "recipe search", MULTIMODAL: "photo or sound", UNKNOWN: "unclear", MALFORMED: "empty" };
-const REASON = { EVIDENCE_PREEMPTS: "measured data for this food and process", NO_LINKED_INGREDIENT: "no food named in this step",
+const REASON = { TARGET_ABSENT: "this food has none of this nutrient, so nothing to retain",
+  MERGED_LOT_CONTEXT: "measured for the food cooked on its own; here it is mixed with other foods",
+  TARGET_PRESENCE_UNKNOWN: "cannot tell whether this food contains the nutrient",
+  EVIDENCE_PREEMPTS: "measured data for this food on its own and this process", NO_LINKED_INGREDIENT: "no food named in this step",
   EVENT_UNRESOLVED: "action not recognised", NO_CANDIDATE_MECHANISM: "no reviewed mechanism yet" };
+const CHIP = { DIRECT: "Measured data", NOT_APPLICABLE: "Not applicable" };
 const TMIN = 0, TMAX = 200, pct = (t) => Math.max(0, Math.min(100, (t - TMIN) / (TMAX - TMIN) * 100));
 
 function stepRow(s, phys) {
   const row = el("div", "step");
   row.append(el("div", "act", s.action));
   const right = el("div");
-  const chip = el("span", "chip " + s.route, s.route === "DIRECT" ? "Measured data" : "No measured data");
+  const chip = el("span", "chip " + s.route, CHIP[s.route] || "No measured data");
   right.append(chip);
   const why = s.reasons.map((r) => REASON[r]).filter(Boolean);
   if (why.length) right.append(el("span", "why", "  " + why[0]));
@@ -146,19 +160,33 @@ function fmtT(v) { return Array.isArray(v) ? `${Math.round(+frac(v[0]))}–${Mat
 function fmtRange(v) { return Array.isArray(v) ? `${+frac(v[0])}–${+frac(v[1])}` : `${+frac(v)}`; }
 function frac(s) { s = String(s); if (s.includes("/")) { const [a, b] = s.split("/"); return a / b; } return s; }
 
+function badgeFor(d) {
+  const ev = d.detail && d.detail.evidence;
+  if ((d.mode === "ANSWER" || d.mode === "COMPARE") && ev) {
+    return { text: ev.badge, cls: ev.from_data ? "b-data" : "b-near", note: ev.detail };   // green only when measured for this food
+  }
+  if (d.mode === "ANSWER_CORPUS_PATTERN") return { text: MODES[d.mode], cls: "b-pattern", note: null };
+  if (d.mode === "ABSTAIN_SAFETY") return { text: MODES[d.mode], cls: "b-safety", note: null };
+  if (d.mode === "ASK") return { text: MODES[d.mode], cls: "b-ASK", note: null };
+  const tp = d.detail && d.detail.target_presence;
+  if (tp && tp.state === "ABSENT") return { text: "No such nutrient in this food", cls: "b-other", note: null };
+  return { text: MODES[d.mode] || "Not answered", cls: "b-other", note: null };
+}
 function render(d) {
   const out = $("#out"); out.replaceChildren();
   const top = el("div");
-  const known = ["ANSWER", "COMPARE", "ANSWER_CORPUS_PATTERN"].includes(d.mode) ? "b-" + d.mode : d.mode === "ASK" ? "b-ASK" : "b-other";
-  top.append(el("span", "badge " + known, MODES[d.mode] || d.mode), el("span", "route", "Read as a " + (BRANCH[d.route && d.route.branch] || "question") + " question"));
+  const b = badgeFor(d);
+  top.append(el("span", "badge " + b.cls, b.text), el("span", "route", "Read as a " + (BRANCH[d.route && d.route.branch] || "question") + " question"));
   out.append(top, el("p", "answer", d.answer || ""));
+  if (b.note) out.append(el("p", "note", b.note));
   if (d.cited && d.cited.length) out.append(el("p", "cites", "Evidence rows: " + d.cited.join(", ")));
   const rec = d.detail && d.detail.recipe;
   if (rec && rec.steps && rec.steps.length) {
-    out.append(el("h2", null, "What happens at each step"), el("p", "sub", "Measured data means a table row exists for this exact food and process. The coloured band is the estimated temperature at the centre of a piece by the end of the step, from gentle to intense typical settings."));
+    out.append(el("h2", null, "What happens at each step"), el("p", "sub", "Measured data means a table row exists for this food cooked on its own, under this process, and the food contains the nutrient. When foods are mixed, or the food has none of the nutrient, the step says so instead. The coloured band is the estimated temperature at the centre of a piece by the end of the step, from gentle to intense typical settings."));
     const phys = Object.fromEntries(((rec.physics && rec.physics.steps) || []).map((p) => [p.event_id, p]));
-    const seen = new Set();
-    for (const s of rec.steps) { if (seen.has(s.event_id)) continue; seen.add(s.event_id); out.append(stepRow(s, phys[s.event_id])); }
+    const RANK = { DIRECT: 3, UNKNOWN: 2, NOT_APPLICABLE: 1 }, byEvent = new Map();   // one row per step: show its strongest item
+    for (const s of rec.steps) { const cur = byEvent.get(s.event_id); if (!cur || (RANK[s.route] || 0) > (RANK[cur.route] || 0)) byEvent.set(s.event_id, s); }
+    for (const s of byEvent.values()) out.append(stepRow(s, phys[s.event_id]));
   }
 }
 $("#f").addEventListener("submit", async (e) => {

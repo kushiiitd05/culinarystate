@@ -3,6 +3,11 @@
 TRANSFORMATION handler = the DEL-5 pipeline (slots -> evidence packets -> feasibility -> decision) with the promoted
 C16 template verbaliser (B5T: no LLM), plus, when recipe text is supplied, the Step 23a router demo per recipe event
 for the question's target state variable. Other §39 branches have no handler yet and abstain (front_door).
+
+S176 (L-ROUTER): the recipe branch runs with the evidence gates (target presence + lot context); an answer carries an
+honest evidence label (``evidence_label``) instead of a blanket "from data"; a question about a food that has none of
+the asked nutrient is answered with an explicit TARGET_ABSENT abstention; food-safety questions never get here
+(front_door abstains and refers to official guidance).
 """
 from __future__ import annotations
 
@@ -12,6 +17,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from culinarystate.decision import evidence_label as EL
 from culinarystate.decision import front_door as FD
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -43,9 +49,21 @@ def cited_ids(text: str) -> list[str]:
 def recipe_summary(out: Mapping[str, Any]) -> dict:
     steps = [{"event_id": i["event_id"], "action": i["action"], "process_id": i["process_id"],
               "ingredient_id": i["ingredient_id"], "route": i["route"], "reasons": list(i["reasons"]),
-              "evidence": [e["evd_id"] for e in i["evidence"]]} for i in out["items"]]
+              "evidence": [e["evd_id"] for e in i["evidence"]],
+              "evidence_not_applied": [e["evd_id"] for e in i.get("evidence_not_applied", [])],
+              "gates": i.get("gates")} for i in out["items"]]
     return {"target_svar": out["target_svar"], "routes": dict(sorted(Counter(s["route"] for s in steps).items())),
-            "steps": steps}
+            "steps": steps, "gates": {k: v for k, v in (out.get("gates") or {}).items()
+                                      if k in ("enabled", "version", "status", "presence_gate", "context_gate")}}
+
+
+def target_absent(gates: Any, svar: str | None, ingredient_id: str | None) -> bool:
+    """True when the asked food, taken alone, has none of the asked nutrient by the presence screen (S176).
+
+    The screen reads measured SR Legacy composition and is never turned into a number for the user."""
+    if gates is None or not getattr(gates, "presence_on", False) or not svar or not ingredient_id:
+        return False
+    return gates.screen.lot_state(svar, [ingredient_id]) == "ABSENT"
 
 
 def relationship_answer(ingredient_name: str | None, candidates: Sequence[Any]) -> dict:
@@ -110,6 +128,7 @@ class DemoContext:
         from culinarystate.decision.pipeline import load_lexicon
         from culinarystate.extraction.rung_a import RungA
         from culinarystate.ledgers.store import LedgerStore
+        from culinarystate.mechanism import evidence_gates as EG
         from culinarystate.mechanism import process_signatures as PS
         from culinarystate.mechanism import router_demo as RD
         from culinarystate.quantity import rc2_dryrun as D
@@ -125,7 +144,8 @@ class DemoContext:
         return cls(lex=lex, family=family, retriever=EvidenceRetriever(evd, cond, family), sup=SupportIndex(evd),
                    req=load_requirements(st), ts=TroubleshootIndex.from_registry(ROOT), registry=registry,
                    index=RD.EvidenceIndex.from_rows(evd), rung=RungA(), schema=D.load_schema(),
-                   hierarchy=PS.read_process_hierarchy(), binder=CB.Binder.load(), layer=SL.ScenarioLayer.load())
+                   hierarchy=PS.read_process_hierarchy(), binder=CB.Binder.load(), layer=SL.ScenarioLayer.load(),
+                   gates=EG.EvidenceGates.load())
 
     def _transform(self, q: str, recipe_text: str | None = None) -> dict:
         from culinarystate.decision.pipeline import answer
@@ -133,19 +153,26 @@ class DemoContext:
         from culinarystate.mechanism import router_demo as RD
         r = answer(q, self.lex, self.retriever, self.req, self.family, support_index=self.sup, troubleshoot=self.ts)
         d, s = r["decision"], r["slots"]
+        gates = getattr(self, "gates", None)
+        svar = svar_for(s.target, self.registry)
+        presence = None
+        if d["mode"] in ("ANSWER", "COMPARE") and target_absent(gates, svar, s.ingredient_id):
+            # S176: "egg x bake vitamin C" has rows (USDA retention groups) but no vitamin C to retain: say so, no figure
+            d = {**d, "mode": "ABSTAIN", "reason": "TARGET_ABSENT", "route": "TARGET_ABSENT"}
+            presence = {"state": "ABSENT", "svar": svar, "gate_version": gates.describe().get("version")}
         text = verbalize(q, d, r["packets"])
         recipe = None
         if recipe_text and recipe_text.strip():
-            svar = svar_for(s.target, self.registry)
             recipe = recipe_summary(RD.route_text(recipe_text, index=self.index, target_svar=svar, rung=self.rung,
-                                                  hierarchy=self.hierarchy, schema=self.schema)) if svar else \
-                {"target_svar": None, "reason": "NO_TARGET_STATE_VARIABLE", "routes": {}, "steps": []}
+                                                  hierarchy=self.hierarchy, schema=self.schema, gates=gates)) \
+                if svar else {"target_svar": None, "reason": "NO_TARGET_STATE_VARIABLE", "routes": {}, "steps": []}
             recipe["physics"] = physics_summary(recipe_text, self.binder, self.layer)
         return {"mode": d["mode"], "answer": text, "cited": cited_ids(text), "reason": d.get("reason"),
                 "precision": d.get("precision"), "intent": d.get("intent"),
                 "slots": {"ingredient": s.ingredient_id, "ingredient_name": s.ingredient_name,
                           "processes": [n for n, _ in s.processes], "target": s.target},
-                "options": {k: p.evidence_class for k, p in r["packets"].items()}, "recipe": recipe}
+                "options": {k: p.evidence_class for k, p in r["packets"].items()},
+                "evidence": EL.label(d, r["packets"]), "target_presence": presence, "recipe": recipe}
 
     def _relationship(self, q: str) -> dict:
         from culinarystate.decision.candidates import substitution_candidates

@@ -8,6 +8,10 @@ exports/ or annotation/gold/. Not a gold score, not a human gate, never citable.
 
     python tools/router_demo_census.py --seed router-demo-2026-11-08 --out reports/step23/<new>.json
     python tools/router_demo_census.py --seed 20261104 --sample-size 612782 --workers 32 --out ...  (server)
+
+S176: ``--gates on`` (default) applies the target-presence screen and the lot-context gate before G0 and also counts the
+ungated routes of the same pass; ``--gates off`` is the S171 behaviour. ``--presence-floor SVAR=VALUE`` overrides one
+floor for a sensitivity run (the report records it).
 """
 from __future__ import annotations
 
@@ -22,6 +26,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from culinarystate.lineage.guard import LedgerBaselineMismatch  # noqa: E402
+from culinarystate.mechanism import evidence_gates as EG  # noqa: E402
 from culinarystate.mechanism import router_census as RC  # noqa: E402
 from culinarystate.mechanism import router_demo as RD  # noqa: E402
 from culinarystate.quantity import rc2_dryrun as D  # noqa: E402
@@ -31,7 +36,8 @@ T17 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(T17)
 
 CODE_FILES = ("src/culinarystate/mechanism/router_demo.py", "src/culinarystate/mechanism/router_census.py",
-              "src/culinarystate/mechanism/applicability.py", "tools/router_demo_census.py")
+              "src/culinarystate/mechanism/applicability.py", "src/culinarystate/mechanism/evidence_gates.py",
+              "tools/router_demo_census.py")
 
 
 def provenance() -> dict:
@@ -59,6 +65,10 @@ def main(argv=None, record_source=None) -> int:
     ap.add_argument("--root", default=str(ROOT))
     ap.add_argument("--out", required=True, help="new counts-only JSON (refuses overwrite)")
     ap.add_argument("--families", nargs="+", choices=T17.FAMILIES, default=list(T17.FAMILIES))
+    ap.add_argument("--gates", choices=("on", "off"), default="on",
+                    help="evidence gates before G0 (target presence + lot context); off = S171 behaviour")
+    ap.add_argument("--presence-floor", action="append", default=[], metavar="SVAR=VALUE",
+                    help="override one presence floor (sensitivity run only; recorded in the report)")
     ap.add_argument("--no-baseline-check", action="store_true",
                     help="skip the protected-ledger hash check (recorded in the report; tests only)")
     a = ap.parse_args(argv)
@@ -76,10 +86,21 @@ def main(argv=None, record_source=None) -> int:
     else:
         baseline = "PENDING_AFTER_RUN"
     index = RD.EvidenceIndex.from_ledger(Path(a.evd))
+    gates = None
+    if a.gates == "on":
+        gates = EG.EvidenceGates.load()
+        for item in a.presence_floor:
+            svar, _, val = item.partition("=")
+            if svar not in gates.screen.floors or not val:
+                ap.error(f"--presence-floor expects SVAR=VALUE for a screened target, got {item!r}")
+            ck = EG.code_key(svar)
+            gates = EG.EvidenceGates(gates.screen.with_floor(svar, val), provenance={
+                **gates.provenance, "floors": {**gates.provenance["floors"], ck: {
+                    **gates.provenance["floors"][ck], "value": float(val), "status": "OVERRIDE_SENSITIVITY_RUN"}}})
     status: dict = {}
     report = RC.census_from_records(T17._stream(a.families, root, record_source or T17.corpus_records, status),
                                     seed=a.seed, size=a.sample_size, index=index, target_svar=a.target,
-                                    workers=a.workers)
+                                    workers=a.workers, gates=gates)
     if baseline == "PENDING_AFTER_RUN":
         baseline = "PASS_BEFORE_AND_AFTER" if _baseline_ok(root) else "FAILED_AFTER_RUN"
     report.update(family_status=dict(sorted(status.items())), baseline_check=baseline,
@@ -90,7 +111,8 @@ def main(argv=None, record_source=None) -> int:
     except D.DryRunError as exc:
         ap.error(str(exc))
     print(json.dumps({"output": str(out), "recipes_sampled": report["recipes_sampled"], "items": report["items"],
-                      "route": report["route"], "coverage": report["evidence_coverage"],
+                      "route": report["route"], "route_ungated": report.get("route_ungated"),
+                      "coverage": report["evidence_coverage"],
                       "exceptions": sum(report["exceptions_by_class"].values()), "baseline_check": baseline}))
     if baseline == "FAILED_AFTER_RUN":
         return 4

@@ -10,6 +10,7 @@ from __future__ import annotations
 from typing import Callable, Mapping
 
 from culinarystate.decision import query_router as QR
+from culinarystate.decision import safety as SF
 
 LABELS = ("DEMO_ONLY", "NON_CITABLE", "EVIDENCE_E3_UNVERIFIED")
 MESSAGES = {
@@ -18,6 +19,7 @@ MESSAGES = {
     "ASK": "I couldn't tell what you're asking. Please name the food, the process and what you care about "
            "(for example vitamin C, texture or colour).",
     "ERROR": "Something failed while answering, so I'm not giving an answer.",
+    "SAFETY": SF.MESSAGE,
 }
 
 
@@ -29,6 +31,8 @@ def _out(route: dict, mode: str, answer: str, **extra) -> dict:
 def respond(query: str, *, handlers: Mapping[str, Callable], recipe_text: str | None = None) -> dict:
     route = QR.route(query)
     b = route["branch"]
+    if b == "SAFETY":                       # S176: refuse and refer; no handler is consulted, no number is produced
+        return _out(route, "ABSTAIN_SAFETY", MESSAGES["SAFETY"], reason=SF.REASON, referral=list(SF.REFERRAL))
     if b == "MULTIMODAL":
         return _out(route, "ABSTAIN_UNSUPPORTED", MESSAGES["MULTIMODAL"])
     if b in ("UNKNOWN", "MALFORMED"):
