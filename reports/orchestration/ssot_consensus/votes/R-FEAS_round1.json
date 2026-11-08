@@ -1,0 +1,295 @@
+{
+ "reviewer": "R-FEAS",
+ "round": 1,
+ "non_agree": [
+  {
+   "id": "T2-C05-R5",
+   "vote": "AMEND",
+   "reason": "Ordering error: the AC1-vs-kappa ruling is listed after scoring, but the prereg is hash-bound and labels are due 13 Nov. The ruling must exist before anyone signs or labels, or the statistic is changed after the data (post-hoc).",
+   "amendment": "depends_on: none; deadline: 9 Nov (before signature); sequence: ruling -> amend prereg -> hash -> sign -> label. priority_25nov: MUST"
+  },
+  {
+   "id": "T6-C03-R5",
+   "vote": "AMEND",
+   "reason": "Adding a D2-vs-D3 contrast to 29-diag after the prereg draft is fine only if it lands BEFORE Kush signs; after signing it voids the hash and is a post-hoc analysis.",
+   "amendment": "Add field: deadline 10 Nov, must be merged into 29diag_preregistration_DRAFT.md before T6-C03-R2 signature; otherwise label the contrast EXPLORATORY and cut it"
+  },
+  {
+   "id": "T8-C12-R1",
+   "vote": "AMEND",
+   "reason": "Rewording H3/B7 to 'rule-based, uncalibrated' and the H1 circularity caveat (T8-C04-R2) must be in the prereg text before signature; as written they sit after the signature items.",
+   "amendment": "depends_on: none; deadline 10 Nov; must precede T8-C20-R1 / T9-C08-R2 / T0-C11-R1 signatures. Merge T8-C04-R2 caveat text and T9-C12-R1 power note into the same pre-signature edit pass"
+  },
+  {
+   "id": "T9-C12-R1",
+   "vote": "AMEND",
+   "reason": "Power/MDE note belongs in the prereg before signature, not after.",
+   "amendment": "deadline: 10 Nov, same single pre-signature edit pass as T8-C12-R1; priority MUST"
+  },
+  {
+   "id": "T8-C06-R2",
+   "vote": "AMEND",
+   "reason": "Embedding choice (bge vs e5) must be fixed before freeze and before signature since it is a frozen pipeline parameter.",
+   "amendment": "deadline 10 Nov; agent proposes, Parv/Kush choose in the same pass as the prereg edit"
+  },
+  {
+   "id": "T0-C04-R1",
+   "vote": "AMEND",
+   "reason": "Sourcing 28 defaults from opened handbooks (Singh and Heldman etc.) is not feasible in 3-4 human hours: books are not lawfully downloadable by agents, need library access, and 28 pages-and-ranges is more like 12-20 h. It also does not gate any MUST result.",
+   "amendment": "priority_25nov: SHOULD; scope: only the <=8 defaults used by the AA/steam/boil examples shown on slides; the rest stay SOURCE_UNVERIFIED_AGENT_RECALLED and are presented that way; human_hours: 2 total"
+  },
+  {
+   "id": "T3-C22-R1",
+   "vote": "AMEND",
+   "reason": "Lot-state build (10-16 agent h, no existing code) plus T3-C22-R6 full run (3-5 h) competes with the same agent and server capacity as the H1/H3 and AA chain; no MUST result depends on it (H1/H3 use Rung A replay, router demo works without it). Q39 should be decided now and lean defer.",
+   "amendment": "priority_25nov: SHOULD (stretch, only after D5 freeze on 16 Nov); acceptance changes to 'one-recipe worked example plus 1,000-recipe sample, not full corpus'; if Q39 = defer, report lot-state as designed-not-run"
+  },
+  {
+   "id": "T3-C22-R6",
+   "vote": "AMEND",
+   "reason": "Full-corpus lot-state run depends on R1, and on ING-to-SR matcher; cannot finish with margin before the 18 Nov results freeze.",
+   "amendment": "priority_25nov: COULD; run only a 1,000-recipe sample per sample-first rule; full run post-talk"
+  },
+  {
+   "id": "T3-C22-R7",
+   "vote": "AMEND",
+   "reason": "This decision gates the biggest agent-hour block; it should be taken first.",
+   "amendment": "deadline: 9 Nov (before any lot-state work starts); recommended answer: defer to stretch (see T3-C22-R1)"
+  },
+  {
+   "id": "T3-C04-R1",
+   "vote": "AMEND",
+   "reason": "Matcher feeds only lot-state/POR (T3-C08), which are demoted; 6-10 h agent for a MUST is not justified unless Q39=do.",
+   "amendment": "priority_25nov: SHOULD, conditional on Q39 = do; if deferred, keep only a 300-line coverage census (T3-C03-R2)"
+  },
+  {
+   "id": "T3-C08-R1",
+   "vote": "AMEND",
+   "reason": "Only consumed by lot-state; same dependency as matcher.",
+   "amendment": "priority_25nov: SHOULD, conditional on Q39"
+  },
+  {
+   "id": "T3-C08-R2",
+   "vote": "AMEND",
+   "reason": "Re-run of rc2 grounding depends on matcher and POR; no 25 Nov deliverable needs it.",
+   "amendment": "priority_25nov: SHOULD, conditional on Q39"
+  },
+  {
+   "id": "T5-C01-R1",
+   "vote": "AMEND",
+   "reason": "Authoring 20-32 reviewed-quality MECH entries with evidence ids (14-24 h) is documentation research, not code; none will be human-reviewed by 25 Nov, and UNKNOWN never routes to SIMULATE so it changes no headline number.",
+   "amendment": "priority_25nov: SHOULD; scope: 8-10 entries tied to the screened mechanisms actually shown in the demo, all marked AI_DRAFTED; agent_hours 6-8"
+  },
+  {
+   "id": "T5-C01-R2",
+   "vote": "AMEND",
+   "reason": "Only needed for lot-state mechanism screen (demoted).",
+   "amendment": "priority_25nov: SHOULD, conditional on Q39"
+  },
+  {
+   "id": "T5-C02-R1",
+   "vote": "AMEND",
+   "reason": "10-18 h and DOWNLOAD of windows for ~14 mechanisms is a literature project; windows would be unverified recall.",
+   "amendment": "priority_25nov: COULD; cut to <=4 mechanisms (ascorbic oxidation, Maillard, alliinase, starch gelatinisation) as a worked illustration labelled SOURCE_UNVERIFIED"
+  },
+  {
+   "id": "T5-C02-R2",
+   "vote": "AMEND",
+   "reason": "Kleene screen (8-14 h) is deliverable only if windows exist; depends on T5-C02-R1.",
+   "amendment": "priority_25nov: SHOULD; depends_on T5-C01-R1,T5-C02-R1; implement the 3-valued logic on the <=4 mechanism set only"
+  },
+  {
+   "id": "T5-C02-R4",
+   "vote": "AMEND",
+   "reason": "Decision Q21 is cheap but moot if the screen is cut.",
+   "amendment": "priority_25nov: SHOULD"
+  },
+  {
+   "id": "T5-C05-R2",
+   "vote": "AMEND",
+   "reason": "Router re-run on full non-BBC corpus needs lot state, mechanism screen and PARAM; of these only PARAM (AA, ~16 Nov) is realistic. Waiting on all three blocks the schedule.",
+   "amendment": "priority_25nov: SHOULD; scope: re-run only with the AA PARAM present, vitamin C, once (about 25 min on vinayak per S171); do not wait for lot state or mechanism screen"
+  },
+  {
+   "id": "T5-C11-R4",
+   "vote": "AMEND",
+   "reason": "SIMULATE branch wiring 6-10 h only has inputs after AA verification (15 Nov) and fit (T5-C10-R5); it can be built earlier against a stub PARAM but the result must be flagged conditional.",
+   "amendment": "depends_on: T5-C10-R5 for the live path; build the wiring 10-14 Nov against a clearly fake fixture; go/no-go 16 Nov: if rows are not verified, ship the wiring as code-tested-only and say SIMULATE never fired"
+  },
+  {
+   "id": "T5-C11-R3",
+   "vote": "AMEND",
+   "reason": "Calibration (6-10 h agent) has 15 Nov verified rows to 18 Nov results: 3 working days incl. fit, identifiability, SIM-VAL extraction and verification (a second human round after freeze).",
+   "amendment": "Add dependency T5-C10-R5 -> freeze -> T5-C10-R6; add checkpoint dates: rows verified 15 Nov, fit frozen 16 Nov, SIM-VAL verified 18 Nov; if SIM-VAL slips, report CAL fit only, no validation claim"
+  },
+  {
+   "id": "T5-C10-R6",
+   "vote": "AMEND",
+   "reason": "SIM-VAL verification is a second human round (3-5 h each) after the freeze; stacked on D5 review (16 Nov) it overloads the same 15-18 Nov window.",
+   "amendment": "human_hours: 1.5-2 each (4 papers); deadline 18 Nov; label as descriptive; drop to SHOULD if D5 review slips"
+  },
+  {
+   "id": "T5-C10-R4",
+   "vote": "AMEND",
+   "reason": "Human hours inconsistent across topics (T5: 4-8 total; T2/T6/T9: 2-3 each; 16 rows at ~10 min = ~2.7 h each). The same verification task appears in five items.",
+   "amendment": "Canonical owner T5-C10-R4; other items (T0-C05-R2, T2-C09-R4, T6-C13-R1, T9-C14-R2) become aliases; budget 3 h each; deadline 15 Nov"
+  },
+  {
+   "id": "T5-C10-R2",
+   "vote": "AMEND",
+   "reason": "The 5 browser PDF downloads gate extraction (R3), which gates verification by 15 Nov; they are listed without a date.",
+   "amendment": "deadline: 10 Nov (Kush, about 1 h); T5-C10-R3 extraction 11-12 Nov; verification sheets handed over 12 Nov"
+  },
+  {
+   "id": "T9-C14-R1",
+   "vote": "AMEND",
+   "reason": "Same task as T5-C10-R2 and T0-C05-R1; the date is missing.",
+   "amendment": "alias of T5-C10-R2; deadline 10 Nov"
+  },
+  {
+   "id": "T5-C05-R1",
+   "vote": "AMEND",
+   "reason": "Hypothesis install is blocked by the no-installs rule for agents; needs Parv's authorisation per host and manjot cannot do it.",
+   "amendment": "where: mac (pip install in a venv, human-approved); agent_hours 0.5; acceptance: property test collects and runs on Mac; if not authorised by 12 Nov, state in report that property tests are unrun"
+  },
+  {
+   "id": "T0-C13-R2",
+   "vote": "AMEND",
+   "reason": "Report/slides is the end of the critical path and is listed as one block 10-16 h agent in 3 topics (T0-C13-R2, T9-C20-R1, T9-C21-R1) with 22-24 Nov window; humans' edit time 4-6 h each lands on 23-24 Nov, after the last results (19 Nov).",
+   "amendment": "Merge T0-C13-R2, T9-C20-R1, T9-C21-R1 into one item; start skeleton with placeholders on 13 Nov, fill tables from committed JSON as each result lands, full draft 21 Nov, human edit 22-23 Nov, rehearsal 24 Nov; agent_hours 15-22 total"
+  },
+  {
+   "id": "T7-C01-R2",
+   "vote": "AMEND",
+   "reason": "Signing the v2 Step 35 prereg (~3 h each) and running rungs competes with the critical path for the same two humans and no molecule scoring code exists; flow-verdict row J is inconsistent with 35g deferral.",
+   "amendment": "Recommended decision: declare Step 35 DESIGNED, NOT RUN for the course; do not request signatures before 25 Nov; human_hours 0 beyond the decision"
+  },
+  {
+   "id": "T7-C22-R1",
+   "vote": "AMEND",
+   "reason": "6-10 h agent for decision records on rungs that are mostly OUT_OF_SCOPE is over-budget when nothing has been run.",
+   "amendment": "priority_25nov: SHOULD; agent_hours 2-3; one page, each rung = DEFERRED with reason"
+  },
+  {
+   "id": "T2-C15-R1",
+   "vote": "AMEND",
+   "reason": "Three overlapping dataset-card MUST items (T2-C15-R1 5-10 h, T4-C20-R1 4-6 h, T9-C14-R4 3-4 h) are the same generator run on different ledgers.",
+   "amendment": "Merge into one counts-only card generator (agent 8-12 h total, manjot or Mac) with D1 and physical-layer sections; T4-C20-R1 and T9-C14-R4 become aliases"
+  },
+  {
+   "id": "T4-C02-R1",
+   "vote": "AMEND",
+   "reason": "Human hours (6-10) disagree with T2/T5/T9 (3-4 each); it duplicates T2-C05-R2.",
+   "amendment": "alias of T2-C05-R2; human_hours 3-4 each"
+  },
+  {
+   "id": "T8-C04-R1",
+   "vote": "AMEND",
+   "reason": "Independent re-derivation of S1/S2 gold (2-3 h each) is an additional load on top of the D5 100-question review 3-4 h; the humans have 8-16 Nov only.",
+   "amendment": "Merge into the D5 review pass (T8-C20-R2) as one 5-7 h sitting each, or reduce S gold re-derivation to a 20-question spot check; deadline 16 Nov"
+  },
+  {
+   "id": "T0-C11-R2",
+   "vote": "AMEND",
+   "reason": "D5 rung runs listed three times with different hours (8-12, 6-10, 3-5) and a vinayak/VPN single point of failure with no fallback; results must exist by 19 Nov.",
+   "amendment": "Canonical owner T8-C15-R1/T8-C21-R1 (3-5 h vinayak wall); T0-C11-R2 and T9-C17-R2 aliases; add pre-flight: dry-run the whole runner on the 100 drafted questions (unfrozen, labelled DRY_RUN) by 14 Nov so freeze-day is only a re-run"
+  },
+  {
+   "id": "T0-C08-R1",
+   "vote": "AMEND",
+   "reason": "Duplicate of T8-C01-R1.",
+   "amendment": "alias of T8-C01-R1; run after 16 Nov freeze, 1-2 h"
+  },
+  {
+   "id": "T9-C26-R2",
+   "vote": "AMEND",
+   "reason": "Fallback levels have no trigger dates, so they cannot be exercised.",
+   "amendment": "Add triggers: 13 Nov 07.A labels in? else report 07.A as FAILED-on-record; 15 Nov AA verified? else no SIMULATE/PARAM result; 16 Nov D5 reviewed? else L2 (benchmark frozen not run) and H1/H3 as unrun; 19 Nov results; 21 Nov code and result freeze"
+  },
+  {
+   "id": "T9-C26-R1",
+   "vote": "AMEND",
+   "reason": "The schedule must respect the humans' own calendar constraints, which Kush and Parv must state (not repo evidence); assume some days in 8-13 Nov are unavailable.",
+   "amendment": "Build the schedule with Kush availability explicit; put signatures and PDF downloads on 9-11 Nov (short tasks), labelling 07.A on 11-13 Nov; confirm with Kush"
+  },
+  {
+   "id": "T6-C03-R4",
+   "vote": "AMEND",
+   "reason": "Four diag memos (3-5 h) are fine, but 29-diag also needs sklearn which does not exist on manjot and the Mac environment is not recorded; T6-C19-R1 environment record must precede the run.",
+   "amendment": "depends_on: T6-C19-R1, T6-C03-R1, T6-C03-R2; dated 11-14 Nov"
+  },
+  {
+   "id": "T4-C25-R1",
+   "vote": "AMEND",
+   "reason": "Physical-layer slides need 2-3 h of Kush/Parv edit that stacks on the report edit window.",
+   "amendment": "human_hours 1 each; edits by 20 Nov, before the main report edit"
+  }
+ ],
+ "missing": [
+  {
+   "topic": "T9",
+   "proposal": {
+    "item_id": "T9-C26-R3",
+    "item": "Single human-time ledger: de-duplicated hours per person by task and week, with the load (per person roughly 16-20 h over 9-16 Nov: sign 2, 07.A 3-4, AA 3, D5 3-4, S gold 2-3, SIM-VAL 2, plus 4-6 report edit and rehearsal) and the owner for each alias item across topics. Eliminates 5x listing of AA verification, 6x listing of 07.A and 5x of D5 sign/review.",
+    "work_types": [
+     "ANALYSIS",
+     "WRITING"
+    ],
+    "where": "any",
+    "agent_hours": "1-2",
+    "human_hours": "0.5",
+    "priority_25nov": "MUST",
+    "acceptance": "ledger in handoff or report; each item id has exactly one owner"
+   }
+  },
+  {
+   "topic": "T9",
+   "proposal": {
+    "item_id": "T9-C26-R4",
+    "item": "Prereg edit-lock date: all pre-signature edits (07A ruling T2-C05-R5, D5 reword and power note, embedding choice, H1 circularity caveat, 29-diag D2 contrast, AA prereg) frozen and hashed by 10 Nov; signature on 10-11 Nov; no edits after.",
+    "work_types": [
+     "DECISION",
+     "WRITING"
+    ],
+    "where": "any",
+    "agent_hours": "2-3",
+    "human_hours": "0.5",
+    "priority_25nov": "MUST",
+    "acceptance": "hashes recorded; signature files created after the lock timestamp"
+   }
+  },
+  {
+   "topic": "T9",
+   "proposal": {
+    "item_id": "T9-C26-R5",
+    "item": "VPN/vinayak contingency: pre-flight dry run of the D5 runner end-to-end on drafted questions by 14 Nov, plus a defined minimal fallback (deterministic rungs B0,B1,B2,B4,B5T on manjot CPU; LLM rungs only if vinayak reachable, else report them as not run).",
+    "work_types": [
+     "CODE",
+     "CPU_COMPUTE"
+    ],
+    "where": "manjot",
+    "agent_hours": "2-3",
+    "human_hours": "0",
+    "priority_25nov": "MUST",
+    "acceptance": "dry-run log in registry/compute_runs_v1.csv"
+   }
+  },
+  {
+   "topic": "T9",
+   "proposal": {
+    "item_id": "T9-C21-R2",
+    "item": "Talk rehearsal and Q&A prep (what we cannot claim: H2, 0 PARAM except AA pilot, 07.A failure) with a timed dry run on 24 Nov, and a hard code and result freeze on 21 Nov.",
+    "work_types": [
+     "HUMAN_REVIEW",
+     "WRITING"
+    ],
+    "where": "human",
+    "agent_hours": "1-2",
+    "human_hours": "2 each",
+    "priority_25nov": "MUST",
+    "acceptance": "rehearsal done; freeze tag exists"
+   }
+  }
+ ],
+ "global": "Feasibility verdict: the plan is achievable only as a narrow slice. Realistic by 25 Nov: H1 and H3 pilot on D5 (if sign 10-11 Nov, review by 16 Nov), AA pilot descriptive fit (if rows verified 15 Nov), D4 demo, honest negative-results slides, 29-diag if Kush signs. The MUST list overstates scope: about 16 MUST items are agent-heavy side projects (lot-state build and matcher, MECH authoring and mechanism windows, Step 35, three dataset cards, three D5 run-alias items) that no headline result depends on; I demoted those. The real bottleneck is two humans: counting each alias once, each needs roughly 16-20 h between 9 and 16 Nov, and Kush's and Parv's other commitments in that week are unknown. The listing repeats the same human task (07.A labels, AA verification, D5 sign and review) across 5-6 topics with different hours, which inflates and confuses load; see missing item T9-C26-R3. Critical order: (1) Q39 and Step-35 decisions and the single pre-signature edit pass by 10 Nov (prereg is hash-bound, so every wording change including AC1 ruling, H3 reword, power note, embedding choice must precede the signature); (2) signatures and AA PDF downloads 10-11 Nov; (3) 07.A labels 13 Nov; (4) AA verification 15 Nov then fit and freeze 16 Nov, SIM-VAL 18 Nov; (5) D5 review 16 Nov, freeze, runs 17-18, results 19; (6) hard freeze 21 Nov, report and slides 21-24, rehearsal 24. 07.A cannot open 23b by 25 Nov (15b unfrozen), so it is lower value than D5 and AA; if the human week slips, cut 07.A first (report as FAILED-on-record), then SIM-VAL, never D5. Hosts: server runs are VPN dependent (vinayak GPU for LLM rungs); manjot lacks sklearn, hypothesis, lxml, torch, so installs need human authorisation and 29-diag must run on the Mac. Hour figures are estimates and agent-hour totals for report/slides (about 15-22 h) must begin before results exist."
+}

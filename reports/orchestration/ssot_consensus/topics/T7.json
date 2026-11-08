@@ -1,0 +1,1577 @@
+{
+ "topic": "T7",
+ "title": "Representations and similarity: Step 35 ladder, nine notions, 35e registry, RDKit toolkit, Level 12 fusion, Level 13 encoders, Level 13E evolution/identity, FlavorTwin boundary",
+ "ssot_ranges_checked": [
+  "L6375-L6417 (§113)",
+  "L10586-L13278 (§§174-183)",
+  "L13364-L15365 (§§186-194)",
+  "L26712-L26782 (§246)",
+  "L42915-L45655 (§§260-279)"
+ ],
+ "components": [
+  {
+   "id": "T7-C01",
+   "name": "Step 35.0 pre-registration package and G35-PRE signature gate",
+   "ssot_anchor": "§183.4 L13260-13278; §176 G0 L10717; §193.1 L15104-15118 (G13-0); plan Step 35.0",
+   "plan_steps": "35.0",
+   "status": "BLOCKED",
+   "status_evidence": [
+    "reports/step35/preregistration_35_0_v2_draft.md",
+    "reports/step35/35_0_v2_signature_sheet.md",
+    "reports/step35/35_0_v2_threshold_rows.csv (THR-35P-01..43, unsigned)",
+    "src/culinarystate/representation/prereg_guard.py + explicit_runner.py (refuse all tasks 35a-35e until SIGNED)",
+    "D-039, D-040, D-045, D-049, D-070 (signature human-only)",
+    "WORKLOG S160, S161, S167-S174 'Step 35 signature' still open",
+    "MAX_PLAN_REVIEW_PACKET s3 row 35: 'CODE (synthetic); signature pending'"
+   ],
+   "what_exists": "v1 (114 kB) + v2 pre-registration drafts, 43 proposed threshold rows, an UNSIGNED sha256 package binding 21 inputs, a runner that refuses every real run without two distinct human signers (tested), signature sheet with Route A (container, only 35a/35e could pass) and Route B (Mac, recommended, binds the three Mac-only recipe parquets). Parv answered D2-D8 (D-039) and cuisine lookup rulings (D-040) as single-reviewer, unsigned choices; AI personas drafted (ksh/prv) but cannot sign (D-071).",
+   "gap_vs_ssot": "No signature exists; no THR-35P row is in registry/preregistered_thresholds_v1.csv; no Step-35 real number of any kind exists. Kush's own D35 items (D35-1, -2, -3, -5, -6, -9, -10, -12, -13, -17..24) are not recorded as answered; sheet P-1..P-5 and S-1/S-2 open.",
+   "remaining": [
+    {
+     "item_id": "T7-C01-R1",
+     "item": "Kush and Parv each sign the v2 package (Route B on the Mac: regenerate template, confirm sha256 009c9047..., confirm not_bound_absent_here empty, fill signers/date, set status SIGNED, commit from the signer's session). Single-signer override only with written reason.",
+     "work_types": [
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "2-4 (Kush ~3 h + Parv ~3 h per sheet; partly parallel)",
+     "depends_on": [
+      "reports/step35/35_0_v2_signature_sheet.md",
+      "answers to P-1..P-5, S-1, S-2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "If never signed, every Step-35 number is refused by construction and Step 35 shows as 'code only' at the talk",
+     "acceptance": "reports/step35/preregistration_35_0_v2_package.sha256.SIGNED.json exists, two named human signers, authorise_explicit_run('35e') returns an Authorisation, runner test suite still green"
+    },
+    {
+     "item_id": "T7-C01-R2",
+     "item": "DECISION for the course: either sign and run descriptive explicit rungs (35a-lite, 35b PRESENCE arms, 35c R0/R2 descriptive, 35d descriptive, 35e registry) or formally declare Step 35 'designed, pre-registered, not run' for 25 Nov (record in DECISIONS). Kush decides; agent only proposes.",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T7-C01-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Silent ambiguity: slides claim a representation ladder that has no run behind it",
+     "acceptance": "A numbered D-0xx entry stating which of the two options holds for 25 Nov"
+    },
+    {
+     "item_id": "T7-C01-R3",
+     "item": "Kush answers the open D35 checklist items not covered by Parv: D35-1 (sign THR rows), -2 (rdkit as project dependency, pin 2026.3.6; Parv already directed go, Kush not), -3 (Open Babel ECFP forbidden/allowed), -5, -6 (licence stance for FlavorGraph-derived, bittersweet AGPL 71 % of ACTIVE taste edges, ChemTastesDB, SweetpredDB, Food.com), -9 (cuisine reviewer named), -10 (FUNCTIONAL stays HYPOTHESIS), -12 (sim_id scheme), -13, -17, -18, -19..24.",
+     "work_types": [
+      "DECISION",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "2-3",
+     "depends_on": [
+      "reports/step35/README.md section 4"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Unanswered items stay as 'agent default' and can be challenged by an examiner",
+     "acceptance": "Each D35-n has a recorded choice (or explicit 'default accepted') in DECISIONS.md"
+    },
+    {
+     "item_id": "T7-C01-R4",
+     "item": "After signature, copy THR-35P-01..43 into registry/preregistered_thresholds_v1.csv (Step 01.6) and freeze preregistration_v1.md + sha256; orchestrator-only edit.",
+     "work_types": [
+      "WRITING",
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C01-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Registry/protocol drift between v2 draft and registry",
+     "acceptance": "registry rows present, header identical, ids unique, test_step35_v2_package passes"
+    },
+    {
+     "item_id": "T7-C01-R5",
+     "item": "Verify on manjot (and vinayak) which bound inputs are present: ledgers/recipe_semantics/recipe_ingredient_mentions_v1.parquet and gold_firewall are NOT visible in this worktree (recipe_base_v1 is, via symlink). Decide Route B host accordingly (D35-7 says run 35b-d on the Mac).",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "0.5",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Runs authorised on one host but data lives on another",
+     "acceptance": "Table of input path x host x sha256 match, added to the S176 report"
+    }
+   ]
+  },
+  {
+   "id": "T7-C02",
+   "name": "Split families, leakage auditor and hash manifests (G35-0)",
+   "ssot_anchor": "§176 G0 L10717; §181 OOD splits L12293-12304; §191.3 L14774; §12.7 frozen split manifests L12940-12951; plan 35.0/35e outputs registry/splits/*",
+   "plan_steps": "35a-35e",
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/representation/recipe_rungs.py split_by_group/assert_group_disjoint",
+    "tests/unit/test_representation_recipe_rungs.py",
+    "reports/step35/35c_recipe_rungs_build_note.md",
+    "registry/ledgers recipe_identity/* (07I-R)"
+   ],
+   "what_exists": "Recipe group splitter (sha256 hash order, 60/20/20, DESCRIPTIVE_CONSERVATIVE_GROUPING, headline_eligible=False) and LeakageError checks, synthetic-tested; cuisine held-out guards in cuisine_rungs.py.",
+   "gap_vs_ssot": "No molecule split code (scaffold, connectivity-block, PubChem-881 cluster, tau_cluster derivation, planted-pair NC35-15..17), no cuisine S-cui-src/S-cui-hold split, no source-disjoint/process-OOD/ingredient-disjoint splits, no hash manifests (registry/splits/step35_split_hash_manifest_v1.json absent), no cross-split Tanimoto NN distribution report.",
+   "remaining": [
+    {
+     "item_id": "T7-C02-R1",
+     "item": "Write molecule split auditor: InChIKey full + 14-char connectivity overlap check, tau881 cluster splits with label-free tau_cluster (99th pct over 20,000 seeded pairs clipped [0.60,0.85]), degenerate-split rule (30 %), planted-pair negative controls NC35-15/16/17, cross-split NN-Tanimoto distribution.",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "8-12",
+     "human_hours": "0",
+     "depends_on": [
+      "signature not needed for code on synthetic fixtures (THR-35P-02)"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Leakage between molecule splits invalidates any leaderboard",
+     "acceptance": "pytest planted-pair controls fail-closed; auditor reports 0 InChIKey overlap on real MOL after signature"
+    },
+    {
+     "item_id": "T7-C02-R2",
+     "item": "Implement cuisine split families S-cui-src / S-cui-hold (cuisine-level) and source-stratified recipe partitions (lowest-recipe_id stratum rule THR-35P-42), plus ingredient-disjoint cold-start split (20 % of profiled ingredients, THR-35P-40).",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C14",
+      "T7-C13"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Cuisine labels near-confounded with source (85.6 % of labelled recipes are Gutenberg segments)",
+     "acceptance": "unit tests with planted source-identity leakage fail; manifests hashed"
+    },
+    {
+     "item_id": "T7-C02-R3",
+     "item": "Run splits on real data and write sha256 manifests (registry/splits/step35_split_hash_manifest_v1.json, reports/step35/output_hash_manifest_v1.json); per-item outputs only in git-ignored features/step35/.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C01-R1",
+      "T7-C02-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "BBC recipes must stay on the Mac (D-003)",
+     "acceptance": "G35-0 report: splits hashed, 0 group crossings, kNN-memorisation reported"
+    }
+   ]
+  },
+  {
+   "id": "T7-C03",
+   "name": "Molecule rung 35a: identity E0, PubChem-881 Tanimoto E1, descriptors, taste baselines and leaderboard",
+   "ssot_anchor": "§174-§176 T0-T2 L10700-10769; §178 z_m L11061-11348; §133.3 E0-E3 L8489-8510; §142.1 E0-E2; SIM-01, SIM-08(partial), SIM-14; plan 35a",
+   "plan_steps": "35a",
+   "status": "BLOCKED",
+   "status_evidence": [
+    "reports/step35/preregistration_35_0_v2_draft.md (35a protocol)",
+    "ledgers/data/MOL.jsonl (1,726 rows; fingerprints only pubchem_cactvs_881; 15 multi-component)",
+    "ledgers/data/KGE.jsonl (MOL_HAS_TASTE 1,145 edges / 603 molecules; 737 ACTIVE, 204 DEPRECATED)",
+    "registry/ssot15_similarity_registry.csv SIM-01 available, SIM-04..08 DATA-MISSING",
+    "src/culinarystate/representation/explicit_runner.py (task 35a refused)",
+    "no 35a scoring module in src/ or tools/ (grep)"
+   ],
+   "what_exists": "Data and protocol only: 1,726 molecules with InChIKey, 881-bit fingerprint, 6 PubChem descriptors; taste edges from bittersweet (AGPL-3.0), ChemTastesDB (CC BY 4.0), SweetpredDB (ASSUMED licence); pre-registered tasks, splits, metrics (macro AUROC/AUPRC, ECE, OOD gap), and promotion deltas (0.01/0.02) in the draft. No code computes anything.",
+   "gap_vs_ssot": "SSOT G0/G1/G2 and T0 label-noise/test-retest ceilings: odour labels (GS-LF, Keller, Pyrfume) absent so no odour task; ceilings not estimable; taste labels are positive-unlabelled and source-confounded (needs confirmed-negative rule D35-18 + source-DB-only baseline); no scoring code, no leaderboard, no decode-convention test for 222-hex CACTVS strings.",
+   "remaining": [
+    {
+     "item_id": "T7-C03-R1",
+     "item": "Write 35a scoring (no-rdkit arm): CACTVS-881 decode unit test (222 hex = 881 bits MSB-first + 7 pad), E0 identity, E1 Tanimoto, six PubChem descriptors, label prior, kNN-Tanimoto, logistic, RF/GBM stand-in; metrics + paired cluster-bootstrap CI; source-DB-only baseline (THR-35P-36); entry through run_explicit_baseline.",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "14-22",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C02-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "scikit-learn/LightGBM absent on manjot venv (numpy/pandas/scipy only) so GBM/RF arms run on the Mac",
+     "acceptance": "tests on synthetic fixtures pass; module refuses without SIGNED record"
+    },
+    {
+     "item_id": "T7-C03-R2",
+     "item": "Run 35a no-rdkit arm on the 603 taste-labelled molecules (descriptive until signed; headline after) and publish molecule_leaderboard_v1 with wide intervals and NEED_DATA classes listed.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "2-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C01-R1",
+      "T7-C03-R1",
+      "T7-C04-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Small (603) and selected set: intervals wide, most classes below the >=30 confirmed-negative rule",
+     "acceptance": "reports/step35/molecule_leaderboard_v1.md with per-class support, CI, G35-0 pass, hashes in manifest"
+    },
+    {
+     "item_id": "T7-C03-R3",
+     "item": "Chemistry-aware reviewer approves taste-label normalisation map (THR-35P-04) and the scored-class support rule (THR-35P-05); establishes the reason for the 204 DEPRECATED edges.",
+     "work_types": [
+      "EXPERT_REVIEW",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "4-6 (expert) + 1 (Kush to arrange)",
+     "depends_on": [
+      "named chemistry reviewer (Kush to arrange; Parv will not nominate unagreed person, D-040)"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "No reviewer agreed yet; without them the taste task stays unsigned",
+     "acceptance": "Reviewer name + signed map + counts of DEPRECATED by reason recorded"
+    },
+    {
+     "item_id": "T7-C03-R4",
+     "item": "Odour-label tasks and OpenPOM-style reproduction (SSOT L11036 mandatory comparator for any molecule-level odour claim): acquire GS-LF/Keller/Pyrfume per-dataset terms, then reproduce.",
+     "work_types": [
+      "DOWNLOAD",
+      "GPU_COMPUTE",
+      "TRAINING"
+     ],
+     "where": "vinayak",
+     "agent_hours": "20-40",
+     "human_hours": "1-2 (licence call)",
+     "depends_on": [
+      "licence decision D35-6",
+      "torch environment (none on manjot)"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Per-dataset licences UNVERIFIED; H2 implications",
+     "acceptance": "Licence rows in data_source_acquisition_manifest; reproduced AUROC within documented tolerance"
+    }
+   ]
+  },
+  {
+   "id": "T7-C04",
+   "name": "RDKit toolkit and fingerprint rungs E2/E3 (ECFP r0-r3, SIM-06 frozen baseline, FCFP, MACCS, atom-pair, Murcko, Butina, ECFP-count + LightGBM reference baseline)",
+   "ssot_anchor": "§142.1 E2/E3; §176 T2 L10747-10769 (G2 reference baseline L10766); SIM-04..09",
+   "plan_steps": "35a",
+   "status": "BLOCKED",
+   "status_evidence": [
+    "reports/step35/parv_toolkit_environment_2026-10-28.md",
+    "D-039 (RDKit 2026.3.6 pinned as optional extra step35, Parv's instruction; synthetic Morgan/Murcko checks only)",
+    "pyproject.toml extra step35",
+    "manjot venv: import rdkit -> ModuleNotFoundError; import sklearn -> ModuleNotFoundError (checked 2026-11-08)",
+    "registry/ssot15_similarity_registry.csv SIM-04..07 DATA-MISSING (derivable)"
+   ],
+   "what_exists": "RDKit present in the Mac base environment only; pinned version recorded; no code uses it.",
+   "gap_vs_ssot": "SIM-06 (Morgan r2, 2048-bit, chirality on) and all E2/E3 rungs unevaluated; LightGBM not installed anywhere project-visible (SSOT G2 reference baseline); Kush has not confirmed D35-2 (Parv instruction only); multi-component records handling (D35-21).",
+   "remaining": [
+    {
+     "item_id": "T7-C04-R1",
+     "item": "Kush confirms (or reverses) the RDKit dependency decision D35-2 and the Open Babel stance D35-3.",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Parv-only decision is a single-reviewer record",
+     "acceptance": "DECISIONS entry naming Kush"
+    },
+    {
+     "item_id": "T7-C04-R2",
+     "item": "Implement E2/E3 rung module (Morgan r0-3 bit/count 2048 and 4096 sensitivity, FCFP, MACCS, atom-pair, RDKit2D standardised, Murcko scaffold split, Butina clusters, largest-organic-fragment grouping for the 15 multi-component records) and ECFP-count + LightGBM reference baseline; Tanimoto and MinMax.",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "mac",
+     "agent_hours": "16-24",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C04-R1",
+      "T7-C03-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Open Babel ECFP must never be labelled SIM-06 (lint already enforces); LightGBM install is a dependency decision",
+     "acceptance": "synthetic fixtures + a fixed known-molecule regression test; lint passes"
+    },
+    {
+     "item_id": "T7-C04-R3",
+     "item": "Install LightGBM (and scikit-learn) in the Mac env (and optionally manjot/vinayak venv) as pinned dependency; log in compute_runs registry.",
+     "work_types": [
+      "DOWNLOAD"
+     ],
+     "where": "mac",
+     "agent_hours": "0.5",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T7-C04-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "'no installs' rule applies to this audit only; plan needs it for G2",
+     "acceptance": "import lightgbm succeeds; version pinned in pyproject extra"
+    },
+    {
+     "item_id": "T7-C04-R4",
+     "item": "Run E2/E3 rungs on the 603 taste-labelled molecules with scaffold split; report OOD gap (random minus scaffold) vs E1 baseline.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "3-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C01-R1",
+      "T7-C04-R2"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Small data: ECFP rarely beats label prior on rare classes",
+     "acceptance": "molecule_leaderboard_v1 contains ECFP rows with CI and OOD gap"
+    }
+   ]
+  },
+  {
+   "id": "T7-C05",
+   "name": "Ingredient chemical profile x_ij (tiered record), coverage record and ING<->FlavorGraph crosswalk audit (35b inputs)",
+   "ssot_anchor": "§179 / §12.4.9 L11636-11679 (three data regimes), §12.7 tables D/E L12555-12591, §12.7 coverage reports L12910-12936; plan 35b",
+   "plan_steps": "35b",
+   "status": "BLOCKED",
+   "status_evidence": [
+    "ledgers/data/IMAP.jsonl (31,972 rows / 313 ingredients: PRESENCE 31,334; PROCESS_CHANGE 419; MEASURED_CONCENTRATION 219)",
+    "reports/step35/preregistration_35_0_v2_draft.md (tier enum PRESENCE|MEASURED_CONC|THRESHOLD|OAV_DERIVED)",
+    "reports/flavorgraph_v1.md, reports/fdc_crosswalk_v0.md",
+    "D-040 (Parv owns 50-crosswalk audit, ~2 h, not done)"
+   ],
+   "what_exists": "IMAP data in regime A (98 % presence, qualitative) with ~0.7 % regime B; draft schema for x_ij tiers; no ingredient_profile_xij_v1 / coverage parquet written.",
+   "gap_vs_ssot": "No x_ij builder, no per-ingredient coverage record, no basis (fresh/dry weight) or LOD/ND fields in IMAP (SSOT table E lacks them too), 50-crosswalk audit not done, profile universe selected by FlavorGraph Recipe1M frequency (selection effect), counts disagree (313 IMAP ingredients vs 298 with PRESENCE profiles vs '313 of 2,110' in plan).",
+   "remaining": [
+    {
+     "item_id": "T7-C05-R1",
+     "item": "Write x_ij builder producing ingredient_profile_xij_v1 and ingredient_profile_coverage_v1 (git-ignored features/step35/) with tier, value-or-UNKNOWN, unit, basis, matrix, state/form, study_id, source_family, licence_scope, evidence_ids; reconcile the 313/298 counts.",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C02"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "DERIVED_ONLY licence: no release of profiles; analysis-only",
+     "acceptance": "Parquet + coverage report; counts reconcile to IMAP; UNKNOWN never coded 0"
+    },
+    {
+     "item_id": "T7-C05-R2",
+     "item": "Parv audits the 50 ING<->FlavorGraph crosswalks / profile joins (D35-7).",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1 (prepare sheet)",
+     "human_hours": "2 (Parv)",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Wrong crosswalk contaminates every ingredient similarity",
+     "acceptance": "Audit sheet with 50 verdicts and error rate recorded"
+    },
+    {
+     "item_id": "T7-C05-R3",
+     "item": "BAN-35-1 enforcement: static check that no arm, comparator or tie-breaker reads KGE ING_CO_OCCURS or any FlavorGraph/Recipe1M-derived edge/embedding (57,496 lines); recompute relevance inside the test partition.",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C05-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Circularity: using FlavorGraph co-occurrence to evaluate co-occurrence",
+     "acceptance": "unit test that fails when a banned ledger path is opened"
+    }
+   ]
+  },
+  {
+   "id": "T7-C06",
+   "name": "Ingredient set similarity E0/E1: n_ij, Jaccard, Ochiai, IDF-overlap, Curveball null, cardinality-slope and coverage diagnostics",
+   "ssot_anchor": "§142.1 E0/E1 L8852-8871; §133.3 L8489-8510; §176 T7 diagnostics L10882-10903; §181 L12313-12323; SIM-02, SIM-03; G35-COV",
+   "plan_steps": "35b",
+   "status": "BLOCKED",
+   "status_evidence": [
+    "registry/ssot15_similarity_registry.csv SIM-02/SIM-03 'metric not implemented'",
+    "src/culinarystate/representation/cuisine_rungs.py curveball(), null_draw() (reusable, synthetic-tested)",
+    "no ingredient-set module in src/culinarystate/representation"
+   ],
+   "what_exists": "IMAP presence sets exist; Curveball and null draws exist for cuisine incidence.",
+   "gap_vs_ssot": "No n_ij/Jaccard/Ochiai/IDF implementation, no null percentile, no cardinality slope rho(score,|profile|) with CI, no 10-50 % compound-dropout, shuffled-compound and odourless-only controls, no matched-coverage resampling (G35-COV).",
+   "remaining": [
+    {
+     "item_id": "T7-C06-R1",
+     "item": "Implement ingredient E0/E1 metrics, null percentile with B >= max(1000, ceil(20m/q)) (THR-35P-37), cardinality slope, dropout and shuffle controls, matched-coverage resampling.",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "12-18",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C05-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Presence-only measures reflect annotation depth (L10605); expect COVERAGE_CONFOUNDED flags",
+     "acceptance": "synthetic tests incl. planted size confound flagged; module refuses without SIGNED record"
+    },
+    {
+     "item_id": "T7-C06-R2",
+     "item": "Run 35b PRESENCE arms on IMAP (descriptive then primary endpoint PE-35b incl. cold-start PE-35b-cold) and report slope/CI per arm.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C01-R1",
+      "T7-C06-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Small 298-313 universe; wide intervals",
+     "acceptance": "reports/step35/ingredient_aggregation_v1.md with arms, CI, G35-COV verdict"
+    }
+   ]
+  },
+  {
+   "id": "T7-C07",
+   "name": "Ingredient E2/E3 aggregators: kernel-mean, best-match, top-k, descriptor-mean, balanced OT (ablation), concentration/OAV pooling ladder",
+   "ssot_anchor": "§12.4.12 ladder L11734-11753; §142.1 E2-ingredient L8852-8871 (OT 'Unverified' L8868); §176 T7 L10882-10903; SIM-10",
+   "plan_steps": "35b",
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "registry/ssot15_similarity_registry.csv SIM-10 MISSING",
+    "preregistration v2 35b arms (OT optional ablation)"
+   ],
+   "what_exists": "Specification only.",
+   "gap_vs_ssot": "Needs ECFP/Tanimoto (C04). OAV/concentration-weighted pooling needs thresholds (0 rows). Deep Sets / attention / Set Transformer / interaction-graph rungs belong to C20 (deferred).",
+   "remaining": [
+    {
+     "item_id": "T7-C07-R1",
+     "item": "Implement kernel-mean, symmetrised best-match, top-k mean on 881-bit Tanimoto (no-rdkit variant now, ECFP variant after C04) and descriptor-mean embedding cosine; OT only as one ablation arm.",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "mac",
+     "agent_hours": "8-14",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C06-R1",
+      "T7-C04-R2"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Aggregation choice changes answers more than the kernel (SSOT L8306-8330); OT has no food-specific evidence",
+     "acceptance": "arms run behind guard; ablation table kernel x aggregator; no arm labelled SIM-06 unless RDKit Morgan r2"
+    }
+   ]
+  },
+  {
+   "id": "T7-C08",
+   "name": "Sensory and OAV-weighted similarity (separate space): odour/taste descriptors, thresholds, OAV, concentration-resolved labels",
+   "ssot_anchor": "§12.4.2-12.4.9 L11451-11463 (OAV_ij = C_ij/T_j); §176 T7 H7.1/G7; §145; SIM-15; notion SENSORY",
+   "plan_steps": "35b/35e",
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "ledgers/data/IMAP.jsonl MEASURED_CONCENTRATION 219 rows; OAV rows 0",
+    "ledgers/data/KGE.jsonl taste edges only",
+    "registry/ssot15_similarity_registry.csv SIM-15 PARTIAL",
+    "D35-16 (taste classes as the molecule SENSORY set; ingredient SENSORY UNSUPPORTED)"
+   ],
+   "what_exists": "Taste-class labels at molecule level only; plan marks ingredient SENSORY UNSUPPORTED/NEED_DATA.",
+   "gap_vs_ssot": "No odour descriptors, no odour or taste thresholds, no OAV (needs concentration and threshold in the same matrix); G7 requires beating OAV-average on ingredient-level sensory labels, impossible with current data.",
+   "remaining": [
+    {
+     "item_id": "T7-C08-R1",
+     "item": "Decide and document ingredient-level SENSORY as UNSUPPORTED for 25 Nov (talk wording) and keep structural != sensory as a stated boundary.",
+     "work_types": [
+      "DECISION",
+      "WRITING"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Over-claiming sensory equivalence from structure or co-occurrence",
+     "acceptance": "One slide/paragraph and a registry row status UNSUPPORTED"
+    },
+    {
+     "item_id": "T7-C08-R2",
+     "item": "Acquire an odour/taste-threshold compilation and sensory panel labels (source and licence to be selected; none verified here) to enable OAV and ingredient SENSORY.",
+     "work_types": [
+      "DOWNLOAD",
+      "HUMAN_REVIEW"
+     ],
+     "where": "manjot",
+     "agent_hours": "6-10 (after source chosen)",
+     "human_hours": "2 (licence)",
+     "depends_on": [
+      "licence decision",
+      "Step 12 crosswalks"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Licences mostly NC or unclear; H2",
+     "acceptance": "SRC rows + OAV rows > 0 with matched matrix; G7 testable"
+    }
+   ]
+  },
+  {
+   "id": "T7-C09",
+   "name": "Nutritional similarity (separate space) and ING<->FDC crosswalk dependency",
+   "ssot_anchor": "§ layer F; SIM-16; notion NUTRITIONAL; plan nine notions #6",
+   "plan_steps": "35e",
+   "status": "BLOCKED",
+   "status_evidence": [
+    "registry/ingredients/fdc_crosswalk_candidates_v0.csv",
+    "reports/fdc_crosswalk_v0.md",
+    "packet s3 Step 12: ING->FDC crosswalk 0 % resolved",
+    "registry/ssot15_similarity_registry.csv SIM-16 PARTIAL"
+   ],
+   "what_exists": "FDC SR Legacy data (7,793 foods) and crosswalk candidates exist; no resolved links.",
+   "gap_vs_ssot": "Per-100 g vector similarity (stated basis, UNKNOWN masked) cannot be computed until crosswalk resolved. Crosswalk resolution itself belongs to topic data/ingredients (note, not duplicated here).",
+   "remaining": [
+    {
+     "item_id": "T7-C09-R1",
+     "item": "Implement NUTRITIONAL similarity (cosine/Mahalanobis on stated basis, masked) once >= N crosswalks are human-verified; basis checks and food-group stratification.",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "ING->FDC crosswalk (other topic)"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Dry/fresh basis mix-ups",
+     "acceptance": "unit tests on basis mismatch; coverage reported"
+    }
+   ]
+  },
+  {
+   "id": "T7-C10",
+   "name": "Ingredient-state representation z_{i,t}, state-dependent composition similarity (SIM-11) and process-response notion 35f (SIM-12)",
+   "ssot_anchor": "§12.4.10 L11694-11726; §185.2 L15740-15766; §129 L7918; §246.8 L26775; SIM-11, SIM-12; plan 35f; notion PROCESS-RESPONSE",
+   "plan_steps": "35f",
+   "status": "BLOCKED",
+   "status_evidence": [
+    "plan Step 35f HARD deps 15, 27, 30, 33",
+    "ledgers/data/EVD.jsonl 17,978 rows (E3, unverified)",
+    "IMAP PROCESS_CHANGE 419",
+    "registry SIM-11 DATA-MISSING, SIM-12 DATA-MISSING/RESEARCH-REQUIRED (RXN 0 rows)",
+    "MAX_PLAN packet Q31"
+   ],
+   "what_exists": "Plan card and notion definition (Delta-profile similarity on evidenced analytes only, OBSERVED / MODEL_ESTIMATED / UNKNOWN tags); no code.",
+   "gap_vs_ssot": "Needs Step 15 freeze, Step 27 validated simulator, Steps 30/33 results; volatile/flavour version NEED_DATA (no volatile before/after); RXN has 0 rows so reaction-center similarity undefined.",
+   "remaining": [
+    {
+     "item_id": "T7-C10-R1",
+     "item": "DECISION on a cheaper non-circular first version (packet Q31): similarity of mechanism-screen profiles or of EVD before/after retention vectors (vit C, phenolics) on study-disjoint rows; or defer 35f entirely.",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "1",
+     "depends_on": [
+      "Step 15 freeze"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Mechanism screen from unreviewed MECH entries would be AI-only",
+     "acceptance": "D-record choosing (a) defer or (b) EVD-retention Delta-similarity"
+    },
+    {
+     "item_id": "T7-C10-R2",
+     "item": "Implement raw-vs-cooked discrimination on study-disjoint EVD with matrix-shuffled control, static vs process-response comparison on a held-out process-sensitive task (G16-FT).",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "12-20",
+     "human_hours": "0",
+     "depends_on": [
+      "Step 15",
+      "Step 27",
+      "T7-C10-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Few distinct studies; E3 unverified; risk of leakage by study",
+     "acceptance": "study-disjoint split audited; result labelled E3-unverified"
+    }
+   ]
+  },
+  {
+   "id": "T7-C11",
+   "name": "Explicit lot-state-sequence representation (rung 0 of 'the state representation') for Step 35 over the [K] lot-state layer",
+   "ssot_anchor": "MAX_PLAN packet s5.2 and s7 item 9; §187.5 ingredient state L13617; §113 explicit+latent L6375; §129 L7916-7918",
+   "plan_steps": "35 (new, not on the step card)",
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md s7 row 9 and Q29",
+    "handoff/PROJECT_FLOW_VERDICT_2026-11-08.md s2 row J",
+    "lot-state layer [K] owned by another topic, not built on full corpus"
+   ],
+   "what_exists": "Design only (explicit state vector proposed as rung 0, sequence encoders later).",
+   "gap_vs_ssot": "Depends on lot-state layer (other topic); no card in the 36-step plan; no non-circular supervised target defined beyond measured retention, held-out recipe steps, completion; physical-driver features risk models learning the scenario defaults table (packet s5).",
+   "remaining": [
+    {
+     "item_id": "T7-C11-R1",
+     "item": "Define explicit per-lot-step feature vector from lot state + Layer-1/Layer-2 drivers (masked UNKNOWN, Layer 2 tagged ASSUMED_DEFAULT), with similarity and kNN/completion baselines; no learned model.",
+     "work_types": [
+      "CODE",
+      "DECISION"
+     ],
+     "where": "vinayak",
+     "agent_hours": "10-16",
+     "human_hours": "1",
+     "depends_on": [
+      "lot-state layer (other topic)",
+      "T7-C01-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Learning our defaults table (circularity); Layer 1/2 mixing",
+     "acceptance": "feature spec + masked-vector tests; Layer-2 columns never fed to any claim about measured values"
+    }
+   ]
+  },
+  {
+   "id": "T7-C12",
+   "name": "Recipe rungs 35c: R0 Jaccard/cosine, R2 TF-IDF, R1 mean-profile, R3 mass shares, shortcut controls, masked-ingredient and completion tasks",
+   "ssot_anchor": "§187.1-187.11 L13492-13794; §188.7-188.10 L13988-14070; §191.1-191.12 L14732-14940; §192.1-192.2; SIM-20; plan 35c; G13-0",
+   "plan_steps": "35c",
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/representation/recipe_rungs.py (318 lines)",
+    "tests/unit/test_representation_recipe_rungs.py (175 lines; synthetic only)",
+    "reports/step35/35c_recipe_rungs_build_note.md (9 ambiguities listed)",
+    "ledgers/recipe_base/recipe_base_v1.parquet (612,782 recipes, visible via symlink)",
+    "reports/review/AI_REVIEW_2026-10-28.md"
+   ],
+   "what_exists": "R0 Jaccard/cosine, idf_rec, R2 TF-IDF cosine, R1 mean z_i with coverage label, R3 mass shares (masked), frequency-only control, link-coverage floor 0.80, ranking metrics (hit/recall/MRR/nDCG), frequency-stratified macro-recall, group splitter; all on toy data.",
+   "gap_vs_ssot": "Nothing run on real recipes. Missing: masked-ingredient recovery and partial-recipe completion task harness, kNN-memorisation alarm run, LightGBM/logistic over R0/R2, size-matched evaluation, leakage-inflation comparison random vs exact-group vs split-group (RQ16-13), cross-source identity retrieval (needs 07I-C), recipe_ingredient_mentions parquet not visible on manjot, link coverage by source unknown (exact-alias lookup, not NER+BGE), R3 data tiny (Q0 mass 33,373 lines), 9 ambiguities need sign-off, no cross-view/same-recipe contrastive anything (C21).",
+   "remaining": [
+    {
+     "item_id": "T7-C12-R1",
+     "item": "Resolve the 9 build-note ambiguities (idf formula, unseen df, tf form, R3 masking, bin edges, floor equality) by registry rows or explicit confirmation.",
+     "work_types": [
+      "DECISION",
+      "WRITING"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "1",
+     "depends_on": [
+      "T7-C01-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Silent choices become unreviewed definitions",
+     "acceptance": "Each ambiguity has a recorded choice"
+    },
+    {
+     "item_id": "T7-C12-R2",
+     "item": "Build 35c task harness: masked-ingredient recovery (Recall@K, MRR, nDCG), partial-recipe completion, size-matched evaluation, frequency panel (SSOT §191.7 seven arms), kNN IDF-Jaccard memorisation alarm, LightGBM/logistic over R0/R2.",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "mac",
+     "agent_hours": "16-24",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C02",
+      "T7-C04-R3 for LightGBM"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Frequency shortcuts dominate masked-ingredient tasks (SSOT §188.7)",
+     "acceptance": "synthetic tests: planted frequency shortcut detected; harness refuses unsigned"
+    },
+    {
+     "item_id": "T7-C12-R3",
+     "item": "Run R0/R2 descriptive and (after signature) primary PE-35c on real recipes incl. link-coverage floor with/without masking; 1,000-recipe sample before full run; BBC only on the Mac.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "3-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C01-R1",
+      "T7-C12-R2",
+      "recipe_ingredient_mentions parquet"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "BBC text local only; headline claims wait for 07I-S so results are 'descriptive conservative grouping'",
+     "acceptance": "reports/step35 recipe_aggregation report with CI, kNN memorisation reported, run rows in compute_runs_v1.csv"
+    },
+    {
+     "item_id": "T7-C12-R4",
+     "item": "R3 quantity-weighted mass-share arm on the quantity-bearing subset (Step 16 rc2 Q0 mass lines) once coverage is audited.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "Step 16 rc2 outputs"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Subset is small and non-random",
+     "acceptance": "coverage-stratified result; masked everywhere else"
+    }
+   ]
+  },
+  {
+   "id": "T7-C13",
+   "name": "Recipe identity/variant calibration, split_group_id (07I-C/07I-S) and novelty (E13E-05/06, SX-14-03)",
+   "ssot_anchor": "§264.1-264.10 L43395-43537; §278.5 G13E-02/G13E-07/G13E-08; E13E-05 L44868-44891; §188.9 L14044; §259.4 item 8 L42879; plan 07I-C/07I-S, 35 inputs",
+   "plan_steps": "35 inputs; 07I",
+   "status": "DRAFT",
+   "status_evidence": [
+    "ledgers/recipe_identity/* (duplicate_group_members, recipe_family_registry/members, dish_family_candidates 46,697, gold_firewall; visible via symlink)",
+    "reports/step07i/step07i_identity_run_v1.json",
+    "D-025, D-033 (agreement 0.88 Kush-stated, adjudicated single-reviewer, 07I-C proceeds)",
+    "STATUS.md L21 (original blind kappas 0.571/0.588 retained; Parv confirmation pending)",
+    "07I-S does not exist (v1 prereg finding 3)"
+   ],
+   "what_exists": "07I-R identity recovery run on the corpus: exact duplicate groups, families, candidate pairs, 400-pair calibration packet; conservative permissive grouping available as fallback; D-033 lets 07I-C proceed.",
+   "gap_vs_ssot": "No calibrated same-family probability / operating point published as 07I-C output; no recipe_split_groups_v1.parquet with calibration JSON (07I-C) or 07I-S study-source split; headline recipe/cuisine claims blocked; Parv's own 07I-C statement missing; no novelty measure (rarity vs source controls); identity-vs-novelty separation not tested.",
+   "remaining": [
+    {
+     "item_id": "T7-C13-R1",
+     "item": "Parv writes his own 07I-C confirmation; Kush/Parv label or adjudicate any remaining calibration pairs; record the agreement figure as computed inter-reviewer value separate from the 0.88 adjudicated figure.",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "2-3 (Parv) + 1 (Kush)",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Reviewer-circularity: the label authors are the system authors",
+     "acceptance": "Written confirmation in repo and DECISIONS; figure labelled correctly"
+    },
+    {
+     "item_id": "T7-C13-R2",
+     "item": "Produce 07I-C calibration (multi-view distance, isotonic/Platt probability, recall-oriented operating point) and recipe_split_groups_v1.parquet + calibration JSON; derive 07I-S study/source grouping.",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "vinayak",
+     "agent_hours": "10-16",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C13-R1",
+      "ledgers/recipe_identity"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Fixed identity % thresholds are on the SSOT DROP list (L45521)",
+     "acceptance": "split groups file + calibration JSON hashed; recall at operating point reported; zero split_group crossings audit"
+    },
+    {
+     "item_id": "T7-C13-R3",
+     "item": "Identity baseline ladder on labelled pairs: title-only, ingredient Jaccard, +quantity, +role, +process (Levenshtein/DTW/graph edit), then learned comparator; source-held-out discrimination and calibration (G13E-07).",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "12-20",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C13-R2",
+      "Steps 16-18 event outputs"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Process-sequence distance depends on extraction error",
+     "acceptance": "Table of AUC/ECE per rung; G13E-07 verdict"
+    },
+    {
+     "item_id": "T7-C13-R4",
+     "item": "Novelty measure beyond rarity (set/quantity/process/density components; expert-aligned signal after rarity and source controls, G13E-08); needs a small expert-labelled sample.",
+     "work_types": [
+      "CODE",
+      "EXPERT_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "8-12",
+     "human_hours": "3-6 (expert)",
+     "depends_on": [
+      "T7-C13-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Novelty is not identity; labels subjective",
+     "acceptance": "Component vector reported; correlation with expert labels after rarity/source control"
+    }
+   ]
+  },
+  {
+   "id": "T7-C14",
+   "name": "Cuisine rungs 35d: C0 prevalence, C1 specificity, C2 pair/triplet motifs + IDF, nulls U/F/C/FC + Curveball",
+   "ssot_anchor": "§189.1-189.14 L14072-14358; §130.6 L8113; §269.1-269.7 L43955-44028; SIM-19, SIM-21; plan 35d; G13-0, G13-4(baseline), G35-NULL",
+   "plan_steps": "35d",
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/representation/cuisine_rungs.py (242 lines)",
+    "tests/unit/test_representation_cuisine_rungs.py (12 tests; synthetic)",
+    "reports/step35/35d_cuisine_rungs_build_note.md",
+    "registry/cuisine/explicit_cuisine_labels_v1.csv"
+   ],
+   "what_exists": "C0, C1 (one pinned K-1 definition; SSOT has C-1 at L13874 and K-1 at L14129), idf_cuis, C2 NPMI motifs, leakage guards, curveball and null_draw with models U,F,C,FC; CONFLICTING/REGION dropped and counted.",
+   "gap_vs_ssot": "Nothing run on real labels. MX and Curveball-calibrated Z p-value path (THR-35P-37) not implemented; E (era/source) null not implemented; no classifier/macro-F1 (PE-35d on S-cui-src minus prevalence + source-identity baseline); no held-out-prevalence JSD; no motif AUPRC; triplet NPMI formula can exceed 1 (queued for expert review); label support: 9.81 % recipes labelled in recipe_base, Food.com tag-derived mapping only 12.9 % coverage and unsigned; headline set may be empty.",
+   "remaining": [
+    {
+     "item_id": "T7-C14-R1",
+     "item": "Implement remaining cuisine pieces: Curveball-calibrated Z / MX null path, E (era/source) null, macro-F1 classifier with minimum class support and source-identity baseline on S-cui-src, JSD held-out prevalence, motif AUPRC, bootstrap neighbour-overlap stability, matched-resampling sensitivity.",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "14-22",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C02-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Cuisine == source confound (59 % American; 85.6 % of labelled recipes Gutenberg)",
+     "acceptance": "tests with planted source-confound: headline withheld; module refuses unsigned"
+    },
+    {
+     "item_id": "T7-C14-R2",
+     "item": "Run C0-C2 descriptive on labelled recipes and pre-registered classes (>=100 recipes and >=2 source families); report class table and COVERAGE/NULL gates, even if headline set empty.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C01-R1",
+      "T7-C15-R1",
+      "T7-C14-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Negative/empty result is the likely outcome; must stay visible (law 8)",
+     "acceptance": "reports/step35 cuisine report with per-class counts, null z/q, gate verdicts; run rows logged"
+    },
+    {
+     "item_id": "T7-C14-R3",
+     "item": "Expert review of C1/C2 definitions (triplet NPMI generalisation, K-1 vs C-1, support thresholds 20/10).",
+     "work_types": [
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "2-3",
+     "depends_on": [
+      "cuisine-aware reviewer"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Single-reviewer definitions",
+     "acceptance": "Reviewer note in repo"
+    }
+   ]
+  },
+  {
+   "id": "T7-C15",
+   "name": "Cuisine ontology and Food.com tag-to-cuisine derivation (labels for 35d)",
+   "ssot_anchor": "§189.10 L14277-14290; §192.4 L15006-15018; D-036, D-037, D-040; plan 35d inputs registry/cuisine_ontology_v1_draft.csv",
+   "plan_steps": "35d",
+   "status": "DRAFT",
+   "status_evidence": [
+    "registry/cuisine/cuisine_lookup_v1_DRAFT.csv (211 terms)",
+    "registry/cuisine/foodcom_tag_cuisine_map_v1_DRAFT.csv",
+    "registry/cuisine/foodcom_tag_census_v1.csv",
+    "tools/step35_foodcom_tag_census.py",
+    "reports/step35/foodcom_cuisine_derivation_README.md (DRAFT_PENDING_SIGN)",
+    "D-040 Parv rulings (15 explicit), 12.9 % mapped coverage accepted with limitation"
+   ],
+   "what_exists": "Reviewed-by-Parv lookup with CUISINE/REGION/NEEDS_HUMAN/UNKNOWN levels; aggregate census; CONFLICTING recipes excluded from scoring.",
+   "gap_vs_ssot": "Single-reviewer; cuisine expert not named (4-6 h); registry/cuisine_ontology_v1_draft.csv (plan output) absent; Food.com labels used for local stats only (licence unverified, SRC row absent); v1 prereg text says 'none from Food.com' - superseded by D-036 (see contradictions).",
+   "remaining": [
+    {
+     "item_id": "T7-C15-R1",
+     "item": "Kush names a cuisine-aware reviewer; reviewer audits artefacts ('American|French', Jewish, Roman, New...) and approves the support rule (>=100 recipes, >=2 source families).",
+     "work_types": [
+      "EXPERT_REVIEW",
+      "HUMAN_REVIEW",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "4-6 (expert) + 0.5 (Kush)",
+     "depends_on": [
+      "D35-9"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Without it cuisine claims stay 'descriptive single-reviewer'",
+     "acceptance": "Reviewer named and signed lookup + ontology draft file committed"
+    }
+   ]
+  },
+  {
+   "id": "T7-C16",
+   "name": "35e typed similarity registry v2 (nine notions), lint, separation tests and G35-SEP",
+   "ssot_anchor": "§246.2 L26718 (fusion only task-conditioned reranker, no universal scalar); §113 L6375-6417; §183.B decisions; SIM-01..21; plan 35e, SX-14-02",
+   "plan_steps": "35e",
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/representation/similarity_registry.py (250 lines)",
+    "tests/unit/test_representation_similarity_registry.py (22)",
+    "reports/step35/35e_similarity_registry_build_note.md",
+    "registry/ssot15_similarity_registry.csv (21 v1 rows, FROZEN)",
+    "preregistration v1 Appendix B crosswalk"
+   ],
+   "what_exists": "Row schema (nine notions, six statuses), lint (notion mixing, fusion words, PROMOTED needs decision, one own target per notion, split-sharing table, Open Babel never SIM-06), column lint (one notion per sim/score column), CSV parse/serialise.",
+   "gap_vs_ssot": "No registry/similarity_registry_v2.csv (sim_id scheme D35-12, H4); Appendix B states (WAITS rdkit, DATA-MISSING, DEFERRED) not mapped to the six statuses; G35-SEP pass/fail not defined; BAN-35-1 not lint-checked; level-specific split rules not enforced; separation statistics (Spearman, kNN-overlap) not run; SIM-13 OUTSIDE_NINE/RESEARCH_ONLY; the 'SIM-' double meaning open (04.9-min).",
+   "remaining": [
+    {
+     "item_id": "T7-C16-R1",
+     "item": "Kush decides sim_id scheme and status mapping (D35-12), SIM-13 home (D35-11), and which statuses count as 'supported' for G35-SEP.",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "1",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Registry cannot be frozen without it",
+     "acceptance": "D-record; Appendix B mapped to six statuses"
+    },
+    {
+     "item_id": "T7-C16-R2",
+     "item": "Generate registry/similarity_registry_v2.csv and registry/representation_registry_v1.csv from the 21 v1 rows + notions, run lint, add BAN-35-1 and G35-SEP checks.",
+     "work_types": [
+      "CODE",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C16-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Fused 'similarity' columns slipping into later tables",
+     "acceptance": "lint clean; every row has notion, null model, eval set, split family, licence scope, status; test count rises"
+    },
+    {
+     "item_id": "T7-C16-R3",
+     "item": "Run separation tests (Spearman rank agreement and kNN-overlap@k between notions; 'structure -> taste' STRUCTURAL x SENSORY test) on whatever data exist.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "4-8",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C01-R1",
+      "T7-C03-R2",
+      "T7-C06-R2"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Small universes",
+     "acceptance": "separation report with CI; unsupported notions labelled"
+    }
+   ]
+  },
+  {
+   "id": "T7-C17",
+   "name": "PROCEDURAL similarity (recipe process-bag Jaccard -> Levenshtein -> DTW -> graph edit) and Level-13 structured/procedural recipe representation (R7-R9 explicit parts)",
+   "ssot_anchor": "§187.6-187.7 L13644-13715; §264.5 L43444; §193.4 Phase 3 L15159-15171 (G13-3); notion PROCEDURAL; SIM-20",
+   "plan_steps": "35c/35e",
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "plan nine-notion row 8 'NEED_DATA until Steps 16-20'",
+    "Steps 17/18 RUN: 14,594,812 events (WORKLOG S171-S174; packet s3)",
+    "no procedural similarity code in representation/"
+   ],
+   "what_exists": "Event sequences exist for the full corpus (Rung A rules; gold comparison pending P1b).",
+   "gap_vs_ssot": "Notion could now start (events exist) but extraction error unmeasured (no gold comparison; P1b waiting on nonce), so G13-3 'survives extraction-error analysis' cannot be assessed.",
+   "remaining": [
+    {
+     "item_id": "T7-C17-R1",
+     "item": "Implement process-bag Jaccard and normalised Levenshtein over the canonical event sequence; step-count confound control; report extraction-error sensitivity against the P1 gold when available.",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "10-16",
+     "human_hours": "0",
+     "depends_on": [
+      "P1b gold (human nonce)",
+      "Steps 17-18 outputs"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Process-sequence distance inherits Rung A error",
+     "acceptance": "tests + confound control; claim limited to 'explicit baseline'"
+    }
+   ]
+  },
+  {
+   "id": "T7-C18",
+   "name": "FUNCTIONAL / substitution fitness (SIM-17, SIM-18) and substitution benchmark SX-14-05",
+   "ssot_anchor": "§186-§194 L13364-15365 roles/substitution; §246.5 L26747 contextual substitution; E13E ref Teng et al §261.3; SIM-17/18; notion FUNCTIONAL; D35-10",
+   "plan_steps": "35e",
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "registry/ssot15_similarity_registry.csv SIM-17/18 MISSING benchmark",
+    "ING_ALTERNATIVE_TO 220 edges (co-occurrence-mined, circular as gold)",
+    "registry/ssot15_state_experiment_map.csv SX-14-05 MISSING"
+   ],
+   "what_exists": "HYPOTHESIS row only; no labels.",
+   "gap_vs_ssot": "No blind two-annotator gold (200-300 pairs); KGE ALTERNATIVE_TO cannot be gold; baselines (co-occurrence-context kNN, GISMo-style, LLM zero-shot) unbuilt; role labels absent.",
+   "remaining": [
+    {
+     "item_id": "T7-C18-R1",
+     "item": "Commission 200-300 blind two-annotator substitution pairs with recipe context (needs food-literate annotators; Kush/Parv as annotators carries reviewer-circularity risk).",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "4 (build packets)",
+     "human_hours": "8-15 (expert) or Kush/Parv time",
+     "depends_on": [
+      "D35-10 decision"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Cultural prior vs substitution validity",
+     "acceptance": "Two-annotator labels with agreement figure; benchmark frozen with hash"
+    },
+    {
+     "item_id": "T7-C18-R2",
+     "item": "Baselines (co-occurrence-context kNN, LLM zero-shot via Ollama) on the frozen set.",
+     "work_types": [
+      "CODE",
+      "GPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "8-12",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C18-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "LLM judge circularity",
+     "acceptance": "Report with CI vs frequency baseline"
+    }
+   ]
+  },
+  {
+   "id": "T7-C19",
+   "name": "Mandatory confound audits and diagnostics (frequency, size, source, coverage, circularity, calibration/abstention)",
+   "ssot_anchor": "§188.7-188.9 L13988-14054; §191.5-191.9 L14838-14893; §181 L12293-12323; G35-COV, G35-CIRC, G35-NULL",
+   "plan_steps": "35a-35e",
+   "status": "CODE",
+   "status_evidence": [
+    "pieces inside recipe_rungs.py (frequency-stratified recall, kNN alarm helper idf_jaccard, link floor) and cuisine_rungs.py (nulls, LeakageError)",
+    "preregistration v2 gates"
+   ],
+   "what_exists": "Individual helpers on synthetic data.",
+   "gap_vs_ssot": "No integrated audit report generator, no source-leakage diagnostic (can a classifier identify source from z_R?), no calibration/abstention (§191.5), no circularity check G35-CIRC runner, no cardinality-slope across arms.",
+   "remaining": [
+    {
+     "item_id": "T7-C19-R1",
+     "item": "Build one audit module producing G35-0/COV/CIRC/NULL/SEP verdict JSON per run with negative results kept visible (law 8).",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "8-12",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C02",
+      "T7-C06-R1",
+      "T7-C12-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Gate verdicts hand-written rather than computed",
+     "acceptance": "verdict JSON generated and checked by test with planted failures"
+    }
+   ]
+  },
+  {
+   "id": "T7-C20",
+   "name": "Level 12 learned rungs and fusion: z_m encoders (GNN, pretrained, contrastive), set aggregators (Deep Sets/Set Transformer), multi-view fusion, interaction graph, process-conditioned z_{i,t}, decision gates G12-DEC-1..10",
+   "ssot_anchor": "§178 L11061-11348; §179-§181 (L11348-12480); §12.5 fusion L11990-12146; §183.B L13146-13160 (G12-DEC); §176 T3-T9 L10771-10960; SIM-14; plan 35g",
+   "plan_steps": "35g",
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "plan Step 35 'learned rungs 35g DEFER by default'",
+    "D-039 D8 (learned models deferred until explicit results + signed addendum)",
+    "MAX_PLAN packet s7 'Not before 25 Nov: learned representation rungs'",
+    "registry/ssot15_state_experiment_map.csv SX-04-02..05, G12-DEC-1..10 MISSING",
+    "no torch on manjot"
+   ],
+   "what_exists": "Nothing built; entry rule LR-1..LR-5 in preregistration.",
+   "gap_vs_ssot": "All of: encoder bake-off (SX-04-05), set-aggregation comparison (SX-04-03), frequency-bias audit (SX-04-04), fusion ladder (concat/gated/late/cross-attention/MoE), missing-view mask, evidence-aware confidence vector, interaction graph, process-conditioned encoder (E8 'our contribution'), G12-DEC-1..10 answers. Data insufficient: no odour labels, tiny taste set, 0 OAV. FLOW verdict row J assigns 'H (GPU): state/recipe embeddings' which conflicts with DEFER (see contradictions).",
+   "remaining": [
+    {
+     "item_id": "T7-C20-R1",
+     "item": "Write the explicit statement 'learned rungs deferred; entry rule LR-1..LR-5' into the 35h record and talk (limitation slide).",
+     "work_types": [
+      "WRITING",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Reader may assume embeddings exist",
+     "acceptance": "Statement in decision record and slides"
+    },
+    {
+     "item_id": "T7-C20-R2",
+     "item": "Post-course: encoder bake-off on taste task (frozen pretrained + linear probe, GNN at matched capacity, label-prior), only if an explicit rung leaves a documented held-out failure.",
+     "work_types": [
+      "TRAINING",
+      "GPU_COMPUTE",
+      "DOWNLOAD"
+     ],
+     "where": "vinayak",
+     "agent_hours": "60-120",
+     "human_hours": "4-8",
+     "depends_on": [
+      "T7-C03",
+      "T7-C04",
+      "signed addendum"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Small data - pretrained encoder gain only when <~1k labels (SSOT H4.1); weights licences",
+     "acceptance": "G12-DEC-1 recorded with CI"
+    },
+    {
+     "item_id": "T7-C20-R3",
+     "item": "Post-course: set-aggregator and multi-view fusion comparison (G7, G5, G12-DEC-3..7) after OAV/threshold data exist.",
+     "work_types": [
+      "TRAINING",
+      "GPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "80-160",
+     "human_hours": "4",
+     "depends_on": [
+      "T7-C08-R2",
+      "T7-C07"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Cannot beat OAV-average without ingredient-level sensory labels",
+     "acceptance": "decision records for G5/G7"
+    }
+   ]
+  },
+  {
+   "id": "T7-C21",
+   "name": "Level 13 learned recipe/cuisine encoders: R4-R9, objectives O0-O7, C3-C8, gates G13-1..G13-4",
+   "ssot_anchor": "§187.11 L13776; §188.2-188.6; §189.13 L14334; §190.1-190.17 L14360-14732; §193.2-193.5 L15120-15191; §193.8 L15262; §196.3 L15462",
+   "plan_steps": "35g",
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "plan Step 35 35g DEFER",
+    "D-039 D8",
+    "packet s8 Q30 training licence (only Gutenberg 73,955 training_allowed=YES; Food.com CC0 uploader-declared)",
+    "SX-14-01, G13-1..4 MISSING"
+   ],
+   "what_exists": "Nothing.",
+   "gap_vs_ssot": "Training-data licence unresolved; no non-circular supervised target; G13-0 (explicit baselines + leakage audits) not met; none of Phase 1-4 runs. (Plan holds that no step 08-34 consumes Step-35 outputs: §216.10 L22967.)",
+   "remaining": [
+    {
+     "item_id": "T7-C21-R1",
+     "item": "Post-course: Phase 1 recipe-set encoder bake-off (mean vs Deep Sets vs attention at parameter-matched control) on licence-cleared recipes; frequency-debiased evaluation; G13-1.",
+     "work_types": [
+      "TRAINING",
+      "GPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "60-100",
+     "human_hours": "2-4",
+     "depends_on": [
+      "T7-C12",
+      "T7-C13-R2",
+      "Q30 licence ruling"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Frequency/size/source leakage dominates (SSOT central confound)",
+     "acceptance": "G13-1 verdict and 35h record"
+    },
+    {
+     "item_id": "T7-C21-R2",
+     "item": "Post-course: objective bake-off (same-recipe multi-view contrastive, masked ingredient, cuisine supervised) with non-circular secondary evaluation (G13-2); cuisine z_C vs fingerprint (G13-4).",
+     "work_types": [
+      "TRAINING",
+      "GPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "80-140",
+     "human_hours": "3-5",
+     "depends_on": [
+      "T7-C21-R1",
+      "T7-C14-R2"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Objective evaluated on what it optimises",
+     "acceptance": "G13-2 and G13-4 recorded"
+    }
+   ]
+  },
+  {
+   "id": "T7-C22",
+   "name": "35h decision records (Level-12 §183.4, Level-13 §193.8) and Step-36 hand-off manifest",
+   "ssot_anchor": "§183.4 L13260-13278; §193.8 L15262-15282; §194.3 L15308; plan Step 35 outputs (two decision records) and 'only legitimate route to Step 36'",
+   "plan_steps": "35h",
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "plan Step 35 'Outputs'; no reports/step35/decision_record_* file",
+    "§183.4 and §193.8 completion boxes (12 each) unchecked"
+   ],
+   "what_exists": "Nothing; status words PROMOTED / FAILED / DATA-BLOCKED defined in plan.",
+   "gap_vs_ssot": "Both records are absent; every representation currently = 'not promoted'; hand-off manifest for Step 36 (what each representation means and does not support) absent.",
+   "remaining": [
+    {
+     "item_id": "T7-C22-R1",
+     "item": "Write decision records v1 for Level-12 and Level-13 stating per rung PROMOTED / FAILED / DATA-BLOCKED with evidence paths (expect mostly DATA-BLOCKED/BASELINE); include 'what it does not support' and the 25 Nov claim boundary.",
+     "work_types": [
+      "WRITING",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "1-2 (review)",
+     "depends_on": [
+      "T7-C01-R2",
+      "whatever explicit runs exist"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Overclaiming representation capability in the talk/report",
+     "acceptance": "Two files in reports/step35 + Step-36 manifest; each rung has a status with evidence path"
+    },
+    {
+     "item_id": "T7-C22-R2",
+     "item": "Presentation material for the representation ladder: one slide for the ladder + nine notions + current status, one slide for negative/blocked results.",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "2-4",
+     "human_hours": "1",
+     "depends_on": [
+      "T7-C22-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Time at talk",
+     "acceptance": "Slides/figures drafted, human-edited"
+    }
+   ]
+  },
+  {
+   "id": "T7-C23",
+   "name": "Level-13 data-engineering contract and representation registries (recipe master, edge table, motif tables, representation registry, cuisine representation registry, missingness policy, data-quality audits)",
+   "ssot_anchor": "§192.1-192.10 L14946-15100; §12.7.2 tables L12498-12740; §113 explicit + latent L6375-6417; versioning contract L12875-12887",
+   "plan_steps": "35.0/35e",
+   "status": "DRAFT",
+   "status_evidence": [
+    "recipe_base_v1.parquet",
+    "vocab_corpus_frequency_v1.parquet",
+    "registry/recipe_source_usage_registry_v1.csv",
+    "plan outputs registry/representation_registry_v1.csv (absent), ledgers/representation/*.parquet (redirected to git-ignored features/step35 by D35-17)"
+   ],
+   "what_exists": "Recipe base and identity tables exist; plan redirects per-item outputs to features/step35/ with sha256 manifests tracked.",
+   "gap_vs_ssot": "representation_registry_v1.csv (recipe 192.7 and cuisine 192.8) absent; motif tables (192.6) absent; cuisine ontology table absent; versioning contract fields (dataset/preproc/ontology/feature/split versions + seed + commit) not enforced on Step 35 outputs; D35-17 alternative (.gitignore edit) undecided.",
+   "remaining": [
+    {
+     "item_id": "T7-C23-R1",
+     "item": "Create representation registry files and the output manifest writer (dataset/preprocessing/split versions, seed 20261104, code commit, sha256) used by every Step 35 run; log runs in registry/compute_runs_v1.csv.",
+     "work_types": [
+      "CODE",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C16-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Unreproducible numbers",
+     "acceptance": "manifest check test; each run has a registry row"
+    }
+   ]
+  },
+  {
+   "id": "T7-C24",
+   "name": "Level 13E scope, data/lineage gates and nullable historical metadata (G13E-01 DATA, G13E-02 LINEAGE), two-clock firewall, source audit",
+   "ssot_anchor": "§260.1-260.9 L42915-43062 (scope, two clocks L42996); §262.3 L43308; §270.1-270.7 L44031-44100; §275.1-275.6 L44397-44480; §278.5 G13E-01/02 L45278; §279.3-279.8 L45493-45646; plan lane 35-E 'not adopted'",
+   "plan_steps": "35-E (optional); 03/06/16 metadata",
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "plan Step 35 'Audit v2 proposals NOT adopted (a) Lane 35-E'",
+    "SSOT L45449, L45589 (L13E does not block course)",
+    "reports/gutenberg_v1.md; era proxy in reports/step07i",
+    "reports/master_plan/working_notes/research/r_l13e_identity.md",
+    "no L13E code in src/culinarystate/classical (empty)"
+   ],
+   "what_exists": "Notes and research only; Gutenberg segments (73,955) and Wikibooks carry source-level dates only; 07I-R has an era proxy map.",
+   "gap_vs_ssot": "No dated-source audit table, no source/date/licence coverage, no historical: block (22 fields §275.3) in the recipe schema, no clock-separation field names (tau vs t, belongs to Step 03/16 topics), no HISTORICAL_CULTURAL evidence class enforcement, no bias ledger; on current data G13E-01 will at best pass for a narrow web-era Food.com window (dates 1999-2019 unverified here).",
+   "remaining": [
+    {
+     "item_id": "T7-C24-R1",
+     "item": "DECISION: L13E = optional, parked (AH12) except one bounded descriptive null/rank-frequency chain; record 'not primary deliverable' and §279.8 first-paper choice.",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Scope creep",
+     "acceptance": "D-record"
+    },
+    {
+     "item_id": "T7-C24-R2",
+     "item": "Audit dated-source coverage (Gutenberg, Wikibooks, Food.com submission dates) and write G13E-01/02 table with interval-censored dates; add nullable historical block spec (spec only; schema owner Step 16 topic).",
+     "work_types": [
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C24-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Date != recipe-origin date (§270.2); edition leakage",
+     "acceptance": "audit CSV/JSON with counts only; G13E-01 verdict: descriptive-only or pass"
+    }
+   ]
+  },
+  {
+   "id": "T7-C25",
+   "name": "Level 13E descriptive core: rank-frequency (Clauset protocol), null lattice and food-pairing nulls, itemset baselines, Kinouchi copy-mutate reproduction (M0-M2), Jain-Bagler reproduction",
+   "ssot_anchor": "§266.1-266.3 L43649-43690; §268.1-268.7 L43882-43952; §269.1-269.7 L43955-44028; §261.1,261.4,261.6; E13E-01..04, E13E-09 L44776-44982; G13E-03..06; §278.7 phases E0-E2",
+   "plan_steps": "35-E",
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "cuisine_rungs.py has U/F/C/FC nulls + Curveball (shared with 35d)",
+    "no rank-frequency or copy-mutate code",
+    "SSOT L45589 L13E non-blocking"
+   ],
+   "what_exists": "Only the null lattice code shared with 35d.",
+   "gap_vs_ssot": "Rank-frequency fitting (MLE power-law/truncated/lognormal/exponential/stretched with GOF B=2000), source-balanced bootstrap, Kinouchi M1 reproduction against the 2008 reference summaries (needs source data or qualitative-curve fallback), Jain-Bagler baselines, itemset baselines, flavour-coverage control. All C0 CPU.",
+   "remaining": [
+    {
+     "item_id": "T7-C25-R1",
+     "item": "One bounded chain only (AH12): per-source rank-frequency with alternative-model comparison + M0 null lattice on Food.com web-era descriptors; label 'descriptive, not universality'.",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "16-26",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C24-R2",
+      "T7-C14-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "'Zipf from a straight line' is on the SSOT DROP list; source != independent historical sources",
+     "acceptance": "fit table with GOF and alternatives; no universality claim; counts only committed"
+    },
+    {
+     "item_id": "T7-C25-R2",
+     "item": "Kinouchi M1 exact copy-mutate reproduction and M2 category-constrained variant (G13E-04/05).",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "any",
+     "agent_hours": "20-30",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C25-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Exact source data may be unavailable (qualitative-curve fallback)",
+     "acceptance": "Reference summaries reproduced within documented tolerance or non-reproduction documented"
+    }
+   ]
+  },
+  {
+   "id": "T7-C26",
+   "name": "Level 13E extended models: fitness/context fitness F_{i|c,t}, pairing-aware mutation, soft attenuation, contact/diffusion, replicator-mutator, simulation-based inference, simulator pretraining, neural generator, event studies, quantity audit (G13E-09..13)",
+   "ssot_anchor": "§265.1-265.7 L43540-43648; §266.4-266.8; §267.1-267.8 L43756-43880; §271.1-271.6 L44118-44187; §272.1-272.6 L44189-44238; §273.1-273.8 L44239-44338; §274.1-274.5 L44341-44395; E13E-07,08,10..16; RQ13E-01..22 L44488-44756",
+   "plan_steps": "35-E",
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "SSOT §279.3 'POSTPONE UNTIL DATA GATES PASS' L45509-45517",
+    "plan AH12 'Everything else PARKED_POST_COURSE'",
+    "no dated corpus"
+   ],
+   "what_exists": "Nothing.",
+   "gap_vs_ssot": "All unstarted; the RQ13E-01 kill switch decides whether the track is kept; G13E-09 'quantity audit' maps to no E13E experiment (SSOT gap).",
+   "remaining": [
+    {
+     "item_id": "T7-C26-R1",
+     "item": "Park: record in the roadmap as post-course; no work before 25 Nov. Reopen only if a dated, source-diverse corpus is acquired.",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0",
+     "depends_on": [
+      "T7-C24-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Reviewer may ask why the headline SSOT track is absent",
+     "acceptance": "One sentence in limitations"
+    },
+    {
+     "item_id": "T7-C26-R2",
+     "item": "Post-course: acquire dated historical corpora (RELISH, Open Recipe Archive, historical cookbooks; licences unverified here) and run E3-E6.",
+     "work_types": [
+      "DOWNLOAD",
+      "CPU_COMPUTE",
+      "TRAINING"
+     ],
+     "where": "vinayak",
+     "agent_hours": "80-200",
+     "human_hours": "6-12",
+     "depends_on": [
+      "G13E-01 pass",
+      "licence audit"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Licence and date quality; synthetic history must never become evidence (§274.4)",
+     "acceptance": "G13E-01 passes; gates G13E-02..13 evaluated"
+    }
+   ]
+  },
+  {
+   "id": "T7-C27",
+   "name": "FlavorTwin boundary, cultural prior and historical RAG hooks (E13E-17/18) - V2 scope",
+   "ssot_anchor": "§246.1-246.9 L26714-26782; §279.6 L45591-45614; §19 L1710-1754; §96 B0-B6 L5191-5246; G13E-14, G13E-15; plan Step 36 'later FlavorTwin'",
+   "plan_steps": "36 (later)",
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "packet s7 'Not before 25 Nov: ... FlavorTwin'",
+    "plan Step 35 'consumers in Step 36 stay designs (R-18)'",
+    "SSOT L45610-45613 prior may rerank only",
+    "reports/master_plan/working_notes/research/r_representation_flavortwin.md"
+   ],
+   "what_exists": "Boundary rules only: Z* factorised, no universal flavour-similarity scalar, candidate = ingredient + state + process + conditions, seven evidence classes, chemical != perceived flavour; the typed registry lint already forbids fused similarity columns.",
+   "gap_vs_ssot": "No FlavorTwin implementation, no candidate-identity object, no P_culture prior, no historical RAG; any exposure of a similarity in Step 36 requires a 35h decision record (G35-SEP).",
+   "remaining": [
+    {
+     "item_id": "T7-C27-R1",
+     "item": "State the FlavorTwin boundary in one slide and in the 35h hand-off manifest (what is NOT claimed: no universal flavour scalar, no sensory equivalence from structure or co-occurrence).",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T7-C22-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Examiners expect 'FlavorTwin' from the SSOT title",
+     "acceptance": "Slide + manifest paragraph"
+    },
+    {
+     "item_id": "T7-C27-R2",
+     "item": "Post-course: FlavorTwin static -> process-conditioned prototype and separable cultural reranker (E13E-17).",
+     "work_types": [
+      "CODE",
+      "TRAINING",
+      "GPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "80-160",
+     "human_hours": "4-8",
+     "depends_on": [
+      "T7-C03",
+      "T7-C10",
+      "T7-C14",
+      "G13E-14"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Novelty reduced by recent related work (SSOT L4276-4280)",
+     "acceptance": "Ranking gain without evidence-quality loss (G13E-14)"
+    }
+   ]
+  }
+ ],
+ "ssot_requirements_without_plan_coverage": [
+  "§176 T0 test-retest ceilings and GS-vs-LF label-noise (E0.1-E0.3 L10702-10720): needs odour datasets that are absent; no plan step assigned.",
+  "§178 learning objectives (SSL masked SMILES/atom, InfoNCE with four positive-pair semantics, multi-task) and §180 (multi-view) have only the blanket 35g DEFER, no per-experiment plan rows beyond SX-04-02..05.",
+  "§12.4.9 / table E fields for fresh/dry basis and LOD/ND/below-LOD states: IMAP has no basis or LOD field; Step 35 draft masks UNKNOWN but SSOT header L128 four-state vs L12843 tri-state missing-data conflict is unresolved in the plan.",
+  "§181 missingness-robustness sweeps (remove 10/20/30/50 % molecules/descriptors/concentrations/process labels) and OOD regimes (unseen ingredient category/cuisine/process/temperature range): only compound-dropout 10-50 % is in 35b; others unplanned.",
+  "§12.7.2 coverage reports (molecule/ingredient/recipe/evidence) and data-quality audits (alias collisions, impossible concentrations, profile-size distribution): partly in other steps; no Step-35-owned consolidated coverage report.",
+  "§191.5 calibration and abstention for representation tasks and §191.12 compute-aware model selection: no plan row.",
+  "§12.4.8 explicit molecule-interaction graph G_i^mol (reacts-with, precursor-product, ...) needs RXN ledger (0 rows): no step produces it before the learned rungs.",
+  "§265 fitness features and §264.9-264.10 historical novelty: parked with L13E.",
+  "G13E-09 (QTY gate) evidence 'quantity audit' maps to no E13E experiment (SSOT internal gap).",
+  "SIM-09 scaffold/functional-group/class similarity needs a class ontology source not selected (RESEARCH-REQUIRED); only Murcko scaffold is planned."
+ ],
+ "contradictions": [
+  "Plan card/45-pre-reg v1 says Food.com carries no cuisine labels ('none from Food.com', 9.81 % labelled) while D-036/D-040 derive Food.com cuisine from tags (12.9 % mapped coverage); the v2 package is supposed to integrate D-036/D-040 - verify v2 text uses the tag-derived figure.",
+  "Ingredient universe counts disagree: IMAP 313 ingredients (ssot_l12 notes, plan '313 of 2,110'), 298 ING with PRESENCE profiles (preregistration finding 4), '603 molecules with >=1 ACTIVE taste edge' vs 1,145 MOL_HAS_TASTE edges vs ChemTastesDB-only 204; reconcile before any coverage number is shown.",
+  "PROJECT_FLOW_VERDICT row J assigns 'H (GPU): state/recipe embeddings from B + D' for Step 35, but plan 35g (DEFER), D-039 D8 and the S175 packet ('Not before 25 Nov: learned representation rungs') defer learned embeddings.",
+  "S175 packet ranks 'Step 35 explicit rungs over lot-state sequences' (item 9) which is not a 36-step card; the card defines rungs over molecules/ingredients/recipes/cuisines only.",
+  "rdkit: STATUS.md L76 (stale) says missing; D-039 says present on Mac and pinned 2026.3.6 on Parv's instruction; manjot venv has neither rdkit nor sklearn (checked 2026-11-08). Kush has not confirmed D35-2.",
+  "Plan step card says recipe_ingredient_mentions parquet is Mac-only; recipe_base_v1 and recipe_identity are visible on manjot via symlink but recipe_semantics/ is not present in this worktree.",
+  "SSOT C-1 (L13874) vs K-1 (L14129) in cuisine specificity denominator; v1 pins K-1.",
+  "SSOT §128 L7889 'Code written: None yet' is stale; §129 L7917 says L13 'EMPIRICAL BLOCKED' while L171 says 'GATED by required Level-12 inputs' and plan lets explicit R0-R3/C0-C2 run without Level 12.",
+  "SSOT missing-data tri-state (L12843) vs header four-state (L128): ND / below-LOD / not measured / unchanged.",
+  "SIM- id double meaning (registry SIM-01..21 vs 35e working ids) still open per D35-12.",
+  "D-033 states 07I-C agreement 0.88 on adjudicated single-reviewer labels while STATUS.md keeps blind kappas 0.571/0.588; the 07I-C figure must not be quoted as inter-reviewer agreement."
+ ],
+ "notes": "Scope: T7 covers representation ladder and similarity only. Belongs elsewhere: lot-state layer [K], Layer 1/2 physics (physical-state topic); ING->FDC crosswalk and Step 12 sources (data/evidence topic); Step 16 historical: block and clock fields (schema topic); 07I-R identity pipeline itself (recipe identity topic) - T7-C13 only covers calibration and L13E use; 29-diag and Steps 30-33 (transition topic); Step 36 RAG (application topic). Verified against SSOT headings by grep (anchors checked: §174 L10588, §178 L11061, §183.4 L13260, §186 L13362, §193.8 L15262, §246 L26714, §260 L42915, §278.5 L45274, §113 L6375). SSOT body was not re-read in full; plan-requirement details come from the 22 Oct reading notes (ssot_l12/l13/l13e, r_representation_flavortwin) plus the plan card and S160-S175 repo evidence. Nothing in Step 35 has been computed on real data; every number is blocked on one human action: Kush and Parv signing the v2 package (Route B on the Mac). Host reality: rdkit/LightGBM only on Mac; manjot venv lacks sklearn, rdkit, torch; BBC recipes Mac only. For 25 Nov the realistic deliverable is: sign (3 h each), run 35a-lite, 35b PRESENCE, 35c/35d descriptive on 1,000-recipe sample then full non-BBC, registry v2 + lint, two decision records stating mostly DATA-BLOCKED/BASELINE, learned rungs and L13E explicitly parked. Estimated agent effort if signed by ~12 Nov: roughly 90-140 agent-hours across the SHOULD items, compute CPU-only and under 1 day wall-clock on Mac/vinayak."
+}

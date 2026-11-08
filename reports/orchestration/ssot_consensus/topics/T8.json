@@ -1,0 +1,1380 @@
+{
+ "topic": "T8",
+ "title": "Application layer: CulinaryState-RAG (Step 36), C1-C18, router, retrieval, abstention, decision, runtime, demo, D4/D5, H1/H3",
+ "ssot_ranges_checked": [
+  "L25082-L26711 (headings; read in full: L26377-26446, L26514-26711)",
+  "L28539-L29335 (headings, C1-C18)",
+  "\u00a739 L2499 (via repo docstrings)",
+  "\u00a7141 L8822 (contract via orch_ctx)"
+ ],
+ "components": [
+  {
+   "id": "T8-C01",
+   "name": "Query router (SSOT \u00a739) + C1 query/intent parser",
+   "ssot_anchor": "\u00a739 L2499-; \u00a7257B.1 L28543-28586; \u00a7231.2 L25196",
+   "plan_steps": [
+    "36",
+    "D4"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/query_router.py",
+    "tests/unit/test_s171_query_router.py",
+    "handoff/FINISH_PLAN_2026-11-07.md M4 (S171)",
+    "reports/del5/d5_benchmark_preregistration_DRAFT.md \u00a74 'router never tuned'"
+   ],
+   "what_exists": "Rule-based intent->branch router (METADATA/RELATIONSHIP/SEMANTIC/TRANSFORMATION/UNKNOWN); no cue -> UNKNOWN, never a guess; unit tests incl. real-ledger test.",
+   "gap_vs_ssot": "Router branch accuracy is UNMEASURED (no labelled query set exists until D5 is frozen). C1 contract metrics (intent F1, slot F1, paraphrase invariance) not computed. No multimodal/vague-query handling beyond X-block controls.",
+   "remaining": [
+    {
+     "item_id": "T8-C01-R1",
+     "item": "Score router branch accuracy on the frozen D5 80 questions (never tune on them); report confusion matrix incl. X controls",
+     "work_types": [
+      "ANALYSIS",
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Router mis-routes P/C questions to UNKNOWN; reported honestly",
+     "acceptance": "Accuracy + per-branch confusion matrix in reports/del5 with frozen-benchmark sha256; no code change after freeze"
+    },
+    {
+     "item_id": "T8-C01-R2",
+     "item": "Paraphrase/unit-invariance test set for C1 (\u00a7245.15) on routing + slots (small, 30-40 paraphrases)",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "1",
+     "depends_on": [
+      "T8-C20-R3"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "paraphrase set authored by AI",
+     "acceptance": "invariance rate reported; failures listed"
+    }
+   ]
+  },
+  {
+   "id": "T8-C02",
+   "name": "Front door + branch handlers (METADATA, RELATIONSHIP, SEMANTIC, TRANSFORMATION)",
+   "ssot_anchor": "\u00a739; \u00a7231.1 L25178; \u00a7232.4 L25274",
+   "plan_steps": [
+    "36",
+    "D4",
+    "M4"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/front_door.py",
+    "src/culinarystate/decision/demo_context.py",
+    "tests/unit/test_s171_front_door.py",
+    "tests/unit/test_s171_demo_context.py",
+    "FINISH_PLAN M4: 'METADATA/SEMANTIC abstain'"
+   ],
+   "what_exists": "Front door dispatches to injected handlers; TRANSFORMATION (DEL-5 pipeline + B5T + router demo per recipe step) and RELATIONSHIP (food graph) work on real ledgers; METADATA and SEMANTIC explicitly abstain. Context loads once (38 s).",
+   "gap_vs_ssot": "METADATA (exact food metadata -> structured EVD/composition lookup) and SEMANTIC (recipe similarity) handlers not built. Composition lookup depends on ING->USDA crosswalk (0 % resolved). FlavorTwin/FT family out of scope.",
+   "remaining": [
+    {
+     "item_id": "T8-C02-R1",
+     "item": "Build METADATA handler: exact EVD/USDA SR lookup (public-domain) returning cited values or UNKNOWN",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "ING->SR crosswalk (lot-state topic)"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Crosswalk missing -> handler mostly abstains",
+     "acceptance": "Handler returns cited EVD rows for 10 sample queries; unit tests; D-077 label retained"
+    },
+    {
+     "item_id": "T8-C02-R2",
+     "item": "SEMANTIC branch: keep explicit abstention for 25 Nov and state it in the demo/report (decision)",
+     "work_types": [
+      "DECISION",
+      "WRITING"
+     ],
+     "where": "human",
+     "agent_hours": "0.2",
+     "human_hours": "0.2",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "Overpromising SEMANTIC in talk",
+     "acceptance": "Limitations slide/report text lists abstaining branches"
+    }
+   ]
+  },
+  {
+   "id": "T8-C03",
+   "name": "C2 entity/coreference resolver + target lexicon (question slot filling)",
+   "ssot_anchor": "\u00a7257B.2 L28587-28630; \u00a7241.3 categorical match",
+   "plan_steps": [
+    "36",
+    "D4"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/targets.py",
+    "src/culinarystate/decision/pipeline.py (LineLinker)",
+    "tests/unit/test_pipeline.py",
+    "reports/del4/retrieval_silver_v1.md"
+   ],
+   "what_exists": "Closed-world ingredient lexicon (LineLinker), process verbs inflection-aware, target lexicon from EVD names; B4 state conditioning fills empty slots from session state without guessing ambiguous focus.",
+   "gap_vs_ssot": "Coreference ('it', 'the sauce') beyond the focus-entity heuristic is not measured; entity-link metrics (Acc@1, Recall@5, OOD alias) not computed on gold. Entity linking proper is another topic.",
+   "remaining": [
+    {
+     "item_id": "T8-C03-R1",
+     "item": "Measure slot extraction accuracy (ingredient/process/target) on the frozen D5 questions as a diagnostic",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Lexicon too narrow for human-edited questions",
+     "acceptance": "Per-slot accuracy table in D5 results"
+    }
+   ]
+  },
+  {
+   "id": "T8-C04",
+   "name": "State reconstruction interface for RAG (C3 state reconstructor, C4 process-history, C18 session-state)",
+   "ssot_anchor": "\u00a7233; \u00a7257B.3/.4/.18 L28631-28718, L29291-; \u00a7231.3",
+   "plan_steps": [
+    "18",
+    "36",
+    "B4"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "src/culinarystate/decision/session_state.py",
+    "src/culinarystate/decision/state_conditioning.py",
+    "tests/unit/test_s171_d5_state.py",
+    "registry/compute_runs_v1.csv (Step 17/18 census 14,594,812 events)"
+   ],
+   "what_exists": "Event-sourced replay runs on full corpus (other topic); session_state exposes process_history and focus entity to the decision layer; d5_state derives S-block gold from replay.",
+   "gap_vs_ssot": "No gold comparison of the replay (P1b blocked on nonce); S-block gold is produced by the same engine B4 uses, so B4 vs gold is circular unless humans correct gold. Engine itself belongs to the state-graph topic.",
+   "remaining": [
+    {
+     "item_id": "T8-C04-R1",
+     "item": "Human review of S1/S2 gold must independently re-derive state from recipe text (not accept engine output); record per-question edit rate",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "2-3 each (Kush, Parv)",
+     "depends_on": [
+      "T8-C20-R2"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Circularity: B4 wins because gold = its own replay",
+     "acceptance": "Edit rate reported; questions where engine==gold kept only after both humans confirm from text"
+    },
+    {
+     "item_id": "T8-C04-R2",
+     "item": "Report circularity caveat and an engine-vs-human-edited-gold agreement figure for S blocks",
+     "work_types": [
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "1",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R2"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Overclaim of H1",
+     "acceptance": "Caveat paragraph + agreement % in D5 report"
+    }
+   ]
+  },
+  {
+   "id": "T8-C05",
+   "name": "C5 goal/constraint parser + C11 feasibility filter",
+   "ssot_anchor": "\u00a7257B.5 L28719-, \u00a7257B.11 L28983-; \u00a7243.3 L26461",
+   "plan_steps": [
+    "36",
+    "D5"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/constraints.py",
+    "src/culinarystate/decision/feasibility.py",
+    "tests/unit/test_policy.py"
+   ],
+   "what_exists": "Typed constraints (tools, time budget, allergens, closed-world availability); feasibility allow/reject/unknown with machine-readable reasons run before ranking; unknown process -> UNKNOWN.",
+   "gap_vs_ssot": "Violation rate / rejection accuracy not measured (H4 not tested; out of scope before 25 Nov). Allergen propagation through lots not wired (ALLERGEN ledger exists).",
+   "remaining": [
+    {
+     "item_id": "T8-C05-R1",
+     "item": "Constraint-sensitivity robustness mini-test (oven vs pan only) as unit/property tests, no benchmark claim",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "None",
+     "acceptance": "tests pass; no H4 claim in deck"
+    },
+    {
+     "item_id": "T8-C05-R2",
+     "item": "H4 feasibility/recovery evaluation (\u00a7245.9, .11)",
+     "work_types": [
+      "CODE",
+      "ANALYSIS",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "10-20",
+     "human_hours": "4-6",
+     "depends_on": [
+      "T8-C9-R1",
+      "D5 freeze"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Out of scope by FINISH_PLAN ('Not before 25 Nov: H4')",
+     "acceptance": "H4 prereg signed + run"
+    }
+   ]
+  },
+  {
+   "id": "T8-C06",
+   "name": "C6 multi-index retriever (BM25 + structured filter + dense + graph expansion)",
+   "ssot_anchor": "\u00a7241.1-241.2 L26322-26338; \u00a7257B.6 L28763-; \u00a7244.2",
+   "plan_steps": [
+    "36",
+    "D4",
+    "P10"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "src/culinarystate/retrieval/retriever.py",
+    "retrieval/bm25.py",
+    "retrieval/food_graph.py",
+    "reports/del4/retrieval_silver_v1.md",
+    "reports/del4/retrieval_silver_v2_analysis.md",
+    "reports/del4/graph_expansion_v1.md",
+    "reports/del4/rq1603_pilot_v1.md",
+    "tests/integration/test_retrieval_regression.py"
+   ],
+   "what_exists": "Hybrid retriever 0.35*bm25+0.65*compatibility over 17,978 EVD rows; 6 dense encoders compared (e5-large-v2 best free-text, RRF +0.057 MRR@10); cross-encoder rerankers NEGATIVE (-0.056/-0.091), kept as negative result; graph expansion on food hierarchy. Evaluated on 600 TEMPLATED silver dev queries only.",
+   "gap_vs_ssot": "No retrieval evaluation on human/independent queries; no condition-compatible Recall@K on gold; no source-disjoint/cold-ingredient eval (\u00a7245.15); table/figure evidence (\u00a7241.7) absent; only EVD E3 rows (17,978) - no literature passages index, 0 verified literature rows. Dense models chosen (e5) differ from the bge embeddings named in the D5 prereg rungs B1/B2 (see contradictions).",
+   "remaining": [
+    {
+     "item_id": "T8-C06-R1",
+     "item": "Run retrieval metrics (Recall@K, MRR, condition-compatible Recall@K, source-disjoint split) on frozen D5 P/C questions as the D4 real evaluation",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "2-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Silver numbers (templated) do not transfer; may drop",
+     "acceptance": "Table with CIs on frozen P/C questions + source-disjoint diagnostic"
+    },
+    {
+     "item_id": "T8-C06-R2",
+     "item": "Resolve embedding choice for B1/B2 (bge vs e5-large-v2) before freeze and document",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.2",
+     "human_hours": "0.3",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "Prereg/analysis mismatch",
+     "acceptance": "Single model named in signed prereg"
+    },
+    {
+     "item_id": "T8-C06-R3",
+     "item": "Index literature passages/PARAM rows once verified (Step 10 rows) into retriever",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "Step 10 verification (human)"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "0 verified rows",
+     "acceptance": "Retriever returns CAL rows for AA queries"
+    }
+   ]
+  },
+  {
+   "id": "T8-C07",
+   "name": "C7 evidence compatibility vector, conflict/lineage handling, context-packet compiler",
+   "ssot_anchor": "\u00a7241.3-241.6 L26339-26371; \u00a7232.5-232.7; \u00a7257B.7 L28807-",
+   "plan_steps": [
+    "36",
+    "D4",
+    "AO2"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/retrieval/compatibility.py",
+    "src/culinarystate/retrieval/retriever.py (Evidence Packet)",
+    "src/culinarystate/decision/comparator.py",
+    "tests/unit/test_retrieval.py"
+   ],
+   "what_exists": "MATCH/NEAR/MISMATCH/UNKNOWN per axis (UNKNOWN never mismatch); packets pool by independence group (lineage-safe); hard-negative demotion x0.3.",
+   "gap_vs_ssot": "\u00a7241.4 hard-negative construction and \u00a7241.5 contradiction workflow not implemented as workflows; conflict is only implicit via group medians/range. G08-3 (lineage gate) FAILED, so independence groups are on-record-unreliable. No EVID-family metrics (conflict/lineage).",
+   "remaining": [
+    {
+     "item_id": "T8-C07-R1",
+     "item": "Decide how packets present CONFLICTING evidence (range + conflict flag) and add a small conflict test set from EVD strata",
+     "work_types": [
+      "CODE",
+      "DECISION"
+     ],
+     "where": "any",
+     "agent_hours": "3-4",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T8-C20-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Lineage gate failed; independence claims weak",
+     "acceptance": "Packet exposes CONFLICT mode with test; limitation stated"
+    },
+    {
+     "item_id": "T8-C07-R2",
+     "item": "Hard-negative evaluation of compatibility (same food/different process rows) as ablation",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C6-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "None",
+     "acceptance": "ablation row in ladder"
+    }
+   ]
+  },
+  {
+   "id": "T8-C08",
+   "name": "C8 direct transition lookup + C9 transition fallback (Level-15 model estimate)",
+   "ssot_anchor": "\u00a7242.8 L26434; \u00a7257B.8/.9 L28851-28938; Step 23/29-33",
+   "plan_steps": [
+    "23",
+    "25-27",
+    "29-33",
+    "36"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "registry: 0 PARAM rows (FINISH_PLAN 'root blocker')",
+    "reports/step23/router_demo_census_vitc_full_corpus_S171.json (DIRECT 274,058 = 0.754 %)",
+    "FINISH_PLAN M3 TODO",
+    "DECISIONS D-075"
+   ],
+   "what_exists": "C8 = router DIRECT/INTERPOLATE/UNKNOWN from EVD G0 pre-check (demo mode, NON_CITABLE) runs on full corpus. C9 fallback (calibrated model) does not exist; ladder B6 NOT_RUN.",
+   "gap_vs_ssot": "C9 needs calibrated held-out-validated transition model (Steps 26-27, 29-33): none. Cascade step 'model-supported interpolation' and 'calibrated Level-15 estimate' therefore empty; B6 rung unreachable by 25 Nov except possibly one AA SIMULATE.",
+   "remaining": [
+    {
+     "item_id": "T8-C08-R1",
+     "item": "Wire first SIMULATE (sim_aa_1 vitamin C) into the decision cascade as B6 only if SIM-VAL passes; otherwise report B6 NOT_RUN",
+     "work_types": [
+      "CODE",
+      "DECISION"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "Step 10 verification",
+      "Step 26/27 fit + SIM-VAL"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "M3 human verification slips (due 15 Nov); fit not held-out validated",
+     "acceptance": "B6 rung runs on AA questions with SIM-VAL pass recorded, or NOT_RUN stated"
+    },
+    {
+     "item_id": "T8-C08-R2",
+     "item": "Router re-run with lot state + PARAM feeding RAG answers (D-077 layer labels preserved)",
+     "work_types": [
+      "CPU_COMPUTE",
+      "CODE"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-6",
+     "human_hours": "0",
+     "depends_on": [
+      "lot-state layer (other topic)",
+      "PARAM rows"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Compute contention; late",
+     "acceptance": "Counts-only report; RAG answers cite layer basis"
+    }
+   ]
+  },
+  {
+   "id": "T8-C09",
+   "name": "C10 candidate-action generator + diagnosis/recovery (\u00a7243.6-243.7)",
+   "ssot_anchor": "\u00a7243.2, .4, .6, .7; \u00a7257B.10 L28939-; \u00a7245.11",
+   "plan_steps": [
+    "36",
+    "H4"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/candidates.py",
+    "src/culinarystate/decision/diagnosis.py",
+    "tests/unit/test_pipeline.py"
+   ],
+   "what_exists": "Process alternatives ranked by ING_PROCESSED_BY confidence; diagnosis proposer (symptom->failure key->cited causes) with verifier and separate recovery index.",
+   "gap_vs_ssot": "H4 not tested; no Action Recall@K / Hypothesis Recall@K; no gold for failures. FINISH_PLAN: out of scope pre-25 Nov.",
+   "remaining": [
+    {
+     "item_id": "T8-C09-R1",
+     "item": "Candidate Recall@K and diagnosis Recall@K benchmark (DEC/DIAG/REC families)",
+     "work_types": [
+      "ANALYSIS",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "8-16",
+     "human_hours": "4-6",
+     "depends_on": [
+      "D5 freeze",
+      "H4 prereg"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Scope",
+     "acceptance": "benchmark + results; owner-signed prereg"
+    }
+   ]
+  },
+  {
+   "id": "T8-C10",
+   "name": "C12 outcome comparator + C15 multi-objective selector",
+   "ssot_anchor": "\u00a7243.5 L26469; \u00a7257B.12, .15 L29027-, L29159-",
+   "plan_steps": [
+    "36"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/comparator.py",
+    "src/culinarystate/decision/selector.py",
+    "tests/unit/test_selector.py"
+   ],
+   "what_exists": "Comparator: per-option retention median per independence group, range min..max, separation only if evidence separates; selector: Pareto front, UNKNOWN valid.",
+   "gap_vs_ssot": "Used by the C (process comparison) block; no accuracy measurement before D5 run; no time/cost objectives sourced beyond typical process durations.",
+   "remaining": [
+    {
+     "item_id": "T8-C10-R1",
+     "item": "Score C-block comparisons vs reviewed gold; report 'cannot separate' rate",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "1",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Mostly 'cannot separate' due to sparse evidence",
+     "acceptance": "C-block table in H3 report"
+    }
+   ]
+  },
+  {
+   "id": "T8-C11",
+   "name": "C13 relevance gate (process relevance, query intent cues)",
+   "ssot_anchor": "\u00a7257B.13 L29071-; \u00a77",
+   "plan_steps": [
+    "36"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/relevance.py"
+   ],
+   "what_exists": "Rule-based gate deciding whether process-effect reasoning is needed.",
+   "gap_vs_ssot": "Learned gate needs annotated query categories (D-008); relevance precision/recall not measured.",
+   "remaining": [
+    {
+     "item_id": "T8-C11-R1",
+     "item": "Measure relevance-gate precision/recall on X controls + S/P blocks (diagnostic)",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "0.5",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "small n",
+     "acceptance": "numbers reported descriptively"
+    }
+   ]
+  },
+  {
+   "id": "T8-C12",
+   "name": "Confidence vector, evidence-sufficiency modes, output-precision cap, calibration",
+   "ssot_anchor": "\u00a7242.1-242.8 L26377-26446; \u00a7257B.14",
+   "plan_steps": [
+    "36",
+    "D4",
+    "D5"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/confidence.py",
+    "tests/unit/test_confidence.py",
+    "src/culinarystate/evaluation/abstention_spec.py (DRAFT_PENDING_34c_KUSH)"
+   ],
+   "what_exists": "Interpretable ordinal confidence vector + sufficiency mode (DIRECT/NEAR/..) + precision cap (output precision <= evidence precision). Explicitly NOT calibrated probabilities.",
+   "gap_vs_ssot": "\u00a7242.3-242.5: no calibration data (needs independently verified labels, not model-produced), no Platt/isotonic, no Brier/ECE/AUROC/risk-coverage. Only 7 of 13 vector dims are plausibly populated. H3 wording says 'calibrated abstention' but system is rule-based/ordinal; must be stated.",
+   "remaining": [
+    {
+     "item_id": "T8-C12-R1",
+     "item": "Reword H3/B7 as 'rule-based evidence-sufficiency abstention (uncalibrated)' in prereg + deck; no calibration claim",
+     "work_types": [
+      "DECISION",
+      "WRITING"
+     ],
+     "where": "human",
+     "agent_hours": "0.3",
+     "human_hours": "0.5",
+     "depends_on": [
+      "prereg signing"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Calibration claim unsupported (\u00a7242.3 forbids circular labels)",
+     "acceptance": "Signed prereg/slide text contain 'uncalibrated'"
+    },
+    {
+     "item_id": "T8-C12-R2",
+     "item": "Compute risk-coverage curve + sufficiency-mode confusion on the frozen H3 blocks (no calibration claim)",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C22-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "n<=40",
+     "acceptance": "risk-coverage plot with bootstrap bands"
+    },
+    {
+     "item_id": "T8-C12-R3",
+     "item": "Calibrated recommend/ask/abstain model (Platt/isotonic) on independently verified labels",
+     "work_types": [
+      "TRAINING",
+      "HUMAN_REVIEW",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "6-10",
+     "human_hours": "8-12",
+     "depends_on": [
+      "independent calibration set, Deep-Gold"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "No independent labels; leakage with benchmark",
+     "acceptance": "Brier/ECE on held-out; separate from D5 benchmark"
+    }
+   ]
+  },
+  {
+   "id": "T8-C13",
+   "name": "C14 uncertainty / OOD gate (evidence-support profile, cold axes)",
+   "ssot_anchor": "\u00a7257B.14 L29115-; \u00a7243.4; G16-OOD",
+   "plan_steps": [
+    "36"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/ood.py",
+    "tests/unit/test_ood.py"
+   ],
+   "what_exists": "Support = ACTIVE retention-bearing EVD rows per axis; cold axis when stated and unsupported; pair support counts.",
+   "gap_vs_ssot": "No threshold justified empirically; no OOD detection metric; uncertainty-propagation across steps not designed (packet Q9.5).",
+   "remaining": [
+    {
+     "item_id": "T8-C13-R1",
+     "item": "Evaluate OOD gate on P3 (gold=ABSTAIN) vs P1/P2: abstain recall/false-abstain rate",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "1",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "P3 built from the same EVD index (easy by construction)",
+     "acceptance": "reported with that caveat"
+    }
+   ]
+  },
+  {
+   "id": "T8-C14",
+   "name": "Decision policy (ANSWER/COMPARE/ASK/DIAGNOSE/RECOVER/RECOMMEND/ABSTAIN), VOI, stop conditions",
+   "ssot_anchor": "\u00a7243.1, .8-.11 L26449-26513; \u00a7245.9-245.10; \u00a7257B.15",
+   "plan_steps": [
+    "36",
+    "D5"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/decision/policy.py",
+    "tests/unit/test_policy.py",
+    "reports/del5/ladder_v2_qwen7b.md"
+   ],
+   "what_exists": "Rule order: relevance -> intent -> critical-slot ASK (simplified VOI) -> feasibility -> mode; B5F+E gives UCR 0.0 on 20 silver questions.",
+   "gap_vs_ssot": "VOI/ASK not value-of-information computed; NeverAsk/AskEverything/VOIAsk benchmark absent; receding-horizon and POMDP interpretation (\u00a7243.10-.11) not implemented; Q23 open.",
+   "remaining": [
+    {
+     "item_id": "T8-C14-R1",
+     "item": "Minimal ASK evaluation: ASK-when-missing-slot-flips-route vs NeverAsk vs AskEverything on the X/vague block (descriptive)",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "tiny n",
+     "acceptance": "table, labelled descriptive"
+    },
+    {
+     "item_id": "T8-C14-R2",
+     "item": "Full VOI benchmark",
+     "work_types": [
+      "CODE",
+      "ANALYSIS",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "10-15",
+     "human_hours": "4-6",
+     "depends_on": [
+      "D5"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "scope",
+     "acceptance": "VOIAsk results"
+    }
+   ]
+  },
+  {
+   "id": "T8-C15",
+   "name": "C16 grounded response generator + LLM backend (Ollama, template B5T)",
+   "ssot_anchor": "\u00a7257B.16 L29203-; \u00a7239.1; \u00a7244.1 'LLM response interface'",
+   "plan_steps": [
+    "36",
+    "D5"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "src/culinarystate/generation/{llm,prompts,verbalize}.py",
+    "reports/del5/ladder_v2_qwen7b.md",
+    "reports/del5/ladder_v2_qwen32b.md",
+    "reports/del5/generator_c16_v1.md",
+    "registry/compute_runs_v1.csv"
+   ],
+   "what_exists": "Ollama client via SSH tunnel to vinayak A100 (11435), temp 0, fixed seed; qwen2.5:7b and 32b ladder runs on 20 AI-authored silver questions; deterministic template verbaliser B5T (UCR 0). Bug found S173: template cited other-process rows without naming them (fixed at verbalize@0.2; October B5T numbers used @0.1).",
+   "gap_vs_ssot": "No run on the frozen benchmark; single model fixed (qwen2.5:7b) - no model-version sensitivity beyond 7b/32b on silver; no hosted LLM; manjot has no torch/Ollama; generation depends on vinayak availability (VPN dropped repeatedly).",
+   "remaining": [
+    {
+     "item_id": "T8-C15-R1",
+     "item": "Run B0/B1/B2/B4/B5/B7/B5T on frozen D5 benchmark with qwen2.5:7b (temp 0, seed fixed), log run in compute_runs_v1.csv",
+     "work_types": [
+      "GPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "vinayak",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3",
+      "VPN to vinayak",
+      "Ollama up"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "VPN/server outage; slot after freeze 17-19 Nov",
+     "acceptance": "JSONL of answers + sha256 + run row; all rungs same questions"
+    },
+    {
+     "item_id": "T8-C15-R2",
+     "item": "Sensitivity run with qwen2.5:32b on same questions (robustness only)",
+     "work_types": [
+      "GPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C15-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "none",
+     "acceptance": "extra table; not used for hypothesis"
+    },
+    {
+     "item_id": "T8-C15-R3",
+     "item": "Pin Ollama model digest/version and prompt hash in the run record (\u00a7244.5)",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "0.5",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "reproducibility gap",
+     "acceptance": "digest + prompt sha in run CSV"
+    }
+   ]
+  },
+  {
+   "id": "T8-C16",
+   "name": "C17 citation/provenance layer: claim checker + post-hoc enforcement (UCR)",
+   "ssot_anchor": "\u00a7257B.17 L29247-; \u00a7245.7 L26643; \u00a7242.7",
+   "plan_steps": [
+    "36",
+    "D5"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "src/culinarystate/generation/claims.py",
+    "generation/enforce.py",
+    "tests/unit/test_enforce.py",
+    "reports/del5/ladder_v2_qwen7b.md (B5F+E UCR 0.0)"
+   ],
+   "what_exists": "Numeric-claim checker (uncited / non-evidence cite / out of cited range) and sentence-level enforcement; on silver: B5F raw UCR 0.4 (7b) -> B5F+E 0.0, fallback to template 4/20.",
+   "gap_vs_ssot": "Checks numeric claims only; qualitative/directional claims, citation recall and entailment not checked (\u00a7245.7 asks citation precision, recall, manual entailment). UCR=0 after enforcement is partly by construction (sentences removed); must report coverage cost. No human claim-verification sample.",
+   "remaining": [
+    {
+     "item_id": "T8-C16-R1",
+     "item": "Add citation precision/recall and a manual-verification sample (30 claims) to H3 reporting, so UCR is not self-graded only",
+     "work_types": [
+      "CODE",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "1-1.5 each",
+     "depends_on": [
+      "T8-C21-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Checker is the system's own judge",
+     "acceptance": "manual-vs-checker agreement reported"
+    },
+    {
+     "item_id": "T8-C16-R2",
+     "item": "Report enforcement cost: sentences removed, fallback rate, answer length/coverage per rung",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "1",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C15-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "UCR=0 looks trivial",
+     "acceptance": "coverage-cost columns in H3 table"
+    },
+    {
+     "item_id": "T8-C16-R3",
+     "item": "Qualitative/directional claim checker (e.g. 'leaches') against mechanism registry",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "MECH review (other topic)"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "unreviewed MECH entries",
+     "acceptance": "checker with tests"
+    }
+   ]
+  },
+  {
+   "id": "T8-C17",
+   "name": "Runtime architecture, versioning and reproducibility artefacts",
+   "ssot_anchor": "\u00a7244.1-244.5 L26514-26603; \u00a7231.2-231.3",
+   "plan_steps": [
+    "36",
+    "15",
+    "P1"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "src/culinarystate/ module layout (decision/, retrieval/, generation/, evaluation/, app/)",
+    "registry/compute_runs_v1.csv",
+    "registry/freezes/",
+    "docs/SSOT_INDEX.md"
+   ],
+   "what_exists": "Python packages map to services; run log with code/input hashes; freezes registry; no graph DB (SSOT says optional).",
+   "gap_vs_ssot": "\u00a7244.4 frozen artifacts (claim_ledger.schema.json, prompt_registry_v0.json, split_registry_v0.json, dataset_manifest_v0.json, claude_master_prompt_v0.md) - several not evidenced for RAG: prompt registry and claim ledger schema are not present as RAG artefacts; versioning of model/prompt/schema/vocab/evidence/split per experiment not automated. Service decomposition is in-process, not services (acceptable for course).",
+   "remaining": [
+    {
+     "item_id": "T8-C17-R1",
+     "item": "Create prompt_registry (prompt sha, model digest) + claim_ledger schema for D5 answers; record versions per experiment",
+     "work_types": [
+      "CODE",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Reproducibility holes for paper",
+     "acceptance": "files committed; run rows reference them"
+    },
+    {
+     "item_id": "T8-C17-R2",
+     "item": "Hash-freeze D5 benchmark, router, retriever index and prompts before runs (R-12 style)",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "1",
+     "human_hours": "0.3 (human approves freeze)",
+     "depends_on": [
+      "T8-C20-R2"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Post-hoc tuning",
+     "acceptance": "freeze record JSON + sha256 before first rung run"
+    }
+   ]
+  },
+  {
+   "id": "T8-C18",
+   "name": "M6 demo app (local stdlib server) + hosting",
+   "ssot_anchor": "\u00a7244.1; FINISH_PLAN M6; D-075",
+   "plan_steps": [
+    "demo",
+    "36"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/app/server.py",
+    "src/culinarystate/app/static",
+    "tests/unit/test_s173_app_server.py",
+    "WORKLOG S173"
+   ],
+   "what_exists": "Local demo: recipe -> per-step router chips + heat strip -> cited answer (B5T template, no LLM key) or refusal; rate limited; 500/6000-char caps; phone layout checked. Demo stopped S173 ('core first').",
+   "gap_vs_ssot": "Not hosted. Hosting needs Kush: free host account + LLM API key, or approve A100+tunnel route (needs persistent vinayak tunnel, security review, BBC text must never be served). Demo currently shows mostly 'no measured data'. Layer-2 values must be shown labelled ASSUMED/NON_CITABLE.",
+   "remaining": [
+    {
+     "item_id": "T8-C18-R1",
+     "item": "Provide hosting account (or approve tunnel route) and decide LLM path (API key vs template-only)",
+     "work_types": [
+      "DECISION",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5-1 (Kush)",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Without it demo runs only on laptop",
+     "acceptance": "Decision recorded in DECISIONS.md"
+    },
+    {
+     "item_id": "T8-C18-R2",
+     "item": "Deploy hosted demo with template-only (no key) fallback; health check; DEMO_ONLY/NON_CITABLE banner",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T8-C18-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Third-party text exposure (only Wikibooks/Gutenberg samples allowed); free-host cold starts",
+     "acceptance": "public URL passes smoke test; no BBC text in bundle"
+    },
+    {
+     "item_id": "T8-C18-R3",
+     "item": "Resume demo polish after H1/H3 results (show lot state/L2 labels, examples with DIRECT evidence)",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "3-4",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T8-C21-R2"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Time",
+     "acceptance": "3 curated example flows"
+    }
+   ]
+  },
+  {
+   "id": "T8-C19",
+   "name": "D4 deliverable: evidence-aware retrieval with abstention (report)",
+   "ssot_anchor": "\u00a7245.6, .8; \u00a7230 Level-16 deliverable; proposal D4",
+   "plan_steps": [
+    "36"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/del4/*",
+    "FINISH_PLAN M4 core DONE S171"
+   ],
+   "what_exists": "Silver retrieval study (600 templated queries), graph expansion, negative reranker results, router+front door on real ledgers.",
+   "gap_vs_ssot": "No D4 report that states results on independent questions; D4 'abstention' evidence is only the silver ladder. Needs consolidation after D5 run.",
+   "remaining": [
+    {
+     "item_id": "T8-C19-R1",
+     "item": "Write D4 section/report from frozen-benchmark P/C results + silver dev study (silver labelled)",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "3-4",
+     "human_hours": "1 each",
+     "depends_on": [
+      "T8-C6-R1",
+      "T8-C21-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Silver vs independent confusion",
+     "acceptance": "D4 report with every number traced to a file"
+    }
+   ]
+  },
+  {
+   "id": "T8-C20",
+   "name": "D5 benchmark: preregistration, 100 AI-drafted questions, human review, freeze",
+   "ssot_anchor": "\u00a7245.1, .12; \u00a7237 handbook; FINISH_PLAN M5; D-045 MODEL_ASSISTED_GOLD",
+   "plan_steps": [
+    "36",
+    "M5"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "reports/del5/d5_benchmark_preregistration_DRAFT.md (UNSIGNED)",
+    "benchmark/d5/d5_draft_PC_v1.csv",
+    "benchmark/d5/d5_draft_S_v1.csv",
+    "src/culinarystate/evaluation/{d5_draft,d5_state}.py",
+    "annotation/d5_review/ (git-ignored; absent in worktree)"
+   ],
+   "what_exists": "100 drafted (P1/P2/P3/C 15 each, S1/S2 20 each, overdrafted so 80 enter) with seeded rank; review sheets KEEP/EDIT/DROP; frozen-before-run rule; 20-question silver ladder explicitly excluded.",
+   "gap_vs_ssot": "Prereg unsigned; no human review done; U (5) and X (5) blocks have no drafted items per FINISH_PLAN (100 = 15*4 + 20*2); no outside reviewer (Q25), authors = reviewers; benchmark covers only 3 of 12 SSOT \u00a7245.1 families (RET, CONF, partly DEC); 40 questions for H3 and <=30 for H1 are underpowered.",
+   "remaining": [
+    {
+     "item_id": "T8-C20-R1",
+     "item": "Kush and Parv sign D5/H1/H3 prereg",
+     "work_types": [
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.3 each",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "Critical path; D-071 forbids AI signing",
+     "acceptance": "Signed prereg committed by humans"
+    },
+    {
+     "item_id": "T8-C20-R2",
+     "item": "Kush and Parv independently review 100 questions (KEEP/EDIT/DROP), reconcile; agent assembles benchmark",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "ANALYSIS"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "3-4 each + 1 reconcile",
+     "depends_on": [
+      "T8-C20-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Due 16 Nov; slip delays H1/H3 beyond 19 Nov",
+     "acceptance": "frozen benchmark CSV with sha256; keep-rate and edit-rate report"
+    },
+    {
+     "item_id": "T8-C20-R3",
+     "item": "Freeze benchmark (sha256) and run freeze check",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "0.5",
+     "human_hours": "0.3",
+     "depends_on": [
+      "T8-C20-R2"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Benchmark changed after rung run",
+     "acceptance": "freeze JSON committed pre-run"
+    },
+    {
+     "item_id": "T8-C20-R4",
+     "item": "Author U (substitution) and X (control) blocks (5 each) which have no drafts",
+     "work_types": [
+      "WRITING",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0.5 each review",
+     "depends_on": [
+      "T8-C20-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Prereg lists them but no draft exists",
+     "acceptance": "10 reviewed questions in frozen set"
+    },
+    {
+     "item_id": "T8-C20-R5",
+     "item": "Optional: outside food scientist / third person reviews a 20-question subset (independence)",
+     "work_types": [
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "1-2 (expert)",
+     "depends_on": [
+      "T8-C20-R2"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Availability",
+     "acceptance": "independent agreement reported"
+    }
+   ]
+  },
+  {
+   "id": "T8-C21",
+   "name": "H1 test: B0-B7 ladder on state blocks + mandatory ablations + oracle cascades",
+   "ssot_anchor": "\u00a7245.12-245.14 L26667-26699; proposal H1; Step 36",
+   "plan_steps": [
+    "36",
+    "M5"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/evaluation/h1_rungs.py",
+    "evaluation/paired_stats.py (exact McNemar, Newcombe)",
+    "tests/unit/test_s173_h1_rungs.py",
+    "tests/unit/test_s173_paired_stats.py",
+    "reports/del5/ladder_smoke_v1.md"
+   ],
+   "what_exists": "Rung implementations B0/B1/B2/B4 over cut recipes; exact McNemar + Newcombe CIs; prereg rule: B4>B1 and B4>B2, both significant. B3, B6 NOT_BUILT.",
+   "gap_vs_ssot": "Ablations of \u00a7245.13 (9 modules removed one at a time) not planned in prereg except rung ladder; oracle-vs-predicted cascades (\u00a7245.14) not planned; B3 structured-metadata RAG not built; H1 n<=30, only large effects detectable.",
+   "remaining": [
+    {
+     "item_id": "T8-C21-R1",
+     "item": "Execute H1 runs on frozen S1/S2 (B0,B1,B2,B4 + B5/B7), compute McNemar/Newcombe",
+     "work_types": [
+      "GPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "vinayak",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3",
+      "T8-C15-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Null result likely at n<=30 (acceptable, R-19)",
+     "acceptance": "paired table + intervals; verdict per prereg rule, even if null"
+    },
+    {
+     "item_id": "T8-C21-R2",
+     "item": "Cheap ablations: remove state conditioning, evidence compat, claim enforcement, OOD gate one at a time on frozen set",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C21-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Modules adding no value must be reported",
+     "acceptance": "ablation table (SSOT \u00a7245.13 subset, rest NOT_RUN)"
+    },
+    {
+     "item_id": "T8-C21-R3",
+     "item": "Oracle-state vs predicted-state cascade on S blocks using human-corrected gold state",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R2"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "None",
+     "acceptance": "gap reported"
+    },
+    {
+     "item_id": "T8-C21-R4",
+     "item": "Build B3 (structured metadata RAG) rung",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "Prereg lists B3 NOT_RUN; adding it post hoc needs amendment",
+     "acceptance": "amendment signed before run or NOT_RUN kept"
+    }
+   ]
+  },
+  {
+   "id": "T8-C22",
+   "name": "H3 test: abstention vs unsupported-claim rate + sufficiency/abstention metrics",
+   "ssot_anchor": "\u00a7245.7-245.8 L26643-26654; \u00a7242.5; proposal H3",
+   "plan_steps": [
+    "36",
+    "M5"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/evaluation/bootstrap_diag.py (29-diag, not H3)",
+    "prereg \u00a74 (question-level bootstrap 10,000, seed d5-h3)",
+    "src/culinarystate/generation/claims.py"
+   ],
+   "what_exists": "Prereg: UCR(B7)<UCR(B2) by question-clustered bootstrap upper bound <0 and P3 abstention B7>=B2. UCR counter implemented; H3 bootstrap script described as ready in WORKLOG S173.",
+   "gap_vs_ssot": "Decision-mode F1 and risk-coverage (\u00a7245.8) not in prereg; P3 gold ABSTAIN is built from the same EVD index (circular easy cases); UCR counts numeric claims only. Unsupported-claim count may be zero for both arms (undefined ratio) if B2 states few numbers (silver B2 had 13 numeric claims/20 q).",
+   "remaining": [
+    {
+     "item_id": "T8-C22-R1",
+     "item": "Execute H3 analysis on frozen P/C blocks; decision-mode F1; handle zero-claim denominators",
+     "work_types": [
+      "ANALYSIS",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C21-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Too few claims -> inconclusive",
+     "acceptance": "H3 verdict per prereg + mode F1 table"
+    }
+   ]
+  },
+  {
+   "id": "T8-C23",
+   "name": "Remaining Level-16 benchmark families and robustness (SEM, LINK, QTY, GRAPH, EVID, TRANS, DIAG, REC, FT; paraphrase/unit/locale/state/goal invariance)",
+   "ssot_anchor": "\u00a7245.1-245.5, .9-.11, .15 L26606-26711",
+   "plan_steps": [
+    "36",
+    "19",
+    "29"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "no benchmark/ files for these families besides benchmark/d5, h_state, ner",
+    "FINISH_PLAN 'Not before 25 Nov'"
+   ],
+   "what_exists": "NER (DEV F1 0.940 on TASTEset) and h_state benchmark exist elsewhere (other topics).",
+   "gap_vs_ssot": "SSOT expects 12 families; D5 covers 3. Robustness tests (C<->F, kg<->g, cup locale, pale vs dark state) absent. Owned by other topics except DEC/DIAG/REC/ROB.",
+   "remaining": [
+    {
+     "item_id": "T8-C23-R1",
+     "item": "Unit-invariance + paraphrase invariance mini-suite for the RAG (C<->F, kg<->g)",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T8-C20-R3"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "None",
+     "acceptance": "pass rate"
+    },
+    {
+     "item_id": "T8-C23-R2",
+     "item": "Remaining families (DEC/DIAG/REC/FT) benchmark",
+     "work_types": [
+      "CODE",
+      "HUMAN_REVIEW",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "20-40",
+     "human_hours": "8-12",
+     "depends_on": [
+      "H4 prereg"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Out of scope",
+     "acceptance": "post-course roadmap item"
+    }
+   ]
+  },
+  {
+   "id": "T8-C24",
+   "name": "Statistics and preregistration governance for H1/H3 (and H2 diagnostic boundary)",
+   "ssot_anchor": "\u00a7245; D-045; D-071; R-19; proposal \u00a7H",
+   "plan_steps": [
+    "29",
+    "36",
+    "M5"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "reports/del5/d5_benchmark_preregistration_DRAFT.md",
+    "reports/step29/29diag_preregistration_DRAFT.md",
+    "registry/freezes/15A-BOOT-2026-11-08.json",
+    "evaluation/freeze_records.py"
+   ],
+   "what_exists": "Exact McNemar, Newcombe, question-level bootstrap, signature/freeze gates; null results to be reported.",
+   "gap_vs_ssot": "All preregs unsigned; D-071 AI-persona question (Q37) unresolved for review blocks; Q26 power not decided; claims limited to H1/H3, H2 diagnostic, H4 not tested.",
+   "remaining": [
+    {
+     "item_id": "T8-C24-R1",
+     "item": "Decide scope statement: present H1+H3 tested (pilot, Newcombe intervals), H2 diagnostic, H4 untested",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "Overclaim",
+     "acceptance": "Decision logged; deck/report follow it"
+    },
+    {
+     "item_id": "T8-C24-R2",
+     "item": "Optional power note: simulate detectable effect for n=30 McNemar; add to report",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "0.5",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "None",
+     "acceptance": "one paragraph with table"
+    }
+   ]
+  },
+  {
+   "id": "T8-C25",
+   "name": "Physical-layer / \u00a7141 output-contract integration into RAG answers",
+   "ssot_anchor": "\u00a7141 L8822-; D-077; \u00a7242.7",
+   "plan_steps": [
+    "23",
+    "26",
+    "36"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/mechanism/router_demo.py",
+    "demo_context.py (router chips)",
+    "reports/step23/router_demo_census_vitc_full_corpus_S171.json"
+   ],
+   "what_exists": "Answers carry EVD citations and router chips (DIRECT/UNKNOWN); heat strip shows Layer 1/2 labelled.",
+   "gap_vs_ssot": "Answers do not yet emit transitions as unsupported/physically_possible/evidence_supported labels with D-077 layer basis in a uniform schema; 99.2 % checks UNKNOWN. Lot-state (K) not fed to RAG. Belongs mainly to router/physics topics.",
+   "remaining": [
+    {
+     "item_id": "T8-C25-R1",
+     "item": "Add output-contract label (\u00a7141 three classes) + layer basis to every answer record and test property 'no number without EVD id'",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Number leakage",
+     "acceptance": "property test passes; label present on all D5 answers"
+    }
+   ]
+  }
+ ],
+ "ssot_requirements_without_plan_coverage": [
+  "\u00a7242.3-242.5 calibration (Platt/isotonic, Brier, ECE, AUROC/AUPRC, risk-coverage) on independent Deep-Gold: no plan item; H3 says 'calibrated'",
+  "\u00a7245.13 nine mandatory ablations (esp. quantity grounding, conflict/lineage, transition fallback, provenance ledger) and \u00a7245.14 oracle cascades: not in prereg",
+  "\u00a7245.10 VOI/clarification benchmark (NeverAsk/AskEverything/VOIAsk)",
+  "\u00a7243.10-243.11 receding horizon and POMDP interpretation",
+  "\u00a7241.5 contradiction workflow and \u00a7241.7 table/figure evidence",
+  "\u00a7245.15 robustness (locale cup, state/goal/constraint sensitivity)",
+  "\u00a7244.4 frozen artefacts for RAG: prompt_registry, claim_ledger.schema, split_registry for D5",
+  "\u00a7245.1 families beyond D5 (SEM/LINK/QTY/GRAPH/EVID/TRANS/DIAG/REC/FT) as RAG-level benchmarks",
+  "\u00a7239/\u00a7240 LLM annotation contract used for D5 gold drafting: AI drafting logged but no independent calibration set"
+ ],
+ "contradictions": [
+  "FINISH_PLAN M5 says ~80 questions; S171 drafted 100 (overdraft); prereg title says ~80 and U/X blocks (10) have no drafts although listed",
+  "Prereg rungs B1/B2 use bge embeddings, while del4 analysis promoted e5-large-v2 as the free-text model (and bge reranker as negative)",
+  "H3 / SSOT B7 say 'calibrated recommend/ask/abstain' but implemented layer is rule-based ordinal confidence; no calibration data exists",
+  "M5 asks 'B0-B5 runs' (FINISH_PLAN) vs prereg rungs B0,B1,B2,B4,B5,B7(B5F+E),B5T and B3/B6 NOT_RUN",
+  "Silver ladder B5T results used verbalize@0.1 (buggy citation of other-process rows); current is @0.2 - October silver numbers not comparable",
+  "S-block gold derived by the same replay engine used by rung B4 (circularity) while prereg calls it MODEL_ASSISTED_GOLD",
+  "M6 'hosted LLM API key' vs demo built as template-only (no LLM)"
+ ],
+ "notes": "Do not duplicate: state-graph/replay (Step 18, T-state topic), ING->USDA crosswalk and lot-state (T lot-state), router gates/MECH registry (T router topic), NER (T NER topic), 29-diag/H2 and Step 35 (learning topics), 07.A (condition topic), Step 10 AA pilot (kinetics topic). T8 is critically dependent on human gates: prereg signatures + 100-question review by 16 Nov, hosting account/API key. Critical path for H1/H3: sign -> review (16 Nov) -> freeze -> vinayak Ollama runs (17-19 Nov) -> report. VPN to vinayak is the compute single point of failure; manjot has no torch/Ollama so only CPU analysis there. Python venv .venv312 has no torch; metrics/bootstrap run on CPU fine. Status of agent hours are estimates."
+}

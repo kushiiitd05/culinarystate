@@ -1,0 +1,1456 @@
+{
+ "topic": "T4",
+ "title": "Process conditions and physics (L14 process representation, condition schema, D-077 physical-state dataset, non-heat families, Step 31)",
+ "ssot_ranges_checked": [
+  "L15516-L17741 (via notes ssot_l14.md; spot-checked L15809-15815, L16031-16036, L16105-16110, L16209-16214, L16261-16270, L17558-17565)",
+  "L6036-L6048 (physics driver paragraph, checked directly)",
+  "L8735-L8745 (Q-RS7 theta recovery)",
+  "L1042 (output contract)",
+  "\u00a7210 physical parts via notes ssot_l15a.md (not re-read in SSOT)"
+ ],
+ "components": [
+  {
+   "id": "T4-C01",
+   "name": "Process ontology and PROC representation (hierarchy family/leaf, media, mechanism_families)",
+   "ssot_anchor": "\u00a7199.1-199.2 L16031-16103; \u00a7198.3 L15809-15846",
+   "plan_steps": [
+    "03",
+    "16",
+    "21"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "ledgers/schemas/PROC.schema.json",
+    "registry/process_medium_map_v1.csv (27 rows, AGENT_DRAFT_PENDING_REVIEW)",
+    "reports/h_state/state_representation_contract_v1.md (MP-1 C7: 93 PROC mechanism_families AI-drafted, unverified)",
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md"
+   ],
+   "what_exists": "PROC schema with family, kind, parent, media, prerequisite_ids, required_condition_axes, mechanism_families; 93 PROC rows used by Rung A; process_medium_map assigns a medium and a definitional temperature to 27 heat PROCs (e.g. boil = 100 C at 1 atm, labelled definition).",
+   "gap_vs_ssot": "mechanism_families on PROC are AI-drafted and unverified; no stored mapping to FoodOn/LanguaL (SSOT: store mapping/provenance, L16073-16075); z_P=[family;leaf;physics descriptors] (L16093-16100) is not materialised as a feature; the PROCESS_COVERAGE family table (COOLING, SEPARATION, FERMENT_LEAVEN, PRESERVATION, MECHANICAL_CUT, MECHANICAL_MIX, RESTING, STORAGE) is a plan table, not a registry; some verbs sit in two families (soak, brine, dry).",
+   "remaining": [
+    {
+     "item_id": "T4-C01-R1",
+     "item": "Freeze a PROC to process-family registry (one row per PROC, one primary family, secondary flag) covering all 93 PROCs and the 8 non-heat families, with verb ambiguity rules for soak/brine/dry/rest",
+     "work_types": [
+      "CODE",
+      "DECISION"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "1-2",
+     "depends_on": [
+      "PROCESS_COVERAGE_PLAN"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Wrong family routes an event to the wrong formula",
+     "acceptance": "registry CSV committed, every PROC has exactly one primary family, validator test green, ambiguous verbs listed"
+    },
+    {
+     "item_id": "T4-C01-R2",
+     "item": "Human review of the 27 process_medium_map rows and PROC mechanism_families for the physical families (Kush/Parv; AI personas may only propose)",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "2-3",
+     "depends_on": [
+      "T4-C01-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Unreviewed definitions used as TEXT_STATED values",
+     "acceptance": "review sheet signed by a named human, status column moves off AGENT_DRAFT_PENDING_REVIEW"
+    },
+    {
+     "item_id": "T4-C01-R3",
+     "item": "Map PROC leaves to FoodOn/LanguaL process terms as a side table (no replacement of the custom hierarchy)",
+     "work_types": [
+      "CODE",
+      "DOWNLOAD"
+     ],
+     "where": "any",
+     "agent_hours": "4-8",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C01-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Ontology licences/versions; low value before 25 Nov",
+     "acceptance": "side table with provenance column; licence note recorded (H2 if new source)"
+    }
+   ]
+  },
+  {
+   "id": "T4-C02",
+   "name": "Condition schema: raw-first typed condition tuple, POINT/INTERVAL/QUALITATIVE/UNKNOWN, COND/CV registries",
+   "ssot_anchor": "\u00a7199.3-199.7 L16105-16207; \u00a7201 condition fields",
+   "plan_steps": [
+    "07",
+    "16",
+    "17"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "ledgers/schemas/COND.schema.json",
+    "registry/condition_variable_registry_v1.csv (40 CV rows)",
+    "registry/recipe_condition_surface_forms_v1.csv",
+    "reports/master_plan/working_notes/notes/ssot_l14.md s1.11-1.12",
+    "DECISIONS D-024",
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md (07.A FAILED, 07.A-R1 pending)"
+   ],
+   "what_exists": "COND schema holds typed values (status, value, low, high, unit, uncertainty, qualitative, censor, raw) for duration, temperatures[], trajectory[], pH, moisture, a_w, pressure, O2, salt, sugar, fat, medium, geometry, agitation, humidity, heat mode; status enum is a superset of SSOT POINT/INTERVAL/QUALITATIVE/UNKNOWN; COND ledger populated from EVD (temperature known 33 %, duration 17 %, moisture/pH/a_w 0 %); 'medium heat' kept QUALITATIVE (74,048 uses) with no numeric mapping.",
+   "gap_vs_ssot": "per-axis provenance is record-level only (SSOT tuple value,unit,type,mask,provenance L16166-16168); the Step-07 human audit is NOT_COUNTED / 07.A FAILED so the schema is not an accepted gate; moisture/pH/a_w known on 0 % of rows so SSOT condition-resolved models cannot be fed from EVD; transforms log(1+t) and 1/T_K (L16109-16117) not implemented as a registry.",
+   "remaining": [
+    {
+     "item_id": "T4-C02-R1",
+     "item": "Redo 07.A (07.A-R1) labelling and scoring to open Step 23b and give COND a valid human gate (owned by the Step-07 topic; listed here only as a dependency)",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "2-4",
+     "human_hours": "6-10",
+     "depends_on": [
+      "prereg signatures (Kush+Parv)"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Without a valid gate every condition claim stays UNVERIFIED",
+     "acceptance": "07.A-R1 score file with pooled kappa and signed prereg; D-entry records PASS or FAIL"
+    },
+    {
+     "item_id": "T4-C02-R2",
+     "item": "Add per-axis provenance (basis code, span id, layer L1/L2) to the physical-record schema so every field is the SSOT tuple (value,unit,type,mask,provenance)",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C20"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Schema drift versus COND",
+     "acceptance": "physical record schema doc + validator; 100 % of fields in L1/L2 outputs carry basis"
+    }
+   ]
+  },
+  {
+   "id": "T4-C03",
+   "name": "Endpoint leakage and qualitative heat words ('until golden', 'medium heat') kept out of condition inputs",
+   "ssot_anchor": "\u00a7199.8 L16209-16233; \u00a7199.7 L16205",
+   "plan_steps": [
+    "07",
+    "16",
+    "17"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "registry/recipe_condition_surface_forms_v1.csv",
+    "EVT.schema.json (endpoint field)",
+    "src/culinarystate/simulation/condition_binding.py",
+    "tests/*/test_s172_condition_binding.py (10 tests pass)"
+   ],
+   "what_exists": "Binder treats stated numbers only; 'medium heat' stays QUALITATIVE; EVT schema has an endpoint field. Layer 1 binder never converts endpoint cues to numbers.",
+   "gap_vs_ssot": "No explicit test or census proving endpoint phrases are never emitted as T/t inputs in L1/L2 (grep found no endpoint handling in step07 reports); endpoint cues are not stored as weak outcome annotation / stopping criterion (L16229-16233); qualitative-to-numeric mapping flag exists only as a Layer 2 default.",
+   "remaining": [
+    {
+     "item_id": "T4-C03-R1",
+     "item": "Add endpoint-cue extractor output (stopping criterion field) and a leakage unit test plus corpus count of endpoint cues per heat event",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C04"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "A browning-prediction feature accidentally using 'until golden' invalidates Step 31",
+     "acceptance": "test asserts no endpoint cue field in feature matrix; count report committed"
+    }
+   ]
+  },
+  {
+   "id": "T4-C04",
+   "name": "Layer 1 TEXT_STATED binder over the full corpus (heat families)",
+   "ssot_anchor": "D-077; \u00a7199.3-199.7; \u00a7141 L1042; SSOT UNKNOWN != 0",
+   "plan_steps": [
+    "26g",
+    "18",
+    "31"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "src/culinarystate/simulation/{condition_binding,binding_census}.py",
+    "tools/binding_census.py",
+    "reports/step26/binding_census_L1_{A1,FOODCOM,GUTENBERG_SEGMENT,WIKIBOOKS,TASTESET}_full_S17[34].json",
+    "reports/step26/binding_census_L1_1000_S172.json",
+    "registry/compute_runs_v1.csv RUN-S172..S174",
+    "tests/*/test_s172_condition_binding.py, test_s172_binding_census.py"
+   ],
+   "what_exists": "Full-corpus run over all 5 families (BBC on Mac, FOODCOM on vinayak, rest on Mac): 1,746,405 heat events (WET/DRY/FAT/HEAT_GENERAL). Summed driver_ready_events = 59,843 (3.4 %) and driver_bounded_events = 92,904 (5.3 %) of heat events (packet quotes 3.3 % / 4.8 % from the 1,000 sample); gas-mark-only 247; TASTESET has 0 events (ingredient lists only). Records are counts-only in git; per-event records in data/derived (git-ignored). Baseline PASS before and after.",
+   "gap_vs_ssot": "Only 3-5 % of heat events have time and temperature from the text, so Layer 1 alone cannot drive physics for >95 %; binder covers heat families only (no cool/soak/drain/rest/store/cut/mix); pressure, lid, start temperature, product vs medium temperature, water:food ratio (Step 26 EVT inputs) not bound; per-event records live only on Mac/vinayak.",
+   "remaining": [
+    {
+     "item_id": "T4-C04-R1",
+     "item": "Write 'what the corpus can say' analysis: coverage by family, source and process, share with both t and T, ranges, gas-mark-only, per-family top unbound reasons, for the talk",
+     "work_types": [
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "1",
+     "depends_on": [
+      "existing census JSONs"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Overclaiming coverage; numbers must come from the JSONs",
+     "acceptance": "report under reports/ with every number traceable to a census path; reviewed by Kush"
+    },
+    {
+     "item_id": "T4-C04-R2",
+     "item": "Extend binder to bind lid, pressure (pressure-cooker), start mode, product vs medium temperature and water:food ratio where stated (Step 26 EVT fields)",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C20"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Low text support; may add little",
+     "acceptance": "tests green, counts per new field reported, UNKNOWN preserved"
+    }
+   ]
+  },
+  {
+   "id": "T4-C05",
+   "name": "Layer 2 SCENARIO driver trajectories (GENTLE/TYPICAL/INTENSE) for heat events",
+   "ssot_anchor": "D-077; \u00a7141; SSOT L6036-6048 (drivers theta(x,t))",
+   "plan_steps": [
+    "26g",
+    "31",
+    "23"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "src/culinarystate/simulation/scenario_layer.py",
+    "tools/scenario_layer_run.py",
+    "registry/scenario_defaults_v1.csv",
+    "reports/step26/scenario_L2_*_full_S17[34].json (FOODCOM: SCENARIO_COMPUTED 667,634; SCENARIO_UNKNOWN 768,753; UNSUPPORTED_MEDIUM 66,874; core_known True 55,146)",
+    "packet s4: 810,951 heat events (46 %) get trajectories",
+    "tests/*/test_s172_scenario_layer.py"
+   ],
+   "what_exists": "Per heat event three coherent brackets (low/mid/high bath T, duration from corpus quantiles, h, half-thickness, T0) give core temperature trajectory, time above thresholds, equivalent-minute dose (T_ref 100 C, z 33 C) and an immersion surface cook value; labels SCENARIO, MODEL_DERIVED, NON_CITABLE, ASSUMED_DEFAULT; transition 'physically_possible' for computed events, 'unsupported' otherwise; no nutrient numbers. Counts-only, status AI_ENGINEERING_DRY_RUN_COUNTS_ONLY.",
+   "gap_vs_ssot": "54 % of heat events are SCENARIO_UNKNOWN or UNSUPPORTED_MEDIUM (e.g. no duration, no medium); one k/alpha class for all foods; half-thickness only by cut class; bath and h are medium defaults; Layer 2 is a dry run status, not accepted; circularity risk Q1 (models learning the defaults table).",
+   "remaining": [
+    {
+     "item_id": "T4-C05-R1",
+     "item": "Sensitivity report: bracket width (INTENSE-GENTLE) per family, share of events where bracket spread changes a qualitative conclusion (e.g. core reaches 70 C), reasons for SCENARIO_UNKNOWN",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2-4",
+     "human_hours": "0",
+     "depends_on": [
+      "existing L2 JSONs"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Hidden fragility of Layer 2",
+     "acceptance": "committed counts-only table; each conclusion flagged robust/fragile across brackets"
+    },
+    {
+     "item_id": "T4-C05-R2",
+     "item": "Reduce UNKNOWN: add default durations per PROC where text lacks time (cited quantile source) and more media defaults, keeping UNKNOWN-first rule",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "5-8",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C06"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Inventing durations violates UNKNOWN != 0",
+     "acceptance": "every new default has source_status and range; basis mask shows DEFAULT"
+    },
+    {
+     "item_id": "T4-C05-R3",
+     "item": "Q1 circularity control: basis masks on every Layer 2 feature plus an ablation that removes Layer 2 before any use in Steps 30-35 (lean b of packet)",
+     "work_types": [
+      "CODE",
+      "DECISION"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "1",
+     "depends_on": [
+      "Kush decision on Q1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Learned models read back the defaults table",
+     "acceptance": "decision entry; ablation harness test; Layer 2 features carry basis mask"
+    }
+   ]
+  },
+  {
+   "id": "T4-C06",
+   "name": "Scenario defaults registry (28 rows: bath T, gas marks, h, k, alpha, half-thickness, T0) and source verification",
+   "ssot_anchor": "D-077; project law 5 (never present recalled number as sourced); packet Q2",
+   "plan_steps": [
+    "26g",
+    "24"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "registry/scenario_defaults_v1.csv (SD-001..SD-060, all SOURCE_UNVERIFIED_AGENT_RECALLED)",
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md Q2"
+   ],
+   "what_exists": "Every default has low/mid/high, unit and a source hint (McGee, Singh and Heldman, EU 2017/2158 acrylamide benchmark, steam tables, UK gas mark tables).",
+   "gap_vs_ssot": "None of the values has been checked against an opened source; no page citation; k, alpha are one class (high moisture ~0.5 W/mK, 1.4e-7 m2/s) with no fat/frozen/dry classes; h ranges are rough; gas mark conversion table not verified.",
+   "remaining": [
+    {
+     "item_id": "T4-C06-R1",
+     "item": "Source-verify the 28 rows from handbooks (Singh and Heldman, Rahman Food Properties Handbook, ASHRAE Refrigeration, Choi-Okos 1986, UK gas mark tables, steam tables) with page cites and ranges",
+     "work_types": [
+      "DOWNLOAD",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "access to the books/papers (H2 if new source acquired)"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Books not freely available; licence/H2",
+     "acceptance": "every row has opened-source page cite or stays UNVERIFIED; ranges widened where literature varies"
+    },
+    {
+     "item_id": "T4-C06-R2",
+     "item": "Human verification of defaults (Kush/Parv or food scientist) and move to HUMAN_VERIFIED status",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "3-5",
+     "depends_on": [
+      "T4-C06-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Without it Layer 2 stays NON_CITABLE",
+     "acceptance": "signed review; status column updated; D-entry"
+    },
+    {
+     "item_id": "T4-C06-R3",
+     "item": "Add defaults for non-heat families (cold bath T fridge/freezer, brine strength, soak durations, drying air T/RH, storage T, cut half-thickness for cube/cylinder)",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C12"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Same unverified-recall risk",
+     "acceptance": "rows added with source_status and ranges; tests green"
+    }
+   ]
+  },
+  {
+   "id": "T4-C07",
+   "name": "Heat-conduction physics driver (infinite slab, convective boundary) and thermal-dose integrals",
+   "ssot_anchor": "SSOT L6036-6048 (rho cp dT/dt = div(k grad T)); \u00a7198.3 L15842 exposure integrals; \u00a7144",
+   "plan_steps": [
+    "26b",
+    "26g",
+    "31"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "src/culinarystate/simulation/physics_drivers.py (slab eigen-series, equivalent minutes z=10/33, trajectory dose)",
+    "tests/*/test_s172_physics_drivers.py (6 tests); 33 tests in test_s172* + choi_okos pass in this audit",
+    "used inside scenario_L2 full runs"
+   ],
+   "what_exists": "Analytic series for centre temperature, minutes above threshold, equivalent-minute dose, plus helper functions for slab uptake and Plank freezing (see non-heat components).",
+   "gap_vs_ssot": "Verification only by unit tests; no comparison against an independent numerical solve or published Heisler-chart values over the (Bi,Fo) range; constant properties; no phase change, evaporation or shrinkage; Arrhenius exposure Omega_j with Ea grid (L15842, L6042) is not built.",
+   "remaining": [
+    {
+     "item_id": "T4-C07-R1",
+     "item": "Verification pack: compare slab series with a finite-difference solve and with textbook chart values for several (Bi, Fo); report max error; add convergence test for N_TERMS",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "none"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Silent series error propagates to 1.7 M events",
+     "acceptance": "report committed; max relative error stated; tests green"
+    },
+    {
+     "item_id": "T4-C07-R2",
+     "item": "Arrhenius exposure integral Omega with representative Ea grid and temperature-trajectory input (needs literature Ea per target class, not tuned on test studies)",
+     "work_types": [
+      "CODE",
+      "DOWNLOAD"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "1",
+     "depends_on": [
+      "Step 24 Ea sources"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Ea values unsourced",
+     "acceptance": "function + registry of Ea with source locator; tests; labelled MODEL_DERIVED"
+    }
+   ]
+  },
+  {
+   "id": "T4-C08",
+   "name": "Geometry model: shape and size per cut class (slab, cylinder, sphere, cube), surface/volume",
+   "ssot_anchor": "SSOT L16151-16161 (geometry/cut/thickness/surface-area proxy); L3887; packet Q4",
+   "plan_steps": [
+    "26g",
+    "31"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "src/culinarystate/simulation/physics_drivers.py (slab only; docstring says slab bounds faster shapes)",
+    "registry/scenario_defaults_v1.csv SD-050..053 (half-thickness by MINCED/SLICED/DICED/CHOPPED)",
+    "choi_okos.py tau_h_param takes geometry_ref but no shape series"
+   ],
+   "what_exists": "Slab with half-thickness from cut class; whole items (whole potato, chicken, egg) and cubes use slab bounding values.",
+   "gap_vs_ssot": "No cylinder or sphere series, no cut-class to shape map, no whole-item size defaults, no surface area to volume output; SSOT lists geometry/surface-area proxy as an event field.",
+   "remaining": [
+    {
+     "item_id": "T4-C08-R1",
+     "item": "Add finite-cylinder and sphere eigen-series (Bi roots, Heisler products) and a cut-class/ingredient-class to shape map, keeping slab as the stated bound",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "5-8",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C07-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Extra shape choices are additional unverified defaults",
+     "acceptance": "tests vs analytic limits; shape recorded per event with basis ASSUMED_DEFAULT"
+    },
+    {
+     "item_id": "T4-C08-R2",
+     "item": "Whole-item size defaults (potato, egg, chicken, joint) as ranges with source",
+     "work_types": [
+      "DOWNLOAD",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "1",
+     "depends_on": [
+      "T4-C06"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Large spread by item",
+     "acceptance": "rows with sources and ranges"
+    }
+   ]
+  },
+  {
+   "id": "T4-C09",
+   "name": "Surface versus core temperature and drying-front/evaporative boundary (browning, crust)",
+   "ssot_anchor": "SSOT L6036-6048 (air/oil T alone cannot determine extent; need surface and core T and moisture); L8593; packet Q3",
+   "plan_steps": [
+    "26g",
+    "31",
+    "23"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "src/culinarystate/simulation/scenario_layer.py L126-130 (surface_cook_value_min only for immersion media; flag SURFACE_NOT_AT_BATH_TEMPERATURE)"
+   ],
+   "what_exists": "Core trajectory plus a single surface cook value at bath temperature for immersion media.",
+   "gap_vs_ssot": "No surface temperature trajectory for dry/oven/pan heat, no moisture state, no evaporative boundary (m-dot'' Lv), so no basis for any browning/Maillard statement even qualitatively; SSOT says moisture state is required at minimum.",
+   "remaining": [
+    {
+     "item_id": "T4-C09-R1",
+     "item": "Decide scope: two-zone surface model (surface at ~100 C until dry) QUALITATIVE only, or leave as stated limitation for 25 Nov",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "Kush"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Unstated limitation could be read as a claim",
+     "acceptance": "D-entry stating either build or limitation text for the talk"
+    },
+    {
+     "item_id": "T4-C09-R2",
+     "item": "If built: two-zone surface/drying-front driver giving time-to-surface-dry and surface temperature bracket, flagged QUALITATIVE_ONLY",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "8-14",
+     "human_hours": "1",
+     "depends_on": [
+      "T4-C09-R1",
+      "T4-C08-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Unvalidated model could be over-read",
+     "acceptance": "tests vs analytic limits; output only direction flags; no browning numbers"
+    }
+   ]
+  },
+  {
+   "id": "T4-C10",
+   "name": "Choi-Okos thermophysical property model and Biot-based lumped-capacitance parameter (Step 26b)",
+   "ssot_anchor": "packet Q2; Choi-Okos 1986 (SOURCE_UNVERIFIED); SSOT \u00a7210 physical parts",
+   "plan_steps": [
+    "26b",
+    "26a"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/simulation/choi_okos.py (182 lines)",
+    "tests/*/test_step26b_choi_okos.py",
+    "choi_okos.py L32 says h, V/A per size class and Biot ceiling OPEN"
+   ],
+   "what_exists": "Mixture density/k/cp/alpha from mass fractions with per-component correlations, Biot number, tau_h PARAM with refusal when inputs missing.",
+   "gap_vs_ssot": "Correlation coefficients are caller inputs, not verified from the source; not wired into Layer 2 (L2 uses one constant k, alpha); needs lot composition (lot-state topic) to use per-food properties.",
+   "remaining": [
+    {
+     "item_id": "T4-C10-R1",
+     "item": "Verify Choi-Okos coefficients against the 1986 paper or Rahman handbook, record page cites",
+     "work_types": [
+      "DOWNLOAD",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2-4",
+     "human_hours": "0",
+     "depends_on": [
+      "paper access"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Paper behind paywall (H2)",
+     "acceptance": "correlation table with source locators; test of water/protein/fat values at 20 C against cited table"
+    },
+    {
+     "item_id": "T4-C10-R2",
+     "item": "Wire Choi-Okos into Layer 2 where lot composition is known (water, fat, protein fractions), otherwise keep defaults",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "lot-state composition (T-lot topic)",
+      "T4-C10-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Composition for 85 % of corpus unknown (Food.com no units) so applies to a minority",
+     "acceptance": "per-event basis shows CHOI_OKOS vs DEFAULT; coverage counted"
+    }
+   ]
+  },
+  {
+   "id": "T4-C11",
+   "name": "Non-heat Layer 1 binder and scenario registry extension (shared infrastructure for all non-heat families)",
+   "ssot_anchor": "D-077 extension; PROCESS_COVERAGE_PLAN; SSOT \u00a7199.1 (cooling/storage, mechanical, biological)",
+   "plan_steps": [
+    "26g",
+    "18"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md (S174 plan only)",
+    "packet s7 item 2 'Non-heat process families' agent, depends on lot state"
+   ],
+   "what_exists": "Plan table with family, formula, inputs and build order; function stubs for Plank freezing time and slab uptake in physics_drivers.py.",
+   "gap_vs_ssot": "Condition_binding handles heat PROCs only; no event census by non-heat family; no registry mapping of non-heat PROC to family/medium/target T; plan has no acceptance gates.",
+   "remaining": [
+    {
+     "item_id": "T4-C11-R1",
+     "item": "Census of events per non-heat family across the full corpus (counts, how many state time/T/medium/size) to size the work and rank families by volume",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "vinayak",
+     "agent_hours": "2-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C01-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Building before counting wastes agent time",
+     "acceptance": "counts-only JSON per family and source with run row in compute_runs_v1.csv"
+    },
+    {
+     "item_id": "T4-C11-R2",
+     "item": "Generalise Binder to the non-heat families (time, target T, medium, size where stated, else UNKNOWN) with tests on constructed and real samples",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "8-14",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C11-R1",
+      "T4-C01-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Scope creep",
+     "acceptance": "1,000-recipe sample census, tests green, UNKNOWN preserved"
+    },
+    {
+     "item_id": "T4-C11-R3",
+     "item": "Full-corpus non-heat L1 run on non-BBC families, BBC on Mac, counts-only reports and run log rows",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "2-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C11-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "BBC only runnable on Mac (D-003)",
+     "acceptance": "census JSONs committed with sha256 and run rows"
+    }
+   ]
+  },
+  {
+   "id": "T4-C12",
+   "name": "COOLING family (chill, cool, freeze, defrost): conduction with cold bath, Plank freezing time, thaw",
+   "ssot_anchor": "PROCESS_COVERAGE family COOLING (build order 1); SSOT \u00a7199.1 cooling/storage",
+   "plan_steps": [
+    "26g",
+    "23",
+    "31"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md",
+    "src/culinarystate/simulation/physics_drivers.py"
+   ],
+   "what_exists": "plank_freezing_time_s and slab series exist in physics_drivers.py; no corpus binding or scenario layer for cooling.",
+   "gap_vs_ssot": "Needs cold bath T, latent heat, freezing point, h(air) defaults; thaw drip loss not modelled. Cooling events never bound or run.",
+   "remaining": [
+    {
+     "item_id": "T4-C12-R1",
+     "item": "Build driver + scenario defaults + Layer 1 binding for COOLING family and unit tests",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-12",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T4-C11-R2",
+      "T4-C06-R3"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Unverified defaults; value for talk is moderate; flags only for qualitative families",
+     "acceptance": "tests green; 1,000-recipe sample census counts; every output labelled SCENARIO/MODEL_DERIVED/NON_CITABLE or TEXT_STATED; no number about food chemistry"
+    },
+    {
+     "item_id": "T4-C12-R2",
+     "item": "Full non-BBC corpus run and counts-only report for COOLING family with run-log rows",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C12-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Server shared; BBC on Mac only",
+     "acceptance": "census JSON committed with sha256; compute_runs_v1.csv rows"
+    }
+   ]
+  },
+  {
+   "id": "T4-C13",
+   "name": "SEPARATION family (drain, strain, rinse, soak-discard): leaching compartment hand-off",
+   "ssot_anchor": "PROCESS_COVERAGE family SEPARATION (order 2); SSOT leaching/water-phase target",
+   "plan_steps": [
+    "26g",
+    "23",
+    "31"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md",
+    "src/culinarystate/simulation/physics_drivers.py"
+   ],
+   "what_exists": "sim_aa_1 has an A_w compartment that could receive the hand-off; no event-level link.",
+   "gap_vs_ssot": "No rule saying which phase is discarded and when; rinse as diffusion pulse not coded; depends on lot state for water phase. Not implemented.",
+   "remaining": [
+    {
+     "item_id": "T4-C13-R1",
+     "item": "Build driver + scenario defaults + Layer 1 binding for SEPARATION family and unit tests",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-12",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T4-C11-R2",
+      "T4-C06-R3"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Unverified defaults; value for talk is moderate; flags only for qualitative families",
+     "acceptance": "tests green; 1,000-recipe sample census counts; every output labelled SCENARIO/MODEL_DERIVED/NON_CITABLE or TEXT_STATED; no number about food chemistry"
+    },
+    {
+     "item_id": "T4-C13-R2",
+     "item": "Full non-BBC corpus run and counts-only report for SEPARATION family with run-log rows",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C13-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Server shared; BBC on Mac only",
+     "acceptance": "census JSON committed with sha256; compute_runs_v1.csv rows"
+    }
+   ]
+  },
+  {
+   "id": "T4-C14",
+   "name": "FERMENT_LEAVEN / marinate / brine / soak: Fickian slab uptake, pH state flag",
+   "ssot_anchor": "PROCESS_COVERAGE family FERMENT_LEAVEN (order 3); packet Q5",
+   "plan_steps": [
+    "26g",
+    "23",
+    "31"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md",
+    "src/culinarystate/simulation/physics_drivers.py"
+   ],
+   "what_exists": "slab_uptake_fraction (Crank, Bi to infinity) exists and is unit tested.",
+   "gap_vs_ssot": "No diffusion coefficients D for salt/acid in meat/vegetable with sources; no pH change model (flag only); fermentation biology (SSOT biological ferment, enzymatic) has no driver. Not run on corpus.",
+   "remaining": [
+    {
+     "item_id": "T4-C14-R1",
+     "item": "Build driver + scenario defaults + Layer 1 binding for FERMENT_LEAVEN family and unit tests",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-12",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T4-C11-R2",
+      "T4-C06-R3"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Unverified defaults; value for talk is moderate; flags only for qualitative families",
+     "acceptance": "tests green; 1,000-recipe sample census counts; every output labelled SCENARIO/MODEL_DERIVED/NON_CITABLE or TEXT_STATED; no number about food chemistry"
+    },
+    {
+     "item_id": "T4-C14-R2",
+     "item": "Full non-BBC corpus run and counts-only report for FERMENT_LEAVEN family with run-log rows",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C14-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Server shared; BBC on Mac only",
+     "acceptance": "census JSON committed with sha256; compute_runs_v1.csv rows"
+    },
+    {
+     "item_id": "T4-C14-R3",
+     "item": "Source diffusion coefficients (salt, acid, sugar in meat/vegetable) as ranges from handbooks",
+     "work_types": [
+      "DOWNLOAD",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Wide spread; paywalled books",
+     "acceptance": "rows with page cites in the defaults registry"
+    }
+   ]
+  },
+  {
+   "id": "T4-C15",
+   "name": "PRESERVATION family (dry, pickle, pasteurise, sterilise, can): drying rate, F-value, diffusion",
+   "ssot_anchor": "PROCESS_COVERAGE family PRESERVATION (order 4)",
+   "plan_steps": [
+    "26g",
+    "23",
+    "31"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md",
+    "src/culinarystate/simulation/physics_drivers.py"
+   ],
+   "what_exists": "equivalent_minutes supports F-value if z=10, T_ref 121.1 C passed; drying rate not coded.",
+   "gap_vs_ssot": "Constant+falling-rate drying model absent; air speed/RH defaults absent; lethality needs sourced z and organism; Step 26 does not cover it. Not implemented.",
+   "remaining": [
+    {
+     "item_id": "T4-C15-R1",
+     "item": "Build driver + scenario defaults + Layer 1 binding for PRESERVATION family and unit tests",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-12",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T4-C11-R2",
+      "T4-C06-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Unverified defaults; value for talk is moderate; flags only for qualitative families",
+     "acceptance": "tests green; 1,000-recipe sample census counts; every output labelled SCENARIO/MODEL_DERIVED/NON_CITABLE or TEXT_STATED; no number about food chemistry"
+    },
+    {
+     "item_id": "T4-C15-R2",
+     "item": "Full non-BBC corpus run and counts-only report for PRESERVATION family with run-log rows",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C15-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Server shared; BBC on Mac only",
+     "acceptance": "census JSON committed with sha256; compute_runs_v1.csv rows"
+    }
+   ]
+  },
+  {
+   "id": "T4-C16",
+   "name": "MECHANICAL_CUT family: cut class to size, surface/volume, enzyme-activation flag with time to next heat",
+   "ssot_anchor": "PROCESS_COVERAGE family MECHANICAL_CUT (order 5); SSOT L6045-6047 (cutting initiates chemistry: alliinase, LOX/HPL, myrosinase, PPO)",
+   "plan_steps": [
+    "26g",
+    "23",
+    "31"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md",
+    "src/culinarystate/simulation/physics_drivers.py"
+   ],
+   "what_exists": "cut classes feed half-thickness defaults (SD-050..053); no enzyme-activation flag.",
+   "gap_vs_ssot": "No activation flag, no 'time until next heat' computation in the state graph; enzyme list unsourced; geometry depends on T4-C08. Flags not produced.",
+   "remaining": [
+    {
+     "item_id": "T4-C16-R1",
+     "item": "Build driver + scenario defaults + Layer 1 binding for MECHANICAL_CUT family and unit tests",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-12",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T4-C11-R2",
+      "T4-C06-R3"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Unverified defaults; value for talk is moderate; flags only for qualitative families",
+     "acceptance": "tests green; 1,000-recipe sample census counts; every output labelled SCENARIO/MODEL_DERIVED/NON_CITABLE or TEXT_STATED; no number about food chemistry"
+    },
+    {
+     "item_id": "T4-C16-R2",
+     "item": "Full non-BBC corpus run and counts-only report for MECHANICAL_CUT family with run-log rows",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C16-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Server shared; BBC on Mac only",
+     "acceptance": "census JSON committed with sha256; compute_runs_v1.csv rows"
+    }
+   ]
+  },
+  {
+   "id": "T4-C17",
+   "name": "MECHANICAL_MIX family: qualitative flags AERATED, EMULSIFIED, DEVELOPED (no number)",
+   "ssot_anchor": "PROCESS_COVERAGE family MECHANICAL_MIX (order 6)",
+   "plan_steps": [
+    "26g",
+    "23",
+    "31"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md",
+    "src/culinarystate/simulation/physics_drivers.py"
+   ],
+   "what_exists": "nothing beyond Rung A verb recognition.",
+   "gap_vs_ssot": "No flag definitions, no tool/duration binding; flags must be QUALITATIVE only. Not implemented.",
+   "remaining": [
+    {
+     "item_id": "T4-C17-R1",
+     "item": "Build driver + scenario defaults + Layer 1 binding for MECHANICAL_MIX family and unit tests",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2-4",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T4-C11-R2",
+      "T4-C06-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Unverified defaults; value for talk is moderate; flags only for qualitative families",
+     "acceptance": "tests green; 1,000-recipe sample census counts; every output labelled SCENARIO/MODEL_DERIVED/NON_CITABLE or TEXT_STATED; no number about food chemistry"
+    },
+    {
+     "item_id": "T4-C17-R2",
+     "item": "Full non-BBC corpus run and counts-only report for MECHANICAL_MIX family with run-log rows",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C17-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Server shared; BBC on Mac only",
+     "acceptance": "census JSON committed with sha256; compute_runs_v1.csv rows"
+    }
+   ]
+  },
+  {
+   "id": "T4-C18",
+   "name": "RESTING family: carry-over heating and moisture redistribution",
+   "ssot_anchor": "PROCESS_COVERAGE family RESTING (order 7)",
+   "plan_steps": [
+    "26g",
+    "23",
+    "31"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md",
+    "src/culinarystate/simulation/physics_drivers.py"
+   ],
+   "what_exists": "conduction series can continue with still-air boundary; no linkage to previous step end state.",
+   "gap_vs_ssot": "Needs previous event's end temperature trajectory (event chaining) and still-air h default. Not implemented.",
+   "remaining": [
+    {
+     "item_id": "T4-C18-R1",
+     "item": "Build driver + scenario defaults + Layer 1 binding for RESTING family and unit tests",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-12",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T4-C11-R2",
+      "T4-C06-R3"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Unverified defaults; value for talk is moderate; flags only for qualitative families",
+     "acceptance": "tests green; 1,000-recipe sample census counts; every output labelled SCENARIO/MODEL_DERIVED/NON_CITABLE or TEXT_STATED; no number about food chemistry"
+    },
+    {
+     "item_id": "T4-C18-R2",
+     "item": "Full non-BBC corpus run and counts-only report for RESTING family with run-log rows",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C18-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Server shared; BBC on Mac only",
+     "acceptance": "census JSON committed with sha256; compute_runs_v1.csv rows"
+    }
+   ]
+  },
+  {
+   "id": "T4-C19",
+   "name": "STORAGE family (store, refrigerated, room temperature): Arrhenius kinetics at storage T, days",
+   "ssot_anchor": "PROCESS_COVERAGE family STORAGE (order 8); SSOT \u00a7198 H_t history; Step 31 PE storage rows",
+   "plan_steps": [
+    "26g",
+    "23",
+    "31"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md",
+    "src/culinarystate/simulation/physics_drivers.py"
+   ],
+   "what_exists": "none; PE EVD rows are mostly storage series (Step 31 card).",
+   "gap_vs_ssot": "Needs PARAM like M3; no storage T defaults; no corpus binding; storage vs cooking evidence must be stratified (Step 31 rule). Not implemented; also depends on PARAM, so SIMULATE stays unreachable.",
+   "remaining": [
+    {
+     "item_id": "T4-C19-R1",
+     "item": "Build driver + scenario defaults + Layer 1 binding for STORAGE family and unit tests",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-12",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T4-C11-R2",
+      "T4-C06-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Unverified defaults; value for talk is moderate; flags only for qualitative families",
+     "acceptance": "tests green; 1,000-recipe sample census counts; every output labelled SCENARIO/MODEL_DERIVED/NON_CITABLE or TEXT_STATED; no number about food chemistry"
+    },
+    {
+     "item_id": "T4-C19-R2",
+     "item": "Full non-BBC corpus run and counts-only report for STORAGE family with run-log rows",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C19-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Server shared; BBC on Mac only",
+     "acceptance": "census JSON committed with sha256; compute_runs_v1.csv rows"
+    },
+    {
+     "item_id": "T4-C19-R3",
+     "item": "Storage kinetics entry through Step 32 PARAM for one system (likely ascorbic acid at storage T)",
+     "work_types": [
+      "TRAINING",
+      "HUMAN_REVIEW"
+     ],
+     "where": "manjot",
+     "agent_hours": "4-8",
+     "human_hours": "2-4",
+     "depends_on": [
+      "Step 32",
+      "PARAM human verification (M3)"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "PARAM unconfirmable until verified",
+     "acceptance": "PARAM rows human verified; SIMULATE route available only then"
+    }
+   ]
+  },
+  {
+   "id": "T4-C20",
+   "name": "Physical-state dataset packaging: record schema, dataset card, provenance, compute tracking and sync (D-077)",
+   "ssot_anchor": "D-077; SSOT \u00a7203.9 dataset card L17355-17371; \u00a7199.5 tuple; project law 6 (no third-party text in commits)",
+   "plan_steps": [
+    "26g",
+    "15"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "registry/compute_runs_v1.csv (RUN-S172-001..S174-002)",
+    "reports/step26/CENSUS_FILES.md",
+    "data/derived/physical_L1_*/L2_* (git-ignored, Mac/vinayak)",
+    "reports/step26/binding_census_*_full_*.json"
+   ],
+   "what_exists": "Counts-only committed reports with seed 20261104, code hashes, baseline PASS; run log rows with host, hashes; per-event L1/L2 records on Mac and vinayak (not visible in this worktree).",
+   "gap_vs_ssot": "No unified physical-record schema, no dataset card, no versioned release or manifest of the derived record shards and hashes, records not on manjot, not consumable by the router yet; not reproduced across hosts for FOODCOM (single vinayak run); CENSUS_FILES.md lists only Step 26g files, not L1/L2 runs.",
+   "remaining": [
+    {
+     "item_id": "T4-C20-R1",
+     "item": "Write physical-record schema + dataset card (fields, basis codes, layers, limits, licence per source, counts) and a shard manifest with sha256",
+     "work_types": [
+      "WRITING",
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "1",
+     "depends_on": [
+      "T4-C02-R2"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Reviewers cannot trace numbers without it",
+     "acceptance": "dataset card committed; manifest lists each shard with hash; validator test"
+    },
+    {
+     "item_id": "T4-C20-R2",
+     "item": "Reproduce FOODCOM L1/L2 on a second host (manjot, 16-32 workers) and compare counts and hashes",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-5 (job hours ~4-8)",
+     "human_hours": "0",
+     "depends_on": [
+      "code sync"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Disk 95 % full; shared server",
+     "acceptance": "counts identical to RUN-S174-002 or differences explained"
+    },
+    {
+     "item_id": "T4-C20-R3",
+     "item": "Update CENSUS_FILES.md and run log rows with S176 results",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "0.5",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "Orchestrator-only files",
+     "acceptance": "index rows added by orchestrator"
+    }
+   ]
+  },
+  {
+   "id": "T4-C21",
+   "name": "Step 26g recipe-event to simulation-input adapter and simulability census (physical inputs side)",
+   "ssot_anchor": "Step 26g card; \u00a7141 router contract",
+   "plan_steps": [
+    "26g",
+    "23a"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/step26/simulability_census_full_corpus_S169.json (14,594,812 events, SIMULATE 0, exceptions 0, invented 0)",
+    "src/culinarystate/simulation/recipe_adapter.py",
+    "tests/*/test_step26g_recipe_adapter.py",
+    "reports/step26/CENSUS_FILES.md"
+   ],
+   "what_exists": "Full-corpus census on vinayak finished 2026-11-07; reasons: 8 MISSING_* inputs, APPLICABILITY_UNKNOWN 14,594,812, NO_CONSUMED_ENTITY 1,027,834, LOT_INTRODUCTION 5,124,622. All SIM_PROHIBITED by construction.",
+   "gap_vs_ssot": "Census predates Layer 1/2 bindings, so 'all prohibited' is not updated for the 59,843 events that now have text-stated T and t; recipe_event_id to sim_run_id link table (SIMLINK) not written; simulator inputs for non-heat events are not enumerated.",
+   "remaining": [
+    {
+     "item_id": "T4-C21-R1",
+     "item": "Re-run 26g census with Layer 1 bindings supplying T, t, medium and size so MISSING_* reasons drop for bound events; keep SIMULATE 0 until PARAM human verified",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C04",
+      "M3 gate for any SIMULATE"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Binding miscount could suggest simulability that PARAM cannot support",
+     "acceptance": "new census JSON, reasons by event, SIMULATE 0 asserted, baseline PASS"
+    }
+   ]
+  },
+  {
+   "id": "T4-C22",
+   "name": "Step 31 physics/condition features (31.0 census, 31a generic features, 31b fitted-parameter features)",
+   "ssot_anchor": "Step 31 card; SSOT \u00a7199.3 transforms, \u00a7199.9-199.10 shortcuts; RQ15-2 (L18211); G14-7, G15-3",
+   "plan_steps": [
+    "31",
+    "30",
+    "15",
+    "07"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "docs/plan/CulinaryState_36_Step_Execution_Plan_v2.md L1321 Step 31 card",
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md s3 row 31 'heating layers RUN; non-heat families, lot state'",
+    "packet: Not before 25 Nov: Steps 20, 28, 33, 34"
+   ],
+   "what_exists": "Physics drivers exist at recipe-event level (Layer 2) but Step 31 as written uses EVD rows with measured T and t (effectively Phytochemical-Explorer storage series); none of the Step-31 feature code, registry or experiment exists.",
+   "gap_vs_ssot": "Plan and D-077 dataset are disconnected: Step 31 tests physics features on EVD rows, whereas the new layers are recipe-event features; blocked by Step 30 harness, valid Step-07 gate (07.A FAILED) and Step 15 condition-OOD bins; physics_feature_registry_v1.csv absent; log(1+t) and 1/T_K transforms not built.",
+   "remaining": [
+    {
+     "item_id": "T4-C22-R1",
+     "item": "Decide how Layer 1/2 features enter Step 31: EVD-row arm only (as in plan) or add a recipe-event diagnostic arm with Layer 2 masked (Q1)",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "1",
+     "depends_on": [
+      "Q1 decision"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Layer 2 features could leak default table",
+     "acceptance": "D-entry; Step 31 card amendment proposed"
+    },
+    {
+     "item_id": "T4-C22-R2",
+     "item": "31.0 cooking-vs-storage census of lineage components with within-study condition variation (data present in EVD/COND)",
+     "work_types": [
+      "ANALYSIS",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "COND ledger",
+      "Step 08 lineage ids"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Lineage ids may not exist (Step 08 not started)",
+     "acceptance": "census table counts components per target class; K>=10 or DIAGNOSTIC_ONLY"
+    },
+    {
+     "item_id": "T4-C22-R3",
+     "item": "Build physics_feature_registry_v1.csv and 31a feature code (raw, log(1+t), 1/T_K, bounds, dose, time above threshold) inside Step 30 harness",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "8-12",
+     "human_hours": "0",
+     "depends_on": [
+      "Step 30 harness",
+      "valid Step-07 gate"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Gate and harness not available",
+     "acceptance": "registry + tests; identical row sets across arms"
+    },
+    {
+     "item_id": "T4-C22-R4",
+     "item": "Run condition-contribution ablation A1..A5 with paired cluster CIs; pre-registration signed by Kush",
+     "work_types": [
+      "TRAINING",
+      "CPU_COMPUTE",
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "manjot",
+     "agent_hours": "8-14",
+     "human_hours": "3",
+     "depends_on": [
+      "31a",
+      "Step 15 bins",
+      "Step 07 gate"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Likely tiny R31 (PE storage); PE gains must be reported as storage evidence",
+     "acceptance": "g14_7_g15_3_record.md with CI; negative result retained"
+    },
+    {
+     "item_id": "T4-C22-R5",
+     "item": "Expert review of Ea grid, temperature semantics (setpoint vs product) and heat-mode map",
+     "work_types": [
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "4",
+     "depends_on": [],
+     "priority_25nov": "AFTER",
+     "risk": "Outside expert availability",
+     "acceptance": "signed expert note"
+    }
+   ]
+  },
+  {
+   "id": "T4-C23",
+   "name": "Equipment, altitude and oven calibration uncertainty as Layer 2 spread",
+   "ssot_anchor": "packet Q6; \u00a7144 conditions",
+   "plan_steps": [
+    "26g"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md Q6"
+   ],
+   "what_exists": "Bath T ranges of 10-40 C implicitly cover oven error; boil defined at 100 C at 1 atm.",
+   "gap_vs_ssot": "Altitude (boiling point), oven calibration error, fan vs conventional not modelled; boil = 100 C definition then wrong above sea level.",
+   "remaining": [
+    {
+     "item_id": "T4-C23-R1",
+     "item": "Decide: add as extra Layer 2 spread or state as out of scope",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "None",
+     "acceptance": "D-entry"
+    },
+    {
+     "item_id": "T4-C23-R2",
+     "item": "If added: altitude-dependent boil T and oven offset parameter in scenario layer",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [
+      "T4-C23-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Adds unsourced defaults",
+     "acceptance": "tests; labelled ASSUMED_DEFAULT"
+    }
+   ]
+  },
+  {
+   "id": "T4-C24",
+   "name": "Learned numerical embeddings, dense trajectory encoders, neural ODE/CDE on general process data",
+   "ssot_anchor": "\u00a7199.3-199.4 L16119-16145 (DEFER), L16145 focused kinetic data only",
+   "plan_steps": [
+    "31",
+    "33"
+   ],
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "SSOT L16135 [DEFER]",
+    "packet 'Not before 25 Nov: Steps 33, 34, learned representation rungs'"
+   ],
+   "what_exists": "nothing built, by decision.",
+   "gap_vs_ssot": "SSOT itself defers; no plan item before 25 Nov.",
+   "remaining": [
+    {
+     "item_id": "T4-C24-R1",
+     "item": "Revisit after G15-2 passes and focused kinetic data exist",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5",
+     "depends_on": [
+      "G15-2"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "None",
+     "acceptance": "decision recorded after 25 Nov"
+    }
+   ]
+  },
+  {
+   "id": "T4-C25",
+   "name": "Physical-state results for talk and report: honest limits, figures, claim-wording audit",
+   "ssot_anchor": "D-077; project laws 1, 2, 8; course presentation 25-26 Nov",
+   "plan_steps": [
+    "36"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md s7 item 10"
+   ],
+   "what_exists": "Numbers exist in census JSONs; no figures, no slide text.",
+   "gap_vs_ssot": "No consolidated physical-layer story; risk of calling Layer 2 'physics-based nutrition' (forbidden by \u00a7141) or hiding the 3-5 % text coverage.",
+   "remaining": [
+    {
+     "item_id": "T4-C25-R1",
+     "item": "Draft physical-layer slides/figures (coverage funnel, bracket spread, UNKNOWN reasons, non-heat families status) with wording audit against \u00a7141",
+     "work_types": [
+      "WRITING",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "2-3 (Kush/Parv edit)",
+     "depends_on": [
+      "T4-C04-R1",
+      "T4-C05-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Overclaim or inconsistent numbers",
+     "acceptance": "every figure traced to a JSON path; Kush review recorded"
+    }
+   ]
+  }
+ ],
+ "ssot_requirements_without_plan_coverage": [
+  "L6042-6048: surface AND core temperature histories plus moisture state are the minimum drivers; no plan step builds moisture/evaporation, only core temperature (T4-C09)",
+  "L6045-6047: cutting initiates chemistry (alliinase, LOX/HPL, myrosinase, PPO): activation flag has no step owner before the state-graph work (T4-C16)",
+  "\u00a7199.8: endpoint cues stored as outcome/stopping criterion, not conditions: no step verifies it for the new layers (T4-C03)",
+  "\u00a7199.5 per-axis provenance tuple in physical records: no schema step for the D-077 dataset (T4-C20, T4-C02)",
+  "D-077 dataset as an object has no consumer in the 36-step plan except 26g and the router; Step 31 uses EVD rows only (T4-C22)",
+  "\u00a7199.1 external ontology mapping (FoodOn/LanguaL) has no plan step (T4-C01)",
+  "\u00a7198.3 Arrhenius exposure integrals at representative Ea (L15842): only Step 31b, after Step 32 (T4-C07)"
+ ],
+ "contradictions": [
+  "Packet s4 quotes 3.3 % (time and T both stated) and 4.8 % with ranges from the 1,000-recipe sample; summing the full-run census JSONs gives driver_ready 59,843 (3.4 %) and driver_bounded 92,904 (5.3 %) of 1,746,405 heat events; the packet should quote the full-corpus values.",
+  "Step 31 card (EVD rows with measured T,t) versus D-077 (recipe-event Layer 1/2 features): the plan never says whether Layer 2 features may be used in learned Step 31 arms; packet Q1 leaves it open.",
+  "PROCESS_COVERAGE_PLAN lists soak, brine and dry in more than one family (separation/ferment, ferment/preservation, DRY_HEAT/preservation): no rule decides the family.",
+  "Layer 2 emits transition 'physically_possible' for 667,634 FOODCOM events from ASSUMED_DEFAULT scenario values; \u00a7141 says physically_possible is a routing label, not evidence, so reports must not read it as a finding.",
+  "SSOT L6042 requires surface/core/moisture, while the PROCESS_COVERAGE plan builds only conduction (core) plus diffusion/drying later; the slab core model alone cannot support browning claims.",
+  "Plan Step 26 inputs list water:food ratio, lid, start mode, product vs medium T as Step-16 EVT fields, but the Layer 1 binder binds none of them."
+ ],
+ "notes": "Cross-topic boundaries: lot state, composition, pH flags, SR Legacy matching, SVAR physical variables and interaction edges belong to the lot-state topic; SIMULATE/kinetics (sim_aa_1, M3 PARAM fit) to the simulator topic; router gates to the router topic; mandatory L14 shortcut baselines (\u00a7199.10), state-action relations (\u00a7199.6) and history H_t (\u00a7198.4) to the transition-model and state topics; 07.A-R1 to the Step-07 topic. Status words: L1 and L2 are RUN on full-scale data but L2 is an ASSUMED_DEFAULT dry run (defaults unverified), so neither is DONE. All hour figures are estimates. I ran the 33 physical tests (pass) but no pipelines; per-event L1/L2 shards sit on Mac/vinayak and were not inspected from this host. Non-BBC runs fit manjot CPU (<=32 workers, nice 10); BBC only on Mac (D-003)."
+}
