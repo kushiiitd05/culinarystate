@@ -1,0 +1,43 @@
+{
+  "contains_ids": false,
+  "contains_text": false,
+  "contrast_other_sources": {
+    "TASTESET_lines": 17,
+    "TASTESET_lines_bare_number_no_unit": 1,
+    "TASTESET_lines_with_other_unit": 13,
+    "TASTESET_lines_with_stated_mass": 3,
+    "WIKIBOOKS_lines": 30,
+    "WIKIBOOKS_lines_bare_number_no_unit": 6,
+    "WIKIBOOKS_lines_with_other_unit": 18,
+    "WIKIBOOKS_lines_with_stated_mass": 1
+  },
+  "counts_as_human_gate": false,
+  "foodcom": {
+    "paired_lines": 1445,
+    "paired_lines_bare_number_no_unit": 1378,
+    "paired_lines_no_quantity_or_other": 63,
+    "paired_lines_with_other_unit": 4,
+    "paired_lines_with_stated_mass": 0,
+    "parts_total": 6682,
+    "parts_with_count_or_package_unit_token": 304,
+    "parts_with_leading_unit_token": 8,
+    "parts_with_mass_or_volume_unit_token": 0,
+    "quantity_strings_missing": 474,
+    "quantity_strings_non_numeric": 0,
+    "quantity_strings_numeric_only": 7476,
+    "quantity_strings_total": 7950,
+    "quantity_strings_with_ascii_letters": 0,
+    "quantity_strings_with_unit_token": 0,
+    "recipes": 859,
+    "recipes_q_len_equal_p_len": 176,
+    "recipes_q_len_greater_than_p_len": 645,
+    "recipes_q_len_less_than_p_len": 38
+  },
+  "recipes_sampled": 1000,
+  "record": "FOODCOM_UNITS_CHECK_S176",
+  "sample_size_requested": 1000,
+  "seed_sha256": "1037f2edb4912104fc759949aacecbc2133a73a1a2b17bde5210cdad7ee901dc",
+  "status": "AI_ENGINEERING_COUNTS_ONLY",
+  "verdict": "CONFIRMED_UNITS_ABSENT",
+  "verdict_rule": "NO_UNIT_TOKEN_IN_ANY_QUANTITY_STRING_AND_UNDER_1PCT_PAIRED_LINES_WITH_STATED_MASS"
+}
