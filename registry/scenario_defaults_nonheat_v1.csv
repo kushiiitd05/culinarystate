@@ -1,0 +1,41 @@
+default_id,quantity,applies_to,low,mid,high,unit,source_hint,source_status
+NH-001,medium_temperature,FRIDGE,2,5,8,degC,"needs_source: domestic refrigerator air temperature range (food-safety guidance, appliance standards); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-002,medium_temperature,FREEZER,-24,-18,-12,degC,"needs_source: domestic freezer storage temperature (-18 C convention; appliance star ratings); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-003,medium_temperature,ROOM,18,21,25,degC,"needs_source: indoor ambient air for room temperature (kitchen); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-004,medium_temperature,ICE_BATH,0,1,4,degC,"needs_source: ice-water bath temperature (stirred ice slurry near 0 C); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-005,medium_temperature,COLD_WATER,5,12,20,degC,"needs_source: cold tap water temperature by season and region; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-006,medium_temperature,COOL_DARK,8,12,16,degC,"needs_source: cool dark place / pantry / cellar storage temperature; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-007,medium_temperature,WARM_PLACE,24,30,38,degC,"needs_source: dough proving / culturing warm place (about 25-35 C in baking texts); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-008,medium_temperature,DEHYDRATOR,40,55,70,degC,"needs_source: food dehydrator air temperature settings; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-009,medium_temperature,OVEN_LOW,50,80,110,degC,"needs_source: low oven used for drying when no temperature is stated; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-010,medium_temperature,PRESSURE_CANNER,110,116,121,degC,"needs_source: pressure canner / retort steam temperature (about 116 C at 10 psi gauge, 121 C at 15 psi; steam tables); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-011,medium_temperature,ROLE_CHILL,2,5,8,degC,"needs_source: assumption that an unqualified chill step means a refrigerator; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-012,medium_temperature,ROLE_COOL,18,21,25,degC,"needs_source: assumption that an unqualified cool step means cooling in room air; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-013,medium_temperature,ROLE_DEFROST,4,12,22,degC,"needs_source: assumption for an unqualified defrost step (fridge, cold water or counter span); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-014,post_heat_temperature,POST_HEAT,60,80,95,degC,"needs_source: food temperature at the start of a cool/chill step that follows cooking (uniform start assumed); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-020,h,FRIDGE,5,10,20,W/m2K,"needs_source: air film coefficient in a domestic refrigerator (natural to weak forced convection plus radiation; food engineering texts); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-021,h,FREEZER,5,12,25,W/m2K,"needs_source: air film coefficient in a domestic freezer (still to weak forced air); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-022,h,ROOM,5,10,15,W/m2K,"needs_source: still room air natural convection plus radiation; also used for resting; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-023,h,COLD_WATER,100,300,600,W/m2K,"needs_source: cold water immersion, natural convection to gentle stirring; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-024,h,ICE_BATH,200,500,1000,W/m2K,"needs_source: stirred ice-water bath; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-025,h,ROLE_CHILL,5,10,20,W/m2K,"needs_source: companion of NH-011 (refrigerator air); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-026,h,ROLE_COOL,5,10,15,W/m2K,"needs_source: companion of NH-012 (room air); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-027,h,ROLE_DEFROST,5,10,15,W/m2K,"needs_source: companion of NH-013 (air side; water thawing would be higher); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-030,density_food,FOOD_HIGH_MOISTURE,950,1050,1100,kg/m3,"needs_source: bulk density of high-moisture foods (food engineering property tables); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-031,latent_heat_freezing,FOOD_HIGH_MOISTURE,200000,250000,300000,J/kg,"needs_source: about water fraction x 334 kJ/kg for 60-90 percent water foods, less unfrozen water; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-032,freezing_point,FOOD_HIGH_MOISTURE,-2.0,-1.0,-0.5,degC,"needs_source: initial freezing point of high-moisture foods (about -0.5 to -2.5 C); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-033,k_frozen,FOOD_HIGH_MOISTURE,1.2,1.6,2.2,W/mK,"needs_source: thermal conductivity of frozen high-moisture foods (ice is about 2.2); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-040,D_eff,BRINE,1e-10,2.5e-10,6e-10,m2/s,"needs_source: effective diffusivity of sodium chloride in muscle or vegetable tissue near fridge to room temperature (brining literature); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-041,D_eff,ACID,3e-10,8e-10,1.5e-9,m2/s,"needs_source: effective diffusivity of acetic or citric acid in vegetable or meat tissue (pickling and marinating literature); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-042,D_eff,WATER,1e-10,3e-10,1e-9,m2/s,"needs_source: effective water diffusivity for soaking legumes and grains (strongly temperature dependent, not modelled here); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-043,D_eff,MARINADE_OTHER,5e-11,2e-10,6e-10,m2/s,"needs_source: effective diffusivity of mixed marinade components (soy, dairy, alcohol, oil-borne flavour) in tissue; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-045,overnight_duration,ALL,480,600,720,min,"needs_source: meaning of the word overnight in recipes (about 8-12 h); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-050,wet_bulb_temperature,DRYING_AIR,25,32,40,degC,"needs_source: wet-bulb temperature of warm drying air in a home oven or dehydrator; S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-051,latent_heat_vaporisation,WATER,2260000,2360000,2450000,J/kg,"needs_source: latent heat of vaporisation of water between about 100 C and 20 C (steam tables); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-052,water_content_db_initial,FOOD_HIGH_MOISTURE,3,6,9,kg/kg dry basis,"needs_source: initial moisture of fruit, vegetable or meat pieces (75-90 percent wet basis); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-053,water_content_db_critical,FOOD_HIGH_MOISTURE,1,2.5,4,kg/kg dry basis,"needs_source: critical moisture at the end of constant-rate drying (strongly food dependent); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-054,water_content_db_equilibrium,DRYING_AIR,0.05,0.1,0.2,kg/kg dry basis,"needs_source: equilibrium moisture in warm low-humidity drying air (sorption isotherms); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-060,lethality_z,F0,10,10,10,degC,"needs_source: F0 convention z = 10 C (canning and retort practice); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-061,lethality_t_ref,F0,121.1,121.1,121.1,degC,"needs_source: F0 convention reference temperature 121.1 C (250 F); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-070,half_thickness,JULIENNE,0.001,0.0015,0.002,m,"needs_source: cut-size convention (julienne strips about 2-4 mm cross-section); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
+NH-080,liquid_removed_fraction,DRAIN|STRAIN,0.7,0.9,0.98,fraction,"needs_source: fraction of free liquid mass removed by draining or straining (drain residue and film retained); S176 L-NH agent recall",SOURCE_UNVERIFIED_AGENT_RECALLED
