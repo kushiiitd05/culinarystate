@@ -40,8 +40,13 @@ class CellTable:
 
 def build_cells(store: LedgerStore, source_family: str) -> CellTable:
     cond = {c["id"]: c for c in store.all_latest("COND")}
+    return cells_from_rows(store.all_latest("EVD"), cond, source_family)
+
+
+def cells_from_rows(evd_rows, cond: dict, source_family: str) -> CellTable:
+    """Same table as build_cells, from caller-supplied EVD rows (S173: 29-diag passes seal-filtered rows)."""
     rows = []
-    for e in store.all_latest("EVD"):
+    for e in evd_rows:
         if e["source_family_id"] != source_family or e["status"] != "ACTIVE":
             continue
         y, y_lower, censored = _rf(e)
