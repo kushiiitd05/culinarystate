@@ -1,0 +1,28 @@
+process_id,process_name,medium_code,physical_definition_degC,definition_basis,status
+PROC-000019,boil,WATER,100,"boiling water, 1 atm (altitude and solutes not stated: definition, not a measurement)",AGENT_DRAFT_PENDING_REVIEW
+PROC-000026,parboil,WATER,100,"boiling water, 1 atm",AGENT_DRAFT_PENDING_REVIEW
+PROC-000023,blanch,WATER,,"water or steam; temperature not fixed by the verb",AGENT_DRAFT_PENDING_REVIEW
+PROC-000020,simmer,WATER,,"liquid below the boil; temperature not fixed by the verb",AGENT_DRAFT_PENDING_REVIEW
+PROC-000021,poach,WATER,,"liquid below the boil",AGENT_DRAFT_PENDING_REVIEW
+PROC-000022,steam,STEAM,100,"condensing steam at 1 atm",AGENT_DRAFT_PENDING_REVIEW
+PROC-000024,braise,LIQUID_PARTIAL,,"food partly covered in liquid, usually covered vessel",AGENT_DRAFT_PENDING_REVIEW
+PROC-000025,stew,LIQUID,,"food submerged in liquid",AGENT_DRAFT_PENDING_REVIEW
+PROC-000027,pressure-cook,WATER_PRESSURIZED,,"pressure not stated: temperature not fixed",AGENT_DRAFT_PENDING_REVIEW
+PROC-000149,sous-vide,WATER_BATH_SEALED,,"sealed food in a water bath; temperature must be stated",AGENT_DRAFT_PENDING_REVIEW
+PROC-000150,scald,LIQUID,,"liquid heated to just below boiling",AGENT_DRAFT_PENDING_REVIEW
+PROC-000001,bake,OVEN_AIR,,"oven; setpoint must be stated",AGENT_DRAFT_PENDING_REVIEW
+PROC-000153,blind-bake,OVEN_AIR,,"oven; setpoint must be stated",AGENT_DRAFT_PENDING_REVIEW
+PROC-000002,roast,OVEN_AIR,,"oven or open heat; setpoint must be stated",AGENT_DRAFT_PENDING_REVIEW
+PROC-000008,air-fry,OVEN_AIR_FORCED,,"forced hot air",AGENT_DRAFT_PENDING_REVIEW
+PROC-000003,grill,RADIANT,,"radiant heat (UK grill) or grate contact (US): ambiguous",AGENT_DRAFT_PENDING_REVIEW
+PROC-000004,toast,RADIANT,,"radiant or dry contact",AGENT_DRAFT_PENDING_REVIEW
+PROC-000011,deep-fry,OIL_IMMERSION,,"food submerged in hot oil",AGENT_DRAFT_PENDING_REVIEW
+PROC-000012,shallow-fry,OIL_SHALLOW,,"partial oil depth",AGENT_DRAFT_PENDING_REVIEW
+PROC-000013,pan-fry,PAN_CONTACT_OIL,,"hot pan contact with a little fat",AGENT_DRAFT_PENDING_REVIEW
+PROC-000009,fry,PAN_CONTACT_OIL,,"generic fry; depth not stated",AGENT_DRAFT_PENDING_REVIEW
+PROC-000010,stir-fry,PAN_CONTACT_OIL,,"hot pan or wok contact, agitated",AGENT_DRAFT_PENDING_REVIEW
+PROC-000014,saute,PAN_CONTACT_OIL,,"hot pan contact, agitated",AGENT_DRAFT_PENDING_REVIEW
+PROC-000015,sear,PAN_CONTACT_OIL,,"very hot surface contact",AGENT_DRAFT_PENDING_REVIEW
+PROC-000016,brown,PAN_CONTACT_OIL,,"surface browning, usually pan",AGENT_DRAFT_PENDING_REVIEW
+PROC-000017,sweat,PAN_CONTACT_OIL,,"gentle pan heat with fat",AGENT_DRAFT_PENDING_REVIEW
+PROC-000007,microwave,MICROWAVE,,"dielectric heating; power must be stated",AGENT_DRAFT_PENDING_REVIEW
