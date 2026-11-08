@@ -42,13 +42,15 @@ class DiagRefused(RuntimeError):
 
 
 def frozen_bootstrap_snapshot_ids(root: Path | str) -> frozenset[str]:
-    """Ids of frozen 15a bootstrap snapshots. Empty: no 15a freeze or freeze-record format exists."""
-    return frozenset()
+    """Ids of human-approved, hash-matching 15a bootstrap freeze records (evaluation/freeze_records.py, S173)."""
+    from culinarystate.evaluation import freeze_records as FR
+    return FR.frozen_snapshot_ids(root)
 
 
 def diag_preregistration_signed(root: Path | str) -> bool:
-    """Whether Kush has signed the 29-diag pre-registration. False: no record or format exists."""
-    return False
+    """Whether a human signed the current 29-diag pre-registration text (evaluation/freeze_records.py, S173)."""
+    from culinarystate.evaluation import freeze_records as FR
+    return FR.prereg_signed(root)
 
 
 def _read_commitment(path: Path) -> tuple[Optional[dict], list[str]]:
