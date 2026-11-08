@@ -91,3 +91,30 @@ def trajectory_dose(traj: Sequence[tuple[float, float]], *, t_ref_c: float, z_c:
     """Equivalent minutes for a sampled trajectory (midpoint temperature per interval)."""
     return equivalent_minutes([(t2 - t1, 0.5 * (y1 + y2)) for (t1, y1), (t2, y2) in zip(traj, traj[1:])],
                               t_ref_c=t_ref_c, z_c=z_c)
+
+
+def slab_uptake_fraction(*, d_m2_s: float, half_thickness_m: float, time_s: float, n_terms: int = 200) -> float:
+    """Mean fractional uptake M_t/M_inf in a slab with surface at equilibrium (Crank, Bi -> infinity):
+    1 - sum 8/((2n+1)^2 pi^2) exp(-(2n+1)^2 pi^2 D t / (4 L^2)). Used for soak, marinate, brine (D-077 family 3)."""
+    if not (d_m2_s > 0 and half_thickness_m > 0) or time_s < 0:
+        raise ValueError("D and L must be positive and t >= 0")
+    if time_s == 0:
+        return 0.0
+    tau = d_m2_s * time_s / half_thickness_m ** 2
+    if tau < 1e-3:  # short-time limit avoids slow series convergence
+        return min(1.0, 2 * math.sqrt(tau / math.pi))
+    s = sum(8 / ((2 * n + 1) ** 2 * math.pi ** 2) * math.exp(-((2 * n + 1) ** 2) * math.pi ** 2 * tau / 4)
+            for n in range(n_terms))
+    return min(1.0, max(0.0, 1 - s))
+
+
+def plank_freezing_time_s(*, rho: float, latent_j_kg: float, t_freeze_c: float, t_air_c: float, thickness_m: float,
+                          h_w_m2k: float, k_frozen_w_mk: float, p: float = 0.5, r: float = 0.125) -> float:
+    """Plank's equation (slab: P = 1/2, R = 1/8; a = full thickness). D-077 family 1 (freeze)."""
+    if t_air_c >= t_freeze_c:
+        raise ValueError("air must be colder than the freezing point")
+    for name, v in (("rho", rho), ("latent", latent_j_kg), ("thickness", thickness_m), ("h", h_w_m2k),
+                    ("k", k_frozen_w_mk)):
+        if not v > 0:
+            raise ValueError(f"{name} must be positive")
+    return rho * latent_j_kg / (t_freeze_c - t_air_c) * (p * thickness_m / h_w_m2k + r * thickness_m ** 2 / k_frozen_w_mk)
