@@ -28,6 +28,7 @@ SOURCE = "FDA/CFSAN Approximate pH of Foods and Food Products, Oct 2003 (webharv
 SOURCE_LPH = "FDA/CFSAN Approximate pH of Foods and Food Products, Apr 2007 revision (L-PH draft registry v1)"
 ACID_PH_MAX = 4.6
 _LPH_VALUED = frozenset({"PARSED", "PARSED_OPEN_ENDED", "PARSED_REPAIRED_WS"})
+SIZE_WORDS = frozenset({"small", "medium", "large", "extra", "jumbo", "mini", "big"})   # never a food head (S179 SCI #5)
 _NUM = r"\d+(?:\.\d+)?"
 _RANGE = re.compile(rf"^({_NUM})\s*-\s*({_NUM})?$")
 _POINT = re.compile(rf"^({_NUM})$")
@@ -127,7 +128,7 @@ class PHTable:
         self._memo: dict[tuple[str, ...], PHRange] = {}
 
     def lookup(self, name: str) -> PHRange:
-        q = normalise(name)
+        q = tuple(t for t in normalise(name) if t not in SIZE_WORDS) or normalise(name)
         if q not in self._memo:                 # S179 F4: the table is immutable, so memoise per name
             self._memo[q] = self._lookup(q)
         return self._memo[q]
@@ -139,7 +140,10 @@ class PHTable:
         exact = sorted((r for r in self.rows if self._tokens[r.item] == frozenset(q)), key=lambda r: r.item)
         if exact:
             lo, hi = _span(exact)
-            return PHRange(lo, hi, "FDA_ITEM_MATCH", tuple(r.item for r in exact), any_lo, any_hi)
+            # any_form = the item's own parent family (its head), so it always contains the item (S179 SCI #5)
+            fam_heads = {self._heads[r.item] for r in exact}
+            fam_lo, fam_hi = _span([r for r in self.rows if self._heads[r.item] in fam_heads])
+            return PHRange(lo, hi, "FDA_ITEM_MATCH", tuple(r.item for r in exact), fam_lo, fam_hi)
         if same_head:
             return PHRange(any_lo, any_hi, "FDA_HEAD_UNION", tuple(r.item for r in same_head), any_lo, any_hi)
         return PHRange(None, None, "UNKNOWN", (), None, None)
