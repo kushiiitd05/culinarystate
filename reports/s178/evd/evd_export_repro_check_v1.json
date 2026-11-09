@@ -1,0 +1,247 @@
+{
+ "contains_ids": true,
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "freeze_manifest_inputs": {
+  "edge_candidates.jsonl": {
+   "current_file": "40110952afdc4e0b5d631677f486984f666d95ce7324a797e7343b9f2c895dac",
+   "equal": true,
+   "recorded": "40110952afdc4e0b5d631677f486984f666d95ce7324a797e7343b9f2c895dac"
+  },
+  "evd_export_v2.manifest.json": {
+   "current_file": "668aa75dfe3657f3688674fa35e744ed78e63ecd3438f4769ce932899615ed01",
+   "equal": true,
+   "recorded": "668aa75dfe3657f3688674fa35e744ed78e63ecd3438f4769ce932899615ed01"
+  },
+  "feasibility.json": {
+   "current_file": "d3d7f34ee2796f1837dce2f28b92ff5fee0d01376f494567ae9995cebd73db79",
+   "equal": true,
+   "recorded": "d3d7f34ee2796f1837dce2f28b92ff5fee0d01376f494567ae9995cebd73db79"
+  },
+  "keys.jsonl": {
+   "current_file": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90",
+   "equal": true,
+   "recorded": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90"
+  },
+  "keys_counts.json": {
+   "current_file": "34b3ed7f0746233b0c88038f86f67b50ff42575cb1253bfb952e1a68a2936349",
+   "equal": true,
+   "recorded": "34b3ed7f0746233b0c88038f86f67b50ff42575cb1253bfb952e1a68a2936349"
+  },
+  "ledgers/data/DOC.jsonl": {
+   "current_file": "afa31f4b5c734c5bcdcb2e9bb279d5f873fad5dd3ea8bd33a8cbb151afbb4f74",
+   "equal": true,
+   "recorded": "afa31f4b5c734c5bcdcb2e9bb279d5f873fad5dd3ea8bd33a8cbb151afbb4f74"
+  },
+  "ledgers/data/SRC_08A_YIELD.jsonl": {
+   "current_file": "e92f71e8bb630eac23de0c05ead667d26bef3291db6c7148321f3e8a4c56332b",
+   "equal": true,
+   "recorded": "e92f71e8bb630eac23de0c05ead667d26bef3291db6c7148321f3e8a4c56332b"
+  },
+  "ledgers/data/STUDY.jsonl": {
+   "current_file": "727120365e5dabd9636d37c61981dcc5bd0c7c23de07ff740ae4fb6d552cff27",
+   "equal": true,
+   "recorded": "727120365e5dabd9636d37c61981dcc5bd0c7c23de07ff740ae4fb6d552cff27"
+  },
+  "ledgers/data/_ids.jsonl": {
+   "current_file": "c2950817fc50c201a9dd49924a653ea2574ac9163ce7fe95fd12c0203bfaeefb",
+   "equal": true,
+   "recorded": "c2950817fc50c201a9dd49924a653ea2574ac9163ce7fe95fd12c0203bfaeefb"
+  }
+ },
+ "ledgers": {
+  "COND": {
+   "after": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+   "baseline_csv": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+   "before": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+   "equals_recorded": true,
+   "unchanged": true,
+   "v1_manifest_before_after": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf"
+  },
+  "EVD": {
+   "after": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+   "baseline_csv": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+   "before": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+   "equals_recorded": true,
+   "unchanged": true,
+   "v1_manifest_before_after": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56"
+  },
+  "ING": {
+   "after": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+   "baseline_csv": null,
+   "before": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+   "equals_recorded": true,
+   "unchanged": true,
+   "v1_manifest_before_after": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574"
+  },
+  "MEAS": {
+   "after": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+   "baseline_csv": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+   "before": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+   "equals_recorded": true,
+   "unchanged": true,
+   "v1_manifest_before_after": null
+  },
+  "PROC": {
+   "after": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+   "baseline_csv": null,
+   "before": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+   "equals_recorded": true,
+   "unchanged": true,
+   "v1_manifest_before_after": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644"
+  },
+  "SNAP": {
+   "after": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+   "baseline_csv": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+   "before": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+   "equals_recorded": true,
+   "unchanged": true,
+   "v1_manifest_before_after": null
+  },
+  "SRC": {
+   "after": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+   "baseline_csv": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+   "before": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+   "equals_recorded": true,
+   "unchanged": true,
+   "v1_manifest_before_after": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f"
+  },
+  "SVAR": {
+   "after": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697",
+   "baseline_csv": null,
+   "before": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697",
+   "equals_recorded": true,
+   "unchanged": true,
+   "v1_manifest_before_after": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697"
+  }
+ },
+ "libm_finding": {
+  "cells_differing_between_glibc_and_correctly_rounded_build": 4,
+  "columns": [
+   "log_fold_change"
+  ],
+  "evd_ids": [
+   "EVD-007201",
+   "EVD-007924",
+   "EVD-009784",
+   "EVD-010626"
+  ],
+  "math_log_evaluations_in_export": 15290,
+  "reading": "last-digit differences of ln(after/before) between the host libm and the libm that wrote the recorded hash; every other byte is identical"
+ },
+ "not_done": [
+  "keys.jsonl was verified by hash, not rebuilt (tools/step08a_build_keys.py refuses repo roots and a non-Mac output root)",
+  "the committed v1 jsonl and v2 jsonl are git-ignored and not in this tree: comparison is against the recorded manifest sha256"
+ ],
+ "record": "EVD_EXPORT_REPRO_S178",
+ "status": "AI_DRAFTED_PROPOSED",
+ "tool_version": "s178-evd-export-repro-0.1.0-draft",
+ "v1": {
+  "committed_jsonl_note": "exports/evd/evd_export_v1.jsonl is git-ignored (Mac only); the recorded manifest sha stands in for it",
+  "committed_jsonl_present_in_this_tree": false,
+  "duplicate_mapping_sha256": {
+   "current_file": "4e60d1c6aa661b400e34790d6ab0f08a107e4fca03a9eff4a651a7c035aa1af8",
+   "equal": true,
+   "recorded": "4e60d1c6aa661b400e34790d6ab0f08a107e4fca03a9eff4a651a7c035aa1af8"
+  },
+  "export_sha256": {
+   "equal": false,
+   "rebuilt": "1801607c915bf9fc12255eb2f366f505545efe97b240e7a4a08ba8954aefc3e5",
+   "recorded": "e61d7db4dc709ff3a4cb95ec6889a63d491e7f10d30222b421761f428aedd457"
+  },
+  "ledger_version_lines_ids_active": {
+   "rebuilt": [
+    57280,
+    18156,
+    17978
+   ],
+   "recorded": [
+    57280,
+    18156,
+    17978
+   ]
+  },
+  "matrix_table_sha256": {
+   "committed_file": "80f6a4fd7e8b5ddbb17b1b79560d3f6b437b5813dcb51dc703efa5ee200fbab7",
+   "equal": true,
+   "rebuilt": "80f6a4fd7e8b5ddbb17b1b79560d3f6b437b5813dcb51dc703efa5ee200fbab7",
+   "recorded": "80f6a4fd7e8b5ddbb17b1b79560d3f6b437b5813dcb51dc703efa5ee200fbab7"
+  },
+  "prior_state_table_sha256": {
+   "committed_file": "1a8036632ff533bba29176a54a72d65d2326548c783bad973b06cce1db9f39ff",
+   "equal": true,
+   "rebuilt": "1a8036632ff533bba29176a54a72d65d2326548c783bad973b06cce1db9f39ff",
+   "recorded": "1a8036632ff533bba29176a54a72d65d2326548c783bad973b06cce1db9f39ff"
+  },
+  "rows_vs_recorded": [
+   17978,
+   17978,
+   true
+  ],
+  "under_correctly_rounded_log": {
+   "equals_recorded": true,
+   "export_sha256": "e61d7db4dc709ff3a4cb95ec6889a63d491e7f10d30222b421761f428aedd457"
+  }
+ },
+ "v2": {
+  "added_columns_equal_recorded": true,
+  "export_rows": [
+   17978,
+   17978,
+   17978
+  ],
+  "export_sha256_run_a": "e8908eba15118f7a87d2ec086097d766b2617f00120cf2c4ff67211dc5d91d79",
+  "export_sha256_run_b": "e8908eba15118f7a87d2ec086097d766b2617f00120cf2c4ff67211dc5d91d79",
+  "export_v2_jsonl_committed": false,
+  "keys_file_sha256": {
+   "current_file": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90",
+   "in_freeze_manifest": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90",
+   "in_rebuilt_manifest": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90",
+   "in_recorded_manifest": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90"
+  },
+  "ledger_sha256_evd": {
+   "current": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+   "in_rebuilt_manifest": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+   "in_recorded_manifest": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56"
+  },
+  "manifest_difference_note": "only committed_v1 differs: the recorded manifest names the Mac copy of the (git-ignored) v1 jsonl, which is not in this tree",
+  "manifest_fields_differing_from_recorded": [
+   "committed_v1",
+   "export_sha256",
+   "v1_regenerated_sha256"
+  ],
+  "recorded_export_sha256": "ffeefef915ba1ae9c048e055ba298a2ef1c6f9562a3327743c2b1e7856512203",
+  "run_a_equals_run_b": true,
+  "run_equals_recorded": false,
+  "under_correctly_rounded_log": {
+   "equals_recorded": true,
+   "export_sha256": "ffeefef915ba1ae9c048e055ba298a2ef1c6f9562a3327743c2b1e7856512203"
+  },
+  "v1_regenerated_equals_recorded_v1": false,
+  "v1_regenerated_sha256_in_manifests": [
+   "1801607c915bf9fc12255eb2f366f505545efe97b240e7a4a08ba8954aefc3e5",
+   "1801607c915bf9fc12255eb2f366f505545efe97b240e7a4a08ba8954aefc3e5",
+   "e61d7db4dc709ff3a4cb95ec6889a63d491e7f10d30222b421761f428aedd457"
+  ],
+  "v1_rows_checked_identical": [
+   17978,
+   17978,
+   17978
+  ]
+ },
+ "verdict": "REPRODUCIBLE_ON_THIS_HOST__CROSS_PLATFORM_DIFFERS_IN_4_LOG_FOLD_CHANGE_CELLS_EXPLAINED",
+ "verdict_items": {
+  "evd_ledger_hash_in_v2_manifest_is_current": true,
+  "keys_file_hash_matches_recorded_and_freeze": true,
+  "ledger_inputs_of_keys_unchanged_since_freeze": true,
+  "only_log_fold_change_cells_differ_between_libm_variants": true,
+  "protected_ledgers_equal_recorded": true,
+  "protected_ledgers_unchanged_during_run": true,
+  "v1_export_sha256_equals_recorded_as_built_here": false,
+  "v1_export_sha256_equals_recorded_under_correctly_rounded_log": true,
+  "v1_matrix_and_prior_state_tables_equal_recorded": true,
+  "v2_equals_recorded_sha256_as_built_here": false,
+  "v2_equals_recorded_sha256_under_correctly_rounded_log": true,
+  "v2_two_fresh_runs_identical": true
+ }
+}
