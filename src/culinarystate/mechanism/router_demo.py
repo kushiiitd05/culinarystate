@@ -16,6 +16,12 @@ narrow routes; without ``gates`` the behaviour is exactly the S170 / S171 one.
 S177 (SCIFIX-ROUTER, FINAL-SCI #6 / #7): ABSENT needs a HIGH rank-1 identity, every plausible candidate (any band) known
 below the floor and a confirmed ING category; DIRECT is also withheld (``PRIOR_PROCESS_CONTEXT``) when the single-member
 lot was already produced by a heat or leach (SEPARATION / SOAK) event, read from the replay graph's ``produces``.
+
+S178 (aa-fit-sim, T5-C11-R4): an optional ``simulate`` argument (``simulate_branch.SimulateBranch``, duck-typed here so
+nothing is imported) runs the AA SIMULATE branch per item AFTER the gates. Without it nothing changes (byte-identical).
+With it every item gets a ``simulate`` block (status, reason codes, guard reasons) and the route becomes SIMULATE only
+when the branch completed a run through guard, domain gate, the unchanged 23a engine and ``sim_core``; otherwise the
+route is left exactly as it was (never downgraded, never invented). The branch refuses on real data today.
 """
 from __future__ import annotations
 
@@ -114,7 +120,8 @@ def _lot_ingredients(graph, entity_ids: Iterable[str]) -> list[str]:
 
 def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str | None = None,
                rung: RungA | None = None, hierarchy: PS.ProcessHierarchy | None = None,
-               schema: Mapping[str, Any] | None = None, gates: EG.EvidenceGates | None = None) -> dict:
+               schema: Mapping[str, Any] | None = None, gates: EG.EvidenceGates | None = None,
+               simulate: Any = None) -> dict:
     """Per (event, linked ingredient): the 23a route for ``target_svar``, its reasons and the matching EVD rows.
 
     ``gates`` (optional, S176): target-presence screen + lot-context gate before G0; see module docstring. Each item
@@ -126,6 +133,7 @@ def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str 
     source = SourceText.from_raw("DEMO", raw)
     graph = rung.run(source, rung.config(locale=locale), schema=schema or D.load_schema()).graph
     members = EG.lot_members(graph, hierarchy) if gates is not None else {}
+    sim_l1 = simulate.layer1(raw, locale) if simulate is not None else {}
     items = []
     for ev in graph.events:
         proc = _attr(ev.attributes, "proc_id")
@@ -160,11 +168,23 @@ def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str 
                     item["evidence"], item["evidence_not_applied"] = [], hits
                 else:
                     item["evidence_not_applied"] = []
+            if simulate is not None:
+                out = simulate.evaluate_item(item, layer1=sim_l1.get(ev.event_id), precheck=q.evidence_precheck,
+                                             hierarchy=hierarchy, target_svar=target_svar)
+                item["simulate"] = out.as_item()
+                if out.simulated:
+                    item["reasons_demo_engine"] = item["reasons"]
+                    item["route"], item["reasons"] = "SIMULATE", ["SIMULATE_RESEARCH_ONLY_PILOT"]
+                    item["appdec_id"] = (out.record or {}).get("appdec_id", item["appdec_id"])
             items.append(item)
-    return {"record": "ROUTER_DEMO", "version": DEMO_VERSION, "labels": list(LABELS), "citable": False,
-            "engine_mode": AP.MODE_23A, "engine_version": AP.ENGINE_VERSION, "conditions_consumed": False,
-            "target_svar": target_svar, "gates": gates.describe() if gates is not None else {"enabled": False},
-            "items": items}
+    env = {"record": "ROUTER_DEMO", "version": DEMO_VERSION, "labels": list(LABELS), "citable": False,
+           "engine_mode": AP.MODE_23A, "engine_version": AP.ENGINE_VERSION, "conditions_consumed": False,
+           "target_svar": target_svar, "gates": gates.describe() if gates is not None else {"enabled": False},
+           "items": items}
+    if simulate is not None:
+        env["simulate"] = {"enabled": True, "mode": simulate.guard.mode, "guard_allowed": simulate.guard.allowed,
+                           "guard_reasons": list(simulate.guard.reasons), "layer1_text_inputs_used": True}
+    return env
 
 
 def assert_citable(output: Mapping[str, Any]) -> None:
