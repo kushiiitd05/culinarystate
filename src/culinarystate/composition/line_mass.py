@@ -10,6 +10,10 @@ Order of bases (first that applies wins):
     UNKNOWN                  with a reason (NO_AMOUNT, NO_SR_FOOD, NO_SR_DENSITY, NO_SR_COUNT_PORTION)
 SR portions are US customary measures, converted with the NIST HB44 values in ``quantity.units``. Converted grams
 are MODEL_DERIVED (never MEASURED); every interval is the exact min-max over the portions used.
+
+q_level (SSOT 235.3): stated mass Q0; SR portion Q1 (AUTHORITATIVE_PORTION); SR density Q2 (AUTHORITATIVE_DENSITY);
+else Q6. Q1/Q2 hold only once a human has verified the ING->SR link (vocab/fdc.py rule), so SR-based grams carry
+``link_verification_required``; until then downstream layers label them PROVISIONAL, never evidence.
 """
 from __future__ import annotations
 
@@ -41,6 +45,8 @@ class LineMass:
     reason: str | None = None
     fdc_id: int | None = None
     portions: tuple[str, ...] = ()
+    q_level: str = "Q6"
+    link_verification_required: bool = False
 
 
 def _words(text: str) -> list[str]:
@@ -63,9 +69,12 @@ def portion_ml(por: Portion) -> float | None:
     return por.amount * _US[key] if key else None
 
 
+_Q = {"TEXT_STATED_MASS": "Q0", "COUNT_x_SR_PORTION": "Q1", "VOLUME_x_SR_DENSITY": "Q2"}
+
+
 def _interval(lo: float, hi: float, basis: str, vtype: str, fdc: int | None, used: tuple[str, ...]) -> LineMass:
     status = "POINT" if lo == hi else "INTERVAL"
-    return LineMass(status, lo, hi, basis, vtype, None, fdc, used)
+    return LineMass(status, lo, hi, basis, vtype, None, fdc, used, _Q[basis], basis != "TEXT_STATED_MASS")
 
 
 def _unknown(reason: str, basis: str = "UNKNOWN", fdc: int | None = None) -> LineMass:
