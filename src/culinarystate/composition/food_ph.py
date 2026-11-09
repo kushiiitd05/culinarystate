@@ -11,6 +11,7 @@ Acid classes use the 4.6 equilibrium-pH boundary of 21 CFR 113.3 (low-acid foods
 """
 from __future__ import annotations
 
+import csv
 import re
 from dataclasses import dataclass
 from html.parser import HTMLParser
@@ -138,3 +139,13 @@ def acid_class(r: PHRange) -> str:
     if r.low > ACID_PH_MAX:
         return "LOW_ACID"
     return "STRADDLES_4_6"
+
+
+def load_registry(path) -> list[PHRow]:
+    """Rows of registry/food_ph_fda2003_v1.csv (built by tools/build_food_ph_registry.py)."""
+    def num(s: str) -> float | None:
+        return float(s) if s.strip() else None
+
+    with open(path, newline="", encoding="utf-8") as fh:
+        return [PHRow(r["item"], num(r["ph_low"]), num(r["ph_high"]), r["value_type"], r["ph_raw"])
+                for r in csv.DictReader(fh)]
