@@ -2361,13 +2361,18 @@
      "HUMAN_BLIND": 3
     }
    },
+   "by_reason": {
+    "EXPLICIT_DECLARED_NON_AI_DRAFTER": 6
+   },
    "label": "INDEPENDENT_GOLD",
    "n_independent": 6,
    "n_not_independent": 0,
+   "n_refused": 0,
    "n_rows": 6,
    "not_independent_qids": [],
-   "rule": "only gold_origin HUMAN_BLIND (answered from the recipe text before seeing the engine output) is independent of the engine run being evaluated",
-   "version": "h1_independence@0.1"
+   "refused": {},
+   "rule": "only gold_origin HUMAN_BLIND is independent of the engine run: the scored gold comes from a filled blind-answer column (gold_source BLIND_HUMAN) answered from the recipe text with seen_system_output false; a KEEP / EDIT of an engine draft is HUMAN_AFTER_SEEING_ENGINE",
+   "version": "h1_independence@0.2"
   },
   "metric": "h1_mcnemar",
   "n_questions": 6,
@@ -2432,6 +2437,7 @@
       "rate": 0.0,
       "x": 0
      },
+     "n_cell_not_checked": 0,
      "n_numeric_claims": 7,
      "n_questions": 7,
      "n_unsupported": 7,
@@ -2447,7 +2453,9 @@
       "x": 7
      },
      "ucr": 1.0,
-     "version": "h3_independent@0.1"
+     "ucr_cell_checked_claims_only": 1.0,
+     "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+     "version": "h3_independent@0.2"
     },
     "per_block": {
      "C": {
@@ -2479,6 +2487,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 2,
@@ -2494,7 +2503,9 @@
        "x": 2
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P1": {
       "abstention_on_abstain_gold": {
@@ -2525,6 +2536,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 2,
@@ -2540,7 +2552,9 @@
        "x": 2
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P2": {
       "abstention_on_abstain_gold": {
@@ -2571,6 +2585,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 1,
@@ -2586,7 +2601,9 @@
        "x": 1
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P3": {
       "abstention_on_abstain_gold": {
@@ -2617,6 +2634,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 2,
@@ -2632,7 +2650,9 @@
        "x": 2
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     },
     "per_source_family": {
@@ -2665,6 +2685,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 1,
@@ -2680,7 +2701,9 @@
        "x": 1
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "NO_GOLD_ROW": {
       "abstention_on_abstain_gold": {
@@ -2711,6 +2734,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 2,
@@ -2726,7 +2750,9 @@
        "x": 2
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-A": {
       "abstention_on_abstain_gold": {
@@ -2757,6 +2783,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 3,
       "n_questions": 3,
       "n_unsupported": 3,
@@ -2772,7 +2799,9 @@
        "x": 3
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-B": {
       "abstention_on_abstain_gold": {
@@ -2803,6 +2832,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 1,
@@ -2818,7 +2848,9 @@
        "x": 1
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     }
    },
@@ -2852,6 +2884,7 @@
       "rate": 0.0,
       "x": 0
      },
+     "n_cell_not_checked": 0,
      "n_numeric_claims": 7,
      "n_questions": 7,
      "n_unsupported": 4,
@@ -2867,7 +2900,9 @@
       "x": 4
      },
      "ucr": 0.5714,
-     "version": "h3_independent@0.1"
+     "ucr_cell_checked_claims_only": 0.5714,
+     "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+     "version": "h3_independent@0.2"
     },
     "per_block": {
      "C": {
@@ -2899,6 +2934,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 3,
       "n_questions": 2,
       "n_unsupported": 1,
@@ -2914,7 +2950,9 @@
        "x": 1
       },
       "ucr": 0.3333,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.3333,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P1": {
       "abstention_on_abstain_gold": {
@@ -2945,6 +2983,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 1,
@@ -2960,7 +2999,9 @@
        "x": 1
       },
       "ucr": 0.5,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.5,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P2": {
       "abstention_on_abstain_gold": {
@@ -2991,6 +3032,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 1,
@@ -3006,7 +3048,9 @@
        "x": 1
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P3": {
       "abstention_on_abstain_gold": {
@@ -3037,6 +3081,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 2,
       "n_unsupported": 1,
@@ -3052,7 +3097,9 @@
        "x": 1
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     },
     "per_source_family": {
@@ -3085,6 +3132,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -3100,7 +3148,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "NO_GOLD_ROW": {
       "abstention_on_abstain_gold": {
@@ -3131,6 +3181,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 2,
       "n_unsupported": 1,
@@ -3146,7 +3197,9 @@
        "x": 1
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-A": {
       "abstention_on_abstain_gold": {
@@ -3177,6 +3230,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 3,
       "n_questions": 3,
       "n_unsupported": 2,
@@ -3192,7 +3246,9 @@
        "x": 2
       },
       "ucr": 0.6667,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.6667,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-B": {
       "abstention_on_abstain_gold": {
@@ -3223,6 +3279,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 1,
@@ -3238,7 +3295,9 @@
        "x": 1
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     }
    },
@@ -3272,6 +3331,7 @@
       "rate": 0.0,
       "x": 0
      },
+     "n_cell_not_checked": 0,
      "n_numeric_claims": 7,
      "n_questions": 7,
      "n_unsupported": 3,
@@ -3287,7 +3347,9 @@
       "x": 3
      },
      "ucr": 0.4286,
-     "version": "h3_independent@0.1"
+     "ucr_cell_checked_claims_only": 0.4286,
+     "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+     "version": "h3_independent@0.2"
     },
     "per_block": {
      "C": {
@@ -3319,6 +3381,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 3,
       "n_questions": 2,
       "n_unsupported": 1,
@@ -3334,7 +3397,9 @@
        "x": 1
       },
       "ucr": 0.3333,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.3333,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P1": {
       "abstention_on_abstain_gold": {
@@ -3365,6 +3430,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 1,
@@ -3380,7 +3446,9 @@
        "x": 1
       },
       "ucr": 0.5,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.5,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P2": {
       "abstention_on_abstain_gold": {
@@ -3411,6 +3479,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -3426,7 +3495,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P3": {
       "abstention_on_abstain_gold": {
@@ -3457,6 +3528,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 2,
       "n_unsupported": 1,
@@ -3472,7 +3544,9 @@
        "x": 1
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     },
     "per_source_family": {
@@ -3505,6 +3579,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -3520,7 +3595,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "NO_GOLD_ROW": {
       "abstention_on_abstain_gold": {
@@ -3551,6 +3628,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 2,
       "n_unsupported": 1,
@@ -3566,7 +3644,9 @@
        "x": 1
       },
       "ucr": 1.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 1.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-A": {
       "abstention_on_abstain_gold": {
@@ -3597,6 +3677,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 3,
       "n_questions": 3,
       "n_unsupported": 2,
@@ -3612,7 +3693,9 @@
        "x": 2
       },
       "ucr": 0.6667,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.6667,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-B": {
       "abstention_on_abstain_gold": {
@@ -3643,6 +3726,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -3658,7 +3742,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     }
    },
@@ -3692,6 +3778,7 @@
       "rate": 0.0,
       "x": 0
      },
+     "n_cell_not_checked": 0,
      "n_numeric_claims": 5,
      "n_questions": 7,
      "n_unsupported": 0,
@@ -3707,7 +3794,9 @@
       "x": 0
      },
      "ucr": 0.0,
-     "version": "h3_independent@0.1"
+     "ucr_cell_checked_claims_only": 0.0,
+     "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+     "version": "h3_independent@0.2"
     },
     "per_block": {
      "C": {
@@ -3739,6 +3828,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 0,
@@ -3754,7 +3844,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P1": {
       "abstention_on_abstain_gold": {
@@ -3785,6 +3877,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 0,
@@ -3800,7 +3893,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P2": {
       "abstention_on_abstain_gold": {
@@ -3831,6 +3926,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -3846,7 +3942,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P3": {
       "abstention_on_abstain_gold": {
@@ -3877,6 +3975,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 0,
       "n_questions": 2,
       "n_unsupported": 0,
@@ -3892,7 +3991,9 @@
        "x": 0
       },
       "ucr": null,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": null,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     },
     "per_source_family": {
@@ -3925,6 +4026,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -3940,7 +4042,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "NO_GOLD_ROW": {
       "abstention_on_abstain_gold": {
@@ -3971,6 +4075,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 0,
       "n_questions": 2,
       "n_unsupported": 0,
@@ -3986,7 +4091,9 @@
        "x": 0
       },
       "ucr": null,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": null,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-A": {
       "abstention_on_abstain_gold": {
@@ -4017,6 +4124,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 3,
       "n_unsupported": 0,
@@ -4032,7 +4140,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-B": {
       "abstention_on_abstain_gold": {
@@ -4063,6 +4173,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -4078,7 +4189,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     }
    },
@@ -4112,6 +4225,7 @@
       "rate": 0.0,
       "x": 0
      },
+     "n_cell_not_checked": 0,
      "n_numeric_claims": 5,
      "n_questions": 7,
      "n_unsupported": 1,
@@ -4127,7 +4241,9 @@
       "x": 1
      },
      "ucr": 0.2,
-     "version": "h3_independent@0.1"
+     "ucr_cell_checked_claims_only": 0.2,
+     "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+     "version": "h3_independent@0.2"
     },
     "per_block": {
      "C": {
@@ -4159,6 +4275,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 0,
@@ -4174,7 +4291,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P1": {
       "abstention_on_abstain_gold": {
@@ -4205,6 +4324,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 2,
       "n_unsupported": 1,
@@ -4220,7 +4340,9 @@
        "x": 1
       },
       "ucr": 0.5,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.5,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P2": {
       "abstention_on_abstain_gold": {
@@ -4251,6 +4373,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -4266,7 +4389,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "P3": {
       "abstention_on_abstain_gold": {
@@ -4297,6 +4422,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 0,
       "n_questions": 2,
       "n_unsupported": 0,
@@ -4312,7 +4438,9 @@
        "x": 0
       },
       "ucr": null,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": null,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     },
     "per_source_family": {
@@ -4345,6 +4473,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -4360,7 +4489,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "NO_GOLD_ROW": {
       "abstention_on_abstain_gold": {
@@ -4391,6 +4522,7 @@
        "rate": null,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 0,
       "n_questions": 2,
       "n_unsupported": 0,
@@ -4406,7 +4538,9 @@
        "x": 0
       },
       "ucr": null,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": null,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-A": {
       "abstention_on_abstain_gold": {
@@ -4437,6 +4571,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 2,
       "n_questions": 3,
       "n_unsupported": 1,
@@ -4452,7 +4587,9 @@
        "x": 1
       },
       "ucr": 0.5,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.5,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      },
      "SYN-FAM-B": {
       "abstention_on_abstain_gold": {
@@ -4483,6 +4620,7 @@
        "rate": 0.0,
        "x": 0
       },
+      "n_cell_not_checked": 0,
       "n_numeric_claims": 1,
       "n_questions": 1,
       "n_unsupported": 0,
@@ -4498,7 +4636,9 @@
        "x": 0
       },
       "ucr": 0.0,
-      "version": "h3_independent@0.1"
+      "ucr_cell_checked_claims_only": 0.0,
+      "ucr_status": "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
+      "version": "h3_independent@0.2"
      }
     }
    }
@@ -4511,8 +4651,14 @@
     "b_worse_only_unsupported": 0,
     "c_better_only_unsupported": 1,
     "can_be_significant": false,
+    "can_be_significant_one_sided": false,
+    "can_be_significant_two_sided": false,
     "min_discordant_for_alpha": 5,
+    "min_discordant_one_sided": 5,
+    "min_discordant_two_sided": 6,
+    "n_compared": 7,
     "n_paired": 7,
+    "n_set_aside_cell_not_checked": 0,
     "p": 1.0,
     "p_one_sided_exact": 1.0,
     "p_two_sided_exact": 1.0,
@@ -4524,8 +4670,14 @@
     "b_worse_only_unsupported": 0,
     "c_better_only_unsupported": 1,
     "can_be_significant": false,
+    "can_be_significant_one_sided": false,
+    "can_be_significant_two_sided": false,
     "min_discordant_for_alpha": 6,
+    "min_discordant_one_sided": 5,
+    "min_discordant_two_sided": 6,
+    "n_compared": 7,
     "n_paired": 7,
+    "n_set_aside_cell_not_checked": 0,
     "p": 1.0,
     "p_one_sided_exact": 1.0,
     "p_two_sided_exact": 1.0,
@@ -4552,8 +4704,14 @@
      "b_worse_only_unsupported": 4,
      "c_better_only_unsupported": 1,
      "can_be_significant": true,
+     "can_be_significant_one_sided": true,
+     "can_be_significant_two_sided": false,
      "min_discordant_for_alpha": 5,
+     "min_discordant_one_sided": 5,
+     "min_discordant_two_sided": 6,
+     "n_compared": 7,
      "n_paired": 7,
+     "n_set_aside_cell_not_checked": 0,
      "p": 0.1875,
      "p_one_sided_exact": 0.1875,
      "p_two_sided_exact": 0.375,
@@ -4568,8 +4726,14 @@
      "b_worse_only_unsupported": 4,
      "c_better_only_unsupported": 1,
      "can_be_significant": false,
+     "can_be_significant_one_sided": true,
+     "can_be_significant_two_sided": false,
      "min_discordant_for_alpha": 6,
+     "min_discordant_one_sided": 5,
+     "min_discordant_two_sided": 6,
+     "n_compared": 7,
      "n_paired": 7,
+     "n_set_aside_cell_not_checked": 0,
      "p": 0.375,
      "p_one_sided_exact": 0.1875,
      "p_two_sided_exact": 0.375,
@@ -4584,8 +4748,14 @@
      "b_worse_only_unsupported": 4,
      "c_better_only_unsupported": 1,
      "can_be_significant": true,
+     "can_be_significant_one_sided": true,
+     "can_be_significant_two_sided": false,
      "min_discordant_for_alpha": 5,
+     "min_discordant_one_sided": 5,
+     "min_discordant_two_sided": 6,
+     "n_compared": 7,
      "n_paired": 7,
+     "n_set_aside_cell_not_checked": 0,
      "p": 0.1875,
      "p_one_sided_exact": 0.1875,
      "p_two_sided_exact": 0.375,
@@ -4600,8 +4770,14 @@
      "b_worse_only_unsupported": 4,
      "c_better_only_unsupported": 1,
      "can_be_significant": false,
+     "can_be_significant_one_sided": true,
+     "can_be_significant_two_sided": false,
      "min_discordant_for_alpha": 6,
+     "min_discordant_one_sided": 5,
+     "min_discordant_two_sided": 6,
+     "n_compared": 7,
      "n_paired": 7,
+     "n_set_aside_cell_not_checked": 0,
      "p": 0.375,
      "p_one_sided_exact": 0.1875,
      "p_two_sided_exact": 0.375,
