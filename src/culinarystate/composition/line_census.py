@@ -21,7 +21,7 @@ LOCALE: Mapping[str, str | None] = {"A1_BBC_GOOD_FOOD": "UK", "FOODCOM": "US", "
                                     "GUTENBERG_SEGMENT": None, "TASTESET": None}
 UNITS_MISSING = frozenset({"FOODCOM"})
 LABELS = ["COUNTS_ONLY", "MODEL_DERIVED_GRAMS", "SR_LINK_UNVERIFIED"]
-_STR_KEYS = frozenset({"labels", "version"})
+_STR_KEYS = frozenset({"labels", "version", "lot_kind"})
 
 
 @dataclass(frozen=True)
