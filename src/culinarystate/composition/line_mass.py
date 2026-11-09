@@ -6,7 +6,9 @@ Order of bases (first that applies wins):
     TEXT_STATED_MASS         grams written in the line (SOURCE_STATED)
     VOLUME_x_SR_DENSITY      parser mL interval x [min, max] SR density over the food's volume portions
     COUNT_x_SR_PORTION       count x SR per-item grams: size word (first token), else a portion noun in the line,
-                             else the whole-item portions (small/medium/large/...); slices never stand in for items
+                             else the whole-item portions (small/medium/large/..., or a portion named by the SR
+                             head noun, e.g. "pepper" for "Peppers, hot chili"); slices never stand in for items.
+                             UK portion nouns map to SR ones: stick -> stalk, rasher -> slice
     UNKNOWN                  with a reason (NO_AMOUNT, NO_SR_FOOD, NO_SR_DENSITY, NO_SR_COUNT_PORTION)
 SR portions are US customary measures, converted with the NIST HB44 values in ``quantity.units``. Converted grams
 are MODEL_DERIVED (never MEASURED); every interval is the exact min-max over the portions used.
@@ -20,6 +22,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 
+from culinarystate.composition.ing_sr_match import normalise
 from culinarystate.composition.sr_legacy import Portion, SRFood
 from culinarystate.quantity.grammar import QuantityParse
 from culinarystate.quantity.normalize import Normalized
@@ -32,6 +35,8 @@ _NOT_COUNT = frozenset({"oz", "lb", "fl", "cubic", "serving", "nlea", "package",
                         "bottle", "packet", "inch", "g", "cup", "cups", "tbsp", "tablespoon", "tablespoons", "tsp",
                         "teaspoon", "teaspoons", "pat", "dash", "pinch"})
 WHOLE_ITEM = frozenset({"small", "medium", "large", "whole", "fruit", "item", "unit", "each"})
+SIZES = frozenset({"small", "medium", "large", "extra", "jumbo"})
+NOUN_ALIAS = {"stick": "stalk", "rasher": "slice"}
 _WORD = re.compile(r"[a-z]+")
 
 
@@ -53,8 +58,21 @@ def _words(text: str) -> list[str]:
     return _WORD.findall(text.lower())
 
 
-def _singular(w: str) -> str:
-    return w[:-1] if len(w) > 3 and w.endswith("s") and not w.endswith("ss") else w
+def _sing_words(text: str) -> list[str]:
+    return [normalise(w)[0] for w in _words(text)]
+
+
+def _head(food: SRFood) -> str:
+    first = normalise(food.description.split(",")[0])
+    return first[-1] if first else ""
+
+
+def _lead(por: Portion, head: str) -> str:
+    """Leading portion noun; a portion named by the food's head noun is a whole item (or its size word)."""
+    w = _sing_words(por.description)
+    if w[0] == head:
+        return w[1] if len(w) > 1 and w[1] in SIZES else "whole"
+    return w[0]
 
 
 def portion_ml(por: Portion) -> float | None:
@@ -102,12 +120,13 @@ def _from_volume(ml: tuple[float, float], food: SRFood) -> LineMass:
 def _count_portions(q: QuantityParse, food: SRFood) -> list[Portion]:
     countable = [por for por in food.portions
                  if (w := _words(por.description)) and w[0] not in _NOT_COUNT and portion_ml(por) is None]
-    first = {id(por): _singular(_words(por.description)[0]) for por in countable}
+    head = _head(food)
+    first = {id(por): _lead(por, head) for por in countable}
     if q.size:
         chosen = [por for por in countable if first[id(por)] == q.size.lower()]
         if chosen:
             return chosen
-    line = {_singular(w) for w in _words(q.raw)} - WHOLE_ITEM
+    line = {NOUN_ALIAS.get(w, w) for w in _sing_words(q.raw)} - WHOLE_ITEM - {head}
     chosen = [por for por in countable if first[id(por)] in line]
     return chosen or [por for por in countable if first[id(por)] in WHOLE_ITEM]
 
