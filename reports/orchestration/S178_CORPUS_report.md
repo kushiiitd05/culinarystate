@@ -183,3 +183,6 @@ killed and is logged ABORTED.
   introductions Food.com 12,543,466, Gutenberg 1,563,210, Wikibooks 90,224; replay FAIL texts 11,721 / 955 / 98;
   unexplained 0 in every family. The split-sum invariant still has nothing checkable on real graphs (0 partition
   groups with a basis and a known fraction). v1 is kept as history and superseded by v2.
+- **S179 SCI re-review #6.** SPLIT_FRACTIONS_EXCEED_ONE shows 0 / 0 / 0 in v2, but 0 partition groups have a basis and a
+  known fraction in every family: on the real corpus this invariant is **NOT_CHECKABLE_ON_CORPUS**, not "0 violations".
+  Its check works on planted mutations (M_SPLIT_OVER_ONE detected 100 %).
