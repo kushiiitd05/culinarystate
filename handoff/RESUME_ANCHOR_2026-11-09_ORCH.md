@@ -1,87 +1,89 @@
-# RESUME ANCHOR — server orchestrator, 2026-11-09 (S177–S178 rounds)
+# RESUME ANCHOR — server orchestrator, 2026-11-09 ~21:00 IST (FINAL for 9 Nov; anchor dropped by Kush)
 
-**Where:** manjot-server, worktree `~/kush_work/culinarystate/.orch`, branch `max/s176-orchestration`.
-It contains GitHub `kush/s169-seal-p1b` @ `145fdfd`, i.e. the Mac's S175/S176 merged at `a0a5b49`, plus 15 server commits.
-Not pushed: GitHub is public-read only from here.
+**Where:** manjot-server, worktree `~/kush_work/culinarystate/.orch`.
+- **Branch `max/s176-orchestration`:** reviewed, tested, committed work. Its base is GitHub `kush/s169-seal-p1b` @ `145fdfd`, with the Mac's S175/S176 merged at `a0a5b49`.
+- **Branch `max/s178-wip`:** a snapshot on top of it. It holds the unfinished fixer lanes and the finished-but-uncommitted MECH lane: UNREVIEWED, own tests green.
+- **Delivery:** both branches are in `~/kush_work/culinarystate_s176_orchestration.bundle`, with `handoff/MAC_CLAUDE_MERGE_PROMPT_2026-11-09.md`.
 
-**Delivery:** bundle `~/kush_work/culinarystate_s176_orchestration.bundle`, covering `github/kush/s169-seal-p1b..max/s176-orchestration` and verified, plus `handoff/MAC_CLAUDE_MERGE_PROMPT_2026-11-09.md`.
+**Status of the content:** everything is AI_DRAFTED; nothing is signed or approved (D-071). Lane briefs, cleaned of local paths, are in `handoff/orch_briefs_S178/`.
 
-**Rules:**
-- `~/kush_work/culinarystate` itself is the Mac's rsync target: never write there.
-- Python: `.venv312` (no torch/lxml/sklearn/requests/hypothesis).
-- Everything below is AI_DRAFTED. Nothing is signed or approved (D-071).
-- Previous anchor: `RESUME_ANCHOR_2026-11-08_ORCH.md` (S175).
+**Plan of record:** `registry/execution_board_S178.csv`, all 84 MUST and 168 SHOULD items, waves W1 9–12 Nov, W2 13–16, W3 17–20, W4 21–23. Freeze 21 Nov, rehearsal 24 Nov. Only the orchestrator edits the board.
 
-**Plan of record:**
-- `registry/execution_board_S178.csv` and `reports/orchestration/S178_EXECUTION_BOARD.md`: all 84 MUST and 168 SHOULD items, waves W1 9–12 Nov, W2 13–16, W3 17–20, W4 21–23. Code/result freeze 21 Nov, rehearsal 24 Nov.
-- Only the orchestrator edits the board CSV.
-
-## Committed in S177–S178 (server, after the merge `a0a5b49`)
-| Commit | Lane | Key result |
+## 1. Done on 9 Nov (committed on `max/s176-orchestration`)
+| Commit | Lane | Result |
 |---|---|---|
-| `0a5e272` | CONSOLIDATION | Mac `composition/` is canonical; server `lotstate/` SUPERSEDED; FDA pH (L-PH) canonical; Mac tickets A1–A11 in `handoff/MAC_TASKS_FROM_CONSOLIDATION_S177.md` |
-| `8577136` | SCIFIX-PHYS | FINAL-SCI physics rows 2–5, 9: zone-resolved doses (8 Gauss–Legendre nodes), boiling-point scope, F0 only for low-acid pressure canning, acid marinades qualitative; v03 non-BBC re-runs |
-| `3da963d` | PREREG | Pre-signature AMENDMENT drafts (07.A-R1, D5/H1/H3, 29-diag, AA pilot) with option tables; exact power tables (originals untouched) |
-| `d7cb55f` | ANALYSIS | EVD dataset card; NEG-0031..0045; ING/ALIAS coverage; "what the corpus can say" tables and figures |
-| `42c01bf` | EVAL | H1 gold-independence check (40/40 S gold are ENGINE_DRAFT, so circular); independent H3 scorer; claim audit; split registry; D5 leakage audit; exact McNemar power |
-| `7f586e4` | FULLRUN | Non-BBC composition census with the Mac tool, unmodified; bugs F1–F5 sent to the Mac list |
-| `4a95380` | BOARD | Two-week MUST+SHOULD board (252 items) |
-| `487b870` | RELWORK | 2023–2026 related work; calibrated novelty statement; 67-work bibliography |
-| `b2ba3c0` | SCIFIX-ROUTER | Prior-process lot context; full ABSENT rule (ABSENT ING 185 → 52); SR identity adapter over the Mac registry; public mode `CS_DEMO_PUBLIC`; non-BBC vitamin-C DIRECT 267,933 → 40,308 (11,861 PRIOR_PROCESS withheld) |
-| `4b8e5fc` | EVD | §203 conformance; export reproducibility (glibc log last-digit finding); SVAR 355 lines = 224 ids; coverage statement; D5 U/X drafts in `reports/s178/evd/`; 29-diag MNAR text |
-| `e358307` | GOVDOC | STATUS refresh; remaining-compute ledger; §238 conformance; G16 gate table (0/14 pass); SSOT v15 status vs repo; coverage map; ladder crosswalk; prompt registry; D4 amendment draft |
-| `2d45f68` | CORPUS | Opt-in SP-002 pre-normaliser; Food.com pairing-rule proposal; ING count reconcile; verb coverage; replay invariants over 14.2 M events; Food.com data card |
-| `28321b4` | AASIM | AA FORM draft rows (no parameter values); kinetic-unit draft rows; SIMULATE branch wired behind a refusing guard. Finding F1: a validation pass threshold is needed, otherwise the answer stays QUALITATIVE |
-| `e60b581` | INGCAT | Category proposals for the 1,417 uncategorised ACTIVE ING (193 HIGH / 914 MEDIUM / 310 LOW) plus a top-100 confirmation sheet; not consumed by any code |
-| `32415c4` | PHYS2 | PROC→family registry (156 PROCs); 100% per-axis provenance; endpoint cues (30.3% of heat events); verification pack 15/15; sensitivity ("core reaches 70 C" fragile for 56.5%); Layer 1 temperature ownership (events lifted above 150 C: 197 → 21); v04 non-BBC re-runs (Layer 1 0.2.0, Layer 2 0.4.0) |
+| `a0a5b49` | merge | Mac S175/S176 `composition/` (lot composition, FDA pH, BBC censuses) merged; 435 tests passing |
+| `0a5e272` | CONSOLIDATION | Mac `composition/` canonical; server `lotstate/` SUPERSEDED; Mac tickets A1–A11 |
+| `8577136` | SCIFIX-PHYS | Zone-resolved doses; boiling-point scope; F0 only for low-acid pressure canning; acid marinades qualitative; v03 re-runs |
+| `3da963d` | PREREG | Pre-signature amendment drafts (07.A-R1, D5/H1/H3, 29-diag, AA) + exact power tables |
+| `d7cb55f` | ANALYSIS | EVD dataset card; NEG rows; "what the corpus can say" tables and figures |
+| `42c01bf` | EVAL | H1 circularity check (40/40 S gold are ENGINE_DRAFT); independent H3 scorer; split registry; D5 leakage audit |
+| `7f586e4` | FULLRUN | Non-BBC composition census at full scale; Mac bugs F1–F5 |
+| `4a95380` | BOARD | Two-week execution board, 252 items |
+| `487b870` | RELWORK | 67-work related-work review; calibrated novelty statement |
+| `b2ba3c0` | SCIFIX-ROUTER | Prior-process lot context; full ABSENT rule; SR identity adapter; public mode; non-BBC vitamin-C DIRECT 40,308 of 267,933 |
+| `4b8e5fc` | EVD | §203 conformance; export reproducibility; SVAR 355 lines = 224 ids; D5 U/X drafts |
+| `e358307` | GOVDOC | STATUS refresh; compute ledger; G16 table (0/14 gates pass); SSOT coverage map; ladder crosswalk; prompt registry |
+| `2d45f68` | CORPUS | Opt-in SP-002 pre-normaliser; Food.com pairing rule; replay invariants over 14.2 M events; Food.com data card |
+| `28321b4` | AASIM | AA FORM draft rows; SIMULATE branch behind a refusing guard |
+| `e60b581` | INGCAT | Category proposals for 1,417 uncategorised ING + top-100 sheet (`human_decision` empty) |
+| `32415c4` | PHYS2 | PROC→family registry (156); 100% per-axis provenance; endpoint cues; verification 15/15; sensitivity; Layer 1 0.2.0 / Layer 2 0.4.0; v04 non-BBC re-runs |
+| `9f4cebb`, `fc4c004`, `3a71056` | REVIEWS | GOV 0 BLOCKER / 6 MAJOR; SCI-A 0 / 7; SCI-B 1 / 6. Orchestrator fixes: 34 run rows, errata, NEG-0046, board delta |
+| `aea05bb` | H1H3H | D5/H1/H3/D4 scoring harness + frozen-input guard; synthetic fixture only |
+| `fd93300` | PHYS3 | Cylinder/sphere/Heisler series 15/15 (not wired); shape map; 26g census on 1,000 sample (SIMULATE 0); 45 sourced diffusion rows |
+| `35b9220`, `9961580` | FIX-GOV | SCI-B B1 blocker fixed (EVD card 0.2.0 + `reports/step15/` copies); superseded-input guard + 53-row registry; local server refuses tunnelled requests; transition firewall; NEG-0047..0049; deployment plan starts in `--public` |
 
-**Full suite at `32415c4`:** 4,485 passed. The 6 failures and the errors are the pre-existing environment ones (missing modules) and Mac-only data, the same as on the base. Protected ledgers are untouched.
+**Board now (252 items):** DONE 34, PARTIAL 34, OPEN 73, BLOCKED_HUMAN 109, BLOCKED_DATA 2.
+- MUST: DONE 4, PARTIAL 12, OPEN 16, BLOCKED_HUMAN 52.
+- Most open MUST items end in a human act.
 
-## In flight at this anchor (round S178c, launched 18:52 IST)
-- **Reviews of the round** (`a0a5b49..32415c4`):
-  - GOV (Sonnet) → `reports/orchestration/review/S178_REV_GOV.md`
-  - SCI-A physics (Opus) → `S178_REV_SCI-A.md`
-  - SCI-B router/eval/corpus (Opus) → `S178_REV_SCI-B.md`
-  - Then fixer lanes apply the BLOCKER/MAJOR findings.
-- **Board delta:** proposal in the scratchpad (`board_delta_S178b.csv`). The orchestrator applies it to `registry/execution_board_S178.csv`.
-- **Build lanes:**
-  - MECH: mechanism entries and the Kleene screen, T5-C01-R1/R2, T5-C02-R2/R3.
-  - H1H3H: D5/H1/H3/D4 scoring harness on synthetic fixtures only, with a frozen-input guard; never run on the D5 questions before the freeze.
-  - PHYS3: cylinder/sphere series, 26g census with Layer 1 bindings, sourced diffusion ranges.
-- If the session dies before these finish, re-launch them with the briefs in the session scratchpad: `orch_ctx.md`, `review_S178_brief.md`, `board_update_brief.md`, `lanes_S178c.md`. Their content is summarised here; the scratchpad is not in the repo.
+**Tests:**
+- Full suite at `32415c4`: 4,485 passed. The 6 failures and the errors were the same on the base (missing lxml/requests/hypothesis/sklearn, Mac-only data).
+- Lane suites at each commit: green. Protected ledgers byte-identical (GOV review).
 
-## Next — agent (after round c)
-1. Apply the review fixes. Commit each lane by explicit path, with a privacy grep before every commit.
-2. Apply the board delta. Re-plan W2/W3.
-3. **ROUTER-V2 lane:**
-   - targets beyond vitamin C for DIRECT/INTERPOLATE (T5-C05-R3);
-   - conflicting-evidence packets (T8-C07-R1);
-   - contract audit (T0-C06-R2);
-   - 50-recipe end-to-end regression (T0-C09-R2);
-   - ~100-query annotated gate set (T0-C07-R1);
-   - demo chips (T0-C06-R3).
-4. **W3:**
-   - report sections: D1 (T2-C21-R1), G15 T5 scorecard (T5-C21-R1), 15b readiness (T2-C16-R1), DoD scorecard (T9-C30-R1);
-   - binder precision audit n=100, AI_CHECKED (T4-C26-R1);
+## 2. Unfinished — on branch `max/s178-wip` (the session restarted twice; these agents stopped mid-lane)
+| Lane | Done in code (own tests) | Left |
+|---|---|---|
+| FIX-PHYS (SCI-A M1–M7, m1–m11 + SCI-B R1) | Layer 1 0.3.0, Layer 2 0.5.0, non-heat Layer 1 0.3.0 / Layer 2 0.5.0. Food-target / setter / clause-window fixes; stricter cap lift (owned temperature + solute/syrup/pressure cue; never inside moist pieces); G7 = UNKNOWN on ASSUMED_DEFAULT inputs; public mode drops the 39 BBC-derived durations; verification v05. **86 tests pass.** | v05 re-runs: sample, then full non-BBC; schema validator; v04→v05 comparison; sensitivity / endpoint / stated-liquid reports; superseded rows; lane report `S178_FIX-PHYS_report.md` |
+| FIX-ROUTER (SCI-B R2–R7, CORP-2/3) | Prior process from participles and ingredient lines; serving-suggestion gate; ABSENT only with analytical SR zeros; fail-closed ancestors; class fixes; neutral top-100 sheet; census 0.4.0; 1,000-sample census `reports/step23/router_demo_census_vitc_nonBBC_1000_S178.json`. **68 tests pass.** | Full non-BBC census 0.4.0; before/after counts; superseded rows; lane report |
+| FIX-EVAL (SCI-B E1–E8, P1, P2, CORP-4/5/6, B5) | Fixes + `_v2` outputs; the 07.A-R1 amendment now recommends the non-loosening option (P1). **71 tests pass.** | Replay-invariants re-run (killed at 21:00, ABORTED); regenerate 2 committed outputs that now fail: `test_s178_d5_fixture_run` (fixture output) and `test_s178_prompt_registry` (PR-H1-CONTEXT hash); lane report |
+| MECH (T5-C01-R1/R2, T5-C02-R2/R3) | **Finished:** 32 MECH draft entries (all UNSOURCED); strong-Kleene screen per layer; GUTENBERG/WIKIBOOKS/TASTESET full runs on v04; report `S178_MECH_report.md`. **46 tests pass.** | Commit together with FIX-ROUTER (it needs the analytical-zero ABSENT rule); FOODCOM run and re-run on v05 (commands in report §6) |
+
+Touched existing suites on the WIP state: 843 passed, 2 failed (the two regenerations above).
+
+## 3. Next — whoever resumes (Mac Claude or the next manjot session)
+1. **Check out the WIP state and review it.** Finish the three fixer lanes per their briefs (`handoff/orch_briefs_S178/fixer_*.md`), using the review files `reports/orchestration/review/S178_REV_{GOV,SCI-A,SCI-B}.md`.
+   - Commit each lane separately: FIX-PHYS; FIX-ROUTER + MECH together; FIX-EVAL incl. the shared `S178_EVD_report.md` correction sections.
+   - Re-run the full suite.
+2. **Heavy runs.** The v05 physical re-runs and the full router census 0.4.0 need the non-BBC corpus. Food.com (522,517 recipes) is on manjot. Run them on manjot, or on the Mac if the data is there.
+   - BBC legs on the Mac only (D-003): v05 heat + non-heat, router 0.4.0.
+   - Then the full 26g census and the FOODCOM mechanism screen on v05.
+3. **A short re-review of the fixes**, one GOV + one SCI pass (Sonnet, Opus only for physics).
+4. **W2/W3 agent work after that:**
+   - ROUTER-V2: targets beyond vitamin C (T5-C05-R3); conflicting evidence (T8-C07-R1); contract audit (T0-C06-R2); 50-recipe regression (T0-C09-R2); ~100-query gate set (T0-C07-R1); demo chips (T0-C06-R3).
+   - Report sections: D1 (T2-C21-R1); G15 T5 scorecard (T5-C21-R1); 15b readiness (T2-C16-R1); DoD scorecard (T9-C30-R1).
+   - Binder audit, n=100 AI_CHECKED (T4-C26-R1).
    - H1/H3 real runs only after the D5 freeze.
 
-## Next — Mac Claude
-See `handoff/MAC_CLAUDE_MERGE_PROMPT_2026-11-09.md`:
-- fast-forward to the bundle;
-- BBC re-runs: Layer 1 0.2.0 + Layer 2 0.4.0 heat, non-heat v04, router census;
-- `composition/` tickets A1–A11 and F1–F5;
-- push, then a PR to `main` (ask Kush before merging).
+## 4. Humans (Kush, Parv) — see `handoff/HUMAN_OPERATIONS_PACK_2026-11-09.md`
+**From the plan:**
+- Decision sitting (lot-state scope; 07.A statistic; SR_PORTION; Food.com no-unit policy; mode→§141 crosswalk; presence floor/margin; physics class list).
+- Signatures; 07.A labels; AA verification + 5 PDFs; D5 review (16 Nov) incl. the missing gold columns `gold_branch` / `gold_compare` / `gold_origin`.
+- Benchmark freeze record (both humans, after final code edits; format in `evaluation/frozen_guard.py`).
+- SSOT v16 approval.
 
-## Next — humans
-See `handoff/HUMAN_OPERATIONS_PACK_2026-11-09.md`:
-- Decision sitting: lot-state scope; 07.A statistic; SR_PORTION; Food.com no-unit policy; mode→§141 crosswalk; presence floor and margin; physics class list. Also the new questions below.
-- Signatures, 07.A labels, AA verification and 5 PDFs, D5 review, SSOT v16 approval.
-
-New questions from this round:
+**New on 9 Nov:**
 - AA validation pass threshold (AASIM F1).
-- Confirm the ING category top-100 sheet (INGCAT) and the ABSENT top-50 review.
-- Stated-liquid residual (PHYS2 §2.4). Agent lean: keep as is.
-- PROC count: 93 vs 156 (PHYS2 §13.1).
-- Endpoint-lexicon scope (PHYS2 §13.4).
-- One memory-class list for the report.
-- E1: human audit of 100 gate decisions.
+- ING top-100 confirmation; ABSENT top-50 review.
+- Stated-liquid lift rule: FIX-PHYS applied the stricter one as PROPOSED.
+- May a scenario default ever feed SIMULATE? FIX-PHYS: no, as PROPOSED.
+- Sensitivity caveat.
+- Shapes into Layer 2?
+- Diffusion merge rows + human check.
+- PROC 93 vs 156.
+- Endpoint lexicon scope.
+- MECH H1–H7: presence floor; Maillard at non-heat events; boiling-point rule; who opens sources for G21.4; taxon lists; oxygen default; `INFERRED_LLM` label.
+- 07.A-R1: Option A loosens the signed R-06 and is only Kush's explicit choice.
+- Per-person hour budgets in the public repo OK?
+- Food.com counts on slides before the licence review?
+- Public talk route (tunnel only in `--public`).
