@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from culinarystate.retrieval.retriever import EvidencePacket
 
+from . import safety as SF
 from .comparator import compare
 from .confidence import confidence_vector, output_precision, sufficiency
 from .ood import cap_precision
@@ -30,6 +31,8 @@ def decide(query: str, packets: dict[str, EvidencePacket], slots: dict, feasibil
            numeric_target: bool = True, support: dict | None = None, diagnosis: dict | None = None) -> dict:
     gate = relevance_gate(query)
     base = {"version": VERSION, "query": query, "gate": gate, "intent": intent(query)}
+    if base["intent"] == "SAFETY":          # S176: never answered, whichever caller reaches the policy
+        return {**base, "mode": "ABSTAIN", "route": "SAFETY", "reason": SF.REASON}
     if gate["reason"] == "OUT_OF_SCOPE":
         return {**base, "mode": "ABSTAIN", "route": "OUT_OF_SCOPE", "reason": "OUT_OF_SCOPE"}
     if gate["relevant"] is False:

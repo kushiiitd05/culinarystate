@@ -458,3 +458,46 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Done:** `recipe_adapter` labels lot introductions LOT_INTRODUCTION; census/contract 0.2.0-draft; 1,000 sample rerun: NO_CONSUMED_ENTITY 7.1 %, LOT_INTRODUCTION 35.1 % (`reports/step26/simulability_census_real_sample_counts_S168.json`); full-corpus 0.2.0 rerun running on vinayak-server; the final report draft and figure 2 corrected (the earlier "42 % extraction gap" reading was wrong).
 - **Pending:** Rung A binding rules for implicit objects (bind the current entity when the tier is ambiguous; bind the last-produced intermediate when none is live) — upper bound ~1.5 % of events; each needs a precision check on a labelled sample before landing (RULES_VERSION bump), because a wrong binding is worse than UNKNOWN.
 - **Approver:** ksh (Kush), AI under D-071.
+
+### D-068 · 2026-11-06 · Step 15.0 pre-freeze rulings (decided by Kush; entered by the coding agent at Kush's explicit instruction "seal signed ok and passe dby parv and kush", Kush waiving the 15a.R self-append rule)
+- **Source:** Kush: "2 ok whatever might be the best" (the drafted values in reports/step15/15_0_ruling_DRAFT_FOR_KUSH_SIGNATURE.md are accepted as best).
+- **Decision:** C2-a, H-3 (15b) with TB-V0 order for 15a diagnostics, X-1, G-1, K-1 as in reports/step15/pre_freeze_rulings_DRAFT.md.
+- **15.0 RESERVED_FRACTION:** 1/5
+- **15.0 RESERVED_UNIT:** STUDY_THEN_CELL
+- **15.0 RESERVED_STRATIFY:** SOURCE_FAMILY
+- **15a.R SEED_SHA256:** 73d3ed4de7ba9d46f09c7fb408805a78f3c8189044a71de3d2da3a85461932d5
+- **Seed custody:** Kush's seed on Kush's Mac (`~/.culinarystate_private/15aR_seed_kush.txt`, 0600, 48 hex, made with Python `secrets` by the agent at Kush's instruction, never printed); it replaces the agent-made seed on Parv's Mac (`d3075c68…`, block J5).
+- **Approver:** Kush
+
+### D-074 · 2026-11-07 · D-073 implicit-object rules: R2 withdrawn, R1 not landed (decided by ksh (AI) under D-071; entered by the coding agent as scribe)
+- **Pre-registered** before any draw: `reports/step17/d073_implicit_binding_precision_PREREG.md` (+ Amendment 1, a parenthetical Wilson-bound correction; rule unchanged).
+- **R2 (last-produced intermediate when none is live): withdrawn untested.** On the exploration seed it could fire on at most ~0.3 % of events, and there the only live candidates are reserved portions, which are never implicit by design; the other IMPLICIT_ARG_NONE events come before any food exists (UNKNOWN is correct).
+- **R1 `RA_IMPLICIT_CURRENT_V1` (current mixture when the tier is ambiguous): DO_NOT_LAND.** 60 items from 400 recipes (seed `d073-precision-2026-11-07-r1`), labelled by ksh: CORRECT 4, WRONG_OBJECT 43, NOT_AN_ACTION 8, UNCLEAR 3, NO_OBJECT 2; precision 0.067, Wilson 95 % lower 0.026 (`reports/step17/d073_r1_precision_S170.json`). The verdict does not depend on how strictly the items were labelled: a lenient reading adds at most ~12. In ambiguous tiers the current mixture is usually stale (the action acts on a separately prepared food) or lacks foods added since; ~13 % of firings are nouns tagged as verbs.
+- **Consequence:** binder unchanged, RULES_VERSION unchanged; the ~7.0 % real binding gap stays UNKNOWN. Rung A's ambiguous-tier events need a richer combine/attachment model, not a recency default (after the presentation, if at all).
+- **Approver:** ksh (Kush), AI under D-071; same-model caveat as J4; no prv cross-check.
+
+### D-075 · 2026-11-07 · Router demo mode now; redo 07.A to open 23b; finish D4 + D5 + H1/H3 + hosted demo before the presentation (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, S170 (answers to the agent's questions): "Both: demo mode now + redo 07.A"; scope "D4 + D5 + H1/H3"; live = "Hosted web demo".
+- **Router:** add a NON_CITABLE demo/diagnostic mode to the Step 23a engine so it runs on real recipe events for the demo only; its output can never feed a claim (same pattern as 29-diag). `23b` stays BLOCKED until 07.A validly passes and 15b is frozen (R-05 unchanged).
+- **07.A redo:** a fresh condition-audit packet labelled independently by Kush and Parv, with the statistic pre-registered before labelling and chosen to be robust to the kappa paradox. The failed 07.A result stays on record (R-20); the new run is a new gate attempt, not a reinterpretation.
+- **Scope to 25 Nov:** D4 evidence-aware retrieval with abstention; D5 end-to-end RAG with B0-B5 on an ~80-question benchmark (human-reviewed by Kush and Parv); H1 and H3; a hosted web demo. Slides wait until these exist.
+- **Approver:** Kush
+
+### D-076 · 2026-11-07 · Step 10 ascorbic-acid kinetics pilot (~20 rows), AI-extracted, verified by Kush and Parv (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, S170: "Yes, ~20 rows".
+- **Decision:** AI extracts AA degradation kinetic series (k, Ea, T_ref, order, fit range, matrix, conditions) from lawful open-access papers with source spans; Kush and Parv each verify every row (MODEL_ASSISTED under D-045). Verified rows become the first PARAM rows for sim_aa_1; part is held out for Step 27 validation, split fixed before fitting. No value without a source span; unverified rows never reach SIMULATE.
+- **Approver:** Kush
+
+### D-077 · 2026-11-08 · Physical-state dataset over the full corpus, NER deployment, all compute, tracked (decided by Kush; entered by the coding agent as scribe, with its reading of the answers stated)
+- **Source:** Kush, S172, answers to the agent's three questions: gaps → "the best as we need the synthetic yet supportive dataset … run it on the server and complete it"; priority → "use all the resources server cpu gpu etc"; BBC → "the best combination … manjot … vinayak … mac … all need to be tracked".
+- **Agent's reading (Kush may overrule):** (1) gap policy = **two layers, never mixed**: TEXT_STATED (recipe-stated values + physical definitions, spans, UNKNOWN otherwise) and SCENARIO (literature-typical defaults with source and range, run low/mid/high, ASSUMED_DEFAULT / MODEL_DERIVED / NON_CITABLE). Under SSOT §141, SCENARIO yields driver trajectories and `physically_possible` direction only; no nutrient number before the M3 fit is frozen and held-out checked. It is not the Step 28 E7 prior (R-13 unchanged). (2) Priority = parallel: long server jobs for binding/physics/NER while the Mac builds M6 and the H1/H3 rungs. (3) **D-003 kept**: BBC Good Food text stays off servers; BBC recipes run on the Mac; vinayak (A100 ×2, 128 cores) and manjot (GPU 1 only, CPUs) run every other family.
+- **Also:** deploy the trained DeBERTa-CRF NER over the corpus's ingredient lines (MENTION ledger draft, agreement with Rung A); every run is logged in `registry/compute_runs_v1.csv` (host, commit, code/input/output hashes, times, status).
+- **Unchanged:** ledgers EVD/COND/SRC/MEAS/SNAP byte-identical; R-05, R-13, R-20; no value without a source.
+- **Approver:** Kush
+
+### D-078 · 2026-11-08 · Orchestration moves to the manjot-server Claude session (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-08: "you need to take over the baton and use all the resources and multiple agents to work on each part of the progress … main orchestrator and other agents taking up the other tasks as well … using wisely"; later: "look at the SSOT in detail … get a consensus … what requires compute, code building, training, analysis, downloading"; "finish the SSOT v16 and the plan consensus"; "drop the anchor only after all agents finish".
+- **Decision:** the manjot-server session is the main orchestrator from S175. It works on branch `max/s176-orchestration` (worktree `~/kush_work/culinarystate/.orch`; the main folder stays the Mac's rsync target). The Mac agent keeps BBC-only jobs (D-003), vinayak jobs, git merge/push and human-gate scribing until the branch is merged (`handoff/ORCHESTRATION_TAKEOVER_2026-11-08.md`).
+- **Not decided here:** everything the S175 lanes produced is AI_DRAFTED (consensus plan, v16 draft, registries, code). None of it is a human signature, approval or nonce; D-071 limits unchanged. SSOT v15 remains authoritative until Kush approves v16.
+- **Numbering note:** D-028 is absent from this file (gap in the sequence, kept as is; ids are never reused).
+- **Approver:** Kush.

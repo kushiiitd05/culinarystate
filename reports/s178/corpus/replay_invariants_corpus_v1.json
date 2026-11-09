@@ -1,0 +1,526 @@
+{
+ "adapter_version": "step18-extraction-adapter-0.1.0-draft",
+ "contains_recipe_ids": false,
+ "contains_recipe_text": false,
+ "counts_as_human_gate": false,
+ "determinism_every_n_texts": 50,
+ "engine_version": "step18-replay-0.1.0-draft",
+ "families": {
+  "A1_BBC_GOOD_FOOD": {
+   "reason": "D_003_BBC_DATA_NOT_PRESENT",
+   "status": "NOT_ON_THIS_SERVER"
+  },
+  "FOODCOM": {
+   "adapter_issue_codes": {
+    "ENTITY_WITHOUT_PRODUCER": 11874
+   },
+   "adapter_unknown_codes": {
+    "EVENT_QUANTITY_NOT_BOUND_TO_ENTITY": 18529
+   },
+   "determinism": {
+    "checked_texts": 10416,
+    "identical": 10416
+   },
+   "disagreements_engine_vs_independent": 0,
+   "engine_events_incl_lot_introductions": 12543466,
+   "engine_issue_causes": {
+    "DEPENDENCY_NOT_APPLIED__CASCADE_DEPENDENCY_REJECTED": 67627,
+    "ENTITY_UNKNOWN__ADAPTER_ENTITY_WITHOUT_PRODUCER": 11864,
+    "ENTITY_UNKNOWN__CASCADE_PRODUCER_REJECTED": 68278
+   },
+   "engine_issues_all_codes": {
+    "DEPENDENCY_NOT_APPLIED": 67627,
+    "ENTITY_UNKNOWN": 80142
+   },
+   "engine_issues_untraced": 0,
+   "engine_unknown_codes": {
+    "FRACTION_BASIS_UNSPECIFIED": 79220,
+    "MASS_BALANCE_UNKNOWN": 77778
+   },
+   "exceptions": {},
+   "final_entity_lifecycle": {
+    "ACTIVE": 1834586,
+    "DISCARDED": 20646,
+    "INCORPORATED": 10343530,
+    "RESERVED": 25039
+   },
+   "invariants": {
+    "ENTITY_ALREADY_CONSUMED": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ENTITY_ID_REUSED": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ENTITY_REUSED_AFTER_DISCARD": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ENTITY_UNKNOWN": {
+     "disagreements": 0,
+     "engine_violating_events": 79206,
+     "independent_violating_events": 79206,
+     "texts_with_violation": 11721
+    },
+    "EVENT_ID_REUSED": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ORDER_REGRESSION": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "SPLIT_FRACTIONS_EXCEED_ONE": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    }
+   },
+   "invented_values_excluded_by_adapter": 0,
+   "lot_accounting_issue_codes": {
+    "LOT_STATUS_CONTRADICTS_REPLAY": 22687
+   },
+   "mutation_exceptions": {},
+   "mutation_power": {
+    "M_DOUBLE_CONSUME": {
+     "applicable": 25133,
+     "both_detected": 25133,
+     "engine_detected": 25133,
+     "engine_detection_pct": 100.0,
+     "expected_code": "ENTITY_ALREADY_CONSUMED",
+     "independent_detected": 25133,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 1095,
+     "texts_sampled": 26228,
+     "violating_event_sets_agree": 25133
+    },
+    "M_ORDER_SWAP": {
+     "applicable": 26120,
+     "both_detected": 26120,
+     "engine_detected": 26120,
+     "engine_detection_pct": 100.0,
+     "expected_code": "ORDER_REGRESSION",
+     "independent_detected": 26120,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 108,
+     "texts_sampled": 26228,
+     "violating_event_sets_agree": 26120
+    },
+    "M_RESURRECT_DISCARDED": {
+     "applicable": 896,
+     "both_detected": 896,
+     "engine_detected": 896,
+     "engine_detection_pct": 100.0,
+     "expected_code": "ENTITY_REUSED_AFTER_DISCARD",
+     "independent_detected": 896,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 25332,
+     "texts_sampled": 26228,
+     "violating_event_sets_agree": 896
+    },
+    "M_SPLIT_OVER_ONE": {
+     "applicable": 365,
+     "both_detected": 365,
+     "engine_detected": 365,
+     "engine_detection_pct": 100.0,
+     "expected_code": "SPLIT_FRACTIONS_EXCEED_ONE",
+     "independent_detected": 365,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 25863,
+     "texts_sampled": 26228,
+     "violating_event_sets_agree": 365
+    }
+   },
+   "replay_status_by_text": {
+    "FAIL": 11721,
+    "PASS": 455613,
+    "UNKNOWN": 55180
+   },
+   "rung_a_graph_events": 8214960,
+   "seconds": 726.0,
+   "split_sum_invariant_coverage": {
+    "partition_groups": 79220,
+    "partition_groups_basis_unspecified": 79220,
+    "partition_groups_checkable_basis_and_fraction": 0,
+    "partition_groups_with_any_known_fraction": 664,
+    "partition_groups_with_two_or_more_allocations": 7543
+   },
+   "status": "READ",
+   "texts": 522517,
+   "texts_empty": 3,
+   "texts_with_any_disagreement": 0,
+   "texts_with_events": 522390,
+   "texts_with_replay_fail": 11721,
+   "transactions_by_status": {
+    "APPLIED": 12464260,
+    "REJECTED": 79206
+   },
+   "unexplained_total": 0
+  },
+  "GUTENBERG_SEGMENT": {
+   "adapter_issue_codes": {
+    "ENTITY_WITHOUT_PRODUCER": 956
+   },
+   "adapter_unknown_codes": {
+    "EVENT_QUANTITY_NOT_BOUND_TO_ENTITY": 6325
+   },
+   "determinism": {
+    "checked_texts": 1550,
+    "identical": 1550
+   },
+   "disagreements_engine_vs_independent": 0,
+   "engine_events_incl_lot_introductions": 1563210,
+   "engine_issue_causes": {
+    "DEPENDENCY_NOT_APPLIED__CASCADE_DEPENDENCY_REJECTED": 4088,
+    "ENTITY_UNKNOWN__ADAPTER_ENTITY_WITHOUT_PRODUCER": 956,
+    "ENTITY_UNKNOWN__CASCADE_PRODUCER_REJECTED": 4211
+   },
+   "engine_issues_all_codes": {
+    "DEPENDENCY_NOT_APPLIED": 4088,
+    "ENTITY_UNKNOWN": 5167
+   },
+   "engine_issues_untraced": 0,
+   "engine_unknown_codes": {
+    "FRACTION_BASIS_UNSPECIFIED": 8952,
+    "MASS_BALANCE_UNKNOWN": 8874
+   },
+   "exceptions": {},
+   "final_entity_lifecycle": {
+    "ACTIVE": 426651,
+    "DISCARDED": 153,
+    "INCORPORATED": 1167098,
+    "RESERVED": 4503
+   },
+   "invariants": {
+    "ENTITY_ALREADY_CONSUMED": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ENTITY_ID_REUSED": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ENTITY_REUSED_AFTER_DISCARD": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ENTITY_UNKNOWN": {
+     "disagreements": 0,
+     "engine_violating_events": 4957,
+     "independent_violating_events": 4957,
+     "texts_with_violation": 955
+    },
+    "EVENT_ID_REUSED": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ORDER_REGRESSION": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "SPLIT_FRACTIONS_EXCEED_ONE": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    }
+   },
+   "invented_values_excluded_by_adapter": 0,
+   "lot_accounting_issue_codes": {
+    "LOT_STATUS_CONTRADICTS_REPLAY": 2642
+   },
+   "mutation_exceptions": {},
+   "mutation_power": {
+    "M_DOUBLE_CONSUME": {
+     "applicable": 3548,
+     "both_detected": 3548,
+     "engine_detected": 3548,
+     "engine_detection_pct": 100.0,
+     "expected_code": "ENTITY_ALREADY_CONSUMED",
+     "independent_detected": 3548,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 97,
+     "texts_sampled": 3645,
+     "violating_event_sets_agree": 3548
+    },
+    "M_ORDER_SWAP": {
+     "applicable": 3645,
+     "both_detected": 3645,
+     "engine_detected": 3645,
+     "engine_detection_pct": 100.0,
+     "expected_code": "ORDER_REGRESSION",
+     "independent_detected": 3645,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 0,
+     "texts_sampled": 3645,
+     "violating_event_sets_agree": 3645
+    },
+    "M_RESURRECT_DISCARDED": {
+     "applicable": 4,
+     "both_detected": 4,
+     "engine_detected": 4,
+     "engine_detection_pct": 100.0,
+     "expected_code": "ENTITY_REUSED_AFTER_DISCARD",
+     "independent_detected": 4,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 3641,
+     "texts_sampled": 3645,
+     "violating_event_sets_agree": 4
+    },
+    "M_SPLIT_OVER_ONE": {
+     "applicable": 23,
+     "both_detected": 23,
+     "engine_detected": 23,
+     "engine_detection_pct": 100.0,
+     "expected_code": "SPLIT_FRACTIONS_EXCEED_ONE",
+     "independent_detected": 23,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 3622,
+     "texts_sampled": 3645,
+     "violating_event_sets_agree": 23
+    }
+   },
+   "replay_status_by_text": {
+    "FAIL": 955,
+    "PASS": 66392,
+    "UNKNOWN": 6431
+   },
+   "rung_a_graph_events": 934494,
+   "seconds": 95.3,
+   "split_sum_invariant_coverage": {
+    "partition_groups": 8952,
+    "partition_groups_basis_unspecified": 8952,
+    "partition_groups_checkable_basis_and_fraction": 0,
+    "partition_groups_with_any_known_fraction": 126,
+    "partition_groups_with_two_or_more_allocations": 573
+   },
+   "status": "READ",
+   "texts": 73778,
+   "texts_empty": 0,
+   "texts_with_any_disagreement": 0,
+   "texts_with_events": 73777,
+   "texts_with_replay_fail": 955,
+   "transactions_by_status": {
+    "APPLIED": 1558253,
+    "REJECTED": 4957
+   },
+   "unexplained_total": 0
+  },
+  "TASTESET": {
+   "reason": "NO_INSTRUCTION_TEXT",
+   "status": "NOT_AVAILABLE"
+  },
+  "WIKIBOOKS": {
+   "adapter_issue_codes": {
+    "ENTITY_WITHOUT_PRODUCER": 99
+   },
+   "adapter_unknown_codes": {
+    "EVENT_QUANTITY_NOT_BOUND_TO_ENTITY": 140
+   },
+   "determinism": {
+    "checked_texts": 80,
+    "identical": 80
+   },
+   "disagreements_engine_vs_independent": 0,
+   "engine_events_incl_lot_introductions": 90224,
+   "engine_issue_causes": {
+    "DEPENDENCY_NOT_APPLIED__CASCADE_DEPENDENCY_REJECTED": 683,
+    "ENTITY_UNKNOWN__ADAPTER_ENTITY_WITHOUT_PRODUCER": 99,
+    "ENTITY_UNKNOWN__CASCADE_PRODUCER_REJECTED": 686
+   },
+   "engine_issues_all_codes": {
+    "DEPENDENCY_NOT_APPLIED": 683,
+    "ENTITY_UNKNOWN": 785
+   },
+   "engine_issues_untraced": 0,
+   "engine_unknown_codes": {
+    "FRACTION_BASIS_UNSPECIFIED": 645,
+    "MASS_BALANCE_UNKNOWN": 631
+   },
+   "exceptions": {},
+   "final_entity_lifecycle": {
+    "ACTIVE": 13176,
+    "DISCARDED": 161,
+    "INCORPORATED": 75940,
+    "RESERVED": 194
+   },
+   "invariants": {
+    "ENTITY_ALREADY_CONSUMED": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ENTITY_ID_REUSED": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ENTITY_REUSED_AFTER_DISCARD": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ENTITY_UNKNOWN": {
+     "disagreements": 0,
+     "engine_violating_events": 779,
+     "independent_violating_events": 779,
+     "texts_with_violation": 98
+    },
+    "EVENT_ID_REUSED": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "ORDER_REGRESSION": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    },
+    "SPLIT_FRACTIONS_EXCEED_ONE": {
+     "disagreements": 0,
+     "engine_violating_events": 0,
+     "independent_violating_events": 0,
+     "texts_with_violation": 0
+    }
+   },
+   "invented_values_excluded_by_adapter": 0,
+   "lot_accounting_issue_codes": {
+    "LOT_STATUS_CONTRADICTS_REPLAY": 213
+   },
+   "mutation_exceptions": {},
+   "mutation_power": {
+    "M_DOUBLE_CONSUME": {
+     "applicable": 173,
+     "both_detected": 173,
+     "engine_detected": 173,
+     "engine_detection_pct": 100.0,
+     "expected_code": "ENTITY_ALREADY_CONSUMED",
+     "independent_detected": 173,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 7,
+     "texts_sampled": 180,
+     "violating_event_sets_agree": 173
+    },
+    "M_ORDER_SWAP": {
+     "applicable": 180,
+     "both_detected": 180,
+     "engine_detected": 180,
+     "engine_detection_pct": 100.0,
+     "expected_code": "ORDER_REGRESSION",
+     "independent_detected": 180,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 0,
+     "texts_sampled": 180,
+     "violating_event_sets_agree": 180
+    },
+    "M_RESURRECT_DISCARDED": {
+     "applicable": 2,
+     "both_detected": 2,
+     "engine_detected": 2,
+     "engine_detection_pct": 100.0,
+     "expected_code": "ENTITY_REUSED_AFTER_DISCARD",
+     "independent_detected": 2,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 178,
+     "texts_sampled": 180,
+     "violating_event_sets_agree": 2
+    },
+    "M_SPLIT_OVER_ONE": {
+     "applicable": 2,
+     "both_detected": 2,
+     "engine_detected": 2,
+     "engine_detection_pct": 100.0,
+     "expected_code": "SPLIT_FRACTIONS_EXCEED_ONE",
+     "independent_detected": 2,
+     "independent_detection_pct": 100.0,
+     "not_applicable": 178,
+     "texts_sampled": 180,
+     "violating_event_sets_agree": 2
+    }
+   },
+   "replay_status_by_text": {
+    "FAIL": 98,
+    "PASS": 3123,
+    "UNKNOWN": 455
+   },
+   "rung_a_graph_events": 59357,
+   "seconds": 7.9,
+   "split_sum_invariant_coverage": {
+    "partition_groups": 645,
+    "partition_groups_basis_unspecified": 645,
+    "partition_groups_checkable_basis_and_fraction": 0,
+    "partition_groups_with_any_known_fraction": 4,
+    "partition_groups_with_two_or_more_allocations": 62
+   },
+   "status": "READ",
+   "texts": 3676,
+   "texts_empty": 0,
+   "texts_with_any_disagreement": 0,
+   "texts_with_events": 3674,
+   "texts_with_replay_fail": 98,
+   "transactions_by_status": {
+    "APPLIED": 89445,
+    "REJECTED": 779
+   },
+   "unexplained_total": 0
+  }
+ },
+ "invariants": [
+  "ORDER_REGRESSION",
+  "ENTITY_UNKNOWN",
+  "ENTITY_ALREADY_CONSUMED",
+  "ENTITY_REUSED_AFTER_DISCARD",
+  "ENTITY_ID_REUSED",
+  "EVENT_ID_REUSED",
+  "SPLIT_FRACTIONS_EXCEED_ONE"
+ ],
+ "item": "T3-C12-R1",
+ "lexicon_fingerprint": "9678937f6a9a0ff6f9ce4acbaaa20d85cb5da6138e956f4742189078b94903c3",
+ "lexicon_version": "STEP17B_RUNG_A_LEXICON_V1_DRAFT",
+ "locale_source": "LEGACY_SOURCE_FAMILY_LOCALE_MAP",
+ "mutation_every_n_texts": 20,
+ "not_checked_by_replay": [
+  "SPAN_ROUNDTRIP_SEE_V1",
+  "LOT_ACCOUNTING_COMPLETENESS_SEE_V4",
+  "INVENTED_VALUES_SEE_ADAPTER_AUDIT",
+  "MERGE_AND_TRANSFORM_QUANTITIES_NOT_PROPAGATED",
+  "OBSERVATION_OVERRIDE_NOT_IMPLEMENTED",
+  "TRANSITION_TUPLES_AND_PREFIX_PACKETS_NOT_IMPLEMENTED"
+ ],
+ "record": "REPLAY_INVARIANTS_CORPUS_S178",
+ "rung_a_rules_version": "STEP17B_RUNG_A_RULES_V1_DRAFT",
+ "sample_seed_sha256": null,
+ "sample_texts_per_family": null,
+ "seconds_total": 829.6,
+ "selection_seed_sha256": "1037f2edb4912104fc759949aacecbc2133a73a1a2b17bde5210cdad7ee901dc",
+ "status": "AI_DRAFTED_PROPOSED_COUNTS_ONLY",
+ "tool_version": "s178-corpus-replay-invariants-0.1.0-draft",
+ "workers": 20
+}

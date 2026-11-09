@@ -1,0 +1,123 @@
+section,class,owner_or_superseded_by,rationale,status
+17,SUPERSEDED,§246,v3.3 FlavorTwin search text; replaced by the FlavorTwin V2 boundary (§246); boundary statement owned by T7-C27-R1,AI_DRAFTED_PENDING_REVIEW
+18,SUPERSEDED,§246,as 17,AI_DRAFTED_PENDING_REVIEW
+20,OWNER,T0-C03,shared infrastructure of the two projects = the shared research spine,AI_DRAFTED_PENDING_REVIEW
+21,OUT_OF_SCOPE_25NOV,,"multimodal extension is L17, FUTURE/OPTIONAL (§129)",AI_DRAFTED_PENDING_REVIEW
+22,OUT_OF_SCOPE_25NOV,,"multimodal text encoder design; learned encoders deferred (T7-C20, T7-C22-R1 'learned rungs deferred')",AI_DRAFTED_PENDING_REVIEW
+23,OUT_OF_SCOPE_25NOV,,vision encoder; L17,AI_DRAFTED_PENDING_REVIEW
+24,OUT_OF_SCOPE_25NOV,,learned molecular encoder; deferred (T7-C20),AI_DRAFTED_PENDING_REVIEW
+25,OUT_OF_SCOPE_25NOV,,learned process encoder; deferred (T4-C24),AI_DRAFTED_PENDING_REVIEW
+26,OUT_OF_SCOPE_25NOV,,structured metadata encoder; deferred,AI_DRAFTED_PENDING_REVIEW
+27,OUT_OF_SCOPE_25NOV,,audio; L17,AI_DRAFTED_PENDING_REVIEW
+28,OUT_OF_SCOPE_25NOV,,video; L17,AI_DRAFTED_PENDING_REVIEW
+29,OUT_OF_SCOPE_25NOV,,multimodal fusion; L17,AI_DRAFTED_PENDING_REVIEW
+30,OUT_OF_SCOPE_25NOV,,multimodal alignment; L17,AI_DRAFTED_PENDING_REVIEW
+31,OUT_OF_SCOPE_25NOV,,"fine-tuning strategy; no new fine-tuning before 25 Nov (NER checkpoint exists, T3-C09)",AI_DRAFTED_PENDING_REVIEW
+32,OUT_OF_SCOPE_25NOV,,text fine-tuning; as 31,AI_DRAFTED_PENDING_REVIEW
+33,OUT_OF_SCOPE_25NOV,,vision fine-tuning,AI_DRAFTED_PENDING_REVIEW
+34,OUT_OF_SCOPE_25NOV,,molecular fine-tuning,AI_DRAFTED_PENDING_REVIEW
+35,OUT_OF_SCOPE_25NOV,,audio fine-tuning,AI_DRAFTED_PENDING_REVIEW
+36,OUT_OF_SCOPE_25NOV,,video fine-tuning,AI_DRAFTED_PENDING_REVIEW
+37,OWNER,T8-C15,structured LLM input/output = grounded response generator; prompt registry T8-C17-R1,AI_DRAFTED_PENDING_REVIEW
+41,OUT_OF_SCOPE_25NOV,,"million-scale RAG; the 25 Nov scope is the 612,782-recipe base and 17,978 EVD rows (T8-C06 is the retriever)",AI_DRAFTED_PENDING_REVIEW
+44,OWNER,T7-C08-R1,sensory computation: decision 'sensory UNSUPPORTED' (T7-C08-R1),AI_DRAFTED_PENDING_REVIEW
+45,OUT_OF_SCOPE_25NOV,,health/nutrition/sustainability; boundary only (see §165),AI_DRAFTED_PENDING_REVIEW
+46,OUT_OF_SCOPE_25NOV,,FlavorQuest/trivia product role,AI_DRAFTED_PENDING_REVIEW
+47,OUT_OF_SCOPE_25NOV,,cooking SaaS product role,AI_DRAFTED_PENDING_REVIEW
+49,OWNER,T8-C12,"confidence and uncertainty = confidence vector, calibration (§242); also T6-C10",AI_DRAFTED_PENDING_REVIEW
+50,OUT_OF_SCOPE_25NOV,,interpretability of learned models; no learned model in the talk,AI_DRAFTED_PENDING_REVIEW
+51,OWNER,T0-C09,software architecture = system architecture component,AI_DRAFTED_PENDING_REVIEW
+52,OWNER,T9-C24,"experiment reproducibility = reproducibility, release semantics",AI_DRAFTED_PENDING_REVIEW
+54,SUPERSEDED,finish plan 2026-11-07 / S178 board,16-week roadmap; timeline is now handoff/FINISH_PLAN_2026-11-07.md and the board (T9-C26),AI_DRAFTED_PENDING_REVIEW
+55,SUPERSEDED,finish plan 2026-11-07 / S178 board,'next week' starting plan of August,AI_DRAFTED_PENDING_REVIEW
+56,OUT_OF_SCOPE_25NOV,,ML learning order (curriculum),AI_DRAFTED_PENDING_REVIEW
+57,OUT_OF_SCOPE_25NOV,,'what not to learn yet' (curriculum),AI_DRAFTED_PENDING_REVIEW
+58,SUPERSEDED,36-step plan v2 (Steps 29-35),model training plan by stage,AI_DRAFTED_PENDING_REVIEW
+59,SUPERSEDED,36-step plan v2 (Step 15 freezes),"freeze order is now the 15.0 / 15a / 15b structure (T2-C14, T2-C15, T2-C16)",AI_DRAFTED_PENDING_REVIEW
+60,OUT_OF_SCOPE_25NOV,,losses to understand (curriculum),AI_DRAFTED_PENDING_REVIEW
+61,UNCOVERED,,USER CONTEXT SCHEMA: code exists (decision/session_state.py) but no ledger component owns a conformance check; not needed for 25 Nov,AI_DRAFTED_PENDING_REVIEW
+62,OWNER,T9-C06-R1,"recipe state schema: covered by the section 238 conformance table (Recipe, State)",AI_DRAFTED_PENDING_REVIEW
+63,OWNER,T9-C06-R1,"food state schema: covered by the section 238 conformance table (State, Entity)",AI_DRAFTED_PENDING_REVIEW
+65,SUPERSEDED,§246,FlavorTwin profile schema; boundary in §246,AI_DRAFTED_PENDING_REVIEW
+67,OWNER,T0-C12,error analysis categories = metrics and statistical reporting,AI_DRAFTED_PENDING_REVIEW
+69,OWNER,T9-C21,90-second pitch = presentation slides,AI_DRAFTED_PENDING_REVIEW
+72,OWNER,T9-C22,public demos = demo scenarios,AI_DRAFTED_PENDING_REVIEW
+73,OUT_OF_SCOPE_25NOV,,longer-term product roadmap,AI_DRAFTED_PENDING_REVIEW
+74,OUT_OF_SCOPE_25NOV,,future sensor research,AI_DRAFTED_PENDING_REVIEW
+75,OWNER,T0-C02-R1,core reading list = targeted related-work re-search,AI_DRAFTED_PENDING_REVIEW
+76,OWNER,T0-C02-R1,reference links verified 15 Aug 2026; re-check inside the related-work item,AI_DRAFTED_PENDING_REVIEW
+77,OWNER,T0-C02-R1,source interpretation notes,AI_DRAFTED_PENDING_REVIEW
+87,OUT_OF_SCOPE_25NOV,,learned encoder first principles; deferred (T7-C20),AI_DRAFTED_PENDING_REVIEW
+88,OWNER,T7-C06,"non-learned ingredient similarities = set similarity E0/E1 (Step 35 'designed, not run' under decision #3)",AI_DRAFTED_PENDING_REVIEW
+89,OWNER,T7-C03,chemical-structure similarity = molecule rung 35a,AI_DRAFTED_PENDING_REVIEW
+90,OUT_OF_SCOPE_25NOV,,learned ingredient encoder; deferred (T7-C20),AI_DRAFTED_PENDING_REVIEW
+91,OUT_OF_SCOPE_25NOV,,encoder training protocol; deferred (T7-C20),AI_DRAFTED_PENDING_REVIEW
+92,OUT_OF_SCOPE_25NOV,,"encoder training objectives; deferred (T7-C20, T7-C21)",AI_DRAFTED_PENDING_REVIEW
+93,OWNER,T7-C19,frequency bias = mandatory confound audits,AI_DRAFTED_PENDING_REVIEW
+94,OUT_OF_SCOPE_25NOV,,food-as-medicine / Ayurveda: third future track,AI_DRAFTED_PENDING_REVIEW
+95,OWNER,T7-C16,culinary vs pairing characteristics = typed similarity registry (nine notions),AI_DRAFTED_PENDING_REVIEW
+97,SUPERSEDED,36-step plan v2,week-1 checkpoint questions of an earlier schedule,AI_DRAFTED_PENDING_REVIEW
+99,OWNER,T7-C05,ingredient profile definition = ingredient chemical profile x_ij,AI_DRAFTED_PENDING_REVIEW
+100,OWNER,T7-C03,molecule representation = molecule rung 35a,AI_DRAFTED_PENDING_REVIEW
+101,OWNER,T7-C05,incidence vs molecule representation = ingredient chemical profile,AI_DRAFTED_PENDING_REVIEW
+102,OWNER,T7-C07,"molecule to ingredient embedding = E2/E3 aggregators (learned part deferred, T7-C20)",AI_DRAFTED_PENDING_REVIEW
+103,OWNER,T7-C05,flavour-relevant vs complete composition = ingredient chemical profile,AI_DRAFTED_PENDING_REVIEW
+114,OWNER,T0-C15,connection to Level 7 = classical replication,AI_DRAFTED_PENDING_REVIEW
+115,SUPERSEDED,§246,how the representation changes FlavorTwin; boundary in §246,AI_DRAFTED_PENDING_REVIEW
+116,SUPERSEDED,§230-§259,how the representation changes the RAG; replaced by Part XII,AI_DRAFTED_PENDING_REVIEW
+118,OWNER,T7-C01,research questions of the representation freeze = Step 35 pre-registration,AI_DRAFTED_PENDING_REVIEW
+119,OWNER,T7-C01,what is frozen before Level 7 = Step 35 pre-registration package,AI_DRAFTED_PENDING_REVIEW
+120,OWNER,T0-C15,go/no-go for Level 7 = classical replication,AI_DRAFTED_PENDING_REVIEW
+136,OUT_OF_SCOPE_25NOV,,research report index (R1-R5); no obligation,AI_DRAFTED_PENDING_REVIEW
+140,OWNER,T9-C03,provenance and evidence status = evidence/provenance contracts,AI_DRAFTED_PENDING_REVIEW
+143,OWNER,T7-C04,descriptor and reactivity compute tiers = RDKit toolkit and fingerprint rungs,AI_DRAFTED_PENDING_REVIEW
+146,OUT_OF_SCOPE_25NOV,,"learned encoders, prior art and data joins; deferred (T7-C20)",AI_DRAFTED_PENDING_REVIEW
+147,OWNER,T0-C18,open-question decision register = governance and human gates,AI_DRAFTED_PENDING_REVIEW
+148,SUPERSEDED,finish plan 2026-11-07,v4.2 next execution block,AI_DRAFTED_PENDING_REVIEW
+149,SUPERSEDED,§185 / v4.2 closeout,R1-R5 reconciliation status block,AI_DRAFTED_PENDING_REVIEW
+150,SUPERSEDED,§185 / v4.2 closeout,R1-R5 uncertainty ledger of the reconciliation,AI_DRAFTED_PENDING_REVIEW
+151,UNCOVERED,,"symbol/terminology collision freeze: registry/notation_rule_registry_v1.csv exists, no component owns it; low priority for 25 Nov",AI_DRAFTED_PENDING_REVIEW
+152,OWNER,T3-C01,"assignment-1 transfer (recipe semantic parsing, state reconstruction) = recipe-semantics schema contract",AI_DRAFTED_PENDING_REVIEW
+153,OWNER,T3-C11,semantic parsing model ladder = Rung A deterministic extraction (learned rungs deferred),AI_DRAFTED_PENDING_REVIEW
+154,OWNER,T0-C15,counting and ranking semantics for the classical replication,AI_DRAFTED_PENDING_REVIEW
+155,OWNER,T3-C23,"multi-source ingestion contract = recipe-level metadata, source/licence fields",AI_DRAFTED_PENDING_REVIEW
+156,SUPERSEDED,§185,learning return point,AI_DRAFTED_PENDING_REVIEW
+157,OUT_OF_SCOPE_25NOV,,midsem source set and consensus policy (course material),AI_DRAFTED_PENDING_REVIEW
+158,OWNER,T3-C01,course-level computational objects ontology = recipe-semantics schema contract,AI_DRAFTED_PENDING_REVIEW
+161,OWNER,T7-C14,culinary grammar and fingerprints = cuisine rungs 35d,AI_DRAFTED_PENDING_REVIEW
+162,OWNER,T0-C17,FlavorDB infrastructure: API/licence blocker owned by the professor-endpoint item (handoff/API_BLOCKERS.md #2),AI_DRAFTED_PENDING_REVIEW
+163,OWNER,T7-C12,recipe representation = recipe rungs 35c,AI_DRAFTED_PENDING_REVIEW
+164,OWNER,T0-C03,process-conditioned flavour transformation = the shared research spine,AI_DRAFTED_PENDING_REVIEW
+165,OUT_OF_SCOPE_25NOV,,personalised nutrition/health boundary conditions; boundary only,AI_DRAFTED_PENDING_REVIEW
+166,OUT_OF_SCOPE_25NOV,,open questions imported from midsem papers,AI_DRAFTED_PENDING_REVIEW
+167,SUPERSEDED,§185 / later canonicalisations,midsem-to-project write-back matrix,AI_DRAFTED_PENDING_REVIEW
+169,OWNER,T7-C24,multidisciplinary context variable = Level 13E scope and nullable historical metadata,AI_DRAFTED_PENDING_REVIEW
+170,OWNER,T9-C08,hypothesis-first design = pre-registration policy,AI_DRAFTED_PENDING_REVIEW
+171,SUPERSEDED,§276-§278,v8 research questions; RQ portfolio now in §276-§278,AI_DRAFTED_PENDING_REVIEW
+172,SUPERSEDED,§185,marked in its own title: superseded by §185,AI_DRAFTED_PENDING_REVIEW
+173,SUPERSEDED,§172,marked in its own title: superseded by §172,AI_DRAFTED_PENDING_REVIEW
+177,OUT_OF_SCOPE_25NOV,,"Level 12.2 execution, compute, risks; Level 12 empirical track deferred (T7-C20)",AI_DRAFTED_PENDING_REVIEW
+184,OWNER,T0-C01-R2,merge/change register named in the T0-C01-R2 acceptance,AI_DRAFTED_PENDING_REVIEW
+195,OWNER,T0-C01-R2,merge/change register named in the T0-C01-R2 acceptance,AI_DRAFTED_PENDING_REVIEW
+206,OWNER,T0-C01-R2,merge/change register named in the T0-C01-R2 acceptance,AI_DRAFTED_PENDING_REVIEW
+217,OWNER,T0-C01-R2,merge/change register named in the T0-C01-R2 acceptance,AI_DRAFTED_PENDING_REVIEW
+258,OWNER,T0-C01-R2,v14 register: same kind as the four named; added by this map,AI_DRAFTED_PENDING_REVIEW
+197,OWNER,T0-C16,Level 14 master contract and status = Levels 12-17 frozen status,AI_DRAFTED_PENDING_REVIEW
+200,OUT_OF_SCOPE_25NOV,,Level 14.3 learned state encoders; deferred (T4-C24),AI_DRAFTED_PENDING_REVIEW
+204,OWNER,T0-C13,Level 14 MVP/stretch/defer list = minimum publishable unit checklist,AI_DRAFTED_PENDING_REVIEW
+207,SUPERSEDED,§218,marked in its own title: superseded by §218,AI_DRAFTED_PENDING_REVIEW
+218,SUPERSEDED,§229,marked in its own title: superseded by §229,AI_DRAFTED_PENDING_REVIEW
+254,OWNER,T9-C26,master dependency graph = timeline and critical path,AI_DRAFTED_PENDING_REVIEW
+255,OWNER,T9-C26,R&D decision matrix and priority order = critical path,AI_DRAFTED_PENDING_REVIEW
+257E,OWNER,T9-C08,research-protocol template = pre-registration policy,AI_DRAFTED_PENDING_REVIEW
+257G,OWNER,T2-C15,dataset audit report tables = dataset card (T2-C15-R1),AI_DRAFTED_PENDING_REVIEW
+257H,OWNER,T3-C02,annotation few-shot design = annotation handbook,AI_DRAFTED_PENDING_REVIEW
+257I,OWNER,T9-C24,software test strategy and data validation = reproducibility,AI_DRAFTED_PENDING_REVIEW
+257J,OWNER,T8-C14,"user-facing behaviour and human agency = decision policy (ASK, ABSTAIN)",AI_DRAFTED_PENDING_REVIEW
+257K,SUPERSEDED,finish plan 2026-11-07,semester implementation sequencing checklist; replaced by the finish plan and board,AI_DRAFTED_PENDING_REVIEW
+257L,OUT_OF_SCOPE_25NOV,,"RQ16 execution flow, 7,000 lines of per-RQ procedures; the 25 Nov scope is D1-D5 (board); RQ decision register stays with T9-C31",AI_DRAFTED_PENDING_REVIEW
+257M,OWNER,T8-C07,end-to-end evidence packet examples = context-packet component,AI_DRAFTED_PENDING_REVIEW
+257N,OWNER,T8-C14,decision trace examples = decision policy,AI_DRAFTED_PENDING_REVIEW
+257O,OWNER,T8-C01,lookup/retrieval playbook by query type = query router,AI_DRAFTED_PENDING_REVIEW
+257P,OWNER,T9-C26,final critical-path checklist rows go to T9-C26 as pass/fail lines (consensus note on C09),AI_DRAFTED_PENDING_REVIEW
+263,OUT_OF_SCOPE_25NOV,,"notation for cultural/historical time; Level 13E, nullable metadata only (T7-C24)",AI_DRAFTED_PENDING_REVIEW

@@ -1,0 +1,54 @@
+{
+  "basis": "ASSUMED_DEFAULT",
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/simulation/shape_series.py",
+        "sha256": "d120d566875eb25f60bba826a668e44b21eda41a38e28b0393462e5bd1e7dd5b"
+      },
+      {
+        "path": "registry/shape_map_v1.csv",
+        "sha256": "ce5b313f10d3cbd17d1a30e268153774f4f96227fd63165f31a2f4781d6f84c2"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "tools/s178_phys3_shape_census.py",
+        "sha256": "d2e9433bd575889d9823a98ffe0bf7866abb75b9a1def73314a71137dba2329e"
+      }
+    ]
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "core_end_change_if_shape_replaced_slab_by_bracket": {},
+  "counts_as_human_gate": false,
+  "events_by_cut_class_and_shape": {},
+  "events_by_map_row": {},
+  "events_by_shape": {},
+  "events_shape_class_would_change": 0,
+  "l1_duplicate_event_keys": 0,
+  "l1_files": 64,
+  "l1_heat_events": 0,
+  "l1_versions": {},
+  "l2_core_computed": 0,
+  "l2_core_computed_by_shape": {},
+  "l2_core_computed_shape_would_change": 0,
+  "l2_core_computed_shape_would_change_by_row": {},
+  "l2_fields_missing_by_bracket": {},
+  "l2_files": 64,
+  "l2_not_joined_to_l1": 0,
+  "l2_records": 0,
+  "l2_status": {},
+  "record": "SHAPE_CLASS_DIAGNOSTIC",
+  "shape_series_version": "shape-series-0.1.0-draft",
+  "slab_bound_holds_by_bracket": {},
+  "slab_bound_violated_by_bracket": {},
+  "slab_recompute_differs_by_bracket": {},
+  "slab_recompute_matches_record_by_bracket": {},
+  "status": "AI_ENGINEERING_DIAGNOSTIC_COUNTS_ONLY",
+  "tool_version": "s178-phys3-shape-census-0.1.0-draft",
+  "wired_into_layer2": false
+}

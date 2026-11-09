@@ -1,0 +1,56 @@
+ssot_203_2_line,field,group,carrier,match,PRESENT,CENSORED_BOUND_ONLY,UNKNOWN,NOT_APPLICABLE,ABSENT,total,PRESENT_BOGNAR-2002,PRESENT_PHENOL-EXPLORER-3.6,PRESENT_USDA-RETN-R6,note
+event_id,event_id,identity,X,EXACT,17978,0,0,0,0,17978,7090,3870,7018,"an EVD row is an evidence atom (food x process x target), not a recipe process event"
+ingredient_id,ingredient_id,identity,X,EXACT,11569,0,6409,0,0,17978,2598,3850,5121,unlinked rows keep matrix.raw_name
+ingredient_state_in,ingredient_state_in,state,XC,PARTIAL,12442,0,5536,0,0,17978,7090,3870,1482,free text matrix.initial_state / prior_processing; no controlled vocabulary (prior_state_id is a hash of the raw descriptor)
+ingredient_state_out,ingredient_state_out,state,-,NONE,0,0,0,0,17978,17978,0,0,0,the process raw name may imply it; nothing structured
+process_leaf,process_leaf,process,X,EXACT,17821,0,157,0,0,17978,7065,3738,7018,process.process_id (PROC ledger); multi-step rows also list step_process_ids
+process_family,process_family,process,XC,EXACT,17821,0,157,0,0,17978,7065,3738,7018,PROC.family of the process id
+T_value,T_value,condition,C,EXACT,2430,3369,11963,216,0,17978,384,2046,0,COND.temperatures[]; v1 export keeps only completeness_mask.temperature
+T_lo,T_lo,condition,C,EXACT,216,0,11963,5799,0,17978,34,182,0,COND.temperatures[] RANGE low
+T_hi,T_hi,condition,C,EXACT,216,0,11963,5799,0,17978,34,182,0,COND.temperatures[] RANGE high
+T_type,T_type,condition,C,EXACT,3843,0,14135,0,0,17978,3787,56,0,COND.temperatures[].location (SETPOINT / MEDIUM / CORE ...)
+t_value,t_value,condition,C,EXACT,2607,0,14895,476,0,17978,0,2348,259,COND.duration (unit min)
+t_lo,t_lo,condition,C,EXACT,476,0,14895,2607,0,17978,0,8,468,COND.duration RANGE low
+t_hi,t_hi,condition,C,EXACT,476,0,14895,2607,0,17978,0,8,468,COND.duration RANGE high
+t_type,t_type,condition,-,NONE,0,0,0,0,17978,17978,0,0,0,no total-vs-hold-vs-ramp type
+medium,medium,condition,XC,EXACT,4416,0,13562,0,0,17978,3102,846,468,process.medium or COND.medium
+tool,tool,condition,C,EXACT,0,0,17978,0,0,17978,0,0,0,COND.tool_ids / process.tool_ids exist in the schema; no row fills them
+geometry,geometry,condition,C,PARTIAL,0,0,17978,0,0,17978,0,0,0,"COND.geometry / particle_size / matrix.geometry exist; matrix.form (sliced, diced ...) is not counted as geometry"
+moisture_value / range / type,moisture_value,condition,C,EXACT,0,0,17978,0,0,17978,0,0,0,COND.moisture
+moisture_value / range / type,moisture_range,condition,C,EXACT,0,0,17978,0,0,17978,0,0,0,COND.moisture RANGE
+moisture_value / range / type,moisture_type,condition,-,NONE,0,0,0,0,17978,17978,0,0,0,"wet vs dry basis is carried only by the unit string, when a value exists"
+water_activity_value / range / type,water_activity_value,condition,C,EXACT,0,0,17978,0,0,17978,0,0,0,COND.water_activity exists in the schema (the completeness_mask has no a_w key; the card's NOT_IN_COND_SCHEMA is about the mask)
+water_activity_value / range / type,water_activity_range,condition,C,EXACT,0,0,17978,0,0,17978,0,0,0,COND.water_activity RANGE
+water_activity_value / range / type,water_activity_type,condition,-,NONE,0,0,0,0,17978,17978,0,0,0,
+pH_value / range / type,pH_value,condition,C,EXACT,0,0,17978,0,0,17978,0,0,0,COND.ph_initial / ph_final (mask key `ph` is UNKNOWN on every row)
+pH_value / range / type,pH_range,condition,C,EXACT,0,0,17978,0,0,17978,0,0,0,COND.ph_initial RANGE
+pH_value / range / type,pH_type,condition,C,PARTIAL,0,0,17978,0,0,17978,0,0,0,initial vs final is the only type the schema has (no medium / tissue distinction)
+pressure_value / range / type,pressure_value,condition,C,EXACT,129,0,10831,7018,0,17978,0,129,0,COND.pressure; mask NOT_APPLICABLE for USDA retention rows
+pressure_value / range / type,pressure_range,condition,C,EXACT,0,0,10831,7147,0,17978,0,0,0,COND.pressure RANGE
+pressure_value / range / type,pressure_type,condition,-,NONE,0,0,0,0,17978,17978,0,0,0,"unit strings only (psi, MPa, Mpa: three spellings in COND)"
+oxygen_value / category,oxygen_value,condition,C,EXACT,0,0,17978,0,0,17978,0,0,0,COND.oxygen
+oxygen_value / category,oxygen_category,condition,C,PARTIAL,0,0,17978,0,0,17978,0,0,0,COND.oxygen.qualitative
+mixing,mixing,condition,C,EXACT,0,0,17978,0,0,17978,0,0,0,COND.agitation
+target_type,target_type,target,J,EXACT,17978,0,0,0,0,17978,7090,3870,7018,SVAR.family (CHEMICAL / PHYSICAL) through target_state_variable_id; the registry adds a subfamily
+target_variable / target_compound,target_variable,target,X,EXACT,17978,0,0,0,0,17978,7090,3870,7018,target_state_variable_id + canonical_variable_id (duplicate mapping)
+target_variable / target_compound,target_compound,target,L,EXACT,0,0,17978,0,0,17978,0,0,0,target.molecule_id; no PubChem / ChEBI / InChIKey link on any row
+target_value,target_value,target,X,EXACT,12060,5894,24,0,0,17978,3816,3870,4374,"retention fraction, before/after pair, or yield fraction; a GT_CAP value is a bound, not a measurement"
+target_lo,target_lo,target,X,PARTIAL,0,5894,24,12060,0,17978,0,0,0,retention low; for censored rows the censor limit is the lower bound
+target_hi,target_hi,target,X,PARTIAL,0,0,24,17954,0,17978,0,0,0,retention high
+unit,unit,target,X,EXACT,17954,0,24,0,0,17978,7090,3870,6994,retention_unit / before_unit; the 496 yield rows have no unit column in v1
+direction_label,direction_label,target,X,EXACT,12060,0,5918,0,0,17978,3816,3870,4374,"derived.direction; UNKNOWN is derived, not source-stated (censored rows)"
+ordinal_band,ordinal_band,target,-,NONE,0,0,0,0,17978,17978,0,0,0,
+censor_flag,censor_flag,quality,X,EXACT,17978,0,0,0,0,17978,7090,3870,7018,"censoring_flag is a boolean on every row; true on 5,894"
+LOD,LOD,quality,X,PARTIAL,0,0,17978,0,0,17978,0,0,0,"export columns lod / loq exist, null on all rows; GT_CAP limits are upper caps, not detection limits"
+platform,platform,provenance,-,NONE,0,0,0,0,17978,17978,0,0,0,"MEAS records give the method family of the database, not HPLC / GC of the primary measurement"
+study_id,study_id,provenance,X,EXACT,3870,0,14108,0,0,17978,0,3870,0,export v1 study_ids; v2 adds study_id from the lineage keys
+source_id,source_id,provenance,X,EXACT,17978,0,0,0,0,17978,7090,3870,7018,
+doi_or_citation,doi_or_citation,provenance,J,PARTIAL,3678,0,14300,0,0,17978,0,3678,0,"SRC.doi on 3,678 publication records; USDA and Bognar rows cite the database SRC (authors / year / title) but no primary study"
+evidence_tier,evidence_tier,quality,X,EXACT,17978,0,0,0,0,17978,7090,3870,7018,all E3
+verified_by,verified_by,quality,L,EXACT,0,0,17978,0,0,17978,0,0,0,verification.verifier; AI_PRECHECKED rows carry ai_reviewer only
+verification_status,verification_status,quality,X,EXACT,17978,0,0,0,0,17978,7090,3870,7018,UNVERIFIED or AI_PRECHECKED; 0 HUMAN_VERIFIED
+extraction_method,extraction_method,provenance,L,EXACT,17978,0,0,0,0,17978,7090,3870,7018,extraction_version + provenance.method (IMPORT); the export keeps only provenance_class
+explicit_or_inferred,explicit_or_inferred,provenance,X,EXACT,17978,0,0,0,0,17978,7090,3870,7018,provenance_class; EXPLICIT_SOURCE for all rows; USDA rows flagged SOURCE_SIDE_IMPUTATION_POSSIBLE
+notes,notes,provenance,L,EXACT,0,0,17978,0,0,17978,0,0,0,EVD.notes is empty on every ACTIVE row
+dataset_version,dataset_version,provenance,X,PROXY,17978,0,0,0,0,17978,7090,3870,7018,"export_version evd_export@1.0.0 is a schema version; no dataset has been frozen (15a not frozen), so this is a proxy"
+split_id,split_id,provenance,V2,PROXY,0,0,0,0,17978,17978,0,0,0,"export v2 adds split_group_id (SCRATCH_PROVISIONAL assignment, keys-v1) on every row"

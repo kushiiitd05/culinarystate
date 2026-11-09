@@ -1,0 +1,1037 @@
+{
+ "append": {
+  "appended": 0,
+  "prefix_intact": true
+ },
+ "check_status_counts": {
+  "VERIFIED_COMPUTED": 74,
+  "VERIFIED_TEXT_ONLY": 9
+ },
+ "checks": [
+  {
+   "check_id": "R1.direct",
+   "figure": "DIRECT 274,058",
+   "note": "",
+   "recomputed": 274058,
+   "source": "reports/step23/router_demo_census_vitc_full_corpus_S171.json",
+   "stated": 274058,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R1.items",
+   "figure": "36,359,902 route checks",
+   "note": "",
+   "recomputed": 36359902,
+   "source": "reports/step23/router_demo_census_vitc_full_corpus_S171.json",
+   "stated": 36359902,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R1.pct",
+   "figure": "0.754 %",
+   "note": "",
+   "recomputed": "0.754 %",
+   "source": "reports/step23/router_demo_census_vitc_full_corpus_S171.json",
+   "stated": "0.754 %",
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R1.sum",
+   "figure": "DIRECT + UNKNOWN = items",
+   "note": "",
+   "recomputed": 36359902,
+   "source": "reports/step23/router_demo_census_vitc_full_corpus_S171.json",
+   "stated": 36359902,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R1.recipes",
+   "figure": "recipes 612,782",
+   "note": "",
+   "recomputed": 612782,
+   "source": "reports/step23/router_demo_census_vitc_full_corpus_S171.json",
+   "stated": 612782,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R1.preempt",
+   "figure": "EVIDENCE_PREEMPTS equals DIRECT",
+   "note": "",
+   "recomputed": 274058,
+   "source": "reports/step23/router_demo_census_vitc_full_corpus_S171.json",
+   "stated": 274058,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R1.reasons",
+   "figure": "NO_FORM, PARAM_UNCONFIRMABLE, NO_CANDIDATE_MECHANISM on every check",
+   "note": "",
+   "recomputed": [
+    36359902,
+    36359902,
+    36359902
+   ],
+   "source": "reports/step23/router_demo_census_vitc_full_corpus_S171.json",
+   "stated": [
+    36359902,
+    36359902,
+    36359902
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R1.coverage",
+   "figure": "103 of 130,886 pairs, 115 EVD pairs, 25 ingredients",
+   "note": "",
+   "recomputed": [
+    103,
+    130886,
+    115,
+    25
+   ],
+   "source": "reports/step23/router_demo_census_vitc_full_corpus_S171.json",
+   "stated": [
+    103,
+    130886,
+    115,
+    25
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R2.ungated",
+   "figure": "ungated DIRECT 267,933",
+   "note": "",
+   "recomputed": 267933,
+   "source": "reports/step23/router_demo_census_vitc_nonBBC_full_S176.json",
+   "stated": 267933,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R2.gated",
+   "figure": "gated DIRECT 34,537",
+   "note": "",
+   "recomputed": 34537,
+   "source": "reports/step23/router_demo_census_vitc_nonBBC_full_S176.json",
+   "stated": 34537,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R2.cross_sum",
+   "figure": "gated DIRECT = PRESENT/UNKNOWN x SINGLE_MEMBER",
+   "note": "",
+   "recomputed": 34537,
+   "source": "reports/step23/router_demo_census_vitc_nonBBC_full_S176.json",
+   "stated": 34537,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R2.ungated_cross_sum",
+   "figure": "ungated DIRECT = sum of the cross",
+   "note": "",
+   "recomputed": 267933,
+   "source": "reports/step23/router_demo_census_vitc_nonBBC_full_S176.json",
+   "stated": 267933,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "R2.items",
+   "figure": "non-BBC items 35,256,601",
+   "note": "",
+   "recomputed": 35256601,
+   "source": "reports/step23/router_demo_census_vitc_nonBBC_full_S176.json",
+   "stated": 35256601,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "D74.correct",
+   "figure": "CORRECT 4 of 60",
+   "note": "",
+   "recomputed": [
+    4,
+    60
+   ],
+   "source": "reports/step17/d073_r1_precision_S170.json",
+   "stated": [
+    4,
+    60
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "D74.wrong_object",
+   "figure": "WRONG_OBJECT 43",
+   "note": "",
+   "recomputed": 43,
+   "source": "reports/step17/d073_r1_precision_S170.json",
+   "stated": 43,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "D74.precision",
+   "figure": "precision 0.0667",
+   "note": "",
+   "recomputed": 0.0667,
+   "source": "reports/step17/d073_r1_precision_S170.json",
+   "stated": 0.0667,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "D74.wilson_lower",
+   "figure": "Wilson 95 % lower 0.0262",
+   "note": "recomputed upper 0.1593",
+   "recomputed": 0.0262,
+   "source": "reports/step17/d073_r1_precision_S170.json",
+   "stated": 0.0262,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "D74.labels_sum",
+   "figure": "labels sum to 60",
+   "note": "",
+   "recomputed": 60,
+   "source": "reports/step17/d073_r1_precision_S170.json",
+   "stated": 60,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "D74.decision",
+   "figure": "D-074 text CORRECT 4, WRONG_OBJECT 43, NOT_AN_ACTION 8, UNCLEAR 3, NO_OBJECT 2",
+   "note": "",
+   "recomputed": "CORRECT 4, WRONG_OBJECT 43, NOT_AN_ACTION 8, UNCLEAR 3, NO_OBJECT 2",
+   "source": "DECISIONS.md",
+   "stated": "CORRECT 4, WRONG_OBJECT 43, NOT_AN_ACTION 8, UNCLEAR 3, NO_OBJECT 2",
+   "status": "VERIFIED_TEXT_ONLY"
+  },
+  {
+   "check_id": "FU.unit_tokens",
+   "figure": "0 unit tokens in 7,950 quantity strings",
+   "note": "",
+   "recomputed": [
+    0,
+    7950
+   ],
+   "source": "reports/lotstate/foodcom_units_check_S176.json",
+   "stated": [
+    0,
+    7950
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "FU.letters",
+   "figure": "0 quantity strings with an ASCII letter",
+   "note": "",
+   "recomputed": 0,
+   "source": "reports/lotstate/foodcom_units_check_S176.json",
+   "stated": 0,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "FU.mass_lines",
+   "figure": "0 stated masses in 1,445 paired lines",
+   "note": "",
+   "recomputed": [
+    0,
+    1445
+   ],
+   "source": "reports/lotstate/foodcom_units_check_S176.json",
+   "stated": [
+    0,
+    1445
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "FU.bare",
+   "figure": "1,378 bare numbers",
+   "note": "",
+   "recomputed": 1378,
+   "source": "reports/lotstate/foodcom_units_check_S176.json",
+   "stated": 1378,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "FU.full_lines",
+   "figure": "S177: 4,129,433 FOODCOM lines, 0 with grams",
+   "note": "",
+   "recomputed": [
+    4129433,
+    0
+   ],
+   "source": "reports/s177/line_mass_census_FOODCOM_manjot.json",
+   "stated": [
+    4129433,
+    0
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "FU.full_status",
+   "figure": "S177: all FOODCOM lines UNIT_MISSING_IN_SOURCE",
+   "note": "",
+   "recomputed": 4129433,
+   "source": "reports/s177/line_mass_census_FOODCOM_manjot.json",
+   "stated": 4129433,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "FQ.full_recipes",
+   "figure": "Food.com recipes 522,517",
+   "note": "",
+   "recomputed": 522517,
+   "source": "data/external/foodcom (parquet list lengths)",
+   "stated": 522517,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "FQ.sample_mis",
+   "figure": "683 of 859 recipes (79.5 %)",
+   "note": "",
+   "recomputed": [
+    683,
+    859,
+    "79.5 %"
+   ],
+   "source": "reports/lotstate/foodcom_units_check_S176.json",
+   "stated": [
+    683,
+    859,
+    "79.5 %"
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "FQ.sample_split",
+   "figure": "645 longer, 38 shorter, 176 equal",
+   "note": "",
+   "recomputed": [
+    645,
+    38,
+    176
+   ],
+   "source": "reports/lotstate/foodcom_units_check_S176.json",
+   "stated": [
+    645,
+    38,
+    176
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "FQ.code",
+   "figure": "iter_foodcom pads or truncates the quantity list by index",
+   "note": "",
+   "recomputed": "(q[i] if i < len(q) and q[i] else '')",
+   "source": "src/culinarystate/recipes/corpus.py",
+   "stated": "(q[i] if i < len(q) and q[i] else '')",
+   "status": "VERIFIED_TEXT_ONLY"
+  },
+  {
+   "check_id": "NER.fc",
+   "figure": "Food.com UNIT 171,812 vs QUANTITY 3,937,650",
+   "note": "",
+   "recomputed": [
+    171812,
+    3937650
+   ],
+   "source": "reports/ner_v2/ner_corpus_counts_S174.json",
+   "stated": [
+    171812,
+    3937650
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "NER.wb",
+   "figure": "Wikibooks UNIT 27,207 vs QUANTITY 33,091",
+   "note": "",
+   "recomputed": [
+    27207,
+    33091
+   ],
+   "source": "reports/ner_v2/ner_corpus_counts_S174.json",
+   "stated": [
+    27207,
+    33091
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "NER.ts",
+   "figure": "TASTEset UNIT 3,184 vs QUANTITY 3,802",
+   "note": "",
+   "recomputed": [
+    3184,
+    3802
+   ],
+   "source": "reports/ner_v2/ner_corpus_counts_S174.json",
+   "stated": [
+    3184,
+    3802
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "NER.fc_parts_units",
+   "figure": "S176: 304 of 6,682 Food.com parts hold a count/package unit token",
+   "note": "",
+   "recomputed": [
+    304,
+    6682
+   ],
+   "source": "reports/lotstate/foodcom_units_check_S176.json",
+   "stated": [
+    304,
+    6682
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SP.denominator",
+   "figure": "4,281,956 corpus ingredient lines",
+   "note": "",
+   "recomputed": 4281956,
+   "source": "reports/s177/line_mass_census_*_manjot.json + reports/s175/line_mass_census_BBC.json",
+   "stated": 4281956,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SP.pct",
+   "figure": "29.8 %",
+   "note": "",
+   "recomputed": "29.8 %",
+   "source": "reports/step16/sp002_fix_design_ksh_S168.md",
+   "stated": "29.8 %",
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SP.text",
+   "figure": "1,275,782 of 4,281,956 corpus ingredient lines (29.8 %)",
+   "note": "",
+   "recomputed": "1,275,782 of 4,281,956",
+   "source": "reports/step16/sp002_fix_design_ksh_S168.md",
+   "stated": "1,275,782 of 4,281,956",
+   "status": "VERIFIED_TEXT_ONLY"
+  },
+  {
+   "check_id": "SP.foodcom",
+   "figure": "Food.com 1,275,153 lines with U+2044",
+   "note": "",
+   "recomputed": 1275153,
+   "source": "reports/s178/analysis/ing_alias_coverage_census_v1.json",
+   "stated": 1275153,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SP.tasteset",
+   "figure": "TASTEset 441",
+   "note": "",
+   "recomputed": 441,
+   "source": "reports/s178/analysis/ing_alias_coverage_census_v1.json",
+   "stated": 441,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SP.wikibooks",
+   "figure": "Wikibooks 0 (S177: none)",
+   "note": "",
+   "recomputed": 0,
+   "source": "reports/s178/analysis/ing_alias_coverage_census_v1.json",
+   "stated": 0,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SP.sum_with_bbc_text",
+   "figure": "1,275,153 + 441 + 0 + BBC 188 = 1,275,782",
+   "note": "BBC 188 is not recomputable on this server (D-003), taken from the S168 text",
+   "recomputed": 1275782,
+   "source": "reports/s178/analysis/ing_alias_coverage_census_v1.json",
+   "stated": 1275782,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SP.unfixed",
+   "figure": "quantity/grammar.py does not handle U+2044",
+   "note": "grep of the source for U+2044 handling",
+   "recomputed": false,
+   "source": "src/culinarystate/quantity/grammar.py",
+   "stated": false,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "P1.verdict",
+   "figure": "HANDBOOK_REVISION_REQUIRED",
+   "note": "",
+   "recomputed": "HANDBOOK_REVISION_REQUIRED",
+   "source": "reports/step19/p1_agreement_counts_S166.json",
+   "stated": "HANDBOOK_REVISION_REQUIRED",
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "P1.pairs",
+   "figure": "7 pairs",
+   "note": "",
+   "recomputed": 7,
+   "source": "reports/step19/p1_agreement_counts_S166.json",
+   "stated": 7,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "P1.flagged",
+   "figure": "5 of 9 categories above 0.20",
+   "note": "",
+   "recomputed": [
+    5,
+    9
+   ],
+   "source": "reports/step19/p1_agreement_counts_S166.json",
+   "stated": [
+    5,
+    9
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "P1.rates",
+   "figure": "coref 0.9558, event_type 0.7629, final_state 0.8169, entity_type 0.2361, event_argument 0.2268",
+   "note": "",
+   "recomputed": [
+    0.9558,
+    0.7629,
+    0.8169,
+    0.2361,
+    0.2268
+   ],
+   "source": "reports/step19/p1_agreement_counts_S166.json",
+   "stated": [
+    0.9558,
+    0.7629,
+    0.8169,
+    0.2361,
+    0.2268
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "P1.basis",
+   "figure": "label basis HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND",
+   "note": "",
+   "recomputed": "HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND",
+   "source": "reports/step19/p1_agreement_counts_S166.json",
+   "stated": "HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND",
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "P1.addendum",
+   "figure": "Addendum B names HANDBOOK_REVISION_REQUIRED",
+   "note": "",
+   "recomputed": "HANDBOOK_REVISION_REQUIRED",
+   "source": "annotation/annotation_handbook_v1_addendum_B.md",
+   "stated": "HANDBOOK_REVISION_REQUIRED",
+   "status": "VERIFIED_TEXT_ONLY"
+  },
+  {
+   "check_id": "A4.kappa",
+   "figure": "pooled kappa 0.0",
+   "note": "",
+   "recomputed": 0.0,
+   "source": "reports/step07/step07_v4_agreement_result_run2.json",
+   "stated": 0.0,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "A4.raw",
+   "figure": "raw agreement 0.9944",
+   "note": "",
+   "recomputed": 0.9944,
+   "source": "reports/step07/step07_v4_agreement_result_run2.json",
+   "stated": 0.9944,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "A4.cells",
+   "figure": "5 disagreements in 900 cells",
+   "note": "",
+   "recomputed": [
+    5,
+    900
+   ],
+   "source": "reports/step07/step07_v4_agreement_result_run2.json",
+   "stated": [
+    5,
+    900
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "A4.fields",
+   "figure": "duration 4 + temperature_value 1",
+   "note": "",
+   "recomputed": [
+    4,
+    1
+   ],
+   "source": "reports/step07/step07_v4_agreement_result_run2.json",
+   "stated": [
+    4,
+    1
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "A4.prevalence",
+   "figure": "5 critical fields at dominant-code prevalence 1.00",
+   "note": "also non-critical at 1.00: medium_judgement, power_judgement",
+   "recomputed": 5,
+   "source": "reports/step07/step07_v4_agreement_result_run2.json",
+   "stated": 5,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "A4.gate",
+   "figure": "gate FAIL_OR_ADJUDICATE",
+   "note": "",
+   "recomputed": "FAIL_OR_ADJUDICATE",
+   "source": "reports/step07/step07_v4_agreement_result_run2.json",
+   "stated": "FAIL_OR_ADJUDICATE",
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "A4.adj",
+   "figure": "adjudication: kappa stays 0.0; statistical gate NOT met",
+   "note": "",
+   "recomputed": "the statistical gate is NOT met",
+   "source": "reports/step07/step07_v4_adjudication_result.md",
+   "stated": "the statistical gate is NOT met",
+   "status": "VERIFIED_TEXT_ONLY"
+  },
+  {
+   "check_id": "EV.denominator",
+   "figure": "68,783 heat events with a computed core",
+   "note": "",
+   "recomputed": 68783,
+   "source": "reports/step26/scenario_L2_{FOODCOM,GUTENBERG_SEGMENT,WIKIBOOKS}_full_S176_v02.json",
+   "stated": 68783,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "EV.before",
+   "figure": "47,198 cores above 100 C before the cap (68.6 %)",
+   "note": "bracket INTENSE; the text does not name the bracket, this is the one that matches",
+   "recomputed": [
+    47198,
+    "68.6 %"
+   ],
+   "source": "same",
+   "stated": [
+    47198,
+    "68.6 %"
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "EV.after",
+   "figure": "1,242 after the cap (1.8 %)",
+   "note": "",
+   "recomputed": [
+    1242,
+    "1.8 %"
+   ],
+   "source": "same",
+   "stated": [
+    1242,
+    "1.8 %"
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "EV.all_dry",
+   "figure": "every remaining core above 100 C is a dry-class matrix",
+   "note": "core_gt_100 equals core_gt_100_nonpressure_dry_class per bracket and family",
+   "recomputed": true,
+   "source": "reports/step26/scenario_L2_{FOODCOM,GUTENBERG_SEGMENT,WIKIBOOKS}_full_S176_v02.json",
+   "stated": true,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "EV.median",
+   "figure": "median core cook value 341 -> 9.2 equivalent minutes",
+   "note": "",
+   "recomputed": [
+    341,
+    9.2
+   ],
+   "source": "reports/step26/scenario_L2_FOODCOM_full_S176_v02.json",
+   "stated": [
+    341,
+    9.2
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "EV.p99",
+   "figure": "p99 37,422 -> 116",
+   "note": "",
+   "recomputed": [
+    37422,
+    116
+   ],
+   "source": "reports/step26/scenario_L2_FOODCOM_full_S176_v02.json",
+   "stated": [
+    37422,
+    116
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "EV.superseded",
+   "figure": "evaporation-cap superseded files recorded in the registry",
+   "note": "12 rows in total (the others: pH)",
+   "recomputed": 11,
+   "source": "registry/superseded_outputs_S176.csv",
+   "stated": null,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SALT.points",
+   "figure": "13,391 salt POINT values in the 1,000-recipe census",
+   "note": "",
+   "recomputed": 13391,
+   "source": "reports/lotstate/lotstate_census_1000_S176.json",
+   "stated": 13391,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SALT.arith_wrong",
+   "figure": "salted butter: 10.3 g NaCl per g water (buggy formula)",
+   "note": "",
+   "recomputed": 10.3,
+   "source": "arithmetic on the review's inputs (Na 643 mg/100 g, water 15.9 g/100 g)",
+   "stated": 10.3,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SALT.arith_right",
+   "figure": "true value about 0.10",
+   "note": "",
+   "recomputed": 0.1,
+   "source": "same",
+   "stated": 0.1,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SALT.review",
+   "figure": "FINAL-SCI review row 1: salt load 100x too high",
+   "note": "",
+   "recomputed": "The salt load is 100\u00d7 too high",
+   "source": "reports/orchestration/review/S176_FINAL_SCI_review.md",
+   "stated": "The salt load is 100\u00d7 too high",
+   "status": "VERIFIED_TEXT_ONLY"
+  },
+  {
+   "check_id": "SALT.fixed_lotstate",
+   "figure": "fixed in lotstate/composition.py (test at test_lotstate_composition.py:87)",
+   "note": "",
+   "recomputed": "FINAL-SCI #1 (100\u00d7 error) **is fixed**",
+   "source": "reports/orchestration/S177_CONSOLIDATION_composition_vs_lotstate.md",
+   "stated": "FINAL-SCI #1 (100\u00d7 error) **is fixed**",
+   "status": "VERIFIED_TEXT_ONLY"
+  },
+  {
+   "check_id": "PH.exact_rows",
+   "figure": "147 EXACT rank-1 rows dropped",
+   "note": "",
+   "recomputed": 147,
+   "source": "registry/food_ph_fda_ing_crosswalk_draft_v1.csv",
+   "stated": 147,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "PH.no_entry",
+   "figure": "123 ING with an EXACT row get no by_ing entry",
+   "note": "145 ING have an EXACT rank-1 row; 22 also have a HIGH rank-1 row (a processed form)",
+   "recomputed": 123,
+   "source": "same",
+   "stated": 123,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "PH.band_rank",
+   "figure": "BAND_RANK has no EXACT key",
+   "note": "regex over the dict literal",
+   "recomputed": true,
+   "source": "src/culinarystate/lotstate/ph.py",
+   "stated": true,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "PH.superseded",
+   "figure": "census registered as superseded: pH flags invalid (B1)",
+   "note": "",
+   "recomputed": "lotstate/ph.py drops EXACT crosswalk rows",
+   "source": "registry/superseded_outputs_S176.csv",
+   "stated": "lotstate/ph.py drops EXACT crosswalk rows",
+   "status": "VERIFIED_TEXT_ONLY"
+  },
+  {
+   "check_id": "SD.heat",
+   "figure": "27 heat defaults, all SOURCE_UNVERIFIED_AGENT_RECALLED",
+   "note": "",
+   "recomputed": [
+    27,
+    27
+   ],
+   "source": "registry/scenario_defaults_v1.csv",
+   "stated": [
+    27,
+    27
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SD.nonheat",
+   "figure": "40 non-heat defaults, 38 unverified + 2 retired",
+   "note": "",
+   "recomputed": [
+    40,
+    38,
+    2
+   ],
+   "source": "registry/scenario_defaults_nonheat_v1.csv",
+   "stated": [
+    40,
+    38,
+    2
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SD.review",
+   "figure": "97 reviewed rows: 58 opened by AI, 39 unverified candidates, 0 human-verified",
+   "note": "",
+   "recomputed": [
+    97,
+    58,
+    39,
+    97
+   ],
+   "source": "registry/scenario_defaults_source_review_S176.csv",
+   "stated": [
+    97,
+    58,
+    39,
+    97
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "SD.windows",
+   "figure": "149 mechanism windows, all QUALITATIVE_ONLY",
+   "note": "",
+   "recomputed": [
+    149,
+    149
+   ],
+   "source": "registry/mechanism_condition_windows_draft_v1.csv",
+   "stated": [
+    149,
+    149
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "GR.bbc",
+   "figure": "BBC 75.3 % of lines with grams",
+   "note": "",
+   "recomputed": "75.3 %",
+   "source": "reports/s175/line_mass_census_BBC.json",
+   "stated": "75.3 %",
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "GR.wb",
+   "figure": "Wikibooks 59.0 %",
+   "note": "",
+   "recomputed": "59.0 %",
+   "source": "reports/s177/line_mass_census_WIKIBOOKS_manjot.json",
+   "stated": "59.0 %",
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "GR.ts",
+   "figure": "TASTEset 56.7 %",
+   "note": "",
+   "recomputed": "56.7 %",
+   "source": "reports/s177/line_mass_census_TASTESET_manjot.json",
+   "stated": "56.7 %",
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "GR.gut",
+   "figure": "Gutenberg 0 lines",
+   "note": "",
+   "recomputed": 0,
+   "source": "reports/s177/line_mass_census_GUTENBERG_SEGMENT_manjot.json",
+   "stated": 0,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "GR.recipes",
+   "figure": "recipes with every quantified line in grams: BBC 17.3 %, WB 10.0 %, TS 12.9 %",
+   "note": "",
+   "recomputed": [
+    "17.3 %",
+    "10.0 %",
+    "12.9 %"
+   ],
+   "source": "same files",
+   "stated": [
+    "17.3 %",
+    "10.0 %",
+    "12.9 %"
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "GR.unverified",
+   "figure": "grams resting on an unverified SR link: BBC 60.4 %, WB 78.1 %, TS 79.0 %",
+   "note": "",
+   "recomputed": [
+    "60.4 %",
+    "78.1 %",
+    "79.0 %"
+   ],
+   "source": "same files",
+   "stated": [
+    "60.4 %",
+    "78.1 %",
+    "79.0 %"
+   ],
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "TL.all",
+   "figure": "520 events with a stated liquid temperature above T_boil",
+   "note": "",
+   "recomputed": 520,
+   "source": "reports/step26/scenario_L2_{FOODCOM,GUTENBERG_SEGMENT,WIKIBOOKS}_full_S177_v03.json",
+   "stated": 520,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "TL.above150",
+   "figure": "197 of them state more than 150 C (191 + 4 + 2)",
+   "note": "",
+   "recomputed": 197,
+   "source": "same",
+   "stated": 197,
+   "status": "VERIFIED_COMPUTED"
+  },
+  {
+   "check_id": "TL.core204",
+   "figure": "7 FOODCOM events with a computed core in that bucket (core up to 204 C)",
+   "note": "",
+   "recomputed": "core up to 204 C",
+   "source": "reports/orchestration/S177_SCIFIX-PHYS_report.md",
+   "stated": "core up to 204 C",
+   "status": "VERIFIED_TEXT_ONLY"
+  }
+ ],
+ "full_foodcom_scan_run": true,
+ "record": "NEG_REGISTER_S171_S177_VERIFICATION_S178",
+ "rows": [
+  {
+   "already_in_register": true,
+   "claim_tested": "The Step 23a router in demo mode, fed the E3 evidence ledger, returns an evidence-supported DIRECT route for a substantial share of recipe events (vitamin C, SVAR-000009)",
+   "result_id": "NEG-0031",
+   "status": "RECORDED_AGENT_CHECKED"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "The S171 DIRECT count survives the target-presence and lot-context gates on the non-BBC families",
+   "result_id": "NEG-0032",
+   "status": "RECORDED_AGENT_CHECKED"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "Implicit-object rule R1 (RA_IMPLICIT_CURRENT_V1: bind an action with no stated object to the current mixture when the tier is ambiguous) reaches the pre-registered landing precision and closes part of the ~7 % real binding gap",
+   "result_id": "NEG-0033",
+   "status": "RECORDED_AGENT_CHECKED"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "Food.com ingredient quantities carry units, so line mass can be derived from Food.com lines (the largest family, 522,517 recipes)",
+   "result_id": "NEG-0034",
+   "status": "RECORDED_AGENT_CHECKED"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "Food.com quantity and ingredient-part lists are index-aligned, so recipes.corpus.iter_foodcom pairs each quantity with its ingredient",
+   "result_id": "NEG-0035",
+   "status": "RECORDED_AGENT_CHECKED_PARTIAL_TEXT_ONLY"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "The DeBERTa-CRF ingredient-line NER labels a UNIT wherever it labels a QUANTITY, on every family",
+   "result_id": "NEG-0036",
+   "status": "RECORDED_AGENT_CHECKED"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "The legacy quantity parser (quantity/grammar.py normalize_text, used by rc2 and the line-mass census) reads the Unicode fractions in corpus ingredient lines",
+   "result_id": "NEG-0037",
+   "status": "RECORDED_AGENT_CHECKED_PARTIAL_TEXT_ONLY"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "Annotation handbook v1 (with Addendum A) gives stable independent annotation: per-pair disagreement stays at or below 0.20 in every category",
+   "result_id": "NEG-0038",
+   "status": "RECORDED_AGENT_CHECKED"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "07.A condition-audit packet v4 passes the signed gate (pooled Cohen's kappa >= 0.80 and no systematic critical-field failure)",
+   "result_id": "NEG-0039",
+   "status": "RECORDED_AGENT_CHECKED"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "Layer-2 scenario cores from the first heat/non-heat scenario runs (layer 0.1.0, no evaporation cap) are physically bounded",
+   "result_id": "NEG-0040",
+   "status": "RECORDED_AGENT_CHECKED"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "The lot-state solute load 'salt_g_per_g_water' (g NaCl per g water) is computed correctly",
+   "result_id": "NEG-0041",
+   "status": "RECORDED_AGENT_CHECKED_PARTIAL_TEXT_ONLY"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "Provisional lot pH flags (lotstate/ph.py over the FDA-2003 ING crosswalk draft) give raw-ingredient pH ranges",
+   "result_id": "NEG-0042",
+   "status": "RECORDED_AGENT_CHECKED_PARTIAL_TEXT_ONLY"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "The Layer-2 scenario default constants (GENTLE/TYPICAL/INTENSE ranges) are sourced from the literature",
+   "result_id": "NEG-0043",
+   "status": "RECORDED_AGENT_CHECKED"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "The BBC line-to-grams coverage (75.3 % of ingredient lines) carries over to the other corpora, so the composition layer scales to them",
+   "result_id": "NEG-0044",
+   "status": "RECORDED_AGENT_CHECKED_PARTIAL_TEXT_ONLY"
+  },
+  {
+   "already_in_register": true,
+   "claim_tested": "A temperature stated in the recipe sentence next to a water verb (boil, simmer) is the temperature of the liquid, so the evaporation cap can be lifted to it",
+   "result_id": "NEG-0045",
+   "status": "RECORDED_AGENT_CHECKED_PARTIAL_TEXT_ONLY"
+  }
+ ],
+ "status": "AI_DRAFTED_PROPOSED",
+ "tool_version": "s178-negregister-0.1.0-draft"
+}

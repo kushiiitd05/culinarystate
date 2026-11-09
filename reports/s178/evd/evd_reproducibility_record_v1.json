@@ -1,0 +1,174 @@
+{
+ "code_sha256": {
+  "src/culinarystate/evidence/evd_export.py": "2e3e5451c6e9d2f419125a19648ca2d563b1cbfb195da54f2ee331118411ac88",
+  "src/culinarystate/lineage/export_v2.py": "723fc9bf37ce61566863052a03a3fe95a16077aa7286ea8b5dfeb6519adb63f1",
+  "src/culinarystate/mechanism/router_census.py": "ecd6c61fd17cfaf79cd34fc001d0eb7fb920457bd0d60cc929d7cacb9ff89c1b",
+  "src/culinarystate/mechanism/router_demo.py": "280e0039c53c553ca8746a238d98f99b6c84af45987e476d2f634fae58ea9a9b",
+  "src/culinarystate/transition/baselines.py": "19c565bbc1a2e25226f168c5857eeefc4b1698e52a14bb3d3d5298c42482bbbd",
+  "src/culinarystate/transition/cross_source.py": "3caf5a43215fa4db25b49036996eb97cb166f20474b2d1f9d59507f1ca299978",
+  "src/culinarystate/transition/dataset.py": "f1c6e75c20c02a929226debc9697b7503af8cf91bb0024cf0abc964c15acbce4",
+  "tests/unit/test_s178_evd_no_imputation.py": "3093e93e13abe560c0bcd66ca106c21661be63072615b79160cbf7d1fe7be5e9",
+  "tools/s178_analysis_evd_card.py": "8fc220b8526611ee2c22ef3295730e6bcb1a0c749aac0f7ee92639910a8dee17",
+  "tools/s178_evd_common.py": "668188be8b1221f5f6bc8a3496deaae30f048237b46c2b3dc52f0a5e7c23417a",
+  "tools/s178_evd_conformance.py": "0e82099178bb474673723b042ee678f3ecae70ff8160bd43d14613507c34e8e2",
+  "tools/s178_evd_coverage.py": "4bb4268a89aa519507797608674cce70681f0df69d7a2b1052fb1f98d65459df",
+  "tools/s178_evd_d5_ux_draft.py": "e7e5221f0c06d25d96a9874d537660185cb09dd8b973d39234c3becca61f7d27",
+  "tools/s178_evd_export_repro.py": "489abd9a77161c2a11fb392c02b3e2b9b9fb0b94fb2a69b58573e600556d9085",
+  "tools/s178_evd_repro_record.py": "d8252626ab0f865aefae7611891de0b7910f4271a548e903344f342d5f468896",
+  "tools/s178_evd_svar_reconcile.py": "ded23c0a79f8b86035eef0c9e2d5b7fdc28227b75b41ad566abc88152f4d6c6e",
+  "tools/s178_evd_transition_audit.py": "9de63c45619d8944eb7c2cef33127a2cdd34ff93bd63a10c6f9a0ca8658a90f4",
+  "tools/step08a_export_v2.py": "f0d7a6d47a89230cd41af33f75deb4b742bd934c5a443549402f62be781c823a"
+ },
+ "compute_runs_note": "rows for compute_runs_v1.csv are written by the orchestrator; start / end times and wall seconds are in reports/orchestration/S178_EVD_report.md",
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "dataset_card_rerun": {
+  "all_equal": true,
+  "files": {
+   "evd_dataset_card_v1.json": {
+    "committed_sha256": "1e7af6e25a8ffc1a72316f75028619709a1fd797edc2bb7d500e4efe6fe7ebfd",
+    "equal": true,
+    "rerun_sha256": "1e7af6e25a8ffc1a72316f75028619709a1fd797edc2bb7d500e4efe6fe7ebfd"
+   },
+   "evd_dataset_card_v1.md": {
+    "committed_sha256": "2cca6ed8c8c645b9cfbbd6238b9744d42eefe1b48695e852fda23daa1c373b21",
+    "equal": true,
+    "rerun_sha256": "2cca6ed8c8c645b9cfbbd6238b9744d42eefe1b48695e852fda23daa1c373b21"
+   }
+  },
+  "tool": "tools/s178_analysis_evd_card.py"
+ },
+ "environment": {
+  "git_head": "aea05bb",
+  "implementation": "CPython",
+  "libm_note": "math.log on this glibc differs from the correctly rounded value in the last digit for 4 log_fold_change cells of the export (see evd_export_repro_check_v1)",
+  "packages": {
+   "numpy": "1.26.4",
+   "pandas": "2.1.4",
+   "pyarrow": "14.0.2",
+   "pytest": "9.2.0",
+   "scipy": "1.17.1"
+  },
+  "platform": "Linux-6.8.0-134-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3",
+  "tree_state": "uncommitted changes present (worktree)"
+ },
+ "input_sha256": {
+  "exports/evd/evd_export_v1.manifest.json": "f8600b0b2b97149cec43260fb791a3770277f38ebbe8501a24a63c6b57ebf374",
+  "exports/lineage/step08a_v1/evd_export_v2.manifest.json": "668aa75dfe3657f3688674fa35e744ed78e63ecd3438f4769ce932899615ed01",
+  "exports/lineage/step08a_v1/keys.jsonl": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90",
+  "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "ledgers/data/ING.jsonl": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+  "ledgers/data/MEAS.jsonl": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+  "ledgers/data/PROC.jsonl": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+  "ledgers/data/SNAP.jsonl": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+  "ledgers/data/SRC.jsonl": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+  "ledgers/data/SVAR.jsonl": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697",
+  "registry/baseline_ledger_hashes_08a_v1.csv": "62d76ee84c9a40aa3b6a70ba69e32572b64d9aa0d8e9da3bf96bc46f43b6a7dd",
+  "registry/state_variable_registry_v1.csv": "ee446a23b29f804681e55a66d2356625b391c8963c7a8f1612d2fc9cd3b00fd6",
+  "registry/svar_duplicate_mapping_v1.csv": "4e60d1c6aa661b400e34790d6ab0f08a107e4fca03a9eff4a651a7c035aa1af8",
+  "reports/s178/analysis/corpus_can_say_v1.json": "32cbed9f2ce6c522f9615a1687a8a9632a8a83d46c74d538f4cc3c635587c471",
+  "reports/step15/15a_R_seal_commitment_v1.json": "a099c142719421a50f70e114b75fd4753ff3c490c06fc4dd017e2e6527d46e6d",
+  "reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json": "9250e8274460e8f15d5bc6da62c58cc9f8b12688b6b0ec068b3742d77db0b862",
+  "reports/step23/router_demo_census_vitc_nonBBC_full_S177.json": "16a13887c1536bb842ea220d66f9b66491b361d564a1ad67cf624f626f91e513"
+ },
+ "output_sha256": {
+  "d5_UX_blocks_S178_DRAFT.csv": "d3b924826cd90ddb2b5c065bad16bf7e1cbc5cb91206cd309b9cf9baf6afd459",
+  "d5_UX_blocks_S178_DRAFT.md": "c1c87f5880370527160711b9135b834b21997267a3d854f32b4a81ea96d536d0",
+  "evd_coverage_vs_corpus_demand_v1.csv": "951a210fa83db1fa4528243a25033e8073460b7d25051cca84f4ea1368bad663",
+  "evd_coverage_vs_corpus_demand_v1.json": "2c8d9661d416f89c7bfab537d58984add7f220bd98f7509e83dadb446163c49c",
+  "evd_coverage_vs_corpus_demand_v1.md": "3db9af0d064f41263dca9b5ea0fec611cbb5245e5fe381ec89af29b5381a6f77",
+  "evd_export_repro_check_v1.json": "39e2aac673120317b60536d784b24bf626bc8b95a246615afbcb3836a8c23792",
+  "evd_export_repro_check_v1.md": "c3ed7072325343441065581806a1e91f034622f5a165d30c4aab19044250555c",
+  "evd_field_conformance_203_2_v1.csv": "786f97c44a6ac365c65be3a5a2641d4cbe50384fc09784ac092aded9f91c4396",
+  "evd_field_conformance_203_2_v1.json": "55e71b5325de01977b1ba897c0c3dbbed182288da2aa750787726f58053473d3",
+  "evd_field_conformance_203_2_v1.md": "1c3f22b9f6be6d31d4da2348628b884aa50cfe8b92185f18240f07fe1ae587f8",
+  "fig_evd_coverage_by_family_v1.svg": "20e4d63022c7518eee7c0782ddc2afb2496b412511d22e1e673812125744e619",
+  "svar_reconciliation_v1.json": "36af7dfaa65ec2c1152b70c492e9b080bc79e240fdcd70c6cfcf5691c9afa10f",
+  "svar_reconciliation_v1.md": "8f995ddd86cea4810dd77f944259ddae1ac8d4ef0ad3359845d56db0c6471288",
+  "transition_no_imputation_audit_v1.json": "f63daf3bc47fae63f704dc83efd7ed2acce8bdb94e4757527f8bfbc10dafbbc1"
+ },
+ "protected_ledger_sha256": {
+  "COND": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "EVD": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "MEAS": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+  "SNAP": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+  "SRC": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f"
+ },
+ "protected_ledgers_unchanged_during_run": true,
+ "record": "EVD_PLANE_REPRODUCIBILITY_S178",
+ "runs": [
+  {
+   "command": "python tools/s178_evd_export_repro.py",
+   "id": "RUN-S178-EVD-1",
+   "item": "T2-C01-R2",
+   "outputs": "evd_export_repro_check_v1.{json,md}",
+   "what": "rebuild EVD export v1 and v2 (08a.7) in scratch dirs, compare with recorded sha256; two fresh v2 builds + a correctly-rounded-log variant"
+  },
+  {
+   "command": "python tools/s178_evd_conformance.py [--selfcheck]",
+   "id": "RUN-S178-EVD-2",
+   "item": "T2-C01-R1",
+   "outputs": "evd_field_conformance_203_2_v1.{json,csv,md}",
+   "what": "203.2 field-by-field conformance of the 17,978 ACTIVE rows"
+  },
+  {
+   "command": "python tools/s178_evd_svar_reconcile.py [--selfcheck]",
+   "id": "RUN-S178-EVD-3",
+   "item": "T2-C03-R3",
+   "outputs": "svar_reconciliation_v1.{json,md}",
+   "what": "SVAR lines / distinct ids / registry rows / EVD usage"
+  },
+  {
+   "command": "python tools/s178_evd_coverage.py --sample-size 1000 --workers 4 [--selfcheck]",
+   "id": "RUN-S178-EVD-4",
+   "item": "T2-C13-R1",
+   "outputs": "evd_coverage_vs_corpus_demand_v1.{json,csv,md}, fig_evd_coverage_by_family_v1.svg",
+   "what": "EVD pair coverage vs corpus demand; seeded 1,000-recipe non-BBC sample through the unchanged router"
+  },
+  {
+   "command": "python tools/s178_evd_transition_audit.py [--selfcheck]",
+   "id": "RUN-S178-EVD-5",
+   "item": "T6-C09-R2",
+   "outputs": "transition_no_imputation_audit_v1.json",
+   "what": "real cell tables built with the unmodified transition.dataset; imputation violations counted"
+  },
+  {
+   "command": "python tools/s178_evd_d5_ux_draft.py",
+   "id": "RUN-S178-EVD-6",
+   "item": "T8-C20-R4",
+   "outputs": "d5_UX_blocks_S178_DRAFT.{csv,md}",
+   "what": "draft U and X blocks (ledger facts re-read and asserted)"
+  },
+  {
+   "command": "python tools/s178_evd_repro_record.py",
+   "id": "RUN-S178-EVD-7",
+   "item": "T2-C15-R4",
+   "outputs": "evd_reproducibility_record_v1.{json,md}",
+   "what": "this record; reruns the dataset-card tool and compares its hash"
+  }
+ ],
+ "seeds": {
+  "coverage_sample": {
+   "families": [
+    "WIKIBOOKS",
+    "GUTENBERG_SEGMENT",
+    "FOODCOM",
+    "TASTESET"
+   ],
+   "rule": "SHA256_SEED_CONCAT_RECIPE_ID_ASC",
+   "same_sample_as": "reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json",
+   "sample_size": 1000,
+   "seed_sha256": "1037f2edb4912104fc759949aacecbc2133a73a1a2b17bde5210cdad7ee901dc"
+  },
+  "other_runs": "none: the other evidence-plane runs are deterministic functions of the ledgers (no random draw)",
+  "tests": "property tests use random.Random(seed) for seeds 0..39 (fixed in the test file)"
+ },
+ "splits": {
+  "built_by_this_lane": 0,
+  "note": "no train / test split is built or read here; split registry: registry/split_registry_v1.csv (EVAL lane)"
+ },
+ "status": "AI_DRAFTED_PROPOSED",
+ "tool_version": "s178-evd-repro-record-0.1.1-draft"
+}

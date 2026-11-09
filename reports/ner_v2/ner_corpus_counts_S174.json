@@ -1,0 +1,61 @@
+{
+ "checkpoint": "ckpt_tasteset_base_crf_s1.pt (DeBERTa-base+CRF, TASTEset train, DEV F1 0.940)",
+ "contains_ids": false,
+ "contains_text": false,
+ "families": {
+  "FOODCOM": {
+   "labels": {
+    "COLOR": 342965,
+    "FOOD": 4133781,
+    "PART": 44163,
+    "PHYSICAL_QUALITY": 449054,
+    "PROCESS": 210821,
+    "PURPOSE": 297,
+    "QUANTITY": 3937650,
+    "TASTE": 87143,
+    "UNIT": 171812
+   },
+   "lines": 4129433,
+   "lines_with_FOOD": 4098353
+  },
+  "TASTESET": {
+   "labels": {
+    "COLOR": 229,
+    "FOOD": 4032,
+    "PART": 55,
+    "PHYSICAL_QUALITY": 812,
+    "PROCESS": 1119,
+    "PURPOSE": 92,
+    "QUANTITY": 3802,
+    "TASTE": 127,
+    "UNIT": 3184
+   },
+   "lines": 3788,
+   "lines_with_FOOD": 3756
+  },
+  "WIKIBOOKS": {
+   "labels": {
+    "COLOR": 3210,
+    "FOOD": 35411,
+    "PART": 385,
+    "PHYSICAL_QUALITY": 6753,
+    "PROCESS": 10680,
+    "PURPOSE": 704,
+    "QUANTITY": 33091,
+    "TASTE": 748,
+    "UNIT": 27207
+   },
+   "lines": 32036,
+   "lines_with_FOOD": 31543
+  }
+ },
+ "model_sha256_prefix": "582c056ac20625ac",
+ "notes": [
+  "GUTENBERG_SEGMENT has no separate ingredient lines (0 exported)",
+  "BBC not run on servers (D-003)",
+  "TASTESET overlaps the model training data: not an accuracy measure",
+  "FOODCOM UNIT/QUANTITY ratio far below WIKIBOOKS: check against Rung A quantity parse"
+ ],
+ "record": "NER_CORPUS_COUNTS",
+ "status": "MODEL_DERIVED_COUNTS_ONLY"
+}

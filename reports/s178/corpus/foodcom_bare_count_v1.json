@@ -1,0 +1,88 @@
+{
+ "contains_ids": false,
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "item": "T3-C07-R4",
+ "reading_1_source_field": {
+  "non_null": 4583725,
+  "null": 298706,
+  "pct_non_null_that_are_bare_numbers": 100.0,
+  "quantity_strings_total": 4882431,
+  "shapes": {
+   "DECIMAL": 3130,
+   "FRACTION": 1208573,
+   "INTEGER": 3023128,
+   "MIXED_NUMBER": 252344,
+   "RANGE": 96550
+  },
+  "with_any_alphabetic_character": 0,
+  "with_fraction_slash_u2044": 1483559
+ },
+ "reading_2_parser": {
+  "legacy_kind": {
+   "NONE": 191419,
+   "NUMBER": 3875528,
+   "PACKAGE": 22,
+   "RANGE": 62464
+  },
+  "lines": 4129433,
+  "lines_bare_count_numeric_quantity_and_no_unit_recognised": 3929823,
+  "lines_starting_with_a_digit": 3937952,
+  "lines_with_unit_prenorm_by_unit_key": {
+   "ball": 1,
+   "bulb": 270,
+   "clove": 6307,
+   "fillet": 26,
+   "g": 127,
+   "head": 1266,
+   "joint": 3,
+   "leaf": 159,
+   "pot": 32
+  },
+  "lines_with_unit_recognised_legacy": 5790,
+  "lines_with_unit_recognised_prenorm": 8191,
+  "lines_without_quantity_text": 191481,
+  "note": "the parser reads the unit from the PART string (the quantity field has none); 'unit recognised' therefore counts food names that begin with a unit word (e.g. a count noun), not stated units",
+  "pct_lines_bare_count_numeric_quantity_and_no_unit_recognised": 95.166,
+  "pct_lines_with_a_bare_numeric_quantity": 95.363,
+  "pct_lines_with_unit_legacy": 0.14,
+  "pct_lines_with_unit_prenorm": 0.198,
+  "prenorm_kind": {
+   "FRACTION": 1031934,
+   "MIXED": 224992,
+   "NONE": 191419,
+   "NUMBER": 2603399,
+   "PACKAGE": 22,
+   "RANGE": 77667
+  },
+  "unique_lines": 120129
+ },
+ "reading_3_name_field": {
+  "note": "single-letter t and c excluded by the lexicon; count nouns such as clove or can are unit tokens, so this is an upper bound",
+  "part_strings": 4129433,
+  "pct_with_a_unit_lexicon_word": 4.244,
+  "unit_lexicon_tokens": 169,
+  "with_a_unit_lexicon_word": 175237
+ },
+ "reading_4_ner_counts_S174": {
+  "QUANTITY_spans": 3937650,
+  "UNIT_spans": 171812,
+  "note": "model-derived (DeBERTa-CRF), per-span output not on this server; Wikibooks 82.2 % and TASTEset 83.7 % in the same file",
+  "quantity_spans_minus_lines_starting_with_a_digit": -302,
+  "source": "reports/ner_v2/ner_corpus_counts_S174.json",
+  "unit_over_quantity_pct": 4.363,
+  "unit_spans_over_lines_pct": 4.161,
+  "unit_spans_over_names_with_a_unit_word": 0.9805
+ },
+ "recipes": 522517,
+ "record": "FOODCOM_BARE_COUNT_S178",
+ "sample_limit_recipes": null,
+ "seconds": 44.0,
+ "status": "AI_DRAFTED_PROPOSED_COUNTS_ONLY",
+ "tool_version": "s178-corpus-foodcom-bare-count-0.1.0-draft",
+ "verdict": {
+  "consequence": "Every Food.com quantity is a bare count or a bare number (no mass, no volume): grams are UNKNOWN by construction, and no parser change (including SP-002) can create them.",
+  "source_level": true,
+  "statement": "No Food.com quantity string contains a letter, so no unit token exists in the quantity field for a parser to lose: the unit drop is source-level. The parser recognises a unit on 0.198 % of lines, the name field holds a unit word on 4.244 % of strings and the NER finds UNIT spans on 4.161 % of lines: all three are well below 5 % and come from words inside food names, not from a stated unit. The NER's UNIT span count and the number of name strings holding a unit word agree within about 2 %, and its QUANTITY span count equals the number of lines that start with a digit to within 0.01 %."
+ }
+}

@@ -1,0 +1,69 @@
+{
+ "attempt": "07A-R1",
+ "audited_by_humans": false,
+ "excluded_count": 100,
+ "excluded_set_sha256": "bee4a269ba354dcb3e033a132ab0318819c2b32ef3e40adf7cbc0f8fdbb71b4a",
+ "freeze_check": "FREEZE_INTACT",
+ "n": 100,
+ "normalizer_fingerprint": {
+  "code_sha256": {
+   "condition_normalizer.py": "d0ceaa91ac73a7aa748f82127211df7cb6229448ce4925b49b6dbf2419c10168",
+   "condition_parser.py": "5bc2e4400c423b8a9c3bec54c6dd2303d9a7d4e96c9418f85cad1b1bca57677b",
+   "condition_units.py": "fd3a3f433619d0f853d229b90b976b9cf29e272bce722fa354c07cb0b365abc9",
+   "source_dialect.py": "9b750341fa0264ca988a3e50118ac1b3d3302ee22ee85aa2b3533837136fa6f9"
+  },
+  "combined_sha256": "e7d58913627534d51c2d92c2943f2a0117c9a9c4371465cba3515c3130276a5f",
+  "normalizer_version": "condition_normalizer@2.0.0-07H",
+  "registry_sha256": {
+   "censoring_registry_v1.csv": "bd3c4808771630efc608813b508816c0b4014001a61b4acb74b64a3b26c4c1a8",
+   "condition_variable_bounds_registry_v1.csv": "f1b96e95ee77657b27edda142289ea166ccc8309a97017d1534dd2d5c2adaafa",
+   "condition_variable_registry_v1.csv": "0c036cce18d8fbe87b6e9b6c76fa756448501a901f1b98eef925b42ccced57ac",
+   "heat_transfer_mode_registry_v1.csv": "de81739b583469f0bb808e493e7dd0c829e1e15ae455ab32a1e2ba1a59bd6d2a",
+   "measurement_basis_registry_v1.csv": "b257186948d0a10ebda7bb5de4bf42c686495197648b61dc1641ec6919e81f0b",
+   "measurement_location_registry_v1.csv": "a36d6042138ac4b3e7e89c34554563426944ebea8397f34befa0471e685bd84b",
+   "measurement_method_registry_v1.csv": "6e75d96a2e000aa4dfc86bc0669a8fba35842a228af8d89cd7074cfbfacceb7d",
+   "notation_rule_registry_v1.csv": "6579f5a8d928bb2eb0dcd5f6a8a4389de53c198596210aa91250cd6a6a49f97d",
+   "quantity_form_registry_v1.csv": "d70de93db2e79311b2990f1098e834577a88e6cc75a0a8f4e2c0b52460c6506f",
+   "retention_type_registry_v1.csv": "3d4e74439158c4e1786033dd686a5e04252dee3548a1915ae0b71b8fcfc9fb82",
+   "source_dialect_mapping_registry_v1.csv": "41934ee6b92289ece51066c9a890cf0f5dbf9c89060b026304b9b6eceb5c9812",
+   "value_origin_registry_v1.csv": "752f2db0b7f41aa524158fdf0951bf45b37836f65e321a887ec08c12fd76dbc4",
+   "value_type_registry_v1.csv": "ce667905e2b2bb2ceea5c307347b2faa40459faea28d84306240ff0f08d12f52"
+  },
+  "schema_sha256": "530bf87498d71ccbb0e2dbf57ec6efdfe996d1f4a85ca9d932ea3f628b0bede4"
+ },
+ "pool_sizes": {
+  "S1_temperature_location_stated": 217,
+  "S2_temperature_location_unspecified": 1969,
+  "S3_interval": 204,
+  "S4_pressure_or_power": 189,
+  "S5_medium_only": 677,
+  "S6_all_unknown": 1158
+ },
+ "preregistration": "reports/step07/07A_R1_preregistration_DRAFT.md",
+ "quota": {
+  "S1_temperature_location_stated": 20,
+  "S2_temperature_location_unspecified": 25,
+  "S3_interval": 15,
+  "S4_pressure_or_power": 15,
+  "S5_medium_only": 10,
+  "S6_all_unknown": 15
+ },
+ "seed": "step07-condition-audit-R1-2026-11-08",
+ "selected_by_stratum": {
+  "S1_temperature_location_stated": 20,
+  "S2_temperature_location_unspecified": 25,
+  "S3_interval": 15,
+  "S4_pressure_or_power": 15,
+  "S5_medium_only": 10,
+  "S6_all_unknown": 15
+ },
+ "sha256_packet_Kush": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d",
+ "sha256_packet_Parv": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d",
+ "source_family_counts": {
+  "BOGNAR-2002": 18,
+  "PHENOL-EXPLORER-3.6": 78,
+  "USDA-RETN-R6": 4
+ },
+ "status": "DRAFT_PENDING_SIGNATURES",
+ "v4_reproduction_check": "PASS_100_OF_100"
+}

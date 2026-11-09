@@ -1,0 +1,55 @@
+{
+  "contains_ids": false,
+  "contains_text": false,
+  "counts_as_human_gate": false,
+  "draft_sha256": "d577a3d7436723f25314db8aff8717f7627c537b05e1037e7ee8fe24dc94b9cc",
+  "foodcom_part_mentions": 4129433,
+  "foodcom_recipes_read": 522517,
+  "foodcom_unique_parts": 7368,
+  "ing_active": 2048,
+  "ing_ledger_lines": 5387,
+  "ing_no_candidate": 246,
+  "ing_not_active": 62,
+  "ing_rows_for_80pct_all_sources": 147,
+  "ing_rows_for_80pct_bbc_ledger_only": 274,
+  "ing_rows_for_80pct_foodcom_only": 119,
+  "ing_rows_for_80pct_nonbbc_lines": 119,
+  "ing_unique_ids": 2110,
+  "ing_with_candidate": 1802,
+  "ing_with_zero_mentions": 0,
+  "matcher_version": "lotstate-ing-sr-match-0.1.0-draft",
+  "mentions_by_source": {
+    "bbc_ledger": 113319,
+    "foodcom_parts": 4088826,
+    "gutenberg_recipes": 675103,
+    "tasteset_lines": 3530,
+    "wikibooks_lines": 31285
+  },
+  "mentions_by_top1_band": {
+    "HIGH": 3510922,
+    "LOW": 210875,
+    "MEDIUM": 1119933,
+    "NONE": 70333
+  },
+  "mentions_total": 4912063,
+  "ordering": "MENTIONS_TOTAL_DESC_THEN_ING_ID",
+  "queue_80pct_top1_band_counts": {
+    "HIGH": 105,
+    "LOW": 1,
+    "MEDIUM": 41
+  },
+  "queue_sha256": "6e75713789370b23fccdcf6fa02fe3fed33eb11f1eeeb473e4fcaccab5f6f382",
+  "record": "ING_SR_MATCH_SUMMARY_S176",
+  "sr_dir_sha256_food_csv": "de8b0390058db4f102368c9fbdfde144790b480ff4cb0507c0e060ef99805dee",
+  "sr_foods": 7793,
+  "status": "AI_DRAFTED_COUNTS_ONLY",
+  "top1_band_counts": {
+    "HIGH": 406,
+    "LOW": 1009,
+    "MEDIUM": 387
+  },
+  "unlinked_mentions_by_source": {
+    "foodcom_parts": 40607,
+    "tasteset_lines": 258
+  }
+}

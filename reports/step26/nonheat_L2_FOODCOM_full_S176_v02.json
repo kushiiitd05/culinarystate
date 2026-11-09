@@ -1,0 +1,1355 @@
+{
+  "baseline_check": "PASS_BEFORE_AND_AFTER",
+  "before_after": {
+    "after_layer_version": "nonheat-scenario-L2-0.2.0-draft",
+    "before_layer_version": "nonheat-scenario-L2-0.1.0-draft",
+    "counts": {
+      "after": {
+        "core_peak_gt_100": {
+          "GENTLE": 3,
+          "INTENSE": 8,
+          "TYPICAL": 8
+        },
+        "core_peak_gt_100_dry_class": {
+          "GENTLE": 3,
+          "INTENSE": 8,
+          "TYPICAL": 8
+        },
+        "events_core_peak_gt_100_any_bracket": 8,
+        "rest_computed": {
+          "GENTLE": 552,
+          "INTENSE": 552,
+          "TYPICAL": 552
+        },
+        "rest_computed_dry_class": {
+          "GENTLE": 17,
+          "INTENSE": 17,
+          "TYPICAL": 17
+        },
+        "rest_computed_moist_class": {
+          "GENTLE": 535,
+          "INTENSE": 535,
+          "TYPICAL": 535
+        },
+        "rest_events": 552,
+        "status": {
+          "SCENARIO_COMPUTED": 552
+        }
+      },
+      "before": {
+        "core_peak_gt_100": {
+          "GENTLE": 208,
+          "INTENSE": 382,
+          "TYPICAL": 374
+        },
+        "core_peak_gt_100_dry_class": {
+          "GENTLE": 3,
+          "INTENSE": 8,
+          "TYPICAL": 8
+        },
+        "core_peak_gt_100_moist_class": {
+          "GENTLE": 205,
+          "INTENSE": 374,
+          "TYPICAL": 366
+        },
+        "events_core_peak_gt_100_any_bracket": 382,
+        "events_core_peak_gt_100_moist_class_any_bracket": 374,
+        "rest_computed": {
+          "GENTLE": 552,
+          "INTENSE": 552,
+          "TYPICAL": 552
+        },
+        "rest_computed_dry_class": {
+          "GENTLE": 17,
+          "INTENSE": 17,
+          "TYPICAL": 17
+        },
+        "rest_computed_moist_class": {
+          "GENTLE": 535,
+          "INTENSE": 535,
+          "TYPICAL": 535
+        },
+        "rest_events": 552,
+        "status": {
+          "SCENARIO_COMPUTED": 552
+        }
+      }
+    },
+    "temperature_quantiles_resting": {
+      "after": {
+        "core_end_c": {
+          "GENTLE": {
+            "max": 117.015,
+            "n": 552,
+            "p01": 13.47,
+            "p10": 20.035,
+            "p25": 30.166,
+            "p50": 46.031,
+            "p75": 58.212,
+            "p90": 70.799,
+            "p99": 85.218
+          },
+          "INTENSE": {
+            "max": 195.26,
+            "n": 552,
+            "p01": 16.452,
+            "p10": 25.0,
+            "p25": 25.0,
+            "p50": 25.0,
+            "p75": 57.451,
+            "p90": 81.904,
+            "p99": 95.242
+          },
+          "TYPICAL": {
+            "max": 137.83,
+            "n": 552,
+            "p01": 21.0,
+            "p10": 23.813,
+            "p25": 34.047,
+            "p50": 42.236,
+            "p75": 62.061,
+            "p90": 74.616,
+            "p99": 96.229
+          }
+        },
+        "core_end_of_heat_c": {
+          "GENTLE": {
+            "max": 148.72,
+            "n": 552,
+            "p01": 5.419,
+            "p10": 16.173,
+            "p25": 45.961,
+            "p50": 73.902,
+            "p75": 87.783,
+            "p90": 99.325,
+            "p99": 100.0
+          },
+          "INTENSE": {
+            "max": 220.0,
+            "n": 552,
+            "p01": 66.647,
+            "p10": 95.0,
+            "p25": 99.845,
+            "p50": 100.0,
+            "p75": 100.0,
+            "p90": 100.0,
+            "p99": 183.47
+          },
+          "TYPICAL": {
+            "max": 187.466,
+            "n": 552,
+            "p01": 40.038,
+            "p10": 82.921,
+            "p25": 90.0,
+            "p50": 99.353,
+            "p75": 99.999,
+            "p90": 100.0,
+            "p99": 137.471
+          }
+        },
+        "core_peak_c": {
+          "GENTLE": {
+            "max": 149.044,
+            "n": 552,
+            "p01": 14.314,
+            "p10": 27.794,
+            "p25": 47.245,
+            "p50": 75.007,
+            "p75": 87.815,
+            "p90": 99.326,
+            "p99": 100.0
+          },
+          "INTENSE": {
+            "max": 220.0,
+            "n": 552,
+            "p01": 68.26,
+            "p10": 95.0,
+            "p25": 99.846,
+            "p50": 100.0,
+            "p75": 100.0,
+            "p90": 100.0,
+            "p99": 183.47
+          },
+          "TYPICAL": {
+            "max": 187.482,
+            "n": 552,
+            "p01": 49.511,
+            "p10": 83.293,
+            "p25": 90.0,
+            "p50": 99.356,
+            "p75": 99.999,
+            "p90": 100.0,
+            "p99": 143.97
+          }
+        }
+      },
+      "after_dry": {
+        "core_end_c": {
+          "GENTLE": {
+            "max": 117.015,
+            "n": 17,
+            "p01": 16.543,
+            "p10": 18.0,
+            "p25": 18.0,
+            "p50": 38.404,
+            "p75": 65.53,
+            "p90": 91.847,
+            "p99": 116.906
+          },
+          "INTENSE": {
+            "max": 195.26,
+            "n": 17,
+            "p01": 25.0,
+            "p10": 25.0,
+            "p25": 25.0,
+            "p50": 25.0,
+            "p75": 25.0,
+            "p90": 102.228,
+            "p99": 189.263
+          },
+          "TYPICAL": {
+            "max": 137.83,
+            "n": 17,
+            "p01": 21.0,
+            "p10": 21.0,
+            "p25": 22.318,
+            "p50": 62.511,
+            "p75": 91.353,
+            "p90": 111.563,
+            "p99": 136.409
+          }
+        },
+        "core_end_of_heat_c": {
+          "GENTLE": {
+            "max": 148.72,
+            "n": 17,
+            "p01": 4.486,
+            "p10": 13.013,
+            "p25": 34.771,
+            "p50": 77.567,
+            "p75": 85.798,
+            "p90": 123.475,
+            "p99": 148.615
+          },
+          "INTENSE": {
+            "max": 220.0,
+            "n": 17,
+            "p01": 86.946,
+            "p10": 95.0,
+            "p25": 100.0,
+            "p50": 100.0,
+            "p75": 199.757,
+            "p90": 207.838,
+            "p99": 219.935
+          },
+          "TYPICAL": {
+            "max": 187.466,
+            "n": 17,
+            "p01": 44.14,
+            "p10": 88.268,
+            "p25": 98.83,
+            "p50": 100.0,
+            "p75": 150.858,
+            "p90": 172.16,
+            "p99": 185.535
+          }
+        },
+        "core_peak_c": {
+          "GENTLE": {
+            "max": 149.044,
+            "n": 17,
+            "p01": 18.034,
+            "p10": 28.73,
+            "p25": 44.153,
+            "p50": 80.108,
+            "p75": 92.686,
+            "p90": 123.556,
+            "p99": 148.919
+          },
+          "INTENSE": {
+            "max": 220.0,
+            "n": 17,
+            "p01": 90.192,
+            "p10": 95.0,
+            "p25": 100.0,
+            "p50": 100.0,
+            "p75": 199.777,
+            "p90": 207.84,
+            "p99": 219.936
+          },
+          "TYPICAL": {
+            "max": 187.482,
+            "n": 17,
+            "p01": 58.345,
+            "p10": 89.267,
+            "p25": 98.961,
+            "p50": 100.0,
+            "p75": 151.46,
+            "p90": 172.162,
+            "p99": 185.55
+          }
+        }
+      },
+      "after_moist": {
+        "core_end_c": {
+          "GENTLE": {
+            "max": 96.181,
+            "n": 535,
+            "p01": 13.396,
+            "p10": 20.082,
+            "p25": 30.767,
+            "p50": 46.031,
+            "p75": 58.212,
+            "p90": 68.446,
+            "p99": 81.764
+          },
+          "INTENSE": {
+            "max": 98.121,
+            "n": 535,
+            "p01": 13.636,
+            "p10": 25.0,
+            "p25": 25.0,
+            "p50": 25.0,
+            "p75": 57.451,
+            "p90": 81.904,
+            "p99": 93.084
+          },
+          "TYPICAL": {
+            "max": 98.057,
+            "n": 535,
+            "p01": 21.0,
+            "p10": 23.815,
+            "p25": 34.258,
+            "p50": 42.236,
+            "p75": 62.051,
+            "p90": 73.903,
+            "p99": 91.297
+          }
+        },
+        "core_end_of_heat_c": {
+          "GENTLE": {
+            "max": 100.0,
+            "n": 535,
+            "p01": 6.058,
+            "p10": 16.173,
+            "p25": 46.339,
+            "p50": 73.848,
+            "p75": 87.783,
+            "p90": 99.325,
+            "p99": 99.995
+          },
+          "INTENSE": {
+            "max": 100.0,
+            "n": 535,
+            "p01": 66.284,
+            "p10": 95.0,
+            "p25": 99.845,
+            "p50": 100.0,
+            "p75": 100.0,
+            "p90": 100.0,
+            "p99": 100.0
+          },
+          "TYPICAL": {
+            "max": 100.0,
+            "n": 535,
+            "p01": 43.276,
+            "p10": 82.921,
+            "p25": 90.0,
+            "p50": 99.185,
+            "p75": 99.999,
+            "p90": 100.0,
+            "p99": 100.0
+          }
+        },
+        "core_peak_c": {
+          "GENTLE": {
+            "max": 100.0,
+            "n": 535,
+            "p01": 14.232,
+            "p10": 27.794,
+            "p25": 47.245,
+            "p50": 74.774,
+            "p75": 87.815,
+            "p90": 99.326,
+            "p99": 99.995
+          },
+          "INTENSE": {
+            "max": 100.0,
+            "n": 535,
+            "p01": 68.235,
+            "p10": 95.0,
+            "p25": 99.846,
+            "p50": 100.0,
+            "p75": 100.0,
+            "p90": 100.0,
+            "p99": 100.0
+          },
+          "TYPICAL": {
+            "max": 100.0,
+            "n": 535,
+            "p01": 49.407,
+            "p10": 83.293,
+            "p25": 90.0,
+            "p50": 99.258,
+            "p75": 99.999,
+            "p90": 100.0,
+            "p99": 100.0
+          }
+        }
+      },
+      "before": {
+        "core_end_c": {
+          "GENTLE": {
+            "max": 167.819,
+            "n": 552,
+            "p01": 15.471,
+            "p10": 23.834,
+            "p25": 36.536,
+            "p50": 60.814,
+            "p75": 79.032,
+            "p90": 104.506,
+            "p99": 133.671
+          },
+          "INTENSE": {
+            "max": 210.026,
+            "n": 552,
+            "p01": 16.455,
+            "p10": 25.0,
+            "p25": 25.0,
+            "p50": 25.0,
+            "p75": 85.165,
+            "p90": 142.46,
+            "p99": 186.832
+          },
+          "TYPICAL": {
+            "max": 162.596,
+            "n": 552,
+            "p01": 21.0,
+            "p10": 23.815,
+            "p25": 39.547,
+            "p50": 62.051,
+            "p75": 91.353,
+            "p90": 122.936,
+            "p99": 153.748
+          }
+        },
+        "core_end_of_heat_c": {
+          "GENTLE": {
+            "max": 216.827,
+            "n": 552,
+            "p01": 6.1,
+            "p10": 23.781,
+            "p25": 62.323,
+            "p50": 85.0,
+            "p75": 136.407,
+            "p90": 164.889,
+            "p99": 199.445
+          },
+          "INTENSE": {
+            "max": 232.222,
+            "n": 552,
+            "p01": 69.746,
+            "p10": 95.0,
+            "p25": 100.0,
+            "p50": 180.0,
+            "p75": 218.465,
+            "p90": 220.0,
+            "p99": 220.0
+          },
+          "TYPICAL": {
+            "max": 231.412,
+            "n": 552,
+            "p01": 49.714,
+            "p10": 90.0,
+            "p25": 99.993,
+            "p50": 169.055,
+            "p75": 177.572,
+            "p90": 179.999,
+            "p99": 218.259
+          }
+        },
+        "core_peak_c": {
+          "GENTLE": {
+            "max": 216.829,
+            "n": 552,
+            "p01": 15.969,
+            "p10": 32.935,
+            "p25": 66.54,
+            "p50": 86.004,
+            "p75": 136.528,
+            "p90": 164.947,
+            "p99": 199.466
+          },
+          "INTENSE": {
+            "max": 232.222,
+            "n": 552,
+            "p01": 71.105,
+            "p10": 95.0,
+            "p25": 100.0,
+            "p50": 180.0,
+            "p75": 218.468,
+            "p90": 220.0,
+            "p99": 220.0
+          },
+          "TYPICAL": {
+            "max": 231.414,
+            "n": 552,
+            "p01": 53.753,
+            "p10": 90.0,
+            "p25": 99.993,
+            "p50": 169.103,
+            "p75": 177.578,
+            "p90": 179.999,
+            "p99": 218.26
+          }
+        }
+      },
+      "before_dry": {
+        "core_end_c": {
+          "GENTLE": {
+            "max": 117.015,
+            "n": 17,
+            "p01": 16.543,
+            "p10": 18.0,
+            "p25": 18.0,
+            "p50": 38.404,
+            "p75": 65.53,
+            "p90": 91.847,
+            "p99": 116.906
+          },
+          "INTENSE": {
+            "max": 195.26,
+            "n": 17,
+            "p01": 25.0,
+            "p10": 25.0,
+            "p25": 25.0,
+            "p50": 25.0,
+            "p75": 25.0,
+            "p90": 102.228,
+            "p99": 189.263
+          },
+          "TYPICAL": {
+            "max": 137.83,
+            "n": 17,
+            "p01": 21.0,
+            "p10": 21.0,
+            "p25": 22.318,
+            "p50": 62.511,
+            "p75": 91.353,
+            "p90": 111.563,
+            "p99": 136.409
+          }
+        },
+        "core_end_of_heat_c": {
+          "GENTLE": {
+            "max": 148.72,
+            "n": 17,
+            "p01": 4.486,
+            "p10": 13.013,
+            "p25": 34.771,
+            "p50": 77.567,
+            "p75": 85.798,
+            "p90": 123.475,
+            "p99": 148.615
+          },
+          "INTENSE": {
+            "max": 220.0,
+            "n": 17,
+            "p01": 86.946,
+            "p10": 95.0,
+            "p25": 100.0,
+            "p50": 100.0,
+            "p75": 199.757,
+            "p90": 207.838,
+            "p99": 219.935
+          },
+          "TYPICAL": {
+            "max": 187.466,
+            "n": 17,
+            "p01": 44.14,
+            "p10": 88.268,
+            "p25": 98.83,
+            "p50": 100.0,
+            "p75": 150.858,
+            "p90": 172.16,
+            "p99": 185.535
+          }
+        },
+        "core_peak_c": {
+          "GENTLE": {
+            "max": 149.044,
+            "n": 17,
+            "p01": 18.034,
+            "p10": 28.73,
+            "p25": 44.153,
+            "p50": 80.108,
+            "p75": 92.686,
+            "p90": 123.556,
+            "p99": 148.919
+          },
+          "INTENSE": {
+            "max": 220.0,
+            "n": 17,
+            "p01": 90.192,
+            "p10": 95.0,
+            "p25": 100.0,
+            "p50": 100.0,
+            "p75": 199.777,
+            "p90": 207.84,
+            "p99": 219.936
+          },
+          "TYPICAL": {
+            "max": 187.482,
+            "n": 17,
+            "p01": 58.345,
+            "p10": 89.267,
+            "p25": 98.961,
+            "p50": 100.0,
+            "p75": 151.46,
+            "p90": 172.162,
+            "p99": 185.55
+          }
+        }
+      },
+      "before_moist": {
+        "core_end_c": {
+          "GENTLE": {
+            "max": 167.819,
+            "n": 535,
+            "p01": 15.411,
+            "p10": 24.768,
+            "p25": 37.411,
+            "p50": 61.416,
+            "p75": 79.262,
+            "p90": 104.464,
+            "p99": 133.791
+          },
+          "INTENSE": {
+            "max": 210.026,
+            "n": 535,
+            "p01": 13.64,
+            "p10": 25.0,
+            "p25": 25.0,
+            "p50": 25.0,
+            "p75": 86.241,
+            "p90": 142.034,
+            "p99": 182.306
+          },
+          "TYPICAL": {
+            "max": 162.596,
+            "n": 535,
+            "p01": 21.0,
+            "p10": 23.815,
+            "p25": 39.548,
+            "p50": 62.051,
+            "p75": 91.325,
+            "p90": 122.792,
+            "p99": 154.733
+          }
+        },
+        "core_end_of_heat_c": {
+          "GENTLE": {
+            "max": 216.827,
+            "n": 535,
+            "p01": 7.213,
+            "p10": 23.781,
+            "p25": 62.765,
+            "p50": 85.42,
+            "p75": 136.44,
+            "p90": 165.134,
+            "p99": 199.73
+          },
+          "INTENSE": {
+            "max": 232.222,
+            "n": 535,
+            "p01": 69.275,
+            "p10": 95.0,
+            "p25": 100.0,
+            "p50": 180.0,
+            "p75": 218.862,
+            "p90": 220.0,
+            "p99": 220.0
+          },
+          "TYPICAL": {
+            "max": 231.412,
+            "n": 535,
+            "p01": 51.015,
+            "p10": 90.0,
+            "p25": 99.996,
+            "p50": 169.396,
+            "p75": 178.063,
+            "p90": 179.999,
+            "p99": 218.284
+          }
+        },
+        "core_peak_c": {
+          "GENTLE": {
+            "max": 216.829,
+            "n": 535,
+            "p01": 15.866,
+            "p10": 32.935,
+            "p25": 66.656,
+            "p50": 86.214,
+            "p75": 136.594,
+            "p90": 165.198,
+            "p99": 199.758
+          },
+          "INTENSE": {
+            "max": 232.222,
+            "n": 535,
+            "p01": 71.104,
+            "p10": 95.0,
+            "p25": 100.0,
+            "p50": 180.0,
+            "p75": 218.872,
+            "p90": 220.0,
+            "p99": 220.0
+          },
+          "TYPICAL": {
+            "max": 231.414,
+            "n": 535,
+            "p01": 54.316,
+            "p10": 90.0,
+            "p25": 99.996,
+            "p50": 169.445,
+            "p75": 178.072,
+            "p90": 179.999,
+            "p99": 218.284
+          }
+        }
+      }
+    }
+  },
+  "cap_model": "evaporation-cap-0.1.0-draft",
+  "cap_policy": {
+    "altitude_m": null,
+    "enabled": true,
+    "pressure_psig": null
+  },
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/extraction/__init__.py",
+        "sha256": "b57b6cc94e8e6810f01f96a9c5671ad864fe0fb067d18930571b9ec694e97bf0"
+      },
+      {
+        "path": "src/culinarystate/extraction/auditor.py",
+        "sha256": "709b4351379e848229279218e7343c3c5fb45d16af8cd81b81892778e6341e21"
+      },
+      {
+        "path": "src/culinarystate/extraction/d073_current_sample.py",
+        "sha256": "c472911050fde29509bbba2b4bf24bb62e962b8f845681a3b23525e663e84a5b"
+      },
+      {
+        "path": "src/culinarystate/extraction/interfaces.py",
+        "sha256": "543dfcb5a36f67abea810ebcfd94427759c4ebdd4bf11736e950b48de240407d"
+      },
+      {
+        "path": "src/culinarystate/extraction/invariants.py",
+        "sha256": "b2e45c3dfd61da10982ade1a78e5458fa0a161c2cb1be454a923f56768da1b8b"
+      },
+      {
+        "path": "src/culinarystate/extraction/j4_inverted_sample.py",
+        "sha256": "84628577169426e01e955405e4ca18a3a43830f93f2bd64017ffefed36e55657"
+      },
+      {
+        "path": "src/culinarystate/extraction/quantity_stages.py",
+        "sha256": "5d3e79f9ba6e50709384ccde8d052dd7a5d39f6be0e6dd4e07994ccada77f899"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a.py",
+        "sha256": "b274feed81bf18f5ef9332761cde0d6231b2e84480eb2a61ebccb5816e19d630"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_binding.py",
+        "sha256": "957471c26dd726468bba7967c3ffc7027390c56777ea90b5abcfb7f2f396ddbf"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_lexicon.py",
+        "sha256": "8973f0eb2d78bd64c6ba4723120a540c3a016707b4178ba6b95e041f14bf0430"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_measure.py",
+        "sha256": "d4c42e85248f626c6a2ea9fad9062f18952785456fbb63d981dede9b64add56b"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_rules.py",
+        "sha256": "12cf0ce00d9e469ef4a77293e86539c5ac8610b41ecc2b499f955ca7f9f93752"
+      },
+      {
+        "path": "src/culinarystate/extraction/validators.py",
+        "sha256": "4ccb60e43b06afab22654baf82d8e1e1ec679e1356c2a63cdeccd8353d6091d9"
+      },
+      {
+        "path": "tools/step17b_rung_a_dryrun.py",
+        "sha256": "9290d52369f9302f92da469bd337c974f29287f3af057eb1cae1fb7a8445b158"
+      },
+      {
+        "path": "src/culinarystate/simulation/nonheat_binding.py",
+        "sha256": "1453fe36b43200df2bd832a217fb094c9a389176b7c044eeccaf0d754038de4d"
+      },
+      {
+        "path": "src/culinarystate/simulation/nonheat_scenario.py",
+        "sha256": "7ab795545061c5991c4a59d70c01cca93c2dbf2d9015906628dc1ae5e2476ad2"
+      },
+      {
+        "path": "src/culinarystate/simulation/nonheat_drivers.py",
+        "sha256": "615c93edc960e7e8f8ad18720dd861bf208ea90abdb220ff5b11a61e4f26ed59"
+      },
+      {
+        "path": "src/culinarystate/simulation/physics_drivers.py",
+        "sha256": "cfc677f6d19e8d3ff5565ba5047c078e091574e38a360c4c496f8b3dac4ab977"
+      },
+      {
+        "path": "src/culinarystate/simulation/phase_change.py",
+        "sha256": "a3b3fd82f194dc997a7a140f9e485dab7f5bfa78068e4ef19a38e022fcf840cf"
+      },
+      {
+        "path": "registry/phase_change_v1.csv",
+        "sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a"
+      },
+      {
+        "path": "registry/matrix_moisture_regime_v1.csv",
+        "sha256": "c4736dbcf2d392b50f911816a08780c7d92ec86f4f6010c6ba16f2f332406e1d"
+      },
+      {
+        "path": "src/culinarystate/simulation/condition_binding.py",
+        "sha256": "c157f3391763af178ede408251c65ed74344cb499accf0ab9b8973bd42958866"
+      },
+      {
+        "path": "src/culinarystate/simulation/scenario_layer.py",
+        "sha256": "194bad77e098cb71d3e6bb670493ab856cbd6a48e4c82a64cb2184e7507706db"
+      },
+      {
+        "path": "registry/scenario_defaults_nonheat_v1.csv",
+        "sha256": "047732f446633cf0a07ab0a8504c9ce812ad2ed6b9963567e7a6b5f36b8cf8d4"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "registry/process_medium_map_v1.csv",
+        "sha256": "5014c27d553ca8fb8691fe5633b053344fe2281128138dba2b39da819402a953"
+      },
+      {
+        "path": "tools/nonheat_layer_run.py",
+        "sha256": "21505e07183578e6d21859496cd7c14d5c75cf3b56a1aa696d478d4f86859109"
+      }
+    ],
+    "git_commit": "bbf5ee6238e7a5e7ae2755819982c3b791faed9d",
+    "git_dirty": true,
+    "src_tree_sha256": "38c73086a0b7ce6d81c2142c3dd4970c69c6cd609402e26aae577b50369c4253"
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts": {
+    "basis_class_typical_bracket": {
+      "COOLING": {
+        "alpha": {
+          "SD": 21370
+        },
+        "density_food": {
+          "NH": 2236
+        },
+        "duration_min": {
+          "KGE": 16545,
+          "L1": 3978,
+          "NH": 847
+        },
+        "environment": {
+          "L1": 8347,
+          "NH": 13023
+        },
+        "freezing_point": {
+          "NH": 2236
+        },
+        "h": {
+          "NH": 23606
+        },
+        "half_thickness_m": {
+          "L1": 23606
+        },
+        "initial_c": {
+          "NH": 15265,
+          "SD": 6105
+        },
+        "k": {
+          "SD": 21370
+        },
+        "k_frozen": {
+          "NH": 1752
+        },
+        "k_unfrozen": {
+          "SD": 484
+        },
+        "latent_heat_freezing": {
+          "NH": 2236
+        },
+        "medium_c": {
+          "L1": 4,
+          "NH": 23602
+        },
+        "stated_duration_min": {
+          "L1": 262
+        },
+        "target_food_c": {
+          "L1": 11
+        }
+      },
+      "FERMENT_LEAVEN": {
+        "D_eff_m2_s": {
+          "NH": 2003
+        },
+        "duration_min": {
+          "KGE": 1348,
+          "L1": 973,
+          "NH": 130
+        },
+        "half_thickness_m": {
+          "L1": 2003
+        },
+        "medium": {
+          "L1": 2003
+        }
+      },
+      "MECHANICAL_CUT": {
+        "cut_class": {
+          "L1": 408204
+        },
+        "enzyme_system_candidate": {
+          "L1": 82409
+        },
+        "half_thickness_m": {
+          "NH": 787,
+          "SD": 233399
+        },
+        "time_until_next_heat": {
+          "L1": 150463
+        }
+      },
+      "MECHANICAL_MIX": {
+        "AERATED": {
+          "L1": 232663
+        },
+        "DEVELOPED": {
+          "L1": 15444
+        },
+        "EMULSIFIED": {
+          "L1": 11653
+        }
+      },
+      "PRESERVATION": {
+        "D_eff_m2_s": {
+          "NH": 18
+        },
+        "air_c": {
+          "L1": 11,
+          "NH": 50
+        },
+        "density_food": {
+          "NH": 61
+        },
+        "duration_min": {
+          "KGE": 66,
+          "L1": 23,
+          "NH": 5
+        },
+        "h": {
+          "SD": 61
+        },
+        "half_thickness_m": {
+          "L1": 79
+        },
+        "latent_heat_vaporisation": {
+          "NH": 61
+        },
+        "lethality_t_ref": {
+          "NH": 15
+        },
+        "lethality_z": {
+          "NH": 15
+        },
+        "medium": {
+          "L1": 18
+        },
+        "medium_c": {
+          "L1": 15
+        },
+        "water_content_db_critical": {
+          "NH": 61
+        },
+        "water_content_db_equilibrium": {
+          "NH": 61
+        },
+        "water_content_db_initial": {
+          "NH": 61
+        },
+        "wet_bulb_temperature": {
+          "NH": 61
+        }
+      },
+      "RESTING": {
+        "alpha": {
+          "SD": 552
+        },
+        "half_thickness_m": {
+          "HEAT_L1": 17,
+          "L1": 535
+        },
+        "heat_bath_c": {
+          "L1": 251,
+          "SD": 301
+        },
+        "heat_duration_min": {
+          "KGE": 239,
+          "L1": 313
+        },
+        "heat_h": {
+          "SD": 552
+        },
+        "initial_c": {
+          "SD": 552
+        },
+        "k": {
+          "SD": 552
+        },
+        "prior_heat_link": {
+          "L1": 552
+        },
+        "rest_air_c": {
+          "NH": 552
+        },
+        "rest_duration_min": {
+          "KGE": 304,
+          "L1": 236,
+          "NH": 12
+        },
+        "rest_h": {
+          "NH": 552
+        },
+        "t_cap_c": {
+          "PC": 535
+        }
+      },
+      "SEPARATION": {
+        "liquid_fate": {
+          "L1": 7814
+        },
+        "liquid_removed_fraction": {
+          "NH": 113640
+        },
+        "removed_phase": {
+          "L1": 269657
+        }
+      },
+      "STORAGE": {
+        "duration_bound_min": {
+          "L1": 2470
+        },
+        "storage_c": {
+          "L1": 5,
+          "NH": 12073
+        }
+      }
+    },
+    "bracket_order_check": {
+      "COOLING": {
+        "core_end_c": {
+          "OK": 21368,
+          "VIOLATION": 2
+        },
+        "freezing_time_min": {
+          "OK": 1752
+        },
+        "thaw_time_min": {
+          "OK": 484
+        }
+      },
+      "FERMENT_LEAVEN": {
+        "uptake_fraction": {
+          "OK": 2003
+        }
+      },
+      "MECHANICAL_CUT": {
+        "half_thickness_m": {
+          "OK": 234186
+        }
+      },
+      "PRESERVATION": {
+        "f0_min": {
+          "OK": 15
+        },
+        "uptake_fraction": {
+          "OK": 18
+        },
+        "water_removed_fraction": {
+          "OK": 61
+        }
+      },
+      "RESTING": {
+        "core_end_of_heat_c": {
+          "OK": 552
+        },
+        "core_peak_c": {
+          "OK": 552
+        }
+      },
+      "SEPARATION": {
+        "liquid_removed_fraction": {
+          "OK": 113640
+        }
+      },
+      "STORAGE": {
+        "storage_c": {
+          "OK": 12078
+        }
+      }
+    },
+    "cooling_target_reached": {
+      "COOLING": {
+        "TYPICAL": 3
+      }
+    },
+    "errors_by_class": {},
+    "events_by_family": {
+      "COOLING": 297413,
+      "FERMENT_LEAVEN": 50942,
+      "MECHANICAL_CUT": 541273,
+      "MECHANICAL_MIX": 1447067,
+      "PRESERVATION": 66675,
+      "RESTING": 14232,
+      "SEPARATION": 269657,
+      "STORAGE": 24170
+    },
+    "flags_typical_bracket": {
+      "COOLING": {
+        "DURATION_CLIPPED_TO_STATED_BOUND": 1673,
+        "DURATION_FROM_OVERNIGHT_WORD": 847,
+        "HIGH_MOISTURE_PROPERTIES_ASSUMED": 23606,
+        "PLANK_SLAB_P_HALF_R_EIGHTH": 1752,
+        "REPORT_THRESHOLDS_NOT_SAFETY": 21370,
+        "SLAB_GEOMETRY_ASSUMED": 21370,
+        "START_AT_FREEZING_POINT_SENSIBLE_HEAT_NOT_INCLUDED": 1752,
+        "START_POST_HEAT": 15265,
+        "START_UNKNOWN_AMBIENT_ASSUMED": 6105,
+        "SUBCOOLING_OF_FROZEN_CORE_NOT_INCLUDED": 484,
+        "THAW_AS_REVERSE_PLANK": 484
+      },
+      "FERMENT_LEAVEN": {
+        "DURATION_CLIPPED_TO_STATED_BOUND": 165,
+        "DURATION_FROM_OVERNIGHT_WORD": 130,
+        "D_NOT_TEMPERATURE_ADJUSTED": 2003,
+        "FICKIAN_SLAB_BI_INFINITY": 2003,
+        "QUALITATIVE_ONLY_NO_NUMBER_FOR_STATE": 3818,
+        "SLAB_GEOMETRY_ASSUMED": 2003,
+        "SOAK_LIQUID_ASSUMED_WATER": 651,
+        "UPTAKE_FRACTION_OF_EQUILIBRIUM_NOT_A_CONCENTRATION": 2003
+      },
+      "MECHANICAL_CUT": {
+        "ENZYME_RELEASE_IS_A_FLAG_NOT_A_NUMBER": 408204,
+        "SLAB_OR_CUBE_BOUNDS_NOT_A_SHAPE_CLAIM": 234186
+      },
+      "MECHANICAL_MIX": {
+        "QUALITATIVE_ONLY_NO_NUMBER": 257675
+      },
+      "PRESERVATION": {
+        "DURATION_FROM_OVERNIGHT_WORD": 5,
+        "D_NOT_TEMPERATURE_ADJUSTED": 18,
+        "EQUIVALENT_MINUTES_ONLY_NO_ORGANISM_CLAIM": 15,
+        "F0_AT_MEDIUM_TEMPERATURE_NOT_COLD_SPOT": 15,
+        "FICKIAN_SLAB_BI_INFINITY": 18,
+        "RH_NOT_STATED_WET_BULB_ASSUMED": 61,
+        "SLAB_GEOMETRY_ASSUMED": 79,
+        "TWO_STAGE_DRYING_SLAB_BOTH_FACES": 61,
+        "UPTAKE_FRACTION_OF_EQUILIBRIUM_NOT_A_CONCENTRATION": 18,
+        "WATER_CONTENT_IS_A_DRYING_STATE_NOT_A_NUTRIENT": 61
+      },
+      "RESTING": {
+        "ALTITUDE_ASSUMED_SEA_LEVEL": 535,
+        "BRACKETS_ORDERED_BY_HEAT_DOSE_CARRYOVER_RISE_NOT_MONOTONE": 552,
+        "CAP_IS_UPPER_BOUND_NOT_VALIDATED": 535,
+        "CAP_NOT_LIFTED_NO_DRYING_MODEL": 535,
+        "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": 17,
+        "DURATION_CLIPPED_TO_STATED_BOUND": 24,
+        "DURATION_FROM_OVERNIGHT_WORD": 12,
+        "EVAPORATION_CAP_APPLIED": 374,
+        "EVAPORATION_CAP_NOT_BINDING": 161,
+        "FINITE_DIFFERENCE_SLAB_HEAT_THEN_STILL_AIR": 552,
+        "HIGH_MOISTURE_PROPERTIES_ASSUMED": 552,
+        "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 25,
+        "MATRIX_DRY_CLASS_UNCAPPED": 17,
+        "MATRIX_UNKNOWN_MOIST_ASSUMED": 440,
+        "PRESSURE_ASSUMED_1ATM": 542,
+        "SLAB_GEOMETRY_ASSUMED": 552,
+        "UNIFORM_START_ASSUMED": 552
+      },
+      "SEPARATION": {
+        "FOLLOWS_SOAK_OR_BRINE": 7942,
+        "NO_COMPOUND_NUMBER": 269657,
+        "SOAK_DISCARD_CHAIN_CANDIDATE": 297
+      },
+      "STORAGE": {
+        "NO_KINETICS_MODEL_PARAM_ROWS_PENDING": 12078
+      }
+    },
+    "l1_files": 192,
+    "l2_driver_computed_by_family": {
+      "COOLING": 23606,
+      "FERMENT_LEAVEN": 2003,
+      "MECHANICAL_CUT": 234186,
+      "MECHANICAL_MIX": 0,
+      "PRESERVATION": 94,
+      "RESTING": 552,
+      "SEPARATION": 113640,
+      "STORAGE": 0
+    },
+    "l2_qualitative_or_conditions_by_family": {
+      "COOLING": 0,
+      "FERMENT_LEAVEN": 3818,
+      "MECHANICAL_CUT": 174018,
+      "MECHANICAL_MIX": 257675,
+      "PRESERVATION": 0,
+      "RESTING": 0,
+      "SEPARATION": 156017,
+      "STORAGE": 12078
+    },
+    "missing_reasons": {
+      "COOLING": {
+        "MEDIUM_NOT_ABOVE_FREEZING_POINT": 10,
+        "MEDIUM_NOT_BELOW_FREEZING_POINT": 18,
+        "half_thickness": 273361
+      },
+      "FERMENT_LEAVEN": {
+        "half_thickness": 27057
+      },
+      "MECHANICAL_CUT": {
+        "cut_class": 132826
+      },
+      "PRESERVATION": {
+        "AIR_NOT_WARMER_THAN_WET_BULB": 16,
+        "duration_min": 265,
+        "environment": 55297,
+        "half_thickness": 1169,
+        "medium": 1560,
+        "medium_temperature": 1378
+      },
+      "RESTING": {
+        "half_thickness": 5888,
+        "prior_heat_bath_c": 2983,
+        "prior_heat_duration_min": 217,
+        "prior_heat_h": 3166,
+        "prior_heat_link": 6875,
+        "rest_air": 70
+      },
+      "STORAGE": {
+        "storage_temperature": 12092
+      }
+    },
+    "status": {
+      "COOLING": {
+        "SCENARIO_COMPUTED": 23606,
+        "SCENARIO_UNKNOWN": 273389,
+        "UNSUPPORTED_MEDIUM": 418
+      },
+      "FERMENT_LEAVEN": {
+        "QUALITATIVE_FLAGS_ONLY": 3818,
+        "SCENARIO_COMPUTED": 2003,
+        "SCENARIO_UNKNOWN": 27057,
+        "UNSUPPORTED_NON_VERB_SURFACE": 18064
+      },
+      "MECHANICAL_CUT": {
+        "QUALITATIVE_FLAGS_ONLY": 174018,
+        "SCENARIO_COMPUTED": 234186,
+        "SCENARIO_UNKNOWN": 132826,
+        "UNSUPPORTED_NON_VERB_SURFACE": 243
+      },
+      "MECHANICAL_MIX": {
+        "NO_FLAG_APPLICABLE": 1189392,
+        "QUALITATIVE_FLAGS_ONLY": 257675
+      },
+      "PRESERVATION": {
+        "SCENARIO_COMPUTED": 94,
+        "SCENARIO_UNKNOWN": 59431,
+        "UNSUPPORTED_MEDIUM": 42,
+        "UNSUPPORTED_NON_VERB_SURFACE": 5369,
+        "UNSUPPORTED_TARGET_EQUIPMENT": 1739
+      },
+      "RESTING": {
+        "SCENARIO_COMPUTED": 552,
+        "SCENARIO_UNKNOWN": 13245,
+        "UNSUPPORTED_MEDIUM": 435
+      },
+      "SEPARATION": {
+        "QUALITATIVE_FLAGS_ONLY": 156017,
+        "SCENARIO_COMPUTED": 113640
+      },
+      "STORAGE": {
+        "CONDITIONS_ONLY_KINETICS_UNKNOWN": 12078,
+        "SCENARIO_UNKNOWN": 12092
+      }
+    },
+    "transition": {
+      "COOLING": {
+        "physically_possible": 23606,
+        "unsupported": 273807
+      },
+      "FERMENT_LEAVEN": {
+        "physically_possible": 5821,
+        "unsupported": 45121
+      },
+      "MECHANICAL_CUT": {
+        "physically_possible": 408204,
+        "unsupported": 133069
+      },
+      "MECHANICAL_MIX": {
+        "physically_possible": 257675,
+        "unsupported": 1189392
+      },
+      "PRESERVATION": {
+        "physically_possible": 94,
+        "unsupported": 66581
+      },
+      "RESTING": {
+        "physically_possible": 552,
+        "unsupported": 13680
+      },
+      "SEPARATION": {
+        "physically_possible": 269657
+      },
+      "STORAGE": {
+        "unsupported": 24170
+      }
+    }
+  },
+  "counts_as_human_gate": false,
+  "ended_at_utc": "2026-11-08T16:18:09Z",
+  "families_requested": [
+    "FOODCOM"
+  ],
+  "family_status": {},
+  "l1_records_manifest_sha256": "ef4e5a0a138c74b58887333465b353bbefc2e1eb5031d255cd6641524bc11667",
+  "l2_only": true,
+  "labels": [
+    "SCENARIO",
+    "MODEL_DERIVED",
+    "NON_CITABLE",
+    "ASSUMED_DEFAULT"
+  ],
+  "layer_version": "nonheat-scenario-L2-0.2.0-draft",
+  "matrix_regime_registry_sha256": "c4736dbcf2d392b50f911816a08780c7d92ec86f4f6010c6ba16f2f332406e1d",
+  "phase_change_registry_sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a",
+  "recipes_sampled": 522517,
+  "record": "NONHEAT_SCENARIO_L2_SUMMARY",
+  "records_manifest_sha256": "be3d6a2f894f099b07e231e47cc14c3265218e05be2d1e98a96e8a648fe3cde4",
+  "records_written": true,
+  "scenario_registry_heat_sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0",
+  "scenario_registry_nonheat_sha256": "047732f446633cf0a07ab0a8504c9ce812ad2ed6b9963567e7a6b5f36b8cf8d4",
+  "started_at_utc": "2026-11-08T16:16:34Z",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "supersedes": "NONHEAT_SCENARIO_L2_0_1_0_RESTING_CORE_FIELDS",
+  "wall_seconds_l2": 94.0,
+  "workers": 8
+}

@@ -1,0 +1,1446 @@
+{
+ "topic": "T6",
+ "title": "Transition learning and sparsity (Steps 29-34, D2, H2)",
+ "ssot_ranges_checked": [
+  "L18227-L18616 (§209; ladder L18543-18613 read directly)",
+  "L19857-L20584 (§212; index and notes)",
+  "L23319-L24843 (§§219-227; notes verified at anchors)",
+  "L24896-L25079 (§229)",
+  "L22380-L22427 (G15 gates, quoted via notes)",
+  "L1256-L1440 of docs/plan 36-step plan v2 (Steps 29-34 cards)"
+ ],
+ "components": [
+  {
+   "id": "T6-C01",
+   "name": "Evidence tensor, observation mask, canonical cell definition, data audit (L15 data foundation)",
+   "ssot_anchor": "§219 L23319-23528; §229.2 step 1 L24926-24933; §226.3 M1 L24519-24527; G15-1 L22382",
+   "plan_steps": [
+    "15",
+    "29.0",
+    "30"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "tools/ssot15_data_audit.py",
+    "reports/ssot15/data_foundation_audit.md",
+    "reports/es1/es1_1_audit.md",
+    "registry/censoring_registry_v1.csv",
+    "registry/value_origin_registry_v1.csv",
+    "reports/master_plan/working_notes/notes/ssot_sparsity.md §1.11"
+   ],
+   "what_exists": "ES-1.1 EVD export audit: 17,978 ACTIVE E3 rows (USDA R6 7,018; Bognar 7,090; Phenol-Explorer 3,870), 0 human-verified, 5,894 censored all GT_CAP, no NON_DETECT/BELOW_LOD rows, condition axes (moisture/pH 100% UNKNOWN, temp UNKNOWN 11,963). Indicative density DIAG 0.33% of F x P x T (notes) but DEL-2 uses a different cell definition (USDA 0.0755, Bognar 0.621, PE 0.00267). Independent units: USDA 171, Bognar 123, PE 287 matrix x process.",
+   "gap_vs_ssot": "No frozen canonical cell definition (SSOT L23422 requires density recomputed from acquired versions); no observation-mask/propensity-covariate fields (replicate n, SD, yield/normalisation status, year, platform) in the EVD schema (W_ipcj L23370-23382 needs them); no FoodProc dataset card; cold-start entity typology (L23469-23474) never tabulated; condition mode C of the tensor is practically empty.",
+   "remaining": [
+    {
+     "item_id": "T6-C01-R1",
+     "item": "Freeze one canonical cell definition (food key, process key, target key, condition bin) and recompute density / support / cold-start-type counts per source and pooled on the frozen 15A-BOOT snapshot; write dataset card (counts only).",
+     "work_types": [
+      "CODE",
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "freeze record 15A-BOOT approved (T6-C03-R1)"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "two density numbers already in circulation; quoting either without definition contradicts L23422",
+     "acceptance": "reports/step29/v0_data_audit.md (or step30 dataset card) states cell definition hash and density per source; re-run reproduces numbers byte-identical"
+    },
+    {
+     "item_id": "T6-C01-R2",
+     "item": "Add missing mask/weight metadata (replicate n, SD/range, yield or normalisation status RT-004 resolution, year, platform) to the EVD export view used by learning (view only; protected ledgers untouched).",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "4-8",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C01-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "USDA R6 has TR_OR_AR_UNDISCLOSED; many fields not in source tables, would stay UNKNOWN",
+     "acceptance": "export view has columns with explicit UNKNOWN; G15-1 checklist row-by-row report"
+    },
+    {
+     "item_id": "T6-C01-R3",
+     "item": "Expert check of retention basis (TR vs AR, fresh vs dry weight) and the cap semantics 'values >100 reported as 100' / Bognar '1.00' for G15-1 and censoring treatment.",
+     "work_types": [
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "2",
+     "depends_on": [
+      "outside food scientist identified"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "no expert named in any record",
+     "acceptance": "signed expert note per source (basis + cap meaning) filed under reports/step29/"
+    }
+   ]
+  },
+  {
+   "id": "T6-C02",
+   "name": "Baseline ladder D0-D5 and D7a implementation + DEL-2 results (the existing transition benchmark)",
+   "ssot_anchor": "§209.3-209.6 L18286-18361; §209.17 L18543-18613; §227.12 L24824-24843",
+   "plan_steps": [
+    "29 precursor",
+    "30 precursor"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/del2/USDA-RETN-R6_results.md",
+    "reports/del2/BOGNAR-2002_results.md",
+    "reports/del2/PHENOL-EXPLORER-3.6_results.md",
+    "reports/del2/PHENOL-EXPLORER-3.6_log_results.md",
+    "reports/del2/cross_source_v1.md",
+    "src/culinarystate/transition/{baselines,splits,evaluate,dataset,cross_source}.py",
+    "tests/unit/test_transition.py",
+    "tools/run_del2.py",
+    "EXP-000001..4 in ledgers/data/EXP.jsonl (per notes)"
+   ],
+   "what_exists": "DEL-2 ran D0 persistence, D1 global mean, D2 process mean, D3 target x process shrinkage, D4 nearest compatible evidence, D5 untuned sklearn HistGB with categorical+mask features, D7a biased MF, on real EVD for 3 sources with random/pair/matrix/process (and PE study) splits, grouped bootstrap CIs, split-conformal and IPW columns. Result on record: USDA random D5 0.0251 vs D0 0.1205 but matrix-disjoint D0 0.0590 vs D5 0.0692; PE persistence best on cold splits; Bognar process-disjoint CIs degenerate (7 process signatures). D6 TabPFN SKIPPED. Cross-source USDA vs Bognar 67 overlap cells only (MAE 0.0751).",
+   "gap_vs_ssot": "D3 never run as SSOT defines it (food class, process family, target class, study); D5 untuned and not LightGBM/XGBoost; D6 never run so G15-2 unmet; no paired tests in DEL-2 tables (only marginal CIs); censored rows trained at bound 0.975 (assumption); PE D7a == D1 to 4 decimals; no ridge/linear rung; naming B-0..B-5 (TB-V0) vs D0..D11 (SSOT) vs M0..M11 (rollout) has no crosswalk file yet; known test_transition hang is deselected per plan card.",
+   "remaining": [
+    {
+     "item_id": "T6-C02-R1",
+     "item": "Write registry/transition_ladder_crosswalk_v1.csv (B-0=D0, B-1=D1, B-2=D3 matrix arm, B-3=D2, B-4=D4, B-5=D5; M0..M11 map) and fix label mismatch between 29-diag prereg ladder text and class names in baselines.py.",
+     "work_types": [
+      "CODE",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "29-diag memo would otherwise mislabel rungs (prereg 'D3 = B-2' vs repo D3Hierarchical = target x process)",
+     "acceptance": "crosswalk csv committed by orchestrator; prereg and runner use the same rung names; unit test asserts mapping"
+    },
+    {
+     "item_id": "T6-C02-R2",
+     "item": "Diagnose and fix or document the test_transition hang (WORKLOG S134 deselected) so the transition suite runs in CI on every host.",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "1-3",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "untested baselines silently drift",
+     "acceptance": "python -m pytest -q tests/unit/test_transition.py finishes under 120 s on mac and manjot"
+    },
+    {
+     "item_id": "T6-C02-R3",
+     "item": "Re-run DEL-2 ladder with paired tests (delta = baseline loss - challenger loss, cluster bootstrap) so every claimed gain over D0 on cold splits has a paired CI; reuses evaluation.bakeoff.paired_cluster_bootstrap.",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C03",
+      "T6-C06-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "DEL-2 tables compare overlapping marginal CIs, which is not a test",
+     "acceptance": "paired result table for USDA/Bognar/PE per split labelled DIAGNOSTIC / PRIOR_EXPOSURE_REANALYSIS"
+    }
+   ]
+  },
+  {
+   "id": "T6-C03",
+   "name": "29-diag: cap-stratified rerun and shortcut / D7-equals-D1 audit on the frozen bootstrap snapshot (early H2 diagnostic)",
+   "ssot_anchor": "Step 29 card plan L1256-1300; SSOT §209.17; §222.5 L23992-24001; R-12",
+   "plan_steps": [
+    "29-diag"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "src/culinarystate/evaluation/diag29_runner.py",
+    "src/culinarystate/evaluation/bootstrap_diag.py",
+    "src/culinarystate/evaluation/freeze_records.py",
+    "reports/step29/29diag_preregistration_DRAFT.md",
+    "registry/freezes/15A-BOOT-2026-11-08.json (status PROPOSED, approved_by null)",
+    "reports/step15/15a_R_seal_commitment_v1.json",
+    "D-068",
+    "WORKLOG S174",
+    "tests/unit/test_s173_diag29_runner.py",
+    "tests/unit/test_eval_bootstrap_diag.py",
+    "handoff/FINISH_PLAN_2026-11-07.md L62-65"
+   ],
+   "what_exists": "Runner built and unit-tested: seal filter at CELL level (D-068 STUDY_THEN_CELL, reserved 1/5), DEL-2 splits and ladder with errors split at cap vs below cap, variant trained without cap rows, D5 rerun with basis removed, D7 vs D1 prediction difference; labels DIAGNOSTIC, BOOTSTRAP_UNVERIFIED, NON_CITABLE, PRIOR_EXPOSURE_REANALYSIS; deterministic. Prereg draft and proposed freeze record exist. Never executed on real data: no reports/step29/diag/ outputs.",
+   "gap_vs_ssot": "Blocked on two human acts: freeze record approval (status FROZEN, approved_by, date) and prereg signature json carrying SHA-256 of the exact prereg text (any edit voids). Memo files diag_audit.md, diag_results.md, cap_artefact_stratified.md, d7_vs_d1_review.md not written. The runner needs pandas/sklearn which the manjot .venv312 lacks (verified: sklearn, lightgbm, torch absent), so it runs on the Mac. The prereg ladder omits D4 and D7 from the listed ladder text although the runner runs D7 vs D1.",
+   "remaining": [
+    {
+     "item_id": "T6-C03-R1",
+     "item": "Kush approves the 15A-BOOT freeze record (sets FROZEN, approved_by, approved_date). No agent or persona may set it as a signature (D-071 limits).",
+     "work_types": [
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.2",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "single point of failure for any H2 content before 25 Nov",
+     "acceptance": "registry/freezes/15A-BOOT-2026-11-08.json status FROZEN with human approver; bootstrap_diag gate accepts"
+    },
+    {
+     "item_id": "T6-C03-R2",
+     "item": "Kush signs the 29-diag prereg: commits reports/step29/29diag_prereg_signature.json with SHA-256 of the unchanged prereg text (agent first fixes rung-list wording per T6-C02-R1, then Kush reads the final text).",
+     "work_types": [
+      "HUMAN_SIGNATURE",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "T6-C03-R1",
+      "T6-C02-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "signing before a text fix voids on later edit",
+     "acceptance": "signature json exists and diag_preregistration_signed() returns True"
+    },
+    {
+     "item_id": "T6-C03-R3",
+     "item": "Run 29-diag twice on the Mac (CPU, minutes) and verify byte-identical outputs (G15-R).",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "mac",
+     "agent_hours": "0.5-1.5",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C03-R1",
+      "T6-C03-R2"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Python env on Mac must have pandas+sklearn at pinned versions; log run row in registry/compute_runs_v1.csv",
+     "acceptance": "reports/step29/diag/* produced; two runs sha256-equal; compute_runs row added by orchestrator"
+    },
+    {
+     "item_id": "T6-C03-R4",
+     "item": "Write the four diag memos with every number labelled DIAGNOSTIC / BOOTSTRAP_UNVERIFIED / NON_CITABLE and no words 'supported', 'beats', 'validated'; explain DEL-2 D7a == D1 on Phenol-Explorer; report cap-artefact conclusion for the D5 pair-holdout lead.",
+     "work_types": [
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0.5-1 review",
+     "depends_on": [
+      "T6-C03-R3"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "over-claiming H2 (prior exposure: DEL-2 and S160 step30 already read these rows)",
+     "acceptance": "four memo files exist; text-lint test finds no forbidden words; Kush/Parv skim recorded"
+    },
+    {
+     "item_id": "T6-C03-R5",
+     "item": "Add paired D2-process-mean vs D3-ingredient-mean contrast (H2 shape: process info vs food-identity-only) on S-3/S-4/S-6 inside the diag memo, DIAGNOSTIC only, using paired_stats / bakeoff cluster bootstrap.",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C03-R3"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "only PE offers study-disjoint (125 studies; ~25 sealed); USDA and Bognar are single clusters",
+     "acceptance": "contrast table in diag_results.md with n_clusters per split and DIAGNOSTIC_ONLY if n_clusters < K_min (PROPOSED 10)"
+    }
+   ]
+  },
+  {
+   "id": "T6-C04",
+   "name": "Hypothesis H2: process information beats food-identity-only models on unseen ingredient x process pairs and unseen studies (G15-3)",
+   "ssot_anchor": "Proposal H2; SSOT §209.9-209.10 L18393-18425; G15-3 L22384; RQ15-1 L18207",
+   "plan_steps": [
+    "29",
+    "30",
+    "31"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md §1 (H2 not tested)",
+    "handoff/PROGRESS_AUDIT_2026-11-07.md",
+    "reports/del2/*_results.md (partial precursor)"
+   ],
+   "what_exists": "Only precursor numbers: DEL-2 D2/D3 vs D5 on pair-holdout (USDA/Bognar D5 wins) and persistence best on PE cold splits. 29-diag will give a labelled diagnostic contrast but not a test.",
+   "gap_vs_ssot": "No operational H2 test pre-registered: need process-only model, food-identity-only model, both and full model on identical row sets with study-level cluster CIs; study-disjoint evaluation feasible on Phenol-Explorer only (125 STUDY ids); USDA/Bognar study_id NOT_IDENTIFIABLE; Layer-2 circularity (Q1) forbids using scenario defaults as features.",
+   "remaining": [
+    {
+     "item_id": "T6-C04-R1",
+     "item": "Decide and pre-register the H2 operational test: which row sets, splits (S-2 pair, S-3 matrix, S-6 study), margin delta_H2, K_min, who may see test; mark H2 as diagnostic-only for 25 Nov (packet Q27).",
+     "work_types": [
+      "DECISION",
+      "WRITING",
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "2-3",
+     "human_hours": "1-2",
+     "depends_on": [
+      "T6-C05",
+      "07.A gate (R-05) for paper-grade"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "post-hoc threshold choice after prior exposure would be forbidden weakening",
+     "acceptance": "signed prereg with margin and rule fixed before test read"
+    },
+    {
+     "item_id": "T6-C04-R2",
+     "item": "Run paper-grade H2 on DATA-EVIDENCE v1 (after 15b freeze + valid 07.A) with study-level bootstrap CIs; report negative result if so.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "TRAINING",
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "6-10",
+     "human_hours": "2",
+     "depends_on": [
+      "T6-C05",
+      "T6-C06",
+      "15b freeze",
+      "07.A-R1 pass"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "most of the evidence is one study family per source -> few independent clusters",
+     "acceptance": "h2_result.md with paired cluster CI per split; verdict from the pre-registered rule"
+    },
+    {
+     "item_id": "T6-C04-R3",
+     "item": "For the talk: one honest H2 slide (diagnostic numbers, what cannot be concluded, prior exposure, single-study sources).",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T6-C03-R4"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "slide over-claims",
+     "acceptance": "slide text uses only diag-labelled numbers; reviewed by Kush"
+    }
+   ]
+  },
+  {
+   "id": "T6-C05",
+   "name": "Step 29 paper-grade: TRANSITION_BOOTSTRAP_V0 on DATA-EVIDENCE v1 (T1 retention, T2 yield), decision record",
+   "ssot_anchor": "Step 29 card plan L1256-1300; reports/h_state/transition_bootstrap_v0_contract.md; SSOT §216.13 L23036-23049; §229.2 step 2 L24937-24948",
+   "plan_steps": [
+    "29.0-29.6"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "reports/h_state/transition_bootstrap_v0_contract.md",
+    "reports/step15/15_0_ruling_DRAFT_FOR_KUSH_SIGNATURE.md",
+    "D-068",
+    "handoff/PROJECT_FLOW_VERDICT_2026-11-08.md",
+    "DECISIONS R-05 (paper-grade HARD on Step-07 gate)",
+    "reports/step07 07A FAILED"
+   ],
+   "what_exists": "Contract TB-V0 (baselines B-0..B-5, splits S-1..S-6, censor-aware MAE, success rule paired lower bound >0 on S-3/S-4) written and runner scaffolds exist; 15a.R seal commitment exists. No v0_data_audit, amendment, SPLIT.jsonl entries, results or decision record.",
+   "gap_vs_ssot": "HARD blockers: 15b freeze (not frozen), 08a lineage (G08-3 FAILED on record), valid Step-07 human gate (07.A failed; R1 redo with Gwet AC1 awaits human labels). Outputs listed in the plan card are all missing.",
+   "remaining": [
+    {
+     "item_id": "T6-C05-R1",
+     "item": "Draft 29.0 pre-model audit, 29.1 crosswalk, 29.2 prereg amendment (K_min, G29-A) and 29.3 engineering preconditions as DRAFT documents; SPLIT.jsonl entry design (no ledger write by agent).",
+     "work_types": [
+      "WRITING",
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C02-R1",
+      "T6-C01-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "drafting does not unblock gates",
+     "acceptance": "documents DRAFT_PENDING_SIGNATURE with hash; unit tests for manifest hashing"
+    },
+    {
+     "item_id": "T6-C05-R2",
+     "item": "Humans: complete 07.A-R1 labels (100 conditions, Kush and Parv independently) to open the paper-grade gate (owned by condition-audit topic; listed as dependency).",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "3-5 each",
+     "depends_on": [
+      "07.A-R1 prereg signed"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "critical path for every paper-grade learning step; deadline 13 Nov per plan",
+     "acceptance": "07.A-R1 pooled Gwet AC1 >= 0.80 and critical-field rule pass recorded"
+    },
+    {
+     "item_id": "T6-C05-R3",
+     "item": "Run D0-D5 on S-1..S-6 on frozen DATA-EVIDENCE v1, twice, with cluster-bootstrap paired CIs; write v0_results.md and decision_record_v0.md.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "TRAINING",
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "mac",
+     "agent_hours": "4-6",
+     "human_hours": "1",
+     "depends_on": [
+      "T6-C05-R1",
+      "T6-C05-R2",
+      "15b freeze"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "outcome may be NOT SUPPORTED-COLD, a valid outcome that must be reported",
+     "acceptance": "v0_results.md + decision_record_v0.md; Kush signs test-access and decision record"
+    },
+    {
+     "item_id": "T6-C05-R4",
+     "item": "Kush signs amendment and decision record; Parv authorises Python environment.",
+     "work_types": [
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "1-2",
+     "depends_on": [
+      "T6-C05-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "",
+     "acceptance": "signature jsons with hashes present"
+    }
+   ]
+  },
+  {
+   "id": "T6-C06",
+   "name": "Step 30 strong tabular / sparsity bake-off harness and models (D3-full, D5-tuned, D6 TabPFN, ridge)",
+   "ssot_anchor": "Step 30 card plan L1301-1320; SSOT §209.6 L18338-18361; §209.17; G15-2 L22383; §221.18 L23907-23920; §222.10 L24050-24063",
+   "plan_steps": [
+    "30.0",
+    "30.x"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/evaluation/bakeoff.py (STATUS DRAFT_PENDING_30_0)",
+    "src/culinarystate/evaluation/{splits,leakage,paired_stats}.py",
+    "tools/step30_exploratory_bakeoff.py",
+    "reports/step30/exploratory_bakeoff_counts.json (EXPLORATORY_DIAGNOSTIC_ONLY, not_preregistered)",
+    "tests/unit/test_eval_bakeoff.py, test_eval_splits.py, test_eval_leakage.py"
+   ],
+   "what_exists": "ModelRegistry with freeze manifest, paired cluster bootstrap (margin/seed/weighting required, no defaults), group-aware splits and leakage checks. One exploratory run on 11,564 measured rows, PE-only test (25 clusters, 781 test rows): MAE D0 0.885, D1 0.968, D2 0.983; paired D0->D1, D0->D2, D1->D2 all NOT_ABOVE_MARGIN (margin 0.0 chosen by agent, not pre-registered).",
+   "gap_vs_ssot": "No LightGBM/XGBoost/CatBoost, TabPFN, D3-full, tuning, or ridge anywhere; none of those libraries is installed in manjot .venv312 (verified). G15-2 (D0-D6 on all eligible headline splits) unmet; the five Step 30 reports (bakeoff_results, g15_2_completion_audit, g15_9_decision_record, anti_inflation_report, propensity_positivity_report, conformal_by_split, c9_transition_fallback_spec) absent; MODEL.jsonl entries absent; cluster sign-flip alternative for few clusters (r_eval_splits Q5) undecided.",
+   "remaining": [
+    {
+     "item_id": "T6-C06-R1",
+     "item": "Pre-register Step 30.0: delta_30, K_min, bootstrap vs sign-flip cut-off, eligible splits, D6 activation rule; commit registry/phase_g_preregistration_v1.csv draft.",
+     "work_types": [
+      "DECISION",
+      "WRITING",
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "2-3",
+     "human_hours": "1-2",
+     "depends_on": [
+      "T6-C05-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "exploratory run already read the rows; margin must not be tuned to results",
+     "acceptance": "preregistered_thresholds row with PROPOSED_PILOT->signed by Kush"
+    },
+    {
+     "item_id": "T6-C06-R2",
+     "item": "Implement D3-full (hierarchical shrinkage over food class, process family, target class, study) as numpy/statsmodels-free partial pooling; unit tests incl. unseen-group fallback.",
+     "work_types": [
+      "CODE",
+      "TRAINING"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C02-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "D3 pooling over study impossible for USDA/Bognar (study NOT_IDENTIFIABLE)",
+     "acceptance": "tests pass; D3-full runs on all 3 sources with documented fallbacks"
+    },
+    {
+     "item_id": "T6-C06-R3",
+     "item": "Install/authorise environment with scikit-learn, LightGBM, XGBoost/CatBoost (and TabPFN v2 if licence ok) on mac and on vinayak or manjot; pin versions in a lock file. Decision of who authorises (Parv per plan).",
+     "work_types": [
+      "DECISION",
+      "DOWNLOAD"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "0.3",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Prior Labs TabPFN licence terms UNVERIFIED; D-rule: no installs on this audit",
+     "acceptance": "lock file + licence note; pytest imports succeed on target host"
+    },
+    {
+     "item_id": "T6-C06-R4",
+     "item": "Train D5-tuned (LightGBM/XGBoost, grouped CV for hyperparameters, censored/AFT or interval objective arm) and D6 TabPFN (CPU, <=7k rows per source) or record D6 as ineligible under the activation rule (L22022-22026) before results.",
+     "work_types": [
+      "TRAINING",
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "6-12",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C06-R2",
+      "T6-C06-R3",
+      "T6-C05-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "TabPFN needs >=16 GB RAM and may be ineligible; GBDT tuning matters more than family (r_transition_ml)",
+     "acceptance": "per-split MAE with paired CI for D0-D6 in bakeoff_results.md; G30-A reported"
+    },
+    {
+     "item_id": "T6-C06-R5",
+     "item": "Write §221.18 9-item completion audit, §222.10 anti-inflation report, G30-B/C decision records, MODEL.jsonl card drafts.",
+     "work_types": [
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "2",
+     "depends_on": [
+      "T6-C06-R4",
+      "T6-C07"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "",
+     "acceptance": "reports/step30/* complete; Kush signs G15-9 decision record"
+    }
+   ]
+  },
+  {
+   "id": "T6-C07",
+   "name": "Evidence-aware sparse completion D7 (biased MF, BPMF, side-info MF/Macau-like, factorisation machine, soft-impute, tensor, DropoutNet, GP) and G15-9",
+   "ssot_anchor": "§221 L23692-23940; §220.4 L23586-23606; §226.4 M2 L24528-24540; §227.2 C1 L24656-24668; §229.2 step 3 L24952-24961; G15-9 L22390",
+   "plan_steps": [
+    "30",
+    "D2"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/transition/baselines.py D7BiasedMF",
+    "reports/del2/PHENOL-EXPLORER-3.6_results.md (D7 == D1)",
+    "reports/step29/29diag_preregistration_DRAFT.md §4.2"
+   ],
+   "what_exists": "Only D7a (biased MF with side-info biases) implemented and run in DEL-2: never beats D5 on USDA or Bognar on any split; identical to D1 to four decimals on every PE split (degenerate). G15-9 on current evidence is effectively 'reject'.",
+   "gap_vs_ssot": "No BPMF, FM, Macau-like, soft-impute, tensor/CP, coupled side matrices (FDC composition, process physics, ontology), DropoutNet-style masking, GP/kernel completion; no 9-item completion protocol run; no completed-cell class 'I' tier plumbing; no cold-compound split (PE has 161 targets, USDA 26, Bognar 36). Pure-ID MF cannot predict cold rows (r_transition_ml Q5) so side features from FDC are needed.",
+   "remaining": [
+    {
+     "item_id": "T6-C07-R1",
+     "item": "Diagnose D7a == D1 on PE (implementation vs sparsity: density 0.00267) and document; fix side-info learning if implementation.",
+     "work_types": [
+      "ANALYSIS",
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "2-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C03-R3"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "explains a failure the talk may show",
+     "acceptance": "d7_vs_d1_review.md states cause with evidence"
+    },
+    {
+     "item_id": "T6-C07-R2",
+     "item": "Implement D7e soft-impute, D7b BPMF/Gibbs (numpy), D7d factorisation machine with side features (food group, FDC composition vector, process family, medium, target class) and cold-start masking ablation.",
+     "work_types": [
+      "CODE",
+      "TRAINING"
+     ],
+     "where": "any",
+     "agent_hours": "12-24",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C06-R3",
+      "FDC composition side-info (evidence topic)"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "pymc/numpyro/torch absent; side information needs ING->FDC crosswalk (0% resolved at S175)",
+     "acceptance": "each model passes synthetic-recovery tests and cold-row prediction tests"
+    },
+    {
+     "item_id": "T6-C07-R3",
+     "item": "Run §221.18 protocol: masked real cells, cold food, cold process, cold target (PE only), cold pair, study-disjoint (PE), frequency buckets, coverage; benchmark vs max(D3-full, D5-tuned, D6).",
+     "work_types": [
+      "CPU_COMPUTE",
+      "TRAINING",
+      "ANALYSIS"
+     ],
+     "where": "vinayak",
+     "agent_hours": "8-16",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C07-R2",
+      "T6-C06-R4"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "few independent clusters; USDA and Bognar single-study => G15-9 may be underpowered",
+     "acceptance": "g15_9_decision_record.md with ACCEPT or REJECT under the pre-registered margin"
+    },
+    {
+     "item_id": "T6-C07-R4",
+     "item": "Kush signs G15-9 decision record; a REJECT is a valid outcome (R-20: negative results visible).",
+     "work_types": [
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "1",
+     "depends_on": [
+      "T6-C07-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "",
+     "acceptance": "signed decision record"
+    }
+   ]
+  },
+  {
+   "id": "T6-C08",
+   "name": "MNAR / observation-propensity / IPW / doubly-robust / popularity-bucket diagnostics",
+   "ssot_anchor": "§220 L23529-23691; §219.3 L23384-23417; §222.8 L24022-24039; §227.4 C3 L24685-24698; §229.2 step 4 L24965-24969",
+   "plan_steps": [
+    "30",
+    "D2"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/transition/evaluate.py propensity_weights",
+    "reports/del2/*_results.md (propensity AUC 0.8105/0.8674/0.9118, MAE IPW column)",
+    "WORKLOG S017 (propensity from marginal frequencies per notes)"
+   ],
+   "what_exists": "Logistic grid-cell propensity with covariates limited to food/process/target marginals, inverse-propensity weights for test rows, weighted beside unweighted metrics (plan AM4). AUC 0.81-0.91 shows strong MNAR structure.",
+   "gap_vs_ssot": "No covariate propensity per §220.5 (popularity, compound class, year, platform, source type); no clipping/stabilisation study (L23641); no doubly robust evaluation (hypothesis, L23654); no frequency-bucket diagnostics (§220.9); no positivity report; no mask-as-feature ablation; MNAR claim boundary text (L23682-23688) not yet in any report. Year and platform are not in EVD.",
+   "remaining": [
+    {
+     "item_id": "T6-C08-R1",
+     "item": "Build propensity model with available covariates (food frequency in recipe corpus as popularity proxy, process family, target class, source), clipping sweep, positivity report; sensitivity not correctness.",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "5-8",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C01-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "popularity proxy from Food.com mentions is a design choice needing note",
+     "acceptance": "propensity_positivity_report.md with weight distribution, ESS and sensitivity table"
+    },
+    {
+     "item_id": "T6-C08-R2",
+     "item": "Frequency/support-bucket error report (does the model work only on popular cells?) and with/without mask-indicator ablation.",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C08-R1",
+      "T6-C02-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "",
+     "acceptance": "bucketed MAE table per rung"
+    },
+    {
+     "item_id": "T6-C08-R3",
+     "item": "Write MNAR claim-boundary paragraph (allowed vs forbidden wording) for the talk and paper.",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "0.5-1",
+     "human_hours": "0.3",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "phrase 'our propensity recovers the true mechanism' is forbidden",
+     "acceptance": "text reviewed by Kush; used verbatim in H2/D2 slides"
+    }
+   ]
+  },
+  {
+   "id": "T6-C09",
+   "name": "Censoring, imputation, missingness-mask and anti-inflation rules (training-side handling of GT_CAP, forbidden target imputation, tier I)",
+   "ssot_anchor": "§222 L23941-24063; §201.9 L16696-16712; §221.19 L23921-23940",
+   "plan_steps": [
+    "29",
+    "30"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "registry/censoring_registry_v1.csv (CS-001..007)",
+    "registry/value_origin_registry_v1.csv",
+    "src/culinarystate/transition/{dataset,evaluate}.py",
+    "reports/step29/29diag_preregistration_DRAFT.md §4.1"
+   ],
+   "what_exists": "Censor registry (DETECTED, NON_DETECT, BELOW_LOD, BELOW_LOQ, ABOVE_CAP, CENSORED_UNKNOWN, NOT_REPORTED), censor-aware MAE for evaluation, cap stratification in 29-diag (not yet run). Training treats censored rows as value at bound 0.975 (assumption). No NON_DETECT rows exist in EVD.",
+   "gap_vs_ssot": "No censored-likelihood or Tobit/AFT training arm (SSOT L19300-19305); TRUE_ZERO status of L23973 missing from censoring registry (DIAG); no imputed-target tier I plumbing or real-only vs augmented ablation harness (L24042-24048); no multiple-imputation covariate baselines (§222.4-222.6) although conditions are 100% UNKNOWN; no guard test that forbidden default imputations (zero/mean/LOD-2) are impossible in dataset.py.",
+   "remaining": [
+    {
+     "item_id": "T6-C09-R1",
+     "item": "Censored training arm (interval/Tobit objective in a small numpy fit and in AFT-capable GBDT) and cap-drop arm; compare on S-3/S-4 as DIAGNOSTIC.",
+     "work_types": [
+      "CODE",
+      "TRAINING",
+      "CPU_COMPUTE"
+     ],
+     "where": "any",
+     "agent_hours": "4-8",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C03-R3",
+      "T6-C06-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "right-censoring at 97.5/99.5 caps carries little information for 5,894 rows",
+     "acceptance": "cap_artefact table with 3 arms"
+    },
+    {
+     "item_id": "T6-C09-R2",
+     "item": "Add property tests: no zero/mean/half-minimum target imputation reaches dataset cells; tier I rows cannot be in test/calibration roles; E5-E7 excluded from TB-V0.",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "firewall rule HR-SYN-1 is frozen and now Layer-2 outputs exist near the corpus",
+     "acceptance": "tests/unit/test_transition_firewall.py passes; refuses any E7 or Layer-2 row"
+    },
+    {
+     "item_id": "T6-C09-R3",
+     "item": "Decide TRUE_ZERO code addition to censoring registry (additive change).",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.2",
+     "human_hours": "0.2",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "registry edit is orchestrator-only",
+     "acceptance": "decision record entry"
+    }
+   ]
+  },
+  {
+   "id": "T6-C10",
+   "name": "Conformal intervals, calibration and selective abstention for transition predictions (G15-6, G15-7, C9 fallback)",
+   "ssot_anchor": "§209.13-209.14 L18472-18500; §221.17 L23896-23906; §212.26 L20192-20197; G15-6/7 L22387-22388; Step 30 c9_transition_fallback_spec",
+   "plan_steps": [
+    "30",
+    "36"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/transition/evaluate.py conformal",
+    "reports/del2/*_results.md (conformal-90 coverage/width columns)",
+    "WORKLOG S017 (cold USDA coverage 0.72-0.87 per notes)"
+   ],
+   "what_exists": "Split conformal on absolute residuals; empirical coverage is reported per split; observed under-coverage on cold splits (USDA 0.72-0.87; PE process-disjoint D4 0.938 at very wide width).",
+   "gap_vs_ssot": "Calibration is not group-disjoint or study-disjoint; no Mondrian/cluster-aware or weighted-conformal sensitivity; no risk-coverage curve; no abstention rule on REAL calibration data (G15-7); conformal guarantees fail under clustering/MNAR (L24795) not yet stated in outputs; the Step 36 C9 fallback spec is absent.",
+   "remaining": [
+    {
+     "item_id": "T6-C10-R1",
+     "item": "Implement group-disjoint split-conformal (calibration roles from group_aware_split) plus weighted/Mondrian sensitivity and risk-coverage curves; study-disjoint on PE only.",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C06-R4"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "few clusters give wide, unstable coverage",
+     "acceptance": "conformal_by_split.md with coverage, width, worst-cluster coverage"
+    },
+    {
+     "item_id": "T6-C10-R2",
+     "item": "Write c9_transition_fallback_spec (when the router may offer a calibrated model estimate vs ABSTAIN) consistent with section 141 contract; consumed by D4/D5 topic.",
+     "work_types": [
+      "WRITING",
+      "DECISION"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "1",
+     "depends_on": [
+      "T6-C10-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "no calibrated model exists yet so router stays UNSUPPORTED/UNKNOWN for numbers",
+     "acceptance": "spec file DRAFT; Kush signature"
+    }
+   ]
+  },
+  {
+   "id": "T6-C11",
+   "name": "Deliverable D2: sparsity-aware completion benchmark (density and MNAR report, pair/ingredient/study-disjoint splits, baselines vs MF/FM, propensity-weighted evaluation, split-conformal) and FoodProc-ColdStart benchmark release",
+   "ssot_anchor": "Proposal D2; SSOT §227.3 C2 L24670-24683; §229.3 L24987-25002; §226.9 L24577-24592",
+   "plan_steps": [
+    "29",
+    "30",
+    "D2"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "handoff/PROGRESS_AUDIT_2026-11-07.md L48 (D2 0)",
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md §1 and §7 (D2 not before 25 Nov)",
+    "handoff/FINISH_PLAN_2026-11-07.md L12",
+    "D-075 scope list"
+   ],
+   "what_exists": "Building blocks only: DEL-2 reports, splits.py, evaluate.py, paired_stats, 29-diag runner; no D2 artefact; no benchmark manifest.",
+   "gap_vs_ssot": "Entire D2 deliverable: split manifests (random reference, masked-real-cell, cold food, process, target, pair, study), baseline and completion results, propensity-weighted evaluation, conformal intervals, study-level bootstrap CIs, negative results, release terms (proposal asks permission to store derived non-raw benchmark data; USDA/Bognar/PE licences and Phenol-Explorer terms not confirmed for release).",
+   "remaining": [
+    {
+     "item_id": "T6-C11-R1",
+     "item": "D2-lite for the talk: assemble existing DEL-2 + 29-diag numbers into a one-page density, MNAR and cold-split negative-result summary, labelled DIAGNOSTIC and NOT a completed D2.",
+     "work_types": [
+      "WRITING",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-4",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T6-C03-R4",
+      "T6-C01-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "confusing a diagnostic page with the full D2 deliverable",
+     "acceptance": "page states 'D2 not run' and cites the diag labels"
+    },
+    {
+     "item_id": "T6-C11-R2",
+     "item": "Full D2: freeze FoodProc-ColdStart split manifests, run C02/C06/C07/C08/C10 stack, write D2 report with study-level CIs and negative results.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "TRAINING",
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "vinayak",
+     "agent_hours": "30-50",
+     "human_hours": "6-10",
+     "depends_on": [
+      "T6-C05",
+      "T6-C06",
+      "T6-C07",
+      "T6-C08",
+      "T6-C10"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "depends on paper-grade gates and human labels; may end as 'no completion benefit'",
+     "acceptance": "D2 report + manifests with hashes; every claim has an evidence path"
+    },
+    {
+     "item_id": "T6-C11-R3",
+     "item": "Confirm licence/terms for releasing derived non-raw benchmark manifests (USDA public domain; Bognar citation; Phenol-Explorer terms).",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "1-2",
+     "depends_on": [],
+     "priority_25nov": "AFTER",
+     "risk": "Phenol-Explorer terms for redistribution of derived data unknown (H2 licence implication)",
+     "acceptance": "written note per source: manifests-only release allowed or not"
+    }
+   ]
+  },
+  {
+   "id": "T6-C12",
+   "name": "Step 31 (learning side): physics/condition features ablation (A3 raw T,t vs A4 conditions vs A5 physics Omega)",
+   "ssot_anchor": "Step 31 card plan L1321-1352; SSOT §209.6; RQ15-2 L18211; G15-3, G14-7; §210.13 L18856",
+   "plan_steps": [
+    "31a"
+   ],
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "handoff/PROGRESS_AUDIT_2026-11-07.md ('Steps 28 and 31-34 out of course scope')",
+    "D-075 scope",
+    "src/culinarystate/simulation/physics_drivers.py (feature source; owned by physics topic)"
+   ],
+   "what_exists": "Physics drivers theta(t) exist for recipe heat events (physics topic, not here). No learning-side feature code and no physics_feature_registry_v1.csv; EVD rows have measured temperature on 0 USDA and 1,561 PE rows (mostly storage) and moisture/pH UNKNOWN on 100%.",
+   "gap_vs_ssot": "Data support for the ablation is nearly absent; Ea grid values need sources; Layer 2 scenario defaults must not become features (D-077; packet Q1 circularity) except under basis masks with a removal ablation; split is DIAGNOSTIC_ONLY until condition audit passes.",
+   "remaining": [
+    {
+     "item_id": "T6-C12-R1",
+     "item": "Define physics_feature_registry_v1 (log(1+t), 1/T_K, Omega with Ea grid) with source row ids; Layer 2 excluded by construction.",
+     "work_types": [
+      "CODE",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C06",
+      "07.A pass",
+      "PARAM rows for Ea (kinetics topic)"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Ea values recalled from memory must be SOURCE_UNVERIFIED_AGENT_RECALLED",
+     "acceptance": "registry csv with sources or UNKNOWN; tests for domain validity"
+    },
+    {
+     "item_id": "T6-C12-R2",
+     "item": "Run A3/A4/A5 ablation on identical row sets, cooking stratum (PE conditions), paired cluster CIs; Kush signs prereg; expert reviews Ea grid and temperature semantics.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "TRAINING",
+      "ANALYSIS",
+      "HUMAN_SIGNATURE",
+      "EXPERT_REVIEW"
+     ],
+     "where": "vinayak",
+     "agent_hours": "6-10",
+     "human_hours": "3 + expert 4",
+     "depends_on": [
+      "T6-C12-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "setpoint vs product temperature ambiguity",
+     "acceptance": "condition_contribution_results.md; g14_7_g15_3_record.md signed"
+    }
+   ]
+  },
+  {
+   "id": "T6-C13",
+   "name": "Step 32: focused kinetics (D8) fitting, identifiability, hierarchical Arrhenius, G15-4",
+   "ssot_anchor": "Step 32 card plan L1353-1381; SSOT §210 L18617-19187, §211 L19188-19853; §229.2 step 5 L24973; G15-4 L22385",
+   "plan_steps": [
+    "32"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/simulation/kinetics/{fitting,identifiability,models,units}.py",
+    "src/culinarystate/simulation/aa_pilot_fit.py (Model A OLS, shared Ea, per-paper intercept, T_ref 90 C)",
+    "tests/unit/test_step26a_kinetics_*.py",
+    "tests/unit/test_s171_aa_pilot_fit.py",
+    "D-076",
+    "reports/h_state/es_1_2_source_census.md (13/16 priority cells SOURCE_GAP)"
+   ],
+   "what_exists": "Fitting and identifiability library with synthetic recovery tests; AA pilot Model A OLS and pre-registered verdict rule; 16 AI-extracted CAL rows ready to verify; 5 PDFs need browser download; 0 PARAM rows. PE holds ~152 retention-vs-time pseudo-series from 26 publications, mostly storage.",
+   "gap_vs_ssot": "No verified data: 0 PARAM rows, no KIN ledger; KA0-KA6 ablation, profile-likelihood CIs, leave-one-study-out coverage, hierarchical Bayesian fit, kinetic census and PE series reconciliation (29 series from 3 publications vs 8 groups from 2 studies) all missing; no K2 temperature-resolved dataset for AA identified beyond the 4-paper split. Step 10 verification itself belongs to the evidence/kinetics topic.",
+   "remaining": [
+    {
+     "item_id": "T6-C13-R1",
+     "item": "Humans verify the 16 CAL rows (dual) and browser-download the 5 PDFs (AAK-02/04/05/08/10); sign AA prereg (dependency owned by Step 10 topic).",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "HUMAN_SIGNATURE",
+      "DOWNLOAD"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "2-3 each",
+     "depends_on": [
+      "D-076"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "critical path to first PARAM rows by 15 Nov",
+     "acceptance": "verified rows file with both human verdicts; PDFs in data/raw/aa_pilot/"
+    },
+    {
+     "item_id": "T6-C13-R2",
+     "item": "Fit sim_aa_1 parameters (Model A) on calibration split; held-out check on 4-paper SIM-VAL; report identifiability and coverage honestly.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "TRAINING",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "4-8",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C13-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "4 held-out papers: small; consensus-restoration style over-claim risk",
+     "acceptance": "fit report with CIs and held-out coverage; PARAM rows drafted for orchestrator"
+    },
+    {
+     "item_id": "T6-C13-R3",
+     "item": "Kinetic census of Phenol-Explorer storage pseudo-series (reconcile 29 vs 8 definitions), as feasibility for KA ablation.",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "storage series are not cooking kinetics",
+     "acceptance": "kinetic_census.md with one definition and counts"
+    },
+    {
+     "item_id": "T6-C13-R4",
+     "item": "KA0-KA6 model-form ablation, hierarchical fit (PyMC/NumPyro or custom), G15-4 record, expert review of forms and plausibility.",
+     "work_types": [
+      "TRAINING",
+      "CPU_COMPUTE",
+      "EXPERT_REVIEW",
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "15-25",
+     "human_hours": "4 + expert 8-12",
+     "depends_on": [
+      "T6-C13-R2",
+      "more K1/K2 data (Steps 11-14)"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "needs Steps 11-14 data that do not exist",
+     "acceptance": "g15_4_record.md signed or documented NOT_IDENTIFIABLE"
+    }
+   ]
+  },
+  {
+   "id": "T6-C14",
+   "name": "Step 33: mechanistic vs ML vs hybrid three-arm comparison (D9, G15-HYB, G15-5)",
+   "ssot_anchor": "Step 33 card plan L1382-1401; SSOT §211.45-46; G15-HYB L22412-22414; G15-5 L22386; §229.2 step 6 L24977",
+   "plan_steps": [
+    "33"
+   ],
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "handoff/PROGRESS_AUDIT_2026-11-07.md",
+    "Step 33 card status BLOCKED on Step 32 G15-4 PASS and Step 27"
+   ],
+   "what_exists": "Nothing built; no hybrid code, no D-C data.",
+   "gap_vs_ssot": "Entire step. Hard gated: G15-4 pass, Step 27 pass if simulator is the M arm, Step 30/31 ML arm.",
+   "remaining": [
+    {
+     "item_id": "T6-C14-R1",
+     "item": "Pre-register three-arm test (M, ML, H=sequential residual) with Holm correction and physical-consistency alternative; run only after G15-4 PASS.",
+     "work_types": [
+      "DECISION",
+      "WRITING",
+      "TRAINING",
+      "CPU_COMPUTE"
+     ],
+     "where": "any",
+     "agent_hours": "15-25",
+     "human_hours": "4-6",
+     "depends_on": [
+      "T6-C13-R4",
+      "27 PASS",
+      "T6-C06"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "single system with few studies",
+     "acceptance": "g15_hyb_record.md; loss for H is valid"
+    }
+   ]
+  },
+  {
+   "id": "T6-C15",
+   "name": "Step 34 and §212: short rollout, composition consistency (34a), trust horizon (34b), rollout abstention spec (34c), multi-step ladder",
+   "ssot_anchor": "§212 L19857-20584; §212.21-22 L20137-20159; §212.52A-B L20537-20566; §229.2 step 7 L24981; G15-8 L22389; G15-11 L22392",
+   "plan_steps": [
+    "34a",
+    "34b",
+    "34c"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/evaluation/composition.py (STATUS DRAFT_PENDING_34a_0)",
+    "tests/unit/test_eval_composition.py",
+    "src/culinarystate/evaluation/abstention_spec.py",
+    "reports/step34/rollout_abstention_spec_v1_DRAFT.json (all thresholds UNKNOWN)",
+    "tests/unit/test_eval_abstention_spec.py"
+   ],
+   "what_exists": "34a scaffold: chain vs composite-lookup consistency with rho and c_floor as required args, circularity status gate, fold-integrity check, tested on synthetic cases. 34c schema/validator and unsigned all-UNKNOWN draft; decide() refuses unsigned specs. USDA has 1,429 rows with >=2 process steps, PE 195 (composite endpoints only).",
+   "gap_vs_ssot": "34a never run; 34a.0 USDA multistep circularity check not done (UNKNOWN refuses run); no one-step winner exists (needs Step 30); 34b has no data (no measured intermediates, Gold trajectories absent); semigroup / repeated-process / non-commutativity tests (§212.38-39, 52A) have no evaluation code (only simulator-side); history-aware, state-space, Monte Carlo/ensemble rollout, scheduled sampling, Jacobian stability, merge/split/reserve transitions (§212.32-34), graph operator, state-coverage vector and R0-R5 fidelity ladder are not built. Trust horizon formula needs thresholds calibrated on held-out real sequences.",
+   "remaining": [
+    {
+     "item_id": "T6-C15-R1",
+     "item": "34a.0 circularity check (are USDA multi-step factors derived multiplicatively?) and, if clean, run 34a on USDA/PE with the best one-step rung from the diag ladder as a pilot.",
+     "work_types": [
+      "ANALYSIS",
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "any",
+     "agent_hours": "3-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C03-R3"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "step-independence is an assumption; USDA may be excluded (PE only, 195 rows)",
+     "acceptance": "usda_multistep_circularity_check.md and composition_consistency_34a.md, verdict pre-declared"
+    },
+    {
+     "item_id": "T6-C15-R2",
+     "item": "Kush supplies tau, eps_max, h_trust ids and STOP/DOWNGRADE actions and signs the 34c abstention spec (consumed by Step-36 tests; D4/D5 topic).",
+     "work_types": [
+      "DECISION",
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "1-2",
+     "depends_on": [
+      "calibration data (none yet)"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "thresholds cannot be calibrated before real held-out sequences",
+     "acceptance": "signed spec; decide() accepts"
+    },
+    {
+     "item_id": "T6-C15-R3",
+     "item": "Search for staged cooking datasets with measured intermediates (raw -> pretreat -> dry -> fry) for 34b.",
+     "work_types": [
+      "DOWNLOAD",
+      "ANALYSIS"
+     ],
+     "where": "human",
+     "agent_hours": "2-4",
+     "human_hours": "1",
+     "depends_on": [
+      "licence check (H2)"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "probably none exists -> 'no rollout claim' (valid)",
+     "acceptance": "source list with licences or documented absence"
+    },
+    {
+     "item_id": "T6-C15-R4",
+     "item": "Broader §212 stack: semigroup and repeated-process tests on supported subsets, merge/split transitions, state-space baselines, MC/ensemble rollout, R0-R5 fidelity ladder.",
+     "work_types": [
+      "CODE",
+      "TRAINING",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "30-60",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C15-R1",
+      "real sequence data"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "upper rungs require real trajectory supervision (L20507)",
+     "acceptance": "each test with pre-registered verdict; or documented not-applicable"
+    }
+   ]
+  },
+  {
+   "id": "T6-C16",
+   "name": "Synthetic-data tiers and synthetic-prior pretraining (S-MECH, structural augmentation, weak labels, statistical generators), Step 28 and C4",
+   "ssot_anchor": "§223 L24064-24268; §225.7 L24450-24458; §227.5 C4 L24700-24719; G15-10 L22391; HR-SYN-1 L24249-24255",
+   "plan_steps": [
+    "28",
+    "33"
+   ],
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "Step 28 card plan L1217-1255 (DEFERRED by R-13; E7 0 rows)",
+    "registry/simulated_state_changes_schema_v1.csv (may_enter_gold_evaluation=false)",
+    "handoff/PROGRESS_AUDIT_2026-11-07.md (Step 28 out of scope)"
+   ],
+   "what_exists": "Schema contract only; 0 E7 rows. Mechanistic simulators exist but unvalidated (no SIMULATE route yet).",
+   "gap_vs_ssot": "Everything else: prior_generator, per-row provenance, simulation-memory firewall, ratio sweep (0, 0.25, 0.5, 1, 2, 5), TSTR/TRTR, memorisation/two-sample checks, controls C-1..C-8. Hard dependency: Step 27 PASS (R-13). Structural augmentation (within-study deltas) is not planned separately.",
+   "remaining": [
+    {
+     "item_id": "T6-C16-R1",
+     "item": "Design-only: write the DATA-SIM card and ratio-sweep control spec as DRAFT so the firewall rules are fixed before any simulator output exists.",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "design text without a validated simulator is speculative",
+     "acceptance": "data_sim_card_v1 DRAFT; no data generated"
+    },
+    {
+     "item_id": "T6-C16-R2",
+     "item": "After Step 27 PASS only: generate DATA-SIM v1, run ratio sweep and TSTR with real study-disjoint test, plus controls.",
+     "work_types": [
+      "CPU_COMPUTE",
+      "TRAINING",
+      "ANALYSIS"
+     ],
+     "where": "vinayak",
+     "agent_hours": "20-40",
+     "human_hours": "4",
+     "depends_on": [
+      "27 PASS",
+      "T6-C13",
+      "T6-C06"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "simulator-gap; forbidden claim outside validated domain",
+     "acceptance": "gate_result_v1.json, real-only held-out benefit survives sweep or documented NO"
+    }
+   ]
+  },
+  {
+   "id": "T6-C17",
+   "name": "Active learning, value of information, acquisition design, inverse-design ceiling (C5, G15-12)",
+   "ssot_anchor": "§224 L24269-24387; §227.6 C5 L24720-24729; §224.11 L24375-24387; G15-12 L22393; G15-INV",
+   "plan_steps": [
+    "14",
+    "D4 ASK",
+    "(none dedicated)"
+   ],
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "reports/h_state/hstate_missing_evidence_cells_ranked.csv (coverage-ranked cells, not posterior-based)",
+    "tools/hstate_missing_evidence_ranked.py",
+    "reports/h_state/h_state_coverage_lift_forecast.md",
+    "packet Q23 (ASK branch rule)",
+    "handoff/PROJECT_FLOW_VERDICT_2026-11-08.md"
+   ],
+   "what_exists": "Coverage-driven ranking of missing evidence cells exists (a heuristic; not completion-posterior or D-optimal). No VOI computation anywhere; ASK branch uses a simple rule proposal.",
+   "gap_vs_ssot": "Completion-posterior acquisition, D-optimal / Fisher design for k and Ea, Bayesian info-gain, BALD, active literature extraction loop with measured error-per-acquired-row, wet-lab loop, the first simulated experiment of L24379-24384, inverse-design benchmark.",
+   "remaining": [
+    {
+     "item_id": "T6-C17-R1",
+     "item": "Simulated active-learning demo on a known kinetic system (random vs factorial vs info-gain; number of experiments to stable k, Ea), stating the simulator assumption.",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "8-14",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C13-R2"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "simulation-only acquisition claim forbidden without stating assumption (L24377)",
+     "acceptance": "report with assumption statement"
+    },
+    {
+     "item_id": "T6-C17-R2",
+     "item": "Decide ASK-branch rule (ask when missing input flips the route) as the cheap VOI for H3; hand to D4/D5 topic.",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "VOI not computed; H3 may under-claim",
+     "acceptance": "decision entry; router test"
+    }
+   ]
+  },
+  {
+   "id": "T6-C18",
+   "name": "Neural / probabilistic transition models (D10, D11) and §209 state-dependence, matrix-dependence, multi-output, probabilistic, counterfactual, partial-observability formulations",
+   "ssot_anchor": "§209.1-209.2, 209.7-209.16 L18229-18542; D10/D11 L18601-18613; §212.11-16 L20013-20092",
+   "plan_steps": [
+    "33",
+    "35 (separate)"
+   ],
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "handoff/PROGRESS_AUDIT_2026-11-07.md",
+    "SSOT L18607 (D10 may not skip D0-D7)",
+    "torch absent on manjot .venv312 (verified)",
+    "reports/h_state/transition_bootstrap_v0_contract.md §7"
+   ],
+   "what_exists": "Nothing. TB-V0 deliberately limits targets to retention and yield and excludes physical, mechanism, sensory targets.",
+   "gap_vs_ssot": "Residual MLP/FiLM transition, multi-output with coupled outcomes, probabilistic/heteroscedastic heads, counterfactual queries, partial-observability handling, latent state-space, UDE/neural ODE; also state-dependent and matrix-dependent transition features beyond categorical matrix names. These only become admissible after D0-D7 complete and evidence beyond endpoint E3 rows exists.",
+   "remaining": [
+    {
+     "item_id": "T6-C18-R1",
+     "item": "After D0-D7 decision records: one residual-MLP / FiLM ablation with GPU env (vinayak A100; torch setup on manjot GPU 1 if wanted) only if gates justify.",
+     "work_types": [
+      "TRAINING",
+      "GPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "10-20",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C06",
+      "T6-C07",
+      "T6-C13"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "SSOT says stop if complexity not earned",
+     "acceptance": "ablation report or documented 'not warranted'"
+    }
+   ]
+  },
+  {
+   "id": "T6-C19",
+   "name": "Cross-cutting enablers: compute environment, reproducibility, experiment cards, governance for learning steps (G15-R, G15-H, MODEL/EXP ledgers)",
+   "ssot_anchor": "§216.6 L22887-22896; §216.12 L22992-23031; G15-R/H L22394-22395",
+   "plan_steps": [
+    "15",
+    "29",
+    "30"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "registry/compute_runs_v1.csv (14 rows, none for transition learning)",
+    "registry/freezes/",
+    "tools/register_exp_cards.py",
+    "tools/log_compute_run.py",
+    "manjot .venv312 import check (numpy/pandas/scipy only)"
+   ],
+   "what_exists": "Run log and freeze-record mechanisms; seeds convention 20261104; deterministic-twice requirement coded in runners.",
+   "gap_vs_ssot": "No host has a pinned learning stack recorded (sklearn, LightGBM, XGBoost, TabPFN, PyMC/NumPyro); no MODEL.jsonl entries; no EXP card for 29-diag; no data bundle for learning steps on vinayak; G15-H (human verification of LLM-extracted rows used in test/calibration) cannot be met until Step 10/11 rows are verified.",
+   "remaining": [
+    {
+     "item_id": "T6-C19-R1",
+     "item": "Record the learning environment per host (mac pinned versions; vinayak; manjot CPU) in a lock file; run a smoke import and the transition test suite on each.",
+     "work_types": [
+      "CODE",
+      "DECISION"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0.3 (Parv authorises)",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "29-diag cannot run without it on the Mac; manjot lacks sklearn",
+     "acceptance": "env.lock and smoke log; compute_runs rows"
+    },
+    {
+     "item_id": "T6-C19-R2",
+     "item": "Register EXP card for 29-diag and later runs; MODEL.jsonl entries for each model class (orchestrator writes ledgers).",
+     "work_types": [
+      "CODE",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T6-C03"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "",
+     "acceptance": "EXP card with code hash, snapshot id, split hashes"
+    }
+   ]
+  },
+  {
+   "id": "T6-C20",
+   "name": "Claim-boundary and reporting package for learning results (what the talk and paper may say)",
+   "ssot_anchor": "§227.10 L24786-24797; §227.9 L24759-24785; §227.11 L24798-24823; §228.2 L24878-24892; §229.6-229.8 L25035-25079; §215.68-70 L22647-22684",
+   "plan_steps": [
+    "29",
+    "30",
+    "36"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md §10 (negative results on record)",
+    "reports/step29/29diag_preregistration_DRAFT.md §1",
+    "reports/master_plan/working_notes/notes/ssot_sparsity.md §4.2"
+   ],
+   "what_exists": "Negative results are recorded (07.A FAILED, G08-3 FAILED, DEL-2 D7a==D1 shortcut suspicion, D7 never beats D5) and labels exist; no consolidated claim-boundary page.",
+   "gap_vs_ssot": "No single page listing allowed/forbidden claims for Level-15 outputs (SOURCE-REPORTED numbers need primary recheck; no 'universal synthetic multiplier'; conformal guarantees can fail under clustering/MNAR; random-split gain alone insufficient; completion is not observed chemistry; simple models are valid winners).",
+   "remaining": [
+    {
+     "item_id": "T6-C20-R1",
+     "item": "Draft the learning claim-boundary page and slide wording (H2 diagnostic, D2-lite, negative results kept visible).",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "T6-C03-R4"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "over-claiming under prior exposure",
+     "acceptance": "page used by slides; reviewed by Kush and Parv"
+    }
+   ]
+  }
+ ],
+ "ssot_requirements_without_plan_coverage": [
+  "§209.9-209.12 state-dependent / matrix-dependent / multi-output coupled-outcome transition models: TB-V0 limits targets to retention and yield; no plan step before H4 covers physical, mechanism or sensory transition targets",
+  "§209.15 counterfactual queries and §209.16 partial-observability handling for transitions: no step or card",
+  "§212.32-212.34 merge / split / reserve-discard-recombine transitions and §212.35-212.37 graph transition operator: only the Step-18 event graph exists (state-graph topic), no learning-side evaluation",
+  "§212.43 state-coverage vector and R0-R5 rollout-fidelity ladder reporting: not assigned to a step output",
+  "§219.3 observation-mask audit as a stand-alone artefact and §219.7 cold-start type tabulation: assigned only loosely to 29.0 / 30",
+  "§221.13 DropoutNet-style whole-row/column masking and §221.14 GP completion: no step or code",
+  "§221.15 two-tower + ANN retrieval for FlavorTwin: out of course scope (Project B), not planned",
+  "§222.4-222.6 multiple-imputation covariate baselines: no plan item although all condition covariates are UNKNOWN",
+  "§222.9 imputed-target tier I with real-only vs augmented ablation: only design rule; no step output",
+  "§223.6-223.8 structural augmentation of real data (within-study deltas) and weak/rule supervision labels: not planned",
+  "§224.5-224.9 D-optimal, BALD, active literature extraction loop, wet-lab loop: no step",
+  "§227.3 C2 FoodProc-ColdStart benchmark release (licence terms) and §227.2 C1 as paper contributions: only via D2, which is after 25 Nov",
+  "§226.8 M6 conservative inverse design and G15-12: explicitly not planned",
+  "RQ16-21 completion visibility (does exposing the imputed evidence class improve calibration): no step"
+ ],
+ "contradictions": [
+  "Status of 29-diag: packet §3 says 'waiting on human approval'; PROGRESS_AUDIT says '2 blockers left'; FINISH_PLAN (S173) says agent side unblocked, only Kush approval+signature remain. Repo evidence: freeze record status PROPOSED with approved_by null and no signature file, no outputs. Consistent with FINISH_PLAN.",
+  "Freeze/seal wording: Step 29 card says the 15a.R seal 'needs human approval'; D-068 records Kush waiving the self-append rule and the seal commitment file exists, but registry/freezes/15A-BOOT-2026-11-08.json is a separate record that is still PROPOSED.",
+  "Ladder naming: SSOT D0-D11 (D2 = process mean, D3 = hierarchical) vs TB-V0 B-0..B-5 (B-2 ingredient arm = D3, B-3 process = D2) vs repo class D3Hierarchical (target x process) vs 29-diag prereg text; M0-M11 for rollout. No crosswalk file.",
+  "D2 definition: proposal brief says sparsity-aware completion of evidence cells with propensity-weighted evaluation and split-conformal intervals; review packet §1 table says 'recipe/ingredient completion with conformal intervals'.",
+  "Scope: proposal says D2 'answers H2'; D-075 / FINISH_PLAN place D2, H2 and Steps 28 and 31-34 after 25 Nov, so H2 can only appear as a diagnostic.",
+  "SSOT G15-9 compares D7 against D5/D6 only; the plan's G30-B is stricter (max of D3-full, D5-tuned, D6 and a margin). Both exist; the plan one is PROPOSED_PILOT.",
+  "SSOT spine order 31 before 32, whereas SSOT §216.7 orders kinetic fits before physics features; resolved in plan by splitting 31a/31b.",
+  "SSOT §229 is labelled HISTORICAL RETURN POINT superseded by §259; its implementation order was used here without checking whether §259 or §279 overrides it (UNVERIFIED).",
+  "Notes (22 Oct) say 'Bognar supported incl. cold-start' in the inventory while process-disjoint CIs are degenerate (7 process signatures) and matrix-disjoint CIs overlap D0; treat as not supported until a paired test exists.",
+  "TB-V0 success rule (paired lower bound > 0 on S-3/S-4) vs SSOT §227.11 qualitative inequality vs Plan AM5: only TB-V0 is concrete; thresholds delta_30, K_min, rho, c_floor are PROPOSED_PILOT."
+ ],
+ "notes": "Scope split. Not duplicated here (belongs elsewhere): physics drivers / Layer 1 and Layer 2 / non-heat families / lot-state (physics and state topics); Step 10 AA row extraction and human verification, PARAM ledger, sim_aa_1, Step 27 SIM-VAL (kinetics/simulator topic; T6 lists them only as dependencies); 07.A-R1 labelling and 15b freeze (condition-audit and freeze topics); Step 35 representation ladder and FlavorTwin two-tower (representation topic); D4/D5 router, abstention consumption and Step 36 C9 fallback (RAG topic); NER and units. Environment facts verified by import check on 2026-11-08: manjot .venv312 has numpy/pandas/scipy/pytest but NOT sklearn, lightgbm, xgboost, catboost, pymc, numpyro, lmfit, tabpfn, torch, statsmodels; evaluate.py imports sklearn so DEL-2/29-diag cannot run on manjot until an environment is authorised; plan says 29-diag runs on the Mac. Layer 2 circularity: scenario defaults are SOURCE_UNVERIFIED_AGENT_RECALLED and recipe-derived, so they must never become training features or targets for EVD-based models (packet Q1; D-077). Recipes never train chemistry targets (SSOT §199.6). Only independent clusters count: USDA and Bognar are single study clusters (study_id NOT_IDENTIFIABLE), so study-disjoint and any paper-grade claim depends on Phenol-Explorer (125 studies, ~25 sealed under D-068). Prior exposure: DEL-2 (Oct) and the S160 exploratory Step 30 read the same 17,978 rows, so any H2 number is PRIOR_EXPOSURE_REANALYSIS. No new numbers were computed in this audit; all figures come from the cited reports. 25-Nov realistic target for T6: 29-diag executed and memoed plus H2 diagnostic slide plus D2-lite negative-result page; everything else is AFTER."
+}

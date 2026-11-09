@@ -1,0 +1,1771 @@
+{
+ "citable": false,
+ "contains_ids": false,
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "families": {
+  "FOODCOM": {
+   "curve": [
+    {
+     "pct_of_mentions": 23.37,
+     "pct_of_nonexact_mentions_in_top_k": 0.0,
+     "top_k_types": 10
+    },
+    {
+     "pct_of_mentions": 47.73,
+     "pct_of_nonexact_mentions_in_top_k": 0.0,
+     "top_k_types": 50
+    },
+    {
+     "pct_of_mentions": 60.4,
+     "pct_of_nonexact_mentions_in_top_k": 7.6,
+     "top_k_types": 100
+    },
+    {
+     "pct_of_mentions": 78.92,
+     "pct_of_nonexact_mentions_in_top_k": 33.94,
+     "top_k_types": 300
+    },
+    {
+     "pct_of_mentions": 86.05,
+     "pct_of_nonexact_mentions_in_top_k": 48.53,
+     "top_k_types": 500
+    },
+    {
+     "pct_of_mentions": 93.53,
+     "pct_of_nonexact_mentions_in_top_k": 72.31,
+     "top_k_types": 1000
+    },
+    {
+     "pct_of_mentions": 98.05,
+     "pct_of_nonexact_mentions_in_top_k": 90.22,
+     "top_k_types": 2000
+    },
+    {
+     "pct_of_mentions": 99.93,
+     "pct_of_nonexact_mentions_in_top_k": 99.6,
+     "top_k_types": 5000
+    }
+   ],
+   "deciles_by_mention_mass": [
+    {
+     "decile": 1,
+     "mentions": 451713,
+     "mentions_EXACT_ALIAS": 0,
+     "mentions_EXACT_ING": 451713,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 3
+    },
+    {
+     "decile": 2,
+     "mentions": 392243,
+     "mentions_EXACT_ALIAS": 0,
+     "mentions_EXACT_ING": 392243,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 5
+    },
+    {
+     "decile": 3,
+     "mentions": 405229,
+     "mentions_EXACT_ALIAS": 103282,
+     "mentions_EXACT_ING": 301947,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 9
+    },
+    {
+     "decile": 4,
+     "mentions": 405407,
+     "mentions_EXACT_ALIAS": 114202,
+     "mentions_EXACT_ING": 291205,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 15
+    },
+    {
+     "decile": 5,
+     "mentions": 419168,
+     "mentions_EXACT_ALIAS": 165210,
+     "mentions_EXACT_ING": 253958,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 25
+    },
+    {
+     "decile": 6,
+     "mentions": 405732,
+     "mentions_EXACT_ALIAS": 182571,
+     "mentions_EXACT_ING": 167248,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 55913,
+     "pct_any_hit": 100.0,
+     "pct_exact": 86.22,
+     "types": 41
+    },
+    {
+     "decile": 7,
+     "mentions": 414144,
+     "mentions_EXACT_ALIAS": 101582,
+     "mentions_EXACT_ING": 226543,
+     "mentions_MISS": 5816,
+     "mentions_PARTIAL": 80203,
+     "pct_any_hit": 98.6,
+     "pct_exact": 79.23,
+     "types": 76
+    },
+    {
+     "decile": 8,
+     "mentions": 410721,
+     "mentions_EXACT_ALIAS": 60028,
+     "mentions_EXACT_ING": 229929,
+     "mentions_MISS": 8208,
+     "mentions_PARTIAL": 112556,
+     "pct_any_hit": 98.0,
+     "pct_exact": 70.6,
+     "types": 150
+    },
+    {
+     "decile": 9,
+     "mentions": 412333,
+     "mentions_EXACT_ALIAS": 59923,
+     "mentions_EXACT_ING": 176655,
+     "mentions_MISS": 11952,
+     "mentions_PARTIAL": 163803,
+     "pct_any_hit": 97.1,
+     "pct_exact": 57.38,
+     "types": 375
+    },
+    {
+     "decile": 10,
+     "mentions": 412743,
+     "mentions_EXACT_ALIAS": 24400,
+     "mentions_EXACT_ING": 91526,
+     "mentions_MISS": 19938,
+     "mentions_PARTIAL": 276879,
+     "pct_any_hit": 95.17,
+     "pct_exact": 28.09,
+     "types": 6499
+    }
+   ],
+   "deciles_by_type_rank": [
+    {
+     "decile": 1,
+     "max_count": 199781,
+     "mentions": 3729423,
+     "mentions_EXACT_ALIAS": 789342,
+     "mentions_EXACT_ING": 2493362,
+     "mentions_MISS": 25976,
+     "mentions_PARTIAL": 420743,
+     "min_count": 622,
+     "pct_any_hit": 99.3,
+     "pct_exact": 88.02,
+     "types": 719
+    },
+    {
+     "decile": 2,
+     "max_count": 622,
+     "mentions": 246821,
+     "mentions_EXACT_ALIAS": 17264,
+     "mentions_EXACT_ING": 68233,
+     "mentions_MISS": 9926,
+     "mentions_PARTIAL": 151398,
+     "min_count": 181,
+     "pct_any_hit": 95.98,
+     "pct_exact": 34.64,
+     "types": 720
+    },
+    {
+     "decile": 3,
+     "max_count": 181,
+     "mentions": 85446,
+     "mentions_EXACT_ALIAS": 3207,
+     "mentions_EXACT_ING": 16177,
+     "mentions_MISS": 4280,
+     "mentions_PARTIAL": 61782,
+     "min_count": 74,
+     "pct_any_hit": 94.99,
+     "pct_exact": 22.69,
+     "types": 720
+    },
+    {
+     "decile": 4,
+     "max_count": 74,
+     "mentions": 36767,
+     "mentions_EXACT_ALIAS": 896,
+     "mentions_EXACT_ING": 3837,
+     "mentions_MISS": 2808,
+     "mentions_PARTIAL": 29226,
+     "min_count": 34,
+     "pct_any_hit": 92.36,
+     "pct_exact": 12.87,
+     "types": 720
+    },
+    {
+     "decile": 5,
+     "max_count": 34,
+     "mentions": 17010,
+     "mentions_EXACT_ALIAS": 381,
+     "mentions_EXACT_ING": 892,
+     "mentions_MISS": 1531,
+     "mentions_PARTIAL": 14206,
+     "min_count": 16,
+     "pct_any_hit": 91.0,
+     "pct_exact": 7.48,
+     "types": 720
+    },
+    {
+     "decile": 6,
+     "max_count": 16,
+     "mentions": 7604,
+     "mentions_EXACT_ALIAS": 69,
+     "mentions_EXACT_ING": 340,
+     "mentions_MISS": 663,
+     "mentions_PARTIAL": 6532,
+     "min_count": 7,
+     "pct_any_hit": 91.28,
+     "pct_exact": 5.38,
+     "types": 719
+    },
+    {
+     "decile": 7,
+     "max_count": 7,
+     "mentions": 3433,
+     "mentions_EXACT_ALIAS": 36,
+     "mentions_EXACT_ING": 56,
+     "mentions_MISS": 333,
+     "mentions_PARTIAL": 3008,
+     "min_count": 3,
+     "pct_any_hit": 90.3,
+     "pct_exact": 2.68,
+     "types": 720
+    },
+    {
+     "decile": 8,
+     "max_count": 3,
+     "mentions": 1489,
+     "mentions_EXACT_ALIAS": 2,
+     "mentions_EXACT_ING": 48,
+     "mentions_MISS": 196,
+     "mentions_PARTIAL": 1243,
+     "min_count": 1,
+     "pct_any_hit": 86.84,
+     "pct_exact": 3.36,
+     "types": 720
+    },
+    {
+     "decile": 9,
+     "max_count": 1,
+     "mentions": 720,
+     "mentions_EXACT_ALIAS": 1,
+     "mentions_EXACT_ING": 15,
+     "mentions_MISS": 101,
+     "mentions_PARTIAL": 603,
+     "min_count": 1,
+     "pct_any_hit": 85.97,
+     "pct_exact": 2.22,
+     "types": 720
+    },
+    {
+     "decile": 10,
+     "max_count": 1,
+     "mentions": 720,
+     "mentions_EXACT_ALIAS": 0,
+     "mentions_EXACT_ING": 7,
+     "mentions_MISS": 100,
+     "mentions_PARTIAL": 613,
+     "min_count": 1,
+     "pct_any_hit": 86.11,
+     "pct_exact": 0.97,
+     "types": 720
+    }
+   ],
+   "hapax_pct_of_types": 21.38,
+   "hapax_types": 1539,
+   "ingredient_lines": 4129433,
+   "lines_with_u2044_fraction_slash": 1275153,
+   "lines_without_any_lexicon_food_match": 45825,
+   "mentions": 4129433,
+   "mentions_by_class": {
+    "EXACT_ALIAS": 811198,
+    "EXACT_ING": 2582967,
+    "MISS": 45914,
+    "PARTIAL": 689354
+   },
+   "nonexact_mentions": 735268,
+   "nonexact_types": 6086,
+   "nonexact_types_needed_for_pct_of_nonexact_mentions": {
+    "50": 146,
+    "80": 633,
+    "90": 1144,
+    "95": 1723,
+    "99": 3120
+   },
+   "partial_mean_covered_token_share": 0.5243,
+   "pct_any_hit": 98.89,
+   "pct_by_class": {
+    "EXACT_ALIAS": 19.64,
+    "EXACT_ING": 62.55,
+    "MISS": 1.11,
+    "PARTIAL": 16.69
+   },
+   "pct_exact": 82.19,
+   "pct_lines_with_any_lexicon_food_match": 98.89,
+   "recipes": 522517,
+   "status": "READ",
+   "types": 7198,
+   "types_by_class": {
+    "EXACT_ALIAS": 254,
+    "EXACT_ING": 858,
+    "MISS": 634,
+    "PARTIAL": 5452
+   },
+   "types_needed_for_pct_of_mentions": {
+    "50": 57,
+    "80": 324,
+    "90": 699,
+    "95": 1198,
+    "99": 2614
+   }
+  },
+  "GUTENBERG_SEGMENT": {
+   "reason": "0 ingredient lines (corpus iterator sets them empty, S177 F6); NER FOOD spans not persisted",
+   "status": "NOT_AVAILABLE"
+  },
+  "TASTESET": {
+   "curve": [
+    {
+     "pct_of_mentions": 15.11,
+     "pct_of_nonexact_mentions_in_top_k": 0.0,
+     "top_k_types": 10
+    },
+    {
+     "pct_of_mentions": 31.25,
+     "pct_of_nonexact_mentions_in_top_k": 4.14,
+     "top_k_types": 50
+    },
+    {
+     "pct_of_mentions": 41.28,
+     "pct_of_nonexact_mentions_in_top_k": 9.05,
+     "top_k_types": 100
+    },
+    {
+     "pct_of_mentions": 59.27,
+     "pct_of_nonexact_mentions_in_top_k": 26.0,
+     "top_k_types": 300
+    },
+    {
+     "pct_of_mentions": 69.17,
+     "pct_of_nonexact_mentions_in_top_k": 39.07,
+     "top_k_types": 500
+    },
+    {
+     "pct_of_mentions": 82.4,
+     "pct_of_nonexact_mentions_in_top_k": 66.35,
+     "top_k_types": 1000
+    }
+   ],
+   "deciles_by_mention_mass": [
+    {
+     "decile": 1,
+     "mentions": 429,
+     "mentions_EXACT_ALIAS": 0,
+     "mentions_EXACT_ING": 429,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 6
+    },
+    {
+     "decile": 2,
+     "mentions": 342,
+     "mentions_EXACT_ALIAS": 25,
+     "mentions_EXACT_ING": 317,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 13
+    },
+    {
+     "decile": 3,
+     "mentions": 370,
+     "mentions_EXACT_ALIAS": 91,
+     "mentions_EXACT_ING": 224,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 55,
+     "pct_any_hit": 100.0,
+     "pct_exact": 85.14,
+     "types": 27
+    },
+    {
+     "decile": 4,
+     "mentions": 371,
+     "mentions_EXACT_ALIAS": 61,
+     "mentions_EXACT_ING": 241,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 69,
+     "pct_any_hit": 100.0,
+     "pct_exact": 81.4,
+     "types": 46
+    },
+    {
+     "decile": 5,
+     "mentions": 381,
+     "mentions_EXACT_ALIAS": 80,
+     "mentions_EXACT_ING": 175,
+     "mentions_MISS": 12,
+     "mentions_PARTIAL": 114,
+     "pct_any_hit": 96.85,
+     "pct_exact": 66.93,
+     "types": 82
+    },
+    {
+     "decile": 6,
+     "mentions": 375,
+     "mentions_EXACT_ALIAS": 40,
+     "mentions_EXACT_ING": 167,
+     "mentions_MISS": 28,
+     "mentions_PARTIAL": 140,
+     "pct_any_hit": 92.53,
+     "pct_exact": 55.2,
+     "types": 140
+    },
+    {
+     "decile": 7,
+     "mentions": 378,
+     "mentions_EXACT_ALIAS": 30,
+     "mentions_EXACT_ING": 132,
+     "mentions_MISS": 20,
+     "mentions_PARTIAL": 196,
+     "pct_any_hit": 94.71,
+     "pct_exact": 42.86,
+     "types": 218
+    },
+    {
+     "decile": 8,
+     "mentions": 378,
+     "mentions_EXACT_ALIAS": 6,
+     "mentions_EXACT_ING": 39,
+     "mentions_MISS": 24,
+     "mentions_PARTIAL": 309,
+     "pct_any_hit": 93.65,
+     "pct_exact": 11.9,
+     "types": 378
+    },
+    {
+     "decile": 9,
+     "mentions": 378,
+     "mentions_EXACT_ALIAS": 10,
+     "mentions_EXACT_ING": 58,
+     "mentions_MISS": 32,
+     "mentions_PARTIAL": 278,
+     "pct_any_hit": 91.53,
+     "pct_exact": 17.99,
+     "types": 378
+    },
+    {
+     "decile": 10,
+     "mentions": 377,
+     "mentions_EXACT_ALIAS": 17,
+     "mentions_EXACT_ING": 68,
+     "mentions_MISS": 30,
+     "mentions_PARTIAL": 262,
+     "pct_any_hit": 92.04,
+     "pct_exact": 22.55,
+     "types": 377
+    }
+   ],
+   "deciles_by_type_rank": [
+    {
+     "decile": 1,
+     "max_count": 108,
+     "mentions": 1861,
+     "mentions_EXACT_ALIAS": 249,
+     "mentions_EXACT_ING": 1374,
+     "mentions_MISS": 12,
+     "mentions_PARTIAL": 226,
+     "min_count": 4,
+     "pct_any_hit": 99.36,
+     "pct_exact": 87.21,
+     "types": 166
+    },
+    {
+     "decile": 2,
+     "max_count": 4,
+     "mentions": 445,
+     "mentions_EXACT_ALIAS": 48,
+     "mentions_EXACT_ING": 189,
+     "mentions_MISS": 28,
+     "mentions_PARTIAL": 180,
+     "min_count": 2,
+     "pct_any_hit": 93.71,
+     "pct_exact": 53.26,
+     "types": 167
+    },
+    {
+     "decile": 3,
+     "max_count": 2,
+     "mentions": 307,
+     "mentions_EXACT_ALIAS": 29,
+     "mentions_EXACT_ING": 112,
+     "mentions_MISS": 19,
+     "mentions_PARTIAL": 147,
+     "min_count": 1,
+     "pct_any_hit": 93.81,
+     "pct_exact": 45.93,
+     "types": 166
+    },
+    {
+     "decile": 4,
+     "max_count": 1,
+     "mentions": 167,
+     "mentions_EXACT_ALIAS": 5,
+     "mentions_EXACT_ING": 29,
+     "mentions_MISS": 13,
+     "mentions_PARTIAL": 120,
+     "min_count": 1,
+     "pct_any_hit": 92.22,
+     "pct_exact": 20.36,
+     "types": 167
+    },
+    {
+     "decile": 5,
+     "max_count": 1,
+     "mentions": 166,
+     "mentions_EXACT_ALIAS": 0,
+     "mentions_EXACT_ING": 18,
+     "mentions_MISS": 8,
+     "mentions_PARTIAL": 140,
+     "min_count": 1,
+     "pct_any_hit": 95.18,
+     "pct_exact": 10.84,
+     "types": 166
+    },
+    {
+     "decile": 6,
+     "max_count": 1,
+     "mentions": 167,
+     "mentions_EXACT_ALIAS": 6,
+     "mentions_EXACT_ING": 14,
+     "mentions_MISS": 13,
+     "mentions_PARTIAL": 134,
+     "min_count": 1,
+     "pct_any_hit": 92.22,
+     "pct_exact": 11.98,
+     "types": 167
+    },
+    {
+     "decile": 7,
+     "max_count": 1,
+     "mentions": 166,
+     "mentions_EXACT_ALIAS": 5,
+     "mentions_EXACT_ING": 33,
+     "mentions_MISS": 14,
+     "mentions_PARTIAL": 114,
+     "min_count": 1,
+     "pct_any_hit": 91.57,
+     "pct_exact": 22.89,
+     "types": 166
+    },
+    {
+     "decile": 8,
+     "max_count": 1,
+     "mentions": 167,
+     "mentions_EXACT_ALIAS": 5,
+     "mentions_EXACT_ING": 19,
+     "mentions_MISS": 15,
+     "mentions_PARTIAL": 128,
+     "min_count": 1,
+     "pct_any_hit": 91.02,
+     "pct_exact": 14.37,
+     "types": 167
+    },
+    {
+     "decile": 9,
+     "max_count": 1,
+     "mentions": 166,
+     "mentions_EXACT_ALIAS": 8,
+     "mentions_EXACT_ING": 38,
+     "mentions_MISS": 11,
+     "mentions_PARTIAL": 109,
+     "min_count": 1,
+     "pct_any_hit": 93.37,
+     "pct_exact": 27.71,
+     "types": 166
+    },
+    {
+     "decile": 10,
+     "max_count": 1,
+     "mentions": 167,
+     "mentions_EXACT_ALIAS": 5,
+     "mentions_EXACT_ING": 24,
+     "mentions_MISS": 13,
+     "mentions_PARTIAL": 125,
+     "min_count": 1,
+     "pct_any_hit": 92.22,
+     "pct_exact": 17.37,
+     "types": 167
+    }
+   ],
+   "hapax_pct_of_types": 71.53,
+   "hapax_types": 1191,
+   "ingredient_lines": 3788,
+   "lines_with_u2044_fraction_slash": 441,
+   "lines_without_any_lexicon_food_match": 129,
+   "mentions": 3779,
+   "mentions_by_class": {
+    "EXACT_ALIAS": 360,
+    "EXACT_ING": 1850,
+    "MISS": 146,
+    "PARTIAL": 1423
+   },
+   "nonexact_mentions": 1569,
+   "nonexact_types": 1165,
+   "nonexact_types_needed_for_pct_of_nonexact_mentions": {
+    "50": 381,
+    "80": 852,
+    "90": 1009,
+    "95": 1087,
+    "99": 1150
+   },
+   "partial_mean_covered_token_share": 0.4843,
+   "pct_any_hit": 96.14,
+   "pct_by_class": {
+    "EXACT_ALIAS": 9.53,
+    "EXACT_ING": 48.95,
+    "MISS": 3.86,
+    "PARTIAL": 37.66
+   },
+   "pct_exact": 58.48,
+   "pct_lines_with_any_lexicon_food_match": 96.59,
+   "recipes": 700,
+   "status": "READ",
+   "types": 1665,
+   "types_by_class": {
+    "EXACT_ALIAS": 96,
+    "EXACT_ING": 404,
+    "MISS": 111,
+    "PARTIAL": 1054
+   },
+   "types_needed_for_pct_of_mentions": {
+    "50": 174,
+    "80": 910,
+    "90": 1288,
+    "95": 1477,
+    "99": 1628
+   }
+  },
+  "TASTESET_GOLD_FOOD_SPANS": {
+   "annotation": "HUMAN_GOLD_FOOD_SPANS_TASTESET (model training data overlaps; not an accuracy claim)",
+   "curve": [
+    {
+     "pct_of_mentions": 24.78,
+     "pct_of_nonexact_mentions_in_top_k": 0.0,
+     "top_k_types": 10
+    },
+    {
+     "pct_of_mentions": 47.44,
+     "pct_of_nonexact_mentions_in_top_k": 0.0,
+     "top_k_types": 50
+    },
+    {
+     "pct_of_mentions": 58.76,
+     "pct_of_nonexact_mentions_in_top_k": 3.63,
+     "top_k_types": 100
+    },
+    {
+     "pct_of_mentions": 77.39,
+     "pct_of_nonexact_mentions_in_top_k": 26.92,
+     "top_k_types": 300
+    },
+    {
+     "pct_of_mentions": 85.17,
+     "pct_of_nonexact_mentions_in_top_k": 47.24,
+     "top_k_types": 500
+    },
+    {
+     "pct_of_mentions": 97.61,
+     "pct_of_nonexact_mentions_in_top_k": 91.39,
+     "top_k_types": 1000
+    }
+   ],
+   "deciles_by_mention_mass": [
+    {
+     "decile": 1,
+     "mentions": 427,
+     "mentions_EXACT_ALIAS": 0,
+     "mentions_EXACT_ING": 427,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 3
+    },
+    {
+     "decile": 2,
+     "mentions": 387,
+     "mentions_EXACT_ALIAS": 0,
+     "mentions_EXACT_ING": 387,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 4
+    },
+    {
+     "decile": 3,
+     "mentions": 408,
+     "mentions_EXACT_ALIAS": 44,
+     "mentions_EXACT_ING": 364,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 9
+    },
+    {
+     "decile": 4,
+     "mentions": 389,
+     "mentions_EXACT_ALIAS": 60,
+     "mentions_EXACT_ING": 329,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 15
+    },
+    {
+     "decile": 5,
+     "mentions": 408,
+     "mentions_EXACT_ALIAS": 54,
+     "mentions_EXACT_ING": 354,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 29
+    },
+    {
+     "decile": 6,
+     "mentions": 399,
+     "mentions_EXACT_ALIAS": 39,
+     "mentions_EXACT_ING": 326,
+     "mentions_MISS": 7,
+     "mentions_PARTIAL": 27,
+     "pct_any_hit": 98.25,
+     "pct_exact": 91.48,
+     "types": 48
+    },
+    {
+     "decile": 7,
+     "mentions": 397,
+     "mentions_EXACT_ALIAS": 28,
+     "mentions_EXACT_ING": 283,
+     "mentions_MISS": 37,
+     "mentions_PARTIAL": 49,
+     "pct_any_hit": 90.68,
+     "pct_exact": 78.34,
+     "types": 83
+    },
+    {
+     "decile": 8,
+     "mentions": 402,
+     "mentions_EXACT_ALIAS": 47,
+     "mentions_EXACT_ING": 231,
+     "mentions_MISS": 44,
+     "mentions_PARTIAL": 80,
+     "pct_any_hit": 89.05,
+     "pct_exact": 69.15,
+     "types": 162
+    },
+    {
+     "decile": 9,
+     "mentions": 401,
+     "mentions_EXACT_ALIAS": 21,
+     "mentions_EXACT_ING": 148,
+     "mentions_MISS": 56,
+     "mentions_PARTIAL": 176,
+     "pct_any_hit": 86.03,
+     "pct_exact": 42.14,
+     "types": 341
+    },
+    {
+     "decile": 10,
+     "mentions": 402,
+     "mentions_EXACT_ALIAS": 22,
+     "mentions_EXACT_ING": 113,
+     "mentions_MISS": 68,
+     "mentions_PARTIAL": 199,
+     "pct_any_hit": 83.08,
+     "pct_exact": 33.58,
+     "types": 402
+    }
+   ],
+   "deciles_by_type_rank": [
+    {
+     "decile": 1,
+     "max_count": 150,
+     "mentions": 2424,
+     "mentions_EXACT_ALIAS": 197,
+     "mentions_EXACT_ING": 2193,
+     "mentions_MISS": 7,
+     "mentions_PARTIAL": 27,
+     "min_count": 6,
+     "pct_any_hit": 99.71,
+     "pct_exact": 98.6,
+     "types": 109
+    },
+    {
+     "decile": 2,
+     "max_count": 6,
+     "mentions": 484,
+     "mentions_EXACT_ALIAS": 41,
+     "mentions_EXACT_ING": 328,
+     "mentions_MISS": 46,
+     "mentions_PARTIAL": 69,
+     "min_count": 3,
+     "pct_any_hit": 90.5,
+     "pct_exact": 76.24,
+     "types": 110
+    },
+    {
+     "decile": 3,
+     "max_count": 3,
+     "mentions": 259,
+     "mentions_EXACT_ALIAS": 32,
+     "mentions_EXACT_ING": 154,
+     "mentions_MISS": 21,
+     "mentions_PARTIAL": 52,
+     "min_count": 2,
+     "pct_any_hit": 91.89,
+     "pct_exact": 71.81,
+     "types": 109
+    },
+    {
+     "decile": 4,
+     "max_count": 2,
+     "mentions": 195,
+     "mentions_EXACT_ALIAS": 13,
+     "mentions_EXACT_ING": 95,
+     "mentions_MISS": 26,
+     "mentions_PARTIAL": 61,
+     "min_count": 1,
+     "pct_any_hit": 86.67,
+     "pct_exact": 55.38,
+     "types": 110
+    },
+    {
+     "decile": 5,
+     "max_count": 1,
+     "mentions": 110,
+     "mentions_EXACT_ALIAS": 7,
+     "mentions_EXACT_ING": 30,
+     "mentions_MISS": 14,
+     "mentions_PARTIAL": 59,
+     "min_count": 1,
+     "pct_any_hit": 87.27,
+     "pct_exact": 33.64,
+     "types": 110
+    },
+    {
+     "decile": 6,
+     "max_count": 1,
+     "mentions": 109,
+     "mentions_EXACT_ALIAS": 1,
+     "mentions_EXACT_ING": 37,
+     "mentions_MISS": 20,
+     "mentions_PARTIAL": 51,
+     "min_count": 1,
+     "pct_any_hit": 81.65,
+     "pct_exact": 34.86,
+     "types": 109
+    },
+    {
+     "decile": 7,
+     "max_count": 1,
+     "mentions": 110,
+     "mentions_EXACT_ALIAS": 3,
+     "mentions_EXACT_ING": 35,
+     "mentions_MISS": 21,
+     "mentions_PARTIAL": 51,
+     "min_count": 1,
+     "pct_any_hit": 80.91,
+     "pct_exact": 34.55,
+     "types": 110
+    },
+    {
+     "decile": 8,
+     "max_count": 1,
+     "mentions": 109,
+     "mentions_EXACT_ALIAS": 7,
+     "mentions_EXACT_ING": 29,
+     "mentions_MISS": 22,
+     "mentions_PARTIAL": 51,
+     "min_count": 1,
+     "pct_any_hit": 79.82,
+     "pct_exact": 33.03,
+     "types": 109
+    },
+    {
+     "decile": 9,
+     "max_count": 1,
+     "mentions": 110,
+     "mentions_EXACT_ALIAS": 7,
+     "mentions_EXACT_ING": 30,
+     "mentions_MISS": 15,
+     "mentions_PARTIAL": 58,
+     "min_count": 1,
+     "pct_any_hit": 86.36,
+     "pct_exact": 33.64,
+     "types": 110
+    },
+    {
+     "decile": 10,
+     "max_count": 1,
+     "mentions": 110,
+     "mentions_EXACT_ALIAS": 7,
+     "mentions_EXACT_ING": 31,
+     "mentions_MISS": 20,
+     "mentions_PARTIAL": 52,
+     "min_count": 1,
+     "pct_any_hit": 81.82,
+     "pct_exact": 34.55,
+     "types": 110
+    }
+   ],
+   "gold_entity_types": {
+    "COLOR": 231,
+    "FOOD": 4020,
+    "PART": 55,
+    "PHYSICAL_QUALITY": 793,
+    "PROCESS": 1091,
+    "PURPOSE": 94,
+    "QUANTITY": 3780,
+    "TASTE": 126,
+    "UNIT": 3172
+   },
+   "hapax_pct_of_types": 62.32,
+   "hapax_types": 683,
+   "mentions": 4020,
+   "mentions_by_class": {
+    "EXACT_ALIAS": 315,
+    "EXACT_ING": 2962,
+    "MISS": 212,
+    "PARTIAL": 531
+   },
+   "nonexact_mentions": 743,
+   "nonexact_types": 550,
+   "nonexact_types_needed_for_pct_of_nonexact_mentions": {
+    "50": 179,
+    "80": 402,
+    "90": 476,
+    "95": 513,
+    "99": 543
+   },
+   "pct_any_hit": 94.73,
+   "pct_by_class": {
+    "EXACT_ALIAS": 7.84,
+    "EXACT_ING": 73.68,
+    "MISS": 5.27,
+    "PARTIAL": 13.21
+   },
+   "pct_exact": 81.52,
+   "recipes": 700,
+   "status": "READ",
+   "types": 1096,
+   "types_by_class": {
+    "EXACT_ALIAS": 74,
+    "EXACT_ING": 472,
+    "MISS": 148,
+    "PARTIAL": 402
+   },
+   "types_needed_for_pct_of_mentions": {
+    "50": 60,
+    "80": 353,
+    "90": 694,
+    "95": 895,
+    "99": 1056
+   }
+  },
+  "WIKIBOOKS": {
+   "curve": [
+    {
+     "pct_of_mentions": 18.82,
+     "pct_of_nonexact_mentions_in_top_k": 3.0,
+     "top_k_types": 10
+    },
+    {
+     "pct_of_mentions": 37.04,
+     "pct_of_nonexact_mentions_in_top_k": 5.91,
+     "top_k_types": 50
+    },
+    {
+     "pct_of_mentions": 45.57,
+     "pct_of_nonexact_mentions_in_top_k": 8.16,
+     "top_k_types": 100
+    },
+    {
+     "pct_of_mentions": 59.52,
+     "pct_of_nonexact_mentions_in_top_k": 16.9,
+     "top_k_types": 300
+    },
+    {
+     "pct_of_mentions": 65.71,
+     "pct_of_nonexact_mentions_in_top_k": 23.46,
+     "top_k_types": 500
+    },
+    {
+     "pct_of_mentions": 73.1,
+     "pct_of_nonexact_mentions_in_top_k": 34.4,
+     "top_k_types": 1000
+    },
+    {
+     "pct_of_mentions": 80.18,
+     "pct_of_nonexact_mentions_in_top_k": 49.03,
+     "top_k_types": 2000
+    },
+    {
+     "pct_of_mentions": 89.82,
+     "pct_of_nonexact_mentions_in_top_k": 73.74,
+     "top_k_types": 5000
+    }
+   ],
+   "deciles_by_mention_mass": [
+    {
+     "decile": 1,
+     "mentions": 3556,
+     "mentions_EXACT_ALIAS": 0,
+     "mentions_EXACT_ING": 3556,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 0,
+     "pct_any_hit": 100.0,
+     "pct_exact": 100.0,
+     "types": 4
+    },
+    {
+     "decile": 2,
+     "mentions": 3082,
+     "mentions_EXACT_ALIAS": 0,
+     "mentions_EXACT_ING": 2734,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 348,
+     "pct_any_hit": 100.0,
+     "pct_exact": 88.71,
+     "types": 8
+    },
+    {
+     "decile": 3,
+     "mentions": 3026,
+     "mentions_EXACT_ALIAS": 399,
+     "mentions_EXACT_ING": 2489,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 138,
+     "pct_any_hit": 100.0,
+     "pct_exact": 95.44,
+     "types": 16
+    },
+    {
+     "decile": 4,
+     "mentions": 3141,
+     "mentions_EXACT_ALIAS": 1126,
+     "mentions_EXACT_ING": 1749,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 266,
+     "pct_any_hit": 100.0,
+     "pct_exact": 91.53,
+     "types": 36
+    },
+    {
+     "decile": 5,
+     "mentions": 3200,
+     "mentions_EXACT_ALIAS": 787,
+     "mentions_EXACT_ING": 1883,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 530,
+     "pct_any_hit": 100.0,
+     "pct_exact": 83.44,
+     "types": 79
+    },
+    {
+     "decile": 6,
+     "mentions": 3177,
+     "mentions_EXACT_ALIAS": 723,
+     "mentions_EXACT_ING": 1737,
+     "mentions_MISS": 0,
+     "mentions_PARTIAL": 717,
+     "pct_any_hit": 100.0,
+     "pct_exact": 77.43,
+     "types": 169
+    },
+    {
+     "decile": 7,
+     "mentions": 3199,
+     "mentions_EXACT_ALIAS": 448,
+     "mentions_EXACT_ING": 1325,
+     "mentions_MISS": 91,
+     "mentions_PARTIAL": 1335,
+     "pct_any_hit": 97.16,
+     "pct_exact": 55.42,
+     "types": 429
+    },
+    {
+     "decile": 8,
+     "mentions": 3192,
+     "mentions_EXACT_ALIAS": 223,
+     "mentions_EXACT_ING": 749,
+     "mentions_MISS": 167,
+     "mentions_PARTIAL": 2053,
+     "pct_any_hit": 94.77,
+     "pct_exact": 30.45,
+     "types": 1231
+    },
+    {
+     "decile": 9,
+     "mentions": 3197,
+     "mentions_EXACT_ALIAS": 45,
+     "mentions_EXACT_ING": 187,
+     "mentions_MISS": 282,
+     "mentions_PARTIAL": 2683,
+     "pct_any_hit": 91.18,
+     "pct_exact": 7.26,
+     "types": 3087
+    },
+    {
+     "decile": 10,
+     "mentions": 3196,
+     "mentions_EXACT_ALIAS": 38,
+     "mentions_EXACT_ING": 169,
+     "mentions_MISS": 288,
+     "mentions_PARTIAL": 2701,
+     "pct_any_hit": 90.99,
+     "pct_exact": 6.48,
+     "types": 3196
+    }
+   ],
+   "deciles_by_type_rank": [
+    {
+     "decile": 1,
+     "max_count": 1748,
+     "mentions": 22728,
+     "mentions_EXACT_ALIAS": 3525,
+     "mentions_EXACT_ING": 15561,
+     "mentions_MISS": 95,
+     "mentions_PARTIAL": 3547,
+     "min_count": 4,
+     "pct_any_hit": 99.58,
+     "pct_exact": 83.98,
+     "types": 825
+    },
+    {
+     "decile": 2,
+     "max_count": 4,
+     "mentions": 2203,
+     "mentions_EXACT_ALIAS": 135,
+     "mentions_EXACT_ING": 543,
+     "mentions_MISS": 115,
+     "mentions_PARTIAL": 1410,
+     "min_count": 2,
+     "pct_any_hit": 94.78,
+     "pct_exact": 30.78,
+     "types": 826
+    },
+    {
+     "decile": 3,
+     "max_count": 2,
+     "mentions": 1256,
+     "mentions_EXACT_ALIAS": 63,
+     "mentions_EXACT_ING": 203,
+     "mentions_MISS": 107,
+     "mentions_PARTIAL": 883,
+     "min_count": 1,
+     "pct_any_hit": 91.48,
+     "pct_exact": 21.18,
+     "types": 825
+    },
+    {
+     "decile": 4,
+     "max_count": 1,
+     "mentions": 826,
+     "mentions_EXACT_ALIAS": 15,
+     "mentions_EXACT_ING": 52,
+     "mentions_MISS": 63,
+     "mentions_PARTIAL": 696,
+     "min_count": 1,
+     "pct_any_hit": 92.37,
+     "pct_exact": 8.11,
+     "types": 826
+    },
+    {
+     "decile": 5,
+     "max_count": 1,
+     "mentions": 825,
+     "mentions_EXACT_ALIAS": 4,
+     "mentions_EXACT_ING": 18,
+     "mentions_MISS": 71,
+     "mentions_PARTIAL": 732,
+     "min_count": 1,
+     "pct_any_hit": 91.39,
+     "pct_exact": 2.67,
+     "types": 825
+    },
+    {
+     "decile": 6,
+     "max_count": 1,
+     "mentions": 826,
+     "mentions_EXACT_ALIAS": 8,
+     "mentions_EXACT_ING": 28,
+     "mentions_MISS": 78,
+     "mentions_PARTIAL": 712,
+     "min_count": 1,
+     "pct_any_hit": 90.56,
+     "pct_exact": 4.36,
+     "types": 826
+    },
+    {
+     "decile": 7,
+     "max_count": 1,
+     "mentions": 825,
+     "mentions_EXACT_ALIAS": 11,
+     "mentions_EXACT_ING": 32,
+     "mentions_MISS": 98,
+     "mentions_PARTIAL": 684,
+     "min_count": 1,
+     "pct_any_hit": 88.12,
+     "pct_exact": 5.21,
+     "types": 825
+    },
+    {
+     "decile": 8,
+     "max_count": 1,
+     "mentions": 826,
+     "mentions_EXACT_ALIAS": 9,
+     "mentions_EXACT_ING": 46,
+     "mentions_MISS": 86,
+     "mentions_PARTIAL": 685,
+     "min_count": 1,
+     "pct_any_hit": 89.59,
+     "pct_exact": 6.66,
+     "types": 826
+    },
+    {
+     "decile": 9,
+     "max_count": 1,
+     "mentions": 825,
+     "mentions_EXACT_ALIAS": 11,
+     "mentions_EXACT_ING": 38,
+     "mentions_MISS": 51,
+     "mentions_PARTIAL": 725,
+     "min_count": 1,
+     "pct_any_hit": 93.82,
+     "pct_exact": 5.94,
+     "types": 825
+    },
+    {
+     "decile": 10,
+     "max_count": 1,
+     "mentions": 826,
+     "mentions_EXACT_ALIAS": 8,
+     "mentions_EXACT_ING": 57,
+     "mentions_MISS": 64,
+     "mentions_PARTIAL": 697,
+     "min_count": 1,
+     "pct_any_hit": 92.25,
+     "pct_exact": 7.87,
+     "types": 826
+    }
+   ],
+   "hapax_pct_of_types": 74.78,
+   "hapax_types": 6173,
+   "ingredient_lines": 32036,
+   "lines_with_u2044_fraction_slash": 0,
+   "lines_without_any_lexicon_food_match": 538,
+   "mentions": 31966,
+   "mentions_by_class": {
+    "EXACT_ALIAS": 3789,
+    "EXACT_ING": 16578,
+    "MISS": 828,
+    "PARTIAL": 10771
+   },
+   "nonexact_mentions": 11599,
+   "nonexact_types": 7017,
+   "nonexact_types_needed_for_pct_of_nonexact_mentions": {
+    "50": 1219,
+    "80": 4698,
+    "90": 5858,
+    "95": 6438,
+    "99": 6902
+   },
+   "partial_mean_covered_token_share": 0.4632,
+   "pct_any_hit": 97.41,
+   "pct_by_class": {
+    "EXACT_ALIAS": 11.85,
+    "EXACT_ING": 51.86,
+    "MISS": 2.59,
+    "PARTIAL": 33.7
+   },
+   "pct_exact": 63.71,
+   "pct_lines_with_any_lexicon_food_match": 98.32,
+   "recipes": 3676,
+   "status": "READ",
+   "types": 8255,
+   "types_by_class": {
+    "EXACT_ALIAS": 285,
+    "EXACT_ING": 953,
+    "MISS": 645,
+    "PARTIAL": 6372
+   },
+   "types_needed_for_pct_of_mentions": {
+    "50": 143,
+    "80": 1972,
+    "90": 5059,
+    "95": 6657,
+    "99": 7936
+   }
+  }
+ },
+ "lexicon": {
+  "food_lexicon_keys": 4317,
+  "ing_active": 2048,
+  "ing_canonical_keys": 2047,
+  "lexicon_fingerprint": "9678937f6a9a0ff6f9ce4acbaaa20d85cb5da6138e956f4742189078b94903c3",
+  "lexicon_sources_sha256": {
+   "ledgers/data/ALIAS.jsonl": "65d89c0dfe164a5c2955c7e874c93e6f8b76bddc30fc9f3639997d9430c3278c",
+   "ledgers/data/ING.jsonl": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+   "ledgers/data/PROC.jsonl": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+   "ledgers/data/TOOL.jsonl": "897243c7c02e0b7657ae564d797d3e4757efb4ce9c2e82b985d1ec0593492c02",
+   "ledgers/data/UNIT.jsonl": "c7b317ae32c6c03bada10f381ef5a3e657acabd00bd0424882ffe2548dfe18c7",
+   "registry/recipe_process_surface_forms_v1.csv": "e406ebeb8a2556dd2fd3bc2dad99a11f7aa7664dfb3b76585e9c66ac344442ff",
+   "registry/recipe_tool_structural_class_map_v1.csv": "829647c5387e147bfe694606122e0c8b164c96ad7b664e0608156cee5d0e91ee"
+  }
+ },
+ "mention_rule": "MENTION_RULE_V1",
+ "ner_context": {
+  "families": {
+   "FOODCOM": {
+    "FOOD_spans": 4133781,
+    "lines": 4129433,
+    "lines_with_FOOD": 4098353
+   },
+   "TASTESET": {
+    "FOOD_spans": 4032,
+    "lines": 3788,
+    "lines_with_FOOD": 3756
+   },
+   "WIKIBOOKS": {
+    "FOOD_spans": 35411,
+    "lines": 32036,
+    "lines_with_FOOD": 31543
+   }
+  },
+  "note": "model-derived span counts (DeBERTa-CRF, TASTEset DEV F1 0.940 reported by the checkpoint file); per-span outputs not stored, torch absent here, so no per-span ING/ALIAS hit rate for FOODCOM / WIKIBOOKS",
+  "source": "reports/ner_v2/ner_corpus_counts_S174.json",
+  "source_sha256": "5f0e496e529fbe5c50ec5fe39418dd205caa15ea3af10b3394c5d1445bbedc1f",
+  "status": "MODEL_DERIVED_COUNTS_ONLY"
+ },
+ "notes": [
+  "EXACT is the strict reading of 'hits ING/ALIAS'; PARTIAL + EXACT is the Rung A reading (a food is found in the phrase, which is what the S175/S177 line census calls a food mention).",
+  "Phrase-level EXACT is conservative: modifiers (fresh, large, chopped, brand words) keep a phrase from matching even when its head noun is a known concept; the PARTIAL class holds those.",
+  "FOODCOM mentions come from the name field only. No quantity is used, so the quantity/part misalignment (78.0 % of recipes, 407,536 / 522,517, full corpus; the S176 seeded sample gave 79.5 %, 683 / 859) does not affect this census.",
+  "WIKIBOOKS / TASTESET mentions pass through the legacy quantity grammar, which mis-reads U+2044 (SP-002); the affected lines lose their quantity but their food phrase is unaffected, because the quantity is cut before the lexicon lookup.",
+  "ING / ALIAS are UNVERIFIED registries (AI-drafted); a hit means 'the registry has this surface', not 'the identity is verified'.",
+  "The top-500 non-EXACT lists are written under data/derived/s178_analysis/ (git-ignored). The committed files hold counts only."
+ ],
+ "reconciliation_with_s177_line_census": {
+  "FOODCOM": {
+   "delta": 0,
+   "lines_equal": true,
+   "note": "the S175 tool takes ING names from every ING line (any status); this tool uses ACTIVE records only",
+   "s177_no_food_mention_lines": 45825,
+   "source": "reports/s177/line_mass_census_FOODCOM_manjot.json",
+   "this_tool_no_lexicon_match_lines": 45825
+  },
+  "TASTESET": {
+   "delta": 0,
+   "lines_equal": true,
+   "note": "the S175 tool takes ING names from every ING line (any status); this tool uses ACTIVE records only",
+   "s177_no_food_mention_lines": 129,
+   "source": "reports/s177/line_mass_census_TASTESET_manjot.json",
+   "this_tool_no_lexicon_match_lines": 129
+  },
+  "WIKIBOOKS": {
+   "delta": 0,
+   "lines_equal": true,
+   "note": "the S175 tool takes ING names from every ING line (any status); this tool uses ACTIVE records only",
+   "s177_no_food_mention_lines": 538,
+   "source": "reports/s177/line_mass_census_WIKIBOOKS_manjot.json",
+   "this_tool_no_lexicon_match_lines": 538
+  }
+ },
+ "record": "ING_ALIAS_COVERAGE_CENSUS_S178",
+ "sample_limit_recipes": null,
+ "status": "AI_DRAFTED_PROPOSED_COUNTS_ONLY",
+ "tasteset_gold_food_spans": {
+  "annotation": "HUMAN_GOLD_FOOD_SPANS_TASTESET (model training data overlaps; not an accuracy claim)",
+  "curve": [
+   {
+    "pct_of_mentions": 24.78,
+    "pct_of_nonexact_mentions_in_top_k": 0.0,
+    "top_k_types": 10
+   },
+   {
+    "pct_of_mentions": 47.44,
+    "pct_of_nonexact_mentions_in_top_k": 0.0,
+    "top_k_types": 50
+   },
+   {
+    "pct_of_mentions": 58.76,
+    "pct_of_nonexact_mentions_in_top_k": 3.63,
+    "top_k_types": 100
+   },
+   {
+    "pct_of_mentions": 77.39,
+    "pct_of_nonexact_mentions_in_top_k": 26.92,
+    "top_k_types": 300
+   },
+   {
+    "pct_of_mentions": 85.17,
+    "pct_of_nonexact_mentions_in_top_k": 47.24,
+    "top_k_types": 500
+   },
+   {
+    "pct_of_mentions": 97.61,
+    "pct_of_nonexact_mentions_in_top_k": 91.39,
+    "top_k_types": 1000
+   }
+  ],
+  "deciles_by_mention_mass": [
+   {
+    "decile": 1,
+    "mentions": 427,
+    "mentions_EXACT_ALIAS": 0,
+    "mentions_EXACT_ING": 427,
+    "mentions_MISS": 0,
+    "mentions_PARTIAL": 0,
+    "pct_any_hit": 100.0,
+    "pct_exact": 100.0,
+    "types": 3
+   },
+   {
+    "decile": 2,
+    "mentions": 387,
+    "mentions_EXACT_ALIAS": 0,
+    "mentions_EXACT_ING": 387,
+    "mentions_MISS": 0,
+    "mentions_PARTIAL": 0,
+    "pct_any_hit": 100.0,
+    "pct_exact": 100.0,
+    "types": 4
+   },
+   {
+    "decile": 3,
+    "mentions": 408,
+    "mentions_EXACT_ALIAS": 44,
+    "mentions_EXACT_ING": 364,
+    "mentions_MISS": 0,
+    "mentions_PARTIAL": 0,
+    "pct_any_hit": 100.0,
+    "pct_exact": 100.0,
+    "types": 9
+   },
+   {
+    "decile": 4,
+    "mentions": 389,
+    "mentions_EXACT_ALIAS": 60,
+    "mentions_EXACT_ING": 329,
+    "mentions_MISS": 0,
+    "mentions_PARTIAL": 0,
+    "pct_any_hit": 100.0,
+    "pct_exact": 100.0,
+    "types": 15
+   },
+   {
+    "decile": 5,
+    "mentions": 408,
+    "mentions_EXACT_ALIAS": 54,
+    "mentions_EXACT_ING": 354,
+    "mentions_MISS": 0,
+    "mentions_PARTIAL": 0,
+    "pct_any_hit": 100.0,
+    "pct_exact": 100.0,
+    "types": 29
+   },
+   {
+    "decile": 6,
+    "mentions": 399,
+    "mentions_EXACT_ALIAS": 39,
+    "mentions_EXACT_ING": 326,
+    "mentions_MISS": 7,
+    "mentions_PARTIAL": 27,
+    "pct_any_hit": 98.25,
+    "pct_exact": 91.48,
+    "types": 48
+   },
+   {
+    "decile": 7,
+    "mentions": 397,
+    "mentions_EXACT_ALIAS": 28,
+    "mentions_EXACT_ING": 283,
+    "mentions_MISS": 37,
+    "mentions_PARTIAL": 49,
+    "pct_any_hit": 90.68,
+    "pct_exact": 78.34,
+    "types": 83
+   },
+   {
+    "decile": 8,
+    "mentions": 402,
+    "mentions_EXACT_ALIAS": 47,
+    "mentions_EXACT_ING": 231,
+    "mentions_MISS": 44,
+    "mentions_PARTIAL": 80,
+    "pct_any_hit": 89.05,
+    "pct_exact": 69.15,
+    "types": 162
+   },
+   {
+    "decile": 9,
+    "mentions": 401,
+    "mentions_EXACT_ALIAS": 21,
+    "mentions_EXACT_ING": 148,
+    "mentions_MISS": 56,
+    "mentions_PARTIAL": 176,
+    "pct_any_hit": 86.03,
+    "pct_exact": 42.14,
+    "types": 341
+   },
+   {
+    "decile": 10,
+    "mentions": 402,
+    "mentions_EXACT_ALIAS": 22,
+    "mentions_EXACT_ING": 113,
+    "mentions_MISS": 68,
+    "mentions_PARTIAL": 199,
+    "pct_any_hit": 83.08,
+    "pct_exact": 33.58,
+    "types": 402
+   }
+  ],
+  "deciles_by_type_rank": [
+   {
+    "decile": 1,
+    "max_count": 150,
+    "mentions": 2424,
+    "mentions_EXACT_ALIAS": 197,
+    "mentions_EXACT_ING": 2193,
+    "mentions_MISS": 7,
+    "mentions_PARTIAL": 27,
+    "min_count": 6,
+    "pct_any_hit": 99.71,
+    "pct_exact": 98.6,
+    "types": 109
+   },
+   {
+    "decile": 2,
+    "max_count": 6,
+    "mentions": 484,
+    "mentions_EXACT_ALIAS": 41,
+    "mentions_EXACT_ING": 328,
+    "mentions_MISS": 46,
+    "mentions_PARTIAL": 69,
+    "min_count": 3,
+    "pct_any_hit": 90.5,
+    "pct_exact": 76.24,
+    "types": 110
+   },
+   {
+    "decile": 3,
+    "max_count": 3,
+    "mentions": 259,
+    "mentions_EXACT_ALIAS": 32,
+    "mentions_EXACT_ING": 154,
+    "mentions_MISS": 21,
+    "mentions_PARTIAL": 52,
+    "min_count": 2,
+    "pct_any_hit": 91.89,
+    "pct_exact": 71.81,
+    "types": 109
+   },
+   {
+    "decile": 4,
+    "max_count": 2,
+    "mentions": 195,
+    "mentions_EXACT_ALIAS": 13,
+    "mentions_EXACT_ING": 95,
+    "mentions_MISS": 26,
+    "mentions_PARTIAL": 61,
+    "min_count": 1,
+    "pct_any_hit": 86.67,
+    "pct_exact": 55.38,
+    "types": 110
+   },
+   {
+    "decile": 5,
+    "max_count": 1,
+    "mentions": 110,
+    "mentions_EXACT_ALIAS": 7,
+    "mentions_EXACT_ING": 30,
+    "mentions_MISS": 14,
+    "mentions_PARTIAL": 59,
+    "min_count": 1,
+    "pct_any_hit": 87.27,
+    "pct_exact": 33.64,
+    "types": 110
+   },
+   {
+    "decile": 6,
+    "max_count": 1,
+    "mentions": 109,
+    "mentions_EXACT_ALIAS": 1,
+    "mentions_EXACT_ING": 37,
+    "mentions_MISS": 20,
+    "mentions_PARTIAL": 51,
+    "min_count": 1,
+    "pct_any_hit": 81.65,
+    "pct_exact": 34.86,
+    "types": 109
+   },
+   {
+    "decile": 7,
+    "max_count": 1,
+    "mentions": 110,
+    "mentions_EXACT_ALIAS": 3,
+    "mentions_EXACT_ING": 35,
+    "mentions_MISS": 21,
+    "mentions_PARTIAL": 51,
+    "min_count": 1,
+    "pct_any_hit": 80.91,
+    "pct_exact": 34.55,
+    "types": 110
+   },
+   {
+    "decile": 8,
+    "max_count": 1,
+    "mentions": 109,
+    "mentions_EXACT_ALIAS": 7,
+    "mentions_EXACT_ING": 29,
+    "mentions_MISS": 22,
+    "mentions_PARTIAL": 51,
+    "min_count": 1,
+    "pct_any_hit": 79.82,
+    "pct_exact": 33.03,
+    "types": 109
+   },
+   {
+    "decile": 9,
+    "max_count": 1,
+    "mentions": 110,
+    "mentions_EXACT_ALIAS": 7,
+    "mentions_EXACT_ING": 30,
+    "mentions_MISS": 15,
+    "mentions_PARTIAL": 58,
+    "min_count": 1,
+    "pct_any_hit": 86.36,
+    "pct_exact": 33.64,
+    "types": 110
+   },
+   {
+    "decile": 10,
+    "max_count": 1,
+    "mentions": 110,
+    "mentions_EXACT_ALIAS": 7,
+    "mentions_EXACT_ING": 31,
+    "mentions_MISS": 20,
+    "mentions_PARTIAL": 52,
+    "min_count": 1,
+    "pct_any_hit": 81.82,
+    "pct_exact": 34.55,
+    "types": 110
+   }
+  ],
+  "gold_entity_types": {
+   "COLOR": 231,
+   "FOOD": 4020,
+   "PART": 55,
+   "PHYSICAL_QUALITY": 793,
+   "PROCESS": 1091,
+   "PURPOSE": 94,
+   "QUANTITY": 3780,
+   "TASTE": 126,
+   "UNIT": 3172
+  },
+  "hapax_pct_of_types": 62.32,
+  "hapax_types": 683,
+  "mentions": 4020,
+  "mentions_by_class": {
+   "EXACT_ALIAS": 315,
+   "EXACT_ING": 2962,
+   "MISS": 212,
+   "PARTIAL": 531
+  },
+  "nonexact_mentions": 743,
+  "nonexact_types": 550,
+  "nonexact_types_needed_for_pct_of_nonexact_mentions": {
+   "50": 179,
+   "80": 402,
+   "90": 476,
+   "95": 513,
+   "99": 543
+  },
+  "pct_any_hit": 94.73,
+  "pct_by_class": {
+   "EXACT_ALIAS": 7.84,
+   "EXACT_ING": 73.68,
+   "MISS": 5.27,
+   "PARTIAL": 13.21
+  },
+  "pct_exact": 81.52,
+  "recipes": 700,
+  "status": "READ",
+  "types": 1096,
+  "types_by_class": {
+   "EXACT_ALIAS": 74,
+   "EXACT_ING": 472,
+   "MISS": 148,
+   "PARTIAL": 402
+  },
+  "types_needed_for_pct_of_mentions": {
+   "50": 60,
+   "80": 353,
+   "90": 694,
+   "95": 895,
+   "99": 1056
+  }
+ },
+ "tool_version": "s178-ing-alias-coverage-0.1.0-draft",
+ "unmapped_lists": {
+  "FOODCOM": {
+   "git_ignored": true,
+   "note": "short food phrases with counts; kept out of the committed tree (law 6)",
+   "path": "data/derived/s178_analysis/unmapped_top500_FOODCOM.csv",
+   "rows": 500,
+   "sha256": "cc5d38cd1e1a7614d5389210684b8110de5b23fc126b5a31a694cde079dd65c1"
+  },
+  "TASTESET": {
+   "git_ignored": true,
+   "note": "short food phrases with counts; kept out of the committed tree (law 6)",
+   "path": "data/derived/s178_analysis/unmapped_top500_TASTESET.csv",
+   "rows": 500,
+   "sha256": "8663400fdd877d6957a2fc94ef7f0dac792f0e20f91cbf584d54fb5abd60db70"
+  },
+  "WIKIBOOKS": {
+   "git_ignored": true,
+   "note": "short food phrases with counts; kept out of the committed tree (law 6)",
+   "path": "data/derived/s178_analysis/unmapped_top500_WIKIBOOKS.csv",
+   "rows": 500,
+   "sha256": "0063126a24c38ae0d3ae9f25c82f253cb246b557d794c9ce1015203d0906c9df"
+  }
+ }
+}

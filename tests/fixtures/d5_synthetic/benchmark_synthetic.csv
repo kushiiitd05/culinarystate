@@ -1,0 +1,17 @@
+qid,block,question,ingredient_id,food,process,process_id,process_2,process_id_2,target,target_svars,gold_mode,gold_branch,gold_compare,gold_evd_ids,gold_retention_range,gold_evd_ids_2,gold_retention_range_2,gold_origin,drafted_by
+SYN-S1-001,S1,Synthetic recipe state question number 1.,,,,,,,,,,UNKNOWN,,,,,,HUMAN_BLIND,SYNTHETIC_FIXTURE
+SYN-S1-002,S1,Synthetic recipe state question number 2.,,,,,,,,,,UNKNOWN,,,,,,HUMAN_BLIND,SYNTHETIC_FIXTURE
+SYN-S1-003,S1,Synthetic recipe state question number 3.,,,,,,,,,,UNKNOWN,,,,,,HUMAN_BLIND,SYNTHETIC_FIXTURE
+SYN-S2-001,S2,Synthetic recipe state question number 4.,,,,,,,,,,UNKNOWN,,,,,,HUMAN_BLIND,SYNTHETIC_FIXTURE
+SYN-S2-002,S2,Synthetic recipe state question number 5.,,,,,,,,,,UNKNOWN,,,,,,HUMAN_BLIND,SYNTHETIC_FIXTURE
+SYN-S2-003,S2,Synthetic recipe state question number 6.,,,,,,,,,,UNKNOWN,,,,,,HUMAN_BLIND,SYNTHETIC_FIXTURE
+SYN-P1-001,P1,Synthetic: vitamin C left in boiled fixturefruit?,ING-990001,fixturefruit,boil,PROC-990001,,,vitamin C,SVAR-990001,ANSWER,TRANSFORMATION,,EVD-990001|EVD-990002,0.65-0.70 fraction retained (n=2),,,,SYNTHETIC_FIXTURE
+SYN-P1-002,P1,Synthetic: folate left in boiled fixtureroot?,ING-990003,fixtureroot,boil,PROC-990001,,,folate,SVAR-990002,ANSWER,TRANSFORMATION,,EVD-990006,0.45-0.45 fraction retained (n=1),,,,SYNTHETIC_FIXTURE
+SYN-P2-001,P2,Synthetic: vitamin C left in boiled fixtureleaf?,ING-990002,fixtureleaf,boil,PROC-990001,,,vitamin C,SVAR-990001,ANSWER_SIMILAR_ONLY,TRANSFORMATION,,EVD-990004,0.55-0.55 fraction retained (n=1),,,,SYNTHETIC_FIXTURE
+SYN-P3-001,P3,Synthetic: vitamin C left in fried fixturestone?,ING-990004,fixturestone,fry,PROC-990004,,,vitamin C,SVAR-990001,ABSTAIN,TRANSFORMATION,,,,,,,SYNTHETIC_FIXTURE
+SYN-P3-002,P3,Synthetic: folate left in baked fixtureleaf?,ING-990002,fixtureleaf,bake,PROC-990003,,,folate,SVAR-990002,ABSTAIN,TRANSFORMATION,,,,,,,SYNTHETIC_FIXTURE
+SYN-C-001,C,Synthetic: boil or steam fixturefruit for vitamin C?,ING-990001,fixturefruit,boil,PROC-990001,steam,PROC-990002,vitamin C,SVAR-990001,COMPARE,TRANSFORMATION,,EVD-990001|EVD-990002,0.65-0.70 fraction retained (n=2),EVD-990003,0.85-0.85 fraction retained (n=1),,SYNTHETIC_FIXTURE
+SYN-C-002,C,Synthetic: bake or boil fixtureroot for folate?,ING-990003,fixtureroot,bake,PROC-990003,boil,PROC-990001,folate,SVAR-990002,COMPARE,TRANSFORMATION,CANNOT_SEPARATE,EVD-990005,0.40-0.40 fraction retained (n=1),EVD-990006,0.45-0.45 fraction retained (n=1),,SYNTHETIC_FIXTURE
+SYN-U-001,U,Synthetic: what replaces fixturepepper?,ING-990005,fixturepepper,,,,,,,ABSTAIN_NO_EDGE,RELATIONSHIP,,,,,,,SYNTHETIC_FIXTURE
+SYN-X-001,X,Synthetic food-safety control question.,,,,,,,,,REFUSE,SAFETY,,,,,,,SYNTHETIC_FIXTURE
+SYN-X-002,X,Synthetic vague control question.,,,,,,,,,ABSTAIN,UNKNOWN,,,,,,,SYNTHETIC_FIXTURE

@@ -1,0 +1,121 @@
+{
+ "by_source_family": {
+  "BOGNAR-2002": {
+   "active_rows": 7090,
+   "cells": 6594,
+   "cells_censored": 3274,
+   "cells_censored_with_y_filled": 0,
+   "cells_equal_measured_plus_censored": true,
+   "cells_missing_y_and_not_censored": 0,
+   "cells_y_equal_0": 0,
+   "cells_y_equal_0_equal_source_measured_zero": true,
+   "cells_y_lower_equal_0": 0,
+   "censor_kinds": {
+    "GT_CAP": 3274
+   },
+   "censor_limits": {
+    "0.995": 3274
+   },
+   "censored_rows_without_limit": 0,
+   "censored_share_of_cells_pct": 49.65,
+   "retention_status_rows": {
+    "ABSENT": 496,
+    "CENSORED": 3274,
+    "MEASURED": 3320
+   },
+   "rows_without_cell_are_unknown_or_absent": 496,
+   "source_measured_zero_rows": 0,
+   "tiers": {
+    "E3": 7090
+   },
+   "y_train_equals_y_or_y_lower_everywhere": true,
+   "y_train_nan": 0,
+   "y_train_rows_equal_stated_bound": 3274
+  },
+  "PHENOL-EXPLORER-3.6": {
+   "active_rows": 3870,
+   "cells": 3870,
+   "cells_censored": 0,
+   "cells_censored_with_y_filled": 0,
+   "cells_equal_measured_plus_censored": true,
+   "cells_missing_y_and_not_censored": 0,
+   "cells_y_equal_0": 61,
+   "cells_y_equal_0_equal_source_measured_zero": true,
+   "cells_y_lower_equal_0": 0,
+   "censor_kinds": {},
+   "censor_limits": {},
+   "censored_rows_without_limit": 0,
+   "censored_share_of_cells_pct": 0.0,
+   "retention_status_rows": {
+    "MEASURED": 3870
+   },
+   "rows_without_cell_are_unknown_or_absent": 0,
+   "source_measured_zero_rows": 61,
+   "tiers": {
+    "E3": 3870
+   },
+   "y_train_equals_y_or_y_lower_everywhere": true,
+   "y_train_nan": 0,
+   "y_train_rows_equal_stated_bound": 0
+  },
+  "USDA-RETN-R6": {
+   "active_rows": 7018,
+   "cells": 6994,
+   "cells_censored": 2620,
+   "cells_censored_with_y_filled": 0,
+   "cells_equal_measured_plus_censored": true,
+   "cells_missing_y_and_not_censored": 0,
+   "cells_y_equal_0": 0,
+   "cells_y_equal_0_equal_source_measured_zero": true,
+   "cells_y_lower_equal_0": 0,
+   "censor_kinds": {
+    "GT_CAP": 2620
+   },
+   "censor_limits": {
+    "97.5": 2620
+   },
+   "censored_rows_without_limit": 0,
+   "censored_share_of_cells_pct": 37.46,
+   "retention_status_rows": {
+    "CENSORED": 2620,
+    "MEASURED": 4374,
+    "UNKNOWN": 24
+   },
+   "rows_without_cell_are_unknown_or_absent": 24,
+   "source_measured_zero_rows": 0,
+   "tiers": {
+    "E3": 7018
+   },
+   "y_train_equals_y_or_y_lower_everywhere": true,
+   "y_train_nan": 0,
+   "y_train_rows_equal_stated_bound": 2620
+  }
+ },
+ "contains_ids": false,
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "reading": "0 in every violation field = no zero / mean / half-minimum value reached a real cell (a cell with y = 0 is counted as a violation unless the ledger row itself states MEASURED 0). Source-side imputation inside USDA R6 (SOURCE_SIDE_IMPUTATION_POSSIBLE_NOT_ROW_IDENTIFIABLE) cannot be seen from the ledger. The only substitution is y_train: a censored cell (GT_CAP) enters training at its stated bound; its share of each family's cells is censored_share_of_cells_pct and is the quantity the 29-diag cap-stratified rerun exists to expose.",
+ "record": "TRANSITION_NO_IMPUTATION_AUDIT_S178",
+ "status": "AI_DRAFTED_PROPOSED",
+ "tool_version": "s178-evd-transition-audit-0.1.0-draft",
+ "totals": {
+  "active_rows": 17978,
+  "cells": 17458,
+  "cells_censored": 5894,
+  "cells_censored_with_y_filled": 0,
+  "cells_missing_y_and_not_censored": 0,
+  "cells_y_equal_0": 61,
+  "cells_y_lower_equal_0": 0,
+  "censored_rows_without_limit": 0,
+  "source_measured_zero_rows": 61,
+  "y_train_nan": 0
+ },
+ "violations": {
+  "censored_rows_without_limit": 0,
+  "censored_with_y_filled": 0,
+  "missing_y_not_censored": 0,
+  "y_equal_0_cells_not_a_source_measured_zero": 0,
+  "y_lower_equal_0_cells": 0,
+  "y_train_nan": 0
+ }
+}
