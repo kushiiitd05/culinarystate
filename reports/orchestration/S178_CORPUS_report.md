@@ -160,3 +160,26 @@ Tool and module sha256 (first 16 hex): foodcom_pairing.py `8e6a739de5664c2c`, pr
 - `reports/s178/corpus/`: `ing_count_reconciliation_v1`, `sp002_prenorm_rerun_v1`, `verb_coverage_census_v1` (+ `verb_unmapped_top200_{FOODCOM,GUTENBERG_SEGMENT,WIKIBOOKS}.csv`), `foodcom_bare_count_v1`, `foodcom_quantity_alignment_v1`, `foodcom_data_card_v1`, `ing_review_queue_summary_v1.json`, `span_agreement_tasteset_v1.json`, `replay_invariants_corpus_v1`
 - `data/derived/s178_corpus/` (git-ignored, about 1.2 MB): review queues, span-agreement lists
 
+
+## S178 correction (FIX-EVAL), 2026-11-09 (re-run completed S179)
+
+AI_DRAFTED (D-071). Appended after the SCI-B review findings CORP-4, CORP-5 and CORP-6; the sections above are kept as
+written. Run rows RUN-S179-CORP-001 (1,000 smoke) and RUN-S179-CORP-002 (full families); the S178 full re-run was
+killed and is logged ABORTED.
+
+- **CORP-4, independence.** `tools/s178_corpus_replay_invariants.py` 0.2.0 re-derives the seven invariants, every other
+  structural rejection rule and its own apply / reject vector; only MASS_BALANCE_FAIL positions come from the engine
+  (0 such events in the run). Result on the full families: 0 apply-decision and 0 issue-code-set disagreements
+  (engine-rejected = independently rejected: Food.com 79,206, Gutenberg 4,957, Wikibooks 779). Planted mutations at a
+  hash-drawn position (order swap, double consume, resurrect after discard, split over one) are detected 100 % by both
+  checkers, at the planted position, mostly in interior events (Food.com order swap 24,171 interior of 26,120).
+- **CORP-5, by-construction invariants.** ORDER_REGRESSION and EVENT_ID_REUSED cannot be produced by Rung A and the
+  adapter (`extraction/rung_a_binding.py:211-226`, `state_graph/event_adapter.py:180-213`). Their zeros in section 2.8
+  are not validation; v2 marks them BY CONSTRUCTION. The planted order swap shows the check itself works.
+- **CORP-6, determinism.** v2 checks determinism in the same worker and in a second pool with a different hash seed:
+  Food.com 10,416 / 10,416, Gutenberg 1,550 / 1,550, Wikibooks 80 / 80 equal in both. The verb-census denominator and
+  "exhaustive" wording are corrected in `verb_coverage_census_v2` (sample, not exhaustive).
+- **Full-family v2 counts** (`reports/s178/corpus/replay_invariants_corpus_v2.{json,md}`): engine events incl. lot
+  introductions Food.com 12,543,466, Gutenberg 1,563,210, Wikibooks 90,224; replay FAIL texts 11,721 / 955 / 98;
+  unexplained 0 in every family. The split-sum invariant still has nothing checkable on real graphs (0 partition
+  groups with a basis and a known fraction). v1 is kept as history and superseded by v2.
