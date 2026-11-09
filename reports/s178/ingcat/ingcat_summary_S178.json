@@ -1,0 +1,146 @@
+{
+ "active_ing_with_category": 631,
+ "active_ing_without_category": 1417,
+ "backtest_vs_ledger_labels": {
+  "HIGH": {
+   "agree": 242,
+   "agreement_rate_of_proposed": 0.942,
+   "disagree": 15,
+   "n": 257,
+   "no_proposal": 0,
+   "proposed": 257
+  },
+  "LOW": {
+   "agree": 20,
+   "agreement_rate_of_proposed": 0.556,
+   "disagree": 16,
+   "n": 67,
+   "no_proposal": 31,
+   "proposed": 36
+  },
+  "MEDIUM": {
+   "agree": 276,
+   "agreement_rate_of_proposed": 0.899,
+   "disagree": 31,
+   "n": 307,
+   "no_proposal": 0,
+   "proposed": 307
+  }
+ },
+ "by_confidence": {
+  "HIGH": 193,
+  "LOW": 310,
+  "MEDIUM": 914
+ },
+ "by_proposed_category": {
+  "BEVERAGE": 83,
+  "CEREAL": 234,
+  "CONDIMENT": 97,
+  "DAIRY": 93,
+  "EGG": 8,
+  "FAT_OIL": 22,
+  "FRUIT": 85,
+  "HERB_SPICE": 143,
+  "LEGUME": 24,
+  "MEAT": 131,
+  "NONE": 168,
+  "NUT_SEED": 37,
+  "SEAFOOD": 41,
+  "SWEETENER": 88,
+  "VEGETABLE": 163
+ },
+ "counts_only": true,
+ "csv_sha256": "2b464677f7a695be9ae10121bb8546b700ca97b76a3f720a6be45d1f0706b80a",
+ "flag_counts": {
+  "CROSSWALK_WOULD_NOT_CONFIRM": 53,
+  "DUAL_USE": 99,
+  "DUAL_USE_NOTE": 106,
+  "LEAKY_SR_GROUP": 25,
+  "LEGACY_MATCH_ONLY": 34,
+  "NEW_VALUE_SUGGESTED": 71,
+  "NOT_A_FOOD_CONSIDER_DEPRECATING": 13,
+  "NOT_A_FOOD_SUSPECT": 13,
+  "NO_BASIS": 113,
+  "NO_EXACT_FIT": 34,
+  "NO_VOCABULARY_FIT": 55,
+  "PRECEDENT_DISAGREES": 41,
+  "REGISTRY_UNMAPPABLE": 72,
+  "SR_GROUP_DISAGREES": 46,
+  "SR_GROUP_HAS_NO_VOCABULARY_ITEM": 13,
+  "SR_GROUP_WOULD_MAP_TO": 10
+ },
+ "new_value_suggestions_ing": {
+  "ADDITIVE": 29,
+  "LEAVENING_AGENT": 13,
+  "SALT_MINERAL": 5,
+  "STOCK_BROTH": 21,
+  "WATER": 3
+ },
+ "new_value_suggestions_nonbbc_mentions": {
+  "ADDITIVE": 2649,
+  "LEAVENING_AGENT": 85542,
+  "SALT_MINERAL": 259919,
+  "STOCK_BROTH": 32672,
+  "WATER": 126740
+ },
+ "no_proposal": 168,
+ "nonbbc_mentions_by_confidence": {
+  "HIGH": 668284,
+  "LOW": 206784,
+  "MEDIUM": 653037
+ },
+ "nonbbc_mentions_total_of_uncategorised": 1528105,
+ "s177_category_blocked_ing": 52,
+ "s177_category_blocked_ing_proposed_and_confirmed_by_crosswalk": 45,
+ "s177_full_census_member_projection": {
+  "A_top100_sheet_HIGH_only": {
+   "ing_clearing_the_s177_category_block": 13,
+   "ing_confirmed": 46,
+   "s177_full_items_member_unknown_to_absent": 1994605
+  },
+  "B_first100_HIGH_proposals": {
+   "ing_clearing_the_s177_category_block": 24,
+   "ing_confirmed": 100,
+   "s177_full_items_member_unknown_to_absent": 2354927
+  },
+  "C_all_HIGH": {
+   "ing_clearing_the_s177_category_block": 39,
+   "ing_confirmed": 193,
+   "s177_full_items_member_unknown_to_absent": 2408533
+  },
+  "D_top100_sheet_HIGH_and_MEDIUM": {
+   "ing_clearing_the_s177_category_block": 18,
+   "ing_confirmed": 83,
+   "s177_full_items_member_unknown_to_absent": 4627227
+  },
+  "E_all_HIGH_and_MEDIUM": {
+   "ing_clearing_the_s177_category_block": 45,
+   "ing_confirmed": 1107,
+   "s177_full_items_member_unknown_to_absent": 5043837
+  }
+ },
+ "status": "AI_DRAFTED_FOR_HUMAN_REVIEW",
+ "tool_version": "s178-ingcat-propose-0.1.0-draft",
+ "top100_by_confidence": {
+  "HIGH": 46,
+  "LOW": 17,
+  "MEDIUM": 37
+ },
+ "top100_nonbbc_mentions_share": 0.8992,
+ "vocabulary": [
+  "BEVERAGE",
+  "CEREAL",
+  "CONDIMENT",
+  "DAIRY",
+  "EGG",
+  "FAT_OIL",
+  "FRUIT",
+  "HERB_SPICE",
+  "LEGUME",
+  "MEAT",
+  "NUT_SEED",
+  "SEAFOOD",
+  "SWEETENER",
+  "VEGETABLE"
+ ]
+}
