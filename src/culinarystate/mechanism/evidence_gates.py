@@ -181,11 +181,29 @@ STATE_WORDS: Mapping[str, str] = {
     **{w: "PRESERVED" for w in ("frozen", "thawed", "defrosted", "cured", "corned", "candied")},
     **{w: "PROCESSED" for w in ("leftover", "leftovers", "mashed", "pureed", "puréed", "instant", "reconstituted")},
 }
-STATE_WORD_RE = re.compile(r"(?<![A-Za-z])(?:left-over|" + "|".join(sorted(map(re.escape, STATE_WORDS), key=len,
+STATE_WORD_RE = re.compile(r"(?<![A-Za-z])(?:left[- ]over|" + "|".join(sorted(map(re.escape, STATE_WORDS), key=len,
                                                                              reverse=True)) + r")(?![A-Za-z])",
                            re.IGNORECASE)
 STATE_CONTAINER_RE = re.compile(r"(?:\d|\))[ \t]*(?:cans?|tins?|jars?)(?![A-Za-z])", re.IGNORECASE)   # "1 can", "(15 oz) can"
 _STATE_CANCEL = re.compile(r"(?:\bnon-?|\bnot[ \t]+|\bun-)$", re.IGNORECASE)
+# S179 (SCI re-review #4): a state stated right AFTER the food also describes it: "potatoes (already boiled)",
+# "potatoes that you boiled yesterday", "potatoes, previously boiled, ...", "potatoes left over from dinner". Text order
+# is not time order. Only these anchored forms count; a negation ("that are not cooked") never matches.
+_POST_STATE_WORDS = "|".join(sorted(map(re.escape, STATE_WORDS), key=len, reverse=True))
+POST_STATE_RE = re.compile(
+    r"^[ \t]*(?:\([ \t]*(?:(?:already|previously|pre-?)[ \t]*)?"
+    r"|,?[ \t]*(?:that|which)[ \t]+(?:(?:you|we|i|they|have|has|had|were|was|been|are|is|already|previously|just)[ \t]+)*"
+    r"|,?[ \t]*(?:already|previously)[ \t]+)"
+    r"(?P<w>" + _POST_STATE_WORDS + r")(?![A-Za-z])"
+    r"|^[ \t]*(?P<lo>left[- ]over)(?![A-Za-z])", re.IGNORECASE)
+
+
+def post_state_cue(text_after: str) -> str | None:
+    """Prior kind stated immediately after a food mention (anchored at its end), else None."""
+    m = POST_STATE_RE.match(text_after or "")
+    if m is None:
+        return None
+    return "PROCESSED" if m.group("lo") else STATE_WORDS[m.group("w").lower()]
 
 
 def state_cues(text: str) -> list[tuple[int, int, str]]:
@@ -195,7 +213,7 @@ def state_cues(text: str) -> list[tuple[int, int, str]]:
         if _STATE_CANCEL.search(text[max(0, m.start() - 6):m.start()]):
             continue
         w = m.group(0).lower()
-        out.append((m.start(), m.end(), "PROCESSED" if w == "left-over" else STATE_WORDS[w]))
+        out.append((m.start(), m.end(), "PROCESSED" if w.replace(" ", "-") == "left-over" else STATE_WORDS[w]))
     for m in STATE_CONTAINER_RE.finditer(text or ""):
         out.append((m.start(), m.end(), "HEAT"))
     return sorted(out)
@@ -842,10 +860,13 @@ def text_context(raw: str, mentions: Iterable, links: Iterable = ()) -> TextCont
                     continue
                 start = p.span.char_end
                 break
+            ks = set()
             if start < m.span.char_start:
-                ks = frozenset(k for _, _, k in state_cues(raw[start:m.span.char_start]))
-                if ks:
-                    fstates[_span(m)] = ks
+                ks |= {k for _, _, k in state_cues(raw[start:m.span.char_start])}
+            if (post := post_state_cue(raw[m.span.char_end:se])) is not None:
+                ks.add(post)
+            if ks:
+                fstates[_span(m)] = frozenset(ks)
     return TextContext(roles, akinds, windows, fstates, fing)
 
 
