@@ -1,0 +1,1207 @@
+{
+ "censoring": {
+  "censor_kind_rows_by_source": {
+   "BOGNAR-2002|GT_CAP": 3274,
+   "BOGNAR-2002|NONE": 3816,
+   "PHENOL-EXPLORER-3.6|NONE": 3870,
+   "USDA-RETN-R6|GT_CAP": 2620,
+   "USDA-RETN-R6|NONE": 4398
+  },
+  "censor_limits": {
+   "BOGNAR-2002|GT_CAP|0.995": 3274,
+   "USDA-RETN-R6|GT_CAP|97.5": 2620
+  },
+  "censored_rows": 5894,
+  "censored_rows_by_source": {
+   "BOGNAR-2002": 3274,
+   "PHENOL-EXPLORER-3.6": 0,
+   "USDA-RETN-R6": 2620
+  },
+  "pct_censored": 32.78,
+  "pct_censored_by_source": {
+   "BOGNAR-2002": 46.18,
+   "PHENOL-EXPLORER-3.6": 0.0,
+   "USDA-RETN-R6": 37.33
+  },
+  "reading": "GT_CAP = the source value sits at its cap (>= limit); not a measurement of the cap; censoring must be carried, never imputed"
+ },
+ "contains_ids": false,
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "inputs": {
+  "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "ledgers/data/ING.jsonl": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+  "ledgers/data/MEAS.jsonl": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+  "ledgers/data/PROC.jsonl": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+  "ledgers/data/SRC.jsonl": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+  "ledgers/data/STUDY.jsonl": "727120365e5dabd9636d37c61981dcc5bd0c7c23de07ff740ae4fb6d552cff27",
+  "ledgers/data/SVAR.jsonl": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697",
+  "registry/state_variable_registry_v1.csv": "ee446a23b29f804681e55a66d2356625b391c8963c7a8f1612d2fc9cd3b00fd6",
+  "registry/svar_duplicate_mapping_v1.csv": "4e60d1c6aa661b400e34790d6ab0f08a107e4fca03a9eff4a651a7c035aa1af8",
+  "reports/step15/15a_R_seal_commitment_v1.json": "a099c142719421a50f70e114b75fd4753ff3c490c06fc4dd017e2e6527d46e6d"
+ },
+ "known_limitations_computed": {
+  "all_rows_tier_E3": true,
+  "censored_share_pct": 32.78,
+  "no_human_verified_row": true,
+  "rows_with_no_stated_temperature_or_duration_pct": 58.15,
+  "rows_without_ing_link": 6409,
+  "rows_without_process_id": 157,
+  "usda_and_bognar_single_independence_group_each": true,
+  "water_activity_ph_moisture_never_recorded": true
+ },
+ "labels": {
+  "BOOTSTRAP_UNVERIFIED": 17978,
+  "COND_UNAUDITED": 17978,
+  "E3_UNVERIFIED": 17978,
+  "condition_verification_status_rows": {
+   "UNVERIFIED": 17978
+  },
+  "d1_human_verified_target": 40,
+  "d1_verified_rows_n_of_40": "0/40",
+  "human_verified_rows": 0,
+  "meaning": {
+   "BOOTSTRAP_UNVERIFIED": "C2-a (D-068/pre-freeze rulings): E3 may train and form a Bootstrap benchmark, never Gold, never headline",
+   "COND_UNAUDITED": "condition record carried as imported; 07.A condition-audit gate has not passed (NEG-0028, NEG-0029; v4 FAIL on the registered statistic)",
+   "E3_UNVERIFIED": "tier E3 and no HUMAN_VERIFIED status (AI_PRECHECKED is a rule check, not a human check)"
+  },
+  "rows_total": 17978,
+  "verification_status_rows": {
+   "AI_PRECHECKED": 3870,
+   "UNVERIFIED": 14108
+  }
+ },
+ "licence_status": {
+  "by_source_family": {
+   "BOGNAR-2002": {
+    "primary_source_ids": {
+     "SRC-000141": 7090
+    },
+    "primary_source_licence": {
+     "SRC-000141": {
+      "kind": "DATABASE",
+      "licence_status": "ASSUMED",
+      "licence_text": "Institutional report, open access in KIT repository; values cited, text not redistributed",
+      "primary_or_secondary": "SECONDARY",
+      "storage_rule": "DERIVED_ONLY",
+      "year": 2002
+     }
+    },
+    "provenance_source_licence_status_counts": {
+     "ASSUMED": 1
+    },
+    "provenance_source_storage_rule_counts": {
+     "DERIVED_ONLY": 1
+    },
+    "rows_touching_a_source_with_licence_status_not_VERIFIED": 7090,
+    "source_ids_in_provenance": 1
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "primary_source_ids": {
+     "SRC-000012": 3870
+    },
+    "primary_source_licence": {
+     "SRC-000012": {
+      "kind": "DATABASE",
+      "licence_status": "VERIFIED",
+      "licence_text": "Free public resource; commercial use/redistribution requires authors' permission; cite Phenol-Explorer and original publications",
+      "primary_or_secondary": "SECONDARY",
+      "storage_rule": "DERIVED_ONLY",
+      "year": 2013
+     }
+    },
+    "provenance_source_licence_status_counts": {
+     "UNKNOWN": 125,
+     "VERIFIED": 1
+    },
+    "provenance_source_storage_rule_counts": {
+     "DERIVED_ONLY": 126
+    },
+    "rows_touching_a_source_with_licence_status_not_VERIFIED": 3870,
+    "source_ids_in_provenance": 126
+   },
+   "USDA-RETN-R6": {
+    "primary_source_ids": {
+     "SRC-000001": 7018
+    },
+    "primary_source_licence": {
+     "SRC-000001": {
+      "kind": "DATABASE",
+      "licence_status": "ASSUMED",
+      "licence_text": "US federal government work (public domain, 17 U.S.C. §105)",
+      "primary_or_secondary": "SECONDARY",
+      "storage_rule": "COMMIT_OK",
+      "year": 2007
+     }
+    },
+    "provenance_source_licence_status_counts": {
+     "ASSUMED": 1
+    },
+    "provenance_source_storage_rule_counts": {
+     "COMMIT_OK": 1
+    },
+    "rows_touching_a_source_with_licence_status_not_VERIFIED": 7018,
+    "source_ids_in_provenance": 1
+   }
+  },
+  "reading": "licence_status VERIFIED / ASSUMED / UNKNOWN / RESTRICTED is the SRC ledger value; ASSUMED and UNKNOWN are owner-asserted or unresolved. Phenol-Explorer values are DERIVED_ONLY (cite Phenol-Explorer and the original publications; redistribution of the raw table needs the authors' permission); the per-publication SRC records have licence_status UNKNOWN. Not legal advice; a human licence review (H2) is still open."
+ },
+ "ordering_note": "G15-a asks that the card exists before any model-selection run: no 29-diag output and no 15b freeze record exists in this tree (reports/step29 holds only the pre-registration draft); the run time of this card is in registry/compute_runs_v1.csv, not in the card (determinism).",
+ "record": "EVD_DATASET_CARD_S178",
+ "s203_9_10_pair_frequency_distribution": {
+  "pairs_seen_once": 406,
+  "pairs_seen_once_pct": 40.68,
+  "rows_per_cell_bins": {
+   "1": 10439,
+   "11-20": 36,
+   "2": 2595,
+   "21-50": 2,
+   "3-5": 217,
+   "6-10": 118,
+   "> 50": 0
+  },
+  "rows_per_cell_quantiles": {
+   "max": 32,
+   "median": 1,
+   "min": 1,
+   "n": 13448,
+   "p05": 1,
+   "p25": 1,
+   "p75": 1,
+   "p95": 2
+  },
+  "rows_per_ing_x_step_sequence_bins": {
+   "1": 142,
+   "11-20": 30,
+   "2": 72,
+   "21-50": 109,
+   "3-5": 53,
+   "6-10": 40,
+   "> 50": 87
+  },
+  "rows_per_matrix_x_step_sequence_bins": {
+   "1": 406,
+   "11-20": 32,
+   "2": 97,
+   "21-50": 201,
+   "3-5": 56,
+   "6-10": 48,
+   "> 50": 140
+  },
+  "rows_per_matrix_x_step_sequence_quantiles": {
+   "max": 260,
+   "median": 2,
+   "min": 1,
+   "n": 998,
+   "p05": 1,
+   "p25": 1,
+   "p75": 26,
+   "p95": 71
+  }
+ },
+ "s203_9_11_missingness": {
+  "pct_UNKNOWN_by_single_step_process_top12": {
+   "bake": {
+    "duration": 92.73,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 867,
+    "temperature": 95.73
+   },
+   "boil": {
+    "duration": 86.68,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 2035,
+    "temperature": 69.78
+   },
+   "deep-fry": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 955,
+    "temperature": 47.23
+   },
+   "fry": {
+    "duration": 97.53,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 687,
+    "temperature": 99.56
+   },
+   "pan-fry": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 1493,
+    "temperature": 45.48
+   },
+   "reheat": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 727,
+    "temperature": 100.0
+   },
+   "roast": {
+    "duration": 98.87,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 1415,
+    "temperature": 42.69
+   },
+   "simmer": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 1040,
+    "temperature": 100.0
+   },
+   "steam": {
+    "duration": 96.39,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 1191,
+    "temperature": 58.44
+   },
+   "stew": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 1110,
+    "temperature": 49.01
+   },
+   "store-ambient": {
+    "duration": 18.55,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 1132,
+    "temperature": 33.39
+   },
+   "store-refrigerated": {
+    "duration": 42.84,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 908,
+    "temperature": 6.39
+   }
+  },
+  "pct_UNKNOWN_by_source_and_axis": {
+   "BOGNAR-2002": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "temperature": 46.59
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "duration": 39.12,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "temperature": 42.43
+   },
+   "USDA-RETN-R6": {
+    "duration": 89.64,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "temperature": 100.0
+   }
+  },
+  "reading": "UNKNOWN is a status, never 0 and never imputed; NOT_APPLICABLE (pressure for non-pressure sources) is not counted as missing",
+  "retention_factor_status_rows": {
+   "ABSENT": 496,
+   "CENSORED": 5894,
+   "MEASURED": 11564,
+   "UNKNOWN": 24
+  },
+  "rows_with_target_value_missing": 24
+ },
+ "s203_9_12_condition_ranges": {
+  "duration_min_bins": {
+   "1-3 h": 749,
+   "1-5 min": 88,
+   "15-30 min": 434,
+   "30-60 min": 271,
+   "5-15 min": 238,
+   "< 1 min": 125,
+   "> 3 h": 1654
+  },
+  "duration_min_values": {
+   "max": 569778.3,
+   "median": 150.0,
+   "min": 0.0,
+   "n": 3559,
+   "p05": 3.0,
+   "p25": 30.0,
+   "p75": 131487.3,
+   "p95": 394461.9
+  },
+  "duration_min_values_by_source": {
+   "BOGNAR-2002": {
+    "n": 0
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "max": 569778.3,
+    "median": 80640.0,
+    "min": 0.0,
+    "n": 2364,
+    "p05": 0.5,
+    "p25": 60.0,
+    "p75": 175316.4,
+    "p95": 394461.9
+   },
+   "USDA-RETN-R6": {
+    "max": 150.0,
+    "median": 45.0,
+    "min": 10.0,
+    "n": 1195,
+    "p05": 15.0,
+    "p25": 20.0,
+    "p75": 120.0,
+    "p95": 150.0
+   }
+  },
+  "note": "values are counted over the stated condition fields of the rows (a RANGE contributes both ends); two Phenol-Explorer-style conditions can share one record",
+  "pressure_by_source_and_unit": {
+   "PHENOL-EXPLORER-3.6": {
+    "MPa": {
+     "max": 600.0,
+     "median": 400.0,
+     "min": 300.0,
+     "n": 17,
+     "p05": 400.0,
+     "p25": 400.0,
+     "p75": 600.0,
+     "p95": 600.0
+    },
+    "Mpa": {
+     "max": 600.0,
+     "median": 450.0,
+     "min": 200.0,
+     "n": 27,
+     "p05": 200.0,
+     "p25": 400.0,
+     "p75": 600.0,
+     "p95": 600.0
+    },
+    "psi": {
+     "max": 15.0,
+     "median": 15.0,
+     "min": 5.0,
+     "n": 85,
+     "p05": 15.0,
+     "p25": 15.0,
+     "p75": 15.0,
+     "p95": 15.0
+    }
+   }
+  },
+  "range_valued_conditions": {
+   "duration_range_rows": 476,
+   "temperature_range_rows": 3585
+  },
+  "temperature_degC_bins": {
+   "0-60 C": 1787,
+   "100-140 C": 69,
+   "140-180 C": 65,
+   "180-250 C": 67,
+   "60-100 C": 844,
+   "<= 0 C": 511,
+   "> 250 C": 0
+  },
+  "temperature_degC_values": {
+   "max": 210.0,
+   "median": 20.0,
+   "min": -75.0,
+   "n": 3343,
+   "p05": -75.0,
+   "p25": 2.0,
+   "p75": 66.0,
+   "p95": 100.0
+  },
+  "temperature_degC_values_by_source": {
+   "BOGNAR-2002": {
+    "max": 95.0,
+    "median": 66.0,
+    "min": -75.0,
+    "n": 696,
+    "p05": -75.0,
+    "p25": -75.0,
+    "p75": 75.0,
+    "p95": 90.0
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "max": 210.0,
+    "median": 15.0,
+    "min": -70.0,
+    "n": 2647,
+    "p05": -20.0,
+    "p25": 3.0,
+    "p75": 38.0,
+    "p95": 121.0
+   },
+   "USDA-RETN-R6": {
+    "n": 0
+   }
+  },
+  "units": {
+   "duration": {
+    "min": 2384
+   },
+   "pressure": {
+    "MPa": 17,
+    "Mpa": 27,
+    "psi": 85
+   },
+   "temperature": {
+    "degC": 2630
+   }
+  }
+ },
+ "s203_9_13_duplicate_conflict_audit": {
+  "cell_key": "(matrix raw name, form, step sequence, target raw name, structural modifiers, duration) as in culinarystate.eda.report.cell_key",
+  "conflict_candidate_cells_opposite_direction_across_groups": 17,
+  "conflict_groups_per_cell": {
+   "2": 6,
+   "4": 11
+  },
+  "cross_source_same_cell": 0,
+  "deprecated_ids_excluded": 178,
+  "direction_rows": {
+   "DECREASE": 10789,
+   "INCREASE": 1180,
+   "NO_CHANGE": 91,
+   "UNKNOWN": 5918
+  },
+  "distinct_cells": 13448,
+  "note": "conflict candidates are candidates only; direction is derived from the retention factor, not a stated effect",
+  "replicate_rows_same_cell_same_independence_group": 4474,
+  "rows_in_cells_with_more_than_one_row": 7539
+ },
+ "s203_9_1_total_rows": {
+  "active_rows": 17978,
+  "deprecated_ids": 178,
+  "evd_ids_latest": 18156,
+  "ledger_version_lines": 57280,
+  "rows_per_source_family": {
+   "BOGNAR-2002": 7090,
+   "PHENOL-EXPLORER-3.6": 3870,
+   "USDA-RETN-R6": 7018
+  }
+ },
+ "s203_9_2_unique_ingredients": {
+  "food_group_distinct_labels_by_source": {
+   "BOGNAR-2002": 22,
+   "PHENOL-EXPLORER-3.6": 7,
+   "USDA-RETN-R6": 13
+  },
+  "food_group_label_counts_usda_and_phenol_explorer_top15": {
+   "PHENOL-EXPLORER-3.6": {
+    "Alcoholic beverages": 215,
+    "Cereals and cereal products": 102,
+    "Fruits and fruit products": 1188,
+    "Non-alcoholic beverages": 859,
+    "Oils": 30,
+    "Seeds": 439,
+    "Vegetables": 1037
+   },
+   "USDA-RETN-R6": {
+    "Beef Products": 676,
+    "Beverages": 259,
+    "Breakfast Cereals": 104,
+    "Cereal Grains and Pasta": 364,
+    "Dairy and Egg Products": 338,
+    "Finfish and Shellfish Products": 1040,
+    "Fruits and Fruit Juices": 338,
+    "Lamb, Veal, and Game Products": 597,
+    "Legumes and Legume Products": 494,
+    "Nut and Seed Products": 104,
+    "Pork Products": 988,
+    "Poultry Products": 338,
+    "Vegetables and Vegetable Products": 1378
+   }
+  },
+  "linked_ing_status": {
+   "ACTIVE": 11569
+  },
+  "note": "source food-group labels are listed for USDA-RETN-R6 and the first level of Phenol-Explorer only; Bognar dish categories are counted, not listed (free text)",
+  "pct_rows_with_ing_link": 64.35,
+  "pct_rows_with_ing_link_by_source": {
+   "BOGNAR-2002": 36.64,
+   "PHENOL-EXPLORER-3.6": 99.48,
+   "USDA-RETN-R6": 72.97
+  },
+  "rows_per_ing_quantiles": {
+   "max": 1177,
+   "median": 8,
+   "min": 1,
+   "n": 165,
+   "p05": 1,
+   "p25": 2,
+   "p75": 60,
+   "p95": 349
+  },
+  "rows_with_ing_link": 11569,
+  "top_20_ing_by_rows": [
+   {
+    "canonical_name": "pork",
+    "ing_id": "ING-000374",
+    "rows": 1177
+   },
+   {
+    "canonical_name": "lamb",
+    "ing_id": "ING-000301",
+    "rows": 700
+   },
+   {
+    "canonical_name": "chicken",
+    "ing_id": "ING-000080",
+    "rows": 622
+   },
+   {
+    "canonical_name": "potato",
+    "ing_id": "ING-000027",
+    "rows": 581
+   },
+   {
+    "canonical_name": "beef",
+    "ing_id": "ING-000267",
+    "rows": 546
+   },
+   {
+    "canonical_name": "liver",
+    "ing_id": "ING-002060",
+    "rows": 493
+   },
+   {
+    "canonical_name": "strawberry",
+    "ing_id": "ING-000140",
+    "rows": 408
+   },
+   {
+    "canonical_name": "root",
+    "ing_id": "ING-001927",
+    "rows": 385
+   },
+   {
+    "canonical_name": "veal",
+    "ing_id": "ING-002106",
+    "rows": 349
+   },
+   {
+    "canonical_name": "fruit",
+    "ing_id": "ING-000215",
+    "rows": 338
+   },
+   {
+    "canonical_name": "seafood",
+    "ing_id": "ING-001141",
+    "rows": 286
+   },
+   {
+    "canonical_name": "cherry",
+    "ing_id": "ING-000192",
+    "rows": 274
+   },
+   {
+    "canonical_name": "sweet potato",
+    "ing_id": "ING-000277",
+    "rows": 258
+   },
+   {
+    "canonical_name": "blueberry",
+    "ing_id": "ING-000199",
+    "rows": 251
+   },
+   {
+    "canonical_name": "veg",
+    "ing_id": "ING-000852",
+    "rows": 234
+   },
+   {
+    "canonical_name": "root veg",
+    "ing_id": "ING-001416",
+    "rows": 234
+   },
+   {
+    "canonical_name": "turkey",
+    "ing_id": "ING-000365",
+    "rows": 216
+   },
+   {
+    "canonical_name": "orange",
+    "ing_id": "ING-000038",
+    "rows": 213
+   },
+   {
+    "canonical_name": "green veg",
+    "ing_id": "ING-000800",
+    "rows": 182
+   },
+   {
+    "canonical_name": "red wine",
+    "ing_id": "ING-000105",
+    "rows": 172
+   }
+  ],
+  "unique_ing_ids_linked": 165,
+  "unique_matrix_raw_names": 619,
+  "unique_matrix_raw_names_by_source": {
+   "BOGNAR-2002": 436,
+   "PHENOL-EXPLORER-3.6": 146,
+   "USDA-RETN-R6": 38
+  }
+ },
+ "s203_9_3_processes": {
+  "pct_rows_with_process_id": 99.13,
+  "process_family_step_counts": {
+   "COOLING": 1221,
+   "DRY_HEAT": 3263,
+   "FAT_HEAT": 4123,
+   "FERMENT_LEAVEN": 68,
+   "HEAT_GENERAL": 1320,
+   "MECHANICAL_CUT": 4,
+   "MECHANICAL_MIX": 248,
+   "PRESERVATION": 185,
+   "SEPARATION": 598,
+   "SHAPING": 32,
+   "TRANSFER": 1184,
+   "WET_HEAT": 7227
+  },
+  "process_kind_step_counts": {
+   "ACTION": 19473
+  },
+  "rows_by_medium": {
+   "NOT_RECORDED": 13562,
+   "liquid": 26,
+   "oil": 1018,
+   "steam": 1123,
+   "water": 2249
+  },
+  "rows_by_sequence_length": {
+   "1": 16354,
+   "2": 1410,
+   "3": 214
+  },
+  "rows_by_source_and_first_step_top5": {
+   "BOGNAR-2002": {
+    "boil": 1170,
+    "pan-fry": 1467,
+    "roast": 1191,
+    "steam": 1003,
+    "stew": 1058
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "boil": 475,
+    "freeze": 198,
+    "pasteurize": 131,
+    "store-ambient": 1132,
+    "store-refrigerated": 908
+   },
+   "USDA-RETN-R6": {
+    "bake": 650,
+    "boil": 1144,
+    "fry": 624,
+    "reheat": 727,
+    "simmer": 1040
+   }
+  },
+  "rows_with_process_id": 17821,
+  "top_20_steps": {
+   "bake": 1049,
+   "boil": 2800,
+   "braise": 186,
+   "broil": 546,
+   "brown": 520,
+   "cook": 380,
+   "deep-fry": 955,
+   "drain": 598,
+   "freeze": 226,
+   "fry": 869,
+   "pan-fry": 1493,
+   "reheat": 727,
+   "roast": 1415,
+   "saute": 182,
+   "simmer": 1534,
+   "steam": 1217,
+   "stew": 1110,
+   "store-ambient": 1132,
+   "store-frozen": 245,
+   "store-refrigerated": 908
+  },
+  "unique_process_ids": 37,
+  "unique_process_steps": 55,
+  "unique_step_sequences": 70
+ },
+ "s203_9_4_ingredient_process_pairs": {
+  "distinct_cells_matrix_steps_target_condition": 13448,
+  "distinct_ing_id_x_step_sequence": 549,
+  "distinct_matrix_raw_name_x_step_sequence": 998,
+  "matrix_x_process_density": 0.023,
+  "pairs_by_source": {
+   "BOGNAR-2002": 540,
+   "PHENOL-EXPLORER-3.6": 287,
+   "USDA-RETN-R6": 171
+  }
+ },
+ "s203_9_5_target_types": {
+  "registry_status_of_used_svar_rows": {
+   "ACTIVE": 12692,
+   "DUPLICATE": 2048,
+   "MISSING_EVIDENCE": 337,
+   "PROVISIONAL": 2901
+  },
+  "registry_subfamily_rows": {
+   "GROUP_AGGREGATE": 1496,
+   "MASS_YIELD": 496,
+   "NUTRIENT_CONTENT": 12116,
+   "PHENOLIC_COMPOUND_CONTENT": 3870
+  },
+  "rows_per_target_quantiles": {
+   "max": 724,
+   "median": 16,
+   "min": 1,
+   "n": 224,
+   "p05": 1,
+   "p25": 5,
+   "p75": 187,
+   "p95": 270
+  },
+  "svar_family_rows": {
+   "CHEMICAL": 17482,
+   "PHYSICAL": 496
+  },
+  "target_basis_rows": {
+   "DRY": 4,
+   "FRESH_WEIGHT": 3402,
+   "PER_VOLUME": 960,
+   "RETENTION_TR_OR_AR": 7018,
+   "TRUE_RETENTION": 6594
+  },
+  "target_basis_rows_by_source": {
+   "BOGNAR-2002": {
+    "FRESH_WEIGHT": 496,
+    "TRUE_RETENTION": 6594
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "DRY": 4,
+    "FRESH_WEIGHT": 2906,
+    "PER_VOLUME": 960
+   },
+   "USDA-RETN-R6": {
+    "RETENTION_TR_OR_AR": 7018
+   }
+  },
+  "top_20_targets": [
+   {
+    "canonical_name": "Polyphenols, total content",
+    "rows": 724,
+    "svar_id": "SVAR-000050"
+   },
+   {
+    "canonical_name": "food mass",
+    "rows": 496,
+    "svar_id": "SVAR-000224"
+   },
+   {
+    "canonical_name": "Calcium, Ca content",
+    "rows": 270,
+    "svar_id": "SVAR-000001"
+   },
+   {
+    "canonical_name": "Iron, Fe content",
+    "rows": 270,
+    "svar_id": "SVAR-000002"
+   },
+   {
+    "canonical_name": "Magnesium, Mg content",
+    "rows": 270,
+    "svar_id": "SVAR-000003"
+   },
+   {
+    "canonical_name": "Phosphorus, P content",
+    "rows": 270,
+    "svar_id": "SVAR-000004"
+   },
+   {
+    "canonical_name": "Potassium, K content",
+    "rows": 270,
+    "svar_id": "SVAR-000005"
+   },
+   {
+    "canonical_name": "Sodium, Na content",
+    "rows": 270,
+    "svar_id": "SVAR-000006"
+   },
+   {
+    "canonical_name": "Zinc, Zn content",
+    "rows": 270,
+    "svar_id": "SVAR-000007"
+   },
+   {
+    "canonical_name": "Copper, Cu content",
+    "rows": 270,
+    "svar_id": "SVAR-000008"
+   },
+   {
+    "canonical_name": "Vitamin C, total ascorbic acid content",
+    "rows": 270,
+    "svar_id": "SVAR-000009"
+   },
+   {
+    "canonical_name": "Thiamin content",
+    "rows": 270,
+    "svar_id": "SVAR-000010"
+   },
+   {
+    "canonical_name": "Riboflavin content",
+    "rows": 270,
+    "svar_id": "SVAR-000011"
+   },
+   {
+    "canonical_name": "Niacin content",
+    "rows": 270,
+    "svar_id": "SVAR-000012"
+   },
+   {
+    "canonical_name": "Vitamin B-6 content",
+    "rows": 270,
+    "svar_id": "SVAR-000013"
+   },
+   {
+    "canonical_name": "Folate, total content",
+    "rows": 270,
+    "svar_id": "SVAR-000014"
+   },
+   {
+    "canonical_name": "Folic acid content",
+    "rows": 270,
+    "svar_id": "SVAR-000015"
+   },
+   {
+    "canonical_name": "Folate, food content",
+    "rows": 270,
+    "svar_id": "SVAR-000016"
+   },
+   {
+    "canonical_name": "Vitamin B-12 content",
+    "rows": 270,
+    "svar_id": "SVAR-000018"
+   },
+   {
+    "canonical_name": "Vitamin A, IU content",
+    "rows": 270,
+    "svar_id": "SVAR-000019"
+   }
+  ],
+  "unique_canonical_variables_after_duplicate_mapping": 213,
+  "unique_svar_by_source": {
+   "BOGNAR-2002": 37,
+   "PHENOL-EXPLORER-3.6": 161,
+   "USDA-RETN-R6": 26
+  },
+  "unique_svar_ids": 224
+ },
+ "s203_9_6_evidence_tiers": {
+  "applicability_rows": {
+   "EXACT": 3870,
+   "GENERIC": 14108
+  },
+  "design_rows": {
+   "DATABASE_AGGREGATE": 14108,
+   "UNKNOWN": 3870
+  },
+  "origin_type_rows": {
+   "DATABASE_AGGREGATE": 14108,
+   "PRIMARY_STUDY": 3870
+  },
+  "rows_E1_E2_E4_E5_E6_E7": 0,
+  "tier_rows": {
+   "E3": 17978
+  },
+  "verification_status_rows": {
+   "AI_PRECHECKED": 3870,
+   "UNVERIFIED": 14108
+  }
+ },
+ "s203_9_7_study_source_counts": {
+  "created_by_rows": {
+   "Kush+Claude": 17978
+  },
+  "extraction_version_rows": {
+   "bognar_parser@0.1": 6594,
+   "bognar_yield@0.1": 496,
+   "phenol_explorer_parser@0.1": 3870,
+   "usda_r6_parser@0.2": 7018
+  },
+  "independence_groups": 127,
+  "independence_groups_by_source": {
+   "BOGNAR-2002": 1,
+   "PHENOL-EXPLORER-3.6": 125,
+   "USDA-RETN-R6": 1
+  },
+  "lineage_note": "USDA-RETN-R6 and BOGNAR-2002 are one independence group each under the current key (lineage NOT_IDENTIFIABLE); study_disjoint evaluation is not possible for them (NEG-0002)",
+  "rows_by_source_family": {
+   "BOGNAR-2002": 7090,
+   "PHENOL-EXPLORER-3.6": 3870,
+   "USDA-RETN-R6": 7018
+  },
+  "rows_per_independence_group_quantiles": {
+   "max": 7090,
+   "median": 13,
+   "min": 1,
+   "n": 127,
+   "p05": 2,
+   "p25": 6,
+   "p75": 32,
+   "p95": 186
+  },
+  "rows_per_study_quantiles": {
+   "max": 251,
+   "median": 13,
+   "min": 1,
+   "n": 125,
+   "p05": 2,
+   "p25": 6,
+   "p75": 32,
+   "p95": 156
+  },
+  "rows_with_study_id": 3870,
+  "source_families": 3,
+  "study_id_status_rows": {
+   "NOT_IDENTIFIABLE": 14108,
+   "PRESENT": 3870
+  },
+  "study_ids_in_evd": 125,
+  "study_records_in_ledger": 132
+ },
+ "s203_9_8_analytical_platform": {
+  "measurement_method_family": {
+   "MEAS-000001": {
+    "basis": "UNKNOWN",
+    "family": "CALCULATION"
+   },
+   "MEAS-000002": {
+    "basis": "UNKNOWN",
+    "family": "CALCULATION"
+   },
+   "MEAS-000003": {
+    "basis": "FRESH_WEIGHT",
+    "family": "GRAVIMETRY"
+   }
+  },
+  "note": "MEAS records describe the calculation / gravimetry protocol of the database, not the analytical platform (HPLC, GC) of the primary measurement; no EVD row carries an analytical-platform field, and 3,870 Phenol-Explorer rows carry no measurement_method_id at all",
+  "rows_by_measurement_method_id": {
+   "MEAS-000001": 7018,
+   "MEAS-000002": 6594,
+   "MEAS-000003": 496,
+   "NOT_RECORDED": 3870
+  },
+  "rows_platform_not_recorded": 17978,
+  "rows_with_analytical_platform_recorded": 0
+ },
+ "s203_9_9_condition_coverage": {
+  "distinct_condition_records_used": 4414,
+  "duration": {
+   "by_source": {
+    "BOGNAR-2002": {
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "MEASURED": 2348,
+     "RANGE": 8,
+     "UNKNOWN": 1514
+    },
+    "USDA-RETN-R6": {
+     "MEASURED": 259,
+     "RANGE": 468,
+     "UNKNOWN": 6291
+    }
+   },
+   "rows_by_status": {
+    "MEASURED": 2607,
+    "RANGE": 476,
+    "UNKNOWN": 14895
+   }
+  },
+  "medium": {
+   "rows_by_medium": {
+    "NOT_RECORDED": 13562,
+    "liquid": 26,
+    "oil": 1018,
+    "steam": 1123,
+    "water": 2249
+   },
+   "rows_with_medium": 4416
+  },
+  "moisture": {
+   "by_source": {
+    "BOGNAR-2002": {
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "UNKNOWN": 7018
+    }
+   },
+   "rows_by_status": {
+    "UNKNOWN": 17978
+   }
+  },
+  "ph": {
+   "by_source": {
+    "BOGNAR-2002": {
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "UNKNOWN": 7018
+    }
+   },
+   "rows_by_status": {
+    "UNKNOWN": 17978
+   }
+  },
+  "power": {
+   "by_source": {
+    "BOGNAR-2002": 0,
+    "PHENOL-EXPLORER-3.6": 60,
+    "USDA-RETN-R6": 0
+   },
+   "rows_with_value": 60
+  },
+  "pressure": {
+   "by_source": {
+    "BOGNAR-2002": {
+     "ABSENT_FROM_MASK": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT_FROM_MASK": 3741,
+     "MEASURED": 129
+    },
+    "USDA-RETN-R6": {
+     "NOT_APPLICABLE": 7018
+    }
+   },
+   "rows_by_status": {
+    "ABSENT_FROM_MASK": 10831,
+    "MEASURED": 129,
+    "NOT_APPLICABLE": 7018
+   }
+  },
+  "temperature": {
+   "by_source": {
+    "BOGNAR-2002": {
+     "MEASURED": 384,
+     "RANGE": 3403,
+     "UNKNOWN": 3303
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "MEASURED": 2046,
+     "RANGE": 182,
+     "UNKNOWN": 1642
+    },
+    "USDA-RETN-R6": {
+     "UNKNOWN": 7018
+    }
+   },
+   "rows_by_status": {
+    "MEASURED": 2430,
+    "RANGE": 3585,
+    "UNKNOWN": 11963
+   }
+  },
+  "temperature_and_duration_both_stated": {
+   "by_source": {
+    "BOGNAR-2002": 0,
+    "PHENOL-EXPLORER-3.6": 1575,
+    "USDA-RETN-R6": 0
+   },
+   "pct": 8.76,
+   "rows": 1575
+  },
+  "water_activity": {
+   "rows": 17978,
+   "rows_with_value": 0,
+   "status": "NOT_IN_COND_SCHEMA"
+  }
+ },
+ "scope": "ACTIVE EVD rows (latest version per id), tier E3, three source families",
+ "seal_15a_R_commitment_counts_only": {
+  "evd_sha256_matches_current": true,
+  "n_groups": 886,
+  "n_reserved_groups": 177,
+  "n_reserved_rows": 3555,
+  "note": "the reserved group list is outside git and was not read; reserved rows are included in every count above because the card describes the snapshot, not a split",
+  "snapshot_active_rows": 17978,
+  "snapshot_evd_sha256": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "strata": {
+   "BOGNAR-2002": {
+    "n_groups": 540,
+    "n_reserved": 108,
+    "n_reserved_rows": 1510,
+    "n_rows": 7090
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "n_groups": 125,
+    "n_reserved": 25,
+    "n_reserved_rows": 693,
+    "n_rows": 3870
+   },
+   "USDA-RETN-R6": {
+    "n_groups": 221,
+    "n_reserved": 44,
+    "n_reserved_rows": 1352,
+    "n_rows": 7018
+   }
+  }
+ },
+ "status": "DRAFT_NOT_FROZEN_NOT_SIGNED",
+ "tool_version": "s178-evd-card-0.1.0-draft",
+ "units": {
+  "before_after_unit_strings_rows": {
+   "mg/100 g dry weight": 4,
+   "mg/100 g fresh weight": 2906,
+   "mg/100 mL": 282,
+   "mg/100 ml": 678
+  },
+  "derived_fields_present_rows": {
+   "direction": 17978,
+   "percent_change": 3859,
+   "retention_factor": 17482,
+   "yield_factor": 4366
+  },
+  "note": "'mg/100 ml' and 'mg/100 mL' are two spellings of one unit; they are not merged here (normalisation is a new column, raw preserved)",
+  "retention_factor_unit_rows": {
+   "%": 7018,
+   "NO_RETENTION_FACTOR": 496,
+   "fraction": 10464
+  },
+  "target_basis_rows": {
+   "DRY": 4,
+   "FRESH_WEIGHT": 3402,
+   "PER_VOLUME": 960,
+   "RETENTION_TR_OR_AR": 7018,
+   "TRUE_RETENTION": 6594
+  }
+ }
+}
