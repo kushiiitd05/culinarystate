@@ -1,0 +1,20 @@
+class_code,priority,pattern,ledger_proc_id,status,note
+CANDY_STAGE,1,soft[- ]ball|firm[- ]ball|hard[- ]ball|soft[- ]crack|hard[- ]crack|thread stage|caramel stage,,AI_DRAFTED_SOURCE_UNVERIFIED,"cooking-stage names for sugar syrups; a stage name is an endpoint word, never a temperature"
+INTERNAL_DONENESS,2,(?:fork|knife)[- ]tender|cooked through|heated through|warmed through|no longer pink|piping hot|steaming hot|flakes? (?:easily|with a fork)|(?:is|are) done|done|cooked|al dente|desired doneness,,AI_DRAFTED_SOURCE_UNVERIFIED,doneness words that are not colour or texture words
+SOFTEN,3,soft(?:en(?:s|ed|ing)?|ened)?|tender(?:ed|ing|s)?|limp|mushy|pulpy|cooked down,PROC-000139,AI_DRAFTED_SOURCE_UNVERIFIED,"ledger ENDPOINT PROC soften (surface forms: soften, tender)"
+THICKEN,4,thick(?:en(?:s|ed|ing)?|er)?|syrupy|coat(?:s|ing)? the back of (?:a|the) spoon|coat(?:s|ing)? (?:a|the) spoon|glossy,PROC-000140,AI_DRAFTED_SOURCE_UNVERIFIED,ledger ENDPOINT PROC thicken
+WILT,5,wilt(?:s|ed|ing)?|collaps(?:e|es|ed|ing)|shrivel(?:s|led|ling)?,PROC-000141,AI_DRAFTED_SOURCE_UNVERIFIED,ledger ENDPOINT PROC wilt
+COLOUR,6,golden(?:[- ]brown)?|brown(?:ed|s|ing)?|colou?r(?:ed|s|ing)?|caramel(?:l?ised|l?ized)|charred|blackened|amber|bronze[d]?|mahogany|tan|lightly browned,PROC-000142,AI_DRAFTED_SOURCE_UNVERIFIED,"ledger ENDPOINT PROC colour (surface forms: colour, golden)"
+BUBBLE_BOIL,7,bubbl(?:e|es|ed|ing|y)|sizzl(?:e|es|ed|ing)|boil(?:s|ed|ing)?|simmer(?:s|ed|ing)?|foam(?:s|ed|ing|y)|froth(?:y|ing)|comes? to a boil|rolling boil,PROC-000143,AI_DRAFTED_SOURCE_UNVERIFIED,"ledger ENDPOINT PROC bubble (surface forms: bubble, sizzle); boil and simmer as states"
+CRISP,8,crisp(?:s|ed|ing|y)?|crunch(?:y|ier)|crackl(?:e|es|ed|ing|y),PROC-000144,AI_DRAFTED_SOURCE_UNVERIFIED,ledger ENDPOINT PROC crisp
+EVAPORATE_REDUCE,9,reduc(?:e|es|ed|ing)|evaporat(?:e|es|ed|ing)|absorb(?:s|ed|ing)?|(?:liquid|water|moisture) (?:has |have )?(?:gone|evaporated|absorbed|disappeared)|dry|dried,PROC-000145,AI_DRAFTED_SOURCE_UNVERIFIED,"ledger ENDPOINT PROC evaporate (surface forms: absorb, evaporate)"
+SET_FIRM,10,set|firm(?:s|ed|ing)?|solid(?:ified)?|stiff(?:en(?:s|ed|ing)?)?|jell(?:s|ed|y)?|gel(?:s|led)?|congeal(?:s|ed)?|hold(?:s|ing)? (?:its|their) shape|harden(?:s|ed)?,PROC-000146,AI_DRAFTED_SOURCE_UNVERIFIED,ledger ENDPOINT PROC set (surface forms: firm)
+PUFF_RISE,11,puff(?:s|ed|ing|y)?|ris(?:e|es|en|ing)|doubled(?: in (?:size|bulk))?|dom(?:e|ed)|doubles?(?: in (?:size|bulk))?,PROC-000147,AI_DRAFTED_SOURCE_UNVERIFIED,"ledger ENDPOINT PROC puff (surface forms: puff, rise)"
+TRANSLUCENT_OPAQUE,12,translucent|transparent|opaque|clear,,AI_DRAFTED_SOURCE_UNVERIFIED,"visual state words (onions translucent, fish opaque)"
+AROMA,13,fragran(?:t|ce)|aromatic|aroma|perfumed|smells?,,AI_DRAFTED_SOURCE_UNVERIFIED,aroma words (garlic fragrant)
+MELT_DISSOLVE_SMOOTH,14,melt(?:s|ed|ing)?|dissolv(?:e|es|ed|ing)|smooth|creamy|liquefied|runny|combined|blended|incorporated|homogeneous,,AI_DRAFTED_SOURCE_UNVERIFIED,melt / dissolve / smooth words
+HOT_WARM,15,hot|warm(?:ed)?|heated|lukewarm,,AI_DRAFTED_SOURCE_UNVERIFIED,temperature-feel words with no number
+DONENESS_TEST,16,"(?:toothpick|tooth pick|cake tester|tester|skewer|knife|(?:wooden )?pick|fork)\b[^,;.]{0,50}?\b(?:clean|dry)\b|springs? back(?: when (?:lightly )?(?:touched|pressed))?",,AI_DRAFTED_SOURCE_UNVERIFIED,"bake doneness test: a probe or pick comes out clean, cake springs back"
+TEXTURE_STATE,17,fluffy|crumbly|light|moistened|well[- ]mixed|mixed|coated|coarse (?:crumbs|meal)|resembles? coarse \w+|dough (?:forms?|comes together)|ball|consisten\w+|fine(?:ly)?,,AI_DRAFTED_SOURCE_UNVERIFIED,"mixture texture words (fluffy, crumbly, coarse crumbs): mostly mixing, kept because they end a heat step in melts and roux"
+COOL_COLD,18,cool(?:ed|s)?|cold|chill(?:ed)?|room temperature,,AI_DRAFTED_SOURCE_UNVERIFIED,cooling-state words ending a heat or cooling step
+SERVE_OR_USE,19,needed|serving(?: time)?|ready(?: to (?:serve|use|eat))?|use,,AI_DRAFTED_SOURCE_UNVERIFIED,hold until needed or ready to serve

@@ -46,7 +46,8 @@ from culinarystate.simulation import physics_drivers as PD
 from culinarystate.simulation import scenario_layer as SL
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "nonheat-scenario-L2-0.3.0-draft"
+VERSION = "nonheat-scenario-L2-0.4.0-draft"
+VERSION_V03 = "nonheat-scenario-L2-0.3.0-draft"  # SUPERSEDED by 0.4.0 (Layer 1 temperature ownership; no per-axis provenance)
 VERSION_V02 = "nonheat-scenario-L2-0.2.0-draft"  # SUPERSEDED by 0.3.0 (F0 scope, acid uptake, cap wording)
 VERSION_UNCAPPED = "nonheat-scenario-L2-0.1.0-draft"  # SUPERSEDED RESTING model (no evaporation cap)
 LABELS = list(SL.LABELS)
@@ -99,6 +100,13 @@ def _p(row: tuple, i: int, sign: int) -> float:
 
 def _t(tr: tuple, i: int, sign: int) -> float:
     return tr[i] if sign > 0 else tr[2 - i]
+
+
+
+def l1_provenance(inputs: Mapping[str, Any]) -> dict:
+    """{axis: {basis, span_id, row}} of the bound Layer 1 inputs of a non-heat record (S178 T4-C02; UNKNOWN axes are absent)."""
+    return {k: {"basis": x.get("basis"), "span_id": x.get("span_id"), "row": x.get("row")}
+            for k, x in sorted(inputs.items()) if isinstance(x, Mapping) and x.get("status", "UNKNOWN") != "UNKNOWN"}
 
 
 class NonHeatScenario:
@@ -155,7 +163,8 @@ class NonHeatScenario:
         return {"recipe_id": rec.get("recipe_id"), "event_id": rec.get("event_id"), "process_id": rec["process_id"],
                 "nh_family": rec["nh_family"], "process_role": rec["process_role"],
                 "form_candidate": rec["form_candidate"], "layer": "SCENARIO",
-                "version": VERSION if self.capped else VERSION_UNCAPPED, "labels": list(LABELS)}
+                "version": VERSION if self.capped else VERSION_UNCAPPED, "labels": list(LABELS),
+                "l1_provenance": l1_provenance(rec.get("inputs") or {})}
 
     def run(self, rec: Mapping[str, Any]) -> dict:
         rec = _norm(rec)  # a copy: the Layer 1 record is never written to
@@ -375,7 +384,9 @@ class NonHeatScenario:
         dur, d_basis, dflags = self._duration(rec)
         out = {}
         for i, name in enumerate(BRACKETS):
-            sc = {"state_flags": list(flags), "flags": ["QUALITATIVE_ONLY_NO_NUMBER_FOR_STATE", *dflags], "bases": {}}
+            # S178: the flags come from the verb itself (STATE_FLAGS by process id): say so in the basis (T4-C02)
+            sc = {"state_flags": list(flags), "flags": ["QUALITATIVE_ONLY_NO_NUMBER_FOR_STATE", *dflags],
+                  "bases": {"state_flags": "L1:PROCESS_DEFINITION"}}
             if dur:
                 sc["duration_min"], sc["bases"]["duration_min"] = dur[i], d_basis
             out[name] = sc

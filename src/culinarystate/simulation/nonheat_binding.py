@@ -38,7 +38,8 @@ from culinarystate.recipes.ledgers import LOCALE
 from culinarystate.simulation import condition_binding as CB
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "nonheat-binding-L1-0.1.0-draft"
+VERSION = "nonheat-binding-L1-0.2.0-draft"
+VERSION_V01 = "nonheat-binding-L1-0.1.0-draft"  # SUPERSEDED: heat-step links used the 0.1.0 nearest-temperature rule; no span_id / row
 CENSUS_VERSION = "nonheat-census-L1-0.1.0-draft"
 NH_FAMILIES = ("COOLING", "SEPARATION", "FERMENT_LEAVEN", "PRESERVATION", "MECHANICAL_CUT", "MECHANICAL_MIX",
                "RESTING", "STORAGE")
@@ -424,8 +425,7 @@ class NonHeatBinder:
         inp, gas_code = ctx["heat_inputs"][found.event_id]
         return {"event_id": found.event_id, "process_id": _attr(found.attributes, "proc_id"), "basis": basis,
                 "span": [found.span.char_start, found.span.char_end], "oven_setpoint_code": gas_code,
-                "inputs": {k: {"value": _s(v["value"]), "status": v["status"], "basis": v["basis"], "span": v["span"]}
-                           for k, v in inp.items()}}
+                "inputs": {k: {kk: (_s(vv) if kk == "value" else vv) for kk, vv in v.items()} for k, v in inp.items()}}
 
     def _next_heat(self, ev, ctx) -> dict | None:
         desc, stack = set(), list(ev.produces)
@@ -472,18 +472,20 @@ class NonHeatBinder:
                 children.setdefault(p, []).append(e.entity_id)
         # heat inputs of every heat step, tracking the carried oven setpoint exactly as the heat binder does
         heat_inputs, setpoint, gas = {}, None, None
+        plan = base.temperature_plan(raw, events)  # S178: the same temperature ownership as the heat binder (0.2.0)
         for ev in events:
             pid = _attr(ev.attributes, "proc_id")
             fam = base.family.get(pid)
             if fam == "HEAT_CONTROL" or fam in HEAT:
                 a, b = base._sentence(raw, ev.span.char_start)
-                temps = base._temperatures(raw, a, b)
+                tp = plan.get(ev.event_id)
+                temps = tp.temps if tp else []
                 gm = CB._GAS.search(raw, a, b)
                 if fam == "HEAT_CONTROL":
                     setpoint = (temps[0], ev.event_id) if temps else setpoint
                     gas = f"GAS_{gm.group(1)}" if gm else (None if temps else gas)
                 else:
-                    heat_inputs[ev.event_id] = base._inputs(raw, g, ev, pid, fam, (a, b), temps, setpoint, gas, gm)
+                    heat_inputs[ev.event_id] = base._inputs(raw, g, ev, pid, fam, (a, b), temps, setpoint, gas, gm, plan=tp)
         # physical (relevant) events in text order and their clause windows
         rel = [ev for ev in events if ev.event_id in heat_inputs or self.nh_family(_attr(ev.attributes, "proc_id"))]
         windows: dict[str, tuple[int, int]] = {}
@@ -525,11 +527,24 @@ class NonHeatBinder:
                  "PRESERVATION": self._preservation, "MECHANICAL_CUT": self._cut, "MECHANICAL_MIX": self._mix,
                  "RESTING": self._rest, "STORAGE": self._storage}[fam]
         hist = build(ev, pid, role, surface, verb, win, ctx, inp, cues)
+        self._stamp(inp, fam, pid)
         if surface in NON_VERB_SURFACES:
             cues.append({"name": "NON_VERB_SURFACE", "span": list(verb)})
         return {"event_id": ev.event_id, "process_id": pid, "family": self.base.family.get(pid), "nh_family": fam,
                 "process_role": role, "form_candidate": FORM_CANDIDATE[fam], "layer": "TEXT_STATED",
                 "version": VERSION, "verb_span": list(verb), "inputs": inp, "cues": cues, "history": hist or {}}
+
+    @staticmethod
+    def _stamp(inp: dict, fam: str, pid: str) -> None:
+        """Per-axis provenance (S178, T4-C02): every bound axis gets ``span_id`` (``C:a-b`` of its span) and ``row`` (the code rule
+        or table that fixed it: the verb's process id for a definition basis, else the family, axis and basis); unknown axes keep
+        their ``reason``."""
+        for axis, x in inp.items():
+            if x["status"] == "UNKNOWN":
+                continue
+            x.setdefault("span_id", f"C:{x['span'][0]}-{x['span'][1]}" if x.get("span") else None)
+            x.setdefault("row", f"nonheat_binding:{x['basis']}:{pid}" if x["basis"] in ("PROCESS_DEFINITION", "PHYSICAL_DEFINITION")
+                         else f"nonheat_binding:{fam}.{axis}.{x['basis']}")
 
     # ------------------------------------------------------------------------------------------ families
     def _env(self, table_key: str, raw, win, verb, inp, fallback_reason="NO_ENVIRONMENT_CUE") -> None:

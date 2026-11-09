@@ -168,7 +168,7 @@ def test_nonheat_tool_v02_to_v03_block(nh_tool, tmp_path):
     assert nh_tool.main(argv2) == 0
     rep = json.loads((tmp_path / "b_l2.json").read_text())
     v = rep["v02_to_v03"]
-    assert rep["layer_version"] == "nonheat-scenario-L2-0.3.0-draft" and v["previous_layer_version"] == "nonheat-scenario-L2-0.2.0-draft"
+    assert rep["layer_version"] == "nonheat-scenario-L2-0.4.0-draft" and v["previous_layer_version"] == "nonheat-scenario-L2-0.2.0-draft"
     pc = v["counts"]
     assert "ALIGNMENT_ERROR" not in pc and "PREV_FILE_MISSING" not in pc
     st = pc["status"]["PRESERVATION"]

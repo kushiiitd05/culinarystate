@@ -201,6 +201,6 @@ def test_resting_after_a_105_c_stated_boil_is_not_capped_below_the_text():
         assert s["core_end_of_heat_c"] <= 105.0 + TOL and s["core_peak_c"] <= 105.0 + TOL
         assert "PRESSURE_RELEASE_PROFILE_CLIPPED_TO_ATMOSPHERIC_TBOIL" not in s["flags"]
         assert "REST_PROFILE_CLIPPED_TO_ATMOSPHERIC_TBOIL_AFTER_STATED_LIQUID_T" in s["flags"]
-    assert out["version"] == NS.VERSION == "nonheat-scenario-L2-0.3.0-draft"
+    assert out["version"] == NS.VERSION == "nonheat-scenario-L2-0.4.0-draft"  # S178: bumped to 0.4.0
     plain = nh.run(_rest_rec(medium="WATER", proc="PROC-000019", bath="98", hdur="30", rest="5", size="DICED"))["scenarios"]["TYPICAL"]
     assert plain["t_cap_c"] == 100.0 and "STATED_LIQUID_T_ABOVE_TBOIL" not in plain["flags"]

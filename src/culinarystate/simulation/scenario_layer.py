@@ -31,6 +31,12 @@ S177 SCIFIX-PHYS (version 0.3.0, FINAL-SCI rows 2 and 3; SSOT v16 DRAFT 284.3 / 
   every member is a dry class; ``CAP_IS_UPPER_BOUND_NOT_VALIDATED`` is replaced by ``TBOIL_CEILING_DILUTE_AQUEOUS_ONLY``.
   Member groups are read from the optional Layer 1 input ``matrix_groups`` (a list of food groups); records that carry only
   ``matrix_class`` (single-group lots) behave as before.
+
+S178 PHYS2 (version 0.4.0, T4-C02): no numerical change in the drivers. The record carries ``l1_provenance`` (basis, ``span_id`` and
+``row`` of every Layer 1 axis the run used) so every L2 input traces to its Layer 1 evidence; ``OVEN_OR_AMBIENT_TEMPERATURE_STATED_
+NOT_USED_AS_LIQUID_T`` marks an aqueous step whose Layer 1 record keeps an oven-cued ``ambient_temperature`` (0.2.0 Layer 1 never
+binds it as the liquid temperature). The L1 input that feeds the stated-liquid cap is now the owned temperature of the step, not
+the nearest temperature of the sentence (the 0.3.0 population of events lifted above 150 C came from that mis-association).
 """
 from __future__ import annotations
 
@@ -44,7 +50,8 @@ from culinarystate.simulation import phase_change as PC
 from culinarystate.simulation import physics_drivers as PD
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "scenario-layer-L2-0.3.0-draft"
+VERSION = "scenario-layer-L2-0.4.0-draft"
+VERSION_V03 = "scenario-layer-L2-0.3.0-draft"  # SUPERSEDED by 0.4.0 (L1 0.1.0 temperature association, no per-axis provenance)
 VERSION_V02 = "scenario-layer-L2-0.2.0-draft"  # SUPERSEDED by 0.3.0 (quality_cook_value_min, upper-bound cap wording)
 VERSION_UNCAPPED = "scenario-layer-L2-0.1.0-draft"  # SUPERSEDED model, kept for the before/after comparison
 LABELS = ["SCENARIO", "MODEL_DERIVED", "NON_CITABLE", "ASSUMED_DEFAULT"]
@@ -68,6 +75,20 @@ def member_groups(inputs: Mapping[str, Any]) -> tuple[str, ...]:
     x = inputs.get("matrix_groups") or {}
     v = x.get("value") if x.get("status", "UNKNOWN") != "UNKNOWN" else None
     return tuple(sorted({str(g) for g in v})) if isinstance(v, (list, tuple)) else ()
+
+
+L1_PROVENANCE_AXES = ("temperature_profile", "duration", "medium", "piece_size_class", "matrix_class", "matrix_groups",
+                      "ambient_temperature")
+
+
+def l1_provenance(inputs: Mapping[str, Any]) -> dict:
+    """{axis: {basis, span_id, row}} of the bound Layer 1 axes a run read (UNKNOWN axes are absent: nothing was used)."""
+    out = {}
+    for axis in L1_PROVENANCE_AXES:
+        x = inputs.get(axis) or {}
+        if x.get("status", "UNKNOWN") != "UNKNOWN":
+            out[axis] = {"basis": x.get("basis"), "span_id": x.get("span_id"), "row": x.get("row")}
+    return out
 
 
 def _f(v) -> float:
@@ -146,7 +167,7 @@ class ScenarioLayer:
         medium = rec["inputs"]["medium"]["value"]
         base = {"recipe_id": rec.get("recipe_id"), "event_id": rec.get("event_id"), "process_id": rec["process_id"],
                 "layer": "SCENARIO", "version": VERSION if self.capped else VERSION_UNCAPPED, "labels": list(LABELS),
-                "medium": medium}
+                "medium": medium, "l1_provenance": l1_provenance(rec["inputs"])}
         if self.capped:
             base["cap_model"] = PC.VERSION
         if medium in UNSUPPORTED:
@@ -169,6 +190,8 @@ class ScenarioLayer:
         for i, name in enumerate(BRACKETS):
             j = i  # GENTLE uses low exposure values, INTENSE high
             flags = ["HIGH_MOISTURE_PROPERTIES_ASSUMED", "SLAB_GEOMETRY_ASSUMED"]
+            if (rec["inputs"].get("ambient_temperature") or {}).get("status", "UNKNOWN") != "UNKNOWN":
+                flags.append("OVEN_OR_AMBIENT_TEMPERATURE_STATED_NOT_USED_AS_LIQUID_T")
             sc = {"bath_c": bath[j], "duration_min": dur[j], "initial_c": t0[j],
                   "bases": {"bath_c": b_basis, "duration_min": d_basis, "initial_c": t0[3], "k": k[3], "alpha": a[3]}}
             stated = bath[j] if b_basis in PC.STATED_BASES else None

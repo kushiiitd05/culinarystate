@@ -22,6 +22,10 @@ sterilise, boiling-water-bath and oven canning are QUALITATIVE_FLAGS_ONLY with `
 acid marinades (vinegar, citrus juice) are QUALITATIVE (PH_FALLS), no Fickian number; the RESTING cap never goes below a
 text-stated aqueous liquid temperature. ``--compare-prev-l2 DIR`` reads the previous (0.2.0) per-event L2 records of the
 same L1 files and adds a counts-only ``v02_to_v03`` block (status changes by family, flags added / removed, RESTING cap changes).
+
+S178 PHYS2: ``--prev-tag`` / ``--tag`` / ``--prev-layer-version`` name that comparison block (defaults v02 / v03 as before; the
+S178 re-run passes v03 / v04). The Layer 1 records of the S178 re-run come from ``nonheat_binding`` 0.2.0 (the heat steps a
+non-heat event links to use the temperature ownership of ``condition_binding`` 0.2.0; every bound input carries ``span_id`` and ``row``).
 """
 from __future__ import annotations
 
@@ -63,6 +67,7 @@ CODE_FILES = ("src/culinarystate/simulation/nonheat_binding.py", "src/culinaryst
               "registry/process_medium_map_v1.csv", "tools/nonheat_layer_run.py")
 _LAYER: list = []  # [main layer, SUPERSEDED uncapped layer or None]
 _PREV: list = [None]  # directory of the previous (0.2.0) per-event L2 records, or None
+_TAG: list = ["v02_to_v03", NS.VERSION_V02]  # comparison block name and previous layer version
 BR = ("GENTLE", "TYPICAL", "INTENSE")
 CHANGE_EPS = 5e-4
 
@@ -263,8 +268,7 @@ def run_l2(l1_dir: Path, l2_dir: Path, workers: int, policy: PC.CapPolicy, compa
            "errors_by_class": _nest(tot, "error")}
     extra: dict = {}
     if prev_dir is not None:
-        extra["v02_to_v03"] = {"previous_layer_version": NS.VERSION_V02, "layer_version": NS.VERSION,
-                               "counts": _nest(tot, "cmp_prev")}
+        extra[_TAG[0]] = {"previous_layer_version": _TAG[1], "layer_version": NS.VERSION, "counts": _nest(tot, "cmp_prev")}
     if compare:
         q: dict = {}
         for (tag, f, b), xs in sorted(vals.items()):
@@ -312,10 +316,14 @@ def main(argv=None, record_source=None) -> int:
                     help="also run the SUPERSEDED 0.1.0 model on RESTING events and report a before/after block")
     ap.add_argument("--compare-prev-l2", default=None,
                     help="directory of the previous (0.2.0) per-event L2 records of the same L1 files: adds a v02_to_v03 block")
+    ap.add_argument("--prev-tag", default="v02", help="label of the previous layer in the comparison block (default v02)")
+    ap.add_argument("--tag", default="v03", help="label of this layer in the comparison block (default v03)")
+    ap.add_argument("--prev-layer-version", default=NS.VERSION_V02, help="previous layer version string")
     ap.add_argument("--no-evaporation-cap", action="store_true", help="run the SUPERSEDED 0.1.0 model (regression only)")
     ap.add_argument("--altitude-m", type=float, default=None, help="optional altitude (default sea level, flagged)")
     ap.add_argument("--pressure-psig", type=float, default=None, help="optional gauge pressure of a pressure process")
     a = ap.parse_args(argv)
+    _TAG[:] = [f"{a.prev_tag}_to_{a.tag}", a.prev_layer_version]
     root, o2 = Path(a.root), Path(a.l2_out)
     o1 = Path(a.l1_out) if a.l1_out else None
     if a.sample_size < 1 or a.workers < 1:

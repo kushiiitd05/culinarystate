@@ -15,6 +15,10 @@ S177 SCIFIX-PHYS (layer 0.3.0): zone-resolved doses (8 Gauss-Legendre node histo
 text-stated aqueous liquid temperature. ``--compare-prev-l2 DIR`` reads the previous (0.2.0) per-event L2 records of the same
 L1 files and adds a counts-only ``v02_to_v03`` block (status changes, flags added / removed, cap and dose changes, quantiles
 of the zone-mean dose over the dose of the volume-average temperature).
+
+S178 PHYS2 (layer 0.4.0): ``--prev-tag`` / ``--tag`` name the comparison block (default ``v02`` / ``v03``, the S177 behaviour; the
+S178 re-run passes ``v03`` / ``v04``) and ``--prev-layer-version`` its previous version string. The comparison also counts the
+events whose bath temperature or its basis changed (the Layer 1 temperature-ownership fix).
 """
 from __future__ import annotations
 
@@ -49,8 +53,10 @@ DOSE_FIELDS = ("core_cook_value_min", "cook_value_at_volume_avg_t_min", "zone_me
 STATED_T_BUCKETS = ((100.0, 105.0, "100_TO_105"), (105.0, 120.0, "105_TO_120"), (120.0, 150.0, "120_TO_150"),
                     (150.0, 1e9, "ABOVE_150"))
 _PREV: list = [None]  # directory of the previous (0.2.0) per-event L2 records, or None
+_TAG: list = ["v02_to_v03"]  # name of the previous -> current comparison block
 CODE_FILES = ("src/culinarystate/simulation/scenario_layer.py", "src/culinarystate/simulation/phase_change.py",
-              "src/culinarystate/simulation/physics_drivers.py", "registry/scenario_defaults_v1.csv",
+              "src/culinarystate/simulation/physics_drivers.py", "src/culinarystate/simulation/condition_binding.py",
+              "src/culinarystate/simulation/endpoint_cues.py", "registry/scenario_defaults_v1.csv",
               "registry/phase_change_v1.csv", "registry/matrix_moisture_regime_v1.csv", "tools/scenario_layer_run.py")
 
 
@@ -89,6 +95,14 @@ def _count_main(c: Counter, out: dict) -> None:
         if "STATED_LIQUID_T_ABOVE_TBOIL" in s.get("flags", ()):
             c[("stated_liquid_above_tboil", b)] += 1
             c[("stated_liquid_above_tboil_by_stated_c", b, next(n for lo, hi, n in STATED_T_BUCKETS if lo < s["bath_c"] <= hi))] += 1
+            if b == "TYPICAL":  # S178: split the stated-liquid population by solute-rich member and by core computed
+                bucket = next(n for lo, hi, n in STATED_T_BUCKETS if lo < s["bath_c"] <= hi)
+                solute = "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER" in s["flags"]
+                c[("stated_liquid_typical_by_stated_c_and_member", bucket, "SOLUTE_RICH_MEMBER" if solute else "NO_SOLUTE_RICH_MEMBER")] += 1
+                if s["core_end_c"] is not None:
+                    c[("stated_liquid_typical_core_computed_by_stated_c", bucket)] += 1
+        if "OVEN_OR_AMBIENT_TEMPERATURE_STATED_NOT_USED_AS_LIQUID_T" in s.get("flags", ()) and b == "TYPICAL":
+            c[("ambient_temperature_not_used_as_liquid_t_typical",)] += 1
         if s.get("zone_nodes"):
             c[("zone_nodes_emitted", b)] += 1
     t = out["scenarios"].get("TYPICAL")
@@ -173,6 +187,10 @@ def _cmp_prev(c: Counter, vals: dict, old: dict, new: dict) -> None:
             c[("cmp_prev", "t_cap_changed", b)] += 1
             if sn.get("t_cap_c") is not None and so.get("t_cap_c") is not None and sn["t_cap_c"] > so["t_cap_c"]:
                 c[("cmp_prev", "t_cap_raised", b)] += 1
+        if so.get("bath_c") != sn.get("bath_c"):
+            c[("cmp_prev", "bath_c_changed", b)] += 1
+        if (so.get("bases") or {}).get("bath_c") != (sn.get("bases") or {}).get("bath_c"):
+            c[("cmp_prev", "bath_basis_changed", b, code(f"{(so.get('bases') or {}).get('bath_c')}>{(sn.get('bases') or {}).get('bath_c')}"))] += 1
         for f in ("core_end_c", "volume_avg_end_c", "core_cook_value_min", "surface_cook_value_min"):
             if so.get(f) is not None and sn.get(f) is not None and abs(so[f] - sn[f]) > CHANGE_EPS * max(1.0, abs(so[f])):
                 c[("cmp_prev", "changed", b, f)] += 1
@@ -181,10 +199,10 @@ def _cmp_prev(c: Counter, vals: dict, old: dict, new: dict) -> None:
             c[("cmp_prev", "volume_avg_dose_equal_to_0_2_0_name", b, abs(vo - vn) <= CHANGE_EPS * max(1.0, abs(vo)))] += 1
         z, core = sn.get("zone_mean_cook_value_min"), sn.get("core_cook_value_min")
         if z is not None and vn:
-            vals.setdefault(("v02_to_v03", "zone_mean_over_dose_at_volume_avg_t", b), []).append(z / vn)
+            vals.setdefault((_TAG[0], "zone_mean_over_dose_at_volume_avg_t", b), []).append(z / vn)
             c[("cmp_prev", "zone_mean_dose_gt_dose_at_volume_avg_t", b, z >= vn)] += 1
         if z is not None and core:
-            vals.setdefault(("v02_to_v03", "zone_mean_over_core_dose", b), []).append(z / core)
+            vals.setdefault((_TAG[0], "zone_mean_over_core_dose", b), []).append(z / core)
 
 
 def _one(paths: tuple[str, str]) -> dict:
@@ -262,6 +280,9 @@ def main(argv=None) -> int:
                     help="run the SUPERSEDED 0.1.0 model as the main model (regression only)")
     ap.add_argument("--compare-prev-l2", type=Path, default=None,
                     help="directory of the previous (0.2.0) per-event L2 records of the same L1 files: adds a v02_to_v03 block")
+    ap.add_argument("--prev-tag", default="v02", help="label of the previous layer in the comparison block (default v02)")
+    ap.add_argument("--tag", default="v03", help="label of this layer in the comparison block (default v03)")
+    ap.add_argument("--prev-layer-version", default=SL.VERSION_V02, help="previous layer version string")
     ap.add_argument("--altitude-m", type=float, default=None, help="optional altitude (default sea level, flagged)")
     ap.add_argument("--pressure-psig", type=float, default=None, help="optional stated gauge pressure of a pressure process")
     a = ap.parse_args(argv)
@@ -279,6 +300,7 @@ def main(argv=None) -> int:
     if a.compare_prev_l2 is not None and not a.compare_prev_l2.is_dir():
         ap.error("--compare-prev-l2 must be an existing directory")
     _PREV[0] = str(a.compare_prev_l2) if a.compare_prev_l2 else None
+    _TAG[0] = f"{a.prev_tag}_to_{a.tag}"
     a.l2.mkdir(parents=True, exist_ok=True)
     if any(a.l2.iterdir()):
         ap.error("--l2 must be empty or new")
@@ -306,8 +328,8 @@ def main(argv=None) -> int:
     plain = [(k, v) for k, v in tot.items() if k[0] not in ("cmp", "cmp_prev")]
     cmp_items = [(k[1:], v) for k, v in tot.items() if k[0] == "cmp"]
     prev_items = [(k[1:], v) for k, v in tot.items() if k[0] == "cmp_prev"]
-    ratio_vals = {k: v for k, v in vals.items() if k[0] in ("main", "v02_to_v03")}
-    vals = {k: v for k, v in vals.items() if k[0] not in ("main", "v02_to_v03")}
+    ratio_vals = {k: v for k, v in vals.items() if k[0] in ("main", _TAG[0])}
+    vals = {k: v for k, v in vals.items() if k[0] not in ("main", _TAG[0])}
     reg = (ROOT / "registry/scenario_defaults_v1.csv").read_bytes()
     rep = {"record": "SCENARIO_L2_SUMMARY", "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY", "layer_version": SL.VERSION
            if main_layer.capped else SL.VERSION_UNCAPPED, "labels": SL.LABELS, "contains_ids": False,
@@ -328,9 +350,8 @@ def main(argv=None) -> int:
         rep["before_after"] = {"before_layer_version": SL.VERSION_UNCAPPED, "after_layer_version": SL.VERSION,
                                "counts": _nest(cmp_items), "dose_quantiles": _quantiles(vals)}
     if a.compare_prev_l2 is not None:
-        rep["v02_to_v03"] = {"previous_layer_version": SL.VERSION_V02, "layer_version": SL.VERSION, "counts": _nest(prev_items),
-                             "ratio_quantiles": _quantiles({k: v for k, v in ratio_vals.items() if k[0] == "v02_to_v03"})
-                             .get("v02_to_v03", {})}
+        rep[_TAG[0]] = {"previous_layer_version": a.prev_layer_version, "layer_version": SL.VERSION, "counts": _nest(prev_items),
+                        "ratio_quantiles": _quantiles({k: v for k, v in ratio_vals.items() if k[0] == _TAG[0]}).get(_TAG[0], {})}
     rep.update(code_provenance=prov, code_unchanged_during_run=provenance() == prov, started_at_utc=started,
                ended_at_utc=_now(), wall_seconds=round(time.time() - t0, 1), workers=a.workers,
                records_manifest_sha256=dir_manifest_sha256(a.l2))
