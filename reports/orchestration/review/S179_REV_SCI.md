@@ -28,7 +28,7 @@ point; MDE table identical v1 -> v2; heat statuses unchanged.
 
 | # | Status | Commits / note |
 |---|---|---|
-| 1 M1 residual | FIXED, tests first | RED tests 0b… `test_s179_phys_m1_residual.py` (the four probes + 3 controls); `endpoint_cues` 0.3.0: clause runs across and/or when no event verb starts the next conjunct, subject read from the last conjunct, "N F for rare/medium/well" and "N F inside / internal" are food targets; L1 0.3.1. Re-run as v06 (BBC on the Mac: TEXT_STATED temperatures 5,669 -> 5,664; non-BBC on manjot) |
+| 1 M1 residual | FIXED, tests first | RED tests e413099 `test_s179_phys_m1_residual.py` (the four probes + 3 controls); `endpoint_cues` 0.3.0: clause runs across and/or when no event verb starts the next conjunct, subject read from the last conjunct, "N F for rare/medium/well" and "N F inside / internal" are food targets; L1 0.3.1. Re-run as v06 (BBC on the Mac: TEXT_STATED temperatures 5,669 -> 5,664; non-BBC on manjot) |
 | 2 M4/M5 residual | OPEN, needs Kush (Q1) | stricter lift gate than SCI-A rule (b) changes the signed-off direction; not changed by an agent |
 | 3 audit counter | FIXED | `test_s179_fixphys_audit_roles.py`; audit counts by role (target / exempt / unclassified); v05 audit re-run with the fixed tool in the v06 chain |
 | 4 R2 residual | FIXED, tests first | `test_s179_router_r2_residual.py`; post-food state cue + two-word "left over"; census 0.4.1 (BBC route counts unchanged; non-BBC re-run on vinayak) |
