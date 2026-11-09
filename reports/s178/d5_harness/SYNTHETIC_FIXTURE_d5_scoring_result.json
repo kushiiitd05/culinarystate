@@ -1,0 +1,8165 @@
+{
+ "ablation": {
+  "board_item": "T8-C21-R2",
+  "full": {
+   "abstention_on_abstain_gold": {
+    "cp95": [
+     0.1581,
+     1.0
+    ],
+    "n": 2,
+    "rate": 1.0,
+    "x": 2
+   },
+   "coverage_answerable": {
+    "cp95": [
+     0.1466,
+     0.9473
+    ],
+    "n": 5,
+    "rate": 0.6,
+    "x": 3
+   },
+   "error_rate_E1": {
+    "cp95": [
+     0.0036,
+     0.5787
+    ],
+    "n": 7,
+    "rate": 0.1429,
+    "x": 1
+   },
+   "false_abstention_answerable": {
+    "cp95": [
+     0.0,
+     0.5218
+    ],
+    "n": 5,
+    "rate": 0.0,
+    "x": 0
+   },
+   "n_numeric_claims": 5,
+   "n_questions": 7,
+   "selective_risk": {
+    "cp95": [
+     0.0063,
+     0.8059
+    ],
+    "n": 4,
+    "rate": 0.25,
+    "x": 1
+   },
+   "ucr": 0.2
+  },
+  "metric": "ablation_table",
+  "prereg_status": "EXPLORATORY_NOT_IN_PREREG (SSOT \u00a7245.13 subset; descriptive)",
+  "reading": "descriptive; no alpha, no decision rule, no multiplicity control; no module is kept or dropped on this table without a dated amendment",
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+  "table": [
+   {
+    "delta_vs_full": {
+     "error_rate_E1": 0.0,
+     "ucr": 0.05
+    },
+    "metrics": {
+     "abstention_on_abstain_gold": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     },
+     "coverage_answerable": {
+      "cp95": [
+       0.0527,
+       0.8534
+      ],
+      "n": 5,
+      "rate": 0.4,
+      "x": 2
+     },
+     "error_rate_E1": {
+      "cp95": [
+       0.0036,
+       0.5787
+      ],
+      "n": 7,
+      "rate": 0.1429,
+      "x": 1
+     },
+     "false_abstention_answerable": {
+      "cp95": [
+       0.0051,
+       0.7164
+      ],
+      "n": 5,
+      "rate": 0.2,
+      "x": 1
+     },
+     "n_numeric_claims": 4,
+     "n_questions": 7,
+     "selective_risk": {
+      "cp95": [
+       0.0084,
+       0.9057
+      ],
+      "n": 3,
+      "rate": 0.3333,
+      "x": 1
+     },
+     "ucr": 0.25
+    },
+    "paired_E1": {
+     "errors_added": 0,
+     "errors_removed": 0,
+     "n": 7,
+     "p_exact_two_sided_descriptive": 1.0
+    },
+    "ssot_245_13": "state reconstruction",
+    "status": "RUN",
+    "toggle": "state_conditioning"
+   },
+   {
+    "reason": "no quantity-grounding switch in the D5 answer path",
+    "ssot_245_13": "quantity grounding",
+    "status": "NOT_RUN",
+    "toggle": null
+   },
+   {
+    "reason": "B3 (structured metadata RAG) is not built",
+    "ssot_245_13": "structured retrieval",
+    "status": "NOT_RUN",
+    "toggle": null
+   },
+   {
+    "delta_vs_full": {
+     "error_rate_E1": 0.1428,
+     "ucr": 0.2
+    },
+    "metrics": {
+     "abstention_on_abstain_gold": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     },
+     "coverage_answerable": {
+      "cp95": [
+       0.0527,
+       0.8534
+      ],
+      "n": 5,
+      "rate": 0.4,
+      "x": 2
+     },
+     "error_rate_E1": {
+      "cp95": [
+       0.0367,
+       0.7096
+      ],
+      "n": 7,
+      "rate": 0.2857,
+      "x": 2
+     },
+     "false_abstention_answerable": {
+      "cp95": [
+       0.0,
+       0.5218
+      ],
+      "n": 5,
+      "rate": 0.0,
+      "x": 0
+     },
+     "n_numeric_claims": 5,
+     "n_questions": 7,
+     "selective_risk": {
+      "cp95": [
+       0.0676,
+       0.9324
+      ],
+      "n": 4,
+      "rate": 0.5,
+      "x": 2
+     },
+     "ucr": 0.4
+    },
+    "paired_E1": {
+     "errors_added": 1,
+     "errors_removed": 0,
+     "n": 7,
+     "p_exact_two_sided_descriptive": 1.0
+    },
+    "ssot_245_13": "evidence compatibility",
+    "status": "RUN",
+    "toggle": "evidence_compatibility"
+   },
+   {
+    "reason": "no switch separates conflict / lineage handling from the packet builder",
+    "ssot_245_13": "conflict/lineage processing",
+    "status": "NOT_RUN",
+    "toggle": null
+   },
+   {
+    "reason": "B6 (Level-15 transition fallback) is not built",
+    "ssot_245_13": "transition fallback",
+    "status": "NOT_RUN",
+    "toggle": null
+   },
+   {
+    "delta_vs_full": {
+     "error_rate_E1": 0.1428,
+     "ucr": 0.1333
+    },
+    "metrics": {
+     "abstention_on_abstain_gold": {
+      "cp95": [
+       0.0126,
+       0.9874
+      ],
+      "n": 2,
+      "rate": 0.5,
+      "x": 1
+     },
+     "coverage_answerable": {
+      "cp95": [
+       0.1466,
+       0.9473
+      ],
+      "n": 5,
+      "rate": 0.6,
+      "x": 3
+     },
+     "error_rate_E1": {
+      "cp95": [
+       0.0367,
+       0.7096
+      ],
+      "n": 7,
+      "rate": 0.2857,
+      "x": 2
+     },
+     "false_abstention_answerable": {
+      "cp95": [
+       0.0,
+       0.5218
+      ],
+      "n": 5,
+      "rate": 0.0,
+      "x": 0
+     },
+     "n_numeric_claims": 6,
+     "n_questions": 7,
+     "selective_risk": {
+      "cp95": [
+       0.0527,
+       0.8534
+      ],
+      "n": 5,
+      "rate": 0.4,
+      "x": 2
+     },
+     "ucr": 0.3333
+    },
+    "paired_E1": {
+     "errors_added": 1,
+     "errors_removed": 0,
+     "n": 7,
+     "p_exact_two_sided_descriptive": 1.0
+    },
+    "ssot_245_13": "uncertainty/OOD gate",
+    "status": "RUN",
+    "toggle": "ood_gate"
+   },
+   {
+    "reason": "not in the board's cheap subset",
+    "ssot_245_13": "feasibility filtering",
+    "status": "NOT_RUN",
+    "toggle": null
+   },
+   {
+    "delta_vs_full": {
+     "error_rate_E1": 0.1428,
+     "ucr": 0.2
+    },
+    "metrics": {
+     "abstention_on_abstain_gold": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     },
+     "coverage_answerable": {
+      "cp95": [
+       0.0527,
+       0.8534
+      ],
+      "n": 5,
+      "rate": 0.4,
+      "x": 2
+     },
+     "error_rate_E1": {
+      "cp95": [
+       0.0367,
+       0.7096
+      ],
+      "n": 7,
+      "rate": 0.2857,
+      "x": 2
+     },
+     "false_abstention_answerable": {
+      "cp95": [
+       0.0,
+       0.5218
+      ],
+      "n": 5,
+      "rate": 0.0,
+      "x": 0
+     },
+     "n_numeric_claims": 5,
+     "n_questions": 7,
+     "selective_risk": {
+      "cp95": [
+       0.0676,
+       0.9324
+      ],
+      "n": 4,
+      "rate": 0.5,
+      "x": 2
+     },
+     "ucr": 0.4
+    },
+    "paired_E1": {
+     "errors_added": 1,
+     "errors_removed": 0,
+     "n": 7,
+     "p_exact_two_sided_descriptive": 1.0
+    },
+    "ssot_245_13": "provenance/claim ledger",
+    "status": "RUN",
+    "toggle": "claim_enforcement"
+   }
+  ],
+  "version": "ablation@0.1"
+ },
+ "audit": {
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+  "status": "PENDING_HUMAN_LABELS: Kush and Parv label the rung-blind sheets; the H3-A veto is PENDING until then"
+ },
+ "audit_sample": {
+  "board_item": "T8-C16-R1",
+  "design": {
+   "B2": {
+    "INDEP_SUPPORTED|CHECKER_CLEAN": {
+     "population": 3,
+     "sampled": 3,
+     "weight": 1.0
+    },
+    "INDEP_SUPPORTED|CHECKER_FLAGGED": {
+     "population": 0,
+     "sampled": 0,
+     "weight": null
+    },
+    "INDEP_UNSUPPORTED|CHECKER_CLEAN": {
+     "population": 1,
+     "sampled": 1,
+     "weight": 1.0
+    },
+    "INDEP_UNSUPPORTED|CHECKER_FLAGGED": {
+     "population": 3,
+     "sampled": 3,
+     "weight": 1.0
+    }
+   },
+   "B5T": {
+    "INDEP_SUPPORTED|CHECKER_CLEAN": {
+     "population": 5,
+     "sampled": 5,
+     "weight": 1.0
+    },
+    "INDEP_SUPPORTED|CHECKER_FLAGGED": {
+     "population": 0,
+     "sampled": 0,
+     "weight": null
+    },
+    "INDEP_UNSUPPORTED|CHECKER_CLEAN": {
+     "population": 0,
+     "sampled": 0,
+     "weight": null
+    },
+    "INDEP_UNSUPPORTED|CHECKER_FLAGGED": {
+     "population": 0,
+     "sampled": 0,
+     "weight": null
+    }
+   },
+   "B7": {
+    "INDEP_SUPPORTED|CHECKER_CLEAN": {
+     "population": 4,
+     "sampled": 4,
+     "weight": 1.0
+    },
+    "INDEP_SUPPORTED|CHECKER_FLAGGED": {
+     "population": 0,
+     "sampled": 0,
+     "weight": null
+    },
+    "INDEP_UNSUPPORTED|CHECKER_CLEAN": {
+     "population": 1,
+     "sampled": 1,
+     "weight": 1.0
+    },
+    "INDEP_UNSUPPORTED|CHECKER_FLAGGED": {
+     "population": 0,
+     "sampled": 0,
+     "weight": null
+    }
+   }
+  },
+  "n_sampled": 17,
+  "per_rung": 10,
+  "prereg_status": "PROPOSED_AMENDMENT_S178 C6 (H3-A/H3-B audit)",
+  "rungs": [
+   "B2",
+   "B7",
+   "B5T"
+  ],
+  "seed_sha256": "228c50a74ee22f76a28bb1ff247fa3fffdd35b6a716704c08d18885eeb8769ab",
+  "sheets": {
+   "design": {
+    "B2": {
+     "INDEP_SUPPORTED|CHECKER_CLEAN": {
+      "population": 3,
+      "sampled": 3,
+      "weight": 1.0
+     },
+     "INDEP_SUPPORTED|CHECKER_FLAGGED": {
+      "population": 0,
+      "sampled": 0,
+      "weight": null
+     },
+     "INDEP_UNSUPPORTED|CHECKER_CLEAN": {
+      "population": 1,
+      "sampled": 1,
+      "weight": 1.0
+     },
+     "INDEP_UNSUPPORTED|CHECKER_FLAGGED": {
+      "population": 3,
+      "sampled": 3,
+      "weight": 1.0
+     }
+    },
+    "B5T": {
+     "INDEP_SUPPORTED|CHECKER_CLEAN": {
+      "population": 5,
+      "sampled": 5,
+      "weight": 1.0
+     },
+     "INDEP_SUPPORTED|CHECKER_FLAGGED": {
+      "population": 0,
+      "sampled": 0,
+      "weight": null
+     },
+     "INDEP_UNSUPPORTED|CHECKER_CLEAN": {
+      "population": 0,
+      "sampled": 0,
+      "weight": null
+     },
+     "INDEP_UNSUPPORTED|CHECKER_FLAGGED": {
+      "population": 0,
+      "sampled": 0,
+      "weight": null
+     }
+    },
+    "B7": {
+     "INDEP_SUPPORTED|CHECKER_CLEAN": {
+      "population": 4,
+      "sampled": 4,
+      "weight": 1.0
+     },
+     "INDEP_SUPPORTED|CHECKER_FLAGGED": {
+      "population": 0,
+      "sampled": 0,
+      "weight": null
+     },
+     "INDEP_UNSUPPORTED|CHECKER_CLEAN": {
+      "population": 1,
+      "sampled": 1,
+      "weight": 1.0
+     },
+     "INDEP_UNSUPPORTED|CHECKER_FLAGGED": {
+      "population": 0,
+      "sampled": 0,
+      "weight": null
+     }
+    }
+   },
+   "n_items": 17,
+   "sha256": {
+    "Kush": "5641252470bd3ed1c635aec80df51e41908980c35216526177ec4eed204a290e",
+    "Parv": "9aa3b9830669771dc148a00528499eb42f76c487da74f9cc508e9cb981ae1cad",
+    "key": "639f0bc137d7c89d271a2ed7f00c90a955be1e1dac69615669ebb1085425f16c"
+   },
+   "shortfalls": [
+    {
+     "available": 7,
+     "requested": 10,
+     "rung": "B2"
+    },
+    {
+     "available": 5,
+     "requested": 10,
+     "rung": "B7"
+    },
+    {
+     "available": 5,
+     "requested": 10,
+     "rung": "B5T"
+    }
+   ]
+  },
+  "shortfalls": [
+   {
+    "available": 7,
+    "requested": 10,
+    "rung": "B2"
+   },
+   {
+    "available": 5,
+    "requested": 10,
+    "rung": "B7"
+   },
+   {
+    "available": 5,
+    "requested": 10,
+    "rung": "B5T"
+   }
+  ],
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+  "status": "AI_DRAFTED_SAMPLE",
+  "version": "claim_audit@0.1"
+ },
+ "c_block": {
+  "board_item": "T8-C10-R1",
+  "gold_cannot_separate": {
+   "cp95": [
+    0.0126,
+    0.9874
+   ],
+   "n": 2,
+   "rate": 0.5,
+   "x": 1
+  },
+  "gold_origin": {
+   "DERIVED_FROM_GOLD_RANGES": 1,
+   "REVIEWED_GOLD_COMPARE": 1
+  },
+  "metric": "c_block_accuracy_cannot_separate",
+  "n_c": 2,
+  "note": "UNRESOLVED = no comparison label could be read from the record (LLM free text needs the rung-blind human label, as for H1 unresolved links); it is never counted as agreement.",
+  "prereg_status": "EXPLORATORY_NOT_IN_PREREG (C is in H3; no C metric is named)",
+  "rungs": {
+   "B0": {
+    "abstained": 0,
+    "agreement_among_resolved": {
+     "cp95": null,
+     "n": 0,
+     "rate": null,
+     "x": 0
+    },
+    "agreement_with_gold": {
+     "cp95": [
+      0.0,
+      0.8419
+     ],
+     "n": 2,
+     "rate": 0.0,
+     "x": 0
+    },
+    "cannot_separate_rate": {
+     "cp95": [
+      0.0,
+      0.8419
+     ],
+     "n": 2,
+     "rate": 0.0,
+     "x": 0
+    },
+    "confusion_gold_x_pred": {
+     "ARM1_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 0
+     },
+     "ARM2_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 1
+     },
+     "CANNOT_SEPARATE": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 1
+     }
+    },
+    "unresolved": 2,
+    "wrong_order": 0
+   },
+   "B2": {
+    "abstained": 0,
+    "agreement_among_resolved": {
+     "cp95": [
+      0.025,
+      1.0
+     ],
+     "n": 1,
+     "rate": 1.0,
+     "x": 1
+    },
+    "agreement_with_gold": {
+     "cp95": [
+      0.0126,
+      0.9874
+     ],
+     "n": 2,
+     "rate": 0.5,
+     "x": 1
+    },
+    "cannot_separate_rate": {
+     "cp95": [
+      0.0,
+      0.8419
+     ],
+     "n": 2,
+     "rate": 0.0,
+     "x": 0
+    },
+    "confusion_gold_x_pred": {
+     "ARM1_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 0
+     },
+     "ARM2_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 1,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 0
+     },
+     "CANNOT_SEPARATE": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 1
+     }
+    },
+    "unresolved": 1,
+    "wrong_order": 0
+   },
+   "B5": {
+    "abstained": 0,
+    "agreement_among_resolved": {
+     "cp95": null,
+     "n": 0,
+     "rate": null,
+     "x": 0
+    },
+    "agreement_with_gold": {
+     "cp95": [
+      0.0,
+      0.8419
+     ],
+     "n": 2,
+     "rate": 0.0,
+     "x": 0
+    },
+    "cannot_separate_rate": {
+     "cp95": [
+      0.0,
+      0.8419
+     ],
+     "n": 2,
+     "rate": 0.0,
+     "x": 0
+    },
+    "confusion_gold_x_pred": {
+     "ARM1_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 0
+     },
+     "ARM2_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 1
+     },
+     "CANNOT_SEPARATE": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 1
+     }
+    },
+    "unresolved": 2,
+    "wrong_order": 0
+   },
+   "B5T": {
+    "abstained": 0,
+    "agreement_among_resolved": {
+     "cp95": [
+      0.1581,
+      1.0
+     ],
+     "n": 2,
+     "rate": 1.0,
+     "x": 2
+    },
+    "agreement_with_gold": {
+     "cp95": [
+      0.1581,
+      1.0
+     ],
+     "n": 2,
+     "rate": 1.0,
+     "x": 2
+    },
+    "cannot_separate_rate": {
+     "cp95": [
+      0.0126,
+      0.9874
+     ],
+     "n": 2,
+     "rate": 0.5,
+     "x": 1
+    },
+    "confusion_gold_x_pred": {
+     "ARM1_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 0
+     },
+     "ARM2_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 1,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 0
+     },
+     "CANNOT_SEPARATE": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 1,
+      "UNRESOLVED": 0
+     }
+    },
+    "unresolved": 0,
+    "wrong_order": 0
+   },
+   "B7": {
+    "abstained": 0,
+    "agreement_among_resolved": {
+     "cp95": [
+      0.1581,
+      1.0
+     ],
+     "n": 2,
+     "rate": 1.0,
+     "x": 2
+    },
+    "agreement_with_gold": {
+     "cp95": [
+      0.1581,
+      1.0
+     ],
+     "n": 2,
+     "rate": 1.0,
+     "x": 2
+    },
+    "cannot_separate_rate": {
+     "cp95": [
+      0.0126,
+      0.9874
+     ],
+     "n": 2,
+     "rate": 0.5,
+     "x": 1
+    },
+    "confusion_gold_x_pred": {
+     "ARM1_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 0
+     },
+     "ARM2_BETTER": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 1,
+      "CANNOT_SEPARATE": 0,
+      "UNRESOLVED": 0
+     },
+     "CANNOT_SEPARATE": {
+      "ABSTAINED": 0,
+      "ARM1_BETTER": 0,
+      "ARM2_BETTER": 0,
+      "CANNOT_SEPARATE": 1,
+      "UNRESOLVED": 0
+     }
+    },
+    "unresolved": 0,
+    "wrong_order": 0
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "citations": {
+  "board_item": "T8-C16-R1",
+  "metric": "citation_precision_recall",
+  "note": "pair-level and id-level counts are not independent draws; the intervals are indicative only",
+  "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+  "rungs": {
+   "B0": {
+    "gold_based": {
+     "precision": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "recall": {
+      "cp95": [
+       0.0,
+       0.3363
+      ],
+      "n": 9,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "support_based": {
+     "precision": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "recall": {
+      "cp95": [
+       0.0,
+       0.4096
+      ],
+      "n": 7,
+      "rate": 0.0,
+      "x": 0
+     }
+    }
+   },
+   "B2": {
+    "gold_based": {
+     "precision": {
+      "cp95": [
+       0.3976,
+       1.0
+      ],
+      "n": 4,
+      "rate": 1.0,
+      "x": 4
+     },
+     "recall": {
+      "cp95": [
+       0.137,
+       0.788
+      ],
+      "n": 9,
+      "rate": 0.4444,
+      "x": 4
+     }
+    },
+    "support_based": {
+     "precision": {
+      "cp95": [
+       0.1941,
+       0.9937
+      ],
+      "n": 4,
+      "rate": 0.75,
+      "x": 3
+     },
+     "recall": {
+      "cp95": [
+       0.099,
+       0.8159
+      ],
+      "n": 7,
+      "rate": 0.4286,
+      "x": 3
+     }
+    }
+   },
+   "B5": {
+    "gold_based": {
+     "precision": {
+      "cp95": [
+       0.4782,
+       1.0
+      ],
+      "n": 5,
+      "rate": 1.0,
+      "x": 5
+     },
+     "recall": {
+      "cp95": [
+       0.212,
+       0.863
+      ],
+      "n": 9,
+      "rate": 0.5556,
+      "x": 5
+     }
+    },
+    "support_based": {
+     "precision": {
+      "cp95": [
+       0.2836,
+       0.9949
+      ],
+      "n": 5,
+      "rate": 0.8,
+      "x": 4
+     },
+     "recall": {
+      "cp95": [
+       0.1841,
+       0.901
+      ],
+      "n": 7,
+      "rate": 0.5714,
+      "x": 4
+     }
+    }
+   },
+   "B5T": {
+    "gold_based": {
+     "precision": {
+      "cp95": [
+       0.4782,
+       1.0
+      ],
+      "n": 5,
+      "rate": 1.0,
+      "x": 5
+     },
+     "recall": {
+      "cp95": [
+       0.212,
+       0.863
+      ],
+      "n": 9,
+      "rate": 0.5556,
+      "x": 5
+     }
+    },
+    "support_based": {
+     "precision": {
+      "cp95": [
+       0.4782,
+       1.0
+      ],
+      "n": 5,
+      "rate": 1.0,
+      "x": 5
+     },
+     "recall": {
+      "cp95": [
+       0.4782,
+       1.0
+      ],
+      "n": 5,
+      "rate": 1.0,
+      "x": 5
+     }
+    }
+   },
+   "B7": {
+    "gold_based": {
+     "precision": {
+      "cp95": [
+       0.4782,
+       1.0
+      ],
+      "n": 5,
+      "rate": 1.0,
+      "x": 5
+     },
+     "recall": {
+      "cp95": [
+       0.212,
+       0.863
+      ],
+      "n": 9,
+      "rate": 0.5556,
+      "x": 5
+     }
+    },
+    "support_based": {
+     "precision": {
+      "cp95": [
+       0.2836,
+       0.9949
+      ],
+      "n": 5,
+      "rate": 0.8,
+      "x": 4
+     },
+     "recall": {
+      "cp95": [
+       0.2836,
+       0.9949
+      ],
+      "n": 5,
+      "rate": 0.8,
+      "x": 4
+     }
+    }
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "d4_m2_risk_coverage": {
+  "decision_layer_rungs": {
+   "B5T": {
+    "abstention_precision_recall": {
+     "precision": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+      "rate": 1.0,
+      "x": 2
+     },
+     "recall": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "prereg_status": "PROPOSED_AMENDMENT_S178_C6 (abstention on ABSTAIN gold)",
+      "rate": 1.0,
+      "x": 2
+     }
+    },
+    "primary_precision_class": {
+     "all_answered_risk": {
+      "cp95": [
+       0.0,
+       0.4096
+      ],
+      "n": 7,
+      "rate": 0.0,
+      "x": 0
+     },
+     "error": "E1",
+     "level_rules": {
+      "COMPARE_MIN_OVER_OPTIONS": 2,
+      "DECISION_FIELD": 3,
+      "MODE_ABSTAIN": 2
+     },
+     "metric": "M2_risk_coverage",
+     "missing_questions": [],
+     "n_questions": 7,
+     "no_calibration_claim": "ordinal rule-based score; not a probability; no 'calibration' wording",
+     "order": [
+      "QUANTITATIVE",
+      "INTERVAL",
+      "QUALITATIVE",
+      "REPORT_CONFLICT",
+      "ABSTAIN"
+     ],
+     "points": [
+      {
+       "answered": 3,
+       "coverage": 0.4286,
+       "risk": {
+        "cp95": [
+         0.0,
+         0.7076
+        ],
+        "n": 3,
+        "rate": 0.0,
+        "x": 0
+       },
+       "threshold": "QUANTITATIVE"
+      },
+      {
+       "answered": 4,
+       "coverage": 0.5714,
+       "risk": {
+        "cp95": [
+         0.0,
+         0.6024
+        ],
+        "n": 4,
+        "rate": 0.0,
+        "x": 0
+       },
+       "threshold": "INTERVAL"
+      },
+      {
+       "answered": 5,
+       "coverage": 0.7143,
+       "risk": {
+        "cp95": [
+         0.0,
+         0.5218
+        ],
+        "n": 5,
+        "rate": 0.0,
+        "x": 0
+       },
+       "threshold": "QUALITATIVE"
+      },
+      {
+       "answered": 7,
+       "coverage": 1.0,
+       "risk": {
+        "cp95": [
+         0.0,
+         0.4096
+        ],
+        "n": 7,
+        "rate": 0.0,
+        "x": 0
+       },
+       "threshold": "ABSTAIN"
+      }
+     ],
+     "prereg_status": "PROPOSED_AMENDMENT_S178_D4 (D4-1 M1/M2); not adopted until the lock"
+    },
+    "secondary_sufficiency_mode": {
+     "all_answered_risk": {
+      "cp95": [
+       0.0,
+       0.4096
+      ],
+      "n": 7,
+      "rate": 0.0,
+      "x": 0
+     },
+     "error": "E1",
+     "level_rules": {
+      "COMPARE_MIN_OVER_OPTIONS": 2,
+      "DECISION_FIELD": 5
+     },
+     "metric": "M2_risk_coverage",
+     "missing_questions": [],
+     "n_questions": 7,
+     "no_calibration_claim": "ordinal rule-based score; not a probability; no 'calibration' wording",
+     "order": [
+      "DIRECT",
+      "NEAR_PARTIAL",
+      "MODEL_INTERPOLATION",
+      "BROAD_QUALITATIVE",
+      "CONFLICTING",
+      "IRRELEVANT_EVIDENCE",
+      "NO_EVIDENCE"
+     ],
+     "points": [
+      {
+       "answered": 3,
+       "coverage": 0.4286,
+       "risk": {
+        "cp95": [
+         0.0,
+         0.7076
+        ],
+        "n": 3,
+        "rate": 0.0,
+        "x": 0
+       },
+       "threshold": "DIRECT"
+      },
+      {
+       "answered": 4,
+       "coverage": 0.5714,
+       "risk": {
+        "cp95": [
+         0.0,
+         0.6024
+        ],
+        "n": 4,
+        "rate": 0.0,
+        "x": 0
+       },
+       "threshold": "NEAR_PARTIAL"
+      },
+      {
+       "answered": 5,
+       "coverage": 0.7143,
+       "risk": {
+        "cp95": [
+         0.0,
+         0.5218
+        ],
+        "n": 5,
+        "rate": 0.0,
+        "x": 0
+       },
+       "threshold": "BROAD_QUALITATIVE"
+      },
+      {
+       "answered": 7,
+       "coverage": 1.0,
+       "risk": {
+        "cp95": [
+         0.0,
+         0.4096
+        ],
+        "n": 7,
+        "rate": 0.0,
+        "x": 0
+       },
+       "threshold": "NO_EVIDENCE"
+      }
+     ],
+     "prereg_status": "PROPOSED_AMENDMENT_S178_D4 (D4-1 M1/M2); not adopted until the lock"
+    },
+    "selective_risk_primary": {
+     "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+     "rule": "strictest level whose coverage >= target; no interpolation",
+     "targets": {
+      "50%": {
+       "achieved_coverage": 0.5714,
+       "cp95": [
+        0.0,
+        0.6024
+       ],
+       "n": 4,
+       "rate": 0.0,
+       "threshold": "INTERVAL",
+       "x": 0
+      },
+      "70%": {
+       "achieved_coverage": 0.7143,
+       "cp95": [
+        0.0,
+        0.5218
+       ],
+       "n": 5,
+       "rate": 0.0,
+       "threshold": "QUALITATIVE",
+       "x": 0
+      },
+      "90%": {
+       "achieved_coverage": 1.0,
+       "cp95": [
+        0.0,
+        0.4096
+       ],
+       "n": 7,
+       "rate": 0.0,
+       "threshold": "ABSTAIN",
+       "x": 0
+      }
+     }
+    }
+   },
+   "B7": {
+    "abstention_precision_recall": {
+     "precision": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+      "rate": 1.0,
+      "x": 2
+     },
+     "recall": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "prereg_status": "PROPOSED_AMENDMENT_S178_C6 (abstention on ABSTAIN gold)",
+      "rate": 1.0,
+      "x": 2
+     }
+    },
+    "primary_precision_class": {
+     "all_answered_risk": {
+      "cp95": [
+       0.0036,
+       0.5787
+      ],
+      "n": 7,
+      "rate": 0.1429,
+      "x": 1
+     },
+     "error": "E1",
+     "level_rules": {
+      "COMPARE_MIN_OVER_OPTIONS": 2,
+      "DECISION_FIELD": 3,
+      "MODE_ABSTAIN": 2
+     },
+     "metric": "M2_risk_coverage",
+     "missing_questions": [],
+     "n_questions": 7,
+     "no_calibration_claim": "ordinal rule-based score; not a probability; no 'calibration' wording",
+     "order": [
+      "QUANTITATIVE",
+      "INTERVAL",
+      "QUALITATIVE",
+      "REPORT_CONFLICT",
+      "ABSTAIN"
+     ],
+     "points": [
+      {
+       "answered": 3,
+       "coverage": 0.4286,
+       "risk": {
+        "cp95": [
+         0.0084,
+         0.9057
+        ],
+        "n": 3,
+        "rate": 0.3333,
+        "x": 1
+       },
+       "threshold": "QUANTITATIVE"
+      },
+      {
+       "answered": 4,
+       "coverage": 0.5714,
+       "risk": {
+        "cp95": [
+         0.0063,
+         0.8059
+        ],
+        "n": 4,
+        "rate": 0.25,
+        "x": 1
+       },
+       "threshold": "INTERVAL"
+      },
+      {
+       "answered": 5,
+       "coverage": 0.7143,
+       "risk": {
+        "cp95": [
+         0.0051,
+         0.7164
+        ],
+        "n": 5,
+        "rate": 0.2,
+        "x": 1
+       },
+       "threshold": "QUALITATIVE"
+      },
+      {
+       "answered": 7,
+       "coverage": 1.0,
+       "risk": {
+        "cp95": [
+         0.0036,
+         0.5787
+        ],
+        "n": 7,
+        "rate": 0.1429,
+        "x": 1
+       },
+       "threshold": "ABSTAIN"
+      }
+     ],
+     "prereg_status": "PROPOSED_AMENDMENT_S178_D4 (D4-1 M1/M2); not adopted until the lock"
+    },
+    "secondary_sufficiency_mode": {
+     "all_answered_risk": {
+      "cp95": [
+       0.0036,
+       0.5787
+      ],
+      "n": 7,
+      "rate": 0.1429,
+      "x": 1
+     },
+     "error": "E1",
+     "level_rules": {
+      "COMPARE_MIN_OVER_OPTIONS": 2,
+      "DECISION_FIELD": 5
+     },
+     "metric": "M2_risk_coverage",
+     "missing_questions": [],
+     "n_questions": 7,
+     "no_calibration_claim": "ordinal rule-based score; not a probability; no 'calibration' wording",
+     "order": [
+      "DIRECT",
+      "NEAR_PARTIAL",
+      "MODEL_INTERPOLATION",
+      "BROAD_QUALITATIVE",
+      "CONFLICTING",
+      "IRRELEVANT_EVIDENCE",
+      "NO_EVIDENCE"
+     ],
+     "points": [
+      {
+       "answered": 3,
+       "coverage": 0.4286,
+       "risk": {
+        "cp95": [
+         0.0084,
+         0.9057
+        ],
+        "n": 3,
+        "rate": 0.3333,
+        "x": 1
+       },
+       "threshold": "DIRECT"
+      },
+      {
+       "answered": 4,
+       "coverage": 0.5714,
+       "risk": {
+        "cp95": [
+         0.0063,
+         0.8059
+        ],
+        "n": 4,
+        "rate": 0.25,
+        "x": 1
+       },
+       "threshold": "NEAR_PARTIAL"
+      },
+      {
+       "answered": 5,
+       "coverage": 0.7143,
+       "risk": {
+        "cp95": [
+         0.0051,
+         0.7164
+        ],
+        "n": 5,
+        "rate": 0.2,
+        "x": 1
+       },
+       "threshold": "BROAD_QUALITATIVE"
+      },
+      {
+       "answered": 7,
+       "coverage": 1.0,
+       "risk": {
+        "cp95": [
+         0.0036,
+         0.5787
+        ],
+        "n": 7,
+        "rate": 0.1429,
+        "x": 1
+       },
+       "threshold": "NO_EVIDENCE"
+      }
+     ],
+     "prereg_status": "PROPOSED_AMENDMENT_S178_D4 (D4-1 M1/M2); not adopted until the lock"
+    },
+    "selective_risk_primary": {
+     "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+     "rule": "strictest level whose coverage >= target; no interpolation",
+     "targets": {
+      "50%": {
+       "achieved_coverage": 0.5714,
+       "cp95": [
+        0.0063,
+        0.8059
+       ],
+       "n": 4,
+       "rate": 0.25,
+       "threshold": "INTERVAL",
+       "x": 1
+      },
+      "70%": {
+       "achieved_coverage": 0.7143,
+       "cp95": [
+        0.0051,
+        0.7164
+       ],
+       "n": 5,
+       "rate": 0.2,
+       "threshold": "QUALITATIVE",
+       "x": 1
+      },
+      "90%": {
+       "achieved_coverage": 1.0,
+       "cp95": [
+        0.0036,
+        0.5787
+       ],
+       "n": 7,
+       "rate": 0.1429,
+       "threshold": "ABSTAIN",
+       "x": 1
+      }
+     }
+    }
+   }
+  },
+  "error_option": "E1",
+  "not_reported_by_design": {
+   "AUROC": "same reason as ECE",
+   "Brier score": "same reason as ECE",
+   "ECE": "B7 emits an ordinal rule-based label, not a probability; no calibrator disjoint from D5 exists",
+   "area under the risk-coverage curve": "a handful of tied levels; the amendment computes no area",
+   "reliability diagram": "same reason as ECE"
+  },
+  "random_abstention_expected_risk": "equals the all-answered risk of the same rung",
+  "reference_all_answered": {
+   "B0": {
+    "cp95": [
+     0.5904,
+     1.0
+    ],
+    "n": 7,
+    "rate": 1.0,
+    "x": 7
+   },
+   "B2": {
+    "cp95": [
+     0.1841,
+     0.901
+    ],
+    "n": 7,
+    "rate": 0.5714,
+    "x": 4
+   },
+   "B5": {
+    "cp95": [
+     0.099,
+     0.8159
+    ],
+    "n": 7,
+    "rate": 0.4286,
+    "x": 3
+   },
+   "B5T": {
+    "cp95": [
+     0.0,
+     0.4096
+    ],
+    "n": 7,
+    "rate": 0.0,
+    "x": 0
+   },
+   "B7": {
+    "cp95": [
+     0.0036,
+     0.5787
+    ],
+    "n": 7,
+    "rate": 0.1429,
+    "x": 1
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "decision_mode_f1": {
+  "board_item": "T8-C22-R1",
+  "classes": [
+   "ANSWER",
+   "ANSWER_SIMILAR_ONLY",
+   "ABSTAIN",
+   "COMPARE"
+  ],
+  "metric": "decision_mode_f1",
+  "n_questions": 7,
+  "prereg_status": "EXPLORATORY_NOT_IN_PREREG (the prereg names 'mode violations' only)",
+  "rungs": {
+   "B0": {
+    "binary_abstain": {
+     "accuracy": {
+      "cp95": [
+       0.2904,
+       0.9633
+      ],
+      "n": 7,
+      "rate": 0.7143,
+      "x": 5
+     },
+     "classes_excluded_absent_both_sides": [],
+     "macro_f1": 0.4167,
+     "n_outside_classes": 0,
+     "per_class": {
+      "ABSTAIN": {
+       "f1": 0.0,
+       "fn": 2,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 0,
+       "precision": null,
+       "recall": 0.0,
+       "tp": 0
+      },
+      "ANSWERED": {
+       "f1": 0.8333,
+       "fn": 0,
+       "fp": 2,
+       "n_gold": 5,
+       "n_pred": 7,
+       "precision": 0.7143,
+       "recall": 1.0,
+       "tp": 5
+      }
+     }
+    },
+    "four_class": "NOT_DEFINED: no machine-readable decision mode for this rung",
+    "n": 7
+   },
+   "B2": {
+    "binary_abstain": {
+     "accuracy": {
+      "cp95": [
+       0.4213,
+       0.9964
+      ],
+      "n": 7,
+      "rate": 0.8571,
+      "x": 6
+     },
+     "classes_excluded_absent_both_sides": [],
+     "macro_f1": 0.7879,
+     "n_outside_classes": 0,
+     "per_class": {
+      "ABSTAIN": {
+       "f1": 0.6667,
+       "fn": 1,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 1,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "ANSWERED": {
+       "f1": 0.9091,
+       "fn": 0,
+       "fp": 1,
+       "n_gold": 5,
+       "n_pred": 6,
+       "precision": 0.8333,
+       "recall": 1.0,
+       "tp": 5
+      }
+     }
+    },
+    "four_class": "NOT_DEFINED: no machine-readable decision mode for this rung",
+    "n": 7
+   },
+   "B5": {
+    "binary_abstain": {
+     "accuracy": {
+      "cp95": [
+       0.4213,
+       0.9964
+      ],
+      "n": 7,
+      "rate": 0.8571,
+      "x": 6
+     },
+     "classes_excluded_absent_both_sides": [],
+     "macro_f1": 0.7879,
+     "n_outside_classes": 0,
+     "per_class": {
+      "ABSTAIN": {
+       "f1": 0.6667,
+       "fn": 1,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 1,
+       "precision": 1.0,
+       "recall": 0.5,
+       "tp": 1
+      },
+      "ANSWERED": {
+       "f1": 0.9091,
+       "fn": 0,
+       "fp": 1,
+       "n_gold": 5,
+       "n_pred": 6,
+       "precision": 0.8333,
+       "recall": 1.0,
+       "tp": 5
+      }
+     }
+    },
+    "four_class": "NOT_DEFINED: no machine-readable decision mode for this rung",
+    "n": 7
+   },
+   "B5T": {
+    "binary_abstain": {
+     "accuracy": {
+      "cp95": [
+       0.5904,
+       1.0
+      ],
+      "n": 7,
+      "rate": 1.0,
+      "x": 7
+     },
+     "classes_excluded_absent_both_sides": [],
+     "macro_f1": 1.0,
+     "n_outside_classes": 0,
+     "per_class": {
+      "ABSTAIN": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 2,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "ANSWERED": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 5,
+       "n_pred": 5,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 5
+      }
+     }
+    },
+    "four_class": {
+     "accuracy": {
+      "cp95": [
+       0.5904,
+       1.0
+      ],
+      "n": 7,
+      "rate": 1.0,
+      "x": 7
+     },
+     "classes_excluded_absent_both_sides": [],
+     "macro_f1": 1.0,
+     "n_outside_classes": 0,
+     "per_class": {
+      "ABSTAIN": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 2,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "ANSWER": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 2,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "ANSWER_SIMILAR_ONLY": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 1,
+       "n_pred": 1,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 1
+      },
+      "COMPARE": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 2,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      }
+     }
+    },
+    "n": 7,
+    "other_modes": {}
+   },
+   "B7": {
+    "binary_abstain": {
+     "accuracy": {
+      "cp95": [
+       0.5904,
+       1.0
+      ],
+      "n": 7,
+      "rate": 1.0,
+      "x": 7
+     },
+     "classes_excluded_absent_both_sides": [],
+     "macro_f1": 1.0,
+     "n_outside_classes": 0,
+     "per_class": {
+      "ABSTAIN": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 2,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "ANSWERED": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 5,
+       "n_pred": 5,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 5
+      }
+     }
+    },
+    "four_class": {
+     "accuracy": {
+      "cp95": [
+       0.5904,
+       1.0
+      ],
+      "n": 7,
+      "rate": 1.0,
+      "x": 7
+     },
+     "classes_excluded_absent_both_sides": [],
+     "macro_f1": 1.0,
+     "n_outside_classes": 0,
+     "per_class": {
+      "ABSTAIN": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 2,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "ANSWER": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 2,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      },
+      "ANSWER_SIMILAR_ONLY": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 1,
+       "n_pred": 1,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 1
+      },
+      "COMPARE": {
+       "f1": 1.0,
+       "fn": 0,
+       "fp": 0,
+       "n_gold": 2,
+       "n_pred": 2,
+       "precision": 1.0,
+       "recall": 1.0,
+       "tp": 2
+      }
+     }
+    },
+    "n": 7,
+    "other_modes": {}
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "enforcement_cost": {
+  "answer_length_status": "EXPLORATORY_NOT_IN_PREREG",
+  "board_item": "T8-C16-R2",
+  "metric": "enforcement_sentences_removed_fallback",
+  "prereg_status": "PROPOSED_AMENDMENT_S178 C6 (coverage bullet)",
+  "rungs": {
+   "B0": {
+    "characters_mean": 22.0,
+    "coverage_answerable": {
+     "cp95": [
+      0.0,
+      0.5218
+     ],
+     "n": 5,
+     "rate": 0.0,
+     "x": 0
+    },
+    "enforcement": "NA (rung not enforced)",
+    "n_answers": 7,
+    "words": {
+     "mean": 5.0,
+     "median": 5
+    }
+   },
+   "B2": {
+    "characters_mean": 50.29,
+    "coverage_answerable": {
+     "cp95": [
+      0.0527,
+      0.8534
+     ],
+     "n": 5,
+     "rate": 0.4,
+     "x": 2
+    },
+    "enforcement": "NA (rung not enforced)",
+    "n_answers": 7,
+    "words": {
+     "mean": 9.43,
+     "median": 10
+    }
+   },
+   "B5": {
+    "characters_mean": 55.14,
+    "coverage_answerable": {
+     "cp95": [
+      0.1466,
+      0.9473
+     ],
+     "n": 5,
+     "rate": 0.6,
+     "x": 3
+    },
+    "enforcement": "NA (rung not enforced)",
+    "n_answers": 7,
+    "words": {
+     "mean": 9.86,
+     "median": 10
+    }
+   },
+   "B5T": {
+    "characters_mean": 61.57,
+    "coverage_answerable": {
+     "cp95": [
+      0.2836,
+      0.9949
+     ],
+     "n": 5,
+     "rate": 0.8,
+     "x": 4
+    },
+    "enforcement": "NA (rung not enforced)",
+    "n_answers": 7,
+    "words": {
+     "mean": 10.71,
+     "median": 10
+    }
+   },
+   "B7": {
+    "answers_with_removal": 2,
+    "characters_mean": 61.57,
+    "coverage_answerable": {
+     "cp95": [
+      0.1466,
+      0.9473
+     ],
+     "n": 5,
+     "rate": 0.6,
+     "x": 3
+    },
+    "enforced_answers": 7,
+    "mode_fallback": 0,
+    "n_answers": 7,
+    "removed_by_reason": {
+     "PRECISION_CAP": 1,
+     "UNSUPPORTED_NUMBER": 1
+    },
+    "sentences_removed": 2,
+    "template_fallback": {
+     "cp95": [
+      0.0367,
+      0.7096
+     ],
+     "n": 7,
+     "rate": 0.2857,
+     "x": 2
+    },
+    "words": {
+     "mean": 10.71,
+     "median": 10
+    }
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "h1": {
+  "accuracy": {
+   "B0": {
+    "S1": {
+     "cp95": [
+      0.0,
+      0.8419
+     ],
+     "n": 2,
+     "rate": 0.0,
+     "x": 0
+    },
+    "S2": {
+     "cp95": [
+      0.0,
+      0.7076
+     ],
+     "n": 3,
+     "rate": 0.0,
+     "x": 0
+    },
+    "all": {
+     "cp95": [
+      0.0,
+      0.5218
+     ],
+     "n": 5,
+     "rate": 0.0,
+     "x": 0
+    },
+    "missing": 0,
+    "unresolved": 1,
+    "unresolved_rate": {
+     "cp95": [
+      0.0042,
+      0.6412
+     ],
+     "n": 6,
+     "rate": 0.1667,
+     "x": 1
+    }
+   },
+   "B1": {
+    "S1": {
+     "cp95": [
+      0.0,
+      0.7076
+     ],
+     "n": 3,
+     "rate": 0.0,
+     "x": 0
+    },
+    "S2": {
+     "cp95": [
+      0.0084,
+      0.9057
+     ],
+     "n": 3,
+     "rate": 0.3333,
+     "x": 1
+    },
+    "all": {
+     "cp95": [
+      0.0042,
+      0.6412
+     ],
+     "n": 6,
+     "rate": 0.1667,
+     "x": 1
+    },
+    "missing": 0,
+    "unresolved": 0,
+    "unresolved_rate": {
+     "cp95": [
+      0.0,
+      0.4593
+     ],
+     "n": 6,
+     "rate": 0.0,
+     "x": 0
+    }
+   },
+   "B2": {
+    "S1": {
+     "cp95": [
+      0.0084,
+      0.9057
+     ],
+     "n": 3,
+     "rate": 0.3333,
+     "x": 1
+    },
+    "S2": {
+     "cp95": [
+      0.0,
+      0.7076
+     ],
+     "n": 3,
+     "rate": 0.0,
+     "x": 0
+    },
+    "all": {
+     "cp95": [
+      0.0042,
+      0.6412
+     ],
+     "n": 6,
+     "rate": 0.1667,
+     "x": 1
+    },
+    "missing": 0,
+    "unresolved": 0,
+    "unresolved_rate": {
+     "cp95": [
+      0.0,
+      0.4593
+     ],
+     "n": 6,
+     "rate": 0.0,
+     "x": 0
+    }
+   },
+   "B4": {
+    "S1": {
+     "cp95": [
+      0.2924,
+      1.0
+     ],
+     "n": 3,
+     "rate": 1.0,
+     "x": 3
+    },
+    "S2": {
+     "cp95": [
+      0.2924,
+      1.0
+     ],
+     "n": 3,
+     "rate": 1.0,
+     "x": 3
+    },
+    "all": {
+     "cp95": [
+      0.5407,
+      1.0
+     ],
+     "n": 6,
+     "rate": 1.0,
+     "x": 6
+    },
+    "missing": 0,
+    "unresolved": 0,
+    "unresolved_rate": {
+     "cp95": [
+      0.0,
+      0.4593
+     ],
+     "n": 6,
+     "rate": 0.0,
+     "x": 0
+    }
+   }
+  },
+  "board_item": "T8-C21-R1",
+  "comparisons": {
+   "B4_vs_B1": {
+    "S1": {
+     "a_both": 0,
+     "b_treatment_only": 3,
+     "c_control_only": 0,
+     "d_neither": 0,
+     "diff": 1.0,
+     "n": 3,
+     "newcombe95_descriptive": [
+      0.2059,
+      1.0
+     ],
+     "p_exact_two_sided": 0.25,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 3,
+      "majority": 3,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 3,
+      "p_exact": 0.25,
+      "statement": "cannot be significant at this n: 3 discordant pairs < 6"
+     },
+     "role": "descriptive only (per block)"
+    },
+    "S2": {
+     "a_both": 1,
+     "b_treatment_only": 2,
+     "c_control_only": 0,
+     "d_neither": 0,
+     "diff": 0.6667,
+     "n": 3,
+     "newcombe95_descriptive": [
+      -0.0586,
+      0.9385
+     ],
+     "p_exact_two_sided": 0.5,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 2,
+      "majority": 2,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 3,
+      "p_exact": 0.5,
+      "statement": "cannot be significant at this n: 2 discordant pairs < 6"
+     },
+     "role": "descriptive only (per block)"
+    },
+    "pooled": {
+     "a_both": 1,
+     "b_treatment_only": 5,
+     "c_control_only": 0,
+     "d_neither": 0,
+     "diff": 0.8333,
+     "n": 6,
+     "newcombe95_descriptive": [
+      0.2767,
+      0.9699
+     ],
+     "p_exact_two_sided": 0.0625,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 5,
+      "majority": 5,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 6,
+      "p_exact": 0.0625,
+      "statement": "cannot be significant at this n: 5 discordant pairs < 6"
+     },
+     "role": "decision"
+    },
+    "status": "OK",
+    "treatment_better_and_significant": false
+   },
+   "B4_vs_B2": {
+    "S1": {
+     "a_both": 1,
+     "b_treatment_only": 2,
+     "c_control_only": 0,
+     "d_neither": 0,
+     "diff": 0.6667,
+     "n": 3,
+     "newcombe95_descriptive": [
+      -0.0586,
+      0.9385
+     ],
+     "p_exact_two_sided": 0.5,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 2,
+      "majority": 2,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 3,
+      "p_exact": 0.5,
+      "statement": "cannot be significant at this n: 2 discordant pairs < 6"
+     },
+     "role": "descriptive only (per block)"
+    },
+    "S2": {
+     "a_both": 0,
+     "b_treatment_only": 3,
+     "c_control_only": 0,
+     "d_neither": 0,
+     "diff": 1.0,
+     "n": 3,
+     "newcombe95_descriptive": [
+      0.2059,
+      1.0
+     ],
+     "p_exact_two_sided": 0.25,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 3,
+      "majority": 3,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 3,
+      "p_exact": 0.25,
+      "statement": "cannot be significant at this n: 3 discordant pairs < 6"
+     },
+     "role": "descriptive only (per block)"
+    },
+    "pooled": {
+     "a_both": 1,
+     "b_treatment_only": 5,
+     "c_control_only": 0,
+     "d_neither": 0,
+     "diff": 0.8333,
+     "n": 6,
+     "newcombe95_descriptive": [
+      0.2767,
+      0.9699
+     ],
+     "p_exact_two_sided": 0.0625,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 5,
+      "majority": 5,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 6,
+      "p_exact": 0.0625,
+      "statement": "cannot be significant at this n: 5 discordant pairs < 6"
+     },
+     "role": "decision"
+    },
+    "status": "OK",
+    "treatment_better_and_significant": false
+   }
+  },
+  "gold_independence": {
+   "by_block": {
+    "S1": {
+     "ENGINE_DRAFT": 0,
+     "HUMAN_AFTER_SEEING_ENGINE": 0,
+     "HUMAN_BLIND": 3
+    },
+    "S2": {
+     "ENGINE_DRAFT": 0,
+     "HUMAN_AFTER_SEEING_ENGINE": 0,
+     "HUMAN_BLIND": 3
+    }
+   },
+   "label": "INDEPENDENT_GOLD",
+   "n_independent": 6,
+   "n_not_independent": 0,
+   "n_rows": 6,
+   "not_independent_qids": [],
+   "rule": "only gold_origin HUMAN_BLIND (answered from the recipe text before seeing the engine output) is independent of the engine run being evaluated",
+   "version": "h1_independence@0.1"
+  },
+  "metric": "h1_mcnemar",
+  "n_questions": 6,
+  "prereg_status": "BASE \u00a74 H1 (+ AMENDMENT C5 wording, power note)",
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+  "verdict": {
+   "code": "RULE_NOT_MET",
+   "gold_label": "INDEPENDENT_GOLD",
+   "rule": "B4 > B1 and B4 > B2, both exact two-sided McNemar p <= 0.05 (intersection-union)",
+   "wording_amendment_C5": "not shown at this n",
+   "wording_base": "not supported at this n"
+  }
+ },
+ "h3_summaries": {
+  "board_item": "T8-C22-R1",
+  "enforcement_checker_ucr": {
+   "B2": {
+    "label": "enforcement checker (claims@0.2), not independent",
+    "n_answers": 7,
+    "numeric_claims": 7,
+    "ucr": 0.4286,
+    "unsupported": 3
+   },
+   "B7": {
+    "label": "enforcement checker (claims@0.2), not independent",
+    "n_answers": 7,
+    "numeric_claims": 5,
+    "ucr": 0.0,
+    "unsupported": 0
+   }
+  },
+  "metric": "h3_ucr_coverage_selective_risk",
+  "prereg_status": "BASE \u00a74 (UCR) + PROPOSED_AMENDMENT_S178 C6",
+  "rungs": {
+   "B0": {
+    "all": {
+     "abstention_on_abstain_gold": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     },
+     "answers_with_no_claim_and_no_abstention": 0,
+     "coverage_answerable": {
+      "cp95": [
+       0.0,
+       0.5218
+      ],
+      "n": 5,
+      "rate": 0.0,
+      "x": 0
+     },
+     "false_abstention_answerable": {
+      "cp95": [
+       0.0,
+       0.5218
+      ],
+      "n": 5,
+      "rate": 0.0,
+      "x": 0
+     },
+     "n_numeric_claims": 7,
+     "n_questions": 7,
+     "n_unsupported": 7,
+     "questions_with_numbers_on_abstain_gold": 2,
+     "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+     "selective_risk": {
+      "cp95": [
+       0.5904,
+       1.0
+      ],
+      "n": 7,
+      "rate": 1.0,
+      "x": 7
+     },
+     "ucr": 1.0,
+     "version": "h3_independent@0.1"
+    },
+    "per_block": {
+     "C": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 2,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "n": 2,
+       "rate": 1.0,
+       "x": 2
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     },
+     "P1": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 2,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "n": 2,
+       "rate": 1.0,
+       "x": 2
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     },
+     "P2": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     },
+     "P3": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 2,
+      "questions_with_numbers_on_abstain_gold": 2,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "n": 2,
+       "rate": 1.0,
+       "x": 2
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     }
+    },
+    "per_source_family": {
+     "MIXED": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     },
+     "NO_GOLD_ROW": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 2,
+      "questions_with_numbers_on_abstain_gold": 2,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "n": 2,
+       "rate": 1.0,
+       "x": 2
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-A": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        0.7076
+       ],
+       "n": 3,
+       "rate": 0.0,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.7076
+       ],
+       "n": 3,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 3,
+      "n_questions": 3,
+      "n_unsupported": 3,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.2924,
+        1.0
+       ],
+       "n": 3,
+       "rate": 1.0,
+       "x": 3
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-B": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     }
+    }
+   },
+   "B2": {
+    "all": {
+     "abstention_on_abstain_gold": {
+      "cp95": [
+       0.0126,
+       0.9874
+      ],
+      "n": 2,
+      "rate": 0.5,
+      "x": 1
+     },
+     "answers_with_no_claim_and_no_abstention": 0,
+     "coverage_answerable": {
+      "cp95": [
+       0.0527,
+       0.8534
+      ],
+      "n": 5,
+      "rate": 0.4,
+      "x": 2
+     },
+     "false_abstention_answerable": {
+      "cp95": [
+       0.0,
+       0.5218
+      ],
+      "n": 5,
+      "rate": 0.0,
+      "x": 0
+     },
+     "n_numeric_claims": 7,
+     "n_questions": 7,
+     "n_unsupported": 4,
+     "questions_with_numbers_on_abstain_gold": 1,
+     "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+     "selective_risk": {
+      "cp95": [
+       0.2228,
+       0.9567
+      ],
+      "n": 6,
+      "rate": 0.6667,
+      "x": 4
+     },
+     "ucr": 0.5714,
+     "version": "h3_independent@0.1"
+    },
+    "per_block": {
+     "C": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 3,
+      "n_questions": 2,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "ucr": 0.3333,
+      "version": "h3_independent@0.1"
+     },
+     "P1": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "ucr": 0.5,
+      "version": "h3_independent@0.1"
+     },
+     "P2": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     },
+     "P3": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 2,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 1,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     }
+    },
+    "per_source_family": {
+     "MIXED": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "NO_GOLD_ROW": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 2,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 1,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-A": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0084,
+        0.9057
+       ],
+       "n": 3,
+       "rate": 0.3333,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.7076
+       ],
+       "n": 3,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 3,
+      "n_questions": 3,
+      "n_unsupported": 2,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0943,
+        0.9916
+       ],
+       "n": 3,
+       "rate": 0.6667,
+       "x": 2
+      },
+      "ucr": 0.6667,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-B": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     }
+    }
+   },
+   "B5": {
+    "all": {
+     "abstention_on_abstain_gold": {
+      "cp95": [
+       0.0126,
+       0.9874
+      ],
+      "n": 2,
+      "rate": 0.5,
+      "x": 1
+     },
+     "answers_with_no_claim_and_no_abstention": 0,
+     "coverage_answerable": {
+      "cp95": [
+       0.1466,
+       0.9473
+      ],
+      "n": 5,
+      "rate": 0.6,
+      "x": 3
+     },
+     "false_abstention_answerable": {
+      "cp95": [
+       0.0,
+       0.5218
+      ],
+      "n": 5,
+      "rate": 0.0,
+      "x": 0
+     },
+     "n_numeric_claims": 7,
+     "n_questions": 7,
+     "n_unsupported": 3,
+     "questions_with_numbers_on_abstain_gold": 1,
+     "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+     "selective_risk": {
+      "cp95": [
+       0.1181,
+       0.8819
+      ],
+      "n": 6,
+      "rate": 0.5,
+      "x": 3
+     },
+     "ucr": 0.4286,
+     "version": "h3_independent@0.1"
+    },
+    "per_block": {
+     "C": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 3,
+      "n_questions": 2,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "ucr": 0.3333,
+      "version": "h3_independent@0.1"
+     },
+     "P1": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "ucr": 0.5,
+      "version": "h3_independent@0.1"
+     },
+     "P2": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "P3": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 2,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 1,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     }
+    },
+    "per_source_family": {
+     "MIXED": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "NO_GOLD_ROW": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 2,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 1,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "ucr": 1.0,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-A": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0084,
+        0.9057
+       ],
+       "n": 3,
+       "rate": 0.3333,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.7076
+       ],
+       "n": 3,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 3,
+      "n_questions": 3,
+      "n_unsupported": 2,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0943,
+        0.9916
+       ],
+       "n": 3,
+       "rate": 0.6667,
+       "x": 2
+      },
+      "ucr": 0.6667,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-B": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     }
+    }
+   },
+   "B5T": {
+    "all": {
+     "abstention_on_abstain_gold": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     },
+     "answers_with_no_claim_and_no_abstention": 1,
+     "coverage_answerable": {
+      "cp95": [
+       0.2836,
+       0.9949
+      ],
+      "n": 5,
+      "rate": 0.8,
+      "x": 4
+     },
+     "false_abstention_answerable": {
+      "cp95": [
+       0.0,
+       0.5218
+      ],
+      "n": 5,
+      "rate": 0.0,
+      "x": 0
+     },
+     "n_numeric_claims": 5,
+     "n_questions": 7,
+     "n_unsupported": 0,
+     "questions_with_numbers_on_abstain_gold": 0,
+     "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+     "selective_risk": {
+      "cp95": [
+       0.0,
+       0.6024
+      ],
+      "n": 4,
+      "rate": 0.0,
+      "x": 0
+     },
+     "ucr": 0.0,
+     "version": "h3_independent@0.1"
+    },
+    "per_block": {
+     "C": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 1,
+      "coverage_answerable": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "P1": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "n": 2,
+       "rate": 1.0,
+       "x": 2
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "P2": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "P3": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "n": 2,
+       "rate": 1.0,
+       "x": 2
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 0,
+      "n_questions": 2,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "ucr": null,
+      "version": "h3_independent@0.1"
+     }
+    },
+    "per_source_family": {
+     "MIXED": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "NO_GOLD_ROW": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "n": 2,
+       "rate": 1.0,
+       "x": 2
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 0,
+      "n_questions": 2,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "ucr": null,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-A": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 1,
+      "coverage_answerable": {
+       "cp95": [
+        0.0943,
+        0.9916
+       ],
+       "n": 3,
+       "rate": 0.6667,
+       "x": 2
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.7076
+       ],
+       "n": 3,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 3,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-B": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     }
+    }
+   },
+   "B7": {
+    "all": {
+     "abstention_on_abstain_gold": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     },
+     "answers_with_no_claim_and_no_abstention": 1,
+     "coverage_answerable": {
+      "cp95": [
+       0.1466,
+       0.9473
+      ],
+      "n": 5,
+      "rate": 0.6,
+      "x": 3
+     },
+     "false_abstention_answerable": {
+      "cp95": [
+       0.0,
+       0.5218
+      ],
+      "n": 5,
+      "rate": 0.0,
+      "x": 0
+     },
+     "n_numeric_claims": 5,
+     "n_questions": 7,
+     "n_unsupported": 1,
+     "questions_with_numbers_on_abstain_gold": 0,
+     "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+     "selective_risk": {
+      "cp95": [
+       0.0063,
+       0.8059
+      ],
+      "n": 4,
+      "rate": 0.25,
+      "x": 1
+     },
+     "ucr": 0.2,
+     "version": "h3_independent@0.1"
+    },
+    "per_block": {
+     "C": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 1,
+      "coverage_answerable": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "P1": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.8419
+       ],
+       "n": 2,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 2,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "ucr": 0.5,
+      "version": "h3_independent@0.1"
+     },
+     "P2": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "P3": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "n": 2,
+       "rate": 1.0,
+       "x": 2
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 0,
+      "n_questions": 2,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "ucr": null,
+      "version": "h3_independent@0.1"
+     }
+    },
+    "per_source_family": {
+     "MIXED": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     },
+     "NO_GOLD_ROW": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "n": 2,
+       "rate": 1.0,
+       "x": 2
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "n_numeric_claims": 0,
+      "n_questions": 2,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "ucr": null,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-A": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 1,
+      "coverage_answerable": {
+       "cp95": [
+        0.0084,
+        0.9057
+       ],
+       "n": 3,
+       "rate": 0.3333,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.7076
+       ],
+       "n": 3,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 2,
+      "n_questions": 3,
+      "n_unsupported": 1,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "n": 2,
+       "rate": 0.5,
+       "x": 1
+      },
+      "ucr": 0.5,
+      "version": "h3_independent@0.1"
+     },
+     "SYN-FAM-B": {
+      "abstention_on_abstain_gold": {
+       "cp95": [
+        0.0,
+        1.0
+       ],
+       "n": 0,
+       "rate": null,
+       "x": 0
+      },
+      "answers_with_no_claim_and_no_abstention": 0,
+      "coverage_answerable": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "n": 1,
+       "rate": 1.0,
+       "x": 1
+      },
+      "false_abstention_answerable": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "n_numeric_claims": 1,
+      "n_questions": 1,
+      "n_unsupported": 0,
+      "questions_with_numbers_on_abstain_gold": 0,
+      "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage.",
+      "selective_risk": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "n": 1,
+       "rate": 0.0,
+       "x": 0
+      },
+      "ucr": 0.0,
+      "version": "h3_independent@0.1"
+     }
+    }
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "h3_verdicts": {
+  "B5T_vs_B7_descriptive": {
+   "one-sided": {
+    "b_worse_only_unsupported": 0,
+    "c_better_only_unsupported": 1,
+    "can_be_significant": false,
+    "min_discordant_for_alpha": 5,
+    "n_paired": 7,
+    "p": 1.0,
+    "p_one_sided_exact": 1.0,
+    "p_two_sided_exact": 1.0,
+    "passes": false,
+    "sidedness": "one-sided",
+    "statement": "cannot be shown at this n: 1 discordant questions < 5"
+   },
+   "two-sided": {
+    "b_worse_only_unsupported": 0,
+    "c_better_only_unsupported": 1,
+    "can_be_significant": false,
+    "min_discordant_for_alpha": 6,
+    "n_paired": 7,
+    "p": 1.0,
+    "p_one_sided_exact": 1.0,
+    "p_two_sided_exact": 1.0,
+    "passes": false,
+    "sidedness": "two-sided",
+    "statement": "cannot be shown at this n: 1 discordant questions < 6"
+   }
+  },
+  "audit_veto_fires": null,
+  "better": "B7",
+  "board_item": "T8-C22-R1",
+  "bootstrap": {
+   "n_boot": 10000,
+   "role": "decision rule only under H3-C; else descriptive",
+   "seed": "d5-h3"
+  },
+  "bootstrap_ucr_diff_B7_minus_B2_upper95": 0.19047619047619047,
+  "metric": "h3_decision_test",
+  "n_paired": 7,
+  "options": {
+   "H3-A|one-sided": {
+    "meets_rule": false,
+    "sign_test": {
+     "b_worse_only_unsupported": 4,
+     "c_better_only_unsupported": 1,
+     "can_be_significant": true,
+     "min_discordant_for_alpha": 5,
+     "n_paired": 7,
+     "p": 0.1875,
+     "p_one_sided_exact": 0.1875,
+     "p_two_sided_exact": 0.375,
+     "passes": false,
+     "sidedness": "one-sided",
+     "statement": "not shown at this n"
+    }
+   },
+   "H3-A|two-sided": {
+    "meets_rule": false,
+    "sign_test": {
+     "b_worse_only_unsupported": 4,
+     "c_better_only_unsupported": 1,
+     "can_be_significant": false,
+     "min_discordant_for_alpha": 6,
+     "n_paired": 7,
+     "p": 0.375,
+     "p_one_sided_exact": 0.1875,
+     "p_two_sided_exact": 0.375,
+     "passes": false,
+     "sidedness": "two-sided",
+     "statement": "cannot be shown at this n: 5 discordant questions < 6"
+    }
+   },
+   "H3-B|one-sided": {
+    "meets_rule": false,
+    "sign_test": {
+     "b_worse_only_unsupported": 4,
+     "c_better_only_unsupported": 1,
+     "can_be_significant": true,
+     "min_discordant_for_alpha": 5,
+     "n_paired": 7,
+     "p": 0.1875,
+     "p_one_sided_exact": 0.1875,
+     "p_two_sided_exact": 0.375,
+     "passes": false,
+     "sidedness": "one-sided",
+     "statement": "not shown at this n"
+    }
+   },
+   "H3-B|two-sided": {
+    "meets_rule": false,
+    "sign_test": {
+     "b_worse_only_unsupported": 4,
+     "c_better_only_unsupported": 1,
+     "can_be_significant": false,
+     "min_discordant_for_alpha": 6,
+     "n_paired": 7,
+     "p": 0.375,
+     "p_one_sided_exact": 0.1875,
+     "p_two_sided_exact": 0.375,
+     "passes": false,
+     "sidedness": "two-sided",
+     "statement": "cannot be shown at this n: 5 discordant questions < 6"
+    }
+   },
+   "H3-C": {
+    "caveat": "UCR(B7) = 0 by construction; H3 as registered cannot fail whenever B2 has 3 or more questions with an unsupported claim (REV-B Q26 / G-07).",
+    "meets_rule": false
+   }
+  },
+  "p3_abstention": {
+   "B2": {
+    "cp95": [
+     0.0126,
+     0.9874
+    ],
+    "n": 2,
+    "rate": 0.5,
+    "x": 1
+   },
+   "B7": {
+    "cp95": [
+     0.1581,
+     1.0
+    ],
+    "n": 2,
+    "rate": 1.0,
+    "x": 2
+   }
+  },
+  "p3_condition_met": true,
+  "prereg_status": "BASE \u00a74 (H3-C) or PROPOSED_AMENDMENT_S178 C6 (H3-A / H3-B): D-D5-5",
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+  "worse": "B2"
+ },
+ "latency": {
+  "board_item": "-",
+  "metric": "latency",
+  "prereg_status": "BASE \u00a74 Descriptive",
+  "rungs": {
+   "B2": {
+    "mean_s": 1.5,
+    "median_s": 1.5,
+    "n": 7
+   },
+   "B7": {
+    "mean_s": 2.5,
+    "median_s": 2.5,
+    "n": 7
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "meta": {
+  "guard": {
+   "files_sha256": {
+    "ablation_runs_synthetic.jsonl": "40e8668700d173687b73d7f429fb90def3980fc5af5dd3d57ade784218e10e16",
+    "benchmark_synthetic.csv": "10bda4fb9fa313af3392f5b079672c3831524ed2f0416e106f03407eae72bcb5",
+    "evd_synthetic.jsonl": "e86f90195ff76f8a1a868c229ddfb6b26befda7c55335b1bb20744f04014b350",
+    "relatives_synthetic.json": "211dead2cba75bc3342f9d204bfce9fbc60d5d98cf848b06921a30f4955371fc",
+    "runs_synthetic.jsonl": "f75bd9a9bfc8b21c03b2a6274f102ca2edba843e27de5b1f7b90eb021b829219"
+   },
+   "mode": "FIXTURE",
+   "ok": true,
+   "problems": [],
+   "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+   "version": "frozen_guard@0.1"
+  },
+  "metric_registry": {
+   "ablation_table": {
+    "board": "T8-C21-R2",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG (SSOT \u00a7245.13 subset; descriptive)"
+   },
+   "answer_length": {
+    "board": "T8-C16-R2",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG"
+   },
+   "c_block_accuracy_cannot_separate": {
+    "board": "T8-C10-R1",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG (C is in H3; no C metric is named)"
+   },
+   "checker_precision_recall_vs_humans": {
+    "board": "T8-C16-R1",
+    "prereg": "PROPOSED_AMENDMENT_S178 C6 (H3-A/H3-B audit)"
+   },
+   "citation_precision_recall": {
+    "board": "T8-C16-R1",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG"
+   },
+   "d4_abstention_precision": {
+    "board": "T9-C18-R1",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG"
+   },
+   "d4_risk_coverage": {
+    "board": "T9-C18-R1",
+    "prereg": "PROPOSED_AMENDMENT_S178_D4 M2"
+   },
+   "d4_selective_risk_50_70_90": {
+    "board": "T9-C18-R1",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG"
+   },
+   "decision_mode_f1": {
+    "board": "T8-C22-R1",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG (the prereg names 'mode violations' only)"
+   },
+   "enforcement_sentences_removed_fallback": {
+    "board": "T8-C16-R2",
+    "prereg": "PROPOSED_AMENDMENT_S178 C6 (coverage bullet)"
+   },
+   "h1_mcnemar": {
+    "board": "T8-C21-R1",
+    "prereg": "BASE \u00a74 H1 (+ AMENDMENT C5 wording, power note)"
+   },
+   "h3_decision_test": {
+    "board": "T8-C22-R1",
+    "prereg": "BASE \u00a74 (H3-C) or PROPOSED_AMENDMENT_S178 C6 (H3-A / H3-B): D-D5-5"
+   },
+   "h3_ucr_coverage_selective_risk": {
+    "board": "T8-C22-R1",
+    "prereg": "BASE \u00a74 (UCR) + PROPOSED_AMENDMENT_S178 C6"
+   },
+   "latency": {
+    "board": "-",
+    "prereg": "BASE \u00a74 Descriptive"
+   },
+   "mode_violations": {
+    "board": "T8-C22-R1",
+    "prereg": "BASE \u00a74 Descriptive"
+   },
+   "ood_abstain_recall_false_abstain": {
+    "board": "T8-C13-R1",
+    "prereg": "BASE \u00a74 (P3 abstention) + PROPOSED_AMENDMENT_S178 C6 (false abstention)"
+   },
+   "retrieval_mrr": {
+    "board": "T8-C06-R1",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG"
+   },
+   "retrieval_recall_compat_recall": {
+    "board": "T8-C06-R1 / T9-C18-R1",
+    "prereg": "PROPOSED_AMENDMENT_S178_D4 M1"
+   },
+   "retrieval_source_family": {
+    "board": "T8-C06-R1",
+    "prereg": "PROPOSED_AMENDMENT_S178 C7 (per source family), DIAGNOSTIC_ONLY"
+   },
+   "router_branch_accuracy": {
+    "board": "T8-C01-R1",
+    "prereg": "BASE \u00a74 Descriptive ('router branch accuracy on all 80')"
+   },
+   "router_confusion_matrix": {
+    "board": "T8-C01-R1",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG (board acceptance; the prereg names accuracy only)"
+   },
+   "slot_accuracy": {
+    "board": "T8-C03-R1",
+    "prereg": "EXPLORATORY_NOT_IN_PREREG (diagnostic)"
+   },
+   "ux_blocks": {
+    "board": "-",
+    "prereg": "BASE \u00a74 Descriptive (U and X blocks)"
+   }
+  },
+  "mode": "FIXTURE",
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+  "status": "AI_DRAFTED_HARNESS",
+  "tool": "s178-d5-score-0.1.0-draft",
+  "warning": "SYNTHETIC FIXTURE: invented questions, answers, ids and values; not a D5 result; no number here may be quoted as a finding"
+ },
+ "mode_violations": {
+  "board_item": "T8-C22-R1",
+  "metric": "mode_violations",
+  "prereg_status": "BASE \u00a74 Descriptive",
+  "rungs": {
+   "B2": {
+    "cp95": [
+     0.0,
+     0.4096
+    ],
+    "n": 7,
+    "rate": 0.0,
+    "x": 0
+   },
+   "B7": {
+    "cp95": [
+     0.0,
+     0.4096
+    ],
+    "n": 7,
+    "rate": 0.0,
+    "x": 0
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "ood_abstention": {
+  "board_item": "T8-C13-R1",
+  "caveat": "B7 and B5T abstain on P3 by construction: gold ABSTAIN on P3 means the ledger is silent for the cell, and B7's route is the same ledger lookup (REV-B F-12). P3 abstain recall of B7 / B5T is not evidence that an OOD detector works.",
+  "metric": "ood_abstain_recall_false_abstain",
+  "prereg_status": "BASE \u00a74 (P3 abstention) + PROPOSED_AMENDMENT_S178 C6 (false abstention)",
+  "rungs": {
+   "B0": {
+    "P1": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P1+P2": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.7076
+      ],
+      "n": 3,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P2": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.975
+      ],
+      "n": 1,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P3": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "abstain_recall_P3": {
+     "cp95": [
+      0.0,
+      0.8419
+     ],
+     "n": 2,
+     "rate": 0.0,
+     "x": 0
+    },
+    "false_abstain_rate_P1_P2": {
+     "cp95": [
+      0.0,
+      0.7076
+     ],
+     "n": 3,
+     "rate": 0.0,
+     "x": 0
+    }
+   },
+   "B2": {
+    "P1": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P1+P2": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.7076
+      ],
+      "n": 3,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P2": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.975
+      ],
+      "n": 1,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P3": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0126,
+       0.9874
+      ],
+      "n": 2,
+      "rate": 0.5,
+      "x": 1
+     }
+    },
+    "abstain_recall_P3": {
+     "cp95": [
+      0.0126,
+      0.9874
+     ],
+     "n": 2,
+     "rate": 0.5,
+     "x": 1
+    },
+    "false_abstain_rate_P1_P2": {
+     "cp95": [
+      0.0,
+      0.7076
+     ],
+     "n": 3,
+     "rate": 0.0,
+     "x": 0
+    }
+   },
+   "B5": {
+    "P1": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P1+P2": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.7076
+      ],
+      "n": 3,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P2": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.975
+      ],
+      "n": 1,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P3": {
+     "decision_mode_abstain": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": null,
+      "n": 0,
+      "rate": null,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0126,
+       0.9874
+      ],
+      "n": 2,
+      "rate": 0.5,
+      "x": 1
+     }
+    },
+    "abstain_recall_P3": {
+     "cp95": [
+      0.0126,
+      0.9874
+     ],
+     "n": 2,
+     "rate": 0.5,
+     "x": 1
+    },
+    "false_abstain_rate_P1_P2": {
+     "cp95": [
+      0.0,
+      0.7076
+     ],
+     "n": 3,
+     "rate": 0.0,
+     "x": 0
+    }
+   },
+   "B5T": {
+    "P1": {
+     "decision_mode_abstain": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P1+P2": {
+     "decision_mode_abstain": {
+      "cp95": [
+       0.0,
+       0.7076
+      ],
+      "n": 3,
+      "rate": 0.0,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": [
+       0.0,
+       0.7076
+      ],
+      "n": 3,
+      "rate": 0.0,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.7076
+      ],
+      "n": 3,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P2": {
+     "decision_mode_abstain": {
+      "cp95": [
+       0.0,
+       0.975
+      ],
+      "n": 1,
+      "rate": 0.0,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": [
+       0.0,
+       0.975
+      ],
+      "n": 1,
+      "rate": 0.0,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.975
+      ],
+      "n": 1,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P3": {
+     "decision_mode_abstain": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     },
+     "ood_gate_fired": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     },
+     "text_abstention": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     }
+    },
+    "abstain_recall_P3": {
+     "cp95": [
+      0.1581,
+      1.0
+     ],
+     "n": 2,
+     "rate": 1.0,
+     "x": 2
+    },
+    "false_abstain_rate_P1_P2": {
+     "cp95": [
+      0.0,
+      0.7076
+     ],
+     "n": 3,
+     "rate": 0.0,
+     "x": 0
+    }
+   },
+   "B7": {
+    "P1": {
+     "decision_mode_abstain": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.8419
+      ],
+      "n": 2,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P1+P2": {
+     "decision_mode_abstain": {
+      "cp95": [
+       0.0,
+       0.7076
+      ],
+      "n": 3,
+      "rate": 0.0,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": [
+       0.0,
+       0.7076
+      ],
+      "n": 3,
+      "rate": 0.0,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.7076
+      ],
+      "n": 3,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P2": {
+     "decision_mode_abstain": {
+      "cp95": [
+       0.0,
+       0.975
+      ],
+      "n": 1,
+      "rate": 0.0,
+      "x": 0
+     },
+     "ood_gate_fired": {
+      "cp95": [
+       0.0,
+       0.975
+      ],
+      "n": 1,
+      "rate": 0.0,
+      "x": 0
+     },
+     "text_abstention": {
+      "cp95": [
+       0.0,
+       0.975
+      ],
+      "n": 1,
+      "rate": 0.0,
+      "x": 0
+     }
+    },
+    "P3": {
+     "decision_mode_abstain": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     },
+     "ood_gate_fired": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     },
+     "text_abstention": {
+      "cp95": [
+       0.1581,
+       1.0
+      ],
+      "n": 2,
+      "rate": 1.0,
+      "x": 2
+     }
+    },
+    "abstain_recall_P3": {
+     "cp95": [
+      0.1581,
+      1.0
+     ],
+     "n": 2,
+     "rate": 1.0,
+     "x": 2
+    },
+    "false_abstain_rate_P1_P2": {
+     "cp95": [
+      0.0,
+      0.7076
+     ],
+     "n": 3,
+     "rate": 0.0,
+     "x": 0
+    }
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "retrieval_d4_m1": {
+  "K": [
+   1,
+   3,
+   5,
+   10
+  ],
+  "bootstrap": {
+   "n_boot": 10000,
+   "seed": "d5-d4-recall"
+  },
+  "metric": "M1_condition_compatible_recall",
+  "prereg_status": "PROPOSED_AMENDMENT_S178_D4 (D4-1 M1/M2); not adopted until the lock",
+  "rungs": {
+   "B0": {
+    "n_questions_without_list": 5,
+    "status": "NA_NO_RETRIEVAL_LIST"
+   },
+   "B2": {
+    "blocks": {
+     "C": {
+      "K=1": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0126,
+         0.9874
+        ],
+        "n": 2,
+        "rate": 0.5,
+        "x": 1
+       },
+       "compat_recall": {
+        "boot95": [
+         0.25,
+         1.0
+        ],
+        "mean": 0.625,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.25,
+         1.0
+        ],
+        "mean": 0.625,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=10": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=3": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=5": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "mrr": {
+       "boot95": [
+        0.75,
+        1.0
+       ],
+       "mean": 0.875,
+       "n": 2,
+       "n_boot": 10000,
+       "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+       "seed": "d5-d4-recall"
+      },
+      "n_questions": 2,
+      "n_questions_stating_condition_axis": 0,
+      "note": "no question states a condition axis: compatible recall equals plain recall by construction"
+     },
+     "P1": {
+      "K=1": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0126,
+         0.9874
+        ],
+        "n": 2,
+        "rate": 0.5,
+        "x": 1
+       },
+       "compat_recall": {
+        "boot95": [
+         0.0,
+         1.0
+        ],
+        "mean": 0.5,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.0,
+         1.0
+        ],
+        "mean": 0.5,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=10": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.75,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=3": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0126,
+         0.9874
+        ],
+        "n": 2,
+        "rate": 0.5,
+        "x": 1
+       },
+       "compat_recall": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.75,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.75,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=5": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.75,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "mrr": {
+       "boot95": [
+        0.5,
+        1.0
+       ],
+       "mean": 0.75,
+       "n": 2,
+       "n_boot": 10000,
+       "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+       "seed": "d5-d4-recall"
+      },
+      "n_questions": 2,
+      "n_questions_stating_condition_axis": 1
+     },
+     "P2": {
+      "K=1": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0,
+         0.975
+        ],
+        "n": 1,
+        "rate": 0.0,
+        "x": 0
+       },
+       "compat_recall": {
+        "boot95": [
+         0.0,
+         0.0
+        ],
+        "mean": 0.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.0,
+         0.0
+        ],
+        "mean": 0.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=10": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0,
+         0.975
+        ],
+        "n": 1,
+        "rate": 0.0,
+        "x": 0
+       },
+       "compat_recall": {
+        "boot95": [
+         0.0,
+         0.0
+        ],
+        "mean": 0.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.0,
+         0.0
+        ],
+        "mean": 0.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=3": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0,
+         0.975
+        ],
+        "n": 1,
+        "rate": 0.0,
+        "x": 0
+       },
+       "compat_recall": {
+        "boot95": [
+         0.0,
+         0.0
+        ],
+        "mean": 0.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.0,
+         0.0
+        ],
+        "mean": 0.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=5": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0,
+         0.975
+        ],
+        "n": 1,
+        "rate": 0.0,
+        "x": 0
+       },
+       "compat_recall": {
+        "boot95": [
+         0.0,
+         0.0
+        ],
+        "mean": 0.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.0,
+         0.0
+        ],
+        "mean": 0.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "mrr": {
+       "boot95": [
+        0.0,
+        0.0
+       ],
+       "mean": 0.0,
+       "n": 1,
+       "n_boot": 10000,
+       "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+       "seed": "d5-d4-recall"
+      },
+      "n_questions": 1,
+      "n_questions_stating_condition_axis": 0,
+      "note": "no question states a condition axis: compatible recall equals plain recall by construction"
+     },
+     "pooled_P1_P2_C": {
+      "K=1": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0527,
+         0.8534
+        ],
+        "n": 5,
+        "rate": 0.4,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         0.05,
+         0.85
+        ],
+        "mean": 0.45,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.05,
+         0.85
+        ],
+        "mean": 0.45,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=10": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.2836,
+         0.9949
+        ],
+        "n": 5,
+        "rate": 0.8,
+        "x": 4
+       },
+       "compat_recall": {
+        "boot95": [
+         0.3,
+         1.0
+        ],
+        "mean": 0.7,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.4,
+         1.0
+        ],
+        "mean": 0.8,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=3": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1466,
+         0.9473
+        ],
+        "n": 5,
+        "rate": 0.6,
+        "x": 3
+       },
+       "compat_recall": {
+        "boot95": [
+         0.3,
+         1.0
+        ],
+        "mean": 0.7,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.3,
+         1.0
+        ],
+        "mean": 0.7,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=5": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.2836,
+         0.9949
+        ],
+        "n": 5,
+        "rate": 0.8,
+        "x": 4
+       },
+       "compat_recall": {
+        "boot95": [
+         0.3,
+         1.0
+        ],
+        "mean": 0.7,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.4,
+         1.0
+        ],
+        "mean": 0.8,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "mrr": {
+       "boot95": [
+        0.3,
+        0.95
+       ],
+       "mean": 0.65,
+       "n": 5,
+       "n_boot": 10000,
+       "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+       "seed": "d5-d4-recall"
+      },
+      "n_questions": 5,
+      "n_questions_stating_condition_axis": 1
+     }
+    },
+    "n_questions_without_list": 0,
+    "p3_returned_evidence_anyway": {
+     "cp95": [
+      0.0126,
+      0.9874
+     ],
+     "descriptive": "not a recall",
+     "n": 2,
+     "rate": 0.5,
+     "x": 1
+    },
+    "source_disjoint_diagnostic": {
+     "families": {
+      "MIXED": {
+       "K=1": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.0,
+          0.975
+         ],
+         "n": 1,
+         "rate": 0.0,
+         "x": 0
+        },
+        "compat_recall": {
+         "boot95": [
+          0.25,
+          0.25
+         ],
+         "mean": 0.25,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          0.25,
+          0.25
+         ],
+         "mean": 0.25,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=10": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=3": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=5": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "mrr": {
+        "boot95": [
+         0.75,
+         0.75
+        ],
+        "mean": 0.75,
+        "n": 1,
+        "n_boot": 10000,
+        "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+        "seed": "d5-d4-recall"
+       },
+       "n_questions": 1,
+       "n_questions_stating_condition_axis": 0,
+       "note": "no question states a condition axis: compatible recall equals plain recall by construction"
+      },
+      "SYN-FAM-A": {
+       "K=1": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.0943,
+          0.9916
+         ],
+         "n": 3,
+         "rate": 0.6667,
+         "x": 2
+        },
+        "compat_recall": {
+         "boot95": [
+          0.0,
+          1.0
+         ],
+         "mean": 0.6667,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          0.0,
+          1.0
+         ],
+         "mean": 0.6667,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=10": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.2924,
+          1.0
+         ],
+         "n": 3,
+         "rate": 1.0,
+         "x": 3
+        },
+        "compat_recall": {
+         "boot95": [
+          0.5,
+          1.0
+         ],
+         "mean": 0.8333,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=3": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.0943,
+          0.9916
+         ],
+         "n": 3,
+         "rate": 0.6667,
+         "x": 2
+        },
+        "compat_recall": {
+         "boot95": [
+          0.5,
+          1.0
+         ],
+         "mean": 0.8333,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          0.5,
+          1.0
+         ],
+         "mean": 0.8333,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=5": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.2924,
+          1.0
+         ],
+         "n": 3,
+         "rate": 1.0,
+         "x": 3
+        },
+        "compat_recall": {
+         "boot95": [
+          0.5,
+          1.0
+         ],
+         "mean": 0.8333,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "mrr": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.8333,
+        "n": 3,
+        "n_boot": 10000,
+        "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+        "seed": "d5-d4-recall"
+       },
+       "n_questions": 3,
+       "n_questions_stating_condition_axis": 1
+      },
+      "SYN-FAM-B": {
+       "K=1": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.0,
+          0.975
+         ],
+         "n": 1,
+         "rate": 0.0,
+         "x": 0
+        },
+        "compat_recall": {
+         "boot95": [
+          0.0,
+          0.0
+         ],
+         "mean": 0.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          0.0,
+          0.0
+         ],
+         "mean": 0.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=10": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.0,
+          0.975
+         ],
+         "n": 1,
+         "rate": 0.0,
+         "x": 0
+        },
+        "compat_recall": {
+         "boot95": [
+          0.0,
+          0.0
+         ],
+         "mean": 0.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          0.0,
+          0.0
+         ],
+         "mean": 0.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=3": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.0,
+          0.975
+         ],
+         "n": 1,
+         "rate": 0.0,
+         "x": 0
+        },
+        "compat_recall": {
+         "boot95": [
+          0.0,
+          0.0
+         ],
+         "mean": 0.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          0.0,
+          0.0
+         ],
+         "mean": 0.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=5": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.0,
+          0.975
+         ],
+         "n": 1,
+         "rate": 0.0,
+         "x": 0
+        },
+        "compat_recall": {
+         "boot95": [
+          0.0,
+          0.0
+         ],
+         "mean": 0.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          0.0,
+          0.0
+         ],
+         "mean": 0.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "mrr": {
+        "boot95": [
+         0.0,
+         0.0
+        ],
+        "mean": 0.0,
+        "n": 1,
+        "n_boot": 10000,
+        "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+        "seed": "d5-d4-recall"
+       },
+       "n_questions": 1,
+       "n_questions_stating_condition_axis": 0,
+       "note": "no question states a condition axis: compatible recall equals plain recall by construction"
+      }
+     },
+     "label": "DIAGNOSTIC_ONLY (USDA R6 and Bognar are one lineage cluster each)"
+    },
+    "status": "OK"
+   },
+   "B5": {
+    "n_questions_without_list": 5,
+    "status": "NA_NO_RETRIEVAL_LIST"
+   },
+   "B5T": {
+    "n_questions_without_list": 5,
+    "status": "NA_NO_RETRIEVAL_LIST"
+   },
+   "B7": {
+    "blocks": {
+     "C": {
+      "K=1": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0126,
+         0.9874
+        ],
+        "n": 2,
+        "rate": 0.5,
+        "x": 1
+       },
+       "compat_recall": {
+        "boot95": [
+         0.75,
+         1.0
+        ],
+        "mean": 0.875,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.75,
+         1.0
+        ],
+        "mean": 0.875,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=10": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=3": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=5": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "mrr": {
+       "boot95": [
+        1.0,
+        1.0
+       ],
+       "mean": 1.0,
+       "n": 2,
+       "n_boot": 10000,
+       "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+       "seed": "d5-d4-recall"
+      },
+      "n_questions": 2,
+      "n_questions_stating_condition_axis": 0,
+      "note": "no question states a condition axis: compatible recall equals plain recall by construction"
+     },
+     "P1": {
+      "K=1": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.0126,
+         0.9874
+        ],
+        "n": 2,
+        "rate": 0.5,
+        "x": 1
+       },
+       "compat_recall": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.75,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.75,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=10": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.75,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=3": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.75,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=5": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1581,
+         1.0
+        ],
+        "n": 2,
+        "rate": 1.0,
+        "x": 2
+       },
+       "compat_recall": {
+        "boot95": [
+         0.5,
+         1.0
+        ],
+        "mean": 0.75,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 2,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "mrr": {
+       "boot95": [
+        1.0,
+        1.0
+       ],
+       "mean": 1.0,
+       "n": 2,
+       "n_boot": 10000,
+       "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+       "seed": "d5-d4-recall"
+      },
+      "n_questions": 2,
+      "n_questions_stating_condition_axis": 1
+     },
+     "P2": {
+      "K=1": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.025,
+         1.0
+        ],
+        "n": 1,
+        "rate": 1.0,
+        "x": 1
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=10": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.025,
+         1.0
+        ],
+        "n": 1,
+        "rate": 1.0,
+        "x": 1
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=3": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.025,
+         1.0
+        ],
+        "n": 1,
+        "rate": 1.0,
+        "x": 1
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=5": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.025,
+         1.0
+        ],
+        "n": 1,
+        "rate": 1.0,
+        "x": 1
+       },
+       "compat_recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "mrr": {
+       "boot95": [
+        1.0,
+        1.0
+       ],
+       "mean": 1.0,
+       "n": 1,
+       "n_boot": 10000,
+       "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+       "seed": "d5-d4-recall"
+      },
+      "n_questions": 1,
+      "n_questions_stating_condition_axis": 0,
+      "note": "no question states a condition axis: compatible recall equals plain recall by construction"
+     },
+     "pooled_P1_P2_C": {
+      "K=1": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.1466,
+         0.9473
+        ],
+        "n": 5,
+        "rate": 0.6,
+        "x": 3
+       },
+       "compat_recall": {
+        "boot95": [
+         0.65,
+         1.0
+        ],
+        "mean": 0.85,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         0.65,
+         1.0
+        ],
+        "mean": 0.85,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=10": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.4782,
+         1.0
+        ],
+        "n": 5,
+        "rate": 1.0,
+        "x": 5
+       },
+       "compat_recall": {
+        "boot95": [
+         0.7,
+         1.0
+        ],
+        "mean": 0.9,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=3": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.4782,
+         1.0
+        ],
+        "n": 5,
+        "rate": 1.0,
+        "x": 5
+       },
+       "compat_recall": {
+        "boot95": [
+         0.7,
+         1.0
+        ],
+        "mean": 0.9,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "K=5": {
+       "all_gold_in_top_k": {
+        "cp95": [
+         0.4782,
+         1.0
+        ],
+        "n": 5,
+        "rate": 1.0,
+        "x": 5
+       },
+       "compat_recall": {
+        "boot95": [
+         0.7,
+         1.0
+        ],
+        "mean": 0.9,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       },
+       "gold_in_top_k_without_compat_vector": 0,
+       "recall": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 5,
+        "n_boot": 10000,
+        "seed": "d5-d4-recall"
+       }
+      },
+      "mrr": {
+       "boot95": [
+        1.0,
+        1.0
+       ],
+       "mean": 1.0,
+       "n": 5,
+       "n_boot": 10000,
+       "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+       "seed": "d5-d4-recall"
+      },
+      "n_questions": 5,
+      "n_questions_stating_condition_axis": 1
+     }
+    },
+    "n_questions_without_list": 0,
+    "p3_returned_evidence_anyway": {
+     "cp95": [
+      0.0,
+      0.8419
+     ],
+     "descriptive": "not a recall",
+     "n": 2,
+     "rate": 0.0,
+     "x": 0
+    },
+    "source_disjoint_diagnostic": {
+     "families": {
+      "MIXED": {
+       "K=1": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.0,
+          0.975
+         ],
+         "n": 1,
+         "rate": 0.0,
+         "x": 0
+        },
+        "compat_recall": {
+         "boot95": [
+          0.75,
+          0.75
+         ],
+         "mean": 0.75,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          0.75,
+          0.75
+         ],
+         "mean": 0.75,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=10": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=3": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=5": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "mrr": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+        "seed": "d5-d4-recall"
+       },
+       "n_questions": 1,
+       "n_questions_stating_condition_axis": 0,
+       "note": "no question states a condition axis: compatible recall equals plain recall by construction"
+      },
+      "SYN-FAM-A": {
+       "K=1": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.0943,
+          0.9916
+         ],
+         "n": 3,
+         "rate": 0.6667,
+         "x": 2
+        },
+        "compat_recall": {
+         "boot95": [
+          0.5,
+          1.0
+         ],
+         "mean": 0.8333,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          0.5,
+          1.0
+         ],
+         "mean": 0.8333,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=10": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.2924,
+          1.0
+         ],
+         "n": 3,
+         "rate": 1.0,
+         "x": 3
+        },
+        "compat_recall": {
+         "boot95": [
+          0.5,
+          1.0
+         ],
+         "mean": 0.8333,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=3": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.2924,
+          1.0
+         ],
+         "n": 3,
+         "rate": 1.0,
+         "x": 3
+        },
+        "compat_recall": {
+         "boot95": [
+          0.5,
+          1.0
+         ],
+         "mean": 0.8333,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=5": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.2924,
+          1.0
+         ],
+         "n": 3,
+         "rate": 1.0,
+         "x": 3
+        },
+        "compat_recall": {
+         "boot95": [
+          0.5,
+          1.0
+         ],
+         "mean": 0.8333,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 3,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "mrr": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 3,
+        "n_boot": 10000,
+        "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+        "seed": "d5-d4-recall"
+       },
+       "n_questions": 3,
+       "n_questions_stating_condition_axis": 1
+      },
+      "SYN-FAM-B": {
+       "K=1": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=10": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=3": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "K=5": {
+        "all_gold_in_top_k": {
+         "cp95": [
+          0.025,
+          1.0
+         ],
+         "n": 1,
+         "rate": 1.0,
+         "x": 1
+        },
+        "compat_recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        },
+        "gold_in_top_k_without_compat_vector": 0,
+        "recall": {
+         "boot95": [
+          1.0,
+          1.0
+         ],
+         "mean": 1.0,
+         "n": 1,
+         "n_boot": 10000,
+         "seed": "d5-d4-recall"
+        }
+       },
+       "mrr": {
+        "boot95": [
+         1.0,
+         1.0
+        ],
+        "mean": 1.0,
+        "n": 1,
+        "n_boot": 10000,
+        "prereg_status": "EXPLORATORY_NOT_IN_PREREG",
+        "seed": "d5-d4-recall"
+       },
+       "n_questions": 1,
+       "n_questions_stating_condition_axis": 0,
+       "note": "no question states a condition axis: compatible recall equals plain recall by construction"
+      }
+     },
+     "label": "DIAGNOSTIC_ONLY (USDA R6 and Bognar are one lineage cluster each)"
+    },
+    "status": "OK"
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+  "version": "d4_metrics@0.1"
+ },
+ "router": {
+  "accuracy": {
+   "cp95": [
+    0.6165,
+    0.9845
+   ],
+   "n": 16,
+   "rate": 0.875,
+   "x": 14
+  },
+  "board_item": "T8-C01-R1",
+  "confusion_matrix": {
+   "board_item": "T8-C01-R1",
+   "cols_predicted": [
+    "RELATIONSHIP",
+    "SAFETY",
+    "TRANSFORMATION",
+    "UNKNOWN"
+   ],
+   "counts": {
+    "RELATIONSHIP": {
+     "RELATIONSHIP": 1,
+     "SAFETY": 0,
+     "TRANSFORMATION": 0,
+     "UNKNOWN": 0
+    },
+    "SAFETY": {
+     "RELATIONSHIP": 0,
+     "SAFETY": 1,
+     "TRANSFORMATION": 0,
+     "UNKNOWN": 0
+    },
+    "TRANSFORMATION": {
+     "RELATIONSHIP": 0,
+     "SAFETY": 0,
+     "TRANSFORMATION": 7,
+     "UNKNOWN": 0
+    },
+    "UNKNOWN": {
+     "RELATIONSHIP": 0,
+     "SAFETY": 0,
+     "TRANSFORMATION": 2,
+     "UNKNOWN": 5
+    }
+   },
+   "prereg_status": "EXPLORATORY_NOT_IN_PREREG (board acceptance; the prereg names accuracy only)",
+   "rows_gold": [
+    "RELATIONSHIP",
+    "SAFETY",
+    "TRANSFORMATION",
+    "UNKNOWN"
+   ]
+  },
+  "gold_branch_missing": [],
+  "metric": "router_branch_accuracy",
+  "n_rows": 16,
+  "n_scored": 16,
+  "no_tuning": "router rules are frozen with the benchmark (code sha256 in the freeze record)",
+  "per_block": {
+   "C": {
+    "cp95": [
+     0.1581,
+     1.0
+    ],
+    "n": 2,
+    "rate": 1.0,
+    "x": 2
+   },
+   "P1": {
+    "cp95": [
+     0.1581,
+     1.0
+    ],
+    "n": 2,
+    "rate": 1.0,
+    "x": 2
+   },
+   "P2": {
+    "cp95": [
+     0.025,
+     1.0
+    ],
+    "n": 1,
+    "rate": 1.0,
+    "x": 1
+   },
+   "P3": {
+    "cp95": [
+     0.1581,
+     1.0
+    ],
+    "n": 2,
+    "rate": 1.0,
+    "x": 2
+   },
+   "S1": {
+    "cp95": [
+     0.2924,
+     1.0
+    ],
+    "n": 3,
+    "rate": 1.0,
+    "x": 3
+   },
+   "S2": {
+    "cp95": [
+     0.0943,
+     0.9916
+    ],
+    "n": 3,
+    "rate": 0.6667,
+    "x": 2
+   },
+   "U": {
+    "cp95": [
+     0.025,
+     1.0
+    ],
+    "n": 1,
+    "rate": 1.0,
+    "x": 1
+   },
+   "X": {
+    "cp95": [
+     0.0126,
+     0.9874
+    ],
+    "n": 2,
+    "rate": 0.5,
+    "x": 1
+   }
+  },
+  "per_gold_branch_recall": {
+   "RELATIONSHIP": {
+    "cp95": [
+     0.025,
+     1.0
+    ],
+    "n": 1,
+    "rate": 1.0,
+    "x": 1
+   },
+   "SAFETY": {
+    "cp95": [
+     0.025,
+     1.0
+    ],
+    "n": 1,
+    "rate": 1.0,
+    "x": 1
+   },
+   "TRANSFORMATION": {
+    "cp95": [
+     0.5904,
+     1.0
+    ],
+    "n": 7,
+    "rate": 1.0,
+    "x": 7
+   },
+   "UNKNOWN": {
+    "cp95": [
+     0.2904,
+     0.9633
+    ],
+    "n": 7,
+    "rate": 0.7143,
+    "x": 5
+   }
+  },
+  "prereg_status": "BASE \u00a74 Descriptive ('router branch accuracy on all 80')",
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+  "status": "OK",
+  "x_controls": {
+   "correct": 1,
+   "n": 2,
+   "pairs": {
+    "SAFETY->SAFETY": 1,
+    "UNKNOWN->TRANSFORMATION": 1
+   }
+  }
+ },
+ "slots": {
+  "B5T": {
+   "board_item": "T8-C03-R1",
+   "metric": "slot_accuracy",
+   "prereg_status": "EXPLORATORY_NOT_IN_PREREG (diagnostic)",
+   "slots": {
+    "ingredient": {
+     "all": {
+      "cp95": [
+       0.4735,
+       0.9968
+      ],
+      "missing_prediction": 1,
+      "n": 8,
+      "rate": 0.875,
+      "target_name_without_svar": 0,
+      "x": 7
+     },
+     "per_block": {
+      "C": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P1": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P2": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 1,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 1
+      },
+      "P3": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "missing_prediction": 1,
+       "n": 2,
+       "rate": 0.5,
+       "target_name_without_svar": 0,
+       "x": 1
+      },
+      "U": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 1,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 1
+      }
+     }
+    },
+    "process": {
+     "all": {
+      "cp95": [
+       0.2904,
+       0.9633
+      ],
+      "missing_prediction": 1,
+      "n": 7,
+      "rate": 0.7143,
+      "target_name_without_svar": 0,
+      "x": 5
+     },
+     "per_block": {
+      "C": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 0.5,
+       "target_name_without_svar": 0,
+       "x": 1
+      },
+      "P1": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P2": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 1,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 1
+      },
+      "P3": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "missing_prediction": 1,
+       "n": 2,
+       "rate": 0.5,
+       "target_name_without_svar": 0,
+       "x": 1
+      }
+     }
+    },
+    "target": {
+     "all": {
+      "cp95": [
+       0.2904,
+       0.9633
+      ],
+      "missing_prediction": 1,
+      "n": 7,
+      "rate": 0.7143,
+      "target_name_without_svar": 1,
+      "x": 5
+     },
+     "per_block": {
+      "C": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P1": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P2": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "missing_prediction": 0,
+       "n": 1,
+       "rate": 0.0,
+       "target_name_without_svar": 1,
+       "x": 0
+      },
+      "P3": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "missing_prediction": 1,
+       "n": 2,
+       "rate": 0.5,
+       "target_name_without_svar": 0,
+       "x": 1
+      }
+     }
+    }
+   }
+  },
+  "B7": {
+   "board_item": "T8-C03-R1",
+   "metric": "slot_accuracy",
+   "prereg_status": "EXPLORATORY_NOT_IN_PREREG (diagnostic)",
+   "slots": {
+    "ingredient": {
+     "all": {
+      "cp95": [
+       0.4735,
+       0.9968
+      ],
+      "missing_prediction": 1,
+      "n": 8,
+      "rate": 0.875,
+      "target_name_without_svar": 0,
+      "x": 7
+     },
+     "per_block": {
+      "C": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P1": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P2": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 1,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 1
+      },
+      "P3": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "missing_prediction": 1,
+       "n": 2,
+       "rate": 0.5,
+       "target_name_without_svar": 0,
+       "x": 1
+      },
+      "U": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 1,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 1
+      }
+     }
+    },
+    "process": {
+     "all": {
+      "cp95": [
+       0.2904,
+       0.9633
+      ],
+      "missing_prediction": 1,
+      "n": 7,
+      "rate": 0.7143,
+      "target_name_without_svar": 0,
+      "x": 5
+     },
+     "per_block": {
+      "C": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 0.5,
+       "target_name_without_svar": 0,
+       "x": 1
+      },
+      "P1": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P2": {
+       "cp95": [
+        0.025,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 1,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 1
+      },
+      "P3": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "missing_prediction": 1,
+       "n": 2,
+       "rate": 0.5,
+       "target_name_without_svar": 0,
+       "x": 1
+      }
+     }
+    },
+    "target": {
+     "all": {
+      "cp95": [
+       0.2904,
+       0.9633
+      ],
+      "missing_prediction": 1,
+      "n": 7,
+      "rate": 0.7143,
+      "target_name_without_svar": 1,
+      "x": 5
+     },
+     "per_block": {
+      "C": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P1": {
+       "cp95": [
+        0.1581,
+        1.0
+       ],
+       "missing_prediction": 0,
+       "n": 2,
+       "rate": 1.0,
+       "target_name_without_svar": 0,
+       "x": 2
+      },
+      "P2": {
+       "cp95": [
+        0.0,
+        0.975
+       ],
+       "missing_prediction": 0,
+       "n": 1,
+       "rate": 0.0,
+       "target_name_without_svar": 1,
+       "x": 0
+      },
+      "P3": {
+       "cp95": [
+        0.0126,
+        0.9874
+       ],
+       "missing_prediction": 1,
+       "n": 2,
+       "rate": 0.5,
+       "target_name_without_svar": 0,
+       "x": 1
+      }
+     }
+    }
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ },
+ "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT",
+ "ux_blocks": {
+  "board_item": "-",
+  "metric": "ux_blocks",
+  "prereg_status": "BASE \u00a74 Descriptive (U and X blocks)",
+  "rungs": {
+   "B0": {
+    "abstain_on_abstain_or_refuse_gold": {
+     "cp95": [
+      0.0,
+      0.7076
+     ],
+     "n": 3,
+     "rate": 0.0,
+     "x": 0
+    },
+    "numbers_on_abstain_or_refuse_gold": 3,
+    "per_block_n": {
+     "U": 1,
+     "X": 2
+    }
+   },
+   "B2": {
+    "abstain_on_abstain_or_refuse_gold": {
+     "cp95": [
+      0.0084,
+      0.9057
+     ],
+     "n": 3,
+     "rate": 0.3333,
+     "x": 1
+    },
+    "numbers_on_abstain_or_refuse_gold": 1,
+    "per_block_n": {
+     "U": 1,
+     "X": 2
+    }
+   },
+   "B5": {
+    "abstain_on_abstain_or_refuse_gold": {
+     "cp95": [
+      0.0084,
+      0.9057
+     ],
+     "n": 3,
+     "rate": 0.3333,
+     "x": 1
+    },
+    "numbers_on_abstain_or_refuse_gold": 1,
+    "per_block_n": {
+     "U": 1,
+     "X": 2
+    }
+   },
+   "B5T": {
+    "abstain_on_abstain_or_refuse_gold": {
+     "cp95": [
+      0.2924,
+      1.0
+     ],
+     "n": 3,
+     "rate": 1.0,
+     "x": 3
+    },
+    "numbers_on_abstain_or_refuse_gold": 0,
+    "per_block_n": {
+     "U": 1,
+     "X": 2
+    }
+   },
+   "B7": {
+    "abstain_on_abstain_or_refuse_gold": {
+     "cp95": [
+      0.2924,
+      1.0
+     ],
+     "n": 3,
+     "rate": 1.0,
+     "x": 3
+    },
+    "numbers_on_abstain_or_refuse_gold": 0,
+    "per_block_n": {
+     "U": 1,
+     "X": 2
+    }
+   }
+  },
+  "stamp": "SYNTHETIC_FIXTURE_NOT_A_RESULT"
+ }
+}
