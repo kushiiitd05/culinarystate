@@ -1194,9 +1194,24 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Verified:** new tests: export 3, NER chunking 2, H1 5, paired stats 5, freeze 5, diag29 3, verbaliser 2 added; related suites 217 + 42 passed; L1 runs baseline PASS
 - **Next:** Kush: fix VPN route; approve freeze record + sign 29-diag prereg (then 29-diag runs); earlier sign/label/verify/review items. Agent on VPN: Food.com L1/L2 on vinayak; NER on A100; merge full-corpus physical summary.
 
-### S175 · 2026-11-08 23:37 IST · ES-1 · S175 server orchestration (D-078): SSOT-vs-repo consensus plan, review-packet answers, SSOT v16 draft, physical-layer and router fixes, non-heat families, lot state, FDA pH
+### S175 · 2026-11-09 11:48 IST · S175 · Lot composition: SR loader, ING->SR registry, line grams, BBC census
+- **Who:** Kush+Claude
+- **Did:** SR Legacy loader; lexical ING->SR matcher + 298-term defaults registry (AGENT_PROPOSED/UNVERIFIED; 76.3% of mentions); line->grams interval (stated / volume x SR density / count x SR portion; SSOT 235.3 q-levels, link-verification flag); counts-only census. BBC: 116,699 lines, 83,088 with grams (71.2% vs 33.7% in fdc_crosswalk_v0), 48,266 rest on unverified SR links, 1,517/11,934 recipes fully gram-resolved. v0 crosswalk has 0 human decisions; v1 registry is the review sheet.
+- **Files:** `src/culinarystate/composition/*`, `registry/ing_sr_defaults_v1.csv`, `tools/s175_line_mass_census.py`, `reports/s175/line_mass_census_BBC.json`
+- **Verified:** pytest tests/unit/test_s175_*.py: 33 passed; full suite not rerun (Mac memory low, earlier run reaped)
+- **Next:** registry tier 2 for NO_MATCH/LOW names; FDA pH registry; lot_state; human check of ing_sr_defaults_v1
+
+### S176 · 2026-11-09 11:57 IST · S175 · Lot state: FDA pH registry, exact lot bounds, BBC recipe-pool census
+- **Who:** Kush+Claude
+- **Did:** Registry tier 2 (490 terms) + SR head-noun/alias portion rules: BBC lines with grams 75.3%, recipes fully gram-resolved 2064/11934. FDA approximate-pH registry 479 items (2 source typos UNPARSED, not guessed); lookup item->head-union; 21 CFR 113/114 4.6 acid class. lot_state: exact linear-fractional bounds (mass fractions, sodium/sugars per g water), unknown grams = [0,inf), pH flags only (no mixture pH), PROVISIONAL while SR links unverified. RECIPE_POOL census: water bounded 15.9%, acid member 45.5%, any member pH unknown 99.4%.
+- **Files:** `src/culinarystate/composition/{food_ph`, `lot_state`, `lot_census}.py`, `registry/food_ph_fda2003_v1.csv`, `tools/build_food_ph_registry.py`, `reports/s175/lot_census_BBC.json`
+- **Verified:** pytest tests/unit/test_s175_*.py: 54 passed (ratio bounds cross-checked vs vertex enumeration, 300 random cases); full suite not rerun (Mac memory)
+- **Next:** event-level lots via router lineage; drop NOT_A_FOOD fragments as non-members; decide pH NOT_APPLICABLE for anhydrous members (needs human/Max ruling); mechanism condition windows
+
+### S177 · 2026-11-08 23:37 IST · ES-1 · S175 server orchestration (D-078): SSOT-vs-repo consensus plan, review-packet answers, SSOT v16 draft, physical-layer and router fixes, non-heat families, lot state, FDA pH
 - **Who:** Kush+Claude (manjot orchestrator)
 - **Did:** Took over orchestration on manjot (worktree .orch, branch max/s176-orchestration from kush/s169-seal-p1b@07fc0d2). 9-topic SSOT-vs-repo inventory + 3-reviewer consensus (217 components, 493 ledger rows, all 3/3). REV-A/REV-B answers to the 40-question packet. Lanes: non-heat families L1/L2 full non-BBC runs (3.03M events); lot-state [K] steps 1-3 (Food.com units confirmed absent; list misalignment 79.5 %); FDA pH registry (488); defaults + mechanism-window sourcing; evaporation/phase-change cap (cores >100 C 68.6 % -> 1.8 %, all dry-class); router target-presence + lot-context gates (vitamin-C DIRECT 267,933 -> 34,537 non-BBC) and demo honesty; SSOT v16.0 DRAFT (v15 text intact + PART XIV, 36 proposals); human ops pack; deployment plan; D-078. Final 2-persona review: GOV 0 blockers/9 major (fixed), SCI 1 blocker (salt load 100x, fixed) + 8 major queued.
 - **Files:** `reports/orchestration/*`, `registry/component_ledger_v1.csv`, `docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md`, `handoff/*2026-11-0[89]*`, `src/culinarystate/{lotstate`, `simulation`, `mechanism`, `decision}/*`, `registry/*S176*`, `registry/compute_runs_v1.csv`, `DECISIONS.md`
 - **Verified:** full suite on manjot: 3,554 passed; the 6 failures + 5 errors are identical on base 07fc0d2 (missing sklearn/lxml/requests/hypothesis or Mac-only data); 42 collection errors = missing modules; lane suites 380+ pass; protected ledgers byte-identical; v15 body byte-identical in v16
 - **Next:** Mac: merge bundle, BBC re-runs (L2 v02, router census, non-heat), push + PR to main (ask Kush); humans: decision sitting 9-10 Nov, signatures 10-11 Nov; agent: FINAL-SCI majors #2-#5, #7-#9, public-mode BBC edge filter
+- **Note:** logged on manjot as S175 on branch max/s176-orchestration; renumbered S177 at the merge with the Mac's S175/S176 (ids never reused).

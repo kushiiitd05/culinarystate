@@ -1,0 +1,491 @@
+term,sr_description,fdc_id,kind,rationale,status,verification
+butter,"Butter, salted",173410,DEFAULT_FORM,"generic butter -> salted; unsalted is Butter, without salt",AGENT_PROPOSED,UNVERIFIED
+garlic,"Garlic, raw",169230,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+olive oil,"Oil, olive, salad or cooking",171413,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+egg,"Egg, whole, raw, fresh",171287,DEFAULT_FORM,whole raw egg,AGENT_PROPOSED,UNVERIFIED
+onion,"Onions, raw",170000,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+lemon,"Lemons, raw, without peel",167746,DEFAULT_FORM,whole lemon in a line is often juice/zest use; flesh chosen,AGENT_PROPOSED,UNVERIFIED
+plain flour,"Wheat flour, white, all-purpose, enriched, unbleached",168936,UK_US,UK plain = US all-purpose; UK fortification differs,AGENT_PROPOSED,UNVERIFIED
+coriander,"Coriander (cilantro) leaves, raw",169997,UK_US,UK coriander (herb) = US cilantro; seed is a separate term,AGENT_PROPOSED,UNVERIFIED
+caster sugar,"Sugars, granulated",169655,UK_US,caster = fine granulated sucrose,AGENT_PROPOSED,UNVERIFIED
+tomato,"Tomatoes, red, ripe, raw, year round average",170457,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+golden caster sugar,"Sugars, granulated",169655,APPROX,unrefined caster; trace molasses not in SR row,AGENT_PROPOSED,UNVERIFIED
+double cream,"Cream, fluid, heavy whipping",170859,APPROX,UK double ~48% fat vs SR heavy whipping ~36%: fat differs,AGENT_PROPOSED,UNVERIFIED
+parsley,"Parsley, fresh",170416,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+milk,"Milk, whole, 3.25% milkfat, with added vitamin D",171265,DEFAULT_FORM,UK default may be semi-skimmed; human to pick,AGENT_PROPOSED,UNVERIFIED
+vegetable oil,"Oil, canola",172336,APPROX,UK vegetable oil is mostly rapeseed (canola),AGENT_PROPOSED,UNVERIFIED
+red onion,"Onions, raw",170000,APPROX,no red-onion row in SR,AGENT_PROPOSED,UNVERIFIED
+carrot,"Carrots, raw",170393,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+icing sugar,"Sugars, powdered",169656,UK_US,,AGENT_PROPOSED,UNVERIFIED
+spring onion,"Onions, spring or scallions (includes tops and bulb), raw",170005,UK_US,,AGENT_PROPOSED,UNVERIFIED
+ginger,"Ginger root, raw",169231,DEFAULT_FORM,"fresh root; ground is Spices, ginger, ground",AGENT_PROPOSED,UNVERIFIED
+lime,"Limes, raw",168155,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+thyme,"Thyme, fresh",173470,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+cinnamon,"Spices, cinnamon, ground",171320,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+wine vinegar,"Vinegar, red wine",172240,APPROX,red/white unspecified,AGENT_PROPOSED,UNVERIFIED
+self-raising flour,"Wheat flour, white, all-purpose, self-rising, enriched",168895,UK_US,,AGENT_PROPOSED,UNVERIFIED
+sunflower oil,"Oil, sunflower, linoleic, (approx. 65%)",171025,DEFAULT_FORM,high-oleic variant exists,AGENT_PROPOSED,UNVERIFIED
+potato,"Potatoes, flesh and skin, raw",170026,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+vanilla extract,Vanilla extract,173471,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+mint,"Spearmint, fresh",173475,DEFAULT_FORM,culinary mint ~ spearmint,AGENT_PROPOSED,UNVERIFIED
+parmesan,"Cheese, parmesan, hard",170848,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+baking powder,"Leavening agents, baking powder, double-acting, straight phosphate",172804,APPROX,UK powders are aluminium-free,AGENT_PROPOSED,UNVERIFIED
+honey,Honey,169640,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+red chilli,"Peppers, hot chili, red, raw",170106,UK_US,,AGENT_PROPOSED,UNVERIFIED
+rapeseed oil,"Oil, canola",172336,UK_US,,AGENT_PROPOSED,UNVERIFIED
+bay,"Spices, bay leaf",170917,DIRECT,NER fragment of bay leaf,AGENT_PROPOSED,UNVERIFIED
+chicken stock,"Soup, stock, chicken, home-prepared",172884,DEFAULT_FORM,stock cube/ready stock differ in sodium,AGENT_PROPOSED,UNVERIFIED
+basil,"Basil, fresh",172232,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+extra virgin olive oil,"Oil, olive, salad or cooking",171413,APPROX,SR has no EVOO row,AGENT_PROPOSED,UNVERIFIED
+orange,"Oranges, raw, all commercial varieties",169097,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+vegetable stock,"Soup, vegetable broth, ready to serve",171583,APPROX,,AGENT_PROPOSED,UNVERIFIED
+red pepper,"Peppers, sweet, red, raw",170108,UK_US,UK pepper = bell pepper,AGENT_PROPOSED,UNVERIFIED
+cumin,"Spices, cumin seed",170923,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+tomato purée,"Tomato products, canned, paste, without salt added (Includes foods for USDA's Food Distribution Program)",170459,UK_US,UK puree = US paste,AGENT_PROPOSED,UNVERIFIED
+lemon juice,"Lemon juice, raw",167747,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+salt,"Salt, table",173468,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+sugar,"Sugars, granulated",169655,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+cheddar,"Cheese, cheddar (Includes foods for USDA's Food Distribution Program)",173414,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cherry tomato,"Tomatoes, red, ripe, raw, year round average",170457,APPROX,no cherry-tomato row,AGENT_PROPOSED,UNVERIFIED
+crème fraîche,,,NO_SR_EQUIVALENT,~30-40% fat cultured cream; sour cream differs,AGENT_PROPOSED,UNVERIFIED
+spinach,"Spinach, raw",168462,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+shallot,"Shallots, raw",170499,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+egg yolk,"Egg, yolk, raw, fresh",172184,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+peas,"Peas, green, frozen, unprepared (Includes foods for USDA's Food Distribution Program)",170016,DEFAULT_FORM,UK default frozen,AGENT_PROPOSED,UNVERIFIED
+dark chocolate,"Chocolate, dark, 70-85% cacao solids",170273,DEFAULT_FORM,cocoa % unstated,AGENT_PROPOSED,UNVERIFIED
+soy sauce,Soy sauce made from soy and wheat (shoyu),174277,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+nutmeg,"Spices, nutmeg, ground",171326,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+chicken breast,"Chicken, broiler or fryers, breast, skinless, boneless, meat only, raw",171077,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+celery,"Celery, raw",169988,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cornflour,Cornstarch,169698,UK_US,,AGENT_PROPOSED,UNVERIFIED
+cucumber,"Cucumber, with peel, raw",168409,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+smoked paprika,"Spices, paprika",171329,APPROX,smoking not in SR,AGENT_PROPOSED,UNVERIFIED
+chilli flake,"Spices, pepper, red or cayenne",170932,APPROX,,AGENT_PROPOSED,UNVERIFIED
+turmeric,"Spices, turmeric, ground",172231,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+dijon mustard,"Mustard, prepared, yellow",172234,APPROX,no Dijon row,AGENT_PROPOSED,UNVERIFIED
+rosemary,"Rosemary, fresh",173473,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+cumin seed,"Spices, cumin seed",170923,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+white wine,"Alcoholic beverage, wine, table, white",174837,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+avocado,"Avocados, raw, all commercial varieties",171705,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+greek yogurt,"Yogurt, Greek, plain, whole milk",171304,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+courgette,"Squash, summer, zucchini, includes skin, raw",169291,UK_US,,AGENT_PROPOSED,UNVERIFIED
+oil,,,AMBIGUOUS,oil type unstated,AGENT_PROPOSED,UNVERIFIED
+leek,"Leeks, (bulb and lower leaf-portion), raw",169246,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+oregano,"Spices, oregano, dried",171328,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+sesame seeds,"Seeds, sesame seeds, whole, dried",170150,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+bicarbonate of soda,"Leavening agents, baking soda",175040,UK_US,,AGENT_PROPOSED,UNVERIFIED
+dill,"Dill weed, fresh",172233,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+chif,,,NOT_A_FOOD,NER artefact,AGENT_PROPOSED,UNVERIFIED
+mayonnaise,"Salad dressing, mayonnaise, regular",171009,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+almond,"Nuts, almonds",170567,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+chickpea,"Chickpeas (garbanzo beans, bengal gram), mature seeds, canned, drained, rinsed in tap water",173801,DEFAULT_FORM,UK default tinned,AGENT_PROPOSED,UNVERIFIED
+chicken,"Chicken, broilers or fryers, meat and skin, raw",171447,DEFAULT_FORM,cut unstated,AGENT_PROPOSED,UNVERIFIED
+whole milk,"Milk, whole, 3.25% milkfat, with added vitamin D",171265,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+feta,"Cheese, feta",173420,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+chilli powder,"Spices, chili powder",171319,DIRECT,US chili powder is a blend; UK chilli powder may be pure chilli,AGENT_PROPOSED,UNVERIFIED
+cocoa powder,"Cocoa, dry powder, unsweetened",169593,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+breadcrumbs,"Bread, crumbs, dry, grated, plain",174928,DEFAULT_FORM,UK recipes often use fresh crumbs,AGENT_PROPOSED,UNVERIFIED
+light muscovado sugar,"Sugars, brown",168833,APPROX,,AGENT_PROPOSED,UNVERIFIED
+egg white,"Egg, white, raw, fresh",172183,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+maple syrup,"Syrups, maple",169661,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+soured cream,"Cream, sour, cultured",171257,UK_US,,AGENT_PROPOSED,UNVERIFIED
+coconut milk,"Nuts, coconut milk, canned (liquid expressed from grated meat and water)",170173,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+balsamic vinegar,"Vinegar, balsamic",172241,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+light brown soft sugar,"Sugars, brown",168833,UK_US,,AGENT_PROPOSED,UNVERIFIED
+cider vinegar,"Vinegar, cider",173469,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+rocket,"Arugula, raw",169387,UK_US,,AGENT_PROPOSED,UNVERIFIED
+sesame oil,"Oil, sesame, salad or cooking",171016,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+new potato,"Potatoes, red, flesh and skin, raw",170029,APPROX,,AGENT_PROPOSED,UNVERIFIED
+natural yogurt,"Yogurt, plain, whole milk",171284,UK_US,,AGENT_PROPOSED,UNVERIFIED
+capers,"Capers, canned",172238,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+wholegrain mustard,"Mustard, prepared, yellow",172234,APPROX,,AGENT_PROPOSED,UNVERIFIED
+yogurt,"Yogurt, plain, whole milk",171284,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+frac,,,NOT_A_FOOD,NER artefact,AGENT_PROPOSED,UNVERIFIED
+bacon,"Pork, cured, bacon, unprepared",168277,DEFAULT_FORM,UK back bacon is leaner than US streaky,AGENT_PROPOSED,UNVERIFIED
+sage,"Spices, sage, ground",170935,APPROX,fresh sage not in SR,AGENT_PROPOSED,UNVERIFIED
+chicken thigh,"Chicken, broilers or fryers, dark meat, thigh, meat only, raw",173627,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+broccoli,"Broccoli, raw",170379,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+raspberry,"Raspberries, raw",167755,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+red wine,"Alcoholic beverage, wine, table, red",173190,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+aubergine,"Eggplant, raw",169228,UK_US,,AGENT_PROPOSED,UNVERIFIED
+pine nut,"Nuts, pine nuts, dried",170591,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cheese,,,AMBIGUOUS,cheese type unstated,AGENT_PROPOSED,UNVERIFIED
+water,"Beverages, water, tap, drinking",173647,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+ice,"Beverages, water, tap, drinking",173647,DIRECT,"frozen water; phase is state, not composition",AGENT_PROPOSED,UNVERIFIED
+bay leaf,"Spices, bay leaf",170917,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+green beans,"Beans, snap, green, raw",169961,UK_US,,AGENT_PROPOSED,UNVERIFIED
+mozzarella,"Cheese, mozzarella, whole milk",170845,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+rice,"Rice, white, long-grain, regular, raw, enriched",168877,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+flaked almonds,"Nuts, almonds",170567,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+golden syrup,,,NO_SR_EQUIVALENT,partially inverted sucrose syrup,AGENT_PROPOSED,UNVERIFIED
+banana,"Bananas, raw",173944,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+spice,,,NOT_A_FOOD,fragment,AGENT_PROPOSED,UNVERIFIED
+brown sugar,"Sugars, brown",168833,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+butternut squash,"Squash, winter, butternut, raw",169295,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+walnut,"Nuts, walnuts, english",170187,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+dried yeast,"Leavening agents, yeast, baker's, active dry",175043,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+fennel seed,"Spices, fennel seed",171323,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+watercress,"Watercress, raw",170068,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+bread,,,AMBIGUOUS,bread type unstated,AGENT_PROPOSED,UNVERIFIED
+mascarpone,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+beetroot,"Beets, raw",169145,UK_US,UK beetroot often sold cooked,AGENT_PROPOSED,UNVERIFIED
+hazelnut,"Nuts, hazelnuts or filberts",170581,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+flour,"Wheat flour, white, all-purpose, enriched, unbleached",168936,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+ice cream,"Ice creams, vanilla",167575,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+white chocolate,"Candies, white chocolate",167571,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cranberry,"Cranberries, raw",171722,DEFAULT_FORM,dried cranberries common,AGENT_PROPOSED,UNVERIFIED
+curry powder,"Spices, curry powder",170924,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+paprika,"Spices, paprika",171329,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+raisin,"Raisins, dark, seedless (Includes foods for USDA's Food Distribution Program)",168165,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+basmati rice,"Rice, white, long-grain, regular, raw, enriched",168877,APPROX,no basmati row,AGENT_PROPOSED,UNVERIFIED
+flat-leaf parsley,"Parsley, fresh",170416,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+pepper,,,AMBIGUOUS,black pepper or bell pepper,AGENT_PROPOSED,UNVERIFIED
+strawberry,"Strawberries, raw",167762,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+vegetable,,,NOT_A_FOOD,fragment,AGENT_PROPOSED,UNVERIFIED
+ground almonds,"Nuts, almonds",170567,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+fish sauce,"Sauce, fish, ready-to-serve",174531,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cayenne pepper,"Spices, pepper, red or cayenne",170932,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+prawn,"Crustaceans, shrimp, raw",175179,UK_US,,AGENT_PROPOSED,UNVERIFIED
+salmon fillet,"Fish, salmon, Atlantic, farmed, raw",175167,DEFAULT_FORM,wild/farmed unstated,AGENT_PROPOSED,UNVERIFIED
+coriander seed,"Spices, coriander seed",170922,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+lime juice,"Lime juice, raw",168156,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+pistachio,"Nuts, pistachio nuts, raw",170184,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+beef stock,"Soup, stock, beef, home-prepared",172883,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+puff pastry,"Puff pastry, frozen, ready-to-bake",172790,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+apricot,"Apricots, raw",171697,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cauliflower,"Cauliflower, raw",169986,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+garam masala,,,NO_SR_EQUIVALENT,spice blend,AGENT_PROPOSED,UNVERIFIED
+salad,,,NOT_A_FOOD,fragment,AGENT_PROPOSED,UNVERIFIED
+coconut,"Nuts, coconut meat, raw",170169,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+black peppercorn,"Spices, pepper, black",170931,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+ricotta,"Cheese, ricotta, whole milk",170851,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+gem lettuce,"Lettuce, cos or romaine, raw",169247,APPROX,little gem ~ small romaine,AGENT_PROPOSED,UNVERIFIED
+sultanas,"Raisins, golden, seedless",168164,UK_US,,AGENT_PROPOSED,UNVERIFIED
+red chilly,"Peppers, hot chili, red, raw",170106,UK_US,spelling variant,AGENT_PROPOSED,UNVERIFIED
+worcestershire sauce,"Sauce, worcestershire",171610,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+radish,"Radishes, raw",169276,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+anise,,,AMBIGUOUS,star anise vs anise seed,AGENT_PROPOSED,UNVERIFIED
+passata,"Tomato products, canned, puree, without salt added",170460,UK_US,,AGENT_PROPOSED,UNVERIFIED
+tarragon,"Spices, tarragon, dried",170937,APPROX,fresh tarragon not in SR,AGENT_PROPOSED,UNVERIFIED
+fennel,"Fennel, bulb, raw",169385,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+apple,"Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",171688,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+green chilli,"Peppers, hot chili, green, raw",170497,UK_US,,AGENT_PROPOSED,UNVERIFIED
+chilli sauce,,,AMBIGUOUS,sauce type unstated,AGENT_PROPOSED,UNVERIFIED
+chestnut mushroom,"Mushrooms, brown, italian, or crimini, raw",168434,UK_US,,AGENT_PROPOSED,UNVERIFIED
+mushroom,"Mushrooms, white, raw",169251,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+black olives,"Olives, ripe, canned (small-extra large)",169094,APPROX,,AGENT_PROPOSED,UNVERIFIED
+red,,,NOT_A_FOOD,fragment,AGENT_PROPOSED,UNVERIFIED
+root ginger,"Ginger root, raw",169231,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+white bread flour,"Wheat flour, white, bread, enriched",168896,UK_US,,AGENT_PROPOSED,UNVERIFIED
+parsnip,"Parsnips, raw",170417,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+mustard powder,"Spices, mustard seed, ground",170929,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+demerara sugar,"Sugars, brown",168833,APPROX,,AGENT_PROPOSED,UNVERIFIED
+brandy,"Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof",174815,APPROX,generic 40% ABV spirit; congeners and sugars not in row,AGENT_PROPOSED,UNVERIFIED
+ham,"Ham, sliced, regular (approximately 11% fat)",173864,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+black pepper,"Spices, pepper, black",170931,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+sherry,"Alcoholic beverage, wine, dessert, dry",175112,APPROX,,AGENT_PROPOSED,UNVERIFIED
+orange juice,"Orange juice, raw (Includes foods for USDA's Food Distribution Program)",169098,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+mango,"Mangos, raw",169910,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+shortcrust pastry,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+buttermilk,"Milk, buttermilk, fluid, cultured, lowfat",170874,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+sweetcorn,"Corn, sweet, yellow, raw",169998,UK_US,UK default may be tinned,AGENT_PROPOSED,UNVERIFIED
+goat' cheese,"Cheese, goat, soft type",173435,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+lemon zest,"Lemon peel, raw",167749,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+peanut,"Peanuts, all types, raw",172430,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cherry,"Cherries, sweet, raw",171719,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+porridge oats,"Cereals, oats, regular and quick, not fortified, dry",173904,UK_US,,AGENT_PROPOSED,UNVERIFIED
+plum tomato,"Tomatoes, red, ripe, raw, year round average",170457,APPROX,tinned plum tomatoes common,AGENT_PROPOSED,UNVERIFIED
+pomegranate seed,"Pomegranates, raw",169134,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+herb,,,NOT_A_FOOD,fragment,AGENT_PROPOSED,UNVERIFIED
+milk chocolate,"Candies, milk chocolate",167587,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+pineapple,"Pineapple, raw, all varieties",169124,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+blueberry,"Blueberries, raw",171711,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+feta cheese,"Cheese, feta",173420,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+black beans,"Beans, black, mature seeds, canned, low sodium",175238,APPROX,,AGENT_PROPOSED,UNVERIFIED
+vanilla bean paste,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+full-fat milk,"Milk, whole, 3.25% milkfat, with added vitamin D",171265,UK_US,,AGENT_PROPOSED,UNVERIFIED
+peanut butter,"Peanut butter, smooth style, with salt (Includes foods for USDA's Food Distribution Program)",174266,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+vegetable bouillon powder,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+white bread,"Bread, white, commercially prepared (includes soft bread crumbs)",174924,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+couscous,"Couscous, dry",169699,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+sherry vinegar,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+olive,"Olives, ripe, canned (small-extra large)",169094,APPROX,,AGENT_PROPOSED,UNVERIFIED
+pancetta,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+broad beans,"Broadbeans, immature seeds, raw",170377,UK_US,,AGENT_PROPOSED,UNVERIFIED
+king prawn,"Crustaceans, shrimp, raw",175179,UK_US,,AGENT_PROPOSED,UNVERIFIED
+tahini,"Seeds, sesame butter, tahini, from roasted and toasted kernels (most common type)",170189,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+white breadcrumbs,"Bread, crumbs, dry, grated, plain",174928,APPROX,often fresh crumbs,AGENT_PROPOSED,UNVERIFIED
+mango chutney,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+floury potato,"Potatoes, russet, flesh and skin, raw (Includes foods for USDA's Food Distribution Program)",170027,APPROX,,AGENT_PROPOSED,UNVERIFIED
+fruit,,,NOT_A_FOOD,fragment,AGENT_PROPOSED,UNVERIFIED
+rice vinegar,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+light brown sugar,"Sugars, brown",168833,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+seed,,,NOT_A_FOOD,fragment,AGENT_PROPOSED,UNVERIFIED
+gruyère,"Cheese, gruyere",171242,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+spaghetti,"Pasta, dry, enriched",169736,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+light soy sauce,Soy sauce made from soy and wheat (shoyu),174277,APPROX,,AGENT_PROPOSED,UNVERIFIED
+kale,"Kale, raw",168421,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+pecan,"Nuts, pecans",170182,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+polenta,"Cornmeal, degermed, enriched, yellow",168867,APPROX,,AGENT_PROPOSED,UNVERIFIED
+pesto,"Sauce, pesto, ready-to-serve, refrigerated",171579,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+kidney beans,"Beans, kidney, red, mature seeds, canned, drained solids",174285,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+beansprout,"Mung beans, mature seeds, sprouted, raw",169957,UK_US,,AGENT_PROPOSED,UNVERIFIED
+green chilly,"Peppers, hot chili, green, raw",170497,UK_US,,AGENT_PROPOSED,UNVERIFIED
+english mustard,"Mustard, prepared, yellow",172234,APPROX,,AGENT_PROPOSED,UNVERIFIED
+pear,"Pears, raw",169118,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+pumpkin seed,"Seeds, pumpkin and squash seed kernels, dried",170556,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cardamom,"Spices, cardamom",170919,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+celeriac,"Celeriac, raw",170400,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+fast-action,,,NOT_A_FOOD,fragment of fast-action yeast,AGENT_PROPOSED,UNVERIFIED
+semi-skimmed milk,"Milk, reduced fat, fluid, 2% milkfat, with added vitamin A and vitamin D",171267,APPROX,UK semi-skimmed 1.7% fat,AGENT_PROPOSED,UNVERIFIED
+single cream,"Cream, fluid, light (coffee cream or table cream)",170857,APPROX,UK single ~18% fat,AGENT_PROPOSED,UNVERIFIED
+filo pastry,Phyllo dough,172791,UK_US,,AGENT_PROPOSED,UNVERIFIED
+cannellini bean,"Beans, white, mature seeds, canned",175204,APPROX,,AGENT_PROPOSED,UNVERIFIED
+chocolate chips,"Candies, semisweet chocolate",167976,APPROX,,AGENT_PROPOSED,UNVERIFIED
+chorizo,"Sausage, pork, chorizo, link or ground, raw",173859,APPROX,Spanish chorizo is cured; SR row is Mexican-style,AGENT_PROPOSED,UNVERIFIED
+yellow pepper,"Peppers, sweet, yellow, raw",169383,UK_US,,AGENT_PROPOSED,UNVERIFIED
+cream cheese,"Cheese, cream",173418,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+pasta,"Pasta, dry, enriched",169736,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+peach,"Peaches, yellow, raw",169928,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+sausage,,,AMBIGUOUS,,AGENT_PROPOSED,UNVERIFIED
+tomato ketchup,Catsup,168556,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+vodka,"Alcoholic beverage, distilled, vodka, 80 proof",174818,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+blackberry,"Blackberries, raw",173946,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+lemongrass,"Lemon grass (citronella), raw",168573,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+maris piper potato,"Potatoes, flesh and skin, raw",170026,APPROX,,AGENT_PROPOSED,UNVERIFIED
+pork sausage,"Pork sausage, link/patty, unprepared",172934,APPROX,UK sausages contain rusk/cereal filler,AGENT_PROPOSED,UNVERIFIED
+prosciutto,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+date,"Dates, medjool",168191,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+allspice,"Spices, allspice, ground",171315,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cream,,,AMBIGUOUS,cream type unstated,AGENT_PROPOSED,UNVERIFIED
+green salad,,,NOT_A_FOOD,dish not ingredient,AGENT_PROPOSED,UNVERIFIED
+red cabbage,"Cabbage, red, raw",169977,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+white,,,NOT_A_FOOD,fragment,AGENT_PROPOSED,UNVERIFIED
+sea salt flake,"Salt, table",173468,APPROX,,AGENT_PROPOSED,UNVERIFIED
+smoked salmon,"Fish, salmon, chinook, smoked",173687,APPROX,,AGENT_PROPOSED,UNVERIFIED
+custard,,,AMBIGUOUS,,AGENT_PROPOSED,UNVERIFIED
+dark muscovado sugar,"Sugars, brown",168833,APPROX,,AGENT_PROPOSED,UNVERIFIED
+sunflower,,,NOT_A_FOOD,fragment,AGENT_PROPOSED,UNVERIFIED
+wholemeal flour,"Wheat flour, whole-grain (Includes foods for USDA's Food Distribution Program)",168893,UK_US,,AGENT_PROPOSED,UNVERIFIED
+apricot jam,"Jams and preserves, apricot",170645,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+beef,,,AMBIGUOUS,cut unstated,AGENT_PROPOSED,UNVERIFIED
+clementine,"Tangerines, (mandarin oranges), raw",169105,APPROX,,AGENT_PROPOSED,UNVERIFIED
+green pepper,"Peppers, sweet, green, raw",170427,UK_US,,AGENT_PROPOSED,UNVERIFIED
+groundnut oil,"Oil, peanut, salad or cooking",171410,UK_US,,AGENT_PROPOSED,UNVERIFIED
+chestnut,"Nuts, chestnuts, european, roasted",170190,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+cocoa,"Cocoa, dry powder, unsweetened",169593,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+minced beef,"Beef, ground, 80% lean meat / 20% fat, raw",174036,UK_US,fat % unstated,AGENT_PROPOSED,UNVERIFIED
+stem ginger,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+sweet potato,"Sweet potato, raw, unprepared (Includes foods for USDA's Food Distribution Program)",168482,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+vanilla,,,AMBIGUOUS,,AGENT_PROPOSED,UNVERIFIED
+dark soy sauce,Soy sauce made from soy and wheat (shoyu),174277,APPROX,,AGENT_PROPOSED,UNVERIFIED
+gelatine,"Gelatins, dry powder, unsweetened",169599,UK_US,,AGENT_PROPOSED,UNVERIFIED
+gin,"Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof",174815,APPROX,UK gin 37.5-40% ABV; generic spirit row,AGENT_PROPOSED,UNVERIFIED
+butter bean,"Lima beans, large, mature seeds, canned",174254,UK_US,,AGENT_PROPOSED,UNVERIFIED
+brussels sprouts,"Brussels sprouts, raw",170383,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+bacon lardon,"Pork, cured, bacon, unprepared",168277,APPROX,,AGENT_PROPOSED,UNVERIFIED
+chipotle paste,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+quinoa,"Quinoa, uncooked",168874,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+white pepper,"Spices, pepper, white",170933,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+orange zest,"Orange peel, raw",169103,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+digestive biscuit,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+anchovy,"Fish, anchovy, european, canned in oil, drained solids",174183,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+eating apple,"Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",171688,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+risotto rice,"Rice, white, medium-grain, raw, enriched",168879,APPROX,,AGENT_PROPOSED,UNVERIFIED
+tuna,"Fish, tuna, light, canned in water, drained solids (Includes foods for USDA's Food Distribution Program)",173709,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+green olives,"Olives, pickled, canned or bottled, green",169096,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+bramley apple,"Apples, raw, with skin (Includes foods for USDA's Food Distribution Program)",171688,APPROX,"cooking apple, more acid",AGENT_PROPOSED,UNVERIFIED
+harissa,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+rice noodles,"Rice noodles, dry",169742,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+vinegar,,,AMBIGUOUS,UK generic vinegar may be malt or wine,AGENT_PROPOSED,UNVERIFIED
+clear honey,Honey,169640,DIRECT,clear = liquid honey,AGENT_PROPOSED,UNVERIFIED
+runny honey,Honey,169640,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+thumb-sized,,,NOT_A_FOOD,size phrase (thumb-sized piece ginger),AGENT_PROPOSED,UNVERIFIED
+dryfish,,,NOT_A_FOOD,NER artefact,AGENT_PROPOSED,UNVERIFIED
+coriander leaf,"Coriander (cilantro) leaves, raw",169997,UK_US,,AGENT_PROPOSED,UNVERIFIED
+clove,,,AMBIGUOUS,garlic clove vs spice clove,AGENT_PROPOSED,UNVERIFIED
+star anise,,,NO_SR_EQUIVALENT,anise seed differs,AGENT_PROPOSED,UNVERIFIED
+cardamom pod,"Spices, cardamom",170919,APPROX,pod mass includes husk,AGENT_PROPOSED,UNVERIFIED
+green cardamom pod,"Spices, cardamom",170919,APPROX,pod mass includes husk,AGENT_PROPOSED,UNVERIFIED
+smoked streaky bacon,"Pork, cured, bacon, unprepared",168277,UK_US,streaky = US bacon,AGENT_PROPOSED,UNVERIFIED
+smoked bacon,"Pork, cured, bacon, unprepared",168277,APPROX,,AGENT_PROPOSED,UNVERIFIED
+smoked back bacon,"Pork, cured, bacon, unprepared",168277,APPROX,back bacon is leaner,AGENT_PROPOSED,UNVERIFIED
+vanilla pod,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+vanilla pod split,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+vanilla pod seed,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+vanilla paste,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+vanilla essence,Vanilla extract,173471,APPROX,essence may be synthetic,AGENT_PROPOSED,UNVERIFIED
+banana shallot,"Shallots, raw",170499,APPROX,,AGENT_PROPOSED,UNVERIFIED
+curry paste,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+thai red curry paste,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+thai green curry paste,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+sundried tomato,"Tomatoes, sun-dried",168567,DEFAULT_FORM,often oil-packed in UK,AGENT_PROPOSED,UNVERIFIED
+garlic granule,"Spices, garlic powder",171325,APPROX,,AGENT_PROPOSED,UNVERIFIED
+garlic powder,"Spices, garlic powder",171325,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+onion granule,"Spices, onion powder",171327,APPROX,,AGENT_PROPOSED,UNVERIFIED
+onion powder,"Spices, onion powder",171327,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+almond extract,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+apple juice,"Apple juice, canned or bottled, unsweetened, without added ascorbic acid",173933,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+vegetable stock cube,,,NO_SR_EQUIVALENT,"cube mass, not prepared stock",AGENT_PROPOSED,UNVERIFIED
+beef stock cube,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+whipping cream,"Cream, fluid, heavy whipping",170859,APPROX,UK whipping ~35-40% fat,AGENT_PROPOSED,UNVERIFIED
+pomegranate molasses,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+baguette,"Bread, french or vienna (includes sourdough)",172675,APPROX,,AGENT_PROPOSED,UNVERIFIED
+baking potato,"Potatoes, russet, flesh and skin, raw (Includes foods for USDA's Food Distribution Program)",170027,APPROX,,AGENT_PROPOSED,UNVERIFIED
+rice wine,"Alcoholic beverage, rice (sake)",167723,APPROX,Shaoxing differs from sake,AGENT_PROPOSED,UNVERIFIED
+cider,,,NO_SR_EQUIVALENT,no cider row,AGENT_PROPOSED,UNVERIFIED
+dark rum,"Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof",174815,APPROX,,AGENT_PROPOSED,UNVERIFIED
+white rum,"Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof",174815,APPROX,,AGENT_PROPOSED,UNVERIFIED
+rum,"Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof",174815,APPROX,,AGENT_PROPOSED,UNVERIFIED
+whisky,"Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof",174815,APPROX,,AGENT_PROPOSED,UNVERIFIED
+bourbon,"Alcoholic beverage, distilled, all (gin, rum, vodka, whiskey) 80 proof",174815,APPROX,,AGENT_PROPOSED,UNVERIFIED
+flour tortilla,"Tortillas, ready-to-bake or -fry, flour, refrigerated",175037,APPROX,,AGENT_PROPOSED,UNVERIFIED
+tortilla wrap,"Tortillas, ready-to-bake or -fry, flour, refrigerated",175037,APPROX,,AGENT_PROPOSED,UNVERIFIED
+corn tortilla,"Tortillas, ready-to-bake or -fry, corn",175036,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+curry leaf,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+baby,,,NOT_A_FOOD,size word (baby spinach etc.),AGENT_PROPOSED,UNVERIFIED
+poppy seeds,"Spices, poppy seed",171330,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+chinese five-spice powder,,,NO_SR_EQUIVALENT,blend,AGENT_PROPOSED,UNVERIFIED
+nigella seed,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+elderflower cordial,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+mustard seed,"Spices, mustard seed, ground",170929,APPROX,whole vs ground same composition row,AGENT_PROPOSED,UNVERIFIED
+black mustard seed,"Spices, mustard seed, ground",170929,APPROX,,AGENT_PROPOSED,UNVERIFIED
+yellow mustard seed,"Spices, mustard seed, ground",170929,APPROX,,AGENT_PROPOSED,UNVERIFIED
+anchovy fillet,"Fish, anchovy, european, canned in oil, drained solids",174183,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+coconut cream,"Nuts, coconut cream, raw (liquid expressed from grated meat)",170580,DEFAULT_FORM,UK coconut cream unsweetened,AGENT_PROPOSED,UNVERIFIED
+peppercorn,"Spices, pepper, black",170931,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+white onion,"Onions, raw",170000,APPROX,,AGENT_PROPOSED,UNVERIFIED
+sweet paprika,"Spices, paprika",171329,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+vegetarian alternative,,,NOT_A_FOOD,,AGENT_PROPOSED,UNVERIFIED
+half-fat crème fraîche,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+cake,,,NOT_A_FOOD,dish,AGENT_PROPOSED,UNVERIFIED
+white cabbage,"Cabbage, raw",169975,UK_US,,AGENT_PROPOSED,UNVERIFIED
+cabbage,"Cabbage, raw",169975,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+harissa paste,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+rose harissa,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+juniper berries,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+ketchup,Catsup,168556,UK_US,,AGENT_PROPOSED,UNVERIFIED
+caraway seed,"Spices, caraway seed",170918,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+cranberry sauce,"Cranberry sauce, canned, sweetened",173961,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+tamarind paste,,,NO_SR_EQUIVALENT,raw tamarind row differs from paste,AGENT_PROPOSED,UNVERIFIED
+thyme leaf,"Thyme, fresh",173470,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+fish stock,"Soup, stock, fish, home-prepared",172885,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+almond milk,"Beverages, almond milk, unsweetened, shelf stable",174832,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+lemon curd,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+sumac,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+chilli,,,AMBIGUOUS,fresh vs dried vs powder,AGENT_PROPOSED,UNVERIFIED
+chilly,,,AMBIGUOUS,,AGENT_PROPOSED,UNVERIFIED
+malt vinegar,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+rosewater,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+chicken leg,"Chicken, broilers or fryers, leg, meat and skin, raw",172378,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+chicken breast fillet,"Chicken, broiler or fryers, breast, skinless, boneless, meat only, raw",171077,UK_US,,AGENT_PROPOSED,UNVERIFIED
+chicken thigh fillet,"Chicken, broilers or fryers, dark meat, thigh, meat only, raw",173627,UK_US,,AGENT_PROPOSED,UNVERIFIED
+chicken drumstick,"Chicken, broilers or fryers, drumstick, meat and skin, raw",172373,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+asparagus spear,"Asparagus, raw",168389,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+mace,"Spices, mace, ground",170927,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+marsala,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+mirin,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+sparkling water,"Beverages, carbonated, club soda",174842,APPROX,,AGENT_PROPOSED,UNVERIFIED
+soda water,"Beverages, carbonated, club soda",174842,UK_US,,AGENT_PROPOSED,UNVERIFIED
+skimmed milk,"Milk, nonfat, fluid, with added vitamin A and vitamin D (fat free or skim)",171269,UK_US,,AGENT_PROPOSED,UNVERIFIED
+agave syrup,"Sweetener, syrup, agave",170277,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+stock,,,AMBIGUOUS,,AGENT_PROPOSED,UNVERIFIED
+pak choi,"Cabbage, chinese (pak-choi), raw",170390,UK_US,,AGENT_PROPOSED,UNVERIFIED
+kalamata olives,"Olives, ripe, canned (small-extra large)",169094,APPROX,,AGENT_PROPOSED,UNVERIFIED
+raspberry jam,Jams and preserves,169641,APPROX,,AGENT_PROPOSED,UNVERIFIED
+strawberry jam,Jams and preserves,169641,APPROX,,AGENT_PROPOSED,UNVERIFIED
+tortilla,,,AMBIGUOUS,flour vs corn,AGENT_PROPOSED,UNVERIFIED
+sourdough,"Bread, french or vienna (includes sourdough)",172675,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+sourdough bread,"Bread, french or vienna (includes sourdough)",172675,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+vegetable bouillon,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+vermouth,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+lasagne,"Pasta, dry, enriched",169736,APPROX,lasagne sheets,AGENT_PROPOSED,UNVERIFIED
+soya milk,"Soymilk, original and vanilla, unfortified",172446,UK_US,,AGENT_PROPOSED,UNVERIFIED
+strong coffee,"Beverages, coffee, brewed, prepared with tap water",171890,APPROX,strength unstated,AGENT_PROPOSED,UNVERIFIED
+espresso,"Beverages, coffee, brewed, espresso, restaurant-prepared",171891,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+light olive oil,"Oil, olive, salad or cooking",171413,APPROX,,AGENT_PROPOSED,UNVERIFIED
+lemon thyme,"Thyme, fresh",173470,APPROX,,AGENT_PROPOSED,UNVERIFIED
+prosecco,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+pitta bread,"Bread, pita, white, enriched",174915,UK_US,,AGENT_PROPOSED,UNVERIFIED
+wholemeal pitta bread,"Bread, pita, whole-wheat",174916,UK_US,,AGENT_PROPOSED,UNVERIFIED
+marmite,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+chocolate,,,AMBIGUOUS,,AGENT_PROPOSED,UNVERIFIED
+ras el hanout,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+black treacle,Molasses,168820,UK_US,,AGENT_PROPOSED,UNVERIFIED
+port,"Alcoholic beverage, wine, dessert, sweet",173176,APPROX,,AGENT_PROPOSED,UNVERIFIED
+triple sec,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+wholemeal bread,"Bread, whole-wheat, commercially prepared",172688,UK_US,,AGENT_PROPOSED,UNVERIFIED
+corn cob,"Corn, sweet, yellow, raw",169998,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+white fish fillet,"Fish, cod, Atlantic, raw",171955,APPROX,species unstated,AGENT_PROPOSED,UNVERIFIED
+sichuan peppercorn,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+tahini paste,"Seeds, sesame butter, tahini, from roasted and toasted kernels (most common type)",170189,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+sirloin steak,"Beef, top sirloin, steak, separable lean and fat, trimmed to 1/8"" fat, choice, raw",168728,APPROX,,AGENT_PROPOSED,UNVERIFIED
+burger bun,"Rolls, hamburger or hotdog, plain",172796,UK_US,,AGENT_PROPOSED,UNVERIFIED
+blood orange,"Oranges, raw, all commercial varieties",169097,APPROX,,AGENT_PROPOSED,UNVERIFIED
+hummus,"Hummus, commercial",174289,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+custard powder,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+crusty bread,"Bread, french or vienna (includes sourdough)",172675,APPROX,,AGENT_PROPOSED,UNVERIFIED
+vine tomato,"Tomatoes, red, ripe, raw, year round average",170457,APPROX,,AGENT_PROPOSED,UNVERIFIED
+lamb stock,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+ghee,"Butter oil, anhydrous",173412,APPROX,,AGENT_PROPOSED,UNVERIFIED
+miso paste,Miso,172442,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+white miso paste,Miso,172442,APPROX,,AGENT_PROPOSED,UNVERIFIED
+hot sauce,,,AMBIGUOUS,sauce type unstated,AGENT_PROPOSED,UNVERIFIED
+sriracha,"Sauce, hot chile, sriracha",171186,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+amaretto,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+grand marnier,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+cointreau,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+orange liqueur,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+coffee liqueur,"Alcoholic beverage, liqueur, coffee, 53 proof",175097,APPROX,,AGENT_PROPOSED,UNVERIFIED
+allspice berries,"Spices, allspice, ground",171315,APPROX,,AGENT_PROPOSED,UNVERIFIED
+orange blossom water,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+jalapeño,"Peppers, jalapeno, raw",168576,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+mackerel fillet,"Fish, mackerel, Atlantic, raw",175119,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+duck breast,"Duck, domesticated, meat and skin, raw",172408,APPROX,,AGENT_PROPOSED,UNVERIFIED
+duck leg,"Duck, domesticated, meat and skin, raw",172408,APPROX,,AGENT_PROPOSED,UNVERIFIED
+lettuce,,,AMBIGUOUS,type unstated,AGENT_PROPOSED,UNVERIFIED
+oat milk,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+barbecue sauce,"Sauce, barbecue",174523,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+palm sugar,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+hot dog,,,NOT_A_FOOD,dish,AGENT_PROPOSED,UNVERIFIED
+gherkin,"Pickles, cucumber, dill or kosher dill",168558,APPROX,,AGENT_PROPOSED,UNVERIFIED
+green apple,"Apples, raw, granny smith, with skin (Includes foods for USDA's Food Distribution Program)",168203,APPROX,,AGENT_PROPOSED,UNVERIFIED
+ciabatta,"Bread, Italian",174913,APPROX,,AGENT_PROPOSED,UNVERIFIED
+ciabatta roll,"Bread, Italian",174913,APPROX,,AGENT_PROPOSED,UNVERIFIED
+swede,"Rutabagas, raw",168454,UK_US,,AGENT_PROPOSED,UNVERIFIED
+lamb chop,"Lamb, New Zealand, imported, loin chop, separable lean and fat, raw",172517,APPROX,UK lamb often NZ; loin chop,AGENT_PROPOSED,UNVERIFIED
+lamb cutlet,"Lamb, rib, separable lean and fat, trimmed to 1/4"" fat, choice, raw",174321,APPROX,cutlet = rib,AGENT_PROPOSED,UNVERIFIED
+chipolata,"Pork sausage, link/patty, unprepared",172934,APPROX,UK chipolata contains rusk,AGENT_PROPOSED,UNVERIFIED
+roll,,,AMBIGUOUS,,AGENT_PROPOSED,UNVERIFIED
+bio yogurt,"Yogurt, plain, whole milk",171284,APPROX,,AGENT_PROPOSED,UNVERIFIED
+greek-style yogurt,"Yogurt, Greek, plain, whole milk",171304,APPROX,,AGENT_PROPOSED,UNVERIFIED
+sunflower seed,"Seeds, sunflower seed kernels, dried",170562,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+dark brown sugar,"Sugars, brown",168833,APPROX,,AGENT_PROPOSED,UNVERIFIED
+dark brown soft sugar,"Sugars, brown",168833,APPROX,,AGENT_PROPOSED,UNVERIFIED
+muscovado sugar,"Sugars, brown",168833,APPROX,,AGENT_PROPOSED,UNVERIFIED
+flatleaf parsley,"Parsley, fresh",170416,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+madeira,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+leaf gelatine,"Gelatins, dry powder, unsweetened",169599,APPROX,sheet vs powder,AGENT_PROPOSED,UNVERIFIED
+tea,"Beverages, tea, black, brewed, prepared with tap water",173227,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+nutritional yeast,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+garlic paste,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+ginger paste,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+orange pepper,"Peppers, sweet, yellow, raw",169383,APPROX,no orange bell row,AGENT_PROPOSED,UNVERIFIED
+celery salt,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+pink grapefruit,"Grapefruit, raw, pink and red, all areas",174673,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+grapefruit,"Grapefruit, raw, pink and red, all areas",174673,APPROX,,AGENT_PROPOSED,UNVERIFIED
+yeast extract,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+cream of tartar,"Leavening agents, cream of tartar",175041,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+flaxseed,"Seeds, flaxseed",169414,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+amaretti biscuit,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+corn,"Corn, sweet, yellow, raw",169998,DEFAULT_FORM,,AGENT_PROPOSED,UNVERIFIED
+ginger beer,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+fenugreek seed,"Spices, fenugreek seed",171324,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+lamb leg steak,"Lamb, leg, sirloin half, separable lean and fat, trimmed to 1/4"" fat, choice, raw",172488,APPROX,,AGENT_PROPOSED,UNVERIFIED
+naan bread,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+gochujang,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+kirsch,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED
+teriyaki sauce,"Sauce, teriyaki, ready-to-serve",171167,DIRECT,,AGENT_PROPOSED,UNVERIFIED
+grainy mustard,"Mustard, prepared, yellow",172234,APPROX,,AGENT_PROPOSED,UNVERIFIED
+scotch bonnet chilli,"Peppers, hot chili, red, raw",170106,APPROX,,AGENT_PROPOSED,UNVERIFIED
+flatbread,,,AMBIGUOUS,,AGENT_PROPOSED,UNVERIFIED

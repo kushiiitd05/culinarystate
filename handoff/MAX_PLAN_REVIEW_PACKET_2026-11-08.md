@@ -418,3 +418,34 @@ Each item: the question, why it matters, the options, and the agent's current le
 - D-074: implicit-object rule R1 scored 4/60 CORRECT and was not landed; R2 withdrawn.
 - DEL-2 D7a matched D1 to four decimals on Phenol-Explorer (shortcut suspicion; 29-diag reviews it).
 - Demo stopped (S173) because it showed almost only "no measured data": core first.
+
+## 11. Addendum, 9 Nov (S175): lot composition layer built; first numbers
+
+Built (tests first; `src/culinarystate/composition/`, 54 unit tests):
+
+| Piece | What it does | Status |
+|---|---|---|
+| `sr_legacy.py` | USDA SR Legacy 2018-04: 11 roster nutrients per 100 g, portions; missing nutrient = UNKNOWN, never 0 | done |
+| `ing_sr_match.py` + `registry/ing_sr_defaults_v1.csv` | ING name -> SR food: curated registry first (490 terms, kinds DIRECT / UK_US / DEFAULT_FORM / APPROX / NO_SR_EQUIVALENT / NOT_A_FOOD / AMBIGUOUS), lexical fallback; all AGENT_PROPOSED, UNVERIFIED | done; needs human check |
+| `line_mass.py` | line -> grams interval: stated mass (Q0), count x SR portion (Q1), volume x SR density (Q2), else UNKNOWN with reason; SR-based grams flagged until the link is human-verified | done |
+| `food_ph.py` + `registry/food_ph_fda2003_v1.csv` | FDA/CFSAN approximate pH list, 479 items; 2 source typos kept UNPARSED; acid class at the 21 CFR 113/114 4.6 boundary | done |
+| `lot_state.py` | exact bounds of lot mass fractions and solute per g water (linear-fractional; unknown grams = [0, inf)); pH as member classes + flags, never a mixture pH; PROVISIONAL while SR links unverified | done |
+
+BBC results (Mac, counts only, `reports/s175/`):
+
+- Lines with grams: 75.3% (was 33.7% in `fdc_crosswalk_v0`); 53,069 of those rest on unverified SR links.
+- Recipes with every quantified line in grams: 2,064 / 11,934 (17.3%).
+- Whole-recipe lots (RECIPE_POOL): water fraction bounded in 15.9%; one unmapped member makes it UNKNOWN.
+- 45.5% of recipes contain an acid member (pH <= 4.6); 99.4% have at least one member with no FDA pH (oils, salt,
+  sugar, spices are not in the FDA list).
+
+New questions from this work:
+
+- Q41. Anhydrous members (oils, sugar, salt; SR water near 0) have no meaningful pH. May the lot layer mark them
+  PH_NOT_APPLICABLE, and what water cut-off is defensible (and from which source)?
+- Q42. Lots: is the event-level lot (router lineage) the right unit, with RECIPE_POOL only as an envelope? Should
+  NER fragments (registry NOT_A_FOOD) be dropped as non-members?
+- Q43. Registry default forms that change composition materially: UK "milk" (whole vs semi-skimmed), double cream
+  (~48% fat) mapped to SR heavy whipping (~36%), UK bacon. Keep APPROX with a flag, or leave UNKNOWN?
+- Q44. Who verifies the 490 registry rows (Kush / Parv), and is a sample audit (e.g. top 100 by mentions)
+  enough to lift PROVISIONAL for those rows?
