@@ -84,3 +84,46 @@ Possible issues noticed in other lanes' code (not fixed): none in files this lan
 - The DEV ladder has no question cells, so WRONG_CELL, SIMILAR and ingredient / process / target mismatches are exercised only by unit tests; the first real test is on D5 P/C rung outputs, which do not exist yet.
 - The tolerance 0.03, the 0.95 / 1.05 direction thresholds and the audit quota are conventions, not measured quantities, and are not pre-registered.
 - Nothing in this lane touches the benchmark drafts, review sheets or any signed file; every output is counts, hashes or ids. Sheets with answer text and ledger display fields exist only under `data/derived/`.
+
+## S178 correction (FIX-EVAL), 2026-11-09
+
+AI_DRAFTED (D-071). Appended by lane FIX-EVAL after the SCI-B review (`reports/orchestration/review/S178_REV_SCI-B.md`);
+the sections above are kept as written. Details, tests and run rows: `reports/orchestration/S178_FIX-EVAL_report.md`.
+
+- **E1, gold origin (§1 table, §2 H1, §6 Q1).** `gold_origin` returned HUMAN_BLIND for any KEEP / EDIT with
+  `seen_system_output` false, even when the gold was the engine draft, and an explicit `gold_origin` won with no
+  evidence. Now (`h1_independence@0.2`): HUMAN_BLIND needs `gold_source` BLIND_HUMAN, a filled `blind_answer*` column and
+  seen false; a KEEP / EDIT of an engine draft is HUMAN_AFTER_SEEING_ENGINE (reason ENGINE_DRAFT_KEPT / _EDITED); an
+  explicit HUMAN_BLIND on an AI-drafted row with empty blind columns (or on a kept draft, or with seen true) is refused
+  and the label becomes REFUSED_GOLD_PROVENANCE_CONFLICT. **The reported H1 counts do not change**: the re-run
+  (`reports/s178/h1_gold_independence_d5_draft_v2.json`) gives 40 of 40 ENGINE_DRAFT (reason NO_HUMAN_VERDICT 40), 0
+  independent, label CIRCULAR_SELF_CONSISTENCY_ONLY, and every context count is identical to v1. The defect would have
+  shown on the first G-B review sheet. The blind-first sheet (§6 Q1) must carry `gold_source` and `blind_answer_*`.
+- **E2 (§2 H3 sign tests).** "cannot be significant (needs 6 or more)" used the two-sided floor; the H3 test is
+  one-sided, floor **5** (a 5-0 split gives p = 0.03125). `compare_rungs` now derives both floors and returns both flags.
+- **E3.** Ingredient-name matching uses token boundaries (`pea` no longer matches `Peanuts`; `peas`, `tomatoes` still do).
+- **E4 (§2 H3 bullets 1, 3, 4).** With no question cell a value-matching claim was counted SUPPORTED. It is now
+  CELL_NOT_CHECKED, never SUPPORTED, counted on its own, and `compare_rungs` sets such questions aside. Re-run
+  (`reports/s178/h3_independent_rescore_ladder_v2.json`): every value-matching DEV claim is unchecked (qwen7b B7 16 of
+  16, B5T 24 of 24; qwen32b B7 18 of 18, B5T 24 of 24). **Correct reading:** on the DEV ladder B7 and B5T have 0 value
+  mismatches, not "UCR 0"; no DEV claim can be shown supported, so the fail-closed UCR is 1.0 for every rung with
+  claims and the UCR over cell-checked claims is undefined for B7 and B5T. "B7 has a supported claim in 7" becomes 0
+  (7 answers carry a value-matched, unchecked claim). qwen7b B2 vs B7: 11 of 20 questions set aside, 1 vs 0 on the
+  other 9 (was 3 vs 0). `require_cell=True` exists for the D5 path; the D5 harness (`d5_scoring.py`, lane H1H3H)
+  always passes a cell for P/C, so its numbers do not change.
+- **E5 (§2 Registry).** The verifier accepted either hash convention and never checked `unit_ids_sha256`; a swapped
+  recipe id passed. Now one convention per row, `unit_ids_sha256` is recomputed from the listing, and the 13 DIAG29
+  rows with units are NOT_VERIFIABLE_FROM_LISTING unless a recomputed assignment is supplied.
+  `reports/s178/split_registry_verify_S178fix.json`: 0 errors with the DIAG29 splits recomputed from the ledgers
+  (all 13 re-derive).
+- **E6.** The `state_block` docstring said PRIMITIVES has "no parent-lot walk"; `_lot_ingredients` does walk
+  `parent_entity_ids`. Docstring corrected; `context()` now refuses the leaky legacy settings for a D5 qid.
+- **E7 (§1 table "conservative MDE", §2 Power).** Power is monotone in the gap at fixed n and discordance (shown in
+  the module docstring, checked by a test); the discrete sawtooth is in the number of discordant pairs. The MDE values
+  are unchanged. Per n: **n = 30: 0.275-0.365 over discordance 0.3-0.5 (none at 0.2); n = 60: 0.205-0.265 over
+  0.3-0.5, and 0.165 at 0.2.** Grid step 0.005. Table: `reports/s178/mcnemar_power_n30_n60_v2.json`.
+- **E8 (§3).** The id scan skipped all of `reports/s178/`. It now scans everything except an explicit allow-list of
+  EVAL files (reported, not skipped). `reports/s178/leakage_audit_d5_v2.json`: 0 files under `reports/s178/` outside
+  the allow-list name an S recipe id; the only new hit is the SCI-B review, which names one id in its E5 scenario.
+  All other audit counts are unchanged (the number of reports recording the seed hashes rose from 33 to 54 because
+  more reports exist).

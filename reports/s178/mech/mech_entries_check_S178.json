@@ -1,0 +1,69 @@
+{
+ "G21_2": {
+  "missing": [],
+  "pass": true
+ },
+ "G21_3": {
+  "entries": 32,
+  "entries_ok": 32,
+  "failing": [],
+  "pass": true
+ },
+ "G21_4": {
+  "entries": 32,
+  "entries_counted": 0,
+  "pass": false,
+  "rule": "ONLY_SOURCED_ENTRIES_COUNT_UNSOURCED_NEVER"
+ },
+ "G21_8": {
+  "entries_with_kinetic_key": [],
+  "entries_with_numeric_leaf": [],
+  "pass": true
+ },
+ "asymmetric_links": 0,
+ "builder_version": "mech-entries-builder-0.1.0-draft",
+ "check_version": "mech-registry-check-0.1.0-draft",
+ "consumable_for_applicability": 0,
+ "duplicate_keys": [],
+ "entries": 32,
+ "entries_file": "registry/mech_entries_draft_v1.jsonl",
+ "entries_sha256": "9e36ca36e3d6c4e283d5e351c8a27ab06da691c78b3df4d91b71e46f6f9062f5",
+ "envelope_problems": [],
+ "evidence_status": {
+  "UNSOURCED": 32
+ },
+ "families": {
+  "COLLAGEN_TRANSITION": 1,
+  "CUTTING_TRIGGERED_ENZYMATIC": 6,
+  "FERMENTATION": 1,
+  "LIPID_OXIDATION_DECOMPOSITION": 1,
+  "MAILLARD_GLYCATION": 2,
+  "MICRONUTRIENT_DEGRADATION": 5,
+  "PIGMENT_CELLWALL_TRANSITION": 6,
+  "PROTEIN_STRUCTURAL": 2,
+  "STARCH_TRANSITION": 2,
+  "SUGAR_THERMAL_DEGRADATION": 1,
+  "UNRESOLVED": 1,
+  "VOLATILE_MATERIAL_TRANSFER": 4
+ },
+ "gates_unknown_entries": 17,
+ "kinds": {
+  "CHEMICAL_REACTION": 12,
+  "ENZYMATIC": 7,
+  "MECHANICAL_DISRUPTION": 1,
+  "MICROBIAL": 1,
+  "PHASE_STRUCTURAL_TRANSITION": 6,
+  "PHYSICAL_TRANSPORT": 4,
+  "UNRESOLVED_SINK": 1
+ },
+ "provenance_class": {
+  "AI_DRAFTED": 32
+ },
+ "record": "MECH_DRAFT_GATE_CHECK",
+ "schema_invalid_entries": [],
+ "screen_subset_entries": 15,
+ "semantic_problem_entries": [],
+ "status": "AI_DRAFTED_CHECK_NOT_A_HUMAN_GATE",
+ "unresolved_links": 0,
+ "xrefs_accepted": 0
+}

@@ -30,6 +30,11 @@ Families and drivers (FORM candidate classes in nonheat_binding.FORM_CANDIDATE):
   so the core, peak and volume average never exceed T_boil unless the prior heat was a pressure process.
 - STORAGE: storage temperature and the stated time bound; kinetics stay UNKNOWN pending PARAM rows (no model).
 
+S178 FIX-PHYS (version 0.5.0, SCI-A m4 / m11 / M4-M5): the COOLING target is read from the Layer 1 ``endpoint`` block (m4); a
+stated canner temperature above the PC-002 INTENSE saturation temperature + PC-041 is QUALITATIVE ``STATED_CANNER_T_IMPLAUSIBLE`` (no
+F0, m11); the RESTING heat stage (always a cut piece) lifts its cap only for a pressure cue (``PhaseChange.stated_liquid_lift``, the
+piece's own T_boil otherwise: M5).
+
 Under SSOT §141 every output is a temperature, a time, a geometry value or a dimensionless transport fraction, with
 transition status `physically_possible`; no nutrient, compound, yield or safety number is produced.
 """
@@ -46,7 +51,8 @@ from culinarystate.simulation import physics_drivers as PD
 from culinarystate.simulation import scenario_layer as SL
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "nonheat-scenario-L2-0.4.0-draft"
+VERSION = "nonheat-scenario-L2-0.5.0-draft"
+VERSION_V04 = "nonheat-scenario-L2-0.4.0-draft"  # SUPERSEDED by 0.5.0 (target in inputs, unbounded canner T, resting lift on a piece)
 VERSION_V03 = "nonheat-scenario-L2-0.3.0-draft"  # SUPERSEDED by 0.4.0 (Layer 1 temperature ownership; no per-axis provenance)
 VERSION_V02 = "nonheat-scenario-L2-0.2.0-draft"  # SUPERSEDED by 0.3.0 (F0 scope, acid uptake, cap wording)
 VERSION_UNCAPPED = "nonheat-scenario-L2-0.1.0-draft"  # SUPERSEDED RESTING model (no evaporation cap)
@@ -207,7 +213,9 @@ class NonHeatScenario:
             t0_row, t0_sign, t0_basis, sflag = self.row("post_heat_temperature", "POST_HEAT"), -1, None, "START_POST_HEAT"
         else:
             t0_row, t0_sign, t0_basis, sflag = self.row("initial_temperature", "ALL"), -1, None, "START_UNKNOWN_AMBIENT_ASSUMED"
-        tgt = inp["target_food_temperature"]
+        # S178 FIX-PHYS m4: the target is an endpoint of the Layer 1 record (``endpoint`` block); old records kept it in inputs
+        tgt = (rec.get("endpoint") or {}).get("target_food_temperature") or inp.get("target_food_temperature") or \
+            {"value": None, "status": "UNKNOWN", "basis": None}
         out = {}
         for i, name in enumerate(BRACKETS):
             bath, h, L = _t(t_tr, i, -1), h_row[i], size[2 - i]
@@ -417,6 +425,11 @@ class NonHeatScenario:
             return self._unknown(["duration_min"])
         if not canner:  # S177 (FINAL-SCI row 4): F0 is the low-acid pressure-canning reference, never for anything else
             return self._f0_not_applicable(rec, t_tr, t_basis, dur, d_basis, dflags)
+        t_max, t_max_basis = self.heat.pc.pressure_max_c()
+        if str(t_basis).startswith("L1:") and max(t_tr) > t_max:
+            # S178 FIX-PHYS m11: no canner reaches this (a mis-bound value would inflate F0 by 10^((T - 121.1) / z)): no F0
+            return self._f0_not_applicable(rec, t_tr, t_basis, dur, d_basis, dflags,
+                                           extra=["STATED_CANNER_T_IMPLAUSIBLE", "CANNER_T_ABOVE_PC002_INTENSE_PLUS_PC041"])
         z, tref = self.row("lethality_z", "F0"), self.row("lethality_t_ref", "F0")
         out = {}
         for i, name in enumerate(BRACKETS):
@@ -429,7 +442,7 @@ class NonHeatScenario:
                                    "LOW_ACID_FOOD_ASSUMED_NOT_CHECKED", "EQUIVALENT_MINUTES_ONLY_NO_ORGANISM_CLAIM", *dflags]}
         return self._out("SCENARIO_COMPUTED", "physically_possible", out)
 
-    def _f0_not_applicable(self, rec, t_tr, t_basis, dur, d_basis, dflags) -> dict:
+    def _f0_not_applicable(self, rec, t_tr, t_basis, dur, d_basis, dflags, extra=()) -> dict:
         """Pasteurise, sterilise, boiling-water-bath or oven 'canning': the stated conditions only, no F0 number."""
         env = rec["inputs"]["environment"]
         oven = env["status"] != "UNKNOWN" and env["value"] == "OVEN"
@@ -438,7 +451,7 @@ class NonHeatScenario:
             out[name] = {"medium_c": _t(t_tr, i, +1), "duration_min": dur[i],
                          "bases": {"medium_c": t_basis, "duration_min": d_basis},
                          "flags": ["F0_NOT_APPLICABLE_LOW_ACID_RETORT_ONLY", "NO_NUMBER_EMITTED_OUTSIDE_F0_SCOPE",
-                                   *(["OVEN_CANNING_NOT_A_VALID_PROCESS"] if oven else []), *dflags]}
+                                   *(["OVEN_CANNING_NOT_A_VALID_PROCESS"] if oven else []), *extra, *dflags]}
         return self._out("QUALITATIVE_FLAGS_ONLY", "physically_possible", out)
 
     def _dry(self, rec) -> dict:
@@ -567,11 +580,21 @@ class NonHeatScenario:
             t_cap = None
             if self.capped:
                 pol = self.heat.policy
+                stated = bath[i] if b_basis in PC.STATED_BASES else None
+                lift_flags: tuple = ()
+                if stated is not None:  # FIX-PHYS M4 / M5: a resting PIECE takes a lifted value only from a pressure cue
+                    pin = ph["inputs"]
+                    stated, why, lift_flags = self.heat.pc.stated_liquid_lift(
+                        medium=medium, stated_c=stated, stated_row=(pin.get("temperature_profile") or {}).get("row"),
+                        matrix_class=matrix, member_groups=groups, syrup_cue=SL._bound(pin, "syrup_stage_cue"),
+                        pressure_cue=SL._bound(pin, "pressure_cue"), bracket=i, policy=pol)
+                    if why in ("SUGAR_PHASE_MEMBER", "SYRUP_STAGE_CUE"):
+                        stated, lift_flags = None, tuple(lift_flags) + ("STATED_LIQUID_T_NOT_APPLIED_TO_MOIST_PIECE",)
                 c1 = self.heat.pc.cap(medium=medium, matrix_class=matrix, bracket=i, policy=pol, member_groups=groups,
-                                      stated_liquid_c=bath[i] if b_basis in PC.STATED_BASES else None, stated_basis=b_basis)
+                                      stated_liquid_c=stated, stated_basis=b_basis)
                 c2 = self.heat.pc.cap(medium=env_key, matrix_class=matrix, bracket=i, policy=pol)  # rest: atmospheric
                 caps, t_cap = [c1.t_c, c2.t_c], c1.t_c
-                cap_flags = list(c1.flags)
+                cap_flags = list(c1.flags) + list(lift_flags)
                 if c1.active:
                     cap_flags.append("EVAPORATION_CAP_APPLIED" if c1.binding(bath[i]) else "EVAPORATION_CAP_NOT_BINDING")
                 if c1.regime == PC.DRY:

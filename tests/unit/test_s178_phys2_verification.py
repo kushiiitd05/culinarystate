@@ -13,7 +13,7 @@ from culinarystate.simulation import physics_drivers as PD
 from culinarystate.simulation import phys_verification as V
 
 ROOT = Path(__file__).resolve().parents[2]
-REPORT = ROOT / "reports/s178/phys/verification_pack_S178.json"
+REPORT = ROOT / "reports/s178/phys/verification_pack_S178_v05.json"  # S178 FIX-PHYS: the 18-check pack (PHYS2 15-check pack SUPERSEDED)
 FAST = ("check_lumped_limit", "check_dirichlet_limit", "check_semi_infinite_surface", "check_front_to_series_continuity",
         "check_textbook_constants", "check_one_term_chart_curve", "check_mean_by_quadrature", "check_modal_stepper_convergence",
         "check_modal_stepper_two_stage_superposition", "check_modal_vs_crank_nicolson", "check_n_terms_convergence",
@@ -90,14 +90,14 @@ def test_the_pack_can_fail(monkeypatch):
 
 def test_committed_report_is_complete_current_and_reproducible():
     rep = json.loads(REPORT.read_text())
-    assert rep["headline"]["all_passed"] and rep["headline"]["checks"] == 15 == len(rep["checks"])
-    assert [c["id"] for c in rep["checks"]] == [f"V{i:02d}" for i in range(1, 16)]
+    assert rep["headline"]["all_passed"] and rep["headline"]["checks"] == 18 == len(rep["checks"])  # S178 FIX-PHYS: + V16-V18
+    assert [c["id"] for c in rep["checks"]] == [f"V{i:02d}" for i in range(1, 19)]
     assert rep["results_sha256"] == hashlib.sha256(json.dumps(rep["checks"], sort_keys=True).encode()).hexdigest()
     for f, h in rep["code_sha256"].items():  # the report is stale if the verified code changed after it was written
         assert hashlib.sha256((ROOT / f).read_bytes()).hexdigest() == h, f
     assert rep["recalled_constants_source_status"] == "SOURCE_UNVERIFIED_AGENT_RECALLED"
     assert all("tolerance" in c and "max_rel_error" in c and "max_abs_error" in c for c in rep["checks"])
-    md = (ROOT / "reports/s178/phys/verification_pack_S178.md").read_text()
+    md = (ROOT / "reports/s178/phys/verification_pack_S178_v05.md").read_text()
     assert rep["results_sha256"] in md and "SOURCE_UNVERIFIED_AGENT_RECALLED" in md
 
 

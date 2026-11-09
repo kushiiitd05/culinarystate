@@ -18,6 +18,7 @@ def evd_row(i, rf):
 
 
 EVD = {r["id"]: r for r in [evd_row(1, 0.65), evd_row(2, 0.40)]}
+CELL = {"ingredient_ids": ["ING-1"], "process_ids": ["PROC-19"], "target_svars": ["SVAR-9"]}   # S178 FIX-EVAL E4: cell given
 
 
 def make_answers():
@@ -30,7 +31,7 @@ def make_answers():
     out = []
     for rung, ts in texts.items():
         for n, t in enumerate(ts):
-            sc = H3.score_answer(t, evd=EVD, cell=None)
+            sc = H3.score_answer(t, evd=EVD, cell=CELL)
             out.append({"qid": f"Q{n}", "rung": rung, "question": "How much vitamin C does boiled broccoli keep?",
                         "answer": t, "scored": sc, "checker_unsupported": 0 if rung == "B7" else sc["n_numeric_unsupported"]})
     return out

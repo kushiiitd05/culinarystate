@@ -6,6 +6,13 @@ S178 PREREG lane (an AI agent) for the 9-10 Nov decision sitting: ops pack items
 sentence (T9-C26-R5). Nothing here edits `reports/del5/d5_benchmark_preregistration_DRAFT.md`; the Mac scribe applies
 the chosen options there after the sitting.
 
+> **Revision S178-FIX-EVAL (2026-11-09; AI_DRAFTED; wording only, no number and no option changed).** SCI-B E7
+> (`reports/orchestration/review/S178_REV_SCI-B.md`): the C5 power sentence put an n = 30 range over discordance
+> 0.3-0.5 next to an n = 60 range over 0.2-0.5. C5 and the §3 "smallest true gap" line now state the discordance range
+> of each MDE range and the grid step. Power is monotone in the gap at fixed n and discordance, so the first grid gap
+> reaching 80 % is the MDE (`evaluation/mcnemar_power.py`; the S178 EVAL text calling it a "conservative reading of a
+> sawtooth in delta" was wrong; the discrete sawtooth is in the number of discordant pairs).
+
 - Base text amended: `reports/del5/d5_benchmark_preregistration_DRAFT.md`, sha256
   `53ad89b7c13db57800e4546efb2ccfe29cdb2ef617b49c462c8b78f51415aa6b` (server worktree, 2026-11-09). Stop if the Mac
   copy differs.
@@ -168,8 +175,9 @@ And in the same paragraph (L39), the S overdraft follows the pool size:
 +  cannot resolve goes to a rung-blind human check (rung hidden) before unblinding, and the per-rung unresolved rate
 +  is reported (REV-B F-13: B4's own surface strings always resolve).
 +- **Power (fixed now, T9-C12-R1):** at n = 30 only accuracy gaps of about 0.25 or more can reach significance with
-+  useful probability (80 % power needs a true gap of 0.28-0.36 at discordance 0.3-0.5); the smallest significant
-+  split is 6-0 (gap 0.20). At n = 60, 80 % power needs a gap of 0.16-0.26. A null result is uninformative, not
++  useful probability (80 % power needs a true gap of 0.28-0.36 at discordance 0.3-0.5, and no gap reaches 80 % at
++  discordance 0.2); the smallest significant split is 6-0 (gap 0.20). At n = 60, over the same discordance 0.3-0.5,
++  80 % power needs a gap of 0.20-0.26 (0.16 at discordance 0.2). A null result is uninformative, not
 +  evidence of no effect. If the realised number of discordant pairs is below 6, the report says "cannot be
 +  significant at this n".
 +- **Circularity (T8-C04-R2):** S gold is human-written blind [G-A]; the engine-vs-blind-gold agreement on S is
@@ -297,8 +305,10 @@ a discordant question favours B4 with probability pi = (1 + gap/psi)/2. "-" = im
 | 0.35 | - | - | 0.898 / 0.999 | 0.761 / 0.980 |
 | 0.40 | - | - | 0.994 / 1.000 | 0.900 / 0.998 |
 
-**Smallest true gap with 80 % power:** n = 30: none at psi 0.20 (max power 0.57), 0.275 (psi 0.30), 0.322 (0.40),
-0.363 (0.50). n = 60: 0.163, 0.201, 0.235, 0.264. REV-B scenarios reproduced: gap 0.30 / psi 0.40 -> 0.713, 0.908,
+**Smallest true gap with 80 % power** (first gap on a 0.001 grid reaching 80 %; power is monotone in the gap):
+n = 30: none at psi 0.20 (max power 0.57), 0.275 (psi 0.30), 0.322 (0.40), 0.363 (0.50). n = 60: 0.163 (psi 0.20),
+0.201 (0.30), 0.235 (0.40), 0.264 (0.50). Compare n only over the same psi: over psi 0.30-0.50, n = 30 needs
+0.275-0.363 and n = 60 needs 0.201-0.264. REV-B scenarios reproduced: gap 0.30 / psi 0.40 -> 0.713, 0.908,
 0.972 at n = 30, 45, 60; gap 0.20 / psi 0.30 -> 0.403, 0.637, 0.797.
 
 **H1 needs both comparisons (B4 > B1 and B4 > B2).** If each has power p, the joint power lies between max(0, 2p − 1)

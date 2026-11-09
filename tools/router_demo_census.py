@@ -17,6 +17,13 @@ S177: ``--absent-review-csv PATH`` and ``--category-blocked-csv PATH`` write, af
 own member state is ABSENT (the human check FINAL-SCI #6 asks for) and the top 50 that would be ABSENT but for an unconfirmed
 ING category. ``--review-from REPORT.json`` writes the same lists from an existing report without running a census.
 Counts, registry names and SR values only; refuses to overwrite.
+
+S178 (FIX-ROUTER): census 0.4.0 (router-demo 0.4.0, evidence-gates 0.3.0): ingredient lines are read for processed-state cues,
+attributive / serving events never get DIRECT, unresolved ancestors and NO_LOT are fail-closed, freeze / defrost are prior
+processes and ABSENT needs analytical SR values (SCI-B R2-R6). The review CSVs gain the SR basis columns
+(``plausible_sr_derivation_codes``, ``plausible_sr_data_points``, ``all_plausible_analytical``). ``code_provenance`` also hashes
+``sr_identity.py``, ``process_signatures.py`` and ``tools/build_target_content_table.py`` (the content table's own sha256 is in
+``gates``).
 """
 from __future__ import annotations
 
@@ -42,7 +49,8 @@ _spec.loader.exec_module(T17)
 
 CODE_FILES = ("src/culinarystate/mechanism/router_demo.py", "src/culinarystate/mechanism/router_census.py",
               "src/culinarystate/mechanism/applicability.py", "src/culinarystate/mechanism/evidence_gates.py",
-              "tools/router_demo_census.py")
+              "tools/router_demo_census.py", "src/culinarystate/mechanism/sr_identity.py",
+              "src/culinarystate/mechanism/process_signatures.py", "tools/build_target_content_table.py")
 
 
 def provenance() -> dict:

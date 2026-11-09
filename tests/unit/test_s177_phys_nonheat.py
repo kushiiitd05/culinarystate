@@ -206,5 +206,6 @@ def test_canner_rows_in_the_saturation_registry_match_the_layer():
 
 # ------------------------------------------------------------------------------------------------ versions
 def test_versions_are_bumped():
-    assert NS.VERSION == "nonheat-scenario-L2-0.4.0-draft" and NS.VERSION_V03 == "nonheat-scenario-L2-0.3.0-draft" and NS.VERSION_V02 == "nonheat-scenario-L2-0.2.0-draft"  # S178: bumped to 0.4.0
+    assert NS.VERSION == "nonheat-scenario-L2-0.5.0-draft" and NS.VERSION_V04 == "nonheat-scenario-L2-0.4.0-draft"  # S178 FIX-PHYS: 0.5.0
+    assert NS.VERSION_V03 == "nonheat-scenario-L2-0.3.0-draft" and NS.VERSION_V02 == "nonheat-scenario-L2-0.2.0-draft"
     assert NS.NonHeatScenario.load().run(l1(NB.NonHeatBinder.load(), "Whisk the eggs until frothy.", "whisk"))["version"] == NS.VERSION

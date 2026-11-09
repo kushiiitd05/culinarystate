@@ -12,8 +12,13 @@ Definitions (counts only, no recipe text):
                     PROC_LEMMA_GUESS (surface not in the PROC surface table, mapped by the lemma guess).
   verb candidate    a word token in a verb slot that is not a closed-class word (determiner, pronoun, preposition, conjunction,
                     auxiliary, number word, adverb of sequence: CLOSED_CLASS below) and not a lexicon food or tool word.
-  sentence-initial  the first word of a sentence (imperative mood: the cleanest verb sample in recipe text).
+  sentence-initial  the first word of a sentence (imperative mood: the cleanest verb sample in recipe text) that is not a closed-class,
+                    food or tool word.
   mapped / unmapped candidate has / has no ACTION match.
+Since v0.2 (S178 FIX-EVAL, SCI-B CORP-6) the closed-class / food / tool filter is applied to every slot token BEFORE the ACTION branch,
+so the candidate denominator does not depend on whether Rung A maps the word (v0.1 counted a mapped food or closed-class word as a
+mapped candidate but excluded it when unmapped). Mapped tokens the filter excludes are counted separately
+(`action_events_in_slot_excluded_by_filter`).
 Unmapped words are grouped to a lemma-like key by folding inflections onto a base form that also occurs in the data
 (`fold_forms`); `slot_share` = share of the word's occurrences that stand in a verb slot (nouns and adverbs have a low share; verbs high).
 No POS tagger is available on this server (no spaCy/torch), so a verb is a slot word; the list contains adverbs, nouns and
@@ -44,12 +49,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-TOOL_VERSION = "s178-corpus-verb-census-0.1.0-draft"
+TOOL_VERSION = "s178-corpus-verb-census-0.2.0-draft"
 OUT_DIR = "reports/s178/corpus"
 FAMILIES = ("FOODCOM", "GUTENBERG_SEGMENT", "WIKIBOOKS")
 TOP_N = 200
 MIN_COUNT = 20
 BBC_LIST = "registry/processes/unmapped_verbs.csv"
+CSV_TAG = "_v2"                                   # v0.2 outputs never overwrite the v0.1 lists
 
 CLOSED_CLASS = frozenset("""
 a an the this that these those some any each every no all both either neither another other such same
@@ -105,6 +111,19 @@ def count_texts(texts: list[str]) -> dict:
                 prefix = raw[ss:ss + toks[i][0]]
                 slot = _VERB_SLOT.search(prefix) is not None
                 init = i == 0
+                w = words[i]
+                # candidate filter first (v0.2): the denominator is fixed before the outcome (mapped or not) is looked at
+                excluded = None
+                if slot or init:
+                    if w in CLOSED_CLASS:
+                        excluded = "closed_class"
+                    elif lex.food_at(words, i) is not None or lex.tool_at(words, i) is not None:
+                        excluded = "food_or_tool"
+                if slot and excluded == "closed_class":
+                    c["slot_closed_class"] += 1
+                elif slot and excluded == "food_or_tool":
+                    c["slot_food_or_tool_word"] += 1
+                cand_s, cand_i = slot and excluded is None, init and excluded is None
                 if hit is not None:
                     length, flag = hit
                     ids = lex.proc_ids(" ".join(words[i:i + length])) if length > 1 else lex.proc_ids(words[i])
@@ -120,28 +139,25 @@ def count_texts(texts: list[str]) -> dict:
                         pid = next(iter(ids))
                         by_proc[pid] += 1
                         by_family[lex.proc_info[pid].family] += 1
-                    if slot:
+                    if cand_s:
                         c["cand_slot"] += 1
                         c["cand_slot_mapped"] += 1
-                    if init:
+                    if cand_i:
                         c["cand_init"] += 1
                         c["cand_init_mapped"] += 1
+                    if (slot or init) and excluded is not None:
+                        c["action_excluded_by_filter"] += 1
+                        c[f"action_excluded_{excluded}"] += 1
                     c["action_in_verb_slot"] += slot
                     c["action_sentence_initial"] += init
                     i += length
                     continue
-                w = words[i]
-                if slot:
-                    if w in CLOSED_CLASS:
-                        c["slot_closed_class"] += 1
-                    elif lex.food_at(words, i) is not None or lex.tool_at(words, i) is not None:
-                        c["slot_food_or_tool_word"] += 1
-                    else:
-                        c["cand_slot"] += 1
-                        unm_slot[w] += 1
-                        if init:
-                            c["cand_init"] += 1
-                            unm_init[w] += 1
+                if cand_s:
+                    c["cand_slot"] += 1
+                    unm_slot[w] += 1
+                if cand_i:
+                    c["cand_init"] += 1
+                    unm_init[w] += 1
                 i += 1
     return {"c": c, "unm_slot": unm_slot, "unm_init": unm_init, "occ_unmapped_only": None, "occ": occ,
             "by_family": by_family, "by_proc": by_proc}
@@ -262,6 +278,10 @@ def family_block(agg: dict, bbc: set[str], proc_info) -> tuple[dict, list[dict]]
            "action_events_in_a_verb_slot": c["action_in_verb_slot"], "action_events_sentence_initial": c["action_sentence_initial"],
            "events_per_text": round(c["action_events"] / c["texts"], 2) if c["texts"] else None,
            "verb_slot_tokens_closed_class": c["slot_closed_class"], "verb_slot_tokens_lexicon_food_or_tool": c["slot_food_or_tool_word"],
+           "candidate_rule": "FILTER_BEFORE_ACTION_BRANCH_V0_2",
+           "action_events_in_slot_or_initial_excluded_by_filter": c["action_excluded_by_filter"],
+           "action_events_excluded_closed_class": c["action_excluded_closed_class"],
+           "action_events_excluded_food_or_tool": c["action_excluded_food_or_tool"],
            "verb_candidates_in_slots": c["cand_slot"], "verb_candidates_mapped": c["cand_slot_mapped"],
            "verb_candidates_unmapped": unm_slot_total,
            "pct_verb_slot_candidates_mapped": pct(c["cand_slot_mapped"], c["cand_slot"]),
@@ -306,13 +326,15 @@ def run(root: Path, families, workers: int, sample: int | None, seed: str, out_d
         blk["seconds"] = round(time.time() - t1, 1)
         res["families"][fam] = blk
         suffix = f"_sample{sample}" if sample else ""
-        with open(out_dir / f"verb_unmapped_top200_{fam}{suffix}.csv", "w", encoding="utf-8", newline="") as fh:
+        csv_name = f"verb_unmapped_top200_{fam}{suffix}{CSV_TAG}.csv"
+        with open(out_dir / csv_name, "w", encoding="utf-8", newline="") as fh:
             w = csv.writer(fh, lineterminator="\n")
             w.writerow(["rank", "lemma", "slot_count", "sentence_initial_count", "occurrences_any_position", "slot_share_pct", "forms_merged", "in_bbc_spacy_list"])
             for r in rows:
                 w.writerow([r["rank"], r["lemma"], r["slot_count"], r["sentence_initial_count"], r["occurrences_any_position"], r["slot_share_pct"],
                             r["forms_merged"], int(r["in_bbc_spacy_list"])])
-        blk["top200_csv_sha256"] = hashlib.sha256((out_dir / f"verb_unmapped_top200_{fam}{suffix}.csv").read_bytes()).hexdigest()
+        blk["top200_csv"] = csv_name
+        blk["top200_csv_sha256"] = hashlib.sha256((out_dir / csv_name).read_bytes()).hexdigest()
         blk["top200_rows"] = len(rows)
         blk["top200_in_bbc_spacy_list"] = sum(1 for r in rows if r["in_bbc_spacy_list"])
     res["families"]["TASTESET"] = {"status": "NOT_AVAILABLE", "reason": "NO_INSTRUCTION_TEXT"}
@@ -349,10 +371,12 @@ def md(res: dict, out_dir: Path, suffix: str) -> str:
               f"{b['texts_with_steps']:,} texts, {b['sentences']:,} sentences, {b['tokens']:,} word tokens; {b['action_events']:,} ACTION events "
               f"({b['events_per_text']} per text; {b['action_events_in_a_verb_slot']:,} in a verb slot, {b['action_events_sentence_initial']:,} sentence-initial; "
               f"{b['action_events_multiword']:,} multi-word), {b['distinct_proc_ids_used']} distinct PROC ids used.",
-              f"Verb-slot words excluded: {b['verb_slot_tokens_closed_class']:,} closed-class, {b['verb_slot_tokens_lexicon_food_or_tool']:,} lexicon food/tool words.",
+              f"Verb-slot words excluded: {b['verb_slot_tokens_closed_class']:,} closed-class, {b['verb_slot_tokens_lexicon_food_or_tool']:,} lexicon food/tool words "
+              f"(filter applied before the ACTION branch; {b['action_events_in_slot_or_initial_excluded_by_filter']:,} ACTION events in a slot or sentence-initial were excluded by it: "
+              f"{b['action_events_excluded_closed_class']:,} closed-class, {b['action_events_excluded_food_or_tool']:,} food/tool).",
               f"Coverage of the unmapped slot tokens by the top-k lemmas (%): {b['unmapped_slot_occurrence_coverage_of_top_k_lemma_pct']}.",
               f"ACTION events by PROC family: {b['actions_by_proc_family']}.",
-              f"Top-200 list: `verb_unmapped_top200_{f}{suffix}.csv` (sha256 `{b['top200_csv_sha256'][:16]}`), {b['top200_in_bbc_spacy_list']} of the {b['top200_rows']} rows also in the BBC spaCy list."]
+              f"Top-200 list: `{b['top200_csv']}` (sha256 `{b['top200_csv_sha256'][:16]}`), {b['top200_in_bbc_spacy_list']} of the {b['top200_rows']} rows also in the BBC spaCy list."]
     L += ["", "## Reading and limits", "",
           "- 100 % of ACTION events map to PROC by construction; the informative numbers are the share of verb-slot candidates that map and the unmapped list.",
           "- No POS tagger on this server: a candidate is a word in a verb slot that is not a closed-class, food or tool word. Unmapped lemmas include adverbs, nouns and "
@@ -372,7 +396,7 @@ def main(argv=None) -> int:
     ap.add_argument("--batch", type=int, default=500)
     ap.add_argument("--root", default=str(ROOT))
     ap.add_argument("--out-dir", default=None)
-    ap.add_argument("--name", default="verb_coverage_census_v1")
+    ap.add_argument("--name", default="verb_coverage_census_v2")
     a = ap.parse_args(argv)
     if a.workers > 24:
         ap.error("at most 24 workers (shared server)")

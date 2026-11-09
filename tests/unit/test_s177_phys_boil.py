@@ -17,7 +17,17 @@ from culinarystate.simulation import scenario_layer as SL
 from tests.unit.test_s176_phys_cap import B, TOL, _rec, _rest_rec
 
 ROOT = Path(__file__).resolve().parents[2]
-LOWER = "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER"
+LOWER = "SUGAR_PHASE_TBOIL_LOWER_ESTIMATE"  # S178 FIX-PHYS m10: the S177 flag TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER is split
+SALT = "SALT_MEMBER_BPE_SMALL"             # into a sugar-phase flag and a salt flag (salted water: elevation small)
+
+
+def _own(r, groups=None):
+    """S178 FIX-PHYS (Q1): a stated liquid temperature lifts the cap only when the liquid step owns it (Layer 1 row) and a sugar member,
+    a syrup cue or a pressure cue is present; the synthetic records name the row and a sugar member explicitly."""
+    r["inputs"]["temperature_profile"]["row"] = "CB_RULE:TEMPERATURE_OWN_CLAUSE"
+    if groups:
+        r["inputs"]["matrix_groups"] = {"value": list(groups), "status": "MEASURED", "basis": "FOOD_GROUP", "span": None}
+    return r
 
 
 @pytest.fixture(scope="module")
@@ -95,18 +105,27 @@ def test_a_dry_class_is_still_uncapped_and_a_disabled_cap_stays_disabled(pc):
 
 
 def test_layer_boil_to_105_is_a_105_boundary_not_a_100_boundary(new):
-    out = new.run(_rec("PROC-000019", "WATER", 60, 105, "DICED", matrix="FRUIT"))
+    # S178 FIX-PHYS: the lift needs ownership + a sugar member (Q1), and applies to the LIQUID only (M5). S177 asserted that a
+    # diced piece's core passed 100 C; a moist piece is bounded by its own T_boil, so that assertion is reversed here.
+    liquid = new.run(_own(_rec("PROC-000019", "WATER", 60, 105, None), ("FRUIT", "SWEETENER")))
     for b in B:
-        s = out["scenarios"][b]
+        s = liquid["scenarios"][b]
         assert s["bath_c"] == 105.0 and s["t_cap_c"] == 105.0 and s["boundary_c"] == 105.0
-        assert "STATED_LIQUID_T_ABOVE_TBOIL" in s["flags"] and "EVAPORATION_CAP_NOT_BINDING" in s["flags"]
-        assert "EVAPORATION_CAP_APPLIED" not in s["flags"]
-        assert s["core_end_c"] <= 105.0 + TOL and s["volume_avg_end_c"] <= 105.0 + TOL
-        assert s["surface_cook_value_min"] == pytest.approx(60 * 10 ** ((105.0 - 100.0) / 33.0), rel=1e-3)  # surface at 105
-    assert out["scenarios"]["INTENSE"]["core_end_c"] > 100.0 + TOL  # the text-stated liquid really heats past 100
+        assert "STATED_LIQUID_T_ABOVE_TBOIL" in s["flags"] and "STATED_LIQUID_LIFT_SUGAR_PHASE_MEMBER" in s["flags"]
+        assert "EVAPORATION_CAP_NOT_BINDING" in s["flags"] and "EVAPORATION_CAP_APPLIED" not in s["flags"]
+        assert s["surface_cook_value_min"] == pytest.approx(60 * 10 ** ((105.0 - 100.0) / 33.0), rel=1e-3)  # liquid at 105
+    piece = new.run(_own(_rec("PROC-000019", "WATER", 60, 105, "DICED"), ("FRUIT", "SWEETENER")))
+    for b in B:
+        s = piece["scenarios"][b]
+        assert s["t_cap_c"] == 105.0 and s["boundary_c"] == 100.0 and "STATED_LIQUID_T_NOT_APPLIED_TO_MOIST_PIECE" in s["flags"]
+        assert s["core_end_c"] <= 100.0 + TOL and s["volume_avg_end_c"] <= 100.0 + TOL
+        assert s["surface_cook_value_min"] == pytest.approx(60 * 10 ** ((105.0 - 100.0) / 33.0), rel=1e-3)  # the liquid's own dose
+    dilute = new.run(_own(_rec("PROC-000019", "WATER", 60, 105, "DICED", matrix="FRUIT")))["scenarios"]["TYPICAL"]
+    assert dilute["t_cap_c"] == 100.0 and "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_DILUTE" in dilute["flags"]
     # the same event stated at 98 C is untouched
-    s98 = new.run(_rec("PROC-000019", "WATER", 60, 98, "DICED", matrix="FRUIT"))["scenarios"]["TYPICAL"]
+    s98 = new.run(_own(_rec("PROC-000019", "WATER", 60, 98, "DICED", matrix="FRUIT")))["scenarios"]["TYPICAL"]
     assert s98["t_cap_c"] == 100.0 and "STATED_LIQUID_T_ABOVE_TBOIL" not in s98["flags"]
+    assert not any(f.startswith("STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED") for f in s98["flags"])
 
 
 def test_layer_oil_stays_capped_when_the_text_states_the_oil_temperature(new):
@@ -115,8 +134,11 @@ def test_layer_oil_stays_capped_when_the_text_states_the_oil_temperature(new):
 
 
 def test_a_carried_setpoint_counts_as_text_stated_and_a_default_does_not(new):
-    carried = new.run(_rec("PROC-000019", "WATER", 30, 105, "DICED", temp_basis="CARRIED_SETPOINT"))["scenarios"]["TYPICAL"]
-    assert carried["t_cap_c"] == 105.0 and "STATED_LIQUID_T_ABOVE_TBOIL" in carried["flags"]
+    # S178 FIX-PHYS (Q1): a carried setpoint is stated text but not OWNED by the liquid step, so it no longer lifts the cap
+    r = _rec("PROC-000019", "WATER", 30, 105, "DICED", temp_basis="CARRIED_SETPOINT")
+    r["inputs"]["temperature_profile"]["row"] = "CB_RULE:CARRIED_SETPOINT"
+    carried = new.run(r)["scenarios"]["TYPICAL"]
+    assert carried["t_cap_c"] == 100.0 and "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_NOT_OWNED" in carried["flags"]
     assert PC.STATED_BASES == ("L1:TEXT_STATED", "L1:CARRIED_SETPOINT")
     # PHYSICAL_DEFINITION is not a stated value: the cap stays at the physical boil
     pdv = new.run(_rec("PROC-000019", "WATER", 30, 105, "DICED", temp_basis="PHYSICAL_DEFINITION"))["scenarios"]["TYPICAL"]
@@ -132,18 +154,22 @@ def test_registry_marks_exactly_the_solute_rich_classes():
     assert PC.PhaseChange.load().solute_rich_classes == frozenset({"SWEETENER", "CONDIMENT"})
 
 
-@pytest.mark.parametrize("groups,lower", [(("FRUIT", "SWEETENER"), True), (("MEAT", "CONDIMENT"), True), (("VEGETABLE", "CONDIMENT", "FAT_OIL"), True),
-                                          (("FRUIT", "MEAT"), False), (("VEGETABLE", "FAT_OIL"), False), (("DAIRY", "EGG"), False)])
-def test_solute_rich_member_makes_the_cap_a_lower_estimate(pc, groups, lower):
+@pytest.mark.parametrize("groups,lower,salt", [(("FRUIT", "SWEETENER"), True, False), (("MEAT", "CONDIMENT"), False, True),
+                                               (("VEGETABLE", "CONDIMENT", "FAT_OIL"), False, True), (("FRUIT", "MEAT"), False, False),
+                                               (("VEGETABLE", "FAT_OIL"), False, False), (("DAIRY", "EGG"), False, False)])
+def test_solute_rich_member_makes_the_cap_a_lower_estimate(pc, groups, lower, salt):
+    # S178 FIX-PHYS m10: a sugar member makes the cap a lower estimate; a salt / condiment member only says the elevation is small
     c = pc.cap(medium="WATER", matrix_class=None, member_groups=groups)
     assert c.t_c == 100.0 and "BOILING_POINT_ELEVATION_NOT_MODELLED" in c.flags
-    assert (LOWER in c.flags) is lower
+    assert (LOWER in c.flags) is lower and (SALT in c.flags) is salt
+    assert "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER" not in c.flags
 
 
 def test_single_class_condiment_is_a_lower_estimate_and_sweetener_is_dry(pc):
-    assert LOWER in pc.cap(medium="WATER", matrix_class="CONDIMENT").flags
+    assert SALT in pc.cap(medium="WATER", matrix_class="CONDIMENT").flags and LOWER not in pc.cap(medium="WATER", matrix_class="CONDIMENT").flags
     assert pc.cap(medium="WATER", matrix_class="SWEETENER").t_c is None  # dry class: not capped at all
-    assert LOWER not in pc.cap(medium="WATER", matrix_class="MEAT").flags
+    assert LOWER not in pc.cap(medium="WATER", matrix_class="MEAT").flags and SALT not in pc.cap(medium="WATER", matrix_class="MEAT").flags
+    assert LOWER in pc.cap(medium="WATER", matrix_class="MEAT", syrup_cue=True).flags  # a syrup cue marks a sugar phase
 
 
 def test_layer_jam_lot_is_flagged_a_lower_estimate(new):
@@ -193,14 +219,24 @@ def test_member_groups_reader():
 
 # ------------------------------------------------------------------------------------------------ non-heat RESTING
 def test_resting_after_a_105_c_stated_boil_is_not_capped_below_the_text():
+    # S178 FIX-PHYS (M5): a resting record always has a cut piece, so a sugar / syrup lift never reaches it (the piece's own T_boil);
+    # only a pressure cue lifts the heat stage of a piece (its water phase is pressurised too)
     nh = NS.NonHeatScenario.load()
-    out = nh.run(_rest_rec(medium="WATER", proc="PROC-000019", bath="105", hdur="30", rest="5", size="DICED"))
+    sugar = _rest_rec(medium="WATER", proc="PROC-000019", bath="105", hdur="30", rest="5", size="DICED")
+    _own(sugar["history"]["prior_heat"], ("FRUIT", "SWEETENER"))
+    for s in nh.run(sugar)["scenarios"].values():
+        assert s["t_cap_c"] == 100.0 and "STATED_LIQUID_T_NOT_APPLIED_TO_MOIST_PIECE" in s["flags"] and s["core_peak_c"] <= 100.0 + TOL
+    r = _rest_rec(medium="WATER", proc="PROC-000019", bath="105", hdur="30", rest="5", size="DICED")
+    _own(r["history"]["prior_heat"])
+    r["history"]["prior_heat"]["inputs"]["pressure_cue"] = {"value": "PRESSURE_STATED", "status": "QUALITATIVE", "basis": "CUE",
+                                                            "span": [0, 1], "span_id": "C:0-1", "row": "CB_RULE:PRESSURE_CUE"}
+    out = nh.run(r)
     for b in B:
         s = out["scenarios"][b]
-        assert s["t_cap_c"] == 105.0 and "STATED_LIQUID_T_ABOVE_TBOIL" in s["flags"]
+        assert s["t_cap_c"] == 105.0 and "STATED_LIQUID_T_ABOVE_TBOIL" in s["flags"] and "STATED_LIQUID_LIFT_PRESSURE_CUE" in s["flags"]
         assert s["core_end_of_heat_c"] <= 105.0 + TOL and s["core_peak_c"] <= 105.0 + TOL
         assert "PRESSURE_RELEASE_PROFILE_CLIPPED_TO_ATMOSPHERIC_TBOIL" not in s["flags"]
         assert "REST_PROFILE_CLIPPED_TO_ATMOSPHERIC_TBOIL_AFTER_STATED_LIQUID_T" in s["flags"]
-    assert out["version"] == NS.VERSION == "nonheat-scenario-L2-0.4.0-draft"  # S178: bumped to 0.4.0
+    assert out["version"] == NS.VERSION == "nonheat-scenario-L2-0.5.0-draft"  # S178 FIX-PHYS: bumped to 0.5.0
     plain = nh.run(_rest_rec(medium="WATER", proc="PROC-000019", bath="98", hdur="30", rest="5", size="DICED"))["scenarios"]["TYPICAL"]
     assert plain["t_cap_c"] == 100.0 and "STATED_LIQUID_T_ABOVE_TBOIL" not in plain["flags"]

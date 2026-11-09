@@ -13,6 +13,16 @@ rate ``d = pi_b + pi_c``; the gap cannot exceed d, and a large gap with a small 
 
 H1 needs B4 > B1 and B4 > B2, both significant (intersection-union). The two tests share B4's answers, so their
 joint power is only bounded: Frechet ``max(0, P1 + P2 - 1) <= P(both) <= min(P1, P2)``.
+
+S178 FIX-EVAL (SCI-B E7). At fixed n and d, power is non-decreasing in the gap delta >= 0: m does not depend on delta, and
+for each m the two-sided rejection region {b >= k} or {b <= m - k} (k >= (m + 1) / 2) has derivative in the success share p
+proportional to P(Bin(m - 1, p) = k - 1) - P(Bin(m - 1, p) = m - k) = C(m-1, k-1) p^(m-k) (1-p)^(m-k) [(p/(1-p))^(2k-m-1) - 1]
+>= 0 for p >= 1/2 (``power_monotone_in_delta`` checks it on the grid; a unit test runs it). The discrete-test sawtooth is
+in the number of discordant pairs m (``conditional_power``: e.g. 0.449 at m = 6, 0.393 at m = 7 for delta 0.3, d 0.4), not
+in delta; averaged over m ~ Bin(n, d) the planning-grid power was non-decreasing in n for n = 5..80 (checked S178). The MDE
+is therefore the first grid point reaching the target power (grid step ``MDE_STEP`` = 0.005); the
+S178 EVAL text called it a "conservative reading of a sawtooth in delta", which was wrong (the values do not change).
+``planning_table`` states the discordance range each n's MDE range covers (``headline_by_n``) and a common range.
 """
 from __future__ import annotations
 
@@ -26,6 +36,7 @@ PLANNING_ALPHA = 0.05
 PLANNING_POWER = 0.8
 PLANNING_DISCORDANCE = (0.2, 0.3, 0.4, 0.5)          # planning grid only; the realised discordance is unknown until run
 PLANNING_N = (30, 60)
+MDE_STEP = 0.005
 
 
 def _binom_pmf(n: int, p: float) -> list[float]:
@@ -57,6 +68,15 @@ def rejection_table(n: int, alpha: float = PLANNING_ALPHA) -> dict[int, int | No
     return {m: min_majority_for_significance(m, alpha) for m in range(n + 1)}
 
 
+def conditional_power(m: int, delta: float, discordance: float, alpha: float = PLANNING_ALPHA) -> float:
+    """P(reject | m discordant pairs): the discrete, saw-toothed part of the power."""
+    k = min_majority_for_significance(m, alpha) if m else None
+    if k is None:
+        return 0.0
+    pb = _binom_pmf(m, (discordance + delta) / (2 * discordance))
+    return min(1.0, sum(pb[k:]) + sum(pb[:m - k + 1]))
+
+
 def power(n: int, delta: float, discordance: float, alpha: float = PLANNING_ALPHA) -> float:
     """Exact probability that the two-sided exact McNemar test rejects, for gap ``delta`` and discordance rate d."""
     if n < 1:
@@ -80,14 +100,34 @@ def power(n: int, delta: float, discordance: float, alpha: float = PLANNING_ALPH
     return min(1.0, total)
 
 
+def _grid(discordance: float, step: float) -> list[float]:
+    return [round(i * step, 10) for i in range(1, int(discordance / step + 1e-9) + 1)]
+
+
+def power_monotone_in_delta(n: int, discordance: float, *, alpha: float = PLANNING_ALPHA, step: float = MDE_STEP,
+                            tol: float = 1e-12) -> bool:
+    """True when power is non-decreasing over the delta grid (0, step, ..., d) at this n and d."""
+    ps = [power(n, g, discordance, alpha) for g in [0.0] + _grid(discordance, step)]
+    return all(b >= a - tol for a, b in zip(ps, ps[1:]))
+
+
+def mde_first_crossing(n: int, discordance: float, *, target_power: float = PLANNING_POWER, alpha: float = PLANNING_ALPHA,
+                       step: float = MDE_STEP) -> float | None:
+    """First grid gap whose power reaches ``target_power`` (None if none does)."""
+    for g in _grid(discordance, step):
+        if power(n, g, discordance, alpha) >= target_power:
+            return g
+    return None
+
+
 def mde(n: int, discordance: float, *, target_power: float = PLANNING_POWER, alpha: float = PLANNING_ALPHA,
-        step: float = 0.005) -> float | None:
+        step: float = MDE_STEP) -> float | None:
     """Smallest gap delta (grid ``step``) from which power stays >= ``target_power`` for every larger gap up to d.
 
-    Power is a sawtooth in delta (discrete test), so the first crossing is not the guarantee; this is the
-    conservative reading. None when even delta = d does not reach the target.
+    Power is monotone (non-decreasing) in delta at fixed n and d (module docstring), so this equals the first crossing
+    (``mde_first_crossing``); the scan from the top is kept as a guard. None when even delta = d does not reach the target.
     """
-    grid = [round(i * step, 10) for i in range(1, int(discordance / step + 1e-9) + 1)]
+    grid = _grid(discordance, step)
     if not grid:
         return None
     ok = [power(n, g, discordance, alpha) >= target_power for g in grid]
@@ -131,9 +171,10 @@ def describe_realised(n: int, b: int, c: int, alpha: float = PLANNING_ALPHA) -> 
 
 def planning_table(ns: Sequence[int] = PLANNING_N, discordances: Sequence[float] = PLANNING_DISCORDANCE, *,
                    target_power: float = PLANNING_POWER, alpha: float = PLANNING_ALPHA) -> dict:
-    """MDE and power grid for the report: per n and discordance rate, the conservative MDE, the power at a few gaps
-    and the intersection-union Frechet bounds when both tests sit at that MDE."""
-    out = {"version": VERSION, "alpha": alpha, "target_power": target_power,
+    """MDE and power grid for the report: per n and discordance rate, the MDE (grid step ``MDE_STEP``), the power at a
+    few gaps and the intersection-union Frechet bounds when both tests sit at that MDE; per n the discordance range its
+    MDE range covers (``headline_by_n``), and the MDE ranges over the discordance range common to every n."""
+    out = {"version": VERSION, "alpha": alpha, "target_power": target_power, "grid_step": MDE_STEP,
            "min_discordant_for_alpha": min_discordant_for_significance(alpha), "rows": []}
     for n in ns:
         for d in discordances:
@@ -145,4 +186,21 @@ def planning_table(ns: Sequence[int] = PLANNING_N, discordances: Sequence[float]
                 row["power_at_mde"] = round(p, 4)
                 row["iu_power_bounds_at_mde"] = [round(x, 4) for x in iu_power_bounds(p, p)]
             out["rows"].append(row)
+    head: dict[str, dict] = {}
+    for n in ns:
+        rs = [r for r in out["rows"] if r["n"] == n]
+        have = [r for r in rs if r["mde"] is not None]
+        head[str(n)] = {"discordance_range_with_mde": [min(r["discordance"] for r in have), max(r["discordance"] for r in have)] if have else None,
+                        "mde_range": [min(r["mde"] for r in have), max(r["mde"] for r in have)] if have else None,
+                        "discordances_without_mde": [r["discordance"] for r in rs if r["mde"] is None],
+                        "power_monotone_in_delta_all_d": all(power_monotone_in_delta(n, r["discordance"], alpha=alpha) for r in rs)}
+    out["headline_by_n"] = head
+    common = sorted(set.intersection(*[{r["discordance"] for r in out["rows"] if r["n"] == n and r["mde"] is not None}
+                                       for n in ns])) if ns else []
+    out["common_discordance_range"] = {
+        "discordance_range": [common[0], common[-1]] if common else None,
+        "mde_range_by_n": {str(n): [min(r["mde"] for r in out["rows"] if r["n"] == n and r["discordance"] in common),
+                                    max(r["mde"] for r in out["rows"] if r["n"] == n and r["discordance"] in common)]
+                           for n in ns} if common else None,
+        "reading": "compare n only over the same discordance range; the realised discordance is unknown until the run"}
     return out

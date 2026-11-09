@@ -166,7 +166,7 @@ def test_member_groups_reach_the_cap_through_the_layer_2_reader(binder):
     assert SL.member_groups(rec["inputs"]) == ("DAIRY", "SWEETENER")
     out = layer.run(rec)
     flags = out["scenarios"]["TYPICAL"]["flags"]
-    assert "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER" in flags  # a multi-member lot with a solute-rich member (was invisible at 0.3.0)
+    assert "SUGAR_PHASE_TBOIL_LOWER_ESTIMATE" in flags  # a multi-member lot with a sugar member (was invisible at 0.3.0); S178 FIX-PHYS m10: renamed from TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER
     # every member a dry class: the lot is uncapped (multi-member), flagged
     rec2 = {**rec, "inputs": {**rec["inputs"], "matrix_groups": {"value": ["NUT_SEED", "SWEETENER"], "status": "MEASURED",
                                                                  "basis": "FOOD_GROUP", "span": None}}}

@@ -22,6 +22,14 @@ nothing is imported) runs the AA SIMULATE branch per item AFTER the gates. Witho
 With it every item gets a ``simulate`` block (status, reason codes, guard reasons) and the route becomes SIMULATE only
 when the branch completed a run through guard, domain gate, the unchanged 23a engine and ``sim_core``; otherwise the
 route is left exactly as it was (never downgraded, never invented). The branch refuses on real data today.
+
+S178 (FIX-ROUTER, SCI-B R2 / R3 / R5 / R6; all narrowing, only with ``gates``): each item also carries ``event_role``
+(``PROCESS_STEP`` / ``ATTRIBUTIVE_STATE`` / ``SERVING_SUGGESTION``: an attributive participle or a serving suggestion is
+not a performed process and never gets DIRECT; the SIMULATE branch is not run for it), ``prior_basis`` (where a prior
+kind came from), ``prior_presupposed`` and ``member_sr_basis`` (SR derivation code and data points of the member's
+plausible identities, R4). ``ingredient_lines`` (optional): the recipe's ingredient lines, read only for processed-state
+cues ("1 can ...", "2 boiled ...", "leftover ..."); a food whose line states a processed form carries that prior state
+(basis ``INGREDIENT_LINE``). The lines are not routed as events: they describe foods, not process steps.
 """
 from __future__ import annotations
 
@@ -40,7 +48,7 @@ ROOT = Path(__file__).resolve().parents[3]
 EVD_PATH = ROOT / "ledgers" / "data" / "EVD.jsonl"
 LABELS = ("NON_CITABLE", "DEMO_ONLY", "EVIDENCE_E3_UNVERIFIED", "NO_REVIEWED_MECHANISM", "NO_CONDITIONS_CONSUMED")
 EVIDENCE_STATUSES = ("MEASURED", "CENSORED")
-DEMO_VERSION = "router-demo-0.3.0-draft"
+DEMO_VERSION = "router-demo-0.4.0-draft"
 
 
 class DemoRefused(RuntimeError):
@@ -49,10 +57,12 @@ class DemoRefused(RuntimeError):
 
 def _summary(r: Mapping[str, Any]) -> dict:
     rf = (r.get("derived") or {}).get("retention_factor") or {}
+    proc = r.get("process") or {}
     return {"evd_id": r["id"], "svar_id": r["target"]["state_variable_id"], "target": r["target"].get("raw_name"),
             "status": rf.get("status"), "value": rf.get("value"), "raw": rf.get("raw"), "unit": rf.get("unit"),
             "source_id": r.get("source_id"), "tier": r.get("tier"),
-            "verification": (r.get("verification") or {}).get("status")}
+            "verification": (r.get("verification") or {}).get("status"),
+            "presupposes_prior_heat": EG.presupposes_prior_heat(proc.get("process_id"), proc.get("raw_name"))}
 
 
 class EvidenceIndex:
@@ -118,10 +128,51 @@ def _lot_ingredients(graph, entity_ids: Iterable[str]) -> list[str]:
     return sorted(set(out))
 
 
+def ingredient_line_states(lines: Iterable[str] | None, rung: RungA, locale: str | None = None,
+                           counts: dict | None = None) -> dict[str, frozenset]:
+    """ING id -> prior kinds stated in the recipe's ingredient lines (S178 R2; Layer 1 TEXT_STATED). Only a line with a
+    registered state cue (``evidence_gates.state_cues``) is read with Rung A's mention tagger and linker; each uniquely
+    linked food of the line gets the kinds of the cues outside its own surface. ``counts`` (optional) gains integer
+    counters only."""
+    out: dict[str, set] = {}
+    c = counts if counts is not None else {}
+    cfg = None
+    for k, line in enumerate(lines or ()):
+        if not isinstance(line, str) or not line.strip():
+            continue
+        c["ingredient_lines_seen"] = c.get("ingredient_lines_seen", 0) + 1
+        cues = EG.state_cues(line)
+        if not cues:
+            continue
+        c["ingredient_lines_with_state_cue"] = c.get("ingredient_lines_with_state_cue", 0) + 1
+        cfg = cfg or rung.config(locale=locale)
+        src = SourceText.from_raw(f"LINE{k}", line)
+        ms = rung.extract_mentions(src, cfg)
+        for m in ms.mentions:
+            if m.label != "FOOD_MENTION":
+                continue
+            lr = rung.link(src, m, cfg)
+            if not lr.selected_id:
+                continue
+            kinds = {kk for s, e, kk in cues if not (m.span.char_start <= s and e <= m.span.char_end)}
+            if kinds:
+                out.setdefault(lr.selected_id, set()).update(kinds)
+    c["ingredient_line_ing_states"] = c.get("ingredient_line_ing_states", 0) + len(out)
+    return {i: frozenset(v) for i, v in out.items()}
+
+
+def _not_a_step_simulate(role: str) -> dict:
+    """The SIMULATE block of an item whose event is not a performed process (S178 R3): never evaluated."""
+    return {"record": "AA_SIMULATE_BRANCH", "status": "NOT_EVALUATED_NOT_A_PROCESS_STEP", "simulated": False,
+            "engine_route": None, "reasons": [EG.ROLE_REASON[role]], "guard_reasons": [], "domain_gate": None,
+            "section141_class": "unsupported", "labels": list(LABELS)}
+
+
 def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str | None = None,
                rung: RungA | None = None, hierarchy: PS.ProcessHierarchy | None = None,
                schema: Mapping[str, Any] | None = None, gates: EG.EvidenceGates | None = None,
-               simulate: Any = None) -> dict:
+               simulate: Any = None, ingredient_lines: Iterable[str] | None = None,
+               counts: dict | None = None) -> dict:
     """Per (event, linked ingredient): the 23a route for ``target_svar``, its reasons and the matching EVD rows.
 
     ``gates`` (optional, S176): target-presence screen + lot-context gate before G0; see module docstring. Each item
@@ -131,18 +182,26 @@ def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str 
         raise ValueError("target_svar is required (e.g. SVAR-000009, vitamin C)")
     rung, hierarchy = rung or RungA(), hierarchy or PS.read_process_hierarchy()
     source = SourceText.from_raw("DEMO", raw)
-    graph = rung.run(source, rung.config(locale=locale), schema=schema or D.load_schema()).graph
-    members = EG.lot_members(graph, hierarchy) if gates is not None else {}
+    res = rung.run(source, rung.config(locale=locale), schema=schema or D.load_schema())
+    graph = res.graph
+    text = line_states = None
+    if gates is not None:
+        text = EG.text_context(raw, res.mentions.mentions, res.links)
+        line_states = ingredient_line_states(ingredient_lines, rung, locale, counts)
+    members = EG.lot_members(graph, hierarchy, text=text, ingredient_states=line_states) if gates is not None else {}
     sim_l1 = simulate.layer1(raw, locale) if simulate is not None else {}
     items = []
     for ev in graph.events:
         proc = _attr(ev.attributes, "proc_id")
         consumed = (*ev.consumes, *ev.discards)
+        span = (ev.span.char_start, ev.span.char_end) if ev.span is not None else None
+        role = text.role(span) if text is not None else EG.PROCESS_STEP
         for ing in _lot_ingredients(graph, consumed) or [None]:
             hits = index.lookup(ing, proc, target_svar)
             raw_pre = precheck(hits)
             gate = (gates.evaluate(svar_id=target_svar, ing=ing, raw_precheck=raw_pre,
-                                   lots=EG.lots_of(members, consumed, ing)) if gates is not None else None)
+                                   lots=EG.lots_of(members, consumed, ing), event_role=role,
+                                   stated=text.window_states(span, ing), hits=hits) if gates is not None else None)
             q = AP.ApplicabilityQuery(case_id=f"DEMO-{ev.event_id}-{ing or 'UNLINKED'}",
                                       entity_version_id=ing or f"UNLINKED-{ev.event_id}", event_id=ev.event_id,
                                       target_svar_id=target_svar, target_state_key=None, process_id=proc,
@@ -159,8 +218,18 @@ def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str 
                     "INTERPOLATE" if raw_pre == "BRACKETING" else rec["route"])
                 item["gates"] = gate.as_item()
                 item["prior_process"] = list(gate.prior_kinds)
+                item["prior_basis"] = list(gate.prior_basis)
+                item["prior_presupposed"] = gate.presupposed
+                item["event_role"] = gate.event_role
                 item["member_presence"] = gates.member_presence(target_svar, ing)
                 item["member_blocker"] = gates.member_blocker(target_svar, ing)
+                item["member_sr_basis"] = gates.member_basis(target_svar, ing)
+                if gate.event_role != EG.PROCESS_STEP and raw_pre == "DIRECT":
+                    # counts only (S178 R3 share): would every other gate have let DIRECT stand for a real step?
+                    alt = gates.evaluate(svar_id=target_svar, ing=ing, raw_precheck=raw_pre,
+                                         lots=EG.lots_of(members, consumed, ing), stated=text.window_states(span, ing),
+                                         hits=hits)
+                    item["direct_if_process_step"] = alt.final_precheck == "DIRECT" and not alt.not_applicable
                 item["reasons"] = [*gate.reasons, *reasons]
                 if gate.not_applicable:
                     item["route"] = EG.NOT_APPLICABLE
@@ -168,7 +237,9 @@ def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str 
                     item["evidence"], item["evidence_not_applied"] = [], hits
                 else:
                     item["evidence_not_applied"] = []
-            if simulate is not None:
+            if simulate is not None and gate is not None and gate.event_role != EG.PROCESS_STEP:
+                item["simulate"] = _not_a_step_simulate(gate.event_role)     # S178 R3: never simulate a non-event
+            elif simulate is not None:
                 out = simulate.evaluate_item(item, layer1=sim_l1.get(ev.event_id), precheck=q.evidence_precheck,
                                              hierarchy=hierarchy, target_svar=target_svar)
                 item["simulate"] = out.as_item()

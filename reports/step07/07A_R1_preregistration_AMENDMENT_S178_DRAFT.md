@@ -5,6 +5,27 @@ S178 PREREG lane (an AI agent) for the 9-10 Nov decision sitting (ops pack item 
 Nothing here changes `reports/step07/07A_R1_preregistration_DRAFT.md`; that file is a human-gate document and is
 edited only by the Mac scribe, after the sitting, with the options the humans chose.
 
+> **Revision S178-FIX-EVAL (2026-11-09; AI_DRAFTED; D-071: this revision only tightens, defers or withdraws).** It applies
+> the SCI-B review findings P1 and P2 (`reports/orchestration/review/S178_REV_SCI-B.md`). The option table and every option
+> are kept; what changed:
+> 1. **"Stronger" withdrawn.** The three copy checks that replace `IDENTICAL_JUDGEMENTS` in Option A are *different, not
+>    stronger*: none of them catches a judgement-only copy. Synthetic demonstration with the project's own scorer code:
+>    `tests/unit/test_s178_fixeval_prereg.py::test_judgement_only_copy_passes_the_three_new_checks_and_only_identical_judgements_catches_it`.
+>    No check on the returned judgement columns can tell such a copy from an honest perfect agreement (the columns are
+>    identical in both cases); only `IDENTICAL_JUDGEMENTS`, at the F-05 cost, or a process control outside the files, catches it.
+> 2. **Loosening stated.** Options A, A-keep, C and E are each a LOOSENING relative to the signed D-027 R-06 in the
+>    kappa-paradox region (§1, with the counterexample; `test_option_a_passes_a_pattern_the_signed_r06_fails`). The
+>    earlier §1 heading "why none of this is a post-hoc weakening" compared Option A only with the unsigned S171 draft.
+> 3. **AI recommendation changed from A to B.** An AI may not recommend loosening a signed gate (D-071). The review
+>    suggested "A-keep"; A-keep also PASSES the counterexample (the two files differ in 5 cells, so the kept
+>    `IDENTICAL_JUDGEMENTS` rule does not fire), so it loosens R-06 in the same region. The only options that do not loosen
+>    R-06 are **B** (R-06 unchanged) and **D** (no attempt). The AI recommendation is therefore **B**. A, A-keep, C and E
+>    are offered only as human choices; each needs Kush's own explicit, signed DECISIONS entry amending R-06 (§4) that
+>    names the loosening. The column "Pack rec." is kept as history; the new column states the recommendation now.
+> 4. **Co-gate counts per n (P2).** The co-gate is defined by its Clopper-Pearson bound; the implied counts are stated
+>    per n (100 real conditions under U1 / U3: at most 1 critical and at most 4 any-field defect conditions; 120 under
+>    U2: at most 1 and at most 6).
+
 - Base text amended: `reports/step07/07A_R1_preregistration_DRAFT.md`, sha256
   `6886ccef0063b3824d196040b047729525053967e54dab2a8a44a1a536e76cd3` (server worktree, 2026-11-09). If the Mac copy
   hashes differently, stop: this draft was written against these bytes.
@@ -16,20 +37,32 @@ edited only by the Mac scribe, after the sitting, with the options the humans ch
 
 ## 0. What the sitting must decide
 
-| Id | Question | Options in this file | Type | Pack rec. |
-|---|---|---|---|---|
-| D-07A-1 | Gate statistic and rule for attempt 07.A-R1 | **A** hardened AC1 + accuracy co-gate + planted rows (= pack B2; **A-keep** = A plus the old `IDENTICAL_JUDGEMENTS` rule, §1) · **B** R-06 kappa gate kept, PABAK diagnostic (= pack A) · **C** accuracy-primary gate · **D** no R1 attempt before 25 Nov · **E** draft as written (= pack B1) | HUMAN (A, C, E amend R-06) | A |
-| D-07A-2 | Co-gate thresholds X (only A, C) | X_crit, X_any from the Clopper-Pearson table (§3) | HUMAN | X_crit 0.95, X_any 0.90 |
-| D-07A-3 | USDA-dialect floor | **U1** fixed USDA sub-quotas, 100 kept · **U2** extra 20-condition USDA stratum (120) · **U3** no floor, per-source caveat | choice | U1 |
-| D-07A-4 | Planted-defect rows (C06: only inside the lock, <= 0.3 h per rater) | **P1** 10 rows, >= 8 of 10 or NOT_COUNTED · **P2** 10 rows, diagnostic only · **P0** none ("AC1 measures agreement, not error detection" in the report) | choice (A and C need P1) | P1 |
-| D-07A-5 | Return deadline | **T1** 13 Nov (consensus trigger) · **T2** 13 Nov soft, 20 Nov hard (REV-B) | choice | T2 |
-| D-07A-R06 | The DECISIONS entry amending R-06 | template in §4, **written by Kush in his own words** | HUMAN, Kush only | needed for A, C, E |
+| Id | Question | Options in this file | Type | Pack rec. | AI rec. after S178-FIX-EVAL |
+|---|---|---|---|---|---|
+| D-07A-1 | Gate statistic and rule for attempt 07.A-R1 | **A** hardened AC1 + accuracy co-gate + planted rows (= pack B2; **A-keep** = A plus the old `IDENTICAL_JUDGEMENTS` rule, §1) · **B** R-06 kappa gate kept, PABAK diagnostic (= pack A) · **C** accuracy-primary gate · **D** no R1 attempt before 25 Nov · **E** draft as written (= pack B1) | HUMAN (A, A-keep, C, E loosen and amend R-06) | A | **B** |
+| D-07A-2 | Co-gate thresholds X (only A, C) | X_crit, X_any from the Clopper-Pearson table (§3) | HUMAN | X_crit 0.95, X_any 0.90 | none (not used under B) |
+| D-07A-3 | USDA-dialect floor | **U1** fixed USDA sub-quotas, 100 kept · **U2** extra 20-condition USDA stratum (120) · **U3** no floor, per-source caveat | choice | U1 | U1 |
+| D-07A-4 | Planted-defect rows (C06: only inside the lock, <= 0.3 h per rater) | **P1** 10 rows, >= 8 of 10 or NOT_COUNTED · **P2** 10 rows, diagnostic only · **P0** none ("AC1 measures agreement, not error detection" in the report) | choice (A and C need P1) | P1 | P1 (under B an added NOT_COUNTED condition only tightens) |
+| D-07A-5 | Return deadline | **T1** 13 Nov (consensus trigger) · **T2** 13 Nov soft, 20 Nov hard (REV-B) | choice | T2 | T2 |
+| D-07A-R06 | The DECISIONS entry amending R-06 | template in §4, **written by Kush in his own words** | HUMAN, Kush only | needed for A, C, E | not needed under B; needed for A, A-keep, C, E |
 
 **Crosswalk to the ops pack labels (to avoid confusion):** this file's A = pack "B2", B = pack "A", E = pack "B1".
 C and D are not in the pack.
 
-## 1. Why none of this is a post-hoc weakening (read before choosing)
+## 1. Which options loosen the signed R-06, and why (read before choosing)
 
+*(Heading and first bullet revised S178-FIX-EVAL; the earlier heading said "why none of this is a post-hoc weakening".)*
+
+- **LOOSENING relative to the signed R-06 (SCI-B P1).** Options A, A-keep, C and E pass label patterns that the signed
+  D-027 R-06 fails, in the kappa-paradox region (one code dominates, so kappa collapses while agreement is near 1).
+  Counterexample (synthetic, the project's own `condition_agreement` code; `tests/unit/test_s178_fixeval_prereg.py`):
+  reviewer 1 codes all 900 cells CORRECT; reviewer 2 codes SHOULD_BE_AMBIGUOUS on 5 conditions in 5 fields (one cell
+  each); joint adjudication finds 0 defects. **R-06:** pooled kappa 0.0 < 0.80, so **FAIL**. **Option A:** bootstrap AC1
+  lower bound 0.990 >= 0.95; every one of the 7 critical fields has AC1 0.99 or 1.0, exact agreement >= 0.99 and no
+  repeated pair; co-gate 0 defects (lower bound 0.9705 >= 0.95), so **PASS**. **A-keep also PASSES**: the two files differ
+  in 5 cells, so the kept `IDENTICAL_JUDGEMENTS` rule does not fire. Choosing A, A-keep, C or E is therefore a **human
+  loosening of R-06**, recorded in Kush's own signed D-0NN (§4), not an AI recommendation. Only **B** (R-06 unchanged)
+  and **D** (no attempt) do not loosen R-06; the AI recommendation is B.
 - The v4 result is **FAILED and stays FAILED** (pooled kappa 0.0 against >= 0.80; raw agreement 0.9944; 900 cells;
   5 disagreements; `reports/step07/step07_v4_adjudication_result.md`). No option relabels, rescores or reinterprets
   it (D-027 R-20, THR-07A-06). The R1 attempt is a **new attempt on a fresh, disjoint packet** (D-075), and every
@@ -43,12 +76,15 @@ C and D are not in the pack.
   conditions against a co-gate of <= 1; a reviewer coding every cell CORRECT would miss the planted rows and be
   NOT_COUNTED. Note honestly: the pooled-AC1 part alone (lower bound 0.9889 >= 0.95) **would** still have passed v4.
   The co-gate and the planted rows are what make A stricter, so A without them is not offered.
-- **The one element of Option A that relaxes a rule:** the `IDENTICAL_JUDGEMENTS` provenance rule (two files equal
+- **A second element of Option A that relaxes a rule:** the `IDENTICAL_JUDGEMENTS` provenance rule (two files equal
   in all 10 judgement columns -> NOT_COUNTED) is removed, because it makes a perfectly agreeing honest pair
-  NOT_COUNTED (REV-B F-05). It is a copy check, not the gate statistic, and it is replaced by three stronger copy
-  checks (receipt times after both signatures, identical free-text reasons, planted-row detection per reviewer). If
-  the sitting prefers no relaxation at all, choose **A-keep**: Option A with the `IDENTICAL_JUDGEMENTS` rule kept in
-  addition (then the report must say a perfectly agreeing pair cannot count).
+  NOT_COUNTED (REV-B F-05). It is a copy check, not the gate statistic. It is replaced by three *different* copy checks
+  (receipt times after both signatures, identical free-text reasons, planted-row detection per reviewer). The
+  replacement is **different; does not catch a judgement-only copy**: if reviewer 2 copies reviewer 1's 10 judgement columns and
+  blanks the reasons, the old rule gives NOT_COUNTED and all three new checks pass (the copy inherits reviewer 1's
+  planted-row detections; blank reasons never overlap). *(Corrected S178-FIX-EVAL; the earlier text called them
+  "stronger".)* **A-keep** keeps the `IDENTICAL_JUDGEMENTS` rule in addition (then the report must say a perfectly
+  agreeing pair cannot count); it removes this second relaxation, not the first (the gate statistic, bullet above).
 - The report must say **"gate redefined after a failed gate"** under A, C or E (REV-B Q24 (iii)).
 
 ## 2. Changes (old text -> new text)
@@ -68,7 +104,7 @@ Line numbers refer to the base text above. `-` = original line(s), quoted exactl
 +this file is a dated AI draft, not a pre-registration. It counts as pre-registered only through the two signature
 +files named at the end, each carrying the sha256 of these exact bytes. The gate below is valid only if Kush's
 +own DECISIONS entry amending D-027 R-06 for attempt 07.A-R1 (D-0NN) is dated before both signatures [only if
-+Option A, C or E]. Neither reviewer may open the packet until both have signed. After signing, nothing in §2–§6
++Option A, A-keep, C or E]. Neither reviewer may open the packet until both have signed. After signing, nothing in §2–§6
 +may change; any change is a dated amendment committed before labelling, or the attempt is void.
 ```
 
@@ -138,7 +174,7 @@ detection." (C06 default if the lock cannot carry it.)
 
 L29-L34 (codebook, AC1 formula) stay unchanged under A, C and E; under B they stay as the diagnostic's definition.
 
-**OPTION A (recommended): hardened AC1 + accuracy co-gate + planted rows**
+**OPTION A (HUMAN choice only; loosens R-06 in the kappa-paradox region, §1; needs Kush's signed D-0NN): hardened AC1 + accuracy co-gate + planted rows**
 ```diff
 -**PASS** iff all of:
 -1. Pooled AC1 over all 900 cells (9 fields × 100 conditions) ≥ **0.80** (point estimate, same value as the original
@@ -170,13 +206,18 @@ L29-L34 (codebook, AC1 formula) stay unchanged under A, C and E; under B they st
 +   *critical defect* if any of the 7 critical fields carries WRONG_TYPE, WRONG_VALUE, WRONG_LOCATION, INFERRED or
 +   SHOULD_BE_AMBIGUOUS, and an *any-field defect* if any of the 9 fields does; a cell the reviewers cannot resolve
 +   counts as a defect. PASS needs the one-sided 95 % Clopper-Pearson lower bound of the defect-free share
-+   >= **X_crit = 0.95** for critical defects (that is, at most 1 of 100) and >= **X_any = 0.90** for any-field
-+   defects (at most 4 of 100). Otherwise **FAIL_ACCURACY**.
++   >= **X_crit = 0.95** for critical defects and >= **X_any = 0.90** for any-field defects; the bound, not a count,
++   is the rule. Implied counts: with n = 100 real conditions (U1, U3) at most 1 critical-defect condition and at most
++   4 any-field-defect conditions; with n = 120 (U2) at most 1 and at most 6 (6 of 120). Otherwise **FAIL_ACCURACY**.
 +Outcomes are reported exactly as INVALID_INPUT, NOT_COUNTED, FAIL_OR_ADJUDICATE, FAIL_ACCURACY or PASS. Joint
 +adjudication and the co-gate are run and reported for every outcome except INVALID_INPUT and NOT_COUNTED.
 ```
 
-**OPTION B: R-06 kappa gate kept unchanged; PABAK diagnostic**
+**A-keep (HUMAN choice only; loosens R-06 like A, §1):** Option A with item 2's last sentence replaced by "The two
+returned files are not identical in all 10 judgement columns (THR-07A-08); otherwise **NOT_COUNTED**. A pair that agrees
+in every cell cannot count, and the report says so."
+
+**OPTION B (AI recommendation after S178-FIX-EVAL: R-06 unchanged, no loosening): R-06 kappa gate kept unchanged; PABAK diagnostic**
 ```diff
 -**PASS** iff all of:
 -1. Pooled AC1 over all 900 cells (9 fields × 100 conditions) ≥ **0.80** (point estimate, same value as the original
@@ -292,8 +333,10 @@ identical ordered disagreements (repeated-pair flag under Option A).
 | upper bound on defect rate | 0.0295 | 0.0466 | 0.0616 | 0.0757 | 0.0892 | 0.1023 | 0.1150 |
 | lower bound on defect-free share | 0.9705 | **0.9534** | 0.9384 | 0.9243 | **0.9108** | 0.8977 | 0.8850 |
 
-X_crit = 0.95 means at most 1 critical defect; X_crit = 0.93 would allow 2. X_any = 0.90 means at most 4 any-field
-defects; 0.89 would allow 5. The sitting sets X; the rule form is the point.
+At n = 100: X_crit = 0.95 means at most 1 critical defect; X_crit = 0.93 would allow 2. X_any = 0.90 means at most 4
+any-field defects; 0.89 would allow 5. The counts depend on n (P2, S178-FIX-EVAL): at n = 120 (U2) the lower bound is
+0.9611 at 1 defect and 0.9485 at 2 (X_crit 0.95 admits 1 of 120), and 0.9037 at 6 and 0.8932 at 7 (X_any 0.90 admits
+6 of 120). The sitting sets X; the gate is the bound, and the report states the counts for the n that was run.
 
 **Planted rows: probability a reviewer with true detection rate theta flags >= k of 10:**
 
@@ -309,7 +352,8 @@ One-sided 95 % Clopper-Pearson lower bound on detection for k/10: 8 -> 0.493, 9 
 
 > **TEMPLATE, NOT TEXT TO PASTE.** Under D-071 and REV-B B2.1 an amendment to a ruling is human-only. The agent must
 > not write, commit or relay this entry. Kush writes every sentence himself, from his own session; the bracketed
-> prompts say what the entry has to contain for the R1 gate to be valid. Needed only for Options A, C or E.
+> prompts say what the entry has to contain for the R1 gate to be valid. Needed only for Options A, A-keep, C or E
+> (each loosens R-06 in the kappa-paradox region, §1).
 
 ```
 ### D-0NN · 2026-11-__ · <your title> (decided by Kush; written and committed by Kush)
@@ -320,6 +364,9 @@ One-sided 95 % Clopper-Pearson lower bound on detection for k/10: 8 -> 0.493, 9 
   5 disagreements; it is never rescored or relabelled]
 - Why the statistic changes: [your reason, e.g. the kappa paradox; and that the report will say "gate redefined
   after a failed gate"]
+- The loosening, named: [in your words: the chosen gate passes some label patterns R-06 fails, e.g. one reviewer all
+  CORRECT and the other 5 SHOULD_BE_AMBIGUOUS cells adjudicated to 0 defects (kappa 0.0 fails R-06, the new gate passes);
+  you accept that]
 - Cards amended for R1 only: [Step 07 card pass gate, Step 15 G15-g and Step 23 G23.7 lines that say "AC1
   diagnostic only"]
 - What a PASS opens: [nothing before 25 Nov; 23b stays BLOCKED until 15b is frozen (R-05, D-075)]

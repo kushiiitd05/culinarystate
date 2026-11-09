@@ -29,6 +29,24 @@ S178 PHYS2 (version 0.2.0, SSOT v16 DRAFT 284.3 / 199.8, PROPOSED):
   the event verb, ``L:<event>`` the lineage of the lots the event consumes) and ``row`` (registry row or code rule that fixed the
   value); every UNKNOWN axis carries a ``reason``. Records also carry the ``endpoint`` block (stopping criterion, QUALITATIVE,
   with spans), which is NOT part of ``inputs`` and so never part of a feature row.
+
+S178 FIX-PHYS (version 0.3.0, SCI-A M1-M4 and m1-m3; SSOT v16 DRAFT 284.3 / 199.8, PROPOSED, AI_DRAFTED):
+- M1 food targets: ``endpoint_cues.classify_temperatures`` (last strong cue, local syrup exemption, until-clause targets) decides
+  which temperatures are targets; until-clause spans and roles are stored in the endpoint block.
+- M2 medium compatibility. Every temperature gets a cue class from the nearest cue word of its clause window: OVEN (oven, bake,
+  roast, broil, grill, preheat ...), OIL (oil, fat, fryer ...), APPLIANCE_PAN (electric skillet / frying pan, griddle),
+  APPLIANCE_AMBIENT (slow cooker, crock pot) or HEAT_LEVEL (over medium heat, on high, setting, burner, reduce the heat to ...).
+  A temperature is used only by a medium its cue allows: OVEN -> oven and radiant media; OIL -> oil and pan media; APPLIANCE_PAN ->
+  pan and shallow-oil media; HEAT_LEVEL / APPLIANCE_AMBIENT -> no medium (an aqueous step keeps one at or below T_boil, the
+  PHYSICAL_DEFINITION of the boil in process_medium_map_v1, flagged HEAT_LEVEL_OR_APPLIANCE_SETTING_AT_OR_BELOW_TBOIL). An
+  incompatible own temperature is kept as ``ambient_temperature``; a shared one is not shared. A cue-less temperature of a general
+  setter ("heat", "cook") is shared only when the receiving step consumes the setter's lot by lineage or cooks "in it".
+- M3 the cue window after a temperature ends at the next clause break or event verb (symmetric with the window before it).
+- M4 Layer 1 part: new CUE axes ``syrup_stage_cue`` (syrup, candy, jam word or a sugar stage in the event's own phrase) and
+  ``pressure_cue`` (pressure cooker / canner, psi), with spans; Layer 2 decides the stated-liquid cap from them.
+- m1 one temperature regex (``endpoint_cues.TEMP_RE``): ranges, spelled-out units, "c." as cups. m2 "200C/180C fan" is
+  RANGE(fan, conventional) with flag FAN_VS_CONVENTIONAL_UNRESOLVED. m3 ``water_bath_cue`` on an oven step (water bath, bain-marie,
+  pan of hot water): Layer 2 runs it as a water medium bounded by T_boil (flag WATER_BATH_IN_OVEN).
 """
 from __future__ import annotations
 
@@ -48,13 +66,13 @@ from culinarystate.simulation import recipe_adapter as RA
 from culinarystate.state_graph.source_class import SourceClass
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "condition-binding-L1-0.2.0-draft"
+VERSION = "condition-binding-L1-0.3.0-draft"
+VERSION_V02 = "condition-binding-L1-0.2.0-draft"  # SUPERSEDED by 0.3.0 (SCI-A M1-M4, m1-m3: targets, medium compatibility, window cut)
 VERSION_V01 = "condition-binding-L1-0.1.0-draft"  # SUPERSEDED: nearest-temperature rule, no provenance keys
 HEAT = ("WET_HEAT", "DRY_HEAT", "FAT_HEAT", "HEAT_GENERAL")
 INPUTS = ("duration", "temperature_profile", "medium", "lid_state", "start_mode", "piece_size_class", "water_ratio",
           "matrix_class")
-_T = re.compile(r"(?<![\d.])(\d{2,3})(?:\s*[-–]\s*(\d{2,3}))?\s*(?:°|º|˚|degrees?|deg\.?)?\s*([CF])(?![A-Za-z])",
-                re.I)
+_T = EC.TEMP_RE  # S178 FIX-PHYS m1: one regex for the binder and the endpoint cues
 _GAS = re.compile(r"\bgas(?:\s*mark)?\s*(\d{1,2})\b", re.I)
 _SENT = re.compile(r"[.!?;\n]+")
 _UNCOV = re.compile(r"\buncover(?:ed)?\b|\bwithout (?:a |the )?lid\b|\blid off\b", re.I)
@@ -77,7 +95,34 @@ _OVEN_CUE = re.compile(r"\b(?:ovens?|bake[sd]?|baking|roast(?:s|ed|ing)?|broil(?
                        r"barbecue[sd]?|preheat\w*|pre-heat\w*|convection|toaster)\b", re.I)
 _OIL_CUE = re.compile(r"\b(?:oil|fat|lard|shortening|fryer|deep[- ]fry\w*|frying)\b", re.I)
 _HEAT_LEVEL = re.compile(r"\b(?:low|medium|med|high|moderate|moderately)[- ]?(?:low|high)?[- ]+heat\s*(?:setting\s*)?(?:\(|of|to|at|:)?\s*$",
-                         re.I)
+                         re.I)  # 0.2.0 (kept for reference)
+# S178 FIX-PHYS M4 / M2: heat-level and appliance cues (the heater's setting, not a medium temperature)
+_LEVEL_WORDS = (r"\b(?:low|medium|med|high|moderate|moderately)(?:[- ](?:low|high))?[- ]+(?:heat|flame|fire)\b|"
+                r"\bon (?:high|low|medium)\b|\bsetting\b|\bburners?\b|\bhob\b|\bstove[- ]?top\b")
+# "reduce / lower / raise the heat (temperature) to N": the setting of whatever heats the step (oven, fryer or burner)
+_CHANGE_WORDS = r"\b(?:reduce|lower|increase|raise|turn|adjust|drop)\w*\s+(?:the\s+)?(?:heat|flame|burner|temperature|temp)\b(?:\s+(?:down|up|back))?"
+_LEVEL_TAIL = r"(?:\s|,|\(|:|-|\bto\b|\bat\b|\bof\b|\babout\b|\baround\b|\bapproximately\b|\bapprox\.?|\bsetting\b|\bset\b)*$"
+_HEAT_LEVEL_ANCHORED = re.compile(rf"(?:{_LEVEL_WORDS}){_LEVEL_TAIL}", re.I)
+_HEAT_CHANGE_ANCHORED = re.compile(rf"(?:{_CHANGE_WORDS}){_LEVEL_TAIL}", re.I)
+_APPLIANCE_PAN = re.compile(r"\belectric (?:skillet|frying[- ]pan|fry[- ]?pan|griddle|wok)\b|\bgriddle\b", re.I)
+_APPLIANCE_AMBIENT = re.compile(r"\bslow[- ]?cookers?\b|\bcrock[- ]?pots?\b|\bcrockpots?\b", re.I)
+_SYRUP_STAGE = re.compile(rf"\b(?:{EC._SYRUP_WORDS})\b|\bsoft[- ]ball\b|\bfirm[- ]ball\b|\bhard[- ]ball\b|\bsoft[- ]crack\b|"
+                          r"\bhard[- ]crack\b|\bthread stage\b|\bjelly stage\b|\bsetting point\b|\bgel(?:ling)? point\b", re.I)
+_PRESSURE = re.compile(r"\bpressure[- ]?(?:cook\w*|canners?)\b|\b\d{1,2}\s*(?:psi|psig|lbs?\.?\s+(?:of\s+)?pressure|pounds?\s+"
+                       r"(?:of\s+)?pressure)\b|\binstant ?pot\b|\bautoclave\b", re.I)
+_WATER_BATH = re.compile(r"\b(?:hot[- ]|warm[- ]|boiling[- ])?water[- ]bath\b|\bbain[- ]?marie\b|\bba[ñn]o[- ]mar[íi]a\b|"
+                         r"\b(?:roasting )?(?:pan|tin|dish|tray) (?:half[- ]filled )?(?:of|with) (?:hot|boiling|warm) water\b", re.I)
+_ANAPHORA = re.compile(r"\b(?:in|into|to|with)\s+(?:it|them|this|that|the (?:hot |warm |same |heated |scalded )?"
+                       r"(?:milk|liquid|mixture|water|stock|broth|syrup|cream|oil|fat|butter|pan|pot|saucepan))\b", re.I)
+_FAN = re.compile(r"\s*(?:/|\(|,|or)\s*$")
+_FAN_AFTER = re.compile(r"\s*(?:fan(?:[- ]assisted| oven| forced)?|fan-forced|convection)\b", re.I)
+OVEN_MEDIA = ("OVEN_AIR", "OVEN_AIR_FORCED", "RADIANT")
+OIL_MEDIA = ("OIL_IMMERSION", "OIL_SHALLOW", "PAN_CONTACT_OIL")
+PAN_MEDIA = ("PAN_CONTACT_OIL", "OIL_SHALLOW")
+CUE_CLASSES = ("OVEN", "OIL", "APPLIANCE_PAN", "APPLIANCE_AMBIENT", "HEAT_LEVEL", "HEAT_CHANGE")
+SETTING_CLASSES = ("HEAT_LEVEL", "HEAT_CHANGE", "APPLIANCE_PAN", "APPLIANCE_AMBIENT")  # a heater setting, not a liquid temperature
+HEAT_LEVEL_LE_TBOIL = "HEAT_LEVEL_OR_APPLIANCE_SETTING_AT_OR_BELOW_TBOIL"
+FAN_FLAG = "FAN_VS_CONVENTIONAL_UNRESOLVED"
 _CLAUSE_CUT = re.compile(r"[,;]|\b(?:then|and|while|before|after|until)\b", re.I)
 _LEADING_GAP = re.compile(r"\s*(?:,|and|then|&)?\s*(?:and\s+|then\s+)?(?:\w+\s+){0,1}")
 OVEN_WINDOW_BEFORE, OVEN_WINDOW_AFTER = 40, 25
@@ -131,15 +176,41 @@ def _claim_span(claims, *fields) -> tuple[int, int] | None:
 
 
 class TempPlan:
-    """Temperatures one temperature-owning event may use (S178 PHYS2). ``temps`` = own first, then those shared from earlier
-    setter steps; ``legacy`` = every temperature of the sentence (the 0.1.0 candidates); ``target`` = spans that are targets of the
-    food; ``oven`` = spans with an oven, grill or heat-level cue next to them (not a liquid temperature); ``oil`` = spans with an oil
-    or fat cue next to them; ``owner_of`` = the events that own each span (coordinated verbs share one)."""
-    __slots__ = ("temps", "own", "legacy", "target", "oven", "owner_of", "oil")
+    """Temperatures one temperature-owning event may use (S178 PHYS2, FIX-PHYS 0.3.0). ``temps`` = own first, then those shared from
+    earlier setter steps (medium-compatible only); ``legacy`` = every temperature of the sentence (the 0.1.0 candidates); ``target``
+    = spans that are targets of the food; ``oven`` = spans with an oven, grill, appliance or heat-level cue (never a liquid
+    temperature above T_boil); ``oil`` = spans with an oil or fat cue; ``owner_of`` = the events that own each span; ``cue`` = span ->
+    (nearest cue class or None, all cue classes of its window); ``fan`` = merged UK fan / conventional spans; ``roles`` = the
+    endpoint role of every span; ``level_ok`` = spans shared under the heat-level-at-or-below-T_boil rule; ``window`` = the event's
+    own phrase (verb to the next owner verb) and ``lead`` = the start of the text before it that belongs to no other owner."""
+    __slots__ = ("temps", "own", "legacy", "target", "oven", "owner_of", "oil", "cue", "fan", "roles", "level_ok", "window", "lead",
+                 "amb_shared")
 
-    def __init__(self, temps, own, legacy, target, oven, owner_of, oil=frozenset()):
+    def __init__(self, temps, own, legacy, target, oven, owner_of, oil=frozenset(), cue=None, fan=frozenset(), roles=None,
+                 level_ok=frozenset(), window=None, lead=None, amb_shared=()):
         self.temps, self.own, self.legacy, self.target, self.oven, self.owner_of = temps, own, legacy, target, oven, owner_of
-        self.oil = oil
+        self.oil, self.cue, self.fan, self.roles, self.level_ok = oil, cue or {}, fan, roles or {}, level_ok
+        self.window, self.lead = window, lead
+        self.amb_shared = list(amb_shared)  # heater settings of an earlier setter that this step may not use ("reduce heat to 325 F")
+
+
+def _lineage(g, receiver, setter) -> bool:
+    """True when ``receiver`` consumes a lot that descends from a lot ``setter`` produced (Rung A lineage)."""
+    if g is None:
+        return False
+    made = set(setter.produces)
+    ents = {e.entity_id: e for e in g.entities}
+    stack, seen = list(receiver.consumes), set()
+    while stack:
+        lid = stack.pop()
+        if lid in seen:
+            continue
+        seen.add(lid)
+        if lid in made:
+            return True
+        if lid in ents:
+            stack.extend(ents[lid].parent_entity_ids)
+    return False
 
 
 class Binder:
@@ -148,6 +219,8 @@ class Binder:
         self.rung, self.schema, self.medium_map, self.family, self.food_group = rung, schema, medium_map, family, \
             food_group
         self.lexicon = EC.load_lexicon()
+        tb = (medium_map.get("PROC-000019") or {}).get("physical_definition_degC")
+        self.t_boil_def = Fraction(tb) if tb else None  # PHYSICAL_DEFINITION of the boil (process_medium_map_v1)
 
     @classmethod
     def load(cls, root: Path = ROOT) -> "Binder":
@@ -169,35 +242,111 @@ class Binder:
         return start, (nxt.start() if nxt else len(raw))
 
     @staticmethod
-    def _temperatures(raw: str, a: int, b: int) -> list[tuple[Any, tuple[int, int]]]:
-        out = []
-        for m in _T.finditer(raw, a, b):
-            lo = _c(Fraction(m.group(1)), m.group(3))
-            hi = _c(Fraction(m.group(2)), m.group(3)) if m.group(2) else lo
-            if T_MIN_C <= lo <= hi <= T_MAX_C:
-                out.append(((lo, hi), (m.start(), m.end())))
-        return out
+    def _temps_fan(raw: str, a: int, b: int) -> tuple[list[tuple[Any, tuple[int, int]]], set[tuple[int, int]]]:
+        """Temperatures of ``raw[a:b]`` (``endpoint_cues.parse_temperatures``, within T_MIN_C..T_MAX_C) and the spans that merge a
+        UK fan / conventional pair ("200C/180C fan", "180C fan / 200C") into RANGE(fan, conventional) (S178 FIX-PHYS m2)."""
+        got = [t for t in EC.parse_temperatures(raw, a, b) if T_MIN_C <= t[0][0] <= t[0][1] <= T_MAX_C]
+        out, fan, i = [], set(), 0
+        while i < len(got):
+            (v, (s, e)) = got[i]
+            if i + 1 < len(got) and v[0] == v[1] and got[i + 1][0][0] == got[i + 1][0][1]:
+                (v2, (s2, e2)) = got[i + 1]
+                gap = raw[e:s2]
+                second_fan = re.fullmatch(r"\s*(?:/|\(|,|or)\s*", gap, re.I) and _FAN_AFTER.match(raw, e2)
+                first_fan = re.fullmatch(r"\s*(?:fan(?:[- ]assisted| oven| forced)?|fan-forced|convection)\s*(?:/|\(|,|or)\s*", gap,
+                                         re.I)
+                if second_fan or first_fan:
+                    lo, hi = sorted((v[0], v2[0]))
+                    out.append(((lo, hi), (s, e2)))
+                    fan.add((s, e2))
+                    i += 2
+                    continue
+            out.append((v, (s, e)))
+            i += 1
+        return out, fan
 
-    def temperature_plan(self, raw: str, events: Sequence) -> dict[str, TempPlan]:
-        """Who owns each temperature (S178 PHYS2, 0.2.0). ``events`` = graph events with spans, in text order. A temperature
-        belongs to the last temperature-owning event whose verb precedes it in the sentence, else the first that follows. A heat
-        event may also use a temperature owned by an EARLIER setter (HEAT_CONTROL / HEAT_GENERAL: "preheat the oven to 350 and
-        bake"). Targets of the food (after "thermometer", "reads", "reaches" ...) are nobody's bath temperature."""
+    @classmethod
+    def _temperatures(cls, raw: str, a: int, b: int) -> list[tuple[Any, tuple[int, int]]]:
+        return cls._temps_fan(raw, a, b)[0]
+
+    @staticmethod
+    def _cue_class(raw: str, a: int, b: int, s: int, e: int, verbs: Sequence[int]) -> tuple[str | None, frozenset]:
+        """(nearest cue class, all cue classes) of the clause window of the temperature ``[s, e)`` (S178 FIX-PHYS M2 / M3 / M4).
+        The window runs 40 characters before (cut at the last clause break) and 25 after, cut at the first clause break and at the
+        next event verb after the temperature (M3). A heat-level phrase directly before the temperature (commas and fillers
+        allowed: "over medium heat, about 300 F") counts at distance 0."""
+        lo = max(a, s - OVEN_WINDOW_BEFORE)
+        cuts = list(_CLAUSE_CUT.finditer(raw, lo, s))
+        if cuts:
+            lo = cuts[-1].end()
+        hi = min(b, e + OVEN_WINDOW_AFTER)
+        c = _CLAUSE_CUT.search(raw, e, hi)
+        if c:
+            hi = c.start()
+        nv = [v for v in verbs if v >= e]
+        if nv:
+            hi = min(hi, nv[0])
+        found = []
+        for rank, (cls, rx) in enumerate((("OVEN", _OVEN_CUE), ("OIL", _OIL_CUE), ("APPLIANCE_PAN", _APPLIANCE_PAN),
+                                          ("APPLIANCE_AMBIENT", _APPLIANCE_AMBIENT))):
+            for m in rx.finditer(raw, lo, hi):
+                d = s - m.end() if m.end() <= s else m.start() - e
+                found.append((max(d, 0), rank, cls))
+        if _HEAT_LEVEL_ANCHORED.search(raw, max(a, s - 40), s):
+            found.append((0, -2, "HEAT_LEVEL"))
+        elif _HEAT_CHANGE_ANCHORED.search(raw, max(a, s - 40), s):
+            found.append((0, -1, "HEAT_CHANGE"))
+        return (min(found)[2] if found else None), frozenset(c for _, _, c in found)
+
+    def _share_ok(self, t, cue: tuple[str | None, frozenset], setter_fam: str | None, setter_pid: str | None,
+                  medium: str | None, linked: bool) -> tuple[bool, bool]:
+        """(may the receiving medium use this shared temperature, was it taken under the heat-level-at-or-below-T_boil rule)."""
+        cls = cue[0]
+        liquid_ok = medium in LIQUID_MEDIA and self.t_boil_def is not None and t[0][1] <= self.t_boil_def
+        unknown = medium is None  # a generic "cook" / "heat" step: no medium to contradict (Layer 2 cannot run it without one)
+        if cls == "OVEN":
+            return medium in OVEN_MEDIA or unknown, False
+        if cls == "OIL":
+            return medium in OIL_MEDIA or unknown, False
+        if cls == "APPLIANCE_PAN":
+            return medium in PAN_MEDIA or unknown, False
+        if cls == "HEAT_CHANGE":  # "reduce the heat to 350 F and bake": the oven's (or fryer's) setting; a liquid only <= T_boil
+            if medium in OVEN_MEDIA or medium in OIL_MEDIA or unknown:
+                return True, False
+            return liquid_ok, liquid_ok
+        if cls in ("HEAT_LEVEL", "APPLIANCE_AMBIENT"):
+            return liquid_ok, liquid_ok
+        if setter_fam == "HEAT_CONTROL" or setter_pid in SETTER_PROCS or setter_fam == "DRY_HEAT":
+            return medium in OVEN_MEDIA or unknown, False
+        return linked, False  # a cue-less general setter ("heat the milk to 180 F"): lineage or "in it" only
+
+    def temperature_plan(self, raw: str, events: Sequence, g=None) -> dict[str, TempPlan]:
+        """Who owns each temperature (S178 PHYS2 0.2.0, FIX-PHYS 0.3.0). ``events`` = graph events with spans, in text order;
+        ``g`` = the Rung A graph (lineage for the general-setter rule; optional). A temperature belongs to the last
+        temperature-owning event whose verb precedes it in the sentence, else the first that follows. A heat event may also use a
+        temperature owned by an EARLIER setter when its medium is compatible with the temperature's cue (``_share_ok``).
+        Targets of the food (``endpoint_cues.classify_temperatures``) are nobody's bath temperature."""
         groups: dict[tuple[int, int], list] = {}
+        all_verbs: dict[tuple[int, int], list[int]] = {}
         for ev in events:
+            sent = self._sentence(raw, ev.span.char_start)
+            all_verbs.setdefault(sent, []).append(ev.span.char_start)
             pid = _attr(ev.attributes, "proc_id")
             fam = "STORAGE" if pid == STORE_PROC else self.family.get(pid)
             if fam in TEMP_OWNER_FAMILIES or fam == "STORAGE":
-                groups.setdefault(self._sentence(raw, ev.span.char_start), []).append((ev, fam))
+                groups.setdefault(sent, []).append((ev, fam))
         plan: dict[str, TempPlan] = {}
         for (a, b), evs in groups.items():
-            temps = self._temperatures(raw, a, b)
-            target = EC.target_temperature_spans(raw, a, b, temps)
+            temps, fan = self._temps_fan(raw, a, b)
             starts = [ev.span.char_start for ev, _ in evs]
+            verbs = sorted(all_verbs.get((a, b), starts))
+            roles = EC.classify_temperatures(raw, a, b, temps, starts)
+            target = {sp for sp, r in roles.items() if r in EC.TARGET_ROLES}
             owned: dict[str, list] = {ev.event_id: [] for ev, _ in evs}
             owner_of: dict[tuple[int, int], str] = {}
             oven: set[tuple[int, int]] = set()
             oil: set[tuple[int, int]] = set()
+            cue: dict[tuple[int, int], tuple] = {}
             for t in temps:
                 s, e = t[1]
                 if (s, e) in target:
@@ -213,15 +362,10 @@ class Binder:
                 for j in owners:
                     owned[evs[j][0].event_id].append(t)
                 owner_of[(s, e)] = frozenset(evs[j][0].event_id for j in owners)
-                lo, hi = max(a, s - OVEN_WINDOW_BEFORE), min(b, e + OVEN_WINDOW_AFTER)
-                cuts = list(_CLAUSE_CUT.finditer(raw, lo, s))
-                if cuts:  # a cue before a comma, "then" or "and" belongs to another clause
-                    lo = cuts[-1].end()
-                if starts[oi] >= e:
-                    hi = min(hi, starts[oi])
-                if _OVEN_CUE.search(raw, lo, hi) or _HEAT_LEVEL.search(raw[max(a, s - 30):s]):
+                cue[(s, e)] = self._cue_class(raw, a, b, s, e, verbs)
+                if cue[(s, e)][1] & {"OVEN", *SETTING_CLASSES}:
                     oven.add((s, e))
-                if _OIL_CUE.search(raw, lo, hi):
+                if "OIL" in cue[(s, e)][1]:
                     oil.add((s, e))
             # a second temperature of one owner that leads the next owner-less verb ("bake at 450 ..., turn the oven down to 350 and
             # bake 10 more minutes") belongs to that verb
@@ -234,16 +378,35 @@ class Binder:
                         nxt.append(t)
                         owner_of[t[1]] = frozenset({evs[i + 1][0].event_id})
             for i, (ev, fam) in enumerate(evs):
+                w1 = starts[i + 1] if i + 1 < len(evs) else b
+                lead = starts[i - 1] if i > 0 else a
                 shared: list = []
+                amb_shared: list = []
+                level_ok: set = set()
                 if fam in HEAT:
+                    medium = (self.medium_map.get(_attr(ev.attributes, "proc_id")) or {}).get("medium_code")
+                    anaphora = bool(_ANAPHORA.search(raw, starts[i], w1))
                     for j in range(i):
-                        if evs[j][1] in SETTER_FAMILIES or _attr(evs[j][0].attributes, "proc_id") in SETTER_PROCS:
-                            shared += owned[evs[j][0].event_id]
-                        elif evs[j][1] == "DRY_HEAT" and fam in ("DRY_HEAT", "HEAT_GENERAL"):
-                            shared += owned[evs[j][0].event_id]  # "bake at 350 for 30 minutes, uncover and bake 15 more": same oven
+                        sev, sfam = evs[j]
+                        spid = _attr(sev.attributes, "proc_id")
+                        setter = sfam in SETTER_FAMILIES or spid in SETTER_PROCS
+                        oven_step = sfam == "DRY_HEAT" and fam in ("DRY_HEAT", "HEAT_GENERAL")
+                        if not (setter or oven_step):
+                            continue
+                        linked = anaphora or _lineage(g, ev, sev)
+                        for t in owned[sev.event_id]:
+                            ok, lv = self._share_ok(t, cue.get(t[1], (None, frozenset())), sfam, spid, medium, linked)
+                            if ok:
+                                shared.append(t)
+                                if lv:
+                                    level_ok.add(t[1])
+                            elif setter and (cue.get(t[1], (None,))[0] in SETTING_CLASSES or (
+                                    cue.get(t[1], (None,))[0] == "OVEN" and (fam == "WET_HEAT" or medium in LIQUID_MEDIA))):
+                                amb_shared.append(t)  # a heater setting (or an oven value next to a liquid step): stated, not used
                 shared.sort(key=lambda t: -t[1][0])
                 own = owned[ev.event_id]
-                plan[ev.event_id] = TempPlan(own + shared, own, temps, target, oven, owner_of, oil)
+                plan[ev.event_id] = TempPlan(own + shared, own, temps, target, oven, owner_of, oil, cue, fan, roles,
+                                             frozenset(level_ok), (starts[i], w1), lead, amb_shared)
         return plan
 
     def _cut_class(self, g, lot_ids) -> tuple[str | None, Any]:
@@ -273,15 +436,20 @@ class Binder:
         events, bindings = [], []
         setpoint, gas = None, None
         evs = sorted((e for e in g.events if e.span is not None), key=lambda e: e.span.char_start)
-        plan = self.temperature_plan(raw, evs)
+        plan = self.temperature_plan(raw, evs, g)
         heat_by_sentence: dict[tuple[int, int], list[tuple[str, int]]] = {}
         for ev in evs:
             if self.family.get(_attr(ev.attributes, "proc_id")) in HEAT:
                 heat_by_sentence.setdefault(self._sentence(raw, ev.span.char_start), []).append(
                     (ev.event_id, ev.span.char_start))
         cues: dict[str, list[dict]] = {}
+        clauses: dict[str, list[dict]] = {}
         for (a, b), hs in heat_by_sentence.items():
-            cues.update(EC.extract_sentence(raw, a, b, hs, lex=self.lexicon, temps=self._temperatures(raw, a, b)))
+            roles = plan[hs[0][0]].roles if hs[0][0] in plan else None
+            owners = sorted(ev.span.char_start for ev in evs if ev.event_id in plan and self._sentence(raw, ev.span.char_start) == (a, b))
+            cues.update(EC.extract_sentence(raw, a, b, hs, lex=self.lexicon, temps=self._temperatures(raw, a, b), roles=roles,
+                                            verbs=owners))
+            clauses.update(EC.until_clauses_by_event(raw, a, b, hs, roles or {}, owners))
         for ev in evs:
             pid = _attr(ev.attributes, "proc_id")
             fam = self.family.get(pid)
@@ -298,7 +466,7 @@ class Binder:
                 notes: list[dict] = []
                 rec["inputs"], rec["oven_setpoint_code"] = self._inputs(raw, g, ev, pid, fam, (a, b), temps, setpoint, gas,
                                                                          gm, plan=tp, notes=notes)
-                rec[EC.BLOCK_KEY] = EC.block(cues.get(ev.event_id, []))
+                rec[EC.BLOCK_KEY] = EC.block(cues.get(ev.event_id, []), clauses.get(ev.event_id, []))
                 if notes:
                     rec["temperature_note"] = notes
                 bindings += self._bindings(ev.event_id, rec["inputs"])
@@ -318,21 +486,40 @@ class Binder:
                                      (Fraction(dur), Fraction(dur)), "TEXT_STATED", sp, sid=None if sp else f"E:{eid}",
                                      row="RUNG_A:duration_min")
         mm = self.medium_map.get(pid) or {}
-        # aqueous liquid steps never take an oven-cued temperature as the liquid temperature (kept as ambient_temperature)
-        liquid = fam == "WET_HEAT" or mm.get("medium_code") in LIQUID_MEDIA
+        medium = mm.get("medium_code")
+        # S178 FIX-PHYS M2 / M4: a temperature is used only by a medium its cue allows; the rest is kept as ambient_temperature
+        liquid = fam == "WET_HEAT" or medium in LIQUID_MEDIA
         cand = list(temps)
-        if plan is not None and liquid:
-            def _not_liquid(t) -> str | None:
-                if t[1] in plan.oven:
-                    return "OVEN_OR_HEAT_LEVEL_CUE"
-                if t[1] in plan.oil and t not in plan.own:  # an oil temperature shared from an earlier "heat the oil to ..."
-                    return "OIL_CUE_SHARED_FROM_SETTER"
+        level_kept: set = set()
+        if plan is not None:
+            def _reject(t) -> str | None:
+                near, classes = plan.cue.get(t[1], (None, frozenset()))
+                if liquid:
+                    if "OVEN" in classes:
+                        return "OVEN_OR_HEAT_LEVEL_CUE"
+                    if classes & set(SETTING_CLASSES):
+                        if self.t_boil_def is not None and t[0][1] <= self.t_boil_def:
+                            level_kept.add(t[1])
+                            return None
+                        return "HEAT_LEVEL_OR_APPLIANCE_CUE"
+                    if t[1] in plan.oil and t not in plan.own:  # an oil temperature shared from an earlier "heat the oil to ..."
+                        return "OIL_CUE_SHARED_FROM_SETTER"
+                    return None
+                if medium in OVEN_MEDIA and near in ("HEAT_LEVEL", "APPLIANCE_AMBIENT", "APPLIANCE_PAN"):
+                    return "HEAT_LEVEL_OR_APPLIANCE_CUE_NOT_OVEN_AIR"
+                if medium in OIL_MEDIA and near in ("OVEN", "HEAT_LEVEL", "APPLIANCE_AMBIENT"):
+                    return "OVEN_OR_HEAT_LEVEL_CUE_NOT_OIL_OR_PAN"
                 return None
-            amb = [(t, _not_liquid(t)) for t in cand if _not_liquid(t)]
-            cand = [t for t in cand if not _not_liquid(t)]
+            amb = [(t, _reject(t)) for t in cand]
+            amb = [(t, why) for t, why in amb if why]
+            bad = {t[1] for t, _ in amb}
+            cand = [t for t in cand if t[1] not in bad]
             if amb:
                 t, why = min(amb, key=lambda x: abs(x[0][1][0] - ev.span.char_start))
                 inp["ambient_temperature"] = _known(t[0], "TEXT_STATED", t[1], row=f"CB_RULE:AMBIENT_{why}")
+            elif plan.amb_shared:
+                t = max(plan.amb_shared, key=lambda x: x[1][0])
+                inp["ambient_temperature"] = _known(t[0], "TEXT_STATED", t[1], row="CB_RULE:AMBIENT_SETTER_VALUE_NOT_COMPATIBLE")
         code = None
         chosen = None
         if cand:
@@ -343,6 +530,13 @@ class Binder:
             inp["temperature_profile"] = _known(near[0], "TEXT_STATED", near[1],
                                                 row="CB_RULE:TEMPERATURE_OWN_CLAUSE" if own else
                                                 "CB_RULE:TEMPERATURE_FROM_SETTER_STEP")
+            tflags = []
+            if plan is not None and near[1] in plan.fan:
+                tflags.append(FAN_FLAG)
+            if plan is not None and (near[1] in level_kept or near[1] in plan.level_ok):
+                tflags.append(HEAT_LEVEL_LE_TBOIL)
+            if tflags:
+                inp["temperature_profile"]["flags"] = tflags
         elif fam in SETPOINT_FAMILIES and setpoint is not None:
             inp["temperature_profile"] = _known(setpoint[0][0], "CARRIED_SETPOINT", setpoint[0][1],
                                                 row="CB_RULE:CARRIED_SETPOINT")
@@ -353,6 +547,20 @@ class Binder:
         elif fam in SETPOINT_FAMILIES and (gm or gas):
             code = f"GAS_{gm.group(1)}" if gm else gas
             inp["temperature_profile"] = _unknown("GAS_MARK_CODE_ONLY")
+        # S178 FIX-PHYS M4 / m3: CUE axes from the event's own phrase (spans; Layer 2 decides what they allow)
+        if plan is not None and plan.window is not None:
+            w0, w1 = plan.window
+            lead = plan.lead if plan.lead is not None else a
+            m = _SYRUP_STAGE.search(raw, w0, w1)
+            if m:
+                inp["syrup_stage_cue"] = _known("SYRUP_OR_CANDY_STAGE", "CUE", (m.start(), m.end()), row="CB_RULE:SYRUP_STAGE_CUE")
+            m = _PRESSURE.search(raw, lead, w1)
+            if m:
+                inp["pressure_cue"] = _known("PRESSURE_STATED", "CUE", (m.start(), m.end()), row="CB_RULE:PRESSURE_CUE")
+            if medium in ("OVEN_AIR", "OVEN_AIR_FORCED"):
+                m = _WATER_BATH.search(raw, lead, w1)
+                if m:
+                    inp["water_bath_cue"] = _known("WATER_BATH_IN_OVEN", "CUE", (m.start(), m.end()), row="CB_RULE:WATER_BATH_IN_OVEN")
         if plan is not None and notes is not None and plan.legacy:
             leg = min(plan.legacy, key=lambda t: abs(t[1][0] - ev.span.char_start))[1]
             if chosen != leg:
@@ -362,6 +570,8 @@ class Binder:
                     why = "OWNED_BY_OTHER_EVENT"
                 elif liquid and (leg in plan.oven or leg in plan.oil):
                     why = "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP"
+                elif leg in plan.oven or leg in plan.oil:
+                    why = "CUE_NOT_COMPATIBLE_WITH_MEDIUM"
                 else:
                     why = "OTHER_TEMPERATURE_SELECTED"
                 notes.append({"legacy_span": list(leg), "now": why})

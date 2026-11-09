@@ -223,7 +223,8 @@ def test_top_sheet_has_exactly_one_tickable_line_per_ing_up_to_100():
 
 def test_top_sheet_of_the_fixture(inp):
     md = T.top_sheet(T.build_rows(inp))
-    assert md.count("- [ ] ") == 9 and "**salt**" in md and "unlocks ABSENT" in md
+    assert md.count("- [ ] ") == 9 and "**salt**" in md and "affects ABSENT screen (" in md
+    assert "unlock" not in md and T.SHEET_NOTE in md and "SR vitamin-C basis:" in md            # S178 R7: neutral, basis shown
     assert "AI_DRAFTED" in md and "No ledger was edited" in md
 
 
@@ -252,7 +253,8 @@ def _gates():
     cands = {"ING-A": ((1, "HIGH", Fraction(1)),), "ING-B": ((2, "HIGH", Fraction(1)),), "ING-C": ((3, "HIGH", Fraction(1)),)}
     values = {(1, "vitamin_c"): Fraction(0), (2, "vitamin_c"): Fraction(0), (3, "vitamin_c"): Fraction(0)}
     cats = {"ING-A": ("", "Dairy and Egg Products"), "ING-B": ("", "Legumes and Legume Products"), "ING-C": ("DAIRY", "Dairy and Egg Products")}
-    return EG.EvidenceGates(EG.TargetPresenceScreen(floors, cands, values, cats, {}), provenance={"version": "x"})
+    return EG.EvidenceGates(EG.TargetPresenceScreen(floors, cands, values, cats, {}, basis={k: ("A", 1) for k in values}),  # S178 R4: synthetic SR values are analytical
+                            provenance={"version": "x"})
 
 
 def test_overlay_flips_empty_category_to_absent_only_when_the_crosswalk_confirms():

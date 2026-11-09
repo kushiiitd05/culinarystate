@@ -9,7 +9,7 @@ adds a versioned pre-normaliser and opt-in entry points that call the frozen fun
     parse_quantity_v2_prenorm(raw, ...)      -> ParsedQuantityV2 (raw text preserved)
     ground_quantity_rc2_prenorm(raw, ...)    -> GroundingResult (same contract as ground_quantity_rc2)
 
-Rules (``RULE_IDS``; ``DEFAULT_RULES`` = all three, the D-070/D-072 change set):
+Rules (``RULE_IDS``; ``DEFAULT_RULES`` = all four, the D-070/D-072 change set plus the S178 inverted-range refusal):
 
   SP002_U2044          U+2044 / U+2215 (DIVISION SLASH) / U+FF0F (FULLWIDTH SOLIDUS) between digits, optionally with
                        blanks around it, becomes "/".      "1⁄4" -> "1/4"; "1 1⁄2" -> "1 1/2"; "1 ⁄ 2" -> "1/2"
@@ -18,10 +18,14 @@ Rules (``RULE_IDS``; ``DEFAULT_RULES`` = all three, the D-070/D-072 change set):
                        is a legitimate fraction and is NOT touched.)
   SP002_HYPHEN_MIXED   "N-a/b" with N >= 1 and a proper fraction a/b < 1 is a mixed number, not a range ("1-1/2" =
                        1 1/2; D-072). It becomes "N a/b". "1/2-3/4" and "0-1/2" are left alone.
+  SP002_INVERTED_RANGE_UNKNOWN   (S178 FIX-ROUTER, SCI-B CORP-2) after pre-normalisation, a line the frozen parser still
+                       reads as a RANGE with low > high ("1-½ cups", "1–1/2 cups" with an en dash, "2 - 1/2 cups") is NOT
+                       guessed (it may be a mixed number or a typo): the opt-in entry points return UNKNOWN with flag
+                       INVERTED_RANGE. The text is not rewritten; ``prenormalise`` itself is unchanged by this rule.
 
 Guarantee (tested, ``tests/unit/test_s178_corpus_prenorm.py``): for any input that contains none of U+2044, U+2215,
-U+FF0F and no ``N-a/b`` shape, ``prenormalise`` returns the input unchanged and every opt-in entry point returns exactly
-what the frozen function returns (same object for the parse; ``rule_version`` unchanged). The original text always stays
+U+FF0F and no ``N-a/b`` shape, ``prenormalise`` returns the input unchanged, and unless the frozen parser reads it as an
+inverted RANGE (low > high; S178), every opt-in entry point returns exactly what the frozen function returns (same object for the parse; ``rule_version`` unchanged). The original text always stays
 in ``raw`` fields; the pre-normalised text only feeds the frozen parser.
 
 Not covered here (they live in Rung A's span regex ``extraction/rung_a.py::_NUM``, outside the quantity parser): the
@@ -51,9 +55,11 @@ PRENORM_VERSION = "CQPO_SP002_PRENORM_V1_DRAFT"
 RULE_U2044 = "SP002_U2044"
 RULE_GLUED = "SP002_GLUED_REFUSE"
 RULE_HYPHEN = "SP002_HYPHEN_MIXED"
-RULE_IDS = (RULE_U2044, RULE_GLUED, RULE_HYPHEN)
+RULE_INVERTED = "SP002_INVERTED_RANGE_UNKNOWN"     # S178 CORP-2
+RULE_IDS = (RULE_U2044, RULE_GLUED, RULE_HYPHEN, RULE_INVERTED)
 DEFAULT_RULES = RULE_IDS
 GLUED_FLAG = "AMBIGUOUS_GLUED_FRACTION"
+INVERTED_FLAG = "INVERTED_RANGE"
 
 _SLASHES = "⁄∕／"
 _SLASH_CLASS = f"[{_SLASHES}]"
@@ -88,6 +94,11 @@ def _check_rules(rules: Iterable[str]) -> tuple[str, ...]:
     if unknown:
         raise ValueError(f"unknown pre-normalisation rule(s): {unknown}")
     return rules
+
+
+def inverted_range(p: QuantityParse | None) -> bool:
+    """A legacy parse that is a RANGE whose low end is above its high end (S178 CORP-2)."""
+    return (p is not None and p.kind == "RANGE" and p.low is not None and p.high is not None and p.low > p.high)
 
 
 def _hyphen_sub(m: re.Match) -> str:
@@ -126,13 +137,14 @@ def parse_line_prenorm(raw: str, rules: Iterable[str] = DEFAULT_RULES):
     ``QuantityParse.raw`` keeps the original text. For an unaffected input this is exactly ``parse_line(raw)``.
     """
     from .grammar import parse_line
+    rules = _check_rules(rules)
     pn = prenormalise(raw, rules)
-    if not pn.changed:
-        return parse_line(raw)
     if pn.refused:
         return QuantityParse(raw, "NONE", rest=raw, flags=(GLUED_FLAG,))
-    p = parse_line(pn.text)
-    return dataclasses.replace(p, raw=raw)
+    p = parse_line(pn.text) if pn.changed else parse_line(raw)
+    if RULE_INVERTED in rules and inverted_range(p):
+        return QuantityParse(raw, "NONE", rest=raw, flags=(INVERTED_FLAG,))     # S178 CORP-2: never a low > high range
+    return p if not pn.changed else dataclasses.replace(p, raw=raw)
 
 
 # ---------------------------------------------------------------- rc2 adapter level
@@ -152,16 +164,17 @@ def _restore_raw(obj: Any, normalised: str, original: str) -> Any:
     return obj
 
 
-def _refused_result(raw: str, source_metadata: Mapping, locale: str | None, pn: PreNorm) -> PrenormParsed:
+def _refused_result(raw: str, source_metadata: Mapping, locale: str | None, pn: PreNorm,
+                    flag: str = GLUED_FLAG) -> PrenormParsed:
     if list(Draft202012Validator(metadata_schema()).iter_errors(source_metadata)):
         raise ContractError("Explicit valid source metadata is required")
     meta = copy.deepcopy(dict(source_metadata))
-    p = QuantityParse(raw, "NONE", rest=raw, flags=(GLUED_FLAG,))
+    p = QuantityParse(raw, "NONE", rest=raw, flags=(flag,))
     normalized = normalize_v2(p, locale=locale)
     ast = {"node_type": "UNKNOWN", "raw": raw, "meta": {**meta, "status": "UNKNOWN"}}
     if meta["status"] in {"UNKNOWN", "NOT_APPLICABLE"}:
         ast = {"node_type": "UNKNOWN", "raw": raw, "meta": meta}
-    flags = tuple(dict.fromkeys([*normalized.flags, GLUED_FLAG]))
+    flags = tuple(dict.fromkeys([*normalized.flags, flag]))
     return PrenormParsed(raw, p, ast, evaluate_ast(ast), normalized, flags,
                          rule_version=f"{ADAPTER_VERSION}+{PRENORM_VERSION}", prenorm=pn)
 
@@ -173,16 +186,27 @@ def parse_quantity_v2_prenorm(raw: str, *, source_metadata: Mapping, locale: str
     No rule fired: returns the frozen function's own result, untouched. A rule fired: the same pipeline on the
     normalised text, ``rule_version`` ``<adapter>+<prenorm>``, flags gain ``PRENORM_<rule>``. REFUSE: UNKNOWN AST.
     """
+    rules = _check_rules(rules)
     pn = prenormalise(raw, rules)
-    if not pn.changed:
-        return parse_quantity_v2(raw, source_metadata=source_metadata, locale=locale)
     if pn.refused:
         return _refused_result(raw, source_metadata, locale, pn)
+    if not pn.changed:
+        got = parse_quantity_v2(raw, source_metadata=source_metadata, locale=locale)
+        if RULE_INVERTED in rules and inverted_range(got.parsed):
+            return _refused_result(raw, source_metadata, locale, pn, INVERTED_FLAG)     # S178 CORP-2
+        return got
     got = parse_quantity_v2(pn.text, source_metadata=source_metadata, locale=locale)
+    if RULE_INVERTED in rules and inverted_range(got.parsed):
+        return _refused_result(raw, source_metadata, locale, pn, INVERTED_FLAG)
     restored = _restore_raw(got, pn.text, raw)
     flags = tuple(dict.fromkeys([*restored.flags, *(f"PRENORM_{r}" for r in pn.rules_fired)]))
     return PrenormParsed(restored.raw, restored.parsed, restored.ast, restored.arithmetic, restored.normalized, flags,
                          rule_version=f"{ADAPTER_VERSION}+{PRENORM_VERSION}", prenorm=pn)
+
+
+def _legacy_inverted(raw: str) -> bool:
+    from .grammar import parse_line
+    return isinstance(raw, str) and bool(raw) and inverted_range(parse_line(raw))
 
 
 @contextlib.contextmanager
@@ -207,7 +231,7 @@ def ground_quantity_rc2_prenorm(raw: str, context, *, schema: Mapping, rules: It
     """
     rules = _check_rules(rules)
     pn = prenormalise(raw, rules)
-    if not pn.changed:
+    if not pn.changed and not (RULE_INVERTED in rules and _legacy_inverted(raw)):
         return rc2_grounding.ground_quantity_rc2(raw, context, schema=schema)
     with _rc2_parser_swapped(rules):
         # the frozen pipeline passes the text it is given to the parser; give it the ORIGINAL so record["raw"] and the

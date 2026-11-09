@@ -83,3 +83,54 @@ RUN-S178-EVD-007,manjot-server,~/kush_work/culinarystate/.orch (worktree max/s17
 3. Whether to fix the three latent builder gaps and the `study_components` fallback before the 29-diag run (Sat 14); this lane did not touch them.
 4. Whether the 61 Phenol-Explorer zero retention factors are true zeros or not-detected values (source check).
 5. The orchestrator: copy the conformance table to `reports/step15/`, fix the four stale "355 SVAR" lines, ask the ANALYSIS lane to correct the card's `RANGE 3,585` and a_w wording, commit the untracked S177 router census JSON with this lane.
+
+## S178 correction (FIX-GOV, 2026-11-09)
+
+Appended by the S178 FIX-GOV lane (GOV review findings GOV-1, GOV-10; SCI-B B1; this report's section 6 item 5). Nothing above was rewritten. Status: AI_DRAFTED / PROPOSED.
+
+**1. Coverage table (T2-C13-R1, GOV-1).** The tool read the superseded S176 full router census. It now reads `reports/step23/router_demo_census_vitc_nonBBC_full_S177.json` (router census 0.3.0) and refuses any input listed in `registry/superseded_outputs_S176.csv`. Re-run with seed 20261104 and 4 workers: the sample still reproduces the committed S177 1,000-sample census, and the EVD pair counts still equal the router census. The statement in section 2.5 is unchanged (338 pairs, 12,501 sample pairs, 111 with EVD, 63.47 % of 4,724,493 events, 102 of 115 vitamin-C pairs). Only the last column (vitamin-C DIRECT items, gated) changes:
+
+| family | old (S176) | new (S177) |
+|---|---:|---:|
+| DRY_HEAT | 10,792 | 11,925 |
+| FAT_HEAT | 4,871 | 8,237 |
+| WET_HEAT | 6,345 | 7,117 |
+| HEAT_GENERAL | 5,060 | 7,795 |
+| COOLING | 98 | 83 |
+| PRESERVATION | 1,075 | 854 |
+| MECHANICAL_MIX | 6,296 | 4,297 |
+| **all** | **34,537** | **40,308** |
+
+(For example, PROC-000002 roast: 668 → 2,315; PROC-000016 brown: 2,365 → 5,135.) Files: json `2c8d9661d416f89c…`, md `3db9af0d064f4126…`, csv `951a210fa83db1fa…`. The SVG `<desc>` now says AI_DRAFTED.
+
+**2. Latent builder gaps of section 2.3 (GOV-10, board T6-C09-R2): fixed.** `transition/dataset.py` now does the following:
+- treats a CENSORED row with no usable limit as UNKNOWN (no cell; never a zero bound);
+- treats a `GT_*` limit as a lower bound;
+- treats an `LT_*` limit as an upper bound, which is never stored as `y_lower` (the v0 table holds only lower bounds, so the row is left out and counted); any other censor kind is UNKNOWN;
+- admits only tiers E1-E4 (TB-V0) and refuses Layer-2 / scenario / simulated rows;
+- keeps an imputed-target class-I row (SSOT 222.9) out of any table that feeds test, validation or calibration; only `role="train"` admits it;
+- counts every refusal in `CellTable.excluded`.
+
+The three strict xfails in `tests/unit/test_s178_evd_no_imputation.py` are now ordinary passing tests, and `tests/unit/test_transition_firewall.py` (the board's acceptance test) passes with 40 tests. On the real ledger nothing changes: 17,458 cells (BOGNAR 6,594, PHENOL-EXPLORER 3,870, USDA 6,994), equal to `transition_no_imputation_audit_v1.json`. The only exclusions are the 520 rows with no retention value, which were skipped before as well.
+
+**3. Item 5 of section 6.**
+- The conformance table and the dataset card were copied byte-identical to `reports/step15/` (`evd_field_conformance_203_2_v1.{csv,md,json}`, `dataset_card_15a_v1.{md,json}`), with `reports/step15/README_S178_copies.md` and a test that checks each copy against its source.
+- The card's "RANGE 3,585" and a_w wording are corrected (card 0.2.0: 216 two-sided + 3,369 one-sided censored; a_w is in the COND schema but never populated). Pressure "not recorded" (10,831 rows) is now shown and counted as missing.
+- RUN-S178-EVD-007 was re-run (`tools/s178_evd_repro_record.py` 0.1.1, whose input list now names the S177 full census). It reproduces the new card hash: record json `714a1b4f…`, md `19665ad7…`.
+
+## S178 correction (FIX-EVAL), 2026-11-09
+
+AI_DRAFTED (D-071). Appended by lane FIX-EVAL after the SCI-B review finding B5; the sections above are kept as written.
+
+- **B5, `tools/s178_evd_transition_audit.py` 0.2.0.** The `violations` block of v1 omitted two invariants (cells =
+  MEASURED + CENSORED rows per family; y_train = y or y_lower everywhere) and checked y = 0 by comparing totals, so one
+  imputed 0 and one dropped measured 0 would cancel. The block now carries every invariant as a count that must be 0;
+  the two booleans enter as counts of failing families, and the y = 0 check is per row (each cell joined to its EVD row
+  by id: cells with y = 0 whose row is not MEASURED 0; MEASURED-0 rows whose cell is missing or not 0; duplicate ids).
+  Test with the reviewer's cancelling pair: `tests/unit/test_s178_fixeval_evd.py`.
+- **Re-run on the real ledger** (`reports/s178/evd/transition_no_imputation_audit_v2.json`, sha256
+  `7368111b454b7154135cbb8c74fc6cfa8d19ca0e0db39641ebca759f9da7df16`; uses the FIX-GOV builder of section 2 above):
+  every violation field is 0. 17,458 cells; the 61 y = 0 cells are exactly the 61 MEASURED-0 rows, matched row by row;
+  cells = MEASURED + CENSORED rows in all three families; y_train = y or y_lower everywhere. The totals equal v1.
+  The builder's exclusion counts are now in the output per family (520 rows, all NO_RETENTION_VALUE).
+- v1 (`transition_no_imputation_audit_v1.json`, sha256 `f63daf3b…`) is kept as history and superseded by v2.

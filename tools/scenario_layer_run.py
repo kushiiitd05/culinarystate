@@ -97,10 +97,16 @@ def _count_main(c: Counter, out: dict) -> None:
             c[("stated_liquid_above_tboil_by_stated_c", b, next(n for lo, hi, n in STATED_T_BUCKETS if lo < s["bath_c"] <= hi))] += 1
             if b == "TYPICAL":  # S178: split the stated-liquid population by solute-rich member and by core computed
                 bucket = next(n for lo, hi, n in STATED_T_BUCKETS if lo < s["bath_c"] <= hi)
-                solute = "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER" in s["flags"]
+                solute = any(f in s["flags"] for f in ("TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER", "SUGAR_PHASE_TBOIL_LOWER_ESTIMATE"))
                 c[("stated_liquid_typical_by_stated_c_and_member", bucket, "SOLUTE_RICH_MEMBER" if solute else "NO_SOLUTE_RICH_MEMBER")] += 1
                 if s["core_end_c"] is not None:
                     c[("stated_liquid_typical_core_computed_by_stated_c", bucket)] += 1
+        if b == "TYPICAL":  # S178 FIX-PHYS: the Q1 lift gate (M4), the moist-piece boundary (M5), water bath (m3)
+            for f in s.get("flags", ()):
+                if f.startswith(("STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED", "STATED_LIQUID_LIFT_")) or f in (
+                        "STATED_LIQUID_T_NOT_APPLIED_TO_MOIST_PIECE", "WATER_BATH_IN_OVEN", "FAN_VS_CONVENTIONAL_UNRESOLVED",
+                        "HEAT_LEVEL_OR_APPLIANCE_SETTING_AT_OR_BELOW_TBOIL"):
+                    c[("fixphys_flag_typical", code(f))] += 1
         if "OVEN_OR_AMBIENT_TEMPERATURE_STATED_NOT_USED_AS_LIQUID_T" in s.get("flags", ()) and b == "TYPICAL":
             c[("ambient_temperature_not_used_as_liquid_t_typical",)] += 1
         if s.get("zone_nodes"):
@@ -111,7 +117,7 @@ def _count_main(c: Counter, out: dict) -> None:
             c[("surface_state", b, code(s["surface_state"]))] += 1
         for f in t["flags"]:
             if f.startswith(("MATRIX_", "EVAPORATION_", "PRESSURE_", "ALTITUDE_", "DRY_MATRIX", "STATED_LIQUID", "BOILING_POINT",
-                             "TBOIL_", "ALL_MEMBERS", "NOT_A_ZONE", "CAP_")):
+                             "TBOIL_", "ALL_MEMBERS", "NOT_A_ZONE", "CAP_", "SUGAR_PHASE", "SALT_MEMBER", "WATER_BATH")):
                 c[("cap_flag_typical", code(f))] += 1
 
 

@@ -8,12 +8,18 @@ S recipe id.
 P/C blocks (cells): gold EVD ids vs the DEL-2 split roles (seed 7, the 29-diag pre-seal splits), vs the retrieval silver
 queries (seed 20261018, reproduced and checked against data/interim/retrieval/bm25_top100.json), vs the ladder dev
 questions.
-Writes reports/s178/leakage_audit_d5.json. Reads recipe text only to count (the recipes are Wikibooks/Gutenberg).
+Writes reports/s178/leakage_audit_d5.json (``--out`` for a new version). Reads recipe text only to count (the recipes are
+Wikibooks/Gutenberg).
 
-    python tools/s178_leakage_audit_d5.py
+S178 FIX-EVAL (SCI-B E8): the text-reference scan no longer skips all of reports/s178/. Every tracked text file is scanned;
+only the files in ``ID_SCAN_ALLOW`` (the EVAL lane's own inputs and outputs, which name the ids by design) are reported
+apart, each with its reason, instead of being skipped.
+
+    python tools/s178_leakage_audit_d5.py [--out reports/s178/leakage_audit_d5_v2.json]
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import importlib.util
@@ -34,6 +40,22 @@ from culinarystate.transition.dataset import cells_from_rows  # noqa: E402
 from culinarystate.transition.splits import all_splits  # noqa: E402
 
 OUT = ROOT / "reports/s178/leakage_audit_d5.json"
+# Files that legitimately name S recipe ids (the D5 S draft and the EVAL lane's registry / audit outputs). They are still
+# scanned and listed, under their reason, never silently skipped (SCI-B E8).
+ID_SCAN_ALLOW = {
+    "benchmark/d5/d5_draft_S_v1.csv": "D5_S_DRAFT_THE_IDS_THEMSELVES",
+    "registry/split_registry_v1.csv": "SPLIT_REGISTRY_EVAL_OUTPUT",
+    "reports/s178/split_registry_units_v1.csv": "SPLIT_REGISTRY_UNIT_LISTING_RECIPE_ID_ATTRIBUTE",
+    "reports/s178/split_registry_report.json": "SPLIT_REGISTRY_EVAL_OUTPUT",
+    "reports/s178/split_registry_verify_S178fix.json": "SPLIT_REGISTRY_VERIFY_EVAL_OUTPUT",
+    "reports/s178/leakage_audit_d5.json": "THIS_AUDIT_EARLIER_VERSION",
+    "reports/s178/leakage_audit_d5_v2.json": "THIS_AUDIT",
+    "reports/s178/leakage_audit_d5_findings.md": "THIS_AUDIT_FINDINGS",
+    "reports/s178/h1_gold_independence_d5_draft.json": "H1_INDEPENDENCE_EVAL_OUTPUT",
+    "reports/s178/h1_gold_independence_d5_draft_v2.json": "H1_INDEPENDENCE_EVAL_OUTPUT",
+}
+SCAN_SKIP_DIRS = {"data", "ledgers", ".git", ".venv312", "__pycache__", "node_modules", "exports"}
+SCAN_SUFFIXES = (".csv", ".json", ".jsonl", ".md", ".txt", ".py", ".yaml", ".yml", ".tsv")
 S_DRAFT, PC_DRAFT = ROOT / "benchmark/d5/d5_draft_S_v1.csv", ROOT / "benchmark/d5/d5_draft_PC_v1.csv"
 DEV_SETS = [  # name, seed, size, families (None = all five), where the run is recorded
     ("census_1000_all_families", "20261104", 1000, None, "binding / physical / router census samples (RUN-S172..S176)"),
@@ -171,28 +193,40 @@ def ner_audit(report: dict, s_ids: set[str]) -> None:
         "family_overlap": {"s_recipes_in_tasteset_family": sum(r["source_family"] == "TASTESET" for r in got.values())},
         "reading": "Gutenberg segments carry steps only (no ingredient lines), so a line-overlap test has no denominator "
                    "for them; the DeBERTa-CRF NER is trained on RecipeDB3 NER + TASTEset lines and is not used by Rung A"}
-    # ---- text-reference scan (tracked text files outside the D5 drafts that name an S recipe id)
+    # ---- text-reference scan (every tracked text file; the allow-listed EVAL files are reported apart, not skipped)
+    report["s_blocks"]["tracked_files_naming_s_recipe_ids"] = {
+        **id_reference_scan(ROOT, s_ids),
+        "reading": "surface-form registries list at most 3 example recipe ids per form (corpus-wide counts, not a tuning pool); "
+                   "registry/recipes/*_ingredient_links_v1.csv are the ledger-build recipe->ING links for the same recipes; "
+                   "allow_listed files name the ids by design (the D5 S draft and EVAL's registry / audit outputs)"}
+
+
+def id_reference_scan(root: Path, s_ids: set[str], allow: dict[str, str] | None = None) -> dict:
+    """Files (relative path -> number of distinct S recipe ids named) under ``root``. Allow-listed files are counted in their
+    own block with the reason; nothing under reports/ is skipped (SCI-B E8)."""
+    allow = ID_SCAN_ALLOW if allow is None else allow
     pat = re.compile("|".join(re.escape(i) for i in sorted(s_ids)))
-    hits = {}
-    skip = {"data", "ledgers", ".git", ".venv312", "__pycache__", "node_modules", "exports"}
-    for p in ROOT.rglob("*"):
-        if not p.is_file() or set(p.relative_to(ROOT).parts) & skip or p.stat().st_size > 80_000_000:
+    hits, allowed = {}, {}
+    for p in root.rglob("*"):
+        if not p.is_file() or set(p.relative_to(root).parts) & SCAN_SKIP_DIRS or p.stat().st_size > 80_000_000:
             continue
-        if p.suffix.lower() not in (".csv", ".json", ".jsonl", ".md", ".txt", ".py", ".yaml", ".yml", ".tsv"):
+        if p.suffix.lower() not in SCAN_SUFFIXES:
             continue
-        rel = p.relative_to(ROOT).as_posix()
-        if rel == "benchmark/d5/d5_draft_S_v1.csv" or rel.startswith("reports/s178/") or rel.startswith("registry/split_registry"):
-            continue
+        rel = p.relative_to(root).as_posix()
         try:
             n = len(set(pat.findall(p.read_text(encoding="utf-8", errors="ignore"))))
         except OSError:
             continue
-        if n:
+        if not n:
+            continue
+        if rel in allow:
+            allowed[rel] = {"distinct_s_ids": n, "reason": allow[rel]}
+        else:
             hits[rel] = n
-    report["s_blocks"]["tracked_files_naming_s_recipe_ids"] = {
-        "n_files": len(hits), "files_with_distinct_s_ids": dict(sorted(hits.items())),
-        "reading": "surface-form registries list at most 3 example recipe ids per form (corpus-wide counts, not a tuning pool); "
-                   "registry/recipes/*_ingredient_links_v1.csv are the ledger-build recipe->ING links for the same recipes"}
+    return {"n_files": len(hits), "files_with_distinct_s_ids": dict(sorted(hits.items())),
+            "n_allow_listed_files": len(allowed), "allow_listed_files": dict(sorted(allowed.items())),
+            "n_files_under_reports_s178": sum(k.startswith("reports/s178/") for k in hits),
+            "scope": "ALL_TRACKED_TEXT_FILES_EXCEPT_DATA_LEDGERS_VENV_GIT; ALLOW_LIST_REPORTED_NOT_SKIPPED"}
 
 
 def pc_audit(report: dict) -> None:
@@ -274,20 +308,25 @@ def pc_audit(report: dict) -> None:
     report["pc_blocks"] = out
 
 
-def main() -> int:
-    if OUT.exists():
-        sys.exit(f"refusing to overwrite {OUT}")
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=str(OUT))
+    a = ap.parse_args(argv)
+    out_path = Path(a.out)
+    if out_path.exists():
+        sys.exit(f"refusing to overwrite {out_path}")
     report: dict = {"tool": "tools/s178_leakage_audit_d5.py", "module": LA.VERSION, "status": "AI_DRAFTED_COUNTS_ONLY",
                     "inputs": {"s_draft_sha256": SR.sha256_file(S_DRAFT), "pc_draft_sha256": SR.sha256_file(PC_DRAFT),
                                "evd_sha256": SR.sha256_file(ROOT / "ledgers/data/EVD.jsonl")}}
     s_ids = s_audit(report)
     ner_audit(report, s_ids)
     pc_audit(report)
-    OUT.parent.mkdir(parents=True, exist_ok=True)
+    report["tool_version"] = "s178-leakage-audit-d5-0.2.0-draft"
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     data = (json.dumps(report, indent=1, sort_keys=True) + "\n").encode()
-    with open(OUT, "xb") as fh:
+    with open(out_path, "xb") as fh:
         fh.write(data)
-    print(json.dumps({"out": OUT.relative_to(ROOT).as_posix(), "sha256": hashlib.sha256(data).hexdigest()}))
+    print(json.dumps({"out": str(out_path), "sha256": hashlib.sha256(data).hexdigest()}))
     return 0
 
 

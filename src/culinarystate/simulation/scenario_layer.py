@@ -37,6 +37,25 @@ S178 PHYS2 (version 0.4.0, T4-C02): no numerical change in the drivers. The reco
 NOT_USED_AS_LIQUID_T`` marks an aqueous step whose Layer 1 record keeps an oven-cued ``ambient_temperature`` (0.2.0 Layer 1 never
 binds it as the liquid temperature). The L1 input that feeds the stated-liquid cap is now the owned temperature of the step, not
 the nearest temperature of the sentence (the 0.3.0 population of events lifted above 150 C came from that mis-association).
+
+S178 FIX-PHYS (version 0.5.0, SCI-A M4 / M5 / m3 / m9 / m10; SSOT v16 DRAFT 284.3 / 284.4, PROPOSED, AI_DRAFTED):
+- M4 the stated-liquid lift goes through ``PhaseChange.stated_liquid_lift`` (owned temperature + a sugar-phase member, a syrup /
+  stage cue or a pressure cue up to PC-002 INTENSE + PC-041); otherwise the cap stays at T_boil, flagged
+  STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_<why>.
+- M5 a lifted value is the LIQUID's temperature. When a core is computed for a cut piece (CUT_HISTORY size) the conduction boundary
+  is min(bath, T_boil of the piece) (flag STATED_LIQUID_T_NOT_APPLIED_TO_MOIST_PIECE); ``boundary_c`` is that piece boundary, the
+  surface dose of the immersion medium stays at the liquid's (lifted) boundary, ``t_cap_c`` is the liquid's cap. A pressure lift
+  applies to the piece too (its water phase is pressurised as well).
+- m3 an oven step with a Layer 1 ``water_bath_cue`` is run as a WATER medium (water h, boundary min(oven T, T_boil); flag
+  WATER_BATH_IN_OVEN; record ``medium`` WATER, ``medium_rule`` WATER_BATH_IN_OVEN): an upper bound, the bath sits at or below T_boil.
+- m9 numerics stated (``zone_nodes.numerical_rules``): ``zone_mean_cook_value_min`` integrates the dose rate by the trapezoid rule on
+  the graded 48-step node grid; ``cook_value_at_volume_avg_t_min`` uses the midpoint temperature of a uniform 40-step grid. Measured
+  against a dense reference (verification pack V18): the midpoint rule is biased LOW (-0.05 to -0.11 %), the graded trapezoid has
+  either sign (-0.02 to +0.11 %); in every case tested the physical zone / volume-average ratio (1.06 to 24) is far above twice the
+  bias, so "zone mean >= dose at the volume-average temperature" is not a numerical artefact there; it could be one only where the
+  two agree to about 0.2 %.
+- Layer 1 temperature flags (FAN_VS_CONVENTIONAL_UNRESOLVED, HEAT_LEVEL_OR_APPLIANCE_SETTING_AT_OR_BELOW_TBOIL) are carried to the
+  bracket flags.
 """
 from __future__ import annotations
 
@@ -50,7 +69,8 @@ from culinarystate.simulation import phase_change as PC
 from culinarystate.simulation import physics_drivers as PD
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "scenario-layer-L2-0.4.0-draft"
+VERSION = "scenario-layer-L2-0.5.0-draft"
+VERSION_V04 = "scenario-layer-L2-0.4.0-draft"  # SUPERSEDED by 0.5.0 (unconditional stated-liquid lift, lifted moist-piece cores)
 VERSION_V03 = "scenario-layer-L2-0.3.0-draft"  # SUPERSEDED by 0.4.0 (L1 0.1.0 temperature association, no per-axis provenance)
 VERSION_V02 = "scenario-layer-L2-0.2.0-draft"  # SUPERSEDED by 0.3.0 (quality_cook_value_min, upper-bound cap wording)
 VERSION_UNCAPPED = "scenario-layer-L2-0.1.0-draft"  # SUPERSEDED model, kept for the before/after comparison
@@ -78,7 +98,12 @@ def member_groups(inputs: Mapping[str, Any]) -> tuple[str, ...]:
 
 
 L1_PROVENANCE_AXES = ("temperature_profile", "duration", "medium", "piece_size_class", "matrix_class", "matrix_groups",
-                      "ambient_temperature")
+                      "ambient_temperature", "syrup_stage_cue", "pressure_cue", "water_bath_cue")
+WATER_BATH_MEDIA = ("OVEN_AIR", "OVEN_AIR_FORCED")
+
+
+def _bound(inputs: Mapping[str, Any], axis: str) -> bool:
+    return (inputs.get(axis) or {}).get("status", "UNKNOWN") != "UNKNOWN"
 
 
 def l1_provenance(inputs: Mapping[str, Any]) -> dict:
@@ -112,6 +137,7 @@ class ScenarioLayer:
         self.n_nodes = n_nodes
         self.d, self.gas, self.durations = defaults, gas, durations
         self.pc, self.policy = pc, policy or PC.CapPolicy()
+        self.public, self.dropped_bbc_duration_edges = False, 0  # set by load(public=True) (SCI-B R1)
         if self.policy.enabled and pc is None:
             raise ValueError("an enabled evaporation cap needs a PhaseChange registry")
 
@@ -120,7 +146,11 @@ class ScenarioLayer:
         return self.policy.enabled
 
     @classmethod
-    def load(cls, root: Path = ROOT, policy: PC.CapPolicy | None = None, n_nodes: int = PD.N_ZONE_NODES) -> "ScenarioLayer":
+    def load(cls, root: Path = ROOT, policy: PC.CapPolicy | None = None, n_nodes: int = PD.N_ZONE_NODES,
+             public: bool = False) -> "ScenarioLayer":
+        """``public`` (S178 FIX-PHYS, SCI-B R1, D-003): drop every corpus duration edge that ``public_mode.is_bbc_derived``
+        names (all 39 ACTIVE PROC_TYPICAL_DURATION edges today), so an unstated duration is SCENARIO_UNKNOWN in public mode
+        instead of a BBC aggregate. The default (False) reads exactly what it read before (the census tools use it)."""
         d: dict[str, dict[str, tuple]] = {}
         gas: dict[str, tuple] = {}
         with open(root / "registry/scenario_defaults_v1.csv", newline="", encoding="utf-8") as fh:
@@ -134,6 +164,10 @@ class ScenarioLayer:
                     d.setdefault(r["quantity"], {})[k] = (float(r["low"]), float(r["mid"]), float(r["high"]),
                                                           r["default_id"])
         durations: dict[str, tuple] = {}
+        bbc = None
+        if public:  # read-only import (public_mode belongs to the governance lane); lazy so the default path is unchanged
+            from culinarystate.decision.public_mode import is_bbc_derived as bbc
+        dropped: set[str] = set()
         with open(root / "ledgers/data/KGE.jsonl", encoding="utf-8") as fh:
             for line in fh:
                 if '"PROC_TYPICAL_DURATION"' not in line:
@@ -141,9 +175,14 @@ class ScenarioLayer:
                 e = json.loads(line)
                 q = e.get("quantiles") or {}
                 if e.get("status") == "ACTIVE" and q.get("p50") is not None and q.get("unit") == "min":
+                    if bbc is not None and bbc(e):
+                        dropped.add(e["id"])  # distinct edge ids (the ledger holds several versions of an edge)
+                        continue
                     durations[e["subject_id"]] = (q["p10"], q["p50"], q["p90"], e["id"])
-        return cls(defaults=d, gas=gas, durations=durations, pc=PC.PhaseChange.load(root), policy=policy,
-                   n_nodes=n_nodes)
+        layer = cls(defaults=d, gas=gas, durations=durations, pc=PC.PhaseChange.load(root), policy=policy,
+                    n_nodes=n_nodes)
+        layer.public, layer.dropped_bbc_duration_edges = bool(public), len(dropped)
+        return layer
 
     def _bath(self, rec) -> tuple[tuple | None, str | None]:
         t = rec["inputs"]["temperature_profile"]
@@ -164,10 +203,16 @@ class ScenarioLayer:
         return ((q[0], q[1], q[2]), q[3]) if q else (None, None)
 
     def run(self, rec: Mapping[str, Any]) -> dict:
-        medium = rec["inputs"]["medium"]["value"]
+        inputs = rec["inputs"]
+        medium = inputs["medium"]["value"]
+        water_bath = medium in WATER_BATH_MEDIA and _bound(inputs, "water_bath_cue")
+        if water_bath:  # m3: the food sits in water inside the oven, at or below T_boil
+            medium = "WATER"
         base = {"recipe_id": rec.get("recipe_id"), "event_id": rec.get("event_id"), "process_id": rec["process_id"],
                 "layer": "SCENARIO", "version": VERSION if self.capped else VERSION_UNCAPPED, "labels": list(LABELS),
-                "medium": medium, "l1_provenance": l1_provenance(rec["inputs"])}
+                "medium": medium, "l1_provenance": l1_provenance(inputs)}
+        if water_bath:
+            base["medium_rule"] = "WATER_BATH_IN_OVEN"
         if self.capped:
             base["cap_model"] = PC.VERSION
         if medium in UNSUPPORTED:
@@ -185,24 +230,45 @@ class ScenarioLayer:
         t0 = self.d["initial_temperature"]["ALL"]
         mx = rec["inputs"].get("matrix_class") or {}
         matrix = mx.get("value") if mx.get("status", "UNKNOWN") != "UNKNOWN" else None
-        groups = member_groups(rec["inputs"])
+        groups = member_groups(inputs)
+        tp = inputs["temperature_profile"]
+        l1_tflags = list(tp.get("flags") or []) if tp.get("status", "UNKNOWN") != "UNKNOWN" else []
+        syrup, pressure = _bound(inputs, "syrup_stage_cue"), _bound(inputs, "pressure_cue")
         out = {}
         for i, name in enumerate(BRACKETS):
             j = i  # GENTLE uses low exposure values, INTENSE high
             flags = ["HIGH_MOISTURE_PROPERTIES_ASSUMED", "SLAB_GEOMETRY_ASSUMED"]
-            if (rec["inputs"].get("ambient_temperature") or {}).get("status", "UNKNOWN") != "UNKNOWN":
+            if _bound(inputs, "ambient_temperature"):
                 flags.append("OVEN_OR_AMBIENT_TEMPERATURE_STATED_NOT_USED_AS_LIQUID_T")
+            if water_bath:
+                flags += ["WATER_BATH_IN_OVEN", "WATER_BATH_TEMPERATURE_BOUNDED_BY_TBOIL_UPPER_BOUND"]
+            flags += l1_tflags
             sc = {"bath_c": bath[j], "duration_min": dur[j], "initial_c": t0[j],
                   "bases": {"bath_c": b_basis, "duration_min": d_basis, "initial_c": t0[3], "k": k[3], "alpha": a[3]}}
-            stated = bath[j] if b_basis in PC.STATED_BASES else None
+            stated = bath[j] if (b_basis in PC.STATED_BASES and not water_bath) else None
+            lift_reason = None
+            if self.capped and stated is not None:  # M4: the Q1 gate decides whether the stated value may lift the cap
+                stated, lift_reason, lflags = self.pc.stated_liquid_lift(
+                    medium=medium, stated_c=stated, stated_row=tp.get("row"), matrix_class=matrix, member_groups=groups,
+                    syrup_cue=syrup, pressure_cue=pressure, bracket=i, policy=self.policy)
+                flags += list(lflags)
             cap = self.pc.cap(medium=medium, matrix_class=matrix, bracket=i, policy=self.policy, member_groups=groups,
-                              stated_liquid_c=stated, stated_basis=b_basis) if self.capped else None
+                              stated_liquid_c=stated, stated_basis=b_basis, syrup_cue=syrup) if self.capped else None
             boundary = cap.boundary(bath[j]) if cap else bath[j]
+            liquid_boundary = boundary
+            piece_cap = cap
+            if cap is not None and lift_reason in ("SUGAR_PHASE_MEMBER", "SYRUP_STAGE_CUE"):
+                # M5: the lifted value is the liquid's; a moist piece in it is bounded by its own T_boil
+                piece_cap = self.pc.cap(medium=medium, matrix_class=matrix, bracket=i, policy=self.policy, member_groups=groups,
+                                        syrup_cue=syrup)
             core = {"core_end_c": None, "core_minutes_above_70": None, "core_cook_value_min": None}
             core_end = None
             if self.capped:
                 core.update(volume_avg_end_c=None, cook_value_at_volume_avg_t_min=None, zone_mean_cook_value_min=None)
             if h and L and dur[j] > 0:
+                if piece_cap is not cap:
+                    boundary = piece_cap.boundary(bath[j])
+                    flags.append("STATED_LIQUID_T_NOT_APPLIED_TO_MOIST_PIECE")
                 sc["h"], sc["half_thickness_m"] = h[j], L[2 - j]  # thick piece = least exposure
                 sc["bases"].update(h=h[3], half_thickness_m=L[3])
                 props = dict(half_thickness_m=L[2 - j], alpha_m2_s=a[1], h_w_m2k=h[j], k_w_mk=k[1])
@@ -223,7 +289,10 @@ class ScenarioLayer:
                                         "temps_c": [[round(t, 2) for t in row] for row in hist["temps_c"]],
                                         "node_cook_value_min": [round(f, 4) for f in nd],
                                         "t_ref_c": T_REF_C, "z_c": Z_C, "dose_rule": "TRAPEZOID_ON_DOSE_RATE",
-                                        "volume_mean": "SUM_W_I_F_I_OVER_HALF_SLAB"}
+                                        "volume_mean": "SUM_W_I_F_I_OVER_HALF_SLAB",
+                                        "numerical_rules": {  # m9: the two doses do not use the same rule (V18 sizes the biases)
+                                            "zone_mean_cook_value_min": "TRAPEZOID_ON_DOSE_RATE_GRADED_GRID_BIAS_EITHER_SIGN_V18",
+                                            "cook_value_at_volume_avg_t_min": "MIDPOINT_T_UNIFORM_40_STEPS_BIASED_LOW_V18"}}
                     flags.append("ZONE_NODE_HISTORIES_EMITTED_FOR_OWN_KINETICS")
                 else:
                     traj = PD.core_trajectory(t0_c=t0[j], bath_c=bath[j], duration_min=dur[j], steps=40, **props)
@@ -235,12 +304,13 @@ class ScenarioLayer:
                 flags.append("CORE_UNKNOWN_NO_SIZE" if not L else "CORE_UNKNOWN_NO_H")
             if medium not in IMMERSION:
                 flags.append("SURFACE_NOT_AT_BATH_TEMPERATURE")
-            surface = round(PD.equivalent_minutes([(dur[j], boundary)], t_ref_c=T_REF_C, z_c=Z_C), 4) \
+            surface = round(PD.equivalent_minutes([(dur[j], liquid_boundary)], t_ref_c=T_REF_C, z_c=Z_C), 4) \
                 if medium in IMMERSION else None
             if cap is not None:
-                binding = cap.binding(bath[j])
+                state_cap = piece_cap if boundary != liquid_boundary else cap
+                binding = state_cap.binding(bath[j])
                 sc.update(boundary_c=boundary, t_cap_c=cap.t_c,
-                          surface_state=self.pc.surface_state(cap=cap, medium_c=bath[j], immersion=medium in IMMERSION,
+                          surface_state=self.pc.surface_state(cap=state_cap, medium_c=bath[j], immersion=medium in IMMERSION,
                                                               core_end_c=core_end))
                 if cap.basis:
                     sc["bases"]["t_cap_c"] = cap.basis

@@ -29,6 +29,7 @@ _spec = importlib.util.spec_from_file_location("_step17b_rung_a_dryrun", ROOT / 
 T17 = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(T17)
 CODE_FILES = ("src/culinarystate/simulation/condition_binding.py", "src/culinarystate/simulation/binding_census.py",
+              "src/culinarystate/simulation/endpoint_cues.py", "registry/endpoint_cue_lexicon_v1.csv",
               "registry/process_medium_map_v1.csv", "tools/binding_census.py")
 
 

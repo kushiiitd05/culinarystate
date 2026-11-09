@@ -189,8 +189,8 @@ UNAFFECTED = [
     "3 synthetic eggs", "a pinch of synthetic", "juice of 1 synthetic lemon", "1-2 cups synthetic", "1/2-3/4 cup synthetic",
     "1 to 2 synthetic", "175g synthetic", "5cm piece synthetic", "1/0 cup synthetic", "salt to taste", "11/2 cups synthetic",
     "0-1/2 tsp synthetic", "1.5 cups synthetic", "2 – 3 cups synthetic", "synthetic only", "", "   ", "1 -2 synthetic",
-    "1 - 1/2 cups synthetic", "1-3/2 cups synthetic",
-]
+    "1-3/2 cups synthetic",
+]   # S178 CORP-2: "1 - 1/2 cups synthetic" (an inverted RANGE) moved to the INVERTED_RANGE tests
 
 
 @pytest.mark.parametrize("raw", UNAFFECTED)
@@ -218,7 +218,7 @@ def test_random_unaffected_lines_are_byte_identical():
     ctx = _ctx()
     while checked < 400:
         s = _random_line(rng).strip()
-        if not s or P.prenormalise(s).changed:
+        if not s or P.prenormalise(s).changed or P.inverted_range(parse_line(s)):     # S178: inverted ranges are flagged
             continue
         checked += 1
         assert P.parse_line_prenorm(s) == parse_line(s)

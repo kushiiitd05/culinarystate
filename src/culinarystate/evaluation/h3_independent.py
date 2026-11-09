@@ -23,6 +23,12 @@ exact sign test on questions where one rung has an unsupported claim and the oth
 
 The tolerance is a named constant with the same value as the S173 checker for comparability (0.03 on the fraction
 scale); it is a scoring convention, not a measured quantity, and a pre-registration may set another.
+
+S178 FIX-EVAL (SCI-B E2-E4): ``compare_rungs`` derives the significance floor from the exact test for the stated sidedness
+(one-sided 5, two-sided 6 at alpha 0.05) and returns both flags; ingredient-name matching uses token boundaries ("pea" does
+not match "Peanuts"); a value match whose cell was not checked (no ``cell``) is CELL_NOT_CHECKED, never SUPPORTED, is counted
+separately by ``score_answer`` / ``summarize_rung`` and sets the question aside in ``compare_rungs``; ``require_cell=True``
+(for the D5 path) refuses a missing cell.
 """
 from __future__ import annotations
 
@@ -32,12 +38,14 @@ from typing import Iterable, Mapping, Sequence
 
 from culinarystate.evaluation.paired_stats import mcnemar_exact
 
-VERSION = "h3_independent@0.1"
+VERSION = "h3_independent@0.2"
 VALUE_TOL = 0.03
 EVD_ID = re.compile(r"EVD-\d{6}(?!\d)")
 ANSWERABLE = ("ANSWER", "ANSWER_SIMILAR_ONLY", "COMPARE")
 RELEVANCE_ORDER = {"EXACT": 2, "SIMILAR": 1}
-VERDICTS = ("SUPPORTED", "UNCITED", "NONEXISTENT_ID", "ROW_NO_VALUE", "VALUE_MISMATCH", "WRONG_CELL")
+VERDICTS = ("SUPPORTED", "UNCITED", "NONEXISTENT_ID", "ROW_NO_VALUE", "VALUE_MISMATCH", "WRONG_CELL", "CELL_NOT_CHECKED")
+ALPHA = 0.05
+SIDEDNESS = ("one-sided", "two-sided")
 
 # ------------------------------------------------------------------ claim extraction
 
@@ -201,7 +209,7 @@ def row_relevance(row: Mapping, cell: Mapping | None, *, ing_relatives: Mapping[
         related = {r for q in ids for r in (ing_relatives or {}).get(q, ())}          # parents / relatives of the question's food
         if rid and rid in ids:
             slots["ingredient"] = "EXACT"
-        elif (rid and rid in related) or any(re.search(rf"\b{re.escape(n)}", raw) for n in names):
+        elif (rid and rid in related) or any(re.search(rf"\b{re.escape(n)}(?:e?s)?\b", raw) for n in names):
             slots["ingredient"] = "SIMILAR"                                           # parent row, or an aggregate row naming the food
         else:
             slots["ingredient"] = "MISMATCH"
@@ -220,10 +228,13 @@ def _value_ok(claim: Mapping, row: Mapping, tol: float) -> bool:
 
 def score_claim(claim: Mapping, evd: Mapping[str, Mapping], *, cell: Mapping | None = None,
                 ing_relatives: Mapping[str, Iterable[str]] | None = None, min_relevance: str = "SIMILAR",
-                tol: float = VALUE_TOL) -> dict:
-    """Verdict for one claim against the ledger rows it cites."""
+                tol: float = VALUE_TOL, require_cell: bool = False) -> dict:
+    """Verdict for one claim against the ledger rows it cites. Without a cell a value match is CELL_NOT_CHECKED (never
+    SUPPORTED); ``require_cell`` raises instead."""
     if min_relevance not in RELEVANCE_ORDER:
         raise ValueError(f"min_relevance must be one of {tuple(RELEVANCE_ORDER)}")
+    if require_cell and not cell:
+        raise ValueError("require_cell: the question cell is missing (the D5 path must pass it)")
     cites = list(claim["cites"])
     if not cites or claim["kind"] == "DIRECTION_UNCITED":
         return {"verdict": "UNCITED", "relevance": None, "supporting_ids": []}
@@ -242,12 +253,14 @@ def score_claim(claim: Mapping, evd: Mapping[str, Mapping], *, cell: Mapping | N
         ok_value.append(i)
         rel = row_relevance(r, cell, ing_relatives=ing_relatives)
         levels[i] = rel["level"]
-        if rel["level"] == "NOT_CHECKED" or RELEVANCE_ORDER.get(rel["level"], 0) >= RELEVANCE_ORDER[min_relevance]:
+        if RELEVANCE_ORDER.get(rel["level"], 0) >= RELEVANCE_ORDER[min_relevance]:
             ok_cell.append(i)
     if ok_cell:
-        best = "NOT_CHECKED" if all(levels[i] == "NOT_CHECKED" for i in ok_cell) else \
-            max((levels[i] for i in ok_cell), key=lambda x: RELEVANCE_ORDER.get(x, 0))
+        best = max((levels[i] for i in ok_cell), key=lambda x: RELEVANCE_ORDER.get(x, 0))
         return {"verdict": "SUPPORTED", "relevance": best, "supporting_ids": ok_cell}
+    if ok_value and all(levels[i] == "NOT_CHECKED" for i in ok_value):
+        return {"verdict": "CELL_NOT_CHECKED", "relevance": "NOT_CHECKED", "supporting_ids": [],
+                "value_matched_ids": ok_value}
     if ok_value:
         return {"verdict": "WRONG_CELL", "relevance": levels[ok_value[0]], "supporting_ids": []}
     if claim["kind"] == "NUMERIC" and all(row_retention(r) is None for r in present.values()):
@@ -257,8 +270,11 @@ def score_claim(claim: Mapping, evd: Mapping[str, Mapping], *, cell: Mapping | N
 
 def score_answer(text: str, *, evd: Mapping[str, Mapping], cell: Mapping | None = None,
                  packet_ids: Iterable[str] | None = None, ing_relatives: Mapping[str, Iterable[str]] | None = None,
-                 min_relevance: str = "SIMILAR", tol: float = VALUE_TOL) -> dict:
-    """Independent score of one answer text."""
+                 min_relevance: str = "SIMILAR", tol: float = VALUE_TOL, require_cell: bool = False) -> dict:
+    """Independent score of one answer text. ``n_numeric_unsupported`` counts every numeric claim that is not SUPPORTED
+    (CELL_NOT_CHECKED included: fail-closed); ``n_numeric_cell_not_checked`` says how many of those were only unchecked."""
+    if require_cell and not cell:
+        raise ValueError("require_cell: the question cell is missing (the D5 path must pass it)")
     claims = extract_claims(text)
     scored = [{**c, **score_claim(c, evd, cell=cell, ing_relatives=ing_relatives, min_relevance=min_relevance, tol=tol)}
               for c in claims]
@@ -268,6 +284,8 @@ def score_answer(text: str, *, evd: Mapping[str, Mapping], cell: Mapping | None 
     dr = [c for c in scored if c["kind"] == "DIRECTION"]
     return {"version": VERSION, "claims": scored,
             "n_numeric": len(num), "n_numeric_unsupported": sum(c["verdict"] != "SUPPORTED" for c in num),
+            "n_numeric_supported": sum(c["verdict"] == "SUPPORTED" for c in num),
+            "n_numeric_cell_not_checked": sum(c["verdict"] == "CELL_NOT_CHECKED" for c in num),
             "n_direction": len(dr), "n_direction_unsupported": sum(c["verdict"] != "SUPPORTED" for c in dr),
             "n_direction_uncited_sentences": sum(c["kind"] == "DIRECTION_UNCITED" for c in scored),
             "abstained": is_abstention(text, claims), "n_cited_ids": len(cited),
@@ -317,8 +335,10 @@ def _ci(x: int, n: int) -> dict:
 
 
 def summarize_rung(results: Mapping[str, Mapping], gold_modes: Mapping[str, str]) -> dict:
-    """Rung-level H3 figures from ``qid -> score_answer(...)``. UCR (numeric claims) comes with its coverage."""
-    claims = unsupported = 0
+    """Rung-level H3 figures from ``qid -> score_answer(...)``. UCR (numeric claims) comes with its coverage. A claim whose
+    cell was not checked counts as unsupported in ``ucr`` (fail-closed) and is also counted on its own
+    (``n_cell_not_checked``); ``ucr_cell_checked_claims_only`` leaves those claims out of both numerator and denominator."""
+    claims = unsupported = not_checked = 0
     with_claims = with_bad = 0
     answerable = covered = false_abst = 0
     abstain_gold = abstained_ok = claims_on_abstain = 0
@@ -327,6 +347,7 @@ def summarize_rung(results: Mapping[str, Mapping], gold_modes: Mapping[str, str]
         gm = gold_modes.get(qid)
         claims += r["n_numeric"]
         unsupported += r["n_numeric_unsupported"]
+        not_checked += r.get("n_numeric_cell_not_checked", 0)
         supported = r["n_numeric"] - r["n_numeric_unsupported"]
         if r["n_numeric"]:
             with_claims += 1
@@ -341,8 +362,12 @@ def summarize_rung(results: Mapping[str, Mapping], gold_modes: Mapping[str, str]
             abstain_gold += 1
             abstained_ok += bool(r["abstained"])
             claims_on_abstain += r["n_numeric"] > 0
+    checked = claims - not_checked
     return {"version": VERSION, "n_questions": len(results), "n_numeric_claims": claims,
             "n_unsupported": unsupported, "ucr": round(unsupported / claims, 4) if claims else None,
+            "n_cell_not_checked": not_checked,
+            "ucr_cell_checked_claims_only": round((unsupported - not_checked) / checked, 4) if checked else None,
+            "ucr_status": "CELL_NOT_CHECKED_COUNTED_AS_UNSUPPORTED" if not_checked else "ALL_CLAIMS_CELL_CHECKED_OR_NONE",
             "selective_risk": _ci(with_bad, with_claims),
             "coverage_answerable": _ci(covered, answerable), "false_abstention_answerable": _ci(false_abst, answerable),
             "abstention_on_abstain_gold": _ci(abstained_ok, abstain_gold),
@@ -351,12 +376,34 @@ def summarize_rung(results: Mapping[str, Mapping], gold_modes: Mapping[str, str]
             "reading": "UCR is undefined (None) when no numeric claim is made; read it only next to coverage."}
 
 
-def compare_rungs(worse: Mapping[str, Mapping], better: Mapping[str, Mapping]) -> dict:
+def min_discordant_for_alpha(sidedness: str = "one-sided", alpha: float = ALPHA) -> int:
+    """Smallest number of discordant questions (all on one side) at which the exact test can reach p <= alpha."""
+    if sidedness not in SIDEDNESS:
+        raise ValueError(f"sidedness must be one of {SIDEDNESS}")
+    alt = "greater" if sidedness == "one-sided" else "two-sided"
+    m = 1
+    while sign_test_exact(m, 0, alternative=alt) > alpha:
+        m += 1
+    return m
+
+
+def compare_rungs(worse: Mapping[str, Mapping], better: Mapping[str, Mapping], *, sidedness: str = "one-sided",
+                  alpha: float = ALPHA) -> dict:
     """Paired sign test over questions both rungs answered: b = ``worse`` has an unsupported numeric claim and
-    ``better`` has none; c = the reverse. One-sided exact p (H3 direction) and the two-sided McNemar p."""
-    qids = sorted(set(worse) & set(better))
+    ``better`` has none; c = the reverse. One-sided exact p (H3 direction) and the two-sided McNemar p. A question where
+    either rung has a claim whose cell was not checked is set aside (counted), not classified. ``can_be_significant`` uses
+    the floor of the stated ``sidedness`` (one-sided 5, two-sided 6 at alpha 0.05); both flags are returned."""
+    if sidedness not in SIDEDNESS:
+        raise ValueError(f"sidedness must be one of {SIDEDNESS}")
+    paired = sorted(set(worse) & set(better))
+    aside = [q for q in paired if worse[q].get("n_numeric_cell_not_checked", 0) or better[q].get("n_numeric_cell_not_checked", 0)]
+    qids = [q for q in paired if q not in set(aside)]
     b = sum(worse[q]["n_numeric_unsupported"] > 0 and better[q]["n_numeric_unsupported"] == 0 for q in qids)
     c = sum(better[q]["n_numeric_unsupported"] > 0 and worse[q]["n_numeric_unsupported"] == 0 for q in qids)
-    return {"n_paired": len(qids), "b_worse_only_unsupported": b, "c_better_only_unsupported": c,
+    f1, f2 = min_discordant_for_alpha("one-sided", alpha), min_discordant_for_alpha("two-sided", alpha)
+    return {"n_paired": len(paired), "n_set_aside_cell_not_checked": len(aside), "n_compared": len(qids),
+            "b_worse_only_unsupported": b, "c_better_only_unsupported": c,
             "p_one_sided_exact": sign_test_exact(b, c), "p_two_sided_exact": sign_test_exact(b, c, alternative="two-sided"),
-            "can_be_significant": b + c >= 6}
+            "sidedness": sidedness, "min_discordant_one_sided": f1, "min_discordant_two_sided": f2,
+            "can_be_significant_one_sided": b + c >= f1, "can_be_significant_two_sided": b + c >= f2,
+            "can_be_significant": b + c >= (f1 if sidedness == "one-sided" else f2)}
