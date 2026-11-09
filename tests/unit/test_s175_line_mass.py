@@ -89,3 +89,13 @@ def test_volume_portion_parser() -> None:
     assert LM.portion_ml(p("fl oz", 30, amount=2)) == pytest.approx(2 * 29.5735295625)
     assert LM.portion_ml(Portion("cup", 200, 1, 1000, "cup")) == pytest.approx(236.5882365)
     assert LM.portion_ml(p("medium", 110)) is None
+
+
+def test_q_levels_follow_ssot_235_3_and_sr_grams_need_link_verification() -> None:
+    stated = lm("200g plain flour", None)
+    assert (stated.q_level, stated.link_verification_required) == ("Q0", False)
+    count = lm("3 garlic cloves", GARLIC)
+    assert (count.q_level, count.link_verification_required) == ("Q1", True)
+    vol = lm("2 tbsp olive oil", OIL)
+    assert (vol.q_level, vol.link_verification_required) == ("Q2", True)
+    assert lm("1 onion", None).q_level == "Q6" and lm("a pinch of salt", NO_PORTIONS).q_level == "Q6"
