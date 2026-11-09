@@ -120,7 +120,7 @@ DRAFT, BLOCKED, NOT STARTED.
 |---|---|---|---|---|
 | 01 Freeze authority | SSOT v15 as authority | document control | DONE | v16 change set not applied |
 | 02 Audit state | inventory | scripts | DONE | — |
-| 03 State semantics | S_t fields, SVAR registry | registry (355 SVAR: 354 chemical, 1 physical) | DONE | physical/history SVARs missing (Q11) |
+| 03 State semantics | S_t fields, SVAR registry | registry (355 SVAR: 354 chemical, 1 physical) [S178 erratum: 224 distinct SVAR ids (223 CHEMICAL + 1 PHYSICAL); 355 / 354 / 1 are ledger version lines (reports/s178/evd/svar_reconciliation_v1.md)] | DONE | physical/history SVARs missing (Q11) |
 | 04 Evidence / provenance contracts | EVD/COND/SRC/MEAS schemas | JSON Schema | DONE | — |
 | 05 Normalise EVD | retention rows | parsers (USDA R6, Bognár) | DONE | — |
 | 06 Source manifest | licences | registry | DONE | Food.com training licence open |
