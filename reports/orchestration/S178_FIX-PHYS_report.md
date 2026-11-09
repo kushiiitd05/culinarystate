@@ -56,5 +56,5 @@ that pointed at v04 now point at the live v05 file, with the old target kept in 
   irreversible and left for Kush to approve. Directories: `physical_*_S178v04*`, `physical_NH_*_S178v04*`.
 - `tools/s178_analysis_corpus_can_say.py` and `tools/s178_evd_coverage.py` still name v04 / S177 inputs, which are now
   registered as superseded; re-point them to v05 / S179 before their next run (the guard refuses superseded inputs).
-- MECH on v05: run in S179 (see `S178_MECH_report.md` addendum).
+- MECH on v05: run in S179 (see `S178_FIX-ROUTER_report.md` §5).
 - Short re-review (one GOV, one SCI pass) of the fixer code is still owed (`MAC_CLAUDE_MERGE_PROMPT_2026-11-09.md` §2.5).
