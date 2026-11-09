@@ -68,6 +68,20 @@ def ucr(per_question: Sequence[tuple[int, int]]) -> float:
     return sum(u for _, u in per_question) / claims if claims else 0.0
 
 
+def ucr_with_coverage(per_question: Sequence[tuple[int, int]]) -> dict:
+    """UCR together with the coverage it needs (S178, T8-C12-R1). ``ucr`` is None, not 0, when no numeric claim was made.
+
+    ``claim_coverage`` = questions with at least one numeric claim / questions. A rung that says nothing has no defined
+    UCR; ``ucr`` above stays 0.0 there for backward compatibility with S173 callers.
+    """
+    claims = sum(c for c, _ in per_question)
+    with_claims = sum(1 for c, _ in per_question if c > 0)
+    bad = sum(u for _, u in per_question)
+    return {"n_questions": len(per_question), "n_claims": claims, "n_unsupported": bad,
+            "ucr": (bad / claims) if claims else None, "n_questions_with_claims": with_claims,
+            "claim_coverage": (with_claims / len(per_question)) if per_question else None}
+
+
 def ucr_diff_upper95(x: Sequence[tuple[int, int]], y: Sequence[tuple[int, int]], *, n_boot: int = 10_000,
                      seed: str = "d5-h3") -> float:
     """One-sided 95 % upper bound of UCR(x) - UCR(y), resampling questions (paired, same indices for x and y)."""
