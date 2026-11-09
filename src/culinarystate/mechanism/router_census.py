@@ -37,7 +37,7 @@ from culinarystate.mechanism import router_demo as RD
 from culinarystate.quantity import rc2_dryrun as D
 from culinarystate.recipes.ledgers import LOCALE
 
-CENSUS_VERSION = "router-demo-census-0.4.0-draft"
+CENSUS_VERSION = "router-demo-census-0.4.1-draft"
 
 
 def _steps(rec: Mapping) -> list[str]:
