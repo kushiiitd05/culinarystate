@@ -2,7 +2,7 @@
 
 **Status: DRAFT · AI_DRAFTED (S176 lane V16) · pending Kush's approval of v16.** v15.0 remains authoritative until approved.
 
-Source: `docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md` · sha256 `3a49731081daa9860ae15f235ccbaef70837d3eea5fd4b1570d8837ea30c4072` · 1,933,446 bytes · 46,833 lines
+Source: `docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md` · sha256 `e1a2b453b8e2224d68efa80b570c62cb536d67075a964a14dc40c6128c1ba77f` · 1,936,733 bytes · 46,833 lines
 
 Base: `docs/SSOT/computational_gastronomy_master_ssot_v15_0.md` · sha256 `1c9262bfe51a9f97090b1c2874757de535866c9c8b428df6be67df95a3675644` · 1,799,542 bytes · 45,697 lines (indexed by `docs/SSOT_INDEX.md`)
 
@@ -21,7 +21,7 @@ Built with the heading rule of `tools/build_ssot_index.py` (H1–H3; a heading e
 | Check | Value | Note |
 |---|---|---|
 | lines | 46833 | v15: 45697 (+1136) |
-| bytes | 1933278 | v15: 1799542 |
+| bytes | 1936733 | v15: 1799542 |
 | top-level # sections | 322 | v15: 309 (+13: the PART XIV heading + §280–§291) |
 | ID-anchor families (RQ16, RQ13E, E16, E13E, G13E, G16, G15, G14, G13, RISK-E, R13E) | first occurrences unchanged | PART XIV cites existing ids only (for example G15-1, G15-f, G23.1); it mints no new id of these families |
 

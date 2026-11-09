@@ -47,6 +47,9 @@ def test_registry_rules():
     assert len(set(ids)) == len(ids) and all(i.startswith("NH-") for i in ids)
     assert not set(ids) & {r["default_id"] for r in heat}
     for r in nh:
+        if r["source_status"].startswith("RETIRED_S177"):  # S177: kept for the audit trail (IDs never reused), never read
+            assert "RETIRED S177" in r["source_hint"], r["default_id"]
+            continue
         assert r["source_status"] == "SOURCE_UNVERIFIED_AGENT_RECALLED", r["default_id"]
         assert "needs_source" in r["source_hint"], r["default_id"]
         lo, mid, hi = (float(r[k]) for k in ("low", "mid", "high"))
@@ -174,16 +177,21 @@ def test_overnight_and_bound_durations_fill_from_registry_and_kge_without_claimi
         b["scenarios"]["TYPICAL"]["flags"]
 
 
-def test_f0_from_stated_t_and_t_alone(layer, binder):
+def test_f0_only_for_pressure_canning_and_qualitative_otherwise(layer, binder):
+    # S177 (FINAL-SCI row 4): F0 is the low-acid pressure-canning reference. Pasteurise is outside its scope: conditions only.
     out = layer.run(l1(binder, "Pasteurise the juice at 120C for 15 minutes.", "pasteurise"))
+    assert out["status"] == "QUALITATIVE_FLAGS_ONLY"
     for n in B:
-        assert out["scenarios"][n]["f0_min"] == pytest.approx(15 * 10 ** ((120 - 121.1) / 10), rel=1e-5)
-        assert out["scenarios"][n]["bases"]["medium_c"] == "L1:TEXT_STATED"
+        sc = out["scenarios"][n]
+        assert "f0_min" not in sc and "f0_upper_bound_at_medium_t_min" not in sc
+        assert "F0_NOT_APPLICABLE_LOW_ACID_RETORT_ONLY" in sc["flags"]
+        assert sc["medium_c"] == 120.0 and sc["bases"]["medium_c"] == "L1:TEXT_STATED"
     assert layer.run(l1(binder, "Pasteurise the juice.", "pasteurise"))["status"] == "SCENARIO_UNKNOWN"
     bath = layer.run(l1(binder, "Pasteurise the juice in a boiling water bath for 10 minutes.", "pasteurise"))
+    assert bath["status"] == "QUALITATIVE_FLAGS_ONLY"
     assert bath["scenarios"]["TYPICAL"]["medium_c"] == 100.0
     assert bath["scenarios"]["TYPICAL"]["bases"]["medium_c"] == "L1:PHYSICAL_DEFINITION"
-    assert bath["scenarios"]["TYPICAL"]["f0_min"] == pytest.approx(10 * 10 ** ((100 - 121.1) / 10), rel=1e-5)
+    assert "f0_upper_bound_at_medium_t_min" not in bath["scenarios"]["TYPICAL"]
 
 
 def test_drying_uses_stated_temperature_and_orders_the_brackets(layer, binder):

@@ -133,6 +133,8 @@ ENV_ALLOWED = {
     "STORAGE": ("FRIDGE", "FREEZER", "ROOM", "COOL_DARK"),
     "FERMENT_LEAVEN": ("FRIDGE", "ROOM", "WARM_PLACE", "COLD_WATER"),
     "PRESERVATION_DRY": ("DEHYDRATOR", "OVEN", "MICROWAVE"),
+    # L1 keeps every environment cue the text gives. S177: Layer 2 computes F0 only for PROC-000132 + PRESSURE_CANNER; the other
+    # cues (boiling-water bath, oven) get QUALITATIVE flags, and OVEN adds OVEN_CANNING_NOT_A_VALID_PROCESS (L1 is unchanged).
     "PRESERVATION_HEAT": ("BOILING_WATER_BATH", "PRESSURE_CANNER", "OVEN"),
     "PRESERVATION_SOAK": ("FRIDGE", "ROOM", "COOL_DARK", "WARM_PLACE"),
 }

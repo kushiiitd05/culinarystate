@@ -213,8 +213,9 @@ def test_quality_dose_uses_the_volume_average_trajectory(new):
     zt = PD.zone_trajectory(t0_c=s["initial_c"], bath_c=100.0, duration_min=20, steps=40, half_thickness_m=s["half_thickness_m"],
                             alpha_m2_s=1.4e-7, h_w_m2k=s["h"], k_w_mk=0.5)
     want = PD.trajectory_dose([(m, a) for m, _, a in zt], t_ref_c=100.0, z_c=33.0)
-    assert s["quality_cook_value_min"] == pytest.approx(want, abs=1e-4)
-    assert s["quality_cook_value_min"] >= s["core_cook_value_min"]  # the core dose is the lower bound
+    assert s["cook_value_at_volume_avg_t_min"] == pytest.approx(want, abs=1e-4)  # S177: renamed from quality_cook_value_min
+    assert s["cook_value_at_volume_avg_t_min"] >= s["core_cook_value_min"]  # the core dose is the lower bound
+    assert "NOT_A_ZONE_MEAN_DOSE" in s["flags"] and "quality_cook_value_min" not in s
     assert s["volume_avg_end_c"] == pytest.approx(zt[-1][2], abs=1e-3)
 
 

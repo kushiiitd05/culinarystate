@@ -190,7 +190,12 @@ def drying_state(*, t_min: float, h_w_m2k: float, t_air_c: float, t_wet_bulb_c: 
 
 
 def f0_minutes(*, minutes: float, t_c: float, t_ref_c: float, z_c: float) -> float:
-    """Equivalent minutes at T_ref for a constant temperature (F0 convention: z and T_ref come from the registry)."""
+    """Equivalent minutes at T_ref for a constant temperature (F0 convention: z and T_ref come from the registry).
+
+    SCOPE (S177, FINAL-SCI row 4; SSOT v16 DRAFT 284.6): F0 (z = 10 C, T_ref = 121.1 C) is the low-acid canning / retort
+    reference. At a constant medium temperature it ignores come-up time and the cold-spot lag, so for a real piece it is an
+    UPPER BOUND on lethality (the unsafe direction); callers use it only for pressure canning and name the field
+    ``f0_upper_bound_at_medium_t_min``. It is never a cooking-safety number."""
     return PD.equivalent_minutes([(minutes, t_c)], t_ref_c=t_ref_c, z_c=z_c)
 
 

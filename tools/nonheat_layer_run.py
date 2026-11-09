@@ -16,6 +16,12 @@ S176 L-PHYS (layer 0.2.0): RESTING carries the evaporation cap of ``phase_change
 Layer 2 over existing Layer 1 records (``--l1-records-dir`` then names the existing directory, nothing is written there);
 ``--compare-uncapped`` also runs the SUPERSEDED 0.1.0 model on RESTING events and reports a counts-only before/after block;
 ``--no-evaporation-cap`` reproduces 0.1.0; ``--altitude-m`` / ``--pressure-psig`` are the optional cap parameters.
+
+S177 SCIFIX-PHYS (layer 0.3.0): F0 only for pressure canning (the field is ``f0_upper_bound_at_medium_t_min``; pasteurise,
+sterilise, boiling-water-bath and oven canning are QUALITATIVE_FLAGS_ONLY with ``F0_NOT_APPLICABLE_LOW_ACID_RETORT_ONLY``);
+acid marinades (vinegar, citrus juice) are QUALITATIVE (PH_FALLS), no Fickian number; the RESTING cap never goes below a
+text-stated aqueous liquid temperature. ``--compare-prev-l2 DIR`` reads the previous (0.2.0) per-event L2 records of the
+same L1 files and adds a counts-only ``v02_to_v03`` block (status changes by family, flags added / removed, RESTING cap changes).
 """
 from __future__ import annotations
 
@@ -56,7 +62,9 @@ CODE_FILES = ("src/culinarystate/simulation/nonheat_binding.py", "src/culinaryst
               "registry/scenario_defaults_nonheat_v1.csv", "registry/scenario_defaults_v1.csv",
               "registry/process_medium_map_v1.csv", "tools/nonheat_layer_run.py")
 _LAYER: list = []  # [main layer, SUPERSEDED uncapped layer or None]
+_PREV: list = [None]  # directory of the previous (0.2.0) per-event L2 records, or None
 BR = ("GENTLE", "TYPICAL", "INTENSE")
+CHANGE_EPS = 5e-4
 
 
 def provenance() -> dict:
@@ -134,11 +142,47 @@ def _rest_compare(c: Counter, vals: dict, tag: str, out: dict, capped: bool, dry
 _TOL = 0.5
 
 
+def _cmp_prev(c: Counter, old: dict, new: dict) -> None:
+    """Counts-only 0.2.0 -> 0.3.0 comparison of one non-heat event (same L1 record, same order in the files)."""
+    fam = new["nh_family"]
+    c[("cmp_prev", "events", fam)] += 1
+    if old.get("event_id") != new.get("event_id") or old.get("recipe_id") != new.get("recipe_id"):
+        c[("cmp_prev", "ALIGNMENT_ERROR", fam)] += 1
+        return
+    c[("cmp_prev", "status", fam, f"{old['status']}__TO__{new['status']}")] += 1
+    so, sn = old["scenarios"].get("TYPICAL"), new["scenarios"].get("TYPICAL")
+    if not so or not sn:
+        return
+    fo, fn = set(so.get("flags", ())), set(sn.get("flags", ()))
+    for f in sorted(fn - fo):
+        c[("cmp_prev", "flag_added", fam, f)] += 1
+    for f in sorted(fo - fn):
+        c[("cmp_prev", "flag_removed", fam, f)] += 1
+    for k in sorted(set(so) - set(sn)):
+        if k not in ("flags", "bases"):
+            c[("cmp_prev", "field_dropped", fam, k)] += 1
+    for k in sorted(set(sn) - set(so)):
+        if k not in ("flags", "bases"):
+            c[("cmp_prev", "field_added", fam, k)] += 1
+    if fam == "RESTING":
+        if so.get("t_cap_c") != sn.get("t_cap_c"):
+            c[("cmp_prev", "rest_t_cap_changed")] += 1
+        for k in ("core_end_of_heat_c", "core_peak_c", "core_end_c"):
+            if so.get(k) is not None and sn.get(k) is not None and abs(so[k] - sn[k]) > CHANGE_EPS * max(1.0, abs(so[k])):
+                c[("cmp_prev", "rest_changed", k)] += 1
+
+
 def _l2_file(paths: tuple[str, str]) -> dict:
     src, dst = paths
     c: Counter = Counter()
     vals: dict = {}
     layer, old = _LAYER
+    prev = None
+    if _PREV[0] is not None:
+        pf = Path(_PREV[0]) / Path(src).name
+        prev = open(pf, encoding="utf-8") if pf.exists() else None
+        if prev is None:
+            c[("cmp_prev", "PREV_FILE_MISSING", "ALL")] += 1
     with open(src, encoding="utf-8") as fi, open(dst, "x", encoding="utf-8") as fo:
         for line in fi:
             rec = json.loads(line)
@@ -150,6 +194,12 @@ def _l2_file(paths: tuple[str, str]) -> dict:
                 c[("error", rec["nh_family"], type(e).__name__)] += 1
             fo.write(json.dumps(out, separators=(",", ":")) + "\n")
             NS.count_row(out, c)
+            if prev is not None:
+                pline = prev.readline()
+                if pline:
+                    _cmp_prev(c, json.loads(pline), out)
+                else:
+                    c[("cmp_prev", "PREV_FILE_SHORTER", "ALL")] += 1
             if old is not None and rec["nh_family"] == "RESTING":
                 dry = out["status"] == "SCENARIO_COMPUTED" and out["scenarios"]["TYPICAL"].get("t_cap_c", 1) is None
                 if out["status"] == "SCENARIO_COMPUTED":
@@ -160,6 +210,10 @@ def _l2_file(paths: tuple[str, str]) -> dict:
                         _rest_compare(c, vals, "before", o, False, dry)
                 except Exception:  # noqa: BLE001 - counted below
                     c[("cmp", "before", "error")] += 1
+    if prev is not None:
+        if prev.readline():
+            c[("cmp_prev", "PREV_FILE_LONGER", "ALL")] += 1
+        prev.close()
     return {"c": dict(c), "vals": vals}
 
 
@@ -175,8 +229,10 @@ def _nest(counts, prefix: str) -> dict:
     return out
 
 
-def run_l2(l1_dir: Path, l2_dir: Path, workers: int, policy: PC.CapPolicy, compare: bool) -> tuple[dict, dict]:
+def run_l2(l1_dir: Path, l2_dir: Path, workers: int, policy: PC.CapPolicy, compare: bool,
+           prev_dir: Path | None = None) -> tuple[dict, dict]:
     global _TOL
+    _PREV[0] = str(prev_dir) if prev_dir else None
     _LAYER.clear()
     main_layer = NS.NonHeatScenario.load(policy=policy)
     _TOL = main_layer.heat.pc.invariant_tol_c if main_layer.capped else 0.5
@@ -206,6 +262,9 @@ def run_l2(l1_dir: Path, l2_dir: Path, workers: int, policy: PC.CapPolicy, compa
            "bracket_order_check": _nest(tot, "order"), "cooling_target_reached": _nest(tot, "target_reached"),
            "errors_by_class": _nest(tot, "error")}
     extra: dict = {}
+    if prev_dir is not None:
+        extra["v02_to_v03"] = {"previous_layer_version": NS.VERSION_V02, "layer_version": NS.VERSION,
+                               "counts": _nest(tot, "cmp_prev")}
     if compare:
         q: dict = {}
         for (tag, f, b), xs in sorted(vals.items()):
@@ -214,8 +273,8 @@ def run_l2(l1_dir: Path, l2_dir: Path, workers: int, policy: PC.CapPolicy, compa
             q.setdefault(tag, {}).setdefault(f, {})[b] = {
                 "n": int(a.size), **{("max" if p == 1.0 else f"p{int(round(p * 100)):02d}"): round(float(x), 3)
                                      for p, x in zip(QUANTILES, qq)}}
-        extra = {"before_after": {"before_layer_version": NS.VERSION_UNCAPPED, "after_layer_version": NS.VERSION,
-                                  "counts": _nest(tot, "cmp"), "temperature_quantiles_resting": q}}
+        extra["before_after"] = {"before_layer_version": NS.VERSION_UNCAPPED, "after_layer_version": NS.VERSION,
+                                 "counts": _nest(tot, "cmp"), "temperature_quantiles_resting": q}
     return rep, extra
 
 
@@ -251,6 +310,8 @@ def main(argv=None, record_source=None) -> int:
     ap.add_argument("--l1-report", default=None, help="existing Layer 1 report: only recipes_sampled is read (--l2-only)")
     ap.add_argument("--compare-uncapped", action="store_true",
                     help="also run the SUPERSEDED 0.1.0 model on RESTING events and report a before/after block")
+    ap.add_argument("--compare-prev-l2", default=None,
+                    help="directory of the previous (0.2.0) per-event L2 records of the same L1 files: adds a v02_to_v03 block")
     ap.add_argument("--no-evaporation-cap", action="store_true", help="run the SUPERSEDED 0.1.0 model (regression only)")
     ap.add_argument("--altitude-m", type=float, default=None, help="optional altitude (default sea level, flagged)")
     ap.add_argument("--pressure-psig", type=float, default=None, help="optional gauge pressure of a pressure process")
@@ -290,7 +351,10 @@ def main(argv=None, record_source=None) -> int:
                                       seed=a.seed, size=a.sample_size, workers=a.workers, records_dir=d1)
         sampled = rep1["recipes_sampled"]
     t1 = time.time()
-    rep2c, extra = run_l2(d1, d2, a.workers, policy, a.compare_uncapped)
+    prev_dir = Path(a.compare_prev_l2) if a.compare_prev_l2 else None
+    if prev_dir is not None and not prev_dir.is_dir():
+        ap.error("--compare-prev-l2 must be an existing directory")
+    rep2c, extra = run_l2(d1, d2, a.workers, policy, a.compare_uncapped, prev_dir)
     t2 = time.time()
     if baseline == "PENDING_AFTER_RUN":
         baseline = "PASS_BEFORE_AND_AFTER" if _ok(root) else "FAILED_AFTER_RUN"

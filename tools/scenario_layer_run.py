@@ -9,6 +9,12 @@ SUPERSEDED 0.1.0 model on the same records and adds a counts-only before/after b
 100 C, dose quantiles, coverage); the per-event records written are always those of the main (capped) model.
 ``--no-evaporation-cap`` reproduces 0.1.0 (for regression only); ``--altitude-m`` and ``--pressure-psig`` are the optional
 cap parameters (default sea level at 1 atm, bracket pressure; both flagged in every record).
+
+S177 SCIFIX-PHYS (layer 0.3.0): zone-resolved doses (8 Gauss-Legendre node histories per bracket, ``zone_mean_cook_value_min``),
+``quality_cook_value_min`` renamed ``cook_value_at_volume_avg_t_min`` (old records are still read), the cap never below a
+text-stated aqueous liquid temperature. ``--compare-prev-l2 DIR`` reads the previous (0.2.0) per-event L2 records of the same
+L1 files and adds a counts-only ``v02_to_v03`` block (status changes, flags added / removed, cap and dose changes, quantiles
+of the zone-mean dose over the dose of the volume-average temperature).
 """
 from __future__ import annotations
 
@@ -39,7 +45,10 @@ from culinarystate.simulation import scenario_layer as SL  # noqa: E402
 _LAYER: list = []  # [main layer, SUPERSEDED uncapped layer or None]
 BR = ("GENTLE", "TYPICAL", "INTENSE")
 QUANTILES = (0.01, 0.1, 0.25, 0.5, 0.75, 0.9, 0.99, 1.0)
-DOSE_FIELDS = ("core_cook_value_min", "quality_cook_value_min", "surface_cook_value_min")
+DOSE_FIELDS = ("core_cook_value_min", "cook_value_at_volume_avg_t_min", "zone_mean_cook_value_min", "surface_cook_value_min")
+STATED_T_BUCKETS = ((100.0, 105.0, "100_TO_105"), (105.0, 120.0, "105_TO_120"), (120.0, 150.0, "120_TO_150"),
+                    (150.0, 1e9, "ABOVE_150"))
+_PREV: list = [None]  # directory of the previous (0.2.0) per-event L2 records, or None
 CODE_FILES = ("src/culinarystate/simulation/scenario_layer.py", "src/culinarystate/simulation/phase_change.py",
               "src/culinarystate/simulation/physics_drivers.py", "registry/scenario_defaults_v1.csv",
               "registry/phase_change_v1.csv", "registry/matrix_moisture_regime_v1.csv", "tools/scenario_layer_run.py")
@@ -60,6 +69,11 @@ def dir_manifest_sha256(d: Path) -> str:
     return h.hexdigest()
 
 
+def _dose(s: dict, f: str):
+    """A dose field of one bracket record; the 0.2.0 name of the volume-average dose is still read from old records."""
+    return SL.volume_avg_dose(s) if f == "cook_value_at_volume_avg_t_min" else s.get(f)
+
+
 def _count_main(c: Counter, out: dict) -> None:
     c[("status", code(out["status"]))] += 1
     c[("transition", code(out["transition_status"]))] += 1
@@ -72,12 +86,18 @@ def _count_main(c: Counter, out: dict) -> None:
                                  "PC" if str(v).startswith("PC-") else str(v))))] += 1
         if b == "TYPICAL" and s["core_end_c"] is not None:
             c[("typical_core_reaches_70", s["core_minutes_above_70"] > 0)] += 1
+        if "STATED_LIQUID_T_ABOVE_TBOIL" in s.get("flags", ()):
+            c[("stated_liquid_above_tboil", b)] += 1
+            c[("stated_liquid_above_tboil_by_stated_c", b, next(n for lo, hi, n in STATED_T_BUCKETS if lo < s["bath_c"] <= hi))] += 1
+        if s.get("zone_nodes"):
+            c[("zone_nodes_emitted", b)] += 1
     t = out["scenarios"].get("TYPICAL")
     if t is not None and "surface_state" in t:
         for b, s in out["scenarios"].items():
             c[("surface_state", b, code(s["surface_state"]))] += 1
         for f in t["flags"]:
-            if f.startswith(("MATRIX_", "EVAPORATION_", "PRESSURE_", "ALTITUDE_", "DRY_MATRIX")):
+            if f.startswith(("MATRIX_", "EVAPORATION_", "PRESSURE_", "ALTITUDE_", "DRY_MATRIX", "STATED_LIQUID", "BOILING_POINT",
+                             "TBOIL_", "ALL_MEMBERS", "NOT_A_ZONE", "CAP_")):
                 c[("cap_flag_typical", code(f))] += 1
 
 
@@ -112,7 +132,7 @@ def _compare(c: Counter, vals: dict, tag: str, out: dict, pressure: bool, capped
                 c[("cmp", tag, "violations_above_cap_plus_tol", b)] += 1
                 viol_any = True
         for f in DOSE_FIELDS:
-            v = s.get(f)
+            v = _dose(s, f)
             if v is not None:
                 vals.setdefault((tag, f, b), []).append(v)
                 vals.setdefault((sub, f, b), []).append(v)
@@ -130,6 +150,41 @@ def _compare(c: Counter, vals: dict, tag: str, out: dict, pressure: bool, capped
 
 
 _TOL = 0.5
+CHANGE_EPS = 5e-4  # outputs are rounded to 0.001 (temperatures) and 0.0001 (doses)
+
+
+def _cmp_prev(c: Counter, vals: dict, old: dict, new: dict) -> None:
+    """Counts-only 0.2.0 -> 0.3.0 comparison of one event (same L1 record, same order in the files)."""
+    c[("cmp_prev", "events")] += 1
+    if old.get("event_id") != new.get("event_id") or old.get("recipe_id") != new.get("recipe_id"):
+        c[("cmp_prev", "ALIGNMENT_ERROR")] += 1
+        return
+    c[("cmp_prev", "status", code(old["status"]), code(new["status"]))] += 1
+    for b in BR:
+        so, sn = old["scenarios"].get(b), new["scenarios"].get(b)
+        if not so or not sn:
+            continue
+        fo, fn = set(so.get("flags", ())), set(sn.get("flags", ()))
+        for f in sorted(fn - fo):
+            c[("cmp_prev", "flag_added", b, code(f))] += 1
+        for f in sorted(fo - fn):
+            c[("cmp_prev", "flag_removed", b, code(f))] += 1
+        if so.get("t_cap_c") != sn.get("t_cap_c"):
+            c[("cmp_prev", "t_cap_changed", b)] += 1
+            if sn.get("t_cap_c") is not None and so.get("t_cap_c") is not None and sn["t_cap_c"] > so["t_cap_c"]:
+                c[("cmp_prev", "t_cap_raised", b)] += 1
+        for f in ("core_end_c", "volume_avg_end_c", "core_cook_value_min", "surface_cook_value_min"):
+            if so.get(f) is not None and sn.get(f) is not None and abs(so[f] - sn[f]) > CHANGE_EPS * max(1.0, abs(so[f])):
+                c[("cmp_prev", "changed", b, f)] += 1
+        vo, vn = SL.volume_avg_dose(so), SL.volume_avg_dose(sn)
+        if vo is not None and vn is not None:
+            c[("cmp_prev", "volume_avg_dose_equal_to_0_2_0_name", b, abs(vo - vn) <= CHANGE_EPS * max(1.0, abs(vo)))] += 1
+        z, core = sn.get("zone_mean_cook_value_min"), sn.get("core_cook_value_min")
+        if z is not None and vn:
+            vals.setdefault(("v02_to_v03", "zone_mean_over_dose_at_volume_avg_t", b), []).append(z / vn)
+            c[("cmp_prev", "zone_mean_dose_gt_dose_at_volume_avg_t", b, z >= vn)] += 1
+        if z is not None and core:
+            vals.setdefault(("v02_to_v03", "zone_mean_over_core_dose", b), []).append(z / core)
 
 
 def _one(paths: tuple[str, str]) -> dict:
@@ -137,18 +192,40 @@ def _one(paths: tuple[str, str]) -> dict:
     layer, old = _LAYER
     c: Counter = Counter()
     vals: dict = {}
+    prev = None
+    if _PREV[0] is not None:
+        pf = Path(_PREV[0]) / Path(src).name
+        prev = open(pf, encoding="utf-8") if pf.exists() else None
+        if prev is None:
+            c[("cmp_prev", "PREV_FILE_MISSING")] += 1
     with open(src, encoding="utf-8") as fi, open(dst, "x", encoding="utf-8") as fo:
         for line in fi:
             rec = json.loads(line)
             out = layer.run(rec)
-            fo.write(json.dumps(out) + "\n")
+            fo.write(json.dumps(out, separators=(",", ":")) + "\n")
             _count_main(c, out)
+            if prev is not None:
+                pline = prev.readline()
+                if pline:
+                    _cmp_prev(c, vals, json.loads(pline), out)
+                else:
+                    c[("cmp_prev", "PREV_FILE_SHORTER")] += 1
             if old is not None:
                 pressure = out.get("medium") in PC.PRESSURE_MEDIA
                 typ = out["scenarios"].get("TYPICAL")
                 dry = bool(typ) and typ.get("t_cap_c", 1) is None
                 _compare(c, vals, "after", out, pressure, layer.capped, dry)
                 _compare(c, vals, "before", old.run(rec), pressure, False, dry)
+            if out["status"] == "SCENARIO_COMPUTED":
+                for b, sb in out["scenarios"].items():
+                    z, v = sb.get("zone_mean_cook_value_min"), sb.get("cook_value_at_volume_avg_t_min")
+                    if z is not None and v:
+                        vals.setdefault(("main", "zone_mean_over_dose_at_volume_avg_t", b), []).append(z / v)
+    if prev is not None:
+        extra = prev.readline()
+        prev.close()
+        if extra:
+            c[("cmp_prev", "PREV_FILE_LONGER")] += 1
     return {"c": dict(c), "vals": vals}
 
 
@@ -183,6 +260,8 @@ def main(argv=None) -> int:
                     help="also run the SUPERSEDED 0.1.0 model and report a before/after block")
     ap.add_argument("--no-evaporation-cap", action="store_true",
                     help="run the SUPERSEDED 0.1.0 model as the main model (regression only)")
+    ap.add_argument("--compare-prev-l2", type=Path, default=None,
+                    help="directory of the previous (0.2.0) per-event L2 records of the same L1 files: adds a v02_to_v03 block")
     ap.add_argument("--altitude-m", type=float, default=None, help="optional altitude (default sea level, flagged)")
     ap.add_argument("--pressure-psig", type=float, default=None, help="optional stated gauge pressure of a pressure process")
     a = ap.parse_args(argv)
@@ -197,6 +276,9 @@ def main(argv=None) -> int:
             parts = ("data",)
         if parts[:1] != ("data",):
             ap.error("--l1/--l2 must be under data/ (git-ignored) or outside the repository")
+    if a.compare_prev_l2 is not None and not a.compare_prev_l2.is_dir():
+        ap.error("--compare-prev-l2 must be an existing directory")
+    _PREV[0] = str(a.compare_prev_l2) if a.compare_prev_l2 else None
     a.l2.mkdir(parents=True, exist_ok=True)
     if any(a.l2.iterdir()):
         ap.error("--l2 must be empty or new")
@@ -221,13 +303,19 @@ def main(argv=None) -> int:
         tot.update(p["c"])
         for k, v in p["vals"].items():
             vals.setdefault(k, []).extend(v)
-    plain = [(k, v) for k, v in tot.items() if k[0] != "cmp"]
+    plain = [(k, v) for k, v in tot.items() if k[0] not in ("cmp", "cmp_prev")]
     cmp_items = [(k[1:], v) for k, v in tot.items() if k[0] == "cmp"]
+    prev_items = [(k[1:], v) for k, v in tot.items() if k[0] == "cmp_prev"]
+    ratio_vals = {k: v for k, v in vals.items() if k[0] in ("main", "v02_to_v03")}
+    vals = {k: v for k, v in vals.items() if k[0] not in ("main", "v02_to_v03")}
     reg = (ROOT / "registry/scenario_defaults_v1.csv").read_bytes()
     rep = {"record": "SCENARIO_L2_SUMMARY", "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY", "layer_version": SL.VERSION
            if main_layer.capped else SL.VERSION_UNCAPPED, "labels": SL.LABELS, "contains_ids": False,
            "contains_text": False, "citable": False, "counts_as_human_gate": False,
-           "scenario_registry_sha256": hashlib.sha256(reg).hexdigest(), "l1_files": len(jobs), "counts": _nest(plain)}
+           "scenario_registry_sha256": hashlib.sha256(reg).hexdigest(), "l1_files": len(jobs), "counts": _nest(plain),
+           "zone_field": {"n_nodes": main_layer.n_nodes, "scheme": "GAUSS_LEGENDRE_HALF_SLAB", "t_ref_c": SL.T_REF_C,
+                          "z_c": SL.Z_C, "zone_mean_over_dose_at_volume_avg_t_quantiles":
+                          _quantiles({k: v for k, v in ratio_vals.items() if k[0] == "main"}).get("main", {})}}
     if main_layer.capped:
         rep.update(cap_model=PC.VERSION, cap_policy={"enabled": True, "altitude_m": a.altitude_m, "pressure_psig": a.pressure_psig},
                    phase_change_registry_sha256=hashlib.sha256((ROOT / PC.REGISTRY).read_bytes()).hexdigest(),
@@ -239,6 +327,10 @@ def main(argv=None) -> int:
     if a.compare_uncapped:
         rep["before_after"] = {"before_layer_version": SL.VERSION_UNCAPPED, "after_layer_version": SL.VERSION,
                                "counts": _nest(cmp_items), "dose_quantiles": _quantiles(vals)}
+    if a.compare_prev_l2 is not None:
+        rep["v02_to_v03"] = {"previous_layer_version": SL.VERSION_V02, "layer_version": SL.VERSION, "counts": _nest(prev_items),
+                             "ratio_quantiles": _quantiles({k: v for k, v in ratio_vals.items() if k[0] == "v02_to_v03"})
+                             .get("v02_to_v03", {})}
     rep.update(code_provenance=prov, code_unchanged_during_run=provenance() == prov, started_at_utc=started,
                ended_at_utc=_now(), wall_seconds=round(time.time() - t0, 1), workers=a.workers,
                records_manifest_sha256=dir_manifest_sha256(a.l2))

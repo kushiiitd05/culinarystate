@@ -15,10 +15,13 @@ Families and drivers (FORM candidate classes in nonheat_binding.FORM_CANDIDATE):
 - COOLING: cool / chill: slab-centre trajectory with a cold medium (physics_drivers.core_trajectory) plus the time to a
   stated food target; freeze: Plank freezing time; defrost: Plank thawing time.
 - SEPARATION: leaching hand-off code (which phase leaves the food system) and a liquid-removed fraction for drain/strain.
-- FERMENT_LEAVEN: soak / marinate: Fickian slab uptake fraction (Bi -> infinity); prove / ferment / germinate:
-  qualitative state flags only (VOLUME_RISES, PH_FALLS), no number.
-- PRESERVATION: dry: two-stage drying (constant rate then falling rate); pickle / brine: Fickian uptake; can / sterilise /
-  pasteurise: F0 equivalent minutes where a stated or scenario T and t exist.
+- FERMENT_LEAVEN: soak / marinate: Fickian slab uptake fraction (Bi -> infinity) for a salt, sugar or water medium; an
+  ACID medium (vinegar, citrus juice) is reaction-diffusion: QUALITATIVE only (PH_FALLS), no Fickian number (S177);
+  prove / ferment / germinate: qualitative state flags only (VOLUME_RISES, PH_FALLS), no number.
+- PRESERVATION: dry: two-stage drying (constant rate then falling rate); pickle / brine: Fickian uptake; can: F0 upper bound
+  at the medium temperature ONLY for pressure canning (PROC-000132 with a pressure canner, S177: F0 is the low-acid
+  canning / retort reference, never cooking safety); pasteurise / sterilise / boiling-water-bath / oven canning: QUALITATIVE,
+  F0_NOT_APPLICABLE_LOW_ACID_RETORT_ONLY.
 - MECHANICAL_CUT: characteristic half-thickness and surface/volume from the cut class, disruption level, enzyme-system
   flag and the stated lower bound of the time until the next heat step.
 - MECHANICAL_MIX: qualitative flags AERATED / EMULSIFIED / DEVELOPED only.
@@ -43,7 +46,8 @@ from culinarystate.simulation import physics_drivers as PD
 from culinarystate.simulation import scenario_layer as SL
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "nonheat-scenario-L2-0.2.0-draft"
+VERSION = "nonheat-scenario-L2-0.3.0-draft"
+VERSION_V02 = "nonheat-scenario-L2-0.2.0-draft"  # SUPERSEDED by 0.3.0 (F0 scope, acid uptake, cap wording)
 VERSION_UNCAPPED = "nonheat-scenario-L2-0.1.0-draft"  # SUPERSEDED RESTING model (no evaporation cap)
 LABELS = list(SL.LABELS)
 BRACKETS = SL.BRACKETS
@@ -55,6 +59,7 @@ MEDIUM_TO_D = {"BRINE": "BRINE", "VINEGAR": "ACID", "CITRUS_JUICE": "ACID", "WAT
 ROLE_ROW = {"PROC-000038": "ROLE_COOL", "PROC-000039": "ROLE_CHILL", "PROC-000041": "ROLE_DEFROST"}
 DRY_H = {"DEHYDRATOR": "OVEN_AIR_FORCED", "OVEN": "OVEN_AIR"}
 DRY_T = {"DEHYDRATOR": "DEHYDRATOR", "OVEN": "OVEN_LOW"}
+CAN_PID, CANNER_ENV = "PROC-000132", "PRESSURE_CANNER"  # F0 scope (SSOT v16 DRAFT 284.6): pressure canning only
 STATE_FLAGS = {"PROC-000127": ["VOLUME_RISES"], "PROC-000128": ["PH_FALLS"], "PROC-000135": ["GERMINATION_ACTIVE"]}
 
 
@@ -62,6 +67,8 @@ def load_registry(path: Path) -> dict[str, dict[str, tuple]]:
     out: dict[str, dict[str, tuple]] = {}
     with open(path, newline="", encoding="utf-8") as fh:
         for r in csv.DictReader(fh):
+            if r["source_status"].startswith("RETIRED"):  # kept in the file for the audit trail (IDs are never reused), never read
+                continue
             for k in r["applies_to"].split("|"):
                 out.setdefault(r["quantity"], {})[k] = (float(r["low"]), float(r["mid"]), float(r["high"]),
                                                         r["default_id"])
@@ -323,6 +330,8 @@ class NonHeatScenario:
         if med["status"] == "UNKNOWN":
             return self._unknown(["medium"])
         dkey = MEDIUM_TO_D.get(med["value"])
+        if dkey == "ACID":  # S177 (FINAL-SCI row 5): tissue buffering consumes the acid, so no Fickian bound exists for it
+            return self._acid_marinade(rec, med)
         d_row = self.row("D_eff", dkey)
         size, size_basis = self._size(rec)
         dur, d_basis, dflags = self._duration(rec)
@@ -344,6 +353,19 @@ class NonHeatScenario:
                          "bases": {"D_eff_m2_s": d_row[3], "half_thickness_m": size_basis + "|" + size[3],
                                    "duration_min": d_basis, "medium": f"L1:{med['basis']}"}, "flags": flags}
         return self._out("SCENARIO_COMPUTED", "physically_possible", out)
+
+    def _acid_marinade(self, rec, med) -> dict:
+        """Vinegar or citrus-juice medium: QUALITATIVE only (the pH of the surface layer falls); no uptake number, no D."""
+        dur, d_basis, dflags = self._duration(rec)
+        out = {}
+        for i, name in enumerate(BRACKETS):
+            sc = {"state_flags": ["PH_FALLS"], "bases": {"medium": f"L1:{med['basis']}"},
+                  "flags": ["ACID_UPTAKE_REACTION_DIFFUSION_QUALITATIVE_ONLY", "QUALITATIVE_ONLY_NO_NUMBER_FOR_STATE",
+                            "NO_FICKIAN_UPTAKE_FOR_ACID_BUFFERED_BY_TISSUE", *dflags]}
+            if dur:
+                sc["duration_min"], sc["bases"]["duration_min"] = dur[i], d_basis
+            out[name] = sc
+        return self._out("QUALITATIVE_FLAGS_ONLY", "physically_possible", out)
 
     def _ferment(self, rec) -> dict:
         pid = rec["process_id"]
@@ -370,26 +392,43 @@ class NonHeatScenario:
             return self._out("UNSUPPORTED_TARGET_EQUIPMENT", "unsupported", {})
         stated = inp["medium_temperature"]
         env = inp["environment"]
-        t_row = self.row("medium_temperature", "PRESSURE_CANNER") if env["status"] != "UNKNOWN" \
-            and env["value"] == "PRESSURE_CANNER" else None
+        in_canner = env["status"] != "UNKNOWN" and env["value"] == CANNER_ENV
+        canner = pid == CAN_PID and in_canner
         if stated["status"] != "UNKNOWN":
             t_tr, t_basis = SL._triple(stated["value"]), f"L1:{stated['basis']}"
-        elif t_row:
-            t_tr, t_basis = t_row[:3], t_row[3]
+        elif in_canner:  # canner steam temperature from the saturation rows PC-002 / PC-030..034 (not the retired NH-010)
+            row = self.heat.pc.nums["boiling_point_pressure_process"]["WATER_PRESSURIZED"]
+            t_tr, t_basis = row[:3], row[3]
         else:
             return self._unknown(["medium_temperature"])
         dur, d_basis, dflags = self._duration(rec)
         if dur is None:
             return self._unknown(["duration_min"])
+        if not canner:  # S177 (FINAL-SCI row 4): F0 is the low-acid pressure-canning reference, never for anything else
+            return self._f0_not_applicable(rec, t_tr, t_basis, dur, d_basis, dflags)
         z, tref = self.row("lethality_z", "F0"), self.row("lethality_t_ref", "F0")
         out = {}
         for i, name in enumerate(BRACKETS):
             T = _t(t_tr, i, +1)
             out[name] = {"medium_c": T, "duration_min": dur[i],
-                         "f0_min": round(ND.f0_minutes(minutes=dur[i], t_c=T, t_ref_c=tref[1], z_c=z[1]), 6),
+                         "f0_upper_bound_at_medium_t_min": round(ND.f0_minutes(minutes=dur[i], t_c=T, t_ref_c=tref[1],
+                                                                              z_c=z[1]), 6),
                          "bases": {"medium_c": t_basis, "duration_min": d_basis, "lethality_z": z[3], "lethality_t_ref": tref[3]},
-                         "flags": ["F0_AT_MEDIUM_TEMPERATURE_NOT_COLD_SPOT", "EQUIVALENT_MINUTES_ONLY_NO_ORGANISM_CLAIM", *dflags]}
+                         "flags": ["F0_UPPER_BOUND_AT_MEDIUM_T_NO_COMEUP_NO_COLD_SPOT_LAG", "F0_AT_MEDIUM_TEMPERATURE_NOT_COLD_SPOT",
+                                   "LOW_ACID_FOOD_ASSUMED_NOT_CHECKED", "EQUIVALENT_MINUTES_ONLY_NO_ORGANISM_CLAIM", *dflags]}
         return self._out("SCENARIO_COMPUTED", "physically_possible", out)
+
+    def _f0_not_applicable(self, rec, t_tr, t_basis, dur, d_basis, dflags) -> dict:
+        """Pasteurise, sterilise, boiling-water-bath or oven 'canning': the stated conditions only, no F0 number."""
+        env = rec["inputs"]["environment"]
+        oven = env["status"] != "UNKNOWN" and env["value"] == "OVEN"
+        out = {}
+        for i, name in enumerate(BRACKETS):
+            out[name] = {"medium_c": _t(t_tr, i, +1), "duration_min": dur[i],
+                         "bases": {"medium_c": t_basis, "duration_min": d_basis},
+                         "flags": ["F0_NOT_APPLICABLE_LOW_ACID_RETORT_ONLY", "NO_NUMBER_EMITTED_OUTSIDE_F0_SCOPE",
+                                   *(["OVEN_CANNING_NOT_A_VALID_PROCESS"] if oven else []), *dflags]}
+        return self._out("QUALITATIVE_FLAGS_ONLY", "physically_possible", out)
 
     def _dry(self, rec) -> dict:
         inp = rec["inputs"]
@@ -507,6 +546,7 @@ class NonHeatScenario:
             return self._unknown(miss)
         hm = ph["inputs"].get("matrix_class") or {}
         matrix = hm.get("value") if hm.get("status", "UNKNOWN") != "UNKNOWN" else None
+        groups = SL.member_groups(ph["inputs"])
         out = {}
         for i, name in enumerate(BRACKETS):
             L = size[2 - i]  # as in the heat layer: the thickest piece is the least exposed (GENTLE)
@@ -516,7 +556,8 @@ class NonHeatScenario:
             t_cap = None
             if self.capped:
                 pol = self.heat.policy
-                c1 = self.heat.pc.cap(medium=medium, matrix_class=matrix, bracket=i, policy=pol)
+                c1 = self.heat.pc.cap(medium=medium, matrix_class=matrix, bracket=i, policy=pol, member_groups=groups,
+                                      stated_liquid_c=bath[i] if b_basis in PC.STATED_BASES else None, stated_basis=b_basis)
                 c2 = self.heat.pc.cap(medium=env_key, matrix_class=matrix, bracket=i, policy=pol)  # rest: atmospheric
                 caps, t_cap = [c1.t_c, c2.t_c], c1.t_c
                 cap_flags = list(c1.flags)
@@ -525,7 +566,8 @@ class NonHeatScenario:
                 if c1.regime == PC.DRY:
                     cap_flags.append("DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY")
                 if c2.active and c1.active and c1.t_c > c2.t_c:
-                    cap_flags.append("PRESSURE_RELEASE_PROFILE_CLIPPED_TO_ATMOSPHERIC_TBOIL")
+                    cap_flags.append("PRESSURE_RELEASE_PROFILE_CLIPPED_TO_ATMOSPHERIC_TBOIL" if medium in PC.PRESSURE_MEDIA
+                                     else "REST_PROFILE_CLIPPED_TO_ATMOSPHERIC_TBOIL_AFTER_STATED_LIQUID_T")
                 if b_basis == "L1:PHYSICAL_DEFINITION" and "PRESSURE_ASSUMED_1ATM" not in cap_flags:
                     cap_flags.append("PRESSURE_ASSUMED_1ATM")
             res = ND.slab_two_stage(t0_c=t0[i], half_thickness_m=L, alpha_m2_s=a[1], k_w_mk=k[1], stages=stages, caps=caps)
@@ -580,7 +622,7 @@ class NonHeatScenario:
 # it is physically non-monotone in the heat dose (a long heat equilibrates the piece and leaves less to carry over).
 ORDER_CHECKS = {"COOLING": (("core_end_c", -1), ("freezing_time_min", -1), ("thaw_time_min", -1)),
                 "FERMENT_LEAVEN": (("uptake_fraction", +1),), "PRESERVATION": (("uptake_fraction", +1),
-                                   ("water_removed_fraction", +1), ("f0_min", +1)),
+                                   ("water_removed_fraction", +1), ("f0_upper_bound_at_medium_t_min", +1)),
                 "MECHANICAL_CUT": (("half_thickness_m", -1),),
                 "RESTING": (("core_end_of_heat_c", +1), ("core_peak_c", +1)),
                 "STORAGE": (("storage_c", +1),), "SEPARATION": (("liquid_removed_fraction", +1),)}
