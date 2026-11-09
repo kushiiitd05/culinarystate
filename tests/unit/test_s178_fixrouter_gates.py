@@ -358,7 +358,7 @@ def test_census_v040_passes_ingredient_lines_and_counts_new_codes_only():
                                             ("Fry the potatoes.", ["2 potatoes"])])]
     rep = RC.census_from_records(recs, seed="t", size=10, index=RD.EvidenceIndex.from_rows(ROWS), target_svar=VC,
                                  gates=_gates())
-    assert RC.CENSUS_VERSION == "router-demo-census-0.4.0-draft"
+    assert RC.CENSUS_VERSION == "router-demo-census-0.4.1-draft"   # S179: post-food state cues
     assert rep["route"].get("DIRECT") == 1 and rep["route_ungated"]["DIRECT"] == 4
     assert rep["prior_process_withheld_by_basis"] == {"EVENT": 1, "INGREDIENT_LINE": 1}
     assert rep["event_role"].get("ATTRIBUTIVE_STATE") == 1
