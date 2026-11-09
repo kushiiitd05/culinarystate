@@ -7,7 +7,7 @@ from culinarystate.evaluation.paired_stats import mcnemar_exact
 from scipy.stats import beta, binom
 
 ALPHA = 0.05
-out = {}
+out = {"status": "AI_DRAFTED_PLANNING_NON_CITABLE"}   # GOV-8 (S178 FIX-GOV): the table carries its own AI_DRAFTED marker
 
 # 1. Minimum discordant split for two-sided exact McNemar p <= 0.05, per d.
 def min_split(d):

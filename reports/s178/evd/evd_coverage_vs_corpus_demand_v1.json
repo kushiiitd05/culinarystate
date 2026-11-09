@@ -21,7 +21,7 @@
  "inputs": {
   "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
   "ledgers/data/PROC.jsonl": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
-  "reports/s178/analysis/corpus_can_say_v1.json": "a6c07064f21d2eabaaa7194adf325323c14503955e8076ba22d236345962b7e5"
+  "reports/s178/analysis/corpus_can_say_v1.json": "32cbed9f2ce6c522f9615a1687a8a9632a8a83d46c74d538f4cc3c635587c471"
  },
  "label": "NON_CITABLE_COUNTS_ONLY",
  "layers": {
@@ -54,14 +54,14 @@
    115
   ],
   "full_nonBBC_census": {
-   "census_version": "router-demo-census-0.2.0-draft",
+   "census_version": "router-demo-census-0.3.0-draft",
    "evd_vitc_pairs_seen": 102,
-   "file": "reports/step23/router_demo_census_vitc_nonBBC_full_S176.json",
+   "file": "reports/step23/router_demo_census_vitc_nonBBC_full_S177.json",
    "ingredients_with_vitc_evidence": 25,
    "items": 35256601,
    "pct_vitc_pairs_seen_of_distinct_pairs": 0.08,
    "recipes_sampled": 600848,
-   "route_gated_DIRECT": 34537,
+   "route_gated_DIRECT": 40308,
    "route_ungated_DIRECT": 267933,
    "sample_distinct_ingredients": 1758,
    "sample_distinct_pairs": 125172
@@ -99,7 +99,7 @@
   },
   "sha256": {
    "reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json": "9250e8274460e8f15d5bc6da62c58cc9f8b12688b6b0ec068b3742d77db0b862",
-   "reports/step23/router_demo_census_vitc_nonBBC_full_S176.json": "ebff5d6928a0931acfbab32d18f139073e0fbfcab66abb7f4942973477e9ebd6"
+   "reports/step23/router_demo_census_vitc_nonBBC_full_S177.json": "16a13887c1536bb842ea220d66f9b66491b361d564a1ad67cf624f626f91e513"
   }
  },
  "record": "EVD_COVERAGE_VS_CORPUS_DEMAND_S178",
@@ -141,7 +141,7 @@
    "proc_ids_in_registry": 9,
    "process_family": "DRY_HEAT",
    "procs_with_corpus_events": 9,
-   "router_vitc_direct_items_gated_full_nonBBC": 10792,
+   "router_vitc_direct_items_gated_full_nonBBC": 11925,
    "router_vitc_direct_items_ungated_full_nonBBC": 150921,
    "sample_distinct_pairs": 522,
    "sample_pairs_with_evd": 25
@@ -158,7 +158,7 @@
    "proc_ids_in_registry": 12,
    "process_family": "FAT_HEAT",
    "procs_with_corpus_events": 11,
-   "router_vitc_direct_items_gated_full_nonBBC": 4871,
+   "router_vitc_direct_items_gated_full_nonBBC": 8237,
    "router_vitc_direct_items_ungated_full_nonBBC": 27131,
    "sample_distinct_pairs": 364,
    "sample_pairs_with_evd": 12
@@ -175,7 +175,7 @@
    "proc_ids_in_registry": 14,
    "process_family": "WET_HEAT",
    "procs_with_corpus_events": 14,
-   "router_vitc_direct_items_gated_full_nonBBC": 6345,
+   "router_vitc_direct_items_gated_full_nonBBC": 7117,
    "router_vitc_direct_items_ungated_full_nonBBC": 41492,
    "sample_distinct_pairs": 677,
    "sample_pairs_with_evd": 44
@@ -192,7 +192,7 @@
    "proc_ids_in_registry": 7,
    "process_family": "HEAT_GENERAL",
    "procs_with_corpus_events": 7,
-   "router_vitc_direct_items_gated_full_nonBBC": 5060,
+   "router_vitc_direct_items_gated_full_nonBBC": 7795,
    "router_vitc_direct_items_ungated_full_nonBBC": 38355,
    "sample_distinct_pairs": 629,
    "sample_pairs_with_evd": 7
@@ -209,7 +209,7 @@
    "proc_ids_in_registry": 4,
    "process_family": "COOLING",
    "procs_with_corpus_events": 4,
-   "router_vitc_direct_items_gated_full_nonBBC": 98,
+   "router_vitc_direct_items_gated_full_nonBBC": 83,
    "router_vitc_direct_items_ungated_full_nonBBC": 570,
    "sample_distinct_pairs": 531,
    "sample_pairs_with_evd": 12
@@ -226,7 +226,7 @@
    "proc_ids_in_registry": 6,
    "process_family": "PRESERVATION",
    "procs_with_corpus_events": 5,
-   "router_vitc_direct_items_gated_full_nonBBC": 1075,
+   "router_vitc_direct_items_gated_full_nonBBC": 854,
    "router_vitc_direct_items_ungated_full_nonBBC": 1669,
    "sample_distinct_pairs": 139,
    "sample_pairs_with_evd": 3
@@ -277,7 +277,7 @@
    "proc_ids_in_registry": 14,
    "process_family": "MECHANICAL_MIX",
    "procs_with_corpus_events": 14,
-   "router_vitc_direct_items_gated_full_nonBBC": 6296,
+   "router_vitc_direct_items_gated_full_nonBBC": 4297,
    "router_vitc_direct_items_ungated_full_nonBBC": 7795,
    "sample_distinct_pairs": 1698,
    "sample_pairs_with_evd": 3
@@ -442,7 +442,7 @@
   "BOOTSTRAP_UNVERIFIED",
   "NOT_07A_AUDITED"
  ],
- "tool_version": "s178-evd-coverage-0.1.0-draft",
+ "tool_version": "s178-evd-coverage-0.2.0-draft",
  "totals": {
   "corpus_events": 4724493,
   "corpus_events_with_evd_proc": 2998628,
@@ -451,7 +451,7 @@
   "pct_events_with_evd_proc": 63.47,
   "pct_sample_pairs_with_evd": 0.89,
   "proc_ids_in_registry": 147,
-  "router_vitc_direct_items_gated_full_nonBBC": 34537,
+  "router_vitc_direct_items_gated_full_nonBBC": 40308,
   "router_vitc_direct_items_ungated_full_nonBBC": 267933,
   "sample_distinct_pairs": 12501,
   "sample_pairs_with_evd": 111

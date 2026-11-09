@@ -38,7 +38,7 @@ def stats(A, B, ids, boot=False):
         s["ac1_boot_lo"] = round(CA._bootstrap(A, B, ids)[0], 4)
     return s
 
-res = {}
+res = {"status": "AI_DRAFTED_PLANNING_NON_CITABLE"}   # GOV-8 (S178 FIX-GOV): the table carries its own AI_DRAFTED marker
 for scen, kw in {"spread_1_per_condition_onesided": dict(per_cond=1),
                  "clustered_3_per_condition_onesided": dict(per_cond=3),
                  "spread_with_46pct_NA_agreed": dict(per_cond=1, na_share=0.46)}.items():

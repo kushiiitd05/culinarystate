@@ -15,7 +15,7 @@ def evd_rows(n=160, seed=0):
         rf = {"status": "CENSORED", "censor": {"kind": "GT_CAP", "limit": 0.975}} if censored else \
             {"status": "MEASURED", "value": float(np.clip(0.5 + 0.1 * (i % 4) + rng.normal(0, 0.05), 0.05, 1.2)),
              "unit": "fraction"}
-        out.append({"id": f"EVD-{i:06d}", "status": "ACTIVE", "source_family_id": "SYN",
+        out.append({"id": f"EVD-{i:06d}", "status": "ACTIVE", "source_family_id": "SYN", "tier": "E3",   # tier: schema-required (S178 GOV-10 firewall)
                     "matrix": {"raw_name": m, "form": "", "food_group": f"g{i % 4}", "ingredient_id": f"ING-{i % 16}"},
                     "process": {"steps": [p], "raw_name": p, "condition_id": None, "process_id": f"P-{p}"},
                     "target": {"raw_name": ("vitamin c", "folate")[i % 2], "basis": ("dry", "wet")[i % 2]},

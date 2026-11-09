@@ -18,28 +18,28 @@
   }
  ],
  "heat": {
-  "derivation": "per-event L1 (S176 v02) and L2 (S177 v03) records under data/derived, aggregated by this tool; totals reconciled to the committed census JSONs (see reconciliation block)",
+  "derivation": "per-event L1 and L2 (S178 v04) records under data/derived, aggregated by this tool; totals reconciled to the committed census JSONs (see reconciliation block)",
   "derived_by_process": {
    "FOODCOM|PROC-000001": {
-    "T_any_bound": 91638,
-    "T_range": 191,
-    "T_text_stated": 31166,
-    "both_t_and_T_text_stated": 23667,
+    "T_any_bound": 91104,
+    "T_range": 177,
+    "T_text_stated": 30111,
+    "both_t_and_T_text_stated": 23113,
     "events": 278044,
-    "gas_mark_only": 210,
+    "gas_mark_only": 218,
     "l1_family": "DRY_HEAT",
     "lid_known": 25654,
     "matrix_class_known": 51851,
     "medium_known": 278044,
     "pct": {
-     "T_any_bound": 32.96,
-     "T_text_stated": 11.21,
-     "both_text": 8.51,
+     "T_any_bound": 32.77,
+     "T_text_stated": 10.83,
+     "both_text": 8.31,
      "lid": 9.23,
      "medium": 100.0,
      "size": 10.71,
      "start": 0.02,
-     "t_and_T_any": 22.01,
+     "t_and_T_any": 21.95,
      "t_stated": 62.02
     },
     "piece_size_known": 29768,
@@ -48,28 +48,28 @@
     "start_mode_known": 44,
     "t_range": 72047,
     "t_stated": 172445,
-    "t_stated_and_T_any": 61195
+    "t_stated_and_T_any": 61024
    },
    "FOODCOM|PROC-000002": {
-    "T_any_bound": 7873,
-    "T_range": 37,
-    "T_text_stated": 2168,
-    "both_t_and_T_text_stated": 1069,
+    "T_any_bound": 7642,
+    "T_range": 27,
+    "T_text_stated": 1489,
+    "both_t_and_T_text_stated": 807,
     "events": 26888,
-    "gas_mark_only": 22,
+    "gas_mark_only": 23,
     "l1_family": "DRY_HEAT",
     "lid_known": 1591,
     "matrix_class_known": 10498,
     "medium_known": 26888,
     "pct": {
-     "T_any_bound": 29.28,
-     "T_text_stated": 8.06,
-     "both_text": 3.98,
+     "T_any_bound": 28.42,
+     "T_text_stated": 5.54,
+     "both_text": 3.0,
      "lid": 5.92,
      "medium": 100.0,
      "size": 11.66,
      "start": 0.17,
-     "t_and_T_any": 13.79,
+     "t_and_T_any": 13.5,
      "t_stated": 29.66
     },
     "piece_size_known": 3134,
@@ -78,13 +78,13 @@
     "start_mode_known": 47,
     "t_range": 2189,
     "t_stated": 7975,
-    "t_stated_and_T_any": 3709
+    "t_stated_and_T_any": 3630
    },
    "FOODCOM|PROC-000003": {
-    "T_any_bound": 2278,
-    "T_range": 39,
-    "T_text_stated": 905,
-    "both_t_and_T_text_stated": 366,
+    "T_any_bound": 1892,
+    "T_range": 34,
+    "T_text_stated": 513,
+    "both_t_and_T_text_stated": 213,
     "events": 37699,
     "gas_mark_only": 1,
     "l1_family": "DRY_HEAT",
@@ -92,14 +92,14 @@
     "matrix_class_known": 12485,
     "medium_known": 37699,
     "pct": {
-     "T_any_bound": 6.04,
-     "T_text_stated": 2.4,
-     "both_text": 0.97,
+     "T_any_bound": 5.02,
+     "T_text_stated": 1.36,
+     "both_text": 0.57,
      "lid": 6.04,
      "medium": 100.0,
      "size": 14.39,
      "start": 0.05,
-     "t_and_T_any": 2.31,
+     "t_and_T_any": 1.92,
      "t_stated": 35.08
     },
     "piece_size_known": 5424,
@@ -108,12 +108,12 @@
     "start_mode_known": 20,
     "t_range": 6033,
     "t_stated": 13225,
-    "t_stated_and_T_any": 872
+    "t_stated_and_T_any": 725
    },
    "FOODCOM|PROC-000004": {
-    "T_any_bound": 1881,
-    "T_range": 2,
-    "T_text_stated": 372,
+    "T_any_bound": 1814,
+    "T_range": 1,
+    "T_text_stated": 297,
     "both_t_and_T_text_stated": 161,
     "events": 14765,
     "gas_mark_only": 0,
@@ -122,8 +122,8 @@
     "matrix_class_known": 8705,
     "medium_known": 14765,
     "pct": {
-     "T_any_bound": 12.74,
-     "T_text_stated": 2.52,
+     "T_any_bound": 12.29,
+     "T_text_stated": 2.01,
      "both_text": 1.09,
      "lid": 0.89,
      "medium": 100.0,
@@ -138,12 +138,12 @@
     "start_mode_known": 2,
     "t_range": 640,
     "t_stated": 1860,
-    "t_stated_and_T_any": 504
+    "t_stated_and_T_any": 503
    },
    "FOODCOM|PROC-000005": {
-    "T_any_bound": 251,
+    "T_any_bound": 243,
     "T_range": 0,
-    "T_text_stated": 37,
+    "T_text_stated": 26,
     "both_t_and_T_text_stated": 3,
     "events": 3078,
     "gas_mark_only": 0,
@@ -152,8 +152,8 @@
     "matrix_class_known": 1193,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 8.15,
-     "T_text_stated": 1.2,
+     "T_any_bound": 7.89,
+     "T_text_stated": 0.84,
      "both_text": 0.1,
      "lid": 3.35,
      "medium": 0.0,
@@ -171,10 +171,10 @@
     "t_stated_and_T_any": 17
    },
    "FOODCOM|PROC-000006": {
-    "T_any_bound": 250,
+    "T_any_bound": 230,
     "T_range": 7,
-    "T_text_stated": 74,
-    "both_t_and_T_text_stated": 29,
+    "T_text_stated": 48,
+    "both_t_and_T_text_stated": 16,
     "events": 2813,
     "gas_mark_only": 2,
     "l1_family": "DRY_HEAT",
@@ -182,14 +182,14 @@
     "matrix_class_known": 903,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 8.89,
-     "T_text_stated": 2.63,
-     "both_text": 1.03,
+     "T_any_bound": 8.18,
+     "T_text_stated": 1.71,
+     "both_text": 0.57,
      "lid": 3.66,
      "medium": 0.0,
      "size": 7.18,
      "start": 0.07,
-     "t_and_T_any": 1.39,
+     "t_and_T_any": 1.07,
      "t_stated": 10.77
     },
     "piece_size_known": 202,
@@ -198,13 +198,13 @@
     "start_mode_known": 2,
     "t_range": 91,
     "t_stated": 303,
-    "t_stated_and_T_any": 39
+    "t_stated_and_T_any": 30
    },
    "FOODCOM|PROC-000007": {
-    "T_any_bound": 80,
-    "T_range": 2,
-    "T_text_stated": 80,
-    "both_t_and_T_text_stated": 46,
+    "T_any_bound": 62,
+    "T_range": 1,
+    "T_text_stated": 62,
+    "both_t_and_T_text_stated": 36,
     "events": 14410,
     "gas_mark_only": 0,
     "l1_family": "HEAT_GENERAL",
@@ -212,14 +212,14 @@
     "matrix_class_known": 5515,
     "medium_known": 14410,
     "pct": {
-     "T_any_bound": 0.56,
-     "T_text_stated": 0.56,
-     "both_text": 0.32,
+     "T_any_bound": 0.43,
+     "T_text_stated": 0.43,
+     "both_text": 0.25,
      "lid": 16.27,
      "medium": 100.0,
      "size": 7.7,
      "start": 0.28,
-     "t_and_T_any": 0.32,
+     "t_and_T_any": 0.25,
      "t_stated": 58.5
     },
     "piece_size_known": 1110,
@@ -228,7 +228,7 @@
     "start_mode_known": 41,
     "t_range": 2308,
     "t_stated": 8430,
-    "t_stated_and_T_any": 46
+    "t_stated_and_T_any": 36
    },
    "FOODCOM|PROC-000008": {
     "T_any_bound": 0,
@@ -261,10 +261,10 @@
     "t_stated_and_T_any": 0
    },
    "FOODCOM|PROC-000009": {
-    "T_any_bound": 482,
+    "T_any_bound": 399,
     "T_range": 15,
-    "T_text_stated": 482,
-    "both_t_and_T_text_stated": 91,
+    "T_text_stated": 399,
+    "both_t_and_T_text_stated": 79,
     "events": 33302,
     "gas_mark_only": 0,
     "l1_family": "FAT_HEAT",
@@ -272,14 +272,14 @@
     "matrix_class_known": 12416,
     "medium_known": 33302,
     "pct": {
-     "T_any_bound": 1.45,
-     "T_text_stated": 1.45,
-     "both_text": 0.27,
+     "T_any_bound": 1.2,
+     "T_text_stated": 1.2,
+     "both_text": 0.24,
      "lid": 1.33,
      "medium": 100.0,
      "size": 12.23,
      "start": 0.06,
-     "t_and_T_any": 0.27,
+     "t_and_T_any": 0.24,
      "t_stated": 21.09
     },
     "piece_size_known": 4072,
@@ -288,13 +288,13 @@
     "start_mode_known": 19,
     "t_range": 2426,
     "t_stated": 7024,
-    "t_stated_and_T_any": 91
+    "t_stated_and_T_any": 79
    },
    "FOODCOM|PROC-000010": {
-    "T_any_bound": 4,
+    "T_any_bound": 2,
     "T_range": 0,
-    "T_text_stated": 4,
-    "both_t_and_T_text_stated": 2,
+    "T_text_stated": 2,
+    "both_t_and_T_text_stated": 1,
     "events": 7178,
     "gas_mark_only": 0,
     "l1_family": "FAT_HEAT",
@@ -302,14 +302,14 @@
     "matrix_class_known": 2386,
     "medium_known": 7178,
     "pct": {
-     "T_any_bound": 0.06,
-     "T_text_stated": 0.06,
-     "both_text": 0.03,
+     "T_any_bound": 0.03,
+     "T_text_stated": 0.03,
+     "both_text": 0.01,
      "lid": 0.43,
      "medium": 100.0,
      "size": 13.92,
      "start": 0.06,
-     "t_and_T_any": 0.03,
+     "t_and_T_any": 0.01,
      "t_stated": 58.5
     },
     "piece_size_known": 999,
@@ -318,13 +318,13 @@
     "start_mode_known": 4,
     "t_range": 1020,
     "t_stated": 4199,
-    "t_stated_and_T_any": 2
+    "t_stated_and_T_any": 1
    },
    "FOODCOM|PROC-000011": {
-    "T_any_bound": 79,
-    "T_range": 2,
-    "T_text_stated": 79,
-    "both_t_and_T_text_stated": 25,
+    "T_any_bound": 64,
+    "T_range": 1,
+    "T_text_stated": 64,
+    "both_t_and_T_text_stated": 23,
     "events": 554,
     "gas_mark_only": 0,
     "l1_family": "FAT_HEAT",
@@ -332,14 +332,14 @@
     "matrix_class_known": 155,
     "medium_known": 554,
     "pct": {
-     "T_any_bound": 14.26,
-     "T_text_stated": 14.26,
-     "both_text": 4.51,
+     "T_any_bound": 11.55,
+     "T_text_stated": 11.55,
+     "both_text": 4.15,
      "lid": 0.54,
      "medium": 100.0,
      "size": 9.03,
      "start": 0.18,
-     "t_and_T_any": 4.51,
+     "t_and_T_any": 4.15,
      "t_stated": 26.17
     },
     "piece_size_known": 50,
@@ -348,7 +348,7 @@
     "start_mode_known": 1,
     "t_range": 51,
     "t_stated": 145,
-    "t_stated_and_T_any": 25
+    "t_stated_and_T_any": 23
    },
    "FOODCOM|PROC-000012": {
     "T_any_bound": 0,
@@ -381,10 +381,10 @@
     "t_stated_and_T_any": 0
    },
    "FOODCOM|PROC-000013": {
-    "T_any_bound": 5,
+    "T_any_bound": 3,
     "T_range": 0,
-    "T_text_stated": 5,
-    "both_t_and_T_text_stated": 1,
+    "T_text_stated": 3,
+    "both_t_and_T_text_stated": 0,
     "events": 303,
     "gas_mark_only": 0,
     "l1_family": "FAT_HEAT",
@@ -392,14 +392,14 @@
     "matrix_class_known": 98,
     "medium_known": 303,
     "pct": {
-     "T_any_bound": 1.65,
-     "T_text_stated": 1.65,
-     "both_text": 0.33,
+     "T_any_bound": 0.99,
+     "T_text_stated": 0.99,
+     "both_text": 0.0,
      "lid": 0.33,
      "medium": 100.0,
      "size": 12.87,
      "start": 0.0,
-     "t_and_T_any": 0.33,
+     "t_and_T_any": 0.0,
      "t_stated": 24.42
     },
     "piece_size_known": 39,
@@ -408,13 +408,13 @@
     "start_mode_known": 0,
     "t_range": 30,
     "t_stated": 74,
-    "t_stated_and_T_any": 1
+    "t_stated_and_T_any": 0
    },
    "FOODCOM|PROC-000014": {
-    "T_any_bound": 47,
+    "T_any_bound": 34,
     "T_range": 0,
-    "T_text_stated": 47,
-    "both_t_and_T_text_stated": 15,
+    "T_text_stated": 34,
+    "both_t_and_T_text_stated": 11,
     "events": 67586,
     "gas_mark_only": 0,
     "l1_family": "FAT_HEAT",
@@ -422,8 +422,8 @@
     "matrix_class_known": 33247,
     "medium_known": 67586,
     "pct": {
-     "T_any_bound": 0.07,
-     "T_text_stated": 0.07,
+     "T_any_bound": 0.05,
+     "T_text_stated": 0.05,
      "both_text": 0.02,
      "lid": 0.68,
      "medium": 100.0,
@@ -438,12 +438,12 @@
     "start_mode_known": 19,
     "t_range": 5354,
     "t_stated": 25500,
-    "t_stated_and_T_any": 15
+    "t_stated_and_T_any": 11
    },
    "FOODCOM|PROC-000015": {
-    "T_any_bound": 26,
+    "T_any_bound": 18,
     "T_range": 0,
-    "T_text_stated": 26,
+    "T_text_stated": 18,
     "both_t_and_T_text_stated": 5,
     "events": 3715,
     "gas_mark_only": 0,
@@ -452,8 +452,8 @@
     "matrix_class_known": 1174,
     "medium_known": 3715,
     "pct": {
-     "T_any_bound": 0.7,
-     "T_text_stated": 0.7,
+     "T_any_bound": 0.48,
+     "T_text_stated": 0.48,
      "both_text": 0.13,
      "lid": 1.45,
      "medium": 100.0,
@@ -471,10 +471,10 @@
     "t_stated_and_T_any": 5
    },
    "FOODCOM|PROC-000016": {
-    "T_any_bound": 1112,
-    "T_range": 12,
-    "T_text_stated": 1112,
-    "both_t_and_T_text_stated": 157,
+    "T_any_bound": 460,
+    "T_range": 2,
+    "T_text_stated": 460,
+    "both_t_and_T_text_stated": 88,
     "events": 83816,
     "gas_mark_only": 0,
     "l1_family": "FAT_HEAT",
@@ -482,14 +482,14 @@
     "matrix_class_known": 33702,
     "medium_known": 83816,
     "pct": {
-     "T_any_bound": 1.33,
-     "T_text_stated": 1.33,
-     "both_text": 0.19,
+     "T_any_bound": 0.55,
+     "T_text_stated": 0.55,
+     "both_text": 0.1,
      "lid": 3.01,
      "medium": 100.0,
      "size": 8.43,
      "start": 0.16,
-     "t_and_T_any": 0.19,
+     "t_and_T_any": 0.1,
      "t_stated": 7.41
     },
     "piece_size_known": 7069,
@@ -498,7 +498,7 @@
     "start_mode_known": 131,
     "t_range": 1870,
     "t_stated": 6214,
-    "t_stated_and_T_any": 157
+    "t_stated_and_T_any": 88
    },
    "FOODCOM|PROC-000017": {
     "T_any_bound": 1,
@@ -562,9 +562,9 @@
    },
    "FOODCOM|PROC-000019": {
     "T_any_bound": 87700,
-    "T_range": 13,
-    "T_text_stated": 483,
-    "both_t_and_T_text_stated": 60,
+    "T_range": 10,
+    "T_text_stated": 285,
+    "both_t_and_T_text_stated": 43,
     "events": 87700,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -573,8 +573,8 @@
     "medium_known": 87700,
     "pct": {
      "T_any_bound": 100.0,
-     "T_text_stated": 0.55,
-     "both_text": 0.07,
+     "T_text_stated": 0.32,
+     "both_text": 0.05,
      "lid": 8.0,
      "medium": 100.0,
      "size": 6.57,
@@ -591,10 +591,10 @@
     "t_stated_and_T_any": 15648
    },
    "FOODCOM|PROC-000020": {
-    "T_any_bound": 188,
-    "T_range": 3,
-    "T_text_stated": 188,
-    "both_t_and_T_text_stated": 70,
+    "T_any_bound": 72,
+    "T_range": 2,
+    "T_text_stated": 72,
+    "both_t_and_T_text_stated": 31,
     "events": 104978,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -602,14 +602,14 @@
     "matrix_class_known": 25813,
     "medium_known": 104978,
     "pct": {
-     "T_any_bound": 0.18,
-     "T_text_stated": 0.18,
-     "both_text": 0.07,
+     "T_any_bound": 0.07,
+     "T_text_stated": 0.07,
+     "both_text": 0.03,
      "lid": 31.24,
      "medium": 100.0,
      "size": 10.43,
      "start": 0.7,
-     "t_and_T_any": 0.07,
+     "t_and_T_any": 0.03,
      "t_stated": 55.0
     },
     "piece_size_known": 10954,
@@ -618,13 +618,13 @@
     "start_mode_known": 738,
     "t_range": 11235,
     "t_stated": 57734,
-    "t_stated_and_T_any": 70
+    "t_stated_and_T_any": 31
    },
    "FOODCOM|PROC-000021": {
-    "T_any_bound": 10,
+    "T_any_bound": 7,
     "T_range": 1,
-    "T_text_stated": 10,
-    "both_t_and_T_text_stated": 3,
+    "T_text_stated": 7,
+    "both_t_and_T_text_stated": 2,
     "events": 1384,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -632,14 +632,14 @@
     "matrix_class_known": 544,
     "medium_known": 1384,
     "pct": {
-     "T_any_bound": 0.72,
-     "T_text_stated": 0.72,
-     "both_text": 0.22,
+     "T_any_bound": 0.51,
+     "T_text_stated": 0.51,
+     "both_text": 0.14,
      "lid": 10.62,
      "medium": 100.0,
      "size": 9.18,
      "start": 2.24,
-     "t_and_T_any": 0.22,
+     "t_and_T_any": 0.14,
      "t_stated": 25.72
     },
     "piece_size_known": 127,
@@ -648,13 +648,13 @@
     "start_mode_known": 31,
     "t_range": 117,
     "t_stated": 356,
-    "t_stated_and_T_any": 3
+    "t_stated_and_T_any": 2
    },
    "FOODCOM|PROC-000022": {
     "T_any_bound": 11821,
     "T_range": 0,
-    "T_text_stated": 63,
-    "both_t_and_T_text_stated": 15,
+    "T_text_stated": 13,
+    "both_t_and_T_text_stated": 5,
     "events": 11821,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -663,8 +663,8 @@
     "medium_known": 11821,
     "pct": {
      "T_any_bound": 100.0,
-     "T_text_stated": 0.53,
-     "both_text": 0.13,
+     "T_text_stated": 0.11,
+     "both_text": 0.04,
      "lid": 16.85,
      "medium": 100.0,
      "size": 8.87,
@@ -681,10 +681,10 @@
     "t_stated_and_T_any": 3002
    },
    "FOODCOM|PROC-000023": {
-    "T_any_bound": 4,
+    "T_any_bound": 2,
     "T_range": 0,
-    "T_text_stated": 4,
-    "both_t_and_T_text_stated": 2,
+    "T_text_stated": 2,
+    "both_t_and_T_text_stated": 1,
     "events": 2151,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -692,14 +692,14 @@
     "matrix_class_known": 922,
     "medium_known": 2151,
     "pct": {
-     "T_any_bound": 0.19,
-     "T_text_stated": 0.19,
-     "both_text": 0.09,
+     "T_any_bound": 0.09,
+     "T_text_stated": 0.09,
+     "both_text": 0.05,
      "lid": 1.81,
      "medium": 100.0,
      "size": 8.41,
      "start": 37.28,
-     "t_and_T_any": 0.09,
+     "t_and_T_any": 0.05,
      "t_stated": 27.2
     },
     "piece_size_known": 181,
@@ -708,13 +708,13 @@
     "start_mode_known": 802,
     "t_range": 121,
     "t_stated": 585,
-    "t_stated_and_T_any": 2
+    "t_stated_and_T_any": 1
    },
    "FOODCOM|PROC-000024": {
-    "T_any_bound": 27,
-    "T_range": 1,
-    "T_text_stated": 27,
-    "both_t_and_T_text_stated": 14,
+    "T_any_bound": 7,
+    "T_range": 0,
+    "T_text_stated": 7,
+    "both_t_and_T_text_stated": 5,
     "events": 770,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -722,14 +722,14 @@
     "matrix_class_known": 223,
     "medium_known": 770,
     "pct": {
-     "T_any_bound": 3.51,
-     "T_text_stated": 3.51,
-     "both_text": 1.82,
+     "T_any_bound": 0.91,
+     "T_text_stated": 0.91,
+     "both_text": 0.65,
      "lid": 24.03,
      "medium": 100.0,
      "size": 11.95,
      "start": 0.52,
-     "t_and_T_any": 1.82,
+     "t_and_T_any": 0.65,
      "t_stated": 30.13
     },
     "piece_size_known": 92,
@@ -738,12 +738,12 @@
     "start_mode_known": 4,
     "t_range": 41,
     "t_stated": 232,
-    "t_stated_and_T_any": 14
+    "t_stated_and_T_any": 5
    },
    "FOODCOM|PROC-000025": {
-    "T_any_bound": 9,
+    "T_any_bound": 3,
     "T_range": 0,
-    "T_text_stated": 9,
+    "T_text_stated": 3,
     "both_t_and_T_text_stated": 2,
     "events": 3269,
     "gas_mark_only": 0,
@@ -752,8 +752,8 @@
     "matrix_class_known": 1085,
     "medium_known": 3269,
     "pct": {
-     "T_any_bound": 0.28,
-     "T_text_stated": 0.28,
+     "T_any_bound": 0.09,
+     "T_text_stated": 0.09,
      "both_text": 0.06,
      "lid": 5.41,
      "medium": 100.0,
@@ -773,7 +773,7 @@
    "FOODCOM|PROC-000026": {
     "T_any_bound": 522,
     "T_range": 0,
-    "T_text_stated": 2,
+    "T_text_stated": 0,
     "both_t_and_T_text_stated": 0,
     "events": 522,
     "gas_mark_only": 0,
@@ -783,7 +783,7 @@
     "medium_known": 522,
     "pct": {
      "T_any_bound": 100.0,
-     "T_text_stated": 0.38,
+     "T_text_stated": 0.0,
      "both_text": 0.0,
      "lid": 4.21,
      "medium": 100.0,
@@ -831,10 +831,10 @@
     "t_stated_and_T_any": 0
    },
    "FOODCOM|PROC-000028": {
-    "T_any_bound": 2348,
-    "T_range": 5,
-    "T_text_stated": 2348,
-    "both_t_and_T_text_stated": 186,
+    "T_any_bound": 586,
+    "T_range": 1,
+    "T_text_stated": 586,
+    "both_t_and_T_text_stated": 71,
     "events": 63895,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -842,14 +842,14 @@
     "matrix_class_known": 16423,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 3.67,
-     "T_text_stated": 3.67,
-     "both_text": 0.29,
+     "T_any_bound": 0.92,
+     "T_text_stated": 0.92,
+     "both_text": 0.11,
      "lid": 23.75,
      "medium": 0.0,
      "size": 9.55,
      "start": 0.9,
-     "t_and_T_any": 0.29,
+     "t_and_T_any": 0.11,
      "t_stated": 4.06
     },
     "piece_size_known": 6099,
@@ -858,12 +858,12 @@
     "start_mode_known": 574,
     "t_range": 544,
     "t_stated": 2597,
-    "t_stated_and_T_any": 186
+    "t_stated_and_T_any": 71
    },
    "FOODCOM|PROC-000029": {
-    "T_any_bound": 7,
+    "T_any_bound": 5,
     "T_range": 0,
-    "T_text_stated": 7,
+    "T_text_stated": 5,
     "both_t_and_T_text_stated": 3,
     "events": 3076,
     "gas_mark_only": 0,
@@ -872,8 +872,8 @@
     "matrix_class_known": 1119,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.23,
-     "T_text_stated": 0.23,
+     "T_any_bound": 0.16,
+     "T_text_stated": 0.16,
      "both_text": 0.1,
      "lid": 16.64,
      "medium": 0.0,
@@ -891,9 +891,9 @@
     "t_stated_and_T_any": 3
    },
    "FOODCOM|PROC-000030": {
-    "T_any_bound": 2,
+    "T_any_bound": 1,
     "T_range": 0,
-    "T_text_stated": 2,
+    "T_text_stated": 1,
     "both_t_and_T_text_stated": 0,
     "events": 2459,
     "gas_mark_only": 0,
@@ -902,8 +902,8 @@
     "matrix_class_known": 816,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.08,
-     "T_text_stated": 0.08,
+     "T_any_bound": 0.04,
+     "T_text_stated": 0.04,
      "both_text": 0.0,
      "lid": 0.73,
      "medium": 0.0,
@@ -921,10 +921,10 @@
     "t_stated_and_T_any": 0
    },
    "FOODCOM|PROC-000031": {
-    "T_any_bound": 3903,
-    "T_range": 68,
-    "T_text_stated": 3903,
-    "both_t_and_T_text_stated": 1727,
+    "T_any_bound": 3044,
+    "T_range": 44,
+    "T_text_stated": 3044,
+    "both_t_and_T_text_stated": 1438,
     "events": 354073,
     "gas_mark_only": 0,
     "l1_family": "HEAT_GENERAL",
@@ -932,14 +932,14 @@
     "matrix_class_known": 125951,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 1.1,
-     "T_text_stated": 1.1,
-     "both_text": 0.49,
+     "T_any_bound": 0.86,
+     "T_text_stated": 0.86,
+     "both_text": 0.41,
      "lid": 10.02,
      "medium": 0.0,
      "size": 10.24,
      "start": 1.93,
-     "t_and_T_any": 0.49,
+     "t_and_T_any": 0.41,
      "t_stated": 34.55
     },
     "piece_size_known": 36252,
@@ -948,13 +948,13 @@
     "start_mode_known": 6842,
     "t_range": 36366,
     "t_stated": 122321,
-    "t_stated_and_T_any": 1727
+    "t_stated_and_T_any": 1438
    },
    "FOODCOM|PROC-000032": {
-    "T_any_bound": 10913,
-    "T_range": 140,
-    "T_text_stated": 10913,
-    "both_t_and_T_text_stated": 374,
+    "T_any_bound": 10697,
+    "T_range": 133,
+    "T_text_stated": 10697,
+    "both_t_and_T_text_stated": 362,
     "events": 199757,
     "gas_mark_only": 0,
     "l1_family": "HEAT_GENERAL",
@@ -962,14 +962,14 @@
     "matrix_class_known": 55903,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 5.46,
-     "T_text_stated": 5.46,
-     "both_text": 0.19,
+     "T_any_bound": 5.36,
+     "T_text_stated": 5.36,
+     "both_text": 0.18,
      "lid": 3.14,
      "medium": 0.0,
      "size": 6.16,
      "start": 2.09,
-     "t_and_T_any": 0.19,
+     "t_and_T_any": 0.18,
      "t_stated": 4.11
     },
     "piece_size_known": 12298,
@@ -978,12 +978,12 @@
     "start_mode_known": 4179,
     "t_range": 1934,
     "t_stated": 8217,
-    "t_stated_and_T_any": 374
+    "t_stated_and_T_any": 362
    },
    "FOODCOM|PROC-000033": {
-    "T_any_bound": 333,
+    "T_any_bound": 270,
     "T_range": 1,
-    "T_text_stated": 333,
+    "T_text_stated": 270,
     "both_t_and_T_text_stated": 113,
     "events": 6116,
     "gas_mark_only": 0,
@@ -992,8 +992,8 @@
     "matrix_class_known": 1517,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 5.44,
-     "T_text_stated": 5.44,
+     "T_any_bound": 4.41,
+     "T_text_stated": 4.41,
      "both_text": 1.85,
      "lid": 5.04,
      "medium": 0.0,
@@ -1011,9 +1011,9 @@
     "t_stated_and_T_any": 113
    },
    "FOODCOM|PROC-000034": {
-    "T_any_bound": 455,
-    "T_range": 11,
-    "T_text_stated": 455,
+    "T_any_bound": 386,
+    "T_range": 8,
+    "T_text_stated": 386,
     "both_t_and_T_text_stated": 29,
     "events": 79050,
     "gas_mark_only": 0,
@@ -1022,8 +1022,8 @@
     "matrix_class_known": 56082,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.58,
-     "T_text_stated": 0.58,
+     "T_any_bound": 0.49,
+     "T_text_stated": 0.49,
      "both_text": 0.04,
      "lid": 1.41,
      "medium": 0.0,
@@ -1041,10 +1041,10 @@
     "t_stated_and_T_any": 29
    },
    "FOODCOM|PROC-000036": {
-    "T_any_bound": 9,
+    "T_any_bound": 8,
     "T_range": 2,
-    "T_text_stated": 9,
-    "both_t_and_T_text_stated": 3,
+    "T_text_stated": 8,
+    "both_t_and_T_text_stated": 2,
     "events": 1750,
     "gas_mark_only": 0,
     "l1_family": "HEAT_GENERAL",
@@ -1052,14 +1052,14 @@
     "matrix_class_known": 547,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.51,
-     "T_text_stated": 0.51,
-     "both_text": 0.17,
+     "T_any_bound": 0.46,
+     "T_text_stated": 0.46,
+     "both_text": 0.11,
      "lid": 6.51,
      "medium": 0.0,
      "size": 11.77,
      "start": 0.29,
-     "t_and_T_any": 0.17,
+     "t_and_T_any": 0.11,
      "t_stated": 5.77
     },
     "piece_size_known": 206,
@@ -1068,13 +1068,13 @@
     "start_mode_known": 5,
     "t_range": 33,
     "t_stated": 101,
-    "t_stated_and_T_any": 3
+    "t_stated_and_T_any": 2
    },
    "FOODCOM|PROC-000037": {
-    "T_any_bound": 368,
+    "T_any_bound": 366,
     "T_range": 0,
-    "T_text_stated": 18,
-    "both_t_and_T_text_stated": 2,
+    "T_text_stated": 12,
+    "both_t_and_T_text_stated": 0,
     "events": 2282,
     "gas_mark_only": 0,
     "l1_family": "DRY_HEAT",
@@ -1082,14 +1082,14 @@
     "matrix_class_known": 896,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 16.13,
-     "T_text_stated": 0.79,
-     "both_text": 0.09,
+     "T_any_bound": 16.04,
+     "T_text_stated": 0.53,
+     "both_text": 0.0,
      "lid": 3.11,
      "medium": 0.0,
      "size": 17.31,
      "start": 0.09,
-     "t_and_T_any": 1.4,
+     "t_and_T_any": 1.36,
      "t_stated": 8.24
     },
     "piece_size_known": 395,
@@ -1098,7 +1098,7 @@
     "start_mode_known": 2,
     "t_range": 60,
     "t_stated": 188,
-    "t_stated_and_T_any": 32
+    "t_stated_and_T_any": 31
    },
    "FOODCOM|PROC-000149": {
     "T_any_bound": 5,
@@ -1131,9 +1131,9 @@
     "t_stated_and_T_any": 2
    },
    "FOODCOM|PROC-000150": {
-    "T_any_bound": 8,
-    "T_range": 3,
-    "T_text_stated": 8,
+    "T_any_bound": 5,
+    "T_range": 1,
+    "T_text_stated": 5,
     "both_t_and_T_text_stated": 0,
     "events": 1113,
     "gas_mark_only": 0,
@@ -1142,8 +1142,8 @@
     "matrix_class_known": 719,
     "medium_known": 1113,
     "pct": {
-     "T_any_bound": 0.72,
-     "T_text_stated": 0.72,
+     "T_any_bound": 0.45,
+     "T_text_stated": 0.45,
      "both_text": 0.0,
      "lid": 0.99,
      "medium": 100.0,
@@ -1161,9 +1161,9 @@
     "t_stated_and_T_any": 0
    },
    "FOODCOM|PROC-000151": {
-    "T_any_bound": 3,
+    "T_any_bound": 2,
     "T_range": 0,
-    "T_text_stated": 3,
+    "T_text_stated": 2,
     "both_t_and_T_text_stated": 0,
     "events": 652,
     "gas_mark_only": 0,
@@ -1172,8 +1172,8 @@
     "matrix_class_known": 395,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.46,
-     "T_text_stated": 0.46,
+     "T_any_bound": 0.31,
+     "T_text_stated": 0.31,
      "both_text": 0.0,
      "lid": 2.45,
      "medium": 0.0,
@@ -1221,9 +1221,9 @@
     "t_stated_and_T_any": 46
    },
    "FOODCOM|PROC-000154": {
-    "T_any_bound": 3,
+    "T_any_bound": 2,
     "T_range": 0,
-    "T_text_stated": 3,
+    "T_text_stated": 2,
     "both_t_and_T_text_stated": 0,
     "events": 724,
     "gas_mark_only": 0,
@@ -1232,8 +1232,8 @@
     "matrix_class_known": 141,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.41,
-     "T_text_stated": 0.41,
+     "T_any_bound": 0.28,
+     "T_text_stated": 0.28,
      "both_text": 0.0,
      "lid": 1.1,
      "medium": 0.0,
@@ -1251,9 +1251,9 @@
     "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000001": {
-    "T_any_bound": 659,
+    "T_any_bound": 655,
     "T_range": 4,
-    "T_text_stated": 615,
+    "T_text_stated": 610,
     "both_t_and_T_text_stated": 307,
     "events": 23335,
     "gas_mark_only": 0,
@@ -1262,8 +1262,8 @@
     "matrix_class_known": 5958,
     "medium_known": 23335,
     "pct": {
-     "T_any_bound": 2.82,
-     "T_text_stated": 2.64,
+     "T_any_bound": 2.81,
+     "T_text_stated": 2.61,
      "both_text": 1.32,
      "lid": 7.52,
      "medium": 100.0,
@@ -1281,9 +1281,9 @@
     "t_stated_and_T_any": 336
    },
    "GUTENBERG_SEGMENT|PROC-000002": {
-    "T_any_bound": 20,
+    "T_any_bound": 13,
     "T_range": 0,
-    "T_text_stated": 20,
+    "T_text_stated": 13,
     "both_t_and_T_text_stated": 0,
     "events": 5392,
     "gas_mark_only": 0,
@@ -1292,8 +1292,8 @@
     "matrix_class_known": 2099,
     "medium_known": 5392,
     "pct": {
-     "T_any_bound": 0.37,
-     "T_text_stated": 0.37,
+     "T_any_bound": 0.24,
+     "T_text_stated": 0.24,
      "both_text": 0.0,
      "lid": 2.65,
      "medium": 100.0,
@@ -1311,9 +1311,9 @@
     "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000003": {
-    "T_any_bound": 18,
+    "T_any_bound": 15,
     "T_range": 0,
-    "T_text_stated": 16,
+    "T_text_stated": 13,
     "both_t_and_T_text_stated": 10,
     "events": 3074,
     "gas_mark_only": 0,
@@ -1322,8 +1322,8 @@
     "matrix_class_known": 1075,
     "medium_known": 3074,
     "pct": {
-     "T_any_bound": 0.59,
-     "T_text_stated": 0.52,
+     "T_any_bound": 0.49,
+     "T_text_stated": 0.42,
      "both_text": 0.33,
      "lid": 2.37,
      "medium": 100.0,
@@ -1341,9 +1341,9 @@
     "t_stated_and_T_any": 11
    },
    "GUTENBERG_SEGMENT|PROC-000004": {
-    "T_any_bound": 8,
+    "T_any_bound": 6,
     "T_range": 0,
-    "T_text_stated": 5,
+    "T_text_stated": 3,
     "both_t_and_T_text_stated": 2,
     "events": 1259,
     "gas_mark_only": 0,
@@ -1352,8 +1352,8 @@
     "matrix_class_known": 775,
     "medium_known": 1259,
     "pct": {
-     "T_any_bound": 0.64,
-     "T_text_stated": 0.4,
+     "T_any_bound": 0.48,
+     "T_text_stated": 0.24,
      "both_text": 0.16,
      "lid": 3.18,
      "medium": 100.0,
@@ -1431,9 +1431,9 @@
     "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000009": {
-    "T_any_bound": 16,
+    "T_any_bound": 14,
     "T_range": 1,
-    "T_text_stated": 16,
+    "T_text_stated": 14,
     "both_t_and_T_text_stated": 4,
     "events": 10925,
     "gas_mark_only": 0,
@@ -1442,8 +1442,8 @@
     "matrix_class_known": 5461,
     "medium_known": 10925,
     "pct": {
-     "T_any_bound": 0.15,
-     "T_text_stated": 0.15,
+     "T_any_bound": 0.13,
+     "T_text_stated": 0.13,
      "both_text": 0.04,
      "lid": 2.64,
      "medium": 100.0,
@@ -1521,9 +1521,9 @@
     "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000014": {
-    "T_any_bound": 5,
+    "T_any_bound": 4,
     "T_range": 0,
-    "T_text_stated": 5,
+    "T_text_stated": 4,
     "both_t_and_T_text_stated": 0,
     "events": 818,
     "gas_mark_only": 0,
@@ -1532,8 +1532,8 @@
     "matrix_class_known": 387,
     "medium_known": 818,
     "pct": {
-     "T_any_bound": 0.61,
-     "T_text_stated": 0.61,
+     "T_any_bound": 0.49,
+     "T_text_stated": 0.49,
      "both_text": 0.0,
      "lid": 1.83,
      "medium": 100.0,
@@ -1581,10 +1581,10 @@
     "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000016": {
-    "T_any_bound": 11,
+    "T_any_bound": 8,
     "T_range": 0,
-    "T_text_stated": 11,
-    "both_t_and_T_text_stated": 3,
+    "T_text_stated": 8,
+    "both_t_and_T_text_stated": 2,
     "events": 12001,
     "gas_mark_only": 0,
     "l1_family": "FAT_HEAT",
@@ -1592,8 +1592,8 @@
     "matrix_class_known": 5152,
     "medium_known": 12001,
     "pct": {
-     "T_any_bound": 0.09,
-     "T_text_stated": 0.09,
+     "T_any_bound": 0.07,
+     "T_text_stated": 0.07,
      "both_text": 0.02,
      "lid": 7.06,
      "medium": 100.0,
@@ -1608,7 +1608,7 @@
     "start_mode_known": 209,
     "t_range": 16,
     "t_stated": 61,
-    "t_stated_and_T_any": 3
+    "t_stated_and_T_any": 2
    },
    "GUTENBERG_SEGMENT|PROC-000017": {
     "T_any_bound": 0,
@@ -1643,7 +1643,7 @@
    "GUTENBERG_SEGMENT|PROC-000019": {
     "T_any_bound": 50506,
     "T_range": 0,
-    "T_text_stated": 138,
+    "T_text_stated": 90,
     "both_t_and_T_text_stated": 0,
     "events": 50506,
     "gas_mark_only": 0,
@@ -1653,7 +1653,7 @@
     "medium_known": 50506,
     "pct": {
      "T_any_bound": 100.0,
-     "T_text_stated": 0.27,
+     "T_text_stated": 0.18,
      "both_text": 0.0,
      "lid": 7.14,
      "medium": 100.0,
@@ -1671,10 +1671,10 @@
     "t_stated_and_T_any": 1408
    },
    "GUTENBERG_SEGMENT|PROC-000020": {
-    "T_any_bound": 12,
+    "T_any_bound": 11,
     "T_range": 0,
-    "T_text_stated": 12,
-    "both_t_and_T_text_stated": 1,
+    "T_text_stated": 11,
+    "both_t_and_T_text_stated": 0,
     "events": 6373,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -1682,14 +1682,14 @@
     "matrix_class_known": 1688,
     "medium_known": 6373,
     "pct": {
-     "T_any_bound": 0.19,
-     "T_text_stated": 0.19,
-     "both_text": 0.02,
+     "T_any_bound": 0.17,
+     "T_text_stated": 0.17,
+     "both_text": 0.0,
      "lid": 13.45,
      "medium": 100.0,
      "size": 18.75,
      "start": 4.82,
-     "t_and_T_any": 0.02,
+     "t_and_T_any": 0.0,
      "t_stated": 10.47
     },
     "piece_size_known": 1195,
@@ -1698,7 +1698,7 @@
     "start_mode_known": 307,
     "t_range": 60,
     "t_stated": 667,
-    "t_stated_and_T_any": 1
+    "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000021": {
     "T_any_bound": 2,
@@ -1733,8 +1733,8 @@
    "GUTENBERG_SEGMENT|PROC-000022": {
     "T_any_bound": 2384,
     "T_range": 0,
-    "T_text_stated": 8,
-    "both_t_and_T_text_stated": 1,
+    "T_text_stated": 4,
+    "both_t_and_T_text_stated": 0,
     "events": 2384,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -1743,8 +1743,8 @@
     "medium_known": 2384,
     "pct": {
      "T_any_bound": 100.0,
-     "T_text_stated": 0.34,
-     "both_text": 0.04,
+     "T_text_stated": 0.17,
+     "both_text": 0.0,
      "lid": 15.23,
      "medium": 100.0,
      "size": 12.79,
@@ -1761,9 +1761,9 @@
     "t_stated_and_T_any": 190
    },
    "GUTENBERG_SEGMENT|PROC-000023": {
-    "T_any_bound": 3,
+    "T_any_bound": 2,
     "T_range": 0,
-    "T_text_stated": 3,
+    "T_text_stated": 2,
     "both_t_and_T_text_stated": 0,
     "events": 1811,
     "gas_mark_only": 0,
@@ -1772,8 +1772,8 @@
     "matrix_class_known": 903,
     "medium_known": 1811,
     "pct": {
-     "T_any_bound": 0.17,
-     "T_text_stated": 0.17,
+     "T_any_bound": 0.11,
+     "T_text_stated": 0.11,
      "both_text": 0.0,
      "lid": 1.71,
      "medium": 100.0,
@@ -1791,9 +1791,9 @@
     "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000024": {
-    "T_any_bound": 3,
+    "T_any_bound": 0,
     "T_range": 0,
-    "T_text_stated": 3,
+    "T_text_stated": 0,
     "both_t_and_T_text_stated": 0,
     "events": 608,
     "gas_mark_only": 0,
@@ -1802,8 +1802,8 @@
     "matrix_class_known": 227,
     "medium_known": 608,
     "pct": {
-     "T_any_bound": 0.49,
-     "T_text_stated": 0.49,
+     "T_any_bound": 0.0,
+     "T_text_stated": 0.0,
      "both_text": 0.0,
      "lid": 4.11,
      "medium": 100.0,
@@ -1821,9 +1821,9 @@
     "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000025": {
-    "T_any_bound": 3,
+    "T_any_bound": 1,
     "T_range": 0,
-    "T_text_stated": 3,
+    "T_text_stated": 1,
     "both_t_and_T_text_stated": 0,
     "events": 7083,
     "gas_mark_only": 0,
@@ -1832,8 +1832,8 @@
     "matrix_class_known": 2885,
     "medium_known": 7083,
     "pct": {
-     "T_any_bound": 0.04,
-     "T_text_stated": 0.04,
+     "T_any_bound": 0.01,
+     "T_text_stated": 0.01,
      "both_text": 0.0,
      "lid": 9.29,
      "medium": 100.0,
@@ -1881,9 +1881,9 @@
     "t_stated_and_T_any": 22
    },
    "GUTENBERG_SEGMENT|PROC-000028": {
-    "T_any_bound": 20,
+    "T_any_bound": 15,
     "T_range": 0,
-    "T_text_stated": 20,
+    "T_text_stated": 15,
     "both_t_and_T_text_stated": 0,
     "events": 1781,
     "gas_mark_only": 0,
@@ -1892,8 +1892,8 @@
     "matrix_class_known": 568,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 1.12,
-     "T_text_stated": 1.12,
+     "T_any_bound": 0.84,
+     "T_text_stated": 0.84,
      "both_text": 0.0,
      "lid": 5.73,
      "medium": 0.0,
@@ -1941,9 +1941,9 @@
     "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000031": {
-    "T_any_bound": 78,
+    "T_any_bound": 70,
     "T_range": 0,
-    "T_text_stated": 78,
+    "T_text_stated": 70,
     "both_t_and_T_text_stated": 3,
     "events": 26926,
     "gas_mark_only": 0,
@@ -1952,8 +1952,8 @@
     "matrix_class_known": 9157,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.29,
-     "T_text_stated": 0.29,
+     "T_any_bound": 0.26,
+     "T_text_stated": 0.26,
      "both_text": 0.01,
      "lid": 6.28,
      "medium": 0.0,
@@ -1971,9 +1971,9 @@
     "t_stated_and_T_any": 3
    },
    "GUTENBERG_SEGMENT|PROC-000032": {
-    "T_any_bound": 62,
+    "T_any_bound": 58,
     "T_range": 0,
-    "T_text_stated": 62,
+    "T_text_stated": 58,
     "both_t_and_T_text_stated": 5,
     "events": 9925,
     "gas_mark_only": 0,
@@ -1982,8 +1982,8 @@
     "matrix_class_known": 3530,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.62,
-     "T_text_stated": 0.62,
+     "T_any_bound": 0.58,
+     "T_text_stated": 0.58,
      "both_text": 0.05,
      "lid": 4.85,
      "medium": 0.0,
@@ -2031,9 +2031,9 @@
     "t_stated_and_T_any": 0
    },
    "GUTENBERG_SEGMENT|PROC-000034": {
-    "T_any_bound": 22,
+    "T_any_bound": 11,
     "T_range": 0,
-    "T_text_stated": 22,
+    "T_text_stated": 11,
     "both_t_and_T_text_stated": 0,
     "events": 8520,
     "gas_mark_only": 0,
@@ -2042,8 +2042,8 @@
     "matrix_class_known": 5124,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.26,
-     "T_text_stated": 0.26,
+     "T_any_bound": 0.13,
+     "T_text_stated": 0.13,
      "both_text": 0.0,
      "lid": 2.92,
      "medium": 0.0,
@@ -2211,10 +2211,10 @@
     "t_stated_and_T_any": 0
    },
    "WIKIBOOKS|PROC-000001": {
-    "T_any_bound": 826,
+    "T_any_bound": 821,
     "T_range": 18,
-    "T_text_stated": 405,
-    "both_t_and_T_text_stated": 309,
+    "T_text_stated": 398,
+    "both_t_and_T_text_stated": 307,
     "events": 1157,
     "gas_mark_only": 1,
     "l1_family": "DRY_HEAT",
@@ -2222,14 +2222,14 @@
     "matrix_class_known": 233,
     "medium_known": 1157,
     "pct": {
-     "T_any_bound": 71.39,
-     "T_text_stated": 35.0,
-     "both_text": 26.71,
+     "T_any_bound": 70.96,
+     "T_text_stated": 34.4,
+     "both_text": 26.53,
      "lid": 4.41,
      "medium": 100.0,
      "size": 9.85,
      "start": 0.0,
-     "t_and_T_any": 51.86,
+     "t_and_T_any": 51.77,
      "t_stated": 61.62
     },
     "piece_size_known": 114,
@@ -2238,13 +2238,13 @@
     "start_mode_known": 0,
     "t_range": 276,
     "t_stated": 713,
-    "t_stated_and_T_any": 600
+    "t_stated_and_T_any": 599
    },
    "WIKIBOOKS|PROC-000002": {
-    "T_any_bound": 68,
+    "T_any_bound": 62,
     "T_range": 3,
-    "T_text_stated": 29,
-    "both_t_and_T_text_stated": 15,
+    "T_text_stated": 21,
+    "both_t_and_T_text_stated": 13,
     "events": 202,
     "gas_mark_only": 0,
     "l1_family": "DRY_HEAT",
@@ -2252,14 +2252,14 @@
     "matrix_class_known": 80,
     "medium_known": 202,
     "pct": {
-     "T_any_bound": 33.66,
-     "T_text_stated": 14.36,
-     "both_text": 7.43,
+     "T_any_bound": 30.69,
+     "T_text_stated": 10.4,
+     "both_text": 6.44,
      "lid": 2.48,
      "medium": 100.0,
      "size": 7.43,
      "start": 0.0,
-     "t_and_T_any": 16.34,
+     "t_and_T_any": 15.35,
      "t_stated": 23.76
     },
     "piece_size_known": 15,
@@ -2268,12 +2268,12 @@
     "start_mode_known": 0,
     "t_range": 16,
     "t_stated": 48,
-    "t_stated_and_T_any": 33
+    "t_stated_and_T_any": 31
    },
    "WIKIBOOKS|PROC-000003": {
-    "T_any_bound": 28,
+    "T_any_bound": 19,
     "T_range": 0,
-    "T_text_stated": 16,
+    "T_text_stated": 7,
     "both_t_and_T_text_stated": 2,
     "events": 214,
     "gas_mark_only": 0,
@@ -2282,8 +2282,8 @@
     "matrix_class_known": 54,
     "medium_known": 214,
     "pct": {
-     "T_any_bound": 13.08,
-     "T_text_stated": 7.48,
+     "T_any_bound": 8.88,
+     "T_text_stated": 3.27,
      "both_text": 0.93,
      "lid": 4.21,
      "medium": 100.0,
@@ -2391,10 +2391,10 @@
     "t_stated_and_T_any": 0
    },
    "WIKIBOOKS|PROC-000007": {
-    "T_any_bound": 4,
+    "T_any_bound": 3,
     "T_range": 0,
-    "T_text_stated": 4,
-    "both_t_and_T_text_stated": 3,
+    "T_text_stated": 3,
+    "both_t_and_T_text_stated": 2,
     "events": 77,
     "gas_mark_only": 0,
     "l1_family": "HEAT_GENERAL",
@@ -2402,14 +2402,14 @@
     "matrix_class_known": 40,
     "medium_known": 77,
     "pct": {
-     "T_any_bound": 5.19,
-     "T_text_stated": 5.19,
-     "both_text": 3.9,
+     "T_any_bound": 3.9,
+     "T_text_stated": 3.9,
+     "both_text": 2.6,
      "lid": 10.39,
      "medium": 100.0,
      "size": 11.69,
      "start": 0.0,
-     "t_and_T_any": 3.9,
+     "t_and_T_any": 2.6,
      "t_stated": 64.94
     },
     "piece_size_known": 9,
@@ -2418,13 +2418,13 @@
     "start_mode_known": 0,
     "t_range": 19,
     "t_stated": 50,
-    "t_stated_and_T_any": 3
+    "t_stated_and_T_any": 2
    },
    "WIKIBOOKS|PROC-000009": {
-    "T_any_bound": 15,
+    "T_any_bound": 13,
     "T_range": 0,
-    "T_text_stated": 15,
-    "both_t_and_T_text_stated": 4,
+    "T_text_stated": 13,
+    "both_t_and_T_text_stated": 3,
     "events": 715,
     "gas_mark_only": 0,
     "l1_family": "FAT_HEAT",
@@ -2432,14 +2432,14 @@
     "matrix_class_known": 278,
     "medium_known": 715,
     "pct": {
-     "T_any_bound": 2.1,
-     "T_text_stated": 2.1,
-     "both_text": 0.56,
+     "T_any_bound": 1.82,
+     "T_text_stated": 1.82,
+     "both_text": 0.42,
      "lid": 0.56,
      "medium": 100.0,
      "size": 12.45,
      "start": 0.42,
-     "t_and_T_any": 0.56,
+     "t_and_T_any": 0.42,
      "t_stated": 15.24
     },
     "piece_size_known": 89,
@@ -2448,7 +2448,7 @@
     "start_mode_known": 3,
     "t_range": 39,
     "t_stated": 109,
-    "t_stated_and_T_any": 4
+    "t_stated_and_T_any": 3
    },
    "WIKIBOOKS|PROC-000010": {
     "T_any_bound": 0,
@@ -2631,9 +2631,9 @@
     "t_stated_and_T_any": 0
    },
    "WIKIBOOKS|PROC-000016": {
-    "T_any_bound": 16,
+    "T_any_bound": 8,
     "T_range": 0,
-    "T_text_stated": 16,
+    "T_text_stated": 8,
     "both_t_and_T_text_stated": 1,
     "events": 463,
     "gas_mark_only": 0,
@@ -2642,8 +2642,8 @@
     "matrix_class_known": 166,
     "medium_known": 463,
     "pct": {
-     "T_any_bound": 3.46,
-     "T_text_stated": 3.46,
+     "T_any_bound": 1.73,
+     "T_text_stated": 1.73,
      "both_text": 0.22,
      "lid": 1.08,
      "medium": 100.0,
@@ -2723,7 +2723,7 @@
    "WIKIBOOKS|PROC-000019": {
     "T_any_bound": 997,
     "T_range": 0,
-    "T_text_stated": 9,
+    "T_text_stated": 6,
     "both_t_and_T_text_stated": 1,
     "events": 997,
     "gas_mark_only": 0,
@@ -2733,7 +2733,7 @@
     "medium_known": 997,
     "pct": {
      "T_any_bound": 100.0,
-     "T_text_stated": 0.9,
+     "T_text_stated": 0.6,
      "both_text": 0.1,
      "lid": 4.91,
      "medium": 100.0,
@@ -2813,8 +2813,8 @@
    "WIKIBOOKS|PROC-000022": {
     "T_any_bound": 155,
     "T_range": 0,
-    "T_text_stated": 1,
-    "both_t_and_T_text_stated": 1,
+    "T_text_stated": 0,
+    "both_t_and_T_text_stated": 0,
     "events": 155,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -2823,8 +2823,8 @@
     "medium_known": 155,
     "pct": {
      "T_any_bound": 100.0,
-     "T_text_stated": 0.65,
-     "both_text": 0.65,
+     "T_text_stated": 0.0,
+     "both_text": 0.0,
      "lid": 14.84,
      "medium": 100.0,
      "size": 9.68,
@@ -2961,10 +2961,10 @@
     "t_stated_and_T_any": 3
    },
    "WIKIBOOKS|PROC-000028": {
-    "T_any_bound": 13,
+    "T_any_bound": 5,
     "T_range": 0,
-    "T_text_stated": 13,
-    "both_t_and_T_text_stated": 2,
+    "T_text_stated": 5,
+    "both_t_and_T_text_stated": 0,
     "events": 439,
     "gas_mark_only": 0,
     "l1_family": "WET_HEAT",
@@ -2972,14 +2972,14 @@
     "matrix_class_known": 123,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 2.96,
-     "T_text_stated": 2.96,
-     "both_text": 0.46,
+     "T_any_bound": 1.14,
+     "T_text_stated": 1.14,
+     "both_text": 0.0,
      "lid": 24.37,
      "medium": 0.0,
      "size": 15.72,
      "start": 0.46,
-     "t_and_T_any": 0.46,
+     "t_and_T_any": 0.0,
      "t_stated": 2.73
     },
     "piece_size_known": 69,
@@ -2988,7 +2988,7 @@
     "start_mode_known": 2,
     "t_range": 3,
     "t_stated": 12,
-    "t_stated_and_T_any": 2
+    "t_stated_and_T_any": 0
    },
    "WIKIBOOKS|PROC-000029": {
     "T_any_bound": 3,
@@ -3051,10 +3051,10 @@
     "t_stated_and_T_any": 0
    },
    "WIKIBOOKS|PROC-000031": {
-    "T_any_bound": 88,
-    "T_range": 8,
-    "T_text_stated": 88,
-    "both_t_and_T_text_stated": 19,
+    "T_any_bound": 43,
+    "T_range": 7,
+    "T_text_stated": 43,
+    "both_t_and_T_text_stated": 15,
     "events": 2746,
     "gas_mark_only": 0,
     "l1_family": "HEAT_GENERAL",
@@ -3062,14 +3062,14 @@
     "matrix_class_known": 899,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 3.2,
-     "T_text_stated": 3.2,
-     "both_text": 0.69,
+     "T_any_bound": 1.57,
+     "T_text_stated": 1.57,
+     "both_text": 0.55,
      "lid": 7.17,
      "medium": 0.0,
      "size": 12.89,
      "start": 0.76,
-     "t_and_T_any": 0.69,
+     "t_and_T_any": 0.55,
      "t_stated": 27.79
     },
     "piece_size_known": 354,
@@ -3078,12 +3078,12 @@
     "start_mode_known": 21,
     "t_range": 243,
     "t_stated": 763,
-    "t_stated_and_T_any": 19
+    "t_stated_and_T_any": 15
    },
    "WIKIBOOKS|PROC-000032": {
-    "T_any_bound": 119,
+    "T_any_bound": 117,
     "T_range": 5,
-    "T_text_stated": 119,
+    "T_text_stated": 117,
     "both_t_and_T_text_stated": 3,
     "events": 1766,
     "gas_mark_only": 0,
@@ -3092,8 +3092,8 @@
     "matrix_class_known": 579,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 6.74,
-     "T_text_stated": 6.74,
+     "T_any_bound": 6.63,
+     "T_text_stated": 6.63,
      "both_text": 0.17,
      "lid": 1.87,
      "medium": 0.0,
@@ -3323,45 +3323,45 @@
   },
   "derived_by_source": {
    "FOODCOM": {
-    "T_any_bound": 224698,
-    "T_range": 555,
-    "T_text_stated": 55364,
-    "both_t_and_T_text_stated": 28254,
+    "T_any_bound": 219532,
+    "T_range": 468,
+    "T_text_stated": 48952,
+    "both_t_and_T_text_stated": 26677,
     "events": 1503261,
-    "gas_mark_only": 237,
+    "gas_mark_only": 246,
     "lid_known": 137373,
     "matrix_class_known": 493247,
     "medium_known": 783518,
     "pct": {
-     "T_any_bound": 14.95,
-     "T_text_stated": 3.68,
-     "both_text": 1.88,
+     "T_any_bound": 14.6,
+     "T_text_stated": 3.26,
+     "both_text": 1.77,
      "lid": 9.14,
      "medium": 52.12,
      "size": 9.27,
      "start": 1.94,
-     "t_and_T_any": 5.86,
+     "t_and_T_any": 5.8,
      "t_stated": 30.87
     },
     "piece_size_known": 139389,
     "start_mode_known": 29123,
     "t_range": 149473,
     "t_stated": 463983,
-    "t_stated_and_T_any": 88113
+    "t_stated_and_T_any": 87139
    },
    "GUTENBERG_SEGMENT": {
-    "T_any_bound": 54932,
+    "T_any_bound": 54875,
     "T_range": 5,
-    "T_text_stated": 1042,
-    "both_t_and_T_text_stated": 336,
+    "T_text_stated": 932,
+    "both_t_and_T_text_stated": 333,
     "events": 182049,
     "gas_mark_only": 0,
     "lid_known": 11645,
     "matrix_class_known": 66840,
     "medium_known": 131074,
     "pct": {
-     "T_any_bound": 30.17,
-     "T_text_stated": 0.57,
+     "T_any_bound": 30.14,
+     "T_text_stated": 0.51,
      "both_text": 0.18,
      "lid": 6.4,
      "medium": 72.0,
@@ -3374,149 +3374,149 @@
     "start_mode_known": 10368,
     "t_range": 1000,
     "t_stated": 5850,
-    "t_stated_and_T_any": 1985
+    "t_stated_and_T_any": 1983
    },
    "WIKIBOOKS": {
-    "T_any_bound": 2375,
-    "T_range": 36,
-    "T_text_stated": 728,
-    "both_t_and_T_text_stated": 364,
+    "T_any_bound": 2289,
+    "T_range": 35,
+    "T_text_stated": 634,
+    "both_t_and_T_text_stated": 351,
     "events": 11433,
     "gas_mark_only": 1,
     "lid_known": 729,
     "matrix_class_known": 3844,
     "medium_known": 5763,
     "pct": {
-     "T_any_bound": 20.77,
-     "T_text_stated": 6.37,
-     "both_text": 3.18,
+     "T_any_bound": 20.02,
+     "T_text_stated": 5.55,
+     "both_text": 3.07,
      "lid": 6.38,
      "medium": 50.41,
      "size": 11.1,
      "start": 1.1,
-     "t_and_T_any": 8.23,
+     "t_and_T_any": 8.13,
      "t_stated": 24.31
     },
     "piece_size_known": 1269,
     "start_mode_known": 126,
     "t_range": 947,
     "t_stated": 2779,
-    "t_stated_and_T_any": 941
+    "t_stated_and_T_any": 930
    }
   },
   "derived_by_source_and_family": {
    "FOODCOM|DRY_HEAT": {
-    "T_any_bound": 104592,
-    "T_range": 276,
-    "T_text_stated": 34753,
-    "both_t_and_T_text_stated": 25308,
+    "T_any_bound": 103344,
+    "T_range": 246,
+    "T_text_stated": 32509,
+    "both_t_and_T_text_stated": 24324,
     "events": 365658,
-    "gas_mark_only": 237,
+    "gas_mark_only": 246,
     "lid_known": 29933,
     "matrix_class_known": 86552,
     "medium_known": 357485,
     "pct": {
-     "T_any_bound": 28.6,
-     "T_text_stated": 9.5,
-     "both_text": 6.92,
+     "T_any_bound": 28.26,
+     "T_text_stated": 8.89,
+     "both_text": 6.65,
      "lid": 8.19,
      "medium": 97.76,
      "size": 11.15,
      "start": 0.04,
-     "t_and_T_any": 18.16,
+     "t_and_T_any": 18.05,
      "t_stated": 53.66
     },
     "piece_size_known": 40778,
     "start_mode_known": 136,
     "t_range": 81111,
     "t_stated": 196215,
-    "t_stated_and_T_any": 66414
+    "t_stated_and_T_any": 66006
    },
    "FOODCOM|FAT_HEAT": {
-    "T_any_bound": 1759,
-    "T_range": 29,
-    "T_text_stated": 1759,
-    "both_t_and_T_text_stated": 297,
+    "T_any_bound": 983,
+    "T_range": 18,
+    "T_text_stated": 983,
+    "both_t_and_T_text_stated": 208,
     "events": 198562,
     "gas_mark_only": 0,
     "lid_known": 3699,
     "matrix_class_known": 84335,
     "medium_known": 197892,
     "pct": {
-     "T_any_bound": 0.89,
-     "T_text_stated": 0.89,
-     "both_text": 0.15,
+     "T_any_bound": 0.5,
+     "T_text_stated": 0.5,
+     "both_text": 0.1,
      "lid": 1.86,
      "medium": 99.66,
      "size": 9.7,
      "start": 0.09,
-     "t_and_T_any": 0.15,
+     "t_and_T_any": 0.1,
      "t_stated": 22.55
     },
     "piece_size_known": 19256,
     "start_mode_known": 177,
     "t_range": 11251,
     "t_stated": 44767,
-    "t_stated_and_T_any": 297
+    "t_stated_and_T_any": 208
    },
    "FOODCOM|HEAT_GENERAL": {
-    "T_any_bound": 15696,
-    "T_range": 224,
-    "T_text_stated": 15696,
-    "both_t_and_T_text_stated": 2292,
+    "T_any_bound": 14469,
+    "T_range": 189,
+    "T_text_stated": 14469,
+    "both_t_and_T_text_stated": 1980,
     "events": 655880,
     "gas_mark_only": 0,
     "lid_known": 45650,
     "matrix_class_known": 245656,
     "medium_known": 14410,
     "pct": {
-     "T_any_bound": 2.39,
-     "T_text_stated": 2.39,
-     "both_text": 0.35,
+     "T_any_bound": 2.21,
+     "T_text_stated": 2.21,
+     "both_text": 0.3,
      "lid": 6.96,
      "medium": 2.2,
      "size": 8.26,
      "start": 1.71,
-     "t_and_T_any": 0.35,
+     "t_and_T_any": 0.3,
      "t_stated": 21.5
     },
     "piece_size_known": 54186,
     "start_mode_known": 11199,
     "t_range": 41163,
     "t_stated": 141030,
-    "t_stated_and_T_any": 2292
+    "t_stated_and_T_any": 1980
    },
    "FOODCOM|WET_HEAT": {
-    "T_any_bound": 102651,
-    "T_range": 26,
-    "T_text_stated": 3156,
-    "both_t_and_T_text_stated": 357,
+    "T_any_bound": 100736,
+    "T_range": 15,
+    "T_text_stated": 991,
+    "both_t_and_T_text_stated": 165,
     "events": 283161,
     "gas_mark_only": 0,
     "lid_known": 58091,
     "matrix_class_known": 76704,
     "medium_known": 213731,
     "pct": {
-     "T_any_bound": 36.25,
-     "T_text_stated": 1.11,
-     "both_text": 0.13,
+     "T_any_bound": 35.58,
+     "T_text_stated": 0.35,
+     "both_text": 0.06,
      "lid": 20.52,
      "medium": 75.48,
      "size": 8.89,
      "start": 6.22,
-     "t_and_T_any": 6.75,
+     "t_and_T_any": 6.69,
      "t_stated": 28.95
     },
     "piece_size_known": 25169,
     "start_mode_known": 17611,
     "t_range": 15948,
     "t_stated": 81971,
-    "t_stated_and_T_any": 19110
+    "t_stated_and_T_any": 18945
    },
    "GUTENBERG_SEGMENT|DRY_HEAT": {
-    "T_any_bound": 706,
+    "T_any_bound": 690,
     "T_range": 4,
-    "T_text_stated": 657,
+    "T_text_stated": 640,
     "both_t_and_T_text_stated": 319,
     "events": 34382,
     "gas_mark_only": 0,
@@ -3524,8 +3524,8 @@
     "matrix_class_known": 10416,
     "medium_known": 33060,
     "pct": {
-     "T_any_bound": 2.05,
-     "T_text_stated": 1.91,
+     "T_any_bound": 2.01,
+     "T_text_stated": 1.86,
      "both_text": 0.93,
      "lid": 6.02,
      "medium": 96.15,
@@ -3541,36 +3541,36 @@
     "t_stated_and_T_any": 349
    },
    "GUTENBERG_SEGMENT|FAT_HEAT": {
-    "T_any_bound": 32,
+    "T_any_bound": 26,
     "T_range": 1,
-    "T_text_stated": 32,
-    "both_t_and_T_text_stated": 7,
+    "T_text_stated": 26,
+    "both_t_and_T_text_stated": 6,
     "events": 24763,
     "gas_mark_only": 0,
     "lid_known": 1178,
     "matrix_class_known": 11330,
     "medium_known": 24004,
     "pct": {
-     "T_any_bound": 0.13,
-     "T_text_stated": 0.13,
-     "both_text": 0.03,
+     "T_any_bound": 0.1,
+     "T_text_stated": 0.1,
+     "both_text": 0.02,
      "lid": 4.76,
      "medium": 96.93,
      "size": 16.36,
      "start": 2.39,
-     "t_and_T_any": 0.03,
+     "t_and_T_any": 0.02,
      "t_stated": 0.65
     },
     "piece_size_known": 4052,
     "start_mode_known": 593,
     "t_range": 37,
     "t_stated": 160,
-    "t_stated_and_T_any": 7
+    "t_stated_and_T_any": 6
    },
    "GUTENBERG_SEGMENT|HEAT_GENERAL": {
-    "T_any_bound": 163,
+    "T_any_bound": 140,
     "T_range": 0,
-    "T_text_stated": 163,
+    "T_text_stated": 140,
     "both_t_and_T_text_stated": 8,
     "events": 46245,
     "gas_mark_only": 0,
@@ -3578,8 +3578,8 @@
     "matrix_class_known": 18070,
     "medium_known": 0,
     "pct": {
-     "T_any_bound": 0.35,
-     "T_text_stated": 0.35,
+     "T_any_bound": 0.3,
+     "T_text_stated": 0.3,
      "both_text": 0.02,
      "lid": 5.3,
      "medium": 0.0,
@@ -3595,18 +3595,18 @@
     "t_stated_and_T_any": 8
    },
    "GUTENBERG_SEGMENT|WET_HEAT": {
-    "T_any_bound": 54031,
+    "T_any_bound": 54019,
     "T_range": 0,
-    "T_text_stated": 190,
-    "both_t_and_T_text_stated": 2,
+    "T_text_stated": 126,
+    "both_t_and_T_text_stated": 0,
     "events": 76659,
     "gas_mark_only": 0,
     "lid_known": 5945,
     "matrix_class_known": 27024,
     "medium_known": 74010,
     "pct": {
-     "T_any_bound": 70.48,
-     "T_text_stated": 0.25,
+     "T_any_bound": 70.47,
+     "T_text_stated": 0.16,
      "both_text": 0.0,
      "lid": 7.76,
      "medium": 96.54,
@@ -3619,144 +3619,144 @@
     "start_mode_known": 7266,
     "t_range": 286,
     "t_stated": 2566,
-    "t_stated_and_T_any": 1621
+    "t_stated_and_T_any": 1620
    },
    "WIKIBOOKS|DRY_HEAT": {
-    "T_any_bound": 946,
+    "T_any_bound": 926,
     "T_range": 22,
-    "T_text_stated": 454,
-    "both_t_and_T_text_stated": 328,
+    "T_text_stated": 430,
+    "both_t_and_T_text_stated": 324,
     "events": 1792,
     "gas_mark_only": 1,
     "lid_known": 66,
     "matrix_class_known": 479,
     "medium_known": 1690,
     "pct": {
-     "T_any_bound": 52.79,
-     "T_text_stated": 25.33,
-     "both_text": 18.3,
+     "T_any_bound": 51.67,
+     "T_text_stated": 24.0,
+     "both_text": 18.08,
      "lid": 3.68,
      "medium": 94.31,
      "size": 9.04,
      "start": 0.0,
-     "t_and_T_any": 36.1,
+     "t_and_T_any": 35.94,
      "t_stated": 45.87
     },
     "piece_size_known": 162,
     "start_mode_known": 0,
     "t_range": 323,
     "t_stated": 822,
-    "t_stated_and_T_any": 647
+    "t_stated_and_T_any": 644
    },
    "WIKIBOOKS|FAT_HEAT": {
-    "T_any_bound": 34,
+    "T_any_bound": 24,
     "T_range": 1,
-    "T_text_stated": 34,
-    "both_t_and_T_text_stated": 6,
+    "T_text_stated": 24,
+    "both_t_and_T_text_stated": 5,
     "events": 1810,
     "gas_mark_only": 0,
     "lid_known": 11,
     "matrix_class_known": 713,
     "medium_known": 1805,
     "pct": {
-     "T_any_bound": 1.88,
-     "T_text_stated": 1.88,
-     "both_text": 0.33,
+     "T_any_bound": 1.33,
+     "T_text_stated": 1.33,
+     "both_text": 0.28,
      "lid": 0.61,
      "medium": 99.72,
      "size": 16.19,
      "start": 0.22,
-     "t_and_T_any": 0.33,
+     "t_and_T_any": 0.28,
      "t_stated": 13.98
     },
     "piece_size_known": 293,
     "start_mode_known": 4,
     "t_range": 81,
     "t_stated": 253,
-    "t_stated_and_T_any": 6
+    "t_stated_and_T_any": 5
    },
    "WIKIBOOKS|HEAT_GENERAL": {
-    "T_any_bound": 211,
-    "T_range": 13,
-    "T_text_stated": 211,
-    "both_t_and_T_text_stated": 25,
+    "T_any_bound": 163,
+    "T_range": 12,
+    "T_text_stated": 163,
+    "both_t_and_T_text_stated": 20,
     "events": 5115,
     "gas_mark_only": 0,
     "lid_known": 243,
     "matrix_class_known": 1862,
     "medium_known": 77,
     "pct": {
-     "T_any_bound": 4.13,
-     "T_text_stated": 4.13,
-     "both_text": 0.49,
+     "T_any_bound": 3.19,
+     "T_text_stated": 3.19,
+     "both_text": 0.39,
      "lid": 4.75,
      "medium": 1.51,
      "size": 9.7,
      "start": 0.61,
-     "t_and_T_any": 0.49,
+     "t_and_T_any": 0.39,
      "t_stated": 17.22
     },
     "piece_size_known": 496,
     "start_mode_known": 31,
     "t_range": 278,
     "t_stated": 881,
-    "t_stated_and_T_any": 25
+    "t_stated_and_T_any": 20
    },
    "WIKIBOOKS|WET_HEAT": {
-    "T_any_bound": 1184,
+    "T_any_bound": 1176,
     "T_range": 0,
-    "T_text_stated": 29,
-    "both_t_and_T_text_stated": 5,
+    "T_text_stated": 17,
+    "both_t_and_T_text_stated": 2,
     "events": 2716,
     "gas_mark_only": 0,
     "lid_known": 409,
     "matrix_class_known": 790,
     "medium_known": 2191,
     "pct": {
-     "T_any_bound": 43.59,
-     "T_text_stated": 1.07,
-     "both_text": 0.18,
+     "T_any_bound": 43.3,
+     "T_text_stated": 0.63,
+     "both_text": 0.07,
      "lid": 15.06,
      "medium": 80.67,
      "size": 11.71,
      "start": 3.35,
-     "t_and_T_any": 9.68,
+     "t_and_T_any": 9.61,
      "t_stated": 30.3
     },
     "piece_size_known": 318,
     "start_mode_known": 91,
     "t_range": 265,
     "t_stated": 823,
-    "t_stated_and_T_any": 263
+    "t_stated_and_T_any": 261
    }
   },
   "joint_exclusive_classes_by_source": {
    "FOODCOM": {
-    "T_known_t_unknown": 136585,
+    "T_known_t_unknown": 132393,
     "n": 1503261,
-    "neither": 902693,
-    "t_and_T_carried_or_definition_only": 59859,
-    "t_and_T_text": 28254,
-    "t_only_T_unknown": 375870
+    "neither": 906885,
+    "t_and_T_carried_or_definition_only": 60462,
+    "t_and_T_text": 26677,
+    "t_only_T_unknown": 376844
    },
    "GUTENBERG_SEGMENT": {
-    "T_known_t_unknown": 52947,
+    "T_known_t_unknown": 52892,
     "n": 182049,
-    "neither": 123252,
-    "t_and_T_carried_or_definition_only": 1649,
-    "t_and_T_text": 336,
-    "t_only_T_unknown": 3865
+    "neither": 123307,
+    "t_and_T_carried_or_definition_only": 1650,
+    "t_and_T_text": 333,
+    "t_only_T_unknown": 3867
    },
    "WIKIBOOKS": {
-    "T_known_t_unknown": 1434,
+    "T_known_t_unknown": 1359,
     "n": 11433,
-    "neither": 7220,
-    "t_and_T_carried_or_definition_only": 577,
-    "t_and_T_text": 364,
-    "t_only_T_unknown": 1838
+    "neither": 7295,
+    "t_and_T_carried_or_definition_only": 579,
+    "t_and_T_text": 351,
+    "t_only_T_unknown": 1849
    }
   },
-  "l2_v03_unknown_reasons_by_source_and_family": {
+  "l2_unknown_reasons_by_source_and_family": {
    "FOODCOM|DRY_HEAT": {
     "events": 365658,
     "pct_scenario_computed": 83.41,
@@ -3778,29 +3778,29 @@
       "pct_of_events": 2.07
      },
      {
-      "events": 7302,
+      "events": 7332,
       "input": "bath_c",
-      "pct_of_events": 2.0
+      "pct_of_events": 2.01
      }
     ],
     "top_missing_sets": [
      {
-      "events": 6747,
+      "events": 6767,
       "pct_of_events": 1.85,
       "set": "bath_c+duration_min+medium"
      },
      {
-      "events": 783,
+      "events": 763,
       "pct_of_events": 0.21,
       "set": "duration_min+medium"
      },
      {
-      "events": 555,
+      "events": 565,
       "pct_of_events": 0.15,
       "set": "bath_c+medium"
      },
      {
-      "events": 88,
+      "events": 78,
       "pct_of_events": 0.02,
       "set": "medium"
      }
@@ -3826,7 +3826,7 @@
       "pct_of_events": 0.34
      },
      {
-      "events": 667,
+      "events": 668,
       "input": "bath_c",
       "pct_of_events": 0.34
      }
@@ -3838,7 +3838,7 @@
       "set": "duration_min"
      },
      {
-      "events": 619,
+      "events": 620,
       "pct_of_events": 0.31,
       "set": "bath_c+duration_min+medium"
      },
@@ -3848,7 +3848,7 @@
       "set": "bath_c+medium"
      },
      {
-      "events": 3,
+      "events": 2,
       "pct_of_events": 0.0,
       "set": "duration_min+medium"
      }
@@ -3869,9 +3869,9 @@
       "pct_of_events": 97.8
      },
      {
-      "events": 625854,
+      "events": 627063,
       "input": "bath_c",
-      "pct_of_events": 95.42
+      "pct_of_events": 95.61
      },
      {
       "events": 8018,
@@ -3881,22 +3881,22 @@
     ],
     "top_missing_sets": [
      {
-      "events": 618065,
-      "pct_of_events": 94.23,
+      "events": 619210,
+      "pct_of_events": 94.41,
       "set": "bath_c+medium"
      },
      {
-      "events": 15387,
-      "pct_of_events": 2.35,
+      "events": 14242,
+      "pct_of_events": 2.17,
       "set": "medium"
      },
      {
-      "events": 7789,
-      "pct_of_events": 1.19,
+      "events": 7853,
+      "pct_of_events": 1.2,
       "set": "bath_c+duration_min+medium"
      },
      {
-      "events": 229,
+      "events": 165,
       "pct_of_events": 0.03,
       "set": "duration_min+medium"
      }
@@ -3917,9 +3917,9 @@
       "pct_of_events": 24.52
      },
      {
-      "events": 67082,
+      "events": 68847,
       "input": "bath_c",
-      "pct_of_events": 23.69
+      "pct_of_events": 24.31
      },
      {
       "events": 5102,
@@ -3929,8 +3929,8 @@
     ],
     "top_missing_sets": [
      {
-      "events": 64645,
-      "pct_of_events": 22.83,
+      "events": 66409,
+      "pct_of_events": 23.45,
       "set": "bath_c+medium"
      },
      {
@@ -3939,13 +3939,13 @@
       "set": "duration_min"
      },
      {
-      "events": 2428,
+      "events": 2429,
       "pct_of_events": 0.86,
       "set": "bath_c+duration_min+medium"
      },
      {
-      "events": 2355,
-      "pct_of_events": 0.83,
+      "events": 591,
+      "pct_of_events": 0.21,
       "set": "medium"
      }
     ]
@@ -4046,9 +4046,9 @@
       "pct_of_events": 100.0
      },
      {
-      "events": 46082,
+      "events": 46105,
       "input": "bath_c",
-      "pct_of_events": 99.65
+      "pct_of_events": 99.7
      },
      {
       "events": 871,
@@ -4058,8 +4058,8 @@
     ],
     "top_missing_sets": [
      {
-      "events": 45212,
-      "pct_of_events": 97.77,
+      "events": 45235,
+      "pct_of_events": 97.82,
       "set": "bath_c+medium"
      },
      {
@@ -4068,8 +4068,8 @@
       "set": "bath_c+duration_min+medium"
      },
      {
-      "events": 162,
-      "pct_of_events": 0.35,
+      "events": 139,
+      "pct_of_events": 0.3,
       "set": "medium"
      },
      {
@@ -4099,9 +4099,9 @@
       "pct_of_events": 3.46
      },
      {
-      "events": 2629,
+      "events": 2634,
       "input": "bath_c",
-      "pct_of_events": 3.43
+      "pct_of_events": 3.44
      }
     ],
     "top_missing_sets": [
@@ -4111,13 +4111,13 @@
       "set": "duration_min"
      },
      {
-      "events": 2629,
-      "pct_of_events": 3.43,
+      "events": 2634,
+      "pct_of_events": 3.44,
       "set": "bath_c+medium"
      },
      {
-      "events": 20,
-      "pct_of_events": 0.03,
+      "events": 15,
+      "pct_of_events": 0.02,
       "set": "medium"
      }
     ]
@@ -4224,9 +4224,9 @@
       "pct_of_events": 98.49
      },
      {
-      "events": 4831,
+      "events": 4878,
       "input": "bath_c",
-      "pct_of_events": 94.45
+      "pct_of_events": 95.37
      },
      {
       "events": 66,
@@ -4236,13 +4236,13 @@
     ],
     "top_missing_sets": [
      {
-      "events": 4765,
-      "pct_of_events": 93.16,
+      "events": 4812,
+      "pct_of_events": 94.08,
       "set": "bath_c+medium"
      },
      {
-      "events": 207,
-      "pct_of_events": 4.05,
+      "events": 160,
+      "pct_of_events": 3.13,
       "set": "medium"
      },
      {
@@ -4267,9 +4267,9 @@
       "pct_of_events": 19.33
      },
      {
-      "events": 509,
+      "events": 517,
       "input": "bath_c",
-      "pct_of_events": 18.74
+      "pct_of_events": 19.04
      },
      {
       "events": 66,
@@ -4279,8 +4279,8 @@
     ],
     "top_missing_sets": [
      {
-      "events": 465,
-      "pct_of_events": 17.12,
+      "events": 473,
+      "pct_of_events": 17.42,
       "set": "bath_c+medium"
      },
      {
@@ -4294,61 +4294,26 @@
       "set": "duration_min"
      },
      {
-      "events": 16,
-      "pct_of_events": 0.59,
+      "events": 8,
+      "pct_of_events": 0.29,
       "set": "medium"
      }
     ]
    }
   },
   "source_level_from_committed_census": {
-   "A1_BBC_GOOD_FOOD": {
-    "binder_version": "condition-binding-L1-0.1.0-draft",
-    "census_path": "reports/step26/binding_census_L1_A1_full_S173.json",
-    "census_version": "binding-census-L1-0.1.0-draft",
-    "driver_bounded_events": 1865,
-    "driver_ready_events": 1290,
-    "duration_measured": 12711,
-    "duration_range": 6974,
-    "duration_stated": 19685,
-    "duration_unknown": 29977,
-    "events": 261379,
-    "gas_mark_only_events": 9,
-    "heat_events": 49662,
-    "heat_events_by_family": {
-     "DRY_HEAT": 8624,
-     "FAT_HEAT": 5316,
-     "HEAT_GENERAL": 28628,
-     "WET_HEAT": 7094
-    },
-    "lid_known": 3431,
-    "matrix_class_known": 15534,
-    "medium_known": 19455,
-    "piece_size_known": 4107,
-    "recipes_seen": 11934,
-    "source": "A1_BBC_GOOD_FOOD",
-    "start_mode_known": 845,
-    "temperature_any": 9269,
-    "temperature_carried_setpoint": 467,
-    "temperature_physical_definition": 2580,
-    "temperature_range": 9,
-    "temperature_text_stated": 6222,
-    "temperature_unknown": 40393,
-    "texts_with_steps": 11934,
-    "water_ratio_known": 0
-   },
    "FOODCOM": {
-    "binder_version": "condition-binding-L1-0.1.0-draft",
-    "census_path": "reports/step26/binding_census_L1_FOODCOM_full_S176_v02.json",
-    "census_version": "binding-census-L1-0.1.0-draft",
-    "driver_bounded_events": 88113,
-    "driver_ready_events": 56214,
+    "binder_version": "condition-binding-L1-0.2.0-draft",
+    "census_path": "reports/step26/binding_census_L1_FOODCOM_full_S178_v04.json",
+    "census_version": "binding-census-L1-0.2.0-draft",
+    "driver_bounded_events": 87139,
+    "driver_ready_events": 55662,
     "duration_measured": 314510,
     "duration_range": 149473,
     "duration_stated": 463983,
     "duration_unknown": 1039278,
     "events": 8214960,
-    "gas_mark_only_events": 237,
+    "gas_mark_only_events": 246,
     "heat_events": 1503261,
     "heat_events_by_family": {
      "DRY_HEAT": 365658,
@@ -4363,21 +4328,21 @@
     "recipes_seen": 522517,
     "source": "FOODCOM",
     "start_mode_known": 29123,
-    "temperature_any": 224698,
-    "temperature_carried_setpoint": 69839,
-    "temperature_physical_definition": 99495,
-    "temperature_range": 555,
-    "temperature_text_stated": 55364,
-    "temperature_unknown": 1278563,
+    "temperature_any": 219532,
+    "temperature_carried_setpoint": 70835,
+    "temperature_physical_definition": 99745,
+    "temperature_range": 468,
+    "temperature_text_stated": 48952,
+    "temperature_unknown": 1283729,
     "texts_with_steps": 522514,
     "water_ratio_known": 0
    },
    "GUTENBERG_SEGMENT": {
-    "binder_version": "condition-binding-L1-0.1.0-draft",
-    "census_path": "reports/step26/binding_census_L1_GUTENBERG_SEGMENT_full_S176_v02.json",
-    "census_version": "binding-census-L1-0.1.0-draft",
-    "driver_bounded_events": 1985,
-    "driver_ready_events": 1719,
+    "binder_version": "condition-binding-L1-0.2.0-draft",
+    "census_path": "reports/step26/binding_census_L1_GUTENBERG_SEGMENT_full_S178_v04.json",
+    "census_version": "binding-census-L1-0.2.0-draft",
+    "driver_bounded_events": 1983,
+    "driver_ready_events": 1717,
     "duration_measured": 4850,
     "duration_range": 1000,
     "duration_stated": 5850,
@@ -4398,19 +4363,19 @@
     "recipes_seen": 73955,
     "source": "GUTENBERG_SEGMENT",
     "start_mode_known": 10368,
-    "temperature_any": 54932,
-    "temperature_carried_setpoint": 49,
-    "temperature_physical_definition": 53841,
+    "temperature_any": 54875,
+    "temperature_carried_setpoint": 50,
+    "temperature_physical_definition": 53893,
     "temperature_range": 5,
-    "temperature_text_stated": 1042,
-    "temperature_unknown": 127117,
+    "temperature_text_stated": 932,
+    "temperature_unknown": 127174,
     "texts_with_steps": 73778,
     "water_ratio_known": 0
    },
    "TASTESET": {
-    "binder_version": "condition-binding-L1-0.1.0-draft",
-    "census_path": "reports/step26/binding_census_L1_TASTESET_full_S176_v02.json",
-    "census_version": "binding-census-L1-0.1.0-draft",
+    "binder_version": "condition-binding-L1-0.2.0-draft",
+    "census_path": "reports/step26/binding_census_L1_TASTESET_full_S178_v04.json",
+    "census_version": "binding-census-L1-0.2.0-draft",
     "driver_bounded_events": 0,
     "driver_ready_events": 0,
     "duration_measured": 0,
@@ -4438,11 +4403,11 @@
     "water_ratio_known": 0
    },
    "WIKIBOOKS": {
-    "binder_version": "condition-binding-L1-0.1.0-draft",
-    "census_path": "reports/step26/binding_census_L1_WIKIBOOKS_full_S176_v02.json",
-    "census_version": "binding-census-L1-0.1.0-draft",
-    "driver_bounded_events": 941,
-    "driver_ready_events": 620,
+    "binder_version": "condition-binding-L1-0.2.0-draft",
+    "census_path": "reports/step26/binding_census_L1_WIKIBOOKS_full_S178_v04.json",
+    "census_version": "binding-census-L1-0.2.0-draft",
+    "driver_bounded_events": 930,
+    "driver_ready_events": 615,
     "duration_measured": 1832,
     "duration_range": 947,
     "duration_stated": 2779,
@@ -4463,18 +4428,18 @@
     "recipes_seen": 3676,
     "source": "WIKIBOOKS",
     "start_mode_known": 126,
-    "temperature_any": 2375,
-    "temperature_carried_setpoint": 492,
-    "temperature_physical_definition": 1155,
-    "temperature_range": 36,
-    "temperature_text_stated": 728,
-    "temperature_unknown": 9058,
+    "temperature_any": 2289,
+    "temperature_carried_setpoint": 496,
+    "temperature_physical_definition": 1159,
+    "temperature_range": 35,
+    "temperature_text_stated": 634,
+    "temperature_unknown": 9144,
     "texts_with_steps": 3676,
     "water_ratio_known": 0
    }
   }
  },
- "heat_l2_v03_status_from_committed_census": {
+ "heat_l2_status_from_committed_census": {
   "FOODCOM": {
    "labels": [
     "SCENARIO",
@@ -4482,8 +4447,8 @@
     "NON_CITABLE",
     "ASSUMED_DEFAULT"
    ],
-   "layer_version": "scenario-layer-L2-0.3.0-draft",
-   "source": "reports/step26/scenario_L2_FOODCOM_full_S177_v03.json",
+   "layer_version": "scenario-layer-L2-0.4.0-draft",
+   "source": "reports/step26/scenario_L2_FOODCOM_full_S178_v04.json",
    "status": {
     "SCENARIO_COMPUTED": 667634,
     "SCENARIO_UNKNOWN": 768753,
@@ -4501,8 +4466,8 @@
     "NON_CITABLE",
     "ASSUMED_DEFAULT"
    ],
-   "layer_version": "scenario-layer-L2-0.3.0-draft",
-   "source": "reports/step26/scenario_L2_GUTENBERG_SEGMENT_full_S177_v03.json",
+   "layer_version": "scenario-layer-L2-0.4.0-draft",
+   "source": "reports/step26/scenario_L2_GUTENBERG_SEGMENT_full_S178_v04.json",
    "status": {
     "SCENARIO_COMPUTED": 120951,
     "SCENARIO_UNKNOWN": 56765,
@@ -4520,8 +4485,8 @@
     "NON_CITABLE",
     "ASSUMED_DEFAULT"
    ],
-   "layer_version": "scenario-layer-L2-0.3.0-draft",
-   "source": "reports/step26/scenario_L2_TASTESET_full_S177_v03.json",
+   "layer_version": "scenario-layer-L2-0.4.0-draft",
+   "source": "reports/step26/scenario_L2_TASTESET_full_S178_v04.json",
    "status": null,
    "transition": null
   },
@@ -4532,8 +4497,8 @@
     "NON_CITABLE",
     "ASSUMED_DEFAULT"
    ],
-   "layer_version": "scenario-layer-L2-0.3.0-draft",
-   "source": "reports/step26/scenario_L2_WIKIBOOKS_full_S177_v03.json",
+   "layer_version": "scenario-layer-L2-0.4.0-draft",
+   "source": "reports/step26/scenario_L2_WIKIBOOKS_full_S178_v04.json",
    "status": {
     "SCENARIO_COMPUTED": 4871,
     "SCENARIO_UNKNOWN": 6154,
@@ -4547,36 +4512,36 @@
  },
  "inputs": {
   "committed_census_files": {
-   "reports/step26/binding_census_L1_A1_full_S173.json": "8dac815d722a54f2dd61c58d80b9ba9d7844c6624f5248429a9305a66740693b",
-   "reports/step26/binding_census_L1_FOODCOM_full_S176_v02.json": "3cdef451c0f88d51fbc81a93778efacdd594afe9f07844bb86e666137ef6c366",
-   "reports/step26/binding_census_L1_GUTENBERG_SEGMENT_full_S176_v02.json": "8a1f74bf35a555bc86ade973bc00283f824466bd9ae67d0299651d202077cd3b",
-   "reports/step26/binding_census_L1_TASTESET_full_S176_v02.json": "cd79d64245ecba31d66b4a27bed57dfa65a9e5171efd4e05cbc72c4b00b91b53",
-   "reports/step26/binding_census_L1_WIKIBOOKS_full_S176_v02.json": "774b7ac5a2c8493f250d9d8b07cfac3aa76fb12279f8d623246d8b52dcb255c0",
-   "reports/step26/nonheat_L1_FOODCOM_full_S176.json": "343ff502fa6b8a1f657100231bff1f39a5d4353b1abf5a6881459e8f426d5791",
-   "reports/step26/nonheat_L1_GUTENBERG_SEGMENT_full_S176.json": "e2980b384647e0e03595c62603922c51f1ee1139a161d54ec79a05cafd15759a",
-   "reports/step26/nonheat_L1_TASTESET_full_S176.json": "d913edc39ffbe22e0cefad646a90df18029fa4ce669c63d6990c15d4c04d07e1",
-   "reports/step26/nonheat_L1_WIKIBOOKS_full_S176.json": "deb79260ee9639bcf76d7d32297ccff69b8a3d877483962ead7c5a5c42a973ce",
-   "reports/step26/nonheat_L2_FOODCOM_full_S177_v03.json": "4477a84ff1d53761fb7e31aa90119d15f70a4557ca13e605486e7c1b4eeea602",
-   "reports/step26/nonheat_L2_GUTENBERG_SEGMENT_full_S177_v03.json": "97a2c69afb9f12672495520f12e78699e9ab0d01e923b6c3738af8b39c6e79f5",
-   "reports/step26/nonheat_L2_TASTESET_full_S177_v03.json": "12bc8760b96cdae14888f709582eec9de0eb4a218094cecf97d3a47133bdcc5a",
-   "reports/step26/nonheat_L2_WIKIBOOKS_full_S177_v03.json": "b5948a0b8430d5e75b823f08501b555e70826456dcb3e6d4ad672625ce2f36db",
-   "reports/step26/scenario_L2_FOODCOM_full_S177_v03.json": "436d0946bc4cb0bf0fbae9f841d15070535bef1d2efb5c91edcb8a1c5de76ea7",
-   "reports/step26/scenario_L2_GUTENBERG_SEGMENT_full_S177_v03.json": "dc2a21293e7ecc3736805bcb3529fa7c21b31d5ebcfa07c7625dc9373c33301d",
-   "reports/step26/scenario_L2_TASTESET_full_S177_v03.json": "12bd859fd07d35f78c990b53d49093668bfc821af755dce190ab1bd94dfd1b4f",
-   "reports/step26/scenario_L2_WIKIBOOKS_full_S177_v03.json": "e55e180a74542975a68548a9d29f2da9af4f8e7bb34966a5c9c26cee9ff59010"
+   "reports/step26/binding_census_L1_FOODCOM_full_S178_v04.json": "7b8384d1be330be67503bea3c1c8ffd134f68432ba6aab5d5b06135bc1008b31",
+   "reports/step26/binding_census_L1_GUTENBERG_SEGMENT_full_S178_v04.json": "88f4483f74df0d96ff587ed55132e9b78ddc958f8a6777e25848d0c711b302ac",
+   "reports/step26/binding_census_L1_TASTESET_full_S178_v04.json": "32ff301c08f6ddc1363896b860c381f6cc5f1a4a1e5f1a46ba9ba14376c2c21c",
+   "reports/step26/binding_census_L1_WIKIBOOKS_full_S178_v04.json": "46adb77b839c25c8d9b4e106ce7e45d386a5ede74636c17148014c1ed4829e6b",
+   "reports/step26/nonheat_L1_FOODCOM_full_S178_v04.json": "93dc08f06608a003fb82604760309d135b4846bbd98e13997c31bbf7c604c04a",
+   "reports/step26/nonheat_L1_GUTENBERG_SEGMENT_full_S178_v04.json": "56b9e74fb85e951aa909f930a0abcdd53125c5c93e513b3f1aaec91d85fa7229",
+   "reports/step26/nonheat_L1_TASTESET_full_S178_v04.json": "0b7f660c02378d2b63809218c6d2df83258347a544c794a346585e81e55aed4a",
+   "reports/step26/nonheat_L1_WIKIBOOKS_full_S178_v04.json": "04161da6f760fb9ff55d50edadc2745ac767fda6e9f2daf5e2765478e037a628",
+   "reports/step26/nonheat_L2_FOODCOM_full_S178_v04.json": "83939d44a68f0b425f69ce06369ca8cea51e23e2f3162115a097a1aff25f8022",
+   "reports/step26/nonheat_L2_GUTENBERG_SEGMENT_full_S178_v04.json": "99ec8991479fc632a5fbfe8d2ca39541139d4a0b4beec73ce74ed1cadff5c640",
+   "reports/step26/nonheat_L2_TASTESET_full_S178_v04.json": "b0800bd90e01edb06e30d93f2f72d4033868a08f5336049215c6b6c1af8a0fd7",
+   "reports/step26/nonheat_L2_WIKIBOOKS_full_S178_v04.json": "972db8dfb9377587ff51ef35254a66038b0749abe7dd6cb75ea6883821f93642",
+   "reports/step26/scenario_L2_FOODCOM_full_S178_v04.json": "642dd7f0bd1b3c4f9149cc0006e69e84b6f9aa8da2275b4ed55e259e3301a291",
+   "reports/step26/scenario_L2_GUTENBERG_SEGMENT_full_S178_v04.json": "ba4bb5ffb91f48489c814483c6339810d72a7a64fefaac97019a7805b4f6a17a",
+   "reports/step26/scenario_L2_TASTESET_full_S178_v04.json": "c7a979381b5a0febd4a493cefa6d13f42dae51cbf4802e7589759e3b9c8614c5",
+   "reports/step26/scenario_L2_WIKIBOOKS_full_S178_v04.json": "8aecf6805fd7365e45310c0c659d73932fa93848562378c3f6925e9dc7c52033"
   },
-  "derived_aggregate_sha256": "a91fb1deb9bcd6d3d132349ea560e9be2744e5df94d7e9a8754a5934630b7ae7",
+  "derived_aggregate_sha256": "29195dba784064a35dacb7e2261afa298e3586b04cab472abb26aca91c790762",
   "derived_dirs": [
-   "data/derived/physical_L1_full_S176v02",
-   "data/derived/physical_L2_full_S177v03",
-   "data/derived/physical_NH_L1_FOODCOM_full_S176",
-   "data/derived/physical_NH_L1_WIKIBOOKS_full_S176",
-   "data/derived/physical_NH_L1_GUTENBERG_SEGMENT_full_S176",
-   "data/derived/physical_NH_L1_TASTESET_full_S176"
-  ]
+   "data/derived/physical_L1_full_S178v04",
+   "data/derived/physical_L2_full_S178v04",
+   "data/derived/physical_NH_L1_FOODCOM_full_S178v04",
+   "data/derived/physical_NH_L1_WIKIBOOKS_full_S178v04",
+   "data/derived/physical_NH_L1_GUTENBERG_SEGMENT_full_S178v04",
+   "data/derived/physical_NH_L1_TASTESET_full_S178v04"
+  ],
+  "superseded_registry_check": "PASS (no input listed in registry/superseded_outputs_S176.csv)"
  },
  "label": "REAL_BASE_SAMPLE_COUNTS_NOT_GOLD",
- "layer": "TEXT_STATED (L1) with SCENARIO (L2 v03) unknown reasons",
+ "layer": "TEXT_STATED (L1, S178 v04) with SCENARIO (L2, S178 v04) unknown reasons",
  "nonheat": {
   "derived_by_role": {
    "FOODCOM|COOLING|chill": {
@@ -8292,7 +8257,7 @@
       "environment__medium_temperature": 12092
      }
     },
-    "source": "reports/step26/nonheat_L1_FOODCOM_full_S176.json",
+    "source": "reports/step26/nonheat_L1_FOODCOM_full_S178_v04.json",
     "unknown_reasons": {
      "COOLING": {
       "duration": {
@@ -8425,7 +8390,7 @@
       "environment__medium_temperature": 950
      }
     },
-    "source": "reports/step26/nonheat_L1_GUTENBERG_SEGMENT_full_S176.json",
+    "source": "reports/step26/nonheat_L1_GUTENBERG_SEGMENT_full_S178_v04.json",
     "unknown_reasons": {
      "COOLING": {
       "duration": {
@@ -8519,7 +8484,7 @@
      "STORAGE": 0
     },
     "missing_core_inputs": {},
-    "source": "reports/step26/nonheat_L1_TASTESET_full_S176.json",
+    "source": "reports/step26/nonheat_L1_TASTESET_full_S178_v04.json",
     "unknown_reasons": {}
    },
    "WIKIBOOKS": {
@@ -8574,7 +8539,7 @@
       "environment__medium_temperature": 78
      }
     },
-    "source": "reports/step26/nonheat_L1_WIKIBOOKS_full_S176.json",
+    "source": "reports/step26/nonheat_L1_WIKIBOOKS_full_S178_v04.json",
     "unknown_reasons": {
      "COOLING": {
       "duration": {
@@ -8656,7 +8621,7 @@
     }
    }
   },
-  "l2_v03_missing_reasons_from_committed_census": {
+  "l2_missing_reasons_from_committed_census": {
    "FOODCOM": {
     "events_by_family": {
      "COOLING": 297413,
@@ -8710,7 +8675,7 @@
      },
      "RESTING": {
       "half_thickness": 5888,
-      "prior_heat_bath_c": 2983,
+      "prior_heat_bath_c": 3043,
       "prior_heat_duration_min": 217,
       "prior_heat_h": 3166,
       "prior_heat_link": 6875,
@@ -8720,7 +8685,7 @@
       "storage_temperature": 12092
      }
     },
-    "source": "reports/step26/nonheat_L2_FOODCOM_full_S177_v03.json",
+    "source": "reports/step26/nonheat_L2_FOODCOM_full_S178_v04.json",
     "status": {
      "COOLING": {
       "SCENARIO_COMPUTED": 23606,
@@ -8827,7 +8792,7 @@
       "storage_temperature": 950
      }
     },
-    "source": "reports/step26/nonheat_L2_GUTENBERG_SEGMENT_full_S177_v03.json",
+    "source": "reports/step26/nonheat_L2_GUTENBERG_SEGMENT_full_S178_v04.json",
     "status": {
      "COOLING": {
       "SCENARIO_COMPUTED": 1367,
@@ -8903,7 +8868,7 @@
      "STORAGE": 0
     },
     "missing_reasons": {},
-    "source": "reports/step26/nonheat_L2_TASTESET_full_S177_v03.json",
+    "source": "reports/step26/nonheat_L2_TASTESET_full_S178_v04.json",
     "status": {}
    },
    "WIKIBOOKS": {
@@ -8956,7 +8921,7 @@
      },
      "RESTING": {
       "half_thickness": 60,
-      "prior_heat_bath_c": 33,
+      "prior_heat_bath_c": 34,
       "prior_heat_duration_min": 1,
       "prior_heat_h": 35,
       "prior_heat_link": 72
@@ -8965,7 +8930,7 @@
       "storage_temperature": 78
      }
     },
-    "source": "reports/step26/nonheat_L2_WIKIBOOKS_full_S177_v03.json",
+    "source": "reports/step26/nonheat_L2_WIKIBOOKS_full_S178_v04.json",
     "status": {
      "COOLING": {
       "SCENARIO_COMPUTED": 103,
@@ -9017,7 +8982,8 @@
   "Gas mark: an event whose L1 record keeps an oven_setpoint_code with no converted temperature (the L1 layer does not convert a gas mark; every such event has T UNKNOWN).",
   "Medium is bound mostly from the process definition (basis PROCESS_DEFINITION: a verb such as fry or simmer implies it), not from a medium named in the recipe text; see the input_basis block of each census file.",
   "Piece size class comes from the cut history of the food (CUT_HISTORY), not from a size stated at the heat step.",
-  "TASTEset has no step lists (0 heat events). The BBC row is the S173 census file (same L1 binder 0.1.0; the S176 L-PHYS regeneration of the other families left L1 counts unchanged); BBC records are not on this server (D-003), so only its committed totals appear.",
+  "TASTEset has no step lists (0 heat events). BBC is not in these tables: its only heat L1 census (binding_census_L1_A1_full_S173.json, binder 0.1.0) is superseded by the S178 v04 temperature-ownership rule and registered in registry/superseded_outputs_S176.csv; BBC records are not on this server (D-003), so the v04 re-run is pending on the Mac.",
+  "Inputs: every census file is S178 v04 (FIX-GOV repoint; the first build of this table read the superseded S176 v02 / S176 / S177 v03 files) and no input is listed in registry/superseded_outputs_S176.csv (checked before reading).",
   "The Layer-2 columns are SCENARIO values (ASSUMED_DEFAULT, MODEL_DERIVED, NON_CITABLE); they are shown only for their UNKNOWN reasons.",
   "Reconciliation: derived totals equal the committed census totals for every source (heat events, duration, temperature, medium, size, lid, start mode, water ratio, matrix class, gas mark, driver-bounded, L2 status; non-heat events)."
  ],
@@ -9045,5 +9011,5 @@
  },
  "record": "CORPUS_CAN_SAY_S178",
  "status": "AI_DRAFTED_PROPOSED_COUNTS_ONLY",
- "tool_version": "s178-corpus-can-say-0.1.0-draft"
+ "tool_version": "s178-corpus-can-say-0.2.0-draft"
 }

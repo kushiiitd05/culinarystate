@@ -15,6 +15,12 @@ Third-party text: the card holds counts and registry names only. Free-text food 
 (foods are reported through ING canonical names, source food-group labels of USDA / Phenol-Explorer only).
 
   python tools/s178_analysis_evd_card.py [--out-dir reports/s178/analysis] [--selfcheck]
+
+0.2.0 (S178 FIX-GOV; SCI-B review B1 and the EVD lane's correction request): an axis key absent from a row's
+completeness mask is NOT_RECORDED (shown as its own column, counted as missing; NOT_APPLICABLE is not missing), so every
+coverage row sums to N; a temperature mask RANGE is split into RANGE_TWO_SIDED and CENSORED_ONE_SIDED from the COND
+temperature value status; water activity is a COND schema field (``water_activity``) that no row fills, reported as
+IN_SCHEMA_NEVER_POPULATED.
 """
 from __future__ import annotations
 
@@ -30,7 +36,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-TOOL_VERSION = "s178-evd-card-0.1.0-draft"
+TOOL_VERSION = "s178-evd-card-0.2.0-draft"   # 0.2.0: S178 FIX-GOV, SCI-B B1 coverage corrections
 LEDGERS = ("EVD", "COND", "SRC", "MEAS", "SVAR", "PROC", "ING", "STUDY")
 SEAL = "reports/step15/15a_R_seal_commitment_v1.json"
 SVAR_REG = "registry/state_variable_registry_v1.csv"
@@ -41,6 +47,7 @@ T_BINS = [(-1e9, 0, "<= 0 C"), (0, 60, "0-60 C"), (60, 100, "60-100 C"), (100, 1
           (180, 250, "180-250 C"), (250, 1e9, "> 250 C")]
 D_BINS = [(0, 1, "< 1 min"), (1, 5, "1-5 min"), (5, 15, "5-15 min"), (15, 30, "15-30 min"), (30, 60, "30-60 min"),
           (60, 180, "1-3 h"), (180, 1e9, "> 3 h")]
+NOT_RECORDED = "NOT_RECORDED"     # axis key absent from a row's completeness mask (was ABSENT_FROM_MASK in 0.1.0)
 PAIR_BINS = [(1, 1, "1"), (2, 2, "2"), (3, 5, "3-5"), (6, 10, "6-10"), (11, 20, "11-20"), (21, 50, "21-50"), (51, 10 ** 9, "> 50")]
 
 
@@ -50,6 +57,12 @@ def sha256_file(p: Path) -> str:
         for b in iter(lambda: fh.read(1 << 20), b""):
             h.update(b)
     return h.hexdigest()
+
+
+def cond_schema_has(field_name: str) -> bool:
+    """True when the COND ledger schema (culinarystate.ledgers.registry) defines ``field_name``."""
+    from culinarystate.ledgers.registry import R
+    return field_name in (R.get("COND") or {}).get("properties", {})
 
 
 def read_latest(path: Path) -> tuple[dict[str, dict], int]:
@@ -261,29 +274,57 @@ def build(root: Path) -> dict:
     # --- 203.9 (9) coverage of T, t, pH, a_w, moisture, pressure ...
     def mask(e):
         return cond[e["process"]["condition_id"]]["completeness_mask"]
+
+    def axis_status(e, ax):
+        """Coverage class of one row on one axis; every row gets exactly one class (rows sum to N)."""
+        st = mask(e).get(ax, NOT_RECORDED)
+        if st == "RANGE":
+            c = cond[e["process"]["condition_id"]]
+            if ax == "temperature":
+                vs = {t["value"]["status"] for t in c.get("temperatures", [])}
+            elif ax == "duration":
+                vs = {(c.get("duration") or {}).get("status")}
+            else:
+                vs = {(c.get(ax) or {}).get("status")}
+            if "RANGE" in vs:
+                return "RANGE_TWO_SIDED"
+            if "CENSORED" in vs:
+                return "CENSORED_ONE_SIDED"
+            return "RANGE_UNCLASSIFIED"
+        return st
     cov = {}
     for ax in AXES:
-        cov[ax] = {"rows_by_status": counter_dict(Counter(mask(e).get(ax, "ABSENT_FROM_MASK") for e in rows)),
-                   "by_source": {f: counter_dict(Counter(mask(e).get(ax, "ABSENT_FROM_MASK") for e in fam_rows[f])) for f in fams}}
+        cov[ax] = {"rows_by_status": counter_dict(Counter(axis_status(e, ax) for e in rows)),
+                   "by_source": {f: counter_dict(Counter(axis_status(e, ax) for e in fam_rows[f])) for f in fams},
+                   "mask_status_rows": counter_dict(Counter(mask(e).get(ax, NOT_RECORDED) for e in rows))}
     both = sum(1 for e in rows if mask(e).get("temperature") in STATED and mask(e).get("duration") in STATED)
     cov["temperature_and_duration_both_stated"] = {"rows": both, "pct": pct(both, N),
                                                    "by_source": {f: sum(1 for e in fam_rows[f] if mask(e).get("temperature") in STATED and mask(e).get("duration") in STATED) for f in fams}}
-    cov["water_activity"] = {"status": "NOT_IN_COND_SCHEMA", "rows_with_value": 0, "rows": N}
+    wa_rows = sum(1 for e in rows if (cond[e["process"]["condition_id"]].get("water_activity") or {}).get("status") not in (None, "UNKNOWN"))
+    wa_in_schema = cond_schema_has("water_activity")
+    cov["water_activity"] = {"status": ("IN_SCHEMA_NEVER_POPULATED" if wa_rows == 0 else "IN_SCHEMA_POPULATED") if wa_in_schema else "NOT_IN_COND_SCHEMA",
+                             "in_cond_schema": wa_in_schema, "schema_field": "COND.water_activity (src/culinarystate/ledgers/registry.py)",
+                             "in_completeness_mask_rows": sum(1 for e in rows if "water_activity" in mask(e)), "rows_with_value": wa_rows, "rows": N}
     cov["power"] = {"rows_with_value": sum(1 for e in rows if "power" in cond[e["process"]["condition_id"]]),
                     "by_source": {f: sum(1 for e in fam_rows[f] if "power" in cond[e["process"]["condition_id"]]) for f in fams}}
     cov["medium"] = {"rows_with_medium": N - medium["NOT_RECORDED"], "rows_by_medium": counter_dict(medium)}
     cov["distinct_condition_records_used"] = len({e["process"]["condition_id"] for e in rows})
     card["s203_9_9_condition_coverage"] = cov
 
-    # --- 203.9 (11) missingness by source / process
-    miss_src = {f: {ax: pct(sum(1 for e in fam_rows[f] if mask(e).get(ax) == "UNKNOWN"), len(fam_rows[f])) for ax in AXES} for f in fams}
+    # --- 203.9 (11) missingness by source / process (missing = UNKNOWN or NOT_RECORDED; NOT_APPLICABLE is not missing)
+    def missing(e, ax):
+        return mask(e).get(ax, NOT_RECORDED) in ("UNKNOWN", NOT_RECORDED)
+    miss_src = {f: {ax: pct(sum(1 for e in fam_rows[f] if missing(e, ax)), len(fam_rows[f])) for ax in AXES} for f in fams}
+    unk_src = {f: {ax: pct(sum(1 for e in fam_rows[f] if mask(e).get(ax) == "UNKNOWN"), len(fam_rows[f])) for ax in AXES} for f in fams}
+    nrec_src = {f: {ax: pct(sum(1 for e in fam_rows[f] if ax not in mask(e)), len(fam_rows[f])) for ax in AXES} for f in fams}
     top_steps = [s for s, _ in steps.most_common(12)]
     miss_proc = {}
     for s in top_steps:
         sub = [e for e in rows if e["process"]["steps"] == [s]]
-        miss_proc[s] = {"rows": len(sub), **{ax: pct(sum(1 for e in sub if mask(e).get(ax) == "UNKNOWN"), len(sub)) for ax in AXES}}
-    card["s203_9_11_missingness"] = {"pct_UNKNOWN_by_source_and_axis": miss_src, "pct_UNKNOWN_by_single_step_process_top12": miss_proc,
-                                     "reading": "UNKNOWN is a status, never 0 and never imputed; NOT_APPLICABLE (pressure for non-pressure sources) is not counted as missing",
+        miss_proc[s] = {"rows": len(sub), **{ax: pct(sum(1 for e in sub if missing(e, ax)), len(sub)) for ax in AXES}}
+    card["s203_9_11_missingness"] = {"pct_missing_by_source_and_axis": miss_src, "pct_UNKNOWN_by_source_and_axis": unk_src,
+                                     "pct_NOT_RECORDED_by_source_and_axis": nrec_src, "pct_missing_by_single_step_process_top12": miss_proc,
+                                     "reading": "missing = UNKNOWN or NOT_RECORDED (the axis key is absent from the row's completeness mask); UNKNOWN is a status, never 0 and never imputed; NOT_APPLICABLE (pressure for USDA) is not counted as missing",
                                      "rows_with_target_value_missing": sum(1 for e in rows if e["derived"].get("retention_factor", {}).get("status") == "UNKNOWN"),
                                      "retention_factor_status_rows": counter_dict(Counter(e["derived"].get("retention_factor", {}).get("status", "ABSENT") for e in rows))}
 
@@ -314,8 +355,12 @@ def build(root: Path) -> dict:
         "units": {"temperature": counter_dict(Counter(t["value"].get("unit") for c in cond.values() for t in c.get("temperatures", []))),
                   "duration": counter_dict(Counter(c["duration"].get("unit") for c in cond.values() if c["duration"]["status"] != "UNKNOWN")),
                   "pressure": counter_dict(Counter(c["pressure"].get("unit") for c in cond.values() if "pressure" in c))},
-        "range_valued_conditions": {"temperature_range_rows": sum(1 for e in rows if mask(e).get("temperature") == "RANGE"),
-                                    "duration_range_rows": sum(1 for e in rows if mask(e).get("duration") == "RANGE")},
+        "range_valued_conditions": {"temperature_mask_RANGE_rows": sum(1 for e in rows if mask(e).get("temperature") == "RANGE"),
+                                    "temperature_range_rows_two_sided": sum(1 for e in rows if axis_status(e, "temperature") == "RANGE_TWO_SIDED"),
+                                    "temperature_censored_one_sided_rows": sum(1 for e in rows if axis_status(e, "temperature") == "CENSORED_ONE_SIDED"),
+                                    "duration_range_rows": sum(1 for e in rows if mask(e).get("duration") == "RANGE"),
+                                    "note": "the completeness mask labels both a two-sided range and a one-sided censored bound ('> 75 C') RANGE; "
+                                            "the split uses the COND temperature value status; censored values are not in the value quantiles above"},
         "note": "values are counted over the stated condition fields of the rows (a RANGE contributes both ends); two Phenol-Explorer-style conditions can share one record"}
 
     # --- 203.9 (13) duplicate / conflict audit (same logic as eda.report.evidence_section, restricted to ACTIVE)
@@ -377,7 +422,8 @@ def build(root: Path) -> dict:
         "censored_share_pct": card["censoring"]["pct_censored"], "usda_and_bognar_single_independence_group_each": all(card["s203_9_7_study_source_counts"]["independence_groups_by_source"][f] == 1 for f in fams if f in ("USDA-RETN-R6", "BOGNAR-2002")),
         "rows_without_ing_link": N - sum(ing_ids.values()), "rows_without_process_id": N - sum(1 for e in rows if e["process"].get("process_id")),
         "rows_with_no_stated_temperature_or_duration_pct": pct(sum(1 for e in rows if mask(e).get("temperature") == "UNKNOWN" and mask(e).get("duration") == "UNKNOWN"), N),
-        "water_activity_ph_moisture_never_recorded": all(mask(e).get("ph") == "UNKNOWN" and mask(e).get("moisture") == "UNKNOWN" for e in rows)}
+        "water_activity_ph_moisture_never_recorded": all(mask(e).get("ph") == "UNKNOWN" and mask(e).get("moisture") == "UNKNOWN" for e in rows) and wa_rows == 0,
+        "pressure_not_recorded_rows": sum(1 for e in rows if "pressure" not in mask(e))}
     return card
 
 
@@ -430,22 +476,29 @@ def to_markdown(c: dict) -> str:
     a = c["s203_9_8_analytical_platform"]
     L += ["## 8. Analytical platform", "", f"- Rows by measurement method id: {a['rows_by_measurement_method_id']}. {a['note']}.", ""]
     v = c["s203_9_9_condition_coverage"]
-    L += ["## 9. Coverage of T, t, pH, a_w, moisture, pressure", "", "| axis | MEASURED | RANGE | UNKNOWN | NOT_APPLICABLE |", "|---|---:|---:|---:|---:|"]
+    L += ["## 9. Coverage of T, t, pH, a_w, moisture, pressure", "",
+          "Rows by coverage class; every row sums to the total. RANGE = a two-sided range; censored one-sided = a bound such as '> 75 C' (the completeness mask labels both RANGE); "
+          "not recorded = the axis is absent from the row's completeness mask (counted as missing in section 11); NOT_APPLICABLE is not missing.", "",
+          "| axis | MEASURED | RANGE (two-sided) | censored one-sided | UNKNOWN | not recorded | NOT_APPLICABLE | total |", "|---|---:|---:|---:|---:|---:|---:|---:|"]
     for ax in AXES:
         r = v[ax]["rows_by_status"]
-        L.append(f"| {ax} | {r.get('MEASURED', 0):,} | {r.get('RANGE', 0):,} | {r.get('UNKNOWN', 0):,} | {r.get('NOT_APPLICABLE', 0):,} |")
+        L.append(f"| {ax} | {r.get('MEASURED', 0):,} | {r.get('RANGE_TWO_SIDED', 0) + r.get('RANGE_UNCLASSIFIED', 0):,} | {r.get('CENSORED_ONE_SIDED', 0):,} | {r.get('UNKNOWN', 0):,} | "
+                 f"{r.get(NOT_RECORDED, 0):,} | {r.get('NOT_APPLICABLE', 0):,} | {sum(r.values()):,} |")
     L += ["", f"- Temperature and duration both stated: **{v['temperature_and_duration_both_stated']['rows']:,} rows ({v['temperature_and_duration_both_stated']['pct']} %)**, by source {v['temperature_and_duration_both_stated']['by_source']}.",
-          f"- Water activity: {v['water_activity']['status']} (0 of {v['water_activity']['rows']:,}). Power stated on {v['power']['rows_with_value']} rows. Medium recorded on {v['medium']['rows_with_medium']:,} rows. {v['distinct_condition_records_used']:,} distinct COND records.", ""]
+          f"- Water activity: {v['water_activity']['status']} ({v['water_activity']['schema_field']}; {v['water_activity']['rows_with_value']} of {v['water_activity']['rows']:,} rows carry a value; not a completeness-mask key). Power stated on {v['power']['rows_with_value']} rows. Medium recorded on {v['medium']['rows_with_medium']:,} rows. {v['distinct_condition_records_used']:,} distinct COND records.", ""]
     m = c["s203_9_11_missingness"]
-    L += ["## 11. Missingness by source and process", "", "| source | " + " | ".join(AXES) + " |", "|---|" + "---:|" * len(AXES)]
-    for f, r in m["pct_UNKNOWN_by_source_and_axis"].items():
+    L += ["## 11. Missingness by source and process", "", "% of rows missing the axis (UNKNOWN or not recorded; NOT_APPLICABLE excluded).", "",
+          "| source | " + " | ".join(AXES) + " |", "|---|" + "---:|" * len(AXES)]
+    for f, r in m["pct_missing_by_source_and_axis"].items():
         L.append(f"| {f} | " + " | ".join(f"{r[ax]} %" for ax in AXES) + " |")
     L += ["", "| single-step process | rows | " + " | ".join(AXES) + " |", "|---|---:|" + "---:|" * len(AXES)]
-    for st, r in m["pct_UNKNOWN_by_single_step_process_top12"].items():
+    for st, r in m["pct_missing_by_single_step_process_top12"].items():
         L.append(f"| {st} | {r['rows']:,} | " + " | ".join(f"{r[ax]} %" for ax in AXES) + " |")
     L += ["", f"- Retention factor status (rows): {m['retention_factor_status_rows']}. {m['reading']}.", ""]
     r = c["s203_9_12_condition_ranges"]
     L += ["## 12. Condition ranges", "", f"- Temperature (C), all stated values: {r['temperature_degC_values']}; bins {r['temperature_degC_bins']}.",
+          f"- Temperature conditions labelled RANGE in the mask: {r['range_valued_conditions']['temperature_mask_RANGE_rows']:,} rows = {r['range_valued_conditions']['temperature_range_rows_two_sided']:,} two-sided ranges + "
+          f"{r['range_valued_conditions']['temperature_censored_one_sided_rows']:,} one-sided censored bounds.",
           f"- Duration (min): {r['duration_min_values']}; bins {r['duration_min_bins']}.", f"- Pressure by source and unit: {r['pressure_by_source_and_unit']}. Units in COND: {r['units']}.", ""]
     x = c["s203_9_13_duplicate_conflict_audit"]
     L += ["## 13. Duplicate and conflict audit", "",

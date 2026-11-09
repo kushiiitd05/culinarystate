@@ -45,6 +45,7 @@
   "all_rows_tier_E3": true,
   "censored_share_pct": 32.78,
   "no_human_verified_row": true,
+  "pressure_not_recorded_rows": 10831,
   "rows_with_no_stated_temperature_or_duration_pct": 58.15,
   "rows_without_ing_link": 6409,
   "rows_without_process_id": 157,
@@ -201,102 +202,27 @@
   }
  },
  "s203_9_11_missingness": {
-  "pct_UNKNOWN_by_single_step_process_top12": {
-   "bake": {
-    "duration": 92.73,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 867,
-    "temperature": 95.73
+  "pct_NOT_RECORDED_by_source_and_axis": {
+   "BOGNAR-2002": {
+    "duration": 0.0,
+    "moisture": 0.0,
+    "ph": 0.0,
+    "pressure": 100.0,
+    "temperature": 0.0
    },
-   "boil": {
-    "duration": 86.68,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 2035,
-    "temperature": 69.78
+   "PHENOL-EXPLORER-3.6": {
+    "duration": 0.0,
+    "moisture": 0.0,
+    "ph": 0.0,
+    "pressure": 96.67,
+    "temperature": 0.0
    },
-   "deep-fry": {
-    "duration": 100.0,
-    "moisture": 100.0,
-    "ph": 100.0,
+   "USDA-RETN-R6": {
+    "duration": 0.0,
+    "moisture": 0.0,
+    "ph": 0.0,
     "pressure": 0.0,
-    "rows": 955,
-    "temperature": 47.23
-   },
-   "fry": {
-    "duration": 97.53,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 687,
-    "temperature": 99.56
-   },
-   "pan-fry": {
-    "duration": 100.0,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 1493,
-    "temperature": 45.48
-   },
-   "reheat": {
-    "duration": 100.0,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 727,
-    "temperature": 100.0
-   },
-   "roast": {
-    "duration": 98.87,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 1415,
-    "temperature": 42.69
-   },
-   "simmer": {
-    "duration": 100.0,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 1040,
-    "temperature": 100.0
-   },
-   "steam": {
-    "duration": 96.39,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 1191,
-    "temperature": 58.44
-   },
-   "stew": {
-    "duration": 100.0,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 1110,
-    "temperature": 49.01
-   },
-   "store-ambient": {
-    "duration": 18.55,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 1132,
-    "temperature": 33.39
-   },
-   "store-refrigerated": {
-    "duration": 42.84,
-    "moisture": 100.0,
-    "ph": 100.0,
-    "pressure": 0.0,
-    "rows": 908,
-    "temperature": 6.39
+    "temperature": 0.0
    }
   },
   "pct_UNKNOWN_by_source_and_axis": {
@@ -322,7 +248,128 @@
     "temperature": 100.0
    }
   },
-  "reading": "UNKNOWN is a status, never 0 and never imputed; NOT_APPLICABLE (pressure for non-pressure sources) is not counted as missing",
+  "pct_missing_by_single_step_process_top12": {
+   "bake": {
+    "duration": 92.73,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 25.03,
+    "rows": 867,
+    "temperature": 95.73
+   },
+   "boil": {
+    "duration": 86.68,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 80.84,
+    "rows": 2035,
+    "temperature": 69.78
+   },
+   "deep-fry": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 97.28,
+    "rows": 955,
+    "temperature": 47.23
+   },
+   "fry": {
+    "duration": 97.53,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 12.95,
+    "rows": 687,
+    "temperature": 99.56
+   },
+   "pan-fry": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 98.26,
+    "rows": 1493,
+    "temperature": 45.48
+   },
+   "reheat": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 727,
+    "temperature": 100.0
+   },
+   "roast": {
+    "duration": 98.87,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 85.3,
+    "rows": 1415,
+    "temperature": 42.69
+   },
+   "simmer": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "rows": 1040,
+    "temperature": 100.0
+   },
+   "steam": {
+    "duration": 96.39,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 91.27,
+    "rows": 1191,
+    "temperature": 58.44
+   },
+   "stew": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 95.32,
+    "rows": 1110,
+    "temperature": 49.01
+   },
+   "store-ambient": {
+    "duration": 18.55,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 99.47,
+    "rows": 1132,
+    "temperature": 33.39
+   },
+   "store-refrigerated": {
+    "duration": 42.84,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 97.69,
+    "rows": 908,
+    "temperature": 6.39
+   }
+  },
+  "pct_missing_by_source_and_axis": {
+   "BOGNAR-2002": {
+    "duration": 100.0,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 100.0,
+    "temperature": 46.59
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "duration": 39.12,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 96.67,
+    "temperature": 42.43
+   },
+   "USDA-RETN-R6": {
+    "duration": 89.64,
+    "moisture": 100.0,
+    "ph": 100.0,
+    "pressure": 0.0,
+    "temperature": 100.0
+   }
+  },
+  "reading": "missing = UNKNOWN or NOT_RECORDED (the axis key is absent from the row's completeness mask); UNKNOWN is a status, never 0 and never imputed; NOT_APPLICABLE (pressure for USDA) is not counted as missing",
   "retention_factor_status_rows": {
    "ABSENT": 496,
    "CENSORED": 5894,
@@ -413,7 +460,10 @@
   },
   "range_valued_conditions": {
    "duration_range_rows": 476,
-   "temperature_range_rows": 3585
+   "note": "the completeness mask labels both a two-sided range and a one-sided censored bound ('> 75 C') RANGE; the split uses the COND temperature value status; censored values are not in the value quantiles above",
+   "temperature_censored_one_sided_rows": 3369,
+   "temperature_mask_RANGE_rows": 3585,
+   "temperature_range_rows_two_sided": 216
   },
   "temperature_degC_bins": {
    "0-60 C": 1787,
@@ -1024,18 +1074,23 @@
     },
     "PHENOL-EXPLORER-3.6": {
      "MEASURED": 2348,
-     "RANGE": 8,
+     "RANGE_TWO_SIDED": 8,
      "UNKNOWN": 1514
     },
     "USDA-RETN-R6": {
      "MEASURED": 259,
-     "RANGE": 468,
+     "RANGE_TWO_SIDED": 468,
      "UNKNOWN": 6291
     }
    },
-   "rows_by_status": {
+   "mask_status_rows": {
     "MEASURED": 2607,
     "RANGE": 476,
+    "UNKNOWN": 14895
+   },
+   "rows_by_status": {
+    "MEASURED": 2607,
+    "RANGE_TWO_SIDED": 476,
     "UNKNOWN": 14895
    }
   },
@@ -1061,6 +1116,9 @@
      "UNKNOWN": 7018
     }
    },
+   "mask_status_rows": {
+    "UNKNOWN": 17978
+   },
    "rows_by_status": {
     "UNKNOWN": 17978
    }
@@ -1077,6 +1135,9 @@
      "UNKNOWN": 7018
     }
    },
+   "mask_status_rows": {
+    "UNKNOWN": 17978
+   },
    "rows_by_status": {
     "UNKNOWN": 17978
    }
@@ -1092,41 +1153,53 @@
   "pressure": {
    "by_source": {
     "BOGNAR-2002": {
-     "ABSENT_FROM_MASK": 7090
+     "NOT_RECORDED": 7090
     },
     "PHENOL-EXPLORER-3.6": {
-     "ABSENT_FROM_MASK": 3741,
-     "MEASURED": 129
+     "MEASURED": 129,
+     "NOT_RECORDED": 3741
     },
     "USDA-RETN-R6": {
      "NOT_APPLICABLE": 7018
     }
    },
-   "rows_by_status": {
-    "ABSENT_FROM_MASK": 10831,
+   "mask_status_rows": {
     "MEASURED": 129,
-    "NOT_APPLICABLE": 7018
+    "NOT_APPLICABLE": 7018,
+    "NOT_RECORDED": 10831
+   },
+   "rows_by_status": {
+    "MEASURED": 129,
+    "NOT_APPLICABLE": 7018,
+    "NOT_RECORDED": 10831
    }
   },
   "temperature": {
    "by_source": {
     "BOGNAR-2002": {
+     "CENSORED_ONE_SIDED": 3369,
      "MEASURED": 384,
-     "RANGE": 3403,
+     "RANGE_TWO_SIDED": 34,
      "UNKNOWN": 3303
     },
     "PHENOL-EXPLORER-3.6": {
      "MEASURED": 2046,
-     "RANGE": 182,
+     "RANGE_TWO_SIDED": 182,
      "UNKNOWN": 1642
     },
     "USDA-RETN-R6": {
      "UNKNOWN": 7018
     }
    },
-   "rows_by_status": {
+   "mask_status_rows": {
     "MEASURED": 2430,
     "RANGE": 3585,
+    "UNKNOWN": 11963
+   },
+   "rows_by_status": {
+    "CENSORED_ONE_SIDED": 3369,
+    "MEASURED": 2430,
+    "RANGE_TWO_SIDED": 216,
     "UNKNOWN": 11963
    }
   },
@@ -1140,9 +1213,12 @@
    "rows": 1575
   },
   "water_activity": {
+   "in_completeness_mask_rows": 0,
+   "in_cond_schema": true,
    "rows": 17978,
    "rows_with_value": 0,
-   "status": "NOT_IN_COND_SCHEMA"
+   "schema_field": "COND.water_activity (src/culinarystate/ledgers/registry.py)",
+   "status": "IN_SCHEMA_NEVER_POPULATED"
   }
  },
  "scope": "ACTIVE EVD rows (latest version per id), tier E3, three source families",
@@ -1176,7 +1252,7 @@
   }
  },
  "status": "DRAFT_NOT_FROZEN_NOT_SIGNED",
- "tool_version": "s178-evd-card-0.1.0-draft",
+ "tool_version": "s178-evd-card-0.2.0-draft",
  "units": {
   "before_after_unit_strings_rows": {
    "mg/100 g dry weight": 4,

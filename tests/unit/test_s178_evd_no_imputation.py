@@ -13,10 +13,10 @@ What the tests pin (current behaviour, not a wish):
   * fitting any baseline never mutates the training frame; ``fillna`` appears only where it is a prediction-time backoff;
   * the cell table carries booleans for condition knowledge, never an imputed numeric temperature or duration.
 
-Three tests are ``xfail(strict=True)`` and document latent gaps found while writing this file (the builder is NOT changed
-here; a human decides): a censored row without a limit becomes y_lower = 0; a left-censored (LT_*) row is stored as a lower
-bound; the builder does not filter by evidence tier (E5-E7 rows would pass). When the builder is fixed the xfail flips to an
-unexpected pass and the marker must be removed.
+Three tests were ``xfail(strict=True)`` in the EVD lane and documented latent gaps (a censored row without a limit became
+y_lower = 0; a left-censored (LT_*) row was stored as a lower bound; the builder did not filter by evidence tier). S178
+FIX-GOV (GOV-10) fixed the builder; the three tests are now ordinary tests (section "latent gaps, fixed"), and the full rule
+set is pinned in tests/unit/test_transition_firewall.py.
 """
 from __future__ import annotations
 
@@ -260,24 +260,21 @@ def test_no_imputer_or_interpolation_in_dataset_builders():
             assert bad not in src, (f, bad)
 
 
-# ---------------------------------------------------------------------------------------------------------- latent gaps (xfail, strict)
-@pytest.mark.xfail(strict=True, reason="LATENT: dataset._rf reads censor.limit with default 0, so a CENSORED row whose censor object has no 'limit' key "
-                                       "becomes y_lower = 0.0 (a zero imputation). Not reachable from the real ledger (all 5,894 censored rows carry a limit); reported, builder unchanged.")
+# ---------------------------------------------------------------------------------------------------------- latent gaps, fixed (S178 FIX-GOV, GOV-10)
+# Were xfail(strict=True): dataset._rf read censor.limit with default 0 (a zero imputation); not reachable from the real ledger.
 def test_censored_row_without_a_limit_must_not_become_a_zero_lower_bound():
     rf = {"status": "CENSORED", "unit": "%", "censor": {"kind": "GT_CAP"}}
     df = DS.cells_from_rows([evd(1, rf)], COND, FAMILY).df
     assert len(df) == 0 or not (df["y_lower"] == 0.0).any()
 
 
-@pytest.mark.xfail(strict=True, reason="LATENT: dataset._rf ignores censor.kind, so a left-censored (LT_LOD / LT_STATED) value is stored as y_lower = its limit "
-                                       "(an upper bound read as a lower bound). The real ledger has only GT_CAP; reported, builder unchanged.")
+# Was xfail(strict=True): dataset._rf ignored censor.kind, so an LT_* limit (an upper bound) became y_lower.
 def test_left_censored_row_must_not_be_stored_as_a_lower_bound():
     df = DS.cells_from_rows([evd(1, censored(5.0, kind="LT_LOD"))], COND, FAMILY).df
     assert len(df) == 0 or not df["y_lower"].notna().any()
 
 
-@pytest.mark.xfail(strict=True, reason="GAP vs the T6-C09 firewall text: cells_from_rows filters by source family and ACTIVE status only, not by evidence tier, "
-                                       "so an E5-E7 (simulated / assumed) row would enter a cell table. Reported, builder unchanged.")
+# Was xfail(strict=True): cells_from_rows filtered by source family and ACTIVE status only, not by evidence tier.
 def test_e5_to_e7_rows_must_not_enter_the_cell_table():
     rows = [evd(1, measured(50.0), tier="E3"), evd(2, measured(60.0), tier="E7")]
     df = DS.cells_from_rows(rows, COND, FAMILY).df

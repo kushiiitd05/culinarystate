@@ -30,7 +30,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from s178_evd_common import DEFAULT_OUT, ROOT, dumps, md_table, protected_hashes, sha256_file, write_new_or_same  # noqa: E402
 
-TOOL_VERSION = "s178-evd-repro-record-0.1.0-draft"
+TOOL_VERSION = "s178-evd-repro-record-0.1.1-draft"   # 0.1.1 (FIX-GOV): full router census input S176 -> S177
 CARD_TOOL = "tools/s178_analysis_evd_card.py"
 CARD_FILES = ("evd_dataset_card_v1.json", "evd_dataset_card_v1.md")
 CARD_DIR = "reports/s178/analysis"
@@ -42,7 +42,7 @@ CODE = ("tools/s178_evd_common.py", "tools/s178_evd_conformance.py", "tools/s178
 INPUTS = ("ledgers/data/EVD.jsonl", "ledgers/data/COND.jsonl", "ledgers/data/SRC.jsonl", "ledgers/data/MEAS.jsonl", "ledgers/data/SNAP.jsonl", "ledgers/data/SVAR.jsonl",
           "ledgers/data/PROC.jsonl", "ledgers/data/ING.jsonl", "registry/svar_duplicate_mapping_v1.csv", "registry/state_variable_registry_v1.csv", "registry/baseline_ledger_hashes_08a_v1.csv",
           "exports/lineage/step08a_v1/keys.jsonl", "exports/evd/evd_export_v1.manifest.json", "exports/lineage/step08a_v1/evd_export_v2.manifest.json",
-          "reports/step15/15a_R_seal_commitment_v1.json", "reports/step23/router_demo_census_vitc_nonBBC_full_S176.json", "reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json",
+          "reports/step15/15a_R_seal_commitment_v1.json", "reports/step23/router_demo_census_vitc_nonBBC_full_S177.json", "reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json",
           "reports/s178/analysis/corpus_can_say_v1.json")
 OUTPUTS = ("evd_field_conformance_203_2_v1.json", "evd_field_conformance_203_2_v1.csv", "evd_field_conformance_203_2_v1.md", "evd_export_repro_check_v1.json", "evd_export_repro_check_v1.md",
            "svar_reconciliation_v1.json", "svar_reconciliation_v1.md", "evd_coverage_vs_corpus_demand_v1.json", "evd_coverage_vs_corpus_demand_v1.csv", "evd_coverage_vs_corpus_demand_v1.md",

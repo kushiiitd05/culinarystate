@@ -79,9 +79,9 @@ def test_coverage_censoring_and_conflict_free(fixture_root):
     c = T.build(fixture_root)
     cov = c["s203_9_9_condition_coverage"]
     assert cov["temperature"]["rows_by_status"] == {"MEASURED": 2, "UNKNOWN": 1}
-    assert cov["duration"]["rows_by_status"] == {"RANGE": 2, "UNKNOWN": 1}
+    assert cov["duration"]["rows_by_status"] == {"RANGE_TWO_SIDED": 2, "UNKNOWN": 1}   # 0.2.0 splits RANGE into two-sided and censored one-sided
     assert cov["temperature_and_duration_both_stated"]["rows"] == 2
-    assert cov["water_activity"]["status"] == "NOT_IN_COND_SCHEMA"
+    assert cov["water_activity"]["status"] == "IN_SCHEMA_NEVER_POPULATED"   # was NOT_IN_COND_SCHEMA (SCI-B B1: the field is in the COND schema)
     assert c["censoring"]["censored_rows"] == 1 and c["censoring"]["censored_rows_by_source"]["FAM-A"] == 1
     assert c["censoring"]["censor_limits"] == {"FAM-A|GT_CAP|97.5": 1}
     assert c["s203_9_2_unique_ingredients"]["unique_ing_ids_linked"] == 1

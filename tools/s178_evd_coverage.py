@@ -12,7 +12,12 @@ Three layers, each stated as what it is:
   3. Corpus demand at PAIR level (a seeded 1,000-recipe non-BBC sample, seed 20261104, the same sample as the committed S177 router census):
      distinct (ING, PROC) pairs the recipes ask about, and how many hold an EVD pair. The sample is re-run through the unchanged router machinery
      (Rung A -> route_text) and reconciled to ``reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json`` (items, events, distinct pairs,
-     vitamin-C pairs seen). Full-corpus pair totals are read from the committed full non-BBC census (S176), not recomputed.
+     vitamin-C pairs seen). Full-corpus pair totals are read from the committed full non-BBC census (S177, router census 0.3.0), not recomputed.
+     (Until the FIX-GOV repoint this read the S176 full census, which the S177 ABSENT rule superseded.)
+
+Inputs are checked against ``registry/superseded_outputs_S176.csv`` before anything is read (culinarystate.governance_superseded): a
+superseded input stops the tool. Status marker (GOV-8): the JSON carries a top-level ``status``; the CSV and SVG cannot carry one safely,
+so their status is the one stated at the top of the sibling ``evd_coverage_vs_corpus_demand_v1.md`` (the SVG also says AI_DRAFTED in its <desc>).
 
 One command: ``python tools/s178_evd_coverage.py [--sample-size 1000] [--workers 4] [--out-dir reports/s178/evd]`` writes the JSON, a markdown table with the
 statement, a CSV and an SVG figure. ``--no-sample`` skips layer 3 (the table then says so). Counts only; no recipe text, id or span is written.
@@ -33,9 +38,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from s178_evd_common import (DEFAULT_OUT, ROOT, counter_dict, dumps, md_table, pct, protected_hashes, read_ledger,  # noqa: E402
                              sha256_file, write_new_or_same)
 
-TOOL_VERSION = "s178-evd-coverage-0.1.0-draft"
+TOOL_VERSION = "s178-evd-coverage-0.2.0-draft"
 CAN_SAY = "reports/s178/analysis/corpus_can_say_v1.json"
-CENSUS_FULL = "reports/step23/router_demo_census_vitc_nonBBC_full_S176.json"
+CENSUS_FULL = "reports/step23/router_demo_census_vitc_nonBBC_full_S177.json"
 CENSUS_1000 = "reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json"
 TARGET = "SVAR-000009"
 SEED = "20261104"
@@ -179,7 +184,17 @@ def sample_pairs(root: Path, size: int, workers: int) -> dict:
 
 
 # ------------------------------------------------------------------------------------------------ assemble
+INPUT_FILES = ("ledgers/data/EVD.jsonl", "ledgers/data/PROC.jsonl", CAN_SAY, CENSUS_FULL, CENSUS_1000)
+
+
+def check_inputs_not_superseded(root: Path) -> None:
+    """Raise culinarystate.governance_superseded.SupersededInputError if any input is in registry/superseded_outputs_S176.csv."""
+    from culinarystate.governance_superseded import assert_not_superseded
+    assert_not_superseded(INPUT_FILES, root=root)
+
+
 def build(root: Path, size: int, workers: int, with_sample: bool) -> dict:
+    check_inputs_not_superseded(root)
     sup = evd_supply(root)
     ce = corpus_events(root, sup["proc_names"])
     census_full = json.loads((root / CENSUS_FULL).read_text(encoding="utf-8"))

@@ -141,3 +141,10 @@ Observations about links (registry and finder, not `composition/`): the longest-
 ## 8. Scratch diagnostics (session scratchpad only, not committed)
 
 `time_sample.py`, `time_sample_lot.py`, `prof_lot.py` (timing and profile), `bf_ratio.py` (brute-force check of `ratio_bounds`), `extremes.py` (largest and widest gram intervals), `frac.py` and `fracfix.py` (U+2044 count and the runtime-patched what-if), `why_unknown.py` and `nofood_hist.py` (why lot water is UNKNOWN), `run1.sh` (run wrapper that records start, end, wall time and sha256). Third-party recipe text was printed to the terminal during diagnostics only and is not reproduced in this report.
+
+## S178 correction (FIX-GOV, 2026-11-09)
+
+Appended by the S178 FIX-GOV lane after the SCI-B review (finding B6). Nothing above was rewritten.
+
+- Section 1, pH bullet: "`ANY_MEMBER_PH_UNKNOWN` is 98 to 99% of lots in every family" is wrong for Food.com. The report's own table (section 3, row "pH flag ANY_MEMBER_PH_UNKNOWN") gives **96.7 %** for Food.com (502,903 of 520,298 lots), 99.4 % for BBC (11,868 of 11,934), 98.7 % for Wikibooks (3,630 of 3,676) and 98.1 % for TASTEset (687 of 700). The corrected sentence is: "`ANY_MEMBER_PH_UNKNOWN` is 96.7 to 99.4 % of lots by family (Food.com 96.7 %, TASTEset 98.1 %, Wikibooks 98.7 %, BBC 99.4 %), so the FDA 2003 table barely constrains recipe pools."
+- The conclusion does not change: the pH table constrains almost no recipe pool. Status: AI_DRAFTED correction, not a review sign-off.

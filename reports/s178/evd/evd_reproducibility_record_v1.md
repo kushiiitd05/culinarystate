@@ -1,17 +1,17 @@
 # Evidence-plane reproducibility record (S178, T2-C15-R4)
 
-Status: AI_DRAFTED / PROPOSED. `tools/s178_evd_repro_record.py` (s178-evd-repro-record-0.1.0-draft). Hashes, versions and commands only.
+Status: AI_DRAFTED / PROPOSED. `tools/s178_evd_repro_record.py` (s178-evd-repro-record-0.1.1-draft). Hashes, versions and commands only.
 
 **Dataset card: rerun reproduces the committed hash: True.**
 
 | card file | committed sha256 | rerun sha256 | equal |
 |---|---|---|---|
-| evd_dataset_card_v1.json | d97d1af7804df874af8d24976998feddb44f9850cf1c8f7c38299ee7fc6540fc | d97d1af7804df874af8d24976998feddb44f9850cf1c8f7c38299ee7fc6540fc | yes |
-| evd_dataset_card_v1.md | e4e33bc0ecdbaf97d1f0a0c4b3e8fc99fe3d8eb63e5ebf351a04ff15bc32901f | e4e33bc0ecdbaf97d1f0a0c4b3e8fc99fe3d8eb63e5ebf351a04ff15bc32901f | yes |
+| evd_dataset_card_v1.json | 1e7af6e25a8ffc1a72316f75028619709a1fd797edc2bb7d500e4efe6fe7ebfd | 1e7af6e25a8ffc1a72316f75028619709a1fd797edc2bb7d500e4efe6fe7ebfd | yes |
+| evd_dataset_card_v1.md | 2cca6ed8c8c645b9cfbbd6238b9744d42eefe1b48695e852fda23daa1c373b21 | 2cca6ed8c8c645b9cfbbd6238b9744d42eefe1b48695e852fda23daa1c373b21 | yes |
 
 ## Environment
 
-- python 3.12.3 (CPython), Linux-6.8.0-134-generic-x86_64-with-glibc2.39; packages {'numpy': '1.26.4', 'pandas': '2.1.4', 'scipy': '1.17.1', 'pytest': '9.2.0', 'pyarrow': '14.0.2'}; git HEAD 487b870 (+ uncommitted worktree changes).
+- python 3.12.3 (CPython), Linux-6.8.0-134-generic-x86_64-with-glibc2.39; packages {'numpy': '1.26.4', 'pandas': '2.1.4', 'scipy': '1.17.1', 'pytest': '9.2.0', 'pyarrow': '14.0.2'}; git HEAD aea05bb (+ uncommitted worktree changes).
 - math.log on this glibc differs from the correctly rounded value in the last digit for 4 log_fold_change cells of the export (see evd_export_repro_check_v1).
 
 ## Seeds and splits

@@ -157,3 +157,41 @@ Tool sha256: corpus_can_say `647b8504...`, corpus_can_say_render `ad8b7059...`, 
 - `reports/s178/analysis/`: `evd_dataset_card_v1.{md,json}`, `negative_results_s171_s177_verification_v1.{md,json}`, `ing_alias_coverage_census_v1.{md,json}`, `ing_alias_coverage_census_v1_tables.csv`, `corpus_can_say_v1.{md,json}`, `fig1_heat_time_temperature_joint.{svg,csv}`, `fig2_foodcom_heat_inputs_by_family.{svg,csv}`, `fig3_foodcom_top_unknown_reasons.{svg,csv}`
 - `registry/negative_results_register_v1.csv` (rows NEG-0031..NEG-0045 appended)
 - `data/derived/s178_analysis/` (git-ignored: `can_say_agg.json`, `unmapped_top500_*.csv`, run logs; about 1 MB)
+
+## S178 correction (FIX-GOV, 2026-11-09)
+
+Appended by the S178 FIX-GOV lane (GOV review findings GOV-1, GOV-2, GOV-6; SCI-B review findings B1, B2, CORP-1). Nothing above was rewritten. The values above are the first build's values and are kept as history; the values below replace them. Status: AI_DRAFTED / PROPOSED, counts only.
+
+**1. What the corpus can say (T4-C04-R1, GOV-1).** The first build read superseded inputs: heat L1 `binding_census_L1_*_S176_v02` plus the S173 BBC file, non-heat L1 `nonheat_L1_*_S176`, and L2 `*_S177_v03`. The tool now reads the S178 v04 censuses and records (`*_S178_v04.json`, `data/derived/physical_*_S178v04`). It refuses any input listed in `registry/superseded_outputs_S176.csv` (`culinarystate.governance_superseded`). Reconciliation is still PASS with 0 alignment errors. The BBC row is gone: its only heat L1 census (S173, binder 0.1.0) is superseded, and the v04 re-run can only be done on the Mac (D-003). Heat event counts are unchanged (Food.com 1,503,261; Wikibooks 11,433; Gutenberg 182,049).
+
+| Food.com / Wikibooks / Gutenberg, % of heat events | old (v02 / v03 inputs) | new (v04) |
+|---|---|---|
+| time stated | 30.87 / 24.31 / 3.21 | 30.87 / 24.31 / 3.21 (unchanged) |
+| temperature stated in the text | **3.68 / 6.37 / 0.57** (55,364 / 728 / 1,042 events) | **3.26 / 5.55 / 0.51** (48,952 / 634 / 932) |
+| temperature bound (text + carried setpoint + boil = 100 C) | 14.95 / 20.77 / 30.17 | 14.6 / 20.02 / 30.14 |
+| time and temperature both in the text | 1.88 / 3.18 / 0.18 | 1.77 / 3.07 / 0.18 |
+| time stated and temperature bound | 5.86 / 8.23 / 1.09 | 5.8 / 8.13 / 1.09 |
+| neither | 60.05 / 63.15 / 67.7 | 60.33 / 63.81 / 67.73 |
+
+- Headline (table row T4-C04-R1): the temperature stated in the text goes from 3.7 % to **3.3 %**, both in the text from 1.9 % to **1.8 %**, and neither from 60.1 % to **60.3 %**.
+- Food.com by family (time / temperature in the text / both): DRY_HEAT 53.7 / 9.5 → **8.9** / 6.9 → **6.7**. WET_HEAT 29.0 / 1.1 → **0.35** / 0.1 → **0.06**; its temperature bound goes from 36.3 % to **35.6 %**. FAT_HEAT 22.6 / 0.9 → **0.5** / 0.15 → **0.1**. HEAT_GENERAL 21.5 / 2.4 → **2.2** / 0.35 → **0.3**.
+- Heat L2 HEAT_GENERAL: missing `bath_c` goes from 95.4 % to **95.6 %**. Missing `medium` stays 97.8 %, and 0 events reach SCENARIO_COMPUTED.
+- Files (sha256 prefix): `corpus_can_say_v1.json` `32cbed9f2ce6c522`, `.md` `d3fb2d78d9363558`. The figures `fig1..3` were regenerated, and every SVG `<desc>` now says AI_DRAFTED (GOV-8).
+
+**2. EVD dataset card (T2-C15-R1; SCI-B B1, BLOCKER; EVD lane request).** The card is now version 0.2.0. Its json and md hashes are `1e7af6e2…` and `2cca6ed8…`; `--selfcheck` gave identical output twice. Corrections to the Conditions bullet:
+- temperature "RANGE 3,585" → **216 two-sided ranges + 3,369 one-sided censored bounds** (Bognar core "> 75 C").
+- "a_w not in the COND schema" → **a_w is a COND schema field (`water_activity`) that no row fills (0 of 17,978)**.
+- pressure: MEASURED 129, NOT_APPLICABLE 7,018 (USDA), and **10,831 rows where pressure is not in the completeness mask**, now shown as "not recorded". Every axis row sums to 17,978.
+- missingness now counts "not recorded" as missing: pressure is missing on **100 % of Bognar rows (was 0 %)** and **96.67 % of Phenol-Explorer rows (was 0 %)**.
+- The card was copied byte-identical to `reports/step15/dataset_card_15a_v1.{md,json}`, listed in `reports/step15/README_S178_copies.md`. RUN-S178-EVD-007 was re-run and reproduces the new card hash.
+
+**3. ING/ALIAS coverage census (CORP-1).** The bare "79.5 %" note now reads "78.0 % of recipes, 407,536 / 522,517, full corpus; the S176 seeded sample gave 79.5 %, 683 / 859". The census was re-run, and only that note line changed: json `2652fa09…`, md `ecebc5ba…`.
+
+**4. Negative-results register (B2, T9-C08-R4).** Rows NEG-0047 to NEG-0049 were appended; NEG-0032 and NEG-0045 are unchanged:
+- NEG-0048 supersedes NEG-0032's gated figures. As of router census 0.3.0 (S177), gated DIRECT is **40,308 (0.114 %)**, recipes with any DIRECT are 37,773, and NOT_APPLICABLE is 813,547.
+- NEG-0049 supersedes NEG-0045's counts. As of v04, 241 events are lifted and **21 are above 150 C** (v03: 520 and 197).
+- NEG-0047 records G08-3 FAIL, which was missing.
+- The DEL-2 shortcut suspicion (D7 identical to D1 on Phenol-Explorer) is already NEG-0004, so no new row was added.
+- The corrected row NEG-0032 in table 4 above should be read with NEG-0048.
+
+**5. Open item 3 above.** `reports/lotstate/lotstate_census_1000_S176_ph_provisional.json` is now registered as INVALID_SUPERSEDED_KEPT_ON_RECORD in `registry/superseded_outputs_S176.csv`. The v02 → v03 → v04 rows were added, and each `superseded_by` now ends at a live file.

@@ -50,13 +50,16 @@ The defensible contribution is therefore **the integration and its measured beha
    - 14,594,812 events;
    - 1,746,405 heat events;
    - Layer 2 trajectories for 46 % of heat events.
-2. **Evidence applicability is a separate decision from evidence retrieval (measured).** Prior recipe-nutrient work applies retention
+2. **Evidence applicability is a separate decision from evidence retrieval (AI-gated counts on a fixed sample; gates unaudited).** Prior recipe-nutrient work applies retention
    factors by a default cooking method, ignores cooking, or imputes until every profile is complete. Our target-presence and
    lot-context gates withhold a measured retention value when the food or its context does not match. On the fixed 1,000-recipe
-   sample, vitamin C DIRECT routes fall from **450 to 73** (59 TARGET_ABSENT, 318 MERGED_LOT_CONTEXT). This is a design result with
-   counts, not yet validated against human gold.
-3. **Recipe text under-determines physics, measured at scale (measured).** Only **3.3 %** of heat events state both time and
-   temperature (4.8 % counting ranges; 1,000-recipe census S172). Missing values stay UNKNOWN instead of being filled in. Prior work
+   sample, vitamin C DIRECT routes fall from **450 to 73**; of the 377 withheld, 346 are MERGED_LOT_CONTEXT, 30 PRIOR_PROCESS_CONTEXT and
+   1 TARGET_ABSENT (S177 census, three gates; `reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json`, `direct_ungated_cross`).
+   The S176 two-gate split (59 TARGET_ABSENT, 318 MERGED_LOT_CONTEXT) is superseded. This is a design result with counts, not yet
+   validated against human gold.
+3. **Recipe text under-determines physics, at scale (census counts).** Only **3.3 %** of heat events state both time and
+   temperature (4.8 % counting ranges; 1,000-recipe census S172). The full non-BBC census (L1 v04,
+   `reports/s178/analysis/corpus_can_say_v1.md` table 2) gives 1.77 % for Food.com, 3.07 % for Wikibooks and 0.18 % for Gutenberg. Missing values stay UNKNOWN instead of being filled in. Prior work
    either names this gap without measuring it (Kalra et al. 2020; Yun et al. 2025) or fills it silently:
    - Vijayakumar et al. 2024 use a default method per ingredient;
    - Kumbhakern et al. 2025 map "medium heat" to a °C range with no stated/assumed label.
@@ -187,6 +190,8 @@ experiment). Numbers in brackets such as [B07] point to the bibliography table i
   - That this is the first state tracking for recipes.
   - That replay is more accurate than learned trackers. There is no gold comparison yet: P1b waits on a nonce, and Step 19 is not
     scored.
+  - That the extracted events are correct. Extraction quality is unmeasured against gold (07.A FAILED; D-074 R1 precision 4/60).
+    Only the replay's 0 exceptions is measured.
 - **Needs an experiment:**
   - Score the replayed state on the P1/P1b gold against an LLM state predictor and a learned tracker (Nandy-style), at matched
     granularity.
@@ -279,8 +284,10 @@ Westenbrink EuroFIR overview, Naravane & Tagkopoulos 2023, Delchier 2012/2014.
     - target presence;
     - merged-lot context;
     - prior-process context.
-  - Measured on the fixed sample: vitamin C DIRECT goes from 450 to 73. The change is from the TARGET_ABSENT and
-    MERGED_LOT_CONTEXT gates (counts in `reports/orchestration/S176_L-ROUTER_report.md` §1).
+  - Counted on the fixed sample with the AI-drafted gates: vitamin C DIRECT goes from 450 to 73. Of the 377 withheld, 346 are
+    MERGED_LOT_CONTEXT, 30 PRIOR_PROCESS_CONTEXT and 1 TARGET_ABSENT (S177 census,
+    `reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json`). The S176 split in `reports/orchestration/S176_L-ROUTER_report.md`
+    §1 (59 / 318, two gates) is superseded.
   - The contrast with [B32] (default method, 42.62 % factor coverage, silent raw fallback) and with [B41] (complete-profile
     imputation) is factual and quotable.
 - **Cannot claim:**
@@ -540,3 +547,10 @@ can judge how far the negative claims reach.
   - venue lookups for Zep, Eywa, The Log is the Agent, Agent Zero Memory and SURE-RAG (none found).
   - Searches for agent memory "separated by provenance (source / evidence / state / model / simulation)" found Eywa, MIRIX and Agent
     Zero Memory, but none with model or simulation planes.
+
+## S178 FIX-GOV edits (2026-11-09)
+
+Edited by the S178 FIX-GOV lane after the GOV review (finding GOV-9). The edits change wording and counts only; no novelty statement was added:
+- Claim 2 heading "(measured)" became "(AI-gated counts on a fixed sample; gates unaudited)", and claim 3 heading "measured at scale (measured)" became "at scale (census counts)". Claim 3 gained the full non-BBC v04 shares.
+- The 450 to 73 split is now quoted from the S177 1,000-sample census (three gates: 346 / 30 / 1) in claim 2 and in section 3.4. The S176 split (59 / 318) is marked superseded.
+- Section 3.1 "Cannot claim" gained one sentence: extraction quality is unmeasured against gold (07.A FAILED; D-074 R1 4/60).

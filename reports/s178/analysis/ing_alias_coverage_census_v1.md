@@ -211,7 +211,7 @@ Phrases needed to hold X % of mentions: {'50': 60, '80': 353, '90': 694, '95': 8
 
 - EXACT is the strict reading of 'hits ING/ALIAS'; PARTIAL + EXACT is the Rung A reading (a food is found in the phrase, which is what the S175/S177 line census calls a food mention).
 - Phrase-level EXACT is conservative: modifiers (fresh, large, chopped, brand words) keep a phrase from matching even when its head noun is a known concept; the PARTIAL class holds those.
-- FOODCOM mentions come from the name field only. No quantity is used, so the 79.5 % quantity/part misalignment does not affect this census.
+- FOODCOM mentions come from the name field only. No quantity is used, so the quantity/part misalignment (78.0 % of recipes, 407,536 / 522,517, full corpus; the S176 seeded sample gave 79.5 %, 683 / 859) does not affect this census.
 - WIKIBOOKS / TASTESET mentions pass through the legacy quantity grammar, which mis-reads U+2044 (SP-002); the affected lines lose their quantity but their food phrase is unaffected, because the quantity is cut before the lexicon lookup.
 - ING / ALIAS are UNVERIFIED registries (AI-drafted); a hit means 'the registry has this surface', not 'the identity is verified'.
 - The top-500 non-EXACT lists are written under data/derived/s178_analysis/ (git-ignored). The committed files hold counts only.
