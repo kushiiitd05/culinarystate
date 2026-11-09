@@ -99,3 +99,31 @@ def test_q_levels_follow_ssot_235_3_and_sr_grams_need_link_verification() -> Non
     vol = lm("2 tbsp olive oil", OIL)
     assert (vol.q_level, vol.link_verification_required) == ("Q2", True)
     assert lm("1 onion", None).q_level == "Q6" and lm("a pinch of salt", NO_PORTIONS).q_level == "Q6"
+
+
+CHILLI = SRFood(11819, "Peppers, hot chili, red, raw", 11, MappingProxyType({}), (
+    p("pepper", 45), p("cup, chopped or diced", 75, amount=0.5)))
+POTATO = SRFood(170026, "Potatoes, flesh and skin, raw", 11, MappingProxyType({}), (
+    p("cup, diced", 75, amount=0.5), p("Potato large (3\" to 4-1/4\" dia)", 369), p("Potato medium", 213),
+    p("Potato small", 170)))
+CELERY = SRFood(169988, "Celery, raw", 11, MappingProxyType({}), (
+    p("stalk, large", 64), p("stalk, medium", 40), p("strip (4\" long)", 4)))
+BACON = SRFood(168277, "Pork, cured, bacon, unprepared", 10, MappingProxyType({}), (p("oz", 113, amount=4),
+                                                                                   p("slice raw", 28)))
+
+
+def test_sr_head_noun_portion_is_one_whole_item() -> None:
+    r = lm("1 red chilli, deseeded", CHILLI)
+    assert (r.low_g, r.high_g, r.portions) == (45.0, 45.0, ("pepper",))
+
+
+def test_size_word_after_head_noun() -> None:
+    assert lm("2 large potatoes", POTATO).low_g == 738.0
+    r = lm("3 potatoes", POTATO)
+    assert (r.low_g, r.high_g) == (510.0, 1107.0)
+
+
+def test_uk_portion_noun_aliases() -> None:
+    r = lm("2 celery sticks", CELERY)
+    assert (r.low_g, r.high_g) == (80.0, 128.0)
+    assert lm("4 rashers smoked bacon", BACON).low_g == 112.0
