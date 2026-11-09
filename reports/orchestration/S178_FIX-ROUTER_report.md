@@ -55,7 +55,7 @@ UNKNOWN feasibility screen, not a prediction.
 
 MECH v06 (S179b): re-run on the v06 physical layers (manjot, RUN-S179-MECH6-001..005, same commands). Every run: 0
 invariant violations, 0 exceptions. WIKIBOOKS, TASTESET, GUTENBERG_SEGMENT and the 1,000 sample are count-identical to
-v05; Food.com moves 6 WET_HEAT events from UNKNOWN to POSSIBLE (protein denaturation 62,142 -> 62,147, collagen
+v05; Food.com moves 6 WET_HEAT mechanism screens from UNKNOWN to POSSIBLE (protein denaturation 62,142 -> 62,147, collagen
 solubilisation 8,862 -> 8,863), from the v06 temperature bindings. `screen_census_*_S179_v06.json` supersede the v05 screens.
 SCI #7 (an SR analytical zero read as ABSENT) is open for a human ruling.
 
