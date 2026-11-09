@@ -12,6 +12,11 @@ exports/ or annotation/gold/. Not a gold score, not a human gate, never citable.
 S176: ``--gates on`` (default) applies the target-presence screen and the lot-context gate before G0 and also counts the
 ungated routes of the same pass; ``--gates off`` is the S171 behaviour. ``--presence-floor SVAR=VALUE`` overrides one
 floor for a sensitivity run (the report records it).
+
+S177: ``--absent-review-csv PATH`` and ``--category-blocked-csv PATH`` write, after the run, the top 50 ING by item count whose
+own member state is ABSENT (the human check FINAL-SCI #6 asks for) and the top 50 that would be ABSENT but for an unconfirmed
+ING category. ``--review-from REPORT.json`` writes the same lists from an existing report without running a census.
+Counts, registry names and SR values only; refuses to overwrite.
 """
 from __future__ import annotations
 
@@ -55,15 +60,66 @@ def _baseline_ok(root: Path) -> bool:
         return False
 
 
+def _write_csv(path: str, rows: list[dict]) -> None:
+    import csv
+    p = Path(path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    with p.open("x", newline="", encoding="utf-8") as fh:
+        w = csv.DictWriter(fh, fieldnames=EG.REVIEW_COLUMNS, lineterminator="\n")
+        w.writeheader()
+        w.writerows(rows)
+
+
+def _review_context(gates, counts_by_list: list[dict]) -> tuple[dict, dict]:
+    """ING names (ING ledger) and SR descriptions (SR Legacy files, if on this machine) for the listed ING."""
+    from culinarystate.mechanism import sr_identity as SI
+    names = {i: n for i, (n, _) in SI.read_ing().items()}
+    ings = {k.replace("__", "-", 1) for c in counts_by_list for k in c}
+    fdcs = {gates.screen.cands[i][0][0] for i in ings if i in gates.screen.cands}
+    try:
+        desc = SI.sr_descriptions(SI.default_dir(ROOT), fdcs)
+    except (StopIteration, FileNotFoundError):
+        desc = {}                                         # SR not on this machine: descriptions stay blank
+    return names, desc
+
+
+def _write_reviews(ap, a, gates, report: dict) -> None:
+    """The two human-review lists from the report's per-ING counters (top 50 each)."""
+    lists = {"absent": report.get("member_absent_items", {}), "blocked": report.get("category_blocked_items", {})}
+    names, desc = _review_context(gates, list(lists.values()))
+    if a.absent_review_csv:
+        _write_csv(a.absent_review_csv, EG.review_rows(gates.screen, report["target_svar"], lists["absent"],
+                                                       names=names, descriptions=desc))
+    if a.category_blocked_csv:
+        _write_csv(a.category_blocked_csv, EG.review_rows(gates.screen, report["target_svar"], lists["blocked"],
+                                                          names=names, descriptions=desc))
+
+
+def _review_only(ap, a) -> int:
+    rep = json.loads(Path(a.review_from).read_text(encoding="utf-8"))
+    if not (a.absent_review_csv or a.category_blocked_csv):
+        ap.error("--review-from needs --absent-review-csv and/or --category-blocked-csv")
+    for path in (a.absent_review_csv, a.category_blocked_csv):
+        if path and Path(path).exists():
+            ap.error("refusing to overwrite an existing review file")
+    _write_reviews(ap, a, EG.EvidenceGates.load(), rep)
+    print(json.dumps({"review_from": a.review_from, "absent_review_csv": a.absent_review_csv,
+                      "category_blocked_csv": a.category_blocked_csv}))
+    return 0
+
+
 def main(argv=None, record_source=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--seed", required=True, help="sampling seed (only its SHA-256 is reported)")
+    ap.add_argument("--seed", help="sampling seed (only its SHA-256 is reported); required unless --review-from")
     ap.add_argument("--sample-size", type=int, default=1000)
     ap.add_argument("--target", default="SVAR-000009", help="target state variable (default: vitamin C)")
     ap.add_argument("--workers", type=int, default=1, help="fork-pool workers (server: e.g. 32)")
     ap.add_argument("--evd", default=str(RD.EVD_PATH), help="EVD ledger (read only)")
     ap.add_argument("--root", default=str(ROOT))
-    ap.add_argument("--out", required=True, help="new counts-only JSON (refuses overwrite)")
+    ap.add_argument("--out", help="new counts-only JSON (refuses overwrite); required unless --review-from")
+    ap.add_argument("--absent-review-csv", help="top-50 ABSENT ING by item count, for human review (new file)")
+    ap.add_argument("--category-blocked-csv", help="top-50 ING blocked from ABSENT only by an unconfirmed category (new file)")
+    ap.add_argument("--review-from", metavar="REPORT", help="write the review CSVs from an existing report; no census run")
     ap.add_argument("--families", nargs="+", choices=T17.FAMILIES, default=list(T17.FAMILIES))
     ap.add_argument("--gates", choices=("on", "off"), default="on",
                     help="evidence gates before G0 (target presence + lot context); off = S171 behaviour")
@@ -74,6 +130,13 @@ def main(argv=None, record_source=None) -> int:
     a = ap.parse_args(argv)
     if a.sample_size < 1 or a.workers < 1:
         ap.error("--sample-size and --workers must be positive")
+    if a.review_from:
+        return _review_only(ap, a)
+    if not a.out or not a.seed:
+        ap.error("--seed and --out are required unless --review-from is given")
+    for path in (a.absent_review_csv, a.category_blocked_csv):
+        if path and Path(path).exists():
+            ap.error("refusing to overwrite an existing review file")
     root, out = Path(a.root), Path(a.out)
     if out.exists():
         ap.error("refusing to overwrite an existing report")
@@ -110,6 +173,8 @@ def main(argv=None, record_source=None) -> int:
         D.write_report(out, report, root=root)
     except D.DryRunError as exc:
         ap.error(str(exc))
+    if gates is not None:
+        _write_reviews(ap, a, gates, report)
     print(json.dumps({"output": str(out), "recipes_sampled": report["recipes_sampled"], "items": report["items"],
                       "route": report["route"], "route_ungated": report.get("route_ungated"),
                       "coverage": report["evidence_coverage"],

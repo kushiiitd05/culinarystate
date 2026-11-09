@@ -107,13 +107,14 @@ def check(a: Action, c: Constraints, r: Requirements) -> dict:
     return out
 
 
-def load_requirements(store) -> Requirements:
+def load_requirements(store, *, public: bool = False) -> Requirements:
+    """``public`` (S177): drop BBC-derived tool and duration edges first (decision.public_mode); default False."""
+    from culinarystate.decision import public_mode as PM
     procs = {p["id"]: p["canonical_name"] for p in store.all_latest("PROC") if p["status"] == "ACTIVE"}
     tools: dict = {}
     minutes: dict = {}
-    for e in store.all_latest("KGE"):
-        if e["status"] != "ACTIVE":
-            continue
+    active, _ = PM.filter_edges([e for e in store.all_latest("KGE") if e["status"] == "ACTIVE"], public)
+    for e in active:
         if e["predicate"] == "PROC_USES_TOOL" and e["confidence_band"] == "HIGH" and \
                 (e.get("association") or {}).get("p_object_given_subject", 0) >= 0.5:
             tools.setdefault(e["subject_id"], set()).add(e["object_id"])

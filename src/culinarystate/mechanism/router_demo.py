@@ -12,6 +12,10 @@ S176 (L-ROUTER): an optional ``gates`` argument (``evidence_gates.EvidenceGates`
 target-presence screen (``TARGET_ABSENT`` -> route NOT_APPLICABLE; ``TARGET_PRESENCE_UNKNOWN`` keeps routing) and a
 lot-context gate (``MERGED_LOT_CONTEXT``: DIRECT is withheld when the process acts on a merged lot). The gates only
 narrow routes; without ``gates`` the behaviour is exactly the S170 / S171 one.
+
+S177 (SCIFIX-ROUTER, FINAL-SCI #6 / #7): ABSENT needs a HIGH rank-1 identity, every plausible candidate (any band) known
+below the floor and a confirmed ING category; DIRECT is also withheld (``PRIOR_PROCESS_CONTEXT``) when the single-member
+lot was already produced by a heat or leach (SEPARATION / SOAK) event, read from the replay graph's ``produces``.
 """
 from __future__ import annotations
 
@@ -30,7 +34,7 @@ ROOT = Path(__file__).resolve().parents[3]
 EVD_PATH = ROOT / "ledgers" / "data" / "EVD.jsonl"
 LABELS = ("NON_CITABLE", "DEMO_ONLY", "EVIDENCE_E3_UNVERIFIED", "NO_REVIEWED_MECHANISM", "NO_CONDITIONS_CONSUMED")
 EVIDENCE_STATUSES = ("MEASURED", "CENSORED")
-DEMO_VERSION = "router-demo-0.2.0-draft"
+DEMO_VERSION = "router-demo-0.3.0-draft"
 
 
 class DemoRefused(RuntimeError):
@@ -121,7 +125,7 @@ def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str 
     rung, hierarchy = rung or RungA(), hierarchy or PS.read_process_hierarchy()
     source = SourceText.from_raw("DEMO", raw)
     graph = rung.run(source, rung.config(locale=locale), schema=schema or D.load_schema()).graph
-    members = EG.lot_members(graph) if gates is not None else {}
+    members = EG.lot_members(graph, hierarchy) if gates is not None else {}
     items = []
     for ev in graph.events:
         proc = _attr(ev.attributes, "proc_id")
@@ -146,6 +150,9 @@ def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str 
                 item["route_ungated"] = "DIRECT" if raw_pre == "DIRECT" else (
                     "INTERPOLATE" if raw_pre == "BRACKETING" else rec["route"])
                 item["gates"] = gate.as_item()
+                item["prior_process"] = list(gate.prior_kinds)
+                item["member_presence"] = gates.member_presence(target_svar, ing)
+                item["member_blocker"] = gates.member_blocker(target_svar, ing)
                 item["reasons"] = [*gate.reasons, *reasons]
                 if gate.not_applicable:
                     item["route"] = EG.NOT_APPLICABLE

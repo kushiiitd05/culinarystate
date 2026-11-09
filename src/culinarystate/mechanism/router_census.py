@@ -8,6 +8,11 @@ Not a gold score, not a human gate, not citable; EVD rows are tier E3 and unveri
 S176 (L-ROUTER): with ``gates`` (``evidence_gates.EvidenceGates``) the census also counts, in the SAME pass, what the
 S171 engine would have said (``route_ungated``) next to the gated ``route``, the presence / lot-context codes, and the
 fate of every ungated DIRECT (``direct_ungated_cross``: presence | lot context | final route). Counts and codes only.
+
+S177: also ``prior_process_withheld`` (ungated DIRECT items withheld by the prior-process rule, by kind HEAT / LEACH),
+``member_absent_items`` (items by the ING whose own member state is ABSENT, for the human review list) and
+``member_presence`` (items by the member state of their own ING), ``member_blocker`` (why an UNKNOWN member is not ABSENT)
+and ``category_blocked_items`` (items by ING that would be ABSENT if its category were confirmed).
 """
 from __future__ import annotations
 
@@ -24,7 +29,7 @@ from culinarystate.mechanism import router_demo as RD
 from culinarystate.quantity import rc2_dryrun as D
 from culinarystate.recipes.ledgers import LOCALE
 
-CENSUS_VERSION = "router-demo-census-0.2.0-draft"
+CENSUS_VERSION = "router-demo-census-0.3.0-draft"
 
 
 def _steps(rec: Mapping) -> list[str]:
@@ -45,7 +50,8 @@ _CTX: dict = {}  # set before forking; workers read it (fork start method shares
 def _empty() -> dict:
     return {"tot": Counter(), "route": Counter(), "reasons": Counter(), "direct_proc": Counter(), "exc": Counter(),
             "route_ungated": Counter(), "gate_cross": Counter(), "direct_ungated_cross": Counter(),
-            "direct_ungated_proc": Counter(), "pairs": set(), "ingredients": set()}
+            "direct_ungated_proc": Counter(), "prior_withheld": Counter(), "member_absent": Counter(),
+            "member_presence": Counter(), "member_blocker": Counter(), "category_blocked": Counter(), "pairs": set(), "ingredients": set()}
 
 
 def _route_chunk(recs: list[Mapping]) -> dict:
@@ -84,6 +90,17 @@ def _route_chunk(recs: list[Mapping]) -> dict:
             part["route_ungated"][code(ungated)] += 1
             if g is not None:
                 part["gate_cross"][code(f"{g['presence']}|{g['lot_context']}")] += 1
+                mp = it.get("member_presence")
+                part["member_presence"][code(mp or "NONE")] += 1
+                if mp == EG.ABSENT:
+                    part["member_absent"][code(ing)] += 1
+                mb = it.get("member_blocker")
+                if mb:
+                    part["member_blocker"][code(mb)] += 1
+                    if mb in ("CATEGORY_EMPTY", "CATEGORY_MISMATCH"):
+                        part["category_blocked"][code(ing)] += 1
+                if EG.R_PRIOR_PROCESS in it["reasons"]:
+                    part["prior_withheld"][code("_".join(it.get("prior_process") or ()) or "NONE")] += 1
             if ungated == "DIRECT":
                 any_direct_ungated = True
                 part["direct_ungated_proc"][code(proc)] += 1
@@ -163,6 +180,11 @@ def census_from_records(records: Iterable[Mapping], *, seed: str, size: int, ind
             route_ungated=dict(sorted(acc["route_ungated"].items())),
             gate_cross=dict(sorted(acc["gate_cross"].items())),
             direct_ungated_cross=dict(sorted(acc["direct_ungated_cross"].items())),
-            direct_ungated_by_process=dict(sorted(acc["direct_ungated_proc"].items())))
+            direct_ungated_by_process=dict(sorted(acc["direct_ungated_proc"].items())),
+            prior_process_withheld=dict(sorted(acc["prior_withheld"].items())),
+            member_presence=dict(sorted(acc["member_presence"].items())),
+            member_absent_items=dict(sorted(acc["member_absent"].items())),
+            member_blocker=dict(sorted(acc["member_blocker"].items())),
+            category_blocked_items=dict(sorted(acc["category_blocked"].items())))
     D.assert_counts_only(report)
     return report

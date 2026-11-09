@@ -52,9 +52,12 @@ def _floors(value=FLOOR, svar=VC, margin=Fraction(0)):
     return {svar: EG.Floor(svar, "Vitamin C", "vitamin_c", "mg", Fraction(value), "PROPOSED_PILOT", Fraction(margin))}
 
 
-def _screen(values: dict[str, str | None], floor=FLOOR, bands=None, alts=None, margin=0) -> EG.TargetPresenceScreen:
+def _screen(values: dict[str, str | None], floor=FLOOR, bands=None, alts=None, margin=0,
+            cats=None) -> EG.TargetPresenceScreen:
     """values: ING id -> mg per 100 g (None = SR has no value). Each ING gets its own synthetic SR food (score 1).
-    alts: ING id -> [(mg per 100 g or None, match score)] extra HIGH / MEDIUM candidates of rank 2, 3, ..."""
+    alts: ING id -> [(mg per 100 g or None, match score)] extra HIGH / MEDIUM candidates of rank 2, 3, ...
+    S177 (FINAL-SCI #6 encoded: ABSENT now needs a confirmed ING category): each ING gets a MATCHING (ING category, SR
+    group) pair unless ``cats`` is given ({} = no category information at all)."""
     cands, vals = {}, {}
     for n, (ing, v) in enumerate(values.items()):
         fdc = 1000 + 10 * n
@@ -66,7 +69,9 @@ def _screen(values: dict[str, str | None], floor=FLOOR, bands=None, alts=None, m
             if av is not None:
                 vals[(fdc + k, "vitamin_c")] = Fraction(av)
         cands[ing] = tuple(cs)
-    return EG.TargetPresenceScreen(_floors(floor, margin=margin), cands, vals)
+    if cats is None:
+        cats = {ing: ("VEGETABLE", "Vegetables and Vegetable Products") for ing in values}
+    return EG.TargetPresenceScreen(_floors(floor, margin=margin), cands, vals, cats)
 
 
 def _gates(values, **kw) -> EG.EvidenceGates:
@@ -118,8 +123,11 @@ def test_candidates_are_read_from_the_match_registry(tmp_path):
         w = csv.writer(fh)
         w.writerow(cols)
         w.writerows(rows)
-    assert EG.read_candidates(p) == {"I1": ((11, "HIGH", Fraction("1.1")), (12, "MEDIUM", Fraction("0.95"))),
-                                     "I4": ((41, "MEDIUM", Fraction("0.8")),)}   # LOW, rank 4, unusable rank 1 dropped
+    # S177 (FINAL-SCI #6 encoded): the LOW rank-3 row is KEPT (a plausible alternative identity the ABSENT screen must see);
+    # rank 4 and an unusable rank 1 are still dropped
+    assert EG.read_candidates(p) == {"I1": ((11, "HIGH", Fraction("1.1")), (12, "MEDIUM", Fraction("0.95")),
+                                            (13, "LOW", Fraction("0.9"))),
+                                     "I4": ((41, "MEDIUM", Fraction("0.8")),)}
     assert EG.read_top1(p) == {"I1": (11, "HIGH"), "I4": (41, "MEDIUM")}
 
 
@@ -198,8 +206,11 @@ def test_shipped_table_matches_sr_legacy_when_present():
         sr = default_dir(ROOT)
     except (StopIteration, FileNotFoundError):
         pytest.skip("SR Legacy is not on this machine")
+    from culinarystate.mechanism import sr_identity as SI
     cands_t, vals_t = EG.read_table()
-    assert cands_t == EG.read_candidates()
+    # S177 consolidation (identity of record = ing_sr_defaults_v1 via mechanism/sr_identity): the shipped table is the
+    # adapter's identity, no longer the legacy match file's (which survives only as alternates / fallback)
+    assert cands_t == SI.build_identity().cands
     vals_sr = EG.read_sr_values(sr, {f for c in cands_t.values() for f, _, _ in c}, {"vitamin_c"})
     assert {k: v for k, v in vals_t.items()} == vals_sr
 
@@ -370,7 +381,7 @@ def test_census_counts_gated_and_ungated_in_one_pass_counts_only():
     assert cross["PRESENT__SINGLE_MEMBER__DIRECT"] == 6               # potato x boil
     assert cross["PRESENT__MERGED__UNKNOWN"] == 6                     # potato x simmer in the merged lot
     assert rep["recipes_with_any_direct"] == 6 and rep["recipes_with_any_direct_ungated"] == 6
-    assert rep["gates"]["enabled"] is True and rep["census_version"].endswith("0.2.0-draft")
+    assert rep["gates"]["enabled"] is True and rep["census_version"] == RC.CENSUS_VERSION   # S177: version bumped to 0.3.0
     assert sum(rep["gate_cross"].values()) == rep["items"]
 
 
@@ -412,7 +423,7 @@ def test_shipped_table_covers_every_floor_nutrient_for_every_usable_ing():
     cands, vals = EG.read_table()
     keys = {f.nutrient_key for f in EG.read_floors().values()}
     assert cands and keys == {"vitamin_c"}
-    assert all(b in EG.USABLE_BANDS for c in cands.values() for _, b, _ in c)
+    assert all(c[0][1] in EG.USABLE_BANDS for c in cands.values())        # S177: rank 1 usable; rank 2-3 of any band
     with (ROOT / "registry" / "ing_sr_target_content_draft_v1.csv").open(newline="", encoding="utf-8") as fh:
         rows = list(csv.DictReader(fh))
     assert tuple(rows[0]) == EG.TABLE_COLUMNS and len(rows) == sum(len(c) for c in cands.values()) * len(keys)

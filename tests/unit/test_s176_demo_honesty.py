@@ -94,7 +94,9 @@ def _gates(values):
     cands = {ing: ((1000 + n, "HIGH", Fraction(1)),) for n, ing in enumerate(values)}
     vals = {(1000 + n, "vitamin_c"): Fraction(v) for n, (_, v) in enumerate(values.items()) if v is not None}
     fl = {VC: EG.Floor(VC, "Vitamin C", "vitamin_c", "mg", Fraction(1), "PROPOSED_PILOT")}
-    return EG.EvidenceGates(EG.TargetPresenceScreen(fl, cands, vals), provenance={"version": EG.VERSION})
+    # S177 (FINAL-SCI #6 encoded): ABSENT now needs a confirmed ING category, so the synthetic ING carry a matching pair
+    cats = {ing: ("VEGETABLE", "Vegetables and Vegetable Products") for ing in values}
+    return EG.EvidenceGates(EG.TargetPresenceScreen(fl, cands, vals, cats), provenance={"version": EG.VERSION})
 
 
 REG = [{"state_variable_id": VC, "name": "Vitamin C, total ascorbic acid content", "current_row_count": "270"}]

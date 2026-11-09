@@ -56,6 +56,7 @@ class Lexicon:
     ing_names: dict = field(default_factory=dict)     # ING id -> canonical name
     carbon: dict = field(default_factory=dict)        # ING id -> typical kgCO2e/kg (p50 of ING_CARBON_FOOTPRINT)
     durations: dict = field(default_factory=dict)     # PROC id -> typical minutes (p50 of PROC_TYPICAL_DURATION)
+    public_mode: dict = field(default_factory=dict)   # S177: public_mode.describe(...) of the build that loaded it
 
 
 @dataclass(frozen=True)
@@ -185,8 +186,12 @@ def answer(q: str, lex: Lexicon, retriever: EvidenceRetriever, req: Requirements
 OFF_TAXONOMY = Path(__file__).resolve().parents[3] / "data" / "raw" / "off" / "ingredients_a1ce1d36.txt"
 
 
-def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, dict]:
-    """off_path: OFF taxonomy for R4 relations (parents/children/ancestors); None or missing file -> ING parents only."""
+def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY, *, public: bool = False) -> tuple[Lexicon, dict]:
+    """off_path: OFF taxonomy for R4 relations (parents/children/ancestors); None or missing file -> ING parents only.
+
+    ``public`` (S177, FINAL-GOV #2): public mode drops every BBC-derived KGE edge before any alternative, sequence,
+    process or duration table is built and empties the carbon figures (``public_mode``). Default False = local use."""
+    from culinarystate.decision import public_mode as PM
     from culinarystate.vocab.foodon import norm
     from culinarystate.vocab.off import parse as parse_off
     names = {norm(i["canonical_name"]): i["id"] for i in store.all_latest("ING") if i["status"] == "ACTIVE"}
@@ -200,9 +205,9 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
     fol: dict = {}
     dur: dict = {}
     carb: dict = {}
-    for e in store.all_latest("KGE"):
-        if e["status"] != "ACTIVE":
-            continue
+    active = [e for e in store.all_latest("KGE") if e["status"] == "ACTIVE"]
+    active, dropped = PM.filter_edges(active, public)
+    for e in active:
         if e["predicate"] == "ING_PROCESSED_BY":
             by.setdefault(e["subject_id"], []).append((-e["confidence"], e["object_id"]))
         elif e["predicate"] == "ING_ALTERNATIVE_TO":
@@ -225,5 +230,6 @@ def load_lexicon(store, off_path: Path | None = OFF_TAXONOMY) -> tuple[Lexicon, 
                   relations, targets,
                   {k: tuple(sorted(v, key=lambda x: -x[1])) for k, v in alts.items()},
                   {k: tuple(sorted(v, key=lambda x: -x[1])) for k, v in fol.items()},
-                  {i["id"]: i["canonical_name"] for i in ings}, carb, dur)
+                  {i["id"]: i["canonical_name"] for i in ings}, carb, dur,
+                  PM.describe(PM.Mode(public, "ARGUMENT"), dropped))
     return lex, family

@@ -69,6 +69,10 @@ h2 { font-size: 20px; margin: 30px 0 4px; }
 .scale { grid-column: 2; display: flex; justify-content: space-between; color: var(--steel); font-size: 13px; }
 .foot { margin-top: 36px; color: var(--steel); font-size: 14px; max-width: 80ch; }
 .err { color: var(--hot); font-weight: 700; }
+.mode { display: inline-block; margin: 14px 0 0; padding: 6px 12px; font-size: 15px; background: var(--panel);
+  border: 1.5px solid var(--rule); border-left-width: 5px; border-radius: 6px; max-width: 80ch; }
+.mode.public { border-left-color: var(--teal); } .mode.local { border-left-color: var(--abstain); }
+.mode b { margin-right: 6px; }
 @media (prefers-reduced-motion: no-preference) { .band { transition: left .4s ease, width .4s ease; } }
 </style>
 </head>
@@ -77,6 +81,7 @@ h2 { font-size: 20px; margin: 30px 0 4px; }
   <header>
     <h1>CulinaryState</h1>
     <p>Ask what cooking does to a food. It answers from measured data when it has some for that food, labels anything weaker, and says so when it has none. Paste recipe steps to see what happens to the food at each step.</p>
+    <p class="mode" id="mode" role="status">Checking which mode this build runs in…</p>
   </header>
   <div class="grid">
     <form id="f" autocomplete="off">
@@ -116,6 +121,7 @@ const BRANCH = { TRANSFORMATION: "cooking effect", RELATIONSHIP: "substitution",
   SEMANTIC: "recipe search", MULTIMODAL: "photo or sound", UNKNOWN: "unclear", MALFORMED: "empty" };
 const REASON = { TARGET_ABSENT: "the reference table lists too little of this nutrient to track a retention figure (a screening limit, not a measurement of this food)",
   MERGED_LOT_CONTEXT: "measured for the food cooked on its own; here it is mixed with other foods",
+  PRIOR_PROCESS_CONTEXT: "measured for the raw food; here it was already cooked, drained or soaked in an earlier step",
   TARGET_PRESENCE_UNKNOWN: "cannot tell whether this food contains the nutrient",
   EVIDENCE_PREEMPTS: "measured data for this food on its own and this process", NO_LINKED_INGREDIENT: "no food named in this step",
   EVENT_UNRESOLVED: "action not recognised", NO_CANDIDATE_MECHANISM: "no reviewed mechanism yet" };
@@ -189,6 +195,17 @@ function render(d) {
     for (const s of byEvent.values()) out.append(stepRow(s, phys[s.event_id]));
   }
 }
+const MODE_TEXT = {
+  public: ["Public mode", "Patterns taken from some recipe sites, and carbon figures, are left out of this build."],
+  local: ["Local mode", "This build includes recipe-site patterns and carbon figures that are for the researcher's own machine only. Do not share its output."],
+};
+function showMode(m) {
+  const box = $("#mode"), key = m && m.mode === "public" ? "public" : m && m.mode === "local" ? "local" : null;
+  box.replaceChildren(); box.className = "mode" + (key ? " " + key : "");
+  if (!key) { box.append(el("span", null, "Mode unknown: treat this build as not public-safe.")); return; }
+  box.append(el("b", null, MODE_TEXT[key][0] + "."), el("span", null, MODE_TEXT[key][1]));
+}
+fetch("/api/health").then((r) => r.json()).then((h) => showMode(h && h.mode)).catch(() => showMode(null));
 $("#f").addEventListener("submit", async (e) => {
   e.preventDefault();
   const go = $("#go"); go.disabled = true; go.textContent = "Asking…";

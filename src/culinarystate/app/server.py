@@ -1,13 +1,17 @@
 """Demo web server, standard library only (S173, D-075 M6). DEMO_ONLY, NON_CITABLE.
 
 GET /            static page (src/culinarystate/app/static/index.html)
-GET /api/health  {"status": "ok"}
+GET /api/health  {"status": "ok", "mode": {"mode": "public" | "local", ...}}  (S177: which mode is active)
 POST /api/ask    {"question": str <= 500, "recipe_text": str <= 6000 | null} -> DemoContext.respond(...) as JSON
 
 Safety: body <= 20 KB, JSON only, per-IP rate limit (default 30 requests/minute), strict CSP, no stack traces or
 handler messages in responses (errors are logged server-side). The page renders every string with textContent.
 
-    python -m culinarystate.app.server --host 127.0.0.1 --port 8765
+    python -m culinarystate.app.server --host 127.0.0.1 --port 8765 [--public | --local]
+
+S177: public mode (BBC-derived recipe-corpus edges and carbon figures left out) is ON by default for a hosted build and
+for a server bound to a non-loopback address, OFF for local use; override with --public / --local or env CS_DEMO_PUBLIC
+(see culinarystate.decision.public_mode). The page shows which mode is active.
 """
 from __future__ import annotations
 
@@ -95,7 +99,8 @@ def make_server(addr: tuple[str, int], ctx: Any, *, per_minute: int = 30) -> Thr
             if self.path in ("/", "/index.html"):
                 self._send(200, STATIC.read_bytes(), "text/html; charset=utf-8")
             elif self.path == "/api/health":
-                self._json(200, {"status": "ok"})
+                info = getattr(ctx, "mode_info", None)
+                self._json(200, {"status": "ok", "mode": info() if callable(info) else {"mode": "unknown"}})
             else:
                 self._json(404, {"error": "Not found."})
 
@@ -131,12 +136,18 @@ def main(argv=None) -> int:
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8765)
     ap.add_argument("--per-minute", type=int, default=30)
+    grp = ap.add_mutually_exclusive_group()
+    grp.add_argument("--public", dest="public", action="store_true", default=None,
+                     help="public mode: leave out BBC-derived recipe-corpus edges and carbon figures")
+    grp.add_argument("--local", dest="public", action="store_false",
+                     help="local mode: keep them (own machine only)")
     a = ap.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s")
     from culinarystate.decision.demo_context import DemoContext
     LOG.info("loading ledgers (about 30-40 s)")
-    ctx = DemoContext.load()
+    ctx = DemoContext.load(public=a.public, host=a.host)
     srv = make_server((a.host, a.port), ctx, per_minute=a.per_minute)
+    LOG.info("mode: %s (source %s)", ctx.mode_info()["mode"], ctx.mode_info().get("source"))
     LOG.info("serving on http://%s:%d", a.host, a.port)
     srv.serve_forever()
     return 0

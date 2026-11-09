@@ -8,6 +8,12 @@ S176 (L-ROUTER): the recipe branch runs with the evidence gates (target presence
 honest evidence label (``evidence_label``) instead of a blanket "from data"; a question about a food that has none of
 the asked nutrient is answered with an explicit TARGET_ABSENT abstention; food-safety questions never get here
 (front_door abstains and refers to official guidance).
+
+S177 (SCIFIX-ROUTER, FINAL-GOV #2): ``DemoContext.load(public=None, host=None)`` resolves the public / local mode
+(``decision.public_mode``: argument, then env CS_DEMO_PUBLIC, then ON for a hosted build and OFF for local use). In
+public mode every BBC-derived KGE edge is dropped before any substitution, sequence, process or duration candidate is
+built, and the carbon figures are empty. Every response carries ``demo_mode`` and ``GET /api/health`` reports it, so the
+page can say which mode is active.
 """
 from __future__ import annotations
 
@@ -23,6 +29,7 @@ from culinarystate.decision import front_door as FD
 ROOT = Path(__file__).resolve().parents[3]
 SVAR_REGISTRY = ROOT / "registry" / "state_variable_registry_v1.csv"
 _CITE = re.compile(r"\bEVD-\d{6}\b")
+PUBLIC_NOTE = "This public build leaves out the patterns taken from some recipe sites, so a pattern may exist that it cannot show."
 
 
 def svar_for(target: str | None, registry: Sequence[Mapping[str, Any]]) -> str | None:
@@ -121,7 +128,7 @@ class DemoContext:
         self.__dict__.update(parts)
 
     @classmethod
-    def load(cls) -> "DemoContext":
+    def load(cls, public: bool | None = None, host: str | None = None) -> "DemoContext":
         from culinarystate.decision.diagnosis import TroubleshootIndex
         from culinarystate.decision.feasibility import load_requirements
         from culinarystate.decision.ood import SupportIndex
@@ -135,17 +142,19 @@ class DemoContext:
         from culinarystate.retrieval.retriever import EvidenceRetriever
         from culinarystate.simulation import condition_binding as CB
         from culinarystate.simulation import scenario_layer as SL
+        from culinarystate.decision import public_mode as PM
+        mode = PM.resolve(public, host=host)
         st = LedgerStore()
-        lex, family = load_lexicon(st)
+        lex, family = load_lexicon(st, public=mode.public)
         cond = {c["id"]: c for c in st.all_latest("COND")}
         evd = st.all_latest("EVD")
         with open(SVAR_REGISTRY, newline="", encoding="utf-8") as fh:
             registry = list(csv.DictReader(fh))
         return cls(lex=lex, family=family, retriever=EvidenceRetriever(evd, cond, family), sup=SupportIndex(evd),
-                   req=load_requirements(st), ts=TroubleshootIndex.from_registry(ROOT), registry=registry,
+                   req=load_requirements(st, public=mode.public), ts=TroubleshootIndex.from_registry(ROOT), registry=registry,
                    index=RD.EvidenceIndex.from_rows(evd), rung=RungA(), schema=D.load_schema(),
                    hierarchy=PS.read_process_hierarchy(), binder=CB.Binder.load(), layer=SL.ScenarioLayer.load(),
-                   gates=EG.EvidenceGates.load())
+                   gates=EG.EvidenceGates.load(), mode=PM.describe(mode, lex.public_mode.get("dropped_edges_by_predicate")))
 
     def _transform(self, q: str, recipe_text: str | None = None) -> dict:
         from culinarystate.decision.pipeline import answer
@@ -178,9 +187,17 @@ class DemoContext:
         from culinarystate.decision.candidates import substitution_candidates
         from culinarystate.decision.pipeline import parse_query
         s = parse_query(q, self.lex)
-        return relationship_answer(s.ingredient_name if s.ingredient_id else None,
-                                   substitution_candidates(s.ingredient_id, self.lex.alternatives, self.lex.ing_names))
+        out = relationship_answer(s.ingredient_name if s.ingredient_id else None,
+                                  substitution_candidates(s.ingredient_id, self.lex.alternatives, self.lex.ing_names))
+        if out.get("mode") == "ABSTAIN_NO_EDGES" and (getattr(self, "mode", None) or {}).get("public"):
+            out = {**out, "answer": out["answer"] + " " + PUBLIC_NOTE}      # S177: say why a pattern may be missing
+        return out
+
+    def mode_info(self) -> dict:
+        """The mode in force (``public_mode.describe``); a context built without one reports local use."""
+        return dict(getattr(self, "mode", None) or {"mode": "local", "public": False, "source": "DEFAULT_LOCAL"})
 
     def respond(self, query: str, recipe_text: str | None = None) -> dict:
-        return FD.respond(query, handlers={"TRANSFORMATION": self._transform, "RELATIONSHIP": self._relationship},
-                          recipe_text=recipe_text)
+        out = FD.respond(query, handlers={"TRANSFORMATION": self._transform, "RELATIONSHIP": self._relationship},
+                         recipe_text=recipe_text)
+        return {**out, "demo_mode": self.mode_info()} if isinstance(out, dict) else out
