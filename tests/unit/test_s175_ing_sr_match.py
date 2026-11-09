@@ -25,8 +25,8 @@ FOODS = {f.fdc_id: f for f in (
     food(11, "Peppers, sweet, red, raw"),
 )}
 
-SYN = {"caster sugar": "sugars granulated", "icing sugar": "sugars powdered", "plain flour": "wheat flour white all-purpose",
-       "spring onion": "onions spring scallions"}
+SYN = {"caster sugar": "sugars, granulated", "icing sugar": "sugars, powdered", "plain flour": "wheat flour, white, all-purpose",
+       "spring onion": "onions, spring or scallions"}
 
 
 def test_normalise_lowercases_strips_and_singularises() -> None:
@@ -49,6 +49,7 @@ def test_synonym_registry_maps_uk_names() -> None:
     assert M.match("plain flour", FOODS, SYN).fdc_id == 6
     r = M.match("spring onions", FOODS, SYN)
     assert r.fdc_id == 3 and r.via_synonym == "spring onion"
+    assert M.match("caster sugar", FOODS, SYN).status == "AUTO_MATCH_HIGH"
 
 
 def test_no_candidate_is_no_match_not_a_guess() -> None:
@@ -79,3 +80,19 @@ def test_match_is_deterministic_and_ties_break_on_fdc_id() -> None:
 def test_red_pepper_needs_all_tokens() -> None:
     assert M.match("red pepper", FOODS, SYN).fdc_id == 11
     assert M.match("green pepper", FOODS, SYN).status == "NO_MATCH"
+
+
+def test_exact_first_segment_beats_compound_first_segment() -> None:
+    foods = {1: food(1, "Sugar-apples, (sweetsop), raw", 9), 2: food(2, "Sugars, granulated", 19),
+             3: food(3, "Water convolvulus,raw"), 4: food(4, "Beverages, water, tap, drinking", 14)}
+    assert M.match("sugar", foods, {}).fdc_id == 2
+    # "water convolvulus" has head noun convolvulus: no head bonus, so at best a LOW match
+    assert M.match("water", foods, {}).status == "AUTO_MATCH_LOW"
+
+
+def test_synonym_csv_loader(tmp_path) -> None:
+    p = tmp_path / "syn.csv"
+    p.write_text("term,sr_query,kind,rationale,status\ncaster sugar,sugars granulated,UK_US,UK name,AGENT_PROPOSED\n"
+                 "milk,milk whole 3.25 milkfat,DEFAULT_FORM,generic milk -> whole,AGENT_PROPOSED\n", encoding="utf-8")
+    syn = M.load_synonyms(p)
+    assert syn == {"caster sugar": "sugars granulated", "milk": "milk whole 3.25 milkfat"}
