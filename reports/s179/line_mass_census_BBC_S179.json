@@ -1,0 +1,51 @@
+{
+ "families": {
+  "A1_BBC_GOOD_FOOD": {
+   "basis": {
+    "COUNT_x_SR_PORTION": 22567,
+    "QUALITATIVE": 4799,
+    "TEXT_STATED_MASS": 34822,
+    "UNKNOWN": 23952,
+    "VOLUME_x_SR_DENSITY": 30559
+   },
+   "flags": {
+    "SR_SINGLE_PORTION_NO_SPREAD": 25454
+   },
+   "lines": 116699,
+   "lines_with_grams": 87948,
+   "lines_with_grams_link_unverified": 53126,
+   "match_status": {
+    "AUTO_MATCH_HIGH": 2828,
+    "AUTO_MATCH_LOW": 3787,
+    "NO_FOOD_MENTION": 732,
+    "NO_MATCH": 9278,
+    "REGISTRY_MAPPED": 90714,
+    "REGISTRY_UNMAPPABLE": 9360
+   },
+   "q_level": {
+    "Q0": 34822,
+    "Q1": 22567,
+    "Q2": 30559,
+    "Q6": 28751
+   },
+   "reason": {
+    "NO_AMOUNT": 6591,
+    "NO_SR_COUNT_PORTION": 6483,
+    "NO_SR_DENSITY": 304,
+    "NO_SR_FOOD": 10574
+   },
+   "recipes": 11934,
+   "recipes_all_quantified_lines_with_grams": 2069
+  }
+ },
+ "labels": [
+  "COUNTS_ONLY",
+  "MODEL_DERIVED_GRAMS",
+  "SR_LINK_UNVERIFIED"
+ ],
+ "usable_match_statuses": [
+  "REGISTRY_MAPPED",
+  "AUTO_MATCH_HIGH"
+ ],
+ "version": "s179-line-census-0.2.0"
+}
