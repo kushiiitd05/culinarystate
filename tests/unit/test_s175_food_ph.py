@@ -66,3 +66,11 @@ def test_acid_classes_use_the_21cfr114_threshold() -> None:
     assert PH.acid_class(tab.lookup("saffron")) == "UNKNOWN"
     straddle = PH.PHRange(4.2, 5.0, "FDA_ITEM_MATCH", ("x",), 4.2, 5.0)
     assert PH.acid_class(straddle) == "STRADDLES_4_6"
+
+
+def test_non_strict_keeps_source_typos_as_unparsed_rows() -> None:
+    bad = HTML.replace("4.90 - 5.20", "5.18 - 5.2l")
+    r = {x.item: x for x in PH.parse_fda_html(bad, strict=False)}
+    c = r["Carrots"]
+    assert (c.low, c.high, c.value_type, c.raw) == (None, None, "UNPARSED", "5.18 - 5.2l")
+    assert PH.PHTable(list(r.values())).lookup("carrot").low == 5.58     # unparsed rows never feed a range
