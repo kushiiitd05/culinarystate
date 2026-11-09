@@ -1,6 +1,7 @@
 """FDA/CFSAN "Approximate pH of Foods and Food Products" (Oct 2003; webharvest.gov 2004 archive) for lot state (S175).
 
-Each row keeps the raw text; values are typed POINT, INTERVAL or LOWER_BOUND_ONLY ("5.00 -"). Lookup by name:
+Each row keeps the raw text; values are typed POINT, INTERVAL or LOWER_BOUND_ONLY ("5.00 -"). With
+``strict=False`` a source typo (e.g. "5.2l") is kept as UNPARSED with no value, never corrected by guess. Lookup by name:
 an item whose tokens equal the query tokens is FDA_ITEM_MATCH; otherwise the union over every item with the same
 head noun (last token of the first comma segment) is FDA_HEAD_UNION; else UNKNOWN. ``any_form_*`` is always the
 head union (all forms: raw, cooked, canned ...). These are published approximate ranges for single foods, never a
@@ -26,7 +27,7 @@ _POINT = re.compile(rf"^({_NUM})$")
 @dataclass(frozen=True)
 class PHRow:
     item: str
-    low: float
+    low: float | None
     high: float | None
     value_type: str
     raw: str
@@ -81,10 +82,19 @@ def _row(item: str, raw: str) -> PHRow:
     raise ValueError(f"unparsed pH {raw!r} for item {item!r}")
 
 
-def parse_fda_html(html: str) -> list[PHRow]:
+def _row_or_unparsed(item: str, raw: str, strict: bool) -> PHRow:
+    try:
+        return _row(item, raw)
+    except ValueError:
+        if strict:
+            raise
+        return PHRow(item, None, None, "UNPARSED", raw)
+
+
+def parse_fda_html(html: str, *, strict: bool = True) -> list[PHRow]:
     p = _Cells()
     p.feed(html)
-    return [_row(r[0], r[1]) for r in p.rows
+    return [_row_or_unparsed(r[0], r[1], strict) for r in p.rows
             if len(r) == 2 and r[0] and r[1] and r[0] != "Item"]
 
 
@@ -102,7 +112,7 @@ def _span(rows: list[PHRow]) -> tuple[float | None, float | None]:
 
 class PHTable:
     def __init__(self, rows: list[PHRow]) -> None:
-        self.rows = tuple(rows)
+        self.rows = tuple(r for r in rows if r.low is not None)
         self._tokens = {r.item: frozenset(normalise(r.item)) for r in self.rows}
         self._heads = {r.item: _head(r.item) for r in self.rows}
 
