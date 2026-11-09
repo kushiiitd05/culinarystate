@@ -5,6 +5,10 @@ token of the first comma segment of an SR-ordered synonym target, e.g. "wheat fl
 the description, i.e. the last token of its first comma segment, +5 more when that segment's
 tokens equal the query tokens exactly, +2 for "raw", minus 0.5 per extra description token. AUTO_MATCH_HIGH needs the head bonus and a margin >= 2 over the runner-up;
 otherwise AUTO_MATCH_LOW. No candidate -> NO_MATCH (never a guess). Ties break on the smaller fdc_id.
+
+``resolve`` first consults the curated defaults registry (registry/ing_sr_defaults_v1.csv): a mapped term gives
+REGISTRY_MAPPED with its kind (DIRECT, UK_US, DEFAULT_FORM, APPROX); NO_SR_EQUIVALENT, NOT_A_FOOD and AMBIGUOUS
+terms give REGISTRY_UNMAPPABLE with no food. Only terms absent from the registry fall back to the lexical match.
 """
 from __future__ import annotations
 
@@ -55,6 +59,36 @@ class MatchResult:
     runner_up_score: float | None
     via_synonym: str | None
     verification: str = "UNVERIFIED"
+    kind: str | None = None
+
+
+MAPPED_KINDS = frozenset({"DIRECT", "UK_US", "DEFAULT_FORM", "APPROX"})
+UNMAPPABLE_KINDS = frozenset({"NO_SR_EQUIVALENT", "NOT_A_FOOD", "AMBIGUOUS"})
+
+
+@dataclass(frozen=True)
+class RegistryEntry:
+    term: str
+    fdc_id: int | None
+    kind: str
+
+
+def load_registry(path: Path | str) -> dict[tuple[str, ...], RegistryEntry]:
+    """Normalised term -> entry. Mapped kinds need an fdc_id; unmappable kinds must not carry one."""
+    with open(path, newline="", encoding="utf-8") as fh:
+        rows = list(csv.DictReader(fh))
+    out: dict[tuple[str, ...], RegistryEntry] = {}
+    for r in rows:
+        term, kind, fdc = r["term"].strip(), r["kind"].strip(), r["fdc_id"].strip()
+        if kind not in MAPPED_KINDS | UNMAPPABLE_KINDS:
+            raise ValueError(f"unknown kind {kind!r} for {term!r} in {path}")
+        if (kind in MAPPED_KINDS) != bool(fdc):
+            raise ValueError(f"kind {kind} for {term!r} needs fdc_id iff mapped (fdc_id={fdc!r})")
+        key = normalise(term)
+        if not key or key in out:
+            raise ValueError(f"empty or duplicate term {term!r} in {path}")
+        out[key] = RegistryEntry(term, int(fdc) if fdc else None, kind)
+    return out
 
 
 def load_synonyms(path: Path | str) -> dict[str, str]:
@@ -110,3 +144,16 @@ def match(name: str, foods: Mapping[int, SRFood], synonyms: Mapping[str, str],
     return MatchResult(name, "AUTO_MATCH_HIGH" if high else "AUTO_MATCH_LOW", best.fdc_id,
                        foods[best.fdc_id].description, s, runner[1].fdc_id if runner else None,
                        runner[0] if runner else None, via)
+
+
+def resolve(name: str, foods: Mapping[int, SRFood], registry: Mapping[tuple[str, ...], RegistryEntry],
+            synonyms: Mapping[str, str] | None = None, index: tuple[IndexEntry, ...] | None = None) -> MatchResult:
+    e = registry.get(normalise(name))
+    if e is None:
+        return match(name, foods, synonyms or {}, index)
+    if e.fdc_id is None:
+        return MatchResult(name, "REGISTRY_UNMAPPABLE", None, None, None, None, None, e.term, kind=e.kind)
+    if e.fdc_id not in foods:
+        raise ValueError(f"registry fdc_id {e.fdc_id} for {e.term!r} not in the loaded SR foods")
+    return MatchResult(name, "REGISTRY_MAPPED", e.fdc_id, foods[e.fdc_id].description, None, None, None, e.term,
+                       kind=e.kind)
