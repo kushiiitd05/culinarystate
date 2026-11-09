@@ -36,6 +36,8 @@ PRESSURE_T = {"GENTLE": 108.4, "TYPICAL": 115.2, "INTENSE": 121.0}  # PC-002 bra
 VERSION = "s178-phys-fixphys-audit-0.1.0"
 
 
+from culinarystate.simulation import endpoint_cues as EC  # noqa: E402
+
 def _val(v) -> tuple[float, float]:
     if isinstance(v, list):
         return float(Fraction(str(v[0]))), float(Fraction(str(v[1])))
@@ -90,10 +92,15 @@ def scan_l1(path: str) -> Counter:
                 clauses = ep["until_clauses"]
                 hit = [cl for cl in clauses if cl["span"][0] <= (sp or [0])[0] and (sp or [0, 0])[1] <= cl["span"][1]]
                 if sp and hit:
-                    if any(cl.get("syrup_exempt") for cl in hit):
+                    # S179 SCI #3: records carry the role per clause temperature (endpoint_cues.TARGET_ROLES /
+                    # EXEMPT_ROLES); the old "syrup_exempt" key never exists, so the exempt count was always 0.
+                    roles = {tt.get("role") for cl in hit for tt in cl.get("temperatures", []) if list(tt.get("span") or []) == list(sp)}
+                    if roles & set(EC.EXEMPT_ROLES):
                         c["until_clause_bound_temperature_clause_spans_syrup_exempt"] += 1
                     else:
                         c["until_clause_bound_temperature_clause_spans"] += 1
+                        key = "target_role" if roles & set(EC.TARGET_ROLES) else "unclassified"
+                        c[f"until_clause_bound_temperature_clause_spans_{key}"] += 1
     return c
 
 
