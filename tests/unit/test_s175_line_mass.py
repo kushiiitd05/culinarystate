@@ -21,7 +21,7 @@ ONION = SRFood(170000, "Onions, raw", 11, MappingProxyType({}), (
 GARLIC = SRFood(169230, "Garlic, raw", 11, MappingProxyType({}), (p("cup", 136), p("tsp", 2.8), p("clove", 3)))
 EGG = SRFood(171287, "Egg, whole, raw, fresh", 1, MappingProxyType({}), (
     p("large", 50), p("extra large", 56), p("medium", 44), p("cup (4.86 large eggs)", 243)))
-OIL = SRFood(171413, "Oil, olive, salad or cooking", 4, MappingProxyType({}), (p("tbsp", 13.5), p("cup", 216)))
+OIL = SRFood(171413, "Oil, olive, salad or cooking", 4, MappingProxyType({}), (p("tbsp", 13.5), p("cup", 218)))   # cup != 16 x tbsp so the densities differ
 NO_PORTIONS = SRFood(1, "Salt, table", 2, MappingProxyType({}), ())
 
 
@@ -39,7 +39,7 @@ def test_stated_mass_is_source_stated_point() -> None:
 def test_volume_times_sr_density_interval() -> None:
     r = lm("2 tbsp olive oil", OIL)
     # UK tbsp = 15 mL; SR densities: 13.5 g / 14.787 mL and 216 g / 236.588 mL
-    d_tbsp, d_cup = 13.5 / 14.78676478125, 216 / 236.5882365
+    d_tbsp, d_cup = 13.5 / 14.78676478125, 218 / 236.5882365
     assert r.basis == "VOLUME_x_SR_DENSITY" and r.value_type == "MODEL_DERIVED" and r.fdc_id == 171413
     assert r.low_g == pytest.approx(30 * min(d_tbsp, d_cup)) and r.high_g == pytest.approx(30 * max(d_tbsp, d_cup))
     assert r.status == "INTERVAL"
@@ -47,7 +47,7 @@ def test_volume_times_sr_density_interval() -> None:
 
 def test_volume_range_and_ambiguous_locale_widen_the_interval() -> None:
     r = lm("1/2 cup olive oil", OIL, locale=None)
-    d = sorted((13.5 / 14.78676478125, 216 / 236.5882365))
+    d = sorted((13.5 / 14.78676478125, 218 / 236.5882365))
     assert r.low_g == pytest.approx(118.29411825 * d[0]) and r.high_g == pytest.approx(125.0 * d[1])
 
 
