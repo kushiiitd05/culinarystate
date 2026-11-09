@@ -96,3 +96,41 @@ def test_synonym_csv_loader(tmp_path) -> None:
                  "milk,milk whole 3.25 milkfat,DEFAULT_FORM,generic milk -> whole,AGENT_PROPOSED\n", encoding="utf-8")
     syn = M.load_synonyms(p)
     assert syn == {"caster sugar": "sugars granulated", "milk": "milk whole 3.25 milkfat"}
+
+
+REG_CSV = ("term,sr_description,fdc_id,kind,rationale,status,verification\n"
+           "caster sugar,\"Sugars, granulated\",4,UK_US,fine sucrose,AGENT_PROPOSED,UNVERIFIED\n"
+           "crème fraîche,,,NO_SR_EQUIVALENT,,AGENT_PROPOSED,UNVERIFIED\n"
+           "chif,,,NOT_A_FOOD,NER artefact,AGENT_PROPOSED,UNVERIFIED\n")
+
+
+def test_registry_hit_wins_over_lexical(tmp_path) -> None:
+    p = tmp_path / "reg.csv"
+    p.write_text(REG_CSV, encoding="utf-8")
+    reg = M.load_registry(p)
+    r = M.resolve("Caster Sugar", FOODS, reg)
+    assert (r.status, r.fdc_id, r.kind, r.verification) == ("REGISTRY_MAPPED", 4, "UK_US", "UNVERIFIED")
+    u = M.resolve("crème fraîche", FOODS, reg)
+    assert (u.status, u.fdc_id, u.kind) == ("REGISTRY_UNMAPPABLE", None, "NO_SR_EQUIVALENT")
+    assert M.resolve("garlic", FOODS, reg).status in ("AUTO_MATCH_HIGH", "AUTO_MATCH_LOW")
+
+
+def test_registry_rejects_stale_fdc_and_bad_kind(tmp_path) -> None:
+    p = tmp_path / "reg.csv"
+    p.write_text(REG_CSV.replace(",4,UK_US", ",999,UK_US"), encoding="utf-8")
+    import pytest
+    with pytest.raises(ValueError, match="999"):
+        M.resolve("caster sugar", FOODS, M.load_registry(p))
+    p.write_text(REG_CSV.replace("NOT_A_FOOD", "GUESS"), encoding="utf-8")
+    with pytest.raises(ValueError, match="GUESS"):
+        M.load_registry(p)
+    p.write_text(REG_CSV.replace("NO_SR_EQUIVALENT", "DIRECT"), encoding="utf-8")
+    with pytest.raises(ValueError, match="fdc_id"):
+        M.load_registry(p)
+
+
+def test_real_defaults_registry_is_well_formed() -> None:
+    from pathlib import Path
+    reg = M.load_registry(Path(__file__).resolve().parents[2] / "registry/ing_sr_defaults_v1.csv")
+    assert len(reg) >= 290
+    assert {e.kind for e in reg.values()} <= M.MAPPED_KINDS | M.UNMAPPABLE_KINDS
