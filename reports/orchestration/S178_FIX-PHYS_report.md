@@ -1,4 +1,4 @@
-# S178 lane FIX-PHYS: report (v05 re-runs finished S179)
+# S178 lane FIX-PHYS: report (v05 re-runs finished S179; v06 after the re-review, §5)
 
 Status: AI_DRAFTED (D-071). Nothing here is a decision, signature or approval. Code: branch `kush/s179-finish-fixes`
 (snapshot `max/s178-wip` 6f8d1bc, which holds the fixer's code: heat and non-heat Layer 1 0.3.0, Layer 2 0.5.0; plus the
@@ -57,4 +57,42 @@ that pointed at v04 now point at the live v05 file, with the old target kept in 
 - `tools/s178_analysis_corpus_can_say.py` and `tools/s178_evd_coverage.py` still name v04 / S177 inputs, which are now
   registered as superseded; re-point them to v05 / S179 before their next run (the guard refuses superseded inputs).
 - MECH on v05: run in S179 (see `S178_FIX-ROUTER_report.md` §5).
-- Short re-review (one GOV, one SCI pass) of the fixer code is still owed (`MAC_CLAUDE_MERGE_PROMPT_2026-11-09.md` §2.5).
+- Short re-review (one GOV, one SCI pass): done S179, `reports/orchestration/review/S179_REV_{GOV,SCI}.md`; it led to v06 (§5).
+
+## 5. v06 re-run (S179b, after the SCI re-review)
+
+Code: `endpoint_cues` 0.3.0 / condition-binding L1 0.3.1 (SCI #1, M1 residual: food targets such as "165 F inside" or
+"N F for medium" were bound as the medium temperature). Layer 2 code unchanged (0.5.0). Commit bf2e635.
+
+| what | where | rows |
+|---|---|---|
+| 1,000 sample, full heat L1 + L2 and non-heat per family (same seed and commands as v05) | manjot | RUN-S179-PHYS6-001..015 |
+| schema x4, endpoint cues, sensitivity, stated liquid, record audit v06, role-aware re-audit of v05 | manjot | RUN-S179-PHYSREP6-016..024 |
+| BBC heat L1, heat L2, non-heat, schema | Mac (D-003) | RUN-S179-BBC6-001..004 |
+
+- **Schema validator: 100 %.** Non-BBC 384 / 384 / 768 / 768 files, BBC 16 per kind; 0 problems, every ratio 1.0.
+- **Same events.** Heat events 1,696,743; Layer 2 computed 793,456 (v05 and v06). Non-heat Layer 1 identical in every family;
+  non-heat Layer 2 one count differs (Food.com RESTING prior-heat bath missing 3,053 -> 3,054).
+- **Record audit, v05 (re-audited with the SCI #3 tool) -> v06, all non-BBC families:**
+
+| counter | v05 | v06 |
+|---|---:|---:|
+| text-stated temperatures bound to the medium (DRY / HEAT_GENERAL / WET / FAT) | 51,121 | 51,001 |
+| food-target cues, Food.com / Wikibooks / Gutenberg | 3,326 / 154 / 21 | 3,457 / 168 / 26 |
+| oven temperature stated below 77 °C (core computed) | 189 (14) | 171 (12) |
+| until-clause temperatures, reviewer method | 438 | 427 |
+| clause-span temperatures: syrup / candy exempt; other roles | 475; 0 | 513; 0 |
+| lifted TYPICAL (solute member yes / no); above 150 °C | 166 (164 / 2); 5 | 163 (161 / 2); 5 |
+| aqueous above 100 °C (from a setter) | 330 (3) | 326 (3) |
+| fat-heat temperature from a setter | 190 | 190 |
+
+  Food.com Layer 2: bath temperature from Layer 1 610,770 -> 610,719 (51 events moved to the scenario default).
+- **BBC v06:** TEXT_STATED temperatures 5,669 -> 5,664; food-target cues 80 -> 90.
+- The v05 audit file `fixphys_audit_S178_v05.json` used a key that never existed (exempt count always 0); it is superseded by
+  `fixphys_audit_S178_v05_rerun_S179.json` (same v05 records, fixed tool). `tools/s178_fixphys_v05_comparison.py` is
+  fixed to v04 -> v05 names, so the v05 -> v06 table is here, not in a new comparison file.
+- The 2 lifts without a solute-rich member remain: SCI #2 (lift gate fires on dilute liquids) needs Kush's ruling (Q1).
+- `verification_pack_S178_v05` checks the drivers only (unchanged since v05) and stays current.
+- Superseded: every `*_S178_v05` report above and the BBC `*_S179_v05` reports -> their v06 files
+  (`registry/superseded_outputs_S176.csv`, S179 rows; older rows re-pointed to the live v06 file).
+- v05 and v04 per-record dirs on manjot are kept (deleting needs Kush's OK).
