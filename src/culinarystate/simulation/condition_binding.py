@@ -66,7 +66,8 @@ from culinarystate.simulation import recipe_adapter as RA
 from culinarystate.state_graph.source_class import SourceClass
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "condition-binding-L1-0.3.0-draft"
+VERSION = "condition-binding-L1-0.3.1-draft"
+VERSION_V03 = "condition-binding-L1-0.3.0-draft"  # SUPERSEDED S179 (SCI re-review #1: endpoint-cues 0.3.0)
 VERSION_V02 = "condition-binding-L1-0.2.0-draft"  # SUPERSEDED by 0.3.0 (SCI-A M1-M4, m1-m3: targets, medium compatibility, window cut)
 VERSION_V01 = "condition-binding-L1-0.1.0-draft"  # SUPERSEDED: nearest-temperature rule, no provenance keys
 HEAT = ("WET_HEAT", "DRY_HEAT", "FAT_HEAT", "HEAT_GENERAL")
