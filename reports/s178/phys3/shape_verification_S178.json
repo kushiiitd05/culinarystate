@@ -1,0 +1,297 @@
+{
+ "all_passed": true,
+ "checks": [
+  {
+   "id": "SV01",
+   "max_abs_error": 3.33067e-16,
+   "max_rel_error": 3.33067e-16,
+   "n_cases": 36,
+   "passed": true,
+   "reference": "Dirichlet series with (n - 1/2) pi, scipy jn_zeros(0) and n pi (400 terms)",
+   "tolerance": 1e-12,
+   "tolerance_on": "abs",
+   "what": "Bi = inf: centre and volume-mean theta of slab, cylinder, sphere against independent Dirichlet series"
+  },
+  {
+   "id": "SV02",
+   "max_abs_error": 2.10254e-08,
+   "max_rel_error": 2.27392e-07,
+   "n_cases": 20,
+   "passed": true,
+   "reference": "Dirichlet series; the difference is O(1/Bi)",
+   "tolerance": 1e-06,
+   "tolerance_on": "abs",
+   "what": "Bi -> infinity (Bi = 1e8): cylinder and sphere centre and mean theta against the Dirichlet series"
+  },
+  {
+   "id": "SV03",
+   "max_abs_error": 0.000580012,
+   "max_error_over_bi": 0.583,
+   "max_rel_error": 0.000587308,
+   "n_cases": 60,
+   "note": "tolerance 1e-3 = the O(Bi) error of the lumped model at Bi = 1e-3; max_error_over_bi stays O(1)",
+   "passed": true,
+   "reference": "lumped model; it differs from the exact solution by O(Bi)",
+   "tolerance": 0.001,
+   "tolerance_on": "abs",
+   "what": "Bi -> 0: centre and mean theta of cylinder, sphere, finite cylinder (Lz = R, 2R) and cube against lumped capacitance exp(-(h A / k V) alpha t)"
+  },
+  {
+   "error_by_half_height_over_radius": {
+    "1.0": [
+     0.138697,
+     0.92291
+    ],
+    "10.0": [
+     1.24456e-13,
+     0.11086
+    ],
+    "100.0": [
+     6.66134e-16,
+     0.011086
+    ],
+    "2.0": [
+     0.035865,
+     0.552522
+    ],
+    "30.0": [
+     8.88178e-16,
+     0.0369535
+    ],
+    "5.0": [
+     5.64677e-05,
+     0.221721
+    ]
+   },
+   "id": "SV04",
+   "max_abs_error": 1.24456e-13,
+   "max_rel_error": 2.79019e-12,
+   "monotone": true,
+   "n_cases": 44,
+   "note": "error_by_half_height_over_radius = [max centre abs error, max mean rel error]; the mean error falls ~ R / Lz",
+   "passed": true,
+   "reference": "infinite-cylinder series (thin disk: slab series); the end-face influence at the centre is ~ erfc(Lz / (2 sqrt(alpha t)))",
+   "tolerance": 1e-09,
+   "tolerance_on": "abs",
+   "what": "long-cylinder limit: finite-cylinder centre theta -> infinite cylinder at half-height >= 10 R (and the thin disk -> slab); the mean converges monotonically in Lz / R"
+  },
+  {
+   "id": "SV05",
+   "max_abs_error": 4.44089e-16,
+   "max_rel_error": 8.28787e-15,
+   "n_cases": 21,
+   "note": "the max errors are over (a) and (b); (c) is a convergence test: the curvature error is about Bi Fo (order 1) while Bi sqrt(Fo) << 1 and flattens where Bi sqrt(Fo) is large",
+   "order_ok": true,
+   "passed": true,
+   "reference": "exp(u^2) erfc(u); Crank-type short-time sphere series",
+   "sphere_surface_error_at_fo_1e_5_Bi0.5": 5.00001e-06,
+   "sphere_surface_error_at_fo_1e_5_Bi10.0": 9.56125e-05,
+   "sphere_surface_error_at_fo_1e_5_Bi2.0": 1.9858e-05,
+   "sphere_surface_error_at_fo_1e_5_Bi50.0": 0.000398545,
+   "sphere_surface_error_over_bi_fo_at_fo_1e_5_Bi0.5": 1.0,
+   "sphere_surface_error_over_bi_fo_at_fo_1e_5_Bi10.0": 0.956125,
+   "sphere_surface_error_over_bi_fo_at_fo_1e_5_Bi2.0": 0.992898,
+   "sphere_surface_error_over_bi_fo_at_fo_1e_5_Bi50.0": 0.79709,
+   "sphere_surface_observed_order_in_fo": {
+    "Bi0.5": [
+     1.0,
+     1.0,
+     1.0,
+     1.0
+    ],
+    "Bi10.0": [
+     0.968,
+     0.938,
+     0.88,
+     0.78
+    ],
+    "Bi2.0": [
+     0.995,
+     0.99,
+     0.98,
+     0.96
+    ],
+    "Bi50.0": [
+     0.848,
+     0.727,
+     0.55,
+     0.35
+    ]
+   },
+   "tolerance": 1e-10,
+   "tolerance_on": "abs",
+   "what": "short times: slab surface = semi-infinite solid (exact before the fronts meet); Dirichlet sphere uptake = 6 sqrt(Fo/pi) - 3 Fo (exact up to ierfc terms < 1e-40 at Fo <= 0.02); sphere surface -> semi-infinite solid (error falls monotonically as Fo -> 0, observed order >= 0.5 at the smallest Fo)"
+  },
+  {
+   "id": "SV06",
+   "max_abs_error": 2.14426e-05,
+   "max_abs_error_by_shape": {
+    "INFINITE_CYLINDER": 1.01119e-05,
+    "SLAB": 7.86138e-06,
+    "SPHERE": 2.14426e-05
+   },
+   "max_rel_error": 8.76472e-05,
+   "n_cases": 144,
+   "note": "FV spatial error ~ 1/n^2; relative error floor 1e-3 in theta",
+   "passed": true,
+   "reference": "finite-volume method of lines, exact in time (symmetric eigen-decomposition); independent of the series",
+   "tolerance": 0.002,
+   "tolerance_on": "abs",
+   "what": "centre, surface and mean theta of slab, cylinder, sphere against a 200-cell finite-volume solve"
+  },
+  {
+   "id": "SV07",
+   "max_abs_error": 0.000126026,
+   "max_abs_error_by_case": {
+    "FINITE_CYLINDER_H0.5": 7.73837e-05,
+    "FINITE_CYLINDER_H1.0": 0.000126026,
+    "FINITE_CYLINDER_H2.0": 9.27751e-05,
+    "SQUARE_BAR_H1.0": 7.86663e-05
+   },
+   "max_rel_error": 0.000462064,
+   "n_cases": 48,
+   "note": "spatial error ~ 1/n^2 at 60 cells; corner = the most demanding point",
+   "passed": true,
+   "reference": "2-D CN (Rannacher start, sparse LU) of the (r, z) / (x, y) heat equation; independent of the series",
+   "tolerance": 0.003,
+   "tolerance_on": "abs",
+   "what": "product rule: finite cylinder (half-height 0.5, 1, 2 R) and square bar, centre, outer corner and mean theta against a 2-D Crank-Nicolson finite-volume solve (60 cells per radius)"
+  },
+  {
+   "id": "SV08",
+   "max_abs_error": 1.12984e-13,
+   "max_rel_error": 1.12984e-13,
+   "monotone": true,
+   "n_cases": 7,
+   "passed": true,
+   "reference": "eigen-conditions; closed forms",
+   "tolerance": 1e-12,
+   "tolerance_on": "abs",
+   "what": "roots: scaled eigen-condition residual of the first 200 roots (Bi 1e-6 .. 1e6), strictly increasing; exact roots and C_n at Bi = 1 (sphere: pi/2, 4/pi) and Bi = inf (j_01, 2/(j_01 J1(j_01)); 2(-1)^(n+1); 4(-1)^(n+1)/((2n-1) pi))"
+  },
+  {
+   "id": "SV09",
+   "max_abs_error": 6.16484e-05,
+   "max_rel_error": 0.000317024,
+   "n_cases": 52,
+   "note": "tolerance 6e-4 = rounding of a 4-decimal table; not a source",
+   "passed": true,
+   "reference": "recalled textbook table (SOURCE_UNVERIFIED_AGENT_RECALLED)",
+   "source_status": "SOURCE_UNVERIFIED_AGENT_RECALLED",
+   "tolerance": 0.0006,
+   "tolerance_on": "abs",
+   "what": "first-term zeta_1 and C_1 of cylinder and sphere versus Bi (textbook table, 4 decimals) against the root finder"
+  },
+  {
+   "id": "SV10",
+   "max_abs_error": 9.96825e-12,
+   "max_completeness_deficit_without_tail": 2.88631e-08,
+   "max_rel_error": 2.26512e-06,
+   "n_cases": 36,
+   "note": "absolute errors gate; relative errors are large only for coefficients near 1e-19 (n ~ 4000)",
+   "passed": true,
+   "reference": "closed forms from the eigen-conditions; analytic tail k Bi^2 / (pi^4 N^3)",
+   "tolerance": 1e-10,
+   "tolerance_on": "abs",
+   "what": "coefficients: C_n x mean factor against the closed forms 2Bi^2/(z^2(z^2+Bi^2+Bi)), 4Bi^2/(z^2(z^2+Bi^2)), 6Bi^2/(z^2(z^2+Bi^2-Bi)); completeness sum_n C_n m_n + analytic tail = 1 over 4000 terms"
+  },
+  {
+   "comparisons": 1512,
+   "id": "SV11",
+   "max_abs_error": 0.0,
+   "max_rel_error": 0.0,
+   "n_cases": 1,
+   "no_violations": true,
+   "ordering_violations": 0,
+   "passed": true,
+   "reference": "the slab series (the Layer 2 bound); a numerical check on a grid, not a proof",
+   "smallest_margin_theta": -1.56541e-14,
+   "tolerance": 0.0,
+   "tolerance_on": "abs",
+   "violations": 0,
+   "what": "slab bound: centre and mean theta of cylinder, sphere, finite cylinder (Lz = 0.5, 1, 2 R), cube and brick (1:2:3) <= the slab of the smallest half-dimension (Bi 0.01 .. 100, Fo 1e-3 .. 5); sphere <= cylinder <= slab"
+  },
+  {
+   "fo_below_0_02_ok": true,
+   "id": "SV12",
+   "max_abs_error": 3.33067e-16,
+   "max_abs_error_fo_below_0_02": 8.50913e-07,
+   "max_rel_error": 1.79467e-14,
+   "n_cases": 80,
+   "passed": true,
+   "reference": "physics_drivers slab series (N_TERMS = 60); Fo < 0.02 reported apart (driver uses the front solution)",
+   "tolerance": 1e-10,
+   "tolerance_on": "abs",
+   "what": "shape_series slab against physics_drivers (the Layer 2 slab): local and mean theta, Fo >= 0.02"
+  },
+  {
+   "id": "SV13",
+   "max_abs_error": 0.0103971,
+   "max_rel_error": 0.0119483,
+   "max_rel_error_by_case": {
+    "INFINITE_CYLINDER_Fo0.2": 0.0119483,
+    "INFINITE_CYLINDER_Fo0.5": 0.000128701,
+    "INFINITE_CYLINDER_Fo1.0": 6.88925e-08,
+    "SPHERE_Fo0.2": 0.00657714,
+    "SPHERE_Fo0.5": 1.72414e-05,
+    "SPHERE_Fo1.0": 8.91763e-10
+   },
+   "n_cases": 24,
+   "passed": true,
+   "reference": "full series; the textbook statement that one term is within about 2 % at Fo >= 0.2 is recalled (SOURCE_UNVERIFIED_AGENT_RECALLED)",
+   "tolerance": 0.02,
+   "tolerance_on": "rel",
+   "what": "one-term (Heisler chart) centre theta of cylinder and sphere against the full series at Fo >= 0.2"
+  },
+  {
+   "fo_min": 2.08841e-07,
+   "id": "SV14",
+   "largest_n_terms": 581,
+   "max_abs_error": 3.10862e-15,
+   "max_rel_error": 3.10862e-15,
+   "max_terms": 4000,
+   "n_cases": 270,
+   "passed": true,
+   "reference": "same series with 2N terms",
+   "tolerance": 1e-12,
+   "tolerance_on": "abs",
+   "what": "truncation: the Fo-adaptive term count against twice as many terms (Fo 1e-5 .. 1, centre to surface, mean)"
+  },
+  {
+   "id": "SV15",
+   "max_abs_error": 1.42109e-14,
+   "max_rel_error": 7.10511e-16,
+   "n_cases": 69,
+   "note": "degC; cases with Fo < 0.02 are not compared (driver front bound)",
+   "passed": true,
+   "reference": "physics_drivers; closed-form V/A",
+   "tolerance": 1e-08,
+   "tolerance_on": "abs",
+   "what": "dimensional wrapper: slab geometry against physics_drivers.core_and_mean_temperature (degC), cube = slab^3, V/A of each shape"
+  }
+ ],
+ "checks_passed": 15,
+ "code_sha256": {
+  "src/culinarystate/simulation/phys_verification_shapes.py": "4cba1415b62f58e7ffb645dfc64c75eb29ebeebaca8e3332bd16204e1654f99f",
+  "src/culinarystate/simulation/physics_drivers.py": "c741754eadb4f81fd4985191f48c14706255ded5f1b7f3757d0540bd1217638e",
+  "src/culinarystate/simulation/shape_series.py": "d120d566875eb25f60bba826a668e44b21eda41a38e28b0393462e5bd1e7dd5b",
+  "tools/s178_phys3_shape_verification.py": "0d633397ceee686b3d92f3e407541914575da229a3a52cfb4b7e321378254c62"
+ },
+ "command": "python tools/s178_phys3_shape_verification.py --out-json reports/s178/phys3/shape_verification_S178.json --out-md reports/s178/phys3/shape_verification_S178.md",
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "environment": {
+  "numpy": "1.26.4",
+  "platform": "Linux",
+  "python": "3.12.3",
+  "scipy": "1.17.1"
+ },
+ "recalled_constants_source_status": "SOURCE_UNVERIFIED_AGENT_RECALLED",
+ "record": "SHAPE_SERIES_VERIFICATION_PACK",
+ "results_sha256": "ab3b285d112e5524078338f425ad1a249cfeec6c210c4193e3721cbbdf996949",
+ "shape_series_version": "shape-series-0.1.0-draft",
+ "status": "AI_DRAFTED_NUMERICAL_VERIFICATION_NOT_A_VALIDATION",
+ "version": "phys-verification-shapes-0.1.0-draft",
+ "wall_seconds": 102.6,
+ "wired_into_layer2": false
+}
