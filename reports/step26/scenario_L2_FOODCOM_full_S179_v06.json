@@ -1,0 +1,515 @@
+{
+  "cap_model": "evaporation-cap-0.3.0-draft",
+  "cap_policy": {
+    "altitude_m": null,
+    "enabled": true,
+    "pressure_psig": null
+  },
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/simulation/scenario_layer.py",
+        "sha256": "1377cf63f26582c1f9243a806e6948498d0df3ae29b0935a582c2e80889b4d4a"
+      },
+      {
+        "path": "src/culinarystate/simulation/phase_change.py",
+        "sha256": "18944b320aab53b6bb4b41a26e25d754cd3538ab340dc75795474c447aa16a3d"
+      },
+      {
+        "path": "src/culinarystate/simulation/physics_drivers.py",
+        "sha256": "c741754eadb4f81fd4985191f48c14706255ded5f1b7f3757d0540bd1217638e"
+      },
+      {
+        "path": "src/culinarystate/simulation/condition_binding.py",
+        "sha256": "abb4d3ac1a7831480c09df4aa21e89a29ca899b35c69e8f614d6b2b027dd75c9"
+      },
+      {
+        "path": "src/culinarystate/simulation/endpoint_cues.py",
+        "sha256": "e61eae651ca03d739f360634247d19e6b3a55a7ad36a4a88d820c27a9272af85"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "registry/phase_change_v1.csv",
+        "sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a"
+      },
+      {
+        "path": "registry/matrix_moisture_regime_v1.csv",
+        "sha256": "039fe8f3b8ea69788333877731e249891bb9d5f2ef3423c457cdde8fa209fa0d"
+      },
+      {
+        "path": "tools/scenario_layer_run.py",
+        "sha256": "6e859cd3f0a1700072eb1c3abcb5ca50463c010316bfa4f02cdb15fc2db7d6e9"
+      }
+    ]
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts": {
+    "ambient_temperature_not_used_as_liquid_t_typical": 327,
+    "basis": {
+      "alpha": {
+        "SD": 2002902
+      },
+      "bath_c": {
+        "L1": 610719,
+        "SD": 1392183
+      },
+      "duration_min": {
+        "KGE": 1093548,
+        "L1": 909354
+      },
+      "h": {
+        "SD": 165438
+      },
+      "half_thickness_m": {
+        "SD": 165438
+      },
+      "initial_c": {
+        "SD": 2002902
+      },
+      "k": {
+        "SD": 2002902
+      },
+      "t_cap_c": {
+        "L1": 354,
+        "PC": 1914147
+      }
+    },
+    "cap_flag_typical": {
+      "ALL_MEMBERS_DRY_CLASS": 2058,
+      "ALTITUDE_ASSUMED_SEA_LEVEL": 638162,
+      "BOILING_POINT_ELEVATION_NOT_MODELLED": 638167,
+      "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 118,
+      "CAP_NOT_LIFTED_NO_DRYING_MODEL": 638167,
+      "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": 29467,
+      "EVAPORATION_CAP_APPLIED": 432642,
+      "EVAPORATION_CAP_NOT_BINDING": 205525,
+      "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 68274,
+      "MATRIX_DRY_CLASS_UNCAPPED": 29467,
+      "MATRIX_UNKNOWN_MOIST_ASSUMED": 201637,
+      "NOT_A_ZONE_MEAN_DOSE": 55146,
+      "PRESSURE_ASSUMED_1ATM": 641903,
+      "PRESSURE_PROCESS_BRACKET_FROM_SATURATION_TEMPERATURE": 5,
+      "SALT_MEMBER_BPE_SMALL": 59495,
+      "STATED_LIQUID_LIFT_SUGAR_PHASE_MEMBER": 75,
+      "STATED_LIQUID_LIFT_SYRUP_STAGE_CUE": 43,
+      "STATED_LIQUID_T_ABOVE_TBOIL": 118,
+      "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_DILUTE": 26,
+      "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_NOT_OWNED": 2,
+      "STATED_LIQUID_T_NOT_APPLIED_TO_MOIST_PIECE": 3,
+      "SUGAR_PHASE_TBOIL_LOWER_ESTIMATE": 97882,
+      "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 638167,
+      "WATER_BATH_IN_OVEN": 305,
+      "WATER_BATH_TEMPERATURE_BOUNDED_BY_TBOIL_UPPER_BOUND": 305
+    },
+    "core_known": {
+      "GENTLE": {
+        "False": 612488,
+        "True": 55146
+      },
+      "INTENSE": {
+        "False": 612488,
+        "True": 55146
+      },
+      "TYPICAL": {
+        "False": 612488,
+        "True": 55146
+      }
+    },
+    "fixphys_flag_typical": {
+      "FAN_VS_CONVENTIONAL_UNRESOLVED": 19,
+      "HEAT_LEVEL_OR_APPLIANCE_SETTING_AT_OR_BELOW_TBOIL": 8,
+      "STATED_LIQUID_LIFT_SUGAR_PHASE_MEMBER": 75,
+      "STATED_LIQUID_LIFT_SYRUP_STAGE_CUE": 43,
+      "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_DILUTE": 26,
+      "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_NOT_OWNED": 2,
+      "STATED_LIQUID_T_NOT_APPLIED_TO_MOIST_PIECE": 3,
+      "WATER_BATH_IN_OVEN": 305
+    },
+    "stated_liquid_above_tboil": {
+      "GENTLE": 118,
+      "INTENSE": 118,
+      "TYPICAL": 118
+    },
+    "stated_liquid_above_tboil_by_stated_c": {
+      "GENTLE": {
+        "100_TO_105": 9,
+        "105_TO_120": 84,
+        "120_TO_150": 21,
+        "ABOVE_150": 4
+      },
+      "INTENSE": {
+        "100_TO_105": 9,
+        "105_TO_120": 83,
+        "120_TO_150": 22,
+        "ABOVE_150": 4
+      },
+      "TYPICAL": {
+        "100_TO_105": 9,
+        "105_TO_120": 84,
+        "120_TO_150": 21,
+        "ABOVE_150": 4
+      }
+    },
+    "stated_liquid_typical_by_stated_c_and_member": {
+      "100_TO_105": {
+        "SOLUTE_RICH_MEMBER": 9
+      },
+      "105_TO_120": {
+        "SOLUTE_RICH_MEMBER": 84
+      },
+      "120_TO_150": {
+        "SOLUTE_RICH_MEMBER": 21
+      },
+      "ABOVE_150": {
+        "SOLUTE_RICH_MEMBER": 4
+      }
+    },
+    "stated_liquid_typical_core_computed_by_stated_c": {
+      "105_TO_120": 3
+    },
+    "status": {
+      "SCENARIO_COMPUTED": 667634,
+      "SCENARIO_UNKNOWN": 768753,
+      "UNSUPPORTED_MEDIUM": 66874
+    },
+    "surface_state": {
+      "GENTLE": {
+        "SURFACE_DRYING_POSSIBLE": 2635,
+        "SURFACE_IMMERSED_WET": 205017,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 29467,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 393451,
+        "SURFACE_WET_AT_TBOIL": 36100,
+        "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": 964
+      },
+      "INTENSE": {
+        "SURFACE_DRYING_POSSIBLE": 34736,
+        "SURFACE_IMMERSED_WET": 205022,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 29467,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 393843,
+        "SURFACE_WET_AT_TBOIL": 4060,
+        "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": 506
+      },
+      "TYPICAL": {
+        "SURFACE_DRYING_POSSIBLE": 22174,
+        "SURFACE_IMMERSED_WET": 205017,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 29467,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 393846,
+        "SURFACE_WET_AT_TBOIL": 16622,
+        "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": 508
+      }
+    },
+    "transition": {
+      "physically_possible": 667634,
+      "unsupported": 835627
+    },
+    "typical_core_reaches_70": {
+      "False": 2609,
+      "True": 52537
+    },
+    "zone_nodes_emitted": {
+      "GENTLE": 55146,
+      "INTENSE": 55146,
+      "TYPICAL": 55146
+    }
+  },
+  "counts_as_human_gate": false,
+  "dry_low_moisture_classes": [
+    "FAT_OIL",
+    "NUT_SEED",
+    "SWEETENER"
+  ],
+  "ended_at_utc": "2026-11-09T19:00:56Z",
+  "l1_files": 192,
+  "labels": [
+    "SCENARIO",
+    "MODEL_DERIVED",
+    "NON_CITABLE",
+    "ASSUMED_DEFAULT"
+  ],
+  "layer_version": "scenario-layer-L2-0.5.0-draft",
+  "matrix_regime_registry_sha256": "039fe8f3b8ea69788333877731e249891bb9d5f2ef3423c457cdde8fa209fa0d",
+  "phase_change_registry_sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a",
+  "record": "SCENARIO_L2_SUMMARY",
+  "records_manifest_sha256": "6adf04b56ad0956073d6d10a085cb9fad0ebd60ca16535a6013587f8359de41e",
+  "scenario_registry_sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0",
+  "started_at_utc": "2026-11-09T18:58:26Z",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "supersedes": "SCENARIO_L2_0_1_0_CORE_AND_DOSE_FIELDS_OF_DRY_AND_FAT_EVENTS",
+  "v05_to_v06": {
+    "counts": {
+      "bath_basis_changed": {
+        "GENTLE": {
+          "L1__CARRIED_SETPOINT__SD__012": 2,
+          "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 21,
+          "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 9,
+          "L1__TEXT_STATED__SD__001": 1,
+          "L1__TEXT_STATED__SD__010": 7,
+          "L1__TEXT_STATED__SD__012": 8,
+          "SD__001__L1__TEXT_STATED": 1
+        },
+        "INTENSE": {
+          "L1__CARRIED_SETPOINT__SD__012": 2,
+          "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 21,
+          "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 9,
+          "L1__TEXT_STATED__SD__001": 1,
+          "L1__TEXT_STATED__SD__010": 7,
+          "L1__TEXT_STATED__SD__012": 8,
+          "SD__001__L1__TEXT_STATED": 1
+        },
+        "TYPICAL": {
+          "L1__CARRIED_SETPOINT__SD__012": 2,
+          "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 21,
+          "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 9,
+          "L1__TEXT_STATED__SD__001": 1,
+          "L1__TEXT_STATED__SD__010": 7,
+          "L1__TEXT_STATED__SD__012": 8,
+          "SD__001__L1__TEXT_STATED": 1
+        }
+      },
+      "bath_c_changed": {
+        "GENTLE": 49,
+        "INTENSE": 49,
+        "TYPICAL": 47
+      },
+      "changed": {
+        "GENTLE": {
+          "core_cook_value_min": 2,
+          "core_end_c": 2,
+          "surface_cook_value_min": 10,
+          "volume_avg_end_c": 2
+        },
+        "INTENSE": {
+          "core_cook_value_min": 2,
+          "core_end_c": 2,
+          "surface_cook_value_min": 10,
+          "volume_avg_end_c": 2
+        },
+        "TYPICAL": {
+          "core_cook_value_min": 2,
+          "core_end_c": 2,
+          "surface_cook_value_min": 10,
+          "volume_avg_end_c": 2
+        }
+      },
+      "events": 1503261,
+      "flag_added": {
+        "GENTLE": {
+          "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 32,
+          "EVAPORATION_CAP_APPLIED": 32,
+          "EVAPORATION_CAP_NOT_BINDING": 1
+        },
+        "INTENSE": {
+          "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 32,
+          "EVAPORATION_CAP_APPLIED": 32,
+          "EVAPORATION_CAP_NOT_BINDING": 1
+        },
+        "TYPICAL": {
+          "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 32,
+          "EVAPORATION_CAP_APPLIED": 32,
+          "EVAPORATION_CAP_NOT_BINDING": 1
+        }
+      },
+      "flag_removed": {
+        "GENTLE": {
+          "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 1,
+          "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 2,
+          "EVAPORATION_CAP_APPLIED": 1,
+          "EVAPORATION_CAP_NOT_BINDING": 32,
+          "STATED_LIQUID_LIFT_SUGAR_PHASE_MEMBER": 1,
+          "STATED_LIQUID_LIFT_SYRUP_STAGE_CUE": 1,
+          "STATED_LIQUID_T_ABOVE_TBOIL": 2,
+          "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_DILUTE": 1,
+          "SURFACE_DOSE_AT_TBOIL_WET_PERIOD_ONLY": 1
+        },
+        "INTENSE": {
+          "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 1,
+          "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 2,
+          "EVAPORATION_CAP_APPLIED": 1,
+          "EVAPORATION_CAP_NOT_BINDING": 32,
+          "STATED_LIQUID_LIFT_SUGAR_PHASE_MEMBER": 1,
+          "STATED_LIQUID_LIFT_SYRUP_STAGE_CUE": 1,
+          "STATED_LIQUID_T_ABOVE_TBOIL": 2,
+          "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_DILUTE": 1,
+          "SURFACE_DOSE_AT_TBOIL_WET_PERIOD_ONLY": 1
+        },
+        "TYPICAL": {
+          "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 1,
+          "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 2,
+          "EVAPORATION_CAP_APPLIED": 1,
+          "EVAPORATION_CAP_NOT_BINDING": 32,
+          "STATED_LIQUID_LIFT_SUGAR_PHASE_MEMBER": 1,
+          "STATED_LIQUID_LIFT_SYRUP_STAGE_CUE": 1,
+          "STATED_LIQUID_T_ABOVE_TBOIL": 2,
+          "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_DILUTE": 1,
+          "SURFACE_DOSE_AT_TBOIL_WET_PERIOD_ONLY": 1
+        }
+      },
+      "status": {
+        "SCENARIO_COMPUTED": {
+          "SCENARIO_COMPUTED": 667634
+        },
+        "SCENARIO_UNKNOWN": {
+          "SCENARIO_UNKNOWN": 768753
+        },
+        "UNSUPPORTED_MEDIUM": {
+          "UNSUPPORTED_MEDIUM": 66874
+        }
+      },
+      "t_cap_changed": {
+        "GENTLE": 2,
+        "INTENSE": 2,
+        "TYPICAL": 2
+      },
+      "volume_avg_dose_equal_to_0_2_0_name": {
+        "GENTLE": {
+          "False": 2,
+          "True": 55144
+        },
+        "INTENSE": {
+          "False": 2,
+          "True": 55144
+        },
+        "TYPICAL": {
+          "False": 2,
+          "True": 55144
+        }
+      },
+      "zone_mean_dose_gt_dose_at_volume_avg_t": {
+        "GENTLE": {
+          "True": 55146
+        },
+        "INTENSE": {
+          "True": 55146
+        },
+        "TYPICAL": {
+          "True": 55146
+        }
+      }
+    },
+    "layer_version": "scenario-layer-L2-0.5.0-draft",
+    "previous_layer_version": "scenario-layer-L2-0.5.0-draft",
+    "ratio_quantiles": {
+      "zone_mean_over_core_dose": {
+        "GENTLE": {
+          "max": 34.8969,
+          "n": 55146,
+          "p01": 1.0021,
+          "p10": 1.013,
+          "p25": 1.0456,
+          "p50": 1.2266,
+          "p75": 2.016,
+          "p90": 5.4789,
+          "p99": 8.3798
+        },
+        "INTENSE": {
+          "max": 239.9167,
+          "n": 55146,
+          "p01": 1.0019,
+          "p10": 1.0028,
+          "p25": 1.0042,
+          "p50": 1.0106,
+          "p75": 1.0189,
+          "p90": 1.0247,
+          "p99": 1.2818
+        },
+        "TYPICAL": {
+          "max": 81.809,
+          "n": 55146,
+          "p01": 1.0018,
+          "p10": 1.0027,
+          "p25": 1.0091,
+          "p50": 1.0228,
+          "p75": 1.0784,
+          "p90": 1.1765,
+          "p99": 4.3171
+        }
+      },
+      "zone_mean_over_dose_at_volume_avg_t": {
+        "GENTLE": {
+          "max": 5.8153,
+          "n": 55146,
+          "p01": 1.0005,
+          "p10": 1.0011,
+          "p25": 1.0025,
+          "p50": 1.0178,
+          "p75": 1.1524,
+          "p90": 1.9333,
+          "p99": 2.4765
+        },
+        "INTENSE": {
+          "max": 21.1691,
+          "n": 55146,
+          "p01": 1.0005,
+          "p10": 1.0007,
+          "p25": 1.0017,
+          "p50": 1.0046,
+          "p75": 1.0167,
+          "p90": 1.0218,
+          "p99": 1.0412
+        },
+        "TYPICAL": {
+          "max": 10.7647,
+          "n": 55146,
+          "p01": 1.0005,
+          "p10": 1.0005,
+          "p25": 1.0009,
+          "p50": 1.0035,
+          "p75": 1.0098,
+          "p90": 1.0188,
+          "p99": 1.5821
+        }
+      }
+    }
+  },
+  "wall_seconds": 150.0,
+  "workers": 24,
+  "zone_field": {
+    "n_nodes": 8,
+    "scheme": "GAUSS_LEGENDRE_HALF_SLAB",
+    "t_ref_c": 100.0,
+    "z_c": 33.0,
+    "zone_mean_over_dose_at_volume_avg_t_quantiles": {
+      "zone_mean_over_dose_at_volume_avg_t": {
+        "GENTLE": {
+          "max": 5.8153,
+          "n": 55146,
+          "p01": 1.0005,
+          "p10": 1.0011,
+          "p25": 1.0025,
+          "p50": 1.0178,
+          "p75": 1.1524,
+          "p90": 1.9333,
+          "p99": 2.4765
+        },
+        "INTENSE": {
+          "max": 21.1691,
+          "n": 55146,
+          "p01": 1.0005,
+          "p10": 1.0007,
+          "p25": 1.0017,
+          "p50": 1.0046,
+          "p75": 1.0167,
+          "p90": 1.0218,
+          "p99": 1.0412
+        },
+        "TYPICAL": {
+          "max": 10.7647,
+          "n": 55146,
+          "p01": 1.0005,
+          "p10": 1.0005,
+          "p25": 1.0009,
+          "p50": 1.0035,
+          "p75": 1.0098,
+          "p90": 1.0188,
+          "p99": 1.5821
+        }
+      }
+    }
+  }
+}
