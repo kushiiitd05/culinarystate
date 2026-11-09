@@ -1193,3 +1193,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `src/culinarystate/evaluation/{h1_rungs`, `paired_stats`, `freeze_records`, `diag29_runner}.py; src/culinarystate/generation/verbalize.py; tools/export_ingredient_lines.py; gpu/ner_bench/corpus_ner_infer.py; reports/step26/*_full_S173.json; reports/step29/29diag_preregistration_DRAFT.md; registry/freezes/15A-BOOT-2026-11-08.json`
 - **Verified:** new tests: export 3, NER chunking 2, H1 5, paired stats 5, freeze 5, diag29 3, verbaliser 2 added; related suites 217 + 42 passed; L1 runs baseline PASS
 - **Next:** Kush: fix VPN route; approve freeze record + sign 29-diag prereg (then 29-diag runs); earlier sign/label/verify/review items. Agent on VPN: Food.com L1/L2 on vinayak; NER on A100; merge full-corpus physical summary.
+
+### S175 · 2026-11-09 11:48 IST · S175 · Lot composition: SR loader, ING->SR registry, line grams, BBC census
+- **Who:** Kush+Claude
+- **Did:** SR Legacy loader; lexical ING->SR matcher + 298-term defaults registry (AGENT_PROPOSED/UNVERIFIED; 76.3% of mentions); line->grams interval (stated / volume x SR density / count x SR portion; SSOT 235.3 q-levels, link-verification flag); counts-only census. BBC: 116,699 lines, 83,088 with grams (71.2% vs 33.7% in fdc_crosswalk_v0), 48,266 rest on unverified SR links, 1,517/11,934 recipes fully gram-resolved. v0 crosswalk has 0 human decisions; v1 registry is the review sheet.
+- **Files:** `src/culinarystate/composition/*`, `registry/ing_sr_defaults_v1.csv`, `tools/s175_line_mass_census.py`, `reports/s175/line_mass_census_BBC.json`
+- **Verified:** pytest tests/unit/test_s175_*.py: 33 passed; full suite not rerun (Mac memory low, earlier run reaped)
+- **Next:** registry tier 2 for NO_MATCH/LOW names; FDA pH registry; lot_state; human check of ing_sr_defaults_v1
