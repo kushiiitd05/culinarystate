@@ -245,8 +245,8 @@ def test_m3minor_water_bath_in_an_oven_is_a_water_medium_bounded_by_the_boil(bin
 
 
 def test_layer1_version_is_0_3_0():
-    assert CB.VERSION == "condition-binding-L1-0.3.0-draft" and CB.VERSION_V02 == "condition-binding-L1-0.2.0-draft"
-    assert EC.VERSION == "endpoint-cues-0.2.0-draft"
+    assert CB.VERSION == "condition-binding-L1-0.3.1-draft" and CB.VERSION_V02 == "condition-binding-L1-0.2.0-draft"
+    assert EC.VERSION == "endpoint-cues-0.3.0-draft"   # S179 SCI #1
 
 
 def test_m1minor_nonheat_binder_reads_a_spaced_unit_and_refuses_cups():
