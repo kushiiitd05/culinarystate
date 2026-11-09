@@ -1,6 +1,7 @@
 """S175: counts-only line -> grams census (Rung A food mention -> ING name -> SR via defaults registry).
 
     python tools/s175_line_mass_census.py --families A1_BBC_GOOD_FOOD --out reports/s175/line_mass_census_BBC.json
+    python tools/s175_line_mass_census.py --lots --families A1_BBC_GOOD_FOOD --out reports/s175/lot_census_BBC.json
 
 D-003: A1_BBC_GOOD_FOOD runs on the Mac only. Output is counts only (composition.line_census.assert_counts_only).
 """
@@ -16,12 +17,15 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "tools"))
 
 from culinarystate.composition import ing_sr_match as M  # noqa: E402
+from culinarystate.composition import food_ph as PH  # noqa: E402
 from culinarystate.composition import line_census as LC  # noqa: E402
+from culinarystate.composition import lot_census as LOT  # noqa: E402
 from culinarystate.composition import sr_legacy as SR  # noqa: E402
 from culinarystate.extraction.rung_a_lexicon import load_lexicon, tokens  # noqa: E402
 
 SR_DIR = ROOT / "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04"
 REGISTRY = ROOT / "registry/ing_sr_defaults_v1.csv"
+PH_REGISTRY = ROOT / "registry/food_ph_fda2003_v1.csv"
 
 
 def _ing_names() -> tuple[dict[str, str], dict[str, int]]:
@@ -64,13 +68,18 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--families", nargs="+", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--lots", action="store_true", help="RECIPE_POOL lot census instead of the line census")
     a = ap.parse_args(argv)
     from step17b_rung_a_dryrun import corpus_records
     foods = SR.load_sr(SR_DIR)
     name, freq = _ing_names()
-    out = LC.census(corpus_records(tuple(a.families), ROOT),
-                    find_food=make_find_food(load_lexicon(), name, freq),
-                    resolve=make_resolve(foods, M.load_registry(REGISTRY), M.build_index(foods)), foods=foods)
+    kw = dict(find_food=make_find_food(load_lexicon(), name, freq),
+              resolve=make_resolve(foods, M.load_registry(REGISTRY), M.build_index(foods)), foods=foods)
+    recs = corpus_records(tuple(a.families), ROOT)
+    if a.lots:
+        out = LOT.census(recs, ph=PH.PHTable(PH.load_registry(PH_REGISTRY)), **kw)
+    else:
+        out = LC.census(recs, **kw)
     out["usable_match_statuses"] = ["REGISTRY_MAPPED", "AUTO_MATCH_HIGH"]
     LC.assert_counts_only({k: v for k, v in out.items() if k != "usable_match_statuses"})
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
