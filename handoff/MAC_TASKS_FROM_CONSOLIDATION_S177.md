@@ -59,3 +59,28 @@ F2. `src/culinarystate/composition/line_mass.py:34-36` (`_NOT_COUNT`) and `:78-8
 F3. `src/culinarystate/composition/line_mass.py:120-131` (`_count_portions`, WHOLE_ITEM fallback at line 131). Two hazards. (a) `unit` is in WHOLE_ITEM, so the 182 SR rows named "unit (yield from 1 lb ...)" are used as per-item weights; they are yield conversions of a whole product, not item weights. (b) The count path never checks that the counted noun is the SR food's own item: a count of a chicken product that is not a whole bird (a wing part, an egg of a hen, a skewered dish) resolves to the whole-bird rows and gets 276 to 920 g per count. In WIKIBOOKS plus TASTESET, 128 of 4,659 COUNT lines (2.7%) use a yield row, and 64 COUNT lines have a high bound above 2 kg (WIKIBOOKS 53, TASTESET 11; VOLUME lines above 2 kg: 107; stated masses above 2 kg: 59, mostly real bulk quantities). All of these carry the SR_LINK_UNVERIFIED and PROVISIONAL labels, so this is a plausibility hazard, not a law violation. Proposed fixes (pick one, Mac decides): (1) drop portions whose description contains "yield" from `countable` (line 121-122), accepting that "1 whole chicken" then becomes NO_SR_COUNT_PORTION; or (2) in the WHOLE_ITEM fallback require that no unexplained noun stands between the count and the food term; or (3) add a per-line plausibility flag (for example high_g above 2000) to the census counts. Changing this alters the BBC numbers too (BBC NO_SR_COUNT_PORTION is 6,540 and COUNT lines 22,571).
 F4. `src/culinarystate/composition/food_ph.py:120-131` (`PHTable.lookup`): scans and sorts the whole pH table on every call, no memo. In `cProfile` over 1,000 Food.com recipes (lot mode) `lookup` is 9.9 s of 25.3 s (about 40%) while there are only a few thousand distinct names. Proposed fix: memoise on the normalised name tuple (the table is immutable), for example a dict cache inside `PHTable.lookup`. This should cut the FOODCOM lot census from the measured 2.0 h to roughly 1.2 h (estimate from the profile share, not measured).
 F5 (cosmetic). `src/culinarystate/composition/lot_state.py:109-110` and `:59`: for a lot whose positive-mass members all have zero water (for example only sugar), the water interval is `[-0.0, 0.0]` (negative zero from `lo = -neg`), and the solute-per-water bounds come back UNKNOWN with reason `NO_POSITIVE_MASS` although the mass is positive and it is the water that is zero (the ratio is unbounded). Proposed fix: return reason `NO_WATER_DENOMINATOR` in that case and normalise `-0.0` to `0.0`. No census number is affected (only `water_g` is reported).
+
+## Mac reply (S179, 2026-11-09): fixing commit per id
+
+AI_DRAFTED. Tests first: `tests/unit/test_s179_composition_fixes.py` (b8ad54b, RED 17/18 before the fixes, GREEN after).
+
+| ID | Status | Commit | Note |
+|---|---|---|---|
+| A1 | FIXED | d44d975 | `parse_fda_html` keeps rows with an empty tail cell; a row with text in a third cell is still dropped |
+| A2 | FIXED | d44d975 | `load_registry_lph` keys rows by `item_context_norm`: "egg white" → FDA_ITEM_MATCH 7.96; "white rice" → 6.00–6.70; "apple juice" → 3.35–4.00 ACID |
+| A3 | FIXED | d44d975, 95939a3 | Tamarind now 3.00 (open-ended) from the Apr 2007 revision; `food_ph_fda2003_v1.csv` kept on record, SUPERSEDED |
+| A4 / P1 | FIXED in `composition/` | efdafa6 | `_line` maps U+2044 and U+2215 to "/" before the food finder and the parser |
+| F1 | OPEN, not ours | — | The same fix in `quantity/grammar.py` (`normalize_text`) helps every caller, but grammar.py is protected: needs Kush's OK. `composition/` no longer depends on it |
+| A5 / P3 | FIXED | 774aba9 | SIZES = small, medium, large, extra_small, extra_large, jumbo, mini; "3 eggs" → 114–189 g; "1 extra large egg" picks only that portion |
+| A6 / P4 | FIXED | 774aba9 | POINT only for TEXT_STATED_MASS; SR grams are INTERVAL, with `flags` SR_SINGLE_PORTION_NO_SPREAD when one SR value stands for the spread |
+| A6b | FIXED (conservative); human choice still open | 774aba9, efdafa6 | Locale unknown + multi-convention unit → flag UNIT_HULL_LOCALE_UNKNOWN (Wikibooks and TASTEset keep the hull). GUTENBERG_SEGMENT volume lines → UNKNOWN HISTORICAL_UNIT_REGISTRY_MISSING. Kush decides between keeping the hull and rc2's LOCALE_AMBIGUOUS |
+| A7 | FIXED | 9b59d35 | Portion rows with amount ≤ 0 are skipped at load |
+| A8 / F5 | FIXED | 278968e | Reason NO_WATER_IN_LOT; −0.0 normalised to 0.0 |
+| A9 / P10 | FIXED | 278968e | The float scan picks the vertex, the ratio is recomputed with `Fraction` and rounded outward; exact values stay exact |
+| A10 | FIXED | 9c7ad84 | Dropped bay leaf, feta cheese, red, white; their successors "bay" and "feta" were already mapped. New test: every term is an ACTIVE canonical name |
+| A11 | FIXED | 278968e | BASE_LABELS += AS_LISTED_NO_PROCESS_EFFECTS, NON_CITABLE |
+| F2 | FIXED | 774aba9 | quart, pint, gallon (NIST HB44 US), litre and mL (SI) are SR volume portions, never counts |
+| F3 | FIXED, option (1) | 774aba9 | Portions with "yield" in the description are dropped from the count pool. Changes BBC numbers: BBC re-run below |
+| F4 | FIXED | d44d975 | `PHTable.lookup` memoised per normalised name |
+| P5 | DONE | d44d975, 95939a3 | 488 rows: 479 with a value. "Cheese, Snippy" ('5.18 - 5.2l') is kept UNPARSED with no value (never guessed); the draft counts it as 480 |
+| P2, P6–P9, P11 | NOT DONE | — | P2 touches `recipes/` (owner decides); P6/P7 next; P8 waits on Q42; P9 for Q44 |
