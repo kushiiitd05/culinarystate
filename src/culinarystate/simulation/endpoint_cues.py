@@ -50,7 +50,8 @@ from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "endpoint-cues-0.2.0-draft"
+VERSION = "endpoint-cues-0.3.0-draft"
+VERSION_V02 = "endpoint-cues-0.2.0-draft"  # SUPERSEDED S179: until-clause cut at and/or; no doneness / "inside" targets
 VERSION_V01 = "endpoint-cues-0.1.0-draft"  # SUPERSEDED: first strong cue, sentence-wide syrup block, no until-clause targets
 LEXICON = "registry/endpoint_cue_lexicon_v1.csv"
 BLOCK_KEY = "endpoint"
@@ -116,6 +117,12 @@ _SUBJECT_LIQUID = re.compile(rf"\b(?:{_LIQUID_WORDS}|{_MEDIUM_PLACES})\b", re.I)
 _OBJECT_END = re.compile(r"\b(?:in|into|with|on|over|under|for|until|till|til|at|to|from|and|then|while|about)\b|[,;(.]", re.I)
 _SETTING_BEFORE = re.compile(r"\b(?:at|in\s+(?:a|an|the))\s*(?:about|around|approximately|approx\.?)?\s*$", re.I)
 _UNTIL_END = re.compile(r"[,;()]|\b(?:then|before|while|and|for|or|approximately|approx)\b", re.I)
+# S179 (SCI re-review #1): "and" / "or" do not end the clause when no event verb starts the next conjunct
+# ("until the juices run clear and the meat is 165 F"); the subject test then reads only the last conjunct.
+_CONJ = re.compile(r"\b(?:and|or)\b", re.I)
+# a temperature followed by a doneness word or "inside / internal" is the food's own temperature wherever it stands
+_DONENESS_AFTER = re.compile(r"\s*(?:\)\s*)?(?:for\s+)?(?:(?:medium[- ])?rare|medium(?:[- ]well)?|well[- ]done|well)\b"
+                             r"|\s*(?:inside|internal(?:ly)?|in\s+the\s+(?:centre|center|middle|thickest\s+part))\b", re.I)
 _WORD = re.compile(r"[\w'-]+")
 TARGET_ROLES = ("TARGET_STRONG_CUE", "TARGET_LIST", "TARGET_UNTIL_CLAUSE")
 EXEMPT_ROLES = ("EXEMPT_SYRUP_OR_CANDY", "EXEMPT_LIQUID_OR_MEDIUM_SUBJECT", "EXEMPT_SETTING_PHRASE", "EXEMPT_MEDIUM_THERMOMETER")
@@ -184,9 +191,20 @@ def until_clause_spans(raw: str, a: int, b: int, verbs: Sequence[int] = ()) -> l
         lo = m.end()
         nxt = [v for v in verbs if v > m.start()]
         hi = min(b, lo + 90, min(nxt) if nxt else b)
-        cut = _UNTIL_END.search(raw, lo, hi)
-        out.append((m.start(), lo, cut.start() if cut else hi))
+        pos, end = lo, hi
+        while (cut := _UNTIL_END.search(raw, pos, hi)) is not None:
+            if _CONJ.fullmatch(cut.group(0)):          # verbs already cap hi, so the next conjunct has no event verb
+                pos = cut.end()
+                continue
+            end = cut.start()
+            break
+        out.append((m.start(), lo, end))
     return out
+
+
+def _last_conjunct_start(raw: str, lo: int, s: int) -> int:
+    ends = [c.end() for c in _CONJ.finditer(raw, lo, s)]
+    return max(ends) if ends else lo
 
 
 def _owner_start(verbs: Sequence[int], pos: int, a: int) -> int:
@@ -252,9 +270,11 @@ def classify_temperatures(raw: str, a: int, b: int, temps: Iterable[tuple[Any, t
             gap = raw[prev_end:s]
             if len(gap) <= 45 and not _CHAIN_BREAK.search(gap) and not syrup:
                 role = "TARGET_LIST"
+        if role == "NOT_A_TARGET" and not syrup and _DONENESS_AFTER.match(raw, e):
+            role = "TARGET_STRONG_CUE"                  # "140 F for rare", "about 200 F inside" (S179)
         if role == "NOT_A_TARGET" and clause is not None:
             own = _owner_start(verbs, s, a)
-            subject = raw[clause[1]:s]
+            subject = raw[_last_conjunct_start(raw, clause[1], s):s]
             if syrup:
                 role = "EXEMPT_SYRUP_OR_CANDY"
             elif _MEDIUM_THERMO_PREFIX.search(subject) or _MEDIUM_THERMOMETER.match(raw[e:e + 40]):
