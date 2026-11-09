@@ -74,3 +74,12 @@ def test_non_strict_keeps_source_typos_as_unparsed_rows() -> None:
     c = r["Carrots"]
     assert (c.low, c.high, c.value_type, c.raw) == (None, None, "UNPARSED", "5.18 - 5.2l")
     assert PH.PHTable(list(r.values())).lookup("carrot").low == 5.58     # unparsed rows never feed a range
+
+
+def test_real_registry_loads_and_matches_known_rows() -> None:
+    from pathlib import Path
+    rows = PH.load_registry(Path(__file__).resolve().parents[2] / "registry/food_ph_fda2003_v1.csv")
+    assert len(rows) >= 470 and {r.value_type for r in rows} <= {"POINT", "INTERVAL", "LOWER_BOUND_ONLY", "UNPARSED"}
+    by = {r.item: r for r in rows}
+    assert (by["Carrots, cooked"].low, by["Carrots, cooked"].high) == (5.58, 6.03)
+    assert PH.acid_class(PH.PHTable(rows).lookup("lemon juice")) == "ACID"
