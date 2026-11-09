@@ -1200,3 +1200,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `src/culinarystate/composition/*`, `registry/ing_sr_defaults_v1.csv`, `tools/s175_line_mass_census.py`, `reports/s175/line_mass_census_BBC.json`
 - **Verified:** pytest tests/unit/test_s175_*.py: 33 passed; full suite not rerun (Mac memory low, earlier run reaped)
 - **Next:** registry tier 2 for NO_MATCH/LOW names; FDA pH registry; lot_state; human check of ing_sr_defaults_v1
+
+### S176 · 2026-11-09 11:57 IST · S175 · Lot state: FDA pH registry, exact lot bounds, BBC recipe-pool census
+- **Who:** Kush+Claude
+- **Did:** Registry tier 2 (490 terms) + SR head-noun/alias portion rules: BBC lines with grams 75.3%, recipes fully gram-resolved 2064/11934. FDA approximate-pH registry 479 items (2 source typos UNPARSED, not guessed); lookup item->head-union; 21 CFR 113/114 4.6 acid class. lot_state: exact linear-fractional bounds (mass fractions, sodium/sugars per g water), unknown grams = [0,inf), pH flags only (no mixture pH), PROVISIONAL while SR links unverified. RECIPE_POOL census: water bounded 15.9%, acid member 45.5%, any member pH unknown 99.4%.
+- **Files:** `src/culinarystate/composition/{food_ph`, `lot_state`, `lot_census}.py`, `registry/food_ph_fda2003_v1.csv`, `tools/build_food_ph_registry.py`, `reports/s175/lot_census_BBC.json`
+- **Verified:** pytest tests/unit/test_s175_*.py: 54 passed (ratio bounds cross-checked vs vertex enumeration, 300 random cases); full suite not rerun (Mac memory)
+- **Next:** event-level lots via router lineage; drop NOT_A_FOOD fragments as non-members; decide pH NOT_APPLICABLE for anhydrous members (needs human/Max ruling); mechanism condition windows
