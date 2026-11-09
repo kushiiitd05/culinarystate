@@ -159,3 +159,5 @@ Cost for the orchestrator (measured on 200 recipes, single process, CPU time): a
 - Bands are uncalibrated and the synonym table is AI-drafted; the matcher was tuned by me on the most frequent ING rows (a development step, not an evaluation), and my plausibility reading is not independent of that tuning.
 - Rung A lots come from instruction text only (no ingredient-list lots exist in the graph, H4); masses are joined to graph lots by ING id from the ingredient lines. A recipe whose steps name an ING that has no ingredient line gets an UNKNOWN mass.
 - pH and water-activity results are interface demonstrations, not findings. No mixture pH, no kinetics, no mechanism screen, no interaction edges (steps 5 to 7 of the build order are not started).
+
+**S177 consolidation (note added S178):** `lotstate/` is SUPERSEDED by `composition/`; `reports/lotstate/lotstate_census_1000_S176_ph_provisional.json` is INVALID (SCI-B/GOV-6); see `registry/SUPERSEDED_S177.md`.

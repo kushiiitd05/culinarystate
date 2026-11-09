@@ -273,7 +273,7 @@ Demo needs (measured): 1.2 GB RAM; about 60 CPU-seconds to load the full tree (s
 | Option | Cost | What Kush supplies | Risks | Fit | Verdict |
 |---|---|---|---|---|---|
 | **A. Local Mac, no network** | 0 | the laptop, the bundle | laptop failure; if the Mac has 8 GB (the report draft says full runs swap on it) the demo's 1.2 GB still fits; RAM UNVERIFIED | cold start 30-40 s, start 10 min before | **primary for the talk** |
-| **B. Local Mac + Cloudflare quick tunnel** | 0 | `cloudflared` install (H-6) | random URL changes on each start; no SLA; all visitors share one rate-limit key (G4); public exposure of the live API while the tunnel is up; home Wi-Fi at the venue | works with one command; audience can follow on phones | **optional, talk window only, behind `--per-minute 120` and the safety rule** |
+| **B. Local Mac + Cloudflare quick tunnel** | 0 | `cloudflared` install (H-6) | random URL changes on each start; no SLA; all visitors share one rate-limit key (G4); public exposure of the live API while the tunnel is up; home Wi-Fi at the venue | works with one command; audience can follow on phones | **optional, talk window only, behind `--public` (CS_DEMO_PUBLIC=1), `--per-minute 120` and the safety rule** |
 | **C. Static cached page** on HF Static Space or GitHub Pages | 0 | an account on one of them (H-5); GitHub Pages on a private repo needs a paid plan (UNVERIFIED) | cached answers can look stale; free typing disabled (stated on the page) | content bounded and reviewable; always on; no cold start | **recommended public link** |
 | D. HF Docker Space | PRO plan (price UNVERIFIED) | paid plan, token | repo of a public Space exposes the bundle; sleeps after idle (minutes to wake with a 60 s load); needs `PORT` 7860 handling (G3) | 16 GB RAM is plenty | only if Kush wants a live public URL and accepts the data exposure; use a protected/private Space |
 | E. Render | free impossible (512 MB, 0.1 CPU); Standard 2 GB about 25 USD per month (UNVERIFIED) | card | load alone about 10 minutes at 0.1 CPU; spin-down every 15 minutes | poor | **no** |
@@ -337,7 +337,7 @@ py -m pytest -q -m ledgers tests/unit/test_s171_demo_context.py -k real_transfor
 
 # 1. Run from the full tree, development only (exists)
 PYTHONPATH=src py -m culinarystate.app.server --host 127.0.0.1 --port 8765        # log: "serving on http://127.0.0.1:8765" after 30-40 s
-curl -s http://127.0.0.1:8765/api/health                                             # {"status": "ok"}
+curl -s http://127.0.0.1:8765/api/health                                             # {"status": "ok", "mode": {"mode": "local", ...}}
 
 # 2. Build and verify the bundle (TO BUILD: T-D1)
 py tools/build_demo_bundle.py --out ~/demo_bundle_v1 --exclude-source SRC-000012 --strip-provenance --verify-against .
@@ -345,16 +345,21 @@ py tools/build_demo_bundle.py --out ~/demo_bundle_v1 --exclude-source SRC-000012
 du -sh ~/demo_bundle_v1                                                              # expect 25-35 MB
 
 # 3. Run the demo from the bundle (exists, after step 2; the server code is unchanged by the bundle)
+#    Own machine only (local mode: BBC-derived patterns included; never tunnel this one):
 cd ~/demo_bundle_v1 && PYTHONPATH=src py -m culinarystate.app.server --host 127.0.0.1 --port 8765 --per-minute 60
+#    If the tunnel of step 5 will be used, start PUBLIC mode instead (BBC-derived edges, durations and carbon figures left out, D-003):
+cd ~/demo_bundle_v1 && CS_DEMO_PUBLIC=1 PYTHONPATH=src py -m culinarystate.app.server --host 127.0.0.1 --port 8765 --per-minute 120 --public
 #    note the time to "serving on": record it in the links index
 
 # 4. Smoke test (TO BUILD: T-D6)
 py tools/demo_smoke.py --base http://127.0.0.1:8765 --expect tests/fixtures/demo_smoke_expected.json
 
-# 5. Optional tunnel for the talk window only (Kush; needs cloudflared)
-cloudflared tunnel --url http://127.0.0.1:8765     # prints https://<random>.trycloudflare.com ; paste into the links index
-#    all visitors reach the server from 127.0.0.1, so the limit is shared: start the server with --per-minute 120 (or --trust-proxy after T-D2)
-curl -s https://<random>.trycloudflare.com/api/health
+# 5. Optional tunnel for the talk window only (Kush; needs cloudflared). ONLY with the public-mode server of step 3:
+curl -s http://127.0.0.1:8765/api/health | grep -q '"public": true' && cloudflared tunnel --url http://127.0.0.1:8765
+#    prints https://<random>.trycloudflare.com ; paste into the links index. A local-mode server answers every tunnelled
+#    request with 503 LOCAL_MODE_NOT_PUBLIC (server.py, S178 GOV-4), so a wrong start fails closed instead of leaking.
+#    all visitors reach the server from 127.0.0.1, so the limit is shared: --per-minute 120 (or --trust-proxy after T-D2)
+curl -s https://<random>.trycloudflare.com/api/health      # must show "mode": "public"
 
 # 6. Cached page and offline file (TO BUILD: T-D5)
 py tools/export_demo_cache.py --bundle ~/demo_bundle_v1 --queries registry/demo_queries_v1.csv --out ~/demo_static/
