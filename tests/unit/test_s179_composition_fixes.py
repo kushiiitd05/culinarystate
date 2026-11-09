@@ -255,3 +255,19 @@ def test_a10_every_registry_term_is_an_active_ing_name() -> None:
 def test_census_tool_uses_the_lph_registry() -> None:
     src = (ROOT / "tools/s175_line_mass_census.py").read_text(encoding="utf-8")
     assert "food_ph_fda_draft_v1.csv" in src and "load_registry_lph" in src
+
+
+# --- S179 SCI re-review #5 (A2 residual): size words and any_form containment ------------------------------------
+def test_a2r_size_words_do_not_steer_the_head() -> None:
+    t = PH.PHTable(PH.load_registry_lph(LPH))
+    e = t.lookup("large egg white")
+    assert (e.basis, e.low, e.high) == ("FDA_ITEM_MATCH", 7.96, 7.96)
+
+
+def test_a2r_any_form_always_contains_the_item_match() -> None:
+    t = PH.PHTable(PH.load_registry_lph(LPH))
+    for name in ("egg white", "white rice", "apple juice", "lemon juice", "egg yolk"):
+        r = t.lookup(name)
+        if r.basis == "FDA_ITEM_MATCH":
+            assert r.any_form_low <= r.low and (r.any_form_high is None or r.high is None or r.any_form_high >= r.high), name
+    assert t.lookup("egg white").any_form_high >= 7.96
