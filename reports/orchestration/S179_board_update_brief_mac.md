@@ -79,3 +79,18 @@ AA DRAFT files (`tools/s179_apply_prereg_amendments.py --check` reproduces them)
 **Process flag.** The pack's proposed rule (§2.2, not yet in force; A4) says HUMAN-type entries are committed by the
 human from their own session. D-079 decision 2 (the H4 UNIT enum, pack type HUMAN) was entered by the agent as scribe
 on Kush's chat instruction, as D-069 / D-070 were. If A4 is adopted, Kush should re-confirm D-079 in his own commit.
+
+## Round 4 (2026-11-10): D-083, the 29-diag code
+
+- **D-083.** ksh and prv chose the two-sided D5 H3 sign test, the stricter option. The D5 prereg now has no open
+  option. T9-C26-R5 is still PARTIAL, waiting only on #2, the 07.A-R1 ruling, which is HUMAN.
+- **T6-C02-R1: proposed DONE.** The ladder crosswalk, the prereg text and the runner now use the same rung names.
+  XW-04 (B-2) is now EXACT and implemented; XW-05 (D3) is labelled OK.
+- **29-diag code promised by the amended prereg**: B2 ingredient mean, S-5
+  food-group-disjoint split, D2-vs-B2 contrast, cap sensitivity, and the imputation-duplicate control.
+  - Where it lives: `evaluation/diag29_additions.py`, wired into `diag29_runner`; DEL-2's `all_models` is unchanged.
+  - Tests: 8 new; 410 passed across the transition, diag, bakeoff and crosswalk tests.
+  - The run itself (T6-C03-R3) still needs Kush's 15A-BOOT freeze approval and his 29-diag signature.
+- **No MUST item is now open to agents alone.** Every remaining one waits on a signature, a freeze, human labelling,
+  review or verification, the 5 PDFs, or a human fact.
+- **Kush asked for all of it to be completed through ksh and prv. That was refused for those acts (D-071).**
