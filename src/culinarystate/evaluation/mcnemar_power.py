@@ -16,8 +16,12 @@ joint power is only bounded: Frechet ``max(0, P1 + P2 - 1) <= P(both) <= min(P1,
 
 S178 FIX-EVAL (SCI-B E7). At fixed n and d, power is non-decreasing in the gap delta >= 0: m does not depend on delta, and
 for each m the two-sided rejection region {b >= k} or {b <= m - k} (k >= (m + 1) / 2) has derivative in the success share p
-proportional to P(Bin(m - 1, p) = k - 1) - P(Bin(m - 1, p) = m - k) = C(m-1, k-1) p^(m-k) (1-p)^(m-k) [(p/(1-p))^(2k-m-1) - 1]
->= 0 for p >= 1/2 (``power_monotone_in_delta`` checks it on the grid; a unit test runs it). The discrete-test sawtooth is
+m [P(Bin(m - 1, p) = k - 1) - P(Bin(m - 1, p) = m - k)] = m C(m-1, k-1) p^(m-k) (1-p)^(m-k) [p^(2k-m-1) - (1-p)^(2k-m-1)]
+>= 0 for p >= 1/2 (S179 SCI #8: the bracket was written [(p/(1-p))^(2k-m-1) - 1], which drops a (1-p)^(2k-m-1) factor; the
+sign and every number are unchanged; identity checked symbolically for m = 3..11; ``power_monotone_in_delta`` checks the
+monotonicity on the grid and a unit test runs it). ``power`` counts rejections on either side, including the wrong
+direction {b <= m - k} (y better). On the planning grid (n 30 / 60, d 0.2-0.5) that share is below 1e-6 at each MDE and at
+most 0.013 at the smallest gap (delta 0.005); a one-sided H1 claim needs the b >= k side only. The discrete-test sawtooth is
 in the number of discordant pairs m (``conditional_power``: e.g. 0.449 at m = 6, 0.393 at m = 7 for delta 0.3, d 0.4), not
 in delta; averaged over m ~ Bin(n, d) the planning-grid power was non-decreasing in n for n = 5..80 (checked S178). The MDE
 is therefore the first grid point reaching the target power (grid step ``MDE_STEP`` = 0.005); the
