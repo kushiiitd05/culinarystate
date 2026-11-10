@@ -49,3 +49,9 @@ def test_evd_repro_record_lists_live_inputs_and_the_v2_coverage_outputs():
     cov = [o for o in m.OUTPUTS if "coverage" in o]
     assert cov and all("_v2." in o for o in cov)
     assert m.RECORD_NAMES == ("evd_reproducibility_record_v2.json", "evd_reproducibility_record_v2.md")
+
+
+def test_foodcom_card_reads_live_inputs_and_writes_v2_names():
+    m = _load("s178_corpus_foodcom_card")
+    G.assert_not_superseded([p for p in m.SRC.values() if p.startswith("reports/")], root=ROOT)
+    assert m.OUT_NAMES == ("foodcom_data_card_v2.json", "foodcom_data_card_v2.md")
