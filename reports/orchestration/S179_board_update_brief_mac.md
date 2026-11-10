@@ -21,6 +21,9 @@ Every status below is an **agent proposal**. Items whose acceptance needs a huma
 | T8-C15-R3 (SHOULD) | DONE | RUN-S179-PIN-001: run-host digest `845dbda0…` for qwen2.5:7b-instruct on vinayak (Ollama 0.30.8) plus prompt registry sha `bc5766b7…` (`--check` clean), in the run CSV | re-check the digest at D5 run time |
 | T7-C01-R5 (SHOULD) | DONE (table); Route B host open | `reports/s179/env_inputs_three_hosts_S179.md` + Mac / vinayak JSONs (RUN-S179-ENV-001/002) | human: Route B host (Mac is the only host with every input and package) |
 | T9-C11-R1 (SHOULD) | DONE | `registry/experiments_S171_S175.csv` (288ae11) and `tests/unit/test_s179_experiments_registry.py`; EXP ids left NOT_ASSIGNED | orchestrator assigns the EXP ids |
+| T9-C11-R2 (SHOULD) | DONE (audit); CSV edit is yours | `reports/s179/run_log_gap_audit_S179.md` (6f7b5e7): 0 empty status; 12 empty hashes, all declared (3 say only "(deleted)"); 27 rows lack start / end, each with an end upper bound from the row's first commit | orchestrator: put the bounds in `notes`, or leave them |
+| T9-C30-R1 (SHOULD) | DONE (draft) | `reports/s179/dod_scorecard_S179.md` (96a58df): 38 rows; 6 MET, 21 PARTIAL, 10 NOT_MET, 1 NOT_STARTED | human read |
+| T5-C07-R5 (SHOULD) | still PARTIAL | not touched: UNIT.schema needs an additive enum (KINETIC, RATE_PER_TIME, ENERGY_PER_AMOUNT) | H4 decision, then the orchestrator mints the UNIT rows |
 
 Notes:
 - **Two findings that change the board's wording.**
@@ -28,5 +31,5 @@ Notes:
     `evidence_first_expansion` drafts hold 0 step events, so they cannot score events.
   - `tools/eval_compiler_vs_gold.py` scores the rule compiler, not the Step 17b Rung A EventGraph. Scoring Rung A
     itself needs an adapter that does not exist.
-- **Next agent items with no blocking dependency.** T9-C30-R1 (DoD scorecard) and
-  T9-C11-R2 (run-log gaps). Slides and the dry run stay paused under "core before demo".
+- **No agent item with all dependencies met is left open.** Slides, the report skeleton and the dry run stay paused
+  under "core before demo". Everything else waits on a human act: signatures, the D5 freeze, H4/H8 decisions, reads.
