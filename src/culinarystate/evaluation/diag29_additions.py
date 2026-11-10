@@ -42,10 +42,19 @@ def diag29_models() -> list[Model]:
     return [*all_models(), B2IngredientMean()]
 
 
+def usable(s: Split) -> bool:
+    return len(s.train) > 0 and len(s.test) > 0
+
+
 def diag29_splits(df: pd.DataFrame, seed: int = 7) -> tuple[list[Split], list[str]]:
     base, notes = all_splits(df, seed)
+    notes = list(notes)
     at = next((i for i, s in enumerate(base) if s.name == "study_disjoint"), len(base))
-    return [*base[:at], food_group_disjoint(df, seed), *base[at:]], notes
+    fg = food_group_disjoint(df, seed)
+    if df["food_group"].astype(str).nunique() < 3 or not usable(fg):
+        notes.append("food_group_disjoint: NOT POSSIBLE (fewer than 3 food groups or an empty fold) — not reported")
+        return base, notes
+    return [*base[:at], fg, *base[at:]], notes
 
 
 def _fit_pred(model: Model, train: pd.DataFrame, test: pd.DataFrame) -> np.ndarray:
@@ -69,6 +78,9 @@ def _clusters(te: pd.DataFrame) -> tuple[list[str], str]:
 def contrast_on(df: pd.DataFrame, splits: Iterable[Split], *, n_resamples: int = 2000) -> dict:
     out: dict[str, Any] = {}
     for s in splits:
+        if not usable(s):
+            out[s.name] = {"refused": ["EMPTY_FOLD: train or test is empty"]}
+            continue
         te, l_d2 = _losses(D2ProcessMean, df, s)
         _, l_b2 = _losses(B2IngredientMean, df, s)
         cl, ckey = _clusters(te)
@@ -110,7 +122,7 @@ def cap_sensitivity(df: pd.DataFrame, seed: int = 7, *, caps: Sequence[float] = 
     for c in caps:
         d = with_cap(df, c)
         per: dict[str, Any] = {}
-        for s in splits:
+        for s in (x for x in splits if usable(x)):
             te_cap = d.iloc[s.test]["censored"].to_numpy(dtype=bool)
             row = {}
             for m in diag29_models():
@@ -178,8 +190,9 @@ def duplicate_control(df: pd.DataFrame, seed: int = 7, *, n_resamples: int = 200
     rows: dict[str, Any] = {}
     for s in duplicate_aware_splits(df, seed):
         plain = base[s.name.replace("_dupsafe", "")]
-        rows[plain.name] = {way: {k: _r(_losses(cls, df, sp)[1].mean()) for k, cls in names}
+        rows[plain.name] = {way: ({k: _r(_losses(cls, df, sp)[1].mean()) for k, cls in names} if usable(sp)
+                                  else "NOT_POSSIBLE")
                             for way, sp in (("as_split", plain), ("duplicate_groups_in_one_fold", s))}
-    safe_s3 = [s for s in duplicate_aware_splits(df, seed) if s.name == "matrix_disjoint_dupsafe"]
+    safe_s3 = [s for s in duplicate_aware_splits(df, seed) if s.name == "matrix_disjoint_dupsafe" and usable(s)]
     return {"n_groups": g["n_groups"], "rows_in_groups": g["rows_in_groups"], "share_of_rows": g["share_of_rows"],
             "mae": rows, "contrast_matrix_disjoint_dupsafe": contrast_on(df, safe_s3, n_resamples=n_resamples)}
