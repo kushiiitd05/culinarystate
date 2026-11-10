@@ -1355,3 +1355,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `registry/evidence/aa_licence_checks_D085_v1.csv; tools/aa_pilot_fit.py; tests/unit/test_s179_aa_fit_delegate.py; reports/step10/aa_pilot_model_a_fit_D085.json; DECISIONS.md`
 - **Verified:** AA fit tests 14 passed; fit sha256 b9247db0
 - **Next:** SIM-VAL extraction in a separate session given only the fit hash; human browser download of the 5 PDFs
+
+### S198 · 2026-11-11 00:34 IST · DEL-5 · D5 ladder on vinayak GPU, scored: H1 and H3 RULE_NOT_MET (D-092); A2 full census
+- **Who:** Kush+Claude (Mac, vinayak)
+- **Did:** D5 runner + e5 cache (GPU) + relatives; supplementary freeze 10b (scorer inputs); 346 answers; H1 B4=B1=B2=0.25 (n=24, 4 discordant); H3 sign test 16-0 p=3e-5 but B7 P3 abstention 0/10 < B2 3/10 -> RULE_NOT_MET; audit skipped (cannot change verdict). A2 full non-BBC: ungated DIRECT 267,933 -> DIRECT 30,220 + CONTEXT_MISMATCH 224,240
+- **Files:** `tools/s179_d5_{run_rungs`, `embed_cache`, `relatives}.py; registry/freezes/D5-BENCH-2026-11-10b.json; reports/del5/d5_runs_v1_D085.*; reports/del5/d5_score_v1_D085/*; reports/step23/router_demo_census_vitc_nonBBC_full_S179_cmon.json; DECISIONS.md`
+- **Verified:** runner tests 4 passed; guard ok; RUN-S179-D5-001, RUN-S179-ROUTER-009
+- **Next:** examine why B7 does not abstain on P3; SIM-VAL extraction in a separate session
