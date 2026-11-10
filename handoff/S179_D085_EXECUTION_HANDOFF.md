@@ -21,20 +21,19 @@ evidence); the v4 FAIL stays. Fallback wording: Bagler permission "as stated by 
 1. **DONE:** 29-diag ran (RUN-S179-DIAG29-001, G15-R PASS; `reports/step29/diag/diag_results_S179.{json,md}`). Still to do: split the memo into the four prereg files if wanted. Original item: when the run finishes, log a compute_runs row and commit the output. Write the four memos (T6-C03-R4):
    every number labelled DIAGNOSTIC / BOOTSTRAP_UNVERIFIED / NON_CITABLE / NO_HUMAN_SIGNOFF_D085, none of the words
    "supported", "beats" or "validated", and the D7 = D1 explanation.
-2. **07A-R1:** record it as NOT_RUN under D-085 (WORKLOG plus the brief). Do not label anything.
-3. **#8, #9, A4:** append these to DECISIONS as D-085 delegate entries; the text is in
-   `handoff/S179_KUSH_OWN_COMMIT_BLOCK.md`, with the approver replaced by `ksh+prv (AI, D-085)`.
-4. **H8 scope-cut table** (each cut, its report wording, evidence path), then a D-085 lock.
-5. **A2:** the CONTEXT_MISMATCH route, test-first (router census `mechanism/router_census.py`, `evidence_gates.py`);
-   re-run the census, sample 1,000 then full non-BBC on vinayak, BBC on the Mac, with old and new DIRECT side by side.
-6. **D5:**
-   - draft the U (5 ingredient substitution, seeded) and X (3 food-safety with gold REFUSE, plus 2 out-of-scope or
-     vague) questions. Do NOT run the router on drafts; set gold_branch by intent;
-   - ksh/prv review all 100 + U/X (KEEP/EDIT/DROP);
-   - S gold is written by the personas, labelled `AI_DRAFTED_GOLD` (`gold_origin` is not HUMAN_BLIND, so H1 is
-     labelled not independent);
-   - freeze: the record approvals use the delegate (`frozen_guard` still needs the delegate added, test-first);
-   - run the B0-B7 ladder on vinayak and score H1 / H3 / D4 (`evaluation/d5_scoring.py`), all labelled.
+2. **DONE (S192):** 07A-R1 recorded NOT_RUN under D-085 (WORKLOG). Brief still to update.
+3. **DONE:** D-086 (crosswalk freeze), D-087 (FORM- prefix, schemas), D-088 (persona line as amended).
+4. **DONE:** `registry/h8_scope_cut_register_v1.csv`, D-089 binds its sha256.
+5. **DONE except full non-BBC:** CONTEXT_MISMATCH (opt-in) + census flag; 1,000 non-BBC and BBC full on the Mac;
+   `reports/s179/a2_context_mismatch_census_S179.md`. **Still to run on vinayak:** `nice -n 10 python tools/router_demo_census.py
+   --seed 20261104 --sample-size 700000 --workers 32 --families WIKIBOOKS GUTENBERG_SEGMENT FOODCOM TASTESET --gates on
+   --context-mismatch-route --out reports/step23/router_demo_census_vitc_nonBBC_full_S179_cmon.json` (bundle code first).
+6. **D5:** review + gold + freeze **DONE** (D-090, `registry/freezes/D5-BENCH-2026-11-10.json`, n = 74). **Next:**
+   build the rung runner that writes B0/B1/B2/B4/B5/B7/B5T answers on the frozen benchmark (`evaluation/h1_rungs.py`
+   for S contexts, e5 revision `f169b11e…`, qwen2.5:7b-instruct `845dbda0…`, temperature 0, seed 7, num_predict 200),
+   test it on the synthetic fixture, run on vinayak, then `tools/s178_d5_score.py --freeze-record ... --h3-option H3-A
+   --sidedness two-sided`. H3 claim audit sheets labelled by the personas (AI labels). No code in SCORER_CODE may change
+   after the freeze (guard pins it); a change needs a dated amendment and a new freeze.
 7. **AA:**
    - try to fetch the 5 PDFs (AAK-02, 04, 05, 08, 10) with the browser tool and read each licence page; drop any
      paper that is not CC-BY or CC0;
