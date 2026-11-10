@@ -86,3 +86,29 @@ def test_context_mismatch_never_upgrades_and_only_replaces_unknown():
                     assert x["route"] == y["route"]
                 if x["route"] != EG.NOT_APPLICABLE:
                     assert EG.ROUTE_STRENGTH[x["route"]] <= EG.ROUTE_STRENGTH[x["route_ungated"]]
+
+
+def _census_tool():
+    import importlib.util
+    from pathlib import Path
+    root = Path(__file__).resolve().parents[2]
+    spec = importlib.util.spec_from_file_location("router_demo_census", root / "tools/router_demo_census.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def test_census_cli_flag_is_recorded_and_needs_gates(tmp_path):
+    import json
+    import pytest
+    from tests.unit import test_s171_router_census as S1
+    tool = _census_tool()
+    (tmp_path / "missing.jsonl").write_text("")
+    src = lambda families, root: iter(S1.records())  # noqa: E731
+    base = ["--seed", "7", "--sample-size", "6", "--root", str(tmp_path), "--no-baseline-check",
+            "--evd", str(tmp_path / "missing.jsonl"), "--context-mismatch-route"]
+    out = tmp_path / "on.json"
+    assert tool.main([*base, "--out", str(out)], record_source=src) in (0, 3)
+    assert json.loads(out.read_text())["gates"]["context_mismatch_route"] is True
+    with pytest.raises(SystemExit):
+        tool.main([*base, "--out", str(tmp_path / "off.json"), "--gates", "off"], record_source=src)
