@@ -1,0 +1,27 @@
+{
+ "end": "2026-11-10T12:13:24Z",
+ "git_commit": "440dbeb",
+ "host": "manjot",
+ "lock_file": "reports/s179/env_lock/manjot_S179.txt",
+ "lock_sha256": "f4061401f9b22c2f73801d57ee03939e44032c6b7153db0ff81631529d8f96aa",
+ "n_packages": 19,
+ "note": "T6-C19-R1; local install paths redacted",
+ "record": "ENV_LOCK_SMOKE_S179",
+ "seconds": 1,
+ "smoke": {
+  "culinarystate.evaluation.bakeoff": "OK",
+  "culinarystate.evaluation.diag29_additions": "OK",
+  "culinarystate.evaluation.diag29_runner": "OK",
+  "culinarystate.evaluation.freeze_records": "OK",
+  "culinarystate.transition.baselines": "OK",
+  "culinarystate.transition.splits": "OK",
+  "pkg:hypothesis": "NOT_INSTALLED",
+  "pkg:numpy": "1.26.4",
+  "pkg:pandas": "2.1.4",
+  "pkg:scipy": "1.17.1",
+  "pkg:sklearn": "NOT_INSTALLED",
+  "python": "3.12.3"
+ },
+ "start": "2026-11-10T12:13:23Z",
+ "transition_tests": "3 failed, 53 passed in 1.00s"
+}
