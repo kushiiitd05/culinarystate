@@ -21,6 +21,8 @@ SEAL_COMMITMENT = "reports/step15/15a_R_seal_commitment_v1.json"
 PREREG = "reports/step29/29diag_preregistration_DRAFT.md"
 PREREG_SIGNATURE = "reports/step29/29diag_prereg_signature.json"
 HUMANS = ("Kush Tokas", "Parv Goyal")
+AI_DELEGATE = "ksh+prv (AI, D-085)"      # D-085: AI personas act on the humans' behalf, under their own name only
+APPROVERS = (*HUMANS, AI_DELEGATE)
 
 
 def _sha(p: Path) -> str:
@@ -61,7 +63,7 @@ def freeze_problems(root: Path | str, snapshot_id: str) -> list[str]:
     probs = []
     if rec.get("status") != "FROZEN":
         probs.append("NOT_APPROVED")
-    if rec.get("approved_by") not in HUMANS or not rec.get("approved_date"):
+    if rec.get("approved_by") not in APPROVERS or not rec.get("approved_date"):
         probs.append("NO_HUMAN_APPROVAL")
     now = _hashes(root)
     if not rec.get("ledger_sha256") or any(now.get(k) != v for k, v in rec["ledger_sha256"].items()):
@@ -84,4 +86,25 @@ def prereg_signed(root: Path | str) -> bool:
         s = json.loads(sig.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return False
-    return s.get("signed_by") in HUMANS and bool(s.get("signed_date")) and s.get("prereg_sha256") == _sha(pre)
+    return s.get("signed_by") in APPROVERS and bool(s.get("signed_date")) and s.get("prereg_sha256") == _sha(pre)
+
+
+def _kind(who) -> str | None:
+    return "HUMAN" if who in HUMANS else ("AI_DELEGATED_D085" if who == AI_DELEGATE else None)
+
+
+def approval_kind(root: Path | str, snapshot_id: str) -> str | None:
+    """HUMAN, AI_DELEGATED_D085 or None for a freeze record's approver."""
+    p = Path(root) / FREEZE_DIR / f"{snapshot_id}.json"
+    try:
+        return _kind(json.loads(p.read_text(encoding="utf-8")).get("approved_by"))
+    except (OSError, ValueError):
+        return None
+
+
+def prereg_signer_kind(root: Path | str) -> str | None:
+    p = Path(root) / PREREG_SIGNATURE
+    try:
+        return _kind(json.loads(p.read_text(encoding="utf-8")).get("signed_by"))
+    except (OSError, ValueError):
+        return None
