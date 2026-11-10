@@ -233,6 +233,8 @@ def route_text(raw: str, *, index: EvidenceIndex, target_svar: str, locale: str 
                 item["reasons"] = [*gate.reasons, *reasons]
                 if gate.not_applicable:
                     item["route"] = EG.NOT_APPLICABLE
+                else:
+                    item["route"] = gates.context_route(gate, item["route"])     # S179 A2 (opt-in)
                 if gate.not_applicable or gate.withheld:
                     item["evidence"], item["evidence_not_applied"] = [], hits
                 else:
