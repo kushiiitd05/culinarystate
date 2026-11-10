@@ -1271,3 +1271,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `src/culinarystate/lineage/seal_integrity.py; tools/s179_seal_integrity_check.py; reports/s179/{seal_integrity_check_S179.json`, `env_inputs_check_mac_S179.json`, `env_inputs_check_vinayak_S179.json`, `env_inputs_three_hosts_S179.md`, `run_log_gap_audit_S179.md`, `dod_scorecard_S179.md}; registry/compute_runs_v1.csv; reports/orchestration/S179_board_update_brief_mac.md`
 - **Verified:** seal tests + 15a.R tests 54 passed; prompt registry --check clean; no private IP in committed host JSONs
 - **Next:** Humans: Route B host, H4 UNIT schema enum, licence paragraph read, NEG/DoD reads, D-008 merge, D5 signatures and freeze
+
+### S186 · 2026-11-10 16:23 IST · M8 · D-079: S179 drafts accepted; kinetic units minted into UNIT
+- **Who:** Kush+Claude (Mac)
+- **Did:** Recorded D-079 (Kush read and accepted S179 drafts; H4 additive UNIT enum). UNIT schema unit_type += KINETIC, dimension += RATE_PER_TIME, ENERGY_PER_AMOUNT; 11 kinetic rows minted UNIT-000075..085 via LedgerStore (first 74 rows byte-identical); kcal/mol no factor, calorie rows NEEDS_SOURCE, defined factors only as si_factor_exact (MEASURED label removed); kinetic_unit_registry reads ledger ids; S178 tests updated to the post-D-079 schema
+- **Files:** `DECISIONS.md; src/culinarystate/ledgers/registry.py; ledgers/schemas/UNIT.schema.json; ledgers/data/{UNIT`, `_ids}.jsonl; src/culinarystate/mechanism/kinetic_unit_registry.py; tools/s179_mint_kinetic_units.py; tests/unit/test_s179_unit_kinetic_ledger.py; tests/unit/test_s178_aasim_units.py`
+- **Verified:** full Mac suite 5,405 passed, 1 skipped, 0 failed (23 min); new + S178 unit tests 44 passed
+- **Next:** Humans: D5 prereg signatures + freeze (unblocks B0-B7 and H1 runs), D-008 merge, Route B host, calorie convention
