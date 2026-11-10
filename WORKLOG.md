@@ -1278,3 +1278,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `DECISIONS.md; src/culinarystate/ledgers/registry.py; ledgers/schemas/UNIT.schema.json; ledgers/data/{UNIT`, `_ids}.jsonl; src/culinarystate/mechanism/kinetic_unit_registry.py; tools/s179_mint_kinetic_units.py; tests/unit/test_s179_unit_kinetic_ledger.py; tests/unit/test_s178_aasim_units.py`
 - **Verified:** full Mac suite 5,405 passed, 1 skipped, 0 failed (23 min); new + S178 unit tests 44 passed
 - **Next:** Humans: D5 prereg signatures + freeze (unblocks B0-B7 and H1 runs), D-008 merge, Route B host, calorie convention
+
+### S187 · 2026-11-10 17:15 IST · M8 · D-080..D-082: persona choice items, prereg amendments in place, G23.2 property test
+- **Who:** Kush+Claude (Mac)
+- **Did:** Sorted the 52 human-blocked MUST items under D-071 and the persona line: 17 pack choice items decided by ksh/prv (D-080) plus D-008 merge and Route B=Mac (Kush); D5 amendment options G-A/K1/H3-A/F1 (D-081), D-D5-6 sidedness left to humans (one-sided would loosen); 29-diag and AA options (D-082). Applied the three S178 amendments in place to the DRAFT preregs (checkers bind those paths) with tools/s179_apply_prereg_amendments.py (base from git at the named sha256; --check); withdrew the separate D5 v2 file. G23.2 property test 10,500 queries 0 failing (RUN-S179-PROP-001). Signatures, freezes, labels, verification and human facts NOT done
+- **Files:** `DECISIONS.md; tools/s179_apply_prereg_amendments.py; reports/{del5/d5_benchmark`, `step29/29diag`, `step10/aa_pilot}_preregistration_DRAFT.md; registry/transition_ladder_crosswalk_v1.csv; tests/unit/test_s179_prereg_amendments_applied.py; reports/orchestration/S179_board_update_brief_mac.md`
+- **Verified:** prereg-related tests 214 passed; --check OK for D5, D29, AA; no signature file exists
+- **Next:** Agent: 29-diag code for K-A/S-A/contrast/cap/duplicates (test-first). Humans: D-D5-6, #2 07.A ruling, all signatures, freeze approvals, labels, PDFs, reviews
