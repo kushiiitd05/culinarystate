@@ -5,7 +5,7 @@ figures are written as plain SVG (light surface, explicit background, thin marks
 numbers behind every figure are written to a CSV next to it.
 
 Status marker (GOV-8): a CSV cannot carry a status line safely, so the status of every CSV written here
-(fig1..3 .csv) is the one stated at the top of the sibling ``corpus_can_say_v1.md`` (AI_DRAFTED / PROPOSED, counts only,
+(fig1..3 .csv) is the one stated at the top of the sibling ``corpus_can_say_v2.md`` (``_v1`` before S179) (AI_DRAFTED / PROPOSED, counts only,
 NON_CITABLE). Every SVG carries ``AI_DRAFTED`` in its ``<desc>`` element; the JSON carries a top-level ``status`` key.
 """
 from __future__ import annotations
@@ -22,6 +22,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import s178_analysis_corpus_can_say as T  # noqa: E402
 
 OUT = "reports/s178/analysis"
+# S179: v2 names (physics v06 inputs); the v1 files stay on record, so a re-run never overwrites them.
+OUT_JSON, OUT_MD = "corpus_can_say_v2.json", "corpus_can_say_v2.md"
+FIG_NAMES = ("fig1_heat_time_temperature_joint_v2", "fig2_foodcom_heat_inputs_by_family_v2", "fig3_foodcom_top_unknown_reasons_v2")
 SURFACE, INK, INK2, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#e4e3df"
 BLUE_RAMP = ["#184a8c", "#2a78d6", "#7fb0ea", "#c4dcf6"]   # sequential, one hue, dark -> light
 NEUTRAL = "#cfcec9"
@@ -286,7 +289,7 @@ def render(root: Path, agg_path: Path) -> int:
     f1 = stacked_bars("What the recipe text gives a heat event: time t and temperature T",
                       f"Exclusive classes, share of heat events per source (L1 TEXT_STATED, {T.LAYER_TAG} records, reconciled to the census JSONs)",
                       rows, cl_names, BLUE_RAMP + [NEUTRAL])
-    figs.append(("fig1_heat_time_temperature_joint", f1, csv1))
+    figs.append((FIG_NAMES[0], f1, csv1))
     # F2 FOODCOM heat families x measures
     measures = [("t stated (value or range)", "t_stated"), ("T stated in the recipe text", "T_text_stated"), ("T bound (text, carried, definition)", "T_any_bound"),
                 ("t and T both in the text", "both_text"), ("medium known (process definition)", "medium"),
@@ -300,7 +303,7 @@ def render(root: Path, agg_path: Path) -> int:
     f2 = grouped_bars("Food.com heat events: which inputs the text binds, by process family",
                       f"Share of events in each L1 process family ({T.LAYER_TAG}; {fam_n})",
                       groups, list(T.HEAT_FAMILIES), CAT)
-    figs.append(("fig2_foodcom_heat_inputs_by_family", f2, csv2))
+    figs.append((FIG_NAMES[1], f2, csv2))
     # F3 top UNKNOWN reasons per family (heat: L2 missing inputs; non-heat: L1 reasons) Food.com
     items, csv3 = [], [["layer", "family", "reason", "events", "pct_of_family_events"]]
     for f in T.HEAT_FAMILIES:
@@ -321,7 +324,7 @@ def render(root: Path, agg_path: Path) -> int:
             csv3.append(["nonheat_L1", f, k, v, P(v, evf.get(f, 0))])
     f3 = hbars("Food.com: top UNKNOWN reasons per process family",
                f"Heat: inputs missing on SCENARIO_UNKNOWN events (L2 {T.LAYER_TAG}). Non-heat: L1 UNKNOWN reason codes. % of that family's events.", items)
-    figs.append(("fig3_foodcom_top_unknown_reasons", f3, csv3))
+    figs.append((FIG_NAMES[2], f3, csv3))
     out["figures"] = []
     for name, svg, rows_ in figs:
         (out_dir / f"{name}.svg").write_text(svg, encoding="utf-8")
@@ -334,13 +337,13 @@ def render(root: Path, agg_path: Path) -> int:
         "Gas mark: an event whose L1 record keeps an oven_setpoint_code with no converted temperature (the L1 layer does not convert a gas mark; every such event has T UNKNOWN).",
         "Medium is bound mostly from the process definition (basis PROCESS_DEFINITION: a verb such as fry or simmer implies it), not from a medium named in the recipe text; see the input_basis block of each census file.",
         "Piece size class comes from the cut history of the food (CUT_HISTORY), not from a size stated at the heat step.",
-        "TASTEset has no step lists (0 heat events). BBC is not in these tables: its only heat L1 census (binding_census_L1_A1_full_S173.json, binder 0.1.0) is superseded by the S178 v04 temperature-ownership rule and registered in registry/superseded_outputs_S176.csv; BBC records are not on this server (D-003), so the v04 re-run is pending on the Mac.",
+        "TASTEset has no step lists (0 heat events). BBC is not in these tables: its v06 censuses (binding_census_L1_A1_full_S179_v06.json and siblings) and records exist only on the Mac (D-003); this tool runs where the non-BBC records are.",
         f"Inputs: every census file is {T.LAYER_TAG} (FIX-GOV repoint; the first build of this table read the superseded S176 v02 / S176 / S177 v03 files) and no input is listed in registry/superseded_outputs_S176.csv (checked before reading).",
         "The Layer-2 columns are SCENARIO values (ASSUMED_DEFAULT, MODEL_DERIVED, NON_CITABLE); they are shown only for their UNKNOWN reasons.",
         "Reconciliation: derived totals equal the committed census totals for every source (heat events, duration, temperature, medium, size, lid, start mode, water ratio, matrix class, gas mark, driver-bounded, L2 status; non-heat events).",
     ]
-    (out_dir / "corpus_can_say_v1.json").write_text(json.dumps(out, indent=1, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "corpus_can_say_v1.md").write_text(markdown(out, B, heat_src, heat_joint, heat_fam, by_proc, l2, nh_src, nh_fam), encoding="utf-8")
+    (out_dir / OUT_JSON).write_text(json.dumps(out, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / OUT_MD).write_text(markdown(out, B, heat_src, heat_joint, heat_fam, by_proc, l2, nh_src, nh_fam), encoding="utf-8")
     print(json.dumps({"reconciliation": out["reconciliation"]["status"], "errors": out["reconciliation"]["errors"][:5]}))
     return 0 if not B["errors"] else 3
 
@@ -366,27 +369,27 @@ def markdown(out, B, heat_src, heat_joint, heat_fam, by_proc, l2, nh_src, nh_fam
         L.append(f"| {SRC_LABEL[s]} | `{r['census_path'].split('/')[-1]}` | {n:,} | {P(r['duration_stated'], n)} % | {P(r['temperature_text_stated'], n)} % | "
                  f"{P(r['temperature_any'], n)} % | {both} | {P(r['driver_bounded_events'], n)} % | {P(r['duration_range'], n)} / {P(r['temperature_range'], n)} % | "
                  f"{r['gas_mark_only_events']:,} | {P(r['medium_known'], n)} % | {P(r['piece_size_known'], n)} % |")
-    L += ["", "TASTEset: 0 heat events (no step lists). BBC: no v04 heat L1 census on this server (the S173 file is superseded; Mac re-run pending, D-003). Medium is bound on most events only through the process definition; size class only through the cut history.", "",
+    L += ["", "TASTEset: 0 heat events (no step lists). BBC: v06 censuses exist only on the Mac (D-003), not on this server. Medium is bound on most events only through the process definition; size class only through the cut history.", "",
           "## 2. Joint time and temperature (exclusive classes, % of heat events; figure 1)", "",
           "| source | t and T in text | t in text, T carried or defined | t only | T known, t unknown | neither |", "|---|---:|---:|---:|---:|---:|"]
     for s, j in heat_joint.items():
         n = j["n"]
         L.append(f"| {SRC_LABEL[s]} ({n:,}) | {P(j['t_and_T_text'], n)} | {P(j['t_and_T_carried_or_definition_only'], n)} | {P(j['t_only_T_unknown'], n)} | {P(j['T_known_t_unknown'], n)} | {P(j['neither'], n)} |")
-    L += ["", "![fig1](fig1_heat_time_temperature_joint.svg)", "",
+    L += ["", f"![fig1]({FIG_NAMES[0]}.svg)", "",
           "## 3. Heat events by source and process family (L1 families; % of the family's events)", "",
           "| source | family | events | t stated | T text | T bound | t and T text | medium | size class | lid | start mode |", "|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|"]
     for k, r in heat_fam.items():
         s, f = k.split("|")
         p = r["pct"]
         L.append(f"| {SRC_LABEL[s]} | {f} | {r['events']:,} | {p['t_stated']} | {p['T_text_stated']} | {p['T_any_bound']} | {p['both_text']} | {p['medium']} | {p['size']} | {p['lid']} | {p['start']} |")
-    L += ["", "![fig2](fig2_foodcom_heat_inputs_by_family.svg)", "",
+    L += ["", f"![fig2]({FIG_NAMES[1]}.svg)", "",
           "## 4. Food.com heat events by process (top 15 PROC by events)", "",
           "| PROC | name | L1 family | events | t stated | T text | T bound | t and T text | gas mark | size class |", "|---|---|---|---:|---:|---:|---:|---:|---:|---:|"]
     fc = sorted(((k, r) for k, r in by_proc.items() if k.startswith("FOODCOM|")), key=lambda kv: -kv[1]["events"])[:15]
     for k, r in fc:
         p = r["pct"]
         L.append(f"| {k.split('|')[1]} | {r['proc_canonical_name']} | {r['l1_family']} | {r['events']:,} | {p['t_stated']} | {p['T_text_stated']} | {p['T_any_bound']} | {p['both_text']} | {r['gas_mark_only']} | {p['size']} |")
-    L += ["", "All sources and all processes are in `corpus_can_say_v1.json` under `heat.derived_by_process`.", "",
+    L += ["", f"All sources and all processes are in `{OUT_JSON}` under `heat.derived_by_process`.", "",
           f"## 5. Non-heat families (Food.com, {T.LAYER_TAG} L1 records; % of the family's events)", "",
           "| family | events | t stated (value, range, bound) | t value or range | events with a temperature input | T stated (of those) | t and T both (of those) | size class known (of applicable) |",
           "|---|---:|---:|---:|---:|---:|---:|---:|"]
@@ -397,7 +400,7 @@ def markdown(out, B, heat_src, heat_joint, heat_fam, by_proc, l2, nh_src, nh_fam
         p = r["pct"]
         nz = lambda v: "n/a" if v is None else v  # noqa: E731
         L.append(f"| {f} | {r['events']:,} | {p['t_stated_incl_bounds']} | {p['t_measured_or_range']} | {r['temperature_applicable_events']:,} | {nz(p['T_stated_of_applicable'])} | {nz(p['both_of_applicable'])} | {nz(p['size_known_of_applicable'])} |")
-    L += ["", "Other sources are in `corpus_can_say_v1.json` under `nonheat.derived_by_source_and_family`. n/a = the family has no such input (cut, mix, separate, rest carry no medium temperature; size class is not defined for mixing, separating or storing).", "",
+    L += ["", f"Other sources are in `{OUT_JSON}` under `nonheat.derived_by_source_and_family`. n/a = the family has no such input (cut, mix, separate, rest carry no medium temperature; size class is not defined for mixing, separating or storing).", "",
           "## 6. Per-family top UNKNOWN reasons (Food.com; figure 3)", "",
           f"Heat families, Layer 2 {T.LAYER_TAG} (`{T.DERIVED}/{T.HEAT_L2_DIR}`, status counts equal `{T.heat_l2_paths()['FOODCOM'].split('/')[-1]}`): the inputs missing on SCENARIO_UNKNOWN events.", "",
           "| family | events | SCENARIO_COMPUTED | SCENARIO_UNKNOWN | UNSUPPORTED_MEDIUM | top missing inputs (events, % of family events) |", "|---|---:|---:|---:|---:|---|"]
@@ -419,7 +422,7 @@ def markdown(out, B, heat_src, heat_joint, heat_fam, by_proc, l2, nh_src, nh_fam
             L.append(f"| {f} | {evf.get(f, 0):,} | (no UNKNOWN reason code in the L1 file; see the L2 missing reasons below) |")
             continue
         L.append(f"| {f} | {evf.get(f, 0):,} | " + "; ".join(f"{k} {v:,} ({P(v, evf.get(f, 0))} %)" for k, v in reasons.most_common(3)) + " |")
-    L += ["", "![fig3](fig3_foodcom_top_unknown_reasons.svg)", "",
+    L += ["", f"![fig3]({FIG_NAMES[2]}.svg)", "",
           f"Non-heat Layer 2 {T.LAYER_TAG} missing reasons (committed `{T.nh_l2_paths()['FOODCOM'].split('/')[-1]}`, `counts.missing_reasons`):", ""]
     mr = ((B["n2_census"].get("FOODCOM") or {}).get("counts") or {}).get("missing_reasons") or {}
     for f in sorted(mr):
