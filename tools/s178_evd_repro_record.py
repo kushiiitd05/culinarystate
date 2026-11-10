@@ -30,9 +30,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from s178_evd_common import DEFAULT_OUT, ROOT, dumps, md_table, protected_hashes, sha256_file, write_new_or_same  # noqa: E402
 
-TOOL_VERSION = "s178-evd-repro-record-0.1.1-draft"   # 0.1.1 (FIX-GOV): full router census input S176 -> S177
+TOOL_VERSION = "s178-evd-repro-record-0.2.0-draft"   # 0.2.0 (S179): router census S177 -> S179b, can_say + coverage v2; 0.1.1 (FIX-GOV): S176 -> S177
 CARD_TOOL = "tools/s178_analysis_evd_card.py"
 CARD_FILES = ("evd_dataset_card_v1.json", "evd_dataset_card_v1.md")
+RECORD_NAMES = ("evd_reproducibility_record_v2.json", "evd_reproducibility_record_v2.md")   # S179: v1 kept on record
 CARD_DIR = "reports/s178/analysis"
 CODE = ("tools/s178_evd_common.py", "tools/s178_evd_conformance.py", "tools/s178_evd_export_repro.py", "tools/s178_evd_svar_reconcile.py", "tools/s178_evd_coverage.py",
         "tools/s178_evd_transition_audit.py", "tools/s178_evd_d5_ux_draft.py", "tools/s178_evd_repro_record.py", CARD_TOOL, "tools/step08a_export_v2.py",
@@ -42,20 +43,20 @@ CODE = ("tools/s178_evd_common.py", "tools/s178_evd_conformance.py", "tools/s178
 INPUTS = ("ledgers/data/EVD.jsonl", "ledgers/data/COND.jsonl", "ledgers/data/SRC.jsonl", "ledgers/data/MEAS.jsonl", "ledgers/data/SNAP.jsonl", "ledgers/data/SVAR.jsonl",
           "ledgers/data/PROC.jsonl", "ledgers/data/ING.jsonl", "registry/svar_duplicate_mapping_v1.csv", "registry/state_variable_registry_v1.csv", "registry/baseline_ledger_hashes_08a_v1.csv",
           "exports/lineage/step08a_v1/keys.jsonl", "exports/evd/evd_export_v1.manifest.json", "exports/lineage/step08a_v1/evd_export_v2.manifest.json",
-          "reports/step15/15a_R_seal_commitment_v1.json", "reports/step23/router_demo_census_vitc_nonBBC_full_S177.json", "reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json",
-          "reports/s178/analysis/corpus_can_say_v1.json")
+          "reports/step15/15a_R_seal_commitment_v1.json", "reports/step23/router_demo_census_vitc_nonBBC_full_S179b.json", "reports/step23/router_demo_census_vitc_nonBBC_1000_S179b.json",
+          "reports/s178/analysis/corpus_can_say_v2.json")
 OUTPUTS = ("evd_field_conformance_203_2_v1.json", "evd_field_conformance_203_2_v1.csv", "evd_field_conformance_203_2_v1.md", "evd_export_repro_check_v1.json", "evd_export_repro_check_v1.md",
-           "svar_reconciliation_v1.json", "svar_reconciliation_v1.md", "evd_coverage_vs_corpus_demand_v1.json", "evd_coverage_vs_corpus_demand_v1.csv", "evd_coverage_vs_corpus_demand_v1.md",
-           "fig_evd_coverage_by_family_v1.svg", "transition_no_imputation_audit_v1.json", "d5_UX_blocks_S178_DRAFT.csv", "d5_UX_blocks_S178_DRAFT.md")
+           "svar_reconciliation_v1.json", "svar_reconciliation_v1.md", "evd_coverage_vs_corpus_demand_v2.json", "evd_coverage_vs_corpus_demand_v2.csv", "evd_coverage_vs_corpus_demand_v2.md",
+           "fig_evd_coverage_by_family_v2.svg", "transition_no_imputation_audit_v1.json", "d5_UX_blocks_S178_DRAFT.csv", "d5_UX_blocks_S178_DRAFT.md")
 RUNS = [
     ("EVD-1", "T2-C01-R2", "python tools/s178_evd_export_repro.py", "evd_export_repro_check_v1.{json,md}", "rebuild EVD export v1 and v2 (08a.7) in scratch dirs, compare with recorded sha256; two fresh v2 builds + a correctly-rounded-log variant"),
     ("EVD-2", "T2-C01-R1", "python tools/s178_evd_conformance.py [--selfcheck]", "evd_field_conformance_203_2_v1.{json,csv,md}", "203.2 field-by-field conformance of the 17,978 ACTIVE rows"),
     ("EVD-3", "T2-C03-R3", "python tools/s178_evd_svar_reconcile.py [--selfcheck]", "svar_reconciliation_v1.{json,md}", "SVAR lines / distinct ids / registry rows / EVD usage"),
-    ("EVD-4", "T2-C13-R1", "python tools/s178_evd_coverage.py --sample-size 1000 --workers 4 [--selfcheck]", "evd_coverage_vs_corpus_demand_v1.{json,csv,md}, fig_evd_coverage_by_family_v1.svg",
+    ("EVD-4", "T2-C13-R1", "python tools/s178_evd_coverage.py --sample-size 1000 --workers 4 [--selfcheck]", "evd_coverage_vs_corpus_demand_v2.{json,csv,md}, fig_evd_coverage_by_family_v2.svg",
      "EVD pair coverage vs corpus demand; seeded 1,000-recipe non-BBC sample through the unchanged router"),
     ("EVD-5", "T6-C09-R2", "python tools/s178_evd_transition_audit.py [--selfcheck]", "transition_no_imputation_audit_v1.json", "real cell tables built with the unmodified transition.dataset; imputation violations counted"),
     ("EVD-6", "T8-C20-R4", "python tools/s178_evd_d5_ux_draft.py", "d5_UX_blocks_S178_DRAFT.{csv,md}", "draft U and X blocks (ledger facts re-read and asserted)"),
-    ("EVD-7", "T2-C15-R4", "python tools/s178_evd_repro_record.py", "evd_reproducibility_record_v1.{json,md}", "this record; reruns the dataset-card tool and compares its hash"),
+    ("EVD-7", "T2-C15-R4", "python tools/s178_evd_repro_record.py", "evd_reproducibility_record_v2.{json,md}", "this record; reruns the dataset-card tool and compares its hash"),
 ]
 
 
@@ -101,7 +102,7 @@ def build(root: Path, scratch: Path, out_dir: Path) -> dict:
                             "libm_note": "math.log on this glibc differs from the correctly rounded value in the last digit for 4 log_fold_change cells of the export (see evd_export_repro_check_v1)",
                             "git_head": git_head(root), "tree_state": "uncommitted changes present (worktree)"},
             "seeds": {"coverage_sample": {"seed_sha256": hashlib.sha256(b"20261104").hexdigest(), "rule": "SHA256_SEED_CONCAT_RECIPE_ID_ASC", "sample_size": 1000,
-                                          "families": ["WIKIBOOKS", "GUTENBERG_SEGMENT", "FOODCOM", "TASTESET"], "same_sample_as": "reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json"},
+                                          "families": ["WIKIBOOKS", "GUTENBERG_SEGMENT", "FOODCOM", "TASTESET"], "same_sample_as": "reports/step23/router_demo_census_vitc_nonBBC_1000_S179b.json"},
                       "other_runs": "none: the other evidence-plane runs are deterministic functions of the ledgers (no random draw)",
                       "tests": "property tests use random.Random(seed) for seeds 0..39 (fixed in the test file)"},
             "splits": {"built_by_this_lane": 0, "note": "no train / test split is built or read here; split registry: registry/split_registry_v1.csv (EVAL lane)"},
@@ -125,16 +126,16 @@ def render_md(d: dict) -> str:
         md_table(["card file", "committed sha256", "rerun sha256", "equal"], crow), "",
         "## Environment", "", f"- python {env['python']} ({env['implementation']}), {env['platform']}; packages {env['packages']}; git HEAD {env['git_head']} (+ uncommitted worktree changes).",
         f"- {env['libm_note']}.", "",
-        "## Seeds and splits", "", f"- Coverage sample: seed sha256 `{d['seeds']['coverage_sample']['seed_sha256']}`, rule {d['seeds']['coverage_sample']['rule']}, n = 1,000, non-BBC families; same sample as the committed S177 router census.",
+        "## Seeds and splits", "", f"- Coverage sample: seed sha256 `{d['seeds']['coverage_sample']['seed_sha256']}`, rule {d['seeds']['coverage_sample']['rule']}, n = 1,000, non-BBC families; same sample as the committed S179b router census.",
         f"- {d['seeds']['other_runs']}.", f"- {d['seeds']['tests']}.", f"- Splits: {d['splits']['note']}.", "",
         "## Runs", "", md_table(["run", "item", "command", "outputs"], runs), "",
-        "## Hashes", "", "Code, input and output sha256 are in `evd_reproducibility_record_v1.json` (`code_sha256`, `input_sha256`, `output_sha256`). The record does not hash itself.", ""])
+        "## Hashes", "", f"Code, input and output sha256 are in `{RECORD_NAMES[0]}` (`code_sha256`, `input_sha256`, `output_sha256`). The record does not hash itself.", ""])
 
 
 def run(out_dir: Path, scratch: Path, root: Path = ROOT) -> dict:
     d = build(root, scratch, out_dir)
-    return {"json_sha256": write_new_or_same(out_dir / "evd_reproducibility_record_v1.json", dumps(d)),
-            "md_sha256": write_new_or_same(out_dir / "evd_reproducibility_record_v1.md", render_md(d)), "card_reproduced": d["dataset_card_rerun"]["all_equal"]}
+    return {"json_sha256": write_new_or_same(out_dir / RECORD_NAMES[0], dumps(d)),
+            "md_sha256": write_new_or_same(out_dir / RECORD_NAMES[1], render_md(d)), "card_reproduced": d["dataset_card_rerun"]["all_equal"]}
 
 
 def main(argv=None) -> int:
