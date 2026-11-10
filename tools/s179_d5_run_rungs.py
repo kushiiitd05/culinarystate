@@ -59,6 +59,23 @@ def e5_embedder(device: str = "cuda") -> Callable[[list[str]], list[list[float]]
     return embed
 
 
+def cached_embedder(path: Path) -> Callable[[list[str]], list[list[float]]]:
+    """Vectors from ``tools/s179_d5_embed_cache.py`` (same model, revision, pooling); a missing text raises."""
+    import s179_d5_embed_cache as EC
+    doc = json.loads(Path(path).read_text(encoding="utf-8"))
+    if (doc.get("model"), doc.get("revision")) != (E5, E5_REV):
+        raise SystemExit("embed cache is not e5-large-v2 at the pinned revision")
+    vec = doc["vectors"]
+
+    def embed(texts: list[str]) -> list[list[float]]:
+        keys = [EC.key("query: ", texts[0])] + [EC.key("passage: ", t) for t in texts[1:]]
+        missing = [k for k in keys if k not in vec]
+        if missing:
+            raise KeyError(f"{len(missing)} text(s) not in the embed cache")
+        return [vec[k] for k in keys]
+    return embed
+
+
 def s_records(row: dict, steps: list[str], *, embed, generate, lex) -> list[dict]:
     from culinarystate.evaluation import d5_scoring as DS
     from culinarystate.evaluation import h1_rungs as H
@@ -122,6 +139,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--model", default=MODEL)
     ap.add_argument("--device", default="cuda")
+    ap.add_argument("--embed-cache", help="vectors from tools/s179_d5_embed_cache.py (torch-less hosts)")
     ap.add_argument("--blocks", nargs="+", default=None, help="smoke runs only: subset of blocks (new --out)")
     a = ap.parse_args(argv)
     from culinarystate.decision.query_router import route
@@ -145,11 +163,13 @@ def main(argv: list[str] | None = None) -> int:
     ctx = (lex, RL.EvidenceRetriever(evd, cond, fam), RL.load_requirements(st), fam, RL.SupportIndex(evd),
            RL.TroubleshootIndex.from_registry(ROOT))
     steps = {json.loads(x)["qid"]: json.loads(x)["steps"] for x in Path(a.s_context).read_text().splitlines() if x}
-    embed = e5_embedder(a.device) if any(r["block"] in ("S1", "S2") for r in rows) else None
+    need = any(r["block"] in ("S1", "S2") for r in rows)
+    embed = (cached_embedder(Path(a.embed_cache)) if a.embed_cache else e5_embedder(a.device)) if need else None
     gen = lambda p: generate(p, a.model)  # noqa: E731
     head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     meta = {"record": "D5_RUN_META", "freeze_id": chk["freeze_id"], "freeze_record_sha256": chk["freeze_record_sha256"],
             "signoff": chk.get("signoff"), "git_commit": head, "model": a.model, "embed": [E5, E5_REV],
+            "embed_cache_sha256": hashlib.sha256(Path(a.embed_cache).read_bytes()).hexdigest() if a.embed_cache else None,
             "labels": list(LABELS)}
     out.with_suffix(".meta.json").write_text(json.dumps(meta, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     with out.open("x", encoding="utf-8") as fh:
