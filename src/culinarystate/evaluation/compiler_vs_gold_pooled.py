@@ -8,6 +8,8 @@ label basis (D-017, D-060).
 """
 from __future__ import annotations
 
+import hashlib
+import random
 from collections import Counter
 from typing import Iterable, Mapping, Sequence
 
@@ -97,3 +99,54 @@ def score_set(docs: Sequence[Mapping], reg_names: set[str], *, label_basis: str)
     return {"n_recipes": len(docs), "label_basis": label_basis, "independent": False,
             "contains_ids": False, "contains_text": False, "interval": "Wilson 95% on pooled counts",
             "levels": levels}
+
+
+def _type_counts(doc: Mapping, reg_names: set[str]) -> tuple[Counter, Counter]:
+    gold = to_events(doc)
+    pred = _build("P", doc, reg_names)
+    g = Counter(type(e).__name__ for e in gold if not isinstance(e, Add))
+    p = Counter(type(e).__name__ for e in pred if not isinstance(e, Add))
+    return g, p
+
+
+def _ratio(num: int, den: int) -> float | None:
+    return round(num / den, 4) if den else None
+
+
+def type_table(docs: Sequence[Mapping], reg_names: set[str], *, label_basis: str, n_boot: int = 2000,
+               seed: str = "s179-type-table") -> dict:
+    """Per event type at level P: gold count, predicted count, matched = sum over recipes of min(gold, pred), with
+    precision / recall intervals from a bootstrap that resamples whole recipes (cluster bootstrap). Counts only."""
+    if not docs:
+        raise ValueError("empty gold set")
+    per = [_type_counts(d, reg_names) for d in docs]
+    types = sorted(set().union(*(set(g) | set(p) for g, p in per)))
+
+    def totals(rows):
+        out = {}
+        for t in types:
+            g = sum(r[0][t] for r in rows)
+            p = sum(r[1][t] for r in rows)
+            m = sum(min(r[0][t], r[1][t]) for r in rows)
+            out[t] = (g, p, m)
+        return out
+
+    rng = random.Random(int(hashlib.sha256(seed.encode()).hexdigest(), 16))
+    boots = [totals([per[rng.randrange(len(per))] for _ in per]) for _ in range(n_boot)]
+
+    def ci(t, idx):
+        vals = sorted(v for v in ((b[t][2] / b[t][idx]) if b[t][idx] else None for b in boots) if v is not None)
+        if not vals:
+            return None
+        return [round(vals[int(0.025 * (len(vals) - 1))], 4), round(vals[int(0.975 * (len(vals) - 1))], 4)]
+
+    tot = totals(per)
+    rows = {}
+    for t in types:
+        g, p, m = tot[t]
+        rows[t] = {"gold": g, "pred": p, "matched": m, "precision": _ratio(m, p), "recall": _ratio(m, g),
+                   "precision_ci95": ci(t, 1) if p else None, "recall_ci95": ci(t, 0) if g else None}
+    return {"n_recipes": len(docs), "label_basis": label_basis, "independent": False, "level": "P",
+            "matching": "per recipe, matched = min(gold count, predicted count) for the type (count match, no alignment)",
+            "bootstrap": {"unit": "recipe", "n": n_boot, "seed": seed, "interval": "percentile 95%"},
+            "contains_ids": False, "contains_text": False, "types": rows}
