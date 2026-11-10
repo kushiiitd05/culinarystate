@@ -18,7 +18,7 @@ evidence); the v4 FAIL stays. Fallback wording: Bagler permission "as stated by 
 
 ## Next, in order
 
-1. **29-diag:** when the run finishes, log a compute_runs row and commit the output. Write the four memos (T6-C03-R4):
+1. **DONE:** 29-diag ran (RUN-S179-DIAG29-001, G15-R PASS; `reports/step29/diag/diag_results_S179.{json,md}`). Still to do: split the memo into the four prereg files if wanted. Original item: when the run finishes, log a compute_runs row and commit the output. Write the four memos (T6-C03-R4):
    every number labelled DIAGNOSTIC / BOOTSTRAP_UNVERIFIED / NON_CITABLE / NO_HUMAN_SIGNOFF_D085, none of the words
    "supported", "beats" or "validated", and the D7 = D1 explanation.
 2. **07A-R1:** record it as NOT_RUN under D-085 (WORKLOG plus the brief). Do not label anything.
