@@ -134,3 +134,27 @@ AI_DRAFTED (D-071). Appended by lane FIX-EVAL after the SCI-B review finding B5;
   cells = MEASURED + CENSORED rows in all three families; y_train = y or y_lower everywhere. The totals equal v1.
   The builder's exclusion counts are now in the output per family (520 rows, all NO_RETENTION_VALUE).
 - v1 (`transition_no_imputation_audit_v1.json`, sha256 `f63daf3b…`) is kept as history and superseded by v2.
+
+## S179 correction (router census 0.4.1, 2026-11-10)
+
+**Coverage table (T2-C13-R1).** `tools/s178_evd_coverage.py` 0.3.0 reads `corpus_can_say_v2.json` (physics v06) and the
+router census 0.4.1 (`router_demo_census_vitc_nonBBC_{full,1000}_S179b.json`); the S177 0.3.0 census and can-say v1 are
+superseded. Re-run on manjot, seed 20261104, 4 workers (RUN-S179-ANA6-003): the sample reproduces the committed S179b
+1,000-sample census (items 57,511; events 15,326; pairs 12,501), and the EVD pair counts equal the router census. The
+statement is unchanged (338 pairs, 12,501 sample pairs, 111 with EVD, 63.47 % of 4,724,493 events, 102 of 115 vitamin-C
+pairs). Only the last column (vitamin-C DIRECT items, gated) changes, from the 0.4.x router gates:
+
+| family | S177 (0.3.0) | S179b (0.4.1) |
+|---|---:|---:|
+| DRY_HEAT | 11,925 | 8,234 |
+| FAT_HEAT | 8,237 | 7,518 |
+| WET_HEAT | 7,117 | 6,557 |
+| HEAT_GENERAL | 7,795 | 6,811 |
+| COOLING | 83 | 68 |
+| PRESERVATION | 854 | 255 |
+| MECHANICAL_MIX | 4,297 | 777 |
+| all | 40,308 | 30,220 |
+
+New files `evd_coverage_vs_corpus_demand_v2.{json,csv,md}`, `fig_evd_coverage_by_family_v2.svg`; v1 kept on record.
+`tools/s178_evd_repro_record.py` 0.2.0 (inputs S179b census, can-say v2, coverage v2) re-run (RUN-S179-ANA6-004): the
+dataset card rerun reproduces the committed hash; record `evd_reproducibility_record_v2.{json,md}`.
