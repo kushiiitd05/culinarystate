@@ -35,4 +35,4 @@ point; MDE table identical v1 -> v2; heat statuses unchanged.
 | 5 A2 residual | FIXED, tests first | size words dropped before lookup; item-match `any_form` = its parent family (always contains the item) |
 | 6 split-sum vacuous | NOTED | CORPUS correction section: SPLIT_FRACTIONS_EXCEED_ONE is NOT_CHECKABLE_ON_CORPUS (0 checkable groups) |
 | 7 MECH SR "0" | OPEN, needs a human ruling | renaming the reason / treating analytical 0 as below reporting limit changes MECH semantics |
-| 8 power docstring | OPEN (cosmetic) | no number affected |
+| 8 power docstring | FIXED (docstring only) | 4add9ba: bracket [p^(2k-m-1) - (1-p)^(2k-m-1)] with factor m (checked symbolically m = 3..11); wrong-direction rejections stated: below 1e-6 at each planning MDE, at most 0.013 at delta 0.005 (the review's 0.002 holds only near the MDE); no number changed |
