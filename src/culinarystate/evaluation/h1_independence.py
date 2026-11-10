@@ -34,8 +34,8 @@ from culinarystate.evaluation import d5_state as DS
 from culinarystate.evaluation import h1_rungs as H
 from culinarystate.evaluation.paired_stats import wilson
 
-VERSION = "h1_independence@0.2"
-GOLD_ORIGINS = ("ENGINE_DRAFT", "HUMAN_AFTER_SEEING_ENGINE", "HUMAN_BLIND")
+VERSION = "h1_independence@0.3"
+GOLD_ORIGINS = ("ENGINE_DRAFT", "HUMAN_AFTER_SEEING_ENGINE", "HUMAN_BLIND", "AI_DRAFTED_GOLD")   # S179: D-085 AI gold
 LABELS = ("INDEPENDENT_GOLD", "PARTLY_INDEPENDENT", "CIRCULAR_SELF_CONSISTENCY_ONLY", "REFUSED_GOLD_PROVENANCE_CONFLICT")
 BLIND_GOLD_SOURCE = "BLIND_HUMAN"
 BLIND_ANSWER_PREFIX = "blind_answer"          # e.g. blind_answer_r1 / blind_answer_r2 on the blind-first sheet (amendment C4)
@@ -95,6 +95,10 @@ def gold_origin_detail(row: Mapping[str, Any]) -> tuple[str, str]:
     blind_evidence = source == BLIND_GOLD_SOURCE and filled and seen in _FALSE
     if explicit in ("ENGINE_DRAFT", "HUMAN_AFTER_SEEING_ENGINE"):
         return explicit, "EXPLICIT_DOWNGRADE"
+    if explicit == "AI_DRAFTED_GOLD":                 # S179 D-085: written by the AI personas; never HUMAN_BLIND
+        if source == BLIND_GOLD_SOURCE:
+            raise GoldOriginRefused(qid, "AI_DRAFTED_GOLD_WITH_GOLD_SOURCE_BLIND_HUMAN")
+        return "AI_DRAFTED_GOLD", "EXPLICIT_AI_DELEGATE_D085"
     if source == BLIND_GOLD_SOURCE and not filled:
         raise GoldOriginRefused(qid, "GOLD_SOURCE_BLIND_HUMAN_WITHOUT_A_FILLED_BLIND_ANSWER")
     if explicit == "HUMAN_BLIND":
