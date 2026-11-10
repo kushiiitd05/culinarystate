@@ -54,8 +54,8 @@ that pointed at v04 now point at the live v05 file, with the old target kept in 
 
 - **v04 per-record files under `data/derived/` on manjot are NOT deleted.** The brief allows it after v05 validates; it is
   irreversible and left for Kush to approve. Directories: `physical_*_S178v04*`, `physical_NH_*_S178v04*`.
-- `tools/s178_analysis_corpus_can_say.py` and `tools/s178_evd_coverage.py` still name v04 / S177 inputs, which are now
-  registered as superseded; re-point them to v05 / S179 before their next run (the guard refuses superseded inputs).
+- `tools/s178_analysis_corpus_can_say.py` and `tools/s178_evd_coverage.py` named v04 / S177 inputs: re-pointed to v06 /
+  router 0.4.1 and re-run in S179 (v2 outputs; `S178_ANALYSIS_report.md` and `S178_EVD_report.md`, S179 corrections).
 - MECH on v05: run in S179 (see `S178_FIX-ROUTER_report.md` §5).
 - Short re-review (one GOV, one SCI pass): done S179, `reports/orchestration/review/S179_REV_{GOV,SCI}.md`; it led to v06 (§5).
 
