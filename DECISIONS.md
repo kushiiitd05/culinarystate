@@ -661,3 +661,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Decision:** AI personas (ksh, prv) may tighten, defer, withdraw or refuse; they may not loosen a signed gate. Under D-085 they perform approvals and locks on Kush and Parv's behalf, always as `ksh+prv (AI, D-085)` and never under a human name. Agreement between ksh and prv is not inter-rater evidence, so independent-labelling gates (07.A-R1, 07I-C, G08-H, G21.6, G23 case labels) are not passed by them: such a gate is NOT_RUN, or its output is labelled AI. A file written by an AI and not signed by a human is a "dated AI draft".
 - **Label:** `NO_HUMAN_SIGNOFF_D085`.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-089 · 2026-11-10 · H8 scope-cut register signed (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** pack item #18 (consensus 6.2 #18, T9-C07-R4); ksh/prv verdict "OK in principle, after the table lands" (verdict sheet item 6); D-084 item 6; D-085.
+- **Decision:** the H8 scope-cut register `registry/h8_scope_cut_register_v1.csv` (sha256 `4108c54f1b92a003357ee60aa2b32bd4049c40549b0a3f1c8774c5f6bf475a0b`, 11 rows) is signed as written. D2 is reported as DIAGNOSTIC only; the full H2 test, H4, Steps 20/28/33/34, FlavorTwin and SSOT Levels 10-11 are DECLARED_NOT_RUN before the talk; the D3 gold of 40 recipes and the 8-scenario demo are reported as "not delivered at this scale". Each row carries its report wording and a repo evidence path.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
