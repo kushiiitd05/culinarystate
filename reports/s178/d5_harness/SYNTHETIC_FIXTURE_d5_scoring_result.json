@@ -2351,11 +2351,13 @@
   "gold_independence": {
    "by_block": {
     "S1": {
+     "AI_DRAFTED_GOLD": 0,
      "ENGINE_DRAFT": 0,
      "HUMAN_AFTER_SEEING_ENGINE": 0,
      "HUMAN_BLIND": 3
     },
     "S2": {
+     "AI_DRAFTED_GOLD": 0,
      "ENGINE_DRAFT": 0,
      "HUMAN_AFTER_SEEING_ENGINE": 0,
      "HUMAN_BLIND": 3
@@ -2372,7 +2374,7 @@
    "not_independent_qids": [],
    "refused": {},
    "rule": "only gold_origin HUMAN_BLIND is independent of the engine run: the scored gold comes from a filled blind-answer column (gold_source BLIND_HUMAN) answered from the recipe text with seen_system_output false; a KEEP / EDIT of an engine draft is HUMAN_AFTER_SEEING_ENGINE",
-   "version": "h1_independence@0.2"
+   "version": "h1_independence@0.3"
   },
   "metric": "h1_mcnemar",
   "n_questions": 6,
