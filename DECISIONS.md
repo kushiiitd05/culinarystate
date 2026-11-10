@@ -629,3 +629,17 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
   Their text is in `handoff/S179_KUSH_OWN_COMMIT_BLOCK.md`.
 - **Signatures:** Kush reports the preregistrations "checked and reviewed" by him and Parv. A signature exists only as the signer's own committed signature file (`tools/human_sign.py`). None is in the repository at entry time, and none is written by the agent.
 - **Approver:** Kush (Parv relayed by Kush).
+
+### D-085 · 2026-11-10 · Human gates replaced by ksh/prv AI delegation for the rest of the project (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10: "do ti all of it and connitu working plese remove th oshuman aggrement and keep working wer are stoppr adn o have othe thigas well use ksh an prv for any matter on our behalf dont bother".
+- **Decision:** the remaining human acts are performed by ksh and prv (AI personas, one model) on Kush and Parv's behalf. This covers pre-registration locks, freeze approvals, review and adjudication sheets, gold drafting, row verification, licence page checks, audits, the H8 register and the pack items that waited on a human commit (#8 crosswalk freeze, #9 FORM- prefix and FORM / PARAM / VAL schema freeze, A4).
+- **How it is recorded, so the record stays true:**
+  - Every such act names the approver `ksh+prv (AI, D-085)`, never "Kush Tokas" or "Parv Goyal". No human signature file is written.
+  - Every output that would have rested on a human act carries `NO_HUMAN_SIGNOFF_D085`. The report states which gates were AI-delegated (T9-C07-R3).
+  - Gold or verification made by the personas is labelled AI (for example S gold `AI_DRAFTED_GOLD`, H1 not INDEPENDENT_GOLD; CAL rows `AI_VERIFIED_NOT_HUMAN`).
+- **Kept, because no delegation can change what a number means:**
+  - **07.A-R1 is not attempted** (07A option D). Agreement between two personas of one model is not inter-rater evidence. The v4 FAIL stays on record.
+  - Failed gates are never erased. UNKNOWN stays UNKNOWN. No invented scientific values.
+  - **Facts only a person knows** use the fallback wording: Prof. Bagler's permission "as stated by Kush; no written copy"; outside reviewer "author-only review (AI-delegated)".
+- **Supersedes:** for this project, the "may not sign" clause of the persona line (A4 text, D-071 limits) where it concerns approvals. The personas still never act or write under a human's name.
+- **Approver:** Kush.
