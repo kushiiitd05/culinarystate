@@ -94,3 +94,29 @@ on Kush's chat instruction, as D-069 / D-070 were. If A4 is adopted, Kush should
 - **No MUST item is now open to agents alone.** Every remaining one waits on a signature, a freeze, human labelling,
   review or verification, the 5 PDFs, or a human fact.
 - **Kush asked for all of it to be completed through ksh and prv. That was refused for those acts (D-071).**
+
+## Round 5 (2026-11-10): agent items after D-083
+
+**Proposed DONE:**
+- **T6-C19-R1 (MUST):** an environment lock, smoke import and transition tests on the Mac, manjot and vinayak, all at
+  `440dbeb` (`reports/s179/env_lock/`, RUN-S179-ENV-003..005).
+  - Mac 56 / 56 and vinayak 56 / 56 pass.
+  - manjot: 53 pass and 3 fail, because sklearn is not installed and no installs are allowed (D-080 #20).
+- **T6-C02-R2:** the "test_transition hang" is not reproduced. The file takes 3 s on the Mac and at most 41 s on any
+  host.
+- **T9-C24-R1:** `reports/final/RELEASE_CARD.md` (SSOT 257A.16, 5 artefacts, UNKNOWN where unknown).
+- **T7-C22-R1 and T7-C20-R1:** `reports/step35/35h_decision_record_level{12,13}_v1.md`. Every SSOT box has a status
+  and evidence; "learned rungs deferred; entry rule LR-1..LR-5" is stated in both.
+- **T4-C11-R3:** already met by the v06 non-heat runs (RUN-S179-PHYS6-012..015, BBC6-003).
+
+**Infrastructure:**
+- `tools/human_sign.py` is for the signers only; the agent never runs it.
+- The KGE schema JSON was regenerated from the registry, and `test_s179_schemas_match_registry` prevents future drift.
+- manjot and vinayak copies were updated by bundle to `440dbeb`.
+
+**Open design item, not built:** scoring the Rung A EventGraph against the gold-1.0 sets needs a documented mapping
+from EngineEvent kinds to gold event types. That is a design choice, so it was not invented here.
+
+**Signatures:** Kush reported "all signed and passed ok by Parv". No signature file exists in any branch, and the
+15A-BOOT freeze is still PROPOSED. Each signer runs `tools/human_sign.py` in their own session and commits the
+result. The Parv files must come from Parv.
