@@ -681,3 +681,12 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
   - Review and the H3 claim audit are by the personas, so neither is inter-rater evidence; the audit labels are AI labels.
 - **Label:** `NO_HUMAN_SIGNOFF_D085`.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-091 · 2026-11-10 · AA pilot: licence checks, CAL pre-check and Model A fit (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085; AA prereg (locked, `reports/step10/aa_pilot_prereg_lock_D085.json`) §3, §4, §6.
+- **Licences** (`registry/evidence/aa_licence_checks_D085_v1.csv`): CC BY confirmed on the publisher page for AAK-01, AAK-06 (SIM-CAL) and AAK-03, AAK-07 (SIM-VAL, licence line only, text not opened). AAK-09 (HTTP 403) and AAK-11 (TLS certificate not verifiable, not bypassed) could not be confirmed; AAK-12 not checked. AAK-02, 04, 05, 08 and 10 stay NOT_ACQUIRED: their sites refuse scripted downloads and the agent does not work around site checks (prereg §3), so a human browser download is still needed.
+- **CAL pre-check** (sheet `annotation/aa_pilot/aa_pilot_verify_CAL_v1_D085.csv`, Mac-only): all 16 spans found verbatim in the paper text and every PDF sha256 matches. AAK-01 and AAK-06 rows VERIFIED; AAK-09 and AAK-11 rows REJECTED for the unconfirmed licence (the prereg requires page confirmation; a persona may not loosen it). Status `AI_PRECHECKED`, never HUMAN_VERIFIED.
+- **Firewall:** the SIM-VAL PDFs AAK-03, 07 and 12 were moved out of `data/raw/aa_pilot/` before the fit, sha256 recorded (`416081ff…`, `d6c3d67c…`, `66278e39…`). They were moved by the fitting agent itself, so this is location separation, not separation of persons. SIM-VAL extraction must run in a separate session given only the fit hash.
+- **Fit:** `reports/step10/aa_pilot_model_a_fit_D085.json` (sha256 `b9247db0…`), Model A shared Ea with paper intercepts, 7 K_AT_T rows from 2 papers (70-95 °C), Ea 64.4 kJ/mol (SE 10.4), dof 4. Labels: AI_DELEGATED_D085, NO_HUMAN_SIGNOFF_D085, AI_PRECHECKED, PILOT_MODEL_ASSISTED, NOT_VALIDATED / RESEARCH_ONLY. Two papers is the minimum the fitter accepts; between-paper SD rests on two intercepts.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
