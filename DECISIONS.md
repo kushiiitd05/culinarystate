@@ -643,3 +643,21 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
   - **Facts only a person knows** use the fallback wording: Prof. Bagler's permission "as stated by Kush; no written copy"; outside reviewer "author-only review (AI-delegated)".
 - **Supersedes:** for this project, the "may not sign" clause of the persona line (A4 text, D-071 limits) where it concerns approvals. The personas still never act or write under a human's name.
 - **Approver:** Kush.
+
+### D-086 · 2026-11-10 · Freeze the mode-to-§141 crosswalk (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** pack item #8 (consensus 6.2 #8, REV-A V5/N5); ksh/prv verdict OK (S179 verdict sheet item 2); Kush OK'd the verdict (D-084) and delegated the commit (D-085).
+- **Decision:** the mode-to-§141 crosswalk is frozen as written: DIRECT/INTERPOLATE -> evidence_supported (tagged E3_UNVERIFIED + COND_UNAUDITED_07A, with an EVD id); SIMULATE/SCENARIO/QUALITATIVE -> physically_possible; UNKNOWN/ASK/ABSTAIN -> unsupported. Caveat in force until the CONTEXT_MISMATCH route lands (A2, D-084): DIRECT means "a table row exists for this pair", not "the value applies to this food in this context".
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-087 · 2026-11-10 · Formula id prefix FORM-; FORM, PARAM and VAL schemas frozen (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** pack item #9 (consensus 6.2 #9); ksh/prv verdict OK (item 3); D-084, D-085.
+- **Decision:** formula ids use the prefix FORM- (not MODEL-). The FORM, PARAM and VAL schemas (`registry/schemas/{FORM,PARAM,VAL}.draft_v1.schema.json`) are frozen before PARAM minting. Reason: keeps formula records out of the ML model-card namespace.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-088 · 2026-11-10 · D-071 addendum: the AI-persona line, as amended by D-085 (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** pack item A4 (REV-B B2.1/B2.3/G-03); ksh/prv verdict OK (item 9); D-084, D-085.
+- **Decision:** AI personas (ksh, prv) may tighten, defer, withdraw or refuse; they may not loosen a signed gate. Under D-085 they perform approvals and locks on Kush and Parv's behalf, always as `ksh+prv (AI, D-085)` and never under a human name. Agreement between ksh and prv is not inter-rater evidence, so independent-labelling gates (07.A-R1, 07I-C, G08-H, G21.6, G23 case labels) are not passed by them: such a gate is NOT_RUN, or its output is labelled AI. A file written by an AI and not signed by a human is a "dated AI draft".
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
