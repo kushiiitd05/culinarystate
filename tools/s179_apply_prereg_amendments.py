@@ -19,7 +19,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-SCRIBE_LINE = ("as chosen in D-080 / D-081 / D-082 (ksh and prv, AI under D-071; not a human sitting)")
+SCRIBE_LINE = ("as chosen in D-080 to D-083 (ksh and prv, AI under D-071; not a human sitting)")
 
 
 def _d5_fix(t: str) -> str:
@@ -43,17 +43,20 @@ def _d5_fix(t: str) -> str:
         ('amended before any signature with the S178 options the\n9-10 Nov sitting chose (',
          'amended before any signature with the S178 options\n('),
         ('_AMENDMENT_S178_DRAFT.md`). Until both humans sign', '_AMENDMENT_S178_DRAFT.md`) ' + SCRIBE_LINE +
-         '; D-D5-6 (sidedness) is still open for the humans. Until both humans sign'),
+         '; D-D5-6 (sign-test sidedness) is two-sided (D-083). Until both humans sign'),
     ]
     for a, b in rep:
         t = t.replace(a, b)
     for tag in ('BGE', 'K2', 'F2', 'G-B'):
         t = re.sub(r' \[' + tag + r': [^\]]*\]', '', t)
     t = re.sub(r'\n\[G-B\] [^\n]*(?:\n(?![A-Z\[]|Every|P and)[^\n]*)*', '', t)
-    side = 'i.e. at least 5 of 5, 6 of 6, 7 of 7 or 7 of 8, 8 of 9, 9 of 10 [one-sided, `alternative="greater"`] | 6 of 6,'
-    if side in t:
-        t = t.replace(side, '**[OPEN, D-D5-6: sidedness is a human choice (D-081); the lock may not be issued until one '
-                            'option is deleted]** ' + side)
+    side = ('i.e. at least 5 of 5, 6 of 6, 7 of 7 or 7 of 8, 8 of 9, 9 of 10 [one-sided, `alternative="greater"`] | 6 of 6,\n'
+            '    7 of 7, 8 of 8, 8 of 9, 9 of 10 [two-sided]. Fewer than 5 [one-sided] or 6 [two-sided] such questions: "cannot\n'
+            '    be shown at this n".')
+    if t.count(side) != 1:
+        raise SystemExit("D5: sidedness text not found exactly once")
+    t = t.replace(side, 'two-sided (`alternative="two-sided"`; D-D5-6, D-083), i.e. at least 6 of 6, 7 of 7, 8 of 8, 8 of 9,\n'
+                        '    9 of 10. Fewer than 6 such questions: "cannot be shown at this n".')
     return t
 
 
@@ -88,7 +91,7 @@ DOCS = {
                base_sha="53ad89b7c13db57800e4546efb2ccfe29cdb2ef617b49c462c8b78f51415aa6b", base_commit="d2edac2",
                pair=(7, 8), fix=_d5_fix,
                must_not=('[S60]', '[S30]', '[K2', '[G-B', '[BGE', '[F2', '[E5]', '[K1]', '[F1]', '[G-A]', '[H3-A]',
-                         '<commit hash', '<sha256, filled', '<integer', '9-10 Nov sitting')),
+                         '<commit hash', '<sha256, filled', '<integer', '9-10 Nov sitting', '[one-sided', 'OPEN, D-D5-6')),
     "D29": dict(draft="reports/step29/29diag_preregistration_DRAFT.md",
                 amend="reports/step29/29diag_preregistration_AMENDMENT_S178_DRAFT.md",
                 base_sha="b78704aeab3b4177ed3fea4f5b130e36a5cc2bdac06f371cee0e2965bd03f2a3", base_commit="1bcabf7",
