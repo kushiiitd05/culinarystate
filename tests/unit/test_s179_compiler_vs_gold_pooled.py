@@ -42,3 +42,17 @@ def test_output_is_counts_only():
 def test_empty_set_refused():
     with pytest.raises(ValueError):
         P.score_set([], REG, label_basis="TEST")
+
+
+def test_type_table_counts_and_cluster_bootstrap():
+    t = P.type_table([white_sauce(), white_sauce()], REG, label_basis="TEST", n_boot=200, seed="t")
+    assert t["n_recipes"] == 2 and t["bootstrap"]["unit"] == "recipe"
+    for typ, row in t["types"].items():
+        assert row["matched"] <= min(row["gold"], row["pred"])
+        for k in ("precision", "recall"):
+            if row[k] is not None:
+                lo, hi = row[k + "_ci95"]
+                assert 0.0 <= lo <= hi <= 1.0
+    one = P.type_table([white_sauce()], REG, label_basis="TEST", n_boot=50, seed="t")
+    assert all(t["types"][k]["gold"] == 2 * one["types"][k]["gold"] for k in one["types"])
+    assert P.type_table([white_sauce()], REG, label_basis="TEST", n_boot=50, seed="t") == one
