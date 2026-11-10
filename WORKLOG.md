@@ -1285,3 +1285,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `DECISIONS.md; tools/s179_apply_prereg_amendments.py; reports/{del5/d5_benchmark`, `step29/29diag`, `step10/aa_pilot}_preregistration_DRAFT.md; registry/transition_ladder_crosswalk_v1.csv; tests/unit/test_s179_prereg_amendments_applied.py; reports/orchestration/S179_board_update_brief_mac.md`
 - **Verified:** prereg-related tests 214 passed; --check OK for D5, D29, AA; no signature file exists
 - **Next:** Agent: 29-diag code for K-A/S-A/contrast/cap/duplicates (test-first). Humans: D-D5-6, #2 07.A ruling, all signatures, freeze approvals, labels, PDFs, reviews
+
+### S188 · 2026-11-10 17:37 IST · M8 · D-083 two-sided H3 test; 29-diag pre-registered additions coded
+- **Who:** Kush+Claude (Mac)
+- **Did:** D-083 (ksh/prv, tightening): D5 H3 sign test two-sided; prereg rebuilt, no open option. 29-diag code per the amended prereg: B2IngredientMean (TB-V0 B-2, not in DEL-2 all_models), S-5 food_group_disjoint split, D2-vs-B2 paired cluster contrast (S-3/S-4/S-6, K_min 10, ONE_LINEAGE_CLUSTER fallback), cap sensitivity 0.95/0.975/1.0, imputation-duplicate groups + duplicate-safe S-2/S-3; runner wired; crosswalk XW-04/XW-05 updated. Declined to have personas sign, freeze, label or verify (D-071)
+- **Files:** `src/culinarystate/transition/{baselines`, `splits}.py; src/culinarystate/evaluation/{diag29_additions`, `diag29_runner}.py; tests/unit/test_s179_diag29_additions.py; registry/transition_ladder_crosswalk_v1.csv; tools/s179_apply_prereg_amendments.py; reports/del5/d5_benchmark_preregistration_DRAFT.md; DECISIONS.md`
+- **Verified:** 410 passed across transition/diag/bakeoff/crosswalk tests; prereg --check OK; no-imputation guard kept (no fillna added)
+- **Next:** Humans only: #2 07.A ruling; signatures (07A-R1, AA, 29-diag, D5 x2, H8); 15A-BOOT and crosswalk freezes; 07A-R1 labels; 5 PDFs; CAL/SIM-VAL verification; D5 review; 30-claim audit; Bagler permission; calendar
