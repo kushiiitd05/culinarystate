@@ -133,11 +133,15 @@ def main(argv=None, record_source=None) -> int:
                     help="evidence gates before G0 (target presence + lot context); off = S171 behaviour")
     ap.add_argument("--presence-floor", action="append", default=[], metavar="SVAR=VALUE",
                     help="override one presence floor (sensitivity run only; recorded in the report)")
+    ap.add_argument("--context-mismatch-route", action="store_true",
+                    help="S179 A2: route withheld-by-context items CONTEXT_MISMATCH (needs --gates on)")
     ap.add_argument("--no-baseline-check", action="store_true",
                     help="skip the protected-ledger hash check (recorded in the report; tests only)")
     a = ap.parse_args(argv)
     if a.sample_size < 1 or a.workers < 1:
         ap.error("--sample-size and --workers must be positive")
+    if a.context_mismatch_route and a.gates != "on":
+        ap.error("--context-mismatch-route needs --gates on")
     if a.review_from:
         return _review_only(ap, a)
     if not a.out or not a.seed:
@@ -159,7 +163,7 @@ def main(argv=None, record_source=None) -> int:
     index = RD.EvidenceIndex.from_ledger(Path(a.evd))
     gates = None
     if a.gates == "on":
-        gates = EG.EvidenceGates.load()
+        gates = EG.EvidenceGates.load(context_mismatch_route=a.context_mismatch_route)
         for item in a.presence_floor:
             svar, _, val = item.partition("=")
             if svar not in gates.screen.floors or not val:
@@ -167,7 +171,8 @@ def main(argv=None, record_source=None) -> int:
             ck = EG.code_key(svar)
             gates = EG.EvidenceGates(gates.screen.with_floor(svar, val), provenance={
                 **gates.provenance, "floors": {**gates.provenance["floors"], ck: {
-                    **gates.provenance["floors"][ck], "value": float(val), "status": "OVERRIDE_SENSITIVITY_RUN"}}})
+                    **gates.provenance["floors"][ck], "value": float(val), "status": "OVERRIDE_SENSITIVITY_RUN"}}},
+                context_mismatch_route=a.context_mismatch_route)
     status: dict = {}
     report = RC.census_from_records(T17._stream(a.families, root, record_source or T17.corpus_records, status),
                                     seed=a.seed, size=a.sample_size, index=index, target_svar=a.target,
