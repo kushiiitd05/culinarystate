@@ -10,6 +10,27 @@ commit `ae5fc5a`); it contained stale pending/not-authorised wording superseded
 by D-035 and later takeover decisions. No historical failed gate is erased.
 
 
+## S179 update (2026-11-10, Mac + manjot + vinayak; branch `kush/s179-finish-fixes`, PR #12 on top of PR #11)
+
+Where this block and the S178 snapshot below differ, this block holds. All AI_DRAFTED; no human gate is closed here.
+
+- **M1 router:** census 0.4.0, then 0.4.1 after the S179 SCI re-review (prior-process state cues before and after the
+  food). Vitamin-C DIRECT non-BBC 40,308 (S177) -> 30,248 (0.4.0) -> **30,220** (0.4.1); BBC 1,058. Files
+  `reports/step23/router_demo_census_vitc_{nonBBC_full,BBC_full}_S179b.json`; `reports/orchestration/S178_FIX-ROUTER_report.md`.
+- **M6 demo:** the GOV-4 per-request guard is in the committed server; the S179 check on the Mac found that a local-mode
+  server answers 503 to every tunnel-like request (forwarding headers, a non-loopback Host, no Host), and that public mode
+  drops 11,928 BBC-derived KGE edges, carbon figures and typical durations, with 0 BBC substitution candidates in
+  155 swept questions (`reports/s179/public_mode_check_S179.md`). Hosting and LLM key are still undecided (A6).
+- **M9 physical layers:** FIX-PHYS v05, then **v06** after the re-review (food targets no longer bound as the medium
+  temperature), non-BBC on manjot and **BBC on the Mac (D-003), so BBC legs are done**. Schema validator 100 % on every
+  kind; heat events 1,696,743 non-BBC and 49,662 BBC, unchanged by the fixes. `reports/orchestration/S178_FIX-PHYS_report.md` §5.
+- **Re-review:** GOV and SCI passes found no blockers (`reports/orchestration/review/S179_REV_{GOV,SCI}.md`). Fixed: SCI #1,
+  #3, #4, #5, #8; noted: #6. **Open for humans:** #2 (Q1 lift gate on dilute liquids) and #7 (SR analytical zero read as ABSENT).
+- **Analysis on v06:** corpus can-say v2, EVD coverage v2, EVD reproducibility v2 and Food.com card v2; v1 kept on record.
+- **Humans next:** SCI #2 and #7; A6b hull choice; OK for F1 in `quantity/grammar.py`; verify `ing_sr_defaults_v1.csv`
+  through `reports/s179/ing_sr_review_queue_BBC.csv`; OK to delete the v04 / v05 per-record dirs on manjot; merge OK for
+  PR #11 and #12; plus the S178 list below (07.A-R1 signatures, CAL pilot, D5 freeze).
+
 ## S178 snapshot: milestones M0-M9 and what changed since S163 (supersedes the "Current stage" wording below where they differ)
 
 States are judged from repo paths on 9 Nov; each cites its evidence. "Waiting" means a human act is next; an agent cannot close it.
