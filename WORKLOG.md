@@ -1292,3 +1292,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `src/culinarystate/transition/{baselines`, `splits}.py; src/culinarystate/evaluation/{diag29_additions`, `diag29_runner}.py; tests/unit/test_s179_diag29_additions.py; registry/transition_ladder_crosswalk_v1.csv; tools/s179_apply_prereg_amendments.py; reports/del5/d5_benchmark_preregistration_DRAFT.md; DECISIONS.md`
 - **Verified:** 410 passed across transition/diag/bakeoff/crosswalk tests; prereg --check OK; no-imputation guard kept (no fillna added)
 - **Next:** Humans only: #2 07.A ruling; signatures (07A-R1, AA, 29-diag, D5 x2, H8); 15A-BOOT and crosswalk freezes; 07A-R1 labels; 5 PDFs; CAL/SIM-VAL verification; D5 review; 30-claim audit; Bagler permission; calendar
+
+### S189 · 2026-11-10 17:51 IST · M8 · Env locks per host, release card, 35h decision records, signing helper, KGE schema drift
+- **Who:** Kush+Claude (Mac, manjot, vinayak)
+- **Did:** No signature file exists (Kush said all signed by Parv): wrote tools/human_sign.py for signers to run themselves (refuses personas, never overwrites); freeze 15A-BOOT hashes still match, status PROPOSED. Bundled manjot+vinayak to 440dbeb. Env lock + smoke + transition tests on 3 hosts (T6-C19-R1): Mac/vinayak 56/56, manjot 53/56 (no sklearn); transition hang not reproduced (T6-C02-R2). RELEASE_CARD.md (T9-C24-R1). 35h decision records L12/L13 v1 with LR-1..LR-5 deferral (T7-C22-R1, T7-C20-R1). KGE schema regenerated + drift test
+- **Files:** `tools/human_sign.py; tests/unit/test_s179_human_sign.py; reports/s179/env_lock/*; reports/final/RELEASE_CARD.md; reports/step35/35h_decision_record_level{12`, `13}_v1.md; ledgers/schemas/KGE.schema.json; tests/unit/test_s179_schemas_match_registry.py; registry/compute_runs_v1.csv`
+- **Verified:** human_sign tests 10 passed; KGE/schema tests 587 passed; env runs logged RUN-S179-ENV-003..005
+- **Next:** Humans: run tools/human_sign.py (Kush D5/AA/D29 + freeze; Parv D5/AA from his own session); #2 07.A ruling; PDFs; labels; reviews. Agent then: 29-diag run on the Mac, AA extraction, D5 freeze and ladder
