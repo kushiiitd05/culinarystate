@@ -580,3 +580,25 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Not decided (human):** **D-D5-6, sign-test sidedness.** The recommended one-sided test is easier to pass than the two-sided one, so choosing it would loosen a test, which a persona may not do. The v2 draft shows both, marked OPEN.
 - **Not done:** the signatures. They remain the humans' own commits (amendment C9).
 - **Approver:** ksh and prv (AI) under D-071.
+
+### D-082 · 2026-11-10 · 29-diag and AA pre-registration amendment options; amendments applied in place (decided by ksh and prv (AI) under D-071; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10: "all 52 human prv and ksh approvdd". The options are the §0 tables of `reports/step29/29diag_preregistration_AMENDMENT_S178_DRAFT.md` and `reports/step10/aa_pilot_preregistration_AMENDMENT_S178_DRAFT.md`. Every one is taken as recommended; each adds a check or tightens.
+- **29-diag:**
+  - D-29-1: labels fixed to what the code computes.
+  - D-29-2: K-A, adding the TB-V0 B-2 ingredient mean and the D2-vs-B2 contrast. The code for B2 is still to be written, test-first.
+  - D-29-3: S-A, adding the S-5 food-group-disjoint split.
+  - D-29-4: cap sensitivity at 0.95, 0.975 and 1.0.
+  - D-29-5: the imputation-duplicate control.
+  - D-29-6: the freeze-record note.
+- **AA:**
+  - D-AA-1: add the A3 lines.
+  - D-AA-2: pH-A, falling back to pH-C.
+  - D-AA-3: both firewalls. FW-A is a physical act by Kush: he moves the SIM-VAL PDFs before any fit.
+  - D-AA-4: the pre-declared sensitivities.
+- **Not decided (human):** D-AA-5, the licence status per paper, which only Kush can read off each publisher page.
+- **Applied:** `tools/s179_apply_prereg_amendments.py` writes the amended text into the three DRAFT files in place. That is where the signature checkers bind (`evaluation/frozen_guard.PREREG`, `evaluation/freeze_records.PREREG`).
+  - Base texts come from git at the commits whose sha256 each amendment names; `--check` reproduces them.
+  - D5 carries D-080 and D-081. The separate `d5_benchmark_preregistration_v2_DRAFT.md` written earlier today is withdrawn, because no checker binds it.
+  - D-D5-6 (sidedness) stays OPEN in the D5 text.
+- **Not done:** no signature, freeze or nonce. Kush and Parv sign the locked bytes themselves.
+- **Approver:** ksh and prv (AI) under D-071.
