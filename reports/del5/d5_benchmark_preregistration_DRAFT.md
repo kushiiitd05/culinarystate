@@ -2,7 +2,7 @@
 
 Status: **DRAFT_PENDING_SIGNATURES** (Kush, Parv). Written S171, 2026-11-08, by the coding agent (D-075 M5), before any
 benchmark question exists and before any rung is run on one; amended before any signature with the S178 options
-(`reports/del5/d5_benchmark_preregistration_AMENDMENT_S178_DRAFT.md`) as chosen in D-080 / D-081 / D-082 (ksh and prv, AI under D-071; not a human sitting); D-D5-6 (sidedness) is still open for the humans. Until both humans sign
+(`reports/del5/d5_benchmark_preregistration_AMENDMENT_S178_DRAFT.md`) as chosen in D-080 to D-083 (ksh and prv, AI under D-071; not a human sitting); D-D5-6 (sign-test sidedness) is two-sided (D-083). Until both humans sign
 it is a dated AI draft. The 20-question silver ladder (`reports/del5/ladder_*`) was written by an AI and seen during
 development: it is **not** part of this benchmark and is not reused. Label on every output and slide:
 `MODEL_ASSISTED_GOLD, PILOT, authors-as-reviewers`.
@@ -104,9 +104,8 @@ keep it after the same edit. The P and C blocks are overdrafted (15 per block, s
     checker, not independent".
   - **Decision test:** an exact sign test (`h3_independent.compare_rungs`, `sign_test_exact`) over questions where
     exactly one of B2 and B7 has at least one unsupported claim (independent scorer); B7 better needs p <= 0.05,
-    **[OPEN, D-D5-6: sidedness is a human choice (D-081); the lock may not be issued until one option is deleted]** i.e. at least 5 of 5, 6 of 6, 7 of 7 or 7 of 8, 8 of 9, 9 of 10 [one-sided, `alternative="greater"`] | 6 of 6,
-    7 of 7, 8 of 8, 8 of 9, 9 of 10 [two-sided]. Fewer than 5 [one-sided] or 6 [two-sided] such questions: "cannot
-    be shown at this n". The question-level bootstrap (10,000 resamples, seed `d5-h3`) is a descriptive interval
+    two-sided (`alternative="two-sided"`; D-D5-6, D-083), i.e. at least 6 of 6, 7 of 7, 8 of 8, 8 of 9,
+    9 of 10. Fewer than 6 such questions: "cannot be shown at this n". The question-level bootstrap (10,000 resamples, seed `d5-h3`) is a descriptive interval
     only. B5T is compared with B7 by the same test (descriptive).
   - **Coverage, reported beside every UCR (not gating; `h3_independent.summarize_rung`):** coverage on answerable
     questions (P1, P2, C), false abstention, selective risk (questions with a claim that carry an unsupported one,
