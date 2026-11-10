@@ -501,3 +501,33 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Not decided here:** everything the S175 lanes produced is AI_DRAFTED (consensus plan, v16 draft, registries, code). None of it is a human signature, approval or nonce; D-071 limits unchanged. SSOT v15 remains authoritative until Kush approves v16.
 - **Numbering note:** D-028 is absent from this file (gap in the sequence, kept as is; ids are never reused).
 - **Approver:** Kush.
+
+### D-079 · 2026-11-10 · S179 drafts read and accepted; kinetic units into the UNIT ledger (H4, additive) (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10, after the S179 Mac board items: "i read adn im fnt and all ok ad passed ok blocked one do as nesseccarty ot make it ork".
+- **Decision 1 (read and accepted):** Kush has read the S179 drafts and accepts them as written:
+  - the licence and redistribution paragraph and split labels (`reports/final/sections/S179_licence_and_split_labels_DRAFT.md`, T9-C28-R1, T9-C09-R3);
+  - the hypothesis and task crosswalk (`S179_hypothesis_and_task_crosswalk_DRAFT.md`);
+  - the D3 section (`S179_D3_state_tracking_DRAFT.md`);
+  - the P1 closeout (`reports/step19/pilot_iaa_report.md`);
+  - NEG-0050;
+  - the DoD scorecard (`reports/s179/dod_scorecard_S179.md`);
+  - the remaining items of `reports/orchestration/S179_board_update_brief_mac.md`.
+- **Decision 2 (H4, T5-C07-R5):** the UNIT schema gets an additive enum change:
+  - `unit_type += KINETIC`;
+  - `dimension += RATE_PER_TIME, ENERGY_PER_AMOUNT`;
+  - no value is removed, so every pre-D-079 row stays valid.
+
+  The 11 rows of `registry/kinetic_units_v1_DRAFT.csv` are then minted into `ledgers/data/UNIT.jsonl` (append-only,
+  ids from IdMinter) by `tools/s179_mint_kinetic_units.py`.
+- **Kept, not decided here:**
+  - plain `kcal/mol` stays UNKNOWN (no factor) until a calorie convention is declared;
+  - the two calorie rows are NEEDS_SOURCE;
+  - a defined factor is recorded as `si_factor_exact`, never as a MEASURED value.
+- **Not decided here:**
+  - the D5 pre-registration signatures and the benchmark freeze;
+  - the D-008 task merge;
+  - the Route B host;
+  - any other signature, nonce or freeze (D-071).
+
+  "Read and accepted" is not a gate pass for any statistical gate.
+- **Approver:** Kush.
