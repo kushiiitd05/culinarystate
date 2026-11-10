@@ -149,13 +149,15 @@ def test_wired_to_the_param_fixtures_of_the_simulate_branch() -> None:
         assert K.param_unit_issues(p, slots[p["slot_symbol"]]) == [], p["slot_symbol"]
 
 
-# ----------------------------------------------------------------------------- UNIT ledger: not touched, and why a schema change is needed
+# ----------------------------------------------------------------------------- UNIT ledger: the schema change (D-079)
 def _validator(delta: bool) -> Draft202012Validator:
+    """delta=True: the committed (post-D-079) schema; delta=False: the same schema with the D-079 additions removed."""
     s = json.loads(UNIT_SCHEMA.read_text(encoding="utf-8"))
     s = {k: v for k, v in s.items() if k != "$id"}
-    if delta:
-        s["properties"]["unit_type"]["enum"] += K.SCHEMA_DELTA["unit_type"]
-        s["properties"]["dimension"]["enum"] += K.SCHEMA_DELTA["dimension"]
+    if not delta:
+        for field in ("unit_type", "dimension"):
+            s["properties"][field]["enum"] = [v for v in s["properties"][field]["enum"]
+                                              if v not in K.SCHEMA_DELTA[field]]
     return Draft202012Validator(s)
 
 
@@ -170,11 +172,13 @@ def test_unit_records_validate_only_with_the_additive_enum_change() -> None:
     # the schema delta is only enum additions
     assert K.SCHEMA_DELTA["unit_type"] == ["KINETIC"] and set(K.SCHEMA_DELTA["dimension"]) == {"RATE_PER_TIME",
                                                                                               "ENERGY_PER_AMOUNT"}
+    # S179: a defined factor is not a MEASURED value; the calorie factors sit in external_refs and need a source
     cal = [r for r in recs if r["canonical_name"].startswith("kcal_")]
-    assert {c["conventions"][0]["locale"] for c in cal} == {"CALORIE_TH", "CALORIE_IT"}
-    assert [c["conventions"][0]["si_value"]["value"] for c in cal] == [4184.0, 4186.8]
+    assert [c["external_refs"] for c in cal] == [["si_factor_exact:4184/1"], ["si_factor_exact:20934/5"]]
+    assert all(c["conventions"] == [] and c["verification"]["status"] == "NEEDS_SOURCE" for c in cal)
 
 
 def test_module_writes_only_its_own_registry_file() -> None:
     src = Path(K.__file__).read_text(encoding="utf-8")
-    assert src.count(".write_text(") == 1 and "UNIT.jsonl" not in src.replace("``ledgers/data/UNIT.jsonl``", "")
+    assert src.count(".write_text(") == 1
+    assert "_append_jsonl" not in src and "LedgerStore" not in src and not any(m in src for m in ("\"a\")", "\"ab\")", "\"x\")"))
