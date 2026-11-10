@@ -1,0 +1,77 @@
+{
+ "code_sha256": {
+  "src/culinarystate/simulation/aa_pilot_fit.py": "9dffd40adc45872bdb1b4c914705499c4e06b5ce87e7a6fc2e09735245f02bad",
+  "tools/aa_pilot_fit.py": "e0662a166b06abf20df94b91914336826f445e8faefe44bf5b5867643060e71d"
+ },
+ "excluded_by_inclusion": {
+  "NOT_K_AT_T": 2
+ },
+ "excluded_by_verdict": {
+  "NOT_BOTH_VERIFIED": 7
+ },
+ "fit": {
+  "Ea_J_per_mol": 64397.791096049914,
+  "Ea_se": 10382.723783207466,
+  "T_ref_K": 363.15,
+  "cov": [
+   [
+    0.017979704145724654,
+    0.006230940027626401,
+    651.7432192019983
+   ],
+   [
+    0.006230940027626401,
+    0.028572378013671202,
+    1030.6225738309627
+   ],
+   [
+    651.7432192019983,
+    1030.6225738309627,
+    107800953.15838194
+   ]
+  ],
+  "dof": 4,
+  "fit_version": "aa-pilot-fit-0.1.0-draft",
+  "intercept_se": {
+   "AAK-01": 0.134088419133513,
+   "AAK-06": 0.16903365941040027
+  },
+  "intercepts": {
+   "AAK-01": -4.315208125804281,
+   "AAK-06": -3.1250984985745163
+  },
+  "label": "PILOT_MODEL_ASSISTED",
+  "model": "A_SHARED_EA_PAPER_INTERCEPTS",
+  "n_papers": 2,
+  "n_rows": 7,
+  "papers": [
+   "AAK-01",
+   "AAK-06"
+  ],
+  "residual_sd": 0.23697589482114265,
+  "row_ids": [
+   "AAP-001",
+   "AAP-002",
+   "AAP-003",
+   "AAP-004",
+   "AAP-006",
+   "AAP-007",
+   "AAP-008"
+  ],
+  "rows_by_paper": {
+   "AAK-01": 4,
+   "AAK-06": 3
+  },
+  "sigma_between": 0.8415345877695608
+ },
+ "label": "NO_HUMAN_SIGNOFF_D085",
+ "record": "AA_PILOT_MODEL_A_FIT",
+ "returned_sha256": {
+  "ksh+prv (AI, D-085)": "0fff439aeb74df4edbb7cb1822ccf5aeb04d58b5427f6bf315bfa33d9e8abcd6"
+ },
+ "signoff": "AI_DELEGATED_D085",
+ "sim_val_opened": false,
+ "status": "FROZEN_BEFORE_SIM_VAL",
+ "validation_label": "NOT_VALIDATED / RESEARCH_ONLY",
+ "verification": "AI_PRECHECKED"
+}
