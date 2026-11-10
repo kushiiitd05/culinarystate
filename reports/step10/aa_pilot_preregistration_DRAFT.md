@@ -5,7 +5,7 @@ any full text was opened (`registry/evidence/aa_kinetics_source_candidates_v1.cs
 for every row). This is a reduced version of the Step 10 card, not the full card: no 100-abstract double triage, no
 dual human extraction. It is labelled MODEL_ASSISTED (D-045); every row is verified by both Kush and Parv.
 Amended before any signature with the S178 options
-(`reports/step10/aa_pilot_preregistration_AMENDMENT_S178_DRAFT.md`) as chosen in D-080 / D-081 / D-082 (ksh and prv, AI under D-071; not a human sitting). Until both humans sign it is a dated AI
+(`reports/step10/aa_pilot_preregistration_AMENDMENT_S178_DRAFT.md`) as chosen in D-080 to D-083 (ksh and prv, AI under D-071; not a human sitting). Until both humans sign it is a dated AI
 draft. **Step 27 (SIM-VAL) is pre-announced RESEARCH_ONLY** (§5): this pilot shows the SIMULATE pathway on one
 narrow domain; it cannot show that SIMULATE works for recipes.
 
