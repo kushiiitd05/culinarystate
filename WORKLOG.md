@@ -1320,3 +1320,24 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `DECISIONS.md; tests/unit/test_eval_bootstrap_diag.py; WORKLOG.md`
 - **Verified:** 121 passed (bootstrap_diag, s160, 15a.R, step19, d085)
 - **Next:** H8 scope-cut table + lock; A2 CONTEXT_MISMATCH; D5 U/X drafts
+
+### S193 · 2026-11-10 23:19 IST · M8 · H8 scope-cut register (D-089, ksh+prv D-085)
+- **Who:** Kush+Claude (Mac)
+- **Did:** registry/h8_scope_cut_register_v1.csv: 11 proposal promises (D2, full H2, H4, Steps 20/28/33/34, FlavorTwin, D3 gold 40, 8-scenario demo, SSOT L10-11) each with status DIAGNOSTIC / DECLARED_NOT_RUN / NOT_DELIVERED_AT_THIS_SCALE, report wording and existing evidence path; D-089 binds its sha256 under the delegate
+- **Files:** `registry/h8_scope_cut_register_v1.csv; tests/unit/test_s179_h8_scope_cut_register.py; DECISIONS.md`
+- **Verified:** 4 passed (rows, evidence paths exist, no claim words, D-089 hash)
+- **Next:** A2
+
+### S194 · 2026-11-10 23:19 IST · M8 · A2 CONTEXT_MISMATCH route, test-first; census old vs new
+- **Who:** Kush+Claude (Mac)
+- **Did:** evidence_gates 0.3.1: CONTEXT_MISMATCH route value (opt-in) for context-withheld DIRECT/BRACKETING where the engine has only UNKNOWN; strength = UNKNOWN, never upgrades; router_demo applies it; census flag --context-mismatch-route. Mac census 1,000 non-BBC off/on (off = vinayak S179b exactly): ungated DIRECT 450 -> DIRECT 57, CONTEXT_MISMATCH 358. BBC full on: 6,125 -> 1,058 DIRECT, 4,904 CONTEXT_MISMATCH. Full non-BBC NOT_RUN (VPN down)
+- **Files:** `src/culinarystate/mechanism/{evidence_gates`, `router_demo}.py; tools/router_demo_census.py; tests/unit/test_s179_context_mismatch_route.py; reports/step23/router_demo_census_vitc_*_S179_cm*.json; reports/s179/a2_context_mismatch_census_S179.md; registry/compute_runs_v1.csv`
+- **Verified:** router/gate/aasim/census tests 410 passed + 8 new; RUN-S179-ROUTER-007/008, RUN-S179-BBC6-007
+- **Next:** full non-BBC census on vinayak when VPN returns
+
+### S195 · 2026-11-10 23:19 IST · DEL-5 · D5 benchmark v1 reviewed and frozen by ksh+prv (D-090)
+- **Who:** Kush+Claude (Mac)
+- **Did:** Persona review of 110 drafts (KEEP/DROP, rank entry); S gold written from recipe text with engine draft hidden, AI_DRAFTED_GOLD; P/C gold rechecked against EVD (all equal); 29 drops (13 unusable S, 3 unlinkable S gold, 9 target near-absent, 4 implausible process). n = 74 (S1 12, S2 12, P1-P3/C 10 each, U 5, X 5). frozen_guard accepts the delegate only with D-085 + label; h1_independence 0.3 AI_DRAFTED_GOLD never independent. Freeze D5-BENCH-2026-11-10 passes check_real_inputs (signoff AI_DELEGATED_D085)
+- **Files:** `tools/s179_d085_d5_review.py; tools/d085_delegate.py; src/culinarystate/evaluation/{frozen_guard`, `h1_independence}.py; benchmark/d5/d5_benchmark_v1_D085_{S`, `PC`, `UX}.csv; reports/del5/d5_review_ksh_prv_D085.csv; registry/freezes/D5-BENCH-2026-11-10.json; tests/unit/test_s179_d085_d5_{freeze_gold`, `review`, `freeze_record}.py; DECISIONS.md`
+- **Verified:** D5/freeze/h1 tests 136 passed + review 4 + freeze record 2; guard ok
+- **Next:** D5 rung runner (B0-B7 answers on the frozen benchmark) and run on vinayak
