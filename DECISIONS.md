@@ -564,3 +564,19 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
   - every signature (07A-R1, AA, 29-diag and D5 preregs), the 15A-BOOT freeze, the benchmark review and freeze, the 07A-R1 labels and adjudication, the PDF downloads and licence checks, the CAL and SIM-VAL verification, the 30-claim blind audit, the contributions section and the date;
   - "approved by ksh/prv" cannot stand in for any of these.
 - **Approver:** ksh and prv (AI) under D-071 for the choice items; Kush for D-008 and the Route B host.
+
+### D-081 · 2026-11-10 · D5 pre-registration amendment options (decided by ksh and prv (AI) under D-071; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10: "all 52 human prv and ksh approvdd". The options are those of `reports/del5/d5_benchmark_preregistration_AMENDMENT_S178_DRAFT.md` §0, not covered by D-080. Each is taken as the pack recommends, but only where it tightens or is neutral (the persona line).
+- **Decided:**
+  - **D-D5-2:** G-A. The S gold is the reconciled blind human answers; the engine draft never becomes gold.
+  - **D-D5-3:** K1. B4 sees the full engine state block.
+  - **D-D5-5:** H3-A. Independent scorer, plus the human-audit veto.
+  - **D-D5-7:** F1. If vinayak is unreachable by 17 Nov, H1 and H3 are NOT_RUN and only deterministic outputs run.
+- **Already covered by D-080:** D-D5-1 S30 (A1), D-D5-4 E5 (#4), D-D5-8 "uncalibrated" (#5). The audit size is 30 claims (A1 item 8), so `per_rung` = 10.
+- **Filled from facts:**
+  - e5-large-v2 revision `f169b11e22de13617baa190a028a32f3493550b6` (vinayak HF cache);
+  - Ollama digest `845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e` (RUN-S179-PIN-001);
+  - seed 7 and `num_predict` 200 (the `generation.llm` code defaults in the run note).
+- **Not decided (human):** **D-D5-6, sign-test sidedness.** The recommended one-sided test is easier to pass than the two-sided one, so choosing it would loosen a test, which a persona may not do. The v2 draft shows both, marked OPEN.
+- **Not done:** the signatures. They remain the humans' own commits (amendment C9).
+- **Approver:** ksh and prv (AI) under D-071.
