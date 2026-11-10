@@ -609,3 +609,23 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Why a persona may decide it:** two-sided is the stricter of the two options. The pack recommended one-sided, which would loosen the test, and a persona may tighten but not loosen (D-081). `d5_scoring` already reports both sidednesses; the verdict reads the two-sided row.
 - **Not decided here:** signatures, freezes, nonces, human labels and verification, facts only a person knows, and the two gate-loosening items (#10, #14) and #2 (07.A gate statistic, amends R-06). Kush asked for "all" to be completed through ksh and prv; these stay human-only under D-071 and its addendum, and no AI output is recorded as a human signature or label.
 - **Approver:** ksh and prv (AI) under D-071.
+
+### D-084 · 2026-11-10 · Human OK on the ksh/prv verdict sheet (decided by Kush; Parv relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10, replying to `reports/orchestration/S179_ksh_prv_verdicts_for_human_ok.md`: "yea sll pase check an review by em and parv aoll ok and cintinue".
+- **Decided (as verdicted):**
+  - **Item 1, #2 / D-07A-1:** the 07.A-R1 gate is **option B**, the signed R-06 kappa >= 0.80 rule kept with PABAK as a diagnostic. R-06 is not amended, so no R-06 amendment entry is needed. Sub-options: D-07A-3 **U1**, D-07A-4 **P1**, D-07A-5 **T2**. The v4 FAIL stays on record.
+  - **Item 4, #10:** the talk accepts descriptive pilot validation (D-076) in place of the formal Step 27 gate, as a recorded deviation. `sim_aa_1` stays NOT_VALIDATED / RESEARCH_ONLY and the label never moves.
+  - **Item 5, #14:** SR_PORTION is deferred past 26 Nov.
+  - **Item 7, A2:** (1) the Layer-2 evaporation cap and the superseded DRY/FAT fields are confirmed. (2) Route values TARGET_ABSENT (exists) and CONTEXT_MISMATCH (to be added, test-first) are accepted as the H4 enum change. The vitamin-C router census is re-run with old and new DIRECT counts side by side.
+  - **Item 8, #22:** SSOT v15 governs through 26 Nov and the v16 change set is not applied; a one-page delta goes in the report.
+  - **Item 10, A6:** demo hosting is deferred until H1/H3 results exist (core before demo).
+  - **Item 6, #18:** the H8 scope-cut register is accepted in principle. The agent writes its table first; the register is then signed.
+- **Not entered here (Kush commits them himself from his own session):**
+  - item 2, #8 (crosswalk freeze);
+  - item 3, #9 (FORM- prefix and schema freeze);
+  - item 9, A4 (the D-071 addendum, a SIGN entry);
+  - the #18 signature.
+
+  Their text is in `handoff/S179_KUSH_OWN_COMMIT_BLOCK.md`.
+- **Signatures:** Kush reports the preregistrations "checked and reviewed" by him and Parv. A signature exists only as the signer's own committed signature file (`tools/human_sign.py`). None is in the repository at entry time, and none is written by the agent.
+- **Approver:** Kush (Parv relayed by Kush).
