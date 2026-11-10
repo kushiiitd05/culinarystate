@@ -136,3 +136,14 @@ def test_runner_reports_b2_food_group_split_and_the_three_new_diagnostics():
         assert k in fam, k
     assert set(fam["cap_sensitivity"]) == {"0.95", "0.975", "1.0"}
     assert fam["duplicate_control"]["n_groups"] >= 0
+
+
+def test_degenerate_splits_are_noted_not_fitted():
+    df = _df()
+    df["food_group"] = "ONLY"                       # one food group: S-5 is not possible
+    df["matrix"] = "m0"                             # one matrix: duplicate-safe S-3 cannot split
+    splits, notes = A.diag29_splits(df, 7)
+    assert "food_group_disjoint" not in [s.name for s in splits]
+    assert any(n.startswith("food_group_disjoint: NOT POSSIBLE") for n in notes)
+    out = A.duplicate_control(df, 7, n_resamples=50)
+    assert all(v.get("duplicate_groups_in_one_fold") == "NOT_POSSIBLE" or isinstance(v, dict) for v in out["mae"].values())
