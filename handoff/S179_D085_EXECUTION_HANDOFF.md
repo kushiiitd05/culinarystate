@@ -34,12 +34,9 @@ evidence); the v4 FAIL stays. Fallback wording: Bagler permission "as stated by 
    test it on the synthetic fixture, run on vinayak, then `tools/s178_d5_score.py --freeze-record ... --h3-option H3-A
    --sidedness two-sided`. H3 claim audit sheets labelled by the personas (AI labels). No code in SCORER_CODE may change
    after the freeze (guard pins it); a change needs a dated amendment and a new freeze.
-7. **AA:**
-   - try to fetch the 5 PDFs (AAK-02, 04, 05, 08, 10) with the browser tool and read each licence page; drop any
-     paper that is not CC-BY or CC0;
-   - before the fit, keep the SIM-VAL PDFs unopened by the extracting session;
-   - CAL rows are checked by the personas as `AI_PRECHECKED` (the ledger's HUMAN_VERIFIED stays human-only);
-   - fit Model A labelled NO_HUMAN_SIGNOFF.
-8. **T9-C07-R3:** a report section, generated from DECISIONS, listing which gates were AI-delegated (D-071, D-080 ..
-   D-085) and which were human.
+7. **AA: DONE to the fit (D-091).** Model A `reports/step10/aa_pilot_model_a_fit_D085.json` (sha256 `b9247db0…`).
+   **Next:** SIM-VAL extraction (AAK-03, 07, 12, PDFs in `data/raw/aa_pilot_simval_quarantine/`) by a **separate**
+   session that never ran the fit, given only the fit hash; then predict SIM-VAL retention, report error, no threshold.
+   AAK-02/04/05/08/10 still need a human browser download (the agent does not work around site checks).
+8. **T9-C07-R3: DONE** (`reports/final/sections/S179_gate_provenance_DRAFT.md`; regenerate after each DECISIONS append).
 9. Update `reports/orchestration/S179_board_update_brief_mac.md` and WORKLOG after each item; one commit per file.
