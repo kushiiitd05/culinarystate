@@ -5,7 +5,7 @@ Status: **DRAFT_PENDING_SIGNATURE** (Kush). Drafted S173 (2026-11-08) by the cod
 (D-068). It counts as signed only through `reports/step29/29diag_prereg_signature.json` carrying the SHA-256 of this
 exact text (`evaluation/freeze_records.py`); any edit after signing voids it.
 Amended before signature with the S178 options
-(`reports/step29/29diag_preregistration_AMENDMENT_S178_DRAFT.md`) as chosen in D-080 / D-081 / D-082 (ksh and prv, AI under D-071; not a human sitting). Until Kush signs, this file is a dated AI draft.
+(`reports/step29/29diag_preregistration_AMENDMENT_S178_DRAFT.md`) as chosen in D-080 to D-083 (ksh and prv, AI under D-071; not a human sitting). Until Kush signs, this file is a dated AI draft.
 
 Note on the snapshot record: `registry/freezes/15A-BOOT-2026-11-08.json` is named `FREEZE_15A_BOOTSTRAP`, but
 approving it **does not satisfy Step 15a**: Step 15a has a hard dependency on 08a, whose G08-3 FAILED (D-034). The
