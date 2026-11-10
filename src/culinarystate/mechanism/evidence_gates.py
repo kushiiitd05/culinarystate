@@ -76,7 +76,7 @@ from fractions import Fraction
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
-VERSION = "evidence-gates-0.3.0-draft"
+VERSION = "evidence-gates-0.3.1-draft"
 STATUS = "AI_DRAFTED_PROPOSED_PILOT_UNSIGNED"
 ROOT = Path(__file__).resolve().parents[3]
 FLOOR_PATH = ROOT / "registry" / "target_presence_floor_v1_PROPOSED.csv"
@@ -107,6 +107,10 @@ R_PRIOR_UNRESOLVED = "PRIOR_PROCESS_UNRESOLVED"        # S178 R5(a)
 R_LOT_UNKNOWN = "LOT_CONTEXT_UNKNOWN"                  # S178 R5(b)
 R_ATTRIBUTIVE = "ATTRIBUTIVE_STATE_NOT_EVENT"          # S178 R3
 R_SERVING = "SERVING_SUGGESTION_NOT_EVENT"             # S178 R3
+# S179 A2 (D-084 item 7): route value for evidence withheld by the lot-context gate. Opt-in so S176-S178 stay
+# reproducible; strength of UNKNOWN, so it never upgrades; section 141 class "unsupported".
+CONTEXT_MISMATCH = "CONTEXT_MISMATCH"
+CONTEXT_REASONS = (R_MERGED, R_PRIOR_PROCESS, R_PRIOR_UNRESOLVED, R_LOT_UNKNOWN)
 GATE_REASONS = (R_TARGET_ABSENT, R_PRESENCE_UNKNOWN, R_MERGED, R_PRIOR_PROCESS, R_PRIOR_UNRESOLVED, R_LOT_UNKNOWN,
                 R_ATTRIBUTIVE, R_SERVING)
 B_NOT_ANALYTICAL = "SR_ZERO_NOT_ANALYTICAL"            # S178 R4 member blocker
@@ -117,7 +121,8 @@ ROLE_REASON = {ATTRIBUTIVE_STATE: R_ATTRIBUTIVE, SERVING_SUGGESTION: R_SERVING}
 # S178 prior-process bases (where a prior kind came from)
 PB_EVENT, PB_UNRESOLVED, PB_TEXT, PB_LINE = "EVENT", "EVENT_UNRESOLVED", "TEXT_STATED_STATE", "INGREDIENT_LINE"
 # route strength used by the never-upgrade property (higher = stronger claim); NOT_APPLICABLE is outside the ladder
-ROUTE_STRENGTH = {"DIRECT": 5, "INTERPOLATE": 4, "SIMULATE": 3, "QUALITATIVE": 2, "ASK": 1, "UNKNOWN": 0}
+ROUTE_STRENGTH = {"DIRECT": 5, "INTERPOLATE": 4, "SIMULATE": 3, "QUALITATIVE": 2, "ASK": 1, "UNKNOWN": 0,
+                  CONTEXT_MISMATCH: 0}
 
 # ING category (registry ing_category of the match file) -> SR Legacy food groups it may legitimately be matched to.
 # AI_DRAFTED (S177, FINAL-SCI #6), strict on purpose: a pair that is not listed means "category not confirmed", and an
@@ -971,15 +976,17 @@ _EVIDENCE_STATUSES = ("MEASURED", "CENSORED")
 
 class EvidenceGates:
     def __init__(self, screen: TargetPresenceScreen, *, presence: bool = True, context: bool = True,
-                 provenance: Mapping[str, Any] | None = None, exempt_presupposed: bool = False) -> None:
+                 provenance: Mapping[str, Any] | None = None, exempt_presupposed: bool = False,
+                 context_mismatch_route: bool = False) -> None:
         self.screen, self.presence_on, self.context_on = screen, presence, context
+        self.context_mismatch_on = bool(context_mismatch_route)     # S179 A2: opt-in route value
         self.exempt_presupposed = bool(exempt_presupposed)     # S178 R6: a HUMAN decision (SCI-B Q1); OFF by default
         self.provenance = dict(provenance or {})
 
     @classmethod
     def load(cls, *, floor_path: Path = FLOOR_PATH, source: str = "table", table_path: Path = TABLE_PATH,
              match_path: Path = MATCH_PATH, sr_dir: Path | None = None, presence: bool = True,
-             context: bool = True) -> "EvidenceGates":
+             context: bool = True, context_mismatch_route: bool = False) -> "EvidenceGates":
         """``source="table"`` (default, the shipped derived table) or ``"sr"`` (SR Legacy read directly)."""
         if source not in ("table", "sr"):
             raise GateError("source is 'table' or 'sr'")
@@ -1009,11 +1016,20 @@ class EvidenceGates:
                 "floors": {code_key(k): {"value": float(f.value), "identity_score_margin": float(f.margin), "unit": f.unit,
                                          "status": f.status}
                            for k, f in screen.floors.items()}}
-        return cls(screen, presence=presence, context=context, provenance=prov)
+        return cls(screen, presence=presence, context=context, provenance=prov,
+                   context_mismatch_route=context_mismatch_route)
 
     def describe(self) -> dict[str, Any]:
         return {**self.provenance, "enabled": True, "presence_gate": self.presence_on, "context_gate": self.context_on,
-                "presupposed_prior_heat_exemption_applied": self.exempt_presupposed}
+                "presupposed_prior_heat_exemption_applied": self.exempt_presupposed,
+                "context_mismatch_route": self.context_mismatch_on}
+
+    def context_route(self, gate: "GateResult", engine_route: str) -> str:
+        """S179 A2: CONTEXT_MISMATCH when the context gate withheld a pre-check and the engine has only UNKNOWN."""
+        if (self.context_mismatch_on and gate.withheld and not gate.not_applicable and engine_route == "UNKNOWN"
+                and gate.event_role == PROCESS_STEP and gate.reasons and gate.reasons[0] in CONTEXT_REASONS):
+            return CONTEXT_MISMATCH
+        return engine_route
 
     def member_presence(self, svar_id: str | None, ing: str | None) -> str | None:
         """Presence state of one ING taken alone (None when the presence gate is off or nothing is linked)."""
