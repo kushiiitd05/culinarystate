@@ -16,13 +16,13 @@ def test_each_draft_equals_its_build():
         assert _text(name) == M["build"](name), name
 
 
-def test_d5_options_and_open_sidedness():
+def test_d5_options_and_two_sided_sign_test():
     t = _text("D5")
     for must in ("intfloat/e5-large-v2", "f169b11e22de13617baa190a028a32f3493550b6",
                  "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e", "(uncalibrated)", "n = 30",
-                 "**Veto:**", "OPEN, D-D5-6", "not a human sitting", "DRAFT_PENDING_SIGNATURES"):
+                 "**Veto:**", "two-sided (`alternative=\"two-sided\"`; D-D5-6, D-083)", "not a human sitting", "DRAFT_PENDING_SIGNATURES"):
         assert must in t, must
-    assert "Kush Tokas: ______" not in t
+    assert "Kush Tokas: ______" not in t and "[one-sided" not in t and "OPEN, D-D5-6" not in t
 
 
 def test_29diag_and_aa_options():
