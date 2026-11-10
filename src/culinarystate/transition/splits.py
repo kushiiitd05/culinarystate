@@ -97,6 +97,11 @@ def leakage(df: pd.DataFrame, s: Split, cols: list[str]) -> dict:
     return out
 
 
+def food_group_disjoint(df: pd.DataFrame, seed: int = 7) -> Split:
+    """S-5 food-group-disjoint (29-diag only, D-082): grouped by ``food_group``; rows with no food group form one group."""
+    return grouped_split(df, ["food_group"], "food_group_disjoint", seed)
+
+
 def all_splits(df: pd.DataFrame, seed: int = 7) -> tuple[list[Split], list[str]]:
     splits = [random_split(df, seed),
               grouped_split(df, ["matrix", "process"], "pair_holdout", seed),
