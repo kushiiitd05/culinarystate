@@ -1257,3 +1257,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `tests/unit/test_s177_router_gates.py; reports/s179/public_mode_check_S179.md; STATUS.md`
 - **Verified:** manjot suite 4,995 passed; env-gap modules on Mac 2,897 passed 0 failed; router tests 86 passed; public-mode tests 99 passed
 - **Next:** Humans: SCI #2 (Q1), SCI #7, A6b, F1 grammar.py OK, ing_sr review queue, delete v04/v05 per-record dirs on manjot, PR #11/#12 merge OK, demo stash; S178 list (07.A-R1 signatures, CAL pilot, D5 freeze)
+
+### S184 · 2026-11-10 14:33 IST · M8 · S179 board items: report sections, D3 gold diagnostic, NEG-0050, M1-M9 experiment registry
+- **Who:** Kush+Claude (Mac)
+- **Did:** Crosswalk H1-H5 vs proposal H1-H4 and SSOT tasks vs D5/D-008 (T0-C07-R2, T0-C11-R3); licence paragraph + split labels (T9-C28-R1, T9-C09-R3); P1 closeout (T3-C15-R1); pooled compiler vs P1 (7) + 40 dev gold with Wilson, and event-type table with recipe-cluster bootstrap (T3-C11-R1, T3-C17-R2; RUN-S179-GOLD-001/002); D3 report section (T9-C16-R1); NEG-0050 DEL-2 D7==D1 on raw PE (T9-C08-R4); registry/experiments_S171_S175.csv (T9-C11-R1); board brief for the orchestrator. Found: expansion gold has 0 events (40 dev gold = pilot_20 v1.1 + Food.com v1.1); eval tool scores the rule compiler, not Rung A
+- **Files:** `reports/final/sections/S179_*_DRAFT.md; reports/step19/pilot_iaa_report.md; reports/del3/compiler_vs_gold_pooled_S179.{json`, `md}; reports/del3/event_type_table_S179.json; src/culinarystate/evaluation/compiler_vs_gold_pooled.py; tools/s179_compiler_vs_gold_pooled.py; tools/s179_event_type_table.py; registry/negative_results_register_v1.csv; registry/experiments_S171_S175.csv; reports/orchestration/S179_board_update_brief_mac.md`
+- **Verified:** new tests 7 passed; gold/rule-compiler tests 19 passed; NEG register tests 6 passed; compiler-vs-gold rerun byte-identical (2981ba0a)
+- **Next:** T2-C14-R1 seal check, T9-C30-R1 DoD scorecard, T8-C15-R3 Ollama digest (VPN); humans: read licence paragraph, D-008 merge, NEG rows read
