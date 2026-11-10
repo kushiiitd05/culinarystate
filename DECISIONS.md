@@ -602,3 +602,10 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
   - D-D5-6 (sidedness) stays OPEN in the D5 text.
 - **Not done:** no signature, freeze or nonce. Kush and Parv sign the locked bytes themselves.
 - **Approver:** ksh and prv (AI) under D-071.
+
+### D-083 · 2026-11-10 · D5 H3 sign test is two-sided (D-D5-6) (decided by ksh and prv (AI) under D-071; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10: "use ksh and prv and complee alll continue".
+- **Decision:** the H3 decision test (exact sign test, B2 vs B7) is **two-sided**, `alternative="two-sided"`. B7 is better only at p <= 0.05, which needs at least 6 of 6 discordant questions; with fewer than 6 the report says "cannot be shown at this n".
+- **Why a persona may decide it:** two-sided is the stricter of the two options. The pack recommended one-sided, which would loosen the test, and a persona may tighten but not loosen (D-081). `d5_scoring` already reports both sidednesses; the verdict reads the two-sided row.
+- **Not decided here:** signatures, freezes, nonces, human labels and verification, facts only a person knows, and the two gate-loosening items (#10, #14) and #2 (07.A gate statistic, amends R-06). Kush asked for "all" to be completed through ksh and prv; these stay human-only under D-071 and its addendum, and no AI output is recorded as a human signature or label.
+- **Approver:** ksh and prv (AI) under D-071.
