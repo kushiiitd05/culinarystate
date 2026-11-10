@@ -1341,3 +1341,17 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `tools/s179_d085_d5_review.py; tools/d085_delegate.py; src/culinarystate/evaluation/{frozen_guard`, `h1_independence}.py; benchmark/d5/d5_benchmark_v1_D085_{S`, `PC`, `UX}.csv; reports/del5/d5_review_ksh_prv_D085.csv; registry/freezes/D5-BENCH-2026-11-10.json; tests/unit/test_s179_d085_d5_{freeze_gold`, `review`, `freeze_record}.py; DECISIONS.md`
 - **Verified:** D5/freeze/h1 tests 136 passed + review 4 + freeze record 2; guard ok
 - **Next:** D5 rung runner (B0-B7 answers on the frozen benchmark) and run on vinayak
+
+### S196 · 2026-11-10 23:25 IST · M8 · T9-C07-R3 gate provenance section generated from DECISIONS
+- **Who:** Kush+Claude (Mac)
+- **Did:** tools/s179_gate_provenance_report.py classes every DECISIONS entry from its Approver line (title/instruction fallback): HUMAN 69, AI_DELEGATED_D085 6, AI_PERSONA_D071 6, MIXED 1, AI_AGENT_PROVISIONAL 7; section lists every non-human decision; --check
+- **Files:** `tools/s179_gate_provenance_report.py; tests/unit/test_s179_gate_provenance_report.py; reports/final/sections/S179_gate_provenance_DRAFT.md`
+- **Verified:** 4 passed
+- **Next:** regenerate after every DECISIONS append
+
+### S197 · 2026-11-10 23:25 IST · STEP-10 · AA pilot under D-085: licences, CAL pre-check, firewall, Model A fit (D-091)
+- **Who:** Kush+Claude (Mac)
+- **Did:** Licence lines read on publisher pages: CC BY for AAK-01/06 (CAL) and AAK-03/07 (SIM-VAL, licence only); AAK-09 403, AAK-11 TLS fail (unconfirmed), AAK-12 not checked; AAK-02/04/05/08/10 NOT_ACQUIRED (no work-around of site checks). CAL: 16/16 spans verbatim + PDF hashes; 01/06 VERIFIED, 09/11 REJECTED (licence). SIM-VAL PDFs moved out with sha256. aa_pilot_fit --delegate: Ea 64.4 kJ/mol (SE 10.4), 7 rows, 2 papers, AI_PRECHECKED, NOT_VALIDATED / RESEARCH_ONLY
+- **Files:** `registry/evidence/aa_licence_checks_D085_v1.csv; tools/aa_pilot_fit.py; tests/unit/test_s179_aa_fit_delegate.py; reports/step10/aa_pilot_model_a_fit_D085.json; DECISIONS.md`
+- **Verified:** AA fit tests 14 passed; fit sha256 b9247db0
+- **Next:** SIM-VAL extraction in a separate session given only the fit hash; human browser download of the 5 PDFs
