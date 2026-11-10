@@ -667,3 +667,17 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Decision:** the H8 scope-cut register `registry/h8_scope_cut_register_v1.csv` (sha256 `4108c54f1b92a003357ee60aa2b32bd4049c40549b0a3f1c8774c5f6bf475a0b`, 11 rows) is signed as written. D2 is reported as DIAGNOSTIC only; the full H2 test, H4, Steps 20/28/33/34, FlavorTwin and SSOT Levels 10-11 are DECLARED_NOT_RUN before the talk; the D3 gold of 40 recipes and the 8-scenario demo are reported as "not delivered at this scale". Each row carries its report wording and a repo evidence path.
 - **Label:** `NO_HUMAN_SIGNOFF_D085`.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-090 · 2026-11-10 · D5 benchmark v1 reviewed and frozen (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085 (Kush: ksh/prv act for the humans on every remaining gate); D5 prereg §3 (review, gold, freeze) as locked (`reports/del5/d5_prereg_lock_D085.json`, prereg sha256 `1c174553…`).
+- **Review:** `reports/del5/d5_review_ksh_prv_D085.csv` (110 rows, KEEP / DROP with a reason, no edits; entry by rank). Built by `tools/s179_d085_d5_review.py` (`--check`).
+  - **S (40 drafts):** gold written by the personas from the recipe text alone, engine draft and `gold_*` hidden; `gold_origin` AI_DRAFTED_GOLD. 16 dropped: 13 not a usable question (ingredient-list fragments, glossaries, multi-recipe text, notes) and 3 whose gold the scorer's linker cannot resolve (`drop` has no PROC id; `dumplings`, `bones` no ING id).
+  - **P / C (60 drafts):** every gold range rechecked against the EVD ledger (all equal). 13 dropped: 9 where the target is near-absent in the food (vitamin C in chicken, pork, cheese, egg, lamb stock: gold ANSWER would mark a correct TARGET_ABSENT wrong) and 4 implausible processes (frying or baking stock, deep-frying juice or a spice). Every block still fills 10 by rank.
+  - **U / X (10, S178 drafts):** all kept; gold branch by intent; the router was not run on them.
+- **Freeze:** `registry/freezes/D5-BENCH-2026-11-10.json`: three benchmark files (`benchmark/d5/d5_benchmark_v1_D085_{S,PC,UX}.csv`), scorer code and prereg pinned by sha256; approval `ksh+prv (AI, D-085)` with D-085 and the label; `frozen_guard.check_real_inputs` ok, signoff AI_DELEGATED_D085.
+- **Deviations from the prereg, stated in every D5 output:**
+  - n = 74, not 80: S1 12 and S2 12 (prereg 15 + 15). The 20-per-block overdraft ran out; the prereg rule (next by rank enters) had nothing left. H1 n = 24; the smallest significant McNemar split stays 6-0, and a null result is uninformative.
+  - S gold is AI_DRAFTED_GOLD, not HUMAN_BLIND: H1 is never INDEPENDENT_GOLD (`h1_independence` 0.3 counts it as not independent). No Kush-Parv agreement figure exists.
+  - Review and the H3 claim audit are by the personas, so neither is inter-rater evidence; the audit labels are AI labels.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
