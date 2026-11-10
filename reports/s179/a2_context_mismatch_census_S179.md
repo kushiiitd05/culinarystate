@@ -17,7 +17,7 @@ Vitamin C (SVAR-000009), seed 20261104, gates on.
 |---|---|---|---|---|---|---|---|
 | non-BBC, 1,000 recipes (57,511 items) | RUN-S179-ROUTER-007 (Mac) = RUN-S179-ROUTER-005 (vinayak) | RUN-S179-ROUTER-008 | 450 | 57 | 358 | 113 | 57,341 -> 56,983 |
 | BBC full, 11,934 recipes (1,103,301 items, Mac only, D-003) | RUN-S179-BBC6-005 | RUN-S179-BBC6-007 | 6,125 | 1,058 | 4,904 | 2,044 | 1,100,199 -> 1,095,295 |
-| non-BBC full | RUN-S179-ROUTER-006 | **NOT_RUN** (vinayak unreachable, VPN down at 2026-11-10 17:30Z) | 40,308 | 30,220 | — | — | — |
+| non-BBC full (vinayak) | RUN-S179-ROUTER-006 | RUN-S179-ROUTER-009 | 267,933 | 30,220 | 224,240 | 74,597 | 35,151,784 -> 34,927,544 |
 
 - DIRECT is the same with the flag off and on in every run: the flag only names what was already withheld.
 - Flag off on the Mac reproduces the committed vinayak 1,000-recipe report on every non-provenance key, so the two
