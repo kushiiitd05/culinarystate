@@ -9,12 +9,12 @@ Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from
 | Class | Decisions |
 |---|---|
 | HUMAN | 69 |
-| AI_DELEGATED_D085 | 6 |
+| AI_DELEGATED_D085 | 7 |
 | AI_PERSONA_D071 | 6 |
 | MIXED_PERSONA_AND_HUMAN | 1 |
 | AI_AGENT_PROVISIONAL | 7 |
 | NO_APPROVER_LINE | 0 |
-| **all** | 89 |
+| **all** | 90 |
 
 Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 17 name the human in the title or instruction line instead of an Approver line.
 
@@ -42,3 +42,4 @@ Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 17 name th
 | D-089 | 2026-11-10 | H8 scope-cut register signed (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-090 | 2026-11-10 | D5 benchmark v1 reviewed and frozen (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-091 | 2026-11-10 | AA pilot: licence checks, CAL pre-check and Model A fit (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
+| D-092 | 2026-11-11 | D5 ladder run and scored; H1 and H3 rules not met (recorded by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
