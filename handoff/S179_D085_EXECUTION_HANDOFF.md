@@ -24,16 +24,16 @@ evidence); the v4 FAIL stays. Fallback wording: Bagler permission "as stated by 
 2. **DONE (S192):** 07A-R1 recorded NOT_RUN under D-085 (WORKLOG). Brief still to update.
 3. **DONE:** D-086 (crosswalk freeze), D-087 (FORM- prefix, schemas), D-088 (persona line as amended).
 4. **DONE:** `registry/h8_scope_cut_register_v1.csv`, D-089 binds its sha256.
-5. **DONE except full non-BBC:** CONTEXT_MISMATCH (opt-in) + census flag; 1,000 non-BBC and BBC full on the Mac;
+5. **DONE (full non-BBC ran, RUN-S179-ROUTER-009):** CONTEXT_MISMATCH (opt-in) + census flag; 1,000 non-BBC and BBC full on the Mac;
    `reports/s179/a2_context_mismatch_census_S179.md`. **Still to run on vinayak:** `nice -n 10 python tools/router_demo_census.py
    --seed 20261104 --sample-size 700000 --workers 32 --families WIKIBOOKS GUTENBERG_SEGMENT FOODCOM TASTESET --gates on
    --context-mismatch-route --out reports/step23/router_demo_census_vitc_nonBBC_full_S179_cmon.json` (bundle code first).
-6. **D5:** review + gold + freeze **DONE** (D-090, `registry/freezes/D5-BENCH-2026-11-10.json`, n = 74). **Next:**
-   build the rung runner that writes B0/B1/B2/B4/B5/B7/B5T answers on the frozen benchmark (`evaluation/h1_rungs.py`
-   for S contexts, e5 revision `f169b11e…`, qwen2.5:7b-instruct `845dbda0…`, temperature 0, seed 7, num_predict 200),
-   test it on the synthetic fixture, run on vinayak, then `tools/s178_d5_score.py --freeze-record ... --h3-option H3-A
-   --sidedness two-sided`. H3 claim audit sheets labelled by the personas (AI labels). No code in SCORER_CODE may change
-   after the freeze (guard pins it); a change needs a dated amendment and a new freeze.
+6. **D5: DONE (D-092).** Ran on vinayak (RUN-S179-D5-001), scored: H1 RULE_NOT_MET (B4 = B1 = B2 = 0.25, n = 24);
+   H3 RULE_NOT_MET (sign test 16-0 for B7, but B7 P3 abstention 0/10 < B2 3/10; cause NEG-0051: evidence-boundary
+   mismatch between P3 gold and the decision layer). Claim audit not run (cannot change the verdict). Any fix = dated
+   amendment + new freeze. vinayak worktree `~/Kush/cs_s179_d5`; torch only in /usr/bin/python3 (3.8), project venv
+   `~/Kush/culinarystate/.venv311` (3.11, no torch) -> e5 via `tools/s179_d5_embed_cache.py`.
+   A2 full non-BBC census DONE too (RUN-S179-ROUTER-009).
 7. **AA: DONE to the fit (D-091).** Model A `reports/step10/aa_pilot_model_a_fit_D085.json` (sha256 `b9247db0…`).
    **Next:** SIM-VAL extraction (AAK-03, 07, 12, PDFs in `data/raw/aa_pilot_simval_quarantine/`) by a **separate**
    session that never ran the fit, given only the fit hash; then predict SIM-VAL retention, report error, no threshold.
