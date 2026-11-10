@@ -1299,3 +1299,24 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `tools/human_sign.py; tests/unit/test_s179_human_sign.py; reports/s179/env_lock/*; reports/final/RELEASE_CARD.md; reports/step35/35h_decision_record_level{12`, `13}_v1.md; ledgers/schemas/KGE.schema.json; tests/unit/test_s179_schemas_match_registry.py; registry/compute_runs_v1.csv`
 - **Verified:** human_sign tests 10 passed; KGE/schema tests 587 passed; env runs logged RUN-S179-ENV-003..005
 - **Next:** Humans: run tools/human_sign.py (Kush D5/AA/D29 + freeze; Parv D5/AA from his own session); #2 07.A ruling; PDFs; labels; reviews. Agent then: 29-diag run on the Mac, AA extraction, D5 freeze and ladder
+
+### S190 · 2026-11-10 22:49 IST · M8 · D-085: human gates delegated to ksh+prv (AI); delegate freeze and prereg locks
+- **Who:** Kush+Claude (Mac)
+- **Did:** Recorded D-085 (Kush: ksh/prv act on the humans' behalf for every remaining gate). freeze_records gains AI_DELEGATE 'ksh+prv (AI, D-085)', approval_kind/prereg_signer_kind; bootstrap_diag labels NO_HUMAN_SIGNOFF_D085 when either is delegated. tools/d085_delegate.py approved 15A-BOOT-2026-11-08 and locked the D29, D5 and AA preregs (refuses overwrite). No human name written anywhere
+- **Files:** `DECISIONS.md; src/culinarystate/evaluation/{freeze_records`, `bootstrap_diag}.py; tools/d085_delegate.py; registry/freezes/15A-BOOT-2026-11-08.json; reports/step29/29diag_prereg_signature.json; reports/del5/d5_prereg_lock_D085.json; reports/step10/aa_pilot_prereg_lock_D085.json; tests/unit/test_s179_d085_delegation.py`
+- **Verified:** d085 delegation tests pass; any other AI name still refused
+- **Next:** 29-diag run
+
+### S191 · 2026-11-10 22:49 IST · DEL-2 · 29-diag run under D-085 (RUN-S179-DIAG29-001), G15-R PASS
+- **Who:** Kush+Claude (Mac)
+- **Did:** Ran the DEL-2 ladder D0-D7 + B2 twice on the Mac, byte-identical. 17,978 rows, 14,423 after seal. D7 = D1 exactly on Phenol-Explorer (NEG-0050 confirmed). Imputation-duplicate share Bognar 0.949, USDA 0.587, PE 0.111. D2 vs B2 on PE study-disjoint 0.099 [-0.045, 0.240]: no direction shown. Labels DIAGNOSTIC / BOOTSTRAP_UNVERIFIED / NON_CITABLE / NO_HUMAN_SIGNOFF_D085
+- **Files:** `tools/run_29diag.py; reports/step29/diag/diag_results_S179.{json`, `md}; registry/compute_runs_v1.csv`
+- **Verified:** two runs identical sha (prefix 7bb28437)
+- **Next:** 07A-R1 record, D-086..088
+
+### S192 · 2026-11-10 22:49 IST · M8 · 07A-R1 NOT_RUN under D-085; D-086..D-088 delegate entries; stale repo-state tests reframed
+- **Who:** Kush+Claude (Mac)
+- **Did:** 07A-R1 recorded NOT_RUN: two personas of one model agreeing is not inter-rater evidence (D-085, D-088); the 07.A v4 FAIL stays on record and no 07A label file is written. Appended D-086 (crosswalk freeze), D-087 (FORM- prefix, FORM/PARAM/VAL schemas frozen), D-088 (persona line as amended by D-085), approver ksh+prv (AI, D-085). test_eval_bootstrap_diag real-repo tests updated to the post-D-085 state (only 15A-BOOT frozen, delegate kind asserted)
+- **Files:** `DECISIONS.md; tests/unit/test_eval_bootstrap_diag.py; WORKLOG.md`
+- **Verified:** 121 passed (bootstrap_diag, s160, 15a.R, step19, d085)
+- **Next:** H8 scope-cut table + lock; A2 CONTEXT_MISMATCH; D5 U/X drafts
