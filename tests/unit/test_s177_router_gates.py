@@ -207,7 +207,7 @@ def test_census_counts_prior_process_withheld_by_kind_counts_only():
     assert rep["prior_process_withheld"].get("LEACH", 0) == 4         # roast after soak
     assert rep["reason_counts"]["PRIOR_PROCESS_CONTEXT"] == 8
     assert sum(rep["member_presence"].values()) == rep["items"]
-    assert rep["census_version"] == RC.CENSUS_VERSION and RC.CENSUS_VERSION.endswith("0.4.0-draft")
+    assert rep["census_version"] == RC.CENSUS_VERSION and RC.CENSUS_VERSION.endswith("0.4.1-draft")   # S179: 0.4.1 adds post-food state cues (SCI #4)
 
 
 # =================================================================== #6: the full ABSENT rule
