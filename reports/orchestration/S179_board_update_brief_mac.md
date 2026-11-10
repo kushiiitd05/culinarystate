@@ -17,6 +17,9 @@ Every status below is an **agent proposal**. Items whose acceptance needs a huma
 | T3-C17-R2 (SHOULD) | DONE (table; figure pending slides) | `reports/del3/event_type_table_S179.json` (RUN-S179-GOLD-002; code 7177b9e) | figure belongs to the slides (paused) |
 | T9-C16-R1 (MUST) | DONE (draft) | `reports/final/sections/S179_D3_state_tracking_DRAFT.md` (0c93a21) | none |
 | T9-C08-R4 (MUST) | still PARTIAL | NEG-0050 added (a2bad19): DEL-2 D7 equals D1 on raw-scale Phenol-Explorer in 5 of 5 splits. G08-3 was already NEG-0047 | Parv and Kush read; report cross-reference |
+| T2-C14-R1 (SHOULD) | DONE | `reports/s179/seal_integrity_check_S179.json` (RUN-S179-SEAL-001; code 887a4df): 6/6 PASS, including byte-identical re-derivation of the reserved list; a private access log was started beside the sealed list | none |
+| T8-C15-R3 (SHOULD) | DONE | RUN-S179-PIN-001: run-host digest `845dbda0…` for qwen2.5:7b-instruct on vinayak (Ollama 0.30.8) plus prompt registry sha `bc5766b7…` (`--check` clean), in the run CSV | re-check the digest at D5 run time |
+| T7-C01-R5 (SHOULD) | DONE (table); Route B host open | `reports/s179/env_inputs_three_hosts_S179.md` + Mac / vinayak JSONs (RUN-S179-ENV-001/002) | human: Route B host (Mac is the only host with every input and package) |
 | T9-C11-R1 (SHOULD) | DONE | `registry/experiments_S171_S175.csv` (288ae11) and `tests/unit/test_s179_experiments_registry.py`; EXP ids left NOT_ASSIGNED | orchestrator assigns the EXP ids |
 
 Notes:
@@ -25,5 +28,5 @@ Notes:
     `evidence_first_expansion` drafts hold 0 step events, so they cannot score events.
   - `tools/eval_compiler_vs_gold.py` scores the rule compiler, not the Step 17b Rung A EventGraph. Scoring Rung A
     itself needs an adapter that does not exist.
-- **Next agent items with no blocking dependency.** T2-C14-R1 (seal integrity check), T9-C30-R1 (DoD scorecard) and
-  T8-C15-R3 (pin the Ollama digest; needs the VPN). Slides and the dry run stay paused under "core before demo".
+- **Next agent items with no blocking dependency.** T9-C30-R1 (DoD scorecard) and
+  T9-C11-R2 (run-log gaps). Slides and the dry run stay paused under "core before demo".
