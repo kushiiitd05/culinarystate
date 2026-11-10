@@ -56,3 +56,17 @@ def test_refuses_without_valid_freeze(tmp_path):
     with pytest.raises(SystemExit):
         T.main(["--freeze-record", str(tmp_path / "none.json"), "--s-context", str(tmp_path / "x"),
                 "--out", str(tmp_path / "o.jsonl")])
+
+
+def test_cached_embedder_matches_cache_keys(tmp_path):
+    import json
+    import s179_d5_embed_cache as EC
+    q, p = "Which ingredients?", "Step 1: Boil the water."
+    cache = {"model": T.E5, "revision": T.E5_REV,
+             "vectors": {EC.key("query: ", q): [1.0, 0.0], EC.key("passage: ", p): [0.0, 1.0]}}
+    f = tmp_path / "c.json"
+    f.write_text(json.dumps(cache))
+    emb = T.cached_embedder(f)
+    assert emb([q, p]) == [[1.0, 0.0], [0.0, 1.0]]
+    with pytest.raises(KeyError):
+        emb([q, "Step 2: other"])
