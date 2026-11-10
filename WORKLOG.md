@@ -1264,3 +1264,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `reports/final/sections/S179_*_DRAFT.md; reports/step19/pilot_iaa_report.md; reports/del3/compiler_vs_gold_pooled_S179.{json`, `md}; reports/del3/event_type_table_S179.json; src/culinarystate/evaluation/compiler_vs_gold_pooled.py; tools/s179_compiler_vs_gold_pooled.py; tools/s179_event_type_table.py; registry/negative_results_register_v1.csv; registry/experiments_S171_S175.csv; reports/orchestration/S179_board_update_brief_mac.md`
 - **Verified:** new tests 7 passed; gold/rule-compiler tests 19 passed; NEG register tests 6 passed; compiler-vs-gold rerun byte-identical (2981ba0a)
 - **Next:** T2-C14-R1 seal check, T9-C30-R1 DoD scorecard, T8-C15-R3 Ollama digest (VPN); humans: read licence paragraph, D-008 merge, NEG rows read
+
+### S185 · 2026-11-10 15:11 IST · M8 · S179 board items part 2: seal check, digest pin, host inputs, run-log audit, DoD scorecard
+- **Who:** Kush+Claude (Mac, vinayak)
+- **Did:** 15a.R seal integrity check 6/6 PASS incl. byte-identical re-derivation (T2-C14-R1, RUN-S179-SEAL-001; private access log started); Ollama digest pinned from run host vinayak, qwen2.5:7b-instruct 845dbda0, prompt registry sha bc5766b7 (T8-C15-R3, RUN-S179-PIN-001); Step 35 inputs x host x sha256 on Mac and vinayak (T7-C01-R5, RUN-S179-ENV-001/002): only the Mac has every input and package; run-log gap audit (T9-C11-R2); DoD scorecard 38 rows, 6 MET (T9-C30-R1)
+- **Files:** `src/culinarystate/lineage/seal_integrity.py; tools/s179_seal_integrity_check.py; reports/s179/{seal_integrity_check_S179.json`, `env_inputs_check_mac_S179.json`, `env_inputs_check_vinayak_S179.json`, `env_inputs_three_hosts_S179.md`, `run_log_gap_audit_S179.md`, `dod_scorecard_S179.md}; registry/compute_runs_v1.csv; reports/orchestration/S179_board_update_brief_mac.md`
+- **Verified:** seal tests + 15a.R tests 54 passed; prompt registry --check clean; no private IP in committed host JSONs
+- **Next:** Humans: Route B host, H4 UNIT schema enum, licence paragraph read, NEG/DoD reads, D-008 merge, D5 signatures and freeze
