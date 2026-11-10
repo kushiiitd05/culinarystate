@@ -39,3 +39,43 @@ Notes:
     (ING_HEALTH_ASSOCIATION, ING_COSYLAB_CATEGORY, ING_CARBON_FOOTPRINT) that the committed `KGE.schema.json` lacks.
 - **No agent item with all dependencies met is left open.** Slides, the report skeleton and the dry run stay paused
   under "core before demo". Everything else waits on a human act: signatures, the D5 freeze, H4/H8 decisions, reads.
+
+## Round 3 (2026-11-10): D-080 to D-082, the 52 human-blocked MUST items
+
+Kush wrote "all 52 human prv and ksh approvdd". Under D-071 and the persona line, ksh and prv may decide items of type
+**choice** (tighten, defer, withdraw or refuse) but may not loosen, close or sign.
+
+**Proposed DONE (13 MUST).** These choice items are recorded in D-080 and D-081 with the pack's recommended text:
+- T3-C22-R7 (Q39 deferred);
+- T7-C01-R2 (Step 35 designed, not run);
+- T8-C06-R2 (e5-large-v2, revision `f169b11e…`);
+- T8-C12-R1 ("uncalibrated");
+- T9-C12-R1 (power note);
+- T3-C17-R1 (no D3 accuracy claim);
+- T5-C05-R4 (Q20 / Q22 / Q23);
+- T3-C07-R3 (presence-only);
+- T4-C09-R1 (limitation);
+- T4-C22-R1 (EVD-row arm only);
+- T8-C02-R2 (SEMANTIC abstains);
+- T9-C26-R2 (fallback levels L0-L3);
+- T5-C05-R1, the G23.2 property test: 10,500 randomised queries, 0 failing (RUN-S179-PROP-001; hypothesis was already in the Mac env, D-080 #20).
+
+**Proposed DONE (SHOULD and other items).** T9-C25-R5 (install: nothing to install), T9-C25-R3 (VPN worked), the
+D-008 merge, the Route B host (the Mac), A1, A3, #7, and the 29-diag / AA options (D-082).
+
+**Prereg edit lock, T9-C26-R5 (MUST): still PARTIAL.** The S178 amendments are applied in place to the D5, 29-diag and
+AA DRAFT files (`tools/s179_apply_prereg_amendments.py --check` reproduces them). Two things remain open:
+- the 07.A-R1 ruling (#2, HUMAN);
+- D5 sidedness D-D5-6. One-sided would loosen the test, so it is a human choice.
+
+**Still BLOCKED_HUMAN (39 MUST).** These cannot move on any persona approval:
+- 7 signatures: 07A-R1, AA, 29-diag, D5 (Kush and Parv), H8 register;
+- 2 freezes: 15A-BOOT, §141 crosswalk;
+- human labour: the 07A-R1 labels and adjudication, the 5 PDFs and licence checks, the CAL and SIM-VAL verification, the 100-question review, the 30-claim blind audit;
+- facts: Prof. Bagler's permission, calendar, contributions and date;
+- gate-loosening decisions: #10, #14;
+- every agent run downstream of these (29-diag run, PARAM, fit, H1 / H3 / D4 scoring).
+
+**Process flag.** The pack's proposed rule (§2.2, not yet in force; A4) says HUMAN-type entries are committed by the
+human from their own session. D-079 decision 2 (the H4 UNIT enum, pack type HUMAN) was entered by the agent as scribe
+on Kush's chat instruction, as D-069 / D-070 were. If A4 is adopted, Kush should re-confirm D-079 in his own commit.
