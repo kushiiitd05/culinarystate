@@ -272,7 +272,7 @@ def test_milk_sugar_cream_vinegar_bread_leave_absent_as_the_review_predicts():
 def test_provenance_names_the_identity_source_and_is_counts_only():
     g, sc, _ = _real()
     d = g.describe()
-    assert d["identity_source"] == SI.IDENTITY_SOURCE and d["version"].endswith("0.3.0-draft")
+    assert d["identity_source"] == SI.IDENTITY_SOURCE and d["version"] == EG.VERSION
     assert d["identity_registry_sha256"] == EG._sha(SI.REGISTRY_PATH)
     assert d["identity_kinds"] == dict(sorted(Counter(sc.kinds.values()).items())) and "DIRECT" in d["identity_kinds"]
     D.assert_counts_only(d)
