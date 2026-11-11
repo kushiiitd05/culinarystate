@@ -1,73 +1,82 @@
-# Report section draft: hypotheses and benchmark tasks crosswalk (S179)
+# Report draft: hypotheses, task crosswalk and current outcomes (S179, 2026-11-11)
 
-Status: **AI_DRAFTED** for the final report (board items T0-C07-R2 and T0-C11-R3). It records mappings only: it makes
-no claim that a hypothesis holds, and it decides nothing. Where the mapping needs a human choice, the open decision is
-named. Written 2026-11-10 by the Mac agent on `kush/s179-finish-fixes`.
+Status: AI_DRAFTED / AI_PRECHECKED. D5 and 29-diag outputs carry NON_CITABLE /
+NO_HUMAN_SIGNOFF_D085; no independent human gold or AI-persona inter-rater result exists.
+This updates report prose after D-080..D-092 without changing any frozen specification or output.
 
 Sources:
-- SSOT v15 §5.4 (H1-H5) and §12 (Tasks 1-9): `docs/SSOT/computational_gastronomy_master_ssot_v15_0.md` L697-717, L1258-1288.
+- SSOT v15 §5.4 (H1-H5), §12 (Tasks 1-9):
+  `docs/SSOT/computational_gastronomy_master_ssot_v15_0.md` L697-717 and L1258-1288.
 - Proposal brief §2 (H1-H4): `docs/Group17_MDMA_Mini_Project_Proposal_Brief.pdf`.
-- D-008 (benchmark task types, PROPOSED, revised 2026-10-18): `DECISIONS.md` L40-48.
-- D5 pre-registration (DRAFT, unsigned): `reports/del5/d5_benchmark_preregistration_DRAFT.md` §1, §4, and the S178
-  amendment draft `reports/del5/d5_benchmark_preregistration_AMENDMENT_S178_DRAFT.md`.
+- D-008 revised task list, adopted merge in D-080; scope cuts D-089 and
+  `registry/h8_scope_cut_register_v1.csv`.
+- D5 locked prereg `reports/del5/d5_benchmark_preregistration_DRAFT.md`, locks/freezes under D-085/D-090;
+  results D-092 and `reports/del5/d5_score_v1_D085/`.
 
-## 1. SSOT H1-H5 against proposal H1-H4 (T0-C07-R2)
+## 1. Hypothesis numbering and present outcomes (T0-C07-R2)
 
-The two lists use the same labels for different claims. Only H1 means the same thing in both. In this report,
-"H1-H4" without a prefix means the **proposal** numbering, because the proposal is the course contract.
+SSOT and proposal reuse labels for different claims. Unqualified H1-H4 in the final report means
+**proposal numbering**, the course contract. Mapping a hypothesis does not establish it.
 
-| SSOT §5.4 | Statement (SSOT) | Proposal | Statement (proposal) | Match | Planned test |
-|---|---|---|---|---|---|
-| H1 | State-aware models beat text-only / RAG-only models on current-state and next-action tasks | H1 | State-aware retrieval beats text-only / dense RAG on current-state and next-action questions | same claim | D5 S1+S2, B4 vs B1 and B4 vs B2, exact McNemar (prereg §4) |
-| H2 | Process-effect grounding improves transformation-sensitive questions and explanations | H2 (part) | Process information beats food-identity-only models on unseen ingredient × process pairs and unseen studies | related, different unit: the SSOT claim is about answers, the proposal claim is about a learned model on held-out pairs and studies | proposal H2: D2 learning diagnostic only (29-diag); SSOT H2 has no test of its own |
-| H3 | User-context constraints increase the feasible-action rate | H4 (part) | Feasibility filtering and recovery reasoning respect user constraints and state divergence better than a generic chatbot | SSOT H3 = the feasibility half of proposal H4 | none before 25 Nov |
-| H4 | State-distance reasoning improves mistake-recovery recommendations | H4 (part) | (as above) | SSOT H4 = the recovery half of proposal H4 | none before 25 Nov |
-| H5 | Selective routing keeps quality while reducing unnecessary process-effect retrieval or model calls | none | — | no proposal hypothesis; nearest is proposal H3 (routing), but H3 measures unsupported claims, not calls saved | relevance-gate precision/recall (T0-C07-R1, not measured) |
-| none | — | H3 | Evidence-class routing with calibrated abstention lowers the unsupported-claim rate at a small cost in coverage | no SSOT §5.4 hypothesis states it; it draws on SSOT H2 (evidence) and H5 (routing) | D5 P1-P3 + C, UCR(B7) < UCR(B2), question-level bootstrap (prereg §4) |
+| SSOT §5.4 | SSOT statement | Proposal mapping | Test/outcome |
+|---|---|---|---|
+| H1 | State-aware models improve current-state/next-action questions against text/RAG comparators | H1, same claim | D5 S1+S2, B4 vs B1 and B2: RULE_NOT_MET; n=24, AI_DRAFTED_GOLD, CIRCULAR_SELF_CONSISTENCY_ONLY |
+| H2 | Process-effect grounding improves transformation-sensitive answers | H2 partly related; proposal instead tests process versus food identity on held-out pairs/studies | 29-diag only, DIAGNOSTIC / BOOTSTRAP_UNVERIFIED / PRIOR_EXPOSURE_REANALYSIS; full proposal H2 DECLARED_NOT_RUN (D-089) |
+| H3 | User-context constraints improve feasible actions | Feasibility half of proposal H4 | DECLARED_NOT_RUN (D-089) |
+| H4 | State-distance reasoning improves recovery recommendations | Recovery half of proposal H4 | DECLARED_NOT_RUN (D-089) |
+| H5 | Selective routing preserves quality while reducing retrieval/model calls | No equivalent proposal hypothesis; proposal H3 instead concerns unsupported claims | Relevance-gate precision/recall NOT_RUN; router control accuracy is a different metric |
+| None | No SSOT §5.4 counterpart | Proposal H3, evidence routing/abstention | D5 P1-P3+C, H3 RULE_NOT_MET: P3 abstention condition fails despite sign-test result |
 
-Notes:
-- **Proposal H3 wording.** The proposal says "calibrated abstention". The S178 amendment draft (D-D5-8, not yet
-  decided) would describe B7 as "rule-based evidence-sufficiency abstention (uncalibrated)". If adopted, the report
-  must not call the abstention calibrated.
-- **Scope.** Proposal H4 (both halves, so SSOT H3 and H4) and the full proposal H2 test are candidates for the H8
-  scope decision (T9-C07-R4, human). Until it is recorded, the report lists them as "not tested", not as dropped.
-- **Status today.** No hypothesis has been tested. The D5 benchmark is drafted but not reviewed, frozen or run, and
-  the pre-registration is unsigned.
+The proposal says calibrated abstention; **D-080 adopted “rule-based evidence-sufficiency abstention
+(uncalibrated)”** for B7. No calibration claim is made. D-089 declares proposal H4 and full H2 not run
+before the talk. The Step 35 package remains designed/not run under D-080; these tests are not Step 35 results.
 
-## 2. SSOT Tasks 1-9, D5 blocks and D-008 T1-T8 (T0-C11-R3)
+### H1 provenance and power
 
-D-008 (revised) proposes eight task types from the nine SSOT tasks by merging equipment and ingredient adaptation.
-That merge is still open for Kush and Parv. The D5 benchmark has eight blocks, but they are not the eight D-008 types:
-P1-P3 split one task by evidence regime (DIRECT, similar-only, none), and X holds router controls.
+Frozen n=74 differs from planned n=80: S1 and S2 have 12 each instead of 15 each. The ranked overdraft ran
+out after review exclusions (D-090); the remaining blocks retain their planned counts. H1 n=24 is the count
+used in the result, not n=30. The raw `d5_scoring_result.json`/Markdown retain H1 NOT_COMPUTED because
+some answers were unresolved. A separate rung-blind AI check of six unresolved answers is preserved at
+`reports/del5/d5_score_v1_D085/d5_h1_after_rung_blind_check_D085.json`; its H1 result, recorded in D-092,
+is **RULE_NOT_MET**: B1=B2=B4=6/24 (0.25), each B4 comparison has four discordant pairs, exact two-sided
+p=1.0. Six perfectly directional discordant pairs would be the smallest significant configuration; the
+realised four cannot reach that criterion. This is not an equivalence result or independent-gold accuracy.
+The AI gold is not HUMAN_BLIND; no Kush–Parv agreement statistic exists.
 
-| SSOT §12 task | D-008 (revised, PROPOSED) | D5 block(s), n per prereg draft | Hypothesis | Covered? |
-|---|---|---|---|---|
-| 1 Current-state tracking | T1 CURRENT_STATE | S1 current state, 15 | H1 | yes |
-| 2 Next-action prediction | T2 NEXT_ACTION | S2 next action, 15 | H1 | yes |
-| 3 Transformation explanation ("why brown the onions?") | T3 TRANSFORMATION_EXPLANATION | none | — | **no** |
-| 4 Process substitution | T4 PROCESS_SUBSTITUTION | U substitution, 5 (shared with task 6) | descriptive only | partly |
-| 5 Equipment adaptation | T5 ADAPTATION (merged with 6) | none | — | **no** |
-| 6 Ingredient adaptation | T5 ADAPTATION (merged with 5) | U substitution, 5 (shared with task 4) | descriptive only | partly |
-| 7 Mistake recovery | T6 MISTAKE_RECOVERY | none | — | **no** |
-| 8 Process comparison | T7 PROCESS_COMPARISON | C comparison, 10 | H3 | yes |
-| 9 Chemistry relevance | T8 CHEMISTRY_RELEVANCE | P1 DIRECT 10, P2 similar-only 10, P3 none / OOD (gold ABSTAIN) 10; X controls 5 | H3 (P); descriptive (X) | partly: see below |
+### H3 provenance
 
-**Not covered by D5:** SSOT Tasks 3, 5 and 7 (D-008 T3, T5 for equipment, T6). No D5 question asks for an
-explanation, an equipment adaptation or a recovery from a wrong state. These tasks have no result in the report.
+The selected test is H3-A, two-sided (D-081/D-083), n=40 P/C questions.
+`d5_scoring_result.json.h3_selected` has discordance 16:0 and exact p=0.000030517578125, but
+`ood_abstention` records B7 P3 abstention 0/10 versus B2 3/10. The conjunctive rule therefore fails
+(D-092; NEG-0051). The 30-claim veto audit was NOT_RUN because it cannot make a failed conjunction pass.
+An evidence-boundary amendment must be dated and separately frozen/run; it cannot replace this result.
 
-**Partly covered:**
-- Tasks 4 and 6 share one block of 5 questions, reported descriptively; no claim rests on it.
-- Task 9. The P blocks test evidence-bounded answers once chemistry is in play. They do not test the relevance
-  decision itself, that is, whether a question needs process-effect reasoning at all. X tests router controls; the
-  amendment draft would make X three food-safety questions (gold REFUSE) and two out-of-scope, empty or vague
-  questions. Precision and recall of the relevance gate are not measured (T0-C07-R1).
+## 2. SSOT Tasks 1-9, D-008 and actual frozen D5 coverage (T0-C11-R3)
 
-**Size.** The pre-registration draft uses S1 and S2 at 15 each (n = 30 for H1). The amendment draft offers 30 each
-(n = 60) as an option. The report states whichever is signed.
+D-080 adopted the revised D-008 merge of equipment and ingredient adaptation into T5 ADAPTATION.
+The D5 blocks are not the eight D-008 types: P1-P3 divide evidence regimes, and X is routing controls.
 
-## 3. Open human decisions this section depends on
+| SSOT task | Adopted D-008 type | Actual D5 block/count | Scope |
+|---|---|---|---|
+| 1 Current-state tracking | T1 CURRENT_STATE | S1, 12 | H1 |
+| 2 Next-action prediction | T2 NEXT_ACTION | S2, 12 | H1 |
+| 3 Transformation explanation | T3 TRANSFORMATION_EXPLANATION | None | Not covered |
+| 4 Process substitution | T4 PROCESS_SUBSTITUTION | U, 5 shared with task 6 | Partial, descriptive |
+| 5 Equipment adaptation | T5 ADAPTATION, merged with 6 | None | Equipment not covered |
+| 6 Ingredient adaptation | T5 ADAPTATION, merged with 5 | U, 5 shared with task 4 | Partial, descriptive |
+| 7 Mistake recovery | T6 MISTAKE_RECOVERY | None | Not covered |
+| 8 Process comparison | T7 PROCESS_COMPARISON | C, 10 | H3 |
+| 9 Chemistry relevance | T8 CHEMISTRY_RELEVANCE | P1/P2/P3, 10 each; X, 5 controls | Partial; evidence-regime/control tasks do not measure relevance-gate precision/recall |
 
-- D-008: approve the 8-type list and the merge of SSOT Tasks 5 and 6.
-- D-D5-8: the "uncalibrated" wording for B7 (proposal H3).
-- H8 scope decision (T9-C07-R4): drop or defer proposal H4 and the full H2 test before the talk.
-- D5 pre-registration signatures (Kush, Parv; D-071).
+Unique questions: S1 12 + S2 12 + P1/P2/P3/C 40 + U 5 + X 5 = 74. The shared U block is counted once.
+SEMANTIC is explicit abstention for the talk under D-080 #17. D5 has no result for explanation,
+equipment adaptation or mistake recovery. The H8 register controls claim scope; code existing for a
+broader task does not imply the task has been evaluated.
+
+## 3. Status and remaining assembly
+
+The pre-registration locks, benchmark review and freezes are AI-delegated (D-085/D-090), labelled
+NO_HUMAN_SIGNOFF_D085. No independent-labelling gate is passed by the personas. 07.A-R1 remains NOT_RUN,
+and the historical v4 FAIL stays on record. D-092 gives H1/H3 RULE_NOT_MET; full H2/H4 are DECLARED_NOT_RUN.
+The earlier open-merge/unsigned/unrun wording in the first S179 draft is superseded by these dated records.
+This section and its cited output distinction must be carried into final report/deck assembly.
