@@ -1,5 +1,7 @@
 """S179 (D-080..D-082): the three pre-registration DRAFT files equal the mechanical build from their git base text and
-the S178 amendments; chosen options present, alternatives gone, open human choices still visibly open, nothing signed."""
+the S178 amendments; chosen options present, alternatives gone. Later D-085 locks are explicitly AI-delegated."""
+import hashlib
+import json
 import runpy
 from pathlib import Path
 
@@ -34,8 +36,13 @@ def test_29diag_and_aa_options():
         assert must in a, must
 
 
-def test_no_signature_files_created():
+def test_no_human_signature_files_and_delegate_lock_is_bound():
     for p in ("reports/del5/d5_prereg_signature_Kush.json", "reports/del5/d5_prereg_signature_Parv.json",
-              "reports/step29/29diag_prereg_signature.json", "reports/step10/aa_pilot_prereg_signature_Kush.json",
+              "reports/step10/aa_pilot_prereg_signature_Kush.json",
               "reports/step10/aa_pilot_prereg_signature_Parv.json"):
         assert not (ROOT / p).exists(), p
+    lock = json.loads((ROOT / "reports/step29/29diag_prereg_signature.json").read_text())
+    assert lock["signed_by"] == "ksh+prv (AI, D-085)"
+    assert lock["decision"] == "D-085" and lock["label"] == "NO_HUMAN_SIGNOFF_D085"
+    assert lock["prereg_sha256"] == hashlib.sha256(
+        (ROOT / M["DOCS"]["D29"]["draft"]).read_bytes()).hexdigest()
