@@ -1383,3 +1383,31 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `reports/orchestration/S179_round6_acceptance_audit.csv`, `reports/orchestration/S179_round6_acceptance_audit.md`, `reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md`, `reports/final/SLIDES_DRAFT_S179_2026-11-11.md`, `reports/del5/D5_P3_evidence_boundary_amendment_PROPOSAL_2026-11-11.md`, `handoff/S179_D085_EXECUTION_HANDOFF.md`
 - **Verified:** Board original acceptance preserved;128stratified+384sensitivity rows checked from JSON by report agent;7memo forbidden-word lint;provenance and prereg --check OK. Frozen/protected files to be checked before push.
 - **Next:** Private inputs;full emission/leakage scans;versioned split registry;authors edit/contributions;post19NovMPU and timed24Nov rehearsal.
+
+### S202 · 2026-11-11 23:00 IST · S179 · Private transfer installed with hash and ignore checks
+- **Who:** Parv
+- **Did:** Verified all15 manifest hashes; copied to expected ignored folders, preserving source. D085CALsheet matches frozen fit. No transferred text committed. Added tested JSONproof exclusion after finding CSV-only ignore rule.
+- **Files:** `reports/s179/private_transfer_import_2026-11-11.json`, `.gitignore`, `tests/unit/test_s179_private_transfer.py`
+- **Verified:** 15files byte-equal and ignored;privacytest red1 then4pass;no human approvals inferred from filenames.
+- **Next:** Identity-features/Food.com still absent;no SSH without host/VPN confirmation.
+
+### S203 · 2026-11-11 23:00 IST · STEP-10 · Model B and CAL source sensitivity dispositions
+- **Who:** Parv
+- **Did:** Separate-paper OLS ModelB and all predeclared arm dispositions. Source proof16/16 spans checked. Assay-clean primary NEED_DATA(onepaper),licence-rejected arm NOT_RUN;unchanged arms not refitted;frozenModelA untouched.
+- **Files:** `src/culinarystate/simulation/aa_cal_sensitivity.py`, `tools/s179_aa_cal_sensitivity.py`, `tests/unit/test_s179_aa_cal_sensitivity.py`, `reports/step10/aa_model_b_sensitivities_2026-11-11.json`
+- **Verified:** 25target tests incl14new;producer/source hashes bound;RUN-S179-PARV-AA-002.
+- **Next:** No assay harmonisation or production calibration inferred.
+
+### S204 · 2026-11-11 23:00 IST · STEP-10 · Separate SIM-VAL extraction and source-gated diagnostic refusal
+- **Who:** Parv
+- **Did:** Estimate-unexposed extractor finalized19rows;second unexposed source reviewer6PASS12FLAG1REJECT,zero computational eligibility. AAK12 licence403 text unopened. No primary predictions or errors emitted. Added source-bound diagnostic tool, retained firstbuild and newv2 output.
+- **Files:** `reports/step10/SIMVAL_extraction_precheck_2026-11-11.md`, `reports/step10/SIMVAL_source_precheck_2026-11-11.md`, `tools/s179_aa_simval_diagnostic.py`, `tests/unit/test_s179_aa_simval_diagnostic.py`, `reports/step10/aa_SIMVAL_diagnostic_2026-11-11_v2.json`
+- **Verified:** 21tests pass and independent review confirms provenance gapclosed;FLAGfailsclosed;zeroeligible retainsnullmetrics. Private spans/rows/manifests ignored.
+- **Next:** Source-supported assay/basis resolution or honest NOT_RUN;no tuning/fake observations.
+
+### S205 · 2026-11-11 23:00 IST · M8 · T5 scorecard and private-transfer report closeout
+- **Who:** Parv
+- **Did:** All13requested G15T5 gates mapped:5PARTIAL3NEED_DATA5NOT_MET0PASS. Calibrationdisposition anddraftSIMMcard retain realroute refusal. Updated report/deck andround7supplement. Local source-window scan0matches on5sources7artifacts,limitedscope.
+- **Files:** `reports/step10/G15_T5_scorecard_2026-11-11.md`, `reports/step10/calibration_disposition_2026-11-11.md`, `reports/step10/SIMM-AA-1_card_DRAFT_2026-11-11.json`, `reports/orchestration/S179_round7_private_transfer_update.md`, `reports/s179/source_text_scan_partial_2026-11-11_v2.json`, `reports/s179/private_transfer_verification_2026-11-11.json`
+- **Verified:** Final full7975passed1failed11errors13skipped44deselected109.43s;48new-tool tests;21peerrecheck. Missing-data outcomes retained. Frozen/protected checks before push.
+- **Next:** Genuine KIN/PARAM provenance;sourcebasis;missingtestinputs;fullcorpus/emission/leakage;authorfacts/rehearsal.
