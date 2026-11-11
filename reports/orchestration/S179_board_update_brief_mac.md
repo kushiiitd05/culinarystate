@@ -159,3 +159,18 @@ Next: restore private/local inputs, then CAL/Model B and separate-session SIM-VA
 T5 G15 scorecard; full emission-contract scan; new frozen split registry; final report/deck leakage comparison.
 Post-19-Nov MPU and actual 24 Nov rehearsal cannot truthfully be completed on 11 Nov. No SSH until current VPN/host/path
 confirmation. Parv asked to defer private-file questions until this local batch is complete.
+
+
+## Round 7 (2026-11-11): private sources restored; AA closeout evidence
+
+See `reports/orchestration/S179_round7_private_transfer_update.md` for the item-by-item supplement.
+All 15 transferred files match the manifest and remain local-only. Model B and CAL sensitivity dispositions are
+complete with explicit licence and assay exclusions. Separate-context SIM-VAL extraction plus second AI source
+precheck found zero computationally eligible rows; no primary prediction/error result is manufactured.
+The 13-gate T5 scorecard has zero PASS. PARAM/calibration and real SIMULATE retain their existing requirements.
+Report/deck updates and draft model card disclose these outcomes. No decision or scientific freeze was changed.
+
+Final full verification: 7,975 passed, 1 failed, 11 errors, 13 skipped, 44 deselected; all remaining failure/errors missing
+identity-features/Food.com inputs. 48 new tests plus 21 independent provenance/CLI tests pass. The expanded local
+source-window scan finds zero 12-word matches in seven artifacts against five supplied source files, with
+release_clearance=false. Final exports, absent corpora, short excerpts/paraphrases/images remain outside that scan.
