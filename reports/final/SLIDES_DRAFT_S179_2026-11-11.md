@@ -127,7 +127,9 @@ Ea **64.40 kJ/mol**. Conditional Student-t 95% interval **[35.57, 93.22] kJ/mol*
 the separately reported asymptotic profile interval is narrower and uses a different calibration.
 
 Practical precision: **NOT_ASSESSED**, no locked precision criterion. **NOT_VALIDATED / RESEARCH_ONLY**.
-SIM-VAL, Model B sensitivity, PARAM/domain provenance and calibration integration remain incomplete.
+Model B sensitivity and separate-context SIM-VAL extraction/precheck are complete.
+The precheck leaves **0 eligible held-out rows**; no prediction/error metric is emitted.
+PARAM/domain provenance and production calibration remain incomplete.
 Sources: D-091; `reports/step10/identifiability_report_v1.md`.
 
 ---
