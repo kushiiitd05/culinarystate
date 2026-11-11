@@ -375,8 +375,9 @@ No parameter-precision gate is passed by this report.
 - Command: `python tools/s179_aa_profile_summary.py --fit reports/step10/aa_pilot_model_a_fit_D085.json
   --out reports/step10/aa_identifiability_profile_summary_S179.json`.
 - Source rows are AI_PRECHECKED under D-085, not human verified. There are **7 included rows from 2 papers,
-  3 regression coefficients and 4 residual degrees of freedom**. Original CAL verification sheets and
-  paper texts are absent from this checkout; the diagnostic uses the frozen sufficient summaries only.
+  3 regression coefficients and 4 residual degrees of freedom**. This diagnostic used frozen sufficient
+  summaries before the private CAL transfer arrived. The later source review and Model B work are reported
+  separately below; the profile calculation is unchanged.
 
 All numerical results below have the four diagnostic labels above. No bootstrap was performed.
 
@@ -438,8 +439,8 @@ replacing the fit or its code. Existing failed gates and frozen outputs remain u
 
 - Two papers provide very little information about between-paper heterogeneity. The fitted between-paper SD
   is not a random-effects variance estimate with a profiled confidence interval here.
-- No residual checks, leverage analysis, per-temperature checks, raw-unit revalidation or per-paper Model B
-  sensitivity can be reconstructed reliably from the summary. They remain open pending the CAL packet.
+- Residual checks, leverage and source metadata cannot be reconstructed from summaries alone. The later
+  CAL transfer enabled source/unit prechecks and per-paper Model B; see the dated AA update below.
 - The likelihood profile assumes a common Gaussian residual variance and no within-paper dependence.
   Bounded intervals under that model are not evidence of robust practical identifiability under alternatives.
 - The report supplies parameter profiles and explicit parameter statuses for T5-C12-R2. Its practical gate
@@ -499,13 +500,35 @@ The H3 30-claim audit was not run; no positive claim is made in its absence. The
 in D4 remains unresolved in the frozen output. A proposed future evidence-boundary amendment is separate at
 `reports/del5/D5_P3_evidence_boundary_amendment_PROPOSAL_2026-11-11.md`; it is not adopted or executed.
 
-AA Model B sensitivity, raw-row source checks, PARAM provenance, calibration/domain integration, SIM-VAL
-extraction and descriptive prediction remain incomplete. The missing private files are not replaced with
-synthetic scientific data. No clinical, dietary or food-safety recommendation is made by the research demo.
+AA Model B and separate-context SIM-VAL extraction/source precheck are now complete. Source precheck leaves
+zero computationally eligible held-out rows, so prediction and retention-error assessment remain NOT_RUN.
+PARAM provenance and calibration/domain integration remain incomplete; synthetic values do not replace missing
+scientific observations. No clinical, dietary or food-safety recommendation is made by the research demo.
 
 The final 1,000-session emission-contract corpus scan, completed report/deck recipe-text leakage comparison,
 updated frozen split registry, post-19-Nov MPU score and actual timed rehearsal on 24 Nov remain separate acceptance
 items. A source-field scan alone would not certify absence of verbatim recipe text.
+
+## AA update after the private transfer — 11 November 2026
+
+**DIAGNOSTIC / NON_CITABLE / AI_PRECHECKED / NO_HUMAN_SIGNOFF_D085.**
+The restored CAL sheet matches the frozen fit hash. Separate Model B fits and every predeclared sensitivity
+arm's disposition are now recorded. Removing the non-AA-specific paper leaves one paper and returns NEED_DATA.
+The licence-rejected all-rows arm remains NOT_RUN. Unchanged-row arms do not count as new robustness results.
+The pooled primary fit retains its HPLC-versus-iodine-titration assay-basis caveat.
+
+Separate-context SIM-VAL extraction finalized 19 rows; a second estimate-unexposed source precheck marked 6 PASS,
+12 FLAG and 1 REJECT. PASS means source fidelity only; computationally eligible rows are 0. The three rate rows
+remain excluded pending assay-basis review, and no raw time/retention observations were available. AAK-12's
+licence could not be confirmed, so its text remained unopened. No primary prediction/error metric was emitted.
+
+The guarded tool retains null metrics for zero eligible rows. No PARAM/VAL provenance or validated domain has
+been supplied; production SIMULATE remains unavailable. The 13-gate T5 scorecard has zero PASS. No scientific
+gate, human verification or independent agreement follows from having completed these report artifacts.
+
+Sources: `reports/step10/aa_model_b_sensitivities_2026-11-11.md`,
+`SIMVAL_extraction_precheck_2026-11-11.md`, `SIMVAL_source_precheck_2026-11-11.md`,
+`calibration_disposition_2026-11-11.md` and `G15_T5_scorecard_2026-11-11.md` in `reports/step10/`.
 
 ## Author contributions
 
