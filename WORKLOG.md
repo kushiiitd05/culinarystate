@@ -1362,3 +1362,24 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `tools/s179_d5_{run_rungs`, `embed_cache`, `relatives}.py; registry/freezes/D5-BENCH-2026-11-10b.json; reports/del5/d5_runs_v1_D085.*; reports/del5/d5_score_v1_D085/*; reports/step23/router_demo_census_vitc_nonBBC_full_S179_cmon.json; DECISIONS.md`
 - **Verified:** runner tests 4 passed; guard ok; RUN-S179-D5-001, RUN-S179-ROUTER-009
 - **Next:** examine why B7 does not abstain on P3; SIM-VAL extraction in a separate session
+
+### S199 · 2026-11-11 22:14 IST · S179 · Local Python 3.11 baseline and stale-test corrections
+- **Who:** Parv
+- **Did:** Fetched and switched to Kush working branch65298da. Created requested pinned Python3.11.9 environment. Baseline7906passed8failed13errors; corrected3stale test assumptions.83localhost tests pass with access;44targeted pass. Final full7926passed1failed11errors14skipped44deselected;all remaining failure/errors missing local identity-features/Food.com files;tests not weakened.
+- **Files:** `reports/s179/parv_verification_2026-11-11.json`, `reports/s179/env_lock/parv_S179_2026-11-11.txt`, `tests/unit/test_s177_sr_identity_adapter.py`, `tests/unit/test_s179_human_sign.py`, `tests/unit/test_s179_prereg_amendments_applied.py`
+- **Verified:** Full run135.31s;RUN-S179-PARV-TEST-001..005. Socket restrictions isolated from missing-data outcomes.
+- **Next:** Restore local inputs; rerun affected checks. No SSH before current VPN/host confirmation.
+
+### S200 · 2026-11-11 22:14 IST · STEP-10 · Frozen AA Model A conditional identifiability diagnostic
+- **Who:** Parv
+- **Did:** Derived analytic coefficient profile intervals from frozen OLS covariance and residual summaries without refit or SIM-VAL access. Reported separate finite-df t intervals. All3profiles bounded conditional on OLS;practical precision NOT_ASSESSED;NOT_VALIDATED/RESEARCH_ONLY retained.
+- **Files:** `tools/s179_aa_profile_summary.py`, `tests/unit/test_s179_aa_profile_summary.py`, `reports/step10/aa_identifiability_profile_summary_S179.json`, `reports/step10/identifiability_report_v1.md`
+- **Verified:** TDD missing-module red;10new tests and21AA tests pass. Synthetic constrained OLS endpoint checks. Fit hashb9247db0 unchanged;RUN-S179-PARV-AA-001.
+- **Next:** CAL/ModelB and separate-session SIM-VAL require private files;PARAM/calibration/G15 retain own gates.
+
+### S201 · 2026-11-11 22:14 IST · M8 · Round6 full acceptance audit and original-result report assembly
+- **Who:** Parv
+- **Did:** Audited252unique board rows84MUST168SHOULD;51POST retained. Resolved VERIFY choices from existing decisions. Added D1/D4/H2-lineage sections,7diagnostic memos,updated crosswalk/licence section,integrated report and Markdown slide drafts,release card,schedule and D5 boundary amendment proposal. Original H1 raw/supplement distinction and compatible-recall contradiction retained;no new experiment or human sign-off.
+- **Files:** `reports/orchestration/S179_round6_acceptance_audit.csv`, `reports/orchestration/S179_round6_acceptance_audit.md`, `reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md`, `reports/final/SLIDES_DRAFT_S179_2026-11-11.md`, `reports/del5/D5_P3_evidence_boundary_amendment_PROPOSAL_2026-11-11.md`, `handoff/S179_D085_EXECUTION_HANDOFF.md`
+- **Verified:** Board original acceptance preserved;128stratified+384sensitivity rows checked from JSON by report agent;7memo forbidden-word lint;provenance and prereg --check OK. Frozen/protected files to be checked before push.
+- **Next:** Private inputs;full emission/leakage scans;versioned split registry;authors edit/contributions;post19NovMPU and timed24Nov rehearsal.
