@@ -40,3 +40,22 @@ evidence); the v4 FAIL stays. Fallback wording: Bagler permission "as stated by 
    AAK-02/04/05/08/10 still need a human browser download (the agent does not work around site checks).
 8. **T9-C07-R3: DONE** (`reports/final/sections/S179_gate_provenance_DRAFT.md`; regenerate after each DECISIONS append).
 9. Update `reports/orchestration/S179_board_update_brief_mac.md` and WORKLOG after each item; one commit per file.
+
+
+## Parv continuation — 2026-11-11 (supersedes older next/running/VPN wording above)
+
+- Base 65298da, branch kush/s179-finish-fixes. No main merge. Current VPN/host/path NOT_CONFIRMED; no SSH attempted.
+- Round6 all 252 rows audited:84 MUST / 168 SHOULD; 51 POST retained; board untouched. See S179_round6_acceptance_audit.*.
+- Seven 29-diag memos, D1/D4/H2-lineage sections, crosswalk, integrated report,Markdown deck and release card prepared.
+- AA summary-only identifiability diagnostic added:10 new tests, 21 AA tests pass; no refit or SIM-VAL access.
+- Model A remains NOT_VALIDATED/RESEARCH_ONLY; practical precision NOT_ASSESSED. Frozen fit hash remains b9247db0….
+- D5 P3 boundary proposal not adopted; no new freeze/run. Raw H1 NOT_COMPUTED and separate supplemental RULE_NOT_MET
+  both retained. D4 compatible-recall contradiction flagged; no silent repair or claim.
+- Python 3.11.9 isolated environment at ../.venvs/s179-py311; resolved lock and verification summary in reports/s179/.
+- Three stale test assumptions corrected;44 targeted and83 socket tests pass. Final full suite7,926 passed, 1 failed,
+  11 errors, 14 skipped, 44 deselected; remaining 12 outcomes solely missing identity-features/Food.com input files.
+- Missing private AA CAL/SIM-VAL and D5 S-context files: ask Parv for local transfer folder after this batch.
+- Next: restore files; separate-session SIM-VAL (extractor receives only fit hash), Model B, PARAM/calibration and
+  T5 G15 scorecard; full answer-contract and source-text leakage scans; versioned frozen split registry.
+- Final report/deck remain drafts: author edits/contributions, export, post-19-Nov MPU and actual 24 Nov rehearsal pending.
+- No original board, protected ledger, grammar, frozen scorer/prereg/benchmark/result changed. No human sign-off invented.
