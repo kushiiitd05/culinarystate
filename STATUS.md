@@ -1,5 +1,26 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+## Current continuation — 11 November 2026 (Parv; supersedes older snapshots below)
+
+Branch `kush/s179-finish-fixes`; decisions through D-092. D-085 AI delegation retains NO_HUMAN_SIGNOFF_D085;
+independent-human scientific gates do not pass by delegation. Current evidence is in the round-6 audit and
+`reports/orchestration/S179_round7_private_transfer_update.md`; the immutable S178 board remains the plan inventory.
+
+- Private transfer: all 15 files hash-verified and installed locally, originals retained; no private text committed.
+- AA: Model B and predeclared CAL sensitivity dispositions complete. Removing the non-AA-specific paper leaves
+  one paper, NEED_DATA. Licence-rejected all-rows arm NOT_RUN. Frozen Model A unchanged and NOT_VALIDATED/RESEARCH_ONLY.
+- SIM-VAL: separate unexposed extraction and second AI source precheck complete. 19 rows, zero computationally
+  eligible; no predictions or errors emitted. Retention observations absent; AAK-12 licence-unconfirmed text unopened.
+- T5 G15: all 13 requested gates documented; zero PASS. PARAM/source-lineage provenance and real calibration/domain
+  integration remain incomplete. Existing SIMULATE guards stay closed; no new scientific pass supplied.
+- Integrated report and Markdown deck updated. Source-window scan: zero 12-word matches in seven artifacts against
+  supplied D5 context and licensed CAL/SIM-VAL texts; other corpora/final exports still need checks, no release clearance.
+- Tests: 7,975 passed, 1 failed, 11 errors, 13 skipped, 44 deselected. Remaining failure/errors are missing identity-features
+  and Food.com inputs; tests were not skipped or weakened. 48 new tests and independent 21-test review pass.
+- Human facts still pending: current VPN/host/path (no SSH), talk details and author contributions. Private AA/D5
+  files have arrived; the older handoff requests for those specific files are resolved.
+
+
 **As of:** 2026-11-09 (S178 refresh by the manjot orchestrator lane, T9-C01-R3; HEAD `4a95380` on branch `max/s176-orchestration` plus uncommitted lane work). Sections below that still carry S163 wording are marked **[STALE as of S163]** or **[UPDATED]** with the path of the newer evidence. DECISIONS runs through D-078 (next free D-079); WORKLOG ids S171-S177 are used (next free S178). **No signature, expert approval, human verification or failed-gate pass is supplied by this refresh; every S176-S178 item is AI_DRAFTED / PROPOSED (D-071).** Working order D-045: AI verdict first, then Kush and Parv review (final).
 **Authoritative records:** DECISIONS.md, WORKLOG.md and the dated review artifacts. Current plan: `registry/execution_board_S178.csv` and `reports/orchestration/S178_EXECUTION_BOARD.md` (252 MUST+SHOULD items, waves W1-W4, 9-23 Nov); human tasks `handoff/HUMAN_OPERATIONS_PACK_2026-11-09.md`; consensus `reports/orchestration/ssot_consensus/CONSENSUS_PLAN_2026-11-08.md`; resume point `handoff/RESUME_ANCHOR_2026-11-08_ORCH.md`.
 **Repos in this period:** Kush's Mac (merge, push, BBC-only jobs under D-003, scribing of human gates), manjot-server worktree `~/kush_work/culinarystate/.orch` (orchestration since D-078: non-BBC runs, analyses, reviews; `.venv312`, no torch or sklearn), vinayak-server (GPU/Ollama rungs; needs the IIITD VPN). **[UPDATED]** The S163 line that placed full-corpus runs on vinayak is superseded: CPU jobs run on manjot, only LLM rungs need vinayak (board sec 3).
