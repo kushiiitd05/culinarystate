@@ -59,3 +59,19 @@ evidence); the v4 FAIL stays. Fallback wording: Bagler permission "as stated by 
   T5 G15 scorecard; full answer-contract and source-text leakage scans; versioned frozen split registry.
 - Final report/deck remain drafts: author edits/contributions, export, post-19-Nov MPU and actual 24 Nov rehearsal pending.
 - No original board, protected ledger, grammar, frozen scorer/prereg/benchmark/result changed. No human sign-off invented.
+
+
+## Private transfer continuation — 11 November 2026 (supersedes missing-AA/D5 wording)
+
+- All 15 transferred files verified/copied to expected ignored paths; original transfer retained. Import manifest in reports/s179/.
+- D-085 CAL sheet matches frozen fit hash. Model B and arm dispositions in aa_model_b_sensitivities_2026-11-11.*.
+- Assay-clean shared-Ea arm NEED_DATA (one paper); licence-rejected arm NOT_RUN; no primary refit or model tuning.
+- Separate unexposed SIM-VAL extractor finalized 19 rows; second source precheck 6 PASS / 12 FLAG / 1 REJECT, zero eligible.
+- No actual prediction emitted. aa_SIMVAL_diagnostic_2026-11-11_v2.json records null errors and fail-closed precheck.
+- Exact extraction/precheck/manifest/source hashes retained; raw proofs and rows ignored. JSON proofs now ignored too.
+- G15_T5_scorecard_2026-11-11.md covers 13 gates, zero PASS. Calibration disposition+draft SIMM card explain real route closed.
+- Full suite: 7,975 passed, 1 failed, 11 errors, 13 skipped, 44 deselected; remaining inputs identity-features/Food.com absent.
+- 48 new-tool tests and 21 independent source-binding/CLI tests pass. Expanded source-window scan: 0 matches, limited scope.
+- Report/deck updated; round-7 supplement records exact acceptance limits. Do not edit round 6 or the immutable S178 board.
+- Next: resolve source assay/basis or retain NOT_RUN; complete genuine KIN/PARAM provenance; full corpus/emission/leak checks.
+- No SSH pending current VPN/host/path; no new human facts/signoffs/validated-domain claims. Frozen originals unchanged.
