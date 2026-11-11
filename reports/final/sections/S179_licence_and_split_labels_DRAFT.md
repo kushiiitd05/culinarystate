@@ -1,7 +1,7 @@
 # Report section draft: data licences and split labels (S179)
 
-Status: **AI_DRAFTED** for the final report and the release card (board items T9-C28-R1 and T9-C09-R3). It needs a
-human read before it goes in (T9-C28-R1 acceptance: "paragraph reviewed"). It states what the registries record and
+Status: **AI_DRAFTED** for the final report and the release card (board items T9-C28-R1 and T9-C09-R3). D-079
+records Kush's acceptance of the licence paragraph. It states what the registries record and
 does not verify or change any licence. Written 2026-11-10 by the Mac agent on `kush/s179-finish-fixes`.
 
 Sources: `registry/recipe_source_usage_registry_v1.csv`, `registry/data_source_acquisition_manifest.csv`, the SRC
@@ -35,8 +35,8 @@ ledger, `DECISIONS.md` D-003, `src/culinarystate/decision/public_mode.py`, `regi
 > edge computed over the BBC corpus before any answer is built, and it omits the carbon figures, whose upstream
 > licence is unverified. In local mode, any request that arrives through a tunnel or proxy is refused (HTTP 503).
 
-Checks the acceptance needs before this is final:
-- **[human]** read and accept the paragraph, or edit it;
+Checks before final assembly:
+- **DONE D-079:** Kush read and accepted the licence paragraph; this is not independent licence verification;
 - **[agent, T9-C28-R2]** grep the slides, the report and the screenshots against the git-ignored raw text. This waits
   for the slides and report to exist.
 
@@ -54,8 +54,8 @@ carry `descriptive (no split)`.
 
 | Result (where it appears) | Unit | Split basis | Label |
 |---|---|---|---|
-| D5 H1, S1 + S2 (not run) | recipe at a cut | sampled from Wikibooks and Gutenberg only; 0 of 40 drafted S recipes in the gold index or the 7 Rung A dev samples (leakage audit S-1, S-2) | near-duplicate leakage not controlled; source-family-disjoint not verified. Also: 38 of 40 are Gutenberg prose, so H1 speaks only to that text type, and B0 may know public text from pre-training |
-| D5 H3, P1-P3 + C (not run) | evidence cell | gold EVD rows: 101 of 101 are in the DEL-2 / 29-diag pool (PC-1) | not recipe-level; label `evidence rows seen in DEL-2` |
+| D5 H1, S1 + S2 (D-092) | recipe at a cut | frozen S questions: 24 recipes, 22 Gutenberg and 2 Wikibooks; AI_DRAFTED_GOLD; old leakage audit was on 40 drafts | near-duplicate leakage not controlled; source-family-disjoint not verified; B0 may know public text from pre-training; new frozen-set registry/audit still needed |
+| D5 H3, P1-P3 + C (D-092) | evidence cell | frozen P/C questions: 40; EVD reference is the same resource used in DEL-2; old PC-1 audit counted 101 draft gold rows | not recipe-level; label `evidence resource seen in DEL-2`; draft-era counts are not a fresh frozen-set audit |
 | D3 state tracking vs P1 gold (7 recipes) | recipe | P1 gold, AI-drafted and human-accepted; no held-out design | near-duplicate leakage not controlled |
 | CulinaryNER, RecipeDB3 TEST (2,554 docs) | document | grouped benchmark split, frozen before TEST (commit 4ee0582) | near-duplicate leakage not controlled (groups are not checked against the identity ledger) |
 | CulinaryNER, TASTEset | document | single-source split | near-duplicate leakage not controlled |
@@ -68,8 +68,8 @@ held-out family and shows that no training or tuning step read it.
 
 ## 3. Open items
 
-- Human read of §1 (T9-C28-R1).
+- D-079 completes the recorded read of §1; final report/deck edits remain for the authors.
 - Leakage grep of the finished slides and report (T9-C28-R2).
-- Recompute the D5 rows of §2 once the benchmark is frozen; the audit counts are on the draft (40 S, 60 P/C).
-- S-5 naming mismatch: the prereg says "food-group disjoint", but the runner builds `study_disjoint`. One must change
-  (leakage audit, registry findings).
+- Refresh the frozen D5 split registry and leakage audit; historical audit counts concern the drafts (40 S, 60 P/C).
+- The historical S-5 naming mismatch was resolved in S188: S-5 is food-group-disjoint; S-6 is study-disjoint.
+  `registry/split_registry_v1.csv` retains its older mapping and needs a new version, not a silent edit.
