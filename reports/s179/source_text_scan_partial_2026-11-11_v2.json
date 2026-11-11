@@ -1,0 +1,32 @@
+{
+  "artifact_files": 7,
+  "findings": [],
+  "input_sha256": {
+    "annotation/d5_review/d5_S_context_v1.jsonl": "688529df6e2b44eb5ebb8f8ff650588b0d6e2425d7025b886544fc624953aa8b",
+    "data/raw/aa_pilot/AAK-01.txt": "8ea1e91e8c6d8e9d4ff78b850edb812dec9699e1d13a862fc3aa02d18a05c3bf",
+    "data/raw/aa_pilot/AAK-06.txt": "5cbd05388d283611a278e76933a8aa632ea7bded72eacdd15acc3e9a3ab47076",
+    "data/raw/aa_pilot_simval_quarantine/AAK-03.layout.txt": "eab34e281a332714fac52fbc0b7f636dd0e1cbf6234a73f8766396b2d787f6eb",
+    "data/raw/aa_pilot_simval_quarantine/AAK-07.layout.txt": "b7a9315db032c37a6386e2cbc0fb7ccfb9cafb0d449e620c6d438092a019dc89",
+    "reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md": "a69b55103343a9f16c80bff9995ea889b892f96b5b4f4d986a6485905d4fe96c",
+    "reports/final/SLIDES_DRAFT_S179_2026-11-11.md": "1b563df07340ea630c75c5ac2e045f7c2b6b32d1dd3578e7b62790708624f3c3",
+    "reports/step10/G15_T5_scorecard_2026-11-11.md": "8cb0b9c98bcf29fe7cb8a5d745f7be1011e8381f374ceed0391e9606040677a1",
+    "reports/step10/SIMVAL_extraction_precheck_2026-11-11.md": "6445858c6a8e14c5e04a23208c3cc70e05972ad16db298f936410a40aa7dfa2f",
+    "reports/step10/SIMVAL_source_precheck_2026-11-11.md": "3538c345116328467b886c41fc59d44dd124d2dae98b37a058a8b8156bb5ba16",
+    "reports/step10/aa_model_b_sensitivities_2026-11-11.md": "309ee4208e813600881a3f4c18c7a36524d63f137766a87e81e7334c08ef2f1d",
+    "reports/step10/calibration_disposition_2026-11-11.md": "a1e8c829ae76906bbaa0f264037a2be7c9c7543403e6e25e06d5769fb7d98c1c"
+  },
+  "limitations": [
+    "Supplied sources/artifacts only; absent corpora and later edits are not checked.",
+    "No paraphrase, short-excerpt, OCR or image detection.",
+    "Window size is a disclosed engineering setting, not a legal or scientific threshold."
+  ],
+  "matched_windows": 0,
+  "normalization": "NFKC_CASEFOLD_UNICODE_WORDS",
+  "record": "LIMITED_LOCAL_SOURCE_TEXT_SCAN",
+  "release_clearance": false,
+  "source_files": 5,
+  "status": "NO_MATCHES_IN_SUPPLIED_SOURCES_ONLY",
+  "tool_sha256": "ab82ce6245f8b3aca491e85e1ef12c17fae5d317ac0e57f1f6e055401cdc3b82",
+  "unique_source_windows": 26006,
+  "window_words": 12
+}
