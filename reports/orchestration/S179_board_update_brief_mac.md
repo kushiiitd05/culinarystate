@@ -120,3 +120,42 @@ from EngineEvent kinds to gold event types. That is a design choice, so it was n
 **Signatures:** Kush reported "all signed and passed ok by Parv". No signature file exists in any branch, and the
 15A-BOOT freeze is still PROPOSED. Each signer runs `tools/human_sign.py` in their own session and commits the
 result. The Parv files must come from Parv.
+
+
+## Round 6 (2026-11-11): Parv local continuation, acceptance audit and report assembly
+
+Anchor: `65298da`, `kush/s179-finish-fixes`. Every status is an AI proposal; no new human act is inferred.
+The complete acceptance table is `S179_round6_acceptance_audit.csv` and its Markdown companion, with original
+acceptance text, gaps, next actions and evidence hashes. **252 unique rows: 84 MUST, 168 SHOULD; 51 POST retained.**
+The supplied takeover list repeats T8-C20-R3 once; expanded ranges cover every MUST. VERIFY choices are resolved
+from existing D-080/D-084 decisions; no new decision or frozen-science edit was needed.
+
+MUST statuses: 24 DONE, 8 DONE_AI_DELEGATED, 8 DONE_DRAFT, 4 DONE_WITH_DEVIATION, 25 PARTIAL, 5 OPEN,
+4 NOT_RUN_BY_DECISION, 2 BLOCKED_DATA, 2 BLOCKED_HUMAN, 1 DEFERRED, 1 ONGOING. These categories are not interchangeable;
+there is no claim of 44 fully satisfied independent-human or scientific gates.
+
+Completed local artifacts:
+- D1, D4, H2/lineage sections; current hypothesis/task crosswalk; seven preregistered 29-diag memos.
+- AA identifiability diagnostic from frozen OLS summaries, with 10 new tests and separate small-sample t intervals.
+  No refit, SIM-VAL access or practical precision gate pass. Model A remains NOT_VALIDATED/RESEARCH_ONLY.
+- Integrated report `reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md`, Markdown slide draft and updated release
+  card. Final author edits, contributions, deck export, final leakage checks and timed rehearsal remain pending.
+- D5 P3 evidence-boundary amendment PROPOSAL only; original H3 failure retained, no amended experiment executed.
+- Proposed schedule through 24 Nov; availability and presentation facts remain unconfirmed.
+
+Verification: baseline 7,906 passed / 8 failed / 13 errors; fixed three stale test assumptions (version provenance,
+PROPOSED fixture versus live FROZEN record, and explicit D-085 delegate lock).44 targeted tests pass;83 socket tests
+pass with localhost permission. Final complete rerun: **7,926 passed, 1 failed, 11 errors, 14 skipped, 44 deselected**.
+Every remaining failure/error is missing local `recipe_identity_features_v1.parquet` or Food.com recipes input.
+No missing-input test was skipped or removed. Counts/hashes: `reports/s179/parv_verification_2026-11-11.json`;
+actual Python 3.11.9 package lock in `reports/s179/env_lock/parv_S179_2026-11-11.*`.
+
+Important report corrections: frozen raw H1 is NOT_COMPUTED; the separate rung-blind supplement/D-092 records
+RULE_NOT_MET. Compatible-recall values contradict their frozen note; no compatible-recall claim is made.
+Router accuracy covers only 10 gold-branch questions. The family-stratified retrieval diagnostic is not a
+train-source-heldout experiment. Original results and protected ledgers remain unchanged.
+
+Next: restore private/local inputs, then CAL/Model B and separate-session SIM-VAL; PARAM/calibration provenance and
+T5 G15 scorecard; full emission-contract scan; new frozen split registry; final report/deck leakage comparison.
+Post-19-Nov MPU and actual 24 Nov rehearsal cannot truthfully be completed on 11 Nov. No SSH until current VPN/host/path
+confirmation. Parv asked to defer private-file questions until this local batch is complete.
