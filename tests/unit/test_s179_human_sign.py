@@ -52,9 +52,24 @@ def test_approve_freeze_sets_only_approval_fields(tmp_path):
     r = _repo(tmp_path)
     f = r / "registry/freezes/15A-BOOT-2026-11-08.json"
     before = json.loads(f.read_text())
+    # Exercise approval of a proposed fixture, independent of the live D-085 freeze.
+    before["status"] = "PROPOSED"
+    for key in ("approved_by", "approved_date", "approval_kind", "decision", "label"):
+        before.pop(key, None)
+    f.write_text(json.dumps(before))
     M["approve_freeze"](r, "15A-BOOT-2026-11-08", "Kush Tokas", "2026-11-10")
     after = json.loads(f.read_text())
     assert {k for k in after if after[k] != before.get(k)} == {"status", "approved_by", "approved_date"}
     assert after["status"] == "FROZEN" and after["approved_by"] == "Kush Tokas"
     with pytest.raises(SystemExit):
         M["approve_freeze"](r, "15A-BOOT-2026-11-08", "Kush Tokas", "2026-11-10")
+
+
+def test_existing_delegate_freeze_cannot_be_reapproved(tmp_path):
+    r = _repo(tmp_path)
+    f = r / "registry/freezes/15A-BOOT-2026-11-08.json"
+    before = f.read_bytes()
+    assert json.loads(before)["status"] == "FROZEN"
+    with pytest.raises(SystemExit, match="not PROPOSED"):
+        M["approve_freeze"](r, "15A-BOOT-2026-11-08", "Kush Tokas", "2026-11-11")
+    assert f.read_bytes() == before
