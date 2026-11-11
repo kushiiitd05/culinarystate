@@ -1,0 +1,42 @@
+{
+  "excluded": {
+    "NOT_PER_TEMPERATURE_RATE": 16,
+    "SOURCE_PRECHECK_NOT_ELIGIBLE": 3
+  },
+  "input_sha256": {
+    "annotation/aa_pilot/aa_pilot_SIMVAL_extraction_2026-11-11.csv": "2ad09c578b7be970ff1fa9ae4fead545a381945c095252c5d5967ae7a3a4554f",
+    "annotation/aa_pilot/aa_pilot_SIMVAL_source_precheck_2026-11-11.csv": "c5565cac24bc6a583ae08f3dcfc87a4f88df014f1df1d37da733228ec6381aa8",
+    "data/raw/aa_pilot_simval_quarantine/aa_pilot_SIMVAL_extraction_2026-11-11.manifest.json": "88cbc8bec37421643d9da9e8df784e2a5a5a1341357ad26c02dfd76f6ece0d36",
+    "reports/step10/aa_pilot_model_a_fit_D085.json": "b9247db03e98423f8866fa50b24e2ecd33831d907f3aace00b1f7e4f2ea9543f"
+  },
+  "labels": [
+    "DIAGNOSTIC",
+    "NON_CITABLE",
+    "AI_PRECHECKED",
+    "NO_HUMAN_SIGNOFF_D085",
+    "BASIS_UNRESOLVED_NOT_PRIMARY_COMPARISON"
+  ],
+  "limitations": [
+    "Source assay/basis comparability unresolved; no primary same-basis result.",
+    "No exact time/retention observations; no retention-error result.",
+    "No threshold, tuning, parameter update, human verification or validation gate.",
+    "Model intervals are frozen Gaussian approximations; not calibrated coverage.",
+    "No PARAM/VAL integration; this is an offline rate diagnostic only."
+  ],
+  "primary_comparable_rows": 0,
+  "primary_status": "NOT_RUN_BASIS_REVIEW_REQUIRED",
+  "private_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "production_route_allowed": false,
+  "rate_diagnostic": {
+    "inside_model_interval": 0,
+    "mean_abs_ln_k_error": null,
+    "mean_signed_ln_k_error": null,
+    "n_papers": 0,
+    "n_rows": 0
+  },
+  "record": "AA_SIMVAL_RATE_DIAGNOSTIC",
+  "retention_error": null,
+  "retention_observations": 0,
+  "tool_sha256": "01f646b4c7aa584d75fdd2c8a14264392b5a1fdd8110138da471fa9cef0e9215",
+  "validation_status": "NOT_VALIDATED / RESEARCH_ONLY"
+}
