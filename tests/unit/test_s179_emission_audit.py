@@ -86,3 +86,18 @@ def test_demo_sampling_is_deterministic_with_explicit_synthetic_recipe_arm():
     assert sum(bool(c["recipe_text"]) for c in a) == 2
     assert all(c["recipe_origin"] in ("NONE", "SYNTHETIC_CALLER_INPUT") for c in a)
     assert rows == before
+
+
+@pytest.mark.parametrize("field,name", [("target", "Vitamin B-6"), ("matrix", "Milk, 5% fat")])
+def test_digits_inside_recorded_source_names_are_metadata_not_retention(field, name):
+    evd = deepcopy(EVD)
+    evd["EVD-990001"][field] = {"raw_name": name}
+    result = audit_text(f"{name}: retention factor 0.55 [EVD-990001].", evd, packet_ids=set(evd))
+    assert not result["issues"] and result["aligned_retention_numbers"] == 1
+
+
+def test_source_metadata_name_does_not_hide_an_actual_wrong_value():
+    evd = deepcopy(EVD)
+    evd["EVD-990001"]["target"] = {"raw_name": "Vitamin B-6"}
+    result = audit_text("Vitamin B-6 retention factor 0.85 [EVD-990001].", evd, packet_ids=set(evd))
+    assert result["issues"] == {"VALUE_NOT_IN_CITED_POINT_EVIDENCE": 1}
