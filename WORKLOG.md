@@ -1432,3 +1432,52 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `reports/s179/emission_audit_verification_2026-11-12.json`, `reports/s179/source_text_scan_partial_2026-11-12.json`, `reports/s179/emission_runtime_amendment_PROPOSAL_2026-11-12.md`, `STATUS.md`, `handoff/S179_D085_EXECUTION_HANDOFF.md`
 - **Verified:** Full7996passed1failed11errors13skipped44deselected105.40s;missingdata only. Target21pass;NEG/audit27pass. Source/frozen/append-only checks before push.
 - **Next:** Restore identityfeatures/Food.com;PARAM/basis andsemanticchecks;authorcontributions/talkfacts/rehearsal.
+
+### S209 · 2026-11-12 18:49 IST · S179 · Restore local bundles without changing source content
+- **Who:** Parv
+- **Did:** Checksum-matched tier1 restored actual4missing files;3641totalextractions included3637AppleDouble sidecars, quarantinedwithhashedmanifest outsidecheckout. Tier2 metadata revealsdifferentNERcheckpoint;no substitution.
+- **Files:** `reports/s179/local_tier1_restoration_2026-11-12.json`, `reports/s179/local_metadata_quarantine_2026-11-12.json`, `reports/s179/optional_model_bundle_check_2026-11-12.json`
+- **Verified:** Requiredsourcehashesmatch;29previousmissinginputtests pass. Originalannotations andassertions unchanged.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S210 · 2026-11-12 18:49 IST · M5 · Freeze-set split and exposure registry reconciled locally
+- **Who:** Parv
+- **Did:** Versionedv2missingGutenberg retained;v3loadsall24Srecipes,74questions8blocks79goldEVD. Positiveexposuresdisclosed. Historicalassignments notfreshlyrederived.
+- **Files:** `tools/s179_frozen_split_registry.py`, `registry/d5_frozen_split_registry_v3.csv`, `reports/s179/d5_frozen_split_leakage_v3.json`
+- **Verified:** 6TDDtests;perblockunit/hashrecheck;LEAK004/005recorded;separateexperimentsregistry,no inventedEXPids.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S211 · 2026-11-12 18:49 IST · M6 · Separate strict emission and physical provenance implementation
+- **Who:** Parv
+- **Did:** D093snapshotbeforeaudit. Exactdeclaredfields/typedpoints only;no contextguess;finalfallbackcheck. FixedAIreviewwrongprocess/option/tier/malformedinputs/overflowcases. Physicalpernumberbasis/refs preserveunknown.
+- **Files:** `src/culinarystate/generation/strict_v2.py`, `src/culinarystate/decision/demo_context_v2.py`, `src/culinarystate/decision/physics_summary_v2.py`, `registry/freezes/STRICT-V2-ENGINEERING-2026-11-12.json`
+- **Verified:** 65newengineering/reviewtests pass beforeliveaudit. Originalgeneration/scorer/prompts/results unchanged. Fullindependentfinalreviewnotclaimed.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S212 · 2026-11-12 18:49 IST · M6 · Strict local runtime and HTTP diagnostic complete
+- **Who:** Parv
+- **Did:** 1000calls200syntheticrequests:155ABSTAIN186SAFETY659ASK;0retentionfigures;53physicssteps141numericfields0missing/unknown;nohandlererrors. Public/localHTTPsmokepass.
+- **Files:** `reports/s179/strict_runtime_audit_2026-11-12.json`, `reports/s179/strict_http_smoke_2026-11-12.json`, `tools/run_local_demo_v2.py`
+- **Verified:** EMIT003/HTTP001;frozenengineeringhashesunchanged;metadata/syntheticonly;coverage limitationexplicit. Original30D5flags retained.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S213 · 2026-11-12 18:49 IST · S179 · Full local regression green after metadata quarantine
+- **Who:** Parv
+- **Did:** Firstrestoredrun8080pass2fail(metadata);correctedlocalfilesystemwithouttest/sourceannotationchanges. Finalfull8085pass0fail0errors4skip44deselected171.88s;separatefinal75targetedpass.
+- **Files:** `reports/s179/local_completion_verification_2026-11-12.json`, `reports/s179/local_full_suite_2026-11-12.log`
+- **Verified:** TEST014/015/016;protectedledgers,grammar,immutableboard,legacygeneration/context andD5snapshotbyteidenticalto47164d78.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S214 · 2026-11-12 18:49 IST · M8 · Draft report and deck exported and local source scan completed
+- **Who:** Parv
+- **Did:** 10pagereport13slidesHTML/PDF;manifest/source/PDFtext hashes.0matching12wordwindows on612782indexedrecipes+4licensedpapertexts;177GUTrawsegmentsabsent. Rootviewedslidecontactsheet/reportfirstpage.
+- **Files:** `reports/final/exports_2026-11-12/manifest.json`, `reports/s179/local_corpus_draft_text_scan_2026-11-12_v2.json`, `tools/s179_release_source_scan.py`
+- **Verified:** Source-scan3TDDtests;LEAK006/007/EXPORT001;allPDFpagesnonempty,nooffpagetextdetected. Draftonly/noimages/paraphrase/shortexcerptclearance.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S215 · 2026-11-12 18:49 IST · M8 · Record local closeout and review dependencies
+- **Who:** Parv
+- **Did:** UpdatedSTATUS,round9andhandoffs;factualcontributions/talkquestionpending. ExactNERartifact,sourcebasis/PARAMlineage,privatehistoricalassignment andfuturedatesretaintheirlimits. NoSSH/VPN/modelcall/hosting orscientificpass.
+- **Files:** `reports/s179/local_completion_closeout_2026-11-12.md`, `reports/orchestration/S179_round9_local_completion_update.md`, `handoff/PARV_SESSION_NOTES.md`
+- **Verified:** OriginalH1/H3failures,zeroSIMVALeligible/zeroG15passes,originalemissionflags andNO_HUMAN_SIGNOFF_D085preserved.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
