@@ -43,6 +43,21 @@ def _point(row):
     return number if math.isfinite(number) else None
 
 
+def _mask_source_names(text, evd, ids):
+    names = set()
+    for ref in ids:
+        for field in ("matrix", "process", "target"):
+            name = str(evd.get(ref, {}).get(field, {}).get("raw_name") or "")
+            # Match whole recorded names, never arbitrary numeric substrings.
+            if re.search(r"\d", name) and re.search(r"[A-Za-z]", name):
+                names.add(name)
+                names.add(re.split(r",?\s+such as\b", name, flags=re.I)[0].strip(" -,"))
+    for name in sorted(names, key=len, reverse=True):
+        text = re.sub(r"(?<!\w)" + re.escape(name) + r"(?!\w)",
+                      lambda m: " " * len(m.group()), text, flags=re.I)
+    return text
+
+
 def audit_text(text, evd, *, packet_ids, no_numbers=False):
     issues, gaps, counts = Counter(), Counter(), Counter()
     aligned = 0
@@ -52,6 +67,7 @@ def audit_text(text, evd, *, packet_ids, no_numbers=False):
         if packet_ids is not None:
             issues["CITATION_OUTSIDE_RECORDED_PACKET"] += len(references - packet_ids)
         clean = CIT.sub(lambda m: " " * len(m.group()), sentence)
+        clean = _mask_source_names(clean, evd, references if packet_ids is None else set(packet_ids) | references)
         for match in NUMBER.finditer(clean):
             token = match.group().strip()
             suffix, prefix = clean[match.end():], clean[:match.start()]
