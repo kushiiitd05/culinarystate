@@ -723,3 +723,27 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Review:** author-only review (AI-delegated); adversarial controls and actual isolated browser checks, not independent human evidence. Original30saved-answer flags, H1/H3 RULE_NOT_MET, scientific guards and all frozen outputs remain unchanged.
 - **Label:** `NO_HUMAN_SIGNOFF_D085`.
 - **Approver:** ksh+prv (AI, D-085).
+
+
+### D-096 · 2026-11-13 · Conservative technical dispositions and MECH reference freeze (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085, D-094; the immutable S178 board's explicit defaults for T2-C04-R1/T2-C06-R1/T2-C11-R2/T5-C01-R4/T5-C02-R4/T7-C24-R1/T9-C07-R1/T9-C07-R5; Step21 README D21-1..8.
+- **07.B/07.C:** Keep new condition/platform axes as raw-text optional SEXP fields; no normalizer or protected COND schema/row changes. This adopts the board default, not a new axis or inferred value.
+- **USDA/Bognar overlap:** NOT_DETERMINABLE for independent-source status. Retain one provisional independence group each and no independent cross_source_v1 claim; eight versus eleven references and indirect USDA1998 citation are insufficient to establish experiment-level independence. This is an AI-delegated limitation ruling, not an expert-human signature.
+- **15a order:** Defer additional R2/Bognar remainder ingestion to a distinct15a.1 version; preserve already frozen15A-BOOT and its source/assignment commitments.
+- **D21-1:** Adopt MECH-###### shape and mechanism_key cross-references for the structural reference contract. Evidence/reference prefixes remain exactly as the tested v1.1 draft; no operational namespace writer is modified and no ID is minted. Existence/verification of referenced records remains separately required.
+- **D21-2:** Keep the numeric MECH identifier plus UNRESOLVED_LOSS key and UNRESOLVED_SINK kind. It is accounting only, never effect evidence or an EFFSIG grant.
+- **D21-3:** MECH remains P-MOD reference material with is_evidence=false.
+- **D21-4:** Keep STATE_TRANSITION and sink NOT_APPLICABLE semantics; do not disguise structural change as chemical reaction.
+- **D21-5:** Retain the tested effect vocabulary including ABSORBED/STRUCTURE_ALTERED/STATE_SET. These are schema tokens, not source-backed mechanisms; unresolved chemical/operator assignments stay explicit open questions.
+- **D21-6:** Bounds keep STATED/OPEN_STATED/NOT_REPORTED statuses; absent is not unbounded, studied extremes do not authorize extrapolation, no optimum bypasses FORM/PARAM.
+- **D21-7:** Retain tested family tokens including MICRONUTRIENT_DEGRADATION and UNRESOLVED; no chemical classification fact inferred.
+- **D21-8:** allowed_directions remains subset of INCREASE/DECREASE or exactly UNKNOWN; NO_CHANGE/MIXED are outcome descriptors, not newly inferred mechanisms.
+- **MECH freeze:** `ledgers/schemas/MECH.schema.json` is a parsed-identical alias of the tested v1.1 reference schema, pinned in `registry/freezes/MECH-REFERENCE-2026-11-13.json`. Existing draft consumers, eligibility/verification rules and ID allocation code remain unchanged. Synthetic schema/semantic controls green; this is structural acceptance, not source/chemical verification or a passed scientific gate.
+- **Q21/Q15:** An unreviewed POSSIBLE mechanism screen may state physically_possible with AI_DRAFTED_MECH_UNREVIEWED, without direction or magnitude. Direction still requires the existing opened-source evidence/span and human-review rule. Window sources must be opened primary/handbook sources; otherwise UNSOURCED. No rule is loosened by D-085.
+- **L13E:** Optional and parked, not a primary deliverable; a bounded descriptive null/rank-frequency chain may be retained with diagnostic labels. No first-paper empirical claim is selected without its own source/evidence record.
+- **Compute:** Explicit D-077 blanket approval applies to the already authorized local project CPU work and recorded historical scope. This adds no paid cloud purchase, hosting or SSH permission; node-hours are not fabricated retrospectively.
+- **Visibility:** Maintain the repository's existing PUBLIC state, verified read-only with gh repo view on13Nov. No visibility change or new external deployment. BBC raw text and restricted source excerpts stay local/ignored; aggregate counts carry their existing provenance and do not imply redistribution clearance.
+- **CLM:** Current app responses contain runtime provenance, not minted CLM ledger records. D5CLM remains a separate diagnostic shape; the view is not represented as a CLM-schema-valid scientific claim stream.
+- **INTERPOLATE:** The unchanged demo precheck emits DIRECT or NONE, not BRACKETING. An INTERPOLATE count is structurally zero under this implementation; no interpolation effectiveness or absence-of-effects inference follows. Implementing a new bracketing method would require a separate declared contract/evaluation.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
