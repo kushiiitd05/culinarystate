@@ -707,3 +707,19 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Review:** author-only review (AI-delegated). Synthetic regression controls and reviewer cases pass; actual local sample results are recorded separately. No independent human verification, new PARAM provenance, model validation or acceptance-gate pass is supplied.
 - **Label:** `NO_HUMAN_SIGNOFF_D085`.
 - **Approver:** ksh+prv (AI, D-085).
+
+
+### D-094 · 2026-11-12 · Exclude author facts and final edits from the active completion scope (decided by Parv; entered by the coding agent as scribe)
+- **Source:** Parv's direct instruction: "Leave out the author facts and final edits. Complete everything else".
+- **Decision:** Continue all feasible local technical work, audits, tests, source reviews and reproducibility without waiting for contribution statements, talk facts or final author edits. Those author-only items are outside this active scope. This does not waive scientific source quality, verification or actual future-event requirements; unresolved dependencies must be recorded truthfully rather than marked complete.
+- **Label:** USER_SCOPE_INSTRUCTION; no new scientific or human verification implied.
+- **Approver:** Parv.
+
+### D-095 · 2026-11-12 · Strict-v3 display and supplemental technical diagnostics (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085, D-093, D-094; independent AI engineering review of strict-v2 and the legacy display.
+- **Decision:** Adopt a separate strict-emission-v3.0.0 launcher/view for local engineering. Keep strict-v2 and legacy sources frozen. New view labels each known declared numeric basis, suppresses missing/UNKNOWN display quantities, removes misleading measured-data chips, includes heat-only events, and preserves tiny table points without rounding to zero. No condition applicability or scientific validity is certified.
+- **Freeze:** `registry/freezes/STRICT-V3-ENGINEERING-2026-11-12.json` pins new source/static/audit/reproduction code before the root1000-call and artifact-rerun diagnostics. Prior reviewer browser rehearsal remains a pre-adoption engineering check, not a scientific rerun.
+- **Supplemental runs:** Reproduce recorded router1000 and full-Wikibooks binding counts, plus deterministic frozenD5 B5T P/C template text, at new paths. Compare full hashes and explicitly remove only code_provenance/code_unchanged_during_run/records_written metadata from metric equality; disclose every remaining difference. No H1 LLM run, B7 regeneration, rescoring, tuning or post19Nov execution is implied.
+- **Review:** author-only review (AI-delegated); adversarial controls and actual isolated browser checks, not independent human evidence. Original30saved-answer flags, H1/H3 RULE_NOT_MET, scientific guards and all frozen outputs remain unchanged.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
