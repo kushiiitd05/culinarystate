@@ -1,0 +1,43 @@
+{
+  "cases": [
+    {
+      "ask_requests": 3,
+      "forwarded_status": 200,
+      "health": 200,
+      "html": 200,
+      "modes": [
+        "ABSTAIN",
+        "ABSTAIN_NO_EDGES",
+        "ABSTAIN_SAFETY"
+      ],
+      "physics_steps": 1,
+      "public": true
+    },
+    {
+      "ask_requests": 3,
+      "forwarded_status": 503,
+      "health": 200,
+      "html": 200,
+      "modes": [
+        "ABSTAIN",
+        "ABSTAIN_NO_EDGES",
+        "ABSTAIN_SAFETY"
+      ],
+      "physics_steps": 1,
+      "public": false
+    }
+  ],
+  "completed_at_utc": "2026-11-12T13:08:40.668933+00:00",
+  "labels": [
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Local HTTP integration only; no hosted deployment, browser interaction, model call or scientific verification."
+  ],
+  "record": "STRICT_V2_LOOPBACK_HTTP_SMOKE",
+  "scientific_gate_pass": false,
+  "script_sha256": "cfbac0df41711fbd19ef4e5a477f8f8e922b1d6c9a1318550ad30b5dea871fc7",
+  "started_at_utc": "2026-11-12T13:08:29.578050+00:00",
+  "status": "PASS"
+}
