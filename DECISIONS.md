@@ -698,3 +698,12 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **H3** (n = 40, P1-P3 + C): sign test B2 vs B7, 16 of 16 discordant questions favour B7, p = 3.1e-5 two-sided. **But the P3 condition fails:** B7 abstains on 0 of 10 gold-ABSTAIN questions, B2 on 3 of 10, and the rule needs B7 >= B2. **RULE_NOT_MET.** The human claim audit (veto) was not run: it can only make H3 fail, and H3 already fails. B7 never abstaining on P3 contradicts the prereg's expectation that it abstains there by construction; it is a finding to examine, not a result to tune after the freeze.
 - **Labels:** NON_CITABLE, AI_DELEGATED_D085, NO_HUMAN_SIGNOFF_D085, MODEL_ASSISTED_GOLD. Outputs `reports/del5/d5_score_v1_D085/`.
 - **Approver:** ksh+prv (AI, D-085).
+
+
+### D-093 · 2026-11-12 · Separate strict-v2 local engineering policy (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085; runtime amendment proposal dated 12 November; emission path AI review; Parv's instruction to complete local engineering.
+- **Decision:** Adopt a separate strict-emission-v2.0.0 local demo and physics-summary-provenance-v2.0.0 for engineering diagnostics. Require exact known declared EVD/COND context and measured point units; reject missing precision, wrong identities and unauthorized final fallback. Never infer condition context from retrieval rank. Show source reports as unverified, not predictions. Preserve unknown physical provenance and the original scientific guards. Recipe route chips still report legacy row existence; this amendment does not certify them.
+- **Freeze:** `registry/freezes/STRICT-V2-ENGINEERING-2026-11-12.json` pins the new implementation before its counts-only local audit. This is an engineering snapshot, not a scientific rerun or a replacement D5 freeze. Original generation, scorer, prompts, benchmark, outputs and failed H1/H3 remain unchanged. The legacy launcher remains available; strict launcher is explicit.
+- **Review:** author-only review (AI-delegated). Synthetic regression controls and reviewer cases pass; actual local sample results are recorded separately. No independent human verification, new PARAM provenance, model validation or acceptance-gate pass is supplied.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
