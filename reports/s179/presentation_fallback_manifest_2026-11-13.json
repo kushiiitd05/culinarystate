@@ -1,0 +1,26 @@
+{
+  "assets": [
+    {
+      "copy": "data/derived/presentation_fallback_2026-11-13/strict_v3.html",
+      "sha256": "c4111fbdd124404eb84ed98ad1061c92111a69396fc8bf7544adba1ffc684f70",
+      "source": "src/culinarystate/app/static/strict_v3.html"
+    },
+    {
+      "copy": "data/derived/presentation_fallback_2026-11-13/strict_v3_fallback_2026-11-12.png",
+      "sha256": "c94e859e84646314c05a77d5342ae359f930707fe93579035054369d45161eb4",
+      "source": "reports/s179/strict_v3_fallback_2026-11-12.png"
+    },
+    {
+      "copy": "data/derived/presentation_fallback_2026-11-13/strict_v3_browser_rehearsal_2026-11-12.json",
+      "sha256": "01c9cf3220348b5ce5fd56bd4da0ac2acb99e9bf7cc8fcea32303028dcefdc53",
+      "source": "reports/s179/strict_v3_browser_rehearsal_2026-11-12.json"
+    }
+  ],
+  "date": "2026-11-13",
+  "labels": [
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "launch": "python tools/run_local_demo_v3.py",
+  "scenario_evidence": "reports/s179/strict_v3_browser_rehearsal_2026-11-12.json",
+  "scope": "Local technical backup; no final event/rehearsal claim"
+}
