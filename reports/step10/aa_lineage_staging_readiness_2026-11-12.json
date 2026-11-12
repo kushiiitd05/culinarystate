@@ -1,0 +1,990 @@
+{
+  "base_commit": "35fbb7e010d4ba435b2d4f99ef5f0a91add7ff89",
+  "blocker_counts": {
+    "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS": 18,
+    "CAL_VERDICT_EXCLUDES": 7,
+    "MISSING_DOC_ID": 35,
+    "MISSING_SEXP_KIN_PARAM_FORM_CHAIN": 35,
+    "MISSING_SRC_ID": 35,
+    "MISSING_STUDY_ID": 35,
+    "NOT_A_RATE_ROW": 1,
+    "NO_HUMAN_VERIFICATION": 35,
+    "NO_SOURCE_RAW_TRAJECTORY": 35,
+    "PUBLISHER_LICENCE_UNCONFIRMED": 8,
+    "SOURCE_PRECHECK_EXCLUDES": 19
+  },
+  "code_sha256": {
+    "src/culinarystate/simulation/aa_lineage_readiness.py": "06ca1fe41156b7242cf3d0ae4256deeaf858dfbf9f6221603fe83d96145ba2ad",
+    "tools/s179_aa_lineage_readiness.py": "6eaafea887179bc0f661d696582295ee014ed7b35063d41cb4cd0df131e88cfe"
+  },
+  "completed_at_utc": "2026-11-12T14:16:23.385569+00:00",
+  "frozen_fit_row_ids": [
+    "AAP-001",
+    "AAP-002",
+    "AAP-003",
+    "AAP-004",
+    "AAP-006",
+    "AAP-007",
+    "AAP-008"
+  ],
+  "frozen_model_a_sha256": "b9247db03e98423f8866fa50b24e2ecd33831d907f3aace00b1f7e4f2ea9543f",
+  "input_sha256": {
+    "annotation/aa_pilot/aa_pilot_SIMVAL_extraction_2026-11-11.csv": "2ad09c578b7be970ff1fa9ae4fead545a381945c095252c5d5967ae7a3a4554f",
+    "annotation/aa_pilot/aa_pilot_SIMVAL_source_precheck_2026-11-11.csv": "c5565cac24bc6a583ae08f3dcfc87a4f88df014f1df1d37da733228ec6381aa8",
+    "annotation/aa_pilot/aa_pilot_verify_CAL_v1_D085.csv": "0fff439aeb74df4edbb7cb1822ccf5aeb04d58b5427f6bf315bfa33d9e8abcd6",
+    "data/raw/aa_pilot/AAK-01.pdf": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+    "data/raw/aa_pilot/AAK-06.pdf": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+    "data/raw/aa_pilot/AAK-09.pdf": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4",
+    "data/raw/aa_pilot/AAK-11.pdf": "8c6c414d54e79524c9d955f0024089632bce0e3cd83a70d3b3cc983c363e0ced",
+    "data/raw/aa_pilot_simval_quarantine/AAK-03.pdf": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+    "data/raw/aa_pilot_simval_quarantine/AAK-07.pdf": "d6c3d67c361fc7f2e356d8015444425b561a665d33ca8ae8e0f24f6faa4066cf",
+    "data/raw/aa_pilot_simval_quarantine/AAK-12.pdf": "66278e393f768e504044fbfd210d541dc58367092a9527d74e7844539290a72c",
+    "data/raw/aa_pilot_simval_quarantine/aa_pilot_SIMVAL_extraction_2026-11-11.manifest.json": "88cbc8bec37421643d9da9e8df784e2a5a5a1341357ad26c02dfd76f6ece0d36",
+    "ledgers/data/DOC.jsonl": "afa31f4b5c734c5bcdcb2e9bb279d5f873fad5dd3ea8bd33a8cbb151afbb4f74",
+    "ledgers/data/SRC.jsonl": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+    "ledgers/data/STUDY.jsonl": "727120365e5dabd9636d37c61981dcc5bd0c7c23de07ff740ae4fb6d552cff27",
+    "registry/evidence/aa_licence_checks_D085_v1.csv": "e380a85bdd289d5f20ee8153f23f9e7c809bc54f80c7427ec9828ba01c3be084",
+    "reports/step10/aa_pilot_model_a_fit_D085.json": "b9247db03e98423f8866fa50b24e2ecd33831d907f3aace00b1f7e4f2ea9543f"
+  },
+  "labels": [
+    "AI_PRECHECKED",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "latest_ledger_record_counts": {
+    "DOC": 1967,
+    "FORM": 0,
+    "KIN": 0,
+    "KINPT": 0,
+    "OBS": 0,
+    "PARAM": 0,
+    "SEXP": 0,
+    "SRC": 488,
+    "STUDY": 132
+  },
+  "limitations": [
+    "Source rows are privately staged, not appended as incomplete ledger records.",
+    "Exact DOI links search active existing source ledgers only; title/fuzzy matches are not asserted.",
+    "Author rate summaries can feed the declared pilot fitter but cannot fabricate KINPT/OBS trajectories.",
+    "Separate pH context correction does not make author aggregates admissible for first-order validation.",
+    "AI_PRECHECKED is staging/source-contract review, not HUMAN_VERIFIED or production eligibility."
+  ],
+  "minted_ids": [],
+  "n_rows": 35,
+  "original_sources_or_extractions_modified": false,
+  "ph_context_staging_corrections": 7,
+  "private_staging_path": "annotation/aa_pilot/aa_lineage_staging_2026-11-12.json",
+  "private_staging_sha256": "55b17553e6e34b36a7b4158d3999f2b97f7b76edcad1028e603be15f5c602d24",
+  "production_eligible_rows": 0,
+  "record": "AA_SOURCE_BOUND_LINEAGE_STAGING_READINESS",
+  "rows": [
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY"
+      ],
+      "candidate_id": "AAK-01",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.1590/1678-457x.11417",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-001",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY"
+      ],
+      "candidate_id": "AAK-01",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.1590/1678-457x.11417",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-002",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY"
+      ],
+      "candidate_id": "AAK-01",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.1590/1678-457x.11417",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-003",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY"
+      ],
+      "candidate_id": "AAK-01",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.1590/1678-457x.11417",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-004",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY"
+      ],
+      "candidate_id": "AAK-01",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.1590/1678-457x.11417",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-005",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY"
+      ],
+      "candidate_id": "AAK-06",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.5897/ajfs2014.1258",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-006",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY"
+      ],
+      "candidate_id": "AAK-06",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.5897/ajfs2014.1258",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-007",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY"
+      ],
+      "candidate_id": "AAK-06",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.5897/ajfs2014.1258",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-008",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY"
+      ],
+      "candidate_id": "AAK-06",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.5897/ajfs2014.1258",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-009",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "CAL_VERDICT_EXCLUDES",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "PUBLISHER_LICENCE_UNCONFIRMED"
+      ],
+      "candidate_id": "AAK-09",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.1016/j.ifset.2018.06.012",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-010",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "CAL_VERDICT_EXCLUDES",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "PUBLISHER_LICENCE_UNCONFIRMED"
+      ],
+      "candidate_id": "AAK-09",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.1016/j.ifset.2018.06.012",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-011",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "CAL_VERDICT_EXCLUDES",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "PUBLISHER_LICENCE_UNCONFIRMED"
+      ],
+      "candidate_id": "AAK-09",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.1016/j.ifset.2018.06.012",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-012",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "CAL_VERDICT_EXCLUDES",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "PUBLISHER_LICENCE_UNCONFIRMED"
+      ],
+      "candidate_id": "AAK-09",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.1016/j.ifset.2018.06.012",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-013",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "CAL_VERDICT_EXCLUDES",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "PUBLISHER_LICENCE_UNCONFIRMED"
+      ],
+      "candidate_id": "AAK-11",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.24815/jn.v23i3.32158",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "8c6c414d54e79524c9d955f0024089632bce0e3cd83a70d3b3cc983c363e0ced",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-014",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "CAL_VERDICT_EXCLUDES",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "PUBLISHER_LICENCE_UNCONFIRMED"
+      ],
+      "candidate_id": "AAK-11",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.24815/jn.v23i3.32158",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "8c6c414d54e79524c9d955f0024089632bce0e3cd83a70d3b3cc983c363e0ced",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-015",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "CAL_VERDICT_EXCLUDES",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "PUBLISHER_LICENCE_UNCONFIRMED"
+      ],
+      "candidate_id": "AAK-11",
+      "declared_source_precheck": "AI_DELEGATED_CAL_VERDICT",
+      "doi": "10.24815/jn.v23i3.32158",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-CAL",
+      "pdf_sha256": "8c6c414d54e79524c9d955f0024089632bce0e3cd83a70d3b3cc983c363e0ced",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "AAP-016",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-07",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.1590/0103-8478cr20210146",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "d6c3d67c361fc7f2e356d8015444425b561a665d33ca8ae8e0f24f6faa4066cf",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK07-K01",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-07",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.1590/0103-8478cr20210146",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "d6c3d67c361fc7f2e356d8015444425b561a665d33ca8ae8e0f24f6faa4066cf",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK07-K02",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-07",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.1590/0103-8478cr20210146",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "d6c3d67c361fc7f2e356d8015444425b561a665d33ca8ae8e0f24f6faa4066cf",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK07-K03",
+      "row_kind": "K_AT_T"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-07",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.1590/0103-8478cr20210146",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "d6c3d67c361fc7f2e356d8015444425b561a665d33ca8ae8e0f24f6faa4066cf",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK07-EA01",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "PASS",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-EA01",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": true,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-K001",
+      "row_kind": "AUTHOR_FIT_K0"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "PASS",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-EA02",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": true,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-K002",
+      "row_kind": "AUTHOR_FIT_K0"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "PASS",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-EA03",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": true,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-K003",
+      "row_kind": "AUTHOR_FIT_K0"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "PASS",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-EA04",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": true,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-K004",
+      "row_kind": "AUTHOR_FIT_K0"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "PASS",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-EA05",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": true,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-K005",
+      "row_kind": "AUTHOR_FIT_K0"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "PASS",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-EA06",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": true,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-K006",
+      "row_kind": "AUTHOR_FIT_K0"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-EA07",
+      "row_kind": "AUTHOR_FIT_EA"
+    },
+    {
+      "blockers": [
+        "AUTHOR_AGGREGATE_NOT_RAW_OBSERVATIONS",
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-03",
+      "declared_source_precheck": "FLAG",
+      "doi": "10.23763/brsc20-13katsch",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "416081ff6c2c90500db507c1a08a4ba747d0ce02aa6213b87c983fa12de5a0a9",
+      "ph_context_staging_corrected": true,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK03-K007",
+      "row_kind": "AUTHOR_FIT_K0"
+    },
+    {
+      "blockers": [
+        "MISSING_DOC_ID",
+        "MISSING_SEXP_KIN_PARAM_FORM_CHAIN",
+        "MISSING_SRC_ID",
+        "MISSING_STUDY_ID",
+        "NOT_A_RATE_ROW",
+        "NO_HUMAN_VERIFICATION",
+        "NO_SOURCE_RAW_TRAJECTORY",
+        "PUBLISHER_LICENCE_UNCONFIRMED",
+        "SOURCE_PRECHECK_EXCLUDES"
+      ],
+      "candidate_id": "AAK-12",
+      "declared_source_precheck": "REJECT",
+      "doi": "10.1016/j.foodres.2022.111565",
+      "existing_source_refs": {
+        "DOC": [],
+        "SRC": [],
+        "STUDY": []
+      },
+      "partition": "SIM-VAL",
+      "pdf_sha256": "66278e393f768e504044fbfd210d541dc58367092a9527d74e7844539290a72c",
+      "ph_context_staging_corrected": false,
+      "production_eligible": false,
+      "row_id": "SIMVAL-AAK12-EXCLUSION01",
+      "row_kind": "SOURCE_EXCLUSION"
+    }
+  ],
+  "rows_by_kind": {
+    "AUTHOR_FIT_EA": 11,
+    "AUTHOR_FIT_K0": 7,
+    "K_AT_T": 16,
+    "SOURCE_EXCLUSION": 1
+  },
+  "rows_by_partition": {
+    "SIM-CAL": 16,
+    "SIM-VAL": 19
+  },
+  "scientific_gate_pass": false,
+  "source_pdf_binary_hashes_only": true,
+  "source_pdf_text_opened_by_tool": false,
+  "started_at_utc": "2026-11-12T14:16:22.345129+00:00",
+  "validation_label": "NOT_VALIDATED / RESEARCH_ONLY"
+}
