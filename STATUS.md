@@ -1,5 +1,15 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+## Latest technical closeout — 13 November 2026 (supersedes older snapshots below)
+
+Branch `kush/s179-finish-fixes`; decisions through D-096. D-094 excludes author facts and final edits. NO_HUMAN_SIGNOFF_D085; no scientific gate waiver.
+
+- **Full suite:** 8,182 passed,4 skipped,0 failed/errors/deselected. Later compute-parser targeted3 pass recorded separately. Protected ledgers, frozen code/results and final report/deck unchanged.
+- **Engineering:** strict-v3 browser rehearsal and1,000-call audit; repeatable50-recipe integration; all224 targets on1,000 selected recipes; all11,934 BBC recipes through four mechanism producers, zero exceptions. Five-family proxy coverage and1,000-recipe composition audited.
+- **AI findings:**100-case binding precision review retains20 event-attribution mismatches/8 ambiguous cases; actual RungA/Gold contract diagnostic refuses invented typed metrics. AA35-row staging retains zero eligible SIM-VAL. Structural MECH freeze only.
+- **Review assets:** nine figures, exact-position1,038-number inventory,488 draft pH page locators, ignored fallback assets and historical run reconciliation (18 old hashes recovered); limitations recorded.
+- **Concrete constraints:** exact frozen NER/checkpoint/15a artifacts and accepted P1A missing; genericACTION↔typedGold contract absent; assay/basis/PARAM/validation data insufficient; matched ablations and future-dated events not performed. No independent engineering waits on generic expert signoff. Author-only facts/edits are excluded, not an active blocker.
+- **Current evidence:** `reports/s179/technical_completion_closeout_2026-11-13.md`; `reports/orchestration/S179_technical_scope_matrix_2026-11-13.{csv,json,md}` (252 items,84 MUST/168 SHOULD,51 POST preserved). Green tests do not pass H1/H3 or scientific source/independence gates.
 
 ## Latest local completion — 12 November 2026 (supersedes the continuation snapshot below)
 
