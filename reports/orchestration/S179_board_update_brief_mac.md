@@ -174,3 +174,19 @@ Final full verification: 7,975 passed, 1 failed, 11 errors, 13 skipped, 44 desel
 identity-features/Food.com inputs. 48 new tests plus 21 independent provenance/CLI tests pass. The expanded local
 source-window scan finds zero 12-word matches in seven artifacts against five supplied source files, with
 release_clearance=false. Final exports, absent corpora, short excerpts/paraphrases/images remain outside that scan.
+
+
+## Round 8 (2026-11-12): answer provenance engineering audit
+
+T0-C06-R2 remains PARTIAL. All 346 frozen answers were scanned, including raw baselines; 1,000 metadata-template
+public-demo calls include 200 synthetic recipe requests. After correcting source-name false positives in the
+instrument, v2 flags 30 saved records (B0:4, B2:8, B5:18) and no demo calls; B5T/B7 have no lexical flags.
+Only 173 calls reach TRANSFORMATION, 36 return recipe payloads and 51 physical steps are serialized. This is
+neither an accuracy result nor a semantic/applicability certificate or representative user/recipe sample.
+
+The path inventory, original audit, corrected v2, limitations and runtime-hardening proposal are under
+reports/s179/emission*. NEG-0052 records the engineering finding without changing D-092. Full suite: 7,996 passed,
+1 failed, 11 errors, 13 skipped, 44 deselected; remaining failures/errors are missing local data. All 21 new tests pass.
+No original frozen answer, score, preregistration, prompt, protected ledger or production generation code changed.
+The source-path agent supplied a draft before a service limit; root completed the instrument and checks without
+claiming independent expert verification. Private source material remains local-only.
