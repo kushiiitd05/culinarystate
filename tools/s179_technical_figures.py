@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export seven technical figures beside the author-owned report, never editing it.
+"""Export technical figures beside the author-owned report, never editing it.
 
 Every numerical series comes from source JSON. Authored diagrams are explicitly
 schematic and carry no scientific measurements or minted ledger identifiers.
@@ -33,6 +33,7 @@ def main(argv=None):
     score=read('reports/del5/d5_score_v1_D085/d5_scoring_result.json')
     h1=read('reports/del5/d5_score_v1_D085/d5_h1_after_rung_blind_check_D085.json')['h1']
     mpu=read('reports/s179/MPU_current_evidence_preview_2026-11-12.json')
+    p1=read('reports/step19/p1_agreement_counts_S166.json')
     args.out_dir.mkdir(parents=True)
     figures=[]
     def save(fig,name,title,scope,series=None):
@@ -71,6 +72,16 @@ def main(argv=None):
     save(fig,'fig6_h1_ladder','H1: recorded rule not met','Rung-blind resolution supplement; 24 questions per rung. CIRCULAR_SELF_CONSISTENCY_ONLY.',values)
     counts=Counter(g['status'] for g in mpu['gates']);fig,ax=plt.subplots(figsize=(11,5));ax.barh(list(counts),list(counts.values()),color='#7e678b');ax.set_xlabel('Recorded MPU evidence-preview gates')
     save(fig,'fig7_gate_register','Current evidence-preview dispositions','Preview dated 12 November; not the required post-19-Nov MPU event. No scientific pass supplied.',dict(counts))
+    conditions={axis:evd['s203_9_9_condition_coverage'][axis]['rows_by_status'] for axis in ['temperature','duration']}
+    fig,ax=plt.subplots(figsize=(10,4));left=[0,0]
+    for status in sorted({s for v in conditions.values() for s in v}):
+        values=[conditions[axis].get(status,0) for axis in conditions]
+        ax.barh(list(conditions),values,left=left,label=status);left=[a+b for a,b in zip(left,values)]
+    ax.set_xlabel('Imported EVD rows by condition status');ax.legend(fontsize=7,loc='upper center',bbox_to_anchor=(.5,-.15),ncol=4)
+    save(fig,'fig8_condition_missingness','Imported condition-field availability','E3_UNVERIFIED / COND_UNAUDITED. A status named MEASURED does not establish independent source verification.',conditions)
+    fields=['concept_agreement','event_f1_strict','state_field_agreement'];values={k:p1['mean'][k] for k in fields}
+    fig,ax=plt.subplots(figsize=(10,4));ax.barh([k.replace('_',' ') for k in values],list(values.values()),color='#426e73');ax.set_xlim(0,1);ax.set_xlabel('Recorded pair-summary agreement')
+    save(fig,'fig9_p1_agreement','Accepted AI-draft P1 pair summaries','HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND. Not independent inter-rater evidence or predicted-engine accuracy.',values)
     report={'record':'TECHNICAL_FIGURE_EXPORT','labels':['ENGINEERING_DIAGNOSTIC','NON_CITABLE','NO_HUMAN_SIGNOFF_D085'],'scientific_gate_pass':False,'matplotlib':matplotlib.__version__,'sources_sha256':sources,'tool_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),'figures':figures,'file_sha256':{p:hashlib.sha256(Path(p).read_bytes()).hexdigest() for f in figures for p in f['paths']},'limitations':['Authored architecture/state diagrams are labelled schematics, not data-derived experimental graphs.','No author report/deck edits or final submission approval.','Original frozen results and unsuccessful hypotheses remain unchanged.']}
     with (args.out_dir/'manifest.json').open('x') as f:f.write(json.dumps(report,indent=2,sort_keys=True)+'\n')
     print('Exported',len(figures),'technical figures')
