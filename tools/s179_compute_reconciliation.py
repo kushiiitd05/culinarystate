@@ -21,13 +21,21 @@ def inspect(root,row):
     try:
         if name and path.is_file():current=sha(path)
     except OSError:pass
+    components={}
+    if ';' in name:
+        for component in name.split(';'):
+            component=component.strip();candidate=Path(component) if Path(component).is_absolute() else Path(root)/component
+            if candidate.is_file():components[component]=sha(candidate)
+    ephemeral=any(token in name.lower() for token in ['scratchpad','stdout','(deleted)','not kept','no kept output','no output file']) or name.startswith('<')
     if not name:status='NO_OUTPUT_FILE_DECLARED'
+    elif components:status='MULTIPLE_ARTIFACTS_CURRENT_COMPONENT_HASHES_ONLY'
+    elif not current and ephemeral:status='DECLARED_STDOUT_OR_EPHEMERAL_OUTPUT'
     elif current and not expected:status='CURRENT_HASH_AVAILABLE_ORIGINAL_NOT_RECORDED'
     elif current==expected and current:status='CURRENT_BYTES_MATCH_RECORDED_HASH'
     elif current:status='CURRENT_BYTES_DIFFER_FROM_RECORDED_HASH'
     else:status='DECLARED_ARTIFACT_NOT_AVAILABLE_AT_RECORDED_PATH'
     return {'run_id':row['run_id'],'output_path':name,'recorded_sha256':expected or None,'current_sha256':current,
-            'status':status,'start_recorded':bool(row.get('start')),'end_recorded':bool(row.get('end'))}
+            'status':status,'component_sha256':components,'start_recorded':bool(row.get('start')),'end_recorded':bool(row.get('end'))}
 
 
 def main(argv=None):
@@ -39,10 +47,11 @@ def main(argv=None):
     for row in rows:
         r=inspect(ROOT,row)
         if r['output_path'] and r['recorded_sha256'] and r['status']!='CURRENT_BYTES_MATCH_RECORDED_HASH' and not Path(r['output_path']).is_absolute():
-            history=subprocess.run(['git','log','--all','--format=%H','--',r['output_path']],cwd=ROOT,text=True,capture_output=True)
+            history_path=r['output_path'].split(' (',1)[0]
+            history=subprocess.run(['git','log','--all','--format=%H','--',history_path],cwd=ROOT,text=True,capture_output=True)
             r['git_history_examined']=0;r['recorded_bytes_found_in_git']=False
             for commit in history.stdout.splitlines()[:50]:
-                blob=subprocess.run(['git','show',commit+':'+r['output_path']],cwd=ROOT,capture_output=True)
+                blob=subprocess.run(['git','show',commit+':'+history_path],cwd=ROOT,capture_output=True)
                 r['git_history_examined']+=1
                 if blob.returncode==0 and hashlib.sha256(blob.stdout).hexdigest()==r['recorded_sha256']:
                     r['recorded_bytes_found_in_git']=True;r['matching_git_commit']=commit;break
