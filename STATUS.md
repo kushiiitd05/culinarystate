@@ -1,6 +1,6 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-## Current continuation — 11 November 2026 (Parv; supersedes older snapshots below)
+## Current continuation — 12 November 2026 (Parv; supersedes older snapshots below)
 
 Branch `kush/s179-finish-fixes`; decisions through D-092. D-085 AI delegation retains NO_HUMAN_SIGNOFF_D085;
 independent-human scientific gates do not pass by delegation. Current evidence is in the round-6 audit and
@@ -15,8 +15,11 @@ independent-human scientific gates do not pass by delegation. Current evidence i
   integration remain incomplete. Existing SIMULATE guards stay closed; no new scientific pass supplied.
 - Integrated report and Markdown deck updated. Source-window scan: zero 12-word matches in seven artifacts against
   supplied D5 context and licensed CAL/SIM-VAL texts; other corpora/final exports still need checks, no release clearance.
-- Tests: 7,975 passed, 1 failed, 11 errors, 13 skipped, 44 deselected. Remaining failure/errors are missing identity-features
-  and Food.com inputs; tests were not skipped or weakened. 48 new tests and independent 21-test review pass.
+- Answer audit: all 346 frozen answers and 1,000 public-demo calls scanned. 30 saved records flagged; no demo flags
+  under the corrected lexical instrument. T0-C06-R2 remains PARTIAL; semantic/quantity/basis/branch gaps remain.
+  Original audit, corrected v2 and NEG-0052 retained; no frozen answer or score changed.
+- Tests: 7,996 passed, 1 failed, 11 errors, 13 skipped, 44 deselected. Remaining failure/errors are missing identity-features
+  and Food.com inputs; tests were not skipped or weakened. The new emission instrument adds 21 passing tests; see its verification report. Prior AA/privacy tests remain.
 - Human facts still pending: current VPN/host/path (no SSH), talk details and author contributions. Private AA/D5
   files have arrived; the older handoff requests for those specific files are resolved.
 
