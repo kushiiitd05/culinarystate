@@ -1,0 +1,36 @@
+{
+  "archive_bytes": 2035667491,
+  "archive_sha256": "8467fbda3798bc68a22892528349325e6758baec8a71804793186132ccb1e146",
+  "bundle_model": "deberta-v3-base_crf",
+  "date": "2026-11-12",
+  "exact_frozen_model_available": false,
+  "inference_performed": false,
+  "limitations": [
+    "Optional model metadata differs from the recorded primary checkpoint architecture;not substituted.",
+    "Bundle inventory does not prove absence elsewhere;no server access attempted."
+  ],
+  "metadata_files": [
+    {
+      "bytes": 1284,
+      "path": "data/interim/models/ner/deberta-v3-base_crf/tokenizer_config.json",
+      "sha256": "557b3d33d3f41b81ad769244e506549e98a1857d41dd58160aacd4d98d710b5a"
+    },
+    {
+      "bytes": 1705,
+      "path": "data/interim/models/ner/deberta-v3-base_crf/config.json",
+      "sha256": "29f27c1ee27df97397b40c1558ed92766f0b3191d9e8c18cd5c587579ab6498e"
+    },
+    {
+      "bytes": 386,
+      "path": "data/interim/models/ner/deberta-v3-base_crf/tagger.json",
+      "sha256": "dfa42b95bfceec527dfc3017b6a1c4a7e61ef78d383d026c7c2e30f049af58ae"
+    }
+  ],
+  "model_architectures": [
+    "DebertaV2ForTokenClassification"
+  ],
+  "model_type": "deberta-v2",
+  "record": "OPTIONAL_MODEL_BUNDLE_METADATA_CHECK",
+  "required_frozen_model": "DeBERTa-base+CRF,checkpoint sha256 prefix582c056ac20625ac",
+  "substitution_performed": false
+}
