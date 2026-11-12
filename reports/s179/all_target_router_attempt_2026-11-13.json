@@ -1,0 +1,15 @@
+{
+  "record": "ALL_TARGET_INITIAL_ATTEMPT_DISPOSITION",
+  "status": "ABORTED_FOR_EQUIVALENT_BATCH_OPTIMIZATION",
+  "labels": [
+    "ENGINEERING_DIAGNOSTIC",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "scientific_gate_pass": false,
+  "final_artifact_written": false,
+  "reason": "Initial full per-target loop repeated identical target-independent work. It was terminated before final output, retained in Git, and replaced by separately tested v2 aggregate equivalence without changing recipes/targets/routing rules.",
+  "initial_log_sha256": "6dd11a2482bd4271a9510b12a3119b320dea225a0594f219bb3ad2999c3cca55",
+  "replacement": "reports/s179/all_target_router_sample_2026-11-13_v2.json",
+  "start_end_timestamps": "NOT_CAPTURED"
+}
