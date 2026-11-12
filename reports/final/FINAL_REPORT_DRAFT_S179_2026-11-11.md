@@ -561,3 +561,25 @@ The original scan is retained beside corrected v2. Matching a number does not es
 condition applicability. Units, semantic/option entailment, full per-number basis and branch coverage still
 need work. T0-C06-R2 remains PARTIAL and NEG-0052 retains the engineering finding. No H1/H3 score or frozen answer
 changed. Source: `reports/s179/emission_audit_2026-11-12.md` and its referenced JSONs/tests/path inventory.
+
+
+## Local completion supplement — 12 November 2026
+
+**ENGINEERING_DIAGNOSTIC / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.** This section supersedes earlier missing-input and next-action descriptions for the listed work only. Original scientific results and failed gates remain unchanged.
+
+| Artifact / split | Local result | Evidence |
+|---|---|---|
+| Required tier-1 bundle | Original archive checksum matches; identity features, Food.com and Gutenberg restored; existing content not overwritten | `reports/s179/local_tier1_restoration_2026-11-12.json` |
+| macOS archive sidecars | Ignored AppleDouble/AppleSingle files quarantined outside checkout; source annotation content preserved | `reports/s179/local_metadata_quarantine_2026-11-12.json` |
+| Actual frozen D5, 74 questions / eight blocks | New v3 registry and complete exact-line exposure section; overlap disclosed, independence unestablished | `reports/s179/d5_frozen_split_leakage_v3.md` and JSON |
+| P/C gold resource exposure | All 79 distinct gold EVD IDs already occur in DEL-2; shared C/P1=2, C/P2=1, P1/P2=9 | Same v3 audit |
+| S NER surface exposure, nine ingredient lines from two Wikibooks recipes | RecipeDB3 train=1/9, test=1/9, calibration/dev=0/9; TASTEset any split=2/9; 22 Gutenberg segments have no ingredient-line channel | Same v3 audit; not a NER accuracy test |
+| Strict-v2 public-filtered local demo, 1,000 metadata calls / 200 synthetic recipe requests | 155 ABSTAIN, 186 ABSTAIN_SAFETY, 659 ASK; zero table retention figures; 53 physics steps, 141 numeric fields, zero omitted or UNKNOWN numeric provenance in enumerated display fields | `reports/s179/strict_runtime_audit_2026-11-12.json` |
+| Loopback HTTP, public-filtered and local modes | Health, HTML and three requests per mode pass; local forwarding header refused with 503 | `reports/s179/strict_http_smoke_2026-11-12.json` |
+| Required learned NER checkpoint | Not available in inspected local inputs; optional tier-2 archive has DeBERTa-v3-base+CRF, not the recorded frozen DeBERTa-base+CRF | `reports/s179/optional_model_bundle_check_2026-11-12.json` |
+
+Strict-v2 is a separate explicit launcher, not a replacement benchmark. It reports a measured table point only with exact known declared food/process/target/state/basis/medium/time/temperature context and explicit numeric precision. It checks the final rendered fallback and refuses arbitrary generated text. No condition context is inferred by default, hence the zero retention-answer coverage in this sample. The source reports remain unverified and applicability is not certified. This is an engineering tradeoff, not evidence that answer quality improved.
+
+Physical display metadata preserves TEXT_STATED, SCENARIO and MODEL_DERIVED distinctions and actual default/registry references. UNKNOWN remains UNKNOWN outside this sample. These references describe declared provenance, not scientific source truth. Recipe route chips retain legacy row-existence semantics and are not condition-applicability certificates. No new PARAM rows or valid real SIMULATE route are supplied. The earlier 30 frozen-answer flags, original H1/H3 failures, AA zero eligible SIM-VAL rows and zero T5 gate passes remain on record.
+
+The wrong optional checkpoint was not substituted or run. Cross-family learned-NER versus Rung-A inference agreement remains data-dependent. Private 15a assignment rederivation, actual independent human labels, author contribution facts and future-dated acceptance remain outstanding. All work in this supplement ran locally without SSH or VPN.
