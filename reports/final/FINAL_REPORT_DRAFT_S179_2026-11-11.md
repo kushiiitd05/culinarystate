@@ -547,3 +547,17 @@ individual scientific contribution is inferred from commit authorship, delegated
 
 Frozen outputs must not be edited, retuned or silently rescored. Any new experiment requires its own dated
 amendment, freeze, output path and run record, with the original result retained beside it.
+
+
+## Engineering provenance audit update — 12 November 2026
+
+**ENGINEERING_DIAGNOSTIC / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.** A separate lexical/structural scan covers
+all 346 saved D5 answers and 1,000 metadata-template public-demo calls. Thirty saved records have numeric-reference
+or precision-cap flags (B0:4, B2:8, B5:18); B5T/B7 have no flags within the instrument's scope. The corrected scan
+finds no demo flags, but only 173 calls reach TRANSFORMATION and the sample does not represent real user queries.
+Two hundred synthetic recipe requests yield 36 recipe payloads and 51 physical steps: test inputs, not measurements.
+
+The original scan is retained beside corrected v2. Matching a number does not establish food/process/target/
+condition applicability. Units, semantic/option entailment, full per-number basis and branch coverage still
+need work. T0-C06-R2 remains PARTIAL and NEG-0052 retains the engineering finding. No H1/H3 score or frozen answer
+changed. Source: `reports/s179/emission_audit_2026-11-12.md` and its referenced JSONs/tests/path inventory.
