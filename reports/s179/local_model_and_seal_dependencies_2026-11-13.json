@@ -1,0 +1,39 @@
+{
+  "LLM": {
+    "available_local_tag": "qwen2.5:3b",
+    "available_manifest_sha256": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+    "found_required_local_manifest": false,
+    "required": "qwen2.5:7b-instruct",
+    "required_digest_prefix": "845dbda0",
+    "runtime_present": true,
+    "substituted": false
+  },
+  "NER": {
+    "found_exact": false,
+    "optional_bundle_contains": "deberta-v3-base_crf",
+    "required": "ckpt_tasteset_base_crf_s1.pt (DeBERTa-base+CRF)",
+    "required_sha256_prefix": "582c056ac20625ac",
+    "searched_scope": "CGAS workspace including ignored files, Downloads, HuggingFace cache; both provided archive inventories",
+    "substituted": false
+  },
+  "checked_at_utc": "2026-11-12T21:33:46.962981+00:00",
+  "labels": [
+    "AI_PRECHECKED",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Inspected local inputs only; absence elsewhere is not claimed.",
+    "No SSH/VPN, model download, model call or wrong-model substitution.",
+    "Current prerequisite failure does not invalidate the hash-bound historical record; it prevents fresh local reconstruction."
+  ],
+  "record": "LOCAL_MODEL_AND_SEAL_DEPENDENCY_CHECK",
+  "scientific_gate_pass": false,
+  "seal": {
+    "correct_sealed_list_available_in_supplied_transfer": false,
+    "existing_local_seed_matches_commitment": false,
+    "new_split_or_seed_generated": false,
+    "original_commitment_sha256": "a099c142719421a50f70e114b75fd4753ff3c490c06fc4dd017e2e6527d46e6d",
+    "seed_content_stored": false
+  }
+}
