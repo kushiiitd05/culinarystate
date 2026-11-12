@@ -42,29 +42,36 @@ Checks before final assembly:
 
 ## 2. Split label for every recipe-level result (T9-C09-R3)
 
-**Rule.** Each results table carries a `split` column with one of two labels:
-- `source-family-disjoint`, only where the test units come from a source family that no training or tuning step
-  saw;
-- otherwise, `near-duplicate leakage not controlled`.
+Updated 12 November 2026 from `registry/d5_frozen_split_registry_v3.csv` and
+`reports/s179/d5_frozen_split_leakage_v3.{json,md}`. This additive refresh supersedes the historical
+frozen-D5 refresh-to-do in §3; old registries and draft-era audits remain unchanged.
+**AI_PRECHECKED / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.**
 
-The reason is that the recipe identity ledger is provisional. 07I-R uses uncalibrated star clustering, and the 07I-C
-human calibration produced blind kappas of 0.571 and 0.588. Absence of a duplicate in that ledger is weak evidence,
-so no recipe-level result can claim near-duplicate control. Descriptive corpus censuses have no test split; they
-carry `descriptive (no split)`.
+**Rule.** Each recipe-level results table carries `source-family-disjoint` only where an explicit check shows
+that no training or tuning step saw the held-out family; otherwise it carries
+`near-duplicate leakage not controlled`. Descriptive corpus censuses carry `descriptive (no split)`.
+The identity ledger remains provisional: 07I-R star clustering is uncalibrated, and the 07I-C blind kappas
+were 0.571 and 0.588. Exact recipe-ID nonoverlap and provisional-group nonoverlap cannot establish near-duplicate
+control. No row below establishes source-family independence.
 
-| Result (where it appears) | Unit | Split basis | Label |
+| Result (where it appears) | Unit | Current split/exposure evidence | Label |
 |---|---|---|---|
-| D5 H1, S1 + S2 (D-092) | recipe at a cut | frozen S questions: 24 recipes, 22 Gutenberg and 2 Wikibooks; AI_DRAFTED_GOLD; old leakage audit was on 40 drafts | near-duplicate leakage not controlled; source-family-disjoint not verified; B0 may know public text from pre-training; new frozen-set registry/audit still needed |
-| D5 H3, P1-P3 + C (D-092) | evidence cell | frozen P/C questions: 40; EVD reference is the same resource used in DEL-2; old PC-1 audit counted 101 draft gold rows | not recipe-level; label `evidence resource seen in DEL-2`; draft-era counts are not a fresh frozen-set audit |
+| D5 H1, S1 + S2 (D-092) | recipe at a cut | 24 frozen recipes: 22 Gutenberg, 2 Wikibooks; 12 per block, no shared recipe ID. Zero overlaps with 50 gold recipe IDs, seven declared seeded Rung-A/dev samples and 68 J4 hashes. Identity groups provisional; full-corpus label-free development is prior exposure; public-text pretraining unknown. Gold is AI_DRAFTED_GOLD. | near-duplicate leakage not controlled; source-family-disjoint not verified |
+| D5 H1, NER surface exposure supplement | normalized ingredient line | Only 2 Wikibooks recipes provide ingredient lines: 9 total. Exact matches: RecipeDB3 train 1/9, calibration 0/9, dev 0/9, test 1/9; TASTEset any split 2/9. The 22 Gutenberg segments expose no ingredient-line channel. | surface exposure only; no learned-NER accuracy, whole-recipe identity or independence conclusion |
+| D5 H3, P1-P3 + C (D-092) | evidence cell | 40 frozen questions, 10 per block; 79 distinct gold EVD IDs, all in the 17,458-row DEL-2 retention pool. Shared gold IDs: C/P1=2, C/P2=1, P1/P2=9. Retrieval-silver overlap: 2 gold IDs, 1 gold cell, 13/44 ingredient/process pairs. | not recipe-level; evidence resource seen in DEL-2; positive overlap retained |
+| D5 U + X | authored control question | 5 questions per block; no stochastic training/test draw. Whole freeze is 74 questions across eight blocks. | authored controls; not independent empirical gold |
 | D3 state tracking vs P1 gold (7 recipes) | recipe | P1 gold, AI-drafted and human-accepted; no held-out design | near-duplicate leakage not controlled |
-| CulinaryNER, RecipeDB3 TEST (2,554 docs) | document | grouped benchmark split, frozen before TEST (commit 4ee0582) | near-duplicate leakage not controlled (groups are not checked against the identity ledger) |
+| CulinaryNER, RecipeDB3 TEST (2,554 docs) | document | grouped benchmark split, frozen before TEST (commit 4ee0582) | near-duplicate leakage not controlled (groups not checked against identity ledger) |
 | CulinaryNER, TASTEset | document | single-source split | near-duplicate leakage not controlled |
-| Ingredient linker, held-out aliases and concepts | alias / concept | concept split (`tools/build_linker_data.py` buckets) | not recipe-level; label `concept split` |
+| Ingredient linker, held-out aliases and concepts | alias / concept | concept buckets; frozen S1 gold concepts train/dev/test=25/4/5; P/C concepts=16/3/8 | not recipe-level; concept split, with exposure disclosed |
 | Corpus censuses: physics v06, router census 0.4.1, can-say v2, EVD coverage v2, Food.com card v2 | recipe / line | none (whole corpus) | descriptive (no split) |
-| 29-diag S-1..S-4 (DEL-2 rerun) | EVD row | same seed-7 splits as DEL-2; independence groups leak fully for USDA-RETN-R6 and BOGNAR-2002 | not recipe-level; label `PRIOR_EXPOSURE` (prereg), plus the group-leak note |
+| 29-diag S-1…S-6 | EVD row / declared group | Recorded manifest/result hashes retained, not private post-seal assignment reconstruction. Actual S-5 is food-group-disjoint; S-6 study-disjoint. Historical registry's older S-5 naming preserved. USDA-RETN-R6 and BOGNAR-2002 lineage limitations remain. | not recipe-level; PRIOR_EXPOSURE where recorded; provisional lineage is not independent-study certification |
+| Strict-v2 runtime diagnostic, 12 November | synthetic metadata-template call | 1,000 calls, including 200 synthetic recipe requests; no held-out natural-user distribution | engineering diagnostic; not a scientific or accuracy result |
 
-No row in this table is `source-family-disjoint` today. A row moves to that label only with a check that names the
-held-out family and shows that no training or tuning step read it.
+The 29-diag and 07.A-R1 entries in the refresh are `RECORDED_PROVENANCE_NOT_REDERIVED`; 07.A-R1 remains
+NOT_RUN under D-085. No sealed assignment is fabricated. The v3 audit supplies fresh frozen-D5 counts;
+v2 remains the historical missing-input run. Positive source/evidence exposure is reported, not removed.
+No table row becomes `source-family-disjoint` without a named held-out-family and training/tuning exposure check.
 
 ## 3. Open items
 
