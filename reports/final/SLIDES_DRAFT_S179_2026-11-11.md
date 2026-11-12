@@ -143,8 +143,25 @@ Sources: D-091; `reports/step10/identifiability_report_v1.md`.
 - Failed 07.A, G08-3 and the handbook revision requirement remain visible.
 
 Original results, deviations and negative findings are retained in the report and release card.
-Next: finish missing data-dependent diagnostics and the emission/leakage checks, then author edits and an actual
+Next: resolve the exact learned-model artifact and scientific provenance gaps, then author edits and an actual
 timed rehearsal. A dated amendment may create a new experiment; it cannot replace the original failed result.
+
+---
+
+# Local completion — 12 November
+
+**ENGINEERING_DIAGNOSTIC / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.**
+
+- Restored checksum-matched tier-1 data; frozen D5 exposure audit now covers all selected recipes.
+- All 79 P/C gold EVD IDs already appear in DEL-2; shared evidence is disclosed.
+- Separate strict-v2: 1,000 metadata calls, zero retention figures without exact context.
+- 53 physics steps, 141 numeric display fields: zero missing provenance in this sample.
+- Public-filtered and local loopback HTTP checks pass. No hosted deployment claimed.
+- Exact frozen NER checkpoint still absent; optional v3 checkpoint was not substituted.
+
+Sources: `reports/s179/d5_frozen_split_leakage_v3.md`, `strict_runtime_audit_2026-11-12.json`,
+`strict_http_smoke_2026-11-12.json`, `optional_model_bundle_check_2026-11-12.json`.
+Original failed gates and scientific limitations remain unchanged.
 
 ---
 
