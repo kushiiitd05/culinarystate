@@ -75,3 +75,18 @@ evidence); the v4 FAIL stays. Fallback wording: Bagler permission "as stated by 
 - Report/deck updated; round-7 supplement records exact acceptance limits. Do not edit round 6 or the immutable S178 board.
 - Next: resolve source assay/basis or retain NOT_RUN; complete genuine KIN/PARAM provenance; full corpus/emission/leak checks.
 - No SSH pending current VPN/host/path; no new human facts/signoffs/validated-domain claims. Frozen originals unchanged.
+
+
+## Answer audit continuation — 12 November 2026
+
+- New read-only instrument and 21 tests; code committed before each provenance-recorded run.
+- All 346 frozen D5 answers scanned; 1,000 public-demo calls, seed 20261112, include 200 synthetic recipe requests.
+- Those requests yield 36 recipe responses and 51 physics steps; only 173 calls reach TRANSFORMATION.
+- First run had source-name-digit false positives; regression-tested correction and separate v2 retained beside it.
+- v2 flags 30 saved records (B0:4, B2:8, B5:18); B5T/B7 have no flags within scope; demo has no detected flags.
+- T0-C06-R2 remains PARTIAL; no semantic, unit, condition or full-basis certification, and no H1/H3 rescore.
+- Reports: emission_audit_2026-11-12.md + original/v2 JSONs, path inventory and runtime-hardening proposal. NEG-0052 added.
+- Full suite: 7,996 passed, 1 failed, 11 errors, 13 skipped, 44 deselected; missing identity-features/Food.com remain.
+- Agent supplied a source-path draft before a service limit; root completed checks, with no independent auditor sign-off.
+- Next: versioned runtime/fallback hardening; semantic, option, basis and branch checks; restore missing inputs.
+- No production/frozen/scientific-gate or protected ledger change; no SSH, new LLM run or raw-source publication.
