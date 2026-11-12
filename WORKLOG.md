@@ -1411,3 +1411,24 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `reports/step10/G15_T5_scorecard_2026-11-11.md`, `reports/step10/calibration_disposition_2026-11-11.md`, `reports/step10/SIMM-AA-1_card_DRAFT_2026-11-11.json`, `reports/orchestration/S179_round7_private_transfer_update.md`, `reports/s179/source_text_scan_partial_2026-11-11_v2.json`, `reports/s179/private_transfer_verification_2026-11-11.json`
 - **Verified:** Final full7975passed1failed11errors13skipped44deselected109.43s;48new-tool tests;21peerrecheck. Missing-data outcomes retained. Frozen/protected checks before push.
 - **Next:** Genuine KIN/PARAM provenance;sourcebasis;missingtestinputs;fullcorpus/emission/leakage;authorfacts/rehearsal.
+
+### S206 · 2026-11-12 10:42 IST · S179 · Read-only emission auditor and source-name regression correction
+- **Who:** Parv
+- **Did:** Built separate lexical/structural instrument test-first. Recognizes large,signed,scientific andpercentage retention numbers;packetrefs,pointvalues andprecisioncaps;structuralUNKNOWN/SIMULATE,model/evidence,L2impossibility. Recordedsource names maskeddistinctly after3regressions;oldrun retained,newv2 atseparatepath.
+- **Files:** `src/culinarystate/evaluation/emission_audit.py`, `tools/s179_emission_audit.py`, `tests/unit/test_s179_emission_audit.py`
+- **Verified:** 21tests pass. Code committed before each audit;allsourcecode hashes stable. Original generation/scorer/prompt unchanged.
+- **Next:** Implement dated versioned runtime/fallback hardening perproposal;do not retune oldbenchmarks.
+
+### S207 · 2026-11-12 10:42 IST · M8 · All-answer and public-demo provenance audit recorded
+- **Who:** Parv
+- **Did:** Scanned all346savedanswers and1000seededmetadata-template publicdemo calls with200explicit syntheticrecipe requests. Correctedv2 flags30savedrecords(B0:4,B2:8,B5:18);B5T/B7 anddemo noflags within lexicalscope. Only173TRANSFORMATION calls,36recipepayloads,51physicalsteps. T0C06R2remainsPARTIAL. NEG0052added,originalrun/frozenresults retained.
+- **Files:** `reports/s179/emission_audit_2026-11-12.json`, `reports/s179/emission_audit_2026-11-12_v2.json`, `reports/s179/emission_audit_2026-11-12.md`, `reports/s179/emission_path_review_2026-11-11.md`, `registry/negative_results_register_v1.csv`
+- **Verified:** RUN-S179-PARV-EMIT-001/002;no semantic/cross-option/unit/condition/allbasis certificate. Source-path draft received beforeagentusage limit;rootcompleted checks,no independent auditor signoffclaimed.
+- **Next:** Fullsemantics/basis/branchchecks;versioned guardhardening;humanfactsonlywhereactuallyneeded.
+
+### S208 · 2026-11-12 10:42 IST · M8 · Emission session regression and counts-only publication preparation
+- **Who:** Parv
+- **Did:** Updated report,STATUS,handoff andround8brief with scope andnegativefinding. Partialsource scan0matches5sources4artifacts,no releaseclearance. No rawanswers/queries/recipes in auditoutputs.
+- **Files:** `reports/s179/emission_audit_verification_2026-11-12.json`, `reports/s179/source_text_scan_partial_2026-11-12.json`, `reports/s179/emission_runtime_amendment_PROPOSAL_2026-11-12.md`, `STATUS.md`, `handoff/S179_D085_EXECUTION_HANDOFF.md`
+- **Verified:** Full7996passed1failed11errors13skipped44deselected105.40s;missingdata only. Target21pass;NEG/audit27pass. Source/frozen/append-only checks before push.
+- **Next:** Restore identityfeatures/Food.com;PARAM/basis andsemanticchecks;authorcontributions/talkfacts/rehearsal.
