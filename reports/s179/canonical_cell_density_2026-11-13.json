@@ -1,0 +1,65 @@
+{
+  "completed_at_utc": "2026-11-12T21:29:04.889852+00:00",
+  "condition_completeness_not_equivalence": true,
+  "core_sha256": "c137fdb9a117e8011e50893fdce0be68dd5fe3bcfcfa06082c5f80eaf4405b0e",
+  "definition": "Existing eda.report.cell_key: lowercase matrix raw name, form, exact step sequence, lowercase target raw name, structural modifiers and reported duration signature.",
+  "families": {
+    "BOGNAR-2002": {
+      "active_rows": 7090,
+      "canonical_cells": 4797,
+      "cartesian_triple_denominator": 225848,
+      "cell_assignment_sha256": "f0d2411d622db4d10688aead030b7e9d171a2a7cd6753c09f3aa6390e510758d",
+      "matrix_labels": 436,
+      "observed_matrix_process_target_triples": 4797,
+      "step_sequences": 14,
+      "target_labels": 37,
+      "triple_density": 0.02123994899224257
+    },
+    "PHENOL-EXPLORER-3.6": {
+      "active_rows": 3870,
+      "canonical_cells": 1633,
+      "cartesian_triple_denominator": 775698,
+      "cell_assignment_sha256": "0d7f68bf26bf8dcd466c9f336f5a631361e32b0f0d02183af641c0db0f9c928f",
+      "matrix_labels": 146,
+      "observed_matrix_process_target_triples": 1068,
+      "step_sequences": 33,
+      "target_labels": 161,
+      "triple_density": 0.0013768244858179343
+    },
+    "USDA-RETN-R6": {
+      "active_rows": 7018,
+      "canonical_cells": 7018,
+      "cartesian_triple_denominator": 41496,
+      "cell_assignment_sha256": "fac3ea6477a7126b415833a2d0c6274931b27ea656c0a1a1b7e3a9421765cdf8",
+      "matrix_labels": 38,
+      "observed_matrix_process_target_triples": 4445,
+      "step_sequences": 42,
+      "target_labels": 26,
+      "triple_density": 0.1071187584345479
+    }
+  },
+  "labels": [
+    "RESOURCE_DIAGNOSTIC",
+    "PRE_SEAL_NO_HOLDOUT",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Describes all ACTIVE resource rows before seal filtering; no private assignment or model output touched.",
+    "Existing key omits temperature; shared keys are candidates for replicate/duplicate review, not proof of same experimental conditions.",
+    "Density is observed raw-label matrix/step/target triples over their source-specific Cartesian product; basis/form/duration subdivisions belong to canonical_cells separately.",
+    "Source families and provisional groups are not independent experiment units."
+  ],
+  "record": "CANONICAL_CELL_DEFINITION_AND_DENSITY",
+  "reversed_input_repeat_identical": true,
+  "scientific_gate_pass": false,
+  "source_and_input_sha256": {
+    "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+    "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+    "src/culinarystate/eda/report.py": "3cb356ddbeb9607dca39338a52c6268689f52640a8963040f252af17b6d7a114",
+    "src/culinarystate/transition/dataset.py": "f1c6e75c20c02a929226debc9697b7503af8cf91bb0024cf0abc964c15acbce4",
+    "tools/s179_cell_definition_audit.py": "9cd98850e049e4af8ea9d2dd898b0d0389762f4569c0e333e5a07ea26a5232bb"
+  },
+  "started_at_utc": "2026-11-12T21:29:04.797625+00:00",
+  "temperature_not_in_existing_key": true
+}
