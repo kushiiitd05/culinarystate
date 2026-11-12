@@ -1,5 +1,20 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+
+## Latest local completion — 12 November 2026 (supersedes the continuation snapshot below)
+
+Branch `kush/s179-finish-fixes`; decisions through D-093. All work local, no SSH/VPN.
+D-085 labels remain; original H1/H3 RULE_NOT_MET and all scientific provenance guards remain unchanged.
+
+- **Regression green:** 8,085 passed, 4 skipped, 44 deselected; final targeted 75 passed separately. Two archive-sidecar failures were corrected by quarantining ignored macOS metadata, with original annotation content/assertions preserved. Full log and protected/frozen hashes: `reports/s179/local_completion_verification_2026-11-12.json`.
+- **Inputs restored:** checksum-matched tier-1 restored four actual missing files plus quarantined sidecars. Identity-features, Food.com and Gutenberg are available. Optional tier-2 has a different DeBERTa-v3 checkpoint; exact frozen primary not substituted or run.
+- **Actual D5 exposure audit:** new v3 registry/units cover 74 questions/eight blocks and all selected recipe sources. All79 gold EVD IDs already DEL-2; overlap disclosed. Nine Wikibooks lines provide the exact-line NER denominator; no independence or accuracy certification.
+- **Separate strict demo:** `python tools/run_local_demo_v2.py` on loopback, public-filtered by default. D-093 snapshot; synthetic reviewer regressions fixed. Exact declared context required; default calls infer none. 1,000 calls yield zero retention figures, 53 physics steps/141 numeric fields with no missing/unknown declared provenance in the enumerated sample. Both local/public-filtered HTTP checks pass. Original 30 frozen-answer flags are retained, T0-C06-R2 still PARTIAL.
+- **Drafts exported:** report10pages/deck13slides, HTML/PDF and hash manifest in `reports/final/exports_2026-11-12/`. No detected off-page text; root viewed slide contact sheet and report first page.
+- **Text scan:** zero12wordmatches across Markdown/visibleHTML/extractedPDF text against612,782 indexed recipes and4licensedpapertexts. 177Gutenberg raw segments absent; images/paraphrases/shortexcerpts not checked; no release clearance.
+- **Remaining:** exact primary NER checkpoint or persisted current-model cross-family spans; genuine source assay/basis and KIN/PARAM/VAL provenance for scientific simulation; historical private15a assignment rederivation; actual author contributions/presentation facts; final edits, post19Nov MPU and actual24Nov rehearsal. No invented labels or future completion.
+- **Review trail:** `reports/orchestration/S179_round9_local_completion_update.md`, `reports/s179/local_completion_closeout_2026-11-12.md`, new compute rows and `registry/experiments_S179_local_2026-11-12.csv`. Independent engineering/report work is not waiting on expert signoff; scientific gates remain explicit.
+
 ## Current continuation — 12 November 2026 (Parv; supersedes older snapshots below)
 
 Branch `kush/s179-finish-fixes`; decisions through D-092. D-085 AI delegation retains NO_HUMAN_SIGNOFF_D085;
