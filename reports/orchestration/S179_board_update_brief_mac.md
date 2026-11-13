@@ -221,3 +221,8 @@ Full8228pass4namedskip plus post-sync25targetedpass recorded separately. New tec
 ###13 November2026 — publisher licence follow-up
 
 D-101 and review P13-10: AAK-04/10 attribution families confirmed on publisher sources; AAK-05 article has CC BY-NC-SA4.0, outside project CC-BY/CC0 allowlist. AAK-02/08 unresolved. No challenge bypass, local PDF acquisition, new extraction/fit or scientific pass. Original licence records retained; dated supplement/scope v3 added. Next source intake requires actual permitted PDF bytes/hashes and source verification; new SIMVAL extraction needs an unexposed session. R1 packet transfer question already resolved.
+
+
+##13 November2026 — reduced submission takeover ready
+
+Primary document: handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md. Package index: handoff/KUSH_TAKEOVER_PACKAGE_PATHS_2026-11-13.md. Fresh AI counterparts now complete and compared (R1NOT_COUNTED;CAL16numericagreements); human acceptance remainspending. Full8271pass4namedskip;49artifactpubliccandidateZIPverified, separate11fileprivateZIPstagedNOT_SENT. No author facts/final edits, scientific gate pass, main merge or source/model/seed upload inferred. Candidate is document/artifact snapshot with earlier draft exports and explicit later addenda. Read takeover remaining-action table before final submission.
