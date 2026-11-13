@@ -1,8 +1,8 @@
 # 36-step pass-gate audit — 13 Nov 2026
 
-AI audit (ksh+prv, D-085; four parallel read-only agents), every pre-registered pass-gate clause in
- checked against an existing artifact. Clause rows:
-. AI_PRECHECKED · NON_CITABLE · AI_VERDICT_PENDING_HUMAN_REVIEW.
+AI audit (ksh+prv, D-085; four parallel read-only agents): every pre-registered pass-gate clause in
+`docs/plan/CulinaryState_36_Step_Execution_Plan_v2.md` checked against an existing artifact. Clause rows:
+`step_gate_audit_36_2026-11-13.csv`. AI_PRECHECKED · NON_CITABLE · AI_VERDICT_PENDING_HUMAN_REVIEW.
 
 **Steps:** 0 COMPLETE · 2 COMPLETE_WITH_RECORDED_FAILURE (07, 08) · 18 PARTIAL · 7 NOT_STARTED · 5 BLOCKED · 4 CUT.
 **Clauses (269):** 67 MET · 12 MET_AI_DELEGATED · 9 FAILED_RECORDED · 116 NOT_MET · 36 NOT_EVIDENCED · 29 NOT_APPLICABLE.
