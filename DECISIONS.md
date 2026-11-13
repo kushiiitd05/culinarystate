@@ -797,3 +797,12 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Change:** condition (2) becomes: L1 `medium` ∈ {LIQUID, LIQUID_PARTIAL}; WATER/STEAM stay `WATER_CONTACT`; any other known medium → `MEDIUM_NOT_LIQUID`; unknown → `MEDIUM_UNKNOWN`. Everything else in D-104 unchanged.
 - **Post-hoc:** declared after seeing the D-104 output; the D-104 output stays on record as the first result. New output paths only.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-101 · 2026-11-13 · Publisher-licence follow-up for five AA candidates (decided by ksh+prv (AI, D-085); entered by coding agent as scribe)
+- **Source:** Existing CC-BY/CC0 AA acquisition rule; primary publisher observations recorded in `reports/step10/aa_publisher_licence_followup_2026-11-13.json`; user instructed continuing available work. Parv owns odd-numbered decisions; even-numbered lanes remain Kush's.
+- **AAK-05:** Article-specific publisher notice is CC BY-NC-SA4.0, differing from earlier aggregator CC-BY metadata. Exclude this candidate from intake under the existing CC-BY/CC0 allowlist; retain original screening/check records. This is a project-scope decision, not a claim that NC-SA forbids all research. No source rows or partition assignment changed.
+- **AAK-04/AAK-10:** Publisher attribution-licence family confirmed by AI. AAK-04 publisher PDF notice leaves version unspecified; do not infer it. AAK-10 article links CC BY4.0. Browser access is not local byte-hashed PDF acquisition or source-span verification; these remain pending.
+- **AAK-02/AAK-08:** Unconfirmed; PDF timeout/challenge and missing retrievable article-specific grant. No inference from a general open-access badge, no workaround or alternative retrieval after the challenge.
+- **Unchanged:** Original extraction/model/fit, CAL/SIMVAL membership, source ledgers and scientific guards. No new rows, local PDF acquisition, human verification or eligibility pass claimed. Any future SIMVAL extraction uses a separate unexposed session.
+- **Labels:** AI_DELEGATED_D085; NOT_INDEPENDENT; NOT_HUMAN_VERIFIED_UNTIL_REVIEW; NO_HUMAN_SIGNOFF_D085; AI_VERDICT_PENDING_HUMAN_REVIEW.
+- **Approver:** ksh+prv (AI, D-085).
