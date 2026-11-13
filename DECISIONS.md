@@ -756,3 +756,7 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Not claimed:** Rung A accuracy, Merge/Transform semantics, state confusion, or comparability with the rule compiler beyond the shared count-match method.
 - **Label:** `DIAGNOSTIC`, `NOT_INDEPENDENT`, `NON_CITABLE`, `NO_HUMAN_SIGNOFF_D085`.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-097a · 2026-11-13 · Kush review of block K13 (decided by Kush; entered by the coding agent as scribe)
+- **Source:** `handoff/REVIEW_SHEET_AI_VERDICTS.md` block K13; Kush's reply in session: "all passed on the verdict".
+- **Decision:** Kush accepts K13-1..K13-4 (15a registry, NER vs Rung A agreement, D-097 type table, 29-diag paired vs D0) as reviewed AI results. Labels on the outputs are unchanged: still DIAGNOSTIC / NOT_INDEPENDENT / NON_CITABLE; this is a review acceptance, not a scientific gate pass or independence claim. Parv's review is pending.
