@@ -65,3 +65,12 @@ def test_retention_matches_first_order():
     mid, _, _ = fc.retention(FIT, 90.0, 10.0)
     lnk = (-4.0 - 3.0) / 2 - (1 / (90 + 273.15) - 1 / 363.15) * 64000.0 / 8.314462618
     assert mid == pytest.approx(math.exp(-math.exp(lnk) * 10.0), rel=1e-6)
+
+
+# ---- D-106: liquid medium required --------------------------------------------------------------
+def test_d106_requires_liquid_medium():
+    assert fc.gate(l1(medium="LIQUID"), l2(), "TYPICAL", liquid_required=True)[0]
+    assert fc.gate(l1(medium="LIQUID_PARTIAL"), l2(), "TYPICAL", liquid_required=True)[0]
+    ok, why, *_ = fc.gate(l1(medium="OVEN_AIR"), l2(), "TYPICAL", liquid_required=True)
+    assert not ok and why == "MEDIUM_NOT_LIQUID"
+    assert fc.gate(l1(medium="OVEN_AIR"), l2(), "TYPICAL")[0]          # D-104 behaviour kept by default
