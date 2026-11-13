@@ -1565,3 +1565,52 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `registry/split_registry_15a_v1.csv; reports/s179/{15a_assignment_registry`, `seal_integrity_check_S179`, `ner_vs_runga_agreement_S179`, `d097_runga_type_table}_2026-11-13.json; reports/step29/diag/paired_vs_d0_S179_2026-11-13.json; DECISIONS D-097`
 - **Verified:** new tests 25 pass; G15-R PASS paired_vs_d0; no ids/text/host paths in committed outputs; RUN-S179-KUSH-*
 - **Next:** Kush pass/fail review of AI results; T8-C21-R2 ablation design; Parv corrects dependency closeout
+
+### S228 · 2026-11-13 12:33 IST · S179 · Reconcile supplied material and upstream dependency results
+- **Who:** Parv
+- **Did:** Five supplied documents retained; pulled matching handoffs and upstream results. Four artifact families exist with Kush, not newly received on Parv Mac. Original local-only absence JSON retained and superseded.
+- **Files:** `reports/s179/material_handoff_receipt_2026-11-13.json`, `reports/s179/local_model_and_seal_dependencies_SUPERSEDED_2026-11-13.md`
+- **Verified:** 31 initial targeted tests passed; K13 human review by Kush recorded upstream, Parv review not inferred.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S229 · 2026-11-13 12:33 IST · M1 · Blind prv CAL verification complete with metadata corrections
+- **Who:** Parv
+- **Did:** Fresh reviewer read only Parv packet/allowed sources.16numericspansmatched,13CORRECTED3VERIFIED. Original values and fit unchanged; exact sourcepage/span hashes and returned sheet preserved ignored.
+- **Files:** `reports/s179/prv_CAL_source_review_2026-11-13.json`
+- **Verified:** PRV-CAL001;blinding/preservation/privatepaths verified. Kush to compare returnedprv sheet and adjudicate; no scientificgatepass.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S230 · 2026-11-13 12:33 IST · M2 · Recover exact R1 Parv packet and complete separate AI half
+- **Who:** Parv
+- **Did:** Initial packet absent; rederived exact frozenissued bytes/hash without transfer,seedorKushlabels. Fresh reviewer100rows97ACCEPT3conservativeREJECT,1800nonjudgmentcellsexact. No paired score/human gate.
+- **Files:** `reports/s179/prv_07AR1_packet_reconstruction_2026-11-13.json`, `reports/s179/prv_07AR1_AI_review_2026-11-13.json`
+- **Verified:** PRV-R1001/002;no need for previously requestedpacketfolder. Kush owns counterpart/scoring/adjudication; persona resultNOT_COUNTED.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S231 · 2026-11-13 12:33 IST · M6 · Predeclared blind claim and branch AI reviews retain negative findings
+- **Who:** Parv
+- **Did:** D099sample30claims;freshjudgeblindtoring/checker,14/27agreement3unclear. SeparatefreshbranchGoldall74questions,45/74routeragreement. Labels frozenbeforeunblind; fullconfusion/private notes retained.
+- **Files:** `reports/s179/prv_claim_review_2026-11-13.json`, `reports/s179/prv_branch_review_2026-11-13.json`, `reports/del5/prv_claim_audit_caveat_DRAFT_2026-11-13.md`
+- **Verified:** PRV-CLAIM001/002 BRANCH001/002;TDD4+2controls. Enrichedclaimsampleandquestion-onlyGoldnotindependenthuman evidence; H1/H3unchanged.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S232 · 2026-11-13 12:33 IST · M8 · Prepare technical insert, numbered-review and rehearsal/readiness packs
+- **Who:** Parv
+- **Did:** Newtechnicaldraftonly;106numeric substrings reviewed,zero unclassified.13slide720secondplanned run sheet/Q&A/fallback;actualrehearsalNOT_RUN. LivePRsnapshot after permittedread,nomerge.
+- **Files:** `reports/final/drafts_2026-11-13/prv_technical_results_update_DRAFT.md`, `reports/s179/prv_draft_number_AI_review_2026-11-13.json`, `reports/s179/prv_rehearsal_pack_2026-11-13.md`, `reports/s179/prv_merge_readiness_2026-11-13_v2.json`
+- **Verified:** PRV-NUMBER001 PR001;negativePE/claimresultsvisible. Personal facts/final edits excluded; five licensed-source browserdownloads still not acquired.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S233 · 2026-11-13 12:33 IST · S179 · Repair decision provenance parser and verify full local regression
+- **Who:** Parv
+- **Did:** TDDcaughtsuffixD097aomissionandexplicitAItitleclassification; parser fixedwithoutchangingdecisions. Full8228pass4namedskip,priorfailures retained;D106concurrentsync then25targetedpass. Protectedoriginals unchanged.
+- **Files:** `tools/s179_gate_provenance_report.py`, `tests/unit/test_s179_gate_provenance_report.py`, `reports/s179/prv_continuation_verification_2026-11-13.json`
+- **Verified:** PRV-TEST001; no skipsadded/assertionsweakened. Fulltestedrevisionandpostsynccoverage statedseparately;torch/pintoptional/FDAcapture/bundle-test skipsnamed.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S234 · 2026-11-13 12:33 IST · S179 · Reconcile v2 scope and stage private return sheets
+- **Who:** Parv
+- **Did:** All252items84MUST168SHOULD51POSTpreserved;fiveupstreamclosuresplusprvdispositionsupdated. Fiveprivate return artifacts stagedignored,not sent. Shared review rows pendinghuman.
+- **Files:** `reports/orchestration/S179_technical_scope_matrix_2026-11-13_v2.csv`, `reports/s179/prv_private_return_manifest_2026-11-13.json`
+- **Verified:** PRV-LEAK001 zero12wordmatches;0scientificpassesinferred. ExactR1packetissue resolved; source/data/independence/calendarconstraints remain.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
