@@ -318,3 +318,18 @@ Private returns are locally staged, NOT_SENT, per reports/s179/prv_private_retur
 ### P13-10 — publisher licence continuation
 
 AI_VERDICT_PENDING_HUMAN_REVIEW · AI_DELEGATED_D085 · NOT_INDEPENDENT · NOT_HUMAN_VERIFIED_UNTIL_REVIEW · NO_HUMAN_SIGNOFF_D085. D-101: two publisher attribution-licence families confirmed, AAK-05 excluded from existing CC-BY/CC0 allowlist because article says CC BY-NC-SA4.0, two candidates unconfirmed. No locally acquired PDFs/new rows or scientific eligibility. Evidence: reports/step10/aa_publisher_licence_followup_2026-11-13.{json,md}; scope v3. Kush/Parv human review pending.
+
+
+## Reduced-submission closeout R13 — fresh AI counterparts and candidate
+
+AI_DELEGATED_D085 · NOT_INDEPENDENT · NOT_HUMAN_VERIFIED_UNTIL_REVIEW · NO_HUMAN_SIGNOFF_D085. All rows AI_VERDICT_PENDING_HUMAN_REVIEW; no human approval implied.
+
+| ID | Result | Evidence |
+|---|---|---|
+| R13-1 | Fresh ksh R1 counterpart compared with frozen prv sheet; original statistic descriptive, gateNOT_COUNTED;400code-convention/3otheraxis/3overall differences retained | reports/s179/r1_paired_AI_closeout_2026-11-13.json |
+| R13-2 | Fresh ksh CAL source review,16numericmatches; source qualifiers and prv comparison retained, original fit unchanged | reports/s179/CAL_paired_AI_closeout_2026-11-13.json |
+| R13-3 | Eight authored backend guard scenarios pass, including explicit unsupported refusals; not8implementedfeatures/humanrehearsal | reports/s179/reduced_submission_demo_2026-11-13_v2.json |
+| R13-4 | Full8271pass4namedskip; protected/frozen hashesmatch; candidate-textscan0matches | reports/s179/reduced_submission_final_verification_2026-11-13.json |
+| R13-5 |49publicartifactcandidateverified; separate11fileprivateZIPstagedNOT_SENT, author finals unchanged | reports/final/submission_candidate_2026-11-13/build_manifest_v1.json; handoff/KUSH_TAKEOVER_PACKAGE_PATHS_2026-11-13.md |
+
+Kush review pending; Parv review pending. Source-linked proposals do not change original labels or authorize a post-adjudication rescore.
