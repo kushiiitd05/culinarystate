@@ -1,6 +1,6 @@
 # Gate provenance: human and AI decisions (S179, T9-C07-R3)
 
-Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from `DECISIONS.md`. Each decision is classed from its Approver line only.
+Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from `DECISIONS.md`. Each decision is classed from its Approver line or explicit recorded title/instruction.
 
 **What D-085 changed.** From D-085 (2026-11-10) the AI personas ksh and prv (one model) act on Kush and Parv's behalf for every remaining human gate, always under the name `ksh+prv (AI, D-085)` and never a human's. Every output that rests on such an act carries `NO_HUMAN_SIGNOFF_D085`. Agreement between the two personas is not inter-rater evidence, so 07.A-R1 was not attempted and its v4 FAIL stays on record; AI-written gold is labelled AI (`AI_DRAFTED_GOLD`), never HUMAN_BLIND.
 
@@ -8,15 +8,15 @@ Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from
 
 | Class | Decisions |
 |---|---|
-| HUMAN | 70 |
-| AI_DELEGATED_D085 | 13 |
+| HUMAN | 71 |
+| AI_DELEGATED_D085 | 15 |
 | AI_PERSONA_D071 | 6 |
 | MIXED_PERSONA_AND_HUMAN | 1 |
 | AI_AGENT_PROVISIONAL | 7 |
 | NO_APPROVER_LINE | 0 |
-| **all** | 97 |
+| **all** | 100 |
 
-Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 17 name the human in the title or instruction line instead of an Approver line.
+Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 18 name the human in the title or instruction line instead of an Approver line.
 
 ## Decisions not made by a human
 
@@ -49,3 +49,5 @@ Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 17 name th
 | D-097 | 2026-11-13 | Structural Rung A → Gold event-type mapping, pre-declared before scoring (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-100 | 2026-11-13 | Full-corpus column map, formula census and transition-type map, pre-declared before any number (decided by ksh+prv (AI, D-085) on Kush's instruction "this is MUST … all columns … all of the flow"; entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-099 | 2026-11-13 | Predeclare prv supplemental blinded AI claim review before selection/labelling (decided by ksh+prv (AI, D-085); entered by coding agent as scribe) | AI_DELEGATED_D085 |
+| D-102 | 2026-11-13 | Process-aware type mapping v2, post-hoc amendment of D-097 (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
+| D-104 | 2026-11-13 | Operational AA SIMULATE domain gate for the D-100 Lane S formula census, fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
