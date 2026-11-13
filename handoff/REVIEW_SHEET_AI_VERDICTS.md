@@ -313,3 +313,8 @@ All rows: AI_DELEGATED_D085 · NOT_INDEPENDENT · NOT_HUMAN_VERIFIED_UNTIL_REVIE
 | P13-9 | Planned13slide/720secondrehearsal/Q&A/fallback; actual eventNOT_RUN. Live merge-readiness snapshot, no merge | reports/s179/prv_rehearsal_pack_2026-11-13.md; reports/s179/prv_merge_readiness_2026-11-13_v2.json |
 
 Private returns are locally staged, NOT_SENT, per reports/s179/prv_private_return_manifest_2026-11-13.json. Human review: Kush pending; Parv pending. Original v4FAIL/H1/H3 and independence/source gates unchanged.
+
+
+### P13-10 — publisher licence continuation
+
+AI_VERDICT_PENDING_HUMAN_REVIEW · AI_DELEGATED_D085 · NOT_INDEPENDENT · NOT_HUMAN_VERIFIED_UNTIL_REVIEW · NO_HUMAN_SIGNOFF_D085. D-101: two publisher attribution-licence families confirmed, AAK-05 excluded from existing CC-BY/CC0 allowlist because article says CC BY-NC-SA4.0, two candidates unconfirmed. No locally acquired PDFs/new rows or scientific eligibility. Evidence: reports/step10/aa_publisher_licence_followup_2026-11-13.{json,md}; scope v3. Kush/Parv human review pending.
