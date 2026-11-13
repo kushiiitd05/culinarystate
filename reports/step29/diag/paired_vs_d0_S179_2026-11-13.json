@@ -1,0 +1,1103 @@
+{
+ "approver": "ksh+prv (AI, D-085)",
+ "citable": false,
+ "exclusions": [
+  {
+   "n_burned_components": 0,
+   "n_burned_dev_rows": 0,
+   "n_excluded_rows": 3555,
+   "n_kept_rows": 14423,
+   "n_reserved_rows": 3555,
+   "n_rows": 17978,
+   "status": "DRAFT_PENDING_15aR_15b"
+  }
+ ],
+ "item": "T6-C02-R3",
+ "labels": [
+  "NON_CITABLE",
+  "DIAGNOSTIC_ONLY",
+  "BOOTSTRAP_UNVERIFIED",
+  "COND_UNAUDITED",
+  "PRIOR_EXPOSURE_REANALYSIS",
+  "PROVISIONAL_08A",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "result": {
+  "contrast_seed": "29diag-contrast-2026-11-10",
+  "families": {
+   "BOGNAR-2002": {
+    "rows": 5181,
+    "splits": {
+     "food_group_disjoint": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0038,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0048,
+       "n_clusters": 20,
+       "n_rows": 1093,
+       "upper95": 0.0121
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0038,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0048,
+       "n_clusters": 20,
+       "n_rows": 1093,
+       "upper95": 0.0121
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0056,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0021,
+       "n_clusters": 20,
+       "n_rows": 1093,
+       "upper95": 0.0132
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0379,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0305,
+       "n_clusters": 20,
+       "n_rows": 1093,
+       "upper95": 0.045
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0441,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0351,
+       "n_clusters": 20,
+       "n_rows": 1093,
+       "upper95": 0.0533
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.038,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0334,
+       "n_clusters": 20,
+       "n_rows": 1093,
+       "upper95": 0.0424
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.039,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0308,
+       "n_clusters": 20,
+       "n_rows": 1093,
+       "upper95": 0.047
+      }
+     },
+     "matrix_disjoint": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0266,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0373,
+       "n_clusters": 18,
+       "n_rows": 894,
+       "upper95": -0.0148
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0226,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0329,
+       "n_clusters": 18,
+       "n_rows": 894,
+       "upper95": -0.0112
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0189,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0286,
+       "n_clusters": 18,
+       "n_rows": 894,
+       "upper95": -0.0084
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0066,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0049,
+       "n_clusters": 18,
+       "n_rows": 894,
+       "upper95": 0.0184
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0033,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0117,
+       "n_clusters": 18,
+       "n_rows": 894,
+       "upper95": 0.0182
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0191,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0096,
+       "n_clusters": 18,
+       "n_rows": 894,
+       "upper95": 0.0288
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.009,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0027,
+       "n_clusters": 18,
+       "n_rows": 894,
+       "upper95": 0.0209
+      }
+     },
+     "pair_holdout": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0002,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0089,
+       "n_clusters": 20,
+       "n_rows": 1058,
+       "upper95": 0.0087
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0037,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0136,
+       "n_clusters": 20,
+       "n_rows": 1058,
+       "upper95": 0.0061
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0032,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0127,
+       "n_clusters": 20,
+       "n_rows": 1058,
+       "upper95": 0.0063
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0256,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0149,
+       "n_clusters": 20,
+       "n_rows": 1058,
+       "upper95": 0.0369
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.029,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0125,
+       "n_clusters": 20,
+       "n_rows": 1058,
+       "upper95": 0.0453
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0477,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0377,
+       "n_clusters": 20,
+       "n_rows": 1058,
+       "upper95": 0.0584
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0284,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0187,
+       "n_clusters": 20,
+       "n_rows": 1058,
+       "upper95": 0.039
+      }
+     },
+     "process_disjoint": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0337,
+       "label": "DIAGNOSTIC_ONLY;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0424,
+       "n_clusters": 4,
+       "n_rows": 139,
+       "upper95": -0.0288
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0397,
+       "label": "DIAGNOSTIC_ONLY;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0418,
+       "n_clusters": 4,
+       "n_rows": 139,
+       "upper95": -0.0376
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0397,
+       "label": "DIAGNOSTIC_ONLY;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0418,
+       "n_clusters": 4,
+       "n_rows": 139,
+       "upper95": -0.0376
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0138,
+       "label": "DIAGNOSTIC_ONLY;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.016,
+       "n_clusters": 4,
+       "n_rows": 139,
+       "upper95": -0.0115
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0013,
+       "label": "DIAGNOSTIC_ONLY;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0083,
+       "n_clusters": 4,
+       "n_rows": 139,
+       "upper95": 0.0045
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0282,
+       "label": "DIAGNOSTIC_ONLY;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0263,
+       "n_clusters": 4,
+       "n_rows": 139,
+       "upper95": 0.0301
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0173,
+       "label": "DIAGNOSTIC_ONLY;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0283,
+       "n_clusters": 4,
+       "n_rows": 139,
+       "upper95": -0.0081
+      }
+     },
+     "random": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0034,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0097,
+       "n_clusters": 99,
+       "n_rows": 1036,
+       "upper95": 0.0032
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0106,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0179,
+       "n_clusters": 99,
+       "n_rows": 1036,
+       "upper95": -0.0035
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0082,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0147,
+       "n_clusters": 99,
+       "n_rows": 1036,
+       "upper95": -0.0016
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0167,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0104,
+       "n_clusters": 99,
+       "n_rows": 1036,
+       "upper95": 0.0234
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0193,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0117,
+       "n_clusters": 99,
+       "n_rows": 1036,
+       "upper95": 0.0273
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0342,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.027,
+       "n_clusters": 99,
+       "n_rows": 1036,
+       "upper95": 0.0413
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0247,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0186,
+       "n_clusters": 99,
+       "n_rows": 1036,
+       "upper95": 0.031
+      }
+     }
+    }
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "rows": 3177,
+    "splits": {
+     "food_group_disjoint": {
+      "B2": {
+       "cluster_key": "independence_group",
+       "estimate": -0.2086,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.5385,
+       "n_clusters": 43,
+       "n_rows": 612,
+       "upper95": 0.0154
+      },
+      "D1": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0686,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0837,
+       "n_clusters": 43,
+       "n_rows": 612,
+       "upper95": -0.0511
+      },
+      "D2": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0911,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.2474,
+       "n_clusters": 43,
+       "n_rows": 612,
+       "upper95": 0.0204
+      },
+      "D3": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0577,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1972,
+       "n_clusters": 43,
+       "n_rows": 612,
+       "upper95": 0.0431
+      },
+      "D4": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0179,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0786,
+       "n_clusters": 43,
+       "n_rows": 612,
+       "upper95": 0.0467
+      },
+      "D5": {
+       "cluster_key": "independence_group",
+       "estimate": -0.2165,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.4851,
+       "n_clusters": 43,
+       "n_rows": 612,
+       "upper95": -0.0402
+      },
+      "D7": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0686,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0837,
+       "n_clusters": 43,
+       "n_rows": 612,
+       "upper95": -0.0511
+      }
+     },
+     "matrix_disjoint": {
+      "B2": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0466,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1527,
+       "n_clusters": 25,
+       "n_rows": 286,
+       "upper95": 0.0453
+      },
+      "D1": {
+       "cluster_key": "independence_group",
+       "estimate": -0.2049,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.2304,
+       "n_clusters": 25,
+       "n_rows": 286,
+       "upper95": -0.172
+      },
+      "D2": {
+       "cluster_key": "independence_group",
+       "estimate": -0.3358,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.6925,
+       "n_clusters": 25,
+       "n_rows": 286,
+       "upper95": -0.0963
+      },
+      "D3": {
+       "cluster_key": "independence_group",
+       "estimate": -0.2813,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.6517,
+       "n_clusters": 25,
+       "n_rows": 286,
+       "upper95": -0.0129
+      },
+      "D4": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0015,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.2103,
+       "n_clusters": 25,
+       "n_rows": 286,
+       "upper95": 0.1418
+      },
+      "D5": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0552,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1855,
+       "n_clusters": 25,
+       "n_rows": 286,
+       "upper95": 0.0586
+      },
+      "D7": {
+       "cluster_key": "independence_group",
+       "estimate": -0.2049,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.2304,
+       "n_clusters": 25,
+       "n_rows": 286,
+       "upper95": -0.172
+      }
+     },
+     "pair_holdout": {
+      "B2": {
+       "cluster_key": "independence_group",
+       "estimate": -0.1663,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.7169,
+       "n_clusters": 39,
+       "n_rows": 757,
+       "upper95": 0.1734
+      },
+      "D1": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0212,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0328,
+       "n_clusters": 39,
+       "n_rows": 757,
+       "upper95": -0.0089
+      },
+      "D2": {
+       "cluster_key": "independence_group",
+       "estimate": -0.1036,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1938,
+       "n_clusters": 39,
+       "n_rows": 757,
+       "upper95": -0.0126
+      },
+      "D3": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0181,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1085,
+       "n_clusters": 39,
+       "n_rows": 757,
+       "upper95": 0.0785
+      },
+      "D4": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0266,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0939,
+       "n_clusters": 39,
+       "n_rows": 757,
+       "upper95": 0.1439
+      },
+      "D5": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0151,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1018,
+       "n_clusters": 39,
+       "n_rows": 757,
+       "upper95": 0.1318
+      },
+      "D7": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0212,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0328,
+       "n_clusters": 39,
+       "n_rows": 757,
+       "upper95": -0.0089
+      }
+     },
+     "process_disjoint": {
+      "B2": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0081,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0577,
+       "n_clusters": 34,
+       "n_rows": 1135,
+       "upper95": 0.0683
+      },
+      "D1": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0201,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0063,
+       "n_clusters": 34,
+       "n_rows": 1135,
+       "upper95": 0.0328
+      },
+      "D2": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0201,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0063,
+       "n_clusters": 34,
+       "n_rows": 1135,
+       "upper95": 0.0328
+      },
+      "D3": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0206,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0914,
+       "n_clusters": 34,
+       "n_rows": 1135,
+       "upper95": 0.043
+      },
+      "D4": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0392,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1685,
+       "n_clusters": 34,
+       "n_rows": 1135,
+       "upper95": 0.0774
+      },
+      "D5": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0262,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0937,
+       "n_clusters": 34,
+       "n_rows": 1135,
+       "upper95": 0.1621
+      },
+      "D7": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0201,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0063,
+       "n_clusters": 34,
+       "n_rows": 1135,
+       "upper95": 0.0328
+      }
+     },
+     "random": {
+      "B2": {
+       "cluster_key": "independence_group",
+       "estimate": -0.396,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.8034,
+       "n_clusters": 81,
+       "n_rows": 635,
+       "upper95": -0.0505
+      },
+      "D1": {
+       "cluster_key": "independence_group",
+       "estimate": -0.1051,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1261,
+       "n_clusters": 81,
+       "n_rows": 635,
+       "upper95": -0.0814
+      },
+      "D2": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0422,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1195,
+       "n_clusters": 81,
+       "n_rows": 635,
+       "upper95": 0.0413
+      },
+      "D3": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0031,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.2966,
+       "n_clusters": 81,
+       "n_rows": 635,
+       "upper95": 0.226
+      },
+      "D4": {
+       "cluster_key": "independence_group",
+       "estimate": -0.191,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.8636,
+       "n_clusters": 81,
+       "n_rows": 635,
+       "upper95": 0.2401
+      },
+      "D5": {
+       "cluster_key": "independence_group",
+       "estimate": -0.1681,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.5535,
+       "n_clusters": 81,
+       "n_rows": 635,
+       "upper95": 0.129
+      },
+      "D7": {
+       "cluster_key": "independence_group",
+       "estimate": -0.1051,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1261,
+       "n_clusters": 81,
+       "n_rows": 635,
+       "upper95": -0.0814
+      }
+     },
+     "study_disjoint": {
+      "B2": {
+       "cluster_key": "independence_group",
+       "estimate": 0.0347,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0924,
+       "n_clusters": 20,
+       "n_rows": 362,
+       "upper95": 0.1528
+      },
+      "D1": {
+       "cluster_key": "independence_group",
+       "estimate": -0.1911,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.2096,
+       "n_clusters": 20,
+       "n_rows": 362,
+       "upper95": -0.1642
+      },
+      "D2": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0644,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.1507,
+       "n_clusters": 20,
+       "n_rows": 362,
+       "upper95": 0.0176
+      },
+      "D3": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0638,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.2455,
+       "n_clusters": 20,
+       "n_rows": 362,
+       "upper95": 0.0772
+      },
+      "D4": {
+       "cluster_key": "independence_group",
+       "estimate": -0.1707,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.7164,
+       "n_clusters": 20,
+       "n_rows": 362,
+       "upper95": 0.1602
+      },
+      "D5": {
+       "cluster_key": "independence_group",
+       "estimate": -0.0055,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.172,
+       "n_clusters": 20,
+       "n_rows": 362,
+       "upper95": 0.1329
+      },
+      "D7": {
+       "cluster_key": "independence_group",
+       "estimate": -0.1911,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.2096,
+       "n_clusters": 20,
+       "n_rows": 362,
+       "upper95": -0.1642
+      }
+     }
+    }
+   },
+   "USDA-RETN-R6": {
+    "rows": 5642,
+    "splits": {
+     "food_group_disjoint": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0374,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0204,
+       "n_clusters": 30,
+       "n_rows": 1144,
+       "upper95": 0.0541
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0374,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0204,
+       "n_clusters": 30,
+       "n_rows": 1144,
+       "upper95": 0.0541
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0497,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0322,
+       "n_clusters": 30,
+       "n_rows": 1144,
+       "upper95": 0.0682
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0746,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0536,
+       "n_clusters": 30,
+       "n_rows": 1144,
+       "upper95": 0.0964
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.096,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0731,
+       "n_clusters": 30,
+       "n_rows": 1144,
+       "upper95": 0.1205
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0744,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.057,
+       "n_clusters": 30,
+       "n_rows": 1144,
+       "upper95": 0.0941
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0834,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0634,
+       "n_clusters": 30,
+       "n_rows": 1144,
+       "upper95": 0.105
+      }
+     },
+     "matrix_disjoint": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0087,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0258,
+       "n_clusters": 35,
+       "n_rows": 1015,
+       "upper95": 0.0067
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0326,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0491,
+       "n_clusters": 35,
+       "n_rows": 1015,
+       "upper95": -0.0164
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0217,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0379,
+       "n_clusters": 35,
+       "n_rows": 1015,
+       "upper95": -0.0063
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0118,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.031,
+       "n_clusters": 35,
+       "n_rows": 1015,
+       "upper95": 0.0062
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0185,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0046,
+       "n_clusters": 35,
+       "n_rows": 1015,
+       "upper95": 0.0313
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0092,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0067,
+       "n_clusters": 35,
+       "n_rows": 1015,
+       "upper95": 0.0243
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": -0.0076,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0268,
+       "n_clusters": 35,
+       "n_rows": 1015,
+       "upper95": 0.0103
+      }
+     },
+     "pair_holdout": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0131,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0087,
+       "n_clusters": 35,
+       "n_rows": 962,
+       "upper95": 0.037
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0016,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0197,
+       "n_clusters": 35,
+       "n_rows": 962,
+       "upper95": 0.0241
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0217,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0035,
+       "n_clusters": 35,
+       "n_rows": 962,
+       "upper95": 0.0406
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.035,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0149,
+       "n_clusters": 35,
+       "n_rows": 962,
+       "upper95": 0.0559
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0591,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.041,
+       "n_clusters": 35,
+       "n_rows": 962,
+       "upper95": 0.0789
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0584,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0405,
+       "n_clusters": 35,
+       "n_rows": 962,
+       "upper95": 0.0786
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0437,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0242,
+       "n_clusters": 35,
+       "n_rows": 962,
+       "upper95": 0.0651
+      }
+     },
+     "process_disjoint": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0323,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0142,
+       "n_clusters": 33,
+       "n_rows": 988,
+       "upper95": 0.0521
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0103,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0084,
+       "n_clusters": 33,
+       "n_rows": 988,
+       "upper95": 0.0297
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0103,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0084,
+       "n_clusters": 33,
+       "n_rows": 988,
+       "upper95": 0.0297
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0339,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0131,
+       "n_clusters": 33,
+       "n_rows": 988,
+       "upper95": 0.0553
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.082,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0608,
+       "n_clusters": 33,
+       "n_rows": 988,
+       "upper95": 0.1044
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0734,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0528,
+       "n_clusters": 33,
+       "n_rows": 988,
+       "upper95": 0.0939
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0481,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0283,
+       "n_clusters": 33,
+       "n_rows": 988,
+       "upper95": 0.0692
+      }
+     },
+     "random": {
+      "B2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0323,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0214,
+       "n_clusters": 177,
+       "n_rows": 1128,
+       "upper95": 0.0442
+      },
+      "D1": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0107,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": -0.0001,
+       "n_clusters": 177,
+       "n_rows": 1128,
+       "upper95": 0.0214
+      },
+      "D2": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.039,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0287,
+       "n_clusters": 177,
+       "n_rows": 1128,
+       "upper95": 0.0493
+      },
+      "D3": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0509,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0394,
+       "n_clusters": 177,
+       "n_rows": 1128,
+       "upper95": 0.0627
+      },
+      "D4": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.077,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0646,
+       "n_clusters": 177,
+       "n_rows": 1128,
+       "upper95": 0.0898
+      },
+      "D5": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0912,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0783,
+       "n_clusters": 177,
+       "n_rows": 1128,
+       "upper95": 0.1039
+      },
+      "D7": {
+       "cluster_key": "ONE_LINEAGE_CLUSTER",
+       "estimate": 0.0652,
+       "label": "DIAGNOSTIC;PRIOR_EXPOSURE_REANALYSIS",
+       "lower95": 0.0527,
+       "n_clusters": 177,
+       "n_rows": 1128,
+       "upper95": 0.0784
+      }
+     }
+    }
+   }
+  },
+  "k_min": 10,
+  "labels": [
+   "DIAGNOSTIC",
+   "PRIOR_EXPOSURE_REANALYSIS",
+   "NON_CITABLE",
+   "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "rows_after_seal": 14423,
+  "rows_before_seal": 17978,
+  "seed": 7,
+  "sign": "estimate = mean over clusters of (loss D0 - loss rung); > 0 means the rung has lower loss than D0"
+ },
+ "seal_payload_sha256": "80c2f04daeafdc1ffac190c4a92782b9aff5d1b5351934f5c76565ea6e8e51e6",
+ "signoff": {
+  "freeze": "AI_DELEGATED_D085",
+  "prereg": "AI_DELEGATED_D085"
+ },
+ "snapshot_id": "15A-BOOT-2026-11-08",
+ "status": "DRAFT_PENDING_29diag_PREREG"
+}
