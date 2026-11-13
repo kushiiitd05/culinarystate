@@ -806,3 +806,13 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Unchanged:** Original extraction/model/fit, CAL/SIMVAL membership, source ledgers and scientific guards. No new rows, local PDF acquisition, human verification or eligibility pass claimed. Any future SIMVAL extraction uses a separate unexposed session.
 - **Labels:** AI_DELEGATED_D085; NOT_INDEPENDENT; NOT_HUMAN_VERIFIED_UNTIL_REVIEW; NO_HUMAN_SIGNOFF_D085; AI_VERDICT_PENDING_HUMAN_REVIEW.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-108 · 2026-11-13 · Lot-level AA formula gate (process × ingredient-lot), fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-106 output (1 / 49,662 BBC events in domain: event matrices are mixed); Kush 13 Nov "do all formula as process × ingredient combination effect"; plan `reports/orchestration/full_corpus_state_dataset_plan_2026-11-13.md` (L3).
+- **Rule:** as written in the plan §D-108: lot ingredients all LIQUID/PASTE and acidic = YES (L6b AI_DRAFTED attributes, labelled as such until reviewed) or FRUIT category with LIQUID form; event medium ∈ {LIQUID, LIQUID_PARTIAL}; WATER/STEAM = WATER_CONTACT; food T = min(bath, cap) in 60–100 °C; t > 0; frozen `predict_ln_k`; retention per lot × scenario, never pooled. Labels RESEARCH_ONLY, NOT_VALIDATED, SCENARIO_DEFAULT, AI_DRAFTED_ATTRIBUTES.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-110 · 2026-11-13 · State dataset fill rule for all 612,782 recipes, fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** Kush 13 Nov "600k+ columns shall need to be filled"; D-100 Lane C; plan L2.
+- **Rule:** a State column gets a value only from a recorded basis (TEXT_STATED / LEDGER / PHYSICS_V06 / FORMULA_RESEARCH_ONLY / SCENARIO_DEFAULT / AI_DRAFTED); otherwise UNKNOWN with the upstream reason code. "Filled" never means guessed. Fill-rate table per column × family (VALUE_BY_BASIS vs UNKNOWN_BY_REASON) is the committed output; rows stay git-ignored.
+- **Approver:** ksh+prv (AI, D-085).
