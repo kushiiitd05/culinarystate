@@ -289,3 +289,8 @@ Source: `reports/final/FINAL_REPORT_DRAFT_S168.md` (AI draft; ksh fact-check ~19
 | K13-4 | 29-diag every rung vs D0 per family/split, G15-R PASS; USDA rungs beat D0, Bognar mostly, Phenol-Explorer mostly worse (negative kept); PRIOR_EXPOSURE_REANALYSIS (T6-C02-R3) | `reports/step29/diag/paired_vs_d0_S179_2026-11-13.json` |
 
 Kush: ok all (13 Nov 2026, reviewed in session). Parv: pending.
+
+## Block PRV13 — prv audit plan vs built (13 Nov)
+Source: `reports/orchestration/prv_audit_plan_vs_built_2026-11-13.md`, verdicts PRV-A1..A5.
+
+Kush: ok all — "OK PASSED" (13 Nov 2026, in session). Parv: pending.
