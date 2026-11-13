@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-11-13T06:46:12.244034+00:00",
+  "inputs": {
+    "benchmark/d5/d5_benchmark_v1_D085_PC.csv": "829bce2e13a25f67bd0c01f5e40b1e7f676a5a8792d09ae216094ac89c9783b0",
+    "benchmark/d5/d5_benchmark_v1_D085_S.csv": "74d256ba046fcb664afee6d1bf14b9affbd8ff0245dc30541e7d7dd0068b4404",
+    "benchmark/d5/d5_benchmark_v1_D085_UX.csv": "0adaa0a28266bdc4c24d5497762e59d1bcf05b87da3e33c5c75f7d3866eb9eaf"
+  },
+  "judge": "Separate fresh context; no system branch outputs opened. Branch intent only, no answers, not independent Gold.",
+  "key_sha256": "abb1c5736ad10c790682168a2096e62979239927ef5eed4cb39968f768007c21",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085",
+    "AI_ASSISTED_GOLD_NOT_INDEPENDENT"
+  ],
+  "n": 74,
+  "packet": "data/derived/prv_branch_review_2026-11-13/blind_branch_packet.csv",
+  "packet_sha256": "77ffcdd24dbadcc4448177dec04ae3121e21b9f56c97d604d85ee8248a7f1dfc",
+  "record": "PRV_BRANCH_GOLD_PRELABEL",
+  "scoring": "After returned labels frozen, run unchanged local rule router on exact frozen question strings; full accuracy and per-branch confusion via existing d5_scoring. Original frozen Gold unchanged.",
+  "selection": "All74 frozen questions, hash-shuffled; no prior Gold/answer/route field supplied",
+  "tool_sha256": "37ff1a516ac7e81673922315a7213d4ac86b73a609bd2649b3d9dbd5f46a919a"
+}
