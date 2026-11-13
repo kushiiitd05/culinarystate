@@ -1,0 +1,204 @@
+{
+  "completed_at_utc": "2026-11-13T06:47:36.522370+00:00",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085",
+    "AI_ASSISTED_GOLD_NOT_INDEPENDENT"
+  ],
+  "limitations": [
+    "AI labels, not independent Gold or human verification.",
+    "Only question intent judged; no recipe context or system branch outputs supplied. Style/semantic clues remain.",
+    "Question-level accuracy/interval conditional on this existing benchmark and AI labels; no population generalization.",
+    "Live unchanged rule router evaluated, not LLM answer quality; original benchmark/Gold/scoring outputs not modified."
+  ],
+  "prelabel_manifest_sha256": "4ad4261dd359cd2a890786add16e873fc77755c5207263d4c9821267abdaf602",
+  "record": "PRV_AI_BRANCH_GOLD_DIAGNOSTIC",
+  "result": {
+    "accuracy": {
+      "cp95": [
+        0.4877,
+        0.7196
+      ],
+      "n": 74,
+      "rate": 0.6081,
+      "x": 45
+    },
+    "board_item": "T8-C01-R1",
+    "confusion_matrix": {
+      "board_item": "T8-C01-R1",
+      "cols_predicted": [
+        "RELATIONSHIP",
+        "SAFETY",
+        "TRANSFORMATION",
+        "UNKNOWN"
+      ],
+      "counts": {
+        "RELATIONSHIP": {
+          "RELATIONSHIP": 2,
+          "SAFETY": 0,
+          "TRANSFORMATION": 0,
+          "UNKNOWN": 2
+        },
+        "SAFETY": {
+          "RELATIONSHIP": 0,
+          "SAFETY": 2,
+          "TRANSFORMATION": 0,
+          "UNKNOWN": 1
+        },
+        "TRANSFORMATION": {
+          "RELATIONSHIP": 0,
+          "SAFETY": 0,
+          "TRANSFORMATION": 27,
+          "UNKNOWN": 26
+        },
+        "UNKNOWN": {
+          "RELATIONSHIP": 0,
+          "SAFETY": 0,
+          "TRANSFORMATION": 0,
+          "UNKNOWN": 14
+        }
+      },
+      "prereg_status": "EXPLORATORY_NOT_IN_PREREG (board acceptance; the prereg names accuracy only)",
+      "rows_gold": [
+        "RELATIONSHIP",
+        "SAFETY",
+        "TRANSFORMATION",
+        "UNKNOWN"
+      ]
+    },
+    "gold_branch_missing": [],
+    "metric": "router_branch_accuracy",
+    "n_rows": 74,
+    "n_scored": 74,
+    "no_tuning": "router rules are frozen with the benchmark (code sha256 in the freeze record)",
+    "per_block": {
+      "C": {
+        "cp95": [
+          0.555,
+          0.9975
+        ],
+        "n": 10,
+        "rate": 0.9,
+        "x": 9
+      },
+      "P1": {
+        "cp95": [
+          0.3475,
+          0.9333
+        ],
+        "n": 10,
+        "rate": 0.7,
+        "x": 7
+      },
+      "P2": {
+        "cp95": [
+          0.4439,
+          0.9748
+        ],
+        "n": 10,
+        "rate": 0.8,
+        "x": 8
+      },
+      "P3": {
+        "cp95": [
+          0.0667,
+          0.6525
+        ],
+        "n": 10,
+        "rate": 0.3,
+        "x": 3
+      },
+      "S1": {
+        "cp95": [
+          0.0,
+          0.2646
+        ],
+        "n": 12,
+        "rate": 0.0,
+        "x": 0
+      },
+      "S2": {
+        "cp95": [
+          0.7354,
+          1.0
+        ],
+        "n": 12,
+        "rate": 1.0,
+        "x": 12
+      },
+      "U": {
+        "cp95": [
+          0.0527,
+          0.8534
+        ],
+        "n": 5,
+        "rate": 0.4,
+        "x": 2
+      },
+      "X": {
+        "cp95": [
+          0.2836,
+          0.9949
+        ],
+        "n": 5,
+        "rate": 0.8,
+        "x": 4
+      }
+    },
+    "per_gold_branch_recall": {
+      "RELATIONSHIP": {
+        "cp95": [
+          0.0676,
+          0.9324
+        ],
+        "n": 4,
+        "rate": 0.5,
+        "x": 2
+      },
+      "SAFETY": {
+        "cp95": [
+          0.0943,
+          0.9916
+        ],
+        "n": 3,
+        "rate": 0.6667,
+        "x": 2
+      },
+      "TRANSFORMATION": {
+        "cp95": [
+          0.3684,
+          0.6494
+        ],
+        "n": 53,
+        "rate": 0.5094,
+        "x": 27
+      },
+      "UNKNOWN": {
+        "cp95": [
+          0.7684,
+          1.0
+        ],
+        "n": 14,
+        "rate": 1.0,
+        "x": 14
+      }
+    },
+    "prereg_status": "BASE \u00a74 Descriptive ('router branch accuracy on all 80')",
+    "status": "OK",
+    "x_controls": {
+      "correct": 4,
+      "n": 5,
+      "pairs": {
+        "SAFETY->SAFETY": 2,
+        "SAFETY->UNKNOWN": 1,
+        "UNKNOWN->UNKNOWN": 2
+      }
+    }
+  },
+  "returned_sha256": "ec893a9fd7abab21ef457fbab2ad956a220ce53d626bde776b2651f9c72e8340",
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "router_source_sha256": "e70df1122f5decdd7991708e9747f7601dd4a7d8a493aa336ade40e9690ad895",
+  "scientific_gate_pass": false
+}
