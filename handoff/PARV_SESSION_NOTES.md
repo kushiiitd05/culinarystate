@@ -70,3 +70,7 @@ Full8228pass4namedskip plus post-sync25targetedpass recorded separately. New tec
 ###13 November2026 — publisher licence follow-up
 
 D-101 and review P13-10: AAK-04/10 attribution families confirmed on publisher sources; AAK-05 article has CC BY-NC-SA4.0, outside project CC-BY/CC0 allowlist. AAK-02/08 unresolved. No challenge bypass, local PDF acquisition, new extraction/fit or scientific pass. Original licence records retained; dated supplement/scope v3 added. Next source intake requires actual permitted PDF bytes/hashes and source verification; new SIMVAL extraction needs an unexposed session. R1 packet transfer question already resolved.
+
+### 13 November 2026 — supplied R1 packet receipt
+
+The user supplied `condition_audit_packet_100_R1_Parv.csv` in material. It is byte-identical to the issued manifest and exact reconstructed local packet (SHA256 f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d), with100 rows and no filled judgments. No overwrite or repeat review was needed. Existing private AI return remains unchanged; no human labels/signature were supplied. Receipt proof: `reports/s179/prv_R1_supplied_packet_receipt_2026-11-13.json`. Source CSV stays outside tracked content; expected destination remains ignored.
