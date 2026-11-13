@@ -1614,3 +1614,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `reports/orchestration/S179_technical_scope_matrix_2026-11-13_v2.csv`, `reports/s179/prv_private_return_manifest_2026-11-13.json`
 - **Verified:** PRV-LEAK001 zero12wordmatches;0scientificpassesinferred. ExactR1packetissue resolved; source/data/independence/calendarconstraints remain.
 - **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S235 · 2026-11-13 12:51 IST · M1 · Continue publisher licence checks and retain strict source boundaries
+- **Who:** Parv
+- **Did:** AAK04/10 publisher attribution notices confirmed; AAK05 article-specific NC-SA4.0 differs from aggregator CC-BY and is excluded under existing allowlist. AAK02/08 remain unconfirmed. No local PDF or new source rows; D101 records AI dispositions.
+- **Files:** `DECISIONS.md`, `reports/step10/aa_publisher_licence_followup_2026-11-13.json`, `registry/evidence/aa_licence_checks_2026-11-13_supplement.csv`, `reports/orchestration/S179_technical_scope_matrix_2026-11-13_v3.csv`
+- **Verified:** RUN-S179-PRV-LICENCE001;6provenance tests pass. Prior registers/source data/fit untouched; no site challenge bypass, new scientific eligibility or human approval.
+- **Next:** Kush/Parv: review D101; acquire permitted source PDFs through normal browser and retain exact hashes before extraction. R1 packet transfer question already resolved.
