@@ -783,3 +783,11 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Mapping v2:** discards → Discard; else PROC family TRANSFER → Transfer; else PROC family RESERVATION → Reserve; else the D-097 structural rule. Nothing else changes (method, seed, sets).
 - **Post-hoc:** declared after seeing D-097 gold results, so the v2 gold score is optimistic and labelled `POST_HOC_AMENDMENT`; the D-097 output stays the first result. New output path only.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-104 · 2026-11-13 · Operational AA SIMULATE domain gate for the D-100 Lane S formula census, fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-100 Lane S; AA prereg gate (liquid acidic fruit matrix, 60–100 °C, no water contact; leaching UNKNOWN); physics v06 L1 `inputs.matrix_class / matrix_groups / medium` and L2 `scenarios.{GENTLE,TYPICAL,INTENSE}`.
+- **IN_DOMAIN** for one heat event and one L2 scenario iff all hold: (1) L1 `matrix_class` = FRUIT, or every L1 `matrix_groups` value ∈ {FRUIT, SWEETENER, BEVERAGE} with at least one FRUIT; (2) L1 `medium` ∉ {WATER, STEAM} (no water contact; unknown medium → reason `MEDIUM_UNKNOWN`); (3) L2 status SCENARIO_COMPUTED; (4) food temperature T = min(bath_c, t_cap_c) with 60 ≤ T ≤ 100 °C; (5) duration_min > 0. pH is not observed per event: recorded `PH_ASSUMED_FROM_FRUIT_CLASS`. Flag `IN_FIT_RANGE` when 70 ≤ T ≤ 95.
+- **Number:** frozen `predict_ln_k` (unseen-matrix 95 % predictive interval, k in 1/min); retention = exp(−k·t) at mid / lo / hi. Reported per scenario, never pooled across scenarios; every number is SCENARIO_DEFAULT unless L1 binds both temperature and duration (counted separately as TEXT_STATED_AVAILABLE; no number in this version).
+- **Out of domain:** counted by first failing reason, no number.
+- **Labels:** RESEARCH_ONLY, NOT_VALIDATED, SCENARIO_DEFAULT, DIAGNOSTIC, NO_HUMAN_SIGNOFF_D085.
+- **Approver:** ksh+prv (AI, D-085).
