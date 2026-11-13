@@ -1,0 +1,254 @@
+{
+  "by_field": {
+    "censoring_judgement": 9,
+    "duration_judgement": 51,
+    "medium_judgement": 73,
+    "overall_judgement": 3,
+    "power_judgement": 94,
+    "pressure_judgement": 91,
+    "retention_type_judgement": 9,
+    "temperature_location_judgement": 38,
+    "temperature_value_judgement": 38
+  },
+  "completed_at_utc": "2026-11-13T09:50:52.207241+00:00",
+  "counts_as_human_gate": false,
+  "diagnostic_statistics": {
+    "attempt": "07A-R1",
+    "critical_field_flags": [
+      "temperature_location_judgement:ac1=0.5995:exact=0.6200:top_pair=38",
+      "pressure_judgement:ac1=0.0080:exact=0.0900:top_pair=91",
+      "retention_type_judgement:ac1=0.9087:exact=0.9100:top_pair=9",
+      "censoring_judgement:ac1=0.9087:exact=0.9100:top_pair=9"
+    ],
+    "diagnostics": {
+      "agreement_by_stratum": {
+        "S1_temperature_location_stated": 0.5555555555555556,
+        "S2_temperature_location_unspecified": 0.6666666666666666,
+        "S3_interval": 0.5407407407407407,
+        "S4_pressure_or_power": 0.6444444444444445,
+        "S5_medium_only": 0.43333333333333335,
+        "S6_all_unknown": 0.35555555555555557
+      },
+      "bootstrap_resamples": 2000,
+      "disagreement_matrix_pooled": [
+        [
+          [
+            "CORRECT",
+            "N/A"
+          ],
+          400
+        ],
+        [
+          [
+            "CORRECT",
+            "WRONG_VALUE"
+          ],
+          2
+        ],
+        [
+          [
+            "CORRECT",
+            "WRONG_TYPE"
+          ],
+          1
+        ]
+      ],
+      "overall_ac1": 0.9690865062599825,
+      "overall_exact_agreement": 0.97,
+      "overall_kappa": 0.0,
+      "pooled_ac1_bootstrap95": [
+        0.4913259797588487,
+        0.5553779565095078
+      ],
+      "pooled_kappa": 0.0,
+      "pooled_pabak": 0.10444444444444434,
+      "pooled_raw_exact_agreement": 0.5522222222222222
+    },
+    "n_cells": 900,
+    "n_conditions": 100,
+    "per_field": {
+      "basis_judgement": {
+        "ac1": 1.0,
+        "disagreements": 0,
+        "dominant_code_prevalence": 1.0,
+        "exact_agreement": 1.0,
+        "kappa_diagnostic": 1.0,
+        "top_disagreement_pairs": []
+      },
+      "censoring_judgement": {
+        "ac1": 0.9086920130874782,
+        "disagreements": 9,
+        "dominant_code_prevalence": 0.955,
+        "exact_agreement": 0.91,
+        "kappa_diagnostic": 0.0,
+        "top_disagreement_pairs": [
+          [
+            [
+              "CORRECT",
+              "N/A"
+            ],
+            9
+          ]
+        ]
+      },
+      "duration_judgement": {
+        "ac1": 0.45481270322034656,
+        "disagreements": 51,
+        "dominant_code_prevalence": 0.745,
+        "exact_agreement": 0.49,
+        "kappa_diagnostic": 0.0,
+        "top_disagreement_pairs": [
+          [
+            [
+              "CORRECT",
+              "N/A"
+            ],
+            48
+          ],
+          [
+            [
+              "CORRECT",
+              "WRONG_VALUE"
+            ],
+            2
+          ],
+          [
+            [
+              "CORRECT",
+              "WRONG_TYPE"
+            ],
+            1
+          ]
+        ]
+      },
+      "medium_judgement": {
+        "ac1": 0.20887933603663,
+        "disagreements": 73,
+        "dominant_code_prevalence": 0.635,
+        "exact_agreement": 0.27,
+        "kappa_diagnostic": 0.0,
+        "top_disagreement_pairs": [
+          [
+            [
+              "CORRECT",
+              "N/A"
+            ],
+            73
+          ]
+        ]
+      },
+      "power_judgement": {
+        "ac1": -0.025119051946635648,
+        "disagreements": 94,
+        "dominant_code_prevalence": 0.53,
+        "exact_agreement": 0.06,
+        "kappa_diagnostic": 0.0,
+        "top_disagreement_pairs": [
+          [
+            [
+              "CORRECT",
+              "N/A"
+            ],
+            94
+          ]
+        ]
+      },
+      "pressure_judgement": {
+        "ac1": 0.008003197645370223,
+        "disagreements": 91,
+        "dominant_code_prevalence": 0.545,
+        "exact_agreement": 0.09,
+        "kappa_diagnostic": 0.0,
+        "top_disagreement_pairs": [
+          [
+            [
+              "CORRECT",
+              "N/A"
+            ],
+            91
+          ]
+        ]
+      },
+      "retention_type_judgement": {
+        "ac1": 0.9086920130874782,
+        "disagreements": 9,
+        "dominant_code_prevalence": 0.955,
+        "exact_agreement": 0.91,
+        "kappa_diagnostic": 0.0,
+        "top_disagreement_pairs": [
+          [
+            [
+              "CORRECT",
+              "N/A"
+            ],
+            9
+          ]
+        ]
+      },
+      "temperature_location_judgement": {
+        "ac1": 0.5994518815220828,
+        "disagreements": 38,
+        "dominant_code_prevalence": 0.81,
+        "exact_agreement": 0.62,
+        "kappa_diagnostic": 0.0,
+        "top_disagreement_pairs": [
+          [
+            [
+              "CORRECT",
+              "N/A"
+            ],
+            38
+          ]
+        ]
+      },
+      "temperature_value_judgement": {
+        "ac1": 0.5994518815220828,
+        "disagreements": 38,
+        "dominant_code_prevalence": 0.81,
+        "exact_agreement": 0.62,
+        "kappa_diagnostic": 0.0,
+        "top_disagreement_pairs": [
+          [
+            [
+              "CORRECT",
+              "N/A"
+            ],
+            38
+          ]
+        ]
+      }
+    },
+    "pooled_ac1": 0.5246295602342862,
+    "q": 7,
+    "scorer_version": "07A-R1-scorer-0.1.0-draft",
+    "statistic": "GWET_AC1",
+    "threshold_ac1": 0.8
+  },
+  "disagreement_cell_count": 406,
+  "gate": "NOT_COUNTED",
+  "input_sha256": {
+    "annotation/condition_audit/condition_audit_packet_100_R1_Kush.csv": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d",
+    "annotation/condition_audit/ksh_R1_AI_review_closeout_2026-11-13.csv": "b644b250d75024e1186fc69b50a4c38a60bfb0a57742e5e82e69fb1c77e7a5dd",
+    "annotation/condition_audit/prv_R1_AI_review_2026-11-13.csv": "4ed6e0f311f5a0f664d2174c78d1f8c439bc21987daca3d2f87add2d60566a5d"
+  },
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Two AI personas, not independent humans; registered numeric statistic is descriptive only.",
+    "Original labels are frozen; no rescoring after proposed adjudication, no human signature supplied.",
+    "Reviewers were given raw/normalized fields; ontology code meanings not independently verified.",
+    "N/A versus CORRECT convention and source precision require source/protocol-aware adjudication; no post-hoc normalizer repair."
+  ],
+  "private_queue": "data/derived/reduced_submission_closeout_2026-11-13/r1_disagreements.json",
+  "private_queue_sha256": "f986cddaeb971d814392dbefd397c238b14c963694dc63958796b7bc7cde99a3",
+  "reason": "AI_PERSONAS_NOT_INTER_RATER",
+  "record": "REDUCED_SUBMISSION_AI_R1_CLOSEOUT",
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "scientific_gate_pass": false,
+  "started_at_utc": "2026-11-13T09:50:52.027564+00:00",
+  "tool_sha256": "6bd336b2ca73ec4a5663eff90d112e781b6ab1f11c1e466d5f38e93a0dab6b93"
+}
