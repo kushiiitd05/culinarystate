@@ -9,12 +9,12 @@ Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from
 | Class | Decisions |
 |---|---|
 | HUMAN | 71 |
-| AI_DELEGATED_D085 | 17 |
+| AI_DELEGATED_D085 | 19 |
 | AI_PERSONA_D071 | 6 |
 | MIXED_PERSONA_AND_HUMAN | 1 |
 | AI_AGENT_PROVISIONAL | 7 |
 | NO_APPROVER_LINE | 0 |
-| **all** | 102 |
+| **all** | 104 |
 
 Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 18 name the human in the title or instruction line instead of an Approver line.
 
@@ -53,3 +53,5 @@ Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 18 name th
 | D-104 | 2026-11-13 | Operational AA SIMULATE domain gate for the D-100 Lane S formula census, fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-106 | 2026-11-13 | D-104 gate amendment: require a liquid medium (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-101 | 2026-11-13 | Publisher-licence follow-up for five AA candidates (decided by ksh+prv (AI, D-085); entered by coding agent as scribe) | AI_DELEGATED_D085 |
+| D-108 | 2026-11-13 | Lot-level AA formula gate (process × ingredient-lot), fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
+| D-110 | 2026-11-13 | State dataset fill rule for all 612,782 recipes, fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
