@@ -1,5 +1,9 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+## Publisher follow-up —13 November2026
+
+D-101 records two attribution-licence family confirmations (AAK-04/10), one project-allowlist exclusion (AAK-05: publisher CC BY-NC-SA4.0, conflicting with aggregator metadata), two unconfirmed (AAK-02/08). No new PDF saved locally or source row extracted. Human review/source acquisition still pending; no scientific gate changed. See reports/step10/aa_publisher_licence_followup_2026-11-13.{json,md} and scope matrix v3. Earlier R1 transfer question remains resolved by exact reconstruction.
+
 ## Latest prv continuation —13 November2026, supplied Kush handoff
 
 - Supplied material is five handoff documents; private checkpoint/seal/P1 artifacts remain with Kush. Pulled hash-bound upstream results and D097 mapping; earlier local-only absence record superseded, not erased. No seed requested or model substituted.
