@@ -84,7 +84,8 @@ def _write_list(path: Path, ctr: Counter) -> dict:
         w.writerow(["rank", "phrase", "count"])
         for i, (k, v) in enumerate(sorted(ctr.items(), key=lambda kv: (-kv[1], kv[0]))[:TOP_N], 1):
             w.writerow([i, k, v])
-    return {"path": path.as_posix(), "rows": min(len(ctr), TOP_N), "git_ignored": True,
+    rel = path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else path.name  # no host home path
+    return {"path": rel, "rows": min(len(ctr), TOP_N), "git_ignored": True,
             "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
 
 
