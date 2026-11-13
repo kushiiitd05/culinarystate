@@ -1,0 +1,77 @@
+{
+  "date": "2026-11-13",
+  "full_suite": {
+    "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest -q -rs -m 'ledgers or not ledgers' -o faulthandler_timeout=120",
+    "deselected": 0,
+    "errors": 0,
+    "failed": 0,
+    "passed": 8228,
+    "pre_rebase_test_commit": "9a549e0972991b09e0e50e8ebd5c757a38780015",
+    "public_log": "reports/s179/prv_full_suite_2026-11-13.log",
+    "public_log_sha256": "589d4d8388c57bcab6ca6fbc9e32097030ec869ac550814a7abd05d6eddbe6cc",
+    "raw_log_retained_ignored": true,
+    "raw_log_sha256": "589d4d8388c57bcab6ca6fbc9e32097030ec869ac550814a7abd05d6eddbe6cc",
+    "scope": "Full run before subsequent D106 upstream sync; later source additions checked by targeted tests, not represented as this same full execution.",
+    "seconds": 241.05,
+    "skip_reasons": [
+      "torch optional module absent",
+      "FDA raw capture local/server-only absent",
+      "pint optional module absent",
+      "missing-bundle test skipped because local bundle is present"
+    ],
+    "skipped": 4
+  },
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Green tests do not validate source measurements, human independence, scientific efficacy or actual future events.",
+    "Earlier failed runs preserved with exact raw hashes; no run counts combined.",
+    "Concurrent branch updates synchronized without overwriting original outputs; final author report/deck unchanged."
+  ],
+  "post_sync_targeted": {
+    "failed": 0,
+    "log": "reports/s179/prv_postsync_targeted_2026-11-13.log",
+    "passed": 25,
+    "scope": "New D104/D106 formula-census tests plus provenance parser, claim-review and branch-review controls.",
+    "sha256": "d70d7f2205bdd942313e1b696c9f3f33681a85979da6239756ca2f10e3596bf9"
+  },
+  "prior_attempts": [
+    {
+      "cause": "Six loopback HTTP fixtures blocked by sandbox, not skipped; reran with permission.",
+      "errors": 2,
+      "failed": 4,
+      "passed": 8208,
+      "raw_sha256": "3af4d6dfee097c998f8f88cfa9e7e466ef3bfa4a15e05411893f227b3f6c9a98",
+      "skipped": 4
+    },
+    {
+      "cause": "Provenance parser omitted suffixed decision IDs/explicit AI title and generated section stale; regression controls added, code/report fixed.",
+      "errors": 0,
+      "failed": 2,
+      "passed": 8224,
+      "raw_sha256": "73b5cadebc91010860f5bae2dd4c13fa9cbed1ffcc2f8861ed70dd08008ccbfc",
+      "skipped": 4
+    }
+  ],
+  "protected_baseline": "2e17b380",
+  "protected_sha256": {
+    "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+    "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+    "ledgers/data/MEAS.jsonl": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+    "ledgers/data/SNAP.jsonl": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+    "ledgers/data/SRC.jsonl": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+    "registry/execution_board_S178.csv": "d0d01b099c0ebf28a6f70d15e2cbe08c5835154e1d685f91017052a6a19dd975",
+    "reports/del5/d5_runs_v1_D085.jsonl": "e796be568c1a7bf3f29745cdc9b2ab29f6a91e3f76239078dca9e029e023db2e",
+    "reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md": "3c78fce12a9150bf9aa311c6173034036119a7ff80860cf4529273ffadb97f0f",
+    "reports/final/SLIDES_DRAFT_S179_2026-11-11.md": "354b2beed5a6da6c70b94882628f93c6b0282919801a30cada084d384b3e94a3",
+    "src/culinarystate/quantity/grammar.py": "25b34fa8948b8989dadfecd87cee2737765a1fd07f4e02281ddacaf522d4a3c3"
+  },
+  "record": "PRV_LOCAL_CONTINUATION_VERIFICATION",
+  "scientific_gate_pass": false,
+  "source_scan": "reports/s179/prv_review_source_scan_2026-11-13.json",
+  "source_scan_sha256": "985583258ecfba476d0285d453a483d2c63ccc2c45ae3f296328c2987e888320"
+}
