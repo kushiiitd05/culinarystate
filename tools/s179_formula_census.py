@@ -38,8 +38,11 @@ def _v(inp: dict, key: str):
     return x.get("value") if isinstance(x, dict) else x
 
 
-def gate(r1: dict, r2: dict, scenario: str) -> tuple[bool, str, float | None, float | None]:
-    """D-104: (in_domain, reason, food_T_C, duration_min)."""
+LIQUID_MEDIA = {"LIQUID", "LIQUID_PARTIAL"}
+
+
+def gate(r1: dict, r2: dict, scenario: str, *, liquid_required: bool = False) -> tuple[bool, str, float | None, float | None]:
+    """D-104 (default) or D-106 (``liquid_required``): (in_domain, reason, food_T_C, duration_min)."""
     inp = r1.get("inputs") or {}
     mc, groups, medium = _v(inp, "matrix_class"), _v(inp, "matrix_groups") or [], _v(inp, "medium")
     groups = [g for g in (groups if isinstance(groups, list) else [groups]) if g]
@@ -50,6 +53,8 @@ def gate(r1: dict, r2: dict, scenario: str) -> tuple[bool, str, float | None, fl
         return False, "MEDIUM_UNKNOWN", None, None
     if medium in WATER_MEDIA:
         return False, "WATER_CONTACT", None, None
+    if liquid_required and medium not in LIQUID_MEDIA:
+        return False, "MEDIUM_NOT_LIQUID", None, None
     if r2.get("status") != "SCENARIO_COMPUTED":
         return False, "SCENARIO_NOT_COMPUTED", None, None
     sc = (r2.get("scenarios") or {}).get(scenario) or {}
@@ -93,7 +98,9 @@ def main(argv=None) -> int:
     ap.add_argument("--l1", required=True)
     ap.add_argument("--l2", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--gate", choices=("D-104", "D-106"), default="D-106")
     a = ap.parse_args(argv)
+    liquid = a.gate == "D-106"
     out = Path(a.out)
     if out.exists():
         sys.exit(f"refusing to overwrite {out}")
@@ -114,7 +121,7 @@ def main(argv=None) -> int:
         if all((inp.get(k) or {}).get("status") == "MEASURED" for k in ("temperature_profile", "duration")):
             text_stated += 1
         for s in SCEN:
-            ok, why, T, t = gate(r1, r2, s)
+            ok, why, T, t = gate(r1, r2, s, liquid_required=liquid)
             reasons[s][why] += 1
             if ok:
                 m, lo, hi = retention(fit, T, t)
@@ -125,7 +132,7 @@ def main(argv=None) -> int:
                "retention_mid_quantiles": _quant(ret[s]["mid"]), "retention_lo95_quantiles": _quant(ret[s]["lo"]),
                "retention_hi95_quantiles": _quant(ret[s]["hi"]),
                "in_domain_by_process": dict(in_proc[s].most_common(25))} for s in SCEN}
-    rec = {"record": "AA_FORMULA_CENSUS", "decision": "D-100 Lane S; gate D-104", "labels": LABELS,
+    rec = {"record": "AA_FORMULA_CENSUS", "decision": f"D-100 Lane S; gate {a.gate}", "labels": LABELS,
            "approver": "ksh+prv (AI, D-085)", "fit": FIT, "fit_sha256": hashlib.sha256((ROOT / FIT).read_bytes()).hexdigest(),
            "l1_dir": Path(a.l1).name, "l2_dir": Path(a.l2).name, "heat_events_l2": len(L2), "l2_without_l1": missing_l1,
            "text_stated_T_and_t_available": text_stated, "scenarios": res,
