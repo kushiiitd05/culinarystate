@@ -34,6 +34,16 @@ def map_event(ev: Any) -> Optional[str]:
     return None
 
 
+PROC_FAMILY_TYPE_V2 = {"TRANSFER": "Transfer", "RESERVATION": "Reserve"}
+
+
+def map_event_v2(ev: Any, proc_family: Optional[str]) -> Optional[str]:
+    """D-102 (post-hoc amendment of D-097): discards first, then PROC family TRANSFER/RESERVATION, else D-097."""
+    if ev.discards:
+        return "Discard"
+    return PROC_FAMILY_TYPE_V2.get(proc_family or "") or map_event(ev)
+
+
 def _ratio(num: int, den: int) -> Optional[float]:
     return round(num / den, 4) if den else None
 
@@ -79,14 +89,20 @@ def type_table_from_counts(per: Sequence[tuple[Counter, Counter]], *, n_boot: in
             "types": rows, "contains_ids": False, "contains_text": False}
 
 
-def recipe_counts(doc: Mapping, rung: Any, schema: Mapping, *, to_events, Add, SourceText, idx: int) -> tuple[Counter, Counter, int]:
-    """(gold step-event type counts, D-097 predicted type counts, unmapped count) for one gold-1.0 doc."""
+def recipe_counts(doc: Mapping, rung: Any, schema: Mapping, *, to_events, Add, SourceText, idx: int,
+                  proc_family: Optional[Mapping[str, str]] = None) -> tuple[Counter, Counter, int]:
+    """(gold step-event type counts, predicted type counts, unmapped count) for one gold-1.0 doc.
+    ``proc_family`` (PROC id -> family) switches to the D-102 v2 mapping; None keeps D-097."""
     gold = Counter(type(e).__name__ for e in to_events(doc) if not isinstance(e, Add))
     raw = "\n".join(s["text"] for s in doc["steps"])
     parsed = rung.run(SourceText.from_raw(f"D097_{idx}", raw), rung.config(), schema=schema)
     pred, unmapped = Counter(), 0
     for e in parsed.graph.events:
-        t = map_event(e)
+        if proc_family is None:
+            t = map_event(e)
+        else:
+            proc = next((a.value for a in e.attributes if a.field == "proc_id"), None)
+            t = map_event_v2(e, proc_family.get(proc))
         if t is None:
             unmapped += 1
         else:
