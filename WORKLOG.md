@@ -1621,3 +1621,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `DECISIONS.md`, `reports/step10/aa_publisher_licence_followup_2026-11-13.json`, `registry/evidence/aa_licence_checks_2026-11-13_supplement.csv`, `reports/orchestration/S179_technical_scope_matrix_2026-11-13_v3.csv`
 - **Verified:** RUN-S179-PRV-LICENCE001;6provenance tests pass. Prior registers/source data/fit untouched; no site challenge bypass, new scientific eligibility or human approval.
 - **Next:** Kush/Parv: review D101; acquire permitted source PDFs through normal browser and retain exact hashes before extraction. R1 packet transfer question already resolved.
+
+### S236 · 2026-11-13 14:50 IST · M2 · Verify newly supplied Parv R1 packet matches original issued bytes
+- **Who:** Parv
+- **Did:** User added issued CSV to material. Exact SHA256 matches original manifest and reconstructed expected local packet;100rows,no judgment cells filled. Original upload retained, existing destination ignored, no overwrite or review repetition.
+- **Files:** `reports/s179/prv_R1_supplied_packet_receipt_2026-11-13.json`
+- **Verified:** RUN-S179-PRV-R1-003;original issued SHA f086975a confirmed. Prior returnedAIreview unchanged. Pulled upstream updates and refreshed generated provenance;6provenance tests pass.
+- **Next:** Kush: receive existing private prv return for counterpart/scoring/adjudication. The uploaded blank packet is not a human review or gate pass.
