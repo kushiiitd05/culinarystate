@@ -1,0 +1,61 @@
+{
+ "approver": "ksh+prv (AI, D-085)",
+ "checked_at_utc": "2026-11-13T05:20:18+00:00",
+ "git_commit": "2e17b38",
+ "item": "T9-C09-R1",
+ "labels": [
+  "AI_PRECHECKED",
+  "NON_CITABLE",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "limitations": [
+  "Counts and hashes only; group ids and seed stay in ~/.culinarystate_private.",
+  "0 groups crossing is by construction (DEV = complement); it is not source independence.",
+  "Cross-source matrix/process keys in both splits are disclosed, not resolved.",
+  "AI re-derivation; no human verification implied."
+ ],
+ "record": "SPLIT_ASSIGNMENT_REGISTRY_15A_R",
+ "registry_csv": "registry/split_registry_15a_v1.csv",
+ "registry_csv_sha256": "ec27e20be79d7c737a99d0435f0ba293cbf40e2a61b0b8d2550d18a768e9c11a",
+ "scientific_gate_pass": false,
+ "seal_integrity": {
+  "evd_snapshot_unchanged": "PASS",
+  "group_universe_matches_commitment": "PASS",
+  "reserved_count_matches_commitment": "PASS",
+  "reserved_list_rederived_byte_identical": "PASS",
+  "sealed_list_matches_commitment": "PASS",
+  "seed_matches_commitment": "PASS"
+ },
+ "summary": {
+  "contains_group_ids": false,
+  "contains_seed": false,
+  "groups_in_both": 0,
+  "groups_in_neither": 0,
+  "matrix_process_keys_in_both_splits": 1,
+  "n_dev_groups": 709,
+  "n_dev_rows": 14423,
+  "n_groups": 886,
+  "n_reserved_groups": 177,
+  "n_reserved_rows": 3555,
+  "strata": {
+   "BOGNAR-2002": {
+    "n_dev_rows": 5580,
+    "n_groups": 540,
+    "n_reserved": 108,
+    "n_reserved_rows": 1510
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "n_dev_rows": 3177,
+    "n_groups": 125,
+    "n_reserved": 25,
+    "n_reserved_rows": 693
+   },
+   "USDA-RETN-R6": {
+    "n_dev_rows": 5666,
+    "n_groups": 221,
+    "n_reserved": 44,
+    "n_reserved_rows": 1352
+   }
+  }
+ }
+}
