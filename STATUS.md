@@ -1,5 +1,13 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+## Reduced submission candidate and Kush takeover —13 November2026
+
+- Completed fresh counterpart AI R1/CAL reviews and paired comparisons locally; no wait for a counterpart AI transfer. R1 remains NOT_COUNTED/AI_PERSONAS_NOT_INTER_RATER, original labels retained; CAL16/16numericspansagree with metadata qualifications. Human review pending.
+- Full regression8271passed4namedskips0failed/errors/deselected;21newtargetedcontrols separately. Four frozen manifests/protectedoriginals match. Candidate-textscan0matching12wordwindows;177GUTsegmentsunavailable, no releaseclearance.
+- Eight authored backend demo guard cases pass, including explicit unsupported refusals. Not eight implemented features, broad accuracy or an actual human rehearsal. Initial runner-envelope failure and exact producer retained.
+-49publicartifacts+manifest in local draft candidateZIP; separate11fileprivate reviewZIPstagedNOT_SENT. Sources/hashpinned; report/deckoriginaldrafts unchanged. Author facts/final edits remain excluded.
+- START HERE: handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; archive locations in handoff/KUSH_TAKEOVER_PACKAGE_PATHS_2026-11-13.md. Build/independent verification manifests under reports/final/submission_candidate_2026-11-13/. Reducedsubmissionstillrequireslistedauthor/model/integration/calendaractions; scientificvalidationnotclaimed.
+
 ## Publisher follow-up —13 November2026
 
 D-101 records two attribution-licence family confirmations (AAK-04/10), one project-allowlist exclusion (AAK-05: publisher CC BY-NC-SA4.0, conflicting with aggregator metadata), two unconfirmed (AAK-02/08). No new PDF saved locally or source row extracted. Human review/source acquisition still pending; no scientific gate changed. See reports/step10/aa_publisher_licence_followup_2026-11-13.{json,md} and scope matrix v3. Earlier R1 transfer question remains resolved by exact reconstruction.
