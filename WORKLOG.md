@@ -1558,3 +1558,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `reports/s179/technical_artifact_source_scan_2026-11-13.json`, `reports/orchestration/S179_technical_scope_matrix_2026-11-13.csv`
 - **Verified:** LEAK008; no release clearance. Protected ledgers/frozen originals/report/deck unchanged; append-only compute prefix verified. Remote branch has no new commits after fetch.
 - **Next:** Commit each file separately and push authorized review branch.
+
+### S227 · 2026-11-13 11:02 IST · S179 · Private artifacts located; 15a registry, NER vs Rung A, D-097 type table, 29-diag paired vs D0
+- **Who:** Kush (ksh+prv AI, D-085)
+- **Did:** Found on Kush Mac/vinayak by sha256: NER ckpt 582c056a (vinayak), 15a seed/list (Mac private), P1-A gold (Mac, 7). Seal 6/6 PASS. T9-C09-R1 registry 177/709 groups 0 crossing. T3-C09-R1 NER FOOD covered by lexicon 98.4/95.5/94.6% (FC/WB/TS). D-097 structural mapping pre-declared then scored: pooled P 0.52-0.62; Merge P>=0.91; Transform over-predicted. T6-C02-R3 all rungs vs D0 per split: USDA rungs beat D0, PE mostly worse (negative kept). T8-C21-R2 ablations not started (needs design).
+- **Files:** `registry/split_registry_15a_v1.csv; reports/s179/{15a_assignment_registry`, `seal_integrity_check_S179`, `ner_vs_runga_agreement_S179`, `d097_runga_type_table}_2026-11-13.json; reports/step29/diag/paired_vs_d0_S179_2026-11-13.json; DECISIONS D-097`
+- **Verified:** new tests 25 pass; G15-R PASS paired_vs_d0; no ids/text/host paths in committed outputs; RUN-S179-KUSH-*
+- **Next:** Kush pass/fail review of AI results; T8-C21-R2 ablation design; Parv corrects dependency closeout
