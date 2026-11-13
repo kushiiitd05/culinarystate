@@ -294,3 +294,22 @@ Kush: ok all (13 Nov 2026, reviewed in session). Parv: pending.
 Source: `reports/orchestration/prv_audit_plan_vs_built_2026-11-13.md`, verdicts PRV-A1..A5.
 
 Kush: ok all — "OK PASSED" (13 Nov 2026, in session). Parv: pending.
+
+
+## Block P13 — prv continuation from supplied13-Nov handoff
+
+All rows: AI_DELEGATED_D085 · NOT_INDEPENDENT · NOT_HUMAN_VERIFIED_UNTIL_REVIEW · NO_HUMAN_SIGNOFF_D085. Status AI_VERDICT_PENDING_HUMAN_REVIEW. Kush/Parv human acceptance is not inferred.
+
+| ID | Item and AI result | Evidence |
+|---|---|---|
+| P13-1 | Local-only dependency search superseded by upstream exact-artifact results; five document receipt, no private model/seal transfer | reports/s179/local_model_and_seal_dependencies_SUPERSEDED_2026-11-13.md |
+| P13-2 | R1 Parv packet reconstructed exact issued hash;100AIrows97ACCEPT3conservativeREJECT, original cells preserved. No paired statistic/human gate | reports/s179/prv_07AR1_AI_review_2026-11-13.json |
+| P13-3 | CAL16numericspansmatched;13metadataCORRECTED3VERIFIED; counterpart/adjudication pending | reports/s179/prv_CAL_source_review_2026-11-13.json |
+| P13-4 | D099blindAIclaimreview14/27checkeragreement3unclear; negative and design limits retained | reports/s179/prv_claim_review_2026-11-13.json |
+| P13-5 | Separate D5 caveat technical draft; original report/deck untouched | reports/del5/prv_claim_audit_caveat_DRAFT_2026-11-13.md |
+| P13-6 | Question-onlyblindAIbranchGold45/74unchangedrouteragreement, not independent accuracy | reports/s179/prv_branch_review_2026-11-13.json |
+| P13-7 | AAK02/04/05/08/10 browser acquisition/licence confirmation still absent; no bypass or acquisition claim | handoff/PROMPT_FOR_PARV_CLAUDE_2026-11-13.md section3b-7 |
+| P13-8 | Separate technical insert plus106-number inventory/exact-line AI review; final author edits/facts excluded | reports/final/drafts_2026-11-13/prv_technical_results_update_DRAFT.md; reports/s179/prv_draft_number_AI_review_2026-11-13.json |
+| P13-9 | Planned13slide/720secondrehearsal/Q&A/fallback; actual eventNOT_RUN. Live merge-readiness snapshot, no merge | reports/s179/prv_rehearsal_pack_2026-11-13.md; reports/s179/prv_merge_readiness_2026-11-13_v2.json |
+
+Private returns are locally staged, NOT_SENT, per reports/s179/prv_private_return_manifest_2026-11-13.json. Human review: Kush pending; Parv pending. Original v4FAIL/H1/H3 and independence/source gates unchanged.
