@@ -57,3 +57,19 @@ def test_bootstrap_is_deterministic():
 def test_empty_set_refused():
     with pytest.raises(ValueError):
         R.type_table_from_counts([], n_boot=10, seed="x", unmapped=0)
+
+
+# ---- D-102 process-aware v2 ------------------------------------------------------------------
+@pytest.mark.parametrize("e,fam,want", [
+    (ev(["a"], ["b"]), "TRANSFER", "Transfer"),
+    (ev(["a"], ["b"]), "RESERVATION", "Reserve"),
+    (ev(["a"], [], ["b"]), "TRANSFER", "Discard"),        # discards still first
+    (ev(["a", "b"], ["c"]), "COMBINATION", "Merge"),       # falls back to D-097
+    (ev([], []), "TRANSFER", "Transfer"),                  # family decides even without arity
+])
+def test_v2_process_aware_mapping(e, fam, want):
+    assert R.map_event_v2(e, fam) == want
+
+
+def test_v1_unchanged_by_v2():
+    assert R.map_event(ev(["a"], ["b"])) == "Transform"
