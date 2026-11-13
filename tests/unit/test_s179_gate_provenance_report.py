@@ -37,3 +37,22 @@ def test_classify_rules():
 
 def test_committed_section_is_current():
     assert G.main(["--check"]) == 0
+
+
+def test_suffixed_decision_is_separate_and_cannot_borrow_next_approver():
+    text = ('### D-097 · 2026-11-13 · AI mapping\n'
+            '- **Approver:** ksh+prv (AI, D-085).\n'
+            '### D-097a · 2026-11-13 · Review (decided by Kush)\n'
+            '- **Decision:** Review only.\n'
+            '### D-098 · 2026-11-13 · Later\n'
+            '- **Approver:** ksh+prv (AI, D-085).\n')
+    rows = {r['id']: r for r in G.entries(text)}
+    assert set(rows) == {'D-097','D-097a','D-098'}
+    assert rows['D-097a']['class'] == 'HUMAN'
+    assert rows['D-097a']['approver'] is None
+
+
+def test_explicit_delegate_title_is_not_unknown_or_human():
+    rows = G.entries('### D-099 · 2026-11-13 · Review (decided by ksh+prv (AI, D-085))\n- **Labels:** NOT_INDEPENDENT.\n')
+    assert rows[0]['class'] == 'AI_DELEGATED_D085'
+    assert rows[0]['basis'] == 'TITLE_OR_INSTRUCTION'
