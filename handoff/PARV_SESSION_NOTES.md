@@ -74,3 +74,8 @@ D-101 and review P13-10: AAK-04/10 attribution families confirmed on publisher s
 ### 13 November 2026 — supplied R1 packet receipt
 
 The user supplied `condition_audit_packet_100_R1_Parv.csv` in material. It is byte-identical to the issued manifest and exact reconstructed local packet (SHA256 f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d), with100 rows and no filled judgments. No overwrite or repeat review was needed. Existing private AI return remains unchanged; no human labels/signature were supplied. Receipt proof: `reports/s179/prv_R1_supplied_packet_receipt_2026-11-13.json`. Source CSV stays outside tracked content; expected destination remains ignored.
+
+
+##13 November2026 — reduced submission takeover ready
+
+Primary document: handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md. Package index: handoff/KUSH_TAKEOVER_PACKAGE_PATHS_2026-11-13.md. Fresh AI counterparts now complete and compared (R1NOT_COUNTED;CAL16numericagreements); human acceptance remainspending. Full8271pass4namedskip;49artifactpubliccandidateZIPverified, separate11fileprivateZIPstagedNOT_SENT. No author facts/final edits, scientific gate pass, main merge or source/model/seed upload inferred. Candidate is document/artifact snapshot with earlier draft exports and explicit later addenda. Read takeover remaining-action table before final submission.
