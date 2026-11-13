@@ -747,3 +747,12 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **INTERPOLATE:** The unchanged demo precheck emits DIRECT or NONE, not BRACKETING. An INTERPOLATE count is structurally zero under this implementation; no interpolation effectiveness or absence-of-effects inference follows. Implementing a new bracketing method would require a separate declared contract/evaluation.
 - **Label:** `NO_HUMAN_SIGNOFF_D085`.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-097 · 2026-11-13 · Structural Rung A → Gold event-type mapping, pre-declared before scoring (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085; T3-C11-R1, T3-C17-R2; `reports/s179/runga_gold_contract_2026-11-13.json` (generic ACTION has no Gold type); Kush's instruction of 13 Nov to run remaining decisions as ksh+prv and review the AI results afterwards.
+- **Mapping (structure only, no verb lexicon, no PROC family, no tuning):** for each Rung A `EventCandidate`, in order: `discards` non-empty → Discard; `len(consumes) ≥ 2` and `len(produces) == 1` → Merge; `len(consumes) == 1` and `len(produces) ≥ 2` → Split; `len(consumes) == 1` and `len(produces) == 1` → Transform; anything else → UNMAPPED (abstain, counted). Transfer, Reserve and Recombine have no structural signal in Rung A and are never predicted; their recall is reported as 0, not hidden.
+- **Scoring:** the existing T3-C11-R1 type-table method (per recipe, matched = min(gold, predicted) per type; no alignment), Wilson 95% on pooled counts and a recipe-cluster percentile bootstrap (n = 2000, seed `s179-d097-type-table`). Input = steps joined by newline (as the 13 Nov contract audit). Sets: P1_A_KUSH (7, HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND), DEV_PILOT20_V1_1 and DEV_FOODCOM_V1_1 (20 each, AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD). No set is independent (D-017, D-060).
+- **Fixed before any score is computed:** the mapping, method, seed and sets above. Any change after the first scored output is a dated amendment plus a new output path; the first output is kept.
+- **Not claimed:** Rung A accuracy, Merge/Transform semantics, state confusion, or comparability with the rule compiler beyond the shared count-match method.
+- **Label:** `DIAGNOSTIC`, `NOT_INDEPENDENT`, `NON_CITABLE`, `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
