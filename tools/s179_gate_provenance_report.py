@@ -25,7 +25,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DECISIONS = ROOT / "DECISIONS.md"
 OUT = ROOT / "reports/final/sections/S179_gate_provenance_DRAFT.md"
-ENTRY = re.compile(r"^### (D-\d{3}) · ([0-9-]+) · (.+)$", re.M)
+ENTRY = re.compile(r"^### (D-\d{3}[a-z]?) · ([0-9-]+) · (.+)$", re.M)
 APPROVER = re.compile(r"\*\*Approver[^*]*:\*\*\s*(.+)")
 HUMAN_HINT = re.compile(r"(decided|reported) by Kush|\bParv(?:'s)? (?:request|review|authoris|cuisine|Step)|"
                         r"\*\*Instruction:\*\* (?:Kush|Parv)\b")
@@ -56,6 +56,8 @@ def entries(text: str) -> list[dict]:
         ap = APPROVER.search(body)
         approver = ap.group(1).strip() if ap else None
         cls, basis = classify(approver), "APPROVER_LINE"
+        if cls == "NO_APPROVER_LINE" and re.search(r"decided by ksh\+prv \(AI, D-085\)", m.group(3)):
+            cls, basis = "AI_DELEGATED_D085", "TITLE_OR_INSTRUCTION"
         if cls == "NO_APPROVER_LINE" and HUMAN_HINT.search(m.group(3) + "\n" + body[:400]):
             cls, basis = "HUMAN", "TITLE_OR_INSTRUCTION"
         out.append({"id": m.group(1), "date": m.group(2), "title": m.group(3).strip(), "approver": approver,
@@ -67,7 +69,7 @@ def render(rows: list[dict]) -> str:
     n = Counter(r["class"] for r in rows)
     lines = ["# Gate provenance: human and AI decisions (S179, T9-C07-R3)", "",
              "Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from `DECISIONS.md`. Each "
-             "decision is classed from its Approver line only.",
+             "decision is classed from its Approver line or explicit recorded title/instruction.",
              "",
              "**What D-085 changed.** From D-085 (2026-11-10) the AI personas ksh and prv (one model) act on Kush and "
              "Parv's behalf for every remaining human gate, always under the name `ksh+prv (AI, D-085)` and never a "
@@ -78,7 +80,7 @@ def render(rows: list[dict]) -> str:
     lines += [f"| {c} | {n.get(c, 0)} |" for c in CLASSES]
     lines += [f"| **all** | {len(rows)} |", "",
               f"Of the HUMAN decisions, {sum(r['relayed'] for r in rows if r['class'] == 'HUMAN')} record Parv's view "
-              f"as relayed by Kush, and {sum(r['basis'] == 'TITLE_OR_INSTRUCTION' for r in rows)} name the human in the "
+              f"as relayed by Kush, and {sum(r['basis'] == 'TITLE_OR_INSTRUCTION' and r['class'] == 'HUMAN' for r in rows)} name the human in the "
               "title or instruction line instead of an Approver line.", "", "## Decisions not made by a human", "",
               "| Decision | Date | Title | Class |", "|---|---|---|---|"]
     lines += [f"| {r['id']} | {r['date']} | {r['title'].replace('|', '/')} | {r['class']} |"
