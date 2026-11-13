@@ -1,0 +1,809 @@
+{
+  "artifacts": {
+    "reports/del5/prv_claim_audit_caveat_DRAFT_2026-11-13.md": {
+      "claim_flags": [
+        {
+          "column": 357,
+          "line": 5,
+          "reason": "NO_SUPPLIED_PASSED_GATE_OR_NEGATED_CONTEXT",
+          "word": "supported"
+        }
+      ],
+      "class_counts": {
+        "DATE_METADATA": 3,
+        "DIAGNOSTIC": 3,
+        "IDENTIFIER_METADATA": 19,
+        "METADATA": 1
+      },
+      "number_count": 26,
+      "numbers": [
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 4,
+          "line": 1,
+          "token": "5"
+        },
+        {
+          "class": "METADATA",
+          "classification_basis": "EXACT_LINE_AI_REVIEW",
+          "column": 44,
+          "line": 1,
+          "line_sha256": "94b5ef67e976d34e9cf23ebd3f911ee7eb243f3a2ea84bf0d6603d0a6d380ccf",
+          "review_reason": "Title date token",
+          "token": "13"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 55,
+          "line": 1,
+          "token": "2026"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 15,
+          "line": 3,
+          "token": "085"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 91,
+          "line": 3,
+          "token": "085"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 34,
+          "line": 5,
+          "token": "30"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 197,
+          "line": 5,
+          "token": "14/27"
+        },
+        {
+          "class": "DIAGNOSTIC",
+          "classification_basis": "EXACT_LINE_AI_REVIEW",
+          "column": 222,
+          "line": 5,
+          "line_sha256": "13b65b05a18e8885f030a78df8bfdcf3a2cf91ba5c929927b60f64c2efe9d384",
+          "review_reason": "D099 sample agreement/interval, exact JSON agreement fields; not confirmatory",
+          "token": "51.85%"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 236,
+          "line": 5,
+          "token": "95%"
+        },
+        {
+          "class": "DIAGNOSTIC",
+          "classification_basis": "EXACT_LINE_AI_REVIEW",
+          "column": 242,
+          "line": 5,
+          "line_sha256": "13b65b05a18e8885f030a78df8bfdcf3a2cf91ba5c929927b60f64c2efe9d384",
+          "review_reason": "D099 sample agreement/interval, exact JSON agreement fields; not confirmatory",
+          "token": "33.99"
+        },
+        {
+          "class": "DIAGNOSTIC",
+          "classification_basis": "EXACT_LINE_AI_REVIEW",
+          "column": 248,
+          "line": 5,
+          "line_sha256": "13b65b05a18e8885f030a78df8bfdcf3a2cf91ba5c929927b60f64c2efe9d384",
+          "review_reason": "D099 sample agreement/interval, exact JSON agreement fields; not confirmatory",
+          "token": "69.26%"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 261,
+          "line": 5,
+          "token": "3"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 311,
+          "line": 5,
+          "token": "11"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 352,
+          "line": 5,
+          "token": "2"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 506,
+          "line": 5,
+          "token": "1"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 509,
+          "line": 5,
+          "token": "3"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 158,
+          "line": 7,
+          "token": "30"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 191,
+          "line": 7,
+          "token": "2"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 194,
+          "line": 7,
+          "token": "5"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 198,
+          "line": 7,
+          "token": "7"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 27,
+          "line": 9,
+          "token": "179"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 48,
+          "line": 9,
+          "token": "2026"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 53,
+          "line": 9,
+          "token": "11"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 56,
+          "line": 9,
+          "token": "13"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 181,
+          "line": 9,
+          "token": "95"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 434,
+          "line": 9,
+          "token": "099"
+        }
+      ],
+      "unclassified": 0
+    },
+    "reports/final/drafts_2026-11-13/prv_technical_results_update_DRAFT.md": {
+      "claim_flags": [],
+      "class_counts": {
+        "DATE_METADATA": 21,
+        "DIAGNOSTIC/PRIOR_EXPOSURE": 17,
+        "IDENTIFIER_METADATA": 42
+      },
+      "number_count": 80,
+      "numbers": [
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 35,
+          "line": 1,
+          "token": "13"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 46,
+          "line": 1,
+          "token": "2026"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 15,
+          "line": 3,
+          "token": "085"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 91,
+          "line": 3,
+          "token": "085"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 3,
+          "line": 5,
+          "token": "094"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 5,
+          "line": 9,
+          "token": "097"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 22,
+          "line": 9,
+          "token": "1"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 24,
+          "line": 9,
+          "token": "1"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 64,
+          "line": 9,
+          "token": "0.5906"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 73,
+          "line": 9,
+          "token": "0.8097"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 92,
+          "line": 9,
+          "token": "179"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 97,
+          "line": 9,
+          "token": "097"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 118,
+          "line": 9,
+          "token": "2026"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 123,
+          "line": 9,
+          "token": "11"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 126,
+          "line": 9,
+          "token": "13"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 156,
+          "line": 9,
+          "token": "1"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 158,
+          "line": 9,
+          "token": "1"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 5,
+          "line": 10,
+          "token": "097"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 18,
+          "line": 10,
+          "token": "20"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 22,
+          "line": 10,
+          "token": "1"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 24,
+          "line": 10,
+          "token": "1"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 64,
+          "line": 10,
+          "token": "0.5168"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 73,
+          "line": 10,
+          "token": "0.7131"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 92,
+          "line": 10,
+          "token": "179"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 97,
+          "line": 10,
+          "token": "097"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 118,
+          "line": 10,
+          "token": "2026"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 123,
+          "line": 10,
+          "token": "11"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 126,
+          "line": 10,
+          "token": "13"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 152,
+          "line": 10,
+          "token": "20"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 156,
+          "line": 10,
+          "token": "1"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 158,
+          "line": 10,
+          "token": "1"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 5,
+          "line": 11,
+          "token": "097"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 10,
+          "line": 11,
+          "token": "1"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 57,
+          "line": 11,
+          "token": "0.6186"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 66,
+          "line": 11,
+          "token": "0.5882"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 85,
+          "line": 11,
+          "token": "179"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 90,
+          "line": 11,
+          "token": "097"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 111,
+          "line": 11,
+          "token": "2026"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 116,
+          "line": 11,
+          "token": "11"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 119,
+          "line": 11,
+          "token": "13"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 137,
+          "line": 11,
+          "token": "1"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 40,
+          "line": 12,
+          "token": "14/27"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 54,
+          "line": 12,
+          "token": "3"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 68,
+          "line": 12,
+          "token": "179"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 89,
+          "line": 12,
+          "token": "2026"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 94,
+          "line": 12,
+          "token": "11"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 97,
+          "line": 12,
+          "token": "13"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 49,
+          "line": 13,
+          "token": "45/74"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 56,
+          "line": 13,
+          "token": "0.6081"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 79,
+          "line": 13,
+          "token": "95%"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 86,
+          "line": 13,
+          "token": "0.4877"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 94,
+          "line": 13,
+          "token": "0.7196"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 114,
+          "line": 13,
+          "token": "179"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 136,
+          "line": 13,
+          "token": "2026"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 141,
+          "line": 13,
+          "token": "11"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 144,
+          "line": 13,
+          "token": "13"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 45,
+          "line": 14,
+          "token": "13"
+        },
+        {
+          "class": "DIAGNOSTIC/PRIOR_EXPOSURE",
+          "classification_basis": "LOCAL_LABEL_HEURISTIC",
+          "column": 61,
+          "line": 14,
+          "token": "3"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 76,
+          "line": 14,
+          "token": "179"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 102,
+          "line": 14,
+          "token": "2026"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 107,
+          "line": 14,
+          "token": "11"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 110,
+          "line": 14,
+          "token": "13"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 87,
+          "line": 16,
+          "token": "097"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 262,
+          "line": 16,
+          "token": "102"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 40,
+          "line": 18,
+          "token": "0"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 69,
+          "line": 18,
+          "token": "29"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 88,
+          "line": 18,
+          "token": "0"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 91,
+          "line": 18,
+          "token": "179"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 95,
+          "line": 18,
+          "token": "2026"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 100,
+          "line": 18,
+          "token": "11"
+        },
+        {
+          "class": "DATE_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 103,
+          "line": 18,
+          "token": "13"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 186,
+          "line": 18,
+          "token": "0"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 323,
+          "line": 18,
+          "token": "2"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 326,
+          "line": 18,
+          "token": "2"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 348,
+          "line": 18,
+          "token": "2"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 351,
+          "line": 18,
+          "token": "2"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 22,
+          "line": 20,
+          "token": "1"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 43,
+          "line": 22,
+          "token": "0"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 50,
+          "line": 22,
+          "token": "15"
+        },
+        {
+          "class": "IDENTIFIER_METADATA",
+          "classification_basis": "LEXICAL_METADATA",
+          "column": 57,
+          "line": 22,
+          "token": "0"
+        }
+      ],
+      "unclassified": 0
+    }
+  },
+  "claim_flag_exceptions": [
+    {
+      "artifact": "reports/del5/prv_claim_audit_caveat_DRAFT_2026-11-13.md",
+      "column": 357,
+      "disposition": "METHODOLOGICAL_LABEL_QUOTATION",
+      "human_approval": "PENDING",
+      "line": 5,
+      "line_sha256": "13b65b05a18e8885f030a78df8bfdcf3a2cf91ba5c929927b60f64c2efe9d384",
+      "reason": "AI-supported/checker-flagged is a confusion-cell label, not a claim that a scientific hypothesis passed.",
+      "word": "supported"
+    }
+  ],
+  "inventory_sha256": "68f85d0752cca1272ce29a28804ae6f39a62bb5922304555f05c922a453b00e3",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "record": "EXACT_LINE_PRV_AI_NUMBER_REVIEW",
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "scope": "Numeric-role review only; not full source entailment, human approval or scientific gate",
+  "unclassified_remaining": 0
+}
