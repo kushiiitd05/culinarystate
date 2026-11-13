@@ -1,0 +1,9 @@
+# D5 claim-review caveat — technical draft,13 November2026
+
+AI_DELEGATED_D085 · NOT_INDEPENDENT · NOT_HUMAN_VERIFIED_UNTIL_REVIEW · NO_HUMAN_SIGNOFF_D085 · AI_JUDGE_NOT_HUMAN. Review: AI_VERDICT_PENDING_HUMAN_REVIEW.
+
+A fresh-context AI judge reviewed30 predeclared claims with rung labels and checker outputs withheld. After freezing its labels and unblinding, agreement with stored answer-level checker flags was14/27 assessable claims (51.85%; Wilson95%CI 33.99–69.26%), with3 unclear claims excluded and reported. There were11 AI-unsupported/checker-clean cases and2 AI-supported/checker-flagged cases. This finding limits confidence in interpreting a clean checker flag as claim entailment. It does not change frozen H1/H3 verdicts or answer records.
+
+This is single-AI review, not independent human verification. The existing extractor defines the claim universe; omitted claims/recall remain unmeasured. The30 claims are stratified across B2/B5T/B7 with scorer/checker disagreements deliberately enriched, so raw agreement is descriptive of this sample, not a population accuracy estimate. Several claims can share an answer-level flag; dependence and AI systematic bias are not captured by the Wilson interval. The preparing root knew previous outputs; only the fresh judge was blinded. Stylistic clues in answer text may remain. Support was assessed against cited unverified ledger rows, not independently confirmed source experiments or process applicability.
+
+Numeric source: `reports/s179/prv_claim_review_2026-11-13.json` → `n_sampled`, `agreement.agreed`, `agreement.judged`, `agreement.unclear`, `agreement.agreement`, `agreement.wilson95`, `agreement.confusion`. The prelabel manifest and returned private-sheet hashes bind the sample/review. Returned source-text notes remain ignored for expert verification. Original benchmark/scorer/checker/preregistration/results remain unchanged; D-099 is a supplemental AI diagnostic, not a human-gate waiver.
