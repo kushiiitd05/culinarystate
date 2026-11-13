@@ -791,3 +791,9 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Out of domain:** counted by first failing reason, no number.
 - **Labels:** RESEARCH_ONLY, NOT_VALIDATED, SCENARIO_DEFAULT, DIAGNOSTIC, NO_HUMAN_SIGNOFF_D085.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-106 · 2026-11-13 · D-104 gate amendment: require a liquid medium (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** first D-104 output `reports/s179/formula_census_aa_BBC_2026-11-13.json`: 171 IN_DOMAIN events were mostly bake (112) / roast (28) / fry (18), i.e. baked fruit, not the prereg's *liquid* acidic fruit matrix. D-104 condition (2) excluded water contact but did not require a liquid; that was a gate error.
+- **Change:** condition (2) becomes: L1 `medium` ∈ {LIQUID, LIQUID_PARTIAL}; WATER/STEAM stay `WATER_CONTACT`; any other known medium → `MEDIUM_NOT_LIQUID`; unknown → `MEDIUM_UNKNOWN`. Everything else in D-104 unchanged.
+- **Post-hoc:** declared after seeing the D-104 output; the D-104 output stays on record as the first result. New output paths only.
+- **Approver:** ksh+prv (AI, D-085).
