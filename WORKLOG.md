@@ -1628,3 +1628,38 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `reports/s179/prv_R1_supplied_packet_receipt_2026-11-13.json`
 - **Verified:** RUN-S179-PRV-R1-003;original issued SHA f086975a confirmed. Prior returnedAIreview unchanged. Pulled upstream updates and refreshed generated provenance;6provenance tests pass.
 - **Next:** Kush: receive existing private prv return for counterpart/scoring/adjudication. The uploaded blank packet is not a human review or gate pass.
+
+### S237 · 2026-11-13 15:31 IST · M2 · Complete counterpart AI condition/CAL reviews and paired comparisons
+- **Who:** Parv
+- **Did:** Fresh-context kshAIreviewers blinded to prvlabels. RegisteredR1statisticscompared afterhashfreeze;NOT_COUNTED. CAL16numericspanagreements;metadataqualifiers/proposals retained without fit/extractionchanges.
+- **Files:** `reports/s179/r1_paired_AI_closeout_2026-11-13.json`, `reports/s179/CAL_paired_AI_closeout_2026-11-13.json`, `reports/s179/reduced_submission_review_resolution_2026-11-13.md`
+- **Verified:** REDUCED-R1001/CAL001;3TDDindependence/immutable-inputcontrols. Humanapprovalnotinferred;406originalR1differencespreserved.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S238 · 2026-11-13 15:31 IST · M6 · Run eight authored strict demo scenarios and fix instrument envelope handling
+- **Who:** Parv
+- **Did:** Initialinstrumentfailedbranchlookup;actualroute.branchregressionadded,newv2all8checks pass. Unsupportedmetadata/search/vision and absent substitutionedges remain honest refusals;physicsnumbersbasislabelled.
+- **Files:** `tools/s179_submission_demo.py`, `reports/s179/reduced_submission_demo_2026-11-13_v2.json`, `reports/s179/reduced_submission_producer_snapshots_2026-11-13/README.md`
+- **Verified:** REDUCED-DEMO001/002;4controltests. Originalfailedinstrumentoutput/exactsourcebytesretained;noapp/frozen/scientificsourcechange.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S239 · 2026-11-13 15:31 IST · S179 · Final full regression and candidate source scan green
+- **Who:** Parv
+- **Did:** 8271pass4namedskip0failed/errors/deselected225.27s. Fourfrozenmanifests/protectedoriginalsmatch;35candidate-textscan0matcheson612782recipes+sixpapers.
+- **Files:** `reports/s179/reduced_submission_final_verification_2026-11-13.json`, `reports/s179/reduced_submission_full_suite_2026-11-13.log`, `reports/s179/reduced_submission_source_scan_2026-11-13.json`
+- **Verified:** REDUCED-TEST001/LEAK001;21newtargetedcontrolspass separately. Nooptionalpackageinstalled/skipadded. Scientificgatesandnegativefindingsunchanged.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S240 · 2026-11-13 15:31 IST · M8 · Build verified reduced submission candidate and private takeover pack
+- **Who:** Parv
+- **Did:** 49allowlistedpublicartifacts plusinternalmanifestinlocalZIP;14packagingTDDcontrols. IndependentCRC/member/archivehashcheck. Separate11fileprivateZIPstagedNOT_SENT. Originalreport/deckearlierdrafts preservedwithnewaddenda.
+- **Files:** `tools/s179_submission_candidate.py`, `reports/final/submission_candidate_2026-11-13/build_manifest_v1.json`, `reports/final/submission_candidate_2026-11-13/verification_v1.json`, `reports/s179/kush_private_takeover_manifest_2026-11-13.json`
+- **Verified:** REDUCED-PACK001/PRIVATE001;exactsource_revisionandmemberbytesbound. Noauthorapproval,sourcepaper/model/seedupload,hostingormerge.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S241 · 2026-11-13 15:31 IST · S179 · Write complete Kush reduced-submission takeover document
+- **Who:** Parv
+- **Did:** Primaryhandoffcoverscompletedartifacts,commands,private locations,AIstatistical/source limitations,actualremainingauthor/model/integration/calendaractions. Companionpathsindexseparatespubliccandidatefromprivateproofs.
+- **Files:** `handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md`, `handoff/KUSH_TAKEOVER_PACKAGE_PATHS_2026-11-13.md`
+- **Verified:** Alllinks/files/allowlistvalidated. CounterpartAItransferdependencyresolved;independenthuman/sciencedatastillnotfabricated;authorfacts/finaleditsexcluded.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
