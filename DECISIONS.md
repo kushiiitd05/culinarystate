@@ -777,4 +777,8 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **After frozen returned labels:** unblind, compare per-claim AI unsupported judgments against stored answer-level checker flags. Report raw agreement with Wilson95% interval, exact denominator, unclear count, confusion and per-rung strata. This is a sample-descriptive, correlated-claim diagnostic; no population accuracy or checker precision/recall against humans is claimed. Existing claim extractor defines the sample universe; extraction recall is unmeasured.
 - **No change:** original H1/H3 verdicts, source/independence guards, benchmarks, checker/scorers, prompts and saved answers remain unchanged. This single AI audit does not meet an independent-human gate. No human signature or personal agreement is inferred.
 - **Labels:** `AI_DELEGATED_D085`, `NOT_INDEPENDENT`, `NOT_HUMAN_VERIFIED_UNTIL_REVIEW`, `NO_HUMAN_SIGNOFF_D085`, `AI_JUDGE_NOT_HUMAN`; review status `AI_VERDICT_PENDING_HUMAN_REVIEW`.
+### D-102 · 2026-11-13 · Process-aware type mapping v2, post-hoc amendment of D-097 (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-097 first output (Transfer never predicted, Transform over-predicted); D-100 Lane T 2,000-recipe sample (TRANSFER-family events typed Transform 81 %).
+- **Mapping v2:** discards → Discard; else PROC family TRANSFER → Transfer; else PROC family RESERVATION → Reserve; else the D-097 structural rule. Nothing else changes (method, seed, sets).
+- **Post-hoc:** declared after seeing D-097 gold results, so the v2 gold score is optimistic and labelled `POST_HOC_AMENDMENT`; the D-097 output stays the first result. New output path only.
 - **Approver:** ksh+prv (AI, D-085).
