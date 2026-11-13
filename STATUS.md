@@ -1,5 +1,14 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+## Latest prv continuation —13 November2026, supplied Kush handoff
+
+- Supplied material is five handoff documents; private checkpoint/seal/P1 artifacts remain with Kush. Pulled hash-bound upstream results and D097 mapping; earlier local-only absence record superseded, not erased. No seed requested or model substituted.
+- Fresh AI reviews: exact issued100-rowR1 packet recovered by originalSHA,97ACCEPT3conservativeREJECT; CAL16numericspansmatched/13metadata corrections;30claimsample14/27checkeragreement3unclear;74questionbranchGold45/74routeragreement. All AI/non-independent/pendinghuman; no scientific gate pass.
+- Tests: full8228passed4namedskips,0failed/errors/deselected; later upstreamD106/provenance/wrapper targeted25pass separately. Provenance parser now handles suffixed decisions and explicit AI titles. Full revision/failed attempts in reports/s179/prv_continuation_verification_2026-11-13.json.
+- New technical insert,106-numberAIreview,rehearsal/Q&A and live PR readiness packs; final report/deck and protected originals unchanged. Author facts/final edits excluded. No merge or actual rehearsal.
+- Current index: reports/orchestration/S179_technical_scope_matrix_2026-11-13_v2.{csv,json,md}. Private return pack has five ignored files, locally staged NOT_SENT; Kush to counterreview/score/adjudicate. Missing Parv R1 transfer request is resolved by exact reconstruction. Remaining licensedPDF acquisition/scientificdata/independence/calendar constraints remain.
+- Review sheet P13-1..9 awaits actual human review; report entry point reports/s179/prv_continuation_closeout_2026-11-13.md.
+
 ## Latest technical closeout — 13 November 2026 (supersedes older snapshots below)
 
 Branch `kush/s179-finish-fixes`; decisions through D-096. D-094 excludes author facts and final edits. NO_HUMAN_SIGNOFF_D085; no scientific gate waiver.
