@@ -278,3 +278,14 @@ Source: `reports/final/FINAL_REPORT_DRAFT_S168.md` (AI draft; ksh fact-check ~19
 | Q2 | Section 10 contributions (agent vs human work separated). | correct names and roles |
 | Q3 | 9-slide outline and the 3 key figures (proposed vs achieved; the two funnels; gates + P1 panel). | ok / reorder |
 | Q4 | Resolve the 5 UNVERIFIED items (only humans can for W3, authorship and the 07.A relay). | supply |
+
+## Block K13 — 13 Nov Kush-session D-085 results (AI verdicts, then human review)
+
+| ID | AI result (ksh+prv, D-085) | Evidence |
+|---|---|---|
+| K13-1 | 15a.R seal re-check 6/6 PASS; assignment registry 177/709 groups, 3,555/14,423 rows, 0 crossing, 1 cross-source matrix/process key disclosed (T9-C09-R1) | `reports/s179/seal_integrity_check_S179_2026-11-13.json`, `registry/split_registry_15a_v1.csv` |
+| K13-2 | NER (frozen ckpt 582c056a spans) vs Rung A lexicon: NER FOOD covered 98.4 / 95.5 / 94.6 % (FOODCOM / WIKIBOOKS / TASTESET); method agreement, not accuracy (T3-C09-R1) | `reports/s179/ner_vs_runga_agreement_S179_2026-11-13.json` |
+| K13-3 | D-097 structural Rung A→Gold mapping, pre-declared, then scored: pooled P 0.52–0.62; Merge P ≥ 0.91; Transform over-predicted; Transfer never predicted (T3-C11-R1) | `DECISIONS.md` D-097, `reports/s179/d097_runga_type_table_2026-11-13.json` |
+| K13-4 | 29-diag every rung vs D0 per family/split, G15-R PASS; USDA rungs beat D0, Bognar mostly, Phenol-Explorer mostly worse (negative kept); PRIOR_EXPOSURE_REANALYSIS (T6-C02-R3) | `reports/step29/diag/paired_vs_d0_S179_2026-11-13.json` |
+
+Kush: ok all (13 Nov 2026, reviewed in session). Parv: pending.
