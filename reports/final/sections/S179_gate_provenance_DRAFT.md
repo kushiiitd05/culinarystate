@@ -9,12 +9,12 @@ Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from
 | Class | Decisions |
 |---|---|
 | HUMAN | 70 |
-| AI_DELEGATED_D085 | 10 |
+| AI_DELEGATED_D085 | 13 |
 | AI_PERSONA_D071 | 6 |
 | MIXED_PERSONA_AND_HUMAN | 1 |
 | AI_AGENT_PROVISIONAL | 7 |
 | NO_APPROVER_LINE | 0 |
-| **all** | 94 |
+| **all** | 97 |
 
 Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 17 name the human in the title or instruction line instead of an Approver line.
 
@@ -46,3 +46,6 @@ Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 17 name th
 | D-093 | 2026-11-12 | Separate strict-v2 local engineering policy (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-095 | 2026-11-12 | Strict-v3 display and supplemental technical diagnostics (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-096 | 2026-11-13 | Conservative technical dispositions and MECH reference freeze (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
+| D-097 | 2026-11-13 | Structural Rung A → Gold event-type mapping, pre-declared before scoring (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
+| D-100 | 2026-11-13 | Full-corpus column map, formula census and transition-type map, pre-declared before any number (decided by ksh+prv (AI, D-085) on Kush's instruction "this is MUST … all columns … all of the flow"; entered by the coding agent as scribe) | AI_DELEGATED_D085 |
+| D-099 | 2026-11-13 | Predeclare prv supplemental blinded AI claim review before selection/labelling (decided by ksh+prv (AI, D-085); entered by coding agent as scribe) | AI_DELEGATED_D085 |
