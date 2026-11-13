@@ -1,0 +1,54 @@
+{
+  "agreement": {
+    "agreed": 14,
+    "agreement": 0.5185185185185185,
+    "by_rung_after_unblinding": {
+      "B2": {
+        "agreed": 5,
+        "judged": 9
+      },
+      "B5T": {
+        "agreed": 6,
+        "judged": 9
+      },
+      "B7": {
+        "agreed": 3,
+        "judged": 9
+      }
+    },
+    "confusion": {
+      "AI_SUPPORTED|CHECKER_CLEAN": 11,
+      "AI_SUPPORTED|CHECKER_FLAGGED": 2,
+      "AI_UNSUPPORTED|CHECKER_CLEAN": 11,
+      "AI_UNSUPPORTED|CHECKER_FLAGGED": 3
+    },
+    "judged": 27,
+    "unclear": 3,
+    "wilson95": [
+      0.3398561575495229,
+      0.6925677302378153
+    ]
+  },
+  "completed_at_utc": "2026-11-13T06:45:30.155963+00:00",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085",
+    "AI_JUDGE_NOT_HUMAN"
+  ],
+  "limitations": [
+    "Single fresh AI judge, not independent human review; H1/H3 frozen verdicts unchanged.",
+    "Existing automatic claim extractor defines universe; omitted claims/recall not audited.",
+    "Strata deliberately enriched; simple agreement is sample-descriptive, not population-weighted accuracy.",
+    "Checker flag is answer-level, compared to individual claim judgment; correlated claims and AI systematic bias not captured by Wilson interval.",
+    "Evidence consistency review does not verify imported source measurements, applicability or full narrative entailment.",
+    "Reviewer cannot be guaranteed blind to style clues in the answer text. Root preparer was exposed to system outputs; judge is a separate fresh-context agent."
+  ],
+  "n_sampled": 30,
+  "prelabel_manifest_sha256": "2adfc09854a7bca8130317880fd91975ce78f9ffc78b46b59a91c19851be4216",
+  "record": "D099_AI_BLIND_CLAIM_REVIEW",
+  "returned_sha256": "83409288f57137a106178566b04b430bb460e2347506b66867af4b9b3c35b094",
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "scientific_gate_pass": false
+}
