@@ -66,8 +66,8 @@ def parse_response(text: str, batch) -> list[dict]:
     return rows
 
 
-def _call(host: str, prompt: str) -> str:
-    body = json.dumps({"model": MODEL, "prompt": prompt, "stream": False, "format": "json",
+def _call(host: str, prompt: str, model: str = MODEL) -> str:
+    body = json.dumps({"model": model, "prompt": prompt, "stream": False, "format": "json",
                        "options": {"temperature": 0, "seed": 7, "num_ctx": 8192}}).encode()
     req = urllib.request.Request(host.rstrip("/") + "/api/generate", data=body, headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=600) as r:
@@ -88,6 +88,8 @@ def main(argv=None) -> int:
     ap.add_argument("--host", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--batch", type=int, default=25)
+    ap.add_argument("--model", default=MODEL)
+    ap.add_argument("--digest-prefix", default=MODEL_DIGEST_PREFIX)
     a = ap.parse_args(argv)
     out = Path(a.out)
     if out.exists():
@@ -98,7 +100,7 @@ def main(argv=None) -> int:
     for i in range(0, len(ing), a.batch):
         batch = ing[i:i + a.batch]
         try:
-            text = _call(a.host, build_prompt(batch))
+            text = _call(a.host, build_prompt(batch), a.model)
         except Exception as exc:  # recorded per row, never hidden
             text = ""
             print("call failed", i, exc, file=sys.stderr)
@@ -109,7 +111,7 @@ def main(argv=None) -> int:
         w = csv.DictWriter(f, fieldnames=FIELDS, lineterminator="\n")
         w.writeheader()
         for r in rows:
-            w.writerow({**r, "canonical_name": names[r["id"]], "model": MODEL, "model_digest_prefix": MODEL_DIGEST_PREFIX,
+            w.writerow({**r, "canonical_name": names[r["id"]], "model": a.model, "model_digest_prefix": a.digest_prefix,
                         "prompt_sha256": prompt_sha(), "label": "AI_DRAFTED_NOT_REVIEWED"})
     print("rows", len(rows), "seconds", round(time.time() - t0, 1))
     return 0
