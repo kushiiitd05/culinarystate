@@ -54,6 +54,9 @@ AUX_WORDS = frozenset({"can", "will", "may", "might", "should", "must", "would",
 QUANTITY_QUALIFIERS = ("heaped", "level", "rounded", "scant", "generous", "large", "small", "medium")
 _DETERMINERS = ("the", "a", "an", "some", "each", "every", "this", "that", "these", "those", "your", "its", "of",
                 "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve")
+_COORD_GAP = re.compile(r"\s*(?:,\s*(?:and|or)?|and|or)\s+", re.IGNORECASE)
+_OBJECT_WORDS = frozenset({"it", "them", "the", "a", "an", "this", "these", "each", "both", "well", "lightly",
+                           "generously", "with", "to", "over", "all", "evenly", "liberally"})
 _NOMINAL_SLOT = re.compile(r"(?:\b(?:" + "|".join(_DETERMINERS) + r")|\d)[ \t]+$", re.IGNORECASE)
 _NUM = (r"(?:\d+[ \t]+\d+/\d+|\d+/\d+|\d+(?:[.,]\d+)?(?:[ \t]?[½⅓⅔¼¾⅛])?"
         r"|[½⅓⅔¼¾⅛⅜⅝⅞])")
@@ -90,8 +93,10 @@ def _overlaps(a: tuple[int, int], spans: Sequence[tuple[int, int]]) -> bool:
 class RungA:
     """Deterministic Rung A over a read-only lexicon (default: the repository lexicons)."""
 
-    def __init__(self, lexicon: RungALexicon | None = None) -> None:
+    def __init__(self, lexicon: RungALexicon | None = None, *, coord_food_guard: bool = False) -> None:
         self.lexicon = lexicon or load_lexicon()
+        # D-116 prerequisite (14 Nov): opt-in guard; False reproduces every frozen Rung A output byte for byte.
+        self.coord_food_guard = coord_food_guard
         units = sorted(self.lexicon.unit_tokens, key=lambda u: (-len(u), u))
         unit_alt = "|".join(re.escape(u) for u in units) or r"(?!x)x"
         quals = "|".join(QUANTITY_QUALIFIERS)
@@ -176,6 +181,9 @@ class RungA:
                 i += 1
                 continue
             hit = self._action_at(raw, ss, toks, words, i, endpoints)
+            if hit is not None and self.coord_food_guard and self._coordinated_food(raw, toks, words, i, ss, found):
+                flags.append("COORD_FOOD_GUARD")
+                hit = None
             if hit is not None:
                 n, flag = hit
                 end = ss + toks[i + n - 1][1]
@@ -200,6 +208,17 @@ class RungA:
                 elif words[i] in MIXTURE_WORDS:
                     found.append((s, e, "INTERMEDIATE_MENTION"))
                 i += 1
+
+    def _coordinated_food(self, raw: str, toks: list, words: list[str], i: int, ss: int, found: list) -> bool:
+        """A food word right after ',', 'and' or 'or' that follows a FOOD_MENTION in the same list, and is not followed
+        by an object word ('salt it', 'oil the pan'), is a list member, not a verb."""
+        if self.lexicon.food_at(words, i) is None or not found or found[-1][2] != "FOOD_MENTION":
+            return False
+        gap = raw[found[-1][1]:ss + toks[i][0]]
+        if not _COORD_GAP.fullmatch(gap):
+            return False
+        nxt = words[i + 1] if i + 1 < len(words) else ""
+        return nxt not in _OBJECT_WORDS
 
     def _action_at(self, raw: str, ss: int, toks: list, words: list[str], i: int,
                    endpoints: list) -> tuple[int, str | None] | None:
