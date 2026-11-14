@@ -204,3 +204,36 @@ def test_malformed_client_output_is_rejected_not_raised():
                  flags=("VNEXT_ALTERNATIVE_SKIPPED",), lot_accounting={}, client=c)
     assert out.rejected and out.rejected[0][1] == "MALFORMED_PROPOSAL"
     assert out.accepted == ()
+
+
+# --- a trigger only licenses the field it is actually about -----------------------
+
+def test_trigger_field_licensing_is_declared_for_every_trigger():
+    assert set(L1.TRIGGER_FIELDS) == set(L1.TRIGGERS)
+    for fields in L1.TRIGGER_FIELDS.values():
+        assert set(fields) <= set(L1.PROPOSABLE_FIELDS)
+
+
+def test_coref_trigger_may_not_bind_an_alternative_group():
+    """A "the sauce" coreference answer is not an alternatives binding."""
+    g = graph([ev("E1", (0, 0))])
+    d = L1.review([prop(trigger="VNEXT_MIXTURE_COREF", field="alternative_group", value="filling")],
+                  g, triggers=("VNEXT_MIXTURE_COREF",), raw=RAW)
+    assert d.rejected and d.rejected[0][1] == "FIELD_NOT_LICENSED_BY_TRIGGER"
+
+
+def test_alternative_trigger_may_bind_an_alternative_group():
+    g = graph([ev("E1", (0, 0))])
+    d = L1.review([prop(trigger="VNEXT_ALTERNATIVE_SKIPPED", field="alternative_group", value="ALT-1")],
+                  g, triggers=("VNEXT_ALTERNATIVE_SKIPPED",), raw=RAW)
+    assert not d.rejected, d.rejected
+
+
+def test_fat_stays_trigger_may_only_touch_the_condition_profile():
+    g = graph([ev("E1", (0, 0))])
+    bad = L1.review([prop(trigger="VNEXT_FAT_STAYS", field="alternative_group", value="X")],
+                    g, triggers=("VNEXT_FAT_STAYS",), raw=RAW)
+    assert bad.rejected and bad.rejected[0][1] == "FIELD_NOT_LICENSED_BY_TRIGGER"
+    ok = L1.review([prop(trigger="VNEXT_FAT_STAYS", field="condition_profile_id", value="fat_retained")],
+                   g, triggers=("VNEXT_FAT_STAYS",), raw=RAW)
+    assert not ok.rejected, ok.rejected
