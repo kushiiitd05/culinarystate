@@ -521,7 +521,13 @@ class QuantityGroundingResult:
 
 @dataclass(frozen=True)
 class EventCandidate:
-    """Atomic event candidate. ``order`` is text order (step_index, ordinal); ids are local, never minted."""
+    """Atomic event candidate. ``order`` is text order (step_index, ordinal); ids are local, never minted.
+
+    ``alternative_group`` binds mutually exclusive events (CR-25): "A or B" gives both
+    events the same group, and V4 reports it if more than one member commits state.
+    ``condition_profile_id`` (CR-25) names the shared condition profile an event was
+    read under. Both are None when the producer does not state one; neither is inferred.
+    """
     event_id: str
     order: tuple[int, int]
     span: Span | None = None
@@ -531,11 +537,17 @@ class EventCandidate:
     depends_on: tuple[str, ...] = ()
     attributes: tuple[ValueClaim, ...] = ()
     claim_route: str | None = None
+    alternative_group: str | None = None
+    condition_profile_id: str | None = None
 
     def __post_init__(self) -> None:
         _nonblank(self.event_id, "event_id")
         if not (isinstance(self.order, tuple) and len(self.order) == 2 and all(type(x) is int for x in self.order)):
             raise InterfaceError("Event order must be a (step_index, ordinal) tuple of two ints")
+        for name in ("alternative_group", "condition_profile_id"):
+            value = getattr(self, name)
+            if value is not None:
+                _nonblank(value, name)
 
 
 @dataclass(frozen=True)
