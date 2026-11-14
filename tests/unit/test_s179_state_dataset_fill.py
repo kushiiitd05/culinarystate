@@ -42,3 +42,14 @@ def test_merge_sums_shards():
     q = dict(p, shard="1/2")
     r = m.merge([p, q])
     assert r["recipes"] == 4 and r["rows"] == 10 and r["value_rate_pct"]["F"]["medium"] == 60.0
+
+
+def test_compact_keeps_what_cells_need():
+    r1 = {"inputs": {"medium": {"value": "LIQUID", "basis": "TEXT_STATED", "span": [1, 2]}, "matrix_class": {"value": "FRUIT"},
+                     "matrix_groups": {"value": ["FRUIT"]}}, "endpoint": {"big": "x" * 100}}
+    r2 = {"status": "SCENARIO_COMPUTED", "scenarios": {"TYPICAL": {"bath_c": 95.0, "t_cap_c": 100.0, "duration_min": 20.0, "bases": {}},
+                                                       "GENTLE": {}}}
+    c1, c2 = sdf._compact(r1), sdf._compact(r2)
+    assert "endpoint" not in c1 and c1["inputs"]["medium"]["value"] == "LIQUID"
+    assert sdf.l1_cell(c1, "medium") == sdf.l1_cell(r1, "medium")
+    assert sdf.l2_cells(c1, c2, FIT) == sdf.l2_cells(r1, r2, FIT)
