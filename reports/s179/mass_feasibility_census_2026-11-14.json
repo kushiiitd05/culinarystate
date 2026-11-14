@@ -1,0 +1,126 @@
+{
+ "per_family": {
+  "WIKIBOOKS": {
+   "recipes": 1000,
+   "lines": 9043,
+   "qty_parsed": 7152,
+   "unit:COUNT_OR_NONE": 1940,
+   "ing_linked": 4093,
+   "sr_matched": 3781,
+   "infoods_exact_name": 323,
+   "grounded": 2839,
+   "grounded_volume_via_sr_portion": 1956,
+   "unit:VOLUME": 4329,
+   "recipes_fully_grounded": 8,
+   "unit:MASS": 883,
+   "pct_of_lines": {
+    "qty_parsed": 79.1,
+    "ing_linked": 45.3,
+    "sr_matched": 41.8,
+    "grounded": 31.4,
+    "infoods_exact_name": 3.6
+   },
+   "pct_recipes_fully_grounded": 0.8
+  },
+  "GUTENBERG_SEGMENT": {
+   "recipes": 1000,
+   "recipes_fully_grounded": 0,
+   "pct_of_lines": {
+    "qty_parsed": 0.0,
+    "ing_linked": 0.0,
+    "sr_matched": 0.0,
+    "grounded": 0.0,
+    "infoods_exact_name": 0.0
+   },
+   "pct_recipes_fully_grounded": 0.0
+  },
+  "A1_BBC_GOOD_FOOD": {
+   "recipes": 1000,
+   "lines": 9717,
+   "qty_parsed": 8407,
+   "unit:COUNT_OR_NONE": 2919,
+   "ing_linked": 4229,
+   "sr_matched": 3431,
+   "infoods_exact_name": 243,
+   "grounded": 3640,
+   "grounded_volume_via_sr_portion": 1305,
+   "unit:MASS": 2335,
+   "unit:VOLUME": 3153,
+   "recipes_fully_grounded": 7,
+   "pct_of_lines": {
+    "qty_parsed": 86.5,
+    "ing_linked": 43.5,
+    "sr_matched": 35.3,
+    "grounded": 37.5,
+    "infoods_exact_name": 2.5
+   },
+   "pct_recipes_fully_grounded": 0.7
+  },
+  "FOODCOM": {
+   "recipes": 1000,
+   "lines": 7894,
+   "qty_parsed": 7478,
+   "unit:COUNT_OR_NONE": 7478,
+   "ing_linked": 6757,
+   "sr_matched": 6464,
+   "infoods_exact_name": 913,
+   "grounded": 0,
+   "grounded_volume_via_sr_portion": 0,
+   "recipes_fully_grounded": 0,
+   "pct_of_lines": {
+    "qty_parsed": 94.7,
+    "ing_linked": 85.6,
+    "sr_matched": 81.9,
+    "grounded": 0.0,
+    "infoods_exact_name": 11.6
+   },
+   "pct_recipes_fully_grounded": 0.0
+  },
+  "TASTESET": {
+   "recipes": 700,
+   "lines": 3788,
+   "qty_parsed": 3306,
+   "unit:MASS": 430,
+   "ing_linked": 1321,
+   "sr_matched": 1224,
+   "infoods_exact_name": 155,
+   "grounded": 1016,
+   "grounded_volume_via_sr_portion": 586,
+   "recipes_fully_grounded": 13,
+   "unit:COUNT_OR_NONE": 1350,
+   "unit:VOLUME": 1526,
+   "pct_of_lines": {
+    "qty_parsed": 87.3,
+    "ing_linked": 34.9,
+    "sr_matched": 32.3,
+    "grounded": 26.8,
+    "infoods_exact_name": 4.1
+   },
+   "pct_recipes_fully_grounded": 1.9
+  }
+ },
+ "total": {
+  "recipes": 4700,
+  "lines": 30442,
+  "qty_parsed": 26343,
+  "unit:COUNT_OR_NONE": 13687,
+  "ing_linked": 16400,
+  "sr_matched": 14900,
+  "infoods_exact_name": 1634,
+  "grounded": 7495,
+  "grounded_volume_via_sr_portion": 3847,
+  "unit:VOLUME": 9008,
+  "recipes_fully_grounded": 28,
+  "unit:MASS": 3648,
+  "pct_of_lines": {
+   "qty_parsed": 86.5,
+   "ing_linked": 53.9,
+   "sr_matched": 48.9,
+   "grounded": 24.6,
+   "infoods_exact_name": 5.4
+  },
+  "pct_recipes_fully_grounded": 0.6
+ },
+ "rule": "no generic density; volume only via a food-specific SR portion row; count units never grounded",
+ "contains_text": false
+}
