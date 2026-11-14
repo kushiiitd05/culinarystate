@@ -36,6 +36,8 @@ COLUMNS = ("state_type", "process_id", "process_family", "step_decile", "n_input
            "moisture_cap_C", "aa_retention_typical")
 L1_AXES = {"medium": "medium", "temperature_C": "temperature_profile", "duration_min": "duration",
            "matrix_class": "matrix_class", "lid_state": "lid_state", "piece_size_class": "piece_size_class"}
+COMP_COLUMNS = ("comp_food_lot", "comp_salt_present", "comp_acid_present", "comp_lipid_present", "comp_aqueous_solutes",
+                "comp_contact_phase", "comp_salt_fraction", "comp_fat_fraction", "comp_acidity_band")
 LABELS = ["DERIVED_VIEW_NOT_LEDGER", "SCENARIO_DEFAULT_WHERE_STATED", "FORMULA_RESEARCH_ONLY", "NO_HUMAN_SIGNOFF_D085"]
 
 
@@ -100,12 +102,17 @@ def l2_cells(r1, r2, fit):
     return out
 
 
-def rows_for(rec, rung, schema, proc_family, L1, L2, fit):
+def rows_for(rec, rung, schema, proc_family, L1, L2, fit, markers=None):
     from culinarystate.extraction.interfaces import SourceText
     raw = "\n".join(str(s) for s in (rec.get("steps") or []))
     if not raw.strip():
         return []
-    events = list(rung.run(SourceText.from_raw("SDF", raw), rung.config(), schema=schema).graph.events)
+    parsed = rung.run(SourceText.from_raw("SDF", raw), rung.config(), schema=schema)
+    events = list(parsed.graph.events)
+    mem = None
+    if markers is not None:
+        from culinarystate.composition import state as CS
+        mem = CS.lot_members(parsed.graph.entities)
     rid, out = rec["recipe_id"], []
     for i, e in enumerate(events):
         proc = next((a.value for a in e.attributes if a.field == "proc_id"), None)
@@ -120,6 +127,10 @@ def rows_for(rec, rung, schema, proc_family, L1, L2, fit):
         for col, axis in L1_AXES.items():
             row[col] = l1_cell(r1, axis)
         row.update(l2_cells(r1, r2, fit))
+        if mem is not None:
+            med = ((r1 or {}).get("inputs") or {}).get("medium") or {}
+            comp = CS.composition(list(e.consumes), mem, markers, med.get("value"))
+            row.update({"comp_" + k: v for k, v in comp.items()})
         out.append(row)
     return out
 
@@ -134,6 +145,7 @@ def main(argv=None) -> int:
     ap.add_argument("--l2", required=True)
     ap.add_argument("--rows-dir", required=True)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--composition", action="store_true", help="D-116: guard parser + CompositionState columns")
     ap.add_argument("--shard", default="0/1", help="i/n: process records with index %% n == i")
     ap.add_argument("--out", required=True)
     a = ap.parse_args(argv)
@@ -151,10 +163,17 @@ def main(argv=None) -> int:
             r = json.loads(line)
             proc_family[r["id"]] = r.get("family") or None
     L1, L2 = _load(Path(a.l1)), _load(Path(a.l2))
-    rung, schema = RungA(), load_schema()
+    rung, schema = RungA(coord_food_guard=a.composition), load_schema()
+    markers = None
+    cols = COLUMNS
+    if a.composition:
+        from culinarystate.composition import state as CS
+        markers = CS.load_markers(ROOT / "registry" / "composition_markers_v1.csv")
+        cols = COLUMNS + COMP_COLUMNS
     fill = defaultdict(lambda: defaultdict(Counter))
     fill_heat = defaultdict(lambda: defaultdict(Counter))       # physics columns judged over heat-event rows only
     n_rec = n_rows = exc = 0
+    combo, combo_boil = Counter(), Counter()
     joined = Counter()
     part, buf = 0, []
 
@@ -173,7 +192,7 @@ def main(argv=None) -> int:
             continue
         n_rec += 1
         try:
-            rows = rows_for(rec, rung, schema, proc_family, L1, L2, fit)
+            rows = rows_for(rec, rung, schema, proc_family, L1, L2, fit, markers)
         except Exception:
             exc += 1
             continue
@@ -181,7 +200,12 @@ def main(argv=None) -> int:
             fam = r["family"]
             joined[fam] += (r["recipe_id"], r["event_id"]) in L1
             heat = (r["recipe_id"], r["event_id"]) in L2
-            for col in COLUMNS:
+            if heat and markers is not None:
+                key = "|".join(str(r[c]["v"]) for c in ("comp_salt_present", "comp_acid_present", "comp_lipid_present"))
+                combo[f'{r["process_family"]["v"]}|{key}'] += 1
+                if r["process_id"]["v"] == "PROC-000019":
+                    combo_boil[key] += 1
+            for col in cols:
                 c = r[col]
                 for tgt in ((fill, fill_heat) if heat else (fill,)):
                     if c["v"] is not None:
@@ -202,7 +226,8 @@ def main(argv=None) -> int:
         for fam, cols in fill.items()}
     rec = {"record": "STATE_DATASET_FILL", "decision": "D-110", "shard": a.shard, "labels": LABELS, "approver": "ksh+prv (AI, D-085)",
            "families_requested": a.families, "recipes": n_rec, "rows": n_rows, "exceptions": exc,
-           "heat_rows_joined_to_physics": dict(joined), "columns": list(COLUMNS),
+           "heat_rows_joined_to_physics": dict(joined), "columns": list(cols), "composition_d116": a.composition,
+           "heat_combo_family_salt_acid_lipid": dict(combo), "boil_combo_salt_acid_lipid": dict(combo_boil),
            "value_rate_pct": rate, "value_rate_pct_heat_rows": _rate(fill_heat), "fill_by_basis_or_reason": table, "rows_dir": rdir.name, "row_parts": part,
            "wall_seconds": round(time.time() - t0, 1), "contains_text": False, "contains_ids": False,
            "scientific_gate_pass": False}
