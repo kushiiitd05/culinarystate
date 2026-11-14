@@ -56,6 +56,7 @@ _DETERMINERS = ("the", "a", "an", "some", "each", "every", "this", "that", "thes
                 "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve")
 _COORD_GAP = re.compile(r"\s*(?:,\s*(?:and|or)?|and|or)\s+", re.IGNORECASE)
 # Guard v2 (ksh+prv review, 14 Nov): words that are never ingredient nouns in a list are never flipped.
+_VNEXT_PREPS = frozenset({"to", "over", "into"})
 _GUARD_VERB_BLOCK = frozenset({"fry", "sprinkle", "dried", "dust", "drizzle", "toast", "roast", "grill", "stew", "mash",
                                "brown", "glaze", "baste", "poach", "sear", "steam", "boil", "bake", "simmer", "stir"})
 _OBJECT_WORDS = frozenset({"it", "them", "the", "a", "an", "this", "these", "each", "both", "well", "lightly",
@@ -96,10 +97,12 @@ def _overlaps(a: tuple[int, int], spans: Sequence[tuple[int, int]]) -> bool:
 class RungA:
     """Deterministic Rung A over a read-only lexicon (default: the repository lexicons)."""
 
-    def __init__(self, lexicon: RungALexicon | None = None, *, coord_food_guard: bool = False) -> None:
+    def __init__(self, lexicon: RungALexicon | None = None, *, coord_food_guard: bool = False,
+                 lineage_vnext: bool = False) -> None:
         self.lexicon = lexicon or load_lexicon()
         # D-116 prerequisite (14 Nov): opt-in guard; False reproduces every frozen Rung A output byte for byte.
         self.coord_food_guard = coord_food_guard
+        self.lineage_vnext = lineage_vnext   # D-132 opt-in: A guard 'to/over/into', B fat stays, C mixture coref, D 'or'
         units = sorted(self.lexicon.unit_tokens, key=lambda u: (-len(u), u))
         unit_alt = "|".join(re.escape(u) for u in units) or r"(?!x)x"
         quals = "|".join(QUANTITY_QUALIFIERS)
@@ -223,7 +226,7 @@ class RungA:
         if not _COORD_GAP.fullmatch(gap):
             return False
         nxt = words[i + 1] if i + 1 < len(words) else ""
-        return nxt not in _OBJECT_WORDS
+        return nxt not in (_OBJECT_WORDS - _VNEXT_PREPS if self.lineage_vnext else _OBJECT_WORDS)
 
     def _action_at(self, raw: str, ss: int, toks: list, words: list[str], i: int,
                    endpoints: list) -> tuple[int, str | None] | None:
@@ -317,7 +320,8 @@ class RungA:
     def build_events(self, source: SourceText, mentions: MentionSet, links: Sequence[LinkResult],
                      quantities: Sequence[QuantityGroundingResult], config: StageConfig) -> EventGraph:
         self._check(config)
-        return build_graph(source, mentions, links, quantities, config, self.lexicon, self._rules)
+        return build_graph(source, mentions, links, quantities, config, self.lexicon, self._rules,
+                           vnext=self.lineage_vnext)
 
     def resolve_refs(self, source: SourceText, mentions: MentionSet, graph: EventGraph,
                      config: StageConfig) -> tuple[ReferenceResult, ...]:
