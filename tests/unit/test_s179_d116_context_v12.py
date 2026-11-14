@@ -43,7 +43,7 @@ def test_noodles_with_milk_get_aqueous_lipid_context_from_sr():
 def test_noodles_with_tomato_sauce_get_aqueous_low_fat_context():
     c = _ctx(SAUCE_TXT, COOK, NOODLES)
     assert _v(c, "context_members") == [TOMATO_SAUCE]
-    assert _v(c, "lipid_present") == "NOT_DETECTED" and _v(c, "aqueous_present") is True
+    assert _v(c, "lipid_present") == "NO_RECOGNIZED_MARKER" and _v(c, "aqueous_present") is True
     assert _v(c, "contact_phase") == "AQUEOUS"
 
 
@@ -55,7 +55,7 @@ def test_milk_and_tomato_sauce_contexts_differ_but_food_is_noodles():
 
 def test_food_own_fat_is_not_its_context():
     c = _ctx("Boil the noodles in water for 10 minutes.", BOIL, NOODLES)    # egg noodles 4.44 g fat / 100 g
-    assert _v(c, "lipid_present") == "NOT_DETECTED" and _v(c, "contact_phase") == "AQUEOUS"
+    assert _v(c, "lipid_present") == "NO_RECOGNIZED_MARKER" and _v(c, "contact_phase") == "AQUEOUS"
 
 
 def test_tomato_variant_d_context():
