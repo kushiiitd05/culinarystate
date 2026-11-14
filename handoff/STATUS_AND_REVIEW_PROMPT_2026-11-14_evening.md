@@ -52,6 +52,15 @@ Before item 4, B/C/D were all UNKNOWN MERGED_LOT_CONTEXT, which does not tell th
 - Timing of TRUE context (food×event): added at this step vs carried in the lot from earlier steps: salt 15.0% / 85.0%; acid 9.3% / 90.7%; lipid 21.4% / 78.6%. "Carried" means the co-member joined the lot at an earlier step. It is usually still in contact (a mixture), so this is not "history only".
 - Report wording: "In 81% of the cases where a simple ingredient-and-process lookup finds evidence, the recipe states a salt, acid or lipid context that the evidence source does not record, so applicability is unconfirmed rather than direct."
 
+
+### 3c. Late evening (D-122 to D-130)
+- D-122: semantics v1.2.1. Evidence context is PRESENT / ABSENT / UNKNOWN_IN_SOURCE; query context is TRUE / NO_RECOGNIZED_MARKER / UNKNOWN. Tomato B/C/D become UNKNOWN (unconfirmed in source), with near evidence EVD-002765.
+- D-124: external flow-graph corpus skipped; external human-gold validation is DECLARED_NOT_RUN.
+- D-126 / D-128: blind 50-context check, labelled by ksh+prv (AI, D-085). Gate FAIL: salt P 0.75 / R 0.71; acid P 0.75 / R 0.50; salt suggestion 0.53. PASS: lipid P 0.88 / R 0.76; water P 0.87 / R 0.82. Rater κ 0.78–1.00. Error classes: salty foods missing from the marker table; USDA default butter is salted; acidic foods without a pH route; the food's own salt or acid not counted; "A or B" alternatives; 7/50 food-to-step binding errors. Score: `reports/s179/d116_human_check_score_ai_2026-11-14.json`.
+- D-130: Kush accepts v1.2.1 with the FAIL recorded; no human review round.
+- Item 8: `registry/chemistry_packet_d116_v1_DRAFT.csv`, 13 records. 2 are existing USDA ledger rows (DIRECT, plain context); 8 come from the literature/pH tables, all VERIFY_AGAINST_PRIMARY; 3 are GAPs (salt × vitamin C, salt/acid × lycopene, vitamin C leaching). Lycopene–oil records concern bioaccessibility, a different target from content, so they are SCENARIO, never DIRECT.
+- Parv: no new GitHub commits since the 13 Nov candidate (`reports/final/submission_candidate_2026-11-13/`). Open PRs #11, #12.
+
 ## 4. D-112 execution list
 | # | Item | Status |
 |---|---|---|
