@@ -120,6 +120,7 @@ def main(argv=None) -> int:
     ap.add_argument("--l2", required=True)
     ap.add_argument("--rows-dir", required=True)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--shard", default="0/1", help="i/n: process records with index %% n == i")
     ap.add_argument("--out", required=True)
     a = ap.parse_args(argv)
     out, rdir = Path(a.out), Path(a.rows_dir)
@@ -150,9 +151,12 @@ def main(argv=None) -> int:
                 g.write("".join(json.dumps(r, separators=(",", ":")) + "\n" for r in buf))
             part, buf = part + 1, []
 
+    si, sn = (int(x) for x in a.shard.split("/"))
     for k, rec in enumerate(C.stream(tuple(a.families), ROOT)):
         if a.limit and k >= a.limit:
             break
+        if k % sn != si:
+            continue
         n_rec += 1
         try:
             rows = rows_for(rec, rung, schema, proc_family, L1, L2, fit)
@@ -182,7 +186,7 @@ def main(argv=None) -> int:
     rate = {fam: {col: round(100 * sum(v for k, v in cnt.items() if k.startswith("VALUE:")) / max(1, sum(
         v for k, v in cnt.items() if k.startswith(("VALUE:", "UNKNOWN:")))), 2) for col, cnt in cols.items()}
         for fam, cols in fill.items()}
-    rec = {"record": "STATE_DATASET_FILL", "decision": "D-110", "labels": LABELS, "approver": "ksh+prv (AI, D-085)",
+    rec = {"record": "STATE_DATASET_FILL", "decision": "D-110", "shard": a.shard, "labels": LABELS, "approver": "ksh+prv (AI, D-085)",
            "families_requested": a.families, "recipes": n_rec, "rows": n_rows, "exceptions": exc,
            "heat_rows_joined_to_physics": dict(joined), "columns": list(COLUMNS),
            "value_rate_pct": rate, "value_rate_pct_heat_rows": _rate(fill_heat), "fill_by_basis_or_reason": table, "rows_dir": rdir.name, "row_parts": part,
