@@ -1,0 +1,91 @@
+ing_id,canonical_name,marker,verdict,reason
+ING-000001,butter,LIPID,ACCEPT,Fat phase ~80% fat (contains ~16% water)
+ING-000003,olive oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000006,lemon,ACID,ACCEPT,Juice pH ~2.2; whole-fruit form ambiguous (zest-only use carries no acid)
+ING-000015,vegetable oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000021,lime,ACID,ACCEPT,Juice pH ~2.0-2.4; whole-fruit form ambiguous (zest-only use)
+ING-000024,wine vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-000026,sunflower oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000034,rapeseed oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000035,chicken stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-000037,extra virgin olive oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000039,vegetable stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-000043,lemon juice,ACID,ACCEPT,Citrus juice pH ~2-2.6
+ING-000044,salt,SALT,ACCEPT,NaCl
+ING-000053,soy sauce,SALT,ACCEPT,~14-18% NaCl; pH ~4.7-4.8 so not ACID
+ING-000066,white wine,ACID,ACCEPT,Grape wine pH ~3.0-3.6; acidic liquid (also aqueous)
+ING-000071,oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000090,balsamic vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-000092,cider vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-000094,sesame oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000105,red wine,ACID,ACCEPT,Grape wine pH ~3.3-3.7; acidic liquid (also aqueous)
+ING-000109,water,AQUEOUS,ACCEPT,Water
+ING-000143,fish sauce,SALT,ACCEPT,~20-25% NaCl
+ING-000148,lime juice,ACID,ACCEPT,Citrus juice pH ~2-2.6
+ING-000150,beef stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-000208,sherry vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-000216,rice vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-000221,light soy sauce,SALT,ACCEPT,High NaCl soy; SALT correct
+ING-000271,groundnut oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000279,dark soy sauce,SALT,ACCEPT,Still ~10%+ NaCl; SALT correct
+ING-000298,coconut oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000322,ghee,LIPID,ACCEPT,~99% milk fat
+ING-000380,rice wine,ACID,REJECT,"Rice wine pH ~4.2-4.5, near threshold; aromatic not acidulant; use AQUEOUS"
+ING-000408,stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-000428,tamarind paste,ACID,ACCEPT,pH ~2.8-3.2; classic acidulant
+ING-000447,malt vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-000448,margarine,LIPID,ACCEPT,Fat phase; low-fat spreads may be <60% fat
+ING-000454,fish stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-000459,lard,LIPID,ACCEPT,~100% pork fat
+ING-000508,light olive oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000516,chilli oil,LIPID,ACCEPT,Oil phase; LLM 'acidic' YES flags are spurious
+ING-000541,suet,LIPID,ACCEPT,Solid beef fat
+ING-000556,vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-000574,truffle oil,LIPID,ACCEPT,Oil phase; LLM acidic YES spurious
+ING-000575,walnut oil,LIPID,ACCEPT,Oil phase; LLM acidic YES spurious
+ING-000583,lamb stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-000592,celery salt,SALT,ACCEPT,Mostly NaCl with celery seed
+ING-000797,flavourless oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-000853,veg stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-000898,rock salt,SALT,ACCEPT,"NaCl; note often non-ingested (ice cream churn, salt crust)"
+ING-000899,rosé wine,ACID,ACCEPT,Grape wine pH ~3.1-3.5
+ING-000908,wine,ACID,ACCEPT,Grape wine pH ~3.0-3.8; acidic liquid
+ING-001024,garlic salt,SALT,ACCEPT,Mostly NaCl with garlic powder
+ING-001088,cooking oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001095,dessert wine,ACID,ACCEPT,Sweet wines still pH ~3.3-3.9; acidic
+ING-001101,ginger wine,ACID,ACCEPT,"Fortified grape/raisin wine, likely pH <4; pH unsourced, verify"
+ING-001107,hazelnut oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001147,spray oil,LIPID,ACCEPT,Oil-based spray
+ING-001165,white vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-001194,chinese black vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-001241,neutral-tasting oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001263,shaohsing wine,ACID,REJECT,"Shaoxing pH near 4.6, not acidulant; cooking grades often salted; AQUEOUS (or SALT if salted)"
+ING-001296,avocado oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001324,corn oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001328,crispy chilli oil,LIPID,ACCEPT,Oil phase dominant; solids secondary
+ING-001436,turkey stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-001484,cooking spray,LIPID,ACCEPT,Oil-based spray; tiny quantities
+ING-001518,ham stock,AQUEOUS,ACCEPT,Aqueous; notably salty (single-marker limit)
+ING-001539,marsala wine,ACID,ACCEPT,Fortified wine pH ~3.3-3.6
+ING-001567,pork stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-001586,rice bran oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001624,tamarind pulp,ACID,ACCEPT,pH ~2.8-3.2; classic acidulant
+ING-001627,tarragon vinegar,ACID,ACCEPT,"Vinegar, acetic acid ~4-6%, pH ~2.4-3.4"
+ING-001670,basil oil,LIPID,ACCEPT,Infused oil; LLM acidic YES spurious
+ING-001687,bouillon,SALT,REJECT,Form-ambiguous: liquid bouillon is AQUEOUS like stock; only cube/granules = SALT; split ING
+ING-001785,garlic oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001786,garlic-infused oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001787,glass red wine,ACID,ACCEPT,"Marker fine; canonical name is a unit-parse artifact, merge into red wine"
+ING-001800,grapeseed oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001838,madeira wine,ACID,ACCEPT,Fortified wine pH ~3.3-3.6
+ING-001860,mustard oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-001886,pink himalayan salt,SALT,ACCEPT,~95%+ NaCl
+ING-001936,shaoxing wine,ACID,REJECT,Same as shaohsing wine: not a clear acidulant; AQUEOUS (or SALT if salted)
+ING-001957,tamarind,ACID,ACCEPT,"Tartaric-acid rich, pH ~2.8-3.2"
+ING-001958,tamarind chutney,ACID,ACCEPT,Sweetened but still acidic (pH ~3-3.5)
+ING-001959,tamarind sauce,ACID,ACCEPT,Acidic tamarind base
+ING-001978,veal stock,AQUEOUS,ACCEPT,Water-based stock (may also carry salt)
+ING-002033,citric acid,ACID,ACCEPT,Pure acidulant
+ING-002070,palm oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-002074,peanut oil,LIPID,ACCEPT,"Oil, ~100% fat"
+ING-002088,shortening,LIPID,ACCEPT,100% fat
