@@ -27,14 +27,16 @@ from culinarystate.evaluation.runga_typed_vs_gold import map_event  # noqa: E402
 TOOL_VERSION = "s179-process-state-map-0.1.0"
 LABELS = ["DIAGNOSTIC", "D-097_STRUCTURAL_TYPES", "NON_CITABLE", "NO_HUMAN_SIGNOFF_D085"]
 _RUNG = None
+_GUARD = False
 _PROC_FAMILY: dict = {}
 
 
-def _init() -> None:
-    global _RUNG, _SCHEMA
+def _init(guard: bool = False) -> None:
+    global _RUNG, _SCHEMA, _GUARD
+    _GUARD = guard
     from culinarystate.extraction.rung_a import RungA
     from culinarystate.quantity.rc2_dryrun import load_schema
-    _RUNG, _SCHEMA = RungA(), load_schema()
+    _RUNG, _SCHEMA = RungA(coord_food_guard=guard), load_schema()
     if not _PROC_FAMILY:
         for line in (ROOT / "ledgers/data/PROC.jsonl").read_text(encoding="utf-8").splitlines():
             if line.strip():
@@ -47,7 +49,8 @@ def decile(i: int, n: int) -> int:
 
 
 def _empty() -> dict:
-    return {"n_recipes": 0, "n_events": 0, "exceptions": 0, "recipes_without_events": 0,
+    return {"n_recipes": 0, "n_events": 0, "exceptions": 0, "recipes_without_events": 0, "coord_food_guard_triggers": 0,
+            "recipes_with_guard_trigger": 0,
             "by_family": defaultdict(Counter), "proc_type": defaultdict(Counter),
             "proc_family_type": defaultdict(Counter), "position_type": defaultdict(Counter),
             "position_proc_family": defaultdict(Counter), "type_bigrams": Counter(), "proc_family_bigrams": Counter()}
@@ -63,7 +66,11 @@ def tally_records(records) -> dict:
         fam = rec.get("source_family", "UNKNOWN")
         try:
             raw = "\n".join(str(s) for s in (rec.get("steps") or []))
-            events = list(_RUNG.run(SourceText.from_raw("PSM", raw), _RUNG.config(), schema=_SCHEMA).graph.events) if raw.strip() else []
+            out = _RUNG.run(SourceText.from_raw("PSM", raw), _RUNG.config(), schema=_SCHEMA) if raw.strip() else None
+            events = list(out.graph.events) if out else []
+            g = sum(1 for d in (out.mentions.diagnostics if out else ()) if d == "COORD_FOOD_GUARD")
+            t["coord_food_guard_triggers"] += g
+            t["recipes_with_guard_trigger"] += g > 0
         except Exception:  # counted, never hidden
             t["exceptions"] += 1
             continue
@@ -92,7 +99,8 @@ def tally_records(records) -> dict:
 def merge(parts) -> dict:
     out = _empty()
     for p in parts:
-        for k in ("n_recipes", "n_events", "exceptions", "recipes_without_events"):
+        for k in ("n_recipes", "n_events", "exceptions", "recipes_without_events", "coord_food_guard_triggers",
+                  "recipes_with_guard_trigger"):
             out[k] += p[k]
         for k in ("by_family", "proc_type", "proc_family_type", "position_type", "position_proc_family"):
             for a, c in p[k].items():
@@ -126,6 +134,7 @@ def main(argv=None) -> int:
     ap.add_argument("--chunk", type=int, default=500)
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--coord-food-guard", action="store_true")
     a = ap.parse_args(argv)
     out = Path(a.out)
     if out.exists():
@@ -134,11 +143,11 @@ def main(argv=None) -> int:
     recs = C.stream(tuple(a.families), ROOT)
     if a.limit:
         recs = (r for i, r in enumerate(recs) if i < a.limit)
-    with Pool(a.workers, initializer=_init) as pool:
+    with Pool(a.workers, initializer=_init, initargs=(a.coord_food_guard,)) as pool:
         parts = list(pool.imap_unordered(tally_records, _chunks(recs, a.chunk)))
     res = _plain(merge(parts))
     rec = {"record": "PROCESS_STATE_MAP", "decision": "D-100 Lane T", "tool_version": TOOL_VERSION, "labels": LABELS,
-           "approver": "ksh+prv (AI, D-085)", "families_requested": a.families, "started_at_utc": start,
+           "approver": "ksh+prv (AI, D-085)", "families_requested": a.families, "coord_food_guard": a.coord_food_guard, "started_at_utc": start,
            "wall_seconds": round(time.time() - t0, 1), "workers": a.workers, "limit": a.limit or None,
            "contains_text": False, "contains_ids": False, **res}
     out.parent.mkdir(parents=True, exist_ok=True)
