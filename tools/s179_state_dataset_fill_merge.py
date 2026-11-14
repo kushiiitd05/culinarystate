@@ -14,10 +14,13 @@ def merge(parts: list[dict]) -> dict:
     heat = defaultdict(lambda: defaultdict(Counter))
     tot = Counter()
     joined = Counter()
+    combo, combo_boil = Counter(), Counter()
     for p in parts:
         for k in ("recipes", "rows", "exceptions"):
             tot[k] += p[k]
         joined.update(p.get("heat_rows_joined_to_physics", {}))
+        combo.update(p.get("heat_combo_family_salt_acid_lipid", {}))
+        combo_boil.update(p.get("boil_combo_salt_acid_lipid", {}))
         for fam, cols in p["fill_by_basis_or_reason"].items():
             for col, cnt in cols.items():
                 fill[fam][col].update(cnt)
@@ -26,6 +29,7 @@ def merge(parts: list[dict]) -> dict:
     return {"recipes": tot["recipes"], "rows": tot["rows"], "exceptions": tot["exceptions"],
             "heat_rows_joined_to_physics": dict(joined), "value_rate_pct": rate,
             "fill_by_basis_or_reason": {f: {c: dict(v) for c, v in cols.items()} for f, cols in fill.items()},
+            "heat_combo_family_salt_acid_lipid": dict(combo), "boil_combo_salt_acid_lipid": dict(combo_boil),
             "shards": sorted(p.get("shard", "0/1") for p in parts)}
 
 
