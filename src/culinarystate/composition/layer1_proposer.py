@@ -38,6 +38,20 @@ TRIGGERS: tuple[str, ...] = (
 )
 #: Event fields a proposal may set. All categorical; ``produces``/``consumes`` are never proposable.
 PROPOSABLE_FIELDS: tuple[str, ...] = ("alternative_group", "condition_profile_id")
+#: Which field each trigger licenses. A trigger only licenses the field it is actually about, so a
+#: coreference answer cannot be smuggled in as an alternatives binding. Only the "A or B" trigger
+#: may bind ``alternative_group``; every other ambiguity is a condition-profile question.
+TRIGGER_FIELDS: dict[str, tuple[str, ...]] = {
+    "AMBIGUOUS_ACTION": ("condition_profile_id",),
+    "AMBIGUOUS_ANTECEDENT": ("condition_profile_id",),
+    "AMBIGUOUS_CANDIDATES": ("condition_profile_id",),
+    "AMBIGUOUS_OR_MISSING": ("condition_profile_id",),
+    "AMBIGUOUS_REFERENCE": ("condition_profile_id",),
+    "UNRESOLVED_LOT": ("condition_profile_id",),
+    "VNEXT_ALTERNATIVE_SKIPPED": ("alternative_group",),
+    "VNEXT_FAT_STAYS": ("condition_profile_id",),
+    "VNEXT_MIXTURE_COREF": ("condition_profile_id",),
+}
 #: Lot statuses that count as an ambiguity.
 _UNRESOLVED_LOT_STATUSES = frozenset({"UNRESOLVED", "APPARENTLY_UNUSED"})
 _NUMERIC = re.compile(r"^\s*-?\d+(?:[.,]\d+)?\s*%?\s*$")
@@ -98,8 +112,12 @@ def _reject(proposal: Proposal, graph: EventGraph, fired: Sequence[str]) -> str 
         return "TRIGGER_DID_NOT_FIRE"
     if proposal.field not in PROPOSABLE_FIELDS:
         return "FIELD_NOT_PROPOSABLE"
+    # The numeric prohibition is absolute, so it is checked before field licensing: a number is
+    # refused as a number, whatever field or trigger it arrived under.
     if _NUMERIC.match(str(proposal.value)):
         return "NUMERIC_VALUE_NOT_ALLOWED"
+    if proposal.field not in TRIGGER_FIELDS.get(proposal.trigger, ()):
+        return "FIELD_NOT_LICENSED_BY_TRIGGER"
     if not any(e.event_id == proposal.event_id for e in graph.events):
         return "EVENT_NOT_IN_GRAPH"
     return None
@@ -166,5 +184,5 @@ def span_text(raw: str, proposal: Proposal) -> str:
     return raw[proposal.span_start:proposal.span_end]
 
 
-__all__ = ["TRIGGERS", "PROPOSABLE_FIELDS", "Proposal", "ProposalError", "ProposerClient",
+__all__ = ["TRIGGERS", "TRIGGER_FIELDS", "PROPOSABLE_FIELDS", "Proposal", "ProposalError", "ProposerClient",
            "Decisions", "triggers_for", "review", "apply", "run", "span_text"]
