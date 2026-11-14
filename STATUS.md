@@ -1,5 +1,12 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+## Composition-aware state + status to completion — 14 November 2026 (evening; start here)
+
+- D-112 scope frozen; parser guard v2; C_t schema v1.1 passed by Kush (D-120); C_t v1.2 adds USDA SR composition (793 ING) and composition-aware routing over the frozen router (added salt/acid/lipid -> CONTEXT_MISMATCH; unstated context -> SCENARIO suggestion).
+- Full-corpus composition runs v1/v1.1: 612,782 recipes, 0 exceptions; boil events salted 9.9%, acidic 7.6%, lipid 7.9%, UNKNOWN 15.0%.
+- Corpus prior + naive-lookup headline running (manjot + Mac).
+- START HERE: handoff/STATUS_AND_REVIEW_PROMPT_2026-11-14_evening.md (done list, open MUST/SHOULD, day plan, limitations, external review prompt).
+
 ## Reduced submission candidate and Kush takeover —13 November2026
 
 - Completed fresh counterpart AI R1/CAL reviews and paired comparisons locally; no wait for a counterpart AI transfer. R1 remains NOT_COUNTED/AI_PERSONAS_NOT_INTER_RATER, original labels retained; CAL16/16numericspansagree with metadata qualifications. Human review pending.
