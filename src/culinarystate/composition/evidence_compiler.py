@@ -110,8 +110,31 @@ def _cell_status(cell: Mapping[str, Any] | None) -> tuple[str, str | None]:
     return "PRESENT", None
 
 
+def ph_axis_cell(state: Mapping[str, Any]) -> dict[str, Any]:
+    """Axis 7 from the in-repo FDA/CFSAN 2003 pH table, for ingredients the crosswalk resolves EXACTly.
+
+    The band is reported as the interval it is: no midpoint, no clipping. The crosswalk is
+    AI_DRAFTED, so the cell says so and human verification is still owed for anything in a figure.
+    """
+    from culinarystate.composition import ph_bands as PH
+
+    axis = _by_no()[7]
+    base = {"axis": axis.axis, "owner_step": axis.owner_step, "hard_exclusion": axis.hard_exclusion}
+    band = PH.band_for(str(state.get("food_id") or ""))
+    if band is None:
+        return {**base, "status": "UNKNOWN", "reason": "NO_PH_BAND_FOR_THIS_INGREDIENT"}
+    return {**base, "status": "EVALUABLE", "reason": None,
+            "ph_low": band.ph_low, "ph_high": band.ph_high, "value_type": band.value_type,
+            "acidity": PH.acidity_band(band.ph_low, band.ph_high),
+            "item_as_printed": band.item, "basis": PH.BASIS,
+            "source": band.source, "source_sha256": band.source_sha256,
+            "verify_status": band.verify_status}
+
+
 def _axis_cell(axis: Axis, state: Mapping[str, Any], target: str, has_rows: bool) -> dict[str, Any]:
     """One compiled axis. An axis the code does not implement is UNKNOWN with the registry reason."""
+    if axis.axis_no == 7:
+        return ph_axis_cell(state)
     if not axis.implemented:
         return {"status": "UNKNOWN", "reason": axis.unknown_reason or "NOT_IMPLEMENTED",
                 "axis": axis.axis, "owner_step": axis.owner_step, "hard_exclusion": axis.hard_exclusion}
