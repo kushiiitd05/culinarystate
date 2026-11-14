@@ -1,0 +1,111 @@
+qid,block,rank_in_block,verdict,reason,entered,reviewer,label
+D5-S1-001,S1,1,KEEP,cider boiled (steps 2-3); step 4 is cheesecloth prep,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-002,S1,2,DROP,two sauce receipts merged with cross-references; whether step 5 heats is not stated,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-003,S1,3,DROP,"several alternative apple preparations, not one sequence",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-004,S1,4,KEEP,nothing heated by step 3 (bake is step 4),true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-005,S1,5,KEEP,"drained juice (with the dissolved sugar), water and vinegar boiled with the spice bag (step 5)",true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-006,S1,6,KEEP,braise liquid and garnish all heated by step 11,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-007,S1,7,DROP,"culinary glossary, not a recipe",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-008,S1,8,KEEP,sausages boiled (step 1),true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-009,S1,9,KEEP,"rinds boiled in water; marmalade boiled with pulp, juice and sugar",true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-010,S1,10,KEEP,celery boiled in salted water (step 6),true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-011,S1,11,KEEP,soup boiled through step 6; steps 7-13 are serving notes and variants,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-012,S1,12,KEEP,prunes cooked in soak water; salt and wheat cooked over hot water,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-013,S1,13,DROP,"general poaching method for any fish, not one recipe",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-014,S1,14,KEEP,"vinegar, sugar and spices boiled (step 2); citron not yet added",true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-015,S1,15,KEEP,sugar melted and added to scalded milk; eggs only receive the hot mixture (not cooked),true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-016,S1,16,DROP,"gold item 'dumplings' has no ING id, so no answer can be scored correct",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-017,S1,17,KEEP,artichokes and onion cooked in water; roux with scalded milk,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-018,S1,18,DROP,several veal receipts in one text,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-019,S1,19,DROP,"gold item 'bones' has no ING id, so no answer can be scored correct",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S1-020,S1,20,DROP,"pairing table (roast X with Y sauce), no process",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-001,S2,1,KEEP,step 4: egg-sugar mix added to cornstarch-milk and stirred into the boiling milk,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-002,S2,2,KEEP,"step 4: vanilla into the syrup at hard crack, poured over the corn",true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-003,S2,3,DROP,steps 1-6 are ingredient-list fragments; step 6 is not an action,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-004,S2,4,KEEP,step 5: put on ice,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-005,S2,5,DROP,"descriptive text about lamb, no procedure; step 4 is not an action",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-006,S2,6,DROP,"household tips about the oven, not a recipe",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-007,S2,7,KEEP,step 3: crackers pounded fine and rolled in butter,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-008,S2,8,DROP,ingredient list only; step 5 is not an action,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-009,S2,9,KEEP,"step 6: add sugar, salt and vinegar and keep beating",true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-010,S2,10,DROP,"step 8 is a substitution note, not an action",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-011,S2,11,KEEP,step 7: reduce the cream to one-third pint,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-012,S2,12,DROP,step 8 is a negative instruction (do not stir); no next action,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-013,S2,13,DROP,"table of contents, not a recipe",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-014,S2,14,KEEP,"step 4: cool, add salt and flavouring, spread",true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-015,S2,15,KEEP,step 4: bake the mixture in puff paste,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-016,S2,16,KEEP,step 4: heat slowly and cook about six hours,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-017,S2,17,KEEP,step 5: stir in the sugar and chill,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-018,S2,18,DROP,"gold action (drop by spoonfuls) has no PROC id, so no answer can be scored",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-019,S2,19,KEEP,step 3: drain the sago and add milk,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-S2-020,S2,20,KEEP,step 14: remove the steak from the gravy,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-001,C,1,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-002,C,2,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-003,C,3,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-004,C,4,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-005,C,5,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-006,C,6,DROP,"target is near-absent in this food: a correct system may answer TARGET_ABSENT, which gold ANSWER would mark wrong",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-007,C,7,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-008,C,8,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-009,C,9,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-010,C,10,DROP,"target is near-absent in this food: a correct system may answer TARGET_ABSENT, which gold ANSWER would mark wrong",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-011,C,11,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-012,C,12,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-013,C,13,DROP,"target is near-absent in this food: a correct system may answer TARGET_ABSENT, which gold ANSWER would mark wrong",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-014,C,14,KEEP,gold range rechecked against the EVD ledger,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-C-015,C,15,KEEP,gold range rechecked against the EVD ledger,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-001,P1,1,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-002,P1,2,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-003,P1,3,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-004,P1,4,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-005,P1,5,DROP,"target is near-absent in this food: a correct system may answer TARGET_ABSENT, which gold ANSWER would mark wrong",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-006,P1,6,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-007,P1,7,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-008,P1,8,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-009,P1,9,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-010,P1,10,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-011,P1,11,DROP,"target is near-absent in this food: a correct system may answer TARGET_ABSENT, which gold ANSWER would mark wrong",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-012,P1,12,DROP,"target is near-absent in this food: a correct system may answer TARGET_ABSENT, which gold ANSWER would mark wrong",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-013,P1,13,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-014,P1,14,KEEP,gold range rechecked against the EVD ledger,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P1-015,P1,15,DROP,"target is near-absent in this food: a correct system may answer TARGET_ABSENT, which gold ANSWER would mark wrong",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-016,P2,1,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-017,P2,2,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-018,P2,3,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-019,P2,4,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-020,P2,5,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-021,P2,6,DROP,"process is implausible for this food; the question tests nothing a cook would ask (frying stock); also target is near-absent in this food: a correct system may answer TARGET_ABSENT, which gold ANSWER would mark wrong",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-022,P2,7,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-023,P2,8,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-024,P2,9,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-025,P2,10,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-026,P2,11,DROP,process is implausible for this food; the question tests nothing a cook would ask (deep-frying stock),false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-027,P2,12,DROP,process is implausible for this food; the question tests nothing a cook would ask (baking stock),false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-028,P2,13,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-029,P2,14,DROP,"target is near-absent in this food: a correct system may answer TARGET_ABSENT, which gold ANSWER would mark wrong",false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P2-030,P2,15,KEEP,gold range rechecked against the EVD ledger,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-031,P3,1,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-032,P3,2,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-033,P3,3,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-034,P3,4,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-035,P3,5,DROP,process is implausible for this food; the question tests nothing a cook would ask (deep-frying juice),false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-036,P3,6,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-037,P3,7,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-038,P3,8,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-039,P3,9,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-040,P3,10,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-041,P3,11,KEEP,gold range rechecked against the EVD ledger,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-042,P3,12,KEEP,gold range rechecked against the EVD ledger,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-043,P3,13,KEEP,gold range rechecked against the EVD ledger,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-044,P3,14,DROP,process is implausible for this food; the question tests nothing a cook would ask (deep-frying a spice),false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-P3-045,P3,15,KEEP,gold range rechecked against the EVD ledger,false,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-U-001,U,1,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-U-002,U,2,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-U-003,U,3,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-U-004,U,4,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-U-005,U,5,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-X-001,X,1,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-X-002,X,2,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-X-003,X,3,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-X-004,X,4,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085
+D5-X-005,X,5,KEEP,expected behaviour as drafted (S178); gold branch set by intent,true,"ksh+prv (AI, D-085)",NO_HUMAN_SIGNOFF_D085

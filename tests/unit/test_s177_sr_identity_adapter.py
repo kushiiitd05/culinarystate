@@ -62,8 +62,9 @@ def env(tmp_path):
     _csv(sr / "food.csv", ["fdc_id", "data_type", "description", "food_category_id", "publication_date"],
          [[f, "sr_legacy_food", d, g, "2019-04-01"] for f, (d, g, _) in SR_FOODS.items()])
     _csv(sr / "food_category.csv", ["id", "code", "description"], [[k, "0", v] for k, v in GROUPS.items()])
-    _csv(sr / "food_nutrient.csv", ["id", "fdc_id", "nutrient_id", "amount"],
-         [[n, f, "1162", v] for n, (f, (_, _, v)) in enumerate(SR_FOODS.items()) if v is not None])
+    _csv(sr / "food_nutrient.csv", ["id", "fdc_id", "nutrient_id", "amount", "data_points", "derivation_id"],
+         [[n, f, "1162", v, "1", "1"] for n, (f, (_, _, v)) in enumerate(SR_FOODS.items()) if v is not None])
+    _csv(sr / "food_nutrient_derivation.csv", ["id", "code", "description", "source_id"], [["1", "A", "Analytical", "1"]])  # S178 R4
     reg = [["butter", "Butter, salted", "100", "DEFAULT_FORM", "", "AGENT_PROPOSED", "UNVERIFIED"],
            ["chickpea", "Chickpeas, canned", "110", "DEFAULT_FORM", "", "AGENT_PROPOSED", "UNVERIFIED"],
            ["apple", "Apple", "120", "DIRECT", "", "AGENT_PROPOSED", "UNVERIFIED"],
@@ -100,8 +101,10 @@ def _build(env):
 
 def _screen(env, idn, floor="1", margin="0.15"):
     fl = {VC: EG.Floor(VC, "Vitamin C", "vitamin_c", "mg", Fraction(floor), "PROPOSED_PILOT", Fraction(margin))}
-    vals = EG.read_sr_values(env[0]["sr_dir"], {f for c in idn.cands.values() for f, _, _ in c}, ["vitamin_c"])
-    return EG.TargetPresenceScreen(fl, idn.cands, vals, idn.categories, idn.kinds)
+    fdcs = {f for c in idn.cands.values() for f, _, _ in c}
+    vals = EG.read_sr_values(env[0]["sr_dir"], fdcs, ["vitamin_c"])
+    basis = EG.read_sr_basis(env[0]["sr_dir"], fdcs, ["vitamin_c"])                    # S178 R4
+    return EG.TargetPresenceScreen(fl, idn.cands, vals, idn.categories, idn.kinds, basis)
 
 
 # ------------------------------------------------------------------ kind -> band mapping
@@ -226,10 +229,13 @@ def _real():
 
 def test_snapshot_of_the_presence_states_over_the_active_ing():
     """Consolidation review 5.3 simulation: ABSENT 52 (14.1 % of mentions), PRESENT 317, UNKNOWN 1,679. This build: 52 / 318 /
-    1,678 (one ING differs on the PRESENT / UNKNOWN side; ABSENT is identical). AI sizing numbers, not results."""
+    1,678 (one ING differs on the PRESENT / UNKNOWN side; ABSENT is identical). AI sizing numbers, not results.
+    S178 (FIX-ROUTER, SCI-B R4): ABSENT also needs every plausible SR value to be analytical; 39 of the 52 rest on an
+    assumed, imputed or undocumented zero and are UNKNOWN (SR_ZERO_NOT_ANALYTICAL): 13 / 318 / 1,717."""
     _, sc, ing = _real()
     c = Counter(sc.member_state(VC, i) for i in ing)
-    assert len(ing) == 2048 and c == {EG.ABSENT: 52, EG.PRESENT: 318, EG.UNKNOWN: 1678}
+    assert len(ing) == 2048 and c == {EG.ABSENT: 13, EG.PRESENT: 318, EG.UNKNOWN: 1717}
+    assert sum(sc.member_verdict(VC, i)[1] == EG.B_NOT_ANALYTICAL for i in ing) >= 39
 
 
 def test_every_absent_ing_rests_on_a_curated_direct_uk_us_or_default_form_identity():
@@ -259,14 +265,14 @@ def test_milk_sugar_cream_vinegar_bread_leave_absent_as_the_review_predicts():
     by_name = {n: i for i, (n, _) in ing.items()}
     for name in ("milk", "sugar", "cream", "vinegar", "bread"):
         assert sc.member_state(VC, by_name[name]) != EG.ABSENT, name
-    for name in ("butter", "olive oil", "rice", "pasta"):                     # these stay ABSENT
-        assert sc.member_state(VC, by_name[name]) == EG.ABSENT, name
+    for name in ("butter", "olive oil", "rice", "pasta"):                     # S177: ABSENT; S178 R4: their SR zeros have
+        assert sc.member_verdict(VC, by_name[name]) == (EG.UNKNOWN, EG.B_NOT_ANALYTICAL), name   # no derivation, 0 points
 
 
 def test_provenance_names_the_identity_source_and_is_counts_only():
     g, sc, _ = _real()
     d = g.describe()
-    assert d["identity_source"] == SI.IDENTITY_SOURCE and d["version"].endswith("0.2.0-draft")
+    assert d["identity_source"] == SI.IDENTITY_SOURCE and d["version"] == EG.VERSION
     assert d["identity_registry_sha256"] == EG._sha(SI.REGISTRY_PATH)
     assert d["identity_kinds"] == dict(sorted(Counter(sc.kinds.values()).items())) and "DIRECT" in d["identity_kinds"]
     D.assert_counts_only(d)
@@ -287,7 +293,9 @@ def test_legacy_identity_rebuild_reproduces_the_previous_absent_count(tmp_path):
     cands, vals, cats = EG.read_table_full(p)
     fl = EG.read_floors()
     sc = EG.TargetPresenceScreen(fl, cands, vals, cats)
-    assert sum(sc.member_state(VC, i) == EG.ABSENT for i in cands) == 86
+    assert sum(sc.member_state(VC, i) == EG.ABSENT for i in cands) == 0      # S178 R4: no basis given -> fail-closed
+    sc = EG.TargetPresenceScreen(fl, cands, vals, cats, basis=EG.read_table_basis(p))
+    assert sum(sc.member_state(VC, i) == EG.ABSENT for i in cands) == 12     # S177: 86; S178 R4 analytical only: 12
     with pytest.raises(ValueError):
         tool.build("nope")
     assert tool.main(["--check"]) == 0                                       # the shipped (adapter) table still matches

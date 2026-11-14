@@ -1,0 +1,80 @@
+{
+  "agent_aa_tests": {
+    "includes_new": 10,
+    "passed": 21,
+    "source": "reports/step10/identifiability_report_v1.md; independent agent report"
+  },
+  "base_commit": "65298da",
+  "date": "2026-11-11",
+  "labels": [
+    "ENGINEERING_VERIFICATION",
+    "NO_SCIENTIFIC_GATE_PASS"
+  ],
+  "limits": [
+    "The final full suite is NOT clean:1failure11errors are retained.",
+    "Missing-input tests were not skipped, removed or weakened.",
+    "44ledger tests deselected by existing pytest non-ledgers default.",
+    "Full raw tracebacks remain local; hashes identify local logs.",
+    "Individual run start/end timestamps were not captured; no timestamps invented."
+  ],
+  "record": "S179_PARV_TEST_VERIFICATION",
+  "remaining_affected_modules": [
+    "tests/unit/test_step07ic_operating_points.py",
+    "tests/unit/test_step16b_frame.py",
+    "tests/unit/test_step16b_text_strata.py"
+  ],
+  "remaining_missing_inputs": [
+    "ledgers/recipe_identity/recipe_identity_features_v1.parquet",
+    "data/external/foodcom/recipes.parquet"
+  ],
+  "suite": [
+    {
+      "deselected": 44,
+      "duration_seconds": 178.48,
+      "errors": 13,
+      "failed": 8,
+      "log_sha256": "1179451f64a69ed1218464f77a55a0c891bf647130f938d40e94a5966a26b032",
+      "passed": 7906,
+      "skipped": 14,
+      "stage": "BASELINE_SANDBOX",
+      "summary": "8 failed, 7906 passed, 14 skipped, 44 deselected, 13 errors in 178.48s (0:02:58)"
+    },
+    {
+      "deselected": 0,
+      "duration_seconds": 4.16,
+      "errors": 0,
+      "failed": 0,
+      "log_sha256": "8e2ec1ce55b22aae4bda4b27ef44da4e6a4107ef1feced46b1328058f04e33b4",
+      "passed": 83,
+      "skipped": 0,
+      "stage": "SOCKET_RERUN_WITH_ACCESS",
+      "summary": "83 passed in 4.16s"
+    },
+    {
+      "deselected": 44,
+      "duration_seconds": 135.31,
+      "errors": 11,
+      "failed": 1,
+      "log_sha256": "f85b37e18d43844f0f5f3a3eac410dac271ff4a482387fea20f20da1f09d479d",
+      "passed": 7926,
+      "skipped": 14,
+      "stage": "FINAL_FULL_WITH_ACCESS",
+      "summary": "1 failed, 7926 passed, 14 skipped, 44 deselected, 11 errors in 135.31s (0:02:15)"
+    }
+  ],
+  "targeted_after_fixes": {
+    "duration_seconds": 1.94,
+    "files": [
+      "tests/unit/test_s177_sr_identity_adapter.py",
+      "tests/unit/test_s179_human_sign.py",
+      "tests/unit/test_s179_prereg_amendments_applied.py",
+      "tests/unit/test_s179_aa_profile_summary.py"
+    ],
+    "passed": 44
+  },
+  "thread_caps": {
+    "MKL_NUM_THREADS": 1,
+    "OMP_NUM_THREADS": 1,
+    "OPENBLAS_NUM_THREADS": 1
+  }
+}

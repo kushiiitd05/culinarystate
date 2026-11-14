@@ -1,0 +1,94 @@
+{
+  "completed_at_utc": "2026-11-12T21:38:30.725102+00:00",
+  "declared_exact_type_mapping": {
+    "DISCARD": "Discard",
+    "MERGE": "Merge",
+    "RECOMBINE": "Recombine",
+    "RESERVE": "Reserve",
+    "SPLIT": "Split",
+    "TRANSFER": "Transfer",
+    "TRANSFORM": "Transform"
+  },
+  "labels": [
+    "DIAGNOSTIC",
+    "NOT_INDEPENDENT",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "The older rule compiler evaluation remains unchanged; this uses actual Rung A candidates, not a substituted compiler.",
+    "P1 accepted-A Gold is not present locally; blank packets are not accepted Gold.",
+    "No semantic typing/alignment is invented to manufacture per-field precision or a state confusion matrix.",
+    "Existing compiler-vs-Gold Wilson/bootstrap outputs retain their original model and non-independent label basis."
+  ],
+  "record": "RUNGA_VS_GOLD_REPRESENTATION_CONTRACT_AUDIT",
+  "scientific_gate_pass": false,
+  "sets": {
+    "DEV_FOODCOM_V1_1": {
+      "event_or_state_precision": null,
+      "explicitly_compatible_types": {},
+      "gold_event_types_excluding_adds": {
+        "Discard": 1,
+        "Merge": 114,
+        "Recombine": 2,
+        "Reserve": 8,
+        "Split": 13,
+        "Transfer": 17,
+        "Transform": 155
+      },
+      "input_set_sha256": "e7a12eb7d0f67726d5e401d9d99ba063a2e18364d680e3c723e0ac728f3e37fb",
+      "label_basis": "AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD",
+      "n_recipes": 20,
+      "null_metric_reason": "Generic ACTION/UNSPECIFIED and gold Merge/Transform/state labels are not an established shared annotation contract.",
+      "raw_candidate_kinds": {
+        "ACTION": 459,
+        "UNSPECIFIED": 1,
+        "WAIT_REST": 1
+      },
+      "status": "COUNTS_COMPLETE_SEMANTIC_ALIGNMENT_REQUIRED",
+      "unmapped_candidate_events": 461
+    },
+    "DEV_PILOT20_V1_1": {
+      "event_or_state_precision": null,
+      "explicitly_compatible_types": {},
+      "gold_event_types_excluding_adds": {
+        "Discard": 10,
+        "Merge": 86,
+        "Reserve": 1,
+        "Split": 21,
+        "Transfer": 22,
+        "Transform": 97
+      },
+      "input_set_sha256": "881a10b99f0f618d9f5ed528f69ff69ecc4f2c147d6baea1ab0d167a065b693e",
+      "label_basis": "AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD",
+      "n_recipes": 20,
+      "null_metric_reason": "Generic ACTION/UNSPECIFIED and gold Merge/Transform/state labels are not an established shared annotation contract.",
+      "raw_candidate_kinds": {
+        "ACTION": 370,
+        "UNSPECIFIED": 3,
+        "WAIT_REST": 2
+      },
+      "status": "COUNTS_COMPLETE_SEMANTIC_ALIGNMENT_REQUIRED",
+      "unmapped_candidate_events": 375
+    },
+    "P1_A_KUSH": {
+      "event_or_state_precision": null,
+      "explicitly_compatible_types": {},
+      "gold_event_types_excluding_adds": {},
+      "input_set_sha256": null,
+      "label_basis": "HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND",
+      "n_recipes": 0,
+      "null_metric_reason": "P1 packets unavailable",
+      "raw_candidate_kinds": {},
+      "status": "INPUT_MISSING",
+      "unmapped_candidate_events": 0
+    }
+  },
+  "source_sha256": {
+    "src/culinarystate/annotation/gold.py": "f8c8006f151bfe0c7afef847386f030d8214661de4ab37959270d43a98a2921e",
+    "src/culinarystate/extraction/rung_a.py": "b274feed81bf18f5ef9332761cde0d6231b2e84480eb2a61ebccb5816e19d630",
+    "src/culinarystate/state_graph/event_adapter.py": "241cf89606619129e1d88452e9ee43a650a0e1e8d3758f4386a8e9ccc1670c66",
+    "tools/s179_runga_gold_contract.py": "39ca93a8c2bb1f6795f82c8904ecae2591f3959c56440dfa9195e78ba1455bd4"
+  },
+  "started_at_utc": "2026-11-12T21:38:30.409071+00:00"
+}

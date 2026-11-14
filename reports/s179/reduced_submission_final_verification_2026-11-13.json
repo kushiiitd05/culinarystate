@@ -1,0 +1,120 @@
+{
+  "author_report_deck_unchanged": true,
+  "backend_demo": {
+    "passed": 8,
+    "record": "reports/s179/reduced_submission_demo_2026-11-13_v2.json",
+    "scope": "Authored cases including explicit refusals; not broad functionality/answer-quality or human rehearsal",
+    "sha256": "63be54408ba37d70e2dbc276f90b9653b816715d86134bc92a3502b8f4dd7c97",
+    "total": 8
+  },
+  "created_at_utc": "2026-11-13T09:58:05.183117+00:00",
+  "frozen_manifests": {
+    "registry/freezes/D5-BENCH-2026-11-10b.json": {
+      "checks": {
+        "benchmark/d5/d5_benchmark_v1_D085_PC.csv": true,
+        "benchmark/d5/d5_benchmark_v1_D085_S.csv": true,
+        "benchmark/d5/d5_benchmark_v1_D085_UX.csv": true,
+        "benchmark/d5/d5_relatives_v1_D085.json": true,
+        "ledgers/data/EVD.jsonl": true
+      },
+      "manifest_sha256": "13ab6e36bfb3ef2ebfed2cdd67d0080e49e3a88587a8428d4cf8946138ac68a0"
+    },
+    "registry/freezes/MECH-REFERENCE-2026-11-13.json": {
+      "checks": {
+        "ledgers/schemas/MECH.schema.json": true,
+        "registry/schemas/MECH.draft_v1_1.schema.json": true
+      },
+      "manifest_sha256": "6885337804a2fe4c3abf13386c48c2b152becbbe894ffa4b0a182e3f3f31a432"
+    },
+    "registry/freezes/STRICT-V2-ENGINEERING-2026-11-12.json": {
+      "checks": {
+        "src/culinarystate/decision/demo_context_v2.py": true,
+        "src/culinarystate/decision/physics_summary_v2.py": true,
+        "src/culinarystate/generation/strict_v2.py": true,
+        "tools/run_local_demo_v2.py": true,
+        "tools/s179_strict_runtime_audit.py": true
+      },
+      "manifest_sha256": "faecc7ac84f8c8f5b0eec60a5137078d831902d17b815077e26e3c61f9632be3"
+    },
+    "registry/freezes/STRICT-V3-ENGINEERING-2026-11-12.json": {
+      "checks": {
+        "src/culinarystate/app/static/strict_v3.html": true,
+        "src/culinarystate/app/strict_server_v3.py": true,
+        "src/culinarystate/decision/demo_context_v3.py": true,
+        "src/culinarystate/decision/strict_display_v3.py": true,
+        "src/culinarystate/generation/strict_v3.py": true,
+        "tools/run_local_demo_v3.py": true,
+        "tools/s179_artifact_reproduction.py": true,
+        "tools/s179_strict_browser_driver.mjs": true,
+        "tools/s179_strict_browser_rehearsal.py": true,
+        "tools/s179_strict_runtime_audit_v3.py": true
+      },
+      "manifest_sha256": "e197734acb7a87e98b93b869457a7821b292c76d81b617024227f147f25eb507"
+    }
+  },
+  "full_suite": {
+    "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest -q -rs -m 'ledgers or not ledgers' -o faulthandler_timeout=120",
+    "deselected": 0,
+    "errors": 0,
+    "failed": 0,
+    "log": "reports/s179/reduced_submission_full_suite_2026-11-13.log",
+    "log_sha256": "1b05a75bf8b7feb19873ea525bad83fd4108ce882f004d51c6131a6997ff3035",
+    "named_skips": [
+      "optional torch absent",
+      "FDA raw capture not local",
+      "optional pint absent",
+      "missing-bundle test skipped because local bundle is present"
+    ],
+    "passed": 8271,
+    "seconds": 225.27,
+    "skipped": 4,
+    "tested_commit": "564b2c77841021757ef5adcaee28a3600daa91c6"
+  },
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Full tests do not validate imported measurements, AI independence or simulator domain.",
+    "Private review contents/queues remain ignored.",
+    "Candidate retains earlier draft exports with labelled addenda; not author-final."
+  ],
+  "new_targeted_controls": {
+    "passed": 21,
+    "scope": "3 AI-gate isolation/preservation +14 package-path/hash/overwrite +4 demo envelope/provenance controls"
+  },
+  "prior_demo_instrument_attempt": {
+    "path": "reports/s179/reduced_submission_demo_2026-11-13.json",
+    "reason": "Initial runner read top-level branch instead of actual route.branch; failing regression added before correction. Original retained; app source unchanged.",
+    "sha256": "cb88a89cfdc7b3e3eca5125be54848ce05a5ac9c74b34a8a8ad1e7b6e9cc556b",
+    "status": "INSTRUMENTATION_ENVELOPE_ERROR"
+  },
+  "protected_sha256": {
+    "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+    "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+    "ledgers/data/MEAS.jsonl": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+    "ledgers/data/SNAP.jsonl": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+    "ledgers/data/SRC.jsonl": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+    "registry/execution_board_S178.csv": "d0d01b099c0ebf28a6f70d15e2cbe08c5835154e1d685f91017052a6a19dd975",
+    "reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md": "3c78fce12a9150bf9aa311c6173034036119a7ff80860cf4529273ffadb97f0f",
+    "reports/final/SLIDES_DRAFT_S179_2026-11-11.md": "354b2beed5a6da6c70b94882628f93c6b0282919801a30cada084d384b3e94a3",
+    "src/culinarystate/app/static/index.html": "1ffabebe252004d41c4034c6de37b61fc43dbab2f73d744c4774aaa987511223",
+    "src/culinarystate/decision/demo_context.py": "3f8c3e6be28659bf333298c40ad890bde73a15f84abce177609960142f1b9ce1",
+    "src/culinarystate/generation/enforce.py": "3ac2aa7e1cb66df16c94d266d996d8fb56a0f04f6e13e56402ed853492e4991f",
+    "src/culinarystate/generation/verbalize.py": "8a10d611cd1177e68d27945c311befe941a91745aea27efd11ba9ed67ebd05eb",
+    "src/culinarystate/quantity/grammar.py": "25b34fa8948b8989dadfecd87cee2737765a1fd07f4e02281ddacaf522d4a3c3"
+  },
+  "record": "REDUCED_SUBMISSION_FINAL_LOCAL_VERIFICATION",
+  "scientific_gate_pass": false,
+  "source_scan": {
+    "matched_windows": 0,
+    "missing_GUT_raw_segments": 177,
+    "path": "reports/s179/reduced_submission_source_scan_2026-11-13.json",
+    "recipes": 612782,
+    "scope": "35 candidate text artifacts/extracted earlier PDFs, six paper texts. Later verification/bookkeeping metadata contains no source text; no release clearance.",
+    "sha256": "7ce8b18487967b9aa4ac52c6a9324b6f1807b6a438dc1f0737c1e050c3f9b48d",
+    "window_words": 12
+  }
+}

@@ -13,6 +13,14 @@ S177: also ``prior_process_withheld`` (ungated DIRECT items withheld by the prio
 ``member_absent_items`` (items by the ING whose own member state is ABSENT, for the human review list) and
 ``member_presence`` (items by the member state of their own ING), ``member_blocker`` (why an UNKNOWN member is not ABSENT)
 and ``category_blocked_items`` (items by ING that would be ABSENT if its category were confirmed).
+
+S178 (FIX-ROUTER, SCI-B R2-R6): each recipe's ingredient lines are passed to ``route_text`` for their processed-state
+cues (the lines are not routed as events: they describe foods, not process steps). New counters: ``event_role`` (items by
+role), ``direct_ungated_by_role``, ``prior_process_withheld_by_basis`` (EVENT / EVENT_UNRESOLVED / TEXT_STATED_STATE /
+INGREDIENT_LINE), ``prior_process_unresolved_withheld``, ``non_step_direct_withheld_only_by_role`` (attributive / serving items that every other
+gate would have left DIRECT: the R3 share), ``prior_presupposed_would_release`` (ungated DIRECT items the
+human-gated R6 exemption would release; the exemption itself is OFF), ``sr_not_analytical_items`` (items by ING whose
+member is UNKNOWN only because a plausible SR value is not analytical, R4) and the ``ingredient_lines`` totals.
 """
 from __future__ import annotations
 
@@ -29,7 +37,7 @@ from culinarystate.mechanism import router_demo as RD
 from culinarystate.quantity import rc2_dryrun as D
 from culinarystate.recipes.ledgers import LOCALE
 
-CENSUS_VERSION = "router-demo-census-0.3.0-draft"
+CENSUS_VERSION = "router-demo-census-0.4.1-draft"
 
 
 def _steps(rec: Mapping) -> list[str]:
@@ -51,7 +59,9 @@ def _empty() -> dict:
     return {"tot": Counter(), "route": Counter(), "reasons": Counter(), "direct_proc": Counter(), "exc": Counter(),
             "route_ungated": Counter(), "gate_cross": Counter(), "direct_ungated_cross": Counter(),
             "direct_ungated_proc": Counter(), "prior_withheld": Counter(), "member_absent": Counter(),
-            "member_presence": Counter(), "member_blocker": Counter(), "category_blocked": Counter(), "pairs": set(), "ingredients": set()}
+            "member_presence": Counter(), "member_blocker": Counter(), "category_blocked": Counter(), "pairs": set(), "ingredients": set(),
+            "event_role": Counter(), "direct_ungated_role": Counter(), "prior_basis": Counter(), "prior_unresolved": Counter(),
+            "presupposed": Counter(), "sr_not_analytical": Counter(), "lines": Counter(), "non_step_direct": Counter()}
 
 
 def _route_chunk(recs: list[Mapping]) -> dict:
@@ -62,13 +72,17 @@ def _route_chunk(recs: list[Mapping]) -> dict:
         if not steps:
             continue
         tot["texts_with_steps"] += 1
+        lines = rec.get("ingredient_lines") if c.get("gates") is not None else None
+        lc: dict = {}
         try:
             out = RD.route_text("\n".join(steps), index=c["index"], target_svar=c["target_svar"],
                                 locale=LOCALE.get(rec.get("source_family")), rung=c["rung"],
-                                hierarchy=c["hierarchy"], schema=c["schema"], gates=c.get("gates"))
+                                hierarchy=c["hierarchy"], schema=c["schema"], gates=c.get("gates"),
+                                ingredient_lines=lines if isinstance(lines, list) else None, counts=lc)
         except Exception as e:  # noqa: BLE001 - counted by class name; the message may contain text
             part["exc"][code(type(e).__name__)] += 1
             continue
+        part["lines"].update(lc)
         tot["events"] += len({i["event_id"] for i in out["items"]})
         any_direct = any_direct_ungated = False
         for it in out["items"]:
@@ -99,13 +113,24 @@ def _route_chunk(recs: list[Mapping]) -> dict:
                     part["member_blocker"][code(mb)] += 1
                     if mb in ("CATEGORY_EMPTY", "CATEGORY_MISMATCH"):
                         part["category_blocked"][code(ing)] += 1
-                if EG.R_PRIOR_PROCESS in it["reasons"]:
+                if EG.R_PRIOR_PROCESS in it["reasons"] or EG.R_PRIOR_UNRESOLVED in it["reasons"]:
                     part["prior_withheld"][code("_".join(it.get("prior_process") or ()) or "NONE")] += 1
+                    part["prior_basis"][code("_".join(it.get("prior_basis") or ()) or "NONE")] += 1
+                    if it.get("prior_presupposed"):
+                        part["presupposed"]["ITEMS"] += 1
+                if EG.R_PRIOR_UNRESOLVED in it["reasons"]:
+                    part["prior_unresolved"]["ONLY" if EG.R_PRIOR_PROCESS not in it["reasons"] else "WITH_KNOWN_KIND"] += 1
+                part["event_role"][code(it.get("event_role") or EG.PROCESS_STEP)] += 1
+                if it.get("direct_if_process_step"):
+                    part["non_step_direct"][code(it["event_role"])] += 1
+                if mb == EG.B_NOT_ANALYTICAL:
+                    part["sr_not_analytical"][code(ing)] += 1
             if ungated == "DIRECT":
                 any_direct_ungated = True
                 part["direct_ungated_proc"][code(proc)] += 1
                 if g is not None:
                     part["direct_ungated_cross"][code(f"{g['presence']}|{g['lot_context']}|{it['route']}")] += 1
+                    part["direct_ungated_role"][code(f"{it.get('event_role') or EG.PROCESS_STEP}|{it['route']}")] += 1
         tot["recipes_with_any_direct"] += any_direct
         tot["recipes_with_any_direct_ungated"] += any_direct_ungated
     return part
@@ -185,6 +210,15 @@ def census_from_records(records: Iterable[Mapping], *, seed: str, size: int, ind
             member_presence=dict(sorted(acc["member_presence"].items())),
             member_absent_items=dict(sorted(acc["member_absent"].items())),
             member_blocker=dict(sorted(acc["member_blocker"].items())),
-            category_blocked_items=dict(sorted(acc["category_blocked"].items())))
+            category_blocked_items=dict(sorted(acc["category_blocked"].items())),
+            event_role=dict(sorted(acc["event_role"].items())),
+            direct_ungated_by_role=dict(sorted(acc["direct_ungated_role"].items())),
+            prior_process_withheld_by_basis=dict(sorted(acc["prior_basis"].items())),
+            prior_process_unresolved_withheld=dict(sorted(acc["prior_unresolved"].items())),
+            prior_presupposed_would_release=int(acc["presupposed"]["ITEMS"]),
+            non_step_direct_withheld_only_by_role=dict(sorted(acc["non_step_direct"].items())),
+            sr_not_analytical_items=dict(sorted(acc["sr_not_analytical"].items())),
+            ingredient_lines={k: int(acc["lines"][k]) for k in ("ingredient_lines_seen", "ingredient_lines_with_state_cue",
+                                                                 "ingredient_line_ing_states")})
     D.assert_counts_only(report)
     return report

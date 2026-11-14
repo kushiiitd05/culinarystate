@@ -501,3 +501,368 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Not decided here:** everything the S175 lanes produced is AI_DRAFTED (consensus plan, v16 draft, registries, code). None of it is a human signature, approval or nonce; D-071 limits unchanged. SSOT v15 remains authoritative until Kush approves v16.
 - **Numbering note:** D-028 is absent from this file (gap in the sequence, kept as is; ids are never reused).
 - **Approver:** Kush.
+
+### D-079 · 2026-11-10 · S179 drafts read and accepted; kinetic units into the UNIT ledger (H4, additive) (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10, after the S179 Mac board items: "i read adn im fnt and all ok ad passed ok blocked one do as nesseccarty ot make it ork".
+- **Decision 1 (read and accepted):** Kush has read the S179 drafts and accepts them as written:
+  - the licence and redistribution paragraph and split labels (`reports/final/sections/S179_licence_and_split_labels_DRAFT.md`, T9-C28-R1, T9-C09-R3);
+  - the hypothesis and task crosswalk (`S179_hypothesis_and_task_crosswalk_DRAFT.md`);
+  - the D3 section (`S179_D3_state_tracking_DRAFT.md`);
+  - the P1 closeout (`reports/step19/pilot_iaa_report.md`);
+  - NEG-0050;
+  - the DoD scorecard (`reports/s179/dod_scorecard_S179.md`);
+  - the remaining items of `reports/orchestration/S179_board_update_brief_mac.md`.
+- **Decision 2 (H4, T5-C07-R5):** the UNIT schema gets an additive enum change:
+  - `unit_type += KINETIC`;
+  - `dimension += RATE_PER_TIME, ENERGY_PER_AMOUNT`;
+  - no value is removed, so every pre-D-079 row stays valid.
+
+  The 11 rows of `registry/kinetic_units_v1_DRAFT.csv` are then minted into `ledgers/data/UNIT.jsonl` (append-only,
+  ids from IdMinter) by `tools/s179_mint_kinetic_units.py`.
+- **Kept, not decided here:**
+  - plain `kcal/mol` stays UNKNOWN (no factor) until a calorie convention is declared;
+  - the two calorie rows are NEEDS_SOURCE;
+  - a defined factor is recorded as `si_factor_exact`, never as a MEASURED value.
+- **Not decided here:**
+  - the D5 pre-registration signatures and the benchmark freeze;
+  - the D-008 task merge;
+  - the Route B host;
+  - any other signature, nonce or freeze (D-071).
+
+  "Read and accepted" is not a gate pass for any statistical gate.
+- **Approver:** Kush.
+
+### D-080 · 2026-11-10 · The choice items of the 9 Nov operations pack, D-008 task merge, Route B host (choice items decided by ksh and prv (AI) under D-071; D-008 and Route B decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10: "pk ok nad all passed continue" (in reply to the open D-008 merge and Route B host) and "all 52 human prv and ksh approvdd".
+- **Scope under D-071 and the persona line** (REV-B; `handoff/HUMAN_OPERATIONS_PACK_2026-11-09.md` §2.2):
+  - an AI persona may tighten, defer, withdraw or refuse; it may never loosen, close or sign;
+  - so only the pack items of type **choice** are recorded here, each with the pack's recommended option and text.
+- **Decided by ksh (as Kush) and prv (as Parv), AI under D-071** (text as in the pack; bracketed blanks filled as stated):
+  - **#1 (T3-C22-R7 (Q39)), Lot-state layer before 25 Nov?:** Q39 (lot-state layer): DEFERRED past the 25 Nov talk (option A). No lot-state result, figure or number appears in the talk or report; at most one design slide labelled NON_CITABLE. The lane code stays DRAFT. Reason: no hypothesis H1-H3 depends on it, it needs human verification of ING->SR matches that competes with the H1/H3 and AA tasks, and it cannot be evaluated (no gold). Source: REV-B Q39, R-FEAS.
+  - **#3 (T7-C01-R2), Step 35 for the course:** Step 35 for the course: DESIGNED, pre-registered, NOT RUN (option A). The v2 package stays UNSIGNED; no Step 35 run is authorised before 26 Nov. The talk carries one limitation slide ("learned rungs deferred; entry rule LR-1..LR-5"). Source: R-FEAS, REV-B D.4.
+  - **#4 (T8-C06-R2), Embedding for rungs B1 and B2:** B1/B2 dense embedding: e5-large-v2 (option B), named in the signed D5 prereg with model revision and prefix convention; no change after signing. Evidence: reports/del4/retrieval_silver_v2_analysis.md (silver, dev only; not measured on recipe-step chunks).
+  - **#5 (T8-C12-R1), H3/B7 wording:** H3/B7 is described everywhere (prereg, report, deck) as "rule-based evidence-sufficiency abstention (uncalibrated)". No calibration claim. A calibration study is not feasible before 25 Nov. Source: consensus 6.2 #5, R-FEAS.
+  - **#6 (T9-C12-R1 and T8-C04-R2), Power note and circularity caveat in the D5 prereg:** D5 prereg gets, before signature: (1) a power/MDE note for H1 and H3 (exact McNemar; at n=30 only accuracy gaps of about 0.25 or more can reach significance; a null result is uninformative); (2) an H1 circularity caveat (S gold is engine output, reviewed by its authors). Source: consensus 6.2 #6, REV-B Q26.
+  - **A1 (REV-B G-05, G-06, G-07, G-12, G-13), D5 prereg design fixes:** D5 prereg amended before signature (REV-B G-05/06/07/12/13): (1) S gold is blind-first (reviewers answer from the recipe text before seeing engine output); (2) B4 is not given the S1 gold field; (3) B1/B2/B4 retrieve only from steps up to the cut; (4) S pool = 30 (S30: 15 + 15) questions, one per recipe; (5) H3 decision test = exact sign test on questions where B2 has an unsupported claim and B7 has none (>= 5 needed), bootstrap descriptive, B5T also compared; (6) "supported" requires the cited row to match the question's ingredient, process and target; (7) the X block includes 3 safety items with gold REFUSE; (8) a 30-claim manual audit blind to rung. The benchmark is labelled MODEL_ASSISTED_GOLD, PILOT, authors-as-reviewers. Source: REV-B Q25/Q26/G-05..G-13. S30, not S60: the pack recommends S60 only if both humans confirm >= 18 h free for 9-16 Nov, a fact only they know (#23), so the default S30 applies, with the MDE stated on the slide.
+  - **#7 (T6-C03-R5), D2-vs-D3 contrast in the 29-diag prereg:** 29-diag prereg gets, before signature: the paired D2-process-mean vs D3-ingredient-mean contrast on S-3/S-4/S-6 (DIAGNOSTIC only); a cap sensitivity (0.95/0.975/1.0); the R6 imputation-duplicate control (duplicate groups kept in one fold); the rung-label fix (T6-C02-R1). Anything added after signature is EXPLORATORY_POST_HOC and cut. Source: consensus 6.2 #7, REV-A Q18/Q19.
+  - **A3 (REV-A V7 and Q16, REV-B F-09 and G-16), AA prereg: domain gate and RESEARCH_ONLY:** AA prereg amended before signature: SIMULATE domain gate (liquid acidic fruit matrices, stated pH range, 60-100 C, no water contact; leaching UNKNOWN); analyte-basis check (reduced AA vs total vitamin C); Step 27 pre-announced RESEARCH_ONLY (SIM-VAL 4 papers, 3 if AAK-05 is missing; minimum 5); SIM-VAL full texts are not opened by the agent before the fit hash is committed. Source: REV-A V7/Q16, REV-B F-09/G-16.
+  - **#20 (T9-C25-R5), Install authorisation:** Install authorisation: pinned install of hypothesis into the existing /opt/anaconda3 env (no new venv), Mac only. No installs on manjot or vinayak. Agents install nothing else without a new entry. If not authorised, T5-C05-R1 and the hypothesis property tests are reported NOT_RUN. Source: T9-C25-R5. Fact at entry: hypothesis 6.170.5 and scikit-learn 1.2.2 are already importable in /opt/anaconda3 on the Mac (reports/s179/env_inputs_check_mac_S179.json), so nothing is installed by this entry.
+  - **#11 (T3-C17-R1), D3 claim at the talk:** D3 at the talk: built and run (612,782 recipes; 14,594,812 engine events). The only comparison is the P1 pilot (7 recipes; human-accepted AI drafts, not blind; handbook verdict HANDBOOK_REVISION_REQUIRED), reported as an engineering score with n stated. No accuracy claim. P1b not run. Source: REV-B Q28, consensus 6.2 #11.
+  - **#12 (T5-C05-R4), Q20, Q22, Q23 rules:** Q20: yes, "mostly UNKNOWN" is a reported result, shown as a funnel with reason codes and with the target-presence and context gates; no single coverage percentage is presented. Q22: INTERPOLATE uses taxonomy donors, returns the donor interval, needs >= 2 donors independent under 08a lineage, else it is not emitted as INTERPOLATE; a cold-food coverage table decides each group (coverage below 0.85 -> QUALITATIVE). Q23: ASK fires only if some admissible value of the missing input changes the route or the direction's sign (flip-sensitivity); ASK quality is not claimed. Source: REV-B Q20/Q22/Q23.
+  - **#13 (T3-C07-R3), Food.com lines with no units:** Food.com ingredient lines without units: composition is presence-only (option A); no unit imputation; mass-based ratios (salt per water, pH bound) are UNKNOWN for Food.com. No new acquisition. Source: REV-A Q8, REV-B Q30/Q34.
+  - **#15 (T4-C09-R1), Two-zone surface model:** Two-zone surface/crust model: stated limitation for 25 Nov (option B). Separately (A2): Layer 2 caps moist zones at the evaporation temperature. Source: consensus 6.2 #15, REV-A Q3.
+  - **#16 (T4-C22-R1), How Layer 1 and 2 enter Step 31:** Step 31: EVD-row arm only; no recipe-event arm with Layer 2 features. Layer 2 may enter later only as a pre-registered ablation with a permuted-registry control and an equal-capacity comparator. Step 31 is after 25 Nov. Source: REV-A Q1, consensus 6.2 #16.
+  - **#17 (T8-C02-R2), SEMANTIC branch:** SEMANTIC branch: explicit abstention for 25 Nov, stated in the demo and report (option A). Source: consensus 6.2 #17.
+  - **#21 (T9-C25-R3), VPN to vinayak:** VPN to vinayak: ssh test on 2026-11-10 worked (vinayak-server and manjot-server reachable; RUN-S179-PIN-001, RUN-S179-ENV-002). If failed: the manjot-CPU fallback applies from now (rungs that need no LLM run on manjot; LLM rungs NOT_RUN, C07). Source: consensus 6.2 #21.
+  - **A7 (T9-C26-R2), Adopt the fallback levels:** Fallback levels L0-L3, the slip triggers and their wording (handoff/HUMAN_OPERATIONS_PACK_2026-11-09.md section 5) are adopted as the plan of record. Source: T9-C26-R2.
+- **Decided by Kush:**
+  - **D-008 merge:** SSOT Task 5 (equipment adaptation) and Task 6 (ingredient adaptation) merge into one type, T5 ADAPTATION, as in the revised D-008 list. D5 coverage of Tasks 3, 5 and 7 stays as reported (`reports/final/sections/S179_hypothesis_and_task_crosswalk_DRAFT.md`).
+  - **Route B host for Step 35:** the Mac (the only host with every bound input sha256-equal and every package; `reports/s179/env_inputs_three_hosts_S179.md`). Step 35 itself stays designed and not run (#3 above).
+- **Not recorded here: human-only, committed by the human named from their own session** (pack §2.2; D-071 limits):
+  - pack items #2 (07.A gate statistic, amends R-06), #8 and #9 (freezes), #10 (loosens a gate), #14 (basis code), #18 (SIGN H8 register), #19 (Prof. Bagler's permission), #22 (SSOT v16, Kush's line), #23 (calendar), A2 (H4 route enum), A4 (governance SIGN), A5 (outside reviewer);
+  - A6 (demo hosting), because a persona must not let data leave the Mac;
+  - every signature (07A-R1, AA, 29-diag and D5 preregs), the 15A-BOOT freeze, the benchmark review and freeze, the 07A-R1 labels and adjudication, the PDF downloads and licence checks, the CAL and SIM-VAL verification, the 30-claim blind audit, the contributions section and the date;
+  - "approved by ksh/prv" cannot stand in for any of these.
+- **Approver:** ksh and prv (AI) under D-071 for the choice items; Kush for D-008 and the Route B host.
+
+### D-081 · 2026-11-10 · D5 pre-registration amendment options (decided by ksh and prv (AI) under D-071; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10: "all 52 human prv and ksh approvdd". The options are those of `reports/del5/d5_benchmark_preregistration_AMENDMENT_S178_DRAFT.md` §0, not covered by D-080. Each is taken as the pack recommends, but only where it tightens or is neutral (the persona line).
+- **Decided:**
+  - **D-D5-2:** G-A. The S gold is the reconciled blind human answers; the engine draft never becomes gold.
+  - **D-D5-3:** K1. B4 sees the full engine state block.
+  - **D-D5-5:** H3-A. Independent scorer, plus the human-audit veto.
+  - **D-D5-7:** F1. If vinayak is unreachable by 17 Nov, H1 and H3 are NOT_RUN and only deterministic outputs run.
+- **Already covered by D-080:** D-D5-1 S30 (A1), D-D5-4 E5 (#4), D-D5-8 "uncalibrated" (#5). The audit size is 30 claims (A1 item 8), so `per_rung` = 10.
+- **Filled from facts:**
+  - e5-large-v2 revision `f169b11e22de13617baa190a028a32f3493550b6` (vinayak HF cache);
+  - Ollama digest `845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e` (RUN-S179-PIN-001);
+  - seed 7 and `num_predict` 200 (the `generation.llm` code defaults in the run note).
+- **Not decided (human):** **D-D5-6, sign-test sidedness.** The recommended one-sided test is easier to pass than the two-sided one, so choosing it would loosen a test, which a persona may not do. The v2 draft shows both, marked OPEN.
+- **Not done:** the signatures. They remain the humans' own commits (amendment C9).
+- **Approver:** ksh and prv (AI) under D-071.
+
+### D-082 · 2026-11-10 · 29-diag and AA pre-registration amendment options; amendments applied in place (decided by ksh and prv (AI) under D-071; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10: "all 52 human prv and ksh approvdd". The options are the §0 tables of `reports/step29/29diag_preregistration_AMENDMENT_S178_DRAFT.md` and `reports/step10/aa_pilot_preregistration_AMENDMENT_S178_DRAFT.md`. Every one is taken as recommended; each adds a check or tightens.
+- **29-diag:**
+  - D-29-1: labels fixed to what the code computes.
+  - D-29-2: K-A, adding the TB-V0 B-2 ingredient mean and the D2-vs-B2 contrast. The code for B2 is still to be written, test-first.
+  - D-29-3: S-A, adding the S-5 food-group-disjoint split.
+  - D-29-4: cap sensitivity at 0.95, 0.975 and 1.0.
+  - D-29-5: the imputation-duplicate control.
+  - D-29-6: the freeze-record note.
+- **AA:**
+  - D-AA-1: add the A3 lines.
+  - D-AA-2: pH-A, falling back to pH-C.
+  - D-AA-3: both firewalls. FW-A is a physical act by Kush: he moves the SIM-VAL PDFs before any fit.
+  - D-AA-4: the pre-declared sensitivities.
+- **Not decided (human):** D-AA-5, the licence status per paper, which only Kush can read off each publisher page.
+- **Applied:** `tools/s179_apply_prereg_amendments.py` writes the amended text into the three DRAFT files in place. That is where the signature checkers bind (`evaluation/frozen_guard.PREREG`, `evaluation/freeze_records.PREREG`).
+  - Base texts come from git at the commits whose sha256 each amendment names; `--check` reproduces them.
+  - D5 carries D-080 and D-081. The separate `d5_benchmark_preregistration_v2_DRAFT.md` written earlier today is withdrawn, because no checker binds it.
+  - D-D5-6 (sidedness) stays OPEN in the D5 text.
+- **Not done:** no signature, freeze or nonce. Kush and Parv sign the locked bytes themselves.
+- **Approver:** ksh and prv (AI) under D-071.
+
+### D-083 · 2026-11-10 · D5 H3 sign test is two-sided (D-D5-6) (decided by ksh and prv (AI) under D-071; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10: "use ksh and prv and complee alll continue".
+- **Decision:** the H3 decision test (exact sign test, B2 vs B7) is **two-sided**, `alternative="two-sided"`. B7 is better only at p <= 0.05, which needs at least 6 of 6 discordant questions; with fewer than 6 the report says "cannot be shown at this n".
+- **Why a persona may decide it:** two-sided is the stricter of the two options. The pack recommended one-sided, which would loosen the test, and a persona may tighten but not loosen (D-081). `d5_scoring` already reports both sidednesses; the verdict reads the two-sided row.
+- **Not decided here:** signatures, freezes, nonces, human labels and verification, facts only a person knows, and the two gate-loosening items (#10, #14) and #2 (07.A gate statistic, amends R-06). Kush asked for "all" to be completed through ksh and prv; these stay human-only under D-071 and its addendum, and no AI output is recorded as a human signature or label.
+- **Approver:** ksh and prv (AI) under D-071.
+
+### D-084 · 2026-11-10 · Human OK on the ksh/prv verdict sheet (decided by Kush; Parv relayed by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10, replying to `reports/orchestration/S179_ksh_prv_verdicts_for_human_ok.md`: "yea sll pase check an review by em and parv aoll ok and cintinue".
+- **Decided (as verdicted):**
+  - **Item 1, #2 / D-07A-1:** the 07.A-R1 gate is **option B**, the signed R-06 kappa >= 0.80 rule kept with PABAK as a diagnostic. R-06 is not amended, so no R-06 amendment entry is needed. Sub-options: D-07A-3 **U1**, D-07A-4 **P1**, D-07A-5 **T2**. The v4 FAIL stays on record.
+  - **Item 4, #10:** the talk accepts descriptive pilot validation (D-076) in place of the formal Step 27 gate, as a recorded deviation. `sim_aa_1` stays NOT_VALIDATED / RESEARCH_ONLY and the label never moves.
+  - **Item 5, #14:** SR_PORTION is deferred past 26 Nov.
+  - **Item 7, A2:** (1) the Layer-2 evaporation cap and the superseded DRY/FAT fields are confirmed. (2) Route values TARGET_ABSENT (exists) and CONTEXT_MISMATCH (to be added, test-first) are accepted as the H4 enum change. The vitamin-C router census is re-run with old and new DIRECT counts side by side.
+  - **Item 8, #22:** SSOT v15 governs through 26 Nov and the v16 change set is not applied; a one-page delta goes in the report.
+  - **Item 10, A6:** demo hosting is deferred until H1/H3 results exist (core before demo).
+  - **Item 6, #18:** the H8 scope-cut register is accepted in principle. The agent writes its table first; the register is then signed.
+- **Not entered here (Kush commits them himself from his own session):**
+  - item 2, #8 (crosswalk freeze);
+  - item 3, #9 (FORM- prefix and schema freeze);
+  - item 9, A4 (the D-071 addendum, a SIGN entry);
+  - the #18 signature.
+
+  Their text is in `handoff/S179_KUSH_OWN_COMMIT_BLOCK.md`.
+- **Signatures:** Kush reports the preregistrations "checked and reviewed" by him and Parv. A signature exists only as the signer's own committed signature file (`tools/human_sign.py`). None is in the repository at entry time, and none is written by the agent.
+- **Approver:** Kush (Parv relayed by Kush).
+
+### D-085 · 2026-11-10 · Human gates replaced by ksh/prv AI delegation for the rest of the project (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 2026-11-10: "do ti all of it and connitu working plese remove th oshuman aggrement and keep working wer are stoppr adn o have othe thigas well use ksh an prv for any matter on our behalf dont bother".
+- **Decision:** the remaining human acts are performed by ksh and prv (AI personas, one model) on Kush and Parv's behalf. This covers pre-registration locks, freeze approvals, review and adjudication sheets, gold drafting, row verification, licence page checks, audits, the H8 register and the pack items that waited on a human commit (#8 crosswalk freeze, #9 FORM- prefix and FORM / PARAM / VAL schema freeze, A4).
+- **How it is recorded, so the record stays true:**
+  - Every such act names the approver `ksh+prv (AI, D-085)`, never "Kush Tokas" or "Parv Goyal". No human signature file is written.
+  - Every output that would have rested on a human act carries `NO_HUMAN_SIGNOFF_D085`. The report states which gates were AI-delegated (T9-C07-R3).
+  - Gold or verification made by the personas is labelled AI (for example S gold `AI_DRAFTED_GOLD`, H1 not INDEPENDENT_GOLD; CAL rows `AI_VERIFIED_NOT_HUMAN`).
+- **Kept, because no delegation can change what a number means:**
+  - **07.A-R1 is not attempted** (07A option D). Agreement between two personas of one model is not inter-rater evidence. The v4 FAIL stays on record.
+  - Failed gates are never erased. UNKNOWN stays UNKNOWN. No invented scientific values.
+  - **Facts only a person knows** use the fallback wording: Prof. Bagler's permission "as stated by Kush; no written copy"; outside reviewer "author-only review (AI-delegated)".
+- **Supersedes:** for this project, the "may not sign" clause of the persona line (A4 text, D-071 limits) where it concerns approvals. The personas still never act or write under a human's name.
+- **Approver:** Kush.
+
+### D-086 · 2026-11-10 · Freeze the mode-to-§141 crosswalk (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** pack item #8 (consensus 6.2 #8, REV-A V5/N5); ksh/prv verdict OK (S179 verdict sheet item 2); Kush OK'd the verdict (D-084) and delegated the commit (D-085).
+- **Decision:** the mode-to-§141 crosswalk is frozen as written: DIRECT/INTERPOLATE -> evidence_supported (tagged E3_UNVERIFIED + COND_UNAUDITED_07A, with an EVD id); SIMULATE/SCENARIO/QUALITATIVE -> physically_possible; UNKNOWN/ASK/ABSTAIN -> unsupported. Caveat in force until the CONTEXT_MISMATCH route lands (A2, D-084): DIRECT means "a table row exists for this pair", not "the value applies to this food in this context".
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-087 · 2026-11-10 · Formula id prefix FORM-; FORM, PARAM and VAL schemas frozen (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** pack item #9 (consensus 6.2 #9); ksh/prv verdict OK (item 3); D-084, D-085.
+- **Decision:** formula ids use the prefix FORM- (not MODEL-). The FORM, PARAM and VAL schemas (`registry/schemas/{FORM,PARAM,VAL}.draft_v1.schema.json`) are frozen before PARAM minting. Reason: keeps formula records out of the ML model-card namespace.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-088 · 2026-11-10 · D-071 addendum: the AI-persona line, as amended by D-085 (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** pack item A4 (REV-B B2.1/B2.3/G-03); ksh/prv verdict OK (item 9); D-084, D-085.
+- **Decision:** AI personas (ksh, prv) may tighten, defer, withdraw or refuse; they may not loosen a signed gate. Under D-085 they perform approvals and locks on Kush and Parv's behalf, always as `ksh+prv (AI, D-085)` and never under a human name. Agreement between ksh and prv is not inter-rater evidence, so independent-labelling gates (07.A-R1, 07I-C, G08-H, G21.6, G23 case labels) are not passed by them: such a gate is NOT_RUN, or its output is labelled AI. A file written by an AI and not signed by a human is a "dated AI draft".
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-089 · 2026-11-10 · H8 scope-cut register signed (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** pack item #18 (consensus 6.2 #18, T9-C07-R4); ksh/prv verdict "OK in principle, after the table lands" (verdict sheet item 6); D-084 item 6; D-085.
+- **Decision:** the H8 scope-cut register `registry/h8_scope_cut_register_v1.csv` (sha256 `4108c54f1b92a003357ee60aa2b32bd4049c40549b0a3f1c8774c5f6bf475a0b`, 11 rows) is signed as written. D2 is reported as DIAGNOSTIC only; the full H2 test, H4, Steps 20/28/33/34, FlavorTwin and SSOT Levels 10-11 are DECLARED_NOT_RUN before the talk; the D3 gold of 40 recipes and the 8-scenario demo are reported as "not delivered at this scale". Each row carries its report wording and a repo evidence path.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-090 · 2026-11-10 · D5 benchmark v1 reviewed and frozen (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085 (Kush: ksh/prv act for the humans on every remaining gate); D5 prereg §3 (review, gold, freeze) as locked (`reports/del5/d5_prereg_lock_D085.json`, prereg sha256 `1c174553…`).
+- **Review:** `reports/del5/d5_review_ksh_prv_D085.csv` (110 rows, KEEP / DROP with a reason, no edits; entry by rank). Built by `tools/s179_d085_d5_review.py` (`--check`).
+  - **S (40 drafts):** gold written by the personas from the recipe text alone, engine draft and `gold_*` hidden; `gold_origin` AI_DRAFTED_GOLD. 16 dropped: 13 not a usable question (ingredient-list fragments, glossaries, multi-recipe text, notes) and 3 whose gold the scorer's linker cannot resolve (`drop` has no PROC id; `dumplings`, `bones` no ING id).
+  - **P / C (60 drafts):** every gold range rechecked against the EVD ledger (all equal). 13 dropped: 9 where the target is near-absent in the food (vitamin C in chicken, pork, cheese, egg, lamb stock: gold ANSWER would mark a correct TARGET_ABSENT wrong) and 4 implausible processes (frying or baking stock, deep-frying juice or a spice). Every block still fills 10 by rank.
+  - **U / X (10, S178 drafts):** all kept; gold branch by intent; the router was not run on them.
+- **Freeze:** `registry/freezes/D5-BENCH-2026-11-10.json`: three benchmark files (`benchmark/d5/d5_benchmark_v1_D085_{S,PC,UX}.csv`), scorer code and prereg pinned by sha256; approval `ksh+prv (AI, D-085)` with D-085 and the label; `frozen_guard.check_real_inputs` ok, signoff AI_DELEGATED_D085.
+- **Deviations from the prereg, stated in every D5 output:**
+  - n = 74, not 80: S1 12 and S2 12 (prereg 15 + 15). The 20-per-block overdraft ran out; the prereg rule (next by rank enters) had nothing left. H1 n = 24; the smallest significant McNemar split stays 6-0, and a null result is uninformative.
+  - S gold is AI_DRAFTED_GOLD, not HUMAN_BLIND: H1 is never INDEPENDENT_GOLD (`h1_independence` 0.3 counts it as not independent). No Kush-Parv agreement figure exists.
+  - Review and the H3 claim audit are by the personas, so neither is inter-rater evidence; the audit labels are AI labels.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-091 · 2026-11-10 · AA pilot: licence checks, CAL pre-check and Model A fit (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085; AA prereg (locked, `reports/step10/aa_pilot_prereg_lock_D085.json`) §3, §4, §6.
+- **Licences** (`registry/evidence/aa_licence_checks_D085_v1.csv`): CC BY confirmed on the publisher page for AAK-01, AAK-06 (SIM-CAL) and AAK-03, AAK-07 (SIM-VAL, licence line only, text not opened). AAK-09 (HTTP 403) and AAK-11 (TLS certificate not verifiable, not bypassed) could not be confirmed; AAK-12 not checked. AAK-02, 04, 05, 08 and 10 stay NOT_ACQUIRED: their sites refuse scripted downloads and the agent does not work around site checks (prereg §3), so a human browser download is still needed.
+- **CAL pre-check** (sheet `annotation/aa_pilot/aa_pilot_verify_CAL_v1_D085.csv`, Mac-only): all 16 spans found verbatim in the paper text and every PDF sha256 matches. AAK-01 and AAK-06 rows VERIFIED; AAK-09 and AAK-11 rows REJECTED for the unconfirmed licence (the prereg requires page confirmation; a persona may not loosen it). Status `AI_PRECHECKED`, never HUMAN_VERIFIED.
+- **Firewall:** the SIM-VAL PDFs AAK-03, 07 and 12 were moved out of `data/raw/aa_pilot/` before the fit, sha256 recorded (`416081ff…`, `d6c3d67c…`, `66278e39…`). They were moved by the fitting agent itself, so this is location separation, not separation of persons. SIM-VAL extraction must run in a separate session given only the fit hash.
+- **Fit:** `reports/step10/aa_pilot_model_a_fit_D085.json` (sha256 `b9247db0…`), Model A shared Ea with paper intercepts, 7 K_AT_T rows from 2 papers (70-95 °C), Ea 64.4 kJ/mol (SE 10.4), dof 4. Labels: AI_DELEGATED_D085, NO_HUMAN_SIGNOFF_D085, AI_PRECHECKED, PILOT_MODEL_ASSISTED, NOT_VALIDATED / RESEARCH_ONLY. Two papers is the minimum the fitter accepts; between-paper SD rests on two intercepts.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-092 · 2026-11-11 · D5 ladder run and scored; H1 and H3 rules not met (recorded by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Run:** RUN-S179-D5-001 on vinayak (qwen2.5:7b-instruct `845dbda0…`, temperature 0, seed 7, num_predict 200; e5-large-v2 `f169b11e…` on the A100 via an embedding cache, because the server's torch Python cannot run the project). 346 answers, `reports/del5/d5_runs_v1_D085.jsonl` (sha256 `e796be56…`). Runner `tools/s179_d5_run_rungs.py` refuses without a passing freeze guard. B4 uses the prereg's ANSWER state view; the qid leak guard was not used because the S gold is AI-written with the engine hidden, not engine-derived (stated in every record's `config`).
+- **Deviation:** the scorer needs the EVD ledger and the relatives file inside the freeze. The first freeze (D5-BENCH-2026-11-10) held only the three benchmark files, so `D5-BENCH-2026-11-10b` adds them. Benchmark, scorer code and prereg hashes are identical in both. 10b was written after the rungs started and before any scoring.
+- **H1** (n = 24, S1 12 + S2 12; gold AI_DRAFTED_GOLD, label CIRCULAR_SELF_CONSISTENCY_ONLY): accuracy B0 0.08, B1 0.25, B2 0.25, B4 0.25 after the rung-blind check of 6 unresolved answers (all judged wrong, by the personas; `d5_h1_after_rung_blind_check_D085.json`). B4 vs B1 and B4 vs B2: 4 discordant pairs each, p = 1.0. **RULE_NOT_MET: not shown at this n.**
+- **H3** (n = 40, P1-P3 + C): sign test B2 vs B7, 16 of 16 discordant questions favour B7, p = 3.1e-5 two-sided. **But the P3 condition fails:** B7 abstains on 0 of 10 gold-ABSTAIN questions, B2 on 3 of 10, and the rule needs B7 >= B2. **RULE_NOT_MET.** The human claim audit (veto) was not run: it can only make H3 fail, and H3 already fails. B7 never abstaining on P3 contradicts the prereg's expectation that it abstains there by construction; it is a finding to examine, not a result to tune after the freeze.
+- **Labels:** NON_CITABLE, AI_DELEGATED_D085, NO_HUMAN_SIGNOFF_D085, MODEL_ASSISTED_GOLD. Outputs `reports/del5/d5_score_v1_D085/`.
+- **Approver:** ksh+prv (AI, D-085).
+
+
+### D-093 · 2026-11-12 · Separate strict-v2 local engineering policy (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085; runtime amendment proposal dated 12 November; emission path AI review; Parv's instruction to complete local engineering.
+- **Decision:** Adopt a separate strict-emission-v2.0.0 local demo and physics-summary-provenance-v2.0.0 for engineering diagnostics. Require exact known declared EVD/COND context and measured point units; reject missing precision, wrong identities and unauthorized final fallback. Never infer condition context from retrieval rank. Show source reports as unverified, not predictions. Preserve unknown physical provenance and the original scientific guards. Recipe route chips still report legacy row existence; this amendment does not certify them.
+- **Freeze:** `registry/freezes/STRICT-V2-ENGINEERING-2026-11-12.json` pins the new implementation before its counts-only local audit. This is an engineering snapshot, not a scientific rerun or a replacement D5 freeze. Original generation, scorer, prompts, benchmark, outputs and failed H1/H3 remain unchanged. The legacy launcher remains available; strict launcher is explicit.
+- **Review:** author-only review (AI-delegated). Synthetic regression controls and reviewer cases pass; actual local sample results are recorded separately. No independent human verification, new PARAM provenance, model validation or acceptance-gate pass is supplied.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+
+### D-094 · 2026-11-12 · Exclude author facts and final edits from the active completion scope (decided by Parv; entered by the coding agent as scribe)
+- **Source:** Parv's direct instruction: "Leave out the author facts and final edits. Complete everything else".
+- **Decision:** Continue all feasible local technical work, audits, tests, source reviews and reproducibility without waiting for contribution statements, talk facts or final author edits. Those author-only items are outside this active scope. This does not waive scientific source quality, verification or actual future-event requirements; unresolved dependencies must be recorded truthfully rather than marked complete.
+- **Label:** USER_SCOPE_INSTRUCTION; no new scientific or human verification implied.
+- **Approver:** Parv.
+
+### D-095 · 2026-11-12 · Strict-v3 display and supplemental technical diagnostics (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085, D-093, D-094; independent AI engineering review of strict-v2 and the legacy display.
+- **Decision:** Adopt a separate strict-emission-v3.0.0 launcher/view for local engineering. Keep strict-v2 and legacy sources frozen. New view labels each known declared numeric basis, suppresses missing/UNKNOWN display quantities, removes misleading measured-data chips, includes heat-only events, and preserves tiny table points without rounding to zero. No condition applicability or scientific validity is certified.
+- **Freeze:** `registry/freezes/STRICT-V3-ENGINEERING-2026-11-12.json` pins new source/static/audit/reproduction code before the root1000-call and artifact-rerun diagnostics. Prior reviewer browser rehearsal remains a pre-adoption engineering check, not a scientific rerun.
+- **Supplemental runs:** Reproduce recorded router1000 and full-Wikibooks binding counts, plus deterministic frozenD5 B5T P/C template text, at new paths. Compare full hashes and explicitly remove only code_provenance/code_unchanged_during_run/records_written metadata from metric equality; disclose every remaining difference. No H1 LLM run, B7 regeneration, rescoring, tuning or post19Nov execution is implied.
+- **Review:** author-only review (AI-delegated); adversarial controls and actual isolated browser checks, not independent human evidence. Original30saved-answer flags, H1/H3 RULE_NOT_MET, scientific guards and all frozen outputs remain unchanged.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+
+### D-096 · 2026-11-13 · Conservative technical dispositions and MECH reference freeze (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085, D-094; the immutable S178 board's explicit defaults for T2-C04-R1/T2-C06-R1/T2-C11-R2/T5-C01-R4/T5-C02-R4/T7-C24-R1/T9-C07-R1/T9-C07-R5; Step21 README D21-1..8.
+- **07.B/07.C:** Keep new condition/platform axes as raw-text optional SEXP fields; no normalizer or protected COND schema/row changes. This adopts the board default, not a new axis or inferred value.
+- **USDA/Bognar overlap:** NOT_DETERMINABLE for independent-source status. Retain one provisional independence group each and no independent cross_source_v1 claim; eight versus eleven references and indirect USDA1998 citation are insufficient to establish experiment-level independence. This is an AI-delegated limitation ruling, not an expert-human signature.
+- **15a order:** Defer additional R2/Bognar remainder ingestion to a distinct15a.1 version; preserve already frozen15A-BOOT and its source/assignment commitments.
+- **D21-1:** Adopt MECH-###### shape and mechanism_key cross-references for the structural reference contract. Evidence/reference prefixes remain exactly as the tested v1.1 draft; no operational namespace writer is modified and no ID is minted. Existence/verification of referenced records remains separately required.
+- **D21-2:** Keep the numeric MECH identifier plus UNRESOLVED_LOSS key and UNRESOLVED_SINK kind. It is accounting only, never effect evidence or an EFFSIG grant.
+- **D21-3:** MECH remains P-MOD reference material with is_evidence=false.
+- **D21-4:** Keep STATE_TRANSITION and sink NOT_APPLICABLE semantics; do not disguise structural change as chemical reaction.
+- **D21-5:** Retain the tested effect vocabulary including ABSORBED/STRUCTURE_ALTERED/STATE_SET. These are schema tokens, not source-backed mechanisms; unresolved chemical/operator assignments stay explicit open questions.
+- **D21-6:** Bounds keep STATED/OPEN_STATED/NOT_REPORTED statuses; absent is not unbounded, studied extremes do not authorize extrapolation, no optimum bypasses FORM/PARAM.
+- **D21-7:** Retain tested family tokens including MICRONUTRIENT_DEGRADATION and UNRESOLVED; no chemical classification fact inferred.
+- **D21-8:** allowed_directions remains subset of INCREASE/DECREASE or exactly UNKNOWN; NO_CHANGE/MIXED are outcome descriptors, not newly inferred mechanisms.
+- **MECH freeze:** `ledgers/schemas/MECH.schema.json` is a parsed-identical alias of the tested v1.1 reference schema, pinned in `registry/freezes/MECH-REFERENCE-2026-11-13.json`. Existing draft consumers, eligibility/verification rules and ID allocation code remain unchanged. Synthetic schema/semantic controls green; this is structural acceptance, not source/chemical verification or a passed scientific gate.
+- **Q21/Q15:** An unreviewed POSSIBLE mechanism screen may state physically_possible with AI_DRAFTED_MECH_UNREVIEWED, without direction or magnitude. Direction still requires the existing opened-source evidence/span and human-review rule. Window sources must be opened primary/handbook sources; otherwise UNSOURCED. No rule is loosened by D-085.
+- **L13E:** Optional and parked, not a primary deliverable; a bounded descriptive null/rank-frequency chain may be retained with diagnostic labels. No first-paper empirical claim is selected without its own source/evidence record.
+- **Compute:** Explicit D-077 blanket approval applies to the already authorized local project CPU work and recorded historical scope. This adds no paid cloud purchase, hosting or SSH permission; node-hours are not fabricated retrospectively.
+- **Visibility:** Maintain the repository's existing PUBLIC state, verified read-only with gh repo view on13Nov. No visibility change or new external deployment. BBC raw text and restricted source excerpts stay local/ignored; aggregate counts carry their existing provenance and do not imply redistribution clearance.
+- **CLM:** Current app responses contain runtime provenance, not minted CLM ledger records. D5CLM remains a separate diagnostic shape; the view is not represented as a CLM-schema-valid scientific claim stream.
+- **INTERPOLATE:** The unchanged demo precheck emits DIRECT or NONE, not BRACKETING. An INTERPOLATE count is structurally zero under this implementation; no interpolation effectiveness or absence-of-effects inference follows. Implementing a new bracketing method would require a separate declared contract/evaluation.
+- **Label:** `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-097 · 2026-11-13 · Structural Rung A → Gold event-type mapping, pre-declared before scoring (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-085; T3-C11-R1, T3-C17-R2; `reports/s179/runga_gold_contract_2026-11-13.json` (generic ACTION has no Gold type); Kush's instruction of 13 Nov to run remaining decisions as ksh+prv and review the AI results afterwards.
+- **Mapping (structure only, no verb lexicon, no PROC family, no tuning):** for each Rung A `EventCandidate`, in order: `discards` non-empty → Discard; `len(consumes) ≥ 2` and `len(produces) == 1` → Merge; `len(consumes) == 1` and `len(produces) ≥ 2` → Split; `len(consumes) == 1` and `len(produces) == 1` → Transform; anything else → UNMAPPED (abstain, counted). Transfer, Reserve and Recombine have no structural signal in Rung A and are never predicted; their recall is reported as 0, not hidden.
+- **Scoring:** the existing T3-C11-R1 type-table method (per recipe, matched = min(gold, predicted) per type; no alignment), Wilson 95% on pooled counts and a recipe-cluster percentile bootstrap (n = 2000, seed `s179-d097-type-table`). Input = steps joined by newline (as the 13 Nov contract audit). Sets: P1_A_KUSH (7, HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND), DEV_PILOT20_V1_1 and DEV_FOODCOM_V1_1 (20 each, AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD). No set is independent (D-017, D-060).
+- **Fixed before any score is computed:** the mapping, method, seed and sets above. Any change after the first scored output is a dated amendment plus a new output path; the first output is kept.
+- **Not claimed:** Rung A accuracy, Merge/Transform semantics, state confusion, or comparability with the rule compiler beyond the shared count-match method.
+- **Label:** `DIAGNOSTIC`, `NOT_INDEPENDENT`, `NON_CITABLE`, `NO_HUMAN_SIGNOFF_D085`.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-097a · 2026-11-13 · Kush review of block K13 (decided by Kush; entered by the coding agent as scribe)
+- **Source:** `handoff/REVIEW_SHEET_AI_VERDICTS.md` block K13; Kush's reply in session: "all passed on the verdict".
+- **Decision:** Kush accepts K13-1..K13-4 (15a registry, NER vs Rung A agreement, D-097 type table, 29-diag paired vs D0) as reviewed AI results. Labels on the outputs are unchanged: still DIAGNOSTIC / NOT_INDEPENDENT / NON_CITABLE; this is a review acceptance, not a scientific gate pass or independence claim. Parv's review is pending.
+
+### D-100 · 2026-11-13 · Full-corpus column map, formula census and transition-type map, pre-declared before any number (decided by ksh+prv (AI, D-085) on Kush's instruction "this is MUST … all columns … all of the flow"; entered by the coding agent as scribe)
+- **Source:** D-085; D-097/D-097a; AA prereg domain gate (A3); `reports/s178/ssot238_conformance.csv` (210 fields: State 17 fields code-only, 0 rows); vitamin-C router census S179b (36.36 M items, SIMULATE 0, every item `NO_FORM`/`PARAM_UNCONFIRMABLE`); physics v06 L1/L2 full-corpus records (1.70 M heat records; Food.com temperature bound 14.8 %, duration 30.9 %).
+- **Lane C (columns):** SSOT field map v2 = the 210 §238 fields × {ledger rows (as v1), physics-v06 derived counts over all 612,782 recipes, ABSENT with disposition (implement / declared cut H8 / out of scope)}. State-contract view (temperature, duration, medium, matrix class, lid, piece size, zone dose, moisture/phase where computed) is a DERIVED view from v06 records, never written into a protected ledger; per-event rows stay git-ignored, counts committed. All 224 ACTIVE EVD targets get a full-corpus DIRECT census (existing router, new output paths, no code change to frozen router).
+- **Lane S (formula):** frozen Model A (`aa_pilot_model_a_fit_D085.json`, b9247db0…): ln k(T) = mean paper intercept − (Ea/R)(1/T − 1/T_ref); retention = exp(−k·t); 95 % predictive interval from the fit covariance plus σ_between. Applied to vitamin-C items in heat events with T and t, in two strata never pooled: TEXT_STATED (L1-bound T and t) and SCENARIO_DEFAULT (L2 defaults). A number is emitted only IN_DOMAIN = AA prereg gate (liquid acidic fruit matrix class, 60–100 °C, no water contact; leaching UNKNOWN); IN_FIT_RANGE (70–95 °C) flagged separately; everything else is counted by reason with no number. External check: where an EVD DIRECT vitamin-C retention value and an IN_DOMAIN formula value both exist for an item, report the paired difference table; no parameter is changed after seeing it.
+- **Lane T (transitions):** D-097 type map over all engine events per family and process. qwen2.5:7b-instruct 845dbda0 (vinayak) types step events on the 47 gold recipes with one prompt registered before scoring (temperature 0, fixed seed); scored with the D-097 method beside D-097. A larger 7B sample runs only if reported; no fine-tune is presented as a result (47 recipes cannot support one).
+- **Labels:** S = RESEARCH_ONLY / NOT_VALIDATED / SCENARIO where defaulted; all = DIAGNOSTIC, NON_CITABLE, NO_HUMAN_SIGNOFF_D085. New paths only; frozen code, results and ledgers unchanged. Any change after the first scored output is a dated amendment with a new path.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-099 · 2026-11-13 · Predeclare prv supplemental blinded AI claim review before selection/labelling (decided by ksh+prv (AI, D-085); entered by coding agent as scribe)
+- **Source:** Parv supplied Kush's13-Nov execution prompt and instructed proceeding; T8-C16-R1/T8-C04-R2. D-098/even numbers remain reserved for Kush.
+- **Sample fixed before generation/review:** existing `d5_scoring.audit_sample` and `claim_audit` machinery, ten claims each from frozen B2/B5T/B7, seed `s179-prv-d099-20261113` (30 total, enforced rung included). The existing sampler stratifies by scorer/checker agreement; this intentionally enriched sample is not a simple population-random sample. No redraw after labels; any shortfall is reported, not silently replenished. Frozen benchmark/runs/ledger and sampling source hashes recorded before labels.
+- **Blinding:** root prepares the packet and has prior system-output exposure. A fresh-context prv AI judge receives only shuffled audit IDs, question, answer sentence, claim text/kind and cited EVD rows. It must not open the key, rung metadata, checker output, frozen runs, benchmark Gold or other reviewers. Textual style can still reveal clues; no claim of perfect blinding or independent human review. Source excerpts and packet/key remain ignored.
+- **Rubric:** existing YES/NO/PARTLY/CANNOT_TELL support codes and RIGHT_CELL/SIMILAR/WRONG_CELL/NO_CITATION. Consistency with cited rows is assessed, not truth/validation of imported measurements. Unclear claims excluded from the agreement denominator and counted separately; no auto-YES from citation presence. Returned IDs must be complete/unique and issued content unchanged.
+- **After frozen returned labels:** unblind, compare per-claim AI unsupported judgments against stored answer-level checker flags. Report raw agreement with Wilson95% interval, exact denominator, unclear count, confusion and per-rung strata. This is a sample-descriptive, correlated-claim diagnostic; no population accuracy or checker precision/recall against humans is claimed. Existing claim extractor defines the sample universe; extraction recall is unmeasured.
+- **No change:** original H1/H3 verdicts, source/independence guards, benchmarks, checker/scorers, prompts and saved answers remain unchanged. This single AI audit does not meet an independent-human gate. No human signature or personal agreement is inferred.
+- **Labels:** `AI_DELEGATED_D085`, `NOT_INDEPENDENT`, `NOT_HUMAN_VERIFIED_UNTIL_REVIEW`, `NO_HUMAN_SIGNOFF_D085`, `AI_JUDGE_NOT_HUMAN`; review status `AI_VERDICT_PENDING_HUMAN_REVIEW`.
+
+### D-102 · 2026-11-13 · Process-aware type mapping v2, post-hoc amendment of D-097 (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-097 first output (Transfer never predicted, Transform over-predicted); D-100 Lane T 2,000-recipe sample (TRANSFER-family events typed Transform 81 %).
+- **Mapping v2:** discards → Discard; else PROC family TRANSFER → Transfer; else PROC family RESERVATION → Reserve; else the D-097 structural rule. Nothing else changes (method, seed, sets).
+- **Post-hoc:** declared after seeing D-097 gold results, so the v2 gold score is optimistic and labelled `POST_HOC_AMENDMENT`; the D-097 output stays the first result. New output path only.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-104 · 2026-11-13 · Operational AA SIMULATE domain gate for the D-100 Lane S formula census, fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-100 Lane S; AA prereg gate (liquid acidic fruit matrix, 60–100 °C, no water contact; leaching UNKNOWN); physics v06 L1 `inputs.matrix_class / matrix_groups / medium` and L2 `scenarios.{GENTLE,TYPICAL,INTENSE}`.
+- **IN_DOMAIN** for one heat event and one L2 scenario iff all hold: (1) L1 `matrix_class` = FRUIT, or every L1 `matrix_groups` value ∈ {FRUIT, SWEETENER, BEVERAGE} with at least one FRUIT; (2) L1 `medium` ∉ {WATER, STEAM} (no water contact; unknown medium → reason `MEDIUM_UNKNOWN`); (3) L2 status SCENARIO_COMPUTED; (4) food temperature T = min(bath_c, t_cap_c) with 60 ≤ T ≤ 100 °C; (5) duration_min > 0. pH is not observed per event: recorded `PH_ASSUMED_FROM_FRUIT_CLASS`. Flag `IN_FIT_RANGE` when 70 ≤ T ≤ 95.
+- **Number:** frozen `predict_ln_k` (unseen-matrix 95 % predictive interval, k in 1/min); retention = exp(−k·t) at mid / lo / hi. Reported per scenario, never pooled across scenarios; every number is SCENARIO_DEFAULT unless L1 binds both temperature and duration (counted separately as TEXT_STATED_AVAILABLE; no number in this version).
+- **Out of domain:** counted by first failing reason, no number.
+- **Labels:** RESEARCH_ONLY, NOT_VALIDATED, SCENARIO_DEFAULT, DIAGNOSTIC, NO_HUMAN_SIGNOFF_D085.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-106 · 2026-11-13 · D-104 gate amendment: require a liquid medium (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** first D-104 output `reports/s179/formula_census_aa_BBC_2026-11-13.json`: 171 IN_DOMAIN events were mostly bake (112) / roast (28) / fry (18), i.e. baked fruit, not the prereg's *liquid* acidic fruit matrix. D-104 condition (2) excluded water contact but did not require a liquid; that was a gate error.
+- **Change:** condition (2) becomes: L1 `medium` ∈ {LIQUID, LIQUID_PARTIAL}; WATER/STEAM stay `WATER_CONTACT`; any other known medium → `MEDIUM_NOT_LIQUID`; unknown → `MEDIUM_UNKNOWN`. Everything else in D-104 unchanged.
+- **Post-hoc:** declared after seeing the D-104 output; the D-104 output stays on record as the first result. New output paths only.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-101 · 2026-11-13 · Publisher-licence follow-up for five AA candidates (decided by ksh+prv (AI, D-085); entered by coding agent as scribe)
+- **Source:** Existing CC-BY/CC0 AA acquisition rule; primary publisher observations recorded in `reports/step10/aa_publisher_licence_followup_2026-11-13.json`; user instructed continuing available work. Parv owns odd-numbered decisions; even-numbered lanes remain Kush's.
+- **AAK-05:** Article-specific publisher notice is CC BY-NC-SA4.0, differing from earlier aggregator CC-BY metadata. Exclude this candidate from intake under the existing CC-BY/CC0 allowlist; retain original screening/check records. This is a project-scope decision, not a claim that NC-SA forbids all research. No source rows or partition assignment changed.
+- **AAK-04/AAK-10:** Publisher attribution-licence family confirmed by AI. AAK-04 publisher PDF notice leaves version unspecified; do not infer it. AAK-10 article links CC BY4.0. Browser access is not local byte-hashed PDF acquisition or source-span verification; these remain pending.
+- **AAK-02/AAK-08:** Unconfirmed; PDF timeout/challenge and missing retrievable article-specific grant. No inference from a general open-access badge, no workaround or alternative retrieval after the challenge.
+- **Unchanged:** Original extraction/model/fit, CAL/SIMVAL membership, source ledgers and scientific guards. No new rows, local PDF acquisition, human verification or eligibility pass claimed. Any future SIMVAL extraction uses a separate unexposed session.
+- **Labels:** AI_DELEGATED_D085; NOT_INDEPENDENT; NOT_HUMAN_VERIFIED_UNTIL_REVIEW; NO_HUMAN_SIGNOFF_D085; AI_VERDICT_PENDING_HUMAN_REVIEW.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-108 · 2026-11-13 · Lot-level AA formula gate (process × ingredient-lot), fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** D-106 output (1 / 49,662 BBC events in domain: event matrices are mixed); Kush 13 Nov "do all formula as process × ingredient combination effect"; plan `reports/orchestration/full_corpus_state_dataset_plan_2026-11-13.md` (L3).
+- **Rule:** as written in the plan §D-108: lot ingredients all LIQUID/PASTE and acidic = YES (L6b AI_DRAFTED attributes, labelled as such until reviewed) or FRUIT category with LIQUID form; event medium ∈ {LIQUID, LIQUID_PARTIAL}; WATER/STEAM = WATER_CONTACT; food T = min(bath, cap) in 60–100 °C; t > 0; frozen `predict_ln_k`; retention per lot × scenario, never pooled. Labels RESEARCH_ONLY, NOT_VALIDATED, SCENARIO_DEFAULT, AI_DRAFTED_ATTRIBUTES.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-110 · 2026-11-13 · State dataset fill rule for all 612,782 recipes, fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe)
+- **Source:** Kush 13 Nov "600k+ columns shall need to be filled"; D-100 Lane C; plan L2.
+- **Rule:** a State column gets a value only from a recorded basis (TEXT_STATED / LEDGER / PHYSICS_V06 / FORMULA_RESEARCH_ONLY / SCENARIO_DEFAULT / AI_DRAFTED); otherwise UNKNOWN with the upstream reason code. "Filled" never means guessed. Fill-rate table per column × family (VALUE_BY_BASIS vs UNKNOWN_BY_REASON) is the committed output; rows stay git-ignored.
+- **Approver:** ksh+prv (AI, D-085).
+
+### D-112 · 2026-11-14 · Submission scope freeze (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 14 Nov, "Proceed now. Approve the direction of D-112 and D-116 with the following execution constraints"; `handoff/PLAN_2026-11-14_finalise_and_deploy.md` §1; `handoff/MASTER_STATUS_AND_PROMPT_2026-11-14.md`.
+- **Contribution frozen as:** "CulinaryState is an event-sourced, lot-aware and composition-aware representation of cooking state transitions, where structural and physical changes are explicit and chemical effects are introduced only from compatible evidence or validated models; unsupported effects remain UNKNOWN."
+- **Constraints:** no new broad research or architecture phase; the 36-step plan is not reopened (gate audit verdicts stand); frozen NER/linker not retrained; no invented chemical values; report/deck work runs in parallel from 14 Nov; technical feature freeze 19 Nov, integration/verification 20 Nov, submission only 21 Nov; hosting does not take time from the report/deck. The contrast-case retrieval ablation is DIAGNOSTIC_ONLY and is not presented as rescuing H1.
+
+### D-116 · 2026-11-14 · Composition-aware lot and medium state, additive (decided by Kush, direction; schema returned for review before chemistry routing; entered by the coding agent as scribe)
+- **State:** S_t = (G_t, C_t, Q_t, Y_t, P_t); C_t = new CompositionState / MediumState layer; existing layers unchanged.
+- **Minimum axes:** salt_present, acid_present, lipid_present; salt_fraction and fat_fraction only when grounded; pH/acidity only as a sourced scenario band, never an invented mixture pH; aqueous vs lipid contact phase; provenance/status on every field.
+- **Router:** existing enums only (DIRECT / INTERPOLATE / SIMULATE / SCENARIO / QUALITATIVE / UNKNOWN); composition axes added to compatibility; no new external/API router. Embeddings retrieve candidates; structured compatibility decides applicability; multi-view retrieval representation derived from explicit S_t.
+- **Acceptance test:** tomato A (water), B (+salt), C (+salt+vinegar), D (+salt+vinegar+oil) share BOIL and produce distinct C_t / MediumState. Composition presence also run over the full corpus.
+- **Order:** parser fix (deterministic, measured before/after) → D-116 schema (returned to Kush) → chemistry routing.
+
+### D-118 · 2026-11-14 · ksh+prv review of the parser guard, markers and D-116 schema; v2/v1.1 adopted (decided by ksh+prv (AI, D-085) on Kush's instruction "use prv and ksh for review"; entered by the coding agent as scribe)
+- **Guard precision (50 Wikibooks/Gutenberg contexts, blind, independent):** ksh 45/48 = 0.94 [0.83, 0.98]; prv 43/47 = 0.92 [0.80, 0.97]; both INCORRECT on "fry", "fry", "sprinkle". → guard v2 adds a verb blocklist (fry, sprinkle, dried, …). Sample is 30/50 "salt": precision mostly reflects salt.
+- **Markers:** both rejected the same 4 v1 rows (rice / shaoxing / shaohsing wine as ACID; bouillon as SALT) → markers v2: reclassified to AQUEOUS, marker sets (soy sauce SALT+AQUEOUS, wine ACID+AQUEOUS, cream LIPID+AQUEOUS), role_default, basis/source columns; 115 rows. Missing seeds that are not ING ledger rows (sea salt, miso, salted butter, …) are not added (no ID minting here).
+- **Schema v1.1 (agreed changes):** presence is TRUE / NOT_DETECTED / UNKNOWN(MEMBER_UNLINKED) — never FALSE from a missing marker; explicit FOOD / MEDIUM role; `nacl_equiv_fraction_as_added`, `fat_fraction_as_added` (UNKNOWN until masses are grounded); no lot pH rule (`lot_acidity_band` UNKNOWN LOT_PH_NOT_COMPUTED); contact phase from an explicit truth table (markers + physics medium); router must compare query composition with the evidence row's own composition and never treat UNKNOWN composition as DIRECT.
+- **Status:** AI_DELEGATED_REVIEWED_KSH_PRV_D085 — not human verification. v1 outputs kept as first results. Review files: `reports/s179/d116_review_2026-11-14/`.
+
+### D-120 · 2026-11-14 · Kush passes D-116 schema v1.1 and the parser guard audit (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 14 Nov, "ok all passed", on `reports/s179/d116_composition_state_schema_v1_1.md`, `reports/s179/parser_coord_food_guard_audit_2026-11-14.md` and D-118.
+- **Effect:** chemistry routing (D-116 router composition axes, existing enums only) and the R2/R3 chemistry evidence packet are unlocked. Marker table v2 stays AI_DELEGATED until Kush/Parv verify the rows used in a submission figure.
+- **Baseline seen before the router change (tomato A–D, current router):** A → DIRECT (EVD-002765 vitamin C 95%, EVD-002781 lycopene 95%, USDA R6 "TOMATOES,BOILED/BAKED", medium not recorded); B/C/D → UNKNOWN MERGED_LOT_CONTEXT for both targets, although C_t differs. The router does not yet read C_t.
+
+### D-122 · 2026-11-14 · Continuation rule adopted with three amendments; composition semantics v1.2.1; NPN-Cooking validation added (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 14 Nov, "yes" to: adopt the pasted continuation rule (execution queue = reconciled 36-step plan + D-112 deadline overlay; stop only at a human decision, a failed gate needing approval, a missing credential/file, the 19 Nov freeze, or all MUST done) with amendments (1) the SSOT-v16 file is still a DRAFT, so "reconciliation done" is not assumed; (2) standing rules stay: VPN confirmation before SSH, BBC text on the Mac, no host paths pushed, no outward action without Kush; (3) add external validation on NPN-Cooking labels as a MUST, subject to a licence check.
+- **Semantics v1.2.1:** query presence TRUE / NO_RECOGNIZED_MARKER / UNKNOWN (renamed from NOT_DETECTED: words outside the lexicon are invisible); evidence context PRESENT / ABSENT / UNKNOWN_IN_SOURCE (ACTIVE EVD rows record no salt/acid; lipid PRESENT only for oil medium/name; nothing ABSENT). Axis table MATCH / MISMATCH / UNCONFIRMED / NO_STATED_DIFFERENCE / QUERY_UNKNOWN. Route: MISMATCH -> CONTEXT_MISMATCH; UNCONFIRMED or QUERY_UNKNOWN -> UNKNOWN with near evidence; otherwise the frozen route. The water-only DIRECT restore is removed (it assumed a match).
+- **Effect on tomato A-D:** A DIRECT (EVD-002765); W UNKNOWN MERGED_LOT_CONTEXT (frozen gate); B/C/D UNKNOWN with COMPOSITION_UNCONFIRMED_IN_SOURCE:SALT / SALT+ACID / SALT+ACID+LIPID, near EVD-002765. This supersedes the CONTEXT_MISMATCH labels of 7ad90b4.
+
+### D-124 · 2026-11-14 · External flow-graph corpus skipped (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 14 Nov, "no skip no such hassle".
+- **Decision:** no request for the English Recipe Flow Graph corpus; NPN-Cooking is not used (no verifiable licence). External human-gold validation of G_t is DECLARED_NOT_RUN for the submission. The D-116 human check is the 50-context sheet labelled by Kush and Parv (T5).
+
+### D-126 · 2026-11-14 · D-116 50-context check: ksh+prv label first, gate declared before labels (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 14 Nov, "use prv and ksh for marking and if not okay then we can just review me and parv".
+- **Packet:** `tools/s179_d116_human_packet.py`, seed 20261114, 50 items (10 each SALT_TRUE / ACID_TRUE / LIPID_TRUE / NONE_TRUE / SUGGESTED), Wikibooks + Gutenberg text only; packet and sealed key under `data/raw/` (git-ignored); hashes in `reports/s179/d116_human_check_manifest_2026-11-14.json`. ksh and prv label blind (no key, no code, separate folders). Labels are AI_DELEGATED (D-085), not human.
+- **Gate (declared before any label is read):** a label is "consensus" where ksh and prv agree and neither says "?". Per axis (salt, acid, lipid, water), on consensus items: precision of our TRUE ≥ 0.80 and recall ≥ 0.60, each judged only if ≥ 5 items are in the denominator (else INSUFFICIENT). Salt suggestion: share of SUGGESTED-salt items where consensus says salt is in contact or likely-unstated ≥ 0.60. Agreement ksh vs prv (Cohen's κ per axis) is reported, not gated. PASS = every judged axis passes; otherwise FAIL → Kush and Parv review the disagreement and failure items (no threshold change after seeing results).
+
+### D-128 · 2026-11-14 · D-126 result: gate FAIL (AI-delegated); errors classified; Kush+Parv review requested (recorded by the coding agent as scribe; no threshold change)
+- **Score** (`reports/s179/d116_human_check_score_ai_2026-11-14.json`; ksh+prv consensus, D-085, not human): salt P 0.75 / R 0.71 FAIL; acid P 0.75 / R 0.50 FAIL; lipid P 0.88 / R 0.76 PASS; water P 0.87 / R 0.82 PASS; salt suggestion 8/15 = 0.53 FAIL. Rater κ: salt 0.89, acid 1.00, lipid 0.78, water 1.00.
+- **Error classes seen in the labellers' notes:** (1) intrinsically salty co-members not in the marker table (cured bacon, smoked fish, dried shrimp, chorizo, oyster liquor, salt butter); (2) the USDA default "butter" row is salted (sodium ≥ 400 mg/100 g), so creamed butter gives salt TRUE (3 FP); (3) acidic foods without a sourced pH route (tomato / tomato purée, sour apple, gooseberry; item-8 gap); (4) definitional: labellers count the food's own salt or acid, C_t counts only co-members; (5) "A or B" optional alternatives taken as both; (6) food-to-step binding errors: ksh marked 7/50 items "?" throughout because the named food is not at the marked step (sub-recipe, heading or ingredient line, strained out, added later). Classified as: (1)(2)(5) existing D-116 marker/threshold task, fix = v1.2.2 on a NEW sample; (3) item-8 chemistry packet; (4) SSOT-v16 additive clarification (define "contact" to include or exclude the food itself); (6) existing Rung A binding limitation, report only.
+- **Next per D-126:** Kush and Parv review `data/raw/d116_human_check/review_for_kush_parv.csv` (36 items: wrong vs consensus, or ksh/prv disagree). Their labels replace AI consensus where given; the thresholds of D-126 stay fixed.
+
+### D-130 · 2026-11-14 · Kush accepts C_t v1.2.1 with the D-126 FAIL recorded; no human review round (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 14 Nov, "no it's fine, use it, continue with it, use those with slightly less accuracy but fine, keep working wrt plan".
+- **Decision:** C_t v1.2.1 is the submission version. The D-126 gate result stays FAIL (salt, acid, salt suggestion) and is reported with the D-128 error classes as limitations; lipid and water PASS are reported as AI-delegated (D-085), not human. The review sheet is not used. No threshold changes; no v1.2.2 before the freeze unless Kush asks.
+
+### D-132 · 2026-11-14 · Narrow opt-in lineage vNext (A–D) per Kush's direction (decided by Kush: "ok do all" on the narrowed scope; entered by the coding agent as scribe)
+- **Scope (only the observed failures; CR-25/26 is not implemented in full):** A: the coordination guard no longer treats "to / over / into" after a coordinated food as an object cue ("add the tomatoes and salt to the onion"). B: a non-combine event with a fat input (oil, butter, ghee, lard, fat, dripping, margarine, shortening) plus a food yields one lot, so the frying fat stays with the food (water is not included: it is usually drained). C: a first-seen food word in {sauce, mixture, batter, dough, paste, stew, soup, filling, dressing, marinade, glaze, purée, custard} refers to the single live current mixture when one exists. D: "A or B" between two food mentions binds A only (flag VNEXT_ALTERNATIVE_SKIPPED); first-named is a labelled choice, not a fact.
+- **Frozen:** `RungA(lineage_vnext=False)` (default) is unchanged; 388 related tests pass. vNext is promoted only after the corpus differential shows no material regressions.

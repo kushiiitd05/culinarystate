@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-12",
+  "engineering_snapshot_hashes_match": true,
+  "final_targeted_result": "75 passed in 0.76s",
+  "frozen_artifact_hashes_match": true,
+  "full_suite": {
+    "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest -q -o faulthandler_timeout=120",
+    "deselected": 44,
+    "errors": 0,
+    "failed": 0,
+    "log": "reports/s179/local_full_suite_2026-11-12.log",
+    "log_sha256": "ca8f15e58ecdeee5ea6f1a10f46f45218716daec8aa9d216b9cc9d797a500680",
+    "passed": 8085,
+    "scope": "Default non-ledger marker suite; includes strict runtime audit tests, precedes 3 additional source-scan tests.",
+    "seconds": 171.88,
+    "skipped": 4
+  },
+  "initial_after_restoration": {
+    "cause": "Only restored AppleDouble sidecar metadata; quarantined without changing original annotation contents or test assertions.",
+    "deselected": 44,
+    "failed": 2,
+    "passed": 8080,
+    "seconds": 173.13,
+    "skipped": 4
+  },
+  "labels": [
+    "AI_PRECHECKED",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "AI review is not independent human verification.",
+    "No validated real simulator or new scientific gate pass.",
+    "Full suite count and final targeted count are separate runs; not added together as one full run."
+  ],
+  "protected_baseline": "47164d78",
+  "protected_files_sha256": {
+    "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+    "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+    "ledgers/data/MEAS.jsonl": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+    "ledgers/data/SNAP.jsonl": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+    "ledgers/data/SRC.jsonl": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+    "registry/execution_board_S178.csv": "d0d01b099c0ebf28a6f70d15e2cbe08c5835154e1d685f91017052a6a19dd975",
+    "src/culinarystate/decision/demo_context.py": "3f8c3e6be28659bf333298c40ad890bde73a15f84abce177609960142f1b9ce1",
+    "src/culinarystate/generation/enforce.py": "3ac2aa7e1cb66df16c94d266d996d8fb56a0f04f6e13e56402ed853492e4991f",
+    "src/culinarystate/generation/verbalize.py": "8a10d611cd1177e68d27945c311befe941a91745aea27efd11ba9ed67ebd05eb",
+    "src/culinarystate/quantity/grammar.py": "25b34fa8948b8989dadfecd87cee2737765a1fd07f4e02281ddacaf522d4a3c3"
+  },
+  "record": "LOCAL_COMPLETION_VERIFICATION",
+  "scientific_gate_pass": false
+}

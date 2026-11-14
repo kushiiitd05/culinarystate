@@ -28,6 +28,18 @@ TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER); (c) the regime is DRY when every m
 member groups of the lot (``member_groups``); a Layer 1 record that carries only the single-class ``matrix_class`` gives them
 for single-class lots only.
 
+S178 FIX-PHYS (version 0.3.0, SCI-A M4 / M5 / m10; SSOT v16 DRAFT 284.3, PROPOSED, AI_DRAFTED, rulings flagged for Kush):
+- ``stated_liquid_lift`` decides whether a stated aqueous-liquid temperature above T_boil may lift the cap (Q1 PROPOSED default).
+  All of: (1) the temperature is OWNED by the liquid step (Layer 1 row CB_RULE:TEMPERATURE_OWN_CLAUSE); (2) a sugar-phase member
+  (solute_kind SUGAR_PHASE), a Layer 1 syrup / candy / stage cue, or a pressure cue / pressure medium (then only up to the PC-002
+  INTENSE saturation temperature + the PC-041 tolerance). Otherwise the cap stays at T_boil with a STATED_LIQUID_T_ABOVE_TBOIL_
+  NOT_LIFTED_<why> flag. A salt / condiment member alone never lifts (its boiling-point elevation is small).
+- The cap itself still never goes below a stated temperature it is GIVEN (``stated_liquid_c``); the gate decides what is given.
+  Layer 2 applies a lifted value to the liquid only: a moist cut piece in it is bounded by its own T_boil (scenario_layer, M5).
+- m10: TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER (0.2.0, on any CONDIMENT member) is split into SUGAR_PHASE_TBOIL_LOWER_ESTIMATE
+  (a SWEETENER member or a syrup cue) and SALT_MEMBER_BPE_SMALL (a CONDIMENT member). FINAL-SCI row 3(c) (roux, crumbs, spices in
+  fat: the SR water < 15 g/100 g criterion) stays OPEN until the composition layer gives water contents.
+
 Matrix regimes (registry/matrix_moisture_regime_v1.csv): MOIST and MIXED_AMBIGUOUS (and an unknown matrix class) are
 capped; DRY_LOW_MOISTURE (NUT_SEED, SWEETENER, FAT_OIL) is not. Ambiguous and unknown classes are capped because the
 heat layer already assumes high-moisture properties for every matrix.
@@ -40,7 +52,8 @@ from pathlib import Path
 from typing import Mapping, Sequence
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "evaporation-cap-0.2.0-draft"
+VERSION = "evaporation-cap-0.3.0-draft"
+VERSION_V02 = "evaporation-cap-0.2.0-draft"  # SUPERSEDED: lift on any stated value, one solute flag
 REGISTRY = "registry/phase_change_v1.csv"
 REGIME_REGISTRY = "registry/matrix_moisture_regime_v1.csv"
 PRESSURE_MEDIA = ("WATER_PRESSURIZED",)
@@ -49,6 +62,11 @@ PRESSURE_MEDIA = ("WATER_PRESSURIZED",)
 AQUEOUS_LIQUID_MEDIA = ("WATER", "LIQUID", "LIQUID_PARTIAL", "WATER_PRESSURIZED", "WATER_BATH_SEALED")
 STATED_BASES = ("L1:TEXT_STATED", "L1:CARRIED_SETPOINT")
 ATM_ID, PRESSURE_ID = "PC-001", "PC-002"
+OWN_CLAUSE_ROW = "CB_RULE:TEMPERATURE_OWN_CLAUSE"
+SUGAR_FLAG, SALT_FLAG = "SUGAR_PHASE_TBOIL_LOWER_ESTIMATE", "SALT_MEMBER_BPE_SMALL"
+LEGACY_SOLUTE_FLAG = "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER"  # 0.2.0 flag (SUPERSEDED by the two above)
+LIFT_REASONS = ("SUGAR_PHASE_MEMBER", "SYRUP_STAGE_CUE", "PRESSURE_CUE")
+NOT_LIFTED = "STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED"
 MOIST, AMBIGUOUS, DRY, UNKNOWN_CLASS = "MOIST", "MIXED_AMBIGUOUS", "DRY_LOW_MOISTURE", "UNKNOWN_ASSUMED_MOIST"
 # surface states (qualitative)
 WET_AT_TBOIL, DRYING_POSSIBLE = "SURFACE_WET_AT_TBOIL", "SURFACE_DRYING_POSSIBLE"
@@ -95,9 +113,12 @@ def _interp(rows: Sequence[tuple[float, float]], x: float, what: str) -> float:
 
 class PhaseChange:
     def __init__(self, *, nums: Mapping[str, Mapping[str, tuple]], regimes: Mapping[str, str],
-                 solute_rich: Sequence[str] = ()) -> None:
+                 solute_rich: Sequence[str] = (), solute_kind: Mapping[str, str] | None = None) -> None:
         self.nums, self.regimes = nums, dict(regimes)
         self.solute_rich_classes = frozenset(solute_rich)
+        kinds = dict(solute_kind or {})
+        self.sugar_classes = frozenset(k for k, v in kinds.items() if v == "SUGAR_PHASE")
+        self.salt_classes = frozenset(k for k, v in kinds.items() if v == "SALT_OR_CONDIMENT")
         self._alt = sorted((float(k[4:]), v[1]) for k, v in nums["boiling_point_altitude"].items())
         self._psig = sorted((float(k[5:]), v[1]) for k, v in nums["saturation_temperature_gauge_psi"].items())
         self.drying_tol_c = nums["drying_criterion_core_within"]["ALL"][1]
@@ -114,7 +135,8 @@ class PhaseChange:
             rows = list(csv.DictReader(fh))
         regimes = {r["matrix_class"]: r["regime"] for r in rows}
         return cls(nums=nums, regimes=regimes,
-                   solute_rich=[r["matrix_class"] for r in rows if r.get("solute_rich", "NO") == "YES"])
+                   solute_rich=[r["matrix_class"] for r in rows if r.get("solute_rich", "NO") == "YES"],
+                   solute_kind={r["matrix_class"]: r.get("solute_kind", "NONE") for r in rows})
 
     # ------------------------------------------------------------------------------------------ regimes
     def regime(self, matrix_class: str | None) -> str:
@@ -141,6 +163,12 @@ class PhaseChange:
     def has_solute_rich_member(self, matrix_class: str | None, groups: Sequence[str] | None = None) -> bool:
         return any(g in self.solute_rich_classes for g in {*(groups or ()), *([matrix_class] if matrix_class else [])})
 
+    def has_sugar_member(self, matrix_class: str | None, groups: Sequence[str] | None = None) -> bool:
+        return any(g in self.sugar_classes for g in {*(groups or ()), *([matrix_class] if matrix_class else [])})
+
+    def has_salt_member(self, matrix_class: str | None, groups: Sequence[str] | None = None) -> bool:
+        return any(g in self.salt_classes for g in {*(groups or ()), *([matrix_class] if matrix_class else [])})
+
     @property
     def dry_classes(self) -> tuple[str, ...]:
         return tuple(sorted(k for k, v in self.regimes.items() if v == DRY))
@@ -158,9 +186,44 @@ class PhaseChange:
         return _interp(self._psig, float(psig), "psig")
 
     # ------------------------------------------------------------------------------------------ the cap
+    def pressure_max_c(self) -> tuple[float, str]:
+        """Highest scenario saturation temperature (PC-002 INTENSE) plus the invariant tolerance (PC-041), with its basis."""
+        row = self.nums["boiling_point_pressure_process"]["WATER_PRESSURIZED"]
+        return row[2] + self.invariant_tol_c, f"{row[3]}+{self.nums['cap_invariant_tolerance']['ALL'][3]}"
+
+    def stated_liquid_lift(self, *, medium: str | None, stated_c: float | None, stated_row: str | None,
+                           matrix_class: str | None = None, member_groups: Sequence[str] | None = None,
+                           syrup_cue: bool = False, pressure_cue: bool = False, bracket: int = 1,
+                           policy: CapPolicy | None = None) -> tuple[float | None, str | None, tuple]:
+        """(value to give ``cap`` as ``stated_liquid_c`` or None, lift reason or None, flags) for one event and bracket (S178
+        FIX-PHYS, SCI-A M4, Q1 PROPOSED default; see the module docstring). Never invents a temperature: it only decides
+        whether the stated one may lift the T_boil ceiling."""
+        if stated_c is None or medium not in AQUEOUS_LIQUID_MEDIA:
+            return None, None, ()
+        policy = policy or CapPolicy()
+        base = self.cap(medium=medium, matrix_class=matrix_class, bracket=bracket, policy=policy, member_groups=member_groups)
+        if base.t_c is None or float(stated_c) <= base.t_c:
+            return None, None, ()
+        if stated_row != OWN_CLAUSE_ROW:
+            return None, None, (f"{NOT_LIFTED}_NOT_OWNED",)
+        reason = None
+        if self.has_sugar_member(matrix_class, member_groups):
+            reason = "SUGAR_PHASE_MEMBER"
+        elif syrup_cue:
+            reason = "SYRUP_STAGE_CUE"
+        elif pressure_cue or medium in PRESSURE_MEDIA:
+            mx, _ = self.pressure_max_c()
+            if float(stated_c) <= mx:
+                reason = "PRESSURE_CUE"
+            else:
+                return None, None, (f"{NOT_LIFTED}_ABOVE_PRESSURE_MAX", "STATED_LIQUID_T_IMPLAUSIBLE_FOR_WATER_PHASE")
+        if reason is None:
+            return None, None, (f"{NOT_LIFTED}_DILUTE",)
+        return float(stated_c), reason, (f"STATED_LIQUID_LIFT_{reason}",)
+
     def cap(self, *, medium: str | None, matrix_class: str | None, bracket: int = 1,
             policy: CapPolicy | None = None, member_groups: Sequence[str] | None = None,
-            stated_liquid_c: float | None = None, stated_basis: str | None = None) -> Cap:
+            stated_liquid_c: float | None = None, stated_basis: str | None = None, syrup_cue: bool = False) -> Cap:
         """Cap for one event and bracket (0 GENTLE, 1 TYPICAL, 2 INTENSE). ``policy.enabled`` False gives no cap.
 
         ``member_groups``: food groups of all members of the lot, when the caller has them (regime DRY if all are dry classes;
@@ -177,8 +240,10 @@ class PhaseChange:
                        (("ALL_MEMBERS_DRY_CLASS",) if len(groups) > 1 else ()))
         flags = {UNKNOWN_CLASS: ("MATRIX_UNKNOWN_MOIST_ASSUMED",), AMBIGUOUS: ("MATRIX_AMBIGUOUS_MOIST_ASSUMED",)}.get(regime, ())
         flags += ("BOILING_POINT_ELEVATION_NOT_MODELLED",)
-        if self.has_solute_rich_member(matrix_class, groups):
-            flags += ("TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER",)
+        if self.has_sugar_member(matrix_class, groups) or syrup_cue:  # m10: a sugar phase can boil well above 100 C
+            flags += (SUGAR_FLAG,)
+        if self.has_salt_member(matrix_class, groups):  # m10: salted water: elevation small, the cap is close
+            flags += (SALT_FLAG,)
         if medium in PRESSURE_MEDIA:
             if policy.pressure_psig is not None:
                 t, basis = self.t_sat_gauge_c(policy.pressure_psig), "PC-030..PC-034"

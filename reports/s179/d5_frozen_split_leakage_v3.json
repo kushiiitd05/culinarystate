@@ -1,0 +1,439 @@
+{
+ "code_sha256": {
+  "src/culinarystate/evaluation/leakage_audit_d5.py": "6f11612aa7d51115040eb890ed2ad07463271e5a01b1820a4b3cbfcddaa33478",
+  "src/culinarystate/evaluation/split_registry.py": "a13bdd63f5e7e0772e2fb1d94d156dfa3011595ada1823c823dbff7ec9930274",
+  "src/culinarystate/transition/splits.py": "5a358fc3daef57a1b338a8a278c68fc69fb37212d16260dc5f386ca93a4d8a94",
+  "tools/export_retrieval_set.py": "8f7d69ff9fdc25276d87adb5b068b926d18201ed0a0c14b1dd5a02060d010e7b",
+  "tools/s178_leakage_audit_d5.py": "dcbe60148bd97408264bf953b6420bd20f3eb0f2b0aacb08c26155e304f3da50",
+  "tools/s179_frozen_split_registry.py": "7d0716b7fc30ec0d13900789c9d62a42022e650ed122df8e0e32cdaeb4f9cd1a"
+ },
+ "completed_at_utc": "2026-11-12T07:40:55.230948+00:00",
+ "frozen_summary": {
+  "by_block": {
+   "C": 10,
+   "P1": 10,
+   "P2": 10,
+   "P3": 10,
+   "S1": 12,
+   "S2": 12,
+   "U": 5,
+   "X": 5
+  },
+  "distinct_gold_evd_ids": 79,
+  "gold_evd_overlap_between_blocks": {
+   "C&P1": 2,
+   "C&P2": 1,
+   "P1&P2": 9
+  },
+  "gold_independence": "AI_DRAFTED_GOLD_NOT_INDEPENDENT_HUMAN_GOLD",
+  "near_duplicate_control": "NOT_ESTABLISHED",
+  "questions": 74,
+  "recipe_overlap_between_blocks": {},
+  "source_family_counts_S": {
+   "GUTENBERG_SEGMENT": 22,
+   "WIKIBOOKS": 2
+  },
+  "source_family_disjoint": false,
+  "unit_assignment_sha256": "3190d202f32be020847dc4c08920f1ee3dfe7906ccdaf8c5d4998f6395e7c73e"
+ },
+ "historical": {
+  "07A_R1": {
+   "path": "reports/step07/07A_R1_packet_manifest.json",
+   "recorded_fields": {
+    "attempt": "07A-R1",
+    "audited_by_humans": false,
+    "excluded_count": 100,
+    "excluded_set_sha256": "bee4a269ba354dcb3e033a132ab0318819c2b32ef3e40adf7cbc0f8fdbb71b4a",
+    "n": 100,
+    "seed": "step07-condition-audit-R1-2026-11-08",
+    "sha256_packet_Kush": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d",
+    "sha256_packet_Parv": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d"
+   },
+   "sha256": "86f8957dc054b6ae57b719eb08e4db8c75704a149a1dfae3c05a786807a75599",
+   "status": "RECORDED_PROVENANCE_NOT_REDERIVED",
+   "warning": "A hash of a historical result is not a fresh derivation of private unit assignments."
+  },
+  "diag29": {
+   "path": "reports/step29/diag/diag_results_S179.json",
+   "recorded_fields": {
+    "exclusions": [
+     {
+      "n_burned_components": 0,
+      "n_burned_dev_rows": 0,
+      "n_excluded_rows": 3555,
+      "n_kept_rows": 14423,
+      "n_reserved_rows": 3555,
+      "n_rows": 17978,
+      "status": "DRAFT_PENDING_15aR_15b"
+     }
+    ],
+    "seal_payload_sha256": "80c2f04daeafdc1ffac190c4a92782b9aff5d1b5351934f5c76565ea6e8e51e6",
+    "signoff": {
+     "freeze": "AI_DELEGATED_D085",
+     "prereg": "AI_DELEGATED_D085"
+    },
+    "snapshot_id": "15A-BOOT-2026-11-08",
+    "status": "DRAFT_PENDING_29diag_PREREG"
+   },
+   "sha256": "7bb284372ce3a56a533e297310b049d4a0becd9a4ae2ef656e941de89730087d",
+   "status": "RECORDED_PROVENANCE_NOT_REDERIVED",
+   "warning": "A hash of a historical result is not a fresh derivation of private unit assignments."
+  },
+  "old_registry": {
+   "path": "registry/split_registry_v1.csv",
+   "sha256": "88b521bbed35e7e07aead4a81b0a70552d671f94eab2a313cc3036f2b47cd78c",
+   "status": "HISTORICAL_DRAFT_NOT_REPLACED"
+  }
+ },
+ "input_sha256": {
+  "benchmark/d5/d5_benchmark_v1_D085_PC.csv": "829bce2e13a25f67bd0c01f5e40b1e7f676a5a8792d09ae216094ac89c9783b0",
+  "benchmark/d5/d5_benchmark_v1_D085_S.csv": "74d256ba046fcb664afee6d1bf14b9affbd8ff0245dc30541e7d7dd0068b4404",
+  "benchmark/d5/d5_benchmark_v1_D085_UX.csv": "0adaa0a28266bdc4c24d5497762e59d1bcf05b87da3e33c5c75f7d3866eb9eaf",
+  "benchmark/d5/d5_relatives_v1_D085.json": "cf19acb7fe9fc1d849c83c0a3bd24cc08a554c0147e6385484824819a1076ce0",
+  "benchmark/ner/splits/recipedb3_split_v1.json": "fc9d2fcd6f07244d7b05c5da5837641e5778bd4c4855a440d766d390971f9bdb",
+  "data/external/recipedb3_ner/Ingredient_Annotated_Dataset.csv": "09f61f8f30cf250764b2d187318da221ecace6599f294fece42d6fa7ae8edb8b",
+  "data/interim/retrieval/bm25_top100.json": "b8fc2890bb1b625ae14e99c19e518bf7cc2f9e2f755e6d64be9721ead8ceb309",
+  "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "ledgers/data/PROC.jsonl": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+  "ledgers/data/REC.jsonl": "91f65a47389260efa345e34695060053ae1b433afce0726baca42c310e24bd85",
+  "ledgers/recipe_base/gold_recipe_index_v1.parquet": "4832d7a91bcfd01bd32d643e84f5dcc3afef9373ac4d65fe360390eff62429cb",
+  "ledgers/recipe_identity/duplicate_group_members_v1.parquet": "7efe59a40bbcd8af86476ca0af23cf75902acf3f64e927dd391aea2916b96ad7",
+  "ledgers/recipe_identity/recipe_family_members_v1.parquet": "28295ecf0434139acccfd429b1d794bee5686f7fa7b033067a63d2e9c7e7c34c",
+  "registry/freezes/D5-BENCH-2026-11-10b.json": "13ab6e36bfb3ef2ebfed2cdd67d0080e49e3a88587a8428d4cf8946138ac68a0",
+  "reports/del5/ladder_v2_qwen7b.jsonl": "2f492274641d4c7bbe04b8af967879880d824c5beb3f326973e508b7dff94851",
+  "reports/step17/j4_inverted_interval_sample_manifest_S166.csv": "b989bdaa5e0e0835d5bbebf1c9dec77774c10d11fb69b3e404faa73bb519e140"
+ },
+ "labels": [
+  "AI_PRECHECKED",
+  "NON_CITABLE",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "leakage": {
+  "pc_blocks": {
+   "by_block": {
+    "C": 10,
+    "P1": 10,
+    "P2": 10,
+    "P3": 10
+   },
+   "gold_evd_ids": {
+    "by_block": {
+     "C": 45,
+     "P1": 23,
+     "P2": 23
+    },
+    "distinct": 79,
+    "p3_cells_without_gold_rows": 10
+   },
+   "n_cells": 40,
+   "p3_spill": {
+    "p3_cells": 10,
+    "p3_ing_process_pairs_with_rows_for_another_target": 3
+   },
+   "vs_del2": {
+    "by_split": {
+     "matrix_disjoint": {
+      "cal": 17,
+      "test": 12,
+      "train": 50
+     },
+     "pair_holdout": {
+      "cal": 8,
+      "test": 14,
+      "train": 57
+     },
+     "process_disjoint": {
+      "cal": 11,
+      "test": 21,
+      "train": 47
+     },
+     "random": {
+      "cal": 10,
+      "test": 22,
+      "train": 47
+     },
+     "study_disjoint": {
+      "not_in_split": 74,
+      "test": 2,
+      "train": 3
+     }
+    },
+    "del2_pool_rows": 17458,
+    "gold_ids_in_del2_pool": 79,
+    "reading": "DEL-2 trained and scored on every ACTIVE retention row (random / pair / matrix / process / study splits, seed 7), so every D5 gold row was a DEL-2 train, calibration or test row. No D5 gold row was held out from DEL-2 because D5 did not exist then; a learned model fitted on DEL-2 rows cannot be scored on these cells without a new hold-out."
+   },
+   "vs_ladder_dev_questions": {
+    "exact_question_matches": 0,
+    "n_ladder_questions": 20
+   },
+   "vs_retrieval_silver": {
+    "by_block_gold_ids_in_silver_relevant": {
+     "C": 0,
+     "P1": 0,
+     "P2": 2
+    },
+    "d5_ingredient_process_pairs": 44,
+    "d5_pairs_present_in_silver_relevant_rows": 13,
+    "gold_cells_that_are_silver_query_cells": 1,
+    "gold_evd_cells": 42,
+    "gold_ids_in_silver_relevant_rows": 2,
+    "n_queries": 600,
+    "reading": "the silver set (600 templated cell questions, seed 20261018, >= 2 rows per cell) ranked BM25 / dense / hybrid retrievers on these same EVD rows (dev signal for the R2 RRF choice, Hit@k on cell relevance)",
+    "reproduction_check": {
+     "bm25_top100_compared": 30,
+     "identical": 30
+    },
+    "silver_relevant_rows": 2200
+   }
+  },
+  "s_blocks": {
+   "by_block": {
+    "S1": 12,
+    "S2": 12
+   },
+   "by_family": {
+    "GUTENBERG_SEGMENT": 22,
+    "WIKIBOOKS": 2
+   },
+   "full_corpus_runs": {
+    "note": "every S recipe is inside the full-corpus census / physical-layer / NER-inference runs (measurement, no labels, no fitting); they are not dev sets but the engine code was adjusted after reading their counts (D-073, S176/S177 fixes)"
+   },
+   "n_questions": 24,
+   "n_recipes": 24,
+   "near_duplicates": {
+    "note": "recipe_identity ledger is PROVISIONAL_STAR_V1 / uncalibrated; absence of near-duplicates there is not proof of absence",
+    "s_recipes_in_non_singleton_duplicate_group": 0,
+    "s_recipes_sharing_a_duplicate_group_with_another_s_recipe": 0
+   },
+   "recipes_found_in_identity_ledger": 24,
+   "tracked_files_naming_s_recipe_ids": {
+    "allow_listed_files": {
+     "benchmark/d5/d5_draft_S_v1.csv": {
+      "distinct_s_ids": 24,
+      "reason": "D5_S_DRAFT_THE_IDS_THEMSELVES"
+     },
+     "reports/s178/split_registry_units_v1.csv": {
+      "distinct_s_ids": 24,
+      "reason": "SPLIT_REGISTRY_UNIT_LISTING_RECIPE_ID_ATTRIBUTE"
+     }
+    },
+    "files_with_distinct_s_ids": {
+     "annotation/d5_review/d5_S_context_v1.jsonl": 24,
+     "benchmark/d5/d5_benchmark_v1_D085_S.csv": 24,
+     "features/step19_frame/frame_2026-11-04.csv": 1,
+     "features/step19_frame/strata_2026-11-04.csv": 1,
+     "registry/recipe_condition_surface_forms_v1.csv": 4,
+     "registry/recipe_process_surface_forms_v1.csv": 2,
+     "registry/recipe_quantity_surface_forms_v1.csv": 1,
+     "registry/recipe_semantics/deep_gold_sampling_frame_v1_DRAFT.csv": 1,
+     "registry/recipe_semantics/deep_gold_text_strata_v1_DRAFT.csv": 1,
+     "registry/recipes/gutenberg_ingredient_links_v1.csv": 22,
+     "registry/recipes/wikibooks_ingredient_links_v1.csv": 2,
+     "reports/orchestration/review/S178_REV_SCI-B.md": 1,
+     "reports/s179/d5_frozen_split_units_v2.csv": 24
+    },
+    "n_allow_listed_files": 2,
+    "n_files": 13,
+    "n_files_under_reports_s178": 0,
+    "reading": "surface-form registries list at most 3 example recipe ids per form (corpus-wide counts, not a tuning pool); registry/recipes/*_ingredient_links_v1.csv are the ledger-build recipe->ING links for the same recipes; allow_listed files name the ids by design (the D5 S draft and EVAL's registry / audit outputs)",
+    "scope": "ALL_TRACKED_TEXT_FILES_EXCEPT_DATA_LEDGERS_VENV_GIT; ALLOW_LIST_REPORTED_NOT_SKIPPED"
+   },
+   "universe": {
+    "by_family": {
+     "A1_BBC_GOOD_FOOD": 11934,
+     "FOODCOM": 522517,
+     "GUTENBERG_SEGMENT": 73955,
+     "TASTESET": 700,
+     "WIKIBOOKS": 3676
+    },
+    "n_recipes": 612782
+   },
+   "vs_gold": {
+    "n_gold_recipes": 50,
+    "n_other": 50,
+    "n_overlap": 0,
+    "n_target": 24,
+    "s_recipes_in_gold_duplicate_group": 0,
+    "s_recipes_in_gold_family": 0
+   },
+   "vs_j4_sample": {
+    "n_j4": 68,
+    "n_overlap": 0
+   },
+   "vs_linker_concept_split": {
+    "n_pc_question_ing_ids": 27,
+    "n_s1_gold_ing_ids": 34,
+    "pc_question_ing_ids": {
+     "dev": 3,
+     "test": 8,
+     "train": 16
+    },
+    "reading": "the learned linker saw the aliases of train-bucket concepts; the S1 scorer links answers with the rule-based lexicon, so this is exposure of the id space, not of recipe text",
+    "rule": "tools/build_linker_data.py: sha256('LINK-v1|ING-id') bucket, test >= 0.8, dev >= 0.7, else train (concept-grouped)",
+    "s1_gold_ing_ids": {
+     "dev": 4,
+     "test": 5,
+     "train": 25
+    }
+   },
+   "vs_ner_training_lines": {
+    "family_overlap": {
+     "s_recipes_in_tasteset_family": 0
+    },
+    "reading": "Gutenberg segments carry steps only (no ingredient lines), so a line-overlap test has no denominator for them; the DeBERTa-CRF NER is trained on RecipeDB3 NER + TASTEset lines and is not used by Rung A",
+    "recipedb3_by_split_exact_normalised_line_matches": {
+     "calibration": {
+      "n_exact_match": 0,
+      "n_lines": 9
+     },
+     "dev": {
+      "n_exact_match": 0,
+      "n_lines": 9
+     },
+     "test": {
+      "n_exact_match": 1,
+      "n_lines": 9
+     },
+     "train": {
+      "n_exact_match": 1,
+      "n_lines": 9
+     }
+    },
+    "recipes_loaded": 24,
+    "recipes_with_ingredient_lines": 2,
+    "recipes_with_zero_ingredient_lines": 22,
+    "s_ingredient_lines": 9,
+    "tasteset_corpus_any_split_exact_normalised_line_matches": {
+     "n_exact_match": 2,
+     "n_lines": 9
+    },
+    "tasteset_matched_line_token_counts": [
+     2,
+     4
+    ]
+   },
+   "vs_rung_a_dev_sets": {
+    "census_1000_all_families": {
+     "expected_overlap_if_random": 0.0392,
+     "n_other": 1000,
+     "n_overlap": 0,
+     "n_reports_recording_seed_sha256": 102,
+     "n_target": 24,
+     "n_target_in_sampled_families": 24,
+     "overlap_by_block": {
+      "S1": 0,
+      "S2": 0
+     },
+     "population": 612782,
+     "recorded_in": "binding / physical / router census samples (RUN-S172..S176)",
+     "sample_size": 1000
+    },
+    "census_1000_non_bbc_families": {
+     "expected_overlap_if_random": 0.0399,
+     "n_other": 1000,
+     "n_overlap": 0,
+     "n_reports_recording_seed_sha256": 102,
+     "n_target": 24,
+     "n_target_in_sampled_families": 24,
+     "overlap_by_block": {
+      "S1": 0,
+      "S2": 0
+     },
+     "population": 600848,
+     "recorded_in": "manjot-server runs that cannot read BBC (RUN-S174-001, S176 lanes)",
+     "sample_size": 1000
+    },
+    "d073_exploration_400": {
+     "expected_overlap_if_random": 0.0157,
+     "n_other": 400,
+     "n_overlap": 0,
+     "n_reports_recording_seed_sha256": 1,
+     "n_target": 24,
+     "n_target_in_sampled_families": 24,
+     "overlap_by_block": {
+      "S1": 0,
+      "S2": 0
+     },
+     "population": 612782,
+     "recorded_in": "D-073 exploration (scratch, ksh diagnosis)",
+     "sample_size": 400
+    },
+    "d073_precision_400": {
+     "expected_overlap_if_random": 0.0157,
+     "n_other": 400,
+     "n_overlap": 0,
+     "n_reports_recording_seed_sha256": 1,
+     "n_target": 24,
+     "n_target_in_sampled_families": 24,
+     "overlap_by_block": {
+      "S1": 0,
+      "S2": 0
+     },
+     "population": 612782,
+     "recorded_in": "D-074 R1 precision sample (60 labelled items)",
+     "sample_size": 400
+    },
+    "lotstate_600_wikibooks_tasteset": {
+     "expected_overlap_if_random": 0.2742,
+     "n_other": 600,
+     "n_overlap": 0,
+     "n_reports_recording_seed_sha256": 102,
+     "n_target": 24,
+     "n_target_in_sampled_families": 2,
+     "overlap_by_block": {
+      "S1": 0,
+      "S2": 0
+     },
+     "population": 4376,
+     "recorded_in": "RUN-S176-LOT-003",
+     "sample_size": 600
+    },
+    "router_demo_census_1000": {
+     "expected_overlap_if_random": 0.0392,
+     "n_other": 1000,
+     "n_overlap": 0,
+     "n_reports_recording_seed_sha256": 1,
+     "n_target": 24,
+     "n_target_in_sampled_families": 24,
+     "overlap_by_block": {
+      "S1": 0,
+      "S2": 0
+     },
+     "population": 612782,
+     "recorded_in": "RUN-S171-001/002",
+     "sample_size": 1000
+    },
+    "rung_a_dryrun_1000": {
+     "expected_overlap_if_random": 0.0392,
+     "n_other": 1000,
+     "n_overlap": 0,
+     "n_reports_recording_seed_sha256": 4,
+     "n_target": 24,
+     "n_target_in_sampled_families": 24,
+     "overlap_by_block": {
+      "S1": 0,
+      "S2": 0
+     },
+     "population": 612782,
+     "recorded_in": "reports/step17/rung_a_dryrun_counts_seed_dryrun-2026-11-04.json",
+     "sample_size": 1000
+    }
+   }
+  }
+ },
+ "limits": [
+  "D5 is an evaluation question set, not a new model train/test split.",
+  "Source-family stratification is not source-family-heldout evaluation.",
+  "Provisional identity groups do not certify absence of near duplicates.",
+  "DIAG29 actual S-5 is food-group-disjoint and S-6 study-disjoint; old draft registry retained its earlier naming.",
+  "Historical private-seal and 07.A assignments are not freshly rederived here.",
+  "07A-R1 remains NOT_RUN under D-085; no inter-rater result is supplied."
+ ],
+ "output_sha256": {
+  "registry/d5_frozen_split_registry_v3.csv": "4dc1329a7d9fdb8a4edaecada6526a997169d39235c043b6d1403229df9c0d8e",
+  "reports/s179/d5_frozen_split_units_v3.csv": "bc4764a447d066942ee3ca57aadce3b2aafdd61b59f8acebdfd865a63a0a50bc"
+ },
+ "record": "FROZEN_D5_SPLIT_REGISTRY_V2",
+ "started_at_utc": "2026-11-12T07:40:47.236728+00:00"
+}

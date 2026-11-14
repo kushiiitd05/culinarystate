@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CulinaryState_slides_DRAFT</title><style>body{font:11pt/1.45 Arial,sans-serif;color:#17283b;margin:0;background:#eef2f6} main{max-width:1000px;margin:auto;background:white;padding:44px}h1,h2,h3{color:#163c5b;line-height:1.2} h1{font-size:27pt}h2{margin-top:28px;font-size:19pt}h3{font-size:14pt}a{color:#235e8b}table{border-collapse:collapse;width:100%;font-size:9pt;margin:16px 0}td,th{border:1px solid #bdc9d4;padding:7px;vertical-align:top}th{background:#e4edf4;text-align:left}code{font-size:8.7pt;overflow-wrap:anywhere}pre{white-space:pre-wrap}li{margin:6px 0}.banner{background:#fff0cc;border-left:5px solid #ac7d00;padding:12px 16px;font-size:10pt}.footer{font-size:9pt;color:#526275} @media print{body{background:white}main{max-width:none;padding:0}a{color:inherit;text-decoration:none} h1,h2,h3{break-after:avoid}tr{break-inside:avoid}.banner{print-color-adjust:exact} @page{size:A4;margin:18mm}} .slide{box-sizing:border-box;min-height:650px;padding:40px 46px;margin-bottom:30px;border-top:8px solid #275a7a;background:white}.slide h1{font-size:29pt}.slide p,.slide li{font-size:15pt}.slide code{font-size:11pt}.slide .footer{font-size:10pt}.slide table{font-size:12pt}main{padding:0;background:transparent} @media print{@page{size:320mm 200mm;margin:0}main{padding:0}.slide{height:200mm;min-height:0;margin:0;padding:14mm 18mm;break-after:page;overflow:visible}.slide:last-child{break-after:auto}.slide p,.slide li{font-size:15pt}.slide h1{font-size:27pt}}</style><main><section class="slide"><h1>CulinaryState — Group 17</h1>
+<p>Kush Tokas · Parv Goyal</p>
+<p>Draft, 11 November 2026. <strong>AI_DRAFTED / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.</strong>
+Talk date, duration and author contributions require confirmation. Counts and IDs only; no recipe text.
+All diagnostic figures retain the labels shown here. This Markdown deck is for author review, not a final export.</p><p class="footer">Draft · 12 November 2026 · 1/13</p></section><section class="slide"><h1>What we built</h1>
+<ul>
+<li>Recipe-state extraction and deterministic replay.</li>
+<li>A process-effect evidence resource with explicit missingness and provenance.</li>
+<li>Evidence-aware retrieval, answer routing and abstention.</li>
+<li>A narrow ascorbic-acid kinetics pilot, <strong>NOT_VALIDATED / RESEARCH_ONLY</strong>.</li>
+</ul>
+<p>The engineering pipeline exists; its construction does not establish the proposal's scientific hypotheses.
+Source: <code>FINAL_REPORT_DRAFT_S179_2026-11-11.md</code> and the cited component reports.</p><p class="footer">Draft · 12 November 2026 · 2/13</p></section><section class="slide"><h1>Scope and evaluation</h1>
+<p><strong>MODEL_ASSISTED_GOLD / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.</strong></p>
+<p>D5 frozen benchmark: <strong>74 questions</strong>; S1=12, S2=12, P1/P2/P3/C=10 each, U/X=5 each.
+The S questions use AI_DRAFTED_GOLD. No independent human gold or inter-rater agreement is claimed.
+Near-duplicate leakage is not controlled.</p>
+<p>Full H2, H4 and later learning lanes are not run before the talk. Step 35 is designed, not run.
+Sources: D-089, D-090; <code>registry/h8_scope_cut_register_v1.csv</code>.</p><p class="footer">Draft · 12 November 2026 · 3/13</p></section><section class="slide"><h1>D1: imported evidence and missing conditions</h1>
+<p><strong>E3_UNVERIFIED / COND_UNAUDITED / BOOTSTRAP_UNVERIFIED / NON_CITABLE.</strong></p>
+<p><strong>17,978 ACTIVE rows</strong>, <strong>0/40</strong> hand-verified D1 literature rows.
+All rows are E3. Both temperature and duration are stated on <strong>1,575 rows</strong>; pH is UNKNOWN on all rows.
+An imported row is not an independently checked primary experiment.</p>
+<p>Figure candidate: <code>reports/s178/evd/fig_evd_coverage_by_family_v2.svg</code>.
+Preserve its full-corpus versus sampled denominators in the caption.
+Source: <code>sections/S179_D1_evidence_resource_DRAFT.md</code>.</p><p class="footer">Draft · 12 November 2026 · 4/13</p></section><section class="slide"><h1>D3: deterministic engineering, weak gold agreement</h1>
+<p>The replay corpus has <strong>599,971 non-BBC instruction texts</strong>.
+<strong>12,046/12,046</strong> selected texts reproduce across process hash seeds.
+<strong>12,774/599,971</strong> texts fail an invariant. Structural consistency is not recipe-event correctness.</p>
+<p>Non-independent gold comparisons use the rule compiler, not a direct Rung A EventGraph scorer.
+The P1 set has <strong>7 recipes</strong> and HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND labels; its handbook requires revision.
+No independent accuracy claim is made.</p>
+<p>Sources: <code>sections/S179_D3_state_tracking_DRAFT.md</code>,
+<code>reports/s178/corpus/replay_invariants_corpus_v2.json</code>. Split: near-duplicate leakage not controlled.</p><p class="footer">Draft · 12 November 2026 · 5/13</p></section><section class="slide"><h1>H1: rule not met</h1>
+<p><strong>NON_CITABLE / MODEL_ASSISTED_GOLD / CIRCULAR_SELF_CONSISTENCY_ONLY / NO_HUMAN_SIGNOFF_D085.</strong></p>
+<p>Accuracy on <strong>24</strong> S questions: B0 <strong>2/24</strong>, B1=B2=B4 <strong>6/24</strong>.
+B4 versus each comparator: <strong>4 discordant pairs</strong>, exact two-sided McNemar <strong>p=1.0</strong>.
+<strong>RULE_NOT_MET</strong>; the small sample does not establish equivalence.</p>
+<p>The raw score has H1 NOT_COMPUTED. D-092 uses the separate rung-blind resolution supplement, retained beside it.
+Sources: <code>reports/del5/d5_score_v1_D085/d5_h1_after_rung_blind_check_D085.json</code>; D-092.
+Split: near-duplicate leakage not controlled.</p><p class="footer">Draft · 12 November 2026 · 6/13</p></section><section class="slide"><h1>H2: diagnostic, no direction established</h1>
+<p><strong>DIAGNOSTIC / BOOTSTRAP_UNVERIFIED / NON_CITABLE / PRIOR_EXPOSURE_REANALYSIS /
+PROVISIONAL_08A / COND_UNAUDITED / NO_HUMAN_SIGNOFF_D085.</strong></p>
+<p>On the provisional Phenol-Explorer study-key split, process-mean loss minus ingredient-mean loss is
+<strong>0.0992 [−0.0446, 0.2401]</strong>, <strong>362 rows / 20 clusters</strong>. The interval crosses zero.
+USDA and Bognár each have one lineage group; no study-disjoint estimate exists there.
+D7 equals D1 on the Phenol-Explorer random predictions.</p>
+<p>Full H2 is <strong>DECLARED_NOT_RUN</strong>. The G08-3 lineage audit failed; publication keys are provisional.
+Source: <code>sections/S179_H2_and_lineage_statements_DRAFT.md</code> and 29-diag memos.</p><p class="footer">Draft · 12 November 2026 · 7/13</p></section><section class="slide"><h1>D4/H3: a favourable sign test does not pass the rule</h1>
+<p><strong>DIAGNOSTIC / BOOTSTRAP_UNVERIFIED / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.</strong></p>
+<p>B7 is rule-based evidence-sufficiency abstention, <strong>uncalibrated</strong>.
+The unsupported-claim sign test favours B7 <strong>16–0</strong>, two-sided <strong>p=0.000030517578125</strong>.
+But on P3, B7 abstains <strong>0/10</strong>, versus B2 <strong>3/10</strong>: <strong>H3 RULE_NOT_MET</strong>.</p>
+<p>NEG-0051: gold uses an exact/parent-food boundary; the decision layer admits broad cross-food evidence.
+The 30-claim audit was NOT_RUN; it could not reverse the failed conjunction.
+Source: <code>sections/S179_D4_retrieval_and_abstention_DRAFT.md</code>; D-092.</p><p class="footer">Draft · 12 November 2026 · 8/13</p></section><section class="slide"><h1>Retrieval and routing limits</h1>
+<p><strong>DIAGNOSTIC / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.</strong></p>
+<p>B2 retrieval recall is available on <strong>20 questions</strong>, with plain R@1 <strong>0.2</strong> and R@10 <strong>0.375</strong>.
+The compatibility-recall values contradict their explanatory note; no compatible-recall claim is made.
+Source-family stratification is not a train-source-held-out experiment.</p>
+<p>Router accuracy is <strong>6/10</strong> with branch gold, <strong>INCOMPLETE_GOLD_BRANCH</strong>; this is not accuracy over all 74 questions.
+Source: frozen D5 score JSON; D4 section documents the field paths and missing coverage.</p><p class="footer">Draft · 12 November 2026 · 9/13</p></section><section class="slide"><h1>AA pilot: conditional diagnostic only</h1>
+<p><strong>DIAGNOSTIC / NON_CITABLE / AI_PRECHECKED / NO_HUMAN_SIGNOFF_D085.</strong></p>
+<p>Frozen Model A: <strong>7 rows, 2 papers, 4 residual degrees of freedom</strong>.
+Ea <strong>64.40 kJ/mol</strong>. Conditional Student-t 95% interval <strong>[35.57, 93.22] kJ/mol</strong>;
+the separately reported asymptotic profile interval is narrower and uses a different calibration.</p>
+<p>Practical precision: <strong>NOT_ASSESSED</strong>, no locked precision criterion. <strong>NOT_VALIDATED / RESEARCH_ONLY</strong>.
+Model B sensitivity and separate-context SIM-VAL extraction/precheck are complete.
+The precheck leaves <strong>0 eligible held-out rows</strong>; no prediction/error metric is emitted.
+PARAM/domain provenance and production calibration remain incomplete.
+Sources: D-091; <code>reports/step10/identifiability_report_v1.md</code>.</p><p class="footer">Draft · 12 November 2026 · 10/13</p></section><section class="slide"><h1>What the results cannot establish</h1>
+<ul>
+<li>No independent human-gold H1 result or inter-rater result from AI personas.</li>
+<li>No passed H3 conjunction, calibrated B7 abstention or independent-study H2 generalisation.</li>
+<li>No validated recipe simulator, food-safety advice or whole-system reliability claim.</li>
+<li>No full H4, FlavorTwin, learned Step 35 or later-lane result before the talk.</li>
+<li>Failed 07.A, G08-3 and the handbook revision requirement remain visible.</li>
+</ul>
+<p>Original results, deviations and negative findings are retained in the report and release card.
+Next: resolve the exact learned-model artifact and scientific provenance gaps, then author edits and an actual
+timed rehearsal. A dated amendment may create a new experiment; it cannot replace the original failed result.</p><p class="footer">Draft · 12 November 2026 · 11/13</p></section><section class="slide"><h1>Local completion — 12 November</h1>
+<p><strong>ENGINEERING_DIAGNOSTIC / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.</strong></p>
+<ul>
+<li>Restored checksum-matched tier-1 data; frozen D5 exposure audit now covers all selected recipes.</li>
+<li>All 79 P/C gold EVD IDs already appear in DEL-2; shared evidence is disclosed.</li>
+<li>Separate strict-v2: 1,000 metadata calls, zero retention figures without exact context.</li>
+<li>53 physics steps, 141 numeric display fields: zero missing provenance in this sample.</li>
+<li>Public-filtered and local loopback HTTP checks pass. No hosted deployment claimed.</li>
+<li>Exact frozen NER checkpoint still absent; optional v3 checkpoint was not substituted.</li>
+</ul>
+<p>Sources: <code>reports/s179/d5_frozen_split_leakage_v3.md</code>, <code>strict_runtime_audit_2026-11-12.json</code>,
+<code>strict_http_smoke_2026-11-12.json</code>, <code>optional_model_bundle_check_2026-11-12.json</code>.
+Original failed gates and scientific limitations remain unchanged.</p><p class="footer">Draft · 12 November 2026 · 12/13</p></section><section class="slide"><h1>Contributions and questions</h1>
+<p><strong>Author contribution statement pending from Kush and Parv.</strong></p>
+<p>References and artifact index: <code>FINAL_REPORT_DRAFT_S179_2026-11-11.md</code>, <code>RELEASE_CARD.md</code>,
+<code>registry/compute_runs_v1.csv</code>, <code>registry/negative_results_register_v1.csv</code>, and round-6 acceptance audit.
+Before presenting: confirm slot/length, finish report/deck leakage checks, export the approved deck and run it timed.</p><p class="footer">Draft · 12 November 2026 · 13/13</p></section></main></html>

@@ -1,0 +1,95 @@
+{
+  "T_ref_K": 363.15,
+  "coefficient_correlation": [
+    [
+      1.0,
+      0.2749090942931516,
+      0.4681380593152278
+    ],
+    [
+      0.2749090942931516,
+      1.0,
+      0.5872393598915601
+    ],
+    [
+      0.4681380593152278,
+      0.5872393598915601,
+      0.9999999999999999
+    ]
+  ],
+  "design_condition_number": null,
+  "design_condition_number_reason": "NO_PREDECLARED_PARAMETER_SCALING_OR_RAW_DESIGN",
+  "dof": 4,
+  "input_fit_sha256": "b9247db03e98423f8866fa50b24e2ecd33831d907f3aace00b1f7e4f2ea9543f",
+  "labels": [
+    "DIAGNOSTIC",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085",
+    "AI_PRECHECKED"
+  ],
+  "limitations": [
+    "Only two papers; four residual degrees of freedom.",
+    "No residual diagnostics or raw-row checks from summaries.",
+    "Within-paper independence and equal residual variance are assumptions.",
+    "Bounded model-conditional profiles do not establish transportability or practical precision.",
+    "Between-paper variance is not profiled; no validation or SIMULATE gate opens."
+  ],
+  "lr_calibration": "CHI2_1_ASYMPTOTIC_DIAGNOSTIC",
+  "lr_cutoff": 3.841458820694124,
+  "n_papers": 2,
+  "n_parameters": 3,
+  "n_rows": 7,
+  "parameters": [
+    {
+      "estimate": -4.315208125804281,
+      "parameter": "ln_k_ref[AAK-01]",
+      "practical_gate_status": "NOT_ASSESSED_NO_LOCKED_PRECISION_CRITERION",
+      "profile_lr95": [
+        -4.544517270362577,
+        -4.085898981245985
+      ],
+      "profile_status": "BOUNDED_CONDITIONAL_ON_OLS_MODEL",
+      "se": 0.134088419133513,
+      "t95": [
+        -4.6874972607712335,
+        -3.942918990837328
+      ]
+    },
+    {
+      "estimate": -3.1250984985745163,
+      "parameter": "ln_k_ref[AAK-06]",
+      "practical_gate_status": "NOT_ASSESSED_NO_LOCKED_PRECISION_CRITERION",
+      "profile_lr95": [
+        -3.414168681454087,
+        -2.8360283156949455
+      ],
+      "profile_status": "BOUNDED_CONDITIONAL_ON_OLS_MODEL",
+      "se": 0.16903365941040027,
+      "t95": [
+        -3.5944111748581937,
+        -2.655785822290839
+      ]
+    },
+    {
+      "estimate": 64397.791096049914,
+      "parameter": "Ea_J_per_mol",
+      "practical_gate_status": "NOT_ASSESSED_NO_LOCKED_PRECISION_CRITERION",
+      "profile_lr95": [
+        46641.94369104966,
+        82153.63850105017
+      ],
+      "profile_status": "BOUNDED_CONDITIONAL_ON_OLS_MODEL",
+      "se": 10382.723783207466,
+      "t95": [
+        35570.72846954277,
+        93224.85372255705
+      ]
+    }
+  ],
+  "profile_method": "UNCONSTRAINED_LINEAR_GAUSSIAN_UNKNOWN_VARIANCE_ANALYTIC",
+  "record": "AA_FROZEN_MODEL_A_PROFILE_SUMMARY",
+  "residual_ssr": 0.22463029890512504,
+  "t_calibration": "STUDENT_T_CONDITIONAL_ON_IID_GAUSSIAN_ERRORS",
+  "tool_sha256": "1c2f7a6bf540ecd25e5b277eaa6bf0f694280022e74b648b9406cc88c47e1d15",
+  "validation_label": "NOT_VALIDATED / RESEARCH_ONLY"
+}

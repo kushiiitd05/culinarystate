@@ -212,14 +212,17 @@ _add("SVAR", "state variable registry (W3)", {
 _add("UNIT", "unit concept", {
     "canonical_name": STR, "aliases": STR_LIST,
     "unit_type": enum("PHYSICAL", "CULINARY_VOLUME", "COUNT_PORTION", "PACKAGE", "VERBAL_QUALITATIVE",
-                      "ENDPOINT_DESCRIPTOR"),
-    "dimension": enum("MASS", "VOLUME", "COUNT", "TEMPERATURE", "TIME", "LENGTH", "NONE"),
+                      "ENDPOINT_DESCRIPTOR", "KINETIC"),
+    "dimension": enum("MASS", "VOLUME", "COUNT", "TEMPERATURE", "TIME", "LENGTH", "NONE",
+                      "RATE_PER_TIME", "ENERGY_PER_AMOUNT"),
     "si_unit": OPT_STR,
     "conventions": {"type": "array", "items": {
         "type": "object", "required": ["locale", "si_value"], "additionalProperties": False,
         "properties": {"locale": STR, "si_value": QVALUE, "source_ids": refs("SRC")}}},
     "ambiguity_notes": OPT_STR, "allowed_food_classes": STR_LIST,
-}, ["canonical_name", "unit_type", "dimension"])
+}, ["canonical_name", "unit_type", "dimension"],
+     comment="D-079 (2026-11-10): additive enum change for kinetic units (T5-C07-R5): unit_type += KINETIC; "
+             "dimension += RATE_PER_TIME, ENERGY_PER_AMOUNT. No value removed; every pre-D-079 row stays valid.")
 
 _add("QNT", "parsed quantity expression", {
     "raw": STR, "recipe_id": ref_or_null("REC"), "line_index": nullable(INT0),

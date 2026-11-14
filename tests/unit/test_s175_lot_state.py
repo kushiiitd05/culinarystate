@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import itertools
+import math
 import random
 from types import MappingProxyType
 
@@ -72,11 +73,11 @@ def test_lot_mass_fraction_and_solute_per_water() -> None:
     s = LS.lot_state(members)
     w = s.composition["water_g"]
     assert w.status == "INTERVAL" and w.low == pytest.approx((89 + 0.92 * 30) / 130)
-    assert w.low == w.high
+    assert w.high - w.low <= 4 * math.ulp(w.high)                  # S179 A9: outward-rounded point
     na = s.solute["sodium_mg_per_g_water"]
     assert na.low == pytest.approx((4.0 + 0.3) / (89 + 27.6))
     assert (s.total_mass_g.low, s.total_mass_g.high) == (130.0, 130.0)
-    assert s.labels == ("MODEL_DERIVED", "COMPOSITION_FROM_SR_LEGACY")
+    assert s.labels == ("MODEL_DERIVED", "COMPOSITION_FROM_SR_LEGACY", "AS_LISTED_NO_PROCESS_EFFECTS", "NON_CITABLE")
 
 
 def test_unknown_member_composition_makes_that_component_unknown() -> None:

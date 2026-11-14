@@ -9,7 +9,9 @@ REAL mode (``check_real_inputs`` / ``require_real_inputs``). The scorer runs onl
 
 - ``record`` = ``FREEZE_D5_BENCHMARK`` and ``status`` = ``FROZEN``;
 - approvals by named humans: each approver string is exactly one of ``freeze_records.HUMANS``, carries an ISO date,
-  and no approval entry contains an AI marker (agent, AI, Claude, the ksh / prv personas, ...). By default BOTH
+  and no approval entry contains an AI marker (agent, AI, Claude, the ksh / prv personas, ...), except the D-085
+  delegate ``ksh+prv (AI, D-085)`` with ``decision`` D-085 and ``label`` NO_HUMAN_SIGNOFF_D085, which stands for
+  both humans and makes the run ``signoff`` AI_DELEGATED_D085 (S179). By default BOTH
   humans must approve (the conservative reading of the S178 amendment C8, "both humans confirm");
 - ``files``: relative path -> sha256 for every benchmark and reference file the scorer reads; each listed file must
   exist and match its bytes, and every file the scorer is given must be listed;
@@ -44,7 +46,9 @@ from datetime import date
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
-from culinarystate.evaluation.freeze_records import HUMANS
+from culinarystate.evaluation.freeze_records import AI_DELEGATE, HUMANS
+
+D085_DECISION, D085_LABEL = "D-085", "NO_HUMAN_SIGNOFF_D085"
 
 VERSION = "frozen_guard@0.1"
 STAMP = "SYNTHETIC_FIXTURE_NOT_A_RESULT"
@@ -136,6 +140,11 @@ def approval_problems(rec: Mapping[str, Any], required: Sequence[str] = HUMANS) 
     named: set[str] = set()
     for a in apps:
         who = a.get("approved_by")
+        if who == AI_DELEGATE:                       # D-085: the AI delegate acts for both humans, under its own name
+            probs += _delegate_problems(a)
+            if not _delegate_problems(a):
+                named |= set(HUMANS)
+            continue
         markers = sorted({m.group(0).lower() for s in _strings(a) for m in AI_MARKER.finditer(s)})
         if markers:
             probs.append(f"AI_APPROVAL: approval entry carries AI marker(s) {markers}")
@@ -153,6 +162,25 @@ def approval_problems(rec: Mapping[str, Any], required: Sequence[str] = HUMANS) 
         if h not in named:
             probs.append(f"MISSING_APPROVER: {h}")
     return probs
+
+
+def _delegate_problems(a: Mapping[str, Any]) -> list[str]:
+    probs = []
+    if a.get("decision") != D085_DECISION or a.get("label") != D085_LABEL:
+        probs.append(f"DELEGATE_WITHOUT_D085: an {AI_DELEGATE!r} approval must name {D085_DECISION} and {D085_LABEL}")
+    try:
+        date.fromisoformat(str(a.get("approved_date")))
+    except ValueError:
+        probs.append(f"APPROVAL_DATE_INVALID: {AI_DELEGATE}")
+    return probs
+
+
+def signoff_kind(rec: Mapping[str, Any]) -> str | None:
+    """HUMAN when every approval is a named human; AI_DELEGATED_D085 when any is the D-085 delegate; else None."""
+    who = [a.get("approved_by") for a in _approvals(rec)]
+    if not who:
+        return None
+    return "AI_DELEGATED_D085" if AI_DELEGATE in who else ("HUMAN" if all(w in HUMANS for w in who) else None)
 
 
 def check_real_inputs(root: Path | str, freeze_record: Path | str, inputs: Sequence[Path | str], *,
@@ -224,6 +252,9 @@ def check_real_inputs(root: Path | str, freeze_record: Path | str, inputs: Seque
         probs.append("PREREG_CHANGED_AFTER_FREEZE")
     if committed_check is not None and not committed_check(fr):
         probs.append("FREEZE_RECORD_NOT_COMMITTED")
+    out["signoff"] = signoff_kind(rec)
+    if out["signoff"] == "AI_DELEGATED_D085":
+        out["label"] = D085_LABEL
     out["freeze_record_sha256"] = sha256_file(fr)
     out["ok"] = not probs
     return out

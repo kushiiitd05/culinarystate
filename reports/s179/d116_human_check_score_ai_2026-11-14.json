@@ -1,0 +1,112 @@
+{
+ "decision": "D-126",
+ "status": "AI_DELEGATED_D085_NOT_HUMAN",
+ "contains_text": false,
+ "raters": [
+  "ksh",
+  "prv"
+ ],
+ "axes": {
+  "salt": {
+   "tp": 15,
+   "fp": 5,
+   "fn": 6,
+   "tn": 10,
+   "precision": 0.75,
+   "recall": 0.714,
+   "consensus_n": 36,
+   "verdict": "FAIL",
+   "kappa_raters": 0.892
+  },
+  "acid": {
+   "tp": 6,
+   "fp": 2,
+   "fn": 6,
+   "tn": 23,
+   "precision": 0.75,
+   "recall": 0.5,
+   "consensus_n": 37,
+   "verdict": "FAIL",
+   "kappa_raters": 1.0
+  },
+  "lipid": {
+   "tp": 22,
+   "fp": 3,
+   "fn": 7,
+   "tn": 4,
+   "precision": 0.88,
+   "recall": 0.759,
+   "consensus_n": 36,
+   "verdict": "PASS",
+   "kappa_raters": 0.775
+  },
+  "aqueous": {
+   "tp": 27,
+   "fp": 4,
+   "fn": 6,
+   "tn": 2,
+   "precision": 0.871,
+   "recall": 0.818,
+   "consensus_n": 39,
+   "verdict": "PASS",
+   "kappa_raters": 1.0
+  }
+ },
+ "failures": {
+  "salt": [
+   "H02",
+   "H05",
+   "H06",
+   "H09",
+   "H14",
+   "H16",
+   "H28",
+   "H39",
+   "H42",
+   "H43",
+   "H49"
+  ],
+  "acid": [
+   "H06",
+   "H12",
+   "H25",
+   "H29",
+   "H34",
+   "H35",
+   "H38",
+   "H49"
+  ],
+  "lipid": [
+   "H05",
+   "H13",
+   "H16",
+   "H20",
+   "H21",
+   "H24",
+   "H25",
+   "H35",
+   "H39",
+   "H45"
+  ],
+  "aqueous": [
+   "H14",
+   "H18",
+   "H24",
+   "H26",
+   "H27",
+   "H38",
+   "H39",
+   "H41",
+   "H42",
+   "H49"
+  ]
+ },
+ "salt_suggestion": {
+  "items": 22,
+  "consensus_n": 15,
+  "supported": 8,
+  "share": 0.533,
+  "verdict": "FAIL"
+ },
+ "gate": "FAIL"
+}

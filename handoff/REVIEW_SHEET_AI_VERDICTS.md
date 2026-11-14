@@ -278,3 +278,58 @@ Source: `reports/final/FINAL_REPORT_DRAFT_S168.md` (AI draft; ksh fact-check ~19
 | Q2 | Section 10 contributions (agent vs human work separated). | correct names and roles |
 | Q3 | 9-slide outline and the 3 key figures (proposed vs achieved; the two funnels; gates + P1 panel). | ok / reorder |
 | Q4 | Resolve the 5 UNVERIFIED items (only humans can for W3, authorship and the 07.A relay). | supply |
+
+## Block K13 — 13 Nov Kush-session D-085 results (AI verdicts, then human review)
+
+| ID | AI result (ksh+prv, D-085) | Evidence |
+|---|---|---|
+| K13-1 | 15a.R seal re-check 6/6 PASS; assignment registry 177/709 groups, 3,555/14,423 rows, 0 crossing, 1 cross-source matrix/process key disclosed (T9-C09-R1) | `reports/s179/seal_integrity_check_S179_2026-11-13.json`, `registry/split_registry_15a_v1.csv` |
+| K13-2 | NER (frozen ckpt 582c056a spans) vs Rung A lexicon: NER FOOD covered 98.4 / 95.5 / 94.6 % (FOODCOM / WIKIBOOKS / TASTESET); method agreement, not accuracy (T3-C09-R1) | `reports/s179/ner_vs_runga_agreement_S179_2026-11-13.json` |
+| K13-3 | D-097 structural Rung A→Gold mapping, pre-declared, then scored: pooled P 0.52–0.62; Merge P ≥ 0.91; Transform over-predicted; Transfer never predicted (T3-C11-R1) | `DECISIONS.md` D-097, `reports/s179/d097_runga_type_table_2026-11-13.json` |
+| K13-4 | 29-diag every rung vs D0 per family/split, G15-R PASS; USDA rungs beat D0, Bognar mostly, Phenol-Explorer mostly worse (negative kept); PRIOR_EXPOSURE_REANALYSIS (T6-C02-R3) | `reports/step29/diag/paired_vs_d0_S179_2026-11-13.json` |
+
+Kush: ok all (13 Nov 2026, reviewed in session). Parv: pending.
+
+## Block PRV13 — prv audit plan vs built (13 Nov)
+Source: `reports/orchestration/prv_audit_plan_vs_built_2026-11-13.md`, verdicts PRV-A1..A5.
+
+Kush: ok all — "OK PASSED" (13 Nov 2026, in session). Parv: pending.
+
+
+## Block P13 — prv continuation from supplied13-Nov handoff
+
+All rows: AI_DELEGATED_D085 · NOT_INDEPENDENT · NOT_HUMAN_VERIFIED_UNTIL_REVIEW · NO_HUMAN_SIGNOFF_D085. Status AI_VERDICT_PENDING_HUMAN_REVIEW. Kush/Parv human acceptance is not inferred.
+
+| ID | Item and AI result | Evidence |
+|---|---|---|
+| P13-1 | Local-only dependency search superseded by upstream exact-artifact results; five document receipt, no private model/seal transfer | reports/s179/local_model_and_seal_dependencies_SUPERSEDED_2026-11-13.md |
+| P13-2 | R1 Parv packet reconstructed exact issued hash;100AIrows97ACCEPT3conservativeREJECT, original cells preserved. No paired statistic/human gate | reports/s179/prv_07AR1_AI_review_2026-11-13.json |
+| P13-3 | CAL16numericspansmatched;13metadataCORRECTED3VERIFIED; counterpart/adjudication pending | reports/s179/prv_CAL_source_review_2026-11-13.json |
+| P13-4 | D099blindAIclaimreview14/27checkeragreement3unclear; negative and design limits retained | reports/s179/prv_claim_review_2026-11-13.json |
+| P13-5 | Separate D5 caveat technical draft; original report/deck untouched | reports/del5/prv_claim_audit_caveat_DRAFT_2026-11-13.md |
+| P13-6 | Question-onlyblindAIbranchGold45/74unchangedrouteragreement, not independent accuracy | reports/s179/prv_branch_review_2026-11-13.json |
+| P13-7 | AAK02/04/05/08/10 browser acquisition/licence confirmation still absent; no bypass or acquisition claim | handoff/PROMPT_FOR_PARV_CLAUDE_2026-11-13.md section3b-7 |
+| P13-8 | Separate technical insert plus106-number inventory/exact-line AI review; final author edits/facts excluded | reports/final/drafts_2026-11-13/prv_technical_results_update_DRAFT.md; reports/s179/prv_draft_number_AI_review_2026-11-13.json |
+| P13-9 | Planned13slide/720secondrehearsal/Q&A/fallback; actual eventNOT_RUN. Live merge-readiness snapshot, no merge | reports/s179/prv_rehearsal_pack_2026-11-13.md; reports/s179/prv_merge_readiness_2026-11-13_v2.json |
+
+Private returns are locally staged, NOT_SENT, per reports/s179/prv_private_return_manifest_2026-11-13.json. Human review: Kush pending; Parv pending. Original v4FAIL/H1/H3 and independence/source gates unchanged.
+
+
+### P13-10 — publisher licence continuation
+
+AI_VERDICT_PENDING_HUMAN_REVIEW · AI_DELEGATED_D085 · NOT_INDEPENDENT · NOT_HUMAN_VERIFIED_UNTIL_REVIEW · NO_HUMAN_SIGNOFF_D085. D-101: two publisher attribution-licence families confirmed, AAK-05 excluded from existing CC-BY/CC0 allowlist because article says CC BY-NC-SA4.0, two candidates unconfirmed. No locally acquired PDFs/new rows or scientific eligibility. Evidence: reports/step10/aa_publisher_licence_followup_2026-11-13.{json,md}; scope v3. Kush/Parv human review pending.
+
+
+## Reduced-submission closeout R13 — fresh AI counterparts and candidate
+
+AI_DELEGATED_D085 · NOT_INDEPENDENT · NOT_HUMAN_VERIFIED_UNTIL_REVIEW · NO_HUMAN_SIGNOFF_D085. All rows AI_VERDICT_PENDING_HUMAN_REVIEW; no human approval implied.
+
+| ID | Result | Evidence |
+|---|---|---|
+| R13-1 | Fresh ksh R1 counterpart compared with frozen prv sheet; original statistic descriptive, gateNOT_COUNTED;400code-convention/3otheraxis/3overall differences retained | reports/s179/r1_paired_AI_closeout_2026-11-13.json |
+| R13-2 | Fresh ksh CAL source review,16numericmatches; source qualifiers and prv comparison retained, original fit unchanged | reports/s179/CAL_paired_AI_closeout_2026-11-13.json |
+| R13-3 | Eight authored backend guard scenarios pass, including explicit unsupported refusals; not8implementedfeatures/humanrehearsal | reports/s179/reduced_submission_demo_2026-11-13_v2.json |
+| R13-4 | Full8271pass4namedskip; protected/frozen hashesmatch; candidate-textscan0matches | reports/s179/reduced_submission_final_verification_2026-11-13.json |
+| R13-5 |49publicartifactcandidateverified; separate11fileprivateZIPstagedNOT_SENT, author finals unchanged | reports/final/submission_candidate_2026-11-13/build_manifest_v1.json; handoff/KUSH_TAKEOVER_PACKAGE_PATHS_2026-11-13.md |
+
+Kush review pending; Parv review pending. Source-linked proposals do not change original labels or authorize a post-adjudication rescore.

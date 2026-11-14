@@ -7,11 +7,11 @@ Inputs (all read-only, all must exist):
   reports/s178/corpus/foodcom_bare_count_v1.json             units: source field vs parser vs name field vs NER
   reports/s178/corpus/foodcom_quantity_alignment_v1.json     misalignment diagnostic and proposed pairing rule
   reports/s178/corpus/sp002_prenorm_rerun_v1.json            U+2044 lines and the rc2 before/after
-  reports/s178/corpus/verb_coverage_census_v1.json           instruction text / Rung A verb coverage
+  reports/s178/corpus/verb_coverage_census_v2.json           instruction text / Rung A verb coverage
   reports/s178/analysis/ing_alias_coverage_census_v1.json    ING / ALIAS coverage of the ingredient names
-  reports/s177/line_mass_census_FOODCOM_manjot.json          lines with grams
+  reports/s179/line_mass_census_nonBBC.json                 lines with grams (S179; s177 per-family file before)
 
-Output: reports/s178/corpus/foodcom_data_card_v1.md (+ .json holding the numbers and their source paths).
+Output: reports/s178/corpus/foodcom_data_card_v2.md (S179; v1 kept on record) (+ .json holding the numbers and their source paths).
   python tools/s178_corpus_foodcom_card.py
 AI_DRAFTED / PROPOSED. Licence wording is the uploader's declaration, not a legal finding; the human licence review (H2) stays open.
 """
@@ -24,16 +24,17 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-TOOL_VERSION = "s178-corpus-foodcom-card-0.1.0-draft"
+TOOL_VERSION = "s178-corpus-foodcom-card-0.2.0-draft"   # 0.2.0 (S179): verb census v2 (CORP-6), S179 line-mass census
 OUT_DIR = "reports/s178/corpus"
+OUT_NAMES = ("foodcom_data_card_v2.json", "foodcom_data_card_v2.md")   # S179: v1 kept on record
 SRC = {
     "provenance": "data/external/foodcom/PROVENANCE.json",
     "bare": "reports/s178/corpus/foodcom_bare_count_v1.json",
     "align": "reports/s178/corpus/foodcom_quantity_alignment_v1.json",
     "sp002": "reports/s178/corpus/sp002_prenorm_rerun_v1.json",
-    "verbs": "reports/s178/corpus/verb_coverage_census_v1.json",
+    "verbs": "reports/s178/corpus/verb_coverage_census_v2.json",
     "ing": "reports/s178/analysis/ing_alias_coverage_census_v1.json",
-    "grams": "reports/s177/line_mass_census_FOODCOM_manjot.json",
+    "grams": "reports/s179/line_mass_census_nonBBC.json",
 }
 
 
@@ -63,7 +64,7 @@ def build(root: Path) -> dict:
         "quantity_strings_with_a_letter": r1["with_any_alphabetic_character"], "quantity_strings_with_u2044": r1["with_fraction_slash_u2044"],
         "pct_lines_bare_count_no_unit": r2["pct_lines_bare_count_numeric_quantity_and_no_unit_recognised"],
         "pct_lines_with_unit_recognised": r2["pct_lines_with_unit_prenorm"], "pct_names_with_unit_word": r3["pct_with_a_unit_lexicon_word"],
-        "lines_with_grams_s177": gf["lines_with_grams"], "lines_unit_missing_in_source_s177": gf["basis"]["UNIT_MISSING_IN_SOURCE"],
+        "lines_with_grams": gf["lines_with_grams"], "lines_unit_missing_in_source": gf["basis"]["UNIT_MISSING_IN_SOURCE"],
         "recipes_unequal_lists": ad["recipes_unequal"], "pct_recipes_unequal_lists": ad["pct_recipes_unequal"],
         "pct_lines_in_unequal_recipes": ad["pct_lines_in_unequal_recipes"], "recipes_equal_lists": ad["recipes"] - ad["recipes_unequal"],
         "lines_paired_equal_length_rule": ad["equal_length_only_rule"]["lines_paired"], "pct_lines_paired_equal_length_rule": ad["equal_length_only_rule"]["pct_of_lines"],
@@ -84,7 +85,7 @@ def build(root: Path) -> dict:
         ("NO_UNITS", f"No Food.com quantity string contains a letter ({n(nums['quantity_strings_with_a_letter'])} of {n(nums['quantity_strings'] - nums['quantity_strings_null'])} non-null strings), "
                      f"so the unit drop is in the source, not in the parser: {nums['pct_lines_bare_count_no_unit']} % of lines carry a bare count and no unit, the parser recognises a unit on only "
                      f"{nums['pct_lines_with_unit_recognised']} % of lines and {nums['pct_names_with_unit_word']} % of food-name strings contain a unit word.", SRC["bare"]),
-        ("GRAMS", f"Consequently every Food.com line is `UNIT_MISSING_IN_SOURCE` ({n(nums['lines_unit_missing_in_source_s177'])} lines) and {n(nums['lines_with_grams_s177'])} lines have a gram value; "
+        ("GRAMS", f"Consequently every Food.com line is `UNIT_MISSING_IN_SOURCE` ({n(nums['lines_unit_missing_in_source'])} lines) and {n(nums['lines_with_grams'])} lines have a gram value; "
                   "Food.com quantities may only be used as counts or presence, never as mass or volume.", SRC["grams"]),
         ("MISALIGNMENT", f"The quantity list and the ingredient-part list differ in length in {n(nums['recipes_unequal_lists'])} of {n(nums['recipes'])} recipes ({nums['pct_recipes_unequal_lists']} %), "
                          f"covering {nums['pct_lines_in_unequal_recipes']} % of lines, so positional pairing (`recipes.corpus.iter_foodcom`) puts quantities on the wrong food; the proposed rule "
@@ -128,8 +129,8 @@ def main(argv=None) -> int:
     out = Path(a.out_dir) if a.out_dir else root / OUT_DIR
     card = build(root)
     out.mkdir(parents=True, exist_ok=True)
-    (out / "foodcom_data_card_v1.json").write_text(json.dumps(card, indent=1, sort_keys=True) + "\n", encoding="utf-8")
-    (out / "foodcom_data_card_v1.md").write_text(md(card), encoding="utf-8")
+    (out / OUT_NAMES[0]).write_text(json.dumps(card, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    (out / OUT_NAMES[1]).write_text(md(card), encoding="utf-8")
     print(json.dumps({"sentences": len(card["sentences"])}))
     return 0
 

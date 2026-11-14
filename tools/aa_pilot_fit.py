@@ -6,6 +6,10 @@ Model A, and writes the fit JSON once (refuses overwrite). Its SHA-256 is the fr
 opened before this file is committed. Writes no ledger row.
 
     python tools/aa_pilot_fit.py --kush <returned_Kush.csv> --parv <returned_Parv.csv>
+    python tools/aa_pilot_fit.py --delegate <ksh+prv D-085 sheet> --out reports/step10/aa_pilot_model_a_fit_D085.json
+
+``--delegate`` (S179, D-085): one verification file by ``ksh+prv (AI, D-085)``, used as both returns. Its rows are
+AI_PRECHECKED, not human-verified; the fit carries signoff AI_DELEGATED_D085 and NO_HUMAN_SIGNOFF_D085.
 """
 from __future__ import annotations
 
@@ -22,6 +26,7 @@ sys.path.insert(0, str(ROOT / "src"))
 from culinarystate.simulation import aa_pilot_fit as F  # noqa: E402
 
 OUT = ROOT / "reports/step10/aa_pilot_model_a_fit_FROZEN.json"
+DELEGATE = "ksh+prv (AI, D-085)"
 
 
 def _rows(p: Path) -> list[dict]:
@@ -31,15 +36,25 @@ def _rows(p: Path) -> list[dict]:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--kush", required=True, type=Path)
-    ap.add_argument("--parv", required=True, type=Path)
+    ap.add_argument("--kush", type=Path)
+    ap.add_argument("--parv", type=Path)
+    ap.add_argument("--delegate", type=Path, help="one ksh+prv (AI, D-085) sheet (D-085); AI_PRECHECKED rows")
     ap.add_argument("--out", default=OUT, type=Path)
     a = ap.parse_args(argv)
+    if bool(a.delegate) == bool(a.kush or a.parv) or (not a.delegate and not (a.kush and a.parv)):
+        ap.error("give --kush and --parv (human returns) or --delegate alone")
     if a.out.exists():
         ap.error("refusing to overwrite a frozen fit")
-    returned = {who: hashlib.sha256(p.read_bytes()).hexdigest() for who, p in (("Kush", a.kush), ("Parv", a.parv))}
+    if a.delegate:
+        rows_a = rows_b = _rows(a.delegate)
+        if {r.get("verified_by") for r in rows_a} != {DELEGATE}:
+            ap.error(f"a --delegate sheet must name only {DELEGATE!r} in verified_by")
+        returned = {"ksh+prv (AI, D-085)": hashlib.sha256(a.delegate.read_bytes()).hexdigest()}
+    else:
+        rows_a, rows_b = _rows(a.kush), _rows(a.parv)
+        returned = {who: hashlib.sha256(p.read_bytes()).hexdigest() for who, p in (("Kush", a.kush), ("Parv", a.parv))}
     try:
-        agreed, why_v = F.agreed_rows(_rows(a.kush), _rows(a.parv))
+        agreed, why_v = F.agreed_rows(rows_a, rows_b)
         inc, why_i = F.include(agreed)
         fit = F.fit_model_a(inc)
     except F.FitRefused as exc:
@@ -49,6 +64,9 @@ def main(argv=None) -> int:
     rep = {"record": "AA_PILOT_MODEL_A_FIT", "status": "FROZEN_BEFORE_SIM_VAL", "sim_val_opened": False,
            "returned_sha256": returned, "excluded_by_verdict": why_v, "excluded_by_inclusion": why_i,
            "fit": fit, "code_sha256": code}
+    if a.delegate:
+        rep.update(signoff="AI_DELEGATED_D085", label="NO_HUMAN_SIGNOFF_D085", verification="AI_PRECHECKED",
+                   validation_label="NOT_VALIDATED / RESEARCH_ONLY")
     a.out.parent.mkdir(parents=True, exist_ok=True)
     with open(a.out, "x", encoding="utf-8") as fh:
         fh.write(json.dumps(rep, indent=1, sort_keys=True) + "\n")

@@ -1,0 +1,27 @@
+{
+ "end": "2026-11-10T12:13:17Z",
+ "git_commit": "440dbeb",
+ "host": "mac",
+ "lock_file": "reports/s179/env_lock/mac_S179.txt",
+ "lock_sha256": "29328de20b86286ebd5094a80e2e4c45a0a48a7b81f03233fd27c1195b8349fd",
+ "n_packages": 435,
+ "note": "T6-C19-R1; local install paths redacted",
+ "record": "ENV_LOCK_SMOKE_S179",
+ "seconds": 16,
+ "smoke": {
+  "culinarystate.evaluation.bakeoff": "OK",
+  "culinarystate.evaluation.diag29_additions": "OK",
+  "culinarystate.evaluation.diag29_runner": "OK",
+  "culinarystate.evaluation.freeze_records": "OK",
+  "culinarystate.transition.baselines": "OK",
+  "culinarystate.transition.splits": "OK",
+  "pkg:hypothesis": "6.170.5",
+  "pkg:numpy": "1.26.4",
+  "pkg:pandas": "2.1.4",
+  "pkg:scipy": "1.11.4",
+  "pkg:sklearn": "1.2.2",
+  "python": "3.11.8"
+ },
+ "start": "2026-11-10T12:13:01Z",
+ "transition_tests": "56 passed in 13.36s"
+}

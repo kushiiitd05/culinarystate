@@ -213,7 +213,8 @@
         "COUNT_PORTION",
         "PACKAGE",
         "VERBAL_QUALITATIVE",
-        "ENDPOINT_DESCRIPTOR"
+        "ENDPOINT_DESCRIPTOR",
+        "KINETIC"
       ]
     },
     "dimension": {
@@ -225,7 +226,9 @@
         "TEMPERATURE",
         "TIME",
         "LENGTH",
-        "NONE"
+        "NONE",
+        "RATE_PER_TIME",
+        "ENERGY_PER_AMOUNT"
       ]
     },
     "si_unit": {
@@ -533,5 +536,6 @@
     "canonical_name",
     "unit_type",
     "dimension"
-  ]
+  ],
+  "$comment": "D-079 (2026-11-10): additive enum change for kinetic units (T5-C07-R5): unit_type += KINETIC; dimension += RATE_PER_TIME, ENERGY_PER_AMOUNT. No value removed; every pre-D-079 row stays valid."
 }

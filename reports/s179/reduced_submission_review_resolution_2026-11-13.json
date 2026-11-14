@@ -1,0 +1,40 @@
+{
+  "CAL": {
+    "ksh_metadata_corrected": 16,
+    "numeric_span_agreements": 16,
+    "prv_metadata_corrected": 13,
+    "prv_verified": 3,
+    "reason": "Exact correction strings differ or add qualifiers; no numeric disagreement, no automatic semantic agreement score.",
+    "rows": 16,
+    "semantic_agreement_metric": null
+  },
+  "actions": [
+    "Freeze both original returned sheets and hashes before any discussion; done.",
+    "Use original registered scorer only for descriptive AI statistics, top-level NOT_COUNTED; done.",
+    "Review source-linked private metadata and applicability-code proposals; human acceptance remains pending.",
+    "No normalizer/extraction/model/fit changes and no post-adjudication rescore."
+  ],
+  "gate": "NOT_COUNTED",
+  "human_approval": "PENDING",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "r1": {
+    "axis_cells": 900,
+    "axis_disagreements": 403,
+    "code_convention_differences": 400,
+    "conditions": 100,
+    "exact_axis_matches": 497,
+    "other_axis_differences": 3,
+    "overall_verdict_differences": 3,
+    "pooled_ac1": 0.5246295602342862,
+    "private_proposals": "data/derived/reduced_submission_closeout_2026-11-13/r1_AI_resolution_proposals.json",
+    "proposals_sha256": "7c85f3d252cd916c54d1db4736afeddf6816faf3c80c5e18b32af04d6b9cebf8"
+  },
+  "reason": "AI_PERSONAS_NOT_INTER_RATER",
+  "record": "AI_REVIEW_RESOLUTION_HANDOFF",
+  "scientific_gate_pass": false
+}

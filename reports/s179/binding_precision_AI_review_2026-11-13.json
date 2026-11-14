@@ -1,0 +1,117 @@
+{
+  "completed_at_utc": "2026-11-12T21:10:34.583535+00:00",
+  "field_results": {
+    "duration": {
+      "adjudicated_denominator": 33,
+      "all_selected_cases": 100,
+      "codes": {
+        "MATCH": 30,
+        "MISMATCH": 3,
+        "NOT_BOUND": 66,
+        "UNASSESSABLE": 1
+      },
+      "conditional_precision": 0.9090909090909091,
+      "matches": 30,
+      "mismatches": 3,
+      "wilson_95": [
+        0.7642739435353026,
+        0.9685960584754184
+      ]
+    },
+    "event_attribution": {
+      "adjudicated_denominator": 92,
+      "all_selected_cases": 100,
+      "codes": {
+        "MATCH": 72,
+        "MISMATCH": 20,
+        "UNASSESSABLE": 8
+      },
+      "conditional_precision": 0.782608695652174,
+      "matches": 72,
+      "mismatches": 20,
+      "wilson_95": [
+        0.6879299890322917,
+        0.854632703980183
+      ]
+    },
+    "medium": {
+      "adjudicated_denominator": 0,
+      "all_selected_cases": 100,
+      "codes": {
+        "NON_TEXT_BASIS": 70,
+        "NOT_BOUND": 30
+      },
+      "conditional_precision": null,
+      "matches": 0,
+      "mismatches": 0,
+      "wilson_95": [
+        null,
+        null
+      ]
+    },
+    "temperature": {
+      "adjudicated_denominator": 10,
+      "all_selected_cases": 100,
+      "codes": {
+        "MATCH": 10,
+        "NON_TEXT_BASIS": 16,
+        "NOT_BOUND": 74
+      },
+      "conditional_precision": 1.0,
+      "matches": 10,
+      "mismatches": 0,
+      "wilson_95": [
+        0.7224672001371107,
+        1.0
+      ]
+    },
+    "unit": {
+      "adjudicated_denominator": 37,
+      "all_selected_cases": 100,
+      "codes": {
+        "MATCH": 37,
+        "NOT_BOUND": 63
+      },
+      "conditional_precision": 1.0,
+      "matches": 37,
+      "mismatches": 0,
+      "wilson_95": [
+        0.9059421741627975,
+        1.0
+      ]
+    }
+  },
+  "labels": [
+    "AI_CHECKED",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "AI source reading is not human gold or inter-rater agreement.",
+    "Source family is Wikibooks only; process-family balanced sample is not corpus prevalence.",
+    "Conditional precision denominator excludes unknown/unassessable/non-text axes; counts remain explicit.",
+    "Wilson intervals describe these AI decisions; systematic bias/within-recipe dependence are not corrected.",
+    "No binder rule or frozen scientific output is changed or tuned after review."
+  ],
+  "manifest_sha256": "8ef194b0d66055921fc0c5b46ebc6a041f669e84b4fd74856151e1fcc379f7de",
+  "private_packet_sha256": "98e7f769529f0f17f15f662bc45a6f839db79df1155a999c87b09c609306e3a6",
+  "private_review_sha256": "49d0c8737611500dd9308b017dc2aa6644663291158546cf08d9f734773de6fd",
+  "process_family_counts": {
+    "DRY_HEAT": 25,
+    "FAT_HEAT": 25,
+    "HEAT_GENERAL": 25,
+    "WET_HEAT": 25
+  },
+  "record": "BINDER_100_CASE_AI_FIELD_REVIEW",
+  "rubric": {
+    "MATCH": "Bound TEXT_STATED value/unit and event attribution agree with the cited text under manual AI source reading.",
+    "MISMATCH": "Text contradicts bound value/unit or wrong event ownership.",
+    "NON_TEXT_BASIS": "Physical/process definition or carried/default basis; not scored as literal text extraction precision.",
+    "NOT_BOUND": "Producer axis is UNKNOWN; no positive prediction to score.",
+    "UNASSESSABLE": "Text/context insufficient to decide; excluded from precision denominator, coverage disclosed."
+  },
+  "scientific_gate_pass": false,
+  "seed": "20261104",
+  "selected": 100,
+  "source_family": "WIKIBOOKS"
+}

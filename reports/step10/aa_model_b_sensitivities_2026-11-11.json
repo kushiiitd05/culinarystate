@@ -1,0 +1,205 @@
+{
+  "all_admissible_temperatures": {
+    "added_below_60C": 0,
+    "labels": [
+      "DIAGNOSTIC",
+      "NON_CITABLE",
+      "AI_PRECHECKED",
+      "NO_HUMAN_SIGNOFF_D085"
+    ],
+    "n_papers": 2,
+    "n_rows": 7,
+    "row_ids": [
+      "AAP-001",
+      "AAP-002",
+      "AAP-003",
+      "AAP-004",
+      "AAP-006",
+      "AAP-007",
+      "AAP-008"
+    ],
+    "status": "SAME_ROWS_AS_PRIMARY_NO_REFIT"
+  },
+  "all_rows_including_rejected": {
+    "reason": "Predeclared all-rows arm cannot override licence/verdict rejection.",
+    "rejected_papers": [
+      "AAK-09",
+      "AAK-11"
+    ],
+    "status": "NOT_RUN_LICENCE_REJECTED"
+  },
+  "code_sha256": {
+    "src/culinarystate/simulation/aa_cal_sensitivity.py": "93e8f172ed6484a014c7362507d895bac9da739618ba0de344473f197105c73d",
+    "tools/s179_aa_cal_sensitivity.py": "59d7d790673e9df440dec8c4383b720623cb8ca7da0027d9b0dfb13dd008d45d"
+  },
+  "excluded_by_verdict": {
+    "NOT_BOTH_VERIFIED": 7
+  },
+  "frozen_CAL_sheet_sha256": "0fff439aeb74df4edbb7cb1822ccf5aeb04d58b5427f6bf315bfa33d9e8abcd6",
+  "frozen_primary_sha256": "b9247db03e98423f8866fa50b24e2ecd33831d907f3aace00b1f7e4f2ea9543f",
+  "input_rows": 16,
+  "labels": [
+    "DIAGNOSTIC",
+    "NON_CITABLE",
+    "AI_PRECHECKED",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Separate sensitivity only; original primary Model A retained.",
+    "Assay specificity is the predeclared AI interpretation, not assay validation.",
+    "Source pH dispersion is not converted to a CI or gate range.",
+    "No post-lock domain registry is supplied; no PARAM or SIMULATE gate opens.",
+    "Rejected 09/11 are excluded even from the requested all-rows arm."
+  ],
+  "metadata_precheck_sha256": "a9c2d9ce9f696c373bacf139620a332543eea62492ff4a3826110082d37592d3",
+  "model_a_refitted": false,
+  "model_b": {
+    "AAK-01": {
+      "Ea_J_per_mol": 57386.182236819615,
+      "Ea_se": 6191.52794587087,
+      "T_ref_K": 363.15,
+      "dof": 2,
+      "k_unit": "min^-1",
+      "labels": [
+        "DIAGNOSTIC",
+        "NON_CITABLE",
+        "AI_PRECHECKED",
+        "NO_HUMAN_SIGNOFF_D085"
+      ],
+      "ln_k_ref": -4.357598924733359,
+      "ln_k_ref_se": 0.06788065368643986,
+      "n_rows": 4,
+      "n_temperatures": 4,
+      "residual_sd": 0.11325320685024068,
+      "residual_ssr": 0.025652577723726804,
+      "row_ids": [
+        "AAP-001",
+        "AAP-002",
+        "AAP-003",
+        "AAP-004"
+      ],
+      "status": "FIT_DIAGNOSTIC_ONLY",
+      "uncertainty_basis": "UNWEIGHTED_OLS_IID_HOMOSCEDASTIC_LOG_RATE_ERRORS"
+    },
+    "AAK-06": {
+      "Ea_J_per_mol": 76986.62314141469,
+      "Ea_se": 28653.039583348942,
+      "T_ref_K": 363.15,
+      "dof": 1,
+      "k_unit": "min^-1",
+      "labels": [
+        "DIAGNOSTIC",
+        "NON_CITABLE",
+        "AI_PRECHECKED",
+        "NO_HUMAN_SIGNOFF_D085"
+      ],
+      "ln_k_ref": -3.004743955478567,
+      "ln_k_ref_se": 0.3550197180400063,
+      "n_rows": 3,
+      "n_temperatures": 3,
+      "residual_sd": 0.3911465385778261,
+      "residual_ssr": 0.1529956146414148,
+      "row_ids": [
+        "AAP-006",
+        "AAP-007",
+        "AAP-008"
+      ],
+      "status": "FIT_DIAGNOSTIC_ONLY",
+      "uncertainty_basis": "UNWEIGHTED_OLS_IID_HOMOSCEDASTIC_LOG_RATE_ERRORS"
+    }
+  },
+  "paper_metadata": {
+    "AAK-01": {
+      "aa_specific": true,
+      "analyte_basis": "REDUCED_L_ASCORBIC_ACID_HPLC",
+      "assay_specificity_status": "AI_INTERPRETATION_PREDECLARED_SENSITIVITY_NOT_AN_ANALYTICAL_VALIDATION",
+      "label": "NO_HUMAN_SIGNOFF_D085",
+      "licence_status": "CONFIRMED_ON_PUBLISHER_PAGE_D091",
+      "pH": {
+        "dispersion": 0.07,
+        "dispersion_type": "NOT_REPORTED_BY_SOURCE",
+        "interval": null,
+        "value": 3.85
+      },
+      "pdf_path": "data/raw/aa_pilot/AAK-01.pdf",
+      "pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "text_sha256": "8ea1e91e8c6d8e9d4ff78b850edb812dec9699e1d13a862fc3aa02d18a05c3bf",
+      "verification": "AI_PRECHECKED",
+      "water_contact": "NO"
+    },
+    "AAK-06": {
+      "aa_specific": false,
+      "analyte_basis": "VITAMIN_C_IODINE_TITRATION_NOT_AA_SPECIFIC",
+      "assay_specificity_status": "AI_INTERPRETATION_PREDECLARED_SENSITIVITY_NOT_AN_ANALYTICAL_VALIDATION",
+      "closure": "NOT_REPORTED_BY_SOURCE",
+      "label": "NO_HUMAN_SIGNOFF_D085",
+      "licence_status": "CONFIRMED_ON_PUBLISHER_PAGE_D091",
+      "pH": {
+        "dispersion": null,
+        "dispersion_type": "NOT_REPORTED_BY_SOURCE",
+        "interval": null,
+        "value": 4.4
+      },
+      "pdf_path": "data/raw/aa_pilot/AAK-06.pdf",
+      "pdf_sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+      "text_sha256": "5cbd05388d283611a278e76933a8aa632ea7bded72eacdd15acc3e9a3ab47076",
+      "verification": "AI_PRECHECKED",
+      "water_contact": "UNKNOWN"
+    }
+  },
+  "primary_fit_replaced": false,
+  "primary_included_rows": 7,
+  "primary_rows_by_paper": {
+    "AAK-01": 4,
+    "AAK-06": 3
+  },
+  "record": "AA_CAL_POST_FREEZE_SENSITIVITIES",
+  "run_completed_at_utc": "2026-11-11T17:19:36.030763+00:00",
+  "run_started_at_utc": "2026-11-11T17:19:36.026560+00:00",
+  "sim_val_read": false,
+  "validation_label": "NOT_VALIDATED / RESEARCH_ONLY",
+  "verification": "AI_PRECHECKED_NOT_HUMAN",
+  "without_non_aa_specific": {
+    "labels": [
+      "DIAGNOSTIC",
+      "NON_CITABLE",
+      "AI_PRECHECKED",
+      "NO_HUMAN_SIGNOFF_D085"
+    ],
+    "n_papers": 1,
+    "n_rows": 4,
+    "reason": "Model A needs at least 2 papers (between-paper SD)",
+    "row_ids": [
+      "AAP-001",
+      "AAP-002",
+      "AAP-003",
+      "AAP-004"
+    ],
+    "status": "NEED_DATA"
+  },
+  "without_water_contact": {
+    "labels": [
+      "DIAGNOSTIC",
+      "NON_CITABLE",
+      "AI_PRECHECKED",
+      "NO_HUMAN_SIGNOFF_D085"
+    ],
+    "n_papers": 2,
+    "n_rows": 7,
+    "row_ids": [
+      "AAP-001",
+      "AAP-002",
+      "AAP-003",
+      "AAP-004",
+      "AAP-006",
+      "AAP-007",
+      "AAP-008"
+    ],
+    "rule": "REMOVE_EXPLICIT_WATER_CONTACT_ONLY;UNKNOWN_IS_NOT_NO_WATER_CONTACT",
+    "same_rows_as_primary": true,
+    "status": "SAME_ROWS_AS_PRIMARY_NO_REFIT",
+    "unknown_water_contact_papers": [
+      "AAK-06"
+    ]
+  }
+}

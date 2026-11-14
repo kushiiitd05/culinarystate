@@ -1,0 +1,132 @@
+{
+  "as_of": "2026-11-12",
+  "dated_acceptance_satisfied": false,
+  "earliest_post19_assessment_date": "2026-11-20",
+  "future_acceptance": [
+    {
+      "event_occurred": false,
+      "item_id": "T9-C23-R2",
+      "requirement": "Actual evidence table dated after 19 November; the current preview cannot satisfy it.",
+      "status": "NOT_YET_DUE"
+    },
+    {
+      "event_occurred": false,
+      "item_id": "T9-C26-R2",
+      "requirement": "Actual 21 November code/result freeze checks with then-current hashes.",
+      "status": "NOT_YET_DUE"
+    },
+    {
+      "event_occurred": false,
+      "item_id": "T9-C26-R3",
+      "requirement": "Actual 24 November timed rehearsal with elapsed time and Q&A recorded.",
+      "status": "NOT_YET_DUE"
+    }
+  ],
+  "gates": [
+    {
+      "evidence_path": "reports/del5/d5_score_v1_D085/d5_h1_after_rung_blind_check_D085.json",
+      "evidence_sha256": "c5a843ca0175bdd5b797cae80c065edcba30601e60d205d916b5aac9097e1c5d",
+      "gate": "G16-DATA",
+      "reason": "Independent Deep Gold and calibrated duplicate/source controls are absent. AI_DRAFTED_GOLD is not human-blind gold.",
+      "status": "FAIL_INDEPENDENCE_COMPONENT"
+    },
+    {
+      "evidence_path": "reports/s178/analysis/ing_alias_coverage_census_v1.json",
+      "evidence_sha256": "2652fa09954a045c5f4d5a2d2c1a9541e5fef0181ccf8021906e53ee5e403b94",
+      "gate": "G16-VOCAB",
+      "reason": "Coverage counts exist; no declared unresolved-frequency or fragmentation threshold passes.",
+      "status": "PARTIAL"
+    },
+    {
+      "evidence_path": "reports/s178/corpus/foodcom_bare_count_v1.json",
+      "evidence_sha256": "56dcfa76678c6ace5322cf050bfc5075ab4111006109aec017caa73060ff1baa",
+      "gate": "G16-QTY",
+      "reason": "Unknown quantity is preserved; portion authority, SP-002 and interval-calibration limitations remain.",
+      "status": "PARTIAL"
+    },
+    {
+      "evidence_path": "reports/del3/compiler_vs_gold_pooled_S179.json",
+      "evidence_sha256": "2981ba0a29bd4fb004c2ae96f9112d6d22dce031ca7999faa4155da529328c1a",
+      "gate": "G16-SEM",
+      "reason": "No independent Deep Gold or source-disjoint parser evaluation exists.",
+      "status": "NOT_EVALUATED_ON_INDEPENDENT_GOLD"
+    },
+    {
+      "evidence_path": "reports/s178/corpus/replay_invariants_corpus_v2.json",
+      "evidence_sha256": "2abe7ae762155194748dc36b68e8a690f20e575b70db02828193f1c10d61255c",
+      "gate": "G16-GRAPH",
+      "reason": "Engineering replay and consistency are distinct from semantic correctness on independent gold.",
+      "status": "PARTIAL"
+    },
+    {
+      "evidence_path": "reports/del5/d5_score_v1_D085/d5_scoring_result.json",
+      "evidence_sha256": "6d8c6a7922fd151f5f6e9654dcb8e1fc569839a704f172990052bb056ab53422",
+      "gate": "G16-EVID",
+      "reason": "Frozen retrieval metrics exist; the compatible-recall inconsistency and non-independent gold remain.",
+      "status": "PARTIAL"
+    },
+    {
+      "evidence_path": "src/culinarystate/retrieval/retriever.py",
+      "evidence_sha256": "36a33984e75a18d27ff606407f57383f5423a23c3554fb7c7128fabeb36b4777",
+      "gate": "G16-CONFLICT",
+      "reason": "A conflict regime exists in code; no independent detection rate or source-entailment certificate exists.",
+      "status": "PARTIAL"
+    },
+    {
+      "evidence_path": "reports/del5/d5_score_v1_D085/d5_scoring_result.json",
+      "evidence_sha256": "6d8c6a7922fd151f5f6e9654dcb8e1fc569839a704f172990052bb056ab53422",
+      "gate": "G16-CAL",
+      "reason": "B7 is uncalibrated; there is no independent held-out gold calibrator.",
+      "status": "NOT_MET"
+    },
+    {
+      "evidence_path": "reports/step10/calibration_disposition_2026-11-11.md",
+      "evidence_sha256": "a1e8c829ae76906bbaa0f264037a2be7c9c7543403e6e25e06d5769fb7d98c1c",
+      "gate": "G16-TRANS",
+      "reason": "The real SIMULATE guard stays closed; code and property checks do not validate a model.",
+      "status": "HOLDS_BY_REFUSAL_NOT_SCIENTIFIC_PASS"
+    },
+    {
+      "evidence_path": "reports/del5/d5_score_v1_D085/d5_scoring_result.json",
+      "evidence_sha256": "6d8c6a7922fd151f5f6e9654dcb8e1fc569839a704f172990052bb056ab53422",
+      "gate": "G16-DEC",
+      "reason": "The original H3 conjunction fails; a secondary sign test does not repair P3 abstention.",
+      "status": "RULE_NOT_MET"
+    },
+    {
+      "evidence_path": "src/culinarystate/decision/diagnosis.py",
+      "evidence_sha256": "2ad9581cefe88ccf09acc6472da2ee26e8245583851047ed0c79658961488c0f",
+      "gate": "G16-REC",
+      "reason": "Recovery/diagnosis wording and code are not independent efficacy evidence.",
+      "status": "NOT_EVALUATED"
+    },
+    {
+      "evidence_path": "reports/s179/emission_audit_2026-11-12_v2.json",
+      "evidence_sha256": "3176436e051c26193237b758a1febcd297b26f07ac028c3ea4d576053ab42ddf",
+      "gate": "G16-PROV",
+      "reason": "The original 30 frozen-answer flags remain; the strict sample has limited scope.",
+      "status": "PARTIAL"
+    },
+    {
+      "evidence_path": "reports/s179/d5_frozen_split_leakage_v3.json",
+      "evidence_sha256": "abfb62d3fa8e08dd5e17abf11b31c9112110aa030635bf0889e658f4f227e46f",
+      "gate": "G16-OOD",
+      "reason": "P3 B7 abstains on 0/10 versus B2 3/10; exposure is disclosed, with no independence certificate.",
+      "status": "PARTIAL_NEGATIVE_RESULT"
+    },
+    {
+      "evidence_path": "reports/step36/step36_scope_manifest_2026-11-12.csv",
+      "evidence_sha256": "29b1ecee610cd77c3e68bc14e41281bd703d71beb22874d09ef1a70801118fc4",
+      "gate": "G16-FT",
+      "reason": "Step 35 explicit/learned rungs were not run; no FlavorTwin promotion exists.",
+      "status": "NOT_RUN_BY_SCOPE"
+    }
+  ],
+  "labels": [
+    "AI_PRECHECKED",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "record": "MPU_CURRENT_EVIDENCE_PREVIEW_NOT_POST19_ACCEPTANCE",
+  "scientific_gate_pass": false
+}

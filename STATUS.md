@@ -1,5 +1,82 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+## Composition-aware state + status to completion — 14 November 2026 (evening; start here)
+
+- D-112 scope frozen; parser guard v2; C_t schema v1.1 passed by Kush (D-120); C_t v1.2 adds USDA SR composition (793 ING) and composition-aware routing over the frozen router (added salt/acid/lipid -> CONTEXT_MISMATCH; unstated context -> SCENARIO suggestion).
+- Full-corpus composition runs v1/v1.1: 612,782 recipes, 0 exceptions; boil events salted 9.9%, acidic 7.6%, lipid 7.9%, UNKNOWN 15.0%.
+- Corpus prior + naive-lookup headline running (manjot + Mac).
+- START HERE: handoff/STATUS_AND_REVIEW_PROMPT_2026-11-14_evening.md (done list, open MUST/SHOULD, day plan, limitations, external review prompt).
+
+## Reduced submission candidate and Kush takeover —13 November2026
+
+- Completed fresh counterpart AI R1/CAL reviews and paired comparisons locally; no wait for a counterpart AI transfer. R1 remains NOT_COUNTED/AI_PERSONAS_NOT_INTER_RATER, original labels retained; CAL16/16numericspansagree with metadata qualifications. Human review pending.
+- Full regression8271passed4namedskips0failed/errors/deselected;21newtargetedcontrols separately. Four frozen manifests/protectedoriginals match. Candidate-textscan0matching12wordwindows;177GUTsegmentsunavailable, no releaseclearance.
+- Eight authored backend demo guard cases pass, including explicit unsupported refusals. Not eight implemented features, broad accuracy or an actual human rehearsal. Initial runner-envelope failure and exact producer retained.
+-49publicartifacts+manifest in local draft candidateZIP; separate11fileprivate reviewZIPstagedNOT_SENT. Sources/hashpinned; report/deckoriginaldrafts unchanged. Author facts/final edits remain excluded.
+- START HERE: handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; archive locations in handoff/KUSH_TAKEOVER_PACKAGE_PATHS_2026-11-13.md. Build/independent verification manifests under reports/final/submission_candidate_2026-11-13/. Reducedsubmissionstillrequireslistedauthor/model/integration/calendaractions; scientificvalidationnotclaimed.
+
+## Publisher follow-up —13 November2026
+
+D-101 records two attribution-licence family confirmations (AAK-04/10), one project-allowlist exclusion (AAK-05: publisher CC BY-NC-SA4.0, conflicting with aggregator metadata), two unconfirmed (AAK-02/08). No new PDF saved locally or source row extracted. Human review/source acquisition still pending; no scientific gate changed. See reports/step10/aa_publisher_licence_followup_2026-11-13.{json,md} and scope matrix v3. Earlier R1 transfer question remains resolved by exact reconstruction.
+
+## Latest prv continuation —13 November2026, supplied Kush handoff
+
+- Supplied material is five handoff documents; private checkpoint/seal/P1 artifacts remain with Kush. Pulled hash-bound upstream results and D097 mapping; earlier local-only absence record superseded, not erased. No seed requested or model substituted.
+- Fresh AI reviews: exact issued100-rowR1 packet recovered by originalSHA,97ACCEPT3conservativeREJECT; CAL16numericspansmatched/13metadata corrections;30claimsample14/27checkeragreement3unclear;74questionbranchGold45/74routeragreement. All AI/non-independent/pendinghuman; no scientific gate pass.
+- Tests: full8228passed4namedskips,0failed/errors/deselected; later upstreamD106/provenance/wrapper targeted25pass separately. Provenance parser now handles suffixed decisions and explicit AI titles. Full revision/failed attempts in reports/s179/prv_continuation_verification_2026-11-13.json.
+- New technical insert,106-numberAIreview,rehearsal/Q&A and live PR readiness packs; final report/deck and protected originals unchanged. Author facts/final edits excluded. No merge or actual rehearsal.
+- Current index: reports/orchestration/S179_technical_scope_matrix_2026-11-13_v2.{csv,json,md}. Private return pack has five ignored files, locally staged NOT_SENT; Kush to counterreview/score/adjudicate. Missing Parv R1 transfer request is resolved by exact reconstruction. Remaining licensedPDF acquisition/scientificdata/independence/calendar constraints remain.
+- Review sheet P13-1..9 awaits actual human review; report entry point reports/s179/prv_continuation_closeout_2026-11-13.md.
+
+## Latest technical closeout — 13 November 2026 (supersedes older snapshots below)
+
+Branch `kush/s179-finish-fixes`; decisions through D-096. D-094 excludes author facts and final edits. NO_HUMAN_SIGNOFF_D085; no scientific gate waiver.
+
+- **Full suite:** 8,182 passed,4 skipped,0 failed/errors/deselected. Later compute-parser targeted3 pass recorded separately. Protected ledgers, frozen code/results and final report/deck unchanged.
+- **Engineering:** strict-v3 browser rehearsal and1,000-call audit; repeatable50-recipe integration; all224 targets on1,000 selected recipes; all11,934 BBC recipes through four mechanism producers, zero exceptions. Five-family proxy coverage and1,000-recipe composition audited.
+- **AI findings:**100-case binding precision review retains20 event-attribution mismatches/8 ambiguous cases; actual RungA/Gold contract diagnostic refuses invented typed metrics. AA35-row staging retains zero eligible SIM-VAL. Structural MECH freeze only.
+- **Review assets:** nine figures, exact-position1,038-number inventory,488 draft pH page locators, ignored fallback assets and historical run reconciliation (18 old hashes recovered); limitations recorded.
+- **Concrete constraints:** exact frozen NER/checkpoint/15a artifacts and accepted P1A missing; genericACTION↔typedGold contract absent; assay/basis/PARAM/validation data insufficient; matched ablations and future-dated events not performed. No independent engineering waits on generic expert signoff. Author-only facts/edits are excluded, not an active blocker.
+- **Current evidence:** `reports/s179/technical_completion_closeout_2026-11-13.md`; `reports/orchestration/S179_technical_scope_matrix_2026-11-13.{csv,json,md}` (252 items,84 MUST/168 SHOULD,51 POST preserved). Green tests do not pass H1/H3 or scientific source/independence gates.
+
+## Latest local completion — 12 November 2026 (supersedes the continuation snapshot below)
+
+Branch `kush/s179-finish-fixes`; decisions through D-093. All work local, no SSH/VPN.
+D-085 labels remain; original H1/H3 RULE_NOT_MET and all scientific provenance guards remain unchanged.
+
+- **Regression green:** 8,085 passed, 4 skipped, 44 deselected; final targeted 75 passed separately. Two archive-sidecar failures were corrected by quarantining ignored macOS metadata, with original annotation content/assertions preserved. Full log and protected/frozen hashes: `reports/s179/local_completion_verification_2026-11-12.json`.
+- **Inputs restored:** checksum-matched tier-1 restored four actual missing files plus quarantined sidecars. Identity-features, Food.com and Gutenberg are available. Optional tier-2 has a different DeBERTa-v3 checkpoint; exact frozen primary not substituted or run.
+- **Actual D5 exposure audit:** new v3 registry/units cover 74 questions/eight blocks and all selected recipe sources. All79 gold EVD IDs already DEL-2; overlap disclosed. Nine Wikibooks lines provide the exact-line NER denominator; no independence or accuracy certification.
+- **Separate strict demo:** `python tools/run_local_demo_v2.py` on loopback, public-filtered by default. D-093 snapshot; synthetic reviewer regressions fixed. Exact declared context required; default calls infer none. 1,000 calls yield zero retention figures, 53 physics steps/141 numeric fields with no missing/unknown declared provenance in the enumerated sample. Both local/public-filtered HTTP checks pass. Original 30 frozen-answer flags are retained, T0-C06-R2 still PARTIAL.
+- **Drafts exported:** report10pages/deck13slides, HTML/PDF and hash manifest in `reports/final/exports_2026-11-12/`. No detected off-page text; root viewed slide contact sheet and report first page.
+- **Text scan:** zero12wordmatches across Markdown/visibleHTML/extractedPDF text against612,782 indexed recipes and4licensedpapertexts. 177Gutenberg raw segments absent; images/paraphrases/shortexcerpts not checked; no release clearance.
+- **Remaining:** exact primary NER checkpoint or persisted current-model cross-family spans; genuine source assay/basis and KIN/PARAM/VAL provenance for scientific simulation; historical private15a assignment rederivation; actual author contributions/presentation facts; final edits, post19Nov MPU and actual24Nov rehearsal. No invented labels or future completion.
+- **Review trail:** `reports/orchestration/S179_round9_local_completion_update.md`, `reports/s179/local_completion_closeout_2026-11-12.md`, new compute rows and `registry/experiments_S179_local_2026-11-12.csv`. Independent engineering/report work is not waiting on expert signoff; scientific gates remain explicit.
+
+## Current continuation — 12 November 2026 (Parv; supersedes older snapshots below)
+
+Branch `kush/s179-finish-fixes`; decisions through D-092. D-085 AI delegation retains NO_HUMAN_SIGNOFF_D085;
+independent-human scientific gates do not pass by delegation. Current evidence is in the round-6 audit and
+`reports/orchestration/S179_round7_private_transfer_update.md`; the immutable S178 board remains the plan inventory.
+
+- Private transfer: all 15 files hash-verified and installed locally, originals retained; no private text committed.
+- AA: Model B and predeclared CAL sensitivity dispositions complete. Removing the non-AA-specific paper leaves
+  one paper, NEED_DATA. Licence-rejected all-rows arm NOT_RUN. Frozen Model A unchanged and NOT_VALIDATED/RESEARCH_ONLY.
+- SIM-VAL: separate unexposed extraction and second AI source precheck complete. 19 rows, zero computationally
+  eligible; no predictions or errors emitted. Retention observations absent; AAK-12 licence-unconfirmed text unopened.
+- T5 G15: all 13 requested gates documented; zero PASS. PARAM/source-lineage provenance and real calibration/domain
+  integration remain incomplete. Existing SIMULATE guards stay closed; no new scientific pass supplied.
+- Integrated report and Markdown deck updated. Source-window scan: zero 12-word matches in seven artifacts against
+  supplied D5 context and licensed CAL/SIM-VAL texts; other corpora/final exports still need checks, no release clearance.
+- Answer audit: all 346 frozen answers and 1,000 public-demo calls scanned. 30 saved records flagged; no demo flags
+  under the corrected lexical instrument. T0-C06-R2 remains PARTIAL; semantic/quantity/basis/branch gaps remain.
+  Original audit, corrected v2 and NEG-0052 retained; no frozen answer or score changed.
+- Tests: 7,996 passed, 1 failed, 11 errors, 13 skipped, 44 deselected. Remaining failure/errors are missing identity-features
+  and Food.com inputs; tests were not skipped or weakened. The new emission instrument adds 21 passing tests; see its verification report. Prior AA/privacy tests remain.
+- Human facts still pending: current VPN/host/path (no SSH), talk details and author contributions. Private AA/D5
+  files have arrived; the older handoff requests for those specific files are resolved.
+
+
 **As of:** 2026-11-09 (S178 refresh by the manjot orchestrator lane, T9-C01-R3; HEAD `4a95380` on branch `max/s176-orchestration` plus uncommitted lane work). Sections below that still carry S163 wording are marked **[STALE as of S163]** or **[UPDATED]** with the path of the newer evidence. DECISIONS runs through D-078 (next free D-079); WORKLOG ids S171-S177 are used (next free S178). **No signature, expert approval, human verification or failed-gate pass is supplied by this refresh; every S176-S178 item is AI_DRAFTED / PROPOSED (D-071).** Working order D-045: AI verdict first, then Kush and Parv review (final).
 **Authoritative records:** DECISIONS.md, WORKLOG.md and the dated review artifacts. Current plan: `registry/execution_board_S178.csv` and `reports/orchestration/S178_EXECUTION_BOARD.md` (252 MUST+SHOULD items, waves W1-W4, 9-23 Nov); human tasks `handoff/HUMAN_OPERATIONS_PACK_2026-11-09.md`; consensus `reports/orchestration/ssot_consensus/CONSENSUS_PLAN_2026-11-08.md`; resume point `handoff/RESUME_ANCHOR_2026-11-08_ORCH.md`.
 **Repos in this period:** Kush's Mac (merge, push, BBC-only jobs under D-003, scribing of human gates), manjot-server worktree `~/kush_work/culinarystate/.orch` (orchestration since D-078: non-BBC runs, analyses, reviews; `.venv312`, no torch or sklearn), vinayak-server (GPU/Ollama rungs; needs the IIITD VPN). **[UPDATED]** The S163 line that placed full-corpus runs on vinayak is superseded: CPU jobs run on manjot, only LLM rungs need vinayak (board sec 3).
@@ -9,6 +86,27 @@ The previous S145 status snapshot is preserved in git history (before S150,
 commit `ae5fc5a`); it contained stale pending/not-authorised wording superseded
 by D-035 and later takeover decisions. No historical failed gate is erased.
 
+
+## S179 update (2026-11-10, Mac + manjot + vinayak; branch `kush/s179-finish-fixes`, PR #12 on top of PR #11)
+
+Where this block and the S178 snapshot below differ, this block holds. All AI_DRAFTED; no human gate is closed here.
+
+- **M1 router:** census 0.4.0, then 0.4.1 after the S179 SCI re-review (prior-process state cues before and after the
+  food). Vitamin-C DIRECT non-BBC 40,308 (S177) -> 30,248 (0.4.0) -> **30,220** (0.4.1); BBC 1,058. Files
+  `reports/step23/router_demo_census_vitc_{nonBBC_full,BBC_full}_S179b.json`; `reports/orchestration/S178_FIX-ROUTER_report.md`.
+- **M6 demo:** the GOV-4 per-request guard is in the committed server; the S179 check on the Mac found that a local-mode
+  server answers 503 to every tunnel-like request (forwarding headers, a non-loopback Host, no Host), and that public mode
+  drops 11,928 BBC-derived KGE edges, carbon figures and typical durations, with 0 BBC substitution candidates in
+  155 swept questions (`reports/s179/public_mode_check_S179.md`). Hosting and LLM key are still undecided (A6).
+- **M9 physical layers:** FIX-PHYS v05, then **v06** after the re-review (food targets no longer bound as the medium
+  temperature), non-BBC on manjot and **BBC on the Mac (D-003), so BBC legs are done**. Schema validator 100 % on every
+  kind; heat events 1,696,743 non-BBC and 49,662 BBC, unchanged by the fixes. `reports/orchestration/S178_FIX-PHYS_report.md` §5.
+- **Re-review:** GOV and SCI passes found no blockers (`reports/orchestration/review/S179_REV_{GOV,SCI}.md`). Fixed: SCI #1,
+  #3, #4, #5, #8; noted: #6. **Open for humans:** #2 (Q1 lift gate on dilute liquids) and #7 (SR analytical zero read as ABSENT).
+- **Analysis on v06:** corpus can-say v2, EVD coverage v2, EVD reproducibility v2 and Food.com card v2; v1 kept on record.
+- **Humans next:** SCI #2 and #7; A6b hull choice; OK for F1 in `quantity/grammar.py`; verify `ing_sr_defaults_v1.csv`
+  through `reports/s179/ing_sr_review_queue_BBC.csv`; OK to delete the v04 / v05 per-record dirs on manjot; merge OK for
+  PR #11 and #12; plus the S178 list below (07.A-R1 signatures, CAL pilot, D5 freeze).
 
 ## S178 snapshot: milestones M0-M9 and what changed since S163 (supersedes the "Current stage" wording below where they differ)
 

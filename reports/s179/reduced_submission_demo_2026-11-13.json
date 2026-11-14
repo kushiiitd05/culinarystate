@@ -1,0 +1,221 @@
+{
+  "actual_human_rehearsal": false,
+  "case_origin": "SYNTHETIC_AUTHORED_DEMONSTRATION",
+  "code_sha256": {
+    "src/culinarystate/decision/demo_context_v3.py": "a31519e90ec2ca2f20d88c5154b73bf99bad65bb6f49b114c5eb4d242fffe0e5",
+    "src/culinarystate/decision/strict_display_v3.py": "3bb6d8367d66ab0b90a9e7d14c8d2a370c3e469476e3fa3997d35062fcdbdc4e",
+    "src/culinarystate/generation/strict_v3.py": "02c94d614654a45af1a1b751bdb150fa01fd886d4d6ff3202116df6be115f430",
+    "tools/s179_submission_demo.py": "f444486cf2da598a6b75480c603b8659a158e698f25e663a9858d4436aec74c6"
+  },
+  "completed_at_utc": "2026-11-13T09:52:08.702001+00:00",
+  "labels": [
+    "ENGINEERING_DIAGNOSTIC",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Backend smoke cases only; prior four-case real-browser screenshot is separate evidence.",
+    "METADATA/SEMANTIC/MULTIMODAL may honestly abstain; no missing handler represented as implemented capability.",
+    "No model inference/hosting or simulation validation; authored examples are not benchmark performance."
+  ],
+  "passed": 0,
+  "record": "EIGHT_AUTHORED_BACKEND_DEMO_CASES",
+  "records": [
+    {
+      "answer": "I can't answer food-safety questions (safe temperatures, doneness, bacteria, or how long food keeps), so I won't give a number or a yes or no. Please use official food-safety guidance for your country, for example FSSAI in India, USDA FSIS and FoodSafety.gov in the US, the Food Standards Agency in the UK, or the WHO guide Five Keys to Safer Food. When you are unsure about a food, don't eat it.",
+      "branch": null,
+      "checks": {
+        "citability_violations": 0,
+        "display_numbers": 0,
+        "display_provenance_violations": 0,
+        "handler_errors": 0,
+        "missing_numeric_provenance": 0,
+        "numeric_fields": 0,
+        "physics_steps": 0,
+        "table_numbers": 0,
+        "unexpected_simulate": 0,
+        "unknown_numeric_fields": 0
+      },
+      "expected_branch": "SAFETY",
+      "id": "DEMO-SAFETY",
+      "issues": [
+        "BRANCH_MISMATCH"
+      ],
+      "mode": "ABSTAIN_SAFETY",
+      "query": "Is chicken safe after two days on the counter?",
+      "status": "FAIL"
+    },
+    {
+      "answer": "I couldn't tell what you're asking. Please name the food, the process and what you care about (for example vitamin C, texture or colour).",
+      "branch": null,
+      "checks": {
+        "citability_violations": 0,
+        "display_numbers": 0,
+        "display_provenance_violations": 0,
+        "handler_errors": 0,
+        "missing_numeric_provenance": 0,
+        "numeric_fields": 0,
+        "physics_steps": 0,
+        "table_numbers": 0,
+        "unexpected_simulate": 0,
+        "unknown_numeric_fields": 0
+      },
+      "expected_branch": "UNKNOWN",
+      "id": "DEMO-UNKNOWN",
+      "issues": [
+        "BRANCH_MISMATCH"
+      ],
+      "mode": "ASK",
+      "query": "What should I do?",
+      "status": "FAIL"
+    },
+    {
+      "answer": "Images, audio and video are not supported yet, so I can't judge this.",
+      "branch": null,
+      "checks": {
+        "citability_violations": 0,
+        "display_numbers": 0,
+        "display_provenance_violations": 0,
+        "handler_errors": 0,
+        "missing_numeric_provenance": 0,
+        "numeric_fields": 0,
+        "physics_steps": 0,
+        "table_numbers": 0,
+        "unexpected_simulate": 0,
+        "unknown_numeric_fields": 0
+      },
+      "expected_branch": "MULTIMODAL",
+      "id": "DEMO-VISION",
+      "issues": [
+        "BRANCH_MISMATCH"
+      ],
+      "mode": "ABSTAIN_UNSUPPORTED",
+      "query": "Look at this photo and identify the dish.",
+      "status": "FAIL"
+    },
+    {
+      "answer": "This kind of question (metadata) is not wired up yet, so I won't guess an answer.",
+      "branch": null,
+      "checks": {
+        "citability_violations": 0,
+        "display_numbers": 0,
+        "display_provenance_violations": 0,
+        "handler_errors": 0,
+        "missing_numeric_provenance": 0,
+        "numeric_fields": 0,
+        "physics_steps": 0,
+        "table_numbers": 0,
+        "unexpected_simulate": 0,
+        "unknown_numeric_fields": 0
+      },
+      "expected_branch": "METADATA",
+      "id": "DEMO-METADATA",
+      "issues": [
+        "BRANCH_MISMATCH"
+      ],
+      "mode": "ABSTAIN_NOT_BUILT",
+      "query": "How many calories are in carrots?",
+      "status": "FAIL"
+    },
+    {
+      "answer": "This kind of question (semantic) is not wired up yet, so I won't guess an answer.",
+      "branch": null,
+      "checks": {
+        "citability_violations": 0,
+        "display_numbers": 0,
+        "display_provenance_violations": 0,
+        "handler_errors": 0,
+        "missing_numeric_provenance": 0,
+        "numeric_fields": 0,
+        "physics_steps": 0,
+        "table_numbers": 0,
+        "unexpected_simulate": 0,
+        "unknown_numeric_fields": 0
+      },
+      "expected_branch": "SEMANTIC",
+      "id": "DEMO-RECIPE-SEARCH",
+      "issues": [
+        "BRANCH_MISMATCH"
+      ],
+      "mode": "ABSTAIN_NOT_BUILT",
+      "query": "Find me recipes similar to tomato soup.",
+      "status": "FAIL"
+    },
+    {
+      "answer": "I have no substitution pattern for butter in the recipe corpus, so I won't guess. This public build leaves out the patterns taken from some recipe sites, so a pattern may exist that it cannot show.",
+      "branch": null,
+      "checks": {
+        "citability_violations": 0,
+        "display_numbers": 0,
+        "display_provenance_violations": 0,
+        "handler_errors": 0,
+        "missing_numeric_provenance": 0,
+        "numeric_fields": 0,
+        "physics_steps": 0,
+        "table_numbers": 0,
+        "unexpected_simulate": 0,
+        "unknown_numeric_fields": 0
+      },
+      "expected_branch": "RELATIONSHIP",
+      "id": "DEMO-SUBSTITUTION",
+      "issues": [
+        "BRANCH_MISMATCH"
+      ],
+      "mode": "ABSTAIN_NO_EDGES",
+      "query": "What can I substitute for butter?",
+      "status": "FAIL"
+    },
+    {
+      "answer": "I cannot give a numeric result for those conditions from the available evidence.",
+      "branch": null,
+      "checks": {
+        "citability_violations": 0,
+        "display_numbers": 0,
+        "display_provenance_violations": 0,
+        "handler_errors": 0,
+        "missing_numeric_provenance": 0,
+        "numeric_fields": 0,
+        "physics_steps": 0,
+        "table_numbers": 0,
+        "unexpected_simulate": 0,
+        "unknown_numeric_fields": 0
+      },
+      "expected_branch": "TRANSFORMATION",
+      "id": "DEMO-RETENTION",
+      "issues": [
+        "BRANCH_MISMATCH"
+      ],
+      "mode": "ABSTAIN",
+      "query": "How much vitamin C remains in carrots after boiling?",
+      "status": "FAIL"
+    },
+    {
+      "answer": "I cannot give a numeric result for those conditions from the available evidence.",
+      "branch": null,
+      "checks": {
+        "citability_violations": 0,
+        "display_numbers": 4,
+        "display_provenance_violations": 0,
+        "handler_errors": 0,
+        "missing_numeric_provenance": 0,
+        "numeric_fields": 4,
+        "physics_steps": 1,
+        "table_numbers": 0,
+        "unexpected_simulate": 0,
+        "unknown_numeric_fields": 0
+      },
+      "expected_branch": "TRANSFORMATION",
+      "id": "DEMO-PHYSICS",
+      "issues": [
+        "BRANCH_MISMATCH"
+      ],
+      "mode": "ABSTAIN",
+      "query": "How much vitamin C remains in carrots after boiling?",
+      "recipe_text": "Boil carrots in water at 90 C for 5 minutes.",
+      "status": "FAIL"
+    }
+  ],
+  "scientific_gate_pass": false,
+  "started_at_utc": "2026-11-13T09:52:02.557469+00:00",
+  "total": 8
+}

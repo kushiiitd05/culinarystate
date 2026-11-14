@@ -1,0 +1,195 @@
+{
+ "contexts": {
+  "independent_minimal": {
+   "B1": {
+    "contexts": 40,
+    "post_cut_step_in_context": 0,
+    "s1_aggregate_answer_field_in_context": 0,
+    "s1_contexts": 20,
+    "s2_contexts": 20,
+    "s2_next_step_text_in_context": 0,
+    "shares_engine_output_with_gold": 0
+   },
+   "B2": {
+    "contexts": 40,
+    "post_cut_step_in_context": 0,
+    "s1_aggregate_answer_field_in_context": 0,
+    "s1_contexts": 20,
+    "s2_contexts": 20,
+    "s2_next_step_text_in_context": 0,
+    "shares_engine_output_with_gold": 0
+   },
+   "B4": {
+    "contexts": 40,
+    "post_cut_step_in_context": 0,
+    "s1_aggregate_answer_field_in_context": 0,
+    "s1_contexts": 20,
+    "s2_contexts": 20,
+    "s2_next_step_text_in_context": 0,
+    "shares_engine_output_with_gold": 0
+   }
+  },
+  "independent_primitives": {
+   "B1": {
+    "contexts": 40,
+    "post_cut_step_in_context": 0,
+    "s1_aggregate_answer_field_in_context": 0,
+    "s1_contexts": 20,
+    "s2_contexts": 20,
+    "s2_next_step_text_in_context": 0,
+    "shares_engine_output_with_gold": 0
+   },
+   "B2": {
+    "contexts": 40,
+    "post_cut_step_in_context": 0,
+    "s1_aggregate_answer_field_in_context": 0,
+    "s1_contexts": 20,
+    "s2_contexts": 20,
+    "s2_next_step_text_in_context": 0,
+    "shares_engine_output_with_gold": 0
+   },
+   "B4": {
+    "contexts": 40,
+    "post_cut_step_in_context": 0,
+    "s1_aggregate_answer_field_in_context": 0,
+    "s1_contexts": 20,
+    "s2_contexts": 20,
+    "s2_next_step_text_in_context": 0,
+    "shares_engine_output_with_gold": 0
+   }
+  },
+  "legacy": {
+   "B1": {
+    "contexts": 40,
+    "post_cut_step_in_context": 33,
+    "s1_aggregate_answer_field_in_context": 0,
+    "s1_contexts": 20,
+    "s2_contexts": 20,
+    "s2_next_step_text_in_context": 9,
+    "shares_engine_output_with_gold": 9
+   },
+   "B2": {
+    "contexts": 40,
+    "post_cut_step_in_context": 31,
+    "s1_aggregate_answer_field_in_context": 0,
+    "s1_contexts": 20,
+    "s2_contexts": 20,
+    "s2_next_step_text_in_context": 10,
+    "shares_engine_output_with_gold": 10
+   },
+   "B4": {
+    "contexts": 40,
+    "post_cut_step_in_context": 31,
+    "s1_aggregate_answer_field_in_context": 20,
+    "s1_contexts": 20,
+    "s2_contexts": 20,
+    "s2_next_step_text_in_context": 10,
+    "shares_engine_output_with_gold": 30
+   }
+  }
+ },
+ "embedder": "hashed bag of words, 512 dims (lexical proxy; retrieval counts are indicative only)",
+ "gold_provenance": {
+  "by_block": {
+   "S1": {
+    "ENGINE_DRAFT": 20,
+    "HUMAN_AFTER_SEEING_ENGINE": 0,
+    "HUMAN_BLIND": 0
+   },
+   "S2": {
+    "ENGINE_DRAFT": 20,
+    "HUMAN_AFTER_SEEING_ENGINE": 0,
+    "HUMAN_BLIND": 0
+   }
+  },
+  "by_reason": {
+   "NO_HUMAN_VERDICT": 40
+  },
+  "label": "CIRCULAR_SELF_CONSISTENCY_ONLY",
+  "n_independent": 0,
+  "n_not_independent": 40,
+  "n_refused": 0,
+  "n_rows": 40,
+  "not_independent_qids": [
+   "D5-S1-001",
+   "D5-S1-002",
+   "D5-S1-003",
+   "D5-S1-004",
+   "D5-S1-005",
+   "D5-S1-006",
+   "D5-S1-007",
+   "D5-S1-008",
+   "D5-S1-009",
+   "D5-S1-010",
+   "D5-S1-011",
+   "D5-S1-012",
+   "D5-S1-013",
+   "D5-S1-014",
+   "D5-S1-015",
+   "D5-S1-016",
+   "D5-S1-017",
+   "D5-S1-018",
+   "D5-S1-019",
+   "D5-S1-020",
+   "D5-S2-001",
+   "D5-S2-002",
+   "D5-S2-003",
+   "D5-S2-004",
+   "D5-S2-005",
+   "D5-S2-006",
+   "D5-S2-007",
+   "D5-S2-008",
+   "D5-S2-009",
+   "D5-S2-010",
+   "D5-S2-011",
+   "D5-S2-012",
+   "D5-S2-013",
+   "D5-S2-014",
+   "D5-S2-015",
+   "D5-S2-016",
+   "D5-S2-017",
+   "D5-S2-018",
+   "D5-S2-019",
+   "D5-S2-020"
+  ],
+  "refused": {},
+  "rule": "only gold_origin HUMAN_BLIND is independent of the engine run: the scored gold comes from a filled blind-answer column (gold_source BLIND_HUMAN) answered from the recipe text with seen_system_output false; a KEEP / EDIT of an engine draft is HUMAN_AFTER_SEEING_ENGINE",
+  "version": "h1_independence@0.2"
+ },
+ "gold_vs_current_engine": {
+  "gold_equals_current_engine_output": 40,
+  "n": 40,
+  "reading": "the draft gold is the engine output (by construction); a mismatch would mean engine drift",
+  "recipes_with_changed_step_count": 0
+ },
+ "input": {
+  "by_block": {
+   "S1": 20,
+   "S2": 20
+  },
+  "by_family": {
+   "GUTENBERG_SEGMENT": 38,
+   "WIKIBOOKS": 2
+  },
+  "n_questions": 40,
+  "s_draft_sha256": "f809236a9ccbceb399da7cb7374c7f3e9cfa935a5e33fa0579b74b0d560bd27e"
+ },
+ "module": "h1_independence@0.2",
+ "reading": [
+  "legacy B4 contexts print an aggregate answer field ('Heated so far') for S1 and legacy B1/B2/B4 retrieval can return steps after the cut (for S2 the step that holds the answer)",
+  "independent contexts retrieve only steps up to the cut and carry no aggregate answer field; shares_engine_output_with_gold is 0 by construction in both views",
+  "the printed action list is still engine output: where residual_circularity_s1 shows a plain heat-verb rule rebuilding the gold, only blind-first human gold (gold_origin HUMAN_BLIND) makes that row non-circular"
+ ],
+ "residual_circularity_s1": {
+  "gold_rebuilt_as_superset_or_equal": 20,
+  "gold_rebuilt_exactly_from_printed_actions_by_heat_verb_rule": 16,
+  "minimal_view_used_set_equals_gold": 3,
+  "minimal_view_used_set_superset_of_gold": 20,
+  "s1_rows": 20
+ },
+ "status": "AI_DRAFTED_COUNTS_ONLY_NON_CITABLE",
+ "text_only_heat_check_s1": {
+  "AGREE": 20
+ },
+ "tool": "tools/s178_h1_gold_independence.py"
+}

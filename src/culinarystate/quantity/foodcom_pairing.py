@@ -236,12 +236,38 @@ def map_alignment_indices(model: AlignmentModel, quantities: Sequence[str | None
     return out
 
 
+class PairedLines(list):
+    """The lines of ``pair_lines`` (a plain ``list`` of str, so it is a drop-in for ``iter_foodcom``'s lines) that also KEEPS
+    the pairing status of every line (S178 FIX-ROUTER, SCI-B CORP-3): ``statuses`` (one per line, e.g.
+    ``QUANTITY_UNKNOWN_LENGTH_MISMATCH``), ``length_mismatch`` (the two source lists differ in length) and ``rule``. A
+    consumer can therefore tell "misaligned, quantity withheld" from "the source gives no quantity"."""
+
+    def __init__(self, lines: Sequence[str], statuses: Sequence[str], *, length_mismatch: bool, rule: str) -> None:
+        super().__init__(lines)
+        if len(statuses) != len(lines):
+            raise ValueError("one status per line")
+        self.statuses = tuple(statuses)
+        self.length_mismatch = bool(length_mismatch)
+        self.rule = rule
+
+    def with_status(self) -> list[tuple[str, str]]:
+        return list(zip(self, self.statuses))
+
+
+def pair_lines_with_status(quantities: Sequence[str | None], parts: Sequence[str], rule: str = "EQUAL_LENGTH_ONLY", *,
+                           model: AlignmentModel | None = None, threshold: float = 0.9) -> list[tuple[str, str]]:
+    """``(line, status)`` per part (S178 CORP-3); see ``pair_lines``."""
+    return pair_lines(quantities, parts, rule, model=model, threshold=threshold).with_status()
+
+
 def pair_lines(quantities: Sequence[str | None], parts: Sequence[str], rule: str = "EQUAL_LENGTH_ONLY", *,
-               model: AlignmentModel | None = None, threshold: float = 0.9) -> list[str]:
+               model: AlignmentModel | None = None, threshold: float = 0.9) -> PairedLines:
     """Lines as ``recipes.corpus.iter_foodcom`` builds them (``"<quantity> <part>"``, bare part when there is no quantity) under ``rule``.
 
     ``POSITIONAL`` reproduces the frozen behaviour exactly; ``EQUAL_LENGTH_ONLY`` is the proposed default; ``ALIGN_MODEL`` needs a trained
-    ``model`` (experimental). Drop-in for a consumer that wants to opt in without touching ``corpus.py``.
+    ``model`` (experimental). Drop-in for a consumer that wants to opt in without touching ``corpus.py``. S178 (CORP-3): the
+    result is a ``PairedLines`` list that keeps each line's status and the length-mismatch flag (equal to a plain list of
+    the same lines).
     """
     if rule == "POSITIONAL":
         pairs = pair_positional(quantities, parts)
@@ -253,4 +279,5 @@ def pair_lines(quantities: Sequence[str | None], parts: Sequence[str], rule: str
         pairs = align_pairs(model, quantities, parts, threshold=threshold)
     else:
         raise ValueError(f"unknown rule {rule!r}; expected one of {RULES}")
-    return [f"{q or ''} {p}".strip() for q, p, _ in pairs]
+    return PairedLines([f"{q or ''} {p}".strip() for q, p, _ in pairs], [st for _, _, st in pairs],
+                       length_mismatch=len(quantities) != len(parts), rule=rule)

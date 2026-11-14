@@ -1,0 +1,23 @@
+{
+ "checked_at_utc": "2026-11-10T09:06:11+00:00",
+ "checks": {
+  "evd_snapshot_unchanged": "PASS",
+  "group_universe_matches_commitment": "PASS",
+  "reserved_count_matches_commitment": "PASS",
+  "reserved_list_rederived_byte_identical": "PASS",
+  "sealed_list_matches_commitment": "PASS",
+  "seed_matches_commitment": "PASS"
+ },
+ "commitment_path": "reports/step15/15a_R_seal_commitment_v1.json",
+ "commitment_payload_sha256": "80c2f04daeafdc1ffac190c4a92782b9aff5d1b5351934f5c76565ea6e8e51e6",
+ "contains_group_ids": false,
+ "contains_seed": false,
+ "decision_id": "D-068",
+ "dev_filter": "29-diag runner (evaluation/bootstrap_diag.py) refuses without a sealed list that verifies",
+ "git_commit": "887a4df",
+ "n_groups": 886,
+ "n_reserved": 177,
+ "record": "SEAL_INTEGRITY_CHECK_15A_R",
+ "sealed_list_location": "NOT_RECORDED (outside git)",
+ "verdict": "PASS"
+}

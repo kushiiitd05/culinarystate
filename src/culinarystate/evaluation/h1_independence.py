@@ -8,8 +8,13 @@ The S173 benchmark draft has two circularities the H1 evaluation must be able to
 2. A reviewer who sees the engine gold and keeps it has not produced independent gold.
 
 What this module provides (pure functions; the corpus is read only by the tool that calls them):
-- ``gold_origin`` / ``gold_independence_report``: provenance gate over the S rows (ENGINE_DRAFT,
-  HUMAN_AFTER_SEEING_ENGINE, HUMAN_BLIND). Only HUMAN_BLIND rows are independent of the engine run.
+- ``gold_origin`` / ``gold_origin_detail`` / ``gold_independence_report``: provenance gate over the S rows (ENGINE_DRAFT,
+  HUMAN_AFTER_SEEING_ENGINE, HUMAN_BLIND). Only HUMAN_BLIND rows are independent of the engine run. Since S178 FIX-EVAL
+  (SCI-B E1) HUMAN_BLIND needs evidence: the scored gold comes from a filled blind-answer column (``gold_source`` =
+  BLIND_HUMAN, a non-empty ``blind_answer*`` column) with ``seen_system_output`` false. A KEEP or EDIT of an engine draft is
+  HUMAN_AFTER_SEEING_ENGINE (reason ENGINE_DRAFT_KEPT / ENGINE_DRAFT_EDITED) whatever the seen flag says, and an explicit
+  HUMAN_BLIND that contradicts the row (AI drafter or kept draft without a blind answer, or seen true) is refused
+  (``GoldOriginRefused``; the report label becomes REFUSED_GOLD_PROVENANCE_CONFLICT).
 - ``engine_outputs`` / ``shared_engine_outputs`` / ``context_leaks`` / ``assert_independent``: the gold-vs-context test.
   It fails when an engine output (heated ingredient set, next process) appears both in the gold and in the context of
   a rung, or when a context carries an aggregate answer field or a step after the cut.
@@ -29,16 +34,29 @@ from culinarystate.evaluation import d5_state as DS
 from culinarystate.evaluation import h1_rungs as H
 from culinarystate.evaluation.paired_stats import wilson
 
-VERSION = "h1_independence@0.1"
-GOLD_ORIGINS = ("ENGINE_DRAFT", "HUMAN_AFTER_SEEING_ENGINE", "HUMAN_BLIND")
-LABELS = ("INDEPENDENT_GOLD", "PARTLY_INDEPENDENT", "CIRCULAR_SELF_CONSISTENCY_ONLY")
+VERSION = "h1_independence@0.3"
+GOLD_ORIGINS = ("ENGINE_DRAFT", "HUMAN_AFTER_SEEING_ENGINE", "HUMAN_BLIND", "AI_DRAFTED_GOLD")   # S179: D-085 AI gold
+LABELS = ("INDEPENDENT_GOLD", "PARTLY_INDEPENDENT", "CIRCULAR_SELF_CONSISTENCY_ONLY", "REFUSED_GOLD_PROVENANCE_CONFLICT")
+BLIND_GOLD_SOURCE = "BLIND_HUMAN"
+BLIND_ANSWER_PREFIX = "blind_answer"          # e.g. blind_answer_r1 / blind_answer_r2 on the blind-first sheet (amendment C4)
+# A drafter that is an AI agent, a model or the engine (whole tokens; "_", "-" and digits are separators).
+AI_DRAFTER = re.compile(r"(?<![a-z])(ai|agent|claude|anthropic|engine|llm|gpt|model|bot|assistant|qwen|rung)(?![a-z])", re.I)
 HEATED_LINE = re.compile(r"^Heated so far:[ \t]*(.*)$", re.M | re.I)
 STEP_LINE = re.compile(r"^Step (\d+):", re.M)
 _FALSE = {"false", "0", "no", "n"}
+_TRUE = {"true", "1", "yes", "y"}
 HEAT_VERBS = re.compile(
     r"\b(boil\w*|simmer\w*|fry\w*|fri(?:ed|es)|bak(?:e|ed|es|ing)|roast\w*|saut[eé]\w*|steam\w*|grill\w*|stew\w*|poach\w*|"
     r"toast\w*|brown\w*|sear\w*|braise\w*|braising|blanch\w*|scald\w*|cook\w*|heat\w*|warm\w*|melt\w*|"
     r"parboil\w*|broil\w*|caramel\w*|reduc\w*)\b", re.I)
+
+
+class GoldOriginRefused(ValueError):
+    """The row's provenance fields contradict each other (e.g. an explicit HUMAN_BLIND on an AI draft with no blind answer)."""
+
+    def __init__(self, qid: str, reason: str):
+        self.qid, self.reason = qid, reason
+        super().__init__(f"{qid}: {reason}")
 
 
 class GoldContextOverlap(AssertionError):
@@ -51,40 +69,92 @@ class GoldContextOverlap(AssertionError):
 
 # ------------------------------------------------------------------ provenance gate
 
-def gold_origin(row: Mapping[str, Any]) -> str:
-    """Origin of the gold of one S row.
+def is_ai_drafted(row: Mapping[str, Any]) -> bool:
+    """The draft (and so any gold kept from it) was written by an AI agent, a model or the engine."""
+    return bool(AI_DRAFTER.search(str(row.get("drafted_by") or "")))
 
-    An explicit valid ``gold_origin`` wins. Otherwise: a human verdict KEEP/EDIT with ``seen_system_output`` false is
-    HUMAN_BLIND; a human verdict without that flag is HUMAN_AFTER_SEEING_ENGINE (the S173 review sheets show the
-    engine gold); anything else is ENGINE_DRAFT.
-    """
+
+def _blind_answer_filled(row: Mapping[str, Any]) -> bool:
+    return any(str(k).lower().startswith(BLIND_ANSWER_PREFIX) and str(v or "").strip() for k, v in row.items())
+
+
+def gold_origin_detail(row: Mapping[str, Any]) -> tuple[str, str]:
+    """(origin, reason) of the gold of one S row; raises ``GoldOriginRefused`` on contradictory provenance.
+
+    HUMAN_BLIND only with evidence: ``gold_source`` BLIND_HUMAN, a filled ``blind_answer*`` column and ``seen_system_output``
+    false (reason BLIND_ANSWER_COLUMN). An explicit ENGINE_DRAFT or HUMAN_AFTER_SEEING_ENGINE always wins (a downgrade). An
+    explicit HUMAN_BLIND without that evidence is accepted only from a non-AI drafter with no KEEP / EDIT verdict and no seen
+    flag set to true (EXPLICIT_DECLARED_NON_AI_DRAFTER, e.g. the synthetic fixture); otherwise it is refused. A KEEP or EDIT
+    verdict means the gold is the kept engine draft: HUMAN_AFTER_SEEING_ENGINE (ENGINE_DRAFT_KEPT / ENGINE_DRAFT_EDITED)."""
+    qid = str(row.get("qid") or "?")
     explicit = str(row.get("gold_origin") or "").strip().upper()
-    if explicit in GOLD_ORIGINS:
-        return explicit
     verdict = str(row.get("verdict") or row.get("human_verdict") or "").strip().upper()
-    if verdict in ("KEEP", "EDIT"):
-        seen = str(row.get("seen_system_output", "")).strip().lower()
-        return "HUMAN_BLIND" if seen in _FALSE else "HUMAN_AFTER_SEEING_ENGINE"
-    return "ENGINE_DRAFT"
+    seen = str(row.get("seen_system_output", "") or "").strip().lower()
+    source = str(row.get("gold_source") or "").strip().upper()
+    filled = _blind_answer_filled(row)
+    blind_evidence = source == BLIND_GOLD_SOURCE and filled and seen in _FALSE
+    if explicit in ("ENGINE_DRAFT", "HUMAN_AFTER_SEEING_ENGINE"):
+        return explicit, "EXPLICIT_DOWNGRADE"
+    if explicit == "AI_DRAFTED_GOLD":                 # S179 D-085: written by the AI personas; never HUMAN_BLIND
+        if source == BLIND_GOLD_SOURCE:
+            raise GoldOriginRefused(qid, "AI_DRAFTED_GOLD_WITH_GOLD_SOURCE_BLIND_HUMAN")
+        return "AI_DRAFTED_GOLD", "EXPLICIT_AI_DELEGATE_D085"
+    if source == BLIND_GOLD_SOURCE and not filled:
+        raise GoldOriginRefused(qid, "GOLD_SOURCE_BLIND_HUMAN_WITHOUT_A_FILLED_BLIND_ANSWER")
+    if explicit == "HUMAN_BLIND":
+        if seen in _TRUE:
+            raise GoldOriginRefused(qid, "EXPLICIT_HUMAN_BLIND_BUT_SEEN_SYSTEM_OUTPUT_TRUE")
+        if blind_evidence:
+            return "HUMAN_BLIND", "BLIND_ANSWER_COLUMN"
+        if is_ai_drafted(row):
+            raise GoldOriginRefused(qid, "EXPLICIT_HUMAN_BLIND_ON_AN_AI_DRAFTED_ROW_WITH_EMPTY_BLIND_COLUMNS")
+        if verdict in ("KEEP", "EDIT"):
+            raise GoldOriginRefused(qid, "EXPLICIT_HUMAN_BLIND_ON_A_KEPT_DRAFT_WITH_EMPTY_BLIND_COLUMNS")
+        return "HUMAN_BLIND", "EXPLICIT_DECLARED_NON_AI_DRAFTER"
+    if blind_evidence:
+        return "HUMAN_BLIND", "BLIND_ANSWER_COLUMN"
+    if source == BLIND_GOLD_SOURCE:
+        return "HUMAN_AFTER_SEEING_ENGINE", "BLIND_ANSWER_BUT_SEEN_FLAG_NOT_FALSE"
+    if verdict == "KEEP":
+        return "HUMAN_AFTER_SEEING_ENGINE", "ENGINE_DRAFT_KEPT"
+    if verdict == "EDIT":
+        return "HUMAN_AFTER_SEEING_ENGINE", "ENGINE_DRAFT_EDITED"
+    return "ENGINE_DRAFT", "NO_HUMAN_VERDICT"
+
+
+def gold_origin(row: Mapping[str, Any]) -> str:
+    """Origin of the gold of one S row (see ``gold_origin_detail``; raises ``GoldOriginRefused`` on contradictions)."""
+    return gold_origin_detail(row)[0]
 
 
 def gold_independence_report(rows: Sequence[Mapping[str, Any]], *, blocks: Sequence[str] = ("S1", "S2")) -> dict:
-    """Counts of S rows by gold origin and the label H1 may carry. Only HUMAN_BLIND rows are independent."""
+    """Counts of S rows by gold origin and the label H1 may carry. Only HUMAN_BLIND rows are independent; any refused
+    row makes the label REFUSED_GOLD_PROVENANCE_CONFLICT (the provenance must be repaired before H1 is labelled)."""
     sel = [r for r in rows if str(r.get("block")) in blocks]
     per_block: dict[str, dict[str, int]] = {b: {o: 0 for o in GOLD_ORIGINS} for b in blocks}
-    circular = []
+    reasons: dict[str, int] = {}
+    circular, refused = [], {}
     for r in sel:
-        o = gold_origin(r)
+        try:
+            o, why = gold_origin_detail(r)
+        except GoldOriginRefused as e:
+            refused[str(r.get("qid"))] = e.reason
+            circular.append(str(r.get("qid")))
+            continue
         per_block[str(r["block"])][o] += 1
+        reasons[why] = reasons.get(why, 0) + 1
         if o != "HUMAN_BLIND":
             circular.append(str(r.get("qid")))
     n, n_ind = len(sel), len(sel) - len(circular)
-    label = ("CIRCULAR_SELF_CONSISTENCY_ONLY" if n_ind == 0 else "INDEPENDENT_GOLD" if n_ind == n else
-             "PARTLY_INDEPENDENT")
+    label = ("REFUSED_GOLD_PROVENANCE_CONFLICT" if refused else
+             "CIRCULAR_SELF_CONSISTENCY_ONLY" if n_ind == 0 else "INDEPENDENT_GOLD" if n_ind == n else "PARTLY_INDEPENDENT")
     return {"version": VERSION, "n_rows": n, "n_independent": n_ind, "n_not_independent": len(circular),
-            "by_block": per_block, "label": label, "not_independent_qids": sorted(circular),
-            "rule": "only gold_origin HUMAN_BLIND (answered from the recipe text before seeing the engine output) is "
-                    "independent of the engine run being evaluated"}
+            "n_refused": len(refused), "refused": dict(sorted(refused.items())),
+            "by_block": per_block, "by_reason": dict(sorted(reasons.items())), "label": label,
+            "not_independent_qids": sorted(circular),
+            "rule": "only gold_origin HUMAN_BLIND is independent of the engine run: the scored gold comes from a filled "
+                    "blind-answer column (gold_source BLIND_HUMAN) answered from the recipe text with seen_system_output "
+                    "false; a KEEP / EDIT of an engine draft is HUMAN_AFTER_SEEING_ENGINE"}
 
 
 # ------------------------------------------------------------------ engine outputs and the overlap test

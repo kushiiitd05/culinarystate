@@ -60,7 +60,7 @@ def _screen(values, *, floor="1", margin="0", bands=None, alts=None, cats=None):
         cands[ing] = tuple(cs)
     fl = {VC: EG.Floor(VC, "Vitamin C", "vitamin_c", "mg", Fraction(floor), "PROPOSED_PILOT", Fraction(margin))}
     cats = {ing: VEG for ing in values} if cats is None else cats
-    return EG.TargetPresenceScreen(fl, cands, vals, cats)
+    return EG.TargetPresenceScreen(fl, cands, vals, cats, basis={k: ("A", 1) for k in vals})  # S178 R4: synthetic SR values are analytical
 
 
 def _gates(values, **kw):
@@ -108,7 +108,7 @@ def test_lot_members_carry_prior_process_through_ancestry_from_events_produces()
     assert m["N2"].prior == {"HEAT"} and m["N2"].sole == "A"                   # produced by a boil
     assert m["N3"].prior == {"HEAT"}                                           # a descendant inherits it
     assert not m["N5"].prior_process                                           # a cut is not prior process
-    assert not m["N6"].prior_process                                           # an unresolved-process event is not assumed
+    assert m["N6"].prior == {"UNRESOLVED"}                                     # S178 R5: unresolved = unknown context (fail-closed)
     assert m["N8"].prior == {"LEACH"}
     # without events (older callers / synthetic graphs) nothing is prior
     assert not EG.lot_members(SimpleNamespace(entities=g.entities))["N2"].prior_process
@@ -207,7 +207,7 @@ def test_census_counts_prior_process_withheld_by_kind_counts_only():
     assert rep["prior_process_withheld"].get("LEACH", 0) == 4         # roast after soak
     assert rep["reason_counts"]["PRIOR_PROCESS_CONTEXT"] == 8
     assert sum(rep["member_presence"].values()) == rep["items"]
-    assert rep["census_version"] == RC.CENSUS_VERSION and RC.CENSUS_VERSION.endswith("0.3.0-draft")
+    assert rep["census_version"] == RC.CENSUS_VERSION and RC.CENSUS_VERSION.endswith("0.4.1-draft")   # S179: 0.4.1 adds post-food state cues (SCI #4)
 
 
 # =================================================================== #6: the full ABSENT rule

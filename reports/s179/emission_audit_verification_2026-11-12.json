@@ -1,0 +1,33 @@
+{
+  "controls": [
+    "Missing-module TDD red reproduced.",
+    "Three recorded-name false-positive regressions red then green.",
+    "Original audit output retained; correction committed before separate v2 run."
+  ],
+  "date": "2026-11-12",
+  "full_suite": {
+    "deselected": 44,
+    "duration_seconds": 105.4,
+    "errors": 11,
+    "failed": 1,
+    "local_log_sha256": "71e0a8481ddf8aa0086ad967783bfc41bc6156680e59c14bc57edddee4a1b04c",
+    "passed": 7996,
+    "skipped": 13,
+    "summary": "1 failed, 7996 passed, 13 skipped, 44 deselected, 11 errors in 105.40s (0:01:45)"
+  },
+  "independent_review_status": "Source-path agent supplied draft/findings, final turn hit service usage limit;root completed implementation/checks;no completed independent review of new auditor claimed.",
+  "labels": [
+    "ENGINEERING_DIAGNOSTIC",
+    "NO_SCIENTIFIC_GATE_PASS"
+  ],
+  "record": "EMISSION_AUDIT_SESSION_VERIFICATION",
+  "remaining_missing_inputs": [
+    "ledgers/recipe_identity/recipe_identity_features_v1.parquet",
+    "data/external/foodcom/recipes.parquet"
+  ],
+  "scope": "New audit instrument only;not independent semantic verification or H1/H3 rescore.",
+  "targeted": {
+    "duration_seconds": 0.12,
+    "passed": 21
+  }
+}

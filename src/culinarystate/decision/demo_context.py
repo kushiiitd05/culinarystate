@@ -67,7 +67,8 @@ def recipe_summary(out: Mapping[str, Any]) -> dict:
 def target_absent(gates: Any, svar: str | None, ingredient_id: str | None) -> bool:
     """True when the asked food, taken alone, has none of the asked nutrient by the presence screen (S176).
 
-    The screen reads measured SR Legacy composition and is never turned into a number for the user."""
+    The screen reads SR Legacy composition (analytical, imputed or assumed values, basis recorded); since S178 (SCI-B R4)
+    ABSENT needs every plausible value to be analytical. It is never turned into a number for the user."""
     if gates is None or not getattr(gates, "presence_on", False) or not svar or not ingredient_id:
         return False
     return gates.screen.lot_state(svar, [ingredient_id]) == "ABSENT"
@@ -153,7 +154,7 @@ class DemoContext:
         return cls(lex=lex, family=family, retriever=EvidenceRetriever(evd, cond, family), sup=SupportIndex(evd),
                    req=load_requirements(st, public=mode.public), ts=TroubleshootIndex.from_registry(ROOT), registry=registry,
                    index=RD.EvidenceIndex.from_rows(evd), rung=RungA(), schema=D.load_schema(),
-                   hierarchy=PS.read_process_hierarchy(), binder=CB.Binder.load(), layer=SL.ScenarioLayer.load(),
+                   hierarchy=PS.read_process_hierarchy(), binder=CB.Binder.load(), layer=SL.ScenarioLayer.load(public=mode.public),
                    gates=EG.EvidenceGates.load(), mode=PM.describe(mode, lex.public_mode.get("dropped_edges_by_predicate")))
 
     def _transform(self, q: str, recipe_text: str | None = None) -> dict:

@@ -1,0 +1,448 @@
+{
+ "h1": {
+  "accuracy": {
+   "B0": {
+    "S1": {
+     "cp95": [
+      0.0021,
+      0.3848
+     ],
+     "n": 12,
+     "rate": 0.0833,
+     "x": 1
+    },
+    "S2": {
+     "cp95": [
+      0.0021,
+      0.3848
+     ],
+     "n": 12,
+     "rate": 0.0833,
+     "x": 1
+    },
+    "all": {
+     "cp95": [
+      0.0103,
+      0.27
+     ],
+     "n": 24,
+     "rate": 0.0833,
+     "x": 2
+    },
+    "missing": 0,
+    "unresolved": 0,
+    "unresolved_rate": {
+     "cp95": [
+      0.0,
+      0.1425
+     ],
+     "n": 24,
+     "rate": 0.0,
+     "x": 0
+    }
+   },
+   "B1": {
+    "S1": {
+     "cp95": [
+      0.1517,
+      0.7233
+     ],
+     "n": 12,
+     "rate": 0.4167,
+     "x": 5
+    },
+    "S2": {
+     "cp95": [
+      0.0021,
+      0.3848
+     ],
+     "n": 12,
+     "rate": 0.0833,
+     "x": 1
+    },
+    "all": {
+     "cp95": [
+      0.0977,
+      0.4671
+     ],
+     "n": 24,
+     "rate": 0.25,
+     "x": 6
+    },
+    "missing": 0,
+    "unresolved": 0,
+    "unresolved_rate": {
+     "cp95": [
+      0.0,
+      0.1425
+     ],
+     "n": 24,
+     "rate": 0.0,
+     "x": 0
+    }
+   },
+   "B2": {
+    "S1": {
+     "cp95": [
+      0.1517,
+      0.7233
+     ],
+     "n": 12,
+     "rate": 0.4167,
+     "x": 5
+    },
+    "S2": {
+     "cp95": [
+      0.0021,
+      0.3848
+     ],
+     "n": 12,
+     "rate": 0.0833,
+     "x": 1
+    },
+    "all": {
+     "cp95": [
+      0.0977,
+      0.4671
+     ],
+     "n": 24,
+     "rate": 0.25,
+     "x": 6
+    },
+    "missing": 0,
+    "unresolved": 0,
+    "unresolved_rate": {
+     "cp95": [
+      0.0,
+      0.1425
+     ],
+     "n": 24,
+     "rate": 0.0,
+     "x": 0
+    }
+   },
+   "B4": {
+    "S1": {
+     "cp95": [
+      0.0992,
+      0.6511
+     ],
+     "n": 12,
+     "rate": 0.3333,
+     "x": 4
+    },
+    "S2": {
+     "cp95": [
+      0.0209,
+      0.4841
+     ],
+     "n": 12,
+     "rate": 0.1667,
+     "x": 2
+    },
+    "all": {
+     "cp95": [
+      0.0977,
+      0.4671
+     ],
+     "n": 24,
+     "rate": 0.25,
+     "x": 6
+    },
+    "missing": 0,
+    "unresolved": 0,
+    "unresolved_rate": {
+     "cp95": [
+      0.0,
+      0.1425
+     ],
+     "n": 24,
+     "rate": 0.0,
+     "x": 0
+    }
+   }
+  },
+  "board_item": "T8-C21-R1",
+  "comparisons": {
+   "B4_vs_B1": {
+    "S1": {
+     "a_both": 4,
+     "b_treatment_only": 0,
+     "c_control_only": 1,
+     "d_neither": 7,
+     "diff": -0.0833,
+     "n": 12,
+     "newcombe95_descriptive": [
+      -0.2833,
+      0.1289
+     ],
+     "p_exact_two_sided": 1.0,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 1,
+      "majority": 1,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 12,
+      "p_exact": 1.0,
+      "statement": "cannot be significant at this n: 1 discordant pairs < 6"
+     },
+     "role": "descriptive only (per block)"
+    },
+    "S2": {
+     "a_both": 0,
+     "b_treatment_only": 2,
+     "c_control_only": 1,
+     "d_neither": 9,
+     "diff": 0.0833,
+     "n": 12,
+     "newcombe95_descriptive": [
+      -0.2269,
+      0.3817
+     ],
+     "p_exact_two_sided": 1.0,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 3,
+      "majority": 2,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 12,
+      "p_exact": 1.0,
+      "statement": "cannot be significant at this n: 3 discordant pairs < 6"
+     },
+     "role": "descriptive only (per block)"
+    },
+    "pooled": {
+     "a_both": 4,
+     "b_treatment_only": 2,
+     "c_control_only": 2,
+     "d_neither": 16,
+     "diff": 0.0,
+     "n": 24,
+     "newcombe95_descriptive": [
+      -0.183,
+      0.183
+     ],
+     "p_exact_two_sided": 1.0,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 4,
+      "majority": 2,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 24,
+      "p_exact": 1.0,
+      "statement": "cannot be significant at this n: 4 discordant pairs < 6"
+     },
+     "role": "decision"
+    },
+    "status": "OK",
+    "treatment_better_and_significant": false
+   },
+   "B4_vs_B2": {
+    "S1": {
+     "a_both": 4,
+     "b_treatment_only": 0,
+     "c_control_only": 1,
+     "d_neither": 7,
+     "diff": -0.0833,
+     "n": 12,
+     "newcombe95_descriptive": [
+      -0.2833,
+      0.1289
+     ],
+     "p_exact_two_sided": 1.0,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 1,
+      "majority": 1,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 12,
+      "p_exact": 1.0,
+      "statement": "cannot be significant at this n: 1 discordant pairs < 6"
+     },
+     "role": "descriptive only (per block)"
+    },
+    "S2": {
+     "a_both": 0,
+     "b_treatment_only": 2,
+     "c_control_only": 1,
+     "d_neither": 9,
+     "diff": 0.0833,
+     "n": 12,
+     "newcombe95_descriptive": [
+      -0.2269,
+      0.3817
+     ],
+     "p_exact_two_sided": 1.0,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 3,
+      "majority": 2,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 12,
+      "p_exact": 1.0,
+      "statement": "cannot be significant at this n: 3 discordant pairs < 6"
+     },
+     "role": "descriptive only (per block)"
+    },
+    "pooled": {
+     "a_both": 4,
+     "b_treatment_only": 2,
+     "c_control_only": 2,
+     "d_neither": 16,
+     "diff": 0.0,
+     "n": 24,
+     "newcombe95_descriptive": [
+      -0.183,
+      0.183
+     ],
+     "p_exact_two_sided": 1.0,
+     "realised": {
+      "can_be_significant": false,
+      "discordant": 4,
+      "majority": 2,
+      "min_discordant_for_alpha": 6,
+      "min_majority_needed": null,
+      "n": 24,
+      "p_exact": 1.0,
+      "statement": "cannot be significant at this n: 4 discordant pairs < 6"
+     },
+     "role": "decision"
+    },
+    "status": "OK",
+    "treatment_better_and_significant": false
+   }
+  },
+  "gold_independence": {
+   "by_block": {
+    "S1": {
+     "AI_DRAFTED_GOLD": 12,
+     "ENGINE_DRAFT": 0,
+     "HUMAN_AFTER_SEEING_ENGINE": 0,
+     "HUMAN_BLIND": 0
+    },
+    "S2": {
+     "AI_DRAFTED_GOLD": 12,
+     "ENGINE_DRAFT": 0,
+     "HUMAN_AFTER_SEEING_ENGINE": 0,
+     "HUMAN_BLIND": 0
+    }
+   },
+   "by_reason": {
+    "EXPLICIT_AI_DELEGATE_D085": 24
+   },
+   "label": "CIRCULAR_SELF_CONSISTENCY_ONLY",
+   "n_independent": 0,
+   "n_not_independent": 24,
+   "n_refused": 0,
+   "n_rows": 24,
+   "not_independent_qids": [
+    "D5-S1-001",
+    "D5-S1-004",
+    "D5-S1-005",
+    "D5-S1-006",
+    "D5-S1-008",
+    "D5-S1-009",
+    "D5-S1-010",
+    "D5-S1-011",
+    "D5-S1-012",
+    "D5-S1-014",
+    "D5-S1-015",
+    "D5-S1-017",
+    "D5-S2-001",
+    "D5-S2-002",
+    "D5-S2-004",
+    "D5-S2-007",
+    "D5-S2-009",
+    "D5-S2-011",
+    "D5-S2-014",
+    "D5-S2-015",
+    "D5-S2-016",
+    "D5-S2-017",
+    "D5-S2-019",
+    "D5-S2-020"
+   ],
+   "refused": {},
+   "rule": "only gold_origin HUMAN_BLIND is independent of the engine run: the scored gold comes from a filled blind-answer column (gold_source BLIND_HUMAN) answered from the recipe text with seen_system_output false; a KEEP / EDIT of an engine draft is HUMAN_AFTER_SEEING_ENGINE",
+   "version": "h1_independence@0.3"
+  },
+  "metric": "h1_mcnemar",
+  "n_questions": 24,
+  "prereg_status": "BASE \u00a74 H1 (+ AMENDMENT C5 wording, power note)",
+  "verdict": {
+   "code": "RULE_NOT_MET",
+   "gold_label": "CIRCULAR_SELF_CONSISTENCY_ONLY",
+   "rule": "B4 > B1 and B4 > B2, both exact two-sided McNemar p <= 0.05 (intersection-union)",
+   "wording_amendment_C5": "not shown at this n",
+   "wording_base": "not supported at this n"
+  }
+ },
+ "labels": [
+  "AI_RESOLVED_D085",
+  "NO_HUMAN_SIGNOFF_D085",
+  "NON_CITABLE",
+  "AI_DRAFTED_GOLD_NOT_INDEPENDENT"
+ ],
+ "record": "D5_H1_AFTER_RUNG_BLIND_CHECK",
+ "resolutions": [
+  {
+   "answer": "prunes, juice, wheat",
+   "blind_index": 0,
+   "judged_by": "ksh+prv (AI, D-085)",
+   "qid": "D5-S1-012",
+   "reason": "misses water and salt",
+   "rung_hidden_when_judged": true,
+   "verdict": false
+  },
+  {
+   "answer": "faggot, mushroom parings, breast of bacon, onions",
+   "blind_index": 1,
+   "judged_by": "ksh+prv (AI, D-085)",
+   "qid": "D5-S1-006",
+   "reason": "misses beef, brandy, wine, gravy, sauce, butter",
+   "rung_hidden_when_judged": true,
+   "verdict": false
+  },
+  {
+   "answer": "Combine",
+   "blind_index": 2,
+   "judged_by": "ksh+prv (AI, D-085)",
+   "qid": "D5-S2-001",
+   "reason": "'combine' is not the gold next action (stir)",
+   "rung_hidden_when_judged": true,
+   "verdict": false
+  },
+  {
+   "answer": "prunes, juice, wheat",
+   "blind_index": 3,
+   "judged_by": "ksh+prv (AI, D-085)",
+   "qid": "D5-S1-012",
+   "reason": "misses water and salt",
+   "rung_hidden_when_judged": true,
+   "verdict": false
+  },
+  {
+   "answer": "orange pulp and juice, sugar",
+   "blind_index": 4,
+   "judged_by": "ksh+prv (AI, D-085)",
+   "qid": "D5-S1-009",
+   "reason": "misses water",
+   "rung_hidden_when_judged": true,
+   "verdict": false
+  },
+  {
+   "answer": "orange pulp and juice, sugar",
+   "blind_index": 5,
+   "judged_by": "ksh+prv (AI, D-085)",
+   "qid": "D5-S1-009",
+   "reason": "misses water",
+   "rung_hidden_when_judged": true,
+   "verdict": false
+  }
+ ],
+ "runs_sha256": "e796be568c1a7bf3f29745cdc9b2ab29f6a91e3f76239078dca9e029e023db2e"
+}

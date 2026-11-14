@@ -4,7 +4,8 @@ run(ctx, evd_rows, cond, families): seal filter first (ctx.filter_dev_rows, sing
 unit is CELL, D-068, so the seal's own cell mapping decides exclusion; grouping by independence_group would burn whole
 sources such as USDA), then per source family the DEL-2 splits and ladder with errors split at the cap
 (censored GT_CAP rows) vs below it, a variant trained without cap rows, a shortcut rerun of D5 with basis removed,
-and the D7-vs-D1 prediction difference. Deterministic.
+and the D7-vs-D1 prediction difference; since D-082 also B2, the S-5 food-group split, the D2-vs-B2 contrast, the cap
+sensitivity and the imputation-duplicate control (`diag29_additions`). Deterministic.
 """
 from __future__ import annotations
 
@@ -12,10 +13,10 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
+from culinarystate.evaluation import diag29_additions as ADD
 from culinarystate.transition.baselines import all_models
 from culinarystate.transition.dataset import cells_from_rows
 from culinarystate.transition.evaluate import abs_errors
-from culinarystate.transition.splits import all_splits
 
 LABELS = ("DIAGNOSTIC", "BOOTSTRAP_UNVERIFIED", "NON_CITABLE", "PRIOR_EXPOSURE_REANALYSIS")
 
@@ -37,7 +38,7 @@ def _split_block(df, s) -> dict:
     tr, te = df.iloc[s.train].reset_index(drop=True), df.iloc[s.test].reset_index(drop=True)
     cap = te["censored"].to_numpy()
     out = {}
-    for m in all_models():
+    for m in ADD.diag29_models():
         err = abs_errors(te, _fit_pred(m, tr, te))
         tr_nc = tr[~tr["censored"]]
         err_nc = abs_errors(te, _fit_pred(type(m)(), tr_nc, te)) if len(tr_nc) else np.array([np.nan])
@@ -48,8 +49,8 @@ def _split_block(df, s) -> dict:
     return out
 
 
-def _family(df, seed: int) -> dict:
-    splits, notes = all_splits(df, seed)
+def _family(df, seed: int, n_resamples: int = 2000) -> dict:
+    splits, notes = ADD.diag29_splits(df, seed)
     res = {"rows": int(len(df)), "censored": int(df["censored"].sum()), "notes": notes,
            "splits": {s.name: _split_block(df, s) for s in splits}}
     models = {_key(m.name): m for m in all_models()}
@@ -65,11 +66,14 @@ def _family(df, seed: int) -> dict:
         p7 = _fit_pred(type(models["D7"])(), tr, te)
         p1 = _fit_pred(type(models["D1"])(), tr, te)
         res["d7_vs_d1_max_abs_pred_diff"] = _r(np.max(np.abs(np.asarray(p7) - np.asarray(p1))))
+    res["contrast_d2_vs_b2"] = ADD.contrast_d2_vs_b2(df, seed, n_resamples=n_resamples)       # §4 item 3 (D-082)
+    res["cap_sensitivity"] = ADD.cap_sensitivity(df, seed)                                      # §4 item 4
+    res["duplicate_control"] = ADD.duplicate_control(df, seed, n_resamples=n_resamples)       # §4 item 5
     return res
 
 
 def run(ctx: Any, evd_rows: Sequence[Mapping], *, cond: Mapping, families: Sequence[str], seed: int = 7,
-        n_boot: int = 300) -> dict:
+        n_boot: int = 300, n_resamples: int = 2000) -> dict:
     active = [r for r in evd_rows if r.get("status") == "ACTIVE"]
     kept = ctx.filter_dev_rows(active, id_column="id", group_columns=("id",))
     out = {"labels": list(LABELS), "rows_before_seal": len(active), "rows_after_seal": len(kept), "seed": seed,
@@ -77,5 +81,5 @@ def run(ctx: Any, evd_rows: Sequence[Mapping], *, cond: Mapping, families: Seque
     for fam in families:
         df = cells_from_rows(kept, dict(cond), fam).df
         if len(df):
-            out["families"][fam] = _family(df, seed)
+            out["families"][fam] = _family(df, seed, n_resamples)
     return out
