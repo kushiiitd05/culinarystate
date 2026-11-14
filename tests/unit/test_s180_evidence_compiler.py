@@ -37,9 +37,10 @@ def test_axes_load_from_the_registry_csv():
     assert [a.axis_no for a in axes] == list(range(1, 14))
 
 
-def test_registry_marks_four_axes_schema_only():
+def test_registry_marks_three_axes_schema_only():
+    """Axis 7 left this set on 15 Nov: the FDA/CFSAN 2003 pH table was already in the repo."""
     schema_only = {a.axis_no for a in axes_by_status("SCHEMA_ONLY")}
-    assert schema_only == {7, 8, 9, 12}
+    assert schema_only == {8, 9, 12}
 
 
 def axes_by_status(status):
@@ -104,10 +105,21 @@ def test_every_selected_axis_appears_in_the_output(B):
 def test_schema_only_axes_are_unknown_with_their_registry_reason(B):
     s = _state(B, TOMATO_A, 1)
     out = EC.compile_evidence(s, "vitc", "RETENTION_NUMERIC")
-    ph = out["compatibility"].get(EC.axis_key(7))
-    assert ph is not None, "pH must be present in the schema even when unavailable"
-    assert ph["status"] == "UNKNOWN"
-    assert ph["reason"] == "NO_SOURCED_PH_TABLE"
+    method = out["compatibility"].get(EC.axis_key(12))
+    assert method is not None, "an unavailable axis must still be present in the schema"
+    assert method["status"] == "UNKNOWN"
+    assert method["reason"] == "MEAS_HAS_3_ROWS_PE_METHOD_NULL"
+
+
+def test_ph_axis_is_filled_for_tomato_with_its_source(B):
+    """Axis 7 is no longer schema-only: the FDA/CFSAN 2003 table resolves tomato EXACTly."""
+    s = _state(B, TOMATO_A, 1)
+    ph = EC.compile_evidence(s, "vitc", "RETENTION_NUMERIC")["compatibility"][EC.axis_key(7)]
+    assert ph["status"] == "EVALUABLE"
+    assert (ph["ph_low"], ph["ph_high"]) == (4.3, 4.9)
+    assert ph["acidity"] == "INCONCLUSIVE_SPANS_THRESHOLD"
+    assert "FDA" in ph["source"] and len(ph["source_sha256"]) == 64
+    assert ph["verify_status"] == "UNVERIFIED_CROSSWALK_AI_DRAFTED"
 
 
 def test_compiler_never_reports_a_schema_only_axis_as_match(B):
