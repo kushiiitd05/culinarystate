@@ -39,3 +39,11 @@ def test_guard_records_a_flag():
     rung = RungA(coord_food_guard=True)
     ms = rung.extract_mentions(SourceText.from_raw("T", "Mix the tomatoes, salt and vinegar."), rung.config())
     assert "COORD_FOOD_GUARD" in ms.diagnostics
+
+
+@pytest.mark.parametrize("text,word", [
+    ("Add the onion, garlic and fry until brown.", "fry"),
+    ("Mix the flour, sugar and sprinkle on top.", "sprinkle"),
+])
+def test_guard_v2_blocklist_keeps_verbs(text, word):
+    assert (word, "FOOD_MENTION") not in _labels(RungA(coord_food_guard=True), text)
