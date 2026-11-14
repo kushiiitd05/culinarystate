@@ -44,6 +44,14 @@ Before item 4, B/C/D were all UNKNOWN MERGED_LOT_CONTEXT, which does not tell th
 - **Example priors (boil, share of events with the axis stated):** tomato n=3,996, salt 62% PROBABLE, lipid 82% PROBABLE; chicken n=4,159, salt 54%, lipid 68%; rice n=3,682, salt 38% POSSIBLE, lipid 54% PROBABLE; noodles n=1,291, salt 20%, lipid 29% POSSIBLE; pasta n=2,295, salt 20% (just under POSSIBLE), lipid 24% POSSIBLE.
 - **Caveats found:** (i) MEMBER_UNLINKED never fires, because Rung A does not create entities for words outside its lexicon. NOT_DETECTED therefore means "no marker among recognised mentions" (0 UNKNOWN in this run). (ii) The INGREDIENT_LIST_UNPLACED counts are inflated by ING-id mismatch (lemon listed vs lemon juice in a step): acid 789,561, salt 539,312, lipid 310,590 events. Treat these as an upper bound, never as figures. (iii) Lipid PROBABLE is very common (13,036 of 13,520 keys have some PROBABLE axis), so the cut-offs need review before use.
 
+
+### 3b. Headline v2 (D-122 semantics; 612,782 recipes, 0 exceptions) — supersedes the 79.5% wording
+`reports/s179/context_prior_v2_full_2026-11-14.json`
+- Naive (ingredient, process) answers: 466,605 food×event. **UNCONFIRMED 378,339 (81.1%)**: the recipe states salt/acid/lipid (or the evidence is oil-fried and the query shows no recognised fat), but the evidence row does not record it. NO_STATED_DIFFERENCE: 88,266 (18.9%). MISMATCH: 0 (no evidence row records an absence). QUERY_UNKNOWN: 0 (see caveat i).
+- Unique events: 3,715,647 heat events; 369,597 have a naive answer for at least one food; **287,728 (77.8%)** have at least one UNCONFIRMED food.
+- Timing of TRUE context (food×event): added at this step vs carried in the lot from earlier steps: salt 15.0% / 85.0%; acid 9.3% / 90.7%; lipid 21.4% / 78.6%. "Carried" means the co-member joined the lot at an earlier step. It is usually still in contact (a mixture), so this is not "history only".
+- Report wording: "In 81% of the cases where a simple ingredient-and-process lookup finds evidence, the recipe states a salt, acid or lipid context that the evidence source does not record, so applicability is unconfirmed rather than direct."
+
 ## 4. D-112 execution list
 | # | Item | Status |
 |---|---|---|
