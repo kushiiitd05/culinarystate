@@ -37,9 +37,12 @@ Boil events, full corpus (v1.1): 123,177; salted 12,185 (9.9%); acidic 9,406 (7.
 
 Before item 4, B/C/D were all UNKNOWN MERGED_LOT_CONTEXT, which does not tell them apart.
 
-## 3. Running now
-- Corpus prior + naive-lookup headline (`tools/s179_context_prior.py`): manjot 20 shards (non-BBC) + Mac (BBC). Output → `reports/s179/context_prior_full_2026-11-14.json`.
-- Headline to report: of heat food-events where a naive (ingredient, process) evidence lookup would answer, the share whose lot carries added salt/acid/lipid that the evidence did not record. In a 300-recipe Wikibooks smoke test this was 157/193 (81%). The full-corpus number is pending.
+## 3. Corpus prior + naive-lookup headline (done, 612,782 recipes, 0 exceptions)
+`reports/s179/context_prior_full_2026-11-14.json` (counts only; (food, process) keys with n >= 30: 13,520 of 41,586).
+- **Headline (proxy):** 466,605 heat food-events have an (ingredient, process) EVD pair, i.e. a naive lookup would answer. Of these, **371,011 (79.5%)** sit in a lot with added salt, acid or lipid that the evidence row does not record. Per axis: salt 63.0%, acid 11.9%, lipid 77.0%. Boil only: 83,346 events; salt 55.0%, acid 17.2%, lipid 68.3%.
+- **Why so high:** many recipe "boil" events are "bring the sauce to a boil" on an accumulated lot (onions sautéed in oil, then tomatoes, then boil). So the lot really does carry the oil. The count is per food × event, so a large merged lot counts once per member food.
+- **Example priors (boil, share of events with the axis stated):** tomato n=3,996, salt 62% PROBABLE, lipid 82% PROBABLE; chicken n=4,159, salt 54%, lipid 68%; rice n=3,682, salt 38% POSSIBLE, lipid 54% PROBABLE; noodles n=1,291, salt 20%, lipid 29% POSSIBLE; pasta n=2,295, salt 20% (just under POSSIBLE), lipid 24% POSSIBLE.
+- **Caveats found:** (i) MEMBER_UNLINKED never fires, because Rung A does not create entities for words outside its lexicon. NOT_DETECTED therefore means "no marker among recognised mentions" (0 UNKNOWN in this run). (ii) The INGREDIENT_LIST_UNPLACED counts are inflated by ING-id mismatch (lemon listed vs lemon juice in a step): acid 789,561, salt 539,312, lipid 310,590 events. Treat these as an upper bound, never as figures. (iii) Lipid PROBABLE is very common (13,036 of 13,520 keys have some PROBABLE axis), so the cut-offs need review before use.
 
 ## 4. D-112 execution list
 | # | Item | Status |
