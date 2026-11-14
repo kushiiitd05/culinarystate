@@ -1,0 +1,14 @@
+axis_no,axis,match_types,ssot_source,hard_exclusion_from_direct,bracketing_eligible,implemented_2026_11_15,code_axis_name,status,owner_step,unknown_reason_if_absent
+1,matrix (food id / species / food group / part / cultivar),EXACT|CHILD|PARENT_ANCESTOR|SAME_SPECIES|SAME_FOOD_GROUP|GROUP_ROW|SIBLING|UNLINKED|UNKNOWN,SSOT 241.3 + MP AO2 + repo,yes (SIBLING or UNLINKED),no,yes,matrix,IMPLEMENTED,36A.3,
+2,state / form / cut (prior state; raw vs processed),EXACT|COMPATIBLE|MISMATCH|UNKNOWN,SSOT 241.3 + MP AO2 + repo,no,no,yes,state,IMPLEMENTED,36A.3,
+3,process,LEAF_EXACT|STEP|SAME_FAMILY|GENERIC_MECHANISM|MISMATCH,SSOT 241.3 + MP AO2 + repo,yes (other family),no,yes,process,IMPLEMENTED,36A.3,
+4,temperature (value + location: setpoint/medium/surface/core),EXACT|BRACKETED|NEAR|MISMATCH|UNKNOWN_QUERY|UNKNOWN_ROW,SSOT 241.3 + MP AO2 + repo,no,yes,yes,temperature,IMPLEMENTED,36A.3,
+5,time,EXACT|BRACKETED|NEAR|MISMATCH|UNKNOWN_QUERY|UNKNOWN_ROW (log-ratio distance),SSOT 241.3 + MP AO2 + repo,no,yes,yes,time,IMPLEMENTED,36A.3,
+6,medium / heat-transfer mode,EXACT|COMPATIBLE|MISMATCH|UNKNOWN,SSOT 241.3 + MP AO2 + repo,no,no,yes,medium,IMPLEMENTED,36A.3,
+7,pH,EXACT|BRACKETED|NEAR|MISMATCH|UNKNOWN_QUERY|UNKNOWN_ROW,SSOT 241.3,no,yes,no,,SCHEMA_ONLY,36A.3 (needs CHEM-D08-D10 verified),NO_SOURCED_PH_TABLE
+8,aw / moisture (+ WET/DRY basis),EXACT|BRACKETED|NEAR|MISMATCH|UNKNOWN_QUERY|UNKNOWN_ROW,SSOT 241.3,no,yes,no,,SCHEMA_ONLY,36A.3 (post-submission),NO_AW_PRODUCER
+9,geometry / size,EXACT|NEAR|UNKNOWN,SSOT 241.3 + MP AO2,no,no,no,,SCHEMA_ONLY,36A.3 (state has piece_size_class at 9.7%),NOT_WIRED_TO_COMPATIBILITY
+10,target (SVAR canonical; equivalence status),EXACT|EQUIVALENT_CANDIDATE|SAME_CLASS|MISMATCH,SSOT 241.3 + MP AO2 + repo,yes,no,yes,target,IMPLEMENTED,36A.3,
+11,measurement basis (fresh/dry weight; per raw/per cooked; %TR vs %AR; yield-corrected apparent retention),COMPATIBLE|CONVERTIBLE|INCOMPATIBLE|UNKNOWN,SSOT 241.3 + MP-1 L38-43,yes (INCOMPATIBLE),no,yes,basis,IMPLEMENTED,36A.3,
+12,measurement method / platform,SAME|DIFFERENT|UNKNOWN,MP AO2,no,no,no,,SCHEMA_ONLY,36A.3,MEAS_HAS_3_ROWS_PE_METHOD_NULL
+13,"source / tier / verification (reported for D1, not a match)",tier|provenance_class|verification_status,SSOT 241.3 + repo E1-E7,no,no,yes,tier,IMPLEMENTED,36A.3,
