@@ -76,3 +76,29 @@ Human verification of individual proposals stays a separate, human-only act (D-0
 ## 7. Labels carried by every artifact of this step
 
 `DETERMINISTIC_BASELINE_RULES_ONLY` · `WIKIBOOKS_CC_BY_PUBLIC_TEXT_ONLY` · `SEALED_BEFORE_ANY_MODEL_RUN` · `NO_GOLD_SO_AGREEMENT_IS_DIAGNOSTIC`
+
+---
+
+## Amendment A1 — 15 Nov 2026, before any recorded model result
+
+**What changed:** the gate now also refuses a proposal whose field is not licensed by its trigger
+(`FIELD_NOT_LICENSED_BY_TRIGGER`, `layer1_proposer.TRIGGER_FIELDS`). Only `VNEXT_ALTERNATIVE_SKIPPED`
+may bind `alternative_group`; every other trigger may touch `condition_profile_id` only.
+
+**Why:** a 3-case throwaway probe of arm L (not recorded, written to `/tmp`) returned proposals that
+the gate accepted although they were semantically wrong — `VNEXT_MIXTURE_COREF` was answered with
+`alternative_group = "filling"` and `= "dish"`. Those are coreference answers smuggled in as an
+alternatives binding. The gate could not see it, because any categorical string is structurally
+valid. Shipping a gate that lets a coref answer through as a lineage choice would have made the
+acceptance rate meaningless.
+
+**Status of the sealed set:** unchanged. Same 60 cases, same seed, same packet SHA-256
+`b926c303993541d5380e4531f495f9c89c2111a0c5c902e99df0ad95f15da6e7`. No case was added, removed or
+re-ranked, and no arm result had been recorded when this amendment was written.
+
+**Effect on §3 measures:** none are added or removed. `FIELD_NOT_LICENSED_BY_TRIGGER` joins the
+rejection-reason histogram in measure 2.
+
+**What this does not fix:** the gate still cannot judge whether a *licensed* value is the right one.
+A plausible `condition_profile_id` that is simply wrong will be accepted. That is why §5 stands:
+acceptance measures contract compliance, never correctness, and human verification stays separate.
