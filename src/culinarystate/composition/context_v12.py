@@ -19,6 +19,7 @@ BASIS_SR = "USDA_SR_LEGACY_2018_04"
 # PROPOSED thresholds (per 100 g of the co-member as purchased), pending ksh+prv / Kush review.
 THRESHOLDS = {"lipid": ("fat_g_per_100g", 1.0), "aqueous": ("water_g_per_100g", 50.0),
               "salt": ("sodium_mg_per_100g", 400.0)}
+NO_MARK = "NO_RECOGNIZED_MARKER"   # no marker among recognised mentions; words outside the lexicon are invisible
 MARKER_OF = {"salt": "SALT", "acid": "ACID", "lipid": "LIPID", "aqueous": "AQUEOUS"}
 
 
@@ -43,7 +44,7 @@ def _axis(axis: str, ctx: list[str], markers, sr, medium_type, unlinked: bool) -
         why.append(f"PHYSICS_V06_L1:{medium_type}")
     if why:
         return V(True, "; ".join(why))
-    return U("MEMBER_UNLINKED") if unlinked else V("NOT_DETECTED", BASIS_MARK + ("" if axis == "acid" else "+" + BASIS_SR))
+    return U("MEMBER_UNLINKED") if unlinked else V(NO_MARK, BASIS_MARK + ("" if axis == "acid" else "+" + BASIS_SR))
 
 
 def _phase(aq: bool, lip: bool, medium_type: Optional[str]) -> dict:
