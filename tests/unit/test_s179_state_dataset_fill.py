@@ -32,3 +32,13 @@ def test_l2_cells_scenario_default_and_formula_gate():
 def test_non_heat_event_is_unknown_with_reason():
     c = sdf.l2_cells(None, None, FIT)
     assert all(v == {"v": None, "u": "NOT_A_HEAT_EVENT"} for v in c.values())
+
+
+def test_merge_sums_shards():
+    spec = importlib.util.spec_from_file_location("m", ROOT / "tools" / "s179_state_dataset_fill_merge.py")
+    m = importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
+    p = {"recipes": 2, "rows": 5, "exceptions": 0, "shard": "0/2", "heat_rows_joined_to_physics": {"F": 1},
+         "fill_by_basis_or_reason": {"F": {"medium": {"VALUE:TEXT_STATED": 3, "UNKNOWN:NO_MEDIUM": 2}}}}
+    q = dict(p, shard="1/2")
+    r = m.merge([p, q])
+    assert r["recipes"] == 4 and r["rows"] == 10 and r["value_rate_pct"]["F"]["medium"] == 60.0
