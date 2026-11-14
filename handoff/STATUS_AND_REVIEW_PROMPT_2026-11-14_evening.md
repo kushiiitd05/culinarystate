@@ -134,3 +134,8 @@ Answer in this order:
 7. **Positioning.** Compare with related work (procedural text state tracking such as ProPara / Neural Process Networks, recipe flow graphs, FoodKG / RecipeDB, USDA retention factors, food-composition-aware nutrition estimation). Where is this work genuinely new, and where is it not?
 
 Rules: no invented numbers or citations; say "not known" where you cannot verify; keep each answer under 200 words.
+
+### 3d. Night 14 Nov (resume here)
+- Done: State v2 (`composition/state_full.py`, physics L1/L2 + formula + lineage history), STATE_VECTOR_V0, RAG packet v2 (`composition/rag_packet.py`), lineage vNext A–D (D-132; promoted for State v2 by D-134 after a clean 611,902-recipe differential), mass census (0.6% groundable → DEFER), gap matrix (`reports/s179/state_inventory_gap_matrix_2026-11-14.md`).
+- LLM layer 1 (state-change proposer, Kush idea 14 Nov): NVIDIA NIM key stored OUTSIDE the repo at ~/.config/culinarystate/nvidia.env (0600; rotate after the project). Probe: only `nvidia/nemotron-3-ultra-550b-a55b` answered (4.8 s, valid JSON, correct on salt = INGREDIENT and oil kept). Others gave 404, 503 or timeouts. Only public/self-written text goes to the API.
+- Next: (1) LLM proposer + deterministic validator (spans required; no numeric chemistry), cascade deterministic → local Qwen → Nemotron-Ultra, sealed hard-case eval; (2) headline rerun with vNext + physics heat flag (current "unique heat events" includes add/season); (3) diagnostic retrieval comparison; (4) figures + report text; (5) Kush/Parv verify the chemistry packet.
