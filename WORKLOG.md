@@ -1663,3 +1663,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md`, `handoff/KUSH_TAKEOVER_PACKAGE_PATHS_2026-11-13.md`
 - **Verified:** Alllinks/files/allowlistvalidated. CounterpartAItransferdependencyresolved;independenthuman/sciencedatastillnotfabricated;authorfacts/finaleditsexcluded.
 - **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S242 · 2026-11-14 17:14 IST · D-116 · BBC v1.1 composition run + schema v1.1 doc
+- **Who:** Kush+Claude
+- **Did:** BBC v11 leg done (11,934 recipes, 0 exceptions); schema v1.1 doc written
+- **Files:** `reports/s179/d116_composition_state_schema_v1_1.md`, `reports/s179/state_dataset_fill_BBC_D116v11_2026-11-14.json`
+- **Verified:** 0 exceptions; contains_text False
+- **Next:** VPN: merge manjot v1 shards, run v11 non-BBC
