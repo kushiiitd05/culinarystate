@@ -816,3 +816,15 @@ Three layers: raw parser (`condition_parser.py`, syntax only) -> semantic normal
 - **Source:** Kush 13 Nov "600k+ columns shall need to be filled"; D-100 Lane C; plan L2.
 - **Rule:** a State column gets a value only from a recorded basis (TEXT_STATED / LEDGER / PHYSICS_V06 / FORMULA_RESEARCH_ONLY / SCENARIO_DEFAULT / AI_DRAFTED); otherwise UNKNOWN with the upstream reason code. "Filled" never means guessed. Fill-rate table per column × family (VALUE_BY_BASIS vs UNKNOWN_BY_REASON) is the committed output; rows stay git-ignored.
 - **Approver:** ksh+prv (AI, D-085).
+
+### D-112 · 2026-11-14 · Submission scope freeze (decided by Kush; entered by the coding agent as scribe)
+- **Source:** Kush, 14 Nov, "Proceed now. Approve the direction of D-112 and D-116 with the following execution constraints"; `handoff/PLAN_2026-11-14_finalise_and_deploy.md` §1; `handoff/MASTER_STATUS_AND_PROMPT_2026-11-14.md`.
+- **Contribution frozen as:** "CulinaryState is an event-sourced, lot-aware and composition-aware representation of cooking state transitions, where structural and physical changes are explicit and chemical effects are introduced only from compatible evidence or validated models; unsupported effects remain UNKNOWN."
+- **Constraints:** no new broad research or architecture phase; the 36-step plan is not reopened (gate audit verdicts stand); frozen NER/linker not retrained; no invented chemical values; report/deck work runs in parallel from 14 Nov; technical feature freeze 19 Nov, integration/verification 20 Nov, submission only 21 Nov; hosting does not take time from the report/deck. The contrast-case retrieval ablation is DIAGNOSTIC_ONLY and is not presented as rescuing H1.
+
+### D-116 · 2026-11-14 · Composition-aware lot and medium state, additive (decided by Kush, direction; schema returned for review before chemistry routing; entered by the coding agent as scribe)
+- **State:** S_t = (G_t, C_t, Q_t, Y_t, P_t); C_t = new CompositionState / MediumState layer; existing layers unchanged.
+- **Minimum axes:** salt_present, acid_present, lipid_present; salt_fraction and fat_fraction only when grounded; pH/acidity only as a sourced scenario band, never an invented mixture pH; aqueous vs lipid contact phase; provenance/status on every field.
+- **Router:** existing enums only (DIRECT / INTERPOLATE / SIMULATE / SCENARIO / QUALITATIVE / UNKNOWN); composition axes added to compatibility; no new external/API router. Embeddings retrieve candidates; structured compatibility decides applicability; multi-view retrieval representation derived from explicit S_t.
+- **Acceptance test:** tomato A (water), B (+salt), C (+salt+vinegar), D (+salt+vinegar+oil) share BOIL and produce distinct C_t / MediumState. Composition presence also run over the full corpus.
+- **Order:** parser fix (deterministic, measured before/after) → D-116 schema (returned to Kush) → chemistry routing.
