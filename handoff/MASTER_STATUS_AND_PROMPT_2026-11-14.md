@@ -111,6 +111,67 @@ So: the **structure** distinguishes the variants and the evidence layer correctl
 | new: verb/ingredient parser bug | found 14 Nov; not yet measured or fixed |
 | new: D-116 composition-aware lot state (pH, salt %, fat %) | proposed |
 
+### A11a. SSOT §14 minimum publishable unit (Project A)
+| # | SSOT §14 item | Status | Evidence |
+|---|---|---|---|
+| 1 | structured state schema | **met (draft)** | five-layer representation in code + full-corpus State view; schema v1 freeze (Step 16c) not done |
+| 2 | small evidence-backed process-effect dataset | **met** | EVD 17,978 rows; effect map 4,118 target × ingredient × process rows |
+| 3 | state-aware retrieval / reasoning pipeline | **met** | router 0.4.1 + D4 decision layer + strict-v3 |
+| 4 | 3–5 benchmark task types | **met** | D5 blocks S1, S2, P1–P3, C, X (74 frozen questions) |
+| 5 | baseline / ablation ladder | **partial** | B0–B7 scored except B3, B6; D-098 ablations not run |
+| 6 | quantitative evaluation | **met** | D5 scored; H1, H3 RULE_NOT_MET |
+| 7 | small human / chef / food-science evaluation | **not met** | 07.A human audit FAILED; later reviews AI-delegated (NOT_COUNTED) |
+| 8 | working demo | **partial** | local strict-v3 demo audited; hosted app pending |
+Score: 5 met · 2 partial · 1 not met. Stretch items (learned process-effect model, learned gate, vision state) not done.
+
+### A11b. SSOT §70 Paper A contributions ("do not claim all six if only three are completed")
+| # | Contribution | Claimable? |
+|---|---|---|
+| 1 | food-state transition schema | **yes** (with the full-corpus dataset as evidence) |
+| 2 | process-effect knowledge / predictor | **knowledge yes** (EVD + effect map); predictor **no** (formula RESEARCH_ONLY, Step 27 not passed) |
+| 3 | selective relevance gate | **no** (H5 not evaluated) |
+| 4 | context-aware hybrid RAG | **partial** (evidence-aware RAG with abstention yes; user-context constraints no) |
+| 5 | benchmark for adaptation / recovery | **no** (no recovery block) |
+| 6 | ablation showing when process/state helps | **no** (H1 rule not met; ablations not run) |
+Honest claim set: 1, 2-knowledge, 4-partial, plus the negative results.
+
+### A11c. SSOT §79 success criteria
+| Tier | Criterion | Status |
+|---|---|---|
+| Minimum | reproducible dataset pipeline | **met** (full corpus, deterministic two-run checks, compute_runs log) |
+| | ≥3 serious baselines | **met** (B0–B7 ladder; D0–D7 diagnostic rungs) |
+| | one working research system | **met** |
+| | quantitative evaluation | **met** |
+| | clear error analysis | **met** (negative-results register, 36-step gate audit, tomato failure cases) |
+| | demo | **partial** (local only) |
+| Strong | process-aware improvement over a static baseline | **not met** (H1 not met; 29-diag USDA positive is diagnostic only) |
+| | professor / chef validation | not met |
+| | ablations | partial |
+| | polished code | largely met (8,182 tests pass) |
+| | report / paper | draft (Parv candidate, not author-final) |
+| Excellent | novel benchmark / dataset | **arguably** (full-corpus state dataset, 9.47 M rows, value+basis cells) |
+| | statistically credible result | not met |
+| | symposium submission, second project | not met |
+**Verdict: SSOT "Minimum" is met except the hosted demo; "Strong" is not reached.**
+
+### A11d. SSOT coverage by section group (≈280 top-level sections)
+| SSOT sections | Topic | Status |
+|---|---|---|
+| §0–3 | decision, brainstorm, field definition, literature | framing; no deliverable |
+| §4–14 | shared state spine + Project A (architecture, relevance gate, decision formulation, recovery, data, model ladder, tasks, metrics, MPU) | built in part — see A3, A11a; relevance gate (§7) and recovery (§9) not evaluated |
+| §15–20, §65, §80–98 | Project B FlavorTwin, flavour pairing, null-model cuisines, ingredient encoder | **cut / out of scope** (H8-08) |
+| §21–36 | multimodal encoders (vision, molecular, audio, video) and their fine-tuning | **not built** (text-only; NER fine-tune only) |
+| §37–41 | structured LLM I/O, RAG, query router, recipe chunking, million-scale RAG | **built** (router, step-level parsing, full-corpus census) |
+| §42–43 | professor endpoint / API audit | partial: permission "as stated by Kush", written record open (T0-C17-R1) |
+| §44–47 | sensory, health/nutrition, trivia, SaaS | nutrition only via retention evidence; rest not built |
+| §48–53 | splitting, uncertainty, interpretability, architecture, reproducibility, decision gates | **built** (15a seal and grouped splits, calibrated NER, per-cell provenance, compute log, gate audit) |
+| §54–60 | roadmap, learning track, training plan | process guidance; superseded by the 36-step plan |
+| §61 | user context schema | not built (H3 not run) |
+| §62–64 | recipe state, food state, process-effect schemas | built in part (A7: pH, aw, texture, colour UNKNOWN) |
+| §66–67 | research validity rules, error analysis categories | followed (labels, negative results) |
+| §68–79 | professor questions, pitch, paper contributions, demos, stop conditions, success criteria | see A11b, A11c |
+| §99 onward (levels, representation freeze, chemistry, kinetics §210–211, evidence levels, gates) | detailed research layers | mapped step by step through the 36-step plan — see A4 |
+
 ### A11. Infrastructure
 vinayak (2× A100 40 GB, 128 cores): system ollama runs **CPU-only**; a user-space ollama on GPU works (ports 11500/11501; 7B and 72B tested). manjot (A100s shared with another user's FedLLM job; disk 93 % full, ≈746 GB free). Mac 8 GB: BBC-only work (D-003). VPN drops intermittently; long jobs use setsid/nohup.
 
@@ -159,7 +220,7 @@ Infrastructure for this: user-space GPU ollama on vinayak (7B ≈ 13 s / 25 item
 >
 > **Questions — answer each, numbered:**
 > 1. Is the status assessment internally consistent? Flag any number or claim that looks wrong or over-stated.
-> 2. Is a **reduced, honestly labelled submission** defensible against SSOT v15 and the proposal? Write the exact scope statement you would freeze (what is claimed, what is a limitation, what is out of scope).
+> 2. Is a **reduced, honestly labelled submission** defensible against SSOT v15 (§14 minimum publishable unit, §70 "do not claim all six", §79 success criteria — see A11a–A11d) and the proposal? Write the exact scope statement you would freeze (what is claimed, what is a limitation, what is out of scope).
 > 3. Given 6 working days and two people plus an AI agent with 2 GPU servers, produce a **prioritised task list** (must / should / skip) with effort estimates, choosing among: verb/ingredient parser fix with NER in step parsing; process-medium map extension; lot-level composition state (pH, salt %, fat %); lot-level vitamin-C formula; formula-vs-EVD external check; D-098 ablations; frozen-7B H1/B7 regeneration; cheap gate closes; deployed demo app (Vercel UI + container backend vs Vercel-only); author report/deck integration.
 > 4. For the **state-aware representation**: is the five-layer design (lots → events → state change → physical state → evidence state, every cell value+basis or UNKNOWN+reason) a sound and presentable contribution? What is the single most convincing figure or demo for an examiner? How should the tomato example (A8) be presented — including its failures?
 > 5. For **UNKNOWN filling**: review Part B. Which fills are scientifically acceptable, which are risky, and what label must each carry? Propose the minimum validation (sample size, metric) before each fill is shown.
