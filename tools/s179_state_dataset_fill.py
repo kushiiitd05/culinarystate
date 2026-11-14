@@ -47,6 +47,20 @@ def U(reason):
     return {"v": None, "u": reason}
 
 
+_L1_KEEP = tuple(L1_AXES.values()) + ("matrix_groups",)
+_IN_KEEP = ("value", "basis", "status", "reason")
+
+
+def _compact(r: dict) -> dict:
+    """Keep only the fields this tool reads (memory: ~0.5 KB per record instead of the full record)."""
+    if "inputs" in r:
+        inp = r.get("inputs") or {}
+        return {"inputs": {k: {f: (inp.get(k) or {}).get(f) for f in _IN_KEEP} for k in _L1_KEEP if k in inp}}
+    sc = ((r.get("scenarios") or {}).get("TYPICAL") or {})
+    return {"status": r.get("status"),
+            "scenarios": {"TYPICAL": {k: sc.get(k) for k in ("bath_c", "t_cap_c", "duration_min")}}}
+
+
 def _load(d: Path) -> dict:
     out = {}
     for f in sorted(glob.glob(str(d / "**" / "*.jsonl"), recursive=True)):
@@ -54,7 +68,7 @@ def _load(d: Path) -> dict:
             for line in fh:
                 if line.strip():
                     r = json.loads(line)
-                    out[(r["recipe_id"], r["event_id"])] = r
+                    out[(r["recipe_id"], r["event_id"])] = _compact(r)
     return out
 
 
