@@ -1670,3 +1670,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `reports/s179/d116_composition_state_schema_v1_1.md`, `reports/s179/state_dataset_fill_BBC_D116v11_2026-11-14.json`
 - **Verified:** 0 exceptions; contains_text False
 - **Next:** VPN: merge manjot v1 shards, run v11 non-BBC
+
+### S243 · 2026-11-15 01:44 IST · 36A · Step 1 of the 15 Nov freeze: finalized state-variable inventory + canonical 13-axis registry
+- **Who:** Kush
+- **Did:** Reconciled the 14 Nov gap matrix against SSOT v15/v16 and the 36-step owners. Found that every adopt-now item of the 15 Nov architecture freeze already has an SSOT-v16 change request (Event IR = CR-25/26; UNKNOWN!=0 = CR-07/51; no-unsupported-numerics = CR-25/26 interval rule; basis/provenance = CR-02; alternatives-not-conjunctions = CR-25 / VNEXT_ALTERNATIVE_SKIPPED; compiler+packet = 36A.3 + CR-57..61/65), so the work is formalization, not new design. Created registry/rag/compatibility_axes_v1.csv, the 13-axis spec file that N.7 referenced but which did not exist: 9 axes implemented in retrieval/compatibility.py, 4 (pH, aw/moisture, geometry, measurement method) now carried in the schema as UNKNOWN with a reason instead of dropped. Quantified the time/conditions gap: S_t holds dose, cumulative dose, hot-aqueous/hot-fat minutes, medium, lid, piece size, start mode, moisture cap, oxygen proxy, prior salt/acid exposure, but STATE_VECTOR_V0 exposes only temperature and duration (Q = 2 of 51 dims).
+- **Files:** `reports/s179/state_inventory_FINAL_2026-11-15.md`, `registry/rag/compatibility_axes_v1.csv`
+- **Verified:** 13 axes parse, 0 malformed rows, code_axis_name set matches retrieval/compatibility.py AXES exactly (9); tests/unit/test_s179_state_vector.py 4 passed
+- **Next:** Freeze step 2: formalize Event IR + validator invariants with minimal code changes, no second graph implementation
