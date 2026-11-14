@@ -150,6 +150,8 @@ class StateBuilder:
                     ev = r.get("evidence") or []
                     near = r.get("near_evidence") or it.get("evidence_not_applied") or []
                     y[f"{t}_route"] = V(r["route"], "; ".join(r.get("composition_reasons") or []) or "ROUTER_0.4.1")
+                    y[f"{t}_compat"] = V(r.get("composition_compat") or {}, "D-122_AXIS_TABLE")
+                    y[f"{t}_frozen_reasons"] = V(list(it.get("reasons") or [])[:4], "ROUTER_0.4.1")
                     y[f"{t}_evidence"] = V([f"{x['evd_id']}={x.get('value')}{x.get('unit') or ''}" for x in ev], "APPLIED") \
                         if ev else (V([x["evd_id"] for x in near], "FOUND_NOT_APPLIED") if near else U("NO_EVIDENCE_ROW"))
                 y["vitc_formula_retention_typical"] = formula
