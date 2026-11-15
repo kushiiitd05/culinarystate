@@ -1,0 +1,901 @@
+{
+ "accepted_span_valid": 1,
+ "arm": "L",
+ "cases_answered": 60,
+ "cases_attempted": 60,
+ "failures": 0,
+ "gate_acceptance_rate": 0.3333,
+ "labels": [
+  "DIAGNOSTIC_ONLY",
+  "NO_GOLD_SO_AGREEMENT_IS_NOT_ACCURACY",
+  "WIKIBOOKS_CC_BY_PUBLIC_TEXT_ONLY",
+  "SEALED_SET_UNCHANGED"
+ ],
+ "latency_s": {
+  "max": 13.94,
+  "mean": 4.38
+ },
+ "model": "qwen2.5:7b-instruct",
+ "per_case": [
+  {
+   "accepted": [],
+   "latency_s": 2.36,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "168956",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "UNRESOLVED_LOT",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 1.89,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "293424",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.44,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "474566",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 6.28,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "54215",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.55,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "16581",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.7,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "457278",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.66,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "198491",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.06,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "461375",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.73,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "452632",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.6,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "412250",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.81,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "34656",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.05,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "308380",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.2,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "32868",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.98,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "98204",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.46,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "473948",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.63,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "140677",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.29,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "38746",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 6.99,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "112828",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.1,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "483763",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.22,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "447188",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 7.19,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "360478",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.69,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "38104",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.44,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "414621",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.68,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "38382",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.88,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "85442",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.84,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "409684",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.27,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "452009",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.48,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "442870",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.74,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "414691",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.1,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "95957",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.55,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "395867",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 6.74,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "77844",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.6,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "96993",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 6.39,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "462384",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.64,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "456927",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 11.33,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 1,
+   "n_quote_not_found": 0,
+   "n_returned": 1,
+   "pageid": "485354",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.83,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "465358",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E12",
+     "field": "alternative_group",
+     "span": [
+      145,
+      200
+     ],
+     "value": "yeast_or_baking_soda"
+    }
+   ],
+   "latency_s": 13.94,
+   "n_accepted": 1,
+   "n_grounded": 1,
+   "n_parsed": 1,
+   "n_quote_not_found": 0,
+   "n_returned": 1,
+   "pageid": "96872",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT",
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.3,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "254298",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.64,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "457094",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.25,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "141201",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.53,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "27156",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.49,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "203804",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.49,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "42807",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.04,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "252224",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.45,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "222131",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.87,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "139266",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.45,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "456501",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.73,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "96882",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.69,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "136641",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.72,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "462089",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.83,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "457195",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.67,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "443383",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 13.3,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 1,
+   "n_quote_not_found": 0,
+   "n_returned": 1,
+   "pageid": "205352",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.75,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "461584",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.24,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "205015",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.23,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "457484",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.87,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "483794",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.51,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "100369",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.14,
+   "n_accepted": 0,
+   "n_grounded": 0,
+   "n_parsed": 0,
+   "n_quote_not_found": 0,
+   "n_returned": 0,
+   "pageid": "457403",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  }
+ ],
+ "prompt_version": "v3",
+ "proposals_accepted": 1,
+ "proposals_parsed_into_schema": 3,
+ "proposals_returned": 3,
+ "rejection_reasons": {
+  "FIELD_NOT_LICENSED_BY_TRIGGER": 2,
+  "QUOTE_NOT_FOUND_IN_TEXT": 0
+ },
+ "schema_compliance": 1.0
+}
