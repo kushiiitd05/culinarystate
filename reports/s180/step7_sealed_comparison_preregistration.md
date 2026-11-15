@@ -273,3 +273,38 @@ beside v3. v3 does not replace them.
 
 All four are DIAGNOSTIC. There is still **no gold**, §5 stands, and no arm may be called correct on
 any v3 number.
+
+---
+
+## Amendment A6 — 16 Nov 2026, written before the 72B v3 run is repaired or reported
+
+**The situation.** The 72B v3 run answered **59 of 60** cases. One case, pageid 77844 (*Rugelach*),
+exhausted its four SSH attempts and never reached the model.
+
+**A4 says this voids the run:** "any case not reaching the model". That rule was written against a
+20/60 partial, where an ordered subset of a stratified set carries obvious bias. It does not
+distinguish that situation from a single case lost to a transient transport error. **It is being
+honoured rather than reinterpreted**, because reading a pre-registered rule more loosely once a
+result is in hand is precisely what pre-registration exists to prevent.
+
+**What is done instead of voiding or of quietly re-reading the rule:** the missing case is re-run on
+its own and merged, and the artifact records that it was repaired. The run is reported as **59 cases
+in one pass plus 1 repaired call**, never as a clean 60/60.
+
+**Why a single-case repair is sound here, stated so a reader can disagree:**
+
+1. `ask_local` sets `temperature: 0`, so the arm is deterministic. The repaired call receives the
+   identical prompt and returns what it would have returned in sequence. This is verifiable: the
+   determinism was demonstrated during the v3 sensitivity probe, where six identical calls returned
+   identical output.
+2. The sealed set, the prompt and the gate are all unchanged; only the transport is retried.
+3. **The case cannot change any headline number.** Its only trigger is `AMBIGUOUS_REFERENCE`, which
+   licenses no field under D-135, so no proposal from it could be accepted. This is a mitigation,
+   **not** the reason the repair is permitted — the repair is permitted because the run is completed
+   and the repair disclosed, not because the missing case looked harmless.
+
+**What would still void it:** a repaired call that errors again, or any difference in prompt, model,
+gate or sealed packet between the pass and the repair.
+
+**The result file carries `repaired_cases`** naming the pageid, so the disclosure travels with the
+artifact and not only with this document.
