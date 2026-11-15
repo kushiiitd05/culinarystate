@@ -103,8 +103,44 @@ crosswalk rows only: 113 intervals, 25 points, 2 lower-bound-only. Against the 4
 **31 acidic · 101 low-acid · 8 inconclusive**.
 
 Bands are reported as the intervals they are. There are **no midpoints and no clipping** (D-013), so
-tomato at 4.3–4.9 is `INCONCLUSIVE_SPANS_THRESHOLD`, not forced to a side; vinegar at 2.4–3.4 and
-lemon juice at 2.0–2.6 are `ACIDIC`.
+vinegar at 2.4–3.4 and lemon juice at 2.0–2.6 are `ACIDIC`, while the eight bands that straddle 4.6
+are `INCONCLUSIVE_SPANS_THRESHOLD` rather than forced to a side:
+
+| ING | item | band |
+|---|---|---|
+| ING-000154 | Apricots | 3.3–4.8 |
+| ING-000042 | Tomatoes, Paste | 3.5–4.7 |
+| ING-000653 | Mustard | 3.55–6.0 |
+| ING-000010 | Tomatoes | 4.3–4.9 |
+| ING-001885 | Pimiento | 4.4–4.9 |
+| ING-000053 | Soy Sauce | 4.4–5.4 |
+| ING-000187 | Buttermilk | 4.41–4.83 |
+| ING-000116 | Bananas | 4.5–5.2 |
+
+**Tomato is the project's running example and it is one of the eight.** An earlier draft recorded the
+limitation as "no sourced pH table, so tomato sauce is not yet acidic". The table is now here, and the
+system still declines to call tomato acidic — because 4.3–4.9 straddles the threshold and taking a
+midpoint would be inventing a value. That single example is the clearest statement of the
+no-midpoints rule.
+
+### Why `C_t` is not wired to these bands
+
+Reviewed by ksh and prv (`reports/s180/ph_ct_wiring_review_2026-11-15/`), both DO_NOT_WIRE before the
+freeze. The band is already where it is needed — the evidence compiler's axis-7 cell, carrying basis,
+source and `verify_status`. Wiring `C_t` would re-fill the corpus and move cited coverage numbers for
+no gain in answering capability, and would place an unverified value where it propagates into figures.
+
+The food-science reason is the stronger one: **the FDA table measures the ingredient as purchased, not
+the lot in the pot.** A tomato in a sauce has been diluted by stock, possibly acidified by wine,
+possibly buffered by dairy or by the proteins and phosphates of a meat sauce, and concentrated by
+reduction. The lot's pH is not a computable function of its members' pH values. A member band is
+provenance-correct but situationally weak: right for ingredient-level evidence matching, wrong as a
+property of the lot. Wiring it would replace a correct UNKNOWN with a correct-but-misleading interval,
+exactly on the eight ingredients where cooking decides the answer.
+
+The reason code `NO_SOURCED_PH_TABLE` that `C_t` still writes is therefore **knowingly stale**: its
+premise is false, and the correction is recorded in `reports/s179/d116_composition_state_schema_v1.md`
+rather than applied, because fixing it is itself a `C_t` change that re-fills the corpus.
 
 **The ingredient crosswalk was drafted by AI and is not human-verified**
 (`UNVERIFIED_CROSSWALK_AI_DRAFTED`). Under D-085, AI review is not human verification, so no band may
