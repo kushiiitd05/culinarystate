@@ -1,0 +1,1227 @@
+{
+ "accepted_span_valid": 39,
+ "arm": "L",
+ "cases_answered": 60,
+ "cases_attempted": 60,
+ "failures": 0,
+ "gate_acceptance_rate": 0.4643,
+ "labels": [
+  "DIAGNOSTIC_ONLY",
+  "NO_GOLD_SO_AGREEMENT_IS_NOT_ACCURACY",
+  "WIKIBOOKS_CC_BY_PUBLIC_TEXT_ONLY",
+  "SEALED_SET_UNCHANGED"
+ ],
+ "latency_s": {
+  "max": 66.07,
+  "mean": 16.17
+ },
+ "model": "qwen2.5:7b-instruct",
+ "per_case": [
+  {
+   "accepted": [
+    {
+     "event_id": "E14",
+     "field": "condition_profile_id",
+     "span": [
+      305,
+      320
+     ],
+     "value": "tomato_meat_sauce"
+    }
+   ],
+   "latency_s": 39.19,
+   "n_accepted": 1,
+   "n_parsed": 3,
+   "n_returned": 3,
+   "pageid": "168956",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "UNRESOLVED_LOT",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 14.11,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "293424",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 25.42,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "474566",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "condition_profile_id",
+     "span": [
+      36,
+      45
+     ],
+     "value": "marination"
+    }
+   ],
+   "latency_s": 24.11,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "54215",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E10",
+     "field": "alternative_group",
+     "span": [
+      234,
+      256
+     ],
+     "value": "cooking_or_freezing"
+    },
+    {
+     "event_id": "E16",
+     "field": "condition_profile_id",
+     "span": [
+      357,
+      380
+     ],
+     "value": "pan_preparation"
+    }
+   ],
+   "latency_s": 25.36,
+   "n_accepted": 2,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "16581",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.56,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "457278",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.08,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "198491",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "condition_profile_id",
+     "span": [
+      34,
+      50
+     ],
+     "value": "heat adjustment timing"
+    }
+   ],
+   "latency_s": 18.72,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "461375",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.91,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "452632",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.41,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "412250",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.04,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "34656",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.16,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "308380",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E10",
+     "field": "alternative_group",
+     "span": [
+      85,
+      97
+     ],
+     "value": "flaky_pie_crust"
+    }
+   ],
+   "latency_s": 12.86,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "32868",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "alternative_group",
+     "span": [
+      19,
+      30
+     ],
+     "value": "fat_or_butter"
+    },
+    {
+     "event_id": "E2",
+     "field": "alternative_group",
+     "span": [
+      31,
+      40
+     ],
+     "value": "pan_or_wok"
+    },
+    {
+     "event_id": "E6",
+     "field": "alternative_group",
+     "span": [
+      153,
+      170
+     ],
+     "value": "potatoes_or_meat_onions"
+    }
+   ],
+   "latency_s": 28.92,
+   "n_accepted": 3,
+   "n_parsed": 3,
+   "n_returned": 3,
+   "pageid": "98204",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E7",
+     "field": "condition_profile_id",
+     "span": [
+      102,
+      113
+     ],
+     "value": "boiling_time"
+    }
+   ],
+   "latency_s": 22.54,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "473948",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E32",
+     "field": "condition_profile_id",
+     "span": [
+      265,
+      271
+     ],
+     "value": "temperature"
+    }
+   ],
+   "latency_s": 22.8,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "140677",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.36,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "38746",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E17",
+     "field": "condition_profile_id",
+     "span": [
+      253,
+      260
+     ],
+     "value": "oil_amount"
+    }
+   ],
+   "latency_s": 21.57,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "112828",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.01,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "483763",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E13",
+     "field": "alternative_group",
+     "span": [
+      85,
+      92
+     ],
+     "value": "egg sauce"
+    },
+    {
+     "event_id": "E13",
+     "field": "condition_profile_id",
+     "span": [
+      93,
+      100
+     ],
+     "value": "palm oil"
+    }
+   ],
+   "latency_s": 22.14,
+   "n_accepted": 2,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "447188",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E27",
+     "field": "condition_profile_id",
+     "span": [
+      301,
+      306
+     ],
+     "value": "fried"
+    }
+   ],
+   "latency_s": 30.48,
+   "n_accepted": 1,
+   "n_parsed": 3,
+   "n_returned": 3,
+   "pageid": "360478",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.26,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "38104",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.63,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "414621",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.92,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "38382",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E3",
+     "field": "condition_profile_id",
+     "span": [
+      46,
+      50
+     ],
+     "value": "bake"
+    }
+   ],
+   "latency_s": 17.25,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "85442",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.98,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "409684",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.13,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "452009",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "condition_profile_id",
+     "span": [
+      37,
+      85
+     ],
+     "value": "Use 1\u20133 tablespoons of Chili Mix per 1 lb of meat (to taste)."
+    }
+   ],
+   "latency_s": 20.22,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "442870",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E4",
+     "field": "condition_profile_id",
+     "span": [
+      36,
+      41
+     ],
+     "value": "cooked"
+    }
+   ],
+   "latency_s": 18.28,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "414691",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 10.62,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "95957",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "alternative_group",
+     "span": [
+      35,
+      46
+     ],
+     "value": "marinade_time"
+    }
+   ],
+   "latency_s": 21.22,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "395867",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E17",
+     "field": "condition_profile_id",
+     "span": [
+      364,
+      372
+     ],
+     "value": "floured_surface"
+    }
+   ],
+   "latency_s": 23.07,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "77844",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E3",
+     "field": "condition_profile_id",
+     "span": [
+      108,
+      112
+     ],
+     "value": "yeast"
+    }
+   ],
+   "latency_s": 19.22,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "96993",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E12",
+     "field": "condition_profile_id",
+     "span": [
+      306,
+      314
+     ],
+     "value": "if_required"
+    }
+   ],
+   "latency_s": 24.04,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "462384",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 23.06,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "456927",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 10.6,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "485354",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "condition_profile_id",
+     "span": [
+      104,
+      110
+     ],
+     "value": "stove"
+    },
+    {
+     "event_id": "E4",
+     "field": "condition_profile_id",
+     "span": [
+      215,
+      221
+     ],
+     "value": "stove"
+    },
+    {
+     "event_id": "E5",
+     "field": "condition_profile_id",
+     "span": [
+      291,
+      297
+     ],
+     "value": "stove"
+    },
+    {
+     "event_id": "E6",
+     "field": "condition_profile_id",
+     "span": [
+      357,
+      363
+     ],
+     "value": "stove"
+    }
+   ],
+   "latency_s": 66.07,
+   "n_accepted": 4,
+   "n_parsed": 8,
+   "n_returned": 8,
+   "pageid": "465358",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 23.38,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "96872",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT",
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.78,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "254298",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "alternative_group",
+     "span": [
+      68,
+      75
+     ],
+     "value": "marinade_time"
+    }
+   ],
+   "latency_s": 23.03,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "457094",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E12",
+     "field": "condition_profile_id",
+     "span": [
+      94,
+      103
+     ],
+     "value": "temperature"
+    }
+   ],
+   "latency_s": 23.4,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "141201",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E4",
+     "field": "condition_profile_id",
+     "span": [
+      58,
+      63
+     ],
+     "value": "brown"
+    }
+   ],
+   "latency_s": 20.44,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "27156",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E6",
+     "field": "condition_profile_id",
+     "span": [
+      104,
+      115
+     ],
+     "value": "mixing bowl"
+    }
+   ],
+   "latency_s": 21.43,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "203804",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E7",
+     "field": "condition_profile_id",
+     "span": [
+      102,
+      108
+     ],
+     "value": "stirring"
+    }
+   ],
+   "latency_s": 20.94,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "42807",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.79,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "252224",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.43,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "222131",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 22.04,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "139266",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 11.83,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "456501",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.85,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "96882",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 11.14,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "136641",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E17",
+     "field": "condition_profile_id",
+     "span": [
+      206,
+      213
+     ],
+     "value": "mixture"
+    }
+   ],
+   "latency_s": 22.41,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "462089",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E6",
+     "field": "alternative_group",
+     "span": [
+      124,
+      135
+     ],
+     "value": "niter_qibe"
+    }
+   ],
+   "latency_s": 13.87,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "457195",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E8",
+     "field": "alternative_group",
+     "span": [
+      65,
+      73
+     ],
+     "value": "sauce_or_ketchup"
+    },
+    {
+     "event_id": "E6",
+     "field": "condition_profile_id",
+     "span": [
+      25,
+      37
+     ],
+     "value": "boiling_water"
+    }
+   ],
+   "latency_s": 19.89,
+   "n_accepted": 2,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "443383",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 11.56,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "205352",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 21.31,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "461584",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 10.51,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "205015",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E17",
+     "field": "alternative_group",
+     "span": [
+      208,
+      234
+     ],
+     "value": "simmer_time"
+    }
+   ],
+   "latency_s": 12.08,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "457484",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "alternative_group",
+     "span": [
+      45,
+      60
+     ],
+     "value": "smooth_or_coarse"
+    }
+   ],
+   "latency_s": 22.42,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "483794",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E7",
+     "field": "condition_profile_id",
+     "span": [
+      185,
+      192
+     ],
+     "value": "onion_cinnamon"
+    }
+   ],
+   "latency_s": 20.86,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "100369",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E14",
+     "field": "alternative_group",
+     "span": [
+      207,
+      223
+     ],
+     "value": "fish_stock_cube"
+    }
+   ],
+   "latency_s": 21.65,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "457403",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  }
+ ],
+ "proposals_accepted": 39,
+ "proposals_parsed_into_schema": 84,
+ "proposals_returned": 84,
+ "rejection_reasons": {
+  "FIELD_NOT_LICENSED_BY_TRIGGER": 45
+ },
+ "schema_compliance": 1.0
+}
