@@ -1,0 +1,996 @@
+{
+ "accepted_span_valid": 24,
+ "arm": "L",
+ "cases_answered": 60,
+ "cases_attempted": 60,
+ "failures": 0,
+ "gate_acceptance_rate": 1.0,
+ "labels": [
+  "DIAGNOSTIC_ONLY",
+  "NO_GOLD_SO_AGREEMENT_IS_NOT_ACCURACY",
+  "WIKIBOOKS_CC_BY_PUBLIC_TEXT_ONLY",
+  "SEALED_SET_UNCHANGED"
+ ],
+ "latency_s": {
+  "max": 30.92,
+  "mean": 7.3
+ },
+ "model": "qwen2.5:7b-instruct",
+ "per_case": [
+  {
+   "accepted": [
+    {
+     "event_id": "E1",
+     "field": "condition_profile_id",
+     "span": [
+      0,
+      3
+     ],
+     "value": "pan"
+    },
+    {
+     "event_id": "E23",
+     "field": "condition_profile_id",
+     "span": [
+      165,
+      174
+     ],
+     "value": "dish/pan"
+    },
+    {
+     "event_id": "E23",
+     "field": "condition_profile_id",
+     "span": [
+      175,
+      186
+     ],
+     "value": "tomato meat sauce"
+    }
+   ],
+   "latency_s": 26.35,
+   "n_accepted": 3,
+   "n_parsed": 3,
+   "n_returned": 3,
+   "pageid": "168956",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "UNRESOLVED_LOT",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.45,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "293424",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 7.34,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "474566",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E12",
+     "field": "condition_profile_id",
+     "span": [
+      98,
+      103
+     ],
+     "value": "chicken"
+    },
+    {
+     "event_id": "E14",
+     "field": "condition_profile_id",
+     "span": [
+      205,
+      208
+     ],
+     "value": "oil"
+    }
+   ],
+   "latency_s": 22.34,
+   "n_accepted": 2,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "54215",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 7.0,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "16581",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.03,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "457278",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.99,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "198491",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.29,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "461375",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.89,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "452632",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.79,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "412250",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E13",
+     "field": "condition_profile_id",
+     "span": [
+      96,
+      102
+     ],
+     "value": "greens"
+    }
+   ],
+   "latency_s": 11.2,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "34656",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.4,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "308380",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.08,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "32868",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.0,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "98204",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "condition_profile_id",
+     "span": [
+      19,
+      30
+     ],
+     "value": "boiling_water"
+    }
+   ],
+   "latency_s": 14.5,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "473948",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.05,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "140677",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.7,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "38746",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.92,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "112828",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.22,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "483763",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.07,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "447188",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E1",
+     "field": "condition_profile_id",
+     "span": [
+      0,
+      7
+     ],
+     "value": "boiling_rice"
+    },
+    {
+     "event_id": "E26",
+     "field": "condition_profile_id",
+     "span": [
+      194,
+      205
+     ],
+     "value": "frying_arancini"
+    },
+    {
+     "event_id": "E12",
+     "field": "condition_profile_id",
+     "span": [
+      96,
+      103
+     ],
+     "value": "filling"
+    }
+   ],
+   "latency_s": 30.92,
+   "n_accepted": 3,
+   "n_parsed": 3,
+   "n_returned": 3,
+   "pageid": "360478",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.44,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "38104",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.32,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "414621",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.39,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "38382",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "condition_profile_id",
+     "span": [
+      19,
+      23
+     ],
+     "value": "bowl_content"
+    }
+   ],
+   "latency_s": 11.0,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "85442",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.81,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "409684",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.16,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "452009",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.46,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "442870",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "condition_profile_id",
+     "span": [
+      19,
+      23
+     ],
+     "value": "dates_seeds"
+    }
+   ],
+   "latency_s": 10.83,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "414691",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.61,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "95957",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.56,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "395867",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E13",
+     "field": "condition_profile_id",
+     "span": [
+      256,
+      270
+     ],
+     "value": "dough_condition"
+    }
+   ],
+   "latency_s": 15.12,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "77844",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.12,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "96993",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 6.38,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "462384",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.65,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "456927",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E1",
+     "field": "condition_profile_id",
+     "span": [
+      25,
+      34
+     ],
+     "value": "mixing"
+    }
+   ],
+   "latency_s": 11.3,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "485354",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.86,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "465358",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E4",
+     "field": "condition_profile_id",
+     "span": [
+      65,
+      73
+     ],
+     "value": "yeast_dissolved"
+    },
+    {
+     "event_id": "E4",
+     "field": "alternative_group",
+     "span": [
+      65,
+      73
+     ],
+     "value": "baking_soda_or_yeast"
+    }
+   ],
+   "latency_s": 23.43,
+   "n_accepted": 2,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "96872",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT",
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.17,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "254298",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.5,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "457094",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "condition_profile_id",
+     "span": [
+      19,
+      22
+     ],
+     "value": "eggs"
+    }
+   ],
+   "latency_s": 12.04,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "141201",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.85,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "27156",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E14",
+     "field": "condition_profile_id",
+     "span": [
+      96,
+      105
+     ],
+     "value": "tortilla_mixture"
+    }
+   ],
+   "latency_s": 12.1,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "203804",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.78,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "42807",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.25,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "252224",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.61,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "222131",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E13",
+     "field": "condition_profile_id",
+     "span": [
+      205,
+      214
+     ],
+     "value": "microwaveable"
+    }
+   ],
+   "latency_s": 12.42,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "139266",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 3.78,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "456501",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.87,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "96882",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 2.9,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "136641",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.19,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "462089",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 5.45,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "457195",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E8",
+     "field": "condition_profile_id",
+     "span": [
+      65,
+      70
+     ],
+     "value": "sauce"
+    }
+   ],
+   "latency_s": 11.55,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "443383",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E15",
+     "field": "condition_profile_id",
+     "span": [
+      84,
+      87
+     ],
+     "value": "sauce"
+    }
+   ],
+   "latency_s": 11.88,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "205352",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E3",
+     "field": "condition_profile_id",
+     "span": [
+      108,
+      112
+     ],
+     "value": "sauce"
+    },
+    {
+     "event_id": "E4",
+     "field": "condition_profile_id",
+     "span": [
+      156,
+      162
+     ],
+     "value": "mixture"
+    }
+   ],
+   "latency_s": 20.62,
+   "n_accepted": 2,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "461584",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E3",
+     "field": "condition_profile_id",
+     "span": [
+      68,
+      72
+     ],
+     "value": "sauce"
+    }
+   ],
+   "latency_s": 11.05,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "205015",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.0,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "457484",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.0,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "483794",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.7,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "100369",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 4.28,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "457403",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  }
+ ],
+ "proposals_accepted": 24,
+ "proposals_parsed_into_schema": 24,
+ "proposals_returned": 24,
+ "rejection_reasons": {},
+ "schema_compliance": 1.0
+}
