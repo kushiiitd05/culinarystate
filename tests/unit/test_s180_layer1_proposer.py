@@ -229,11 +229,14 @@ def test_alternative_trigger_may_bind_an_alternative_group():
     assert not d.rejected, d.rejected
 
 
-def test_fat_stays_trigger_may_only_touch_the_condition_profile():
+def test_fat_stays_trigger_licenses_nothing_at_all():
+    """P2: the rule has already merged fat into the lot before the flag is raised, so there is no
+    open question. Whether frying fat stays with the food is a mass-transfer question the text does
+    not state; it belongs to the simulator, not to Layer-1."""
     g = graph([ev("E1", (0, 0))])
     bad = L1.review([prop(trigger="VNEXT_FAT_STAYS", field="alternative_group", value="X")],
                     g, triggers=("VNEXT_FAT_STAYS",), raw=RAW)
     assert bad.rejected and bad.rejected[0][1] == "FIELD_NOT_LICENSED_BY_TRIGGER"
-    ok = L1.review([prop(trigger="VNEXT_FAT_STAYS", field="condition_profile_id", value="fat_retained")],
-                   g, triggers=("VNEXT_FAT_STAYS",), raw=RAW)
-    assert not ok.rejected, ok.rejected
+    ref = L1.review([prop(trigger="VNEXT_FAT_STAYS", field="condition_profile_id", value="fat_retained")],
+                    g, triggers=("VNEXT_FAT_STAYS",), raw=RAW)
+    assert ref.rejected and ref.rejected[0][1] == "FIELD_REQUIRES_EXISTING_REFERENT"
