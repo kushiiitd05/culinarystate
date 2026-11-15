@@ -36,7 +36,7 @@ SEAL = ROOT / "reports/s180/hardcase_seal_2026-11-15.json"
 LABELS = ("DIAGNOSTIC_ONLY", "NO_GOLD_SO_AGREEMENT_IS_NOT_ACCURACY", "WIKIBOOKS_CC_BY_PUBLIC_TEXT_ONLY",
           "SEALED_SET_UNCHANGED")
 LOCAL_HOST = "vinayak-server"
-LOCAL_MODEL = "qwen2.5:7b-instruct"
+LOCAL_MODEL = "qwen2.5:7b-instruct"   # overridable with --local-model
 HOSTED_MODEL = "nvidia/nemotron-3-ultra-550b-a55b"
 NIM_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
 NIM_ENV = Path.home() / ".config/culinarystate/nvidia.env"
@@ -87,14 +87,23 @@ RECIPE TEXT:
 {raw}"""
 
 
-def build_prompt(case: dict, event_ids: str) -> str:
-    """Offer only the fields the fired triggers license, and state what each trigger asks."""
-    from culinarystate.composition.layer1_proposer import TRIGGER_FIELDS
+def build_prompt(case: dict, event_ids: str, version: str = "v2") -> str:
+    """Build the prompt for one case.
+
+    ``v1`` offers the full field menu, so the gate genuinely discriminates: it can show whether a
+    model misroutes a trigger to the wrong field. ``v2`` offers only the licensed field(s), which
+    makes misrouting structurally impossible and therefore makes the acceptance rate uninformative
+    (see amendment A2). Comparisons must hold the prompt version fixed across arms.
+    """
+    from culinarystate.composition.layer1_proposer import PROPOSABLE_FIELDS, TRIGGER_FIELDS
     triggers = list(case["triggers"])
     questions = "\n".join(f'  - {t}: {TRIGGER_QUESTIONS.get(t, "resolve this ambiguity")}'
                            for t in triggers)
-    licensed = sorted({f for t in triggers for f in TRIGGER_FIELDS.get(t, ())})
-    fields = " or ".join(f'"{f}"' for f in licensed) + " (and nothing else)"
+    if version == "v1":
+        fields = " or ".join(f'"{f}"' for f in PROPOSABLE_FIELDS)
+    else:
+        licensed = sorted({f for t in triggers for f in TRIGGER_FIELDS.get(t, ())})
+        fields = " or ".join(f'"{f}"' for f in licensed) + " (and nothing else)"
     return PROMPT.format(questions=questions, triggers=", ".join(triggers), fields=fields,
                          event_ids=event_ids, raw=case["raw"])
 
@@ -206,7 +215,7 @@ def to_proposals(text: str):
     return out, parsed
 
 
-def run_arm(arm: str, cases: list[dict], timeout: int, limit: int) -> dict:
+def run_arm(arm: str, cases: list[dict], timeout: int, limit: int, prompt_version: str) -> dict:
     from culinarystate.composition import layer1_proposer as L1
     ask = {"L": ask_local, "H": ask_hosted}[arm]
     rows, reasons, latencies = [], Counter(), []
@@ -214,7 +223,8 @@ def run_arm(arm: str, cases: list[dict], timeout: int, limit: int) -> dict:
 
     for case in cases[: limit or None]:
         graph = parse_graph(case["raw"], f"WB-{case['pageid']}")
-        prompt = build_prompt(case, ", ".join(e.event_id for e in graph.events[:40]))
+        prompt = build_prompt(case, ", ".join(e.event_id for e in graph.events[:40]),
+                              prompt_version)
         t0 = time.time()
         try:
             text = ask(prompt, timeout)
@@ -246,6 +256,7 @@ def run_arm(arm: str, cases: list[dict], timeout: int, limit: int) -> dict:
     return {
         "labels": list(LABELS),
         "arm": arm,
+        "prompt_version": prompt_version,
         "model": {"L": LOCAL_MODEL, "H": HOSTED_MODEL}[arm],
         "cases_attempted": len(cases[: limit or None]),
         "cases_answered": n,
@@ -269,6 +280,11 @@ def main(argv=None) -> int:
     ap.add_argument("--out", required=True)
     ap.add_argument("--timeout", type=int, default=120)
     ap.add_argument("--limit", type=int, default=0)
+    ap.add_argument("--local-model", default=LOCAL_MODEL,
+                    help="ollama model for arm L, e.g. qwen2.5:72b")
+    ap.add_argument("--prompt", choices=("v1", "v2"), default="v2",
+                    help="v1 offers the full field menu so the gate discriminates; v2 offers only "
+                         "the licensed field, which makes acceptance uninformative (amendment A2)")
     ap.add_argument("--i-have-authorisation", action="store_true",
                     help="required for arm H: it sends case text to an external, metered API")
     args = ap.parse_args(argv)
@@ -277,9 +293,11 @@ def main(argv=None) -> int:
         raise SystemExit("arm H sends case text to an external metered API; rerun with "
                          "--i-have-authorisation once Kush has approved it")
 
+    globals()["LOCAL_MODEL"] = args.local_model
     cases = load_cases()
-    print(f"seal verified | {len(cases)} cases | arm {args.arm}")
-    result = run_arm(args.arm, cases, args.timeout, args.limit)
+    print(f"seal verified | {len(cases)} cases | arm {args.arm} | prompt {args.prompt} "
+          f"| model {LOCAL_MODEL if args.arm == 'L' else HOSTED_MODEL}")
+    result = run_arm(args.arm, cases, args.timeout, args.limit, args.prompt)
     out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=1, sort_keys=True), encoding="utf-8")
