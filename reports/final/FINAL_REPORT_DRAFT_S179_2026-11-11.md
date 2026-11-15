@@ -583,3 +583,79 @@ Strict-v2 is a separate explicit launcher, not a replacement benchmark. It repor
 Physical display metadata preserves TEXT_STATED, SCENARIO and MODEL_DERIVED distinctions and actual default/registry references. UNKNOWN remains UNKNOWN outside this sample. These references describe declared provenance, not scientific source truth. Recipe route chips retain legacy row-existence semantics and are not condition-applicability certificates. No new PARAM rows or valid real SIMULATE route are supplied. The earlier 30 frozen-answer flags, original H1/H3 failures, AA zero eligible SIM-VAL rows and zero T5 gate passes remain on record.
 
 The wrong optional checkpoint was not substituted or run. Cross-family learned-NER versus Rung-A inference agreement remains data-dependent. Private 15a assignment rederivation, actual independent human labels, author contribution facts and future-dated acceptance remain outstanding. All work in this supplement ran locally without SSH or VPN.
+
+## Architecture freeze supplement — 15 November 2026
+
+**AI_DRAFTED / NON_CITABLE / NO_HUMAN_SIGNOFF_D085 / DIAGNOSTIC_ONLY.** Full section:
+`reports/final/sections/S180_freeze_results_DRAFT.md`. Figures:
+`reports/final/figures_s180_2026-11-15/` (manifest carries the sha256 of every source). Decisions
+D-134, D-135, D-136 are **AI-delegated under D-085** (ksh+prv personas on Kush's instruction) and all
+three still owe a human sign-off. Nothing above this heading is edited by this supplement.
+
+The 15 Nov directive froze the pipeline and forbade a new master plan, a second graph implementation
+and eight named future components. Steps 1–10 of the resulting execution order are complete. No new
+architecture was designed: every adopt-now item already had an SSOT-v16 change request, mapped to
+owner step 36A.3.
+
+**Layer-1 (D-135).** The sealed comparison over 60 hard cases produced the clearest negative result in
+the project. Three runs — 7B prompt v1, 7B prompt v2, and a voided 20-case 72B partial — had **zero
+`(event_id, field)` slot agreement in every pair**; they did not choose the same event to answer about
+even once. The cause was not the models. All 108 recorded returns were schema-valid, every accepted
+span lay inside the raw text and **no run attempted a single numeric value**. The cause was that
+`condition_profile_id` is a reference field with no referent and no consumer, so a non-blank string
+check accepted nouns lifted from the sentence (`pan`, `chicken`, `bowl_content`, `boiling_time`).
+
+It was removed from the proposable set. With `VNEXT_FAT_STAYS` (resolved by the rule before its flag
+is raised) and the coreference triggers (whose answers have no licensed destination) also closed, the
+LLM's licensed surface is **one field, `alternative_group`, on one trigger**. On the 60 cases that
+produced **13 accepted proposals, none graded, because there is no gold**. Re-scored against the
+recorded figures, with denominators: v1 39 → 13 and v2 24 → 1, over the 18 cases with a licensed
+trigger. Recorded results are kept unedited and pre-registration amendment A3 declares the gate
+change. `alternative_group` is a **grouping label, not an equivalence claim**: the corpus flags mix
+true substitutions with acid swaps that change the chemistry.
+
+**Retrieval (step 9).** Three views over 5,181 states and 40 queries at k=10. Mean Jaccard 0.0455 to
+0.1164 against a chance Jaccard of **0.001**; nothing was shared by all three views on 34 of 40
+queries. The views are not redundant. **DIAGNOSTIC_ONLY: no relevance gold, so overlap is not
+precision and no view is better.**
+
+**Compatibility axes.** `registry/rag/compatibility_axes_v1.csv` was created — the schema file §N.7
+referenced but which did not exist — and carries all 13 axes, not salt/acid/lipid. 9 implemented, 2
+served by the compiler (7 pH, 9 geometry), 2 schema-only (8 has no producer, 12 has no data). An
+unavailable axis stays UNKNOWN with a stated reason. Axis 9 reports `QUERY_ONLY` and never EVALUABLE,
+because evidence rows carry no geometry field and a one-sided axis must not read as a match.
+
+**pH.** The FDA/CFSAN 2003 table (479 rows, public domain) was already in the repo and resolves **140
+ING bands** through EXACT/FULL crosswalk rows: 31 acidic, 101 low-acid, **8 inconclusive**. Bands are
+intervals with no midpoints and no clipping, so **tomato (4.3–4.9) is one of the eight** and the
+system declines to call it acidic. This corrects an earlier limitation that read "no sourced pH table,
+so tomato sauce is not yet acidic" — the table is here, and the refusal now rests on the interval
+straddling the threshold rather than on absence.
+
+The crosswalk is `UNVERIFIED_CROSSWALK_AI_DRAFTED` and **D-136 keeps `C_t` unwired**: the table
+measures the ingredient as purchased, not the lot in the pot, and a lot's pH is not a computable
+function of its members'. The bands serve evidence compatibility only. Consequently **the pH coverage
+figures elsewhere in this report are unchanged and remain accurate as measured**, including the EVD
+condition-axis table above, which reports evidence rows and not ingredient bands.
+
+**Provenance.** 116 decisions with **no entry lacking an approver line** (D-134 was the last, and its
+line is AI-delegated): HUMAN 80 · AI_DELEGATED_D085 21 · AI_PERSONA_D071 6 · MIXED 1 ·
+AI_AGENT_PROVISIONAL 7.
+
+**Lineage vNext stays DIAGNOSTIC.** 29.3% of recipes changed and the corpus run **raised no
+exceptions**, but there is **no gold regression set**, so no part of that change is known to be an
+improvement. It is not clean, not validated and not verified. `VNEXT_FAT_STAYS` changes contact, not
+quantity: `lipid_present` rises while `fat_fraction` stays UNKNOWN `MASS_NOT_GROUNDED`.
+
+### Added to limitations and unfinished work
+
+- There is **no gold** for Layer-1 proposals on the sealed set, so no arm is correct, better or more
+  accurate, and the 72B question is open — its first run is void at 20/60 after a VPN drop.
+- `alternative_group` now carries the entire LLM layer and has **no closed vocabulary**; V4 checks
+  only mutual exclusivity, which is structural, not semantic. The 20-row human packet at
+  `reports/s180/alternatives_verification_2026-11-15/` is the only route to a correctness number for
+  this layer and is **open**.
+- pH bands may not back a claim or a figure until the crosswalk rows they rest on are humanly
+  verified. The `C_t` reason code `NO_SOURCED_PH_TABLE` is knowingly stale; the correction is recorded
+  rather than applied, because applying it would re-fill the corpus and move cited coverage numbers.
+- D-134, D-135 and D-136 are AI-delegated and owe human sign-off before submission.
