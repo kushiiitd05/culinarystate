@@ -41,25 +41,63 @@ HOSTED_MODEL = "nvidia/nemotron-3-ultra-550b-a55b"
 NIM_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
 NIM_ENV = Path.home() / ".config/culinarystate/nvidia.env"
 
-PROMPT = """You resolve ambiguity in a recipe's event graph. Rules already parsed it and flagged \
-these ambiguity triggers: {triggers}.
+#: What each trigger is actually asking. A bare token invites a guess; the question does not.
+TRIGGER_QUESTIONS = {
+    "VNEXT_MIXTURE_COREF": 'the text refers back to a mixture ("the sauce", "the batter") - which '
+                           'existing mixture is meant?',
+    "VNEXT_ALTERNATIVE_SKIPPED": 'the text offers a choice ("A or B") - which events are the '
+                                 'mutually exclusive alternatives?',
+    "VNEXT_FAT_STAYS": "a frying fat was added with the food - under what condition profile was "
+                       "this step read?",
+    "AMBIGUOUS_REFERENCE": "a reference could not be resolved to one food - under what condition "
+                           "profile was this step read?",
+    "AMBIGUOUS_ANTECEDENT": "a pronoun or implicit argument has more than one antecedent - under "
+                            "what condition profile was this step read?",
+    "AMBIGUOUS_ACTION": "the action could not be bound to one process - under what condition "
+                        "profile was this step read?",
+    "AMBIGUOUS_CANDIDATES": "several candidates matched - under what condition profile was this "
+                            "step read?",
+    "AMBIGUOUS_OR_MISSING": "a required argument is ambiguous or missing - under what condition "
+                            "profile was this step read?",
+    "UNRESOLVED_LOT": "an ingredient lot was never resolved to a use - under what condition "
+                      "profile was this step read?",
+}
+
+PROMPT = """You resolve one kind of ambiguity in a recipe's event graph. Rules already parsed it.
+
+WHAT IS BEING ASKED:
+{questions}
 
 Return ONLY a JSON array of proposals. Each proposal is an object with exactly these keys:
   "trigger": one of {triggers}
-  "field": "alternative_group" or "condition_profile_id"
+  "field": {fields}
   "value": a short CATEGORICAL label, never a number
   "event_id": an event id from the graph below
   "span_start": integer character offset into the RECIPE TEXT
   "span_end": integer character offset into the RECIPE TEXT, greater than span_start
   "rationale": one short sentence
 
-Hard rules: never propose a number. Never propose any field other than the two listed. Every \
-proposal must point at a real span of the RECIPE TEXT. Return [] if nothing is warranted.
+Hard rules: "field" must be exactly as listed above for the trigger you answer - no other field is \
+accepted. Never propose a number. Every proposal must point at a real span of the RECIPE TEXT. \
+Return [] if nothing is warranted.
 
 EVENT IDS: {event_ids}
 
 RECIPE TEXT:
 {raw}"""
+
+
+def build_prompt(case: dict, event_ids: str) -> str:
+    """Offer only the fields the fired triggers license, and state what each trigger asks."""
+    from culinarystate.composition.layer1_proposer import TRIGGER_FIELDS
+    triggers = list(case["triggers"])
+    questions = "\n".join(f'  - {t}: {TRIGGER_QUESTIONS.get(t, "resolve this ambiguity")}'
+                           for t in triggers)
+    licensed = sorted({f for t in triggers for f in TRIGGER_FIELDS.get(t, ())})
+    fields = " or ".join(f'"{f}"' for f in licensed) + " (and nothing else)"
+    return PROMPT.format(questions=questions, triggers=", ".join(triggers), fields=fields,
+                         event_ids=event_ids, raw=case["raw"])
+
 
 _JSON_ARRAY = re.compile(r"\[.*\]", re.DOTALL)
 
@@ -168,9 +206,7 @@ def run_arm(arm: str, cases: list[dict], timeout: int, limit: int) -> dict:
 
     for case in cases[: limit or None]:
         graph = parse_graph(case["raw"], f"WB-{case['pageid']}")
-        prompt = PROMPT.format(triggers=", ".join(case["triggers"]),
-                               event_ids=", ".join(e.event_id for e in graph.events[:40]),
-                               raw=case["raw"])
+        prompt = build_prompt(case, ", ".join(e.event_id for e in graph.events[:40]))
         t0 = time.time()
         try:
             text = ask(prompt, timeout)
