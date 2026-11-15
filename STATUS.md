@@ -1,5 +1,27 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+## Architecture freeze executed, steps 1–10 — 15 November 2026 (supersedes the snapshots below)
+
+Branch `kush/s179-finish-fixes`; decisions through **D-136**. NO_HUMAN_SIGNOFF_D085 on D-134/135/136.
+
+- **Freeze steps 1–10 complete.** Typed Event IR contract, six validator invariants mapped to the code enforcing them, query-specific evidence compiler over all 13 compatibility axes, Claim Packet, claim verifier with template fallback, LLM Layer-1 with trigger licensing, sealed model comparison, pH axis, retrieval diagnostic, figures and report section. Nothing new was designed: every adopt-now item already had an SSOT-v16 CR, mapped to owner step 36A.3.
+- **Unit suite: 5,960 passed, 1 skipped, 0 failed** (15 Nov, `tests/unit`, ~5m15s). Supersedes every older count in this file.
+- **Headline technical result (D-135).** Three runs over the 60 sealed hard cases showed **zero `(event_id, field)` slot agreement in every pair**. Cause was not model capability — all 108 returns were schema-valid, every span valid, zero numeric attempts — but that `condition_profile_id` is a **reference field with no referent and no consumer**, so a non-blank string check accepted nouns lifted from the sentence. The field left the proposable set; `VNEXT_FAT_STAYS` and the coreference triggers license nothing. **Net LLM surface: one field (`alternative_group`) on one trigger (`VNEXT_ALTERNATIVE_SKIPPED`).** Step 7 re-scored with denominators: v1 39 → 13 accepted, v2 24 → 1, over 18 cases with a licensed trigger. Recorded results kept unedited; prereg amendment A3 declares the gate change.
+- **pH.** FDA/CFSAN 2003 table (479 rows, public domain) → **140 ING bands** via EXACT/FULL crosswalk; 31 acidic, 101 low-acid, **8 inconclusive** (tomato among them, 4.3–4.9). Wired to evidence-compiler axis 7 only. **D-136: `C_t` is NOT wired** — the table measures the ingredient as purchased, not the lot in the pot. Crosswalk is `UNVERIFIED_CROSSWALK_AI_DRAFTED`; `NO_SOURCED_PH_TABLE` in `C_t` is knowingly stale, correction recorded not applied, so every recorded corpus fill number stands.
+- **Axes.** Registry `registry/rag/compatibility_axes_v1.csv` created (referenced but absent). 9 implemented · 2 in compiler (7 pH, 9 geometry) · 2 schema-only (8 no producer, 12 no data). Axis 9 reports `QUERY_ONLY`, never EVALUABLE: evidence rows carry no geometry field.
+- **Retrieval (step 9).** 5,181 states, 40 queries, k=10. Chance Jaccard 0.001. V0/V1 overlaps 0.0455–0.1164; nothing shared by all three views on 34/40 queries. DIAGNOSTIC_ONLY, no relevance gold.
+- **Provenance.** 116 decisions, **NO_APPROVER_LINE 0** (was 1: D-134 had none). HUMAN 80 · AI_DELEGATED_D085 21 · AI_PERSONA_D071 6 · MIXED 1 · AI_AGENT_PROVISIONAL 7.
+- **Lineage vNext is DIAGNOSTIC.** 29.3% of recipes changed, no exceptions raised, **no gold regression set**. Never "clean", "validated" or "verified". `VNEXT_FAT_STAYS` changes contact, not quantity.
+- **START HERE:** `reports/final/sections/S180_freeze_results_DRAFT.md`, then `reports/s180/step7_analysis_2026-11-15.md` (§9 addendum), then `DECISIONS.md` D-134..D-136.
+
+### Pending after the freeze
+
+- **Agent-doable:** qwen2.5:72b arm over all 60 sealed cases (in flight; a previous attempt is void at 20/60 after a VPN drop); fold the S180 section into the final report draft and the deck, both still at their 11 Nov S179 state.
+- **Human-only, highest value first:** the 20-row alternatives packet `reports/s180/alternatives_verification_2026-11-15/` — the **only** route to a correctness number for the LLM layer, since there is no gold; human sign-off on D-134/D-135/D-136; verification of pH crosswalk rows behind any band used in a claim or figure.
+- **Human-only, carried forward:** chemistry reviewer and cuisine expert; Parv's crosswalk audit and 07.A/07I-C confirmation; the 10 Step-19 real-pilot blockers; M2 prereg signatures; M3 AA browser downloads (AAK-02/04/05/08/10); H2 licence decisions.
+- **Not pending — excluded by the 15 Nov directive:** learned compatibility, general causal graph, multimodal input, new evidence knowledge graph, probabilistic quantitative uncertainty engine, new learned state encoder, FoodOn/FNDDS expansion, simulator expansion.
+
+
 ## Composition-aware state + status to completion — 14 November 2026 (evening; start here)
 
 - D-112 scope frozen; parser guard v2; C_t schema v1.1 passed by Kush (D-120); C_t v1.2 adds USDA SR composition (793 ING) and composition-aware routing over the frozen router (added salt/acid/lipid -> CONTEXT_MISMATCH; unstated context -> SCENARIO suggestion).
@@ -180,7 +202,7 @@ supply human annotation, independent agreement, scientific validation or signatu
 Full unit-suite verification now includes transition tests under scoped CPU thread
 caps: `OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1` before the existing
 Python's `-m pytest tests/unit -q`. This is a reproducible hang workaround, not a
-proven root-cause fix. Latest full unit result on the Mac: 1681 passed, 1 skipped, 1 deselected (WORKLOG S152). S161 cloud container **with** the data bundle: 3215 passed, 2 skipped, 1 deselected, 0 failed (the 12 bundle failures now pass). Earlier, S154 cloud container without the data bundle: 1797 passed, 17 skipped, 1 deselected, 1 failed + 11 errors, all missing bundle files (same as its pre-change baseline); rerun on the Mac with data before merging. The pytest config
+proven root-cause fix. Latest full unit result on the Mac: **5,960 passed, 1 skipped, 4 deselected (15 Nov 2026, WORKLOG S257)**; the 1,681-pass figure recorded at S152 is superseded. S161 cloud container **with** the data bundle: 3215 passed, 2 skipped, 1 deselected, 0 failed (the 12 bundle failures now pass). Earlier, S154 cloud container without the data bundle: 1797 passed, 17 skipped, 1 deselected, 1 failed + 11 errors, all missing bundle files (same as its pre-change baseline); rerun on the Mac with data before merging. The pytest config
 still excludes tests marked ledgers unless explicitly requested.
 
 ## Human work and constraints
