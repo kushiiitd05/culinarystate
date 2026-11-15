@@ -1726,3 +1726,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `src/culinarystate/composition/ph_bands.py`, `src/culinarystate/composition/evidence_compiler.py`, `registry/rag/compatibility_axes_v1.csv`, `tests/unit/test_s180_ph_bands.py`, `tests/unit/test_s180_evidence_compiler.py`
 - **Verified:** TDD: 15 pH tests RED then GREEN; 140 ING bands (113 INTERVAL, 25 POINT, 2 LOWER_BOUND_ONLY); tomato/vinegar/lemon juice all EXACT; schema-only axes now {8,9,12} not {7,8,9,12}; 59 passed across pH + compiler + verifier
 - **Next:** Humans verify the pH crosswalk rows used in figures; remaining chemistry records (vitamin C acid stability, leaching, lycopene oil/heat isomerisation) still need primary sources
+
+### S251 · 2026-11-15 10:25 IST · 36C · Step 7 arm L complete: local qwen2.5:7b over the 60 sealed cases
+- **Who:** Kush
+- **Did:** Ran arm L to completion after the first attempt was voided by a mid-run VPN drop (12/60, moved out of reports/ to /tmp, never committed as a result). Added ssh retry (4 attempts, 20s backoff, ServerAliveInterval) so a blip no longer voids a run. Result: 60/60 answered, 0 failures, 84 proposals returned, schema compliance 1.000 (84/84 parsed into the Proposal schema), 39 accepted, gate acceptance 0.4643, all 39 accepted spans valid, latency mean 16.17s max 66.07s. The rejection histogram has exactly ONE entry: FIELD_NOT_LICENSED_BY_TRIGGER x45. Zero span errors, zero numeric violations, zero malformed returns, zero invariant violations. Accepted fields: condition_profile_id 26, alternative_group 13. 31 of 60 cases got at least one accepted proposal, 29 got none.
+- **Files:** `reports/s180/step7_arm_L_qwen7b_2026-11-15.json`, `tools/s180_run_layer1_arms.py`
+- **Verified:** seal verified at load (packet sha256 matched the manifest before any call); 60/60 answered with 0 failures; span validity 39/39; single-reason rejection profile
+- **Next:** Decide arm H (metered, external, needs Kush's go-ahead); step 9 retrieval diagnostic
