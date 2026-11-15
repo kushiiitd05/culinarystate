@@ -183,3 +183,55 @@ instruction) and both still owe a human sign-off before submission.
 | 72B arm over the 18 eligible cases | VPN; run void at 20/60 |
 | `C_t` wired to pH bands | decision: may an unverified-but-sourced band enter the state? |
 | axes 8 and 12 | no producer, no data — post-submission |
+
+---
+
+## 8. The 72B arm, and the finding that supersedes §1
+
+Added 15 Nov 2026 after the 72B run completed. §1–§7 stand; this extends them. Full detail:
+`reports/s180/step7_72b_result_2026-11-15.md`.
+
+**The run is valid:** 60/60 answered, 0 failures, schema 1.000. Gated under the D-135 surface but
+before D-137 grounding, declared in advance by pre-registration amendment A4.
+
+**Scale helps at choosing. It does not help at grounding.**
+
+| | 7B v1 | 72B v1 |
+|---|---|---|
+| Accepted on the licensed field | 13 | **16** |
+| Values naming a real choice (AI-delegated pass) | 7 of 14 — **50%** | 13 of 16 — **81%** |
+| Spans that ground their value | **0 of 13** | **0 of 16** |
+
+The 72B avoided every failure mode the 7B showed — including reading "layer after layer of potatoes,
+meat **and** onions" as a choice, which is the inverse of the error the trigger exists to fix — and it
+found two alternatives the 7B missed entirely, one of them a **lipid swap that changes the context
+`C_t` tracks**. Its three failures are milder; the most interesting is `channa or choley`, which
+glosses two names for one dish, so an orthographic variant was read as a cooking decision.
+
+But **neither arm produced a single span that supports its value.** The models read the recipe
+correctly and then emit offsets pointing somewhere else: `frying_fat_or_butter` carries the span
+`'out 5 mm).\nHeat t'`. Nothing in the prompt makes a model compute an offset rather than produce a
+plausible-looking number.
+
+> **This is the result of the sealed comparison. Span grounding, not model scale, is the binding
+> constraint on Layer-1. After applying the grounding requirement the directive always demanded,
+> both arms accept nothing.**
+
+A zero was registered in advance by amendment A4 as a reportable result rather than a failed run, and
+it is reported as one: it is a statement about the task and the prompt, not about either model. The
+likely remedy is a prompt that requires the model to **quote** the licensing text, with the quote
+located deterministically afterwards — a prompt change, not a gate change. It was not made before the
+freeze.
+
+**No latency comparison is drawn between the arms:** the 49 GB 72B does not fit a single 40 GB A100
+and ran on CPU.
+
+### What this adds to limitations
+
+- Both model arms are at **zero accepted proposals** under the span-grounding requirement. The LLM
+  layer currently contributes nothing that survives the full contract, and that is the honest state.
+- The AI-delegated evidence pass now covers **30** proposals across both arms. It is
+  `AI_DELEGATED_D085`, not gold, and the human packet is still open and still owed.
+- Duplicate alternative groups across events are unchecked: the 72B proposed one group twice on one
+  recipe and V4 did not object, because it checks exclusivity within a group, not duplication across
+  them.
