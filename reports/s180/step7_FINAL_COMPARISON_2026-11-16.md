@@ -11,7 +11,7 @@ the result it governs. Sealed set unchanged throughout: 60 cases, packet SHA-256
 | 7B prompt v1 | 84 | 13¹ | **0** | 7 of 14 — 50% |
 | 72B prompt v1 | 70 | 16 | **0** | 13 of 16 — 81% |
 | 7B prompt v3 | 3 | 1 | **1** | — |
-| **72B prompt v3** | 54 | **21** | **21** | **19 of 21 — 90%** |
+| **72B prompt v3** | 63 | **21** | **21** | **19 of 21 — 90%** |
 
 ¹ re-scored onto the surviving licensed field after D-135; recorded as 39 under the gate of the day.
 
@@ -25,7 +25,7 @@ the result it governs. Sealed set unchanged throughout: 60 cases, packet SHA-256
    produces plausible numbers, not locations. v3 asks for the licensing *quote* and locates it in
    code.
 
-With all three fixed: **0 → 21 grounded proposals**, and **0 of 54 quotes failed to locate**.
+With all three fixed: **0 → 21 grounded proposals**, and **0 of 63 quotes failed to locate**.
 
 ## 2. What scale did and did not do
 
@@ -84,7 +84,12 @@ latency comparison is drawn: the 49 GB 72B does not fit a 40 GB A100 and ran on 
 1. **Single-sample arms.** One prompt clause moves the 7B between answering and declining everything.
    No arm number is a property of a model alone. The right design is several prompt variants per arm
    reported as a spread; not done before the freeze.
-2. **The 72B v3 run is 59 cases in one pass plus 1 repaired call** (A6), never a clean 60/60.
+2. **The 72B v3 run is 59 cases in one pass plus 1 repaired call** (A6), never a clean 60/60. The
+   repaired case (pageid 77844, *Rugelach*) took **832 s** against the main pass's 420 s timeout,
+   which is what had killed it; it returned 9 proposals and **0 were accepted**, since its only
+   trigger is `AMBIGUOUS_REFERENCE` and that licenses no field. The repair therefore changed the
+   returned total from 54 to 63 and the gate rate from 0.3889 to 0.3333, and changed **no** accepted,
+   grounded or verdict count.
 3. **Recall is unmeasured.** The eligible cases with no accepted proposal remain unjudged by anyone.
 4. **The endpoint filter is incomplete**, demonstrated by `microwave_duration`.
 5. **Duplicate groups across events are unchecked.**
