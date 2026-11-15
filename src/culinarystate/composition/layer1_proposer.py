@@ -37,21 +37,53 @@ TRIGGERS: tuple[str, ...] = (
     "VNEXT_MIXTURE_COREF",
 )
 #: Event fields a proposal may set. All categorical; ``produces``/``consumes`` are never proposable.
-PROPOSABLE_FIELDS: tuple[str, ...] = ("alternative_group", "condition_profile_id")
-#: Which field each trigger licenses. A trigger only licenses the field it is actually about, so a
-#: coreference answer cannot be smuggled in as an alternatives binding. Only the "A or B" trigger
-#: may bind ``alternative_group``; every other ambiguity is a condition-profile question.
+PROPOSABLE_FIELDS: tuple[str, ...] = ("alternative_group",)
+#: Reference fields: a valid value is the id of a record that already exists. ``condition_profile_id``
+#: is defined by the 36-step plan as a pointer to a 07H COND record; nothing in ``src/`` reads it and
+#: no COND records are minted on the recipe side, so there is no referent to point at. A model cannot
+#: mint a reference and a non-blank string check cannot tell one from a noun lifted out of the
+#: sentence, which is what step 7 recorded ("pan", "chicken", "bowl_content" accepted as condition
+#: profiles). The field stays on the Event IR, declared and unpopulated, which is its honest state.
+#: Refused with its own code so the reason is not mistaken for a vocabulary miss.
+REFERENCE_FIELDS: tuple[str, ...] = ("condition_profile_id",)
+#: Which field each trigger licenses. Only the "A or B" trigger licenses anything.
+#:
+#: Every other trigger previously licensed ``condition_profile_id``, which is a reference field with
+#: no referent (see ``REFERENCE_FIELDS``), so they now license nothing and are **declared-open,
+#: rules-only**: the ambiguity is detected and recorded as UNKNOWN rather than answered by a model.
+#:
+#: The coreference triggers are not rescuable. Their answer's destination is either an allocation,
+#: which is never proposable, or a cell the rules already fill from a cue span with a basis
+#: (``Q.medium``, ``Q.lid_state``) - and a model answer there would be a second, unsourced opinion on
+#: a sourced cell. ``VNEXT_FAT_STAYS`` licenses nothing because the rule has already committed the
+#: merge before the flag is raised (``extraction/rung_a_binding.py``): whether frying fat stays with
+#: the food is a mass-transfer question the text does not state and Layer-1 cannot answer. The keys
+#: are kept so a closed trigger stays distinguishable from an unknown one.
 TRIGGER_FIELDS: dict[str, tuple[str, ...]] = {
-    "AMBIGUOUS_ACTION": ("condition_profile_id",),
-    "AMBIGUOUS_ANTECEDENT": ("condition_profile_id",),
-    "AMBIGUOUS_CANDIDATES": ("condition_profile_id",),
-    "AMBIGUOUS_OR_MISSING": ("condition_profile_id",),
-    "AMBIGUOUS_REFERENCE": ("condition_profile_id",),
-    "UNRESOLVED_LOT": ("condition_profile_id",),
+    "AMBIGUOUS_ACTION": (),
+    "AMBIGUOUS_ANTECEDENT": (),
+    "AMBIGUOUS_CANDIDATES": (),
+    "AMBIGUOUS_OR_MISSING": (),
+    "AMBIGUOUS_REFERENCE": (),
+    "UNRESOLVED_LOT": (),
     "VNEXT_ALTERNATIVE_SKIPPED": ("alternative_group",),
-    "VNEXT_FAT_STAYS": ("condition_profile_id",),
-    "VNEXT_MIXTURE_COREF": ("condition_profile_id",),
+    "VNEXT_FAT_STAYS": (),
+    "VNEXT_MIXTURE_COREF": (),
 }
+#: Every reason the gate may refuse a proposal. Closed: ``_reject`` returns one of these or None, so
+#: a rejection histogram can never contain a code that is not declared here.
+REJECTION_CODES: tuple[str, ...] = (
+    "TRIGGER_NOT_IN_VOCABULARY",
+    "TRIGGER_DID_NOT_FIRE",
+    "FIELD_REQUIRES_EXISTING_REFERENT",
+    "FIELD_NOT_PROPOSABLE",
+    "NUMERIC_VALUE_NOT_ALLOWED",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "EVENT_NOT_IN_GRAPH",
+    "SPAN_OUT_OF_RANGE",
+    "WOULD_VIOLATE_INVARIANT",
+    "MALFORMED_PROPOSAL",
+)
 #: Lot statuses that count as an ambiguity.
 _UNRESOLVED_LOT_STATUSES = frozenset({"UNRESOLVED", "APPARENTLY_UNUSED"})
 _NUMERIC = re.compile(r"^\s*-?\d+(?:[.,]\d+)?\s*%?\s*$")
@@ -110,12 +142,17 @@ def _reject(proposal: Proposal, graph: EventGraph, fired: Sequence[str]) -> str 
         return "TRIGGER_NOT_IN_VOCABULARY"
     if proposal.trigger not in fired:
         return "TRIGGER_DID_NOT_FIRE"
-    if proposal.field not in PROPOSABLE_FIELDS:
-        return "FIELD_NOT_PROPOSABLE"
-    # The numeric prohibition is absolute, so it is checked before field licensing: a number is
+    # The numeric prohibition is absolute, so it is checked before every field check: a number is
     # refused as a number, whatever field or trigger it arrived under.
     if _NUMERIC.match(str(proposal.value)):
         return "NUMERIC_VALUE_NOT_ALLOWED"
+    # Checked before the generic not-proposable code so the refusal states the real cause. Reporting
+    # FIELD_NOT_PROPOSABLE here would be true but misleading: it reads as though some other trigger
+    # could license the field, and none can, because the referent does not exist.
+    if proposal.field in REFERENCE_FIELDS:
+        return "FIELD_REQUIRES_EXISTING_REFERENT"
+    if proposal.field not in PROPOSABLE_FIELDS:
+        return "FIELD_NOT_PROPOSABLE"
     if proposal.field not in TRIGGER_FIELDS.get(proposal.trigger, ()):
         return "FIELD_NOT_LICENSED_BY_TRIGGER"
     if not any(e.event_id == proposal.event_id for e in graph.events):
