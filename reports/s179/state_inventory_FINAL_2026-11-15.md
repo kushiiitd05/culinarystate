@@ -139,3 +139,41 @@ Axis rules carried into the registry unchanged: hard exclusion from DIRECT on ax
 - Markers and SR matches are AI-drafted or AI-delegated (D-085), not human-verified. The salt/acid AI check FAILED (D-128).
 - Fill rates are heat-row rates, not whole-corpus rates; a 53.8% medium fill is not 53.8% of all events.
 - SSOT v16 is PROPOSED_ONLY. No row here licenses treating a v16 CR as applied.
+
+---
+
+## Correction — 15 Nov 2026, axis 7 (pH)
+
+§5 above lists axis 7 as absent because there is **"no sourced pH table"**. That is no longer true and
+the row is superseded:
+
+- `registry/food_ph_fda2003_v1.csv` — **479 rows**, FDA/CFSAN *Approximate pH of Foods and Food
+  Products* (Oct 2003), **public domain**, per-row source sha256. It was already in the repo.
+- `src/culinarystate/composition/ph_bands.py` loads it and joins to ING ids through
+  `registry/food_ph_fda_ing_crosswalk_draft_v1.csv` using **EXACT/FULL rows only** → **140 ING ids**
+  (113 INTERVAL, 25 POINT, 2 LOWER_BOUND_ONLY). 15 tests.
+- `acidity_band()` returns `ACIDIC` / `LOW_ACID` / `INCONCLUSIVE_SPANS_THRESHOLD` /
+  `INCONCLUSIVE_OPEN_INTERVAL` against the 4.6 threshold. **No midpoints, no clipping** (D-013), so an
+  interval straddling 4.6 is inconclusive rather than forced to a side.
+- Axis 7 in `registry/rag/compatibility_axes_v1.csv` is now `IMPLEMENTED_IN_COMPILER`
+  (`evidence_compiler.ph_axis_cell`), not `SCHEMA_ONLY/NO_SOURCED_PH_TABLE`.
+
+**What is still true, and why this is not yet a coverage gain in `C_t`:**
+
+- The crosswalk from FDA food names to ING ids was **drafted by AI and is not human-verified**:
+  `BASIS = "FDA_PH_2003_VIA_AI_DRAFTED_CROSSWALK"`, `VERIFY_STATUS = "UNVERIFIED_CROSSWALK_AI_DRAFTED"`.
+  D-085 stands: AI review is not human verification. No figure may use a band until Kush or Parv
+  verifies the rows it rests on.
+- `composition/state.py:77` still writes `acidity_band = UNKNOWN:NO_SOURCED_PH_TABLE`
+  unconditionally. The bands are available to the evidence compiler but are **not wired into `C_t`**,
+  so the corpus state fill is unchanged and the 257,369 `NO_SOURCED_PH_TABLE` cells in
+  `state_dataset_fill_full_D116v1_2026-11-14.json` remain accurate as recorded.
+
+So the correct statement is: **a sourced pH table exists and is wired to the compiler; the ING
+crosswalk is unverified; `C_t` is not wired.** Ranked gap 3 in §6 ("pH band per member via verified
+CHEM-D08–D10") is therefore still open, but its blocker is now **verification only**, not the absence
+of a table.
+
+Worked examples, for verification targets: tomato ING-000010 pH 4.3–4.9 →
+`INCONCLUSIVE_SPANS_THRESHOLD`; vinegar ING-000556 2.4–3.4 → `ACIDIC`; lemon juice ING-000043
+2.0–2.6 → `ACIDIC`.

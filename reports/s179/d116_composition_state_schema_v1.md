@@ -45,3 +45,27 @@ Per family: heat events and boil events with salt_present, acid_present, lipid_p
 
 ## 6. Router hook (next step, after approval)
 Composition axes join the existing compatibility check: an EVD row measured on the food alone is DIRECT only when the query lot has no added SALT/ACID/LIPID markers; otherwise it is CONTEXT_MISMATCH (near evidence, not direct). Existing enums only.
+
+---
+
+## Correction — 15 Nov 2026, `acidity_band` and `NO_SOURCED_PH_TABLE`
+
+The table above gives `NO_SOURCED_PH_TABLE` as the v1 default reason "until a table is verified", and
+§ fill says `acidity_band` is UNKNOWN `NO_SOURCED_PH_TABLE` in v1. The first half is now out of date;
+the second is still factually correct in the pipeline. Precisely:
+
+- **A sourced table exists.** `registry/food_ph_fda2003_v1.csv`, 479 rows, FDA/CFSAN Oct 2003, public
+  domain, per-row source sha256, loaded by `composition/ph_bands.py` → 140 ING ids via EXACT/FULL
+  crosswalk rows only. The reason code's premise ("no table") no longer holds.
+- **The crosswalk is not verified.** `VERIFY_STATUS = "UNVERIFIED_CROSSWALK_AI_DRAFTED"`. The
+  ingredient↔FDA-name join was AI-drafted, so under D-085 it cannot back a submission figure until a
+  human verifies the rows used.
+- **`C_t` is unchanged.** `composition/state.py:77` still writes
+  `acidity_band = UNKNOWN:NO_SOURCED_PH_TABLE` for every member, so every recorded fill number in
+  `state_dataset_fill_*` stands as measured. Nothing in the corpus state was back-dated.
+
+**Therefore the reason code is retired-in-place, not reassigned.** When `C_t` is wired, an absent band
+must carry a reason that states the real cause — `ING_NOT_IN_PH_CROSSWALK` (not among the 140) or
+`PH_CROSSWALK_UNVERIFIED` (band exists, verification pending) — instead of claiming no table exists.
+Deciding whether an unverified-but-sourced band may be written into `C_t` at all, with its basis
+attached, is a human call and is deliberately left open here.
