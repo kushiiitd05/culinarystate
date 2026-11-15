@@ -37,10 +37,15 @@ def test_axes_load_from_the_registry_csv():
     assert [a.axis_no for a in axes] == list(range(1, 14))
 
 
-def test_registry_marks_three_axes_schema_only():
-    """Axis 7 left this set on 15 Nov: the FDA/CFSAN 2003 pH table was already in the repo."""
+def test_registry_marks_two_axes_schema_only():
+    """Axes 7 and 9 left this set on 15 Nov.
+
+    7: the FDA/CFSAN 2003 pH table was already in the repo. 9: ``Q.piece_size_class`` was already
+    derived from cut history and only needed wiring. 8 (a_w / moisture) has no producer and 12
+    (measurement method) has no data, so both stay SCHEMA_ONLY.
+    """
     schema_only = {a.axis_no for a in axes_by_status("SCHEMA_ONLY")}
-    assert schema_only == {8, 9, 12}
+    assert schema_only == {8, 12}
 
 
 def axes_by_status(status):
