@@ -102,3 +102,44 @@ rejection-reason histogram in measure 2.
 **What this does not fix:** the gate still cannot judge whether a *licensed* value is the right one.
 A plausible `condition_profile_id` that is simply wrong will be accepted. That is why §5 stands:
 acceptance measures contract compliance, never correctness, and human verification stays separate.
+
+---
+
+## Amendment A2 — 15 Nov 2026, written after arm L v1 was recorded
+
+**Disclosure first: arm L v1 had already been run and committed when this amendment was written.**
+Its result is kept unchanged (`reports/s180/step7_arm_L_qwen7b_2026-11-15.json`, 60/60 answered,
+schema 1.000, gate acceptance 0.4643, rejections `FIELD_NOT_LICENSED_BY_TRIGGER` × 45), exactly as
+the pre-registration rule requires: the old result is kept and the change is logged.
+
+**What changed, and why it is a defect not a tuning choice.** The v1 prompt offered *both* proposable
+fields on every case:
+
+```
+"field": "alternative_group" or "condition_profile_id"
+```
+
+It did this regardless of which trigger fired, because the prompt was written before
+`layer1_proposer.TRIGGER_FIELDS` existed. The gate then rejected the unlicensed choice. So the arm
+was handed an option it was not allowed to take and penalised for taking it. All 45 rejections are
+that one mistake, concentrated on the coreference and lot-resolution triggers
+(`AMBIGUOUS_REFERENCE` 15, `VNEXT_MIXTURE_COREF` 13, `UNRESOLVED_LOT` 11).
+
+**v2 changes the prompt only:**
+
+1. the prompt names **only the field(s) the fired trigger licenses**, per `TRIGGER_FIELDS`;
+2. each trigger is stated as the question it actually asks, instead of as a bare token.
+
+**What does not change:** the sealed set (same 60 cases, same seed, same packet SHA-256
+`b926c303993541d5380e4531f495f9c89c2111a0c5c902e99df0ad95f15da6e7`), the `Proposal` schema, the gate,
+and the §3 measures. **The gate is not loosened.** Acceptance is not a target: raising it by relaxing
+a check would be the one forbidden fix.
+
+**How both runs are reported.** v1 and v2 are reported side by side and the delta is the result. A
+single post-fix number would be tuning on a set whose results had been seen; the pair is the honest
+object and is also the more informative one — it measures what contract-aware prompting is worth on
+this task. Neither number is accuracy: §5 stands, there is no gold.
+
+**Registered expectation, before running v2:** acceptance rises materially above 0.4643 but does
+**not** approach 1.0. If it did, that would indicate the prompt had become an answer key rather than
+a question, and the run would be reported as such rather than as a success.
