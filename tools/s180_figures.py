@@ -109,24 +109,42 @@ def main(argv=None) -> int:
         return sum(1 for c in arm["per_case"] for a in c["accepted"]
                    if a["field"] in LP.PROPOSABLE_FIELDS)
 
-    labels = ["7B prompt v1", "7B prompt v2"]
-    rec = [a1["proposals_accepted"], a2["proposals_accepted"]]
-    sur = [surviving(a1), surviving(a2)]
-    fig, ax = plt.subplots(figsize=(5.2, 3.1))
+    b1 = read("reports/s180/step7_arm_L72b_v1prompt_2026-11-15.json")
+    b3 = read("reports/s180/step7_arm_L72b_v3prompt_2026-11-15.json")
+
+    def grounded(arm) -> int:
+        """Accepted proposals whose span actually licenses the value (D-137)."""
+        return sum(1 for c in arm["per_case"] for a in c.get("accepted", [])
+                   if a["field"] in LP.PROPOSABLE_FIELDS
+                   and LP.span_grounds_value(raws[str(c["pageid"])], *a["span"]))
+
+    raws = {}
+    packet = ROOT / "data/interim/s180_hardcases/hardcases_60_s180-layer1-hardcases-2026-11-15.jsonl"
+    if packet.exists():
+        for line in packet.open(encoding="utf-8"):
+            row = json.loads(line)
+            raws[str(row["pageid"])] = row["raw"]
+
+    labels = ["7B v1", "7B v3", "72B v1", "72B v3"]
+    arms = [a1, read("reports/s180/step7_arm_L7b_v3prompt_2026-11-15.json"), b1, b3]
+    acc = [surviving(a) for a in arms]
+    gnd = [grounded(a) for a in arms] if raws else [0, 0, 0, 0]
+    fig, ax = plt.subplots(figsize=(5.8, 3.2))
     x = range(len(labels))
-    ax.bar([i - w / 2 for i in x], rec, w, label="accepted as recorded", color="#B3C7E0")
-    ax.bar([i + w / 2 for i in x], sur, w, label="on the surviving licensed surface", color="#4C78A8")
-    for i, (r, s) in enumerate(zip(rec, sur)):
-        ax.text(i - w / 2, r + 0.6, str(r), ha="center", fontsize=8)
-        ax.text(i + w / 2, s + 0.6, str(s), ha="center", fontsize=8)
+    ax.bar([i - w / 2 for i in x], acc, w, label="accepted on the licensed field", color="#B3C7E0")
+    ax.bar([i + w / 2 for i in x], gnd, w, label="span actually grounds the value", color="#4C78A8")
+    for i, (r, g) in enumerate(zip(acc, gnd)):
+        ax.text(i - w / 2, r + 0.4, str(r), ha="center", fontsize=8)
+        ax.text(i + w / 2, g + 0.4, str(g), ha="center", fontsize=8)
     ax.set_xticks(list(x))
-    ax.set_xticklabels(labels)
-    ax.set_ylabel("accepted proposals")
-    ax.set_title("Layer-1: removing a referenceless field\n"
+    ax.set_xticklabels(labels, fontsize=8)
+    ax.set_ylabel("proposals")
+    ax.set_title("Asking for a quote instead of character offsets\n"
                  f"{seal['selected_n']} sealed cases · {n_elig} with a licensed trigger", fontsize=9)
     ax.legend(fontsize=7, frameon=False)
-    stamp(fig, f"{DIAG} · the two bars are NOT comparable: 'as recorded' counted condition_profile_id,"
-               f" a reference field with no referent (D-135) · re-scoring of recorded data, not a re-run")
+    stamp(fig, f"{DIAG} · v1/v2 asked the model for integer offsets and grounded nothing; v3 asks for "
+               f"the licensing quote and locates it in code (A5) · 7B v3's low count is an abstention "
+               f"clause, see prompt_sensitivity_probe_2026-11-15.md, not a grounding result")
     save(fig, "fig_s180_2_layer1_surface")
 
     # ---- fig 3: the 13 compatibility axes by status ---------------------------------------------

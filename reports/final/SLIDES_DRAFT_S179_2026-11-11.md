@@ -213,24 +213,26 @@ Figure: `fig_s180_4_ph_bands`. Existing pH coverage figures are unchanged and re
 
 ---
 
-# 72B vs 7B: scale helps at choosing, not at grounding
+# Layer-1: three defects, and what fixed it
 
 **DIAGNOSTIC_ONLY · AI_DELEGATED_D085 · no gold · not accuracy.**
 
-Same 60 sealed cases, same prompt, 60/60 answered by both.
-
-| | 7B | 72B |
+| Arm | Accepted | **Grounded** |
 |---|---|---|
-| Values naming a real choice | 7/14 — 50% | **13/16 — 81%** |
-| Spans that ground the value | **0/13** | **0/16** |
+| 7B v1 | 13 | **0** |
+| 72B v1 | 16 | **0** |
+| **72B v3** | **21** | **21** |
 
-- 72B avoided every 7B failure mode, and found two alternatives 7B missed — one a **lipid swap**.
-- Neither produced a single usable span. `frying_fat_or_butter` → span `'out 5 mm).\nHeat t'`.
-- **The models read correctly and then report the wrong location.**
-- Under the grounding rule the directive always required, **both arms accept zero**.
+1. The field was a **reference with no referent** — any noun passed (D-135)
+2. The gate **range-checked** spans and called it grounding (D-137)
+3. The prompt asked a language model to **count characters** (v3: quote it instead)
 
-Registered in advance (amendment A4) as a reportable result, not a failed run.
-**Span grounding, not model scale, is the binding constraint on Layer-1.**
+**0 → 21 grounded. 0 of 63 quotes failed to locate.**
+
+Scale moved selection 50% → 90%. It moved grounding **0 → 0**.
+**Grounding was a protocol defect; no model size fixed it.**
+
+Every defect was found because a check failed or a review read the output — never because a model behaved well.
 
 ---
 

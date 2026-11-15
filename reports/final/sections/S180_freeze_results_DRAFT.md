@@ -235,3 +235,57 @@ and ran on CPU.
 - Duplicate alternative groups across events are unchecked: the 72B proposed one group twice on one
   recipe and V4 did not object, because it checks exclusivity within a group, not duplication across
   them.
+
+
+---
+
+## 9. Final: asking for a quote instead of an offset
+
+Added 16 Nov 2026. Full detail: `reports/s180/step7_FINAL_COMPARISON_2026-11-16.md`. This supersedes
+§8's conclusion that Layer-1 contributes nothing; §1–§8 stand as recorded.
+
+**Three defects, found in order, each closed with a decision record.**
+
+1. **D-135** — `condition_profile_id` was a reference field with no referent, so any noun passed.
+2. **D-137** — the gate range-checked spans and reported it as grounding, which the directive had
+   always required. **Every** accepted proposal across both v1 arms pointed somewhere else.
+3. **A5 / prompt v3** — asking a language model for integer character offsets yields plausible
+   numbers, not locations. v3 asks for the licensing **quote** and locates it in code.
+
+| Arm | Accepted on the licensed field | **Span grounds the value** |
+|---|---|---|
+| 7B v1 | 13 | **0** |
+| 7B v3 | 1 | **1** |
+| 72B v1 | 16 | **0** |
+| **72B v3** | **21** | **21** |
+
+**0 → 21 grounded proposals, and 0 of 63 quotes failed to locate.**
+
+**Scale improved selection and did nothing for grounding.** The 72B names a real choice in 90% of its
+v3 proposals against the 7B's 50% under v1, and found alternatives the 7B missed entirely — including
+a `clarified butter or olive oil` swap that changes the context `C_t` tracks. But under v1 both arms
+grounded **zero**. Grounding was a protocol defect and no model size touched it.
+
+The 7B's v3 count of 1 is **not** a model result: a single clause, "Return [] if nothing is
+warranted", flips it from answering to declining everything
+(`reports/s180/prompt_sensitivity_probe_2026-11-15.md`). The 72B is robust to that clause.
+
+**AI-delegated verdicts on the 21** (`AI_DELEGATED_D085`, not gold): 9 well-named real choices, 8
+real but labelling the slot rather than the branches, 2 duplicates of a correct group, and **2 not
+choices** — a `channa or choley` gloss of two names for one dish, and "4 minutes **or a little after
+it stops rising**", an endpoint construction that escaped the `or until` filter. **That second one is
+a gap in our rule, not the model's error**, and the filter was deliberately not widened after seeing
+which phrase slipped through.
+
+*Figure: `fig_s180_2_layer1_surface` in `figures_s180_2026-11-16/`.*
+
+### Final limitations for this layer
+
+- **No gold.** 19 of 21 is an AI-delegated reading; two personas of one model are not independent
+  raters. The human packet covers 35 proposals and is **open**.
+- **Single-sample arms** with a prompt sensitivity large enough to move an arm between answering and
+  silence on one sentence.
+- The 72B v3 run is **59 cases in one pass plus 1 repaired call** (A6). The repaired case needed
+  832 s against a 420 s timeout and contributed no accepted proposal.
+- **Recall unmeasured**; **duplicate groups across events unchecked**; **the endpoint filter is
+  incomplete**.
