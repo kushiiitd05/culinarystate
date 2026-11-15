@@ -165,6 +165,54 @@ Original failed gates and scientific limitations remain unchanged.
 
 ---
 
+# Architecture freeze — 15 November
+
+**DIAGNOSTIC_ONLY / NON_CITABLE / NO_HUMAN_SIGNOFF_D085.**
+
+Pipeline frozen: Event IR → `S_t=(G,C,Q,Y,P)` → invariant validator → evidence compiler →
+claim packet → verbalizer → claim verifier with template fallback.
+
+- Steps 1–10 complete. **No new architecture**: every item already had an SSOT-v16 CR.
+- Compatibility schema now carries **all 13 axes**, not salt/acid/lipid. 9 implemented · 2 in compiler · 2 schema-only.
+- An unavailable axis stays UNKNOWN **with a reason** — never dropped.
+- Unit suite 5,960 passed. 116 decisions, **none without an approver line**.
+
+Source: `sections/S180_freeze_results_DRAFT.md`. D-134/135/136 are AI-delegated; human sign-off owed.
+
+---
+
+# Layer-1: the validator decides, and here it had to
+
+**DIAGNOSTIC_ONLY · no gold · not accuracy.**
+
+Three model runs, 60 sealed hard cases, same prompt contract:
+**zero `(event_id, field)` slot agreement in every pair.** They never picked the same event to answer about.
+
+- Not a capability failure: 108 returns, **schema 1.000, spans 100%, numeric attempts 0**.
+- Cause: `condition_profile_id` was a **reference field with no referent** — so `pan`, `chicken`, `bowl_content` passed as condition profiles.
+- Removed it. Coreference triggers have no licensed destination; `VNEXT_FAT_STAYS` was already resolved by the rule.
+- **LLM surface is now one field on one trigger** → 13 accepted proposals, **none graded**.
+
+That is what "rules first, LLM only on ambiguity, validator decides" converges to.
+Figure: `fig_s180_2_layer1_surface`. Recorded numbers kept; prereg amendment A3 declares the gate change.
+
+---
+
+# pH: the table arrived, and tomato is still not acidic
+
+**FDA/CFSAN 2003, public domain · `UNVERIFIED_CROSSWALK_AI_DRAFTED` · human verification owed.**
+
+479 rows → **140 ingredient bands**. 31 acidic · 101 low-acid · **8 inconclusive**.
+
+- Earlier limitation: "no sourced pH table, so tomato sauce is not yet acidic."
+- The table is now here. The system **still** declines — tomato is **4.3–4.9**, straddling 4.6.
+- **No midpoints, no clipping** (D-013). An interval crossing the threshold is `INCONCLUSIVE`, not rounded to a side.
+- `C_t` stays **unwired** (D-136): the table measures the ingredient **as purchased, not the lot in the pot**.
+
+Figure: `fig_s180_4_ph_bands`. Existing pH coverage figures are unchanged and remain accurate as measured.
+
+---
+
 # Contributions and questions
 
 **Author contribution statement pending from Kush and Parv.**
