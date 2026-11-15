@@ -9,12 +9,12 @@ Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from
 | Class | Decisions |
 |---|---|
 | HUMAN | 80 |
-| AI_DELEGATED_D085 | 23 |
+| AI_DELEGATED_D085 | 24 |
 | AI_PERSONA_D071 | 6 |
 | MIXED_PERSONA_AND_HUMAN | 1 |
 | AI_AGENT_PROVISIONAL | 7 |
 | NO_APPROVER_LINE | 0 |
-| **all** | 117 |
+| **all** | 118 |
 
 Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 27 name the human in the title or instruction line instead of an Approver line.
 
@@ -59,3 +59,4 @@ Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 27 name th
 | D-134 | 2026-11-14 | Lineage vNext promoted for State v2 (D-132 rule applied; recorded by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-135 | 2026-11-15 | Layer-1 proposable surface narrowed to `alternative_group` only (decided by ksh+prv (AI, D-085) on Kush's instruction; entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-136 | 2026-11-15 | `C_t` is not wired to the FDA pH bands before the freeze (decided by ksh+prv (AI, D-085) on Kush's instruction; entered by the coding agent as scribe) | AI_DELEGATED_D085 |
+| D-137 | 2026-11-15 | Span grounding enforced: a span must license the value, not merely lie inside the text (decided by ksh+prv (AI, D-085) on Kush's instruction; entered by the coding agent as scribe) | AI_DELEGATED_D085 |
