@@ -89,6 +89,11 @@ def _by_no() -> dict[int, Axis]:
     return {a.axis_no: a for a in load_axes()}
 
 
+def axes_by_no() -> dict[int, Axis]:
+    """The registry keyed by axis number. Read-only view for callers and tests."""
+    return dict(_by_no())
+
+
 def select_axes(target: str, question_kind: str) -> tuple[int, ...]:
     """Axes to compile for this target and question, chosen before any applicability check."""
     if question_kind not in QUESTION_AXES:
@@ -131,10 +136,31 @@ def ph_axis_cell(state: Mapping[str, Any]) -> dict[str, Any]:
             "verify_status": band.verify_status}
 
 
+def geometry_axis_cell(state: Mapping[str, Any]) -> dict[str, Any]:
+    """Axis 9 from ``Q.piece_size_class``, which State v2 already derives from cut history.
+
+    This wires existing state; it produces nothing and estimates nothing. Evidence rows carry no
+    geometry field, so the row side of this axis is unavailable and a known query size can never be
+    a match. That case is ``QUERY_ONLY``: the query size is reported with its basis and the reason
+    the comparison could not be made. Calling it EVALUABLE would breach the freeze invariant that an
+    UNKNOWN evidence context must not be treated as a MATCH.
+    """
+    axis = _by_no()[9]
+    base = {"axis": axis.axis, "owner_step": axis.owner_step, "hard_exclusion": axis.hard_exclusion}
+    status, reason = _cell_status(state["Q"].get("piece_size_class"))
+    if status == "UNKNOWN":
+        return {**base, "status": "UNKNOWN", "reason": reason or axis.unknown_reason or "NO_CUT_HISTORY"}
+    cell = state["Q"]["piece_size_class"]
+    return {**base, "status": "QUERY_ONLY", "reason": "NO_ROW_GEOMETRY_FIELD",
+            "piece_size_class": cell["v"], "basis": cell.get("b") or "CUT_HISTORY"}
+
+
 def _axis_cell(axis: Axis, state: Mapping[str, Any], target: str, has_rows: bool) -> dict[str, Any]:
     """One compiled axis. An axis the code does not implement is UNKNOWN with the registry reason."""
     if axis.axis_no == 7:
         return ph_axis_cell(state)
+    if axis.axis_no == 9:
+        return geometry_axis_cell(state)
     if not axis.implemented:
         return {"status": "UNKNOWN", "reason": axis.unknown_reason or "NOT_IMPLEMENTED",
                 "axis": axis.axis, "owner_step": axis.owner_step, "hard_exclusion": axis.hard_exclusion}
