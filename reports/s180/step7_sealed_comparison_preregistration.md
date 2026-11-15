@@ -184,3 +184,39 @@ stands, and only the human packet in
 
 **What would void this run:** any case not reaching the model. The previous 72B attempt is void at
 20/60 after a VPN drop, and a partial on a stratified sealed set is not an arm.
+
+---
+
+## Amendment A4 — 15 Nov 2026, written while the 72B run is still in flight and before its result exists
+
+**What changed:** the gate again. `span_grounds_value` now requires a proposal's span to contain a
+standalone coordinator (`or` / `either`) that is not part of an endpoint construction
+(`or until|till|when|so`). New code `SPAN_DOES_NOT_GROUND_VALUE`.
+
+**Why.** §4 of this pre-registration states that "every span is range-checked", and the 15 Nov
+directive requires that "every proposal must carry source-span grounding". Those are not the same
+thing and the implementation only did the first. An AI-delegated evidence pass over the 14 accepted
+`alternative_group` proposals
+(`reports/s180/alternatives_verification_2026-11-15/AI_EVIDENCE_PASS_ksh_prv.md`) found that **none
+of the 14 spans supported its value**, at distances of 43 to 530 characters from the real evidence.
+So measure 4 of §3 — "span validity: share of accepted proposals whose span lies inside the raw
+text" — measured exactly what it said and nothing more, and the step-7 figures "spans 39/39 valid"
+and "24/24 valid" must be read as *range* validity, not grounding.
+
+This is again a **tightening**: it can only lower an acceptance count.
+
+**The in-flight asymmetry, declared now rather than discovered later.** The 72B process loaded
+`layer1_proposer` when it started, which was **before** this change. Its live gate therefore applies
+the D-135 surface **without** the D-137 grounding check. When it finishes, its accepted proposals
+will be re-scored by applying `span_grounds_value` to their recorded spans, and **both numbers will
+be reported**: as-gated and after grounding. The function is deterministic and reads only the
+recorded span against the sealed text, so the re-score is reproducible from the committed artifact.
+
+The sealed set is unchanged: same 60 cases, same seed, same packet SHA-256
+`b926c303993541d5380e4531f495f9c89c2111a0c5c902e99df0ad95f15da6e7`.
+
+**Registered expectation, before the 72B result exists:** after grounding, accepted counts for every
+arm fall **substantially**, and it would not be surprising for an arm to reach **zero**. A zero is a
+reportable result, not a failed run: it would say that on this corpus no model arm produced a
+grounded alternatives binding, which is a statement about the task and the prompt rather than about
+any model. Recorded results stay unedited either way.
