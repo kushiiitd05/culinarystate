@@ -131,6 +131,16 @@ def top_composition(corpus: list[dict], qi: int, k: int) -> list[int]:
     return [i for _, _, i in scored[:k]]
 
 
+def chance_jaccard(k: int, n: int) -> float:
+    """Expected Jaccard of two independent uniform top-k draws from n items.
+
+    Without this, a low observed overlap is uninterpretable: drawing 10 of 5,166 items twice
+    almost never collides, so "low" has to be read against how low chance already is.
+    """
+    expected_shared = k * k / max(1, n - 1)
+    return round(expected_shared / (2 * k - expected_shared), 4)
+
+
 def jaccard(a: list[int], b: list[int]) -> float:
     sa, sb = set(a), set(b)
     union = sa | sb
@@ -175,6 +185,8 @@ def main(argv=None) -> int:
                      "top1": {v: corpus[hits[v][0]]["id"] if hits[v] else None for v in VIEWS}})
 
     mean = {pair: round(sum(v) / len(v), 4) for pair, v in overlaps.items()}
+    chance = chance_jaccard(args.k, len(corpus))
+    lift = {pair: (round(m / chance, 1) if chance else None) for pair, m in mean.items()}
     result = {
         "labels": list(LABELS),
         "seed": SEED,
@@ -183,6 +195,8 @@ def main(argv=None) -> int:
         "corpus_states": len(corpus),
         "queries": len(queries),
         "mean_jaccard_overlap_at_k": mean,
+        "chance_jaccard_at_k": chance,
+        "overlap_lift_over_chance": lift,
         "queries_with_no_shared_hit_in_all_three": none_shared,
         "mean_hits_shared_by_all_three": round(all_three / len(queries), 3),
         "top1_agreement": {
@@ -197,6 +211,7 @@ def main(argv=None) -> int:
     out.write_text(json.dumps(result, indent=1, sort_keys=True), encoding="utf-8")
     print(f"corpus {len(corpus)} states from {args.recipes} recipes | {len(queries)} queries | k={args.k}")
     print(f"mean Jaccard@k: {mean}")
+    print(f"chance Jaccard@k: {chance} | lift over chance: {lift}")
     print(f"top-1 agreement: {result['top1_agreement']}")
     print(f"queries with nothing shared by all three: {none_shared}/{len(queries)}")
     print(f"-> {args.out}  ({result['build_seconds']}s)")
