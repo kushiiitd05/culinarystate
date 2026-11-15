@@ -81,9 +81,19 @@ REJECTION_CODES: tuple[str, ...] = (
     "FIELD_NOT_LICENSED_BY_TRIGGER",
     "EVENT_NOT_IN_GRAPH",
     "SPAN_OUT_OF_RANGE",
+    "SPAN_DOES_NOT_GROUND_VALUE",
     "WOULD_VIOLATE_INVARIANT",
     "MALFORMED_PROPOSAL",
 )
+#: Coordinators that bind an alternative in recipe prose. ``alternative_group`` is the only
+#: proposable field and ``VNEXT_ALTERNATIVE_SKIPPED`` is the only trigger that licenses it, and that
+#: trigger fires on coordinated text - so a span that grounds such a value contains one of these as a
+#: standalone token. Matched on word boundaries: "for", "colour" and "coriander" all contain "or".
+_COORDINATOR = re.compile(r"\b(?:or|either)\b", re.I)
+#: "simmer for 20 minutes **or until** thickened" is an endpoint condition, not a branch. The
+#: construction is very common in recipe prose, so an "or" that is only ever part of one does not
+#: ground an alternatives binding.
+_ENDPOINT_OR = re.compile(r"\bor\s+(?:until|till|when|so)\b", re.I)
 #: Lot statuses that count as an ambiguity.
 _UNRESOLVED_LOT_STATUSES = frozenset({"UNRESOLVED", "APPARENTLY_UNUSED"})
 _NUMERIC = re.compile(r"^\s*-?\d+(?:[.,]\d+)?\s*%?\s*$")
@@ -136,6 +146,22 @@ def triggers_for(*, flags: Iterable[str], lot_accounting: Mapping[str, str]) -> 
     return tuple(sorted(found))
 
 
+def span_grounds_value(raw: str, start: int, end: int) -> bool:
+    """Does the span actually license an alternatives binding, or is it merely in range?
+
+    The gate used to check only that the offsets lay inside ``raw``. That is a range check, not
+    grounding: any in-range offsets passed, and a review of the 14 accepted step-7 proposals found
+    **none** whose span supported its value, at distances of 43 to 530 characters from the real
+    evidence. The directive requires source-span grounding, so the span must contain a coordinator
+    that is not part of an endpoint condition.
+    """
+    if not (0 <= start < end <= len(raw)):
+        return False
+    text = raw[start:end]
+    without_endpoints = _ENDPOINT_OR.sub(" ", text)
+    return bool(_COORDINATOR.search(without_endpoints))
+
+
 def _reject(proposal: Proposal, graph: EventGraph, fired: Sequence[str]) -> str | None:
     """The first reason this proposal must be refused, or None if it survives the gate."""
     if proposal.trigger not in TRIGGERS:
@@ -180,6 +206,9 @@ def review(proposals: Iterable[Any], graph: EventGraph, *, triggers: Sequence[st
             continue
         if p.span_end > len(raw):
             rejected.append((p, "SPAN_OUT_OF_RANGE"))
+            continue
+        if not span_grounds_value(raw, p.span_start, p.span_end):
+            rejected.append((p, "SPAN_DOES_NOT_GROUND_VALUE"))
             continue
         before = _issue_codes(graph)
         if _issue_codes(apply([p], graph)) - before:
