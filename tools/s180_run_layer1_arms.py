@@ -159,14 +159,22 @@ def ask_hosted(prompt: str, timeout: int) -> str:
         raise SystemExit(f"no API key found in {NIM_ENV}")
     payload = json.dumps({"model": HOSTED_MODEL, "temperature": 0,
                           "messages": [{"role": "user", "content": prompt}]})
-    cmd = ["curl", "-s", "--max-time", str(timeout), NIM_URL,
+    # -sS so curl reports why it failed; the key is passed as a header and never logged.
+    cmd = ["curl", "-sS", "--max-time", str(timeout), NIM_URL,
            "-H", "Content-Type: application/json", "-H", f"Authorization: Bearer {key}", "-d", "@-"]
     env = dict(os.environ)
     done = subprocess.run(cmd, input=payload, capture_output=True, text=True,
-                          timeout=timeout + 30, env=env)
+                          timeout=timeout + 60, env=env)
     if done.returncode != 0:
-        raise RuntimeError(done.stderr.strip()[:200] or "curl failed")
-    return json.loads(done.stdout)["choices"][0]["message"]["content"]
+        detail = done.stderr.strip()[:200] or "no stderr"
+        raise RuntimeError(f"curl rc={done.returncode}: {detail}")
+    try:
+        body = json.loads(done.stdout)
+    except json.JSONDecodeError:
+        raise RuntimeError(f"non-JSON reply: {done.stdout[:160]}")
+    if "choices" not in body:
+        raise RuntimeError(f"api error: {json.dumps(body)[:200]}")
+    return body["choices"][0]["message"]["content"]
 
 
 def to_proposals(text: str):
