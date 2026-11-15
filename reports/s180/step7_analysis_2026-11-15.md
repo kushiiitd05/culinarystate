@@ -163,3 +163,87 @@ the contract fully, costs nothing, and sends no data off the machine.
    validator invariant question (§ "no unsupported values"), mapped to the existing SSOT-v16 work,
    not a new component.
 3. `VNEXT_FAT_STAYS` got zero accepted proposals under either prompt. Unexplained.
+
+---
+
+## 9. Addendum — the surface narrowed, and what the numbers become
+
+Written 15 Nov 2026, after §5 was acted on. Proposal:
+`reports/s180/layer1_proposable_surface_proposal_v1.md`, reviewed ACCEPT_WITH_CHANGES by ksh and prv
+(AI, D-085) on Kush's instruction. Everything in §1–§8 stands as recorded; nothing above was edited.
+
+### 9.1 What changed in the gate
+
+`condition_profile_id` is a **reference field with no referent and no consumer**: the 36-step plan
+defines it as a pointer to a 07H COND record, nothing in `src/` reads it, and no COND records are
+minted on the recipe side. A model cannot mint a reference, and a non-blank string check cannot tell
+one from a noun lifted out of the sentence. So it is no longer proposable, and is refused as
+`FIELD_REQUIRES_EXISTING_REFERENT`.
+
+`VNEXT_FAT_STAYS` licenses nothing: the rule has already committed the fat/food merge before the flag
+is raised. The coreference triggers license nothing either — their answer's destination is an
+allocation, which is never proposable, or a cell the rules already fill from a cue span with a basis.
+
+**Net LLM surface: one field, `alternative_group`, on one trigger, `VNEXT_ALTERNATIVE_SKIPPED`.**
+
+### 9.2 Re-scored, with denominators
+
+A re-scoring of the **recorded, unchanged** result files. Both columns are shown because the recorded
+numbers are the registered result and the pre-registration requires old results be kept. They are
+**not comparable**: the recorded figures counted a field that should never have been on offer.
+
+| | recorded accepted | accepted on the surviving surface |
+|---|---|---|
+| 7B prompt v1 | 39 of 84 returned, 31/60 cases | **13**, across 11 of the 18 cases with a licensed trigger |
+| 7B prompt v2 | 24 of 24 returned, 17/60 cases | **1**, across 1 of those 18 cases |
+
+Denominators: **60** sealed cases, **18** with `VNEXT_ALTERNATIVE_SKIPPED` among fired triggers,
+**15** with it as primary. The drop is not a regression — it is the removal of acceptances that were
+earned on a referenceless field.
+
+### 9.3 Layer-1's measured contribution, stated plainly (ksh change 4)
+
+**On the 60 hardest cases in the corpus, the LLM layer's licensed surface is one field on one trigger,
+and it produced 13 accepted proposals, none of which is graded, because there is no gold.**
+
+That is the honest headline for the LLM layer, and it is a defensible one: it is what "rules first,
+LLM proposes only on ambiguity triggers, validator decides" is supposed to converge to. The surface is
+small because the destinations for the other answers do not exist yet — not because the questions are
+uninteresting. `AMBIGUOUS_REFERENCE` is the primary trigger on 12 of 60 cases and leaving it UNKNOWN
+is a stated limitation, not a solved problem.
+
+### 9.4 `alternative_group` carries the whole layer, and is itself unvalidated (prv change 3)
+
+It has no closed vocabulary. V4 checks only that group members are mutually exclusive
+(`ALTERNATIVE_GROUP_TREATED_AS_CONJUNCTION`) — structural, not semantic. Two runs can label the same
+group `"filling"` and `"sugar_or_milk"` and both pass.
+
+It must be reported as a **grouping label, not an equivalence claim.** The 48,520 corpus flags are not
+one phenomenon: true substitutions (butter or oil), **non-equivalent** alternatives where the choice
+changes the chemistry materially (lemon juice or vinegar is an acid swap with a different pH and
+different volatiles; water or stock changes the salt context), and garnish-level options. A reader who
+takes "alternatives" to mean interchangeable would be wrong for the acid swap, and that error would
+propagate into the salt/acid context cells.
+
+Inspection of the 14 surviving accepted values suggests roughly half are not choices at all
+(`marinade_time`, `niter_qibe`, `fish_stock_cube`, `flaky_pie_crust`). **That is the coding agent's
+reading, not a measurement.** It is recorded as prior expectation in
+`reports/s180/alternatives_verification_2026-11-15/`, which is a 20-row packet for Kush and Parv. A
+completed packet would license a stated correctness rate on this field — the only correctness number
+step 7 could ever produce. It is owed and open.
+
+### 9.5 Why this makes a 72B re-run worth doing
+
+Before the narrowing, an arm could earn acceptance by writing a noun from the sentence into a
+referenceless field, so the acceptance rate measured almost nothing. With one field and one trigger,
+an arm can only be accepted for binding a mutually exclusive group — so a 72B re-run now measures
+something real, on 18 eligible cases rather than 60. The question stays open; its run is void at 20/60.
+
+### 9.6 Refused during review
+
+A closed vocabulary of **condition kinds** (`OVEN_BAKE`, `OIL_FRY`, `SIMMER_COVERED`) was considered
+and refused by both reviewers. `Q.medium`, `Q.lid_state`, `G.family`, `G.process` and `Q.start_mode`
+are already populated from cue spans with a basis on each cell, so asking a model for `OIL_FRY` would
+be a second, unsourced opinion on a sourced cell — a second implementation of state in all but name,
+which the freeze forbids. A flat label would also collapse the per-axis UNKNOWN that makes the
+condition representation worth having.
