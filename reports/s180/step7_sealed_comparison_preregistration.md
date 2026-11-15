@@ -143,3 +143,44 @@ this task. Neither number is accuracy: §5 stands, there is no gold.
 **Registered expectation, before running v2:** acceptance rises materially above 0.4643 but does
 **not** approach 1.0. If it did, that would indicate the prompt had become an answer key rather than
 a question, and the run would be reported as such rather than as a success.
+
+---
+
+## Amendment A3 — 15 Nov 2026, written and committed before the 72B result exists
+
+**What changed:** the gate. D-135 removed `condition_profile_id` from `PROPOSABLE_FIELDS` (it is a
+reference field with no referent and no consumer) and closed `VNEXT_FAT_STAYS` and the coreference
+triggers. The licensed surface is now **one field, `alternative_group`, on one trigger,
+`VNEXT_ALTERNATIVE_SKIPPED`**. New rejection code `FIELD_REQUIRES_EXISTING_REFERENT`;
+`REJECTION_CODES` is declared and closed.
+
+**Why this is not tuning.** §4 of this pre-registration says acceptance is decided by the gate, so a
+gate change is material and must be declared. It is a **tightening**: it removes licensed surface and
+can only lower an arm's acceptance count, never raise it. It was not chosen after seeing which arm it
+favoured — it was forced by §5 of `step7_analysis_2026-11-15.md`, where three runs showed zero slot
+agreement and the accepted values (`pan`, `chicken`, `bowl_content`, `boiling_time`) showed the field
+was taking nouns from the sentence. The change was reviewed ACCEPT_WITH_CHANGES by ksh and prv
+(AI, D-085) before implementation.
+
+**Status of the sealed set:** unchanged. Same 60 cases, same seed, same packet SHA-256
+`b926c303993541d5380e4531f495f9c89c2111a0c5c902e99df0ad95f15da6e7`. No case added, removed or
+re-ranked.
+
+**Status of recorded results:** kept, unedited. `step7_arm_L_qwen7b_2026-11-15.json` and
+`step7_arm_L_qwen7b_v2_2026-11-15.json` stand as registered. Their re-scored figures (39 → 13,
+24 → 1) are reported beside the recorded ones with denominators, never instead of them.
+
+**One asymmetry, declared now.** The 7B runs were gated under the old gate and are re-scored by
+filtering accepted proposals on field name. The 72B run will be gated live under the new gate. The
+filter is deterministic on field name and the two routes give the same set, but they are not the same
+procedure and this is recorded so no one discovers it later.
+
+**Registered expectation, before running 72B:** on the 18 cases with a licensed trigger, 72B accepts
+**more than 13** `alternative_group` proposals (the 7B v1 re-scored count) if scale helps on this
+task, and **about 13 or fewer** if the task is limited by the prompt and the schema rather than by
+model capability. Either outcome is reportable. Neither is accuracy: there is still **no gold**, §5
+stands, and only the human packet in
+`reports/s180/alternatives_verification_2026-11-15/` could make these proposals correct or incorrect.
+
+**What would void this run:** any case not reaching the model. The previous 72B attempt is void at
+20/60 after a VPN drop, and a partial on a stratified sealed set is not an arm.
