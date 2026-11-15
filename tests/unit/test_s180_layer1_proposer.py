@@ -37,7 +37,9 @@ def ent(nid, etype="INTERMEDIATE", lifecycle="ACTIVE", parents=(), by=None):
 
 def prop(**kw):
     base = dict(trigger="VNEXT_ALTERNATIVE_SKIPPED", field="alternative_group", value="ALT-1",
-                event_id="E1", span_start=4, span_end=21, rationale="\"or\" binds a choice")
+                event_id="E1", span_start=4, span_end=34, rationale="\"or\" binds a choice")
+# span 4:34 is "the lemon juice or the vinegar". It used to end at 21, which cut "or" in half, so the
+# fixture's own span grounded nothing - caught by the S180 grounding check, not by the old range test.
     base.update(kw)
     return L1.Proposal(**base)
 
