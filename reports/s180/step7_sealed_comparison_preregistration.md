@@ -220,3 +220,56 @@ arm fall **substantially**, and it would not be surprising for an arm to reach *
 reportable result, not a failed run: it would say that on this corpus no model arm produced a
 grounded alternatives binding, which is a statement about the task and the prompt rather than about
 any model. Recorded results stay unedited either way.
+
+---
+
+## Amendment A5 — 15 Nov 2026, written and committed before prompt v3 exists or is run
+
+**Authorised by Kush**, 15 Nov 2026, on being shown that both arms accept **zero** proposals under
+the D-137 span-grounding rule, and choosing to run v3 on both 7B and 72B.
+
+**What changes: the prompt only. The gate is untouched.**
+
+v1 and v2 both ask the model for `span_start` and `span_end` as integer character offsets. The 72B
+result showed why that fails: **0 of 16 spans grounded their value**, while **13 of 16 values named a
+choice that genuinely exists in the text**. The models read the recipe correctly and then emit
+offsets that point somewhere else, because nothing makes them compute an offset rather than produce a
+plausible-looking number.
+
+**v3 asks for a `quote` instead**: the exact substring of the recipe text that licenses the choice.
+The runner then locates that quote in the raw text deterministically and derives the span from the
+match. A quote that cannot be found is refused, with its own code. **The model never reports an
+offset, because a language model computing character offsets is the failure being removed.**
+
+**Why this is not tuning.** It does not relax any check — D-135 and D-137 both stay live and the
+runner applies them unchanged. It cannot manufacture an acceptance: a located quote still has to
+contain a coordinator that is not an endpoint construction, exactly as every other proposal does.
+It was authorised explicitly and is registered here before the prompt is written.
+
+**It also removes an asymmetry.** v1 was run against three different gate states as the gate was
+tightened (pre-D-135, post-D-135, and re-scored post-D-137). **v3 is the first configuration where
+both arms are gated live under the identical, current, full contract**, so it is the cleanest
+comparison in this step and should be reported as such.
+
+**Status of the sealed set:** unchanged. Same 60 cases, same seed, same packet SHA-256
+`b926c303993541d5380e4531f495f9c89c2111a0c5c902e99df0ad95f15da6e7`.
+
+**Status of recorded results:** v1 and v2 results for both arms are kept, unedited, and reported
+beside v3. v3 does not replace them.
+
+### Registered expectations, before v3 is written or run
+
+1. **Grounded acceptance rises above zero for both arms.** This is the whole hypothesis: that the
+   zero is an artifact of asking a model for integer offsets, not a property of the task.
+2. **The 72B keeps its advantage on value selection** (13 of 16 named a real choice against 7 of 14),
+   because v3 changes how a choice is *located*, not how it is *found*.
+3. **If v3 still yields zero on both arms**, the zero is a property of the task and the schema rather
+   than of the prompt, and the Layer-1 chapter's negative result stands and is considerably better
+   defended than it is today.
+4. **A quote that is not found verbatim is a refusal, not a near-miss to be repaired.** No fuzzy
+   matching, no normalisation beyond collapsing runs of whitespace, no nearest-match fallback.
+   Inventing a location for a quote the model did not produce exactly would reintroduce the defect
+   this amendment exists to remove.
+
+All four are DIAGNOSTIC. There is still **no gold**, §5 stands, and no arm may be called correct on
+any v3 number.
