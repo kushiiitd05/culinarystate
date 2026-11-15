@@ -1,5 +1,61 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
+## Layer-1 closed: 0 → 21 grounded proposals — 16 November 2026 (newest)
+
+Branch `kush/s179-finish-fixes`; decisions through **D-137**. All four of D-134..D-137 carry
+`AI_DELEGATED_D085` approvals from the ksh/prv personas on Kush's instruction and **all four owe a
+human sign-off**. Unit suite 5,968 passed, 1 skipped, 0 failed. Nothing is running.
+
+**Three defects in Layer-1, found in order, each closed with a decision record:**
+
+1. **D-135** — `condition_profile_id` was a reference field with no referent and no consumer, so a
+   non-blank string check accepted any noun (`pan`, `chicken`, `bowl_content`). Removed from the
+   proposable set; the licensed surface is now **one field on one trigger**.
+2. **D-137** — the gate range-checked spans and reported that as grounding, which the 15 Nov
+   directive had always required. **0 of 14** accepted proposals had a span supporting its value.
+3. **Prompt v3 (amendment A5)** — asking a language model for integer character offsets produces
+   plausible numbers, not locations. v3 asks for the licensing **quote**; the runner locates it.
+
+| Arm | Accepted on the licensed field | **Span grounds the value** |
+|---|---|---|
+| 7B v1 | 13 | **0** |
+| 7B v3 | 1 | **1** |
+| 72B v1 | 16 | **0** |
+| **72B v3** | **21** | **21** |
+
+**0 → 21 grounded, and 0 of 63 quotes failed to locate.** Scale moved selection from 50% to 90% of
+values naming a real choice and moved grounding **0 → 0**: grounding was a protocol defect and no
+model size touched it. The 7B v3 count of 1 is an abstention clause, not a grounding result
+(`reports/s180/prompt_sensitivity_probe_2026-11-15.md`).
+
+AI-delegated verdicts on the 21: 9 well-named real choices, 8 real but slot-labelled, 2 duplicates,
+**2 not choices** — one a two-names-one-dish gloss, one an endpoint construction that escaped the
+`or until` filter. The second is **our** gap and the filter was deliberately not widened after seeing
+which phrase slipped through.
+
+- **START HERE:** `reports/s180/step7_FINAL_COMPARISON_2026-11-16.md`, then
+  `handoff/KUSH_REVIEW_GUIDE_2026-11-15.md`, then `DECISIONS.md` D-134..D-137.
+- Figures: `reports/final/figures_s180_2026-11-16/` (manifest carries each source sha256).
+- Pre-registration held: amendments **A1–A6**, each committed before the result it governs. The 72B
+  v3 run is **59 cases in one pass plus 1 repaired call** (A6), never a clean 60/60.
+
+### Pending
+
+- **Agent-doable: none.** All planned work is complete.
+- **Human-only, highest value first:** the **35-proposal packet**
+  `reports/s180/alternatives_verification_2026-11-15/` — still the only route to a correctness number,
+  since there is no gold; human sign-off on **D-134, D-135, D-136, D-137**; pH crosswalk verification
+  for any band used in a claim or figure.
+- **Human-only, carried forward:** chemistry reviewer and cuisine expert; Parv's crosswalk audit and
+  07.A/07I-C confirmation; the 10 Step-19 real-pilot blockers; M2 prereg signatures; M3 AA browser
+  downloads; H2 licence decisions.
+- **Recorded, not done before freeze:** widening the endpoint filter; duplicate-group checking;
+  recall measurement; several prompt variants per arm reported as a spread.
+- **Not pending — excluded by the 15 Nov directive:** learned compatibility, general causal graph,
+  multimodal input, new evidence knowledge graph, probabilistic quantitative uncertainty engine, new
+  learned state encoder, FoodOn/FNDDS expansion, simulator expansion.
+
+
 ## Architecture freeze executed, steps 1–10 — 15 November 2026 (supersedes the snapshots below)
 
 Branch `kush/s179-finish-fixes`; decisions through **D-136**. NO_HUMAN_SIGNOFF_D085 on D-134/135/136.
