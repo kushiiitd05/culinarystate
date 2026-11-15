@@ -9,12 +9,12 @@ Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from
 | Class | Decisions |
 |---|---|
 | HUMAN | 80 |
-| AI_DELEGATED_D085 | 21 |
+| AI_DELEGATED_D085 | 22 |
 | AI_PERSONA_D071 | 6 |
 | MIXED_PERSONA_AND_HUMAN | 1 |
 | AI_AGENT_PROVISIONAL | 7 |
 | NO_APPROVER_LINE | 0 |
-| **all** | 115 |
+| **all** | 116 |
 
 Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 27 name the human in the title or instruction line instead of an Approver line.
 
@@ -57,3 +57,4 @@ Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 27 name th
 | D-110 | 2026-11-13 | State dataset fill rule for all 612,782 recipes, fixed before computing (decided by ksh+prv (AI, D-085); entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-118 | 2026-11-14 | ksh+prv review of the parser guard, markers and D-116 schema; v2/v1.1 adopted (decided by ksh+prv (AI, D-085) on Kush's instruction "use prv and ksh for review"; entered by the coding agent as scribe) | AI_DELEGATED_D085 |
 | D-134 | 2026-11-14 | Lineage vNext promoted for State v2 (D-132 rule applied; recorded by the coding agent as scribe) | AI_DELEGATED_D085 |
+| D-135 | 2026-11-15 | Layer-1 proposable surface narrowed to `alternative_group` only (decided by ksh+prv (AI, D-085) on Kush's instruction; entered by the coding agent as scribe) | AI_DELEGATED_D085 |
