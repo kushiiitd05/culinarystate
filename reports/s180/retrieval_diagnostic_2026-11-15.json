@@ -1,13 +1,13 @@
 {
- "build_seconds": 23.7,
+ "build_seconds": 22.5,
  "chance_jaccard_at_k": 0.001,
- "corpus_states": 5166,
+ "corpus_states": 5181,
  "family_distribution": {
   "COMBINATION": 1365,
   "COOLING": 137,
-  "DRY_HEAT": 137,
+  "DRY_HEAT": 149,
   "FAT_HEAT": 138,
-  "HEAT_GENERAL": 281,
+  "HEAT_GENERAL": 284,
   "MECHANICAL_CUT": 194,
   "MECHANICAL_MIX": 1119,
   "SEPARATION": 77,
@@ -25,13 +25,13 @@
  ],
  "mean_hits_shared_by_all_three": 0.475,
  "mean_jaccard_overlap_at_k": {
-  "PROCESS|COMPOSITION": 0.0442,
-  "TEXT|COMPOSITION": 0.1032,
+  "PROCESS|COMPOSITION": 0.0455,
+  "TEXT|COMPOSITION": 0.1018,
   "TEXT|PROCESS": 0.1164
  },
  "overlap_lift_over_chance": {
-  "PROCESS|COMPOSITION": 44.2,
-  "TEXT|COMPOSITION": 103.2,
+  "PROCESS|COMPOSITION": 45.5,
+  "TEXT|COMPOSITION": 101.8,
   "TEXT|PROCESS": 116.4
  },
  "per_query": [
@@ -615,8 +615,8 @@
    "family": "DRY_HEAT",
    "is_heat": true,
    "overlap": {
-    "PROCESS|COMPOSITION": 0.0,
-    "TEXT|COMPOSITION": 0.0526,
+    "PROCESS|COMPOSITION": 0.0526,
+    "TEXT|COMPOSITION": 0.0,
     "TEXT|PROCESS": 0.0526
    },
    "query_id": "12554:30:ING-000998",
@@ -680,6 +680,8 @@
  "queries_with_no_shared_hit_in_all_three": 34,
  "recipes_scanned": 150,
  "seed": "s180-retrieval-diagnostic-2026-11-15",
+ "state_vector_dims": 51,
+ "state_vector_version": "V0",
  "top1_agreement": {
   "PROCESS|COMPOSITION": 0.05,
   "TEXT|COMPOSITION": 0.05,

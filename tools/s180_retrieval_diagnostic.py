@@ -53,7 +53,12 @@ def steps_text(record: dict) -> str:
     return "\n".join(s.get("text", "") for s in steps if isinstance(s, dict) and s.get("text"))
 
 
-def build_corpus(limit: int) -> list[dict]:
+def _num(cell):
+    v = (cell or {}).get("v")
+    return v if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+
+
+def build_corpus(limit: int, version: str) -> list[dict]:
     """One entry per (food, step): its text, its process signature and its state vector."""
     from culinarystate.composition.state_full import StateBuilder
     from culinarystate.composition import state_vector as SV
@@ -76,17 +81,34 @@ def build_corpus(limit: int) -> list[dict]:
             g, q, c = state["G"], state["Q"], state["C"]
             proc = (g.get("process") or {}).get("v") or ""
             family = (g.get("family") or {}).get("v") or ""
+            common = dict(
+                family=family or None,
+                step_position=state["step"] / max(1, len(states)),
+                n_inputs=len((g.get("lot_members") or {}).get("v") or []),
+                n_members=len((g.get("lot_members") or {}).get("v") or []),
+                history=set((g.get("history") or {}).get("v") or []),
+                ctx=c,
+                temperature_c=_num(q.get("temperature_C")),
+                duration_min=_num(q.get("duration_min")),
+            )
             try:
-                vector = SV.encode(
-                    family=family or None,
-                    step_position=state["step"] / max(1, len(states)),
-                    n_inputs=len((g.get("lot_members") or {}).get("v") or []),
-                    n_members=len((g.get("lot_members") or {}).get("v") or []),
-                    history=set((g.get("history") or {}).get("v") or []),
-                    ctx=c,
-                    temperature_c=(q.get("temperature_C") or {}).get("v"),
-                    duration_min=(q.get("duration_min") or {}).get("v"),
-                )
+                if version == "V0":
+                    vector = SV.encode(**common)
+                else:
+                    lid = str((q.get("lid_state") or {}).get("v") or "").upper()
+                    oxy = (q.get("oxygen_exposure_proxy") or {}).get("v")
+                    vector = SV.encode_v1(
+                        **common,
+                        heat_steps_so_far=_num(g.get("heat_steps_so_far")),
+                        thermal_dose_min=_num(q.get("thermal_dose_typical_min")),
+                        cumulative_dose_min=_num(q.get("cumulative_thermal_dose_min")),
+                        hot_aqueous_minutes=_num(q.get("hot_aqueous_minutes")),
+                        hot_fat_minutes=_num(q.get("hot_fat_minutes")),
+                        food_t_typical_c=_num(q.get("food_T_typical_C")),
+                        moisture_cap_c=_num(q.get("moisture_cap_C")),
+                        lid_covered=(None if not lid else ("COVER" in lid and "UN" not in lid)),
+                        oxygen_limited=(None if oxy is None else oxy == "LIMITED_LID"),
+                    )
             except Exception:
                 continue
             corpus.append({
@@ -153,12 +175,14 @@ def main(argv=None) -> int:
     ap.add_argument("--queries", type=int, default=40)
     ap.add_argument("--k", type=int, default=10)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--vector", choices=("V0", "V1"), default="V0",
+                    help="which STATE_VECTOR the COMPOSITION view uses")
     args = ap.parse_args(argv)
 
     from culinarystate.retrieval.bm25 import BM25
 
     t0 = time.time()
-    corpus = build_corpus(args.recipes)
+    corpus = build_corpus(args.recipes, args.vector)
     if len(corpus) < args.k + 2:
         raise SystemExit(f"corpus too small ({len(corpus)}) for k={args.k}")
     bm25 = BM25([c["text"] for c in corpus])
@@ -190,6 +214,8 @@ def main(argv=None) -> int:
     result = {
         "labels": list(LABELS),
         "seed": SEED,
+        "state_vector_version": args.vector,
+        "state_vector_dims": len(corpus[0]["vector"][0]),
         "k": args.k,
         "recipes_scanned": args.recipes,
         "corpus_states": len(corpus),
@@ -209,7 +235,8 @@ def main(argv=None) -> int:
     out = ROOT / args.out
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(result, indent=1, sort_keys=True), encoding="utf-8")
-    print(f"corpus {len(corpus)} states from {args.recipes} recipes | {len(queries)} queries | k={args.k}")
+    print(f"corpus {len(corpus)} states from {args.recipes} recipes | {len(queries)} queries "
+          f"| k={args.k} | vector {args.vector} ({len(corpus[0]['vector'][0])} dims)")
     print(f"mean Jaccard@k: {mean}")
     print(f"chance Jaccard@k: {chance} | lift over chance: {lift}")
     print(f"top-1 agreement: {result['top1_agreement']}")
