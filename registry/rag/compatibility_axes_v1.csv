@@ -7,7 +7,7 @@ axis_no,axis,match_types,ssot_source,hard_exclusion_from_direct,bracketing_eligi
 6,medium / heat-transfer mode,EXACT|COMPATIBLE|MISMATCH|UNKNOWN,SSOT 241.3 + MP AO2 + repo,no,no,yes,medium,IMPLEMENTED,36A.3,
 7,pH,EXACT|BRACKETED|NEAR|MISMATCH|UNKNOWN_QUERY|UNKNOWN_ROW,SSOT 241.3,no,yes,no,,IMPLEMENTED_IN_COMPILER,36A.3 (FDA/CFSAN 2003 via EXACT crosswalk; human verification still owed),
 8,aw / moisture (+ WET/DRY basis),EXACT|BRACKETED|NEAR|MISMATCH|UNKNOWN_QUERY|UNKNOWN_ROW,SSOT 241.3,no,yes,no,,SCHEMA_ONLY,36A.3 (post-submission),NO_AW_PRODUCER
-9,geometry / size,EXACT|NEAR|UNKNOWN,SSOT 241.3 + MP AO2,no,no,no,,SCHEMA_ONLY,36A.3 (state has piece_size_class at 9.7%),NOT_WIRED_TO_COMPATIBILITY
+9,geometry / size,EXACT|NEAR|UNKNOWN,SSOT 241.3 + MP AO2,no,no,no,,IMPLEMENTED_IN_COMPILER,36A.3 (query side only: Q.piece_size_class via CUT_HISTORY; evidence rows carry no geometry field),NO_CUT_HISTORY
 10,target (SVAR canonical; equivalence status),EXACT|EQUIVALENT_CANDIDATE|SAME_CLASS|MISMATCH,SSOT 241.3 + MP AO2 + repo,yes,no,yes,target,IMPLEMENTED,36A.3,
 11,measurement basis (fresh/dry weight; per raw/per cooked; %TR vs %AR; yield-corrected apparent retention),COMPATIBLE|CONVERTIBLE|INCOMPATIBLE|UNKNOWN,SSOT 241.3 + MP-1 L38-43,yes (INCOMPATIBLE),no,yes,basis,IMPLEMENTED,36A.3,
 12,measurement method / platform,SAME|DIFFERENT|UNKNOWN,MP AO2,no,no,no,,SCHEMA_ONLY,36A.3,MEAS_HAS_3_ROWS_PE_METHOD_NULL
