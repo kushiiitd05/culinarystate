@@ -202,6 +202,19 @@ SSH_RETRIES = 4
 SSH_BACKOFF_S = 20
 
 
+#: ssh prints a post-quantum key-exchange advisory on every connection to this server. It is not an
+#: error, but it is the first thing in stderr, so reporting stderr verbatim hides the real cause -
+#: it masked a timeout twice while diagnosing the 72B v3 run. Dropped before reporting.
+_SSH_NOISE = ("post-quantum", "store now, decrypt later", "openssh.com/pq", "may need to be upgraded")
+
+
+def _real_error(stderr: str) -> str:
+    """stderr with the known advisory lines removed, so the reported cause is the real one."""
+    lines = [ln for ln in (stderr or "").splitlines()
+             if ln.strip() and not any(n in ln for n in _SSH_NOISE)]
+    return " | ".join(lines)[:200]
+
+
 def ask_local(prompt: str, timeout: int) -> str:
     """Pipe the request to ollama on the server over ssh stdin; text is never a shell argument."""
     payload = json.dumps({"model": LOCAL_MODEL, "stream": False,
@@ -216,7 +229,7 @@ def ask_local(prompt: str, timeout: int) -> str:
                               timeout=timeout + 30)
         if done.returncode == 0:
             return json.loads(done.stdout)["message"]["content"]
-        last = done.stderr.strip()[:200] or "ssh failed"
+        last = _real_error(done.stderr) or f"ssh exit {done.returncode}"
         if attempt < SSH_RETRIES - 1:
             print(f"  ssh attempt {attempt + 1} failed ({last[:60]}); retrying in {SSH_BACKOFF_S}s",
                   flush=True)
