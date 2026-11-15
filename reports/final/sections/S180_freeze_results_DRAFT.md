@@ -1,0 +1,149 @@
+# S180 — results of the 15 Nov architecture freeze
+
+**DRAFT section for the final report.** Written 15 Nov 2026 by the coding agent. Every number cites a
+committed artifact. Figures: `reports/final/figures_s180_2026-11-15/`, manifest carries the sha256 of
+each source.
+
+The 15 Nov freeze fixed the pipeline as: recipe semantic understanding → Typed Event IR →
+event-sourced `S_t=(G,C,Q,Y,P)` → invariant validator → query-specific evidence compiler → claim
+packet → LLM verbalizer → claim verifier with template fallback. Nothing new was designed. Every
+adopt-now item already had an SSOT-v16 change request, and the work below is the implementation of
+those, mapped to owner step 36A.3.
+
+## 1. The validator decides, and on this evidence it has to
+
+The strongest result of the freeze is negative and it is the one worth leading with.
+
+Over the 60 hardest cases in the corpus, three model runs — 7B prompt v1, 7B prompt v2, and a voided
+20-case 72B partial — produced **zero `(event_id, field)` slot agreement in every pair**. Not
+disagreement about answers: the runs did not choose the same event to answer about, even once
+(1 of 10 shared cases shared any `event_id`).
+
+The cause was not the models. All 108 recorded returns were schema-valid, every accepted span lay
+inside the raw text, and **no run attempted a single numeric value**. The cause was that
+`condition_profile_id` is a reference field with no referent and no consumer: the plan defines it as a
+pointer to a 07H COND record, nothing reads it, and no COND records are minted on the recipe side. A
+non-blank string check cannot tell a reference from a noun lifted out of the sentence, so `pan`,
+`chicken`, `bowl_content` and `boiling_time` were all accepted as condition profiles.
+
+**D-135** removed it from the proposable set. With `VNEXT_FAT_STAYS` (already resolved by the rule
+before its flag is raised) and the coreference triggers (whose answers have no licensed destination)
+also closed, the LLM's entire licensed surface is **one field, `alternative_group`, on one trigger,
+`VNEXT_ALTERNATIVE_SKIPPED`**.
+
+> **Layer-1's measured contribution: on the 60 hardest cases, the LLM layer's licensed surface is one
+> field on one trigger, and it produced 13 accepted proposals, none of them graded, because there is
+> no gold.**
+
+That is what "rules first, LLM proposes only on ambiguity triggers, validator decides" is supposed to
+converge to. The surface is small because the destinations for the other answers do not exist yet,
+not because the questions are uninteresting: `AMBIGUOUS_REFERENCE` is the primary trigger on 12 of 60
+cases and is left UNKNOWN by design.
+
+*Figure: `fig_s180_2_layer1_surface`.*
+
+### What this does not say
+
+There is **no gold** on the sealed set. No arm is correct, better or more accurate; acceptance
+measures contract compliance only. `alternative_group` itself has no closed vocabulary — V4 checks
+only that group members are mutually exclusive, which is structural, not semantic — and it is a
+**grouping label, not an equivalence claim**. A 20-row human packet
+(`reports/s180/alternatives_verification_2026-11-15/`) is open for Kush and Parv; a completed packet
+is the only route to a correctness number for this layer.
+
+## 2. State retrieval carries information the text does not
+
+Three retrieval views over the same 5,181 states and 40 queries: BM25 over step text, a process
+signature, and block-weighted cosine over the masked state vector.
+
+| pair | V0 (51 dims) | V1 (60 dims) |
+|---|---|---|
+| TEXT vs PROCESS | 0.1164 | 0.1164 |
+| TEXT vs COMPOSITION | 0.1018 | 0.0966 |
+| PROCESS vs COMPOSITION | 0.0455 | 0.0502 |
+
+Chance Jaccard@10 on this corpus is **0.001**, so these overlaps are 45–116× chance and still small.
+Nothing was shared by all three views on 34 of 40 queries (V0). The views are not redundant: a
+state-aware retriever is retrieving different neighbours from BM25, not the same ones more slowly.
+
+V1 exposes the physics history State v2 already computed — thermal dose, cumulative dose, hot-aqueous
+and hot-fat minutes, food temperature, moisture cap, lid state, oxygen proxy — which V0 omitted,
+carrying only `temperature_C` and `duration_min` in its Q block. V0 is left untouched because the
+committed diagnostic was measured on it.
+
+**DIAGNOSTIC_ONLY: there is no relevance gold for this corpus, so overlap is not precision and no view
+is better.** The measurement is of disagreement, not of ranking.
+
+*Figure: `fig_s180_1_retrieval_views`.*
+
+## 3. The compatibility schema carries all 13 axes
+
+The directive required the canonical schema not be limited to salt/acid/lipid. The registry
+`registry/rag/compatibility_axes_v1.csv` was created (it was referenced but did not exist) and merges
+SSOT §241.3, MP AO2 and the repo's nine implemented axes.
+
+**9 implemented · 2 implemented in the compiler · 2 schema only.** An unavailable axis stays UNKNOWN
+with a stated reason and is never dropped, which is what lets the compiler select question-relevant
+axes before retrieval instead of assuming a fixed triple.
+
+- **Axis 7 (pH)** left SCHEMA_ONLY when the FDA/CFSAN 2003 table was found already in the repo.
+- **Axis 9 (geometry)** was wired from `Q.piece_size_class`, which State v2 derives from cut history.
+  Evidence rows carry no geometry field, so a known query size is reported `QUERY_ONLY` — not
+  EVALUABLE. Treating a one-sided axis as a match would breach the freeze invariant that an UNKNOWN
+  evidence context must not be treated as a MATCH.
+- **Axis 8 (a_w / moisture)** has no producer and **axis 12 (measurement method)** has no data.
+
+*Figure: `fig_s180_3_axis_status`.*
+
+## 4. Ingredient pH bands, sourced and unverified
+
+`registry/food_ph_fda2003_v1.csv` — 479 rows, FDA/CFSAN *Approximate pH of Foods and Food Products*
+(Oct 2003), public domain, per-row source sha256 — joins to **140 ING ids** through EXACT/FULL
+crosswalk rows only: 113 intervals, 25 points, 2 lower-bound-only. Against the 4.6 threshold:
+**31 acidic · 101 low-acid · 8 inconclusive**.
+
+Bands are reported as the intervals they are. There are **no midpoints and no clipping** (D-013), so
+tomato at 4.3–4.9 is `INCONCLUSIVE_SPANS_THRESHOLD`, not forced to a side; vinegar at 2.4–3.4 and
+lemon juice at 2.0–2.6 are `ACIDIC`.
+
+**The ingredient crosswalk was drafted by AI and is not human-verified**
+(`UNVERIFIED_CROSSWALK_AI_DRAFTED`). Under D-085, AI review is not human verification, so no band may
+back a submission claim until the rows it rests on are verified. The bands are available to the
+evidence compiler; `C_t` is **not** wired to them, so every recorded corpus fill number stands as
+measured and the 257,369 `NO_SOURCED_PH_TABLE` cells in the November state fill remain accurate.
+
+*Figure: `fig_s180_4_ph_bands`.*
+
+## 5. Lineage vNext
+
+Promoted for State v2, RAG packet v2 and the submission headline rerun (D-134). The differential over
+611,902 recipes **raised no exceptions** and changed **29.3% of recipes** — `VNEXT_MIXTURE_COREF`
+140,828, `VNEXT_FAT_STAYS` 68,868, `VNEXT_ALTERNATIVE_SKIPPED` 48,520.
+
+**This is DIAGNOSTIC.** Aggregate behaviour is consistent with the intended corrections and with
+nothing else having been checked: there is **no gold regression set**, so no part of that 29.3% is
+known to be an improvement. Spot checks were Wikibooks-only and informal. It is not clean, not
+validated and not verified. "Raised no exceptions" means no process threw, not that no recipe was
+parsed wrongly.
+
+`VNEXT_FAT_STAYS` changes **contact, not quantity**. Keeping frying fat in the food's lot makes
+`lipid_present` true (82.5% → 83.2%) while `fat_fraction` stays UNKNOWN `MASS_NOT_GROUNDED`. It is not
+a claim that the food absorbed the frying medium; oil uptake is a surface and cooling-phase
+phenomenon and the quantitative question belongs to the simulator.
+
+## 6. Provenance of the decisions behind this section
+
+115 decisions: **HUMAN 80 · AI_DELEGATED_D085 21 · AI_PERSONA_D071 6 · MIXED 1 · AI_AGENT_PROVISIONAL
+7 · NO_APPROVER_LINE 0**. D-134 and D-135 are AI-delegated (ksh+prv personas under D-085, on Kush's
+instruction) and both still owe a human sign-off before submission.
+
+## 7. Open, and owed
+
+| Item | Blocker |
+|---|---|
+| `alternative_group` correctness rate | human packet, 20 rows, Kush + Parv |
+| pH bands in any claim | human verification of the crosswalk rows used |
+| D-134, D-135 for a submitted artifact | human sign-off |
+| 72B arm over the 18 eligible cases | VPN; run void at 20/60 |
+| `C_t` wired to pH bands | decision: may an unverified-but-sourced band enter the state? |
+| axes 8 and 12 | no producer, no data — post-submission |
