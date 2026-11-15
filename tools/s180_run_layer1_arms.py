@@ -99,13 +99,80 @@ def build_prompt(case: dict, event_ids: str, version: str = "v2") -> str:
     triggers = list(case["triggers"])
     questions = "\n".join(f'  - {t}: {TRIGGER_QUESTIONS.get(t, "resolve this ambiguity")}'
                            for t in triggers)
-    if version == "v1":
+    if version in ("v1", "v3"):
         fields = " or ".join(f'"{f}"' for f in PROPOSABLE_FIELDS)
     else:
         licensed = sorted({f for t in triggers for f in TRIGGER_FIELDS.get(t, ())})
         fields = " or ".join(f'"{f}"' for f in licensed) + " (and nothing else)"
-    return PROMPT.format(questions=questions, triggers=", ".join(triggers), fields=fields,
-                         event_ids=event_ids, raw=case["raw"])
+    template = PROMPT_V3 if version == "v3" else PROMPT
+    return template.format(questions=questions, triggers=", ".join(triggers), fields=fields,
+                           event_ids=event_ids, raw=case["raw"])
+
+
+PROMPT_V3 = """You resolve one kind of ambiguity in a recipe's event graph. Rules already parsed it.
+
+WHAT IS BEING ASKED:
+{questions}
+
+Return ONLY a JSON array of proposals. Each proposal is an object with exactly these keys:
+  "trigger": one of {triggers}
+  "field": {fields}
+  "value": a short CATEGORICAL label, never a number
+  "event_id": an event id from the graph below
+  "quote": the EXACT words from the RECIPE TEXT that license this choice, copied character for \
+character. Copy it; do not paraphrase, shorten or re-spell it. Keep it short - just the phrase \
+that shows the choice, such as the words around "or".
+  "rationale": one short sentence
+
+Hard rules: "field" must be exactly as listed above for the trigger you answer - no other field is \
+accepted. Never propose a number. The "quote" must appear verbatim in the RECIPE TEXT; a proposal \
+whose quote cannot be found is discarded. Return [] if nothing is warranted.
+
+EVENT IDS: {event_ids}
+
+RECIPE TEXT:
+{raw}"""
+
+#: Runs of whitespace are collapsed on both sides before matching, because a model re-wrapping a
+#: newline as a space should not cost a true match. Nothing else is normalised: case and punctuation
+#: are significant, and there is no fuzzy or nearest-match fallback (amendment A5). Inventing a
+#: location for a quote the model did not produce exactly would reintroduce the defect v3 removes.
+_WS = re.compile(r"\s+")
+
+
+def locate_quote(raw: str, quote: str) -> tuple[int, int] | None:
+    """Character offsets of ``quote`` in ``raw``, or None if it is not there.
+
+    The model never reports an offset in v3; it reports the words, and this finds them. A language
+    model computing character offsets is the failure A5 exists to remove.
+    """
+    if not quote or not quote.strip():
+        return None
+    if (i := raw.find(quote)) >= 0:
+        return i, i + len(quote)
+    # Whitespace-insensitive pass: walk the raw text once, mapping collapsed offsets back to real ones.
+    target = _WS.sub(" ", quote).strip()
+    if not target:
+        return None
+    flat, back = [], []
+    prev_ws = False
+    for idx, ch in enumerate(raw):
+        if ch.isspace():
+            if prev_ws:
+                continue
+            flat.append(" ")
+            back.append(idx)
+            prev_ws = True
+        else:
+            flat.append(ch)
+            back.append(idx)
+            prev_ws = False
+    j = "".join(flat).find(target)
+    if j < 0:
+        return None
+    start = back[j]
+    end_tok = back[j + len(target) - 1]
+    return start, end_tok + 1
 
 
 _JSON_ARRAY = re.compile(r"\[.*\]", re.DOTALL)
@@ -186,8 +253,13 @@ def ask_hosted(prompt: str, timeout: int) -> str:
     return body["choices"][0]["message"]["content"]
 
 
-def to_proposals(text: str):
-    """Model text -> Proposal objects. Anything unparseable is returned as a raw dict for the gate."""
+def to_proposals(text: str, raw: str | None = None):
+    """Model text -> Proposal objects. Anything unparseable is returned as a raw dict for the gate.
+
+    When ``raw`` is given (prompt v3), the span comes from locating the model's ``quote`` in the
+    recipe text rather than from offsets the model reported. A quote that is not found verbatim is
+    refused as ``QUOTE_NOT_FOUND_IN_TEXT``; there is no fuzzy or nearest-match fallback (A5).
+    """
     from culinarystate.composition.layer1_proposer import Proposal, ProposalError
     m = _JSON_ARRAY.search(text or "")
     if not m:
@@ -203,11 +275,19 @@ def to_proposals(text: str):
         if not isinstance(r, dict):
             out.append({"unparseable": str(r)[:120]})
             continue
+        start, end = r.get("span_start"), r.get("span_end")
+        if raw is not None:
+            found = locate_quote(raw, str(r.get("quote", "")))
+            if found is None:
+                out.append({"quote_not_found": str(r.get("quote", ""))[:120],
+                            "value": str(r.get("value", ""))[:80]})
+                continue
+            start, end = found
         try:
             out.append(Proposal(
                 trigger=str(r.get("trigger", "")), field=str(r.get("field", "")),
                 value=str(r.get("value", "")), event_id=str(r.get("event_id", "")),
-                span_start=r.get("span_start"), span_end=r.get("span_end"),
+                span_start=start, span_end=end,
                 rationale=str(r.get("rationale", ""))[:200]))
             parsed += 1
         except (ProposalError, TypeError):
@@ -234,12 +314,16 @@ def run_arm(arm: str, cases: list[dict], timeout: int, limit: int, prompt_versio
             continue
         latencies.append(round(time.time() - t0, 2))
 
-        proposals, parsed = to_proposals(text)
+        proposals, parsed = to_proposals(text, case["raw"] if prompt_version == "v3" else None)
         returned += len(proposals)
+        quote_misses = sum(1 for p in proposals if isinstance(p, dict) and "quote_not_found" in p)
+        reasons["QUOTE_NOT_FOUND_IN_TEXT"] += quote_misses
         parsed_total += parsed
         decisions = L1.review(proposals, graph, triggers=tuple(case["triggers"]), raw=case["raw"])
         accepted += len(decisions.accepted)
         span_ok += sum(1 for p in decisions.accepted if 0 <= p.span_start < p.span_end <= len(case["raw"]))
+        grounded = sum(1 for p in decisions.accepted
+                       if L1.span_grounds_value(case["raw"], p.span_start, p.span_end))
         for _, why in decisions.rejected:
             reasons[why] += 1
         rows.append({
@@ -249,6 +333,8 @@ def run_arm(arm: str, cases: list[dict], timeout: int, limit: int, prompt_versio
             "accepted": [{"event_id": p.event_id, "field": p.field, "value": p.value,
                           "span": [p.span_start, p.span_end]} for p in decisions.accepted],
             "rejected_reasons": [why for _, why in decisions.rejected],
+            "n_quote_not_found": quote_misses,
+            "n_grounded": grounded,
             "latency_s": latencies[-1],
         })
 
@@ -282,7 +368,7 @@ def main(argv=None) -> int:
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--local-model", default=LOCAL_MODEL,
                     help="ollama model for arm L, e.g. qwen2.5:72b")
-    ap.add_argument("--prompt", choices=("v1", "v2"), default="v2",
+    ap.add_argument("--prompt", choices=("v1", "v2", "v3"), default="v2",
                     help="v1 offers the full field menu so the gate discriminates; v2 offers only "
                          "the licensed field, which makes acceptance uninformative (amendment A2)")
     ap.add_argument("--i-have-authorisation", action="store_true",
