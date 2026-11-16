@@ -169,21 +169,69 @@ GET  /api/health   -> frontend ver, backend ver, model status, index ver, LIVE|F
 Internal only: `/propose` `/state` `/retrieve` `/compile` `/verbalize` `/verify`.
 **The browser never calls Ollama.**
 
-## 12–14. Design system, component libraries, frontend architecture
+## 12. Design system — `design/FINAL_DESIGN_SYSTEM.md`
 
-**Pending — four design research agents were commissioned 16 Nov** covering the design system
-(palette, type, semantic state rendering), frontend architecture (component tree, TS interfaces,
-ΔS visualisation, React Flow plan), backend/deployment, and motion. Their outputs land in
-`design/FINAL_DESIGN_SYSTEM.md`, `design/FINAL_UI_RESEARCH.md`,
-`deployment/FINAL_DEPLOYMENT_ARCHITECTURE.md`. **Fixed regardless of their findings:**
+**Every value measured, not chosen.** Colours generated in OKLCH, gamut-checked, WCAG-checked by
+script: **zero clips, zero contrast failures in either mode**. Re-runnable audit in `design/audit/`
+(`palette.py`, `emit.py`, `inspect_fonts.py`, `verify.py`, `tokens.json`) — **wire it into CI.**
 
-- Next.js + TypeScript + Tailwind + shadcn/ui · React Flow (graph) · Motion (transitions only)
-- **No full glassmorphism.** Glass only on nav, floating query bar, transient overlays. **Scientific
-  panels are solid.**
-- WCAG 4.5:1 minimum. **Colour is never the only signal** — every state also carries icon + label.
-- Aceternity: at most 1–2 decorative effects, landing/hero only. 21st.dev: inspiration only, audit
-  anything copied.
-- Avoid: chef-hat logos, stock food photography, neon AI gradients, translucent tables, bento sprawl.
+**Light mode is the default.** Dark washes out on lecture projectors and prints as grey mud.
+
+**Fonts — all three proposals replaced on measured evidence:**
+- Instrument Sans → **IBM Plex Sans**. Instrument Sans ships 343 codepoints and is **missing
+  `± ≈ µ Δ ≠ ≥ ≤ ₂ ² †`**. `pH ≤ 4.6` and `C₆H₈O₆` would fall back mid-word.
+- Fraunces → **Source Serif 4**. Nine digit widths, **no `tnum` at all**, so heading numbers jitter
+  and cannot be fixed. Source Serif 4 also has real small caps for structural labels.
+- DM Mono → **JetBrains Mono**. One zero glyph, no disambiguated alternate. Highest x-height tested
+  (0.550 em), so 12px IDs optically match 13px Plex.
+- ⚠️ **`font-feature-settings: "calt" 0`** on mono, always. Left on, `pH >= 4.6` renders as a ligature
+  **the font invented** — a correctness bug in an instrument that displays applicability conditions.
+
+**Colour architecture — the six-hue palette was measurably impossible.** A search over 1,400 hue
+assignments found a best worst case of ΔE 3.1, and under deuteranopia still put **evidence-match and
+mismatch at ΔE 3.3** — the instrument's most consequential distinction, invisible to ~6% of male
+examiners. So colour splits:
+- **`--state-*`** even lightness, for text and table cells. **Colour is a redundant mnemonic only.**
+- **`--viz-*`** staggered lightness, for graph nodes and chart series. CVD-separable at ΔE 6.5–12.3.
+
+**The real signal is four non-colour channels: glyph + marker + border + fill.** Seven states, no two
+sharing any channel. `✓ ✗ ⊘ ∅` are absent from all three families — **do not use them.**
+
+Key rules: chrome is achromatic (every coloured thing is a claim about knowledge) · never round a
+table · elevation 0 on evidence rows · glass at **0.86 alpha minimum** (0.70 fails at 3.33:1) ·
+UNKNOWN fills sit **darker** than their surface so absence reads as a hole · `circle-question-mark` is
+**reserved** for UNKNOWN_IN_QUERY and must never be a help icon.
+
+**Build the `?vision=deut|prot|trit|mono` CVD flag early** and screenshot through it in CI. The stated
+weakest link is behavioural: without it, the glyphs erode into colour-only chips before the 25th.
+
+## 13. Motion — `design/MOTION_SPEC.md`
+
+Motion is the delta channel; **stillness is a claim.** Unchanged rows have zero animated properties.
+
+- **UNKNOWN is the slowest transition in the app (380 ms)** and fades **in place**, never translates —
+  translation reads as *arrival of information*, which is wrong for absence.
+- **The lot graph never animates layout.** Position is lineage; a node that moves reads as a lineage
+  change. Computed once per recipe, memoized.
+- **ABSTAIN gets 760 ms, `role="status"`, never `role="alert"`**, no amber, no red. Opens with 200 ms
+  of nothing — the silence reads as the system finishing its check.
+- **Never interpolate an interval.** Animating `(4.3, 4.9)` displays pH values the system never
+  claimed — the no-invented-values law broken inside an animation.
+- Reduced motion is **substitution, not removal**: every `was:` value becomes printed text, edge draw
+  becomes edge weight, stagger order becomes list order.
+- **Audit Tailwind for `transition-all`** — one stray global transition breaks the whole premise.
+
+## 14. Frontend — `design/FRONTEND_ARCHITECTURE.md`
+
+Hand-to-developer spec, **grounded in the engine's actual shapes** (`composition/state.py`'s
+`V(v,b)`/`U(reason)`, `state_full.py`'s block assembly, `compatibility.py`'s AXES and VALUE map,
+`claim_packet.py`'s keys). **Nothing in it asks the engine to change.**
+
+- UNKNOWN is modelled on the engine's own wire format with **branded types**, so an unknown cell is
+  *unrenderable as a value* and a `RankingScore` can never reach a component expecting a confidence.
+  The project's laws enforced by `tsc`.
+- Versions verified, not assumed: **Next 16.4.6** (`middleware.ts` → `proxy.ts`), **Tailwind 4 with no
+  `tailwind.config.js`** (CSS-only theming), shadcn CLI v4, `@xyflow/react` 12.12.1.
 
 ## 15–17. Backend, Ollama, deployment
 
@@ -240,6 +288,11 @@ compliance matrix · decisions · worklog.
 | `reports/final/DELIVERABLE_COMPLIANCE_MATRIX_2026-11-16.md` | contract compliance |
 | `tools/s179_submission_demo.py` | the 8 contractual scenarios |
 | `DECISIONS.md` (D-134…D-137) · `STATUS.md` | governance + state |
+| `design/FINAL_DESIGN_SYSTEM.md` | palette, type, the seven-state system |
+| `design/audit/` | re-runnable contrast + font audit — wire into CI |
+| `design/MOTION_SPEC.md` | motion tokens and the ΔS animation |
+| `design/FRONTEND_ARCHITECTURE.md` | component tree, TS interfaces, React Flow plan |
+| `deployment/FINAL_DEPLOYMENT_ARCHITECTURE.md` | snapshot-primary deployment, the `--public` trap |
 
 **If the engine needs a change, it needs a decision record first.** Not a UI convenience.
 
