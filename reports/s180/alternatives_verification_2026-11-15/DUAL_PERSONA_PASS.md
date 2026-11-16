@@ -69,3 +69,43 @@ listed above.
 That is the honest value of this pass: it is **triage**, not verification. It tells Kush and Parv
 where to look. It does not tell anyone what is true, and the report may not quote 57%, 15/21 or 9/21
 as a correctness figure.
+
+---
+
+## Resolution — ksh governs on divergence (Kush, 16 Nov 2026)
+
+**Instruction:** *"we only proceed with ksh in such cases, pass ksh only and continue."* Applied to
+all 9 divergent rows. `ai_dual_verdicts_72b_v3_D085.csv` now carries `resolved_verdict` and
+`resolution_rule = KSH_GOVERNS_ON_DIVERGENCE_KUSH_16NOV2026`.
+
+**Resolved set, 21 rows:**
+
+| Verdict | n |
+|---|---|
+| `REAL_CHOICE` | 9 |
+| `SLOT_LABEL` — real, labels the slot not the branches | 8 |
+| `NOT_A_CHOICE` | 2 |
+| `DUPLICATE` | 2 |
+
+**17 of 21 (81%) are well-formed alternative groups.**
+
+### What choosing the structural lens costs, stated plainly
+
+ksh's lens asks whether a proposal is a **well-formed alternative group**. prv's asked whether the
+branch **changes the cooking**. Adopting ksh resolves the packet, and it also fixes what the report
+may claim:
+
+- **The report may say:** 17 of 21 grounded proposals are well-formed alternative groups, under an
+  AI-delegated reading with ksh governing.
+- **The report may NOT say:** that those 17 are consequential, or that the alternatives matter to the
+  state. prv's objection — that `parsley_or_cilantro` and `serving_options` change nothing the state
+  tracks, while `yeast_or_baking_soda` changes the chemistry — is **not refuted by this resolution,
+  only set aside.** It stays on record above.
+
+That distinction is the one thing a reader could otherwise take too far, so it is written here rather
+than left to inference. The underlying gap is unchanged and unfixed: `alternative_group` has one
+field for "is an alternative" and "the alternative matters", so a garnish choice and a leavening swap
+are identical to the schema.
+
+**Still not gold.** AI-delegated throughout, two personas of one model, human columns empty. No
+correctness claim rests on the 81%.
