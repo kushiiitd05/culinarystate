@@ -8,7 +8,8 @@ APPROX MEDIUM; the legacy lexical file only as alternates and a fallback capped 
 the first S177 table (the legacy match file alone) with identity_source = legacy_match_only, for comparison runs. The ING
 category and the SR food group of the rank-1 candidate are carried for the ABSENT category crosswalk. AI_DRAFTED, derived from
 public-domain SR Legacy values and AI-proposed identities. The evidence gates read this table at run time, so the demo needs
-no data/raw.
+no data/raw. S178 (FIX-ROUTER, SCI-B R4): every value also carries its SR derivation code (``sr_derivation_code``; NONE for a
+blank derivation_id) and number of data points (``sr_data_points``), so the ABSENT screen can require analytical values.
 
     python tools/build_target_content_table.py [--identity defaults|legacy] [--out registry/ing_sr_target_content_draft_v1.csv] [--check]
 
@@ -38,12 +39,13 @@ def build(identity: str = "defaults") -> str:
     keys = sorted({f.nutrient_key for f in floors.values()})
     if identity == "defaults":
         idn = SI.build_identity(root=ROOT)
-        values = EG.read_sr_values(SI.default_dir(ROOT), {f for c in idn.cands.values() for f, _, _ in c}, keys)
-        rows = SI.table_rows(idn, values, keys)
+        recs = EG.read_sr_records(SI.default_dir(ROOT), {f for c in idn.cands.values() for f, _, _ in c}, keys)
+        rows = SI.table_rows(idn, {k: v[0] for k, v in recs.items()}, keys, {k: (v[1], v[2]) for k, v in recs.items()})
     else:
         cands = EG.read_candidates()
-        values = EG.read_sr_values(SI.default_dir(ROOT), {f for c in cands.values() for f, _, _ in c}, keys)
-        rows = EG.build_table_rows(cands, values, keys, EG.read_categories())
+        recs = EG.read_sr_records(SI.default_dir(ROOT), {f for c in cands.values() for f, _, _ in c}, keys)
+        rows = EG.build_table_rows(cands, {k: v[0] for k, v in recs.items()}, keys, EG.read_categories(),
+                                   {k: (v[1], v[2]) for k, v in recs.items()})
         for r in rows:
             r["identity_source"] = SI.LEGACY_SOURCE
     buf = io.StringIO()

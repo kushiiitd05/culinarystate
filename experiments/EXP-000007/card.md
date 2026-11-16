@@ -69,3 +69,10 @@ Design after amendment (target; actual maximum reported, never forced):
 - CONTROL: 20 fully specified questions, one per recipe.
 Slot selection is deterministic (tools/build_hstate_r_candidates.py). Freeze (question, cut, Gold state, evidence labels,
 stratum, mode hashed) precedes any B3/B4 output. The H_STATE-R success gate must be re-read at n actually frozen.
+
+
+## Metadata completeness note — 12 November 2026
+
+**Command:** NOT_RUN — no executable H_STATE experiment harness has been run for this card. The original design records seed 7 and the within-source BBC / conditional Wikibooks source-disjoint split above. A placeholder command is not an executed experiment; G1–G6 and the required freeze remain prerequisites. This append supplies the previously absent command-status field only. It does not alter the preregistered design, create human gold, invoke scoring, or confer a scientific gate pass. The original NOT_RUN result remains unchanged.
+
+**Record basis:** AI_PRECHECKED / NO_HUMAN_SIGNOFF_D085; technical metadata repair, not an author edit to the final report.

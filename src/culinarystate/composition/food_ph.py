@@ -8,6 +8,12 @@ head union (all forms: raw, cooked, canned ...). These are published approximate
 mixture pH: the lot layer derives flags, not a number.
 
 Acid classes use the 4.6 equilibrium-pH boundary of 21 CFR 113.3 (low-acid foods) and 21 CFR 114.3 (acidified).
+
+S179 (P5, fixes A1-A3): the canonical table is the L-PH registry ``registry/food_ph_fda_draft_v1.csv`` (April 2007
+revision, 488 rows; D-079 PROPOSED). ``load_registry_lph`` keys each row by ``item_context_norm`` so an indented
+child keeps its parent ("White" under "Eggs, new-laid, whole" -> "eggs, white"). Rows without a printed pH and the
+one UNPARSED_REVIEW typo carry no value; the documented whitespace repair ("4. 10" -> 4.10) is kept. The 2003/2004
+registry ``food_ph_fda2003_v1.csv`` stays on record as SUPERSEDED.
 """
 from __future__ import annotations
 
@@ -19,7 +25,10 @@ from html.parser import HTMLParser
 from culinarystate.composition.ing_sr_match import normalise
 
 SOURCE = "FDA/CFSAN Approximate pH of Foods and Food Products, Oct 2003 (webharvest.gov peth04, 2004-10-31)"
+SOURCE_LPH = "FDA/CFSAN Approximate pH of Foods and Food Products, Apr 2007 revision (L-PH draft registry v1)"
 ACID_PH_MAX = 4.6
+_LPH_VALUED = frozenset({"PARSED", "PARSED_OPEN_ENDED", "PARSED_REPAIRED_WS"})
+SIZE_WORDS = frozenset({"small", "medium", "large", "extra", "jumbo", "mini", "big"})   # never a food head (S179 SCI #5)
 _NUM = r"\d+(?:\.\d+)?"
 _RANGE = re.compile(rf"^({_NUM})\s*-\s*({_NUM})?$")
 _POINT = re.compile(rf"^({_NUM})$")
@@ -96,7 +105,7 @@ def parse_fda_html(html: str, *, strict: bool = True) -> list[PHRow]:
     p = _Cells()
     p.feed(html)
     return [_row_or_unparsed(r[0], r[1], strict) for r in p.rows
-            if len(r) == 2 and r[0] and r[1] and r[0] != "Item"]
+            if len(r) >= 2 and r[0] and r[1] and r[0] != "Item" and not any(c.strip() for c in r[2:])]
 
 
 def _head(text: str) -> str:
@@ -116,16 +125,25 @@ class PHTable:
         self.rows = tuple(r for r in rows if r.low is not None)
         self._tokens = {r.item: frozenset(normalise(r.item)) for r in self.rows}
         self._heads = {r.item: _head(r.item) for r in self.rows}
+        self._memo: dict[tuple[str, ...], PHRange] = {}
 
     def lookup(self, name: str) -> PHRange:
-        q = normalise(name)
+        q = tuple(t for t in normalise(name) if t not in SIZE_WORDS) or normalise(name)
+        if q not in self._memo:                 # S179 F4: the table is immutable, so memoise per name
+            self._memo[q] = self._lookup(q)
+        return self._memo[q]
+
+    def _lookup(self, q: tuple[str, ...]) -> PHRange:
         head = q[-1] if q else ""
         same_head = sorted((r for r in self.rows if self._heads[r.item] == head), key=lambda r: r.item)
         any_lo, any_hi = _span(same_head)
         exact = sorted((r for r in self.rows if self._tokens[r.item] == frozenset(q)), key=lambda r: r.item)
         if exact:
             lo, hi = _span(exact)
-            return PHRange(lo, hi, "FDA_ITEM_MATCH", tuple(r.item for r in exact), any_lo, any_hi)
+            # any_form = the item's own parent family (its head), so it always contains the item (S179 SCI #5)
+            fam_heads = {self._heads[r.item] for r in exact}
+            fam_lo, fam_hi = _span([r for r in self.rows if self._heads[r.item] in fam_heads])
+            return PHRange(lo, hi, "FDA_ITEM_MATCH", tuple(r.item for r in exact), fam_lo, fam_hi)
         if same_head:
             return PHRange(any_lo, any_hi, "FDA_HEAD_UNION", tuple(r.item for r in same_head), any_lo, any_hi)
         return PHRange(None, None, "UNKNOWN", (), None, None)
@@ -149,3 +167,23 @@ def load_registry(path) -> list[PHRow]:
     with open(path, newline="", encoding="utf-8") as fh:
         return [PHRow(r["item"], num(r["ph_low"]), num(r["ph_high"]), r["value_type"], r["ph_raw"])
                 for r in csv.DictReader(fh)]
+
+
+def load_registry_lph(path) -> list[PHRow]:
+    """Rows of the L-PH registry (registry/food_ph_fda_draft_v1.csv), item = parent-context name (S179 P5)."""
+    def num(x: str) -> float | None:
+        return float(x) if x.strip() else None
+
+    def row(r: dict) -> PHRow:
+        item = r["item_context_norm"] or r["item_norm"]
+        if r["parse_status"] not in _LPH_VALUED:
+            vt = "NONE" if r["ph_value_type"] == "NONE" else "UNPARSED"
+            return PHRow(item, None, None, vt, r["ph_raw"])
+        lo, hi = num(r["ph_low"]), num(r["ph_high"])
+        if lo is None:
+            raise ValueError(f"{r['ph_id']}: parsed row without ph_low")
+        vt = "LOWER_BOUND_ONLY" if hi is None else ("POINT" if lo == hi else "INTERVAL")
+        return PHRow(item, lo, hi, vt, r["ph_raw"])
+
+    with open(path, newline="", encoding="utf-8") as fh:
+        return [row(r) for r in csv.DictReader(fh)]

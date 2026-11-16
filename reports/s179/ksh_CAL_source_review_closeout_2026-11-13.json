@@ -1,0 +1,494 @@
+{
+  "audit_id": "KSH-CAL-SOURCE-CLOSEOUT-2026-11-13",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085",
+    "AI_VERIFIED_NOT_HUMAN"
+  ],
+  "counts": {
+    "rows": 16,
+    "VERIFIED": 0,
+    "CORRECTED": 16,
+    "REJECTED": 0,
+    "UNASSESSABLE": 0,
+    "numeric_VERIFIED": 16,
+    "numeric_corrections": 0,
+    "metadata_corrected_rows": 16,
+    "time_point_metadata_UNASSESSABLE_rows": 5,
+    "human_signoffs": 0
+  },
+  "opened_files": [
+    {
+      "path": "annotation/aa_pilot/aa_pilot_verify_CAL_v1_Kush.csv",
+      "sha256": "471585da527e135eeeb6f94ef93ac5ca537d1ad3885980c24ad6438e955774ea"
+    },
+    {
+      "path": "data/raw/aa_pilot/AAK-01.pdf",
+      "sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e"
+    },
+    {
+      "path": "data/raw/aa_pilot/AAK-06.pdf",
+      "sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6"
+    },
+    {
+      "path": "data/raw/aa_pilot/AAK-09.pdf",
+      "sha256": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4"
+    },
+    {
+      "path": "data/raw/aa_pilot/AAK-11.pdf",
+      "sha256": "8c6c414d54e79524c9d955f0024089632bce0e3cd83a70d3b3cc983c363e0ced"
+    }
+  ],
+  "output_artifacts": [
+    {
+      "path": "annotation/aa_pilot/ksh_CAL_source_review_closeout_2026-11-13.csv",
+      "sha256": "321b49e09226b7cd46bca99cd95cecfcec5b3a6893898cfe3827b12300a07cbd"
+    },
+    {
+      "path": "annotation/aa_pilot/ksh_CAL_source_review_closeout_2026-11-13_spans.json",
+      "sha256": "c454ba66700a3b4108d9a16f747d963176858d0be02e68aa80450a7f458d67e1"
+    }
+  ],
+  "audit_timing_utc": {
+    "first_recorded_read": "2026-11-13T09:44:55.770245+00:00",
+    "completed": "2026-11-13T09:47:04.877842+00:00"
+  },
+  "rows": [
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-001",
+      "source_pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "source_pdf_page": 5,
+      "source_printed_page": 671,
+      "source_span_sha256": "e5154777e1866d523924a71f65d6756364facb16e5095c8625bb242a26df45bc",
+      "evidence_pages": [
+        {
+          "pdf_page": 1,
+          "printed_page": 667,
+          "page_sha256": "4fab582a2a03bf9f772f071c635a52ea66165d66497a5aed83849d2ab4937194"
+        },
+        {
+          "pdf_page": 2,
+          "printed_page": 668,
+          "page_sha256": "9acf9970abbe373434694c1bb8fd09abca4eca2c1cd658e9e2b207d514c3cd7e"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 669,
+          "page_sha256": "e7f7c89cc56506c480d5c8d2d9cd6f700bd2495de83be628e16ea02bf1801a91"
+        },
+        {
+          "pdf_page": 4,
+          "printed_page": 670,
+          "page_sha256": "be5551570f95db24bdb6052a1c65d373fcc4f9847c5ecdc34c0fccfddc60eed1"
+        },
+        {
+          "pdf_page": 5,
+          "printed_page": 671,
+          "page_sha256": "c8493a2e99e766f982cc80007be59973ff1f9f10e3d8b5ae6ec93ce93238504c"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-002",
+      "source_pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "source_pdf_page": 5,
+      "source_printed_page": 671,
+      "source_span_sha256": "5085a590487d44600f89394e78c3efc69c6199840e8f45b88eab30d183725161",
+      "evidence_pages": [
+        {
+          "pdf_page": 1,
+          "printed_page": 667,
+          "page_sha256": "4fab582a2a03bf9f772f071c635a52ea66165d66497a5aed83849d2ab4937194"
+        },
+        {
+          "pdf_page": 2,
+          "printed_page": 668,
+          "page_sha256": "9acf9970abbe373434694c1bb8fd09abca4eca2c1cd658e9e2b207d514c3cd7e"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 669,
+          "page_sha256": "e7f7c89cc56506c480d5c8d2d9cd6f700bd2495de83be628e16ea02bf1801a91"
+        },
+        {
+          "pdf_page": 4,
+          "printed_page": 670,
+          "page_sha256": "be5551570f95db24bdb6052a1c65d373fcc4f9847c5ecdc34c0fccfddc60eed1"
+        },
+        {
+          "pdf_page": 5,
+          "printed_page": 671,
+          "page_sha256": "c8493a2e99e766f982cc80007be59973ff1f9f10e3d8b5ae6ec93ce93238504c"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-003",
+      "source_pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "source_pdf_page": 5,
+      "source_printed_page": 671,
+      "source_span_sha256": "874ce0dc16ab6db0fe01d5c29c9cc7a5942c66f3ac71a46e331b11643c10f8bc",
+      "evidence_pages": [
+        {
+          "pdf_page": 1,
+          "printed_page": 667,
+          "page_sha256": "4fab582a2a03bf9f772f071c635a52ea66165d66497a5aed83849d2ab4937194"
+        },
+        {
+          "pdf_page": 2,
+          "printed_page": 668,
+          "page_sha256": "9acf9970abbe373434694c1bb8fd09abca4eca2c1cd658e9e2b207d514c3cd7e"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 669,
+          "page_sha256": "e7f7c89cc56506c480d5c8d2d9cd6f700bd2495de83be628e16ea02bf1801a91"
+        },
+        {
+          "pdf_page": 4,
+          "printed_page": 670,
+          "page_sha256": "be5551570f95db24bdb6052a1c65d373fcc4f9847c5ecdc34c0fccfddc60eed1"
+        },
+        {
+          "pdf_page": 5,
+          "printed_page": 671,
+          "page_sha256": "c8493a2e99e766f982cc80007be59973ff1f9f10e3d8b5ae6ec93ce93238504c"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-004",
+      "source_pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "source_pdf_page": 5,
+      "source_printed_page": 671,
+      "source_span_sha256": "fb82a4e8f4d1273027a20f450df51012877e0f457377aa2294927091d2b38bb2",
+      "evidence_pages": [
+        {
+          "pdf_page": 1,
+          "printed_page": 667,
+          "page_sha256": "4fab582a2a03bf9f772f071c635a52ea66165d66497a5aed83849d2ab4937194"
+        },
+        {
+          "pdf_page": 2,
+          "printed_page": 668,
+          "page_sha256": "9acf9970abbe373434694c1bb8fd09abca4eca2c1cd658e9e2b207d514c3cd7e"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 669,
+          "page_sha256": "e7f7c89cc56506c480d5c8d2d9cd6f700bd2495de83be628e16ea02bf1801a91"
+        },
+        {
+          "pdf_page": 4,
+          "printed_page": 670,
+          "page_sha256": "be5551570f95db24bdb6052a1c65d373fcc4f9847c5ecdc34c0fccfddc60eed1"
+        },
+        {
+          "pdf_page": 5,
+          "printed_page": 671,
+          "page_sha256": "c8493a2e99e766f982cc80007be59973ff1f9f10e3d8b5ae6ec93ce93238504c"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-005",
+      "source_pdf_sha256": "3392abca631ac262195e6888b29cec9c2731dccad5968add2064acf233cc0e9e",
+      "source_pdf_page": 1,
+      "source_printed_page": 667,
+      "source_span_sha256": "f2886f6b793792c991ad5ce20f140784e887841bf6e34e3998d846eb92c4413a",
+      "evidence_pages": [
+        {
+          "pdf_page": 1,
+          "printed_page": 667,
+          "page_sha256": "4fab582a2a03bf9f772f071c635a52ea66165d66497a5aed83849d2ab4937194"
+        },
+        {
+          "pdf_page": 2,
+          "printed_page": 668,
+          "page_sha256": "9acf9970abbe373434694c1bb8fd09abca4eca2c1cd658e9e2b207d514c3cd7e"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 669,
+          "page_sha256": "e7f7c89cc56506c480d5c8d2d9cd6f700bd2495de83be628e16ea02bf1801a91"
+        },
+        {
+          "pdf_page": 4,
+          "printed_page": 670,
+          "page_sha256": "be5551570f95db24bdb6052a1c65d373fcc4f9847c5ecdc34c0fccfddc60eed1"
+        },
+        {
+          "pdf_page": 5,
+          "printed_page": 671,
+          "page_sha256": "c8493a2e99e766f982cc80007be59973ff1f9f10e3d8b5ae6ec93ce93238504c"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-006",
+      "source_pdf_sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+      "source_pdf_page": 4,
+      "source_printed_page": 354,
+      "source_span_sha256": "9e67aebe279cc96da519c5944a42518199263b2739eb0e1704965c717479508b",
+      "evidence_pages": [
+        {
+          "pdf_page": 2,
+          "printed_page": 352,
+          "page_sha256": "ba1601ead91755b3345e2ac1d164f7c36e4216238f08fdc8b390f3a0e73a44a0"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 353,
+          "page_sha256": "03d41bada1c6c4ee1d7e82af96f56e2278d49f7412e9033a9906f995ce07f401"
+        },
+        {
+          "pdf_page": 4,
+          "printed_page": 354,
+          "page_sha256": "513ee6f12d86f56833722222de1b320deda687be456f849d01517d70462e8eb6"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-007",
+      "source_pdf_sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+      "source_pdf_page": 4,
+      "source_printed_page": 354,
+      "source_span_sha256": "f8120bdc57575435a929b69c16df638d2c80748e67dc96b6fb5336ffe73465c0",
+      "evidence_pages": [
+        {
+          "pdf_page": 2,
+          "printed_page": 352,
+          "page_sha256": "ba1601ead91755b3345e2ac1d164f7c36e4216238f08fdc8b390f3a0e73a44a0"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 353,
+          "page_sha256": "03d41bada1c6c4ee1d7e82af96f56e2278d49f7412e9033a9906f995ce07f401"
+        },
+        {
+          "pdf_page": 4,
+          "printed_page": 354,
+          "page_sha256": "513ee6f12d86f56833722222de1b320deda687be456f849d01517d70462e8eb6"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-008",
+      "source_pdf_sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+      "source_pdf_page": 4,
+      "source_printed_page": 354,
+      "source_span_sha256": "6ff190d463e7e2ccd6e6adaa7b1557c33a7f1267d6fb467c4aaa9c76faabed62",
+      "evidence_pages": [
+        {
+          "pdf_page": 2,
+          "printed_page": 352,
+          "page_sha256": "ba1601ead91755b3345e2ac1d164f7c36e4216238f08fdc8b390f3a0e73a44a0"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 353,
+          "page_sha256": "03d41bada1c6c4ee1d7e82af96f56e2278d49f7412e9033a9906f995ce07f401"
+        },
+        {
+          "pdf_page": 4,
+          "printed_page": 354,
+          "page_sha256": "513ee6f12d86f56833722222de1b320deda687be456f849d01517d70462e8eb6"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-009",
+      "source_pdf_sha256": "605ccd23bf0621320b7e6889ad6fdbad5a2b8c9ed2066fbeede9d044bb8db3d6",
+      "source_pdf_page": 4,
+      "source_printed_page": 354,
+      "source_span_sha256": "1db344cb4aa55790d314428aba1cc9bc6a24c47fbcb0533c171eacd7ef666c38",
+      "evidence_pages": [
+        {
+          "pdf_page": 2,
+          "printed_page": 352,
+          "page_sha256": "ba1601ead91755b3345e2ac1d164f7c36e4216238f08fdc8b390f3a0e73a44a0"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 353,
+          "page_sha256": "03d41bada1c6c4ee1d7e82af96f56e2278d49f7412e9033a9906f995ce07f401"
+        },
+        {
+          "pdf_page": 4,
+          "printed_page": 354,
+          "page_sha256": "513ee6f12d86f56833722222de1b320deda687be456f849d01517d70462e8eb6"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-010",
+      "source_pdf_sha256": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4",
+      "source_pdf_page": 8,
+      "source_printed_page": 255,
+      "source_span_sha256": "274b71a8404076436cfcf4b1609737eefc1da77d6c6bca3f90b14d7d8a15cd1c",
+      "evidence_pages": [
+        {
+          "pdf_page": 2,
+          "printed_page": 249,
+          "page_sha256": "779364ba4d99a1f27c4ce58e95c98d3f8e969fdcfe7fe7d1cd4fe0950bf0a8e3"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 250,
+          "page_sha256": "5615cc516e66268540b0c00c89a083beb684a259e8c8d79bacf43d64fc4a2c14"
+        },
+        {
+          "pdf_page": 8,
+          "printed_page": 255,
+          "page_sha256": "f48b81a1bf30ed913a58f70b1470906e1f716bd891851d77e20273fde54ee41a"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-011",
+      "source_pdf_sha256": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4",
+      "source_pdf_page": 8,
+      "source_printed_page": 255,
+      "source_span_sha256": "713e165306fddb02683135023dd565d0c8b6d8136a3a4d6a2c7297211c9c9753",
+      "evidence_pages": [
+        {
+          "pdf_page": 2,
+          "printed_page": 249,
+          "page_sha256": "779364ba4d99a1f27c4ce58e95c98d3f8e969fdcfe7fe7d1cd4fe0950bf0a8e3"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 250,
+          "page_sha256": "5615cc516e66268540b0c00c89a083beb684a259e8c8d79bacf43d64fc4a2c14"
+        },
+        {
+          "pdf_page": 8,
+          "printed_page": 255,
+          "page_sha256": "f48b81a1bf30ed913a58f70b1470906e1f716bd891851d77e20273fde54ee41a"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-012",
+      "source_pdf_sha256": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4",
+      "source_pdf_page": 8,
+      "source_printed_page": 255,
+      "source_span_sha256": "22631691d86e3abdedb5e49204d951946a02b6807e2334805604a19005d1bd68",
+      "evidence_pages": [
+        {
+          "pdf_page": 2,
+          "printed_page": 249,
+          "page_sha256": "779364ba4d99a1f27c4ce58e95c98d3f8e969fdcfe7fe7d1cd4fe0950bf0a8e3"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 250,
+          "page_sha256": "5615cc516e66268540b0c00c89a083beb684a259e8c8d79bacf43d64fc4a2c14"
+        },
+        {
+          "pdf_page": 8,
+          "printed_page": 255,
+          "page_sha256": "f48b81a1bf30ed913a58f70b1470906e1f716bd891851d77e20273fde54ee41a"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-013",
+      "source_pdf_sha256": "42a9992470832fcd945977f315ae3a5c71041ca0a6f5267aacbcfd36cded61d4",
+      "source_pdf_page": 8,
+      "source_printed_page": 255,
+      "source_span_sha256": "e66d27f9434a5f74c91fc309f11182029fa9018b6669b53edcecda0cacfb89fe",
+      "evidence_pages": [
+        {
+          "pdf_page": 2,
+          "printed_page": 249,
+          "page_sha256": "779364ba4d99a1f27c4ce58e95c98d3f8e969fdcfe7fe7d1cd4fe0950bf0a8e3"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 250,
+          "page_sha256": "5615cc516e66268540b0c00c89a083beb684a259e8c8d79bacf43d64fc4a2c14"
+        },
+        {
+          "pdf_page": 8,
+          "printed_page": 255,
+          "page_sha256": "f48b81a1bf30ed913a58f70b1470906e1f716bd891851d77e20273fde54ee41a"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-014",
+      "source_pdf_sha256": "8c6c414d54e79524c9d955f0024089632bce0e3cd83a70d3b3cc983c363e0ced",
+      "source_pdf_page": 8,
+      "source_printed_page": 169,
+      "source_span_sha256": "fc6b4675ffc0aac5872e979c78865a93500b8d8bbdc7307d550b439172ebcdc4",
+      "evidence_pages": [
+        {
+          "pdf_page": 1,
+          "printed_page": 162,
+          "page_sha256": "2da0f2a8e7e37da1dbe3f4f0200e09f04bbd1dbb1ed5022e920917220c32e016"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 164,
+          "page_sha256": "4075ce09f0dffac08e20b90d7ccc8d240a1d9b56eddde5618f371f9ec1ce16ab"
+        },
+        {
+          "pdf_page": 8,
+          "printed_page": 169,
+          "page_sha256": "61ce00b903c8012520ac4ad11fae111f001680a0de495c972797d63f366b27a5"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-015",
+      "source_pdf_sha256": "8c6c414d54e79524c9d955f0024089632bce0e3cd83a70d3b3cc983c363e0ced",
+      "source_pdf_page": 8,
+      "source_printed_page": 169,
+      "source_span_sha256": "60819391cd9b3101629e3330bbefb25b191a570766cc854165abf91530a4180f",
+      "evidence_pages": [
+        {
+          "pdf_page": 1,
+          "printed_page": 162,
+          "page_sha256": "2da0f2a8e7e37da1dbe3f4f0200e09f04bbd1dbb1ed5022e920917220c32e016"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 164,
+          "page_sha256": "4075ce09f0dffac08e20b90d7ccc8d240a1d9b56eddde5618f371f9ec1ce16ab"
+        },
+        {
+          "pdf_page": 8,
+          "printed_page": 169,
+          "page_sha256": "61ce00b903c8012520ac4ad11fae111f001680a0de495c972797d63f366b27a5"
+        }
+      ]
+    },
+    {
+      "audit_id": "KSH-CAL-CLOSEOUT-AAP-016",
+      "source_pdf_sha256": "8c6c414d54e79524c9d955f0024089632bce0e3cd83a70d3b3cc983c363e0ced",
+      "source_pdf_page": 8,
+      "source_printed_page": 169,
+      "source_span_sha256": "5337117749eefdec88fd0e5a47d140cd062285cb148f10104d92b4ba787733ea",
+      "evidence_pages": [
+        {
+          "pdf_page": 1,
+          "printed_page": 162,
+          "page_sha256": "2da0f2a8e7e37da1dbe3f4f0200e09f04bbd1dbb1ed5022e920917220c32e016"
+        },
+        {
+          "pdf_page": 3,
+          "printed_page": 164,
+          "page_sha256": "4075ce09f0dffac08e20b90d7ccc8d240a1d9b56eddde5618f371f9ec1ce16ab"
+        },
+        {
+          "pdf_page": 8,
+          "printed_page": 169,
+          "page_sha256": "61ce00b903c8012520ac4ad11fae111f001680a0de495c972797d63f366b27a5"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+ "bracket_disagreement": {},
+ "by_process_family_l1": {},
+ "chunks": 192,
+ "citable": false,
+ "contains_ids": false,
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "edges": {},
+ "events_not_screened_family": {},
+ "events_physical_record_missing": {},
+ "exceptions_by_class": {},
+ "exceptions_total": 0,
+ "family_status": {
+  "TASTESET": "READ"
+ },
+ "inputs": {
+  "catalog": {
+   "absent_basis_rule": "ABSENT_NEEDS_ANALYTICAL_SR_ZERO",
+   "evidence_gates_version": "evidence-gates-0.3.0-draft",
+   "floor_rule": "PROPOSED_SCREEN_CONVENTION_SR_NONZERO",
+   "identity_margin": "3/20",
+   "identity_source": "mechanism.sr_identity",
+   "ings_with_identity": 876,
+   "inputs_version": "mech-inputs-0.2.0-draft",
+   "nutrient_keys": [
+    "protein",
+    "sugars",
+    "starch",
+    "fat",
+    "water",
+    "vitamin_c"
+   ],
+   "presence_semantics": "evidence_gates.TargetPresenceScreen",
+   "taxon_classes": [
+    "AAO_FRESH",
+    "ALLIUM_FRESH",
+    "BRASSICA_FRESH",
+    "CHLOROPHYLL_TISSUE",
+    "COLLAGEN_TISSUE",
+    "ONION_FRESH",
+    "PPO_FRESH"
+   ],
+   "values_source": "composition.sr_legacy.load_sr"
+  },
+  "entries_sha256": "9e36ca36e3d6c4e283d5e351c8a27ab06da691c78b3df4d91b71e46f6f9062f5",
+  "inputs_version": "mech-inputs-0.2.0-draft",
+  "record_dir_manifest_sha256": {
+   "L1": "b59f980e1ae5c69edbde81975f12dd1367343fb860ab0b21c3c81e9fa5af6580",
+   "L2": "b59f980e1ae5c69edbde81975f12dd1367343fb860ab0b21c3c81e9fa5af6580",
+   "NH_L1": "f1bade448b1371a77259c0ba28dd07505e9dfb087ed6fcd9b89c1c24b844ad0a",
+   "NH_L2": "f1bade448b1371a77259c0ba28dd07505e9dfb087ed6fcd9b89c1c24b844ad0a"
+  },
+  "record_dirs": {
+   "L1": "data/derived/physical_L1_full_S178v04/TASTESET",
+   "L2": "data/derived/physical_L2_full_S178v04/TASTESET",
+   "NH_L1": "data/derived/physical_NH_L1_TASTESET_full_S178v04",
+   "NH_L2": "data/derived/physical_NH_L2_TASTESET_full_S178v04"
+  },
+  "record_parts": {
+   "L1": 64,
+   "L2": 64,
+   "NH_L1": 192,
+   "NH_L2": 192
+  }
+ },
+ "invariant_violations": {},
+ "k3_semantics": "KLEENE_STRONG",
+ "l1_to_l2_changes": {},
+ "l2_record_status": {},
+ "label": "COUNTS_ONLY_T6_AI_DRAFTED_NOT_A_RESULT_ABOUT_FOOD",
+ "mechanisms": [
+  "ALLIINASE_ALLIIN_CLEAVAGE",
+  "ASCORBATE_OXIDASE_AA_OXIDATION",
+  "ASCORBATE_TO_DHA_OXIDATION",
+  "CARAMELISATION",
+  "CHLOROPHYLL_TO_PHEOPHYTIN",
+  "COLLAGEN_SOLUBILISATION",
+  "LEACHING",
+  "LIPID_OXIDATION",
+  "MAILLARD_STRECKER_LUMPED",
+  "MOISTURE_LOSS",
+  "MYROSINASE_GLUCOSINOLATE_HYDROLYSIS",
+  "ONION_LACHRYMATORY_FACTOR_SYNTHESIS",
+  "PPO_ENZYMATIC_BROWNING",
+  "PROTEIN_DENATURATION_AGGREGATION",
+  "STARCH_GELATINISATION"
+ ],
+ "not_possible_deciding_item": {},
+ "possible_support_layer": {},
+ "reasons": {},
+ "recipes": {},
+ "recipes_sampled": 700,
+ "recipes_seen": 700,
+ "recipes_with_steps": 0,
+ "record": "MECH_SCREEN_CENSUS",
+ "record_alignment": {
+  "L1": {
+   "foreign_recipe_in_part": 0,
+   "recipes_with_records": 0
+  },
+  "L2": {
+   "foreign_recipe_in_part": 0,
+   "recipes_with_records": 0
+  },
+  "NH_L1": {
+   "foreign_recipe_in_part": 0,
+   "recipes_with_records": 0
+  },
+  "NH_L2": {
+   "foreign_recipe_in_part": 0,
+   "recipes_with_records": 0
+  }
+ },
+ "run_version": "s178-mech-screen-run-0.1.0-draft",
+ "sample_rule": "SHA256_SEED_CONCAT_RECIPE_ID_ASC",
+ "sample_size_requested": 600000,
+ "screen_version": "mech-screen-0.1.0-draft",
+ "seed_sha256": "1037f2edb4912104fc759949aacecbc2133a73a1a2b17bde5210cdad7ee901dc",
+ "status": "AI_DRAFTED_T6_DIAGNOSTIC_NON_CITABLE",
+ "tag": "TASTESET_full_S178_v04",
+ "totals": {
+  "lots": {}
+ },
+ "verdicts": {},
+ "verdicts_by_event_class": {},
+ "views": [
+  "L1",
+  "L2_GENTLE",
+  "L2_TYPICAL",
+  "L2_INTENSE"
+ ],
+ "workers": 24
+}

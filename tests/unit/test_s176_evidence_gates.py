@@ -71,7 +71,8 @@ def _screen(values: dict[str, str | None], floor=FLOOR, bands=None, alts=None, m
         cands[ing] = tuple(cs)
     if cats is None:
         cats = {ing: ("VEGETABLE", "Vegetables and Vegetable Products") for ing in values}
-    return EG.TargetPresenceScreen(_floors(floor, margin=margin), cands, vals, cats)
+    return EG.TargetPresenceScreen(_floors(floor, margin=margin), cands, vals, cats,
+                                   basis={k: ("A", 1) for k in vals})  # S178 R4: synthetic SR values are analytical
 
 
 def _gates(values, **kw) -> EG.EvidenceGates:

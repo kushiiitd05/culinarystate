@@ -14,6 +14,10 @@ cut. ``independent_context`` retrieves from the steps up to the cut only and pri
 engine's event list (action + bound ingredient), from which a plain heat-verb rule rebuilds most S1 gold
 (``h1_independence.heated_from_primitives``), so it stays circular. Only blind-first human gold (``h1_independence``)
 makes H1 non-circular whichever view is used.
+
+S178 FIX-EVAL (SCI-B E6): ``context`` refuses the leaky legacy settings (post-cut retrieval, or the ANSWER state view in B4)
+for a D5 question id (``qid`` starting "D5-"), so a D5 runner cannot re-leak the S1 gold through the defaults; S173
+replication calls without a D5 qid keep the old behaviour.
 """
 from __future__ import annotations
 
@@ -32,6 +36,11 @@ RUNGS = ("B0", "B1", "B2", "B4")
 STATE_VIEWS = ("ANSWER", "PRIMITIVES", "MINIMAL", "NONE")   # ANSWER = S173 legacy (prints the S1 gold); NONE = B4 degenerates to B2
 TOP_K = 4
 _FAMILY: dict[str, str] = {}
+D5_QID_PREFIX = "D5-"
+
+
+class LeakyContextRefused(ValueError):
+    """A D5 question was given a context setting that hands the rung the gold (post-cut steps or the ANSWER state view)."""
 
 
 def _family() -> dict[str, str]:
@@ -77,7 +86,10 @@ def state_block(steps: Sequence[str], cut: int, locale: str | None = None, *, vi
 
     view ANSWER (default, S173 behaviour): ingredients used, "Heated so far", last action.
     view PRIMITIVES: ingredients used, ordered "Actions so far" (action word + bound ingredient names), last action;
-    no heat classification, no parent-lot walk, so the S1 gold function is never called.
+    no heat classification, so the S1 gold function (``heated_ingredient_ids``) is never called. The bound ingredients of
+    each action are collected by ``router_demo._lot_ingredients``, which DOES walk the parent-lot chain
+    (``parent_entity_ids``), so an action on a merged lot lists the ingredients of its parents (corrected S178 FIX-EVAL;
+    the earlier S178 EVAL docstring denied this walk).
     view MINIMAL: ingredients used and last action only.
     view NONE: empty string.
     """
@@ -109,11 +121,16 @@ def state_block(steps: Sequence[str], cut: int, locale: str | None = None, *, vi
 
 
 def context(rung: str, q: str, steps: Sequence[str], *, cut: int, embed: Callable, k: int = TOP_K,
-            locale: str | None = None, pre_cut_only: bool = False, state_view: str = "ANSWER") -> str:
+            locale: str | None = None, pre_cut_only: bool = False, state_view: str = "ANSWER", qid: str | None = None) -> str:
     """Context for one rung. ``pre_cut_only`` restricts the retrieval pool to ``steps[:cut]`` (S178 fix; the S173
-    default retrieves from every step, including the ones after the question point)."""
+    default retrieves from every step, including the ones after the question point). For a D5 ``qid`` the leaky settings
+    (``pre_cut_only`` false, or ``state_view`` ANSWER in B4) raise ``LeakyContextRefused``; use ``independent_context``."""
     if rung not in RUNGS:
         raise ValueError(f"rung must be one of {RUNGS}")
+    if qid is not None and str(qid).startswith(D5_QID_PREFIX) and rung != "B0" and \
+            (not pre_cut_only or (rung == "B4" and state_view == "ANSWER")):
+        raise LeakyContextRefused(f"{qid}: legacy context settings (pre_cut_only={pre_cut_only}, state_view={state_view}) "
+                                  "hand the rung the gold; use independent_context")
     if rung == "B0":
         return ""
     ch = chunks(steps[:cut] if pre_cut_only else steps)
@@ -130,9 +147,10 @@ def context(rung: str, q: str, steps: Sequence[str], *, cut: int, embed: Callabl
 
 
 def independent_context(rung: str, q: str, steps: Sequence[str], *, cut: int, embed: Callable, k: int = TOP_K,
-                        locale: str | None = None, state_view: str = "MINIMAL") -> str:
+                        locale: str | None = None, state_view: str = "MINIMAL", qid: str | None = None) -> str:
     """The S178 contexts: pre-cut retrieval pool and no aggregate answer line in the B4 state block."""
-    return context(rung, q, steps, cut=cut, embed=embed, k=k, locale=locale, pre_cut_only=True, state_view=state_view)
+    return context(rung, q, steps, cut=cut, embed=embed, k=k, locale=locale, pre_cut_only=True, state_view=state_view,
+                   qid=qid)
 
 
 def prompt(block: str, q: str, ctx: str) -> str:

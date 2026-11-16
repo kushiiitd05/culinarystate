@@ -9,10 +9,16 @@ is NOT_CHECKED and this run exercises extraction, positional binding and ledger 
 Also: the exact sign test B2 vs B7 and B5T vs B7 on questions with an unsupported claim, and a dry-run audit sample for
 Kush/Parv (sheets under data/derived/, git-ignored; only counts and file hashes are reported).
 
-    python tools/s178_h3_independent_rescore.py
+    python tools/s178_h3_independent_rescore.py [--out reports/s178/h3_independent_rescore_ladder_v2.json --no-audit-sheets]
+
+S178 FIX-EVAL (SCI-B E4): with no question cell every value-matching claim is now CELL_NOT_CHECKED, never SUPPORTED, so
+the DEV ladder cannot show a supported claim at all; the report gives the fail-closed UCR, the count of value-matched but
+unchecked claims and the UCR over cell-checked claims only. ``--no-audit-sheets`` skips the dry-run audit sheets (the
+first run's sheets under data/derived/ stay as they are).
 """
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import sys
@@ -44,8 +50,13 @@ def latest_evd() -> dict:
     return out
 
 
-def main() -> int:
-    if OUT.exists() or AUDIT_DIR.exists():
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=str(OUT))
+    ap.add_argument("--no-audit-sheets", action="store_true")
+    a = ap.parse_args(argv)
+    out_path = Path(a.out)
+    if out_path.exists() or (AUDIT_DIR.exists() and not a.no_audit_sheets):
         sys.exit("refusing to overwrite an existing S178 H3 output")
     evd = latest_evd()
     report: dict = {"tool": "tools/s178_h3_independent_rescore.py", "module": H3.VERSION,
@@ -88,6 +99,8 @@ def main() -> int:
                                  "ucr": round(old_bad / old_claims, 4) if old_claims else None},
                 "independent": {"numeric_claims": summ["n_numeric_claims"], "unsupported": summ["n_unsupported"],
                                 "ucr": summ["ucr"], "verdicts": dict(sorted(verdicts.items())),
+                                "cell_not_checked": summ["n_cell_not_checked"], "ucr_status": summ["ucr_status"],
+                                "ucr_cell_checked_claims_only": summ["ucr_cell_checked_claims_only"],
                                 "claim_kinds": dict(sorted(kinds.items())),
                                 "selective_risk": summ["selective_risk"],
                                 "questions_with_a_supported_claim": covered,
@@ -105,6 +118,10 @@ def main() -> int:
             v.pop("_res")
         report["ladders"][name] = {"input_sha256": SR.sha256_file(path), "n_questions": len(qs), "rungs": per_rung,
                                    "sign_tests_independent": cmp}
+    if a.no_audit_sheets:
+        report["audit_sample_dry_run"] = {"status": "NOT_REGENERATED_SEE_V1_OUTPUT",
+                                          "reason": "sheets from the first run stay under data/derived/s178_h3_audit_dryrun"}
+        return _write(report, out_path)
     items = CA.audit_items(answers_for_audit)
     sample = CA.stratified_audit_sample(items, per_rung=PER_RUNG, seed=SEED, rungs=CA.DEFAULT_RUNGS)
     files = CA.write_audit_files(sample["sample"], evd, AUDIT_DIR, seed=SEED)
@@ -118,12 +135,15 @@ def main() -> int:
                                                                        ("VALUE_MISMATCH", "WRONG_CELL", "SUPPORTED", "NONEXISTENT_ID"))},
         "note": "DRY RUN on DEV silver answers: demonstrates the generator; the real sample is drawn from the D5 rung outputs "
                 "after the benchmark is frozen and the rungs have run (B2, B5T, B7; REV-B: 40-60 claims per rung)."}
-    OUT.parent.mkdir(parents=True, exist_ok=True)
+    return _write(report, out_path, files["sha256"])
+
+
+def _write(report: dict, out_path: Path, audit_sha=None) -> int:
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     data = (json.dumps(report, indent=1, sort_keys=True) + "\n").encode()
-    with open(OUT, "xb") as fh:
+    with open(out_path, "xb") as fh:
         fh.write(data)
-    print(json.dumps({"out": OUT.relative_to(ROOT).as_posix(), "sha256": hashlib.sha256(data).hexdigest(),
-                      "audit_files": files["sha256"]}))
+    print(json.dumps({"out": str(out_path), "sha256": hashlib.sha256(data).hexdigest(), "audit_files": audit_sha}))
     return 0
 
 

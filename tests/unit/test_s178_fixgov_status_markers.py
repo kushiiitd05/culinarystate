@@ -42,8 +42,8 @@ def test_evd_coverage_figure_says_ai_drafted():
     assert "AI_DRAFTED" in doc.getElementsByTagName("desc")[0].firstChild.data
 
 
-@pytest.mark.parametrize("tool,sibling", [("tools/s178_analysis_corpus_can_say_render.py", "corpus_can_say_v1.md"),
-                                          ("tools/s178_evd_coverage.py", "evd_coverage_vs_corpus_demand_v1.md")])
+@pytest.mark.parametrize("tool,sibling", [("tools/s178_analysis_corpus_can_say_render.py", "corpus_can_say_v2.md"),
+                                          ("tools/s178_evd_coverage.py", "evd_coverage_vs_corpus_demand_v2.md")])
 def test_csv_producers_name_the_sibling_md_that_states_the_status(tool, sibling):
     src = (ROOT / tool).read_text(encoding="utf-8")
     assert "GOV-8" in src and sibling in src

@@ -1,0 +1,5028 @@
+{
+  "input_sha256": {
+    "/Users/parvgoyal/wth/CGAS/takeover/a1/A1 3/data/processed/recipes_processed.jsonl": "113172f424e612ca872c8aa34ab88e10b7b5cd1987b036e862d02e1c23b4bcc0",
+    "data/external/foodcom/recipes.parquet": "9f591abe9f8d1c691bbc630b0431ec6613f09fabe93f1789af87a06484aae9fb",
+    "data/interim/gutenberg/recipes.jsonl": "2c157ffdf22ed050c81fd2212b1246c1a92ca72565d5a784b9ad373feedd645f",
+    "data/interim/wikibooks/recipes.jsonl": "62374f4f292233a24d7b071d5c0dcafd4882ba7f2c7305d1c70a303330156933",
+    "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04/food.csv": "de8b0390058db4f102368c9fbdfde144790b480ff4cb0507c0e060ef99805dee",
+    "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04/food_nutrient.csv": "6d07e6fc062b09750c4d95112be5a5cdb56a2346efcfd0c96b7a7d705812d4bd",
+    "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04/food_portion.csv": "6332e29da61e13f7bd950b759461af73303c76e8b0e64dc9df4e41d5347cf3d1",
+    "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04/measure_unit.csv": "c1396ffebbe6337260fe4de6276aa91847c7f41ff31a4f69080764a5b36ba155",
+    "data/raw/tasteset/TASTEset.csv": "e5d455b5ea4073e47220a7047a6d02d5fd07522b26f3a86336220ddd1868f2e4",
+    "ledgers/data/ING.jsonl": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+    "ledgers/data/REC.jsonl": "91f65a47389260efa345e34695060053ae1b433afce0726baca42c310e24bd85",
+    "registry/food_ph_fda_draft_v1.csv": "6c591cfdd0dd5dc2ee1300eea0a50582d173f8c39c0345dd62660d6f51ebc0d8",
+    "registry/ing_sr_defaults_v1.csv": "56a2d4d246602cb4aebe88070d888d351b9e352d85319f08de7c694e587e5d0d"
+  },
+  "labels": [
+    "ENGINEERING_DIAGNOSTIC",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "per_family": 200,
+  "record": "COMPOSITION_SAMPLE_BEFORE_EVALUATION",
+  "seed": "20261104",
+  "selected": [
+    {
+      "recipe_id": "REC-010130",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "7d5914881751302d494d23eb363c1f8e224ddf75b330cf85a1bd4d6b7e2c9c89"
+    },
+    {
+      "recipe_id": "REC-010057",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "aacbaeae93c6029ebc16988783bf647dde48b81eae1b293ec32a3f29155dbee7"
+    },
+    {
+      "recipe_id": "REC-010122",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "d53b30e35e33cb6481be271e5a11a2657b55cac0aa0ae8b5eb04816f3a52384c"
+    },
+    {
+      "recipe_id": "REC-000123",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "7846a7a5ca9078336ef72b8070f1ec498552760cd5b6a7444c545035d7274b1f"
+    },
+    {
+      "recipe_id": "REC-004618",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "b62f4591f4e0fad1adc882dc9f4ec8475bd3ed0be3eb138955cd9c18d0069dd8"
+    },
+    {
+      "recipe_id": "REC-005135",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "6d93e5a8f29825041a768bcdfa1e205824593af9141a247ac554b3006eeca69f"
+    },
+    {
+      "recipe_id": "REC-007741",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "adf6d76a75ae56bc5fb878f23a4ce4f13e55336023d80699d1b3a7471a02d660"
+    },
+    {
+      "recipe_id": "REC-011099",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "bfa533109e36f17aafa6aafb64be732520c19c511cbc2580688cd76d69ccba12"
+    },
+    {
+      "recipe_id": "REC-010733",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "0651e1e8ed978ca8b21331c40211eb5345f12bff444a0de162f5a0affc722468"
+    },
+    {
+      "recipe_id": "REC-002985",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "bf83089bffa29fbec8a999acea67973f7995ac1e6645b1d9a3f2bd737c66e621"
+    },
+    {
+      "recipe_id": "REC-004448",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "51c93f4fb64e11059ce4d84c26c99b255d352f6202c86878b99bae4a3baf1b89"
+    },
+    {
+      "recipe_id": "REC-004540",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "2333976ea0a0c83c9064708731ac61aed0c59f7f48240cedf9aafd35eeeab820"
+    },
+    {
+      "recipe_id": "REC-011748",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "c2fafe3e0fa8e58430db779fc0866a53f29272b57f3a919f58446e46234539b3"
+    },
+    {
+      "recipe_id": "REC-009212",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "d93bd9772e299dce38e1a1eb88f6a1585041121c418b055a0bb61e679c5ba911"
+    },
+    {
+      "recipe_id": "REC-009436",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "1c3ebd138d2dfc351bd23242b624d6e0385b09623e628270f59a22b15f3f5e84"
+    },
+    {
+      "recipe_id": "REC-005039",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "d7f8cb7160e98f81d0e8f46e56b753db98c10c8c321cdae662f7a5493aee6efe"
+    },
+    {
+      "recipe_id": "REC-004400",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "72a68322502936d747184b394cd77f5cf3816ea3a6f8b3866aee9008cdb48cfc"
+    },
+    {
+      "recipe_id": "REC-002948",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9676871da617975f49c3f3b1b161a430a5ba030370780be161ba85b0189ce87c"
+    },
+    {
+      "recipe_id": "REC-001375",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "8cbe5c0b4e3ed9e51db810712968e8bc3a399e3eb987f85c5ed608b2f500cb6e"
+    },
+    {
+      "recipe_id": "REC-009611",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "a560492abe29996bafd72e4fb4e19d190d9ecf194d8e4a840f10f1502c40dd86"
+    },
+    {
+      "recipe_id": "REC-001952",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "0d0583ed106e8ffe07300d9de12db8306964f12ab5a2138d045ce101d277614b"
+    },
+    {
+      "recipe_id": "REC-008451",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "0b279ad285523f49d485c7092035bb5535e46725a60c739f08e152015985e59b"
+    },
+    {
+      "recipe_id": "REC-002002",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "1312ff5a6b101a6109f24ccddff7cea9c723353b1bcc1f682583f73b4ba93d20"
+    },
+    {
+      "recipe_id": "REC-000083",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "64ffcb3563be434a10e06c06e43a43855403b58522d97a234ec94840b7031c5f"
+    },
+    {
+      "recipe_id": "REC-011787",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "385efde7b83022992a3cbe15b164497e21c3c9b1a4ec4f48b6dafc290d6ab719"
+    },
+    {
+      "recipe_id": "REC-007484",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "93ec2111bf82fe3dac76d87e62233e8ad9e597146ba57203e3f1788c8297aca0"
+    },
+    {
+      "recipe_id": "REC-002737",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "38b88ff26f7e4e748ac3106d32dea7f2a54a089a8df456ab8acfc9622adb152b"
+    },
+    {
+      "recipe_id": "REC-002518",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "5f2255f2046d54d137bbe1e59d19f73f12e34a8c984fabd3fb73c73d79145505"
+    },
+    {
+      "recipe_id": "REC-004089",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "8e4dd794ed6544f835878a0284dee48325b305a0ff9e0c87d50f552c8302bba9"
+    },
+    {
+      "recipe_id": "REC-000118",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "679a9d82c6e060e18489e1dd4cb5629f0b722a59ebe26020ceaacd40c6564cce"
+    },
+    {
+      "recipe_id": "REC-007373",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "6a7c1b052abc84df7a57754598cc947b3ba92c0fb5d5b8be8e0f188c38e4aa48"
+    },
+    {
+      "recipe_id": "REC-011706",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "dff61391d3f62c4147f19ed10fd7ae513063d24eb7d67ef347012d2e9ca3cc93"
+    },
+    {
+      "recipe_id": "REC-007100",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "ffad18c696dc55d920ffee110c3c96f0b7b9e2fa3cef9be5d8eed4f8be878a4d"
+    },
+    {
+      "recipe_id": "REC-000638",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "409b791873f0cad5efbf6d05716104cb5668e0dddc787607c23a840fe0229171"
+    },
+    {
+      "recipe_id": "REC-006142",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "78a5cf86f05cf95b1fb2537b10b8e8a3f2513481d106085c9eeaf09fb02f0eac"
+    },
+    {
+      "recipe_id": "REC-001001",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "5b4fed8ec8c1dbe7cec1cbc667fe2e68f624dbf6da08fa6161c7e93990ce3e7f"
+    },
+    {
+      "recipe_id": "REC-009047",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "efa9e7a5941cbb1237c63cf82e49cacc4f5328b42595101bfb063153d28bba99"
+    },
+    {
+      "recipe_id": "REC-009707",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "0edac34460a515c49e6416b32ab47d37e9b6071ccc8800cd76cb2ecd69eba4cb"
+    },
+    {
+      "recipe_id": "REC-006643",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "dfa043473a39b12dda04cd5490caedf447f4293c685bb3eeadeeddd8b8a146a0"
+    },
+    {
+      "recipe_id": "REC-003753",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9b2d127107a288dacbdc998185c45b83eba0c3c4d5910c4752a9db9584304074"
+    },
+    {
+      "recipe_id": "REC-000217",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "d2b3c93ad5bddc89646c5928dc5baa143caf8af904cf27bbce59e4ba705971fb"
+    },
+    {
+      "recipe_id": "REC-009526",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "f7de70132bbb54f5f89485df665fa27d43282e09b32854188d5b8c3ca0b074f9"
+    },
+    {
+      "recipe_id": "REC-011780",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "82b31dc3e2f7347f8a79d93352cceec4e83eeabc1c46c99c4eb9394581463385"
+    },
+    {
+      "recipe_id": "REC-003012",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9f4954b3847e1b9b36969ecdc3af5cdfc4a894ab544463c138ea5380434ab982"
+    },
+    {
+      "recipe_id": "REC-006313",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9c94f0439392da69bfcf5b19361ddf78b21b781538cfe7d59c0808c7d39e95f6"
+    },
+    {
+      "recipe_id": "REC-011641",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "54d13e8b8798d9f038dd66a1b528393f5b8271c6dd794ea8f39e47013b3ba938"
+    },
+    {
+      "recipe_id": "REC-000061",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "23554511bfdd444799afb4a7dfb7371cead2205fc49c771ffb76055d0f11bd1c"
+    },
+    {
+      "recipe_id": "REC-000102",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "b0a7b9f26ebb8394704ebdf3e5b70e3d62d19736ae343a4bc2201d90783d877d"
+    },
+    {
+      "recipe_id": "REC-001446",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "e936125dd83be1d4d4b518068f94d1c0f4e865dc141f475d3c0678a009fdeafd"
+    },
+    {
+      "recipe_id": "REC-007939",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "b61962d1efc81cd6583c21646dfd82a16ef127d244897b65d43d51200f995948"
+    },
+    {
+      "recipe_id": "REC-003969",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "18e4acbca7daf70752fc3613e76052a92ef1700e1cd65cf198d44330673becf1"
+    },
+    {
+      "recipe_id": "REC-002030",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "98fbe699e46a85ef712aeefcea18a5763ab345f1b1b477fac6fce6ead1c62d4d"
+    },
+    {
+      "recipe_id": "REC-010597",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "1d646a327a1174a367ca6b51308216b17f675b1fb72524153dc16fa499074caf"
+    },
+    {
+      "recipe_id": "REC-008465",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "57e022ea403b8421d11b71909be5185fb89de619bffd458588b01553ad3a49ae"
+    },
+    {
+      "recipe_id": "REC-002616",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9dfe1df39d6db2097d4e1080cb426cae2aac6d242048eb5eef244fa0190b8e0d"
+    },
+    {
+      "recipe_id": "REC-002782",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "e9e6e0ddd12c49822243cc01a47683bf2b21a081e2d1aa224d781c1e167deb8d"
+    },
+    {
+      "recipe_id": "REC-005930",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "0d54de1469d4b4fea33eb651b39a3e56438db46cca2a884d3a5afc4da5e65fd6"
+    },
+    {
+      "recipe_id": "REC-003103",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "fa889b71870149ff17c1f2b7df281d1e7a60b1134c3810b24ae0f8ea038431bb"
+    },
+    {
+      "recipe_id": "REC-003863",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "c7e50fbe4208874af79c850a270d849587349c2e53c687080a84b07059f04880"
+    },
+    {
+      "recipe_id": "REC-010877",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "76082140583ee897559382dbc418b595c2084f4df2c04e7914a104896d8f851f"
+    },
+    {
+      "recipe_id": "REC-002626",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "82d0abe6d7a0e0df3a74780be03c68111e5ba076394141f9512e984c6a91be31"
+    },
+    {
+      "recipe_id": "REC-009713",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "12665ab36d295cc003608417378893f36c060e1e48de42b601d687a1ab88d35d"
+    },
+    {
+      "recipe_id": "REC-006931",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "d5708f6f19d2b5d17106531e2621f76384a0eb0d4c81bbc46faa122a26c1263e"
+    },
+    {
+      "recipe_id": "REC-010460",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "fec4269031dd0be6f686bef1e3015d9e9c85f58925a713392d105587c40a07fd"
+    },
+    {
+      "recipe_id": "REC-003514",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "58d72b3fd83abc5949c9795c449ba9a07abcafb147a6ea03ab2ba3ef22cd429b"
+    },
+    {
+      "recipe_id": "REC-001571",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "448bebf65f74a8dfbc2b123afd3547551c65007433efec5db53aecc44b883984"
+    },
+    {
+      "recipe_id": "REC-011078",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "2896d47657a19d94fbbeb74ad3b65a0b874f90a2452066d88ec3738353cf323c"
+    },
+    {
+      "recipe_id": "REC-000072",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "d00163e651168422b6f153897239c45e1cb858319ee8e57a89562cde6e441bc8"
+    },
+    {
+      "recipe_id": "REC-000603",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "e265e99d4114ccf625d47f801a8efe4f9628f2cf8e7c8d2d0b2f1989c59b9141"
+    },
+    {
+      "recipe_id": "REC-001594",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "c34999fbcc25fd7ea45bfc058f4ec167f7a69ae73cfcd4a916afe0bb009541e3"
+    },
+    {
+      "recipe_id": "REC-008597",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "3f34d1d3c5061926780419fc5ef92941d048f5b2e3cd20b8cfdf624b69215ceb"
+    },
+    {
+      "recipe_id": "REC-003944",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "b8f8adfe8cb3a00737a09f5009d985546334e661542eabdabd97fcec8c0a1e9b"
+    },
+    {
+      "recipe_id": "REC-001951",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "06f0f304ff2bba74769c4a8dba3d14137336fe7e43942cd1fd698fc81c68d9a3"
+    },
+    {
+      "recipe_id": "REC-002201",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "f96965db389440e67c585bbe2463a1178596d99c684a41d0ed0d8af4bcad5313"
+    },
+    {
+      "recipe_id": "REC-011525",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9639c7d13d95cdb0e3145765d943a97b18b15926875dcc0a30996ff0caa20aca"
+    },
+    {
+      "recipe_id": "REC-011321",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "413d6096d1851c12d4144d8da27fdbb8b247fb2312dadeba5f51e3797a96aec3"
+    },
+    {
+      "recipe_id": "REC-006952",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "b0874d16c9ec24b3f1228ff9ebdfa23ab87318e789fc72665e34cd863d7f949c"
+    },
+    {
+      "recipe_id": "REC-009437",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "720a099d7ce47af0f81b5b321decd586d2c53aebe3f561a8e518bcc80b7baac8"
+    },
+    {
+      "recipe_id": "REC-007206",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "c8194f6025ca45052fcf6bd59c3659e1d16dc13c6cba7683705d6c1d1511d216"
+    },
+    {
+      "recipe_id": "REC-005331",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "0ea418751e852d71c1478c2f603bf392c04c12a086f25917d328a8b919b5d1b0"
+    },
+    {
+      "recipe_id": "REC-006791",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "73f5ba3af37ca3e6eb0d47be821333071af88d2518f02b4ffc097e623dc46995"
+    },
+    {
+      "recipe_id": "REC-009800",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9905729a419156673306f7ab50ae6d6b72dd513c61e24b03019fc533a0cbdf39"
+    },
+    {
+      "recipe_id": "REC-011418",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "bc17fb3ee558bc5bc61d68bb01d7b06c32b59a5ca0585a2166e15cce483e39d2"
+    },
+    {
+      "recipe_id": "REC-001636",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "1f89c85261ef9f542179c64c83c152fb6e5e433c52d2466b89e4fc8d582057e7"
+    },
+    {
+      "recipe_id": "REC-009373",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "111f102c7c6976581ec1a39dae16fe473685905f20f3f6d6ab2b352e3528be66"
+    },
+    {
+      "recipe_id": "REC-005104",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "8ebe5c99adff327452ebdb57547ab5ba766a74d34877884d2b338e48ca66c84f"
+    },
+    {
+      "recipe_id": "REC-003842",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "5e6254973efb4e41a8d60296213c0fd8ca43e93b4ba0a7df4ab01f9289d8a5ff"
+    },
+    {
+      "recipe_id": "REC-004570",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "3e1340aa706b7fc2526d127fd04c243fec4b1a6568cb3616857031054eda047a"
+    },
+    {
+      "recipe_id": "REC-001850",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "87ca3161816f1f84ce7e3ae84d3c56759119ff6cedcae443be558d071d468794"
+    },
+    {
+      "recipe_id": "REC-005895",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "d9277861350e647cc8cae007b3c217a23b4192c47a3d90a77c622121780a9caa"
+    },
+    {
+      "recipe_id": "REC-007895",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "0d65929a9e2a6ecfd8d59b71877de62aaf2bc6293af6358ddd6a94a5606bf00c"
+    },
+    {
+      "recipe_id": "REC-000245",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "6321dadaf9fa02c6575c437665ef9b35214dea4a1484023576c65dacc4dae3b7"
+    },
+    {
+      "recipe_id": "REC-008114",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "924822a70065c12a9093db1f0bb1101a25ecf4ea6eb949f43ec29eaaa0100bcf"
+    },
+    {
+      "recipe_id": "REC-011317",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "78024415e2b8d3412f90fbfad9c62fd0e99630b681cd4efa26875bb032c78633"
+    },
+    {
+      "recipe_id": "REC-008657",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "bd25ddc39233b299fccefa09530e9cba507ede4f6c239219c2b14c729a6a5961"
+    },
+    {
+      "recipe_id": "REC-001425",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "b86980ecab43f9011df43627eefb29ff9b718b096b1f287815b0be7cd2049561"
+    },
+    {
+      "recipe_id": "REC-001790",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "61374a07f0b18552d97533fbeff490a6bb3e9de59c75f32a9befab0e81730959"
+    },
+    {
+      "recipe_id": "REC-000553",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "771853abecac5b7ef13fbfbb7190c57e7450c36146925b484607f7186ac80ac0"
+    },
+    {
+      "recipe_id": "REC-009772",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "3b1ff5789cbaddd6f572ebc69a64b2d36e8cf15f387d68492762aaa70637ec0b"
+    },
+    {
+      "recipe_id": "REC-006613",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "6eaaef312a170ffd611b7e48e2736d604cd7fc207bdc5576ddbeb0991137f189"
+    },
+    {
+      "recipe_id": "REC-010316",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "dacaf6c43854b96e7d80c50d478fe3e4e021851090c97729bc7e193d36698cb5"
+    },
+    {
+      "recipe_id": "REC-005844",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "b840259c9e9e5b11ee09fd5cccb79f9ccd7deebce8c9dcde06549f692ae15c39"
+    },
+    {
+      "recipe_id": "REC-007280",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "099bc0e190dec7629b2961745b089e1646446248d21b9881b4b1697dbbb1362e"
+    },
+    {
+      "recipe_id": "REC-002386",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9e5b3b8321e0e81aab92829f2ed79982a5cea20381ca1f3beb8add724e6074de"
+    },
+    {
+      "recipe_id": "REC-009874",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "5c94c63147f83fb746920536b407417af468afae412588454cde53b4ed6cfbdd"
+    },
+    {
+      "recipe_id": "REC-010718",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "726b7be8dc7f1efd71b0bdb6bb99135eabf9a5691c268641693c92d400afd30e"
+    },
+    {
+      "recipe_id": "REC-000381",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "244cbe493da597fdf89052d8e2e98656d3790f24da620e533369b92a6461133d"
+    },
+    {
+      "recipe_id": "REC-009105",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "913b3dd6a61556edca4133a2bc7eeb8f8c9e3cdbb17d085c27d0848c763e53b5"
+    },
+    {
+      "recipe_id": "REC-001814",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "a533a759f6642a796aecf91d9208167815df3c0114cfe493a54c2d830b93187e"
+    },
+    {
+      "recipe_id": "REC-001042",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "f78fe1cad44370a12fa04372c00d6ba86123787e8d90eec1d0e7a862160b149f"
+    },
+    {
+      "recipe_id": "REC-006345",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "22c3e3db4831afa4da927aa8eb8c22ad4f35d2d9336305045904e6f7205b4ead"
+    },
+    {
+      "recipe_id": "REC-003011",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "bb3d567ffe84b803e95bedc18e0df9ad30597b3b6e9b6e39fe37d1cd6f4a88d3"
+    },
+    {
+      "recipe_id": "REC-007010",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "82e251217cb18e9f2f76e8cee19d3d5b8980acaf212f0f1c96b35f905c1e227a"
+    },
+    {
+      "recipe_id": "REC-011086",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "221a9bf00a79f1f41b34076f0a10ac2cd48fd9dd2078ff3ce5300d278158202b"
+    },
+    {
+      "recipe_id": "REC-010335",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "cec635e3393ec7d75a09737076008a5d7cfcc384782c8c33fc4b3ef196dd51b5"
+    },
+    {
+      "recipe_id": "REC-001791",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "75febdfecb8bcb275fb1f396697071406226ba67b783ec06e5dbe842fa65cf6c"
+    },
+    {
+      "recipe_id": "REC-006989",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "422a5e52276369d699f3ab3c884f9cb97490bb750a08bbd7a6bc710beb852ea5"
+    },
+    {
+      "recipe_id": "REC-011659",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "ed6ce48250978c3faf3a9d87e3411aa3599c1efc21bb3418f90f11924132970c"
+    },
+    {
+      "recipe_id": "REC-003493",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "f8e3e199b58bfe39996fcfcc6e3185785d7d4aa62c7d0ee23dafbbf2fb05cb6e"
+    },
+    {
+      "recipe_id": "REC-001503",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9b6fd3f3e4fd728a710c70c9216876a529126e8c810f5e8bb5ea6f65ca5ad568"
+    },
+    {
+      "recipe_id": "REC-000255",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "88c1726e445d6aef7b58c324cc9b85f5f23171b97a9c41885527613854e9a76d"
+    },
+    {
+      "recipe_id": "REC-003956",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "5dce836b22e1116d8039c7a0ceb1bc1bda5d8228aa790bc8e0eacf9584e654c1"
+    },
+    {
+      "recipe_id": "REC-010645",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "4f9b9c0781db0c7dc194e22f832c90e7ecc9804afc7205e14258af0ee20d5276"
+    },
+    {
+      "recipe_id": "REC-007775",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "28acf3deafc54dbd716f4f99cfae78008a3cbf687264a9850ef33aa0625fcdc1"
+    },
+    {
+      "recipe_id": "REC-003079",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "fda4a6a3c2be453b949cd6ec580366d5e3e65db7aa937718146ca4597d72cdf6"
+    },
+    {
+      "recipe_id": "REC-004729",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "cc5edaa86966b0526c23ad4ccc9e5334ab3a5d831fe1e8b0dfdaba1c69d72b64"
+    },
+    {
+      "recipe_id": "REC-004929",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "31506d3c3a1f02da57b926b03e9cac107a7148251ef8d7150ac382f344f03990"
+    },
+    {
+      "recipe_id": "REC-002105",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "48294e155d19345d70a487718b1c24c1a994044b30abb83533b0d920f4e31c00"
+    },
+    {
+      "recipe_id": "REC-009014",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "c8e61deefc7e357f1d811d125f3ba45ba15606af5c07390bb8cc2ba090c83135"
+    },
+    {
+      "recipe_id": "REC-009956",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "2d5f7fa9d42a2ee6ff32c996ef33f766eb0df00e9db3ff8260ea946c8bc9b7b5"
+    },
+    {
+      "recipe_id": "REC-009406",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "0a536bbb05f29e02e69934c93fb68f440a7bffe9591c6a5e8d00329ccaba7cbf"
+    },
+    {
+      "recipe_id": "REC-001081",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "4f5c5da6557ed8c357859086b8f3c3eb076ee3a03d52213925a3957c61a14f49"
+    },
+    {
+      "recipe_id": "REC-004587",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "041a7087c77fc20bc4257fd283870cb0d2a950b5c185ff62f4112f8fb84388cb"
+    },
+    {
+      "recipe_id": "REC-000446",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "13859c9c3b71e96a81de2575aea1ce6c501a199b84f9b97b8511334bd1e1eede"
+    },
+    {
+      "recipe_id": "REC-011619",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "694a1a1f99247814f420af424e26f98063c496ed03f2c0e3a10e4726b71ff4e2"
+    },
+    {
+      "recipe_id": "REC-003096",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "8e5cad74df057506f74d2d92ba3bc1dfaf9bcba17cbc7d1895c4845a59326035"
+    },
+    {
+      "recipe_id": "REC-002508",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "69b63bf1d35b707e77d7298492ba8b96cc9757a2f8281e5e922d1ec4984071ad"
+    },
+    {
+      "recipe_id": "REC-005564",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "a6915a3552b4005a7f4a7ee88823eb3a92b4a2fdc2840743b6bd9f6f365a4210"
+    },
+    {
+      "recipe_id": "REC-000721",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "fa47f1d1252e9af29126f60f050d44ddeb3e548519b49af917f8a52c0506e730"
+    },
+    {
+      "recipe_id": "REC-001942",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "55ef37e6bea324590a9738d24bddf917fda35c2e0417d9cabfd1292cb2dd515c"
+    },
+    {
+      "recipe_id": "REC-005181",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "251685e2b9d7fbf6db164e126f4401486cfe0a35a153c13513f507a95e8668a5"
+    },
+    {
+      "recipe_id": "REC-011279",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "e9ea21acf21126c220fdef1d74f92147c942e7bd8c07e1343d111d0e36478d34"
+    },
+    {
+      "recipe_id": "REC-009852",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "c98b40e71a9884ff2b1c7da3de4fa4fd20207d346e74f90e14b23c5f6e0746ef"
+    },
+    {
+      "recipe_id": "REC-004898",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "40198833a15e7ebc2cd396daabda20328b9212f9328b0aecd2264a2cdc6d5968"
+    },
+    {
+      "recipe_id": "REC-003702",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "a788b13c289c514eaad6886b07fabe6843d11b275983a0f9e712748eac3c26f2"
+    },
+    {
+      "recipe_id": "REC-003618",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "a8af88628f0007394b3a3a20da281d878ccf05149fe14f443a2b18f915514a7a"
+    },
+    {
+      "recipe_id": "REC-005500",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "20a5de2ceba3756d3c7c1c18d1ec26b4675ae0e8166b30aeb5ec089d0250d215"
+    },
+    {
+      "recipe_id": "REC-006105",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "6ca279fdebd3555912ac4f7358ee0a5df081819cf1f5b9aca4fbcda916b28898"
+    },
+    {
+      "recipe_id": "REC-003049",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "a6758b889db08cede0538627b04bffeb3dbaa3a63eb24a6d990715a945bdf39a"
+    },
+    {
+      "recipe_id": "REC-007337",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "4c0a7282a2bbd81aaf8a2eb75f0abf1f8f7427dbe97b242b219452dbf1e8c5d0"
+    },
+    {
+      "recipe_id": "REC-005114",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "c532351b9743607af7ab784edd9927db560a878d405f0e65be4d29b5704108f4"
+    },
+    {
+      "recipe_id": "REC-004491",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "63124133bd32edf22e6b5bfae5ad6ffb62e97913d5f6f895ef7f3910ef63535b"
+    },
+    {
+      "recipe_id": "REC-007233",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "185513e519c4f49329b0a4bd013fcfde8f0580b6e31fb4dd1845844fbcb903cd"
+    },
+    {
+      "recipe_id": "REC-004169",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "48a7229b42503fec4a9463e2ef956e9ff97a9a77a43adef1b8b8577e0110fc46"
+    },
+    {
+      "recipe_id": "REC-007507",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "e60e8141c5943f40c196e4c9f72470cdbf8b385ed3dd65b9ba109c66b7ec89fd"
+    },
+    {
+      "recipe_id": "REC-006946",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "a8faa72223dc09df0df2211cf572f6ab759cb970908701a5293638bf81024726"
+    },
+    {
+      "recipe_id": "REC-002120",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "3e50178514bb20b0db0ca344c8deb2d8b9fcdd1bccd8289a8df4da902bfca89d"
+    },
+    {
+      "recipe_id": "REC-002302",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "228f025bf5396530b99269fdd91fea0669d3cb0272538995fc061dd3b9ffa36f"
+    },
+    {
+      "recipe_id": "REC-009866",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "04f9f33b9ed4036a03f9a9fe2eb625110234fc3c6fd866c9c0ba039a421b1130"
+    },
+    {
+      "recipe_id": "REC-009820",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "003fec0bf9b2761dc8fd7591a5a4000a09543a042c83416df1e8c925505945f4"
+    },
+    {
+      "recipe_id": "REC-002333",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "a86eb1fba8e5d4907ff21a58f3f629a0524679261d8294f0b22d5b56ac7d3216"
+    },
+    {
+      "recipe_id": "REC-001066",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "efb5569a34d030ae48ac75c6976c57d611db1a5b3643d0449cf5e5800ced3de2"
+    },
+    {
+      "recipe_id": "REC-011348",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "f5e4b693217fc12d24cfb7beabb07068a5bfd66341117de5245a65a28871cfa1"
+    },
+    {
+      "recipe_id": "REC-003307",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "4d2bec86f163c30ebd9c8ce907e5d794881b287d342d5d1e7a00f99963bddc1b"
+    },
+    {
+      "recipe_id": "REC-006233",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "e92c3131c50e6ccdf0e45063499f223cd33e280d0567c6dc06b1b5b94b6eb908"
+    },
+    {
+      "recipe_id": "REC-001848",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "29cb740b9e8330ac929e21e20f09b22b5ca817a93e10f228d7d4e5c47619994f"
+    },
+    {
+      "recipe_id": "REC-001480",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "02588fd31484bed609761c5b9fcaac7b66cb32cd3960a6467295cf2452bbf5b5"
+    },
+    {
+      "recipe_id": "REC-002349",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "ed0062b7c68b57d7997599aaa2f39341fcb0db94ca3582f486d3b4424a02c80a"
+    },
+    {
+      "recipe_id": "REC-002189",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "e0bb116e85cd7a11b6fc1873e01684e3ed217d637b23dc7ed5eab2f87e7ad40f"
+    },
+    {
+      "recipe_id": "REC-007440",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "283ecf8f8443d124008e58bf986faf213abfd17a8243a00d3e5f534f62d6a0b8"
+    },
+    {
+      "recipe_id": "REC-007540",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "3321ffa68a587112105838df99dd692fd399052756396f75d6d041f7f55bd210"
+    },
+    {
+      "recipe_id": "REC-009127",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "f53e867c88f4c4cc35ffa4c3e90a6b28bbd08d4297c345619335757f5b2c3078"
+    },
+    {
+      "recipe_id": "REC-005654",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "e75093a2871dd051727c0a52d6012c45f6990c27bde63f3953a829c587da1b64"
+    },
+    {
+      "recipe_id": "REC-004379",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "6d879b460726e8e97a1f399d4f31c1bf816905e23631c8305f4a6d679bf0ed01"
+    },
+    {
+      "recipe_id": "REC-003914",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "c76736b9df7b7d978584329f51cad28038fb1ef86864ca4b88e8737c28e02f8b"
+    },
+    {
+      "recipe_id": "REC-011565",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "2bd1089f2cdd33ae5a139a27eb74adfd717c117ee29e0814cbe3e0be99ae243e"
+    },
+    {
+      "recipe_id": "REC-002186",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "80fc8febfcb7943049873253cf5935ebc9863928ce330c7dbdd3a1ca035d3f0d"
+    },
+    {
+      "recipe_id": "REC-010241",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "dfdbfd3d9eecdef65fefa8678dc4f6ef56b94aa3d11482d000bff62ada471d69"
+    },
+    {
+      "recipe_id": "REC-002655",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "d964612d5a8aef69970cf5dcb6676c2256001b118fe00674d70a829827e9212a"
+    },
+    {
+      "recipe_id": "REC-008789",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "8225589487fcf5a96d3c3eda1d165c26b78156963f69d1f95c21da91978877c6"
+    },
+    {
+      "recipe_id": "REC-004684",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "20ba797ed39760d866ceb136a734cd8e93735219de8202434528649897e4e5a6"
+    },
+    {
+      "recipe_id": "REC-003378",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "e06bc7bcbbcee5637b16904502b828ebd5482e333d1f79b78c6ce1dc6406355b"
+    },
+    {
+      "recipe_id": "REC-011515",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "2a40c0b09f7a0a771bfc2d3f3fb20fd10459c6cf1f01eb9f59513e754f42d47d"
+    },
+    {
+      "recipe_id": "REC-008471",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "5b0f06fd33a8345f4ee622294ce76ecc0af7f14e817e24a41f561bbfc993a528"
+    },
+    {
+      "recipe_id": "REC-008825",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "99397bbbee00b8e857ec35354460f202cded87f0d3733f60308f91fb52baad86"
+    },
+    {
+      "recipe_id": "REC-005997",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "cd38fa240d62be85e79c7e5653bbd769685378787d10851b294b9f4fb838d036"
+    },
+    {
+      "recipe_id": "REC-011789",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "3209a8d5289e77dcd7874dfdc2e7c5db71849d0e9c7183bee8cd2a5254153c4d"
+    },
+    {
+      "recipe_id": "REC-000132",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "643468683f419bae8380f632bf4d910ab4a66b2ddf405c98d0de5bd103edbed0"
+    },
+    {
+      "recipe_id": "REC-002925",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "8c2071731572ded1d6248199007c412948c736bf5617ac1051d4f1caba7beec5"
+    },
+    {
+      "recipe_id": "REC-003082",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "a2cc368e1b7dfd34a63cf24289b27edaa4a0347c0089b9219731b4ef20ebf5f2"
+    },
+    {
+      "recipe_id": "REC-001059",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "07da4474305b06e32a42b3f3df27a9051fa67e4ad7e25dcd57c6f9374e603704"
+    },
+    {
+      "recipe_id": "REC-009185",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "570779da5e9c756690ed47db4cf048aeae712ce9107747085eb06989eadbeb20"
+    },
+    {
+      "recipe_id": "REC-011563",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "51061f23bc4759415c6e6cd4ddb4f695bcd53d7626f5465922dfed2095a9789c"
+    },
+    {
+      "recipe_id": "REC-010679",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "4437dedbaad924911376eecc3a9894a0f9dc908388fcead7424a8e85e70a1f48"
+    },
+    {
+      "recipe_id": "REC-008951",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "634766fe87cbda0c10ec0e4c3758ebfd35e1a37cc1950aaa52f5e0c07ab8135d"
+    },
+    {
+      "recipe_id": "REC-008760",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "9763245592c904fa1cf958a5c598e4e716dab9f121c24f59a8aa765acb22f6d1"
+    },
+    {
+      "recipe_id": "REC-001927",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "69f10dfd7a88edb98d2d7f14837cd155ef54a93769f576472ee9cc0645491205"
+    },
+    {
+      "recipe_id": "REC-006369",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "673393a9d900b1a60da70c94bf58d6ee47bd61f3afb67d03263798626860b7f0"
+    },
+    {
+      "recipe_id": "REC-011860",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "23ba6812ea56ae3a2aa68569ba05dc37f4e3ba3ac21d776095eff395f1bab223"
+    },
+    {
+      "recipe_id": "REC-010742",
+      "source_family": "A1_BBC_GOOD_FOOD",
+      "source_fields_sha256": "5f5fdab89e715af62d3692eb718888e8549ead1c754b0b035b925e353c57c917"
+    },
+    {
+      "recipe_id": "REC-013822",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f5103367ab04446918aee28df6616236440553b513d96f9715a6cf1f3e2fe01e"
+    },
+    {
+      "recipe_id": "REC-015435",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "2a9db39e983e84a5c3f47617b1b4d25931adbfc31e4e3525ebe76a1e8e61c116"
+    },
+    {
+      "recipe_id": "REC-015360",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "268189a9520ea6d215e2d2529525dc73bba298eab835c75558bb11c85a4b9c56"
+    },
+    {
+      "recipe_id": "REC-015604",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "69a83982a78b95e8a570e66cdd45e598d6bf9b446a63941a1e86fe222eb0858a"
+    },
+    {
+      "recipe_id": "REC-013904",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "854b7fc03116a7a4bad1c60451bef7cc6bf889888e9a21bbe633234545067110"
+    },
+    {
+      "recipe_id": "REC-013965",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "b4e3944156efe9593968c7c56d7eeda7bff144959f187d0db0cab9945a48e845"
+    },
+    {
+      "recipe_id": "REC-015021",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "08d4e44d996096b7b8add354f6238fb667beedd714af3a8cffad52f61822ac42"
+    },
+    {
+      "recipe_id": "REC-012261",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "309b2477e32ea6d296bd4e8996dcb04a5e32b45cb5a61d4d8eac1618c62c4f0e"
+    },
+    {
+      "recipe_id": "REC-014915",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "c347e0aa39f33260c16532937d9cee7bec36e99787dd4362a38f1db7e9349ab5"
+    },
+    {
+      "recipe_id": "REC-015413",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "1a2b0451f06321b5ddd2cd4298084a6b4e0b0d8f6f6c87f1e244a9d8358fc6ce"
+    },
+    {
+      "recipe_id": "REC-012517",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "2b29abb09e9b199a3c4db68f883bcd071688b4d113187ff76124bbd1213e751e"
+    },
+    {
+      "recipe_id": "REC-015385",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7b5e89a1808bd0d30e43084cecb7f95210395d1fbba0fe9e3577bccc2e078254"
+    },
+    {
+      "recipe_id": "REC-012792",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "e0224bc0b2d0834d9a976db5bcc0526031a8461049261de1b5c89d81dd54703f"
+    },
+    {
+      "recipe_id": "REC-013994",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "0064291db0e906163d1b6e1b81a730909f63f1bf17a118728da4083382e04dcd"
+    },
+    {
+      "recipe_id": "REC-013030",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f1c391feb2a8b871606a2ade6f06e7796ed5a22a99c16f167edacff65063679a"
+    },
+    {
+      "recipe_id": "REC-013079",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a578c961604dbf97efb00ec75e68ae26264666df5ac5bf2683646d66f3ed125d"
+    },
+    {
+      "recipe_id": "REC-012527",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a01729717800ae50539d2609769039f6f8192016bf7fab09e8b109c457209c7a"
+    },
+    {
+      "recipe_id": "REC-012222",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "c7b51645eb899a666a2e452de79ef9e8e271a903d7da9d984c40c6aa6b056ed8"
+    },
+    {
+      "recipe_id": "REC-013303",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "639d00cc6826c127121fa396c6cef60b38ce6fa5f60671836c4c70dc8b31f45f"
+    },
+    {
+      "recipe_id": "REC-013959",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "6987c949b7f86c3b7a1940e5001755eb8253f36417ed31b09a579046c6444fcb"
+    },
+    {
+      "recipe_id": "REC-013931",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a878684d0181f894c6defdf301da9e4e65c2da47edc4a237750c93d7440a78a6"
+    },
+    {
+      "recipe_id": "REC-013831",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a804678d2aa143e299671f603346be11deed2460236f9717d5ea9b9f93a3aeb2"
+    },
+    {
+      "recipe_id": "REC-012390",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "222fb8363537a32fb0945356c94c388ee6882edda112549e252e79da4cbdcdc9"
+    },
+    {
+      "recipe_id": "REC-013016",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "5e1fb39cccebe1d7ccfd8606d4025b84e190a81246bdf1cd69855c63d7f10585"
+    },
+    {
+      "recipe_id": "REC-013010",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "86a95af4a1fb5a75cee0403f0cbdbbd9891322d38c0b17f6aadffa9e0be22277"
+    },
+    {
+      "recipe_id": "REC-014980",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "040e076bd6e71e0a0d8ba5342bf97561fdc4a57063eef87c44e76859c1200228"
+    },
+    {
+      "recipe_id": "REC-014149",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "db9f6a0d2155e4a94d84f827014e48541c4860895056c10e05bf9a740dce8cd5"
+    },
+    {
+      "recipe_id": "REC-014965",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7f82da49e5e3f2cbd2871975253e369531697a3e81ce4632ead67b772642a517"
+    },
+    {
+      "recipe_id": "REC-013854",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "b37fe901bd31c62c9bdb2e11998a80affa18fa0491f5ce0dfd81ad1de366b650"
+    },
+    {
+      "recipe_id": "REC-014757",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "cf48df7704179b13d9b7398cb90f5d6fe4d895e49a0f0055a7449e3646c1b1d4"
+    },
+    {
+      "recipe_id": "REC-014060",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "d0e3f03951204a93f567c12376b24ad4bbb10a44b68e19152a718788ded6414d"
+    },
+    {
+      "recipe_id": "REC-014099",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "2a5bc0177f452655fef32f7cb9e83b1f72f1c5cb29737e43f037605384a6ed84"
+    },
+    {
+      "recipe_id": "REC-012861",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "9936ab2f5b8503918e51fd1b0f01c9dde7ef1254492975212fc1e0d34de746e2"
+    },
+    {
+      "recipe_id": "REC-012668",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "d301f6124edc239d4623935d3d4f9ea42149274fc6f7642ef0d5711aa83c57c6"
+    },
+    {
+      "recipe_id": "REC-014168",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "383e42098a17126d47bb70025689609cbf5b70dab8eccac9b7a557530cbb7c31"
+    },
+    {
+      "recipe_id": "REC-014306",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "6428613e4b4652fe3970a988a9ac0e15e364c4c7b97d63753cd85eb9f7e2930e"
+    },
+    {
+      "recipe_id": "REC-012593",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "34ac3d430e42dc38270a86d266d046fd2cab7bb0aa2710deac12c8c141f969b2"
+    },
+    {
+      "recipe_id": "REC-015512",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "5bc569227d1559b86f66b00eb892cbc364c2137e7517ef2a70ddcaecd4152292"
+    },
+    {
+      "recipe_id": "REC-012615",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "6df0f61f915d0314a5d55b778c3b0f498be8d875f124e9b7445de8d105af8b91"
+    },
+    {
+      "recipe_id": "REC-013709",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "eab940f248264e80f7ca7952c242939061e8afed6f1b805506f610c2b238c419"
+    },
+    {
+      "recipe_id": "REC-012178",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "dbcb98f015af0449e729054f9ac7a2af327727b2f85ac655066f32f13976aed7"
+    },
+    {
+      "recipe_id": "REC-012212",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "90a44a35954eb9f2a8414d9cdf0d31b672003d8388c84f02b71fd59e7ca5e780"
+    },
+    {
+      "recipe_id": "REC-015527",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "cba8e3eba95d7dbdb1d3b2a10667a2b99f3d8cf7e865d9746e8ef0588419005f"
+    },
+    {
+      "recipe_id": "REC-013362",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "47a60b9ec0c136227ad176ccf6ccea800375d88f1a6b49bc70778a0d9c4c8a0d"
+    },
+    {
+      "recipe_id": "REC-013739",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "efd66b1439e6aa748a970f750ee19909baefe0e5ad4710c59bddbfdbacecb5ff"
+    },
+    {
+      "recipe_id": "REC-012682",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7cb3d6851afd36d7e0956e6c9496ca8307aa37b7d9e6fb3697bb4789895a8b08"
+    },
+    {
+      "recipe_id": "REC-014897",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "52d44c82d3e3defefbb664148915f692a599e1c0dc6ef9f1ce7d05fd1b97ae30"
+    },
+    {
+      "recipe_id": "REC-013238",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "da8a35e773fff85db0171baa0f703deab5abdbb4ae7adae90b1675955eabe386"
+    },
+    {
+      "recipe_id": "REC-015324",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "bc1c239d98d8e9013186ed4a6ccd705d11f20aa9bdc4f3ad744f98f93481d244"
+    },
+    {
+      "recipe_id": "REC-014252",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "798b659e4b18ac9dba7aee929b2dac501e432424e1f04a1173bbe036f4ee0c7e"
+    },
+    {
+      "recipe_id": "REC-012646",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "353d13b615af0b7f27e0df49793369632398ee99a71311a693cc4777fbde1506"
+    },
+    {
+      "recipe_id": "REC-015176",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "dbab9690754e0a240a9bfedf79f05357d4f1f8d098483029f0d6358011d786cc"
+    },
+    {
+      "recipe_id": "REC-013576",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7ec3c495c438e986336d7a6450a762e5eaf7423ce0c323243127f053d13e8b51"
+    },
+    {
+      "recipe_id": "REC-013231",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "571864714d9716a231189b306377928195b25bc9c5624e7ff0c649e61d01b83f"
+    },
+    {
+      "recipe_id": "REC-012464",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "9efbff8834e1a1479e2773d34556fc71c2872b527f19707bc95600e0c9bb6eda"
+    },
+    {
+      "recipe_id": "REC-013515",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "ff8a4b35a9d1e3b987991c9453ed5180e5eb757983307948c25857411c779418"
+    },
+    {
+      "recipe_id": "REC-011978",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "52959d9de4d188d05c549ed31166835f8b254269dc8d1344fca763bf8401f5c9"
+    },
+    {
+      "recipe_id": "REC-011985",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "d1bd8cfe5ff649a1e97167b5e588792fe53d2d6e4d34c9b2a404d05c1f393ec6"
+    },
+    {
+      "recipe_id": "REC-012898",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "dc1cbb5f6c02044c2480d0c40ceb70701cfc7ca6855f7cdfe88fec06e02e8eff"
+    },
+    {
+      "recipe_id": "REC-014640",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "077e1c5b0b6cdcd2a400c42f7b7aa8a91ffe457d901f8b3d4162875e89425f7d"
+    },
+    {
+      "recipe_id": "REC-015307",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "ad2b96167ce11577845ef697b3879791288cae4ef6ee46b684cf14dac0f18d25"
+    },
+    {
+      "recipe_id": "REC-012124",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "4d858999a5cea1b713cdcbc626572c261c29bfe03ffdee54eb5454832e4f97a7"
+    },
+    {
+      "recipe_id": "REC-012350",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "57a9ad513f1695aeb75fd6f3dd0158e3cb2f31089a86476f3af328070c287745"
+    },
+    {
+      "recipe_id": "REC-011946",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "49e32690a731fa5b6980789d5eb7666a434a517bcf48a409aa75ff9c986adf54"
+    },
+    {
+      "recipe_id": "REC-015519",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "452c43dfc284d42372c140d072fd969f8c2ce887059e2d36703919236339b8c4"
+    },
+    {
+      "recipe_id": "REC-012216",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "65dc5acee37ac2818da51569da8e4c4de57e97c5222d80e3a4301a8a89659e5d"
+    },
+    {
+      "recipe_id": "REC-013758",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7f80e33290216cd7886f55c65a8980e57b935bc317def99ffe94548b2bfb4f96"
+    },
+    {
+      "recipe_id": "REC-014495",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "75ce418159557509067d2bcec233da10243695bed70c44fc7f2535d1d5b1246c"
+    },
+    {
+      "recipe_id": "REC-013671",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "838c454ba786953b16d3af0444dea5cd3ef46c5e6c85c5feb32f6eda3e6ba37c"
+    },
+    {
+      "recipe_id": "REC-015399",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "d22560da0f98aecd52bc4120325dcfe6a20d0efa866f24b76f0393d1d392fb6a"
+    },
+    {
+      "recipe_id": "REC-015426",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "9cdc79887216a0cd21b7b7b9c5b303b274abb7c1d3e9dd0d3f970f219bbdf890"
+    },
+    {
+      "recipe_id": "REC-012424",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f838443d4ea803471a0d4ce7848941dff08da42e13c06ca170a84df1c405a78f"
+    },
+    {
+      "recipe_id": "REC-012672",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "59895b0af40f8db5c2189e6726d545ee39416370deab4ba205aac97ca790afd5"
+    },
+    {
+      "recipe_id": "REC-012624",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "2d402896a420dbf09a453922192ada68ac015ff02bc406425353cc567942b925"
+    },
+    {
+      "recipe_id": "REC-012743",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f2fd7981c6724f983d590492d91d3762f091b553ff4f2a337bc8de2494b7f438"
+    },
+    {
+      "recipe_id": "REC-012201",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "5ae7c75bc47023b4ee85f326d7751ebf31f17659b980ed53f3662be2c7891487"
+    },
+    {
+      "recipe_id": "REC-014562",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f554de457f2d490428ae0412a1b4793c0cd3049b5db9df95c3f56c54976fd784"
+    },
+    {
+      "recipe_id": "REC-015589",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "91ca5f22b098db737604c1f65eada969dd5e81af9450809bdaf1844e447c40a5"
+    },
+    {
+      "recipe_id": "REC-014374",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "746cb5e7a4df924037eb0306fc397405ce9b786a6aba89205428c46339fa4217"
+    },
+    {
+      "recipe_id": "REC-013769",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "580a18ea862f331d430964d538b4ea75f92da68524665c2506f8bcf9cc526669"
+    },
+    {
+      "recipe_id": "REC-012170",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a87fbbf08961cb7c1b5c3704ad566633de5d5fe6149dba809857de56fc6f678f"
+    },
+    {
+      "recipe_id": "REC-013128",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "c7a021280c6969c6db03e74ff112df9ae1c9ccc15691d46cd3103a00e6185278"
+    },
+    {
+      "recipe_id": "REC-013803",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "438dedb3803598cd203d763fdeef9542c57ec48126191cc00c98c69361c97f98"
+    },
+    {
+      "recipe_id": "REC-014255",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "83bed3eee3c10c43bfdf9ad493c56b7b45ef9586454803c78c121abb9c441684"
+    },
+    {
+      "recipe_id": "REC-012151",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "64fd689beffa7cf7611e38215ab4111f52613a470b64472810d5f19886194030"
+    },
+    {
+      "recipe_id": "REC-012155",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "eab81bc37022c9a4d89a303a32106537294494d474808b8e40db00a322c84e91"
+    },
+    {
+      "recipe_id": "REC-012330",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "5111cf438625fde866651db877d408bbec4da1f8b30dd4d28dae8c1381aa740d"
+    },
+    {
+      "recipe_id": "REC-014150",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7a8d215f67ea006e6caab6ea604f849a3ea4c2e44fec3ee5245d0a2bec9e8a3c"
+    },
+    {
+      "recipe_id": "REC-014253",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a8289cded1d3e728d8421b72a94a45079bcd603c45a529f600d8e37a7ff7b93b"
+    },
+    {
+      "recipe_id": "REC-012267",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "22913f45037c6566cd6ca59c9e031a1e5559c5c8c42ab57acca5af33d3b929fd"
+    },
+    {
+      "recipe_id": "REC-014737",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f15cb816dd0315b14dcab3dc509e69607a5784b1e59a05ffc04241ff72530b86"
+    },
+    {
+      "recipe_id": "REC-015574",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "1a319ffc941ab76843fd4a00de9e68017cd3ba31b8b0413373dc17d2755ced56"
+    },
+    {
+      "recipe_id": "REC-012879",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "2251efc12603b96f344d944630a3f7fd7a2a3eed61a6d488d493397910921b38"
+    },
+    {
+      "recipe_id": "REC-013584",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "ce7e9926b2349768a8f5d1d48eec71333463565f5842ac415629baa452291728"
+    },
+    {
+      "recipe_id": "REC-012935",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "1311c9f4318940fd6e07ab0af31b23eee32512641a16cff793172564fc5cb87c"
+    },
+    {
+      "recipe_id": "REC-013244",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "4ccac0e5c3388ec2af2d3b6ce289877a7632c2f05353082e1ee54b96b9687376"
+    },
+    {
+      "recipe_id": "REC-012570",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "c63d2e169e76139ea5a04e297f3d77e60c8fb42e364517d0c510f1279026954c"
+    },
+    {
+      "recipe_id": "REC-015508",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f08b6e9497aefc2cc71b5decc4c8ac7f8febfa9a666ced9a43c3f577bd772c0d"
+    },
+    {
+      "recipe_id": "REC-014406",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "08eae82f404fb2146cd6564b8d3427f06e03824f8276612ba3fe38c820ec391f"
+    },
+    {
+      "recipe_id": "REC-012844",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "78ec14acb97067a06f640a2d00addc0b9573f777ace3817364e395047a49b00f"
+    },
+    {
+      "recipe_id": "REC-015285",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "38270d57cf5096f04f49c6005e84acb83df8941979cb530734276647292b1e5f"
+    },
+    {
+      "recipe_id": "REC-013438",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "0f3456543efc543b5e0f99a87343c500780594c3bbfba461559643bd799650d7"
+    },
+    {
+      "recipe_id": "REC-013249",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "36c05ac2d07dc573c49af636d4b69584631354a9fbced116d1567401c2bf495d"
+    },
+    {
+      "recipe_id": "REC-014622",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "531dac487e8075174cc96f0c00bf7cfa320407d71fd249252a59c4f980c24771"
+    },
+    {
+      "recipe_id": "REC-013479",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "9db6ce70af2dd733f228fb782e9f32b41b7f9cc7128e6c21fc9b071614e4b8c5"
+    },
+    {
+      "recipe_id": "REC-012836",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "e85621dbbc81cf0c9a3439dd39cb2573238ca376b651c389dffbf4f11f8b8c8d"
+    },
+    {
+      "recipe_id": "REC-012787",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7992b8aed08fdc56fc91f79fa890591346e683bef8372dda36711e87e4de84fb"
+    },
+    {
+      "recipe_id": "REC-015537",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "27bacb30e49d9d501c7dd4a1e1487638cfd925b3ffbfb7ad44317e45b9700a9f"
+    },
+    {
+      "recipe_id": "REC-013323",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "5a265af33ac396662951b6171d186fd062d725b2d72d17d3413e33376c4065ea"
+    },
+    {
+      "recipe_id": "REC-012141",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "6fc70bf01bcfa1627d5cf08040efc37c89fb1792b3f8518d8f73689b0edda13d"
+    },
+    {
+      "recipe_id": "REC-013870",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "3cbfa5e10bd504775c38a1e915b56838491476666d14dee187abb4121edec61e"
+    },
+    {
+      "recipe_id": "REC-015580",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "66c3d65dc73e23060acb23a90569eafddec95598cbe875c4ce803934bcde6268"
+    },
+    {
+      "recipe_id": "REC-012483",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7b53a55d07b105736378a7ba55fe6f33b66145d0edac36002fa5616d369d387c"
+    },
+    {
+      "recipe_id": "REC-013936",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "723f56125d0d30d0a1f9a666adf6b1c0972c724820238fc63eed785979f34ebc"
+    },
+    {
+      "recipe_id": "REC-014604",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "372705ce0aa60dd831e4b1143cba8dbf5819a45038aecafd6132fc75786cd791"
+    },
+    {
+      "recipe_id": "REC-012617",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f33238d1bbe1547a15212f6fcc09b1e175134e98acfa16b26cde6cd15678c3ab"
+    },
+    {
+      "recipe_id": "REC-012380",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "2663691f2f7b947420e969c0b30dc9f5187fe9d32e1101bc67f5049a3e5323ec"
+    },
+    {
+      "recipe_id": "REC-012488",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "e9b1d30fd248523b5271f99a72fdcd3f691cfad9d8c8459a1d302b92da5157bc"
+    },
+    {
+      "recipe_id": "REC-012481",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "46f813a246634cba74347f06ac36cd2d93382d3987768174a8c890b49c7a4f23"
+    },
+    {
+      "recipe_id": "REC-012076",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a351e9049207fc0e37d14fbd1b974df4d68707b26a81d6e2ff5a7c3e0dde6250"
+    },
+    {
+      "recipe_id": "REC-012962",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "eb307ed33c2af8e51dc194bc8d334595014c0c6e85ffa553f834909a6b0a615b"
+    },
+    {
+      "recipe_id": "REC-012660",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f476911c14421f15f9f4f831d73d831098f3c6540c57701ec8244a9d278984a0"
+    },
+    {
+      "recipe_id": "REC-013948",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "8f4a9857c665849a2f8103c8af98534a110af220764553247311886adc9cdfe7"
+    },
+    {
+      "recipe_id": "REC-013156",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "ce4f2e5ad4bd81c8a4c358c0620f8d14cf6931dbb6274cba22802556e76f18f1"
+    },
+    {
+      "recipe_id": "REC-013767",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "9396d68f0b4fc9bc8d90d746a933bfb0622e889ee06dab54c0957c2a5fa171a1"
+    },
+    {
+      "recipe_id": "REC-012895",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "81e613e3008e3311c74fc2344bf2ca8067d299ee4e60ba0fe8773859838870a1"
+    },
+    {
+      "recipe_id": "REC-011970",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "6c094984185223bf03b8301b3422a55f8fa102f8475acad91ec378fcd3ef38c6"
+    },
+    {
+      "recipe_id": "REC-014559",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "95f3b92df118dd9f01922b517a2e6ae9fc63aeeeaccaff17ec44898514448901"
+    },
+    {
+      "recipe_id": "REC-012072",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "c2635708a2d3f4a87ac767eb3cd96b3ea3a3c8ead59196300d4d93805aca4f8b"
+    },
+    {
+      "recipe_id": "REC-014984",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a3165e12259274be8d8ca00b0908236f8c2de6fbfed544b5227fff3168173bc5"
+    },
+    {
+      "recipe_id": "REC-013204",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "07e91112987fb503773ac64fe84329bb609e0cf17e547de961ef8740795e013b"
+    },
+    {
+      "recipe_id": "REC-014624",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "d63a3be933f165524fe36cd9e786ff42bfc1c186451b8e7ecc89d06fc838ebc9"
+    },
+    {
+      "recipe_id": "REC-014385",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "58d5a5d693c63ffc329b3e552cbdc84797fca5a916a77ac795f9b8c54e86cc3e"
+    },
+    {
+      "recipe_id": "REC-013141",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "835e4a459f1fb7061f78b93a00ecb2e7a919e8160e4cd5594905f87013b7fa49"
+    },
+    {
+      "recipe_id": "REC-015311",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a7a24c5691b9eb259fec63452e41f792d08a53717a9104c2c511dcd99dce7c7d"
+    },
+    {
+      "recipe_id": "REC-014313",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "2ad721209b03fa6d59abc85e7d4e2cf67bbc4a81bc080ca9efd8845a07166dff"
+    },
+    {
+      "recipe_id": "REC-012414",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "910e44f50ccdc4b38a01f808be4391baffe11d8ea408884bba841e2bc091558a"
+    },
+    {
+      "recipe_id": "REC-012800",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "be90f630c6ca4f98081a5156d818478c30133c528b6cedfa6eb2c817140a266c"
+    },
+    {
+      "recipe_id": "REC-011957",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "e2a669d43783675a84992d4f0b7a0434f3cb52c55b5fb51aa6021ec8b0b3c245"
+    },
+    {
+      "recipe_id": "REC-012832",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "ed643145f8e0da99502f4977bd33d75df44db63f25ad00eaa8f6ce72c00bdc23"
+    },
+    {
+      "recipe_id": "REC-012218",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "157789220561e72fdc8f6db36619de4a4c9e88a561621299d607cac4b66f50d0"
+    },
+    {
+      "recipe_id": "REC-012572",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "5ad1e9d847afb7585287d3a870b17dd3ede5dec6b2b5a3ee08c9f34b1d6258d5"
+    },
+    {
+      "recipe_id": "REC-013679",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f8021d9d6a2307deb98d20b6303342ac0acab73ebb5ddb7c27d9afc25b6cd697"
+    },
+    {
+      "recipe_id": "REC-015172",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "65b18bef8077db333dec9fa37bfae99c5224278e75e7c4c8dd3ba6a3206011fc"
+    },
+    {
+      "recipe_id": "REC-014638",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "ef9d1c0c203264a026867e124d2a91710c24e259b82c3337de38c2154d66c0b3"
+    },
+    {
+      "recipe_id": "REC-014602",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "9bd75202669ef262259e13e07c29813b673b6cb644357942adabcd006cb2612f"
+    },
+    {
+      "recipe_id": "REC-014589",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "08cc9394d37b96deadc85557a81c0388333b82072d74686cfc0bb505af042edd"
+    },
+    {
+      "recipe_id": "REC-012980",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "1d696059512589d442c9d432355da4b7a66d81a65c3b569e3b58de1962d2b7c9"
+    },
+    {
+      "recipe_id": "REC-012036",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "f012303ddc1c9f839dbf21724cb7dda1ae0e9d9cf881204c99225c264ac8b009"
+    },
+    {
+      "recipe_id": "REC-015364",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "8d4ec90242b54f3b1766909ba63afdf2df1433aeaa5e351d6cf5c91362a8ac3b"
+    },
+    {
+      "recipe_id": "REC-014337",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "73ba26046a4669e6d2355800f9b3ad1bc608e93c0b91af0a1e0ef9a17a1ea6fc"
+    },
+    {
+      "recipe_id": "REC-013267",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "ca3d99bd230a6e3fa886e0082ba0c882b720bb4cef4d419defe5762d15051cf9"
+    },
+    {
+      "recipe_id": "REC-012118",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a7189ef6b9eb47d66a8c506ab5fca236d3960b479014ba30c6c7fc35569a8d14"
+    },
+    {
+      "recipe_id": "REC-014033",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "910a6f6c5d8e295bf5b189828cdd2e1207a9e38911d25428a6194a25929ce126"
+    },
+    {
+      "recipe_id": "REC-014741",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "35832433e8d3f01a6010070ecaef39d591796de6ceeaa5149ee108ae197ddcb2"
+    },
+    {
+      "recipe_id": "REC-013655",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "ca44f0eba2ce350a5024b832c2746114c0068e7679273d41816e7dc7f4a51118"
+    },
+    {
+      "recipe_id": "REC-014496",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "20877ad30b6b7d1ab5b18e0bc1a864997cd4ac7c927e7386d78f205b7ffb0570"
+    },
+    {
+      "recipe_id": "REC-014222",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "d5f29ab4f9b3f15444374ee0b0c71a3a0230f2d1de00428b767384066a0d81b8"
+    },
+    {
+      "recipe_id": "REC-014558",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "d68cd0f344c0fa34a3787b396ec8b393f5a8e2872965d87710e6fdaf030cc3ac"
+    },
+    {
+      "recipe_id": "REC-013969",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a59e3ab65e0273b6e001f7046efa6ef9019251bd5a45da857d56bff86695f402"
+    },
+    {
+      "recipe_id": "REC-012423",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "eafdb2fae0a9ec364ff1153bcc7470dcef3808cefa796d572fff2fb952e7788f"
+    },
+    {
+      "recipe_id": "REC-013978",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a593b58292df6895e7696dfad6a2c1679e333933aabee63e870429323877af0e"
+    },
+    {
+      "recipe_id": "REC-013983",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "016537d4c2238e36adad666a56ca4dfcbaab361d976d5de18e205d5cc0fc88ca"
+    },
+    {
+      "recipe_id": "REC-015163",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "d416123758a02d86494076ce88dedea6c621f290954bea40201d11243acc6e47"
+    },
+    {
+      "recipe_id": "REC-012169",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "e4d04f5a70fbd5559b91682d2ddaccd4238fdff2e99f05db1667de6916cd5fd5"
+    },
+    {
+      "recipe_id": "REC-014531",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "02940df26417ba921232cf9465367a60e2ac14b589fbfa98d9a70c256bc7fe1d"
+    },
+    {
+      "recipe_id": "REC-012299",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7d9e2fd40bb920dcb5dd77965b18a864fd99567e42606801203692252f453f7d"
+    },
+    {
+      "recipe_id": "REC-015486",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "beef54c2e8b1f966963128ebd23304681b645cb7438bd1934637983f744ae654"
+    },
+    {
+      "recipe_id": "REC-012421",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "95a259624249a76b95d31eae2fdc8ee7a8ddd5fa1ebe1ef7eabfcba68cec29e9"
+    },
+    {
+      "recipe_id": "REC-013885",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "1b6634596e1ac263be5b5ce95aa2dc00a0275054853754338232cb415978d507"
+    },
+    {
+      "recipe_id": "REC-012740",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "e5f6f6875b5db422d938b83919dffbcd903d698d65f4603fbf11722f16598b54"
+    },
+    {
+      "recipe_id": "REC-014152",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "2d68b37732bb92f50c1e47005b4089b15dbd469ea1e77d0b1d9be231ca873b29"
+    },
+    {
+      "recipe_id": "REC-014474",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "4b0bd8da210d9cdaacae98b611570666f88722e263b01cc383a6a8fd9d86bd95"
+    },
+    {
+      "recipe_id": "REC-014403",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "849b0c8b997a796921fefac7f96925d057d198074620dc0908daa1d19887bd74"
+    },
+    {
+      "recipe_id": "REC-014848",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "fb2d68c8155ad212b5fe75b5825d18cd6bd7a745d4f394b22b02530186d5c815"
+    },
+    {
+      "recipe_id": "REC-014807",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "378fce7a678e535465a8c175f9a1d010deff18bb55af07c44e5efeabbab1363a"
+    },
+    {
+      "recipe_id": "REC-012853",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "258bcf05fd88c8a8949883afb07368870da41b46663af8c934a44485e0c32098"
+    },
+    {
+      "recipe_id": "REC-012954",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "dab7aaeafc64b7fd3fd62a5452b49e399b53e2f72a1331a061fd26e023475ee0"
+    },
+    {
+      "recipe_id": "REC-013665",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "90d939c415d16fc3b63a7bb5337ba3476d60f2965d282f53222cf183063d0a3b"
+    },
+    {
+      "recipe_id": "REC-014292",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "131827740aaf25d99ec5b16f3dd2d4779282e982cd1185318c85b63eb0ecf628"
+    },
+    {
+      "recipe_id": "REC-015516",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "dbd3306c5add3dc45a63e454de18787f77599455ead45c2ddb12be0a0983b4a7"
+    },
+    {
+      "recipe_id": "REC-014133",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "be88869571bdc4077a99730043324f125e8d5f7da3ab39e8085e571f191b5026"
+    },
+    {
+      "recipe_id": "REC-014832",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "63bb912e44b686d2455ad196845aca13f354737707c756094aa08bf5b89db121"
+    },
+    {
+      "recipe_id": "REC-015323",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "4fe5077fdb13ea46876b54326b1d2cb18c740a8b28e082132588fbce3a1b1be6"
+    },
+    {
+      "recipe_id": "REC-015263",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "bb3cb1bf440a9c5a331098dccb5490121b12bef74c96902e72344d70b362bf81"
+    },
+    {
+      "recipe_id": "REC-013511",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "fd6fee41fbecee3a8e4541d00f1502a9c9a17850ad50258c1a6e7e33a69b2d02"
+    },
+    {
+      "recipe_id": "REC-015418",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7f7a1e3e8787b7c740bb3fc19ac963787d94cb9004721bd54cd868810ccb063f"
+    },
+    {
+      "recipe_id": "REC-012140",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "e8601e2fee1c3123972e403a42c39eccce076365aa8cb96c34cca58ad9a0adcf"
+    },
+    {
+      "recipe_id": "REC-014298",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "1fcc447b62e903ee58918059b4b042cfbb5a2878a9d06019945cacf74ae5816e"
+    },
+    {
+      "recipe_id": "REC-012462",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "fe6e84ba877c46115cd6451b9640a9cda0e48dcd376d8e6965a005bf20536df4"
+    },
+    {
+      "recipe_id": "REC-013080",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "c6cdae74a9476d1c6d6e4445d2e2bedeab58e538b82a3b6f8e27fd224ee57849"
+    },
+    {
+      "recipe_id": "REC-012567",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "cb565ebdf188e7dbe4b28aebca4789f67b64af0f14311e1c55218970856327d3"
+    },
+    {
+      "recipe_id": "REC-014704",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "2b35a0eacb879e6238dc57150c8ec33dd48400074d67f3821a81baa95726a30b"
+    },
+    {
+      "recipe_id": "REC-013605",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "a28ad6511518ffc825e97771d41d8d4086677ce85bf02dbc2a7247e08b651b49"
+    },
+    {
+      "recipe_id": "REC-012704",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "656f83b24da4577a4340a2e0fda20e04d726337e98a524c67ed71e287196d8c4"
+    },
+    {
+      "recipe_id": "REC-013299",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "fdf6aa5b03e090ce51c6674d5efd0a3e93be2ed9922022d8b589e1437676218a"
+    },
+    {
+      "recipe_id": "REC-013148",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "cd33f9d543ed3c3bac9f584bf31c3a382e650485f55d9fe094c62559afe10443"
+    },
+    {
+      "recipe_id": "REC-014139",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "63c16a0e4885f336d0cce2e0de885d7a24cc8b7c5f86bc391c53d04ded4b6195"
+    },
+    {
+      "recipe_id": "REC-012210",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "7aa0e81fda724c78f2264810d3420d96907bebff0a3709c5444d03caa85fb4ac"
+    },
+    {
+      "recipe_id": "REC-013359",
+      "source_family": "WIKIBOOKS",
+      "source_fields_sha256": "907984bca7061221fa35c778473834bc90a9f7addc838c5119ec790f2ba7c656"
+    },
+    {
+      "recipe_id": "REC-081885",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2b570094c0e53af5256768ec60cee1e64cee649f9669bddc4023972cb50bf903"
+    },
+    {
+      "recipe_id": "REC-081208",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "86b40fa403e825ce3854ca87bd4cd0c10a4b93fe64f76a7b4dadd93318b69b99"
+    },
+    {
+      "recipe_id": "REC-064150",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "0506a4ff805ff7cf8fa30ba3154e00fbddf97af895a9a17715d693b72b98e565"
+    },
+    {
+      "recipe_id": "REC-053100",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "bbbbc221802b2ae56f1fef28b3074c5904a6d3a325324753567076d9963d3d2e"
+    },
+    {
+      "recipe_id": "REC-077256",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "0b908c6b67ddb685bb9c8911dfd5e6f268b451b47d579438c3fb375f7e5517f4"
+    },
+    {
+      "recipe_id": "REC-054729",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ff55fb352ee67c9a6f8aab55b85ce4760e2d5c63042ff8c931d496706b74c9d8"
+    },
+    {
+      "recipe_id": "REC-062091",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2c2f8993284a1cc6fe72fab76f7711ac72253709e17f56a599beb7570371e6b7"
+    },
+    {
+      "recipe_id": "REC-084250",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "1343a8aafb90b525eaf9705fd7ee7979eed70592b7b0b870afc68a6c530ad8e1"
+    },
+    {
+      "recipe_id": "REC-033600",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e5ddff6777366b9818a8825826477ad16016393386b88506e19f7bfa320f55b2"
+    },
+    {
+      "recipe_id": "REC-049798",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "9f08764dd24732aed33fde8ecf66af4f5c039cc1c64f8b08867d3f6761df63cb"
+    },
+    {
+      "recipe_id": "REC-028656",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "4acab72fe8a2692b73303605ba61566cdc06e7917e64c072144793412fd37a43"
+    },
+    {
+      "recipe_id": "REC-046397",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "a2371e6d9bec057cda7cba15dd66e88bff3ee157e22d464b5ecc2b91fbb1d525"
+    },
+    {
+      "recipe_id": "REC-029671",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "60ae3ec8a15deb6d9d2256c01c537ed835d727c2e3c3cda69bd48c4552ab81c5"
+    },
+    {
+      "recipe_id": "REC-036097",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2443f8e65f761969d69eacaf9d62709b3cf3a9023beb2ee4264ceea9770dd6f5"
+    },
+    {
+      "recipe_id": "REC-030483",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "fa863648b0b923449ba492125731b334e87dd80e414dcadc769c90e0a2ce93c4"
+    },
+    {
+      "recipe_id": "REC-018282",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "f5904453b674809ca46c7bfb258a5e5f586d2205d299325f89121be794ce0d66"
+    },
+    {
+      "recipe_id": "REC-049167",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "713b8bab1d82feda2568b57116e92938a51d891a63e44d05395060326abf8ec3"
+    },
+    {
+      "recipe_id": "REC-053814",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "01ffc3e68b15995fd107c69ded74c1ffdfcf6f59b3b4d25731e463a68227faf1"
+    },
+    {
+      "recipe_id": "REC-020277",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "b3dbdb0c67893bec86ce66d06064770a25dd918b87ddf69e26285a12abe6d3cc"
+    },
+    {
+      "recipe_id": "REC-040311",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "b15bd2a98f204c8841f7a9486b49498c9b199ee205233cad550b85a1f3035181"
+    },
+    {
+      "recipe_id": "REC-070459",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "b71db6b3b9b61e9b0c37647be33f7307f9a9e1e30d6ee6d656125faae276cda5"
+    },
+    {
+      "recipe_id": "REC-022924",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "7af1d01a2790bfe8ae0948821b7ff8b024bb870f4e142f46b304bd7542e6ec6b"
+    },
+    {
+      "recipe_id": "REC-040027",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2bc19e95e0467da61a089ca3ab2f2fa14ded14dd0615bc1e29160492ee5d0a77"
+    },
+    {
+      "recipe_id": "REC-038948",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "3faaa3ff7c1445482f2fa8b2ada182a924c650dac02343098dda1f1e53973bc2"
+    },
+    {
+      "recipe_id": "REC-045236",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "8b0e7b679f3ed3c047d3987df77d031150f25b76f587863b8dfccf8d0f8162c5"
+    },
+    {
+      "recipe_id": "REC-028606",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "78fd4a0bd811dde71d2f6a97cd8f32d6d2d0121edd9d3d18b5335b4ce2e4106a"
+    },
+    {
+      "recipe_id": "REC-086785",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2da61a59245614d77fd119cb3cd116a68637071f704536c743939b5b5bcb54e1"
+    },
+    {
+      "recipe_id": "REC-041290",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "5478e74f1a9e20faa6fa21d204252d69cc6843f03a682109702e381eccb5bcbd"
+    },
+    {
+      "recipe_id": "REC-073035",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e6b7c88b6a41135e46be6121e147c5da08f3fb78f5c6b53776c7cf55c90de8bc"
+    },
+    {
+      "recipe_id": "REC-088659",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "b7a7de30d15ac4e02db01760e1427079babd59e81e78a00e3b5a468f23dfe098"
+    },
+    {
+      "recipe_id": "REC-024485",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "7747782db4b3eaf4b3db9a2a2aebf1f346a661bc7398281acec5ea9d55d6c988"
+    },
+    {
+      "recipe_id": "REC-070666",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "afecd4d39bc1329160cbe4399f06df21bd4be0130ccb048866077fc93fac9b0f"
+    },
+    {
+      "recipe_id": "REC-028548",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d0eb1ccf8b46b0110d1e61e14234c3ab384d22eac4a0334708775619c1335be7"
+    },
+    {
+      "recipe_id": "REC-049533",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "9419606a118f4c134477eac8f8df108c28fa3840cd6c0f130cd6b5ead325130c"
+    },
+    {
+      "recipe_id": "REC-076478",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "05b4dc030246ae1106831228491bb89b19c515e729f935c0ffe611844e57cb89"
+    },
+    {
+      "recipe_id": "REC-065918",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d66013f424f44c0793d66c106a54e52c83663d3d347f736374639225dbdb31f1"
+    },
+    {
+      "recipe_id": "REC-020818",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "0f28141f5e2027e604a3782a4c98bf9819ddfbe0027f936648ad48c3cec132f6"
+    },
+    {
+      "recipe_id": "REC-085567",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "4c9dbd433e287c1adfcbed1d0732ba7a19d4edc19d795567eb1423775b1dd900"
+    },
+    {
+      "recipe_id": "REC-085257",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "8a8c5fd22b129bedddfa8ea746386872f364027b1ece6bcf3e0015e5d25df3e8"
+    },
+    {
+      "recipe_id": "REC-042843",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "02ba8bfa5a2fbdde6be87e1e0fdbcb9e764d64d77a65daa6cbd7b89704c4235f"
+    },
+    {
+      "recipe_id": "REC-054327",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "27fbde7b0a550aa63cadb8ccba5f80fb3aa8d324de5480107d3eee9732968b00"
+    },
+    {
+      "recipe_id": "REC-028456",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "9e4b8d3f668165ae8aee643edf92e15b1a7fbd49c7f4188e46e4aa7d0fce0491"
+    },
+    {
+      "recipe_id": "REC-069416",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "a67dc9a6b9ee237587cba1b12ea8dcdebf4ed11b05358cd96c4bc2ce7668ff4a"
+    },
+    {
+      "recipe_id": "REC-027730",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "5862cd1f211d0fd86f7b23288a6ee08f92298263e018054eb897560dd476576c"
+    },
+    {
+      "recipe_id": "REC-017084",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2d141998d568c858586a068c4ce6398fe635f5c32978006883cb26c306e4e2b5"
+    },
+    {
+      "recipe_id": "REC-028051",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "53cab8441f1d7e8bc05bfa75df1c14ec86a29b49075f9d8eb42ccee9c7a81395"
+    },
+    {
+      "recipe_id": "REC-018463",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "b03748ebe7482788c2c249a2d60539c34ad520bee6e4cc2f648c710306596d6f"
+    },
+    {
+      "recipe_id": "REC-023672",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "19332779b384c4fedc4f1334b85d511d118269679551f1d968f8fb752200b60a"
+    },
+    {
+      "recipe_id": "REC-057168",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "81a2561daaf299adc06195ad68479cecf3af41ef3ca526248b925dd50b7e0daa"
+    },
+    {
+      "recipe_id": "REC-043996",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "53237e920460272d7aac8b8e71efd2f4a57a12099d04093f4582a15eee6c1b31"
+    },
+    {
+      "recipe_id": "REC-035120",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "a05a9f65a32917f136ed703bbe2f694a85b49d23deb1ea5fa2b69a11f2933ca9"
+    },
+    {
+      "recipe_id": "REC-062197",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "873f6317406b8d6636814e23a9e7edaececfcecdf5a491e8c5bdfaacbc8aa099"
+    },
+    {
+      "recipe_id": "REC-073853",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "cd8ce761b7956f5c8e0ccb50f0eef31adf4a661369df0210ba12a927079b59e5"
+    },
+    {
+      "recipe_id": "REC-072593",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "a9920eaef0df329483f59d528a2f9e6d3c6127bec1fde92ed629cd74e2fdefa7"
+    },
+    {
+      "recipe_id": "REC-074841",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "bb8bbd69593c1e46b4dcce298abd50306c5fca5c0d333700224c1483dc69b236"
+    },
+    {
+      "recipe_id": "REC-081279",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "0c3067582f254959f201561fe616a0887fa7d7c1df8372a74b23bf34bd798ba8"
+    },
+    {
+      "recipe_id": "REC-073820",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "b56e8c9848b1a74846852bec6b9d37efc5a68a7bde7c827f091ba1589375d63e"
+    },
+    {
+      "recipe_id": "REC-028815",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "19c40df85a4c1d87cf5505ac1888c5f4906ae9692a93b8367051783c90eb8803"
+    },
+    {
+      "recipe_id": "REC-074950",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "7ffe719c86bfc1d5341160bf5567edbb7a8d8bc8f73e130e9fbd4e4f3f2f7263"
+    },
+    {
+      "recipe_id": "REC-037684",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d40db04d45f00150b7cfd781ba826707c4ce6c253a3d20088f15a23ffce08d9c"
+    },
+    {
+      "recipe_id": "REC-023752",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "c934b452175d383947d9845f28998af03ff53a71a79ac51714867b29e4abfe34"
+    },
+    {
+      "recipe_id": "REC-023750",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "6cb6c5bf27dff79ec347236c4a6a7edeec4a8cb22927a0eb36046db5d6102752"
+    },
+    {
+      "recipe_id": "REC-026937",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "38ba8d3d0925b4b5d7a5e08e42ecb9f9af32bc4e577633c6270a151f06b69f63"
+    },
+    {
+      "recipe_id": "REC-082372",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "8d6361fa94aff9c66c2367c2a7dcebca87594b52845f7d74138642e8107cb94b"
+    },
+    {
+      "recipe_id": "REC-080354",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e7d8a0182740d8110f478de264cc9d4df0ec015f30d8567d27e537c47e4c76d2"
+    },
+    {
+      "recipe_id": "REC-020761",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "60b2774763c52bf9e0883164073db1dc4ca5da0adbd917fb9c5d2f8a9b7ce41e"
+    },
+    {
+      "recipe_id": "REC-036192",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "1919173a06bd17d00e022e4018c6459d8fdf755d8ddcba832fe5898a4afa78e3"
+    },
+    {
+      "recipe_id": "REC-077231",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "0bf8a4a1469fc867facafacecfa3ffcb4a9a75a3caa1259cc7994b00787484a2"
+    },
+    {
+      "recipe_id": "REC-043543",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d0eeb4e7156d0dcfe9a484606fece0eda572c67dead934350661384df9d24928"
+    },
+    {
+      "recipe_id": "REC-027973",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ad340f7984230228b99c45d99390ad58345a276130059cc0e89b31151c10aecf"
+    },
+    {
+      "recipe_id": "REC-081691",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "0fe6ec4a82ad4266daf33d2c357638e573b8d8f65a2a3b08da8bb16202061997"
+    },
+    {
+      "recipe_id": "REC-088471",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "5f1d69ac4ba7a75529ff0f28e9476c1fb474c9f5d3047006750f92096f4ca61a"
+    },
+    {
+      "recipe_id": "REC-039791",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "80e67987b5e65939050ac427ca4a119c718b3fc14086a79db7361fe4f274d474"
+    },
+    {
+      "recipe_id": "REC-085233",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "274361c4187cac07b01f2945c297af28efb5bebfc0e14ee0c3c75512ec9bcfba"
+    },
+    {
+      "recipe_id": "REC-083492",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e1277a4efbc25d9869dd78eb5dd89118abd626d8c55b91c0243118a0b412ecd4"
+    },
+    {
+      "recipe_id": "REC-050522",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "72f79ca4180fe562fff790d40e063028a02e5ae87eb15f71bc79130084f203bb"
+    },
+    {
+      "recipe_id": "REC-021945",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "34bb7fffd543e7639b900ae7581d46a187b2d2fd65b8df61779c1264f52ce792"
+    },
+    {
+      "recipe_id": "REC-053195",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e3001b04f2739092c8be7edc3e4e34ad958a51379aeb46181419a8c9e56b8cd3"
+    },
+    {
+      "recipe_id": "REC-087667",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "9ae4b8220be028dc9124b31de317d5c39d3f0b422b33711293cd7490141d52e2"
+    },
+    {
+      "recipe_id": "REC-071014",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "1d3574b072c0d55daffd1cabb38569f4196721bc93e413e508116f33d38f84b6"
+    },
+    {
+      "recipe_id": "REC-017094",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "42c08007496b4e81de350bb722f48426e45a71947526908f53222627c502fa6c"
+    },
+    {
+      "recipe_id": "REC-051822",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "6673791dd6c3f5eaae591dfe3a070619ba3df4bec23ca4499b36efe3700ddf86"
+    },
+    {
+      "recipe_id": "REC-056937",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e382633c97ebc6845fc2e23830a2d54282f55afb8ae84e340f55ea3374579244"
+    },
+    {
+      "recipe_id": "REC-041179",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "c7bfccd80d40f55757a3efb9ccd8e12645e47424cd39280242134531e7a43d00"
+    },
+    {
+      "recipe_id": "REC-037885",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "4f25078418e99fb8381a670d1a8a9aab923e86c8ae38fb5b0ba62cda81ee92b7"
+    },
+    {
+      "recipe_id": "REC-022632",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2362a7cf9b2992e53bcc92f67ec523bb8e49f807ceb613315398db62c5931d65"
+    },
+    {
+      "recipe_id": "REC-052805",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "f5de9fe9c4c68b4c006f28365fb49ca746b6b405d60f00a6b864382e219f1068"
+    },
+    {
+      "recipe_id": "REC-020183",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "dc1775d349c72648cdc175c8b9ad84e2694063383176de325c4f1cfc1469e8bf"
+    },
+    {
+      "recipe_id": "REC-022025",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "5658c4ff54a3762fde760e80fc4a69b9cba3567758810698a26c96be0b623104"
+    },
+    {
+      "recipe_id": "REC-077082",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d1e6ab07bdde4da71103b4a55e433524cd487251cedc82469caba275a55b1597"
+    },
+    {
+      "recipe_id": "REC-088534",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "b48eaf7e023729053cae7304dc52bbc07c6647c94340b6b5eed41f7162738055"
+    },
+    {
+      "recipe_id": "REC-052928",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "1ebc144ae2567d403b6d4418f59ef20d652c945672e61b082249dab2ffebc46b"
+    },
+    {
+      "recipe_id": "REC-058798",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "28bf8b8a94d8cbe6acf1201b0d19b62ab5a1ca4e02dd6b279bc18ffb09c1c299"
+    },
+    {
+      "recipe_id": "REC-048127",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2a6074918d424dcd25dcffb7e6eb3b1f3a34b514fc1652787d0fb597b06f094c"
+    },
+    {
+      "recipe_id": "REC-036167",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ffd15550a2cb0238364713c2d1eb8ebfc6eae9637befb1d67608ecd5654c439a"
+    },
+    {
+      "recipe_id": "REC-060224",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "0b9d3062a974d23d1732d013b433d18c24d67b514fc3ae800a56fe8f96512c2d"
+    },
+    {
+      "recipe_id": "REC-073562",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "94debfcd5bc1ef9ebee57a7f82769136df4cfad6e6d56ae8ee7f32a3d69068ff"
+    },
+    {
+      "recipe_id": "REC-086157",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "bebd9a28536d398b906e80af5b8ef6d257d67e796a42fe9c5e3f55b0823807a7"
+    },
+    {
+      "recipe_id": "REC-073076",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "7463d0c7200891e815c27c96364e37469673ce9e6e3ad1c89d68269798e166d8"
+    },
+    {
+      "recipe_id": "REC-064622",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "722a253c69a4c668d44972dab81b745dfcc61f0d13ab687a74e45d3fa72e8d31"
+    },
+    {
+      "recipe_id": "REC-039385",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "534b4f3a05b46a7e8e51a2c8ca53c655c292b992d72a56b4fc2b36668aa7bf94"
+    },
+    {
+      "recipe_id": "REC-076516",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e49eb6f3fd8cc2b20f4c376e13febd7ab33ce8f5d7d343b86176773275c6df76"
+    },
+    {
+      "recipe_id": "REC-075567",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "dc57dd62131f25780987caea9e7e9672d8c00193ade86b634936c1c834f460af"
+    },
+    {
+      "recipe_id": "REC-048149",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "0f95275f9b59039d6ba15ebc83fa5920a9263edade74b0e1dc670144c266f6c9"
+    },
+    {
+      "recipe_id": "REC-076354",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2c87c2054be7b5c3273b34eeb9fc10c10c895fd419180f17ad0f7b41ab58539e"
+    },
+    {
+      "recipe_id": "REC-016326",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "3a7d4a4a593783661164a3680d264d05c4cefe1e0dc0786256726dc9c8335589"
+    },
+    {
+      "recipe_id": "REC-068515",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "dc3dc6e53b7dc0f5de38d6f00693e545818015cc33b743acd4d42dad04761c0d"
+    },
+    {
+      "recipe_id": "REC-081869",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "dee2789be3c84a91163014167c3fd690e4ca678c73dd451a7ea7988f2dac03f3"
+    },
+    {
+      "recipe_id": "REC-025551",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "7dcf90487b11dcb035d356e8fef3808cea34caf5d049373c641a514c7c3b7369"
+    },
+    {
+      "recipe_id": "REC-016669",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "85ab2c3d64548a3e167591bcac541210094172080e882a754aad38a297658b38"
+    },
+    {
+      "recipe_id": "REC-041453",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "3779629e6929e3004d2275874e7998ce4814cddc873703c6771cdfb32af6d98c"
+    },
+    {
+      "recipe_id": "REC-039762",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "f1f70ad919027a35b48efcfe0c363c17022bce26260100e7fa326555e6fad6f4"
+    },
+    {
+      "recipe_id": "REC-039951",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "7bed231e79a228a70d7d71a274e4438dda055e83c3fae27e037a9c6b18b36724"
+    },
+    {
+      "recipe_id": "REC-031369",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "53c6a7c098974bc4f3c4c17abbb4c0966d961c81a3c856e1e1720cd2a6143a6a"
+    },
+    {
+      "recipe_id": "REC-046412",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "c30d215817a7458dae5663953540ac3cc7a612cbb8132c5726fd335309ef370c"
+    },
+    {
+      "recipe_id": "REC-078197",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "670c9e093a550966dbcd34669abd774c7c9137ab9eacacdbf3a0e6e70101e052"
+    },
+    {
+      "recipe_id": "REC-066751",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "86855110d7ce3ad6f1575de7e6697e3a2ceab3d48f48d8a24c7c2b4321dbd07b"
+    },
+    {
+      "recipe_id": "REC-081643",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "f5e42873183a9edc92bc8634a8cf5ac88246a3326de593aa9aa2bc11ee83e2b2"
+    },
+    {
+      "recipe_id": "REC-068941",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d61654d2441515ae5f49c0d6746250689761713bc8a6ffa1b3d6faaa3bdebf13"
+    },
+    {
+      "recipe_id": "REC-072666",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "f2dd9478d603f128f562adda5ce007e9bb4812031dbeb21302418d12d6c06318"
+    },
+    {
+      "recipe_id": "REC-018608",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "b1924ab4e10188318b1535b1b1e744b82d50dfcb4a2cdc85aec85298bd5d3619"
+    },
+    {
+      "recipe_id": "REC-017884",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "807dae7767eec49e9282805014f3ee5445a78b98b57a38d62913d028612ef49d"
+    },
+    {
+      "recipe_id": "REC-081114",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "8c1d4eebea844b6596152051423b8fa48d3fb2f3c470a171d554d871e5ca8d73"
+    },
+    {
+      "recipe_id": "REC-017109",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "07070abbdda7d1cfaa259554bc0071839710ecc887aed6ae0677b0c37c5bb3a6"
+    },
+    {
+      "recipe_id": "REC-038877",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "5b106d41ee919daff05b679be3217886f853d4084260dc151c64f35be01a40ce"
+    },
+    {
+      "recipe_id": "REC-057572",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e4779f51e42c5d79d14a2e42317554923f36a30c6d535a3cabf5e7f9c9f661e9"
+    },
+    {
+      "recipe_id": "REC-022015",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "fe5e9e49d5237b6c038f9a2f78754f9239a2e0626122043d64ebf5fe90890f81"
+    },
+    {
+      "recipe_id": "REC-070320",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "caf2c25f0e8374e89fc4745a48561e70757c84c3f0977af15a6a73a661977e06"
+    },
+    {
+      "recipe_id": "REC-061438",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "cdb5459e4b8510b7c693bb12aab657a15abf057b9c2873a7f5bcda616ee79174"
+    },
+    {
+      "recipe_id": "REC-040284",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "4d66c523496deab5b6a52da0549c24fa656cd7fd6076606a0b8b28d2a1dc8e56"
+    },
+    {
+      "recipe_id": "REC-088269",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "534ffa09d772ec5a03b20825786cf275c9780ca8e8f1f6ac7043d1a180912fa4"
+    },
+    {
+      "recipe_id": "REC-039483",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "5f108b788372add05be7dd33c4f9c25c3147cc12cd65e2b136301b649db3b423"
+    },
+    {
+      "recipe_id": "REC-038088",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "8d652912d7f518d94226ba0574ce0dfe2747a7681cf8280cfcc54e45bcc9e425"
+    },
+    {
+      "recipe_id": "REC-065025",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "28c8184b874d222d6efa90741fde8eb57cfe39d46a57089c4b7a937a2e45f321"
+    },
+    {
+      "recipe_id": "REC-054803",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "eb70b45ec9aca411cf90b8e9d862584f815c151b1c7d7303a149f4354cb34ce6"
+    },
+    {
+      "recipe_id": "REC-074716",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "fc28b03626c67d29c4bb6b4ce98d04282847e3b46bfe83aea6cfd06fea3b9429"
+    },
+    {
+      "recipe_id": "REC-044822",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "f2bddf1c00a7eda3e850669e6eb2826a882e6107546fe638837cd5b82680f059"
+    },
+    {
+      "recipe_id": "REC-039016",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "4423c1194bb867812f0b53de7ffd2e76cca6cbfd6eedb8ec3f1d06a580c58527"
+    },
+    {
+      "recipe_id": "REC-041642",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "96df8a6f0c9f500c29508ad38aaaf0ea022eb81d0efd6cea30373565f72988b9"
+    },
+    {
+      "recipe_id": "REC-077567",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "1a59b346a3126ba2527d6dbfe2b1a218b49b676b83cf426385dbf90ea2ae7087"
+    },
+    {
+      "recipe_id": "REC-026470",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "da943b3db2cd7ae868ab68ef5748c171de35d84b5d14857d85ba8a675251ba71"
+    },
+    {
+      "recipe_id": "REC-049537",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d2e8038e6d227ed4a7cd5976e04bf5df2f04b2e3c8d97ed9a3c70186d16ce49b"
+    },
+    {
+      "recipe_id": "REC-060241",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d4dfd587c0c25e960e00ae9a78814a5a920631df9f6f199e8596a321ff91d94e"
+    },
+    {
+      "recipe_id": "REC-074201",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d295dc52a62983f6956f200694a74ac387ac69d754da77f9f07f737a28d74373"
+    },
+    {
+      "recipe_id": "REC-029177",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ae543501aa58af23352f1816bc6a3fc7fbb3fd172c76f9e0dc2bd6b1ee36e448"
+    },
+    {
+      "recipe_id": "REC-066005",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2183771071ff4fab13af3779080e81e84c6485d238b25984a2cec503a2303e2a"
+    },
+    {
+      "recipe_id": "REC-057940",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "9d83724bd3133458fbf57199f7edc0f54275ef10b6326852714f6247eac75334"
+    },
+    {
+      "recipe_id": "REC-047494",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "21b455080c1d967def449a76688e2c1c14a3da5e44babf4db33a79a39f2f6d22"
+    },
+    {
+      "recipe_id": "REC-071517",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "5035d9ca10d0b2f85aaf3aca22503ca7e775201d40ce4d239cde10456781c7d2"
+    },
+    {
+      "recipe_id": "REC-029188",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "240a361670e799038ed0fc79feb2955842a24e321765ef28b53b31170c7cac1b"
+    },
+    {
+      "recipe_id": "REC-036354",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ec487a643607cd0c703bfe74038e5f685d5c9004cdab50159ff9be7ba37f861d"
+    },
+    {
+      "recipe_id": "REC-064184",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "a6d876640a51267d2f72100222749809cf93888e9372064e0fc30669751b5637"
+    },
+    {
+      "recipe_id": "REC-075881",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "1c1e5377104cd2aec02e78ea76b846b842033d3a1d439acbdc40d3ef6f4ec61b"
+    },
+    {
+      "recipe_id": "REC-029355",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "79048b6536bef647aa29c0db75a83c7fd743897397b382ee1f1955bac1a70116"
+    },
+    {
+      "recipe_id": "REC-072384",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "1d34955416bb3537a884fc990b15acf463b2dbd07843eb66c239a5fff6c479e6"
+    },
+    {
+      "recipe_id": "REC-028441",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "8e289483ab51256f9716b6eddaba9f1c49be859d084528e5ef1b839109c86d33"
+    },
+    {
+      "recipe_id": "REC-043051",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "b04e50e64677a670ecc0251a533397395a1a8518d9144e527e84766e41c1e026"
+    },
+    {
+      "recipe_id": "REC-086481",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "cd6fa1a725b8946e60260059539d9d775414ea1ee5f2c45f2d1b7fc3c470099a"
+    },
+    {
+      "recipe_id": "REC-061679",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "6a23fbda73e44fa649ad2052f80855d5cac30b7046b7afc52238a5a7d0387127"
+    },
+    {
+      "recipe_id": "REC-035720",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "993181c6a45e9dbbfb866100bbebdd897b78b5daec646d9b3e96a8b109cbfc01"
+    },
+    {
+      "recipe_id": "REC-067471",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "5f5c2f37ab4893fb9e1da3307962c14a517442881e36a01dcf2e3083b238e5e3"
+    },
+    {
+      "recipe_id": "REC-044089",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ff4160ff764eaa9d68fc954016a2277929512dc661cfbf1f995157ec95044ea3"
+    },
+    {
+      "recipe_id": "REC-040037",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "9d3d0a9df340156026220c7b5ac091a56c7d4a9632e8e5cae0b67c959287e00b"
+    },
+    {
+      "recipe_id": "REC-041399",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "75bf8931ba40b40a9bf74661ea1fb05bb332bd419b8d50457f767964cfc67a8e"
+    },
+    {
+      "recipe_id": "REC-043586",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "3acfbd80b7a8cdc6d6f0b3f9f59c0875ed91b606fb1cfb718109680f8d5a66a8"
+    },
+    {
+      "recipe_id": "REC-084715",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "99108d2d69cd876cd2bc48be73ee84066c4c1f741ecf2383f751400b6d8dcc61"
+    },
+    {
+      "recipe_id": "REC-062215",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "4e95d75ab5edd39dd87c5c9c370d89846ee131c7e58aea4731da0d625e7b16a4"
+    },
+    {
+      "recipe_id": "REC-031955",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "46ce6accaa6b49bb2b19e42ed8abba41000b38fdd961e004d5c8088ab9e23dbe"
+    },
+    {
+      "recipe_id": "REC-053768",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "5b1fe14c0cad90421bb95dc6ce30f9df3c97994bd6a91e6a36da57a86a683e09"
+    },
+    {
+      "recipe_id": "REC-070380",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ee7cd60cfdd372bcafe406e4db2952eddcd380db5a9d2453c9d70d3e5dc7a894"
+    },
+    {
+      "recipe_id": "REC-072171",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "1d7e0f58d87208595a1eb75e9540f664c8b085e0fd1690769e5b2db327d570ce"
+    },
+    {
+      "recipe_id": "REC-036916",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "f19635e54637b580ac06b83d6c445a70a5b384c2d39558cb47070a8824850cf2"
+    },
+    {
+      "recipe_id": "REC-017268",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "4450b9f64c0a3f54195da1697601f40a64e5b538fb6280b9ab188192c7ba18ec"
+    },
+    {
+      "recipe_id": "REC-060187",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "f931ce22557c2d09c84a8079cbcf02a7662a8a73c5da7b677b7f6ff43405bfce"
+    },
+    {
+      "recipe_id": "REC-031010",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "7cd456174a9a03578b03e501e4a35533ffe411fd2556507f3934679ee3140fe0"
+    },
+    {
+      "recipe_id": "REC-076112",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "a591cfa1a14bbe8c1f2088721025b5c0b4555d22051dc40ef9b0dbdda621a00a"
+    },
+    {
+      "recipe_id": "REC-033173",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "2e9bc9e9a01f7938dc296d0dd489462beae18cab466301b0dc42155b1ee97870"
+    },
+    {
+      "recipe_id": "REC-027269",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ba3300124e44d8e15f89c7269eb674ba97fe834c235460f213ce879ef4093e54"
+    },
+    {
+      "recipe_id": "REC-026892",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e7c3bd2b7b2316c0f3f7f933857f77c0096b8c533bdb77d56594fffbe8f2c917"
+    },
+    {
+      "recipe_id": "REC-073697",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "e04f79f133b5fa93bab8d40a8569beb10161a5d6dd6d8657c9b9cd903b79b96e"
+    },
+    {
+      "recipe_id": "REC-015732",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "4eeff0ff3ce15efd1b515e55ed37a351ae5a49236f8cfc779c1e3230ac0a8f00"
+    },
+    {
+      "recipe_id": "REC-029778",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "cc66d8e289b165a89a6a682a8e6170805545d4128e139df6fe9e1fc1a06aea4b"
+    },
+    {
+      "recipe_id": "REC-019065",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "6875864eac759cfc0599665eb52aac8641d01dd52ec4f61c36401ae2fe78bd13"
+    },
+    {
+      "recipe_id": "REC-073453",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "8adcb61c4eb3129547ab7886163ae07ae801f482ead91bc2d9221ba995fb3cb4"
+    },
+    {
+      "recipe_id": "REC-051620",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ff2f3a64efd55286705be1e66d5f7142f150002afc096ecaadf14478aa0d5a06"
+    },
+    {
+      "recipe_id": "REC-083919",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "6fc05a716319d47fc923d984521258ed70d6e0abcc5af5c7ac381afaba25a5dc"
+    },
+    {
+      "recipe_id": "REC-052608",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "bb1700f7f9650c9680606c7fac7d70f46beb2077e3ee16c7b2e24f2f36427fbf"
+    },
+    {
+      "recipe_id": "REC-044863",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "36880e37ef3c213c1ef49cc1148c9b899bc491058ea9a7c0594feb24a8595a75"
+    },
+    {
+      "recipe_id": "REC-024846",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "c2369547986993690ed5f6ea6bb830bc7b6ef69a1d0dfa64037d05666d989096"
+    },
+    {
+      "recipe_id": "REC-075159",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "3c5a483f1ca9ed1d865bd9019d4500f36b15215d4ce27c911521d11f0d29dd9d"
+    },
+    {
+      "recipe_id": "REC-052542",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "c297276d39d9558a727347085a8acaf3956b3dc4715712b712550379f5ec2a20"
+    },
+    {
+      "recipe_id": "REC-038555",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "35b38fc5e5946be24e3cab4ecc98ebd5367b075d4db9f80f1e3713bce69c1368"
+    },
+    {
+      "recipe_id": "REC-063426",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "3c30265c5648a8904428332cc20a325c9e7cd08b22df5979dc2380ca85176cf3"
+    },
+    {
+      "recipe_id": "REC-059112",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "4967495bb2f2bbcae3a5948b43f1afa40ece40966d32f1b3814789c1d560186e"
+    },
+    {
+      "recipe_id": "REC-056207",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "42e2074bdc05a09fc8d797fd4dd55c618a2303daeb71afec61fe56008b570b9a"
+    },
+    {
+      "recipe_id": "REC-058419",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "d4667356abc02371920e21fc298477110dd781e440147587b5b1271df4f56afe"
+    },
+    {
+      "recipe_id": "REC-020204",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "3b3a649b5a4fc048baf58961d4a2acccc489877f2887f05f685c709c619856a1"
+    },
+    {
+      "recipe_id": "REC-017285",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "fc97ce973a3d3bf4c032676315eefe6a702d924a0bbe125083860872a85b51a5"
+    },
+    {
+      "recipe_id": "REC-064915",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "a6e47637e0625387d2fdf264a2ca602597805cfca451162f1be44d57661f366b"
+    },
+    {
+      "recipe_id": "REC-073069",
+      "source_family": "GUTENBERG_SEGMENT",
+      "source_fields_sha256": "ff38f2441f3556704e7918eb20805b8247939b600fb87a5f6c9f8c4b0a9ddc41"
+    },
+    {
+      "recipe_id": "FC447471",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "e9369187ef63464a617af0ccaae8b61fed1ef3b1ec91b154c8ff81e47567afbf"
+    },
+    {
+      "recipe_id": "FC79862",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "7ed731d60f02071de54e9594a65b54b36592310734836072f160a04569d01428"
+    },
+    {
+      "recipe_id": "FC517701",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "df7c14f974cc6752eda9960e25bd663f603a89f3f38dcd4921f4fcf9dd35fea8"
+    },
+    {
+      "recipe_id": "FC193622",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "d878fc96a55bb8f91ff8a0f0d51b93c50173bd9d1b5cc30d8fa3eba2948ad2a6"
+    },
+    {
+      "recipe_id": "FC485874",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8a31d77cbfac1e21a7bd6a0d5f917fb3824684fdbb597e97eba5a34528edd149"
+    },
+    {
+      "recipe_id": "FC434550",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ea38610ec7494076ba54cb9b10d2f5db90eb57e84dd07ba6d1d991a96e89705e"
+    },
+    {
+      "recipe_id": "FC334162",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "5b17a0af2cf2974c85581450a7f0f73eff0eb4721e2c662cc2a0fa82be9717dd"
+    },
+    {
+      "recipe_id": "FC335468",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8a52b6d91cbd5adacaa92358941e655d9dc383f0ea27e774558a6722c67a43b1"
+    },
+    {
+      "recipe_id": "FC108103",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8088fcfa0539aa318a1cede3951d91be98858822b74726d7cf32e227d76adc86"
+    },
+    {
+      "recipe_id": "FC22887",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "0daf7dc30ffeef5ec3d334e3cf858c224a99ed79241a4677c45f5063c34138a2"
+    },
+    {
+      "recipe_id": "FC250346",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "bb8df39ed80c398529cde6acb7871e3bc722a8df2a6e0f654c5537f5d189e002"
+    },
+    {
+      "recipe_id": "FC93231",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "fde5f183e22145989eee6d8df9c3b03b931e97f8b16fd1e40132c645509a66c2"
+    },
+    {
+      "recipe_id": "FC258505",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "37e99992f4040e0e6ae1e107127527326d6b499050199fece38778abd9eb1b3e"
+    },
+    {
+      "recipe_id": "FC392509",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "cf04115e223539a9b14e599cc5e12fc0169a897b58641deeaf15824379db7e8d"
+    },
+    {
+      "recipe_id": "FC243272",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "153663c64a8fc2bbc0d62238b1cddc3b08a1e020a423b4f70eeae07748c9bd95"
+    },
+    {
+      "recipe_id": "FC325064",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "0373ff651d935f2c84f23ae7a013f3a616cad75f3b1acadd8c455643fa2dec76"
+    },
+    {
+      "recipe_id": "FC444927",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "779fb1ed50adbcf2f0ea1209ccd923712403ec718019a911ee752230453b3b42"
+    },
+    {
+      "recipe_id": "FC444831",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "de9b708ecde2155decefbd3e2ac67d27b56bc3d0d88167013be879d87b8fe6cc"
+    },
+    {
+      "recipe_id": "FC441976",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8aa4cb982e5ec04feb5c00c264341836c5a75bc6c20d7c43ab5669009f50eba5"
+    },
+    {
+      "recipe_id": "FC259394",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "11e17e186e5a04f730aa302b89b74e590619feb564c62fb3e205dbf06335a53d"
+    },
+    {
+      "recipe_id": "FC361538",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "1e02083624655d16d8a58b8b175e180be724da86f8712fe6f79b75db3221c718"
+    },
+    {
+      "recipe_id": "FC98780",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8c3c46f94b49e0880a866ec1fe0ed782503d7a554ec2422f41883ff9f09be621"
+    },
+    {
+      "recipe_id": "FC446776",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "3a12bb508ff5cb100421b51ed3a83ab9cb1c89fe41cfa2f3788ac147baa8447d"
+    },
+    {
+      "recipe_id": "FC399080",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "f6f22e707761496227928afe482c051e5e6a42e94869254f92a6ae43d57e2bfe"
+    },
+    {
+      "recipe_id": "FC134834",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "6c99a223c81164e64d91d8d4ddd0736036b373a860386e2ff73c1534f167383d"
+    },
+    {
+      "recipe_id": "FC130843",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "44a69b2cdeaf997ede03957137b868e57b0e849cff5f055b73f3c22116231784"
+    },
+    {
+      "recipe_id": "FC525838",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "d7143010693e86d00715310768f7e88e16b3641037b5db93e1c6dfcb0a66fd80"
+    },
+    {
+      "recipe_id": "FC509295",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4ad7440153e4619a5303eb33f0d7b715aa94cac078ebc720ff27ae346d758a23"
+    },
+    {
+      "recipe_id": "FC354445",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a1e56a98690d1860130c97be7e4af481999d0600c4d7541745a044b19feea0bc"
+    },
+    {
+      "recipe_id": "FC60203",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "e9bf5111b6767daf2d370a2014975bba0a3898d77e03f90b2dde4b91e1acd455"
+    },
+    {
+      "recipe_id": "FC69510",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "cba75b2104a4e269513e224035965798be1702fbf0992928bc9704f70e00c244"
+    },
+    {
+      "recipe_id": "FC403056",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "c7dd2fdf003dc871248800b5bc42a2fca26bb592072c7d48739cf9791815e982"
+    },
+    {
+      "recipe_id": "FC74835",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "3015eea5a7b7e1f4d4ae9a48b0e951de48c5ddb6961f766bc7f6a0ed5589a161"
+    },
+    {
+      "recipe_id": "FC43968",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8d0fb3ca884dce3bd8689d1d826c448fff0a1f7aa03be717d0e56fa2405534ab"
+    },
+    {
+      "recipe_id": "FC13337",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "0db99a77d3687c3e65a300ee31ba453a1a677eba6cdf523dad40111d87503f1d"
+    },
+    {
+      "recipe_id": "FC528061",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "69650d0d35e9fa5986bb56d8800a57755dd45d49c45bbf7472ebad869d12529b"
+    },
+    {
+      "recipe_id": "FC417941",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "cdfad69a93fd2acba6b90e7b010272db4a3a5e32cac65ec654189e1ed2109a54"
+    },
+    {
+      "recipe_id": "FC400381",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "21f22da4fde135026ee12b503421f34d74605f0a857ab05b5d5d10987c0456c7"
+    },
+    {
+      "recipe_id": "FC22652",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "909431dbfbad6933260cc96ef11d2cbbe5a6319c538cb56b90c320a6cae856fb"
+    },
+    {
+      "recipe_id": "FC95425",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "c95d26c3a32f90d830dc95720abfee65b570519d588f66f344cc139b6b72a8a4"
+    },
+    {
+      "recipe_id": "FC380586",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4832ad7513cf6b3647afc165514f04eb59b7cc929b5c5f17e66ea8b0550e29cf"
+    },
+    {
+      "recipe_id": "FC228148",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "6818fa517baa61862a9ff6bca8bad25d86f8a407022eec0b219736dc6d1f9bbe"
+    },
+    {
+      "recipe_id": "FC159720",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a49433200deddcae22457a9acd93ffc3d10c2183923857d01325481e5dce508b"
+    },
+    {
+      "recipe_id": "FC37581",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "504e4d00cc8b1ef3a0e53ba73e9f8f43976575a8f5523bdfcbf5b950c7d749a8"
+    },
+    {
+      "recipe_id": "FC190389",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "6e50107371dcf2fc5351a1f4fe75e42064cbe5e79a5a9ebe9218733a911d7e3a"
+    },
+    {
+      "recipe_id": "FC179956",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "fdd6696bf11b3f1c1bb7bc5c17659c859f53142653fbcc186cc2c784b0feb726"
+    },
+    {
+      "recipe_id": "FC200427",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "36ffcee45a5e556e1ce1d84d806a19d2bdd425c6c745dc7e38af64919a8ade7b"
+    },
+    {
+      "recipe_id": "FC380702",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "2ed5dc6aa6298fa8344171e43a63e04f8fd61e0e1dd7246eadd75a702fa88edf"
+    },
+    {
+      "recipe_id": "FC225705",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "e57676476ffc93cb1947170231f51d7b84f3822bc6b9f70480ac02c403b4256d"
+    },
+    {
+      "recipe_id": "FC168714",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "bfd090612cdf7c3cff909d076260e763a9b1ad1cbb89fb20853f1d587ac78561"
+    },
+    {
+      "recipe_id": "FC391566",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4cc013160f62f3055b89775697a94659db962d88201f7b25c35f3f0bb5e8512a"
+    },
+    {
+      "recipe_id": "FC292588",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "75df7742da8b4dc868baef989504b645a2510078d196158abd42244be76493e8"
+    },
+    {
+      "recipe_id": "FC282625",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "af9275e274b752292ed3c993307689f365003e85d999df924160197f374455cb"
+    },
+    {
+      "recipe_id": "FC454618",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "b3ecfdb54945a843968ab193db1837578cde2fc3f11c515234f623a8e805e750"
+    },
+    {
+      "recipe_id": "FC72108",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ee5bc51b996baf77b39f5abc54e88073f85e26b1cf7bfb73d816c5859c45fdb4"
+    },
+    {
+      "recipe_id": "FC191594",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "80f2e0de17cbc2c0b2d73dc450cfd95584f49d05a174bd6801760a699e7eed12"
+    },
+    {
+      "recipe_id": "FC400705",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "b57bf327163a9ed03a1adaa07dd6813bbb3fd86d0dec911b4f41294d1fbc496e"
+    },
+    {
+      "recipe_id": "FC30636",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "22b3955f56f61ef46ab7d53d9667045e8104f5dd933b8ac80a4dd16bd948fa32"
+    },
+    {
+      "recipe_id": "FC47912",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "f7243ffe8b6762976c78d06c86e1a3cb7d1949d08cb4019246abe53c0b84e881"
+    },
+    {
+      "recipe_id": "FC222727",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "2b2add3144ca72a32a279bea33f6b0e802108b09bbbda351dd4e51cae7ca3dce"
+    },
+    {
+      "recipe_id": "FC474745",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a1073b1c9b71765135b5b95798385eb9b7b84e3c67fe635e6ccb3edc111c5b69"
+    },
+    {
+      "recipe_id": "FC15195",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a323208219470527d6471b7419da3b94771c4e4002e7ab1569f3de2fcb21c687"
+    },
+    {
+      "recipe_id": "FC467716",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "e02a00eb9de2de7b40921d42a695d90696217914726a01f010c89d0a0368a068"
+    },
+    {
+      "recipe_id": "FC39245",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "19f883e25b99766698f867f8f109367b7f5dfbac1e1fe49d846a0277144f2011"
+    },
+    {
+      "recipe_id": "FC96304",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ee19efc12c274d20e37aaf3f189c7f105af6c4af7369adb9eca870753c5931c2"
+    },
+    {
+      "recipe_id": "FC161593",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "e40269ae3bc92f4a6cfae0cb76ae34114d025535e783d509e84f04bcf03ae0c6"
+    },
+    {
+      "recipe_id": "FC385759",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "0c4ff1d912a62896584a25f11e8c5db9419d4698e26218f0c70c3a16b3cd2165"
+    },
+    {
+      "recipe_id": "FC488049",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4af17b42d9570f05101cacef88adc19ea168b81e00373f41ba48520546659b97"
+    },
+    {
+      "recipe_id": "FC81641",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "300a595fc3b8724a64d2efdbeb4b911887201dc461b92e2aa7f556b1fe41f844"
+    },
+    {
+      "recipe_id": "FC372269",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "c158a4156788badc2fb15724afefee9ca15c4fe5873296540926ea39da8a713f"
+    },
+    {
+      "recipe_id": "FC358926",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "3a13adba592b4fa3512a4b4cd34c63feb91ee1790d230fdbdee0bf1aab04871d"
+    },
+    {
+      "recipe_id": "FC49466",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "c3c671fcb227d3368e7feb7fa27489734602d5aec6a97e63a02043e3859ae475"
+    },
+    {
+      "recipe_id": "FC506087",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "3839cc5450325065c91d7449e72df07a8275b9638027362c00e898a143d1f744"
+    },
+    {
+      "recipe_id": "FC163729",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "2265f8b668d96ac3a6a59beac94a2a302c898e8ec84f120a97fe8be7418c44fd"
+    },
+    {
+      "recipe_id": "FC465104",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "dce2411b1710c949d900f6e489c1fbb607a0a09be37d69f1b6e9667d8417eedb"
+    },
+    {
+      "recipe_id": "FC39846",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "21e572711eb0956ba756d0fba790338b4ec3858e6dd7b8f294de42909cec53f2"
+    },
+    {
+      "recipe_id": "FC297639",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "707f25f4f86598b5c5b2dffaf01761ac660bedc0081528ee7a59041fbb1cfa4f"
+    },
+    {
+      "recipe_id": "FC343752",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ecb8e84f320dbbdb9428bc8032e2df1b87c9d590f91d2d308fa1034b2157e8a2"
+    },
+    {
+      "recipe_id": "FC461778",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ea1b6470140dbd89ef469b3e2852f2f3ecd605ea3eefd19c814b08827b81733b"
+    },
+    {
+      "recipe_id": "FC454437",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4aa4f6586dcf42f4a68012a96d6a5adef1e94b0184670e1d4410f171d7b1075f"
+    },
+    {
+      "recipe_id": "FC362100",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "01516c653a68624dd4f7859860be77b87c420808a6d713e1121025b68afc699a"
+    },
+    {
+      "recipe_id": "FC192157",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ad9782a1792a0da5d719027d3b6057ba86acf663f7769c9307f48f42aba8317c"
+    },
+    {
+      "recipe_id": "FC94655",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "fcaaf692268601edd5d1c2555d94202430555538addbd6df6c0eab39c9469168"
+    },
+    {
+      "recipe_id": "FC145152",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "1d6da033b4b9ab338c4713c10a8ce685e4f8ac3a19d19794c32318a0a434db2a"
+    },
+    {
+      "recipe_id": "FC112011",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "b2115ba863ef0f9f83dfecd276e89c13503931dffc0e16d692fbe231b267d7d5"
+    },
+    {
+      "recipe_id": "FC316722",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "87bda3558b71b7685d16d6490343e538f0b983f9b5d533509cbf187610c16f92"
+    },
+    {
+      "recipe_id": "FC423459",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a0e328ab9638f6bb3e46099ca41fbc4b78194331ef290664b0f9d1f4c8fff080"
+    },
+    {
+      "recipe_id": "FC504613",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "993530c98f1368e794ab24d2295964bf98845b76bb225f3553d7acece04b2e88"
+    },
+    {
+      "recipe_id": "FC23381",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "efaf384ae2ad4135078d47541bc33039fe332f281729b3f8c6ef399d2f9bb165"
+    },
+    {
+      "recipe_id": "FC416295",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "326e9a984b978ab2d746d0c2601510e45414acb4daf74ea0fc630cf1b8177888"
+    },
+    {
+      "recipe_id": "FC189639",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "9dea8bd373c51eeb6c4c4698acb9e4310e52c5d3163df8961ad73ef1f4913d44"
+    },
+    {
+      "recipe_id": "FC137037",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "03f4df44d48d3ce8d7ca385fca7f938b87a2996138e87ea729bc997f8f498510"
+    },
+    {
+      "recipe_id": "FC202988",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "b9c1654c02b182327e8956635c7153b73f3c2da422cb7a4fdbbb61f4e3b36529"
+    },
+    {
+      "recipe_id": "FC197263",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "eff0d71eaf7a8da853cd0145e2c7d60a8be3398d094f1f6693aa03255dcae88a"
+    },
+    {
+      "recipe_id": "FC471991",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4db40e7be7527b7146143e089b7329446946a4e52c5f0892a93e5526654d15d7"
+    },
+    {
+      "recipe_id": "FC530031",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "f33e2fc71aceaf3961a75b9b2648686523233e9857cbda6e028658156a1481d4"
+    },
+    {
+      "recipe_id": "FC151983",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "b34879230891081189cd8a7700802f67ac1b8e5b86ab472dd64eefee48a7cb12"
+    },
+    {
+      "recipe_id": "FC183890",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "c90f60a17ee7cc43a7f32f0a3705c9e9bddbc34752322ceceaed2e6c807ffedb"
+    },
+    {
+      "recipe_id": "FC194465",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a2de25b6095a8e5cfe272ff828016259eaeb32af64fa78922e3cee47925eea2c"
+    },
+    {
+      "recipe_id": "FC77995",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "6bef3d1a5f85360d7384bbc86f1592df32d68e3fde4bb176a27eddced2415eac"
+    },
+    {
+      "recipe_id": "FC250416",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8840794c0159d0a6311e644c0e9855e964d8a954809894262b31cf6bccc1deaf"
+    },
+    {
+      "recipe_id": "FC320618",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "97bf5accdfd552976587dd586b3ddf2c01673404669d1536d9205841a07180cc"
+    },
+    {
+      "recipe_id": "FC29139",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ed196fb3404652aeebff5ba24b7c76a9ad52b4378bfd5c136c984227236c83c7"
+    },
+    {
+      "recipe_id": "FC106965",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "f13c1c9b45f7046d35c95b6e91fe695fd16a21376179eaa66c3aa0eec6ed8f4e"
+    },
+    {
+      "recipe_id": "FC385267",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "5f40bca8903c541457d6c75e572dc31267581c73e79f1cfc941ed52584785a5b"
+    },
+    {
+      "recipe_id": "FC145456",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "db6f2e70724e7530803016018bbf119b0edf33091ecef5e0c82face04ca13774"
+    },
+    {
+      "recipe_id": "FC465670",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "73b60f3712cab74db6d7c65d8fb74841c84184af9a1ee7bf93d2d4e05ef51e7f"
+    },
+    {
+      "recipe_id": "FC261622",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "78b16a00eb983c16d109b2c692b846a182eab08e6e358fd63e98e1ce48df50c9"
+    },
+    {
+      "recipe_id": "FC360129",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a2737f62764ba5c1c550ec2309a51533a56cc6320fc4788c33e80cc3d1425184"
+    },
+    {
+      "recipe_id": "FC59826",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "da54d5d811c86e3dd7f0b508509a207179eff807253e1fb26728550436afab7e"
+    },
+    {
+      "recipe_id": "FC82965",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "065788930f3e9d47d4919e015ec7a64caee4985b46757e530fc1652f8426f894"
+    },
+    {
+      "recipe_id": "FC286685",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "f5137e51949233cbf6be1ab0b89c248d8ae94d9eed3c955ce564e3cc6f90785c"
+    },
+    {
+      "recipe_id": "FC10920",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "fe72ea29cf4ccfa95f0398aa957e17046dd492547735fdf2a2f50285399b14ba"
+    },
+    {
+      "recipe_id": "FC11267",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "7b964ee36f91ab9e1bc6b4a3bb11723c6d5950c0a689f0ee68eef14d359e0c9a"
+    },
+    {
+      "recipe_id": "FC445235",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "b2288b7cecb5a42df40a8c1d1b3bc7d9422ba4924192cc0b9ae79bfbc3f2155b"
+    },
+    {
+      "recipe_id": "FC442511",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "427472b276c74f59bb50c51f0e563a888da9156af4a810f71132ae7d9c2b680f"
+    },
+    {
+      "recipe_id": "FC60941",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "3640a12cb69dbae99e309474c94dbdd7a307329d2ba99dbf50335f37644c6072"
+    },
+    {
+      "recipe_id": "FC137103",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "d221211ef6e102d9c83f3e7584d9ffd9a56bf5de5206934938bb78680a03328e"
+    },
+    {
+      "recipe_id": "FC163225",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "24ed289445dddf4d380c36591eccdfe9dd0a2f5482a6827229003e972ede8372"
+    },
+    {
+      "recipe_id": "FC211488",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "17d3e4435079ee55af1bba840fbc867d1d06a97bf89284ca18841976379ced95"
+    },
+    {
+      "recipe_id": "FC128599",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "85260c03ea57a222730867f9ae7bca13da106f90363a566bb1b2f0d921bb1713"
+    },
+    {
+      "recipe_id": "FC211814",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "6b901b71a7477996a5d3071c24a971ddb67bc4433ddb5206a4696939d2597ee6"
+    },
+    {
+      "recipe_id": "FC356648",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "5c4f40a38fa9e7655a8f048c8a614c19129a3779ddd5c604b2432971a0e78fd1"
+    },
+    {
+      "recipe_id": "FC383130",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "0c0df033de891f311df4b54a7044179a896f483313ef82f5e3acdf08491d119b"
+    },
+    {
+      "recipe_id": "FC188129",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ffe97bf295d1eb189c4fb926ee829f752a4d683202633aa03eb1f8095ebe3ace"
+    },
+    {
+      "recipe_id": "FC38946",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "03e3c7665e8ea14e2df273baf20c047936f5cd6f4a8ef2140a1cc3c55baf9635"
+    },
+    {
+      "recipe_id": "FC11826",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "2084a665f72596361dbbe1ecdd8c32da28a57d818855bb7c9708beff961e8a81"
+    },
+    {
+      "recipe_id": "FC513585",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "209910c26ff0ed8d50f68806e6059d967b1ca8d366478f2efa4aab46c66197d2"
+    },
+    {
+      "recipe_id": "FC2164",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "17958e14b3a270407cc8c4db271d09d1b8dc40754adead3c87a64368f4fa2066"
+    },
+    {
+      "recipe_id": "FC80392",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "67c9018119cb9cf8bbecc12e4afbbd75897cd9cc56e5510c40d2bfa871541679"
+    },
+    {
+      "recipe_id": "FC239452",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "c2129f1b579b0bea9502facfb939d75ae1c3d0fe293085a16b9d8476a2427a33"
+    },
+    {
+      "recipe_id": "FC78011",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "f7a396460ca18975ce58761428db15d2b66f30bc25f0fb47de4c1e8f25546e72"
+    },
+    {
+      "recipe_id": "FC419689",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "639ac21afd08b3fe4c834df79e826c5bd785962dfbd2a2e45ba6d5e07226c411"
+    },
+    {
+      "recipe_id": "FC236440",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "3040b2525188bc81c0e305b5884b23044270beaad1b99c6e1ea00acd4e7121e5"
+    },
+    {
+      "recipe_id": "FC249085",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "30abe2dacdebdc75a3729b115b1b0ff2a917ffb6e0f48f05a120ba8200fbe49a"
+    },
+    {
+      "recipe_id": "FC197877",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "88673c547ba488a85ccfff772594d66186e1af50bfee8b5b309ca098a47dea98"
+    },
+    {
+      "recipe_id": "FC153904",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4e8865d09ffcc05778ff539ad0254f67439b01cfafb1c70ad30abb61a3dc63f5"
+    },
+    {
+      "recipe_id": "FC397555",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4da2c3736d6ebadc698b3c605f1b4c65d4a24595c447584018016efd0c2c3fa4"
+    },
+    {
+      "recipe_id": "FC498544",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "67188bc07037e918e81d00a16363e4560e9cb531e727d80673336a1e9e6eb7c5"
+    },
+    {
+      "recipe_id": "FC138368",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "b875e819669e19d2bd68f1234e017e68b445497dd1440e5a585f834118fae46e"
+    },
+    {
+      "recipe_id": "FC115352",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "2d15099734cca64c7a3e89886d1604a4a2d2cb2b84b815274f16dcc2037539b2"
+    },
+    {
+      "recipe_id": "FC73393",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "56acba683ebf657938e3394b50dc90fd458f13cde725b69de9e5307f092c7827"
+    },
+    {
+      "recipe_id": "FC539234",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "3cbe75dbf0aedca1b5088a584d18ac5f34e213ebeeb3cbf7102de79c9a3e8f96"
+    },
+    {
+      "recipe_id": "FC106837",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "3aa68486df11a558b7a2e05be8b6f1569160fd5b276d8a3c0fbcdc800425b6b8"
+    },
+    {
+      "recipe_id": "FC185204",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "9bd917c45f75c1ebacbf8b355faa9e032f13ab71eee45b309adb22bff055f136"
+    },
+    {
+      "recipe_id": "FC453409",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "036ce5bff71727e8e5f0fada1aed273ad89de90ba635f35d55610e6996867dc1"
+    },
+    {
+      "recipe_id": "FC58514",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "0d5e81f4ac24ad7505133571a01fd642a616205beb7d41a4764d0fd28eea2d6a"
+    },
+    {
+      "recipe_id": "FC308675",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4815b3bd777e047fedad5f04db6af1c985de2da2e0b69f66dc9ae3865bedf2c5"
+    },
+    {
+      "recipe_id": "FC444037",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a566f1fb90e7460f07340ecfadb95d41a19a58a75ffb37b7d2491065b8dfb2d1"
+    },
+    {
+      "recipe_id": "FC381604",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "88cafd78e88f8a39dc3dad9bd5794dfe05bb03320dd380d2319d2b4a896c4a4e"
+    },
+    {
+      "recipe_id": "FC76883",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a3a6e5578e8ddd52b1f5cc9f4b567cffa609db626947c6c81123e262553610e3"
+    },
+    {
+      "recipe_id": "FC344431",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "483f9577bd1ce371b20ccd2edfcd47047a4d1ea7c92c802a24faff814e0fd131"
+    },
+    {
+      "recipe_id": "FC527856",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "843fd4618fc8f5d27dc57d72309e0f9ba0e9981f1b4c1e500d685ca9523578e9"
+    },
+    {
+      "recipe_id": "FC305699",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a67c343f3e1414922d52e477f9c1900850a96265e6c61772a24225d4b89139db"
+    },
+    {
+      "recipe_id": "FC319292",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "00e7b31339dc05450dc709caf39c2d6bb820532e5e533416d680dc699baece7a"
+    },
+    {
+      "recipe_id": "FC499998",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "54aa03cf2f4e959a5f6b4c7cee45b2814888816fd010843ea07281744c69c81b"
+    },
+    {
+      "recipe_id": "FC284150",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "1b3e72a8ba7d263dd11676a14b48c53919d50b51f04fdf7a5a7d335e22cdc3f3"
+    },
+    {
+      "recipe_id": "FC175887",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "809de683e6144b96f193b6bea6ffbadaab4cdc73c17677dc4e7b96f5299ed9bd"
+    },
+    {
+      "recipe_id": "FC464962",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ba40459d129aa856d07300da444dd3277a916606a1e31a24dbe4d0066898d7dc"
+    },
+    {
+      "recipe_id": "FC429312",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "fba611c41988d4b1394e0a7c6909b5ee8ae2f4f0119af3bd78a623e674f06b3c"
+    },
+    {
+      "recipe_id": "FC389049",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8417690907a32e6a159ff2aee47788f299afe2bec0a5fe66d77f799f1e813cfd"
+    },
+    {
+      "recipe_id": "FC466047",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "a7d0dc607bd4a07966e980a270532931fa1d338648683ff5b5273f942adad2ba"
+    },
+    {
+      "recipe_id": "FC352496",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "5543cc8aaef6617cb51954fe4a9ce3ed8bbd935189fc77fec008eab8dcab2dfe"
+    },
+    {
+      "recipe_id": "FC241516",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "05066137324bb42c57d829b31dca088b106050051452e7b0b7bbeabff46af27e"
+    },
+    {
+      "recipe_id": "FC476697",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "7755de411e6dd93b166e2ea8b1c69ea3331379155dc298bf26d37400ae91e8af"
+    },
+    {
+      "recipe_id": "FC157285",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "85ded60217735229c6e06be9d212530cea40b2f032e8ef8ba8228c8d004fd679"
+    },
+    {
+      "recipe_id": "FC513712",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "f0a753d6215817b70951287b73dc15bc0627213d400dd0b06dfa3bd729e4cdf6"
+    },
+    {
+      "recipe_id": "FC519653",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "48d93d92feac1fbeedca983c5e6b09c96e9a5c1cd376f90353db95a7af10ca5f"
+    },
+    {
+      "recipe_id": "FC517380",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "9b51051653dba167c0fd0479a990a8ddbfaecf91cc335ba371aff3dfe6910d40"
+    },
+    {
+      "recipe_id": "FC287420",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "bca6fcb24763a0184199bc107a8d85227c6c77244029f49614253d7f403e17c8"
+    },
+    {
+      "recipe_id": "FC197496",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "25981e73a26892aff3d89aa27e6fd528e4e45f9db39051361c69e7aa951717aa"
+    },
+    {
+      "recipe_id": "FC173533",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "2d490ac90ec6c8768e2924d23b310148859cdaad84254e2e8b5abdcafc38f636"
+    },
+    {
+      "recipe_id": "FC154991",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "7bfbd392bd926c30cc73bd0d3a3f533354a21196b9b2551c33df674d0adc1dfe"
+    },
+    {
+      "recipe_id": "FC47341",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "e3a221940091ac8146c2c519128757f5dce884b0523fb560cc814533ad207cee"
+    },
+    {
+      "recipe_id": "FC262033",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "65e39a61bf7afa21e49647a4b496d0b8b0305e2711e24a346bebd70cadebe0b3"
+    },
+    {
+      "recipe_id": "FC83170",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "7f38a0130e656c520c175dc67ad825072243b2d916b023fbc2d828a43b79b441"
+    },
+    {
+      "recipe_id": "FC225739",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ee029766f01e5733975508f203ecb2f8d6727de5f0dc63ba58a05ddacdb7c0f4"
+    },
+    {
+      "recipe_id": "FC339344",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ee6b14612639db2ebcda2a298946a20af017ec705110f132f3f5f54791dd49be"
+    },
+    {
+      "recipe_id": "FC350069",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "e3f78722833b5e2fd275ee4d0e06a4600655e966605a1dcb447e0e7f87b94051"
+    },
+    {
+      "recipe_id": "FC22948",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4c3b1ee99bc03e92b9e1bf35b5276cdd9616685904037ed2ade0c8395a12bbef"
+    },
+    {
+      "recipe_id": "FC65696",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "eef9059ff64353692fb9c27e7b43066630ffe09bdc48d85e2f78eb8fde2d6954"
+    },
+    {
+      "recipe_id": "FC198174",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "61541baa1c8c30ace83953705a29583e17a19c1b18b47996ff4851b7d60500b2"
+    },
+    {
+      "recipe_id": "FC509101",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "4c724c323d9d9b2033bee04ea3ed703193b379c0204eda572984d314f6f8ec4f"
+    },
+    {
+      "recipe_id": "FC278321",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8e2cb42b072493695739664b4d7ca9f6f4da9b1eb407f9e55e3f35d4fc86e509"
+    },
+    {
+      "recipe_id": "FC124027",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "fba069480bc1e1af72e29e645e5bd138d64120bc9dab4ed5353cca0d78a2989c"
+    },
+    {
+      "recipe_id": "FC377392",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ea642145c7684c5f7beaac05b9ff3d271bd88afcdf24999480dc1c1aa25f883f"
+    },
+    {
+      "recipe_id": "FC153722",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "8f926be0550a196d62b3a0dc0059d840b5468bfd77b208a389e80191d87511aa"
+    },
+    {
+      "recipe_id": "FC495978",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "134632c408b8545adec33df0ddfff3282d9eb986d99090f57b1a154955eee0a1"
+    },
+    {
+      "recipe_id": "FC174360",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "06a63f50edf5a66392793bf13b6df11141b1df94b5c8dd6a84cf0063fcdf960e"
+    },
+    {
+      "recipe_id": "FC52550",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "6f2525ddb463bba756ec2ac3a8ffc19149b0dfb4fd404bd989c3dfad0094b545"
+    },
+    {
+      "recipe_id": "FC458114",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "2516e355ba1a4d066056053f65f52d2922ff7fc87fc2e6d231d5c75ae85246c4"
+    },
+    {
+      "recipe_id": "FC406586",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "61e406d431ddf116e133d719cde428689e9cd9ceac7d15c154d4e477066c4c00"
+    },
+    {
+      "recipe_id": "FC305214",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "ceba9629015448e44da7b68773dda15cfa0d504f67ccd32cf5d6f1e265d4480a"
+    },
+    {
+      "recipe_id": "FC256899",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "cf49b6e17f7db5ed8d07e92c01bfac66795f8d3a87cf5f02809b95cedccc3817"
+    },
+    {
+      "recipe_id": "FC486469",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "2406a05867a9745190def99f6eda8bcd1eebc733432e05be2bebe717672659c1"
+    },
+    {
+      "recipe_id": "FC258135",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "892904fa5adb2a54eef5360c67ef0cc007ce960f3f550d8cb9eefb71633f10c9"
+    },
+    {
+      "recipe_id": "FC69878",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "15bc78e5cbe93024a5cce2d6666e9b083c0f4fe117f1cac688c3edc2fa20ff77"
+    },
+    {
+      "recipe_id": "FC209974",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "04c639ea845593dd9fcb65429742b2449e4146e149d852aab7e1124a590df63c"
+    },
+    {
+      "recipe_id": "FC104188",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "45fc2cbac48bb919361aaf6d4e0d4fc5ca7ba14edbd74e1f50ba7dd21cfaf7f3"
+    },
+    {
+      "recipe_id": "FC210551",
+      "source_family": "FOODCOM",
+      "source_fields_sha256": "3bf2eca0411850ae89948608d1e3627dff79f96b4bca8c1f21e1f8919ee61f8d"
+    },
+    {
+      "recipe_id": "TS0178",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "0578d6a64a4a9931440d0c27f306e3ff9ab3a3abb9dda21136d80ac581064616"
+    },
+    {
+      "recipe_id": "TS0410",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "60c65d4c4a9637808c1d96842b55f320158a85e6a3aefdebe6004903cd9fffe5"
+    },
+    {
+      "recipe_id": "TS0580",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "d77268259c20ac56a7a8429b0dc6050f52d02be733c4d31b3cc7b578dffd9b63"
+    },
+    {
+      "recipe_id": "TS0620",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "eb3a938d793386490416b2d87f94fa983c081303cd4f859ce3559ad760abb984"
+    },
+    {
+      "recipe_id": "TS0541",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "8374c9c70f1ff9b1554641f37551c63b94840280eed13f83a5acb6caa453dff4"
+    },
+    {
+      "recipe_id": "TS0098",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "77b639824eec9e445b25ae23ee79fe16212c9b6b47c537b52b5c1175ed45ed91"
+    },
+    {
+      "recipe_id": "TS0381",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "3ef47b70eb711d761d2ec73a846f74e244facbe76633362b96e174939c4e9607"
+    },
+    {
+      "recipe_id": "TS0322",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "9d18a95b10daea4d6a077757e1e0706169e85dee2995bb983df2c740d33e5a20"
+    },
+    {
+      "recipe_id": "TS0547",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "46a55183ee566027f6b171b518497d6ab3a5a74893e6b7ac1c319517974c399d"
+    },
+    {
+      "recipe_id": "TS0551",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "618ad5bf0fb4e050c23541fa7e98fe96aef7b45d7dddc4f29ae30c0eead7f00e"
+    },
+    {
+      "recipe_id": "TS0017",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "a1e95f522bd21746c05f75374bbdf6e497a801ffc48db4ba7d991660f73e37c9"
+    },
+    {
+      "recipe_id": "TS0001",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "53b97ce59336a24b2f5bb80c1a356680f5bbf17ca997a43650037da71601b494"
+    },
+    {
+      "recipe_id": "TS0138",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "cdfc34a2e2d080bb06f535b1ed3bfc24048c3117b9ad3e680b80f88b72b842a7"
+    },
+    {
+      "recipe_id": "TS0103",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "bd99c05f4475c43ebaee16d524b773abce688443235bb2ce7c55f38028af24ee"
+    },
+    {
+      "recipe_id": "TS0122",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "df5e403677cd0921ab7e1aca90834275b445c2849e4cd7c683a1bdbe9f7a1190"
+    },
+    {
+      "recipe_id": "TS0346",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "cf70df870b9744a872bc6b3d7de6c4c7c92702b4ef2c111ae8fe59820750bc99"
+    },
+    {
+      "recipe_id": "TS0089",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ea063c752e2674d9369c171a91b81a0c10e33a96b223dd133e2e5f8cfd49115a"
+    },
+    {
+      "recipe_id": "TS0442",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "db26b8c36b54c477ce5ebb95a8c1c7094046212e2a0f2ce2f35617efe5e6e66b"
+    },
+    {
+      "recipe_id": "TS0563",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "89c17e2cef2c5b6007979dec4de2c6d285dbf47c880de584622798b377553ad8"
+    },
+    {
+      "recipe_id": "TS0213",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "315e15ff01ac15065adac3dfc6dadd171a3d720b652184b36e7cd718cbe003ed"
+    },
+    {
+      "recipe_id": "TS0525",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "d588b35fe88d10a2b96abc106fb6f20eef5028a2d3c9a69839f3db3786fba378"
+    },
+    {
+      "recipe_id": "TS0556",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "d090aefe890ec0ec7b36a498568419596fef2e31d2215034c13dd5f157a4eb75"
+    },
+    {
+      "recipe_id": "TS0119",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "c0df995fcec7c6b3863fb55647cfa372ae873a5c17e390202c53e8823c9f0b96"
+    },
+    {
+      "recipe_id": "TS0038",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "fc1b318553e19e90f8a64acc8b5474ee57038916fbd72fb5bcec2baacdf8b17b"
+    },
+    {
+      "recipe_id": "TS0587",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "6ec6272f445127a2af6729f6efee58cd62676a568817199a873e458bccc97440"
+    },
+    {
+      "recipe_id": "TS0090",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "776b01bfdd6fe99ed03c41fd1261289e8e73a56e0a1fc7a0e4c68596ca550f69"
+    },
+    {
+      "recipe_id": "TS0447",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e66fb98dda6f9d1ef451801a7edefae35673117dc6171acf105cab541a8bd3cb"
+    },
+    {
+      "recipe_id": "TS0654",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "0b6e7f1323eb1afe375ea835cec50cb5c18ce2ad6917c3cc1e5487ba78b16a38"
+    },
+    {
+      "recipe_id": "TS0598",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "5a93be6a298e5c4a3ae9d72b999c932690703a3f06c2914d67b5d247285ecff6"
+    },
+    {
+      "recipe_id": "TS0228",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "df57ee17227dad23ad0f7d37355484d61bab5773e0c89f71a2bf4a29b8bd84fd"
+    },
+    {
+      "recipe_id": "TS0637",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b150217ab42fba4f3241b3ce00b6301991f1b01596c0e9310b25117f5ca3654a"
+    },
+    {
+      "recipe_id": "TS0190",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f293022c2981c15302814fb6a42b5e58c4d0af91ff2f129fae896d7123b9223a"
+    },
+    {
+      "recipe_id": "TS0123",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b8f905889bd43eea620e6bb140c326dc2bd2b0b92457380cfcd89bd567a427c5"
+    },
+    {
+      "recipe_id": "TS0401",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "3dee2b51dfdbfdc08c229efbec60b5f42bbfea890e76807a543bf967ab269571"
+    },
+    {
+      "recipe_id": "TS0581",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "15d4e5bf702276389085604d926a8c542daea08489005c39338300943f79813b"
+    },
+    {
+      "recipe_id": "TS0537",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "632aac69b2b11d37ac5f7dd94d7c5c7cf247a7aebdc8e22bfb0734f78dfc54bd"
+    },
+    {
+      "recipe_id": "TS0669",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ec52454e1fc5f7032a82d424621cb5e6dae76d338263b52cbf0fa2b806ea4673"
+    },
+    {
+      "recipe_id": "TS0044",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "42ad61e4eb17c08bf786b909a333298d358f9cd3e03610db88382dd1dc5727d0"
+    },
+    {
+      "recipe_id": "TS0388",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "41c7b30b62183b422357d722f27563ef3b233ef770c6c2da562ef3b23507416e"
+    },
+    {
+      "recipe_id": "TS0597",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e28c92a20697e712cc76861e330e3439b1e330ac6bb87cac626cf1112a148284"
+    },
+    {
+      "recipe_id": "TS0276",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "82a9269465b255c32a3788e446d9126769b6f4ac700e9c3dde2c8f37b54e2c36"
+    },
+    {
+      "recipe_id": "TS0274",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "72e7c080e1a0c31c55ba0bf074bad55c3f7ca7d870fac13cb166437e3c19f6da"
+    },
+    {
+      "recipe_id": "TS0206",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "d55d381606c9fba8691bff31088328fc877d8ea02c50467fe3ab472429b0f741"
+    },
+    {
+      "recipe_id": "TS0031",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "96b1bdd8943e236b2de4bafa91f7507a0d99c410addcd9c79df488517330dfb0"
+    },
+    {
+      "recipe_id": "TS0324",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "82f51c3cb38f9dd011048e529cbe9a3dce337aa3fd75c7c3ffee14fc051d3519"
+    },
+    {
+      "recipe_id": "TS0188",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "9b2be8195cde6633cbad1bf4ece8064998dca87d55af767e8611f219561ef4c8"
+    },
+    {
+      "recipe_id": "TS0367",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b894650ee6941df28fa850261e03c48bb9e8bca67fea988893c7db8c1b559025"
+    },
+    {
+      "recipe_id": "TS0005",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f844481475f86aa3ea6a3b35d3a9025b6704fb19b93a694813f70d7e6777a344"
+    },
+    {
+      "recipe_id": "TS0016",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "855919c9eee24dc5e1414bbaaf4b4122c4341476d2652d28f67600005f4c9b8e"
+    },
+    {
+      "recipe_id": "TS0018",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "3568ad601b70ff776a46de5359d9999160b87769b319fcb1bdf794fa9070ea69"
+    },
+    {
+      "recipe_id": "TS0147",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "a2b45fbdee22cd6ba15dc75af8f2ad0866271788d95bb993fbd5b467840baaf6"
+    },
+    {
+      "recipe_id": "TS0553",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e1f5426a3dbb8e9d7ede9bfb290caafb3f31f0028f31ec02b190eeddb354486f"
+    },
+    {
+      "recipe_id": "TS0694",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "04ea2da55d737f259bb7262e362850361a30db00832f6584a5b054c005087ed9"
+    },
+    {
+      "recipe_id": "TS0008",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "648d018e9424a38eeb4ff2ecf548845726f11ee9706fa540867d10895e5845ee"
+    },
+    {
+      "recipe_id": "TS0245",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "d4e474565e23fbbd136f1a743df8b52229186cd8c6ea60b15da6cead08e42dbd"
+    },
+    {
+      "recipe_id": "TS0198",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "c0b609340c53121caa27d7fe217d0f20d047861d231592cbb814fafc81bff063"
+    },
+    {
+      "recipe_id": "TS0478",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "5f18168ea24db828bb7839005767f2644201638b601fd75682947be0dc1f83c7"
+    },
+    {
+      "recipe_id": "TS0528",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "56f8d742ee40ac0d46fbfa57b3a0187cafecf168cef36f4eb6acb1282d9db69d"
+    },
+    {
+      "recipe_id": "TS0277",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "5ee752123e79bb2e737dff19801068fec356c76a7b9dd55dd4299bd8ae160e02"
+    },
+    {
+      "recipe_id": "TS0068",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "fa9db77af6229f135a5a8229627c8f96953bd18a2ffd11d68258529cef69aa9f"
+    },
+    {
+      "recipe_id": "TS0555",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b235a0c01160adc6b711177ba14d03a70208691c574d99b83442ee982623d560"
+    },
+    {
+      "recipe_id": "TS0427",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "c00acd46b2cdd41589a262a7a4988535af28ee5114df5af5f92f92452d3659cb"
+    },
+    {
+      "recipe_id": "TS0403",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "d681e5ef97b890ee8bf65a59d9c91108c18315e3aefdb17e54d390059c96a18e"
+    },
+    {
+      "recipe_id": "TS0032",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "d4f5fc6a1f09d47f9c0cf5eceb94b59a0e228548609173b459d3bb568c433850"
+    },
+    {
+      "recipe_id": "TS0496",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ee5a0afb86ba454f020e28a00900f4053d26d88e7acb0e7e305cbeed851a4453"
+    },
+    {
+      "recipe_id": "TS0141",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "08cec0ca0ef33a00406b03cf7a75136e7d0545c596460c44db34d9be93432007"
+    },
+    {
+      "recipe_id": "TS0161",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "8a9a4a326e54797d383f2ae8f7a2439aedfc27c6e3cc4ca104ce0b763afa48f3"
+    },
+    {
+      "recipe_id": "TS0160",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e59e9c494411fdb2dd4166a36ae970ae5432bb0d0e6fc005ded690825e268433"
+    },
+    {
+      "recipe_id": "TS0677",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "3af75f4e4b3973885f03f1256db5fd167234a7a8a5825d679247689a445b6f78"
+    },
+    {
+      "recipe_id": "TS0379",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "43806a6e40de7d01553cd4c3230d318bbaaef5e087360aba8669ed82d0070a67"
+    },
+    {
+      "recipe_id": "TS0247",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "2ff8e7bb357b9ecd067a0ad3ecdcc01be98d287679eb7b521d9d29a72c66a388"
+    },
+    {
+      "recipe_id": "TS0351",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "4e29fc67992bd3e08502156b59f87aa0485e6c56696c3a321ea0f069a230fc2f"
+    },
+    {
+      "recipe_id": "TS0656",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "090d7f668e212d70482a974e3f1b6dde2c37894a7c20dd6db656086e41a69187"
+    },
+    {
+      "recipe_id": "TS0164",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ad0652d833e4a9f6c04f7fc05adfc108a1d206762c765ff6eb7c2df16ff38be1"
+    },
+    {
+      "recipe_id": "TS0146",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "a5c055dce1ae8829d3b92fe0770d9cefb73ac5b071e0916d0ad384b8c6afe3e5"
+    },
+    {
+      "recipe_id": "TS0649",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "49e51fcb2b676f295c1d9ec8a9b016a9d62f96d3da25d9c8e4122c863291e4a2"
+    },
+    {
+      "recipe_id": "TS0181",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "2576c5beaefe5e90e1b86833d7b0305afb8a21bd82c9cdb3b5c938281e276eaf"
+    },
+    {
+      "recipe_id": "TS0449",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ea92c2860b9b20c37bdfc0296a541cfc488e9a1fdbe50b2d2d0a8179699687e6"
+    },
+    {
+      "recipe_id": "TS0628",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7d714229322641ed7417a8b91b5b1546a75c4ac9e8fb1675b59fac7203cb3ecd"
+    },
+    {
+      "recipe_id": "TS0527",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b25ea8c50e1fb8b5880b1df00c52cc813ab5c65548e7ff7bdab028217599ca33"
+    },
+    {
+      "recipe_id": "TS0534",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "0edcec43d89678fd010baf3015e89c848a5b346fd17aea4275583203b0907437"
+    },
+    {
+      "recipe_id": "TS0109",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f31d7ac78d42d2e8286c008ee08e3d4a84f6f2faa6e21b3af77a9c0420b878d6"
+    },
+    {
+      "recipe_id": "TS0683",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ee7895372c327304b7011a0d8c8e6254dc11074ed852e30b10b3e5f229d634e4"
+    },
+    {
+      "recipe_id": "TS0280",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "53c8abbf9fc76fd1ed920e2f14e19a249cf7d5db893887ae4504767ae9eb4e27"
+    },
+    {
+      "recipe_id": "TS0238",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "c606c9fab184d44fb8cd7858ad5cac8e75c9a2f39709b0756b4c015975bfc0b4"
+    },
+    {
+      "recipe_id": "TS0053",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "0e51dd05990c124e1df7da271bb83b83c71498f10936bd0f4770a5c924ad8f6e"
+    },
+    {
+      "recipe_id": "TS0624",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "bb29c05d517a27f866f72070b9c839cb863768da9e497d829a6ec3c5a77fb1d0"
+    },
+    {
+      "recipe_id": "TS0548",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "fab1da530d32e0f365bc9307c39c5a688f0115fcbd5ef306d4d77259230cfdfa"
+    },
+    {
+      "recipe_id": "TS0323",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "fca86062ec9d3e498698c99844fbba73be0f5313f55c04453194f82018e96dcc"
+    },
+    {
+      "recipe_id": "TS0302",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "3ca627331ff522c4b3548fe37ff4306eed93e7709063723653c38861db1ad9e6"
+    },
+    {
+      "recipe_id": "TS0076",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "4a2939ca7070cc7cd4a7bcae2fecc4579ccdaea9a867702b913967f877700c0f"
+    },
+    {
+      "recipe_id": "TS0049",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "1b6b013560e77f5d91e1ce40bf301a10332db47d25262bb57ec46f5977457082"
+    },
+    {
+      "recipe_id": "TS0487",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "324ce51075d71dc5803d4d73f40c5c779130db76c3d229f7e8c79b47ef13f1cc"
+    },
+    {
+      "recipe_id": "TS0327",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b8d610258f55b2b7fdca69c76d381a38c5a037ae32081731eb53f81ec76e59ff"
+    },
+    {
+      "recipe_id": "TS0208",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7c72bff32d01c33f516a83376922ab0c2a2003e59ceae52ca14f5a22d49c86a7"
+    },
+    {
+      "recipe_id": "TS0658",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "6d7989f1a97b45e63b34c9bf5956f9c61351f729e9de686765c15c1d2ded2b8a"
+    },
+    {
+      "recipe_id": "TS0217",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7e76ec80b2a72f53f08aa39410aaaa0f26df76ee4d408cbd9bb3e97bd775b331"
+    },
+    {
+      "recipe_id": "TS0047",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "9d66c2f2281e84a807fcf0ae2ff2495ef9d5b6d36dfe1134fb6d304dca8b2f4d"
+    },
+    {
+      "recipe_id": "TS0411",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ef1dca8383f8caf37e7028bbacb5ad74f75f84531b2b630bb6910deb1f26de94"
+    },
+    {
+      "recipe_id": "TS0482",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "4ba25a5d6f215f70adee12f593885b38dd0a66df4f3f3124d7eb8eb4bad0f6cb"
+    },
+    {
+      "recipe_id": "TS0467",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "306bb12579f6b56b084138bed92c373a0368d954558268cd07d9b9b708e39649"
+    },
+    {
+      "recipe_id": "TS0501",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "2671f934a1fe083cb36b304925bcd501c15f161edeb1136486090e76ae3bb567"
+    },
+    {
+      "recipe_id": "TS0284",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "8536f9f349598e8d048091512b0e397a906c6de0e1876a7854d64d7b80516bfb"
+    },
+    {
+      "recipe_id": "TS0262",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "0b9ae0aaf689aab5edd800678a816549d4a9abc926c1335924b884df41d88160"
+    },
+    {
+      "recipe_id": "TS0613",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e7d878a968d80d98164bdab4e27f25aa171f568eb7575fbbc531041146a916ea"
+    },
+    {
+      "recipe_id": "TS0545",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "bdee874aadee7d58a4589e9b65df57499fbc9d362edabe5edc50890e9c7e8865"
+    },
+    {
+      "recipe_id": "TS0360",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f18a48cae095fba4f6851ee781533c7bb5d44cd7ce8f403db86509bfed328a3f"
+    },
+    {
+      "recipe_id": "TS0522",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "56c8f5a685511e8c059b919cb28a3bbb858d462a090869d2bf9a693dfeed1128"
+    },
+    {
+      "recipe_id": "TS0165",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e796f23ccbca75deb69b2cc61c95f3da55dc1fbd6603c790663035cadc8678d3"
+    },
+    {
+      "recipe_id": "TS0085",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "a8f2a3290ee134fa4a1c77d37d650ab55fdf570d234fef78c78b924939773ceb"
+    },
+    {
+      "recipe_id": "TS0625",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "9565540fab3292642620f8304fb9cdaf1417b62c7e2ab1162e915f8671eebe6b"
+    },
+    {
+      "recipe_id": "TS0663",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "28b7c6e604620ee36d5bb7f7ff61079cd10b51c87b2f237b4c6f72cea9342f08"
+    },
+    {
+      "recipe_id": "TS0679",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ae6add465c8dbbb76cd3f9481b16747f75f12338e7591fcd1120b77e451569d0"
+    },
+    {
+      "recipe_id": "TS0592",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "9ef281863f4c927b2741eb57c786c82adae5c69e1818d6b1a5c3e193d1977b12"
+    },
+    {
+      "recipe_id": "TS0258",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "328e454bca414dc5750a361f846143cd448aae2a207cf2c42bf2e2a28ec76d36"
+    },
+    {
+      "recipe_id": "TS0242",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "c063907e84d1dd105169842e3c655e6240d17ceca59a7184ffdbcc62c3850179"
+    },
+    {
+      "recipe_id": "TS0382",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "3da357a5ee3851ed2992ae2ac9249745e5b61c4fbbc3ae0065ece070f3d70eac"
+    },
+    {
+      "recipe_id": "TS0435",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7935cd1ffafda27c1dc2525158a2726f28c50354cfd6bf6fd1c8097de25aef3d"
+    },
+    {
+      "recipe_id": "TS0464",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "29cfa8a15e5b24c92239ae6c68dadfd44fad336449395aea7203ddba794f2a97"
+    },
+    {
+      "recipe_id": "TS0610",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f6cc0ec9e2ae2e6df8a4e614d5ddd2d21a379fc246479feb2897a0a965ad6119"
+    },
+    {
+      "recipe_id": "TS0355",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b806be3899b5d593a3cff1a7a7215e5feedeba821c7e8eb9cc8a6ea8d571ac2b"
+    },
+    {
+      "recipe_id": "TS0485",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e488d6d4169f7fc8d0fdfd0acb6d8a8a309999cdc037e13d6f67d5c1194e5b05"
+    },
+    {
+      "recipe_id": "TS0321",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "c3fc884d7abd8b3623b656f33ed350ac11ff7c0d2c71338018416adf43e9e9ff"
+    },
+    {
+      "recipe_id": "TS0303",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "c0a8d6eb69709e4f40ebdf472afce109ba5c631e0c5b1316486c1ff4846bb8cc"
+    },
+    {
+      "recipe_id": "TS0497",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f7667fc4c6d4be8ed53d575d3e900833b6d2b5e4e4a2dc874bdc682b239beb50"
+    },
+    {
+      "recipe_id": "TS0012",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "d10102b05567cde7acc970cd1574c52f0822e823351c280307db601d6821ae9f"
+    },
+    {
+      "recipe_id": "TS0167",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "a562f198c0bf1722fc0fbc690d7c8f39f5ec3dff196c67ffb2989f57d6083b50"
+    },
+    {
+      "recipe_id": "TS0533",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "90ebde412fcf3c4434f33957d820abf12d876e3d2a8ff13b2b10efd80bac81d0"
+    },
+    {
+      "recipe_id": "TS0311",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7bb68d747932f2798df5d0e0f8028a4aaa593b150395b324c10cf258b9a5cdde"
+    },
+    {
+      "recipe_id": "TS0614",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "899aead51378745612b8b51250feaed4d2344649f8b6474ee57f66247eba9dc1"
+    },
+    {
+      "recipe_id": "TS0014",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "201e1b0139de3be7a201bacb073b8ad8115fea0800de5de7d1dcaa095719a367"
+    },
+    {
+      "recipe_id": "TS0463",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "cb7dbfe07e14d1f952a1650253c237063c1efcad3fdd7175163c8d52ae3433ad"
+    },
+    {
+      "recipe_id": "TS0523",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "98c0340ff7147b6928460f0214749081ace3c881c8ee84f67dda14cb85e13835"
+    },
+    {
+      "recipe_id": "TS0619",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "4860a9a37c6316012d44ba5820731e814e990a81e50b1e130bef2fd3c0d1b9d2"
+    },
+    {
+      "recipe_id": "TS0221",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ae6d6432e36e0bff193bdd8f7c17987ea6bcb339fe79f437460920e7b1c50307"
+    },
+    {
+      "recipe_id": "TS0029",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "db7af02fd6312e9bd7ddd621803f71e2fa9dcf1c7598aaa145994b0d3a3275d8"
+    },
+    {
+      "recipe_id": "TS0298",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "cf655409c5ab969354586423f7c02c92f93190d7160065ff3f252ad60fbd8cfc"
+    },
+    {
+      "recipe_id": "TS0279",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7bac173a6dbf7b40ec74a16c2667772e5a9b7c3e1ff519215e276566dc546c5a"
+    },
+    {
+      "recipe_id": "TS0301",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "9dc8bd48a526d82596dc8fef6211fad89db24f5fc4d9838cb90948817a49f449"
+    },
+    {
+      "recipe_id": "TS0193",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "131f67542ac21a485143beba454f090e4a626343ec601e2ec2c4528a9cd30816"
+    },
+    {
+      "recipe_id": "TS0593",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ee32dfe42230991be1cd8b6e1a0b13ec2323366bb538885ac9180f88aa68257a"
+    },
+    {
+      "recipe_id": "TS0433",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e03091bf2d2905ad62f49ccef55cca0c69ae1dd19c18a193f096cae41ccc9149"
+    },
+    {
+      "recipe_id": "TS0691",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7ecb5f0c497f5c32224e84b22e4e324a50b0a1ac9938dc8342ba4fb1cbe6ee0f"
+    },
+    {
+      "recipe_id": "TS0202",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e65f48ac44b5e1cfeeab22f0b3a697119e657d4ff09939eb2767a48261c069ef"
+    },
+    {
+      "recipe_id": "TS0500",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "9a140cae9f4d56eaa93d56f87bdcfcccaaa697de61aeb7161deee460ddf9bdd8"
+    },
+    {
+      "recipe_id": "TS0186",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "a92cbb1d9ab225ffebae52f13af0ce02970c96ca90efe9dd9d0b3f6d4134a55b"
+    },
+    {
+      "recipe_id": "TS0575",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "dcea94039d9aeeba19fcb0f517a2deb7f2a2d0f4bdf8899a756bc7ef58617c73"
+    },
+    {
+      "recipe_id": "TS0066",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7d07465f07f307829809a92a7327f429307445183a5e1d06ce9d5ed596d0a108"
+    },
+    {
+      "recipe_id": "TS0535",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b82e4fb97300c960e522fb205a5c9174db95f81709c5d656976a5da851689ffa"
+    },
+    {
+      "recipe_id": "TS0564",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "6476ccd47d7fc7043a7653e25629dadd3fbcd778c47b797219e7b619b359f723"
+    },
+    {
+      "recipe_id": "TS0173",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "2147ba258a01fdbbf043218c8a6242701a9474540cc237ee1bf6f6bd1a2fcd8a"
+    },
+    {
+      "recipe_id": "TS0399",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "9e0dd371a2ef03d45974d9a7f21b3bfe3713cd229ca6949135ae699940e69119"
+    },
+    {
+      "recipe_id": "TS0075",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "df72ee1eb431329384b6ea8e271967ebaf68f07f09f50409148005200ff0152b"
+    },
+    {
+      "recipe_id": "TS0588",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "67cc27ecafb50acee9c7839a2362292161a9d0bb6cc137749d9ffb1a05734e20"
+    },
+    {
+      "recipe_id": "TS0608",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f90c07040dce969b0525dca215c2412625c9a30ce49c52d567bb3842d28dbfc2"
+    },
+    {
+      "recipe_id": "TS0251",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ea3fff07f24ee24409cdf9954e92edfabffff55c9fd0e241b4c3c3a0974c4a36"
+    },
+    {
+      "recipe_id": "TS0586",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "fcad6b58391f88edf4d099b4053cae40baa8ffd5f848028ede16c3b98218e11e"
+    },
+    {
+      "recipe_id": "TS0693",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "828b6b54bca250393e84a1007e8b2025d106888a7332d948cf5c11e5a9244fb7"
+    },
+    {
+      "recipe_id": "TS0509",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "dbf36992c69808602d5a0a72eb1a4c7fcfbeed1350912c44cb58001994cfa623"
+    },
+    {
+      "recipe_id": "TS0048",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "92b174d1d31616244fdb677ba0dd6c15a9e032573d723d0a38c2de91a263e97c"
+    },
+    {
+      "recipe_id": "TS0371",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "dd8edc1a13e4e09565af7100b5706de66e57a154463b65e9adc657a9496719e7"
+    },
+    {
+      "recipe_id": "TS0536",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f3f4d9e44e79b7d91a01f88b9dfbbb0e2513a3b7e2cd5b2c10737453e1e38212"
+    },
+    {
+      "recipe_id": "TS0596",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ed7280bf9ee13ead8c850e158df5b96a4852706e464f92520c047dcfe24a05cd"
+    },
+    {
+      "recipe_id": "TS0606",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f90aa1369ff22650f77b894ca9638064a99532e127f96e8a3f4987b95bedbe48"
+    },
+    {
+      "recipe_id": "TS0212",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "6d4acf16c386bf25e174ae6f004aae2c9f9a95a8d43c2e67906cfb9402dd86b1"
+    },
+    {
+      "recipe_id": "TS0623",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "acf43ef47f6d0a3298560dddde0d5884360196d14c97d790db8f39a16ed2407d"
+    },
+    {
+      "recipe_id": "TS0216",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "36bc7901e77c5d9f82fc7ab6cfeb75876d9f4683aa565d21e584bf24e3c0c009"
+    },
+    {
+      "recipe_id": "TS0546",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "32d1271a18755a30028d2c6c28e0474d5438ba40dda3eaa559cb4d0e36aed485"
+    },
+    {
+      "recipe_id": "TS0438",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "0e475c04148650580f9a61a865d2287101999cd56924e57c9b667531ba2bf3ec"
+    },
+    {
+      "recipe_id": "TS0668",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "f2544e2a0831e14b6e1bb5abc4d55a39945976392f4fb8962f70e71376edd109"
+    },
+    {
+      "recipe_id": "TS0550",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e1f16cda594a44f4a27c1e908eccf08e252ac967a1f607fbaabbafca445dbd9e"
+    },
+    {
+      "recipe_id": "TS0516",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "66639c56fe3955786df0cd5ae6b0d442697ac920ee5ba5fd67cfda7ed993d54f"
+    },
+    {
+      "recipe_id": "TS0116",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "0a902172c6b399955b152650363bb07cfa6e864576876af5f33ec10f11365a21"
+    },
+    {
+      "recipe_id": "TS0419",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "580e2cc32e53cb8921bb4ce9d067cb605229235c5cd2ec3424dd9978a12e7353"
+    },
+    {
+      "recipe_id": "TS0039",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7201e5b4c0cc49a333677175b743a2d13e76cace9dbda05d7036da4e4a25f4d2"
+    },
+    {
+      "recipe_id": "TS0489",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "1e6059ca38ebe19f1eb8fbb3417f05ca9b2b96485b702b14c544dc92dfff321a"
+    },
+    {
+      "recipe_id": "TS0074",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b374c81960204601f5eac3461cf6f0b2fa694284abda4d20d579496a9a0ae14d"
+    },
+    {
+      "recipe_id": "TS0662",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "6a8ddab54ad1004019f6291059a94bad40822a8ae7af23342d1bd8ec49442d2b"
+    },
+    {
+      "recipe_id": "TS0426",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "2beabcb9702de6c59a2c38c0f87e1df87a84f2ca737ee2a6d62f39be8fdbc626"
+    },
+    {
+      "recipe_id": "TS0466",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "efe87ed5576e36502cf5c0144566308c24d150dd4d97c53022b10518dbb6028d"
+    },
+    {
+      "recipe_id": "TS0084",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "596d6486a827af2cb2a95dc88cf47a3b617c3ba01b067b764a19f9ed3e75e311"
+    },
+    {
+      "recipe_id": "TS0166",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "723ac548c8411a90035791bace048c33e6c625aa76d56cf9ee51de5d388281b2"
+    },
+    {
+      "recipe_id": "TS0473",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "e35a5ab509603134c09cf743e1716eb79e943c9af5837d876ad4c6971f2d5fc4"
+    },
+    {
+      "recipe_id": "TS0003",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "546391e91c23e16b6526d46b89b2403aea258e4dfa9790c1c61433194b2b2c52"
+    },
+    {
+      "recipe_id": "TS0457",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "318d8c981fd7ac31b4ea5a10f40eeaee3e557be87af1204e9b64a2789005df47"
+    },
+    {
+      "recipe_id": "TS0339",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "bdce6b7abec623308db7391d0e0e24dd11af31423d5cb66b52678e3806a125d8"
+    },
+    {
+      "recipe_id": "TS0380",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "fbd0fcacff1448373c5a02ce74931897cb22330a6e33363558a6432952e30337"
+    },
+    {
+      "recipe_id": "TS0484",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "0c17f8b36c51d33a85d6f9578d1673bd54bde51ea107caa45c36b5ad7482daac"
+    },
+    {
+      "recipe_id": "TS0422",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "8d2b7a12ed78678ece9deec33c44bafa15e0c97e8b7a0f14f1764fafcbe23b3d"
+    },
+    {
+      "recipe_id": "TS0398",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "027e926a9954113dc420a52088b2cc2e34e2932b153eea92f73016f0f2b29fc8"
+    },
+    {
+      "recipe_id": "TS0392",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "4b5820dbb073fe1099af88fbc0068ea93374a0671a4edb307b970b50e5259e49"
+    },
+    {
+      "recipe_id": "TS0561",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "d72b32460e721d5c8bf4a9ccd92f91a9dae6e1d08c7eb29104895199c3c41667"
+    },
+    {
+      "recipe_id": "TS0698",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "b458a6f8c5d1589ffdf7a15f01845ae0e146fe5065f30e345c2ea9aa7d7e4068"
+    },
+    {
+      "recipe_id": "TS0376",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "424fd0abb79f708bd60693e8a9055a7e2869a8a74b4bd67766a90d0f124dcbfa"
+    },
+    {
+      "recipe_id": "TS0294",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "ebcbc8a9403dc4d64db2e5c1d55c2206a4210baded38481a5eba7b838ee558f9"
+    },
+    {
+      "recipe_id": "TS0331",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "599227a5e82b4c076e5541e843f30a97a9c62b7190dcb24c0d4dc745392c4e7a"
+    },
+    {
+      "recipe_id": "TS0653",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "03f6b49bc18a1392aa05aaa4f498dab25d588d97e6f4708e94a89f0db84c82c8"
+    },
+    {
+      "recipe_id": "TS0054",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "7398555d8d56abce434eba48e2846127fa9c40f89cad522234c6ab17f744607b"
+    },
+    {
+      "recipe_id": "TS0408",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "26922ff4ac616f3e036abb6d8fe1ca3d352356e4fcc37e1f320376fe686d566b"
+    },
+    {
+      "recipe_id": "TS0397",
+      "source_family": "TASTESET",
+      "source_fields_sha256": "193ea77b0c527bc4eb17cec2b36c0a9b52773823d704b0021edaabbab935e158"
+    }
+  ],
+  "selection_rule": "WITHIN_SOURCE_FAMILY_SHA256_SEED_CONCAT_RECIPE_ID_ASC"
+}

@@ -1,0 +1,159 @@
+{
+ "approver": "ksh+prv (AI, D-085)",
+ "contains_ids": false,
+ "contains_text": false,
+ "decision": "D-100 Lane S; gate D-106",
+ "fit": "reports/step10/aa_pilot_model_a_fit_D085.json",
+ "fit_sha256": "b9247db03e98423f8866fa50b24e2ecd33831d907f3aace00b1f7e4f2ea9543f",
+ "heat_events_l2": 182049,
+ "l1_dir": "GUTENBERG_SEGMENT",
+ "l2_dir": "GUTENBERG_SEGMENT",
+ "l2_without_l1": 0,
+ "labels": [
+  "RESEARCH_ONLY",
+  "NOT_VALIDATED",
+  "SCENARIO_DEFAULT",
+  "DIAGNOSTIC",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "notes": [
+  "Retention is the fraction of reduced ascorbic acid remaining for an unseen matrix (frozen Model A, 2 papers).",
+  "Food temperature = min(bath, moisture cap); scenario T and t are defaults, not observations.",
+  "pH not observed per event (PH_ASSUMED_FROM_FRUIT_CLASS); leaching UNKNOWN so water contact is excluded."
+ ],
+ "record": "AA_FORMULA_CENSUS",
+ "run_at_utc": "2026-11-13T07:32:39+00:00",
+ "scenarios": {
+  "GENTLE": {
+   "in_domain": 774,
+   "in_domain_by_process": {
+    "PROC-000025": 773,
+    "PROC-000150": 1
+   },
+   "in_fit_range_70_95": 774,
+   "reasons": {
+    "IN_DOMAIN": 774,
+    "MATRIX_NOT_ACIDIC_FRUIT": 174388,
+    "MEDIUM_NOT_LIQUID": 1334,
+    "MEDIUM_UNKNOWN": 1894,
+    "SCENARIO_NOT_COMPUTED": 189,
+    "WATER_CONTACT": 3470
+   },
+   "retention_hi95_quantiles": {
+    "p01": 0.953,
+    "p10": 0.953,
+    "p25": 0.953,
+    "p50": 0.953,
+    "p75": 0.953,
+    "p90": 0.953,
+    "p99": 0.953
+   },
+   "retention_lo95_quantiles": {
+    "p01": 0.2203,
+    "p10": 0.2203,
+    "p25": 0.2203,
+    "p50": 0.2203,
+    "p75": 0.2203,
+    "p90": 0.2203,
+    "p99": 0.2203
+   },
+   "retention_mid_quantiles": {
+    "p01": 0.7635,
+    "p10": 0.7635,
+    "p25": 0.7635,
+    "p50": 0.7635,
+    "p75": 0.7635,
+    "p90": 0.7635,
+    "p99": 0.7635
+   }
+  },
+  "INTENSE": {
+   "in_domain": 774,
+   "in_domain_by_process": {
+    "PROC-000025": 773,
+    "PROC-000150": 1
+   },
+   "in_fit_range_70_95": 774,
+   "reasons": {
+    "IN_DOMAIN": 774,
+    "MATRIX_NOT_ACIDIC_FRUIT": 174388,
+    "MEDIUM_NOT_LIQUID": 1334,
+    "MEDIUM_UNKNOWN": 1894,
+    "SCENARIO_NOT_COMPUTED": 189,
+    "WATER_CONTACT": 3470
+   },
+   "retention_hi95_quantiles": {
+    "p01": 0.256,
+    "p10": 0.256,
+    "p25": 0.256,
+    "p50": 0.256,
+    "p75": 0.256,
+    "p90": 0.256,
+    "p99": 0.7113
+   },
+   "retention_lo95_quantiles": {
+    "p01": 0.0,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p50": 0.0,
+    "p75": 0.0,
+    "p90": 0.0,
+    "p99": 0.0
+   },
+   "retention_mid_quantiles": {
+    "p01": 0.0004,
+    "p10": 0.0004,
+    "p25": 0.0004,
+    "p50": 0.0004,
+    "p75": 0.0004,
+    "p90": 0.0004,
+    "p99": 0.1434
+   }
+  },
+  "TYPICAL": {
+   "in_domain": 774,
+   "in_domain_by_process": {
+    "PROC-000025": 773,
+    "PROC-000150": 1
+   },
+   "in_fit_range_70_95": 774,
+   "reasons": {
+    "IN_DOMAIN": 774,
+    "MATRIX_NOT_ACIDIC_FRUIT": 174388,
+    "MEDIUM_NOT_LIQUID": 1334,
+    "MEDIUM_UNKNOWN": 1894,
+    "SCENARIO_NOT_COMPUTED": 189,
+    "WATER_CONTACT": 3470
+   },
+   "retention_hi95_quantiles": {
+    "p01": 0.5972,
+    "p10": 0.5972,
+    "p25": 0.5972,
+    "p50": 0.5972,
+    "p75": 0.5972,
+    "p90": 0.5972,
+    "p99": 0.7728
+   },
+   "retention_lo95_quantiles": {
+    "p01": 0.0,
+    "p10": 0.0,
+    "p25": 0.0,
+    "p50": 0.0,
+    "p75": 0.0,
+    "p90": 0.0,
+    "p99": 0.0003
+   },
+   "retention_mid_quantiles": {
+    "p01": 0.0546,
+    "p10": 0.0546,
+    "p25": 0.0546,
+    "p50": 0.0546,
+    "p75": 0.0546,
+    "p90": 0.0546,
+    "p99": 0.2337
+   }
+  }
+ },
+ "scientific_gate_pass": false,
+ "text_stated_T_and_t_available": 1712
+}

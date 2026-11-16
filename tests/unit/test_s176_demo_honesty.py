@@ -96,7 +96,8 @@ def _gates(values):
     fl = {VC: EG.Floor(VC, "Vitamin C", "vitamin_c", "mg", Fraction(1), "PROPOSED_PILOT")}
     # S177 (FINAL-SCI #6 encoded): ABSENT now needs a confirmed ING category, so the synthetic ING carry a matching pair
     cats = {ing: ("VEGETABLE", "Vegetables and Vegetable Products") for ing in values}
-    return EG.EvidenceGates(EG.TargetPresenceScreen(fl, cands, vals, cats), provenance={"version": EG.VERSION})
+    return EG.EvidenceGates(EG.TargetPresenceScreen(fl, cands, vals, cats, basis={k: ("A", 1) for k in vals}),  # S178 R4: synthetic SR values are analytical
+                            provenance={"version": EG.VERSION})
 
 
 REG = [{"state_variable_id": VC, "name": "Vitamin C, total ascorbic acid content", "current_row_count": "270"}]

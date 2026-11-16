@@ -1,8 +1,8 @@
 """DRAFT_PENDING_29diag_PREREG -- tests for the 29-diag TRANSITION_BOOTSTRAP_V0 runner.
 
 On the real repository the runner must refuse. Since the 15a.R seal (S165-S170) the signed 15.0
-ruling and the seal commitment exist, so the remaining blockers are no frozen bootstrap snapshot, no
-signed 29-diag pre-registration and, when the private sealed list is not supplied, SEALED_LIST_MISSING. The success path is
+ruling and the seal commitment exist, so the remaining blockers (after the D-085 delegate freeze and prereg lock) are an
+unfrozen snapshot id and, when the private sealed list is not supplied, SEALED_LIST_MISSING. The success path is
 exercised only on a synthetic root with the freeze/pre-registration hooks monkeypatched
 inside the test; nothing here reads EVD.
 """
@@ -27,9 +27,13 @@ def _codes(exc) -> set[str]:
     return {b.split(":", 1)[0] for b in exc.value.blockers}
 
 
-def test_no_frozen_bootstrap_snapshot_exists():
-    assert bd.frozen_bootstrap_snapshot_ids(REPO) == frozenset()
-    assert bd.diag_preregistration_signed(REPO) is False
+def test_only_the_d085_delegated_snapshot_is_frozen():
+    # D-085: 15A-BOOT was approved and the 29-diag prereg locked by the AI delegate, never a human name.
+    from culinarystate.evaluation import freeze_records as fr
+    assert bd.frozen_bootstrap_snapshot_ids(REPO) == frozenset({"15A-BOOT-2026-11-08"})
+    assert bd.diag_preregistration_signed(REPO) is True
+    assert fr.approval_kind(REPO, "15A-BOOT-2026-11-08") == "AI_DELEGATED_D085"
+    assert fr.prereg_signer_kind(REPO) == "AI_DELEGATED_D085"
 
 
 @pytest.mark.parametrize("snap", ["ES-1.1", "ledgers/data/EVD.jsonl", "LIVE", "", "15a"])
@@ -38,13 +42,13 @@ def test_real_repository_refuses_every_snapshot(snap):
     with pytest.raises(bd.DiagRefused) as exc:
         bd.run_bootstrap_diag(snap, calls.append, root=REPO)
     codes = _codes(exc)
-    assert {"SNAPSHOT_NOT_FROZEN", "DIAG_PREREG_UNSIGNED", "SEALED_LIST_MISSING"} <= codes
+    assert {"SNAPSHOT_NOT_FROZEN", "SEALED_LIST_MISSING"} <= codes
     assert calls == []
 
 
 def test_blockers_are_all_collected_not_first_only():
     blockers = bd.collect_diag_blockers(root=REPO, snapshot_id="x", commitment_path=None, sealed_list_path=None)
-    assert len(blockers) >= 3
+    assert len(blockers) >= 2
 
 
 # ---------------------------------------------------------------- synthetic root

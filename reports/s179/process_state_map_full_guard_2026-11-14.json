@@ -1,0 +1,1477 @@
+{
+ "approver": "ksh+prv (AI, D-085)",
+ "by_family": {
+  "A1_BBC_GOOD_FOOD": {
+   "Discard": 621,
+   "Merge": 48102,
+   "Split": 304,
+   "Transform": 165345,
+   "UNMAPPED": 42997
+  },
+  "FOODCOM": {
+   "Discard": 19539,
+   "Merge": 1494738,
+   "Split": 6507,
+   "Transform": 5169052,
+   "UNMAPPED": 1278671
+  },
+  "GUTENBERG_SEGMENT": {
+   "Discard": 137,
+   "Merge": 128280,
+   "Split": 442,
+   "Transform": 557601,
+   "UNMAPPED": 224465
+  },
+  "WIKIBOOKS": {
+   "Discard": 159,
+   "Merge": 10820,
+   "Split": 53,
+   "Transform": 37764,
+   "UNMAPPED": 8866
+  }
+ },
+ "contains_ids": false,
+ "contains_text": false,
+ "coord_food_guard": true,
+ "coord_food_guard_triggers": 275710,
+ "decision": "D-100 Lane T",
+ "exceptions": 0,
+ "families_requested": [
+  "A1_BBC_GOOD_FOOD",
+  "WIKIBOOKS",
+  "GUTENBERG_SEGMENT",
+  "FOODCOM",
+  "TASTESET"
+ ],
+ "labels": [
+  "DIAGNOSTIC",
+  "D-097_STRUCTURAL_TYPES",
+  "NON_CITABLE",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "limit": null,
+ "n_events": 9194463,
+ "n_recipes": 612782,
+ "position_proc_family": {
+  "0": {
+   "COMBINATION": 191820,
+   "COOLING": 10518,
+   "DRY_HEAT": 16479,
+   "FAT_HEAT": 38591,
+   "FERMENT_LEAVEN": 12844,
+   "HEAT_CONTROL": 90133,
+   "HEAT_GENERAL": 133885,
+   "MECHANICAL_CUT": 122983,
+   "MECHANICAL_MIX": 256630,
+   "NO_PROC": 820,
+   "PRESERVATION": 9437,
+   "RESERVATION": 6214,
+   "RESTING": 1089,
+   "SEPARATION": 63650,
+   "SERVING": 2693,
+   "SHAPING": 17553,
+   "TRANSFER": 176745,
+   "WET_HEAT": 45425
+  },
+  "1": {
+   "COMBINATION": 189930,
+   "COOLING": 19004,
+   "DRY_HEAT": 15450,
+   "FAT_HEAT": 27417,
+   "FERMENT_LEAVEN": 7798,
+   "HEAT_CONTROL": 5554,
+   "HEAT_GENERAL": 73216,
+   "MECHANICAL_CUT": 79298,
+   "MECHANICAL_MIX": 185219,
+   "NO_PROC": 1646,
+   "PRESERVATION": 10788,
+   "RESERVATION": 9033,
+   "RESTING": 1529,
+   "SEPARATION": 48829,
+   "SERVING": 1921,
+   "SHAPING": 22669,
+   "TRANSFER": 149530,
+   "WET_HEAT": 38232
+  },
+  "2": {
+   "COMBINATION": 217647,
+   "COOLING": 25044,
+   "DRY_HEAT": 18694,
+   "FAT_HEAT": 27040,
+   "FERMENT_LEAVEN": 7496,
+   "HEAT_CONTROL": 6472,
+   "HEAT_GENERAL": 76830,
+   "MECHANICAL_CUT": 70576,
+   "MECHANICAL_MIX": 202964,
+   "NO_PROC": 2893,
+   "PRESERVATION": 10562,
+   "RESERVATION": 9680,
+   "RESTING": 1678,
+   "SEPARATION": 43150,
+   "SERVING": 3111,
+   "SHAPING": 27818,
+   "TRANSFER": 158555,
+   "WET_HEAT": 40359
+  },
+  "3": {
+   "COMBINATION": 213517,
+   "COOLING": 25050,
+   "DRY_HEAT": 20556,
+   "FAT_HEAT": 22729,
+   "FERMENT_LEAVEN": 6122,
+   "HEAT_CONTROL": 6595,
+   "HEAT_GENERAL": 70282,
+   "MECHANICAL_CUT": 58595,
+   "MECHANICAL_MIX": 184383,
+   "NO_PROC": 3953,
+   "PRESERVATION": 9393,
+   "RESERVATION": 9497,
+   "RESTING": 1593,
+   "SEPARATION": 34427,
+   "SERVING": 4155,
+   "SHAPING": 29118,
+   "TRANSFER": 150168,
+   "WET_HEAT": 38215
+  },
+  "4": {
+   "COMBINATION": 203584,
+   "COOLING": 23997,
+   "DRY_HEAT": 23153,
+   "FAT_HEAT": 18855,
+   "FERMENT_LEAVEN": 5093,
+   "HEAT_CONTROL": 6526,
+   "HEAT_GENERAL": 63772,
+   "MECHANICAL_CUT": 51288,
+   "MECHANICAL_MIX": 162880,
+   "NO_PROC": 4902,
+   "PRESERVATION": 8000,
+   "RESERVATION": 8708,
+   "RESTING": 1608,
+   "SEPARATION": 28984,
+   "SERVING": 5204,
+   "SHAPING": 30286,
+   "TRANSFER": 142860,
+   "WET_HEAT": 37225
+  },
+  "5": {
+   "COMBINATION": 253588,
+   "COOLING": 33348,
+   "DRY_HEAT": 36760,
+   "FAT_HEAT": 19580,
+   "FERMENT_LEAVEN": 5825,
+   "HEAT_CONTROL": 7620,
+   "HEAT_GENERAL": 74071,
+   "MECHANICAL_CUT": 59707,
+   "MECHANICAL_MIX": 184172,
+   "NO_PROC": 9050,
+   "PRESERVATION": 8292,
+   "RESERVATION": 10029,
+   "RESTING": 2006,
+   "SEPARATION": 32076,
+   "SERVING": 11985,
+   "SHAPING": 39782,
+   "TRANSFER": 178090,
+   "WET_HEAT": 46013
+  },
+  "6": {
+   "COMBINATION": 233811,
+   "COOLING": 36089,
+   "DRY_HEAT": 47243,
+   "FAT_HEAT": 16486,
+   "FERMENT_LEAVEN": 4833,
+   "HEAT_CONTROL": 7014,
+   "HEAT_GENERAL": 68396,
+   "MECHANICAL_CUT": 55724,
+   "MECHANICAL_MIX": 150016,
+   "NO_PROC": 11466,
+   "PRESERVATION": 6622,
+   "RESERVATION": 9359,
+   "RESTING": 2080,
+   "SEPARATION": 27707,
+   "SERVING": 19159,
+   "SHAPING": 38258,
+   "TRANSFER": 174747,
+   "WET_HEAT": 42170
+  },
+  "7": {
+   "COMBINATION": 209686,
+   "COOLING": 41676,
+   "DRY_HEAT": 56659,
+   "FAT_HEAT": 14904,
+   "FERMENT_LEAVEN": 3788,
+   "HEAT_CONTROL": 5895,
+   "HEAT_GENERAL": 63263,
+   "MECHANICAL_CUT": 53338,
+   "MECHANICAL_MIX": 117476,
+   "NO_PROC": 13838,
+   "PRESERVATION": 5384,
+   "RESERVATION": 8378,
+   "RESTING": 2255,
+   "SEPARATION": 23850,
+   "SERVING": 31117,
+   "SHAPING": 32589,
+   "TRANSFER": 167465,
+   "WET_HEAT": 36176
+  },
+  "8": {
+   "COMBINATION": 197312,
+   "COOLING": 59605,
+   "DRY_HEAT": 76678,
+   "FAT_HEAT": 14939,
+   "FERMENT_LEAVEN": 3571,
+   "HEAT_CONTROL": 4843,
+   "HEAT_GENERAL": 65838,
+   "MECHANICAL_CUT": 64541,
+   "MECHANICAL_MIX": 92606,
+   "NO_PROC": 18981,
+   "PRESERVATION": 5855,
+   "RESERVATION": 8277,
+   "RESTING": 3010,
+   "SEPARATION": 21194,
+   "SERVING": 81526,
+   "SHAPING": 35938,
+   "TRANSFER": 164378,
+   "WET_HEAT": 30803
+  },
+  "9": {
+   "COMBINATION": 100164,
+   "COOLING": 46912,
+   "DRY_HEAT": 54218,
+   "FAT_HEAT": 9816,
+   "FERMENT_LEAVEN": 2215,
+   "HEAT_CONTROL": 2360,
+   "HEAT_GENERAL": 45892,
+   "MECHANICAL_CUT": 55234,
+   "MECHANICAL_MIX": 35023,
+   "NO_PROC": 12523,
+   "PRESERVATION": 4025,
+   "RESERVATION": 5044,
+   "RESTING": 1897,
+   "SEPARATION": 10757,
+   "SERVING": 132592,
+   "SHAPING": 30076,
+   "TRANSFER": 79525,
+   "WET_HEAT": 14970
+  }
+ },
+ "position_type": {
+  "0": {
+   "Discard": 1639,
+   "Merge": 204128,
+   "Split": 554,
+   "Transform": 551807,
+   "UNMAPPED": 439381
+  },
+  "1": {
+   "Discard": 2213,
+   "Merge": 180360,
+   "Split": 734,
+   "Transform": 540856,
+   "UNMAPPED": 162900
+  },
+  "2": {
+   "Discard": 2552,
+   "Merge": 205494,
+   "Split": 1034,
+   "Transform": 594494,
+   "UNMAPPED": 146995
+  },
+  "3": {
+   "Discard": 2291,
+   "Merge": 195654,
+   "Split": 1086,
+   "Transform": 566369,
+   "UNMAPPED": 122948
+  },
+  "4": {
+   "Discard": 2244,
+   "Merge": 177276,
+   "Split": 1071,
+   "Transform": 541956,
+   "UNMAPPED": 104378
+  },
+  "5": {
+   "Discard": 2688,
+   "Merge": 204369,
+   "Split": 1114,
+   "Transform": 672963,
+   "UNMAPPED": 130860
+  },
+  "6": {
+   "Discard": 2363,
+   "Merge": 175179,
+   "Split": 787,
+   "Transform": 654716,
+   "UNMAPPED": 118135
+  },
+  "7": {
+   "Discard": 1934,
+   "Merge": 146456,
+   "Split": 497,
+   "Transform": 632865,
+   "UNMAPPED": 105985
+  },
+  "8": {
+   "Discard": 1739,
+   "Merge": 129496,
+   "Split": 323,
+   "Transform": 695765,
+   "UNMAPPED": 122572
+  },
+  "9": {
+   "Discard": 793,
+   "Merge": 63528,
+   "Split": 106,
+   "Transform": 477971,
+   "UNMAPPED": 100845
+  }
+ },
+ "proc_family_bigrams": {
+  "COMBINATION>COMBINATION": 421582,
+  "COMBINATION>COOLING": 42140,
+  "COMBINATION>DRY_HEAT": 126307,
+  "COMBINATION>FAT_HEAT": 60434,
+  "COMBINATION>FERMENT_LEAVEN": 12896,
+  "COMBINATION>HEAT_CONTROL": 8485,
+  "COMBINATION>HEAT_GENERAL": 192415,
+  "COMBINATION>MECHANICAL_CUT": 108528,
+  "COMBINATION>MECHANICAL_MIX": 398948,
+  "COMBINATION>NO_PROC": 31204,
+  "COMBINATION>PRESERVATION": 16795,
+  "COMBINATION>RESERVATION": 15694,
+  "COMBINATION>RESTING": 3033,
+  "COMBINATION>SEPARATION": 40291,
+  "COMBINATION>SERVING": 55465,
+  "COMBINATION>SHAPING": 57185,
+  "COMBINATION>TRANSFER": 253347,
+  "COMBINATION>WET_HEAT": 84588,
+  "COOLING>COMBINATION": 34213,
+  "COOLING>COOLING": 20934,
+  "COOLING>DRY_HEAT": 5244,
+  "COOLING>FAT_HEAT": 1160,
+  "COOLING>FERMENT_LEAVEN": 1324,
+  "COOLING>HEAT_CONTROL": 6044,
+  "COOLING>HEAT_GENERAL": 13725,
+  "COOLING>MECHANICAL_CUT": 30820,
+  "COOLING>MECHANICAL_MIX": 42793,
+  "COOLING>NO_PROC": 1827,
+  "COOLING>PRESERVATION": 841,
+  "COOLING>RESERVATION": 1949,
+  "COOLING>RESTING": 448,
+  "COOLING>SEPARATION": 7923,
+  "COOLING>SERVING": 30435,
+  "COOLING>SHAPING": 11633,
+  "COOLING>TRANSFER": 61725,
+  "COOLING>WET_HEAT": 2081,
+  "DRY_HEAT>COMBINATION": 32844,
+  "DRY_HEAT>COOLING": 38848,
+  "DRY_HEAT>DRY_HEAT": 16238,
+  "DRY_HEAT>FAT_HEAT": 10891,
+  "DRY_HEAT>FERMENT_LEAVEN": 716,
+  "DRY_HEAT>HEAT_CONTROL": 7497,
+  "DRY_HEAT>HEAT_GENERAL": 13511,
+  "DRY_HEAT>MECHANICAL_CUT": 17214,
+  "DRY_HEAT>MECHANICAL_MIX": 20785,
+  "DRY_HEAT>NO_PROC": 4230,
+  "DRY_HEAT>PRESERVATION": 1500,
+  "DRY_HEAT>RESERVATION": 1438,
+  "DRY_HEAT>RESTING": 1093,
+  "DRY_HEAT>SEPARATION": 10758,
+  "DRY_HEAT>SERVING": 21984,
+  "DRY_HEAT>SHAPING": 5473,
+  "DRY_HEAT>TRANSFER": 87187,
+  "DRY_HEAT>WET_HEAT": 5856,
+  "FAT_HEAT>COMBINATION": 70951,
+  "FAT_HEAT>COOLING": 2777,
+  "FAT_HEAT>DRY_HEAT": 3286,
+  "FAT_HEAT>FAT_HEAT": 10730,
+  "FAT_HEAT>FERMENT_LEAVEN": 315,
+  "FAT_HEAT>HEAT_CONTROL": 953,
+  "FAT_HEAT>HEAT_GENERAL": 8433,
+  "FAT_HEAT>MECHANICAL_CUT": 10081,
+  "FAT_HEAT>MECHANICAL_MIX": 22492,
+  "FAT_HEAT>NO_PROC": 568,
+  "FAT_HEAT>PRESERVATION": 614,
+  "FAT_HEAT>RESERVATION": 1157,
+  "FAT_HEAT>RESTING": 166,
+  "FAT_HEAT>SEPARATION": 13447,
+  "FAT_HEAT>SERVING": 5796,
+  "FAT_HEAT>SHAPING": 2001,
+  "FAT_HEAT>TRANSFER": 42321,
+  "FAT_HEAT>WET_HEAT": 4412,
+  "FERMENT_LEAVEN>COMBINATION": 7731,
+  "FERMENT_LEAVEN>COOLING": 1249,
+  "FERMENT_LEAVEN>DRY_HEAT": 3766,
+  "FERMENT_LEAVEN>FAT_HEAT": 860,
+  "FERMENT_LEAVEN>FERMENT_LEAVEN": 2424,
+  "FERMENT_LEAVEN>HEAT_CONTROL": 1523,
+  "FERMENT_LEAVEN>HEAT_GENERAL": 5895,
+  "FERMENT_LEAVEN>MECHANICAL_CUT": 2701,
+  "FERMENT_LEAVEN>MECHANICAL_MIX": 5775,
+  "FERMENT_LEAVEN>NO_PROC": 265,
+  "FERMENT_LEAVEN>PRESERVATION": 399,
+  "FERMENT_LEAVEN>RESERVATION": 862,
+  "FERMENT_LEAVEN>RESTING": 115,
+  "FERMENT_LEAVEN>SEPARATION": 6262,
+  "FERMENT_LEAVEN>SERVING": 1189,
+  "FERMENT_LEAVEN>SHAPING": 750,
+  "FERMENT_LEAVEN>TRANSFER": 13142,
+  "FERMENT_LEAVEN>WET_HEAT": 2140,
+  "HEAT_CONTROL>COMBINATION": 32642,
+  "HEAT_CONTROL>COOLING": 1387,
+  "HEAT_CONTROL>DRY_HEAT": 6302,
+  "HEAT_CONTROL>FAT_HEAT": 3085,
+  "HEAT_CONTROL>FERMENT_LEAVEN": 316,
+  "HEAT_CONTROL>HEAT_CONTROL": 1020,
+  "HEAT_CONTROL>HEAT_GENERAL": 12002,
+  "HEAT_CONTROL>MECHANICAL_CUT": 8613,
+  "HEAT_CONTROL>MECHANICAL_MIX": 32046,
+  "HEAT_CONTROL>NO_PROC": 187,
+  "HEAT_CONTROL>PRESERVATION": 240,
+  "HEAT_CONTROL>RESERVATION": 312,
+  "HEAT_CONTROL>RESTING": 97,
+  "HEAT_CONTROL>SEPARATION": 4737,
+  "HEAT_CONTROL>SERVING": 618,
+  "HEAT_CONTROL>SHAPING": 2977,
+  "HEAT_CONTROL>TRANSFER": 28574,
+  "HEAT_CONTROL>WET_HEAT": 5909,
+  "HEAT_GENERAL>COMBINATION": 196249,
+  "HEAT_GENERAL>COOLING": 12456,
+  "HEAT_GENERAL>DRY_HEAT": 10075,
+  "HEAT_GENERAL>FAT_HEAT": 29091,
+  "HEAT_GENERAL>FERMENT_LEAVEN": 1609,
+  "HEAT_GENERAL>HEAT_CONTROL": 3535,
+  "HEAT_GENERAL>HEAT_GENERAL": 46403,
+  "HEAT_GENERAL>MECHANICAL_CUT": 23438,
+  "HEAT_GENERAL>MECHANICAL_MIX": 146975,
+  "HEAT_GENERAL>NO_PROC": 3029,
+  "HEAT_GENERAL>PRESERVATION": 2370,
+  "HEAT_GENERAL>RESERVATION": 4031,
+  "HEAT_GENERAL>RESTING": 1014,
+  "HEAT_GENERAL>SEPARATION": 34224,
+  "HEAT_GENERAL>SERVING": 25923,
+  "HEAT_GENERAL>SHAPING": 10291,
+  "HEAT_GENERAL>TRANSFER": 112769,
+  "HEAT_GENERAL>WET_HEAT": 26318,
+  "MECHANICAL_CUT>COMBINATION": 115491,
+  "MECHANICAL_CUT>COOLING": 8938,
+  "MECHANICAL_CUT>DRY_HEAT": 23050,
+  "MECHANICAL_CUT>FAT_HEAT": 14292,
+  "MECHANICAL_CUT>FERMENT_LEAVEN": 2952,
+  "MECHANICAL_CUT>HEAT_CONTROL": 1839,
+  "MECHANICAL_CUT>HEAT_GENERAL": 33800,
+  "MECHANICAL_CUT>MECHANICAL_CUT": 131575,
+  "MECHANICAL_CUT>MECHANICAL_MIX": 68068,
+  "MECHANICAL_CUT>NO_PROC": 5751,
+  "MECHANICAL_CUT>PRESERVATION": 2941,
+  "MECHANICAL_CUT>RESERVATION": 5874,
+  "MECHANICAL_CUT>RESTING": 1007,
+  "MECHANICAL_CUT>SEPARATION": 22126,
+  "MECHANICAL_CUT>SERVING": 25054,
+  "MECHANICAL_CUT>SHAPING": 26158,
+  "MECHANICAL_CUT>TRANSFER": 120739,
+  "MECHANICAL_CUT>WET_HEAT": 16810,
+  "MECHANICAL_MIX>COMBINATION": 514216,
+  "MECHANICAL_MIX>COOLING": 36847,
+  "MECHANICAL_MIX>DRY_HEAT": 23362,
+  "MECHANICAL_MIX>FAT_HEAT": 12786,
+  "MECHANICAL_MIX>FERMENT_LEAVEN": 6545,
+  "MECHANICAL_MIX>HEAT_CONTROL": 7103,
+  "MECHANICAL_MIX>HEAT_GENERAL": 95908,
+  "MECHANICAL_MIX>MECHANICAL_CUT": 58400,
+  "MECHANICAL_MIX>MECHANICAL_MIX": 352298,
+  "MECHANICAL_MIX>NO_PROC": 5482,
+  "MECHANICAL_MIX>PRESERVATION": 15142,
+  "MECHANICAL_MIX>RESERVATION": 11485,
+  "MECHANICAL_MIX>RESTING": 2340,
+  "MECHANICAL_MIX>SEPARATION": 34989,
+  "MECHANICAL_MIX>SERVING": 37754,
+  "MECHANICAL_MIX>SHAPING": 57825,
+  "MECHANICAL_MIX>TRANSFER": 211403,
+  "MECHANICAL_MIX>WET_HEAT": 49235,
+  "NO_PROC>COMBINATION": 15160,
+  "NO_PROC>COOLING": 1687,
+  "NO_PROC>DRY_HEAT": 9796,
+  "NO_PROC>FAT_HEAT": 831,
+  "NO_PROC>FERMENT_LEAVEN": 382,
+  "NO_PROC>HEAT_CONTROL": 117,
+  "NO_PROC>HEAT_GENERAL": 2762,
+  "NO_PROC>MECHANICAL_CUT": 12502,
+  "NO_PROC>MECHANICAL_MIX": 4641,
+  "NO_PROC>NO_PROC": 1845,
+  "NO_PROC>PRESERVATION": 278,
+  "NO_PROC>RESERVATION": 752,
+  "NO_PROC>RESTING": 85,
+  "NO_PROC>SEPARATION": 837,
+  "NO_PROC>SERVING": 5035,
+  "NO_PROC>SHAPING": 4168,
+  "NO_PROC>TRANSFER": 8385,
+  "NO_PROC>WET_HEAT": 425,
+  "PRESERVATION>COMBINATION": 17710,
+  "PRESERVATION>COOLING": 1270,
+  "PRESERVATION>DRY_HEAT": 1792,
+  "PRESERVATION>FAT_HEAT": 1029,
+  "PRESERVATION>FERMENT_LEAVEN": 439,
+  "PRESERVATION>HEAT_CONTROL": 405,
+  "PRESERVATION>HEAT_GENERAL": 3390,
+  "PRESERVATION>MECHANICAL_CUT": 6197,
+  "PRESERVATION>MECHANICAL_MIX": 18548,
+  "PRESERVATION>NO_PROC": 164,
+  "PRESERVATION>PRESERVATION": 2225,
+  "PRESERVATION>RESERVATION": 675,
+  "PRESERVATION>RESTING": 135,
+  "PRESERVATION>SEPARATION": 2706,
+  "PRESERVATION>SERVING": 938,
+  "PRESERVATION>SHAPING": 2075,
+  "PRESERVATION>TRANSFER": 13167,
+  "PRESERVATION>WET_HEAT": 1760,
+  "RESERVATION>COMBINATION": 11576,
+  "RESERVATION>COOLING": 3437,
+  "RESERVATION>DRY_HEAT": 2080,
+  "RESERVATION>FAT_HEAT": 1596,
+  "RESERVATION>FERMENT_LEAVEN": 2527,
+  "RESERVATION>HEAT_CONTROL": 440,
+  "RESERVATION>HEAT_GENERAL": 19188,
+  "RESERVATION>MECHANICAL_CUT": 5185,
+  "RESERVATION>MECHANICAL_MIX": 9426,
+  "RESERVATION>NO_PROC": 280,
+  "RESERVATION>PRESERVATION": 926,
+  "RESERVATION>RESERVATION": 744,
+  "RESERVATION>RESTING": 126,
+  "RESERVATION>SEPARATION": 3591,
+  "RESERVATION>SERVING": 1478,
+  "RESERVATION>SHAPING": 3047,
+  "RESERVATION>TRANSFER": 12305,
+  "RESERVATION>WET_HEAT": 2463,
+  "RESTING>COMBINATION": 2597,
+  "RESTING>COOLING": 532,
+  "RESTING>DRY_HEAT": 593,
+  "RESTING>FAT_HEAT": 158,
+  "RESTING>FERMENT_LEAVEN": 111,
+  "RESTING>HEAT_CONTROL": 276,
+  "RESTING>HEAT_GENERAL": 1182,
+  "RESTING>MECHANICAL_CUT": 2007,
+  "RESTING>MECHANICAL_MIX": 1999,
+  "RESTING>NO_PROC": 78,
+  "RESTING>PRESERVATION": 104,
+  "RESTING>RESERVATION": 114,
+  "RESTING>RESTING": 232,
+  "RESTING>SEPARATION": 917,
+  "RESTING>SERVING": 1693,
+  "RESTING>SHAPING": 704,
+  "RESTING>TRANSFER": 3763,
+  "RESTING>WET_HEAT": 432,
+  "SEPARATION>COMBINATION": 57804,
+  "SEPARATION>COOLING": 13751,
+  "SEPARATION>DRY_HEAT": 4299,
+  "SEPARATION>FAT_HEAT": 3904,
+  "SEPARATION>FERMENT_LEAVEN": 4286,
+  "SEPARATION>HEAT_CONTROL": 1237,
+  "SEPARATION>HEAT_GENERAL": 14800,
+  "SEPARATION>MECHANICAL_CUT": 28897,
+  "SEPARATION>MECHANICAL_MIX": 42181,
+  "SEPARATION>NO_PROC": 985,
+  "SEPARATION>PRESERVATION": 18975,
+  "SEPARATION>RESERVATION": 10140,
+  "SEPARATION>RESTING": 516,
+  "SEPARATION>SEPARATION": 36421,
+  "SEPARATION>SERVING": 8197,
+  "SEPARATION>SHAPING": 8119,
+  "SEPARATION>TRANSFER": 63652,
+  "SEPARATION>WET_HEAT": 7404,
+  "SERVING>COMBINATION": 28748,
+  "SERVING>COOLING": 8001,
+  "SERVING>DRY_HEAT": 4891,
+  "SERVING>FAT_HEAT": 2129,
+  "SERVING>FERMENT_LEAVEN": 630,
+  "SERVING>HEAT_CONTROL": 606,
+  "SERVING>HEAT_GENERAL": 25553,
+  "SERVING>MECHANICAL_CUT": 16289,
+  "SERVING>MECHANICAL_MIX": 11016,
+  "SERVING>NO_PROC": 2937,
+  "SERVING>PRESERVATION": 773,
+  "SERVING>RESERVATION": 1410,
+  "SERVING>RESTING": 376,
+  "SERVING>SEPARATION": 2724,
+  "SERVING>SERVING": 10700,
+  "SERVING>SHAPING": 11110,
+  "SERVING>TRANSFER": 15828,
+  "SERVING>WET_HEAT": 4730,
+  "SHAPING>COMBINATION": 43713,
+  "SHAPING>COOLING": 9374,
+  "SHAPING>DRY_HEAT": 19761,
+  "SHAPING>FAT_HEAT": 4484,
+  "SHAPING>FERMENT_LEAVEN": 663,
+  "SHAPING>HEAT_CONTROL": 1168,
+  "SHAPING>HEAT_GENERAL": 10331,
+  "SHAPING>MECHANICAL_CUT": 34706,
+  "SHAPING>MECHANICAL_MIX": 15139,
+  "SHAPING>NO_PROC": 3873,
+  "SHAPING>PRESERVATION": 1571,
+  "SHAPING>RESERVATION": 2627,
+  "SHAPING>RESTING": 667,
+  "SHAPING>SEPARATION": 5032,
+  "SHAPING>SERVING": 10866,
+  "SHAPING>SHAPING": 39229,
+  "SHAPING>TRANSFER": 68942,
+  "SHAPING>WET_HEAT": 4577,
+  "TRANSFER>COMBINATION": 279575,
+  "TRANSFER>COOLING": 108463,
+  "TRANSFER>DRY_HEAT": 92043,
+  "TRANSFER>FAT_HEAT": 27323,
+  "TRANSFER>FERMENT_LEAVEN": 13380,
+  "TRANSFER>HEAT_CONTROL": 13608,
+  "TRANSFER>HEAT_GENERAL": 125127,
+  "TRANSFER>MECHANICAL_CUT": 104105,
+  "TRANSFER>MECHANICAL_MIX": 174069,
+  "TRANSFER>NO_PROC": 16459,
+  "TRANSFER>PRESERVATION": 9010,
+  "TRANSFER>RESERVATION": 21558,
+  "TRANSFER>RESTING": 6606,
+  "TRANSFER>SEPARATION": 56082,
+  "TRANSFER>SERVING": 36894,
+  "TRANSFER>SHAPING": 51765,
+  "TRANSFER>TRANSFER": 273449,
+  "TRANSFER>WET_HEAT": 75827,
+  "WET_HEAT>COMBINATION": 71954,
+  "WET_HEAT>COOLING": 6092,
+  "WET_HEAT>DRY_HEAT": 5805,
+  "WET_HEAT>FAT_HEAT": 3370,
+  "WET_HEAT>FERMENT_LEAVEN": 1014,
+  "WET_HEAT>HEAT_CONTROL": 1904,
+  "WET_HEAT>HEAT_GENERAL": 25427,
+  "WET_HEAT>MECHANICAL_CUT": 12937,
+  "WET_HEAT>MECHANICAL_MIX": 50789,
+  "WET_HEAT>NO_PROC": 653,
+  "WET_HEAT>PRESERVATION": 1590,
+  "WET_HEAT>RESERVATION": 2409,
+  "WET_HEAT>RESTING": 427,
+  "WET_HEAT>SEPARATION": 24721,
+  "WET_HEAT>SERVING": 11867,
+  "WET_HEAT>SHAPING": 3645,
+  "WET_HEAT>TRANSFER": 76034,
+  "WET_HEAT>WET_HEAT": 53995
+ },
+ "proc_family_type": {
+  "COMBINATION": {
+   "Merge": 1066382,
+   "Transform": 824929,
+   "UNMAPPED": 119748
+  },
+  "COOLING": {
+   "Merge": 33,
+   "Transform": 272375,
+   "UNMAPPED": 48835
+  },
+  "DRY_HEAT": {
+   "Merge": 16,
+   "Transform": 309993,
+   "UNMAPPED": 55881
+  },
+  "FAT_HEAT": {
+   "Merge": 19,
+   "Transform": 149821,
+   "UNMAPPED": 60517
+  },
+  "FERMENT_LEAVEN": {
+   "Merge": 5,
+   "Transform": 40901,
+   "UNMAPPED": 18679
+  },
+  "HEAT_CONTROL": {
+   "Merge": 5,
+   "Transform": 50949,
+   "UNMAPPED": 92058
+  },
+  "HEAT_GENERAL": {
+   "Merge": 129,
+   "Transform": 593045,
+   "UNMAPPED": 142271
+  },
+  "MECHANICAL_CUT": {
+   "Merge": 734,
+   "Transform": 512363,
+   "UNMAPPED": 158187
+  },
+  "MECHANICAL_MIX": {
+   "Merge": 613702,
+   "Transform": 778862,
+   "UNMAPPED": 178805
+  },
+  "NO_PROC": {
+   "Merge": 2,
+   "Transform": 56693,
+   "UNMAPPED": 23377
+  },
+  "PRESERVATION": {
+   "Merge": 26,
+   "Transform": 57557,
+   "UNMAPPED": 20775
+  },
+  "RESERVATION": {
+   "Split": 588,
+   "Transform": 68499,
+   "UNMAPPED": 15132
+  },
+  "RESTING": {
+   "Merge": 1,
+   "Transform": 15865,
+   "UNMAPPED": 2879
+  },
+  "SEPARATION": {
+   "Discard": 20456,
+   "Merge": 168,
+   "Transform": 230783,
+   "UNMAPPED": 83217
+  },
+  "SERVING": {
+   "Merge": 12,
+   "Transform": 228831,
+   "UNMAPPED": 64620
+  },
+  "SHAPING": {
+   "Merge": 210,
+   "Split": 6718,
+   "Transform": 227816,
+   "UNMAPPED": 69343
+  },
+  "TRANSFER": {
+   "Merge": 429,
+   "Transform": 1214701,
+   "UNMAPPED": 326933
+  },
+  "WET_HEAT": {
+   "Merge": 67,
+   "Transform": 295779,
+   "UNMAPPED": 73742
+  }
+ },
+ "proc_type": {
+  "NO_PROC": {
+   "Merge": 2,
+   "Transform": 56693,
+   "UNMAPPED": 23377
+  },
+  "PROC-000001": {
+   "Merge": 2,
+   "Transform": 229113,
+   "UNMAPPED": 35743
+  },
+  "PROC-000002": {
+   "Merge": 7,
+   "Transform": 26649,
+   "UNMAPPED": 7443
+  },
+  "PROC-000003": {
+   "Merge": 3,
+   "Transform": 33749,
+   "UNMAPPED": 7624
+  },
+  "PROC-000004": {
+   "Merge": 3,
+   "Transform": 12837,
+   "UNMAPPED": 3130
+  },
+  "PROC-000005": {
+   "Transform": 3012,
+   "UNMAPPED": 808
+  },
+  "PROC-000006": {
+   "Transform": 2503,
+   "UNMAPPED": 621
+  },
+  "PROC-000007": {
+   "Transform": 11291,
+   "UNMAPPED": 3414
+  },
+  "PROC-000008": {
+   "Transform": 11,
+   "UNMAPPED": 2
+  },
+  "PROC-000009": {
+   "Merge": 6,
+   "Transform": 31119,
+   "UNMAPPED": 11355
+  },
+  "PROC-000010": {
+   "Transform": 6536,
+   "UNMAPPED": 1033
+  },
+  "PROC-000011": {
+   "Transform": 491,
+   "UNMAPPED": 109
+  },
+  "PROC-000012": {
+   "Transform": 50,
+   "UNMAPPED": 7
+  },
+  "PROC-000013": {
+   "Transform": 265,
+   "UNMAPPED": 76
+  },
+  "PROC-000014": {
+   "Merge": 5,
+   "Transform": 43748,
+   "UNMAPPED": 25241
+  },
+  "PROC-000015": {
+   "Transform": 3486,
+   "UNMAPPED": 545
+  },
+  "PROC-000016": {
+   "Merge": 7,
+   "Transform": 62076,
+   "UNMAPPED": 21228
+  },
+  "PROC-000017": {
+   "Transform": 1026,
+   "UNMAPPED": 498
+  },
+  "PROC-000018": {
+   "Transform": 12,
+   "UNMAPPED": 8
+  },
+  "PROC-000019": {
+   "Merge": 36,
+   "Transform": 106178,
+   "UNMAPPED": 35215
+  },
+  "PROC-000020": {
+   "Merge": 2,
+   "Transform": 97987,
+   "UNMAPPED": 17082
+  },
+  "PROC-000021": {
+   "Transform": 1953,
+   "UNMAPPED": 754
+  },
+  "PROC-000022": {
+   "Merge": 9,
+   "Transform": 11795,
+   "UNMAPPED": 2937
+  },
+  "PROC-000023": {
+   "Merge": 15,
+   "Transform": 2863,
+   "UNMAPPED": 1141
+  },
+  "PROC-000024": {
+   "Transform": 1031,
+   "UNMAPPED": 379
+  },
+  "PROC-000025": {
+   "Transform": 6906,
+   "UNMAPPED": 3531
+  },
+  "PROC-000026": {
+   "Transform": 1095,
+   "UNMAPPED": 540
+  },
+  "PROC-000027": {
+   "Transform": 8,
+   "UNMAPPED": 1
+  },
+  "PROC-000028": {
+   "Merge": 1,
+   "Transform": 57885,
+   "UNMAPPED": 9369
+  },
+  "PROC-000029": {
+   "Merge": 1,
+   "Transform": 2964,
+   "UNMAPPED": 1249
+  },
+  "PROC-000030": {
+   "Transform": 2220,
+   "UNMAPPED": 307
+  },
+  "PROC-000031": {
+   "Merge": 38,
+   "Transform": 335215,
+   "UNMAPPED": 60845
+  },
+  "PROC-000032": {
+   "Merge": 34,
+   "Transform": 168769,
+   "UNMAPPED": 55906
+  },
+  "PROC-000033": {
+   "Merge": 1,
+   "Transform": 6104,
+   "UNMAPPED": 1207
+  },
+  "PROC-000034": {
+   "Merge": 53,
+   "Transform": 69414,
+   "UNMAPPED": 20404
+  },
+  "PROC-000035": {
+   "Merge": 3,
+   "Transform": 33710,
+   "UNMAPPED": 88900
+  },
+  "PROC-000036": {
+   "Transform": 1627,
+   "UNMAPPED": 309
+  },
+  "PROC-000037": {
+   "Merge": 1,
+   "Transform": 2000,
+   "UNMAPPED": 495
+  },
+  "PROC-000038": {
+   "Merge": 20,
+   "Transform": 152153,
+   "UNMAPPED": 23681
+  },
+  "PROC-000039": {
+   "Merge": 8,
+   "Transform": 95351,
+   "UNMAPPED": 19381
+  },
+  "PROC-000040": {
+   "Merge": 1,
+   "Transform": 18377,
+   "UNMAPPED": 3873
+  },
+  "PROC-000041": {
+   "Merge": 4,
+   "Transform": 6494,
+   "UNMAPPED": 1900
+  },
+  "PROC-000042": {
+   "Merge": 1,
+   "Transform": 15865,
+   "UNMAPPED": 2879
+  },
+  "PROC-000043": {
+   "Merge": 60,
+   "Transform": 56284,
+   "UNMAPPED": 26535
+  },
+  "PROC-000044": {
+   "Merge": 60,
+   "Transform": 100658,
+   "UNMAPPED": 26032
+  },
+  "PROC-000045": {
+   "Merge": 12,
+   "Transform": 14178,
+   "UNMAPPED": 7316
+  },
+  "PROC-000046": {
+   "Merge": 386,
+   "Transform": 136705,
+   "UNMAPPED": 31932
+  },
+  "PROC-000047": {
+   "Merge": 2,
+   "Transform": 18277,
+   "UNMAPPED": 3711
+  },
+  "PROC-000048": {
+   "Merge": 44,
+   "Transform": 19354,
+   "UNMAPPED": 7915
+  },
+  "PROC-000049": {
+   "Merge": 38,
+   "Transform": 20493,
+   "UNMAPPED": 9188
+  },
+  "PROC-000050": {
+   "Merge": 15,
+   "Transform": 7757,
+   "UNMAPPED": 4810
+  },
+  "PROC-000051": {
+   "Merge": 17,
+   "Transform": 12863,
+   "UNMAPPED": 4382
+  },
+  "PROC-000052": {
+   "Merge": 5,
+   "Transform": 36962,
+   "UNMAPPED": 10823
+  },
+  "PROC-000053": {
+   "Merge": 10,
+   "Transform": 30271,
+   "UNMAPPED": 10181
+  },
+  "PROC-000054": {
+   "Merge": 3,
+   "Transform": 3322,
+   "UNMAPPED": 759
+  },
+  "PROC-000055": {
+   "Merge": 1,
+   "Transform": 1211,
+   "UNMAPPED": 283
+  },
+  "PROC-000056": {
+   "Transform": 2335,
+   "UNMAPPED": 456
+  },
+  "PROC-000057": {
+   "Merge": 2,
+   "Transform": 2801,
+   "UNMAPPED": 584
+  },
+  "PROC-000058": {
+   "Merge": 11,
+   "Transform": 9105,
+   "UNMAPPED": 2814
+  },
+  "PROC-000059": {
+   "Merge": 7,
+   "Transform": 5425,
+   "UNMAPPED": 1775
+  },
+  "PROC-000060": {
+   "Merge": 1,
+   "Transform": 7906,
+   "UNMAPPED": 1491
+  },
+  "PROC-000061": {
+   "Merge": 41,
+   "Transform": 3887,
+   "UNMAPPED": 2717
+  },
+  "PROC-000062": {
+   "Transform": 735,
+   "UNMAPPED": 281
+  },
+  "PROC-000063": {
+   "Transform": 556,
+   "UNMAPPED": 103
+  },
+  "PROC-000064": {
+   "Merge": 163873,
+   "Transform": 264868,
+   "UNMAPPED": 40642
+  },
+  "PROC-000065": {
+   "Merge": 253434,
+   "Transform": 217056,
+   "UNMAPPED": 79006
+  },
+  "PROC-000066": {
+   "Merge": 34965,
+   "Transform": 25181,
+   "UNMAPPED": 4813
+  },
+  "PROC-000067": {
+   "Merge": 78150,
+   "Transform": 72771,
+   "UNMAPPED": 7531
+  },
+  "PROC-000068": {
+   "Merge": 22135,
+   "Transform": 23796,
+   "UNMAPPED": 3624
+  },
+  "PROC-000069": {
+   "Merge": 22714,
+   "Transform": 38124,
+   "UNMAPPED": 4453
+  },
+  "PROC-000070": {
+   "Merge": 27293,
+   "Transform": 59299,
+   "UNMAPPED": 18364
+  },
+  "PROC-000071": {
+   "Merge": 65,
+   "Transform": 15671,
+   "UNMAPPED": 6293
+  },
+  "PROC-000072": {
+   "Merge": 5,
+   "Transform": 15086,
+   "UNMAPPED": 2269
+  },
+  "PROC-000073": {
+   "Merge": 16,
+   "Transform": 16642,
+   "UNMAPPED": 4470
+  },
+  "PROC-000074": {
+   "Merge": 11044,
+   "Transform": 8790,
+   "UNMAPPED": 1879
+  },
+  "PROC-000075": {
+   "Merge": 4,
+   "Transform": 16328,
+   "UNMAPPED": 4620
+  },
+  "PROC-000076": {
+   "Merge": 4,
+   "Transform": 4922,
+   "UNMAPPED": 769
+  },
+  "PROC-000077": {
+   "Transform": 328,
+   "UNMAPPED": 72
+  },
+  "PROC-000078": {
+   "Merge": 50,
+   "Transform": 88890,
+   "UNMAPPED": 23158
+  },
+  "PROC-000079": {
+   "Merge": 27,
+   "Transform": 19659,
+   "UNMAPPED": 6222
+  },
+  "PROC-000080": {
+   "Merge": 57,
+   "Transform": 8845,
+   "UNMAPPED": 15269
+  },
+  "PROC-000081": {
+   "Transform": 5977,
+   "UNMAPPED": 1691
+  },
+  "PROC-000082": {
+   "Merge": 1,
+   "Transform": 9207,
+   "UNMAPPED": 2860
+  },
+  "PROC-000083": {
+   "Discard": 20456,
+   "UNMAPPED": 2109
+  },
+  "PROC-000084": {
+   "Merge": 6,
+   "Transform": 57390,
+   "UNMAPPED": 19730
+  },
+  "PROC-000085": {
+   "Merge": 24,
+   "Transform": 25179,
+   "UNMAPPED": 7783
+  },
+  "PROC-000086": {
+   "Transform": 3264,
+   "UNMAPPED": 1186
+  },
+  "PROC-000087": {
+   "Merge": 3,
+   "Transform": 12360,
+   "UNMAPPED": 3205
+  },
+  "PROC-000088": {
+   "Merge": 582810,
+   "Transform": 245584,
+   "UNMAPPED": 27606
+  },
+  "PROC-000089": {
+   "Merge": 81382,
+   "Transform": 108921,
+   "UNMAPPED": 14618
+  },
+  "PROC-000090": {
+   "Merge": 101739,
+   "Transform": 51098,
+   "UNMAPPED": 3499
+  },
+  "PROC-000091": {
+   "Merge": 17682,
+   "Transform": 12425,
+   "UNMAPPED": 1432
+  },
+  "PROC-000092": {
+   "Merge": 28714,
+   "Transform": 39367,
+   "UNMAPPED": 3506
+  },
+  "PROC-000093": {
+   "Merge": 37613,
+   "Transform": 59557,
+   "UNMAPPED": 7420
+  },
+  "PROC-000094": {
+   "Merge": 22654,
+   "Transform": 34316,
+   "UNMAPPED": 5489
+  },
+  "PROC-000095": {
+   "Merge": 37275,
+   "Transform": 52973,
+   "UNMAPPED": 5107
+  },
+  "PROC-000096": {
+   "Merge": 40671,
+   "Transform": 80812,
+   "UNMAPPED": 28399
+  },
+  "PROC-000097": {
+   "Merge": 81444,
+   "Transform": 91671,
+   "UNMAPPED": 12123
+  },
+  "PROC-000098": {
+   "Merge": 20436,
+   "Transform": 25331,
+   "UNMAPPED": 4545
+  },
+  "PROC-000099": {
+   "Merge": 6418,
+   "Transform": 14254,
+   "UNMAPPED": 4572
+  },
+  "PROC-000100": {
+   "Transform": 24429,
+   "UNMAPPED": 9110
+  },
+  "PROC-000101": {
+   "Merge": 7544,
+   "Transform": 8620,
+   "UNMAPPED": 1432
+  },
+  "PROC-000102": {
+   "Merge": 306,
+   "Transform": 426087,
+   "UNMAPPED": 159332
+  },
+  "PROC-000103": {
+   "Merge": 1,
+   "Transform": 53978,
+   "UNMAPPED": 8529
+  },
+  "PROC-000104": {
+   "Merge": 10,
+   "Transform": 12832,
+   "UNMAPPED": 5080
+  },
+  "PROC-000105": {
+   "Transform": 31217,
+   "UNMAPPED": 4575
+  },
+  "PROC-000106": {
+   "Merge": 69,
+   "Transform": 244669,
+   "UNMAPPED": 49069
+  },
+  "PROC-000107": {
+   "Merge": 2,
+   "Transform": 38362,
+   "UNMAPPED": 13409
+  },
+  "PROC-000108": {
+   "Merge": 2,
+   "Transform": 24727,
+   "UNMAPPED": 13808
+  },
+  "PROC-000109": {
+   "Merge": 2,
+   "Transform": 14313,
+   "UNMAPPED": 3998
+  },
+  "PROC-000110": {
+   "Merge": 3,
+   "Transform": 198176,
+   "UNMAPPED": 38574
+  },
+  "PROC-000111": {
+   "Transform": 28738,
+   "UNMAPPED": 3943
+  },
+  "PROC-000112": {
+   "Transform": 17194,
+   "UNMAPPED": 3364
+  },
+  "PROC-000113": {
+   "Transform": 20353,
+   "UNMAPPED": 5360
+  },
+  "PROC-000114": {
+   "Merge": 1,
+   "Transform": 3079,
+   "UNMAPPED": 1456
+  },
+  "PROC-000115": {
+   "Merge": 7,
+   "Transform": 89377,
+   "UNMAPPED": 13532
+  },
+  "PROC-000116": {
+   "Merge": 26,
+   "Transform": 11599,
+   "UNMAPPED": 2904
+  },
+  "PROC-000117": {
+   "Merge": 49,
+   "Transform": 46735,
+   "UNMAPPED": 14313
+  },
+  "PROC-000118": {
+   "Merge": 73,
+   "Transform": 54309,
+   "UNMAPPED": 14217
+  },
+  "PROC-000119": {
+   "Merge": 14,
+   "Split": 6718,
+   "Transform": 25784,
+   "UNMAPPED": 10166
+  },
+  "PROC-000120": {
+   "Merge": 21,
+   "Transform": 3014,
+   "UNMAPPED": 753
+  },
+  "PROC-000121": {
+   "Merge": 42,
+   "Transform": 40748,
+   "UNMAPPED": 10319
+  },
+  "PROC-000122": {
+   "Transform": 541,
+   "UNMAPPED": 156
+  },
+  "PROC-000123": {
+   "Merge": 1,
+   "Transform": 10853,
+   "UNMAPPED": 3308
+  },
+  "PROC-000124": {
+   "Merge": 5,
+   "Transform": 4793,
+   "UNMAPPED": 1805
+  },
+  "PROC-000125": {
+   "Merge": 2,
+   "Transform": 36904,
+   "UNMAPPED": 12849
+  },
+  "PROC-000126": {
+   "Merge": 3,
+   "Transform": 4135,
+   "UNMAPPED": 1457
+  },
+  "PROC-000127": {
+   "Transform": 2886,
+   "UNMAPPED": 943
+  },
+  "PROC-000128": {
+   "Merge": 2,
+   "Transform": 627,
+   "UNMAPPED": 216
+  },
+  "PROC-000129": {
+   "Merge": 3,
+   "Transform": 12811,
+   "UNMAPPED": 8356
+  },
+  "PROC-000130": {
+   "Merge": 3,
+   "Transform": 2083,
+   "UNMAPPED": 1043
+  },
+  "PROC-000131": {
+   "Transform": 2199,
+   "UNMAPPED": 538
+  },
+  "PROC-000132": {
+   "Transform": 5708,
+   "UNMAPPED": 2692
+  },
+  "PROC-000133": {
+   "Merge": 23,
+   "Transform": 47274,
+   "UNMAPPED": 16384
+  },
+  "PROC-000135": {
+   "Transform": 148,
+   "UNMAPPED": 54
+  },
+  "PROC-000136": {
+   "Split": 588,
+   "Transform": 68499,
+   "UNMAPPED": 15132
+  },
+  "PROC-000137": {
+   "Merge": 12,
+   "Transform": 228831,
+   "UNMAPPED": 64620
+  },
+  "PROC-000138": {
+   "Merge": 2,
+   "Transform": 17239,
+   "UNMAPPED": 3158
+  },
+  "PROC-000148": {
+   "Merge": 19,
+   "Transform": 21278,
+   "UNMAPPED": 4099
+  },
+  "PROC-000149": {
+   "Transform": 10,
+   "UNMAPPED": 4
+  },
+  "PROC-000150": {
+   "Merge": 3,
+   "Transform": 2884,
+   "UNMAPPED": 1233
+  },
+  "PROC-000151": {
+   "Merge": 1,
+   "Transform": 1012,
+   "UNMAPPED": 417
+  },
+  "PROC-000153": {
+   "Transform": 119,
+   "UNMAPPED": 15
+  },
+  "PROC-000154": {
+   "Merge": 3,
+   "Transform": 625,
+   "UNMAPPED": 186
+  },
+  "PROC-000155": {
+   "Transform": 293,
+   "UNMAPPED": 118
+  },
+  "PROC-000156": {
+   "Transform": 12,
+   "UNMAPPED": 4
+  }
+ },
+ "recipes_with_guard_trigger": 190461,
+ "recipes_without_events": 1773,
+ "record": "PROCESS_STATE_MAP",
+ "started_at_utc": "2026-11-14T09:48:19Z",
+ "tool_version": "s179-process-state-map-0.1.0",
+ "type_bigrams": {
+  "Discard>Discard": 47,
+  "Discard>Merge": 3128,
+  "Discard>Split": 8,
+  "Discard>Transform": 11691,
+  "Discard>UNMAPPED": 5153,
+  "Merge>Discard": 869,
+  "Merge>Merge": 320362,
+  "Merge>Split": 1258,
+  "Merge>Transform": 1230790,
+  "Merge>UNMAPPED": 74957,
+  "Split>Discard": 4,
+  "Split>Merge": 405,
+  "Split>Split": 15,
+  "Split>Transform": 1441,
+  "Split>UNMAPPED": 5366,
+  "Transform>Discard": 17489,
+  "Transform>Merge": 1040500,
+  "Transform>Split": 5441,
+  "Transform>Transform": 4099978,
+  "Transform>UNMAPPED": 330593,
+  "UNMAPPED>Discard": 1855,
+  "UNMAPPED>Merge": 220603,
+  "UNMAPPED>Split": 421,
+  "UNMAPPED>Transform": 367883,
+  "UNMAPPED>UNMAPPED": 843197
+ },
+ "wall_seconds": 804.7,
+ "workers": 7
+}

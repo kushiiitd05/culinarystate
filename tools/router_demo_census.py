@@ -17,6 +17,13 @@ S177: ``--absent-review-csv PATH`` and ``--category-blocked-csv PATH`` write, af
 own member state is ABSENT (the human check FINAL-SCI #6 asks for) and the top 50 that would be ABSENT but for an unconfirmed
 ING category. ``--review-from REPORT.json`` writes the same lists from an existing report without running a census.
 Counts, registry names and SR values only; refuses to overwrite.
+
+S178 (FIX-ROUTER): census 0.4.0 (router-demo 0.4.0, evidence-gates 0.3.0): ingredient lines are read for processed-state cues,
+attributive / serving events never get DIRECT, unresolved ancestors and NO_LOT are fail-closed, freeze / defrost are prior
+processes and ABSENT needs analytical SR values (SCI-B R2-R6). The review CSVs gain the SR basis columns
+(``plausible_sr_derivation_codes``, ``plausible_sr_data_points``, ``all_plausible_analytical``). ``code_provenance`` also hashes
+``sr_identity.py``, ``process_signatures.py`` and ``tools/build_target_content_table.py`` (the content table's own sha256 is in
+``gates``).
 """
 from __future__ import annotations
 
@@ -42,7 +49,8 @@ _spec.loader.exec_module(T17)
 
 CODE_FILES = ("src/culinarystate/mechanism/router_demo.py", "src/culinarystate/mechanism/router_census.py",
               "src/culinarystate/mechanism/applicability.py", "src/culinarystate/mechanism/evidence_gates.py",
-              "tools/router_demo_census.py")
+              "tools/router_demo_census.py", "src/culinarystate/mechanism/sr_identity.py",
+              "src/culinarystate/mechanism/process_signatures.py", "tools/build_target_content_table.py")
 
 
 def provenance() -> dict:
@@ -125,11 +133,15 @@ def main(argv=None, record_source=None) -> int:
                     help="evidence gates before G0 (target presence + lot context); off = S171 behaviour")
     ap.add_argument("--presence-floor", action="append", default=[], metavar="SVAR=VALUE",
                     help="override one presence floor (sensitivity run only; recorded in the report)")
+    ap.add_argument("--context-mismatch-route", action="store_true",
+                    help="S179 A2: route withheld-by-context items CONTEXT_MISMATCH (needs --gates on)")
     ap.add_argument("--no-baseline-check", action="store_true",
                     help="skip the protected-ledger hash check (recorded in the report; tests only)")
     a = ap.parse_args(argv)
     if a.sample_size < 1 or a.workers < 1:
         ap.error("--sample-size and --workers must be positive")
+    if a.context_mismatch_route and a.gates != "on":
+        ap.error("--context-mismatch-route needs --gates on")
     if a.review_from:
         return _review_only(ap, a)
     if not a.out or not a.seed:
@@ -151,7 +163,7 @@ def main(argv=None, record_source=None) -> int:
     index = RD.EvidenceIndex.from_ledger(Path(a.evd))
     gates = None
     if a.gates == "on":
-        gates = EG.EvidenceGates.load()
+        gates = EG.EvidenceGates.load(context_mismatch_route=a.context_mismatch_route)
         for item in a.presence_floor:
             svar, _, val = item.partition("=")
             if svar not in gates.screen.floors or not val:
@@ -159,7 +171,8 @@ def main(argv=None, record_source=None) -> int:
             ck = EG.code_key(svar)
             gates = EG.EvidenceGates(gates.screen.with_floor(svar, val), provenance={
                 **gates.provenance, "floors": {**gates.provenance["floors"], ck: {
-                    **gates.provenance["floors"][ck], "value": float(val), "status": "OVERRIDE_SENSITIVITY_RUN"}}})
+                    **gates.provenance["floors"][ck], "value": float(val), "status": "OVERRIDE_SENSITIVITY_RUN"}}},
+                context_mismatch_route=a.context_mismatch_route)
     status: dict = {}
     report = RC.census_from_records(T17._stream(a.families, root, record_source or T17.corpus_records, status),
                                     seed=a.seed, size=a.sample_size, index=index, target_svar=a.target,

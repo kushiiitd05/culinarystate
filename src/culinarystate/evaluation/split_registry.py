@@ -8,6 +8,12 @@ anything: ``status`` says whether the set is a draft, provisional (waiting for t
 Pure helpers here; the tool ``tools/s178_build_split_registry.py`` reads the benchmark drafts, the EVD ledger and the
 07.A-R1 inputs and calls them. ``verify_registry`` recomputes hashes from the unit listing so that an edited registry,
 or an edited unit file, fails loudly.
+
+S178 FIX-EVAL (SCI-B E5): each row is checked under ONE named hash convention (``hash_convention``: D5 and 07.A-R1 rows hash
+the sorted unit ids, DIAG29 rows hash the unit-role assignment); ``unit_ids_sha256`` is recomputed from the listing (the
+``recipe_id`` / ``cell`` attribute for RECIPE / CELL units, else the unit id), so a swapped recipe id is caught; a row with
+units but no listing (DIAG29) is reported as NOT_VERIFIABLE_FROM_LISTING unless the caller passes the recomputed
+assignment (``recomputed``), which is then checked like a listing.
 """
 from __future__ import annotations
 
@@ -25,6 +31,8 @@ REQUIRED = ["registry_id", "evaluation", "block_or_split", "split_unit", "n_unit
             "source_artifact", "status"]
 STATUSES = ("DRAFT_UNFROZEN", "PROVISIONAL_PRE_SEAL", "PACKET_ISSUED_DRAFT", "NOT_DRAFTED")
 EVALUATIONS = ("D5_BENCHMARK", "DIAG29", "07A_R1")
+HASH_CONVENTIONS = {"D5_BENCHMARK": "IDS_SORTED_NEWLINE", "07A_R1": "IDS_SORTED_NEWLINE", "DIAG29": "UNIT_ROLE_ASSIGNMENT"}
+UNIT_ID_ATTRIBUTE = {"RECIPE": "recipe_id", "CELL": "cell"}   # other split units: the unit id itself
 
 
 def sha256_bytes(data: bytes) -> str:
@@ -98,9 +106,54 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(fh))
 
 
-def verify_registry(registry_path: Path, units_path: Path | None = None) -> list[str]:
-    """Findings (empty = consistent). Checks columns, required fields, statuses, unique ids and, for rows with a unit
-    listing, that n_units and ids_sha256 match the listed units."""
+def hash_convention(row: Mapping[str, str]) -> str:
+    """The one hash convention ``ids_sha256`` of this row is checked under."""
+    return HASH_CONVENTIONS[row["evaluation"]]
+
+
+def _attrs(text: str) -> dict[str, str]:
+    out = {}
+    for part in str(text or "").split(";"):
+        if "=" in part:
+            k, v = part.split("=", 1)
+            out[k.strip()] = v
+    return out
+
+
+def unit_ids_from_listing(row: Mapping[str, str], units: Sequence[Mapping[str, str]]) -> list[str] | None:
+    """The ids ``unit_ids_sha256`` covers: the ``recipe_id`` / ``cell`` attribute for RECIPE / CELL units, else the unit id.
+    None when a listed unit lacks the attribute (cannot be recomputed)."""
+    key = UNIT_ID_ATTRIBUTE.get(row.get("split_unit", ""))
+    if key is None:
+        return [u["unit_id"] for u in units]
+    vals = [_attrs(u.get("attributes", "")).get(key) for u in units]
+    return None if any(v is None for v in vals) else [str(v) for v in vals]
+
+
+def _check_row(r: Mapping[str, str], us: Sequence[Mapping[str, str]]) -> list[str]:
+    out = []
+    rid = r["registry_id"]
+    if str(len(us)) != r["n_units"]:
+        out.append(f"N_UNITS_MISMATCH: {rid} ({len(us)} listed, {r['n_units']} registered)")
+    conv = hash_convention(r)
+    got = (ids_sha256(u["unit_id"] for u in us) if conv == "IDS_SORTED_NEWLINE"
+           else assignment_sha256((u["unit_id"], u["role"]) for u in us))
+    if r["ids_sha256"] != got:
+        out.append(f"IDS_SHA256_MISMATCH: {rid}")
+    if r.get("unit_ids_sha256"):
+        uids = unit_ids_from_listing(r, us)
+        if uids is None:
+            out.append(f"UNIT_IDS_NOT_RECOMPUTABLE: {rid}")
+        elif r["unit_ids_sha256"] != ids_sha256(uids):
+            out.append(f"UNIT_IDS_SHA256_MISMATCH: {rid}")
+    return out
+
+
+def verify_registry(registry_path: Path, units_path: Path | None = None, *,
+                    recomputed: Mapping[str, Sequence[tuple[str, str]]] | None = None) -> list[str]:
+    """Findings (empty = consistent and fully verified). Checks columns, required fields, statuses, unique ids and, for
+    rows with a unit listing (or a ``recomputed`` list of (unit id, role) pairs), n_units, ids_sha256 under the row's one
+    hash convention and unit_ids_sha256. A row with units and neither gives NOT_VERIFIABLE_FROM_LISTING (not silent)."""
     out: list[str] = []
     rows = read_csv(registry_path)
     if not rows:
@@ -113,18 +166,27 @@ def verify_registry(registry_path: Path, units_path: Path | None = None) -> list
         out += [f"MISSING_{c.upper()}: {r['registry_id']}" for c in REQUIRED if not r.get(c)]
         if r["status"] not in STATUSES:
             out.append(f"BAD_STATUS: {r['registry_id']}")
+        if r["evaluation"] not in EVALUATIONS:
+            out.append(f"BAD_EVALUATION: {r['registry_id']}")
+    by: dict[str, list[dict[str, str]]] = {}
     if units_path is not None:
-        by: dict[str, list[dict[str, str]]] = {}
         for u in read_csv(units_path):
             by.setdefault(u["registry_id"], []).append(u)
-        for r in rows:
-            us = by.get(r["registry_id"])
-            if us is None:
-                continue
-            if str(len(us)) != r["n_units"]:
-                out.append(f"N_UNITS_MISMATCH: {r['registry_id']} ({len(us)} listed, {r['n_units']} registered)")
-            if r["ids_sha256"] != ids_sha256(u["unit_id"] for u in us) and \
-                    r["ids_sha256"] != assignment_sha256((u["unit_id"], u["role"]) for u in us):
-                out.append(f"IDS_SHA256_MISMATCH: {r['registry_id']}")
         out += [f"UNITS_WITHOUT_ROW: {k}" for k in sorted(set(by) - set(ids))]
+    for rid, pairs in (recomputed or {}).items():
+        if rid in by:
+            out.append(f"RECOMPUTED_AND_LISTED: {rid}")
+            continue
+        by[rid] = [{"registry_id": rid, "unit_id": str(u), "role": str(role), "attributes": ""} for u, role in pairs]
+    for r in rows:
+        if r["evaluation"] not in EVALUATIONS:
+            continue
+        us = by.get(r["registry_id"])
+        if us is None:
+            if r["n_units"] not in ("", "0"):
+                out.append(f"NOT_VERIFIABLE_FROM_LISTING: {r['registry_id']} ({r['n_units']} units, no listing)")
+            elif r["ids_sha256"] != ids_sha256([]):
+                out.append(f"IDS_SHA256_MISMATCH: {r['registry_id']}")
+            continue
+        out += _check_row(r, us)
     return out

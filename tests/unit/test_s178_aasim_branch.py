@@ -417,8 +417,9 @@ def test_layer2_scenario_input_labels_the_output_scenario_and_brackets_it() -> N
     assert ev.temperature_C.value == (75.0, 95.0) and ev.temperature_C.layer == 2
     assert ev.duration_min.basis == "ASSUMED_DEFAULT:KGE-1"
     out = run(br, ev)
-    assert out.simulated and "SCENARIO" in out.record["labels"]                 # type: ignore[index]
-    assert {i["name"]: i["layer"] for i in out.record["inputs"]}["temperature"] == 2   # type: ignore[index]
+    # S178 FIX-PHYS (SCI-A M7, Q2 PROPOSED): a Layer 2 default is never an observation, so a scenario-filled event does not simulate
+    # (G7 UNKNOWN; at most QUALITATIVE). 0.1.0 simulated it and labelled the output SCENARIO.
+    assert not out.simulated and SB.UNOBSERVED_SCENARIO in out.reasons and out.engine_route != "SIMULATE"
     # Layer 1 values are never overridden by the scenario
     kept = SB.AAEvent.with_scenario(event(90.0, 20.0), scen)
     assert kept.temperature_C.value == 90.0 and kept.temperature_C.layer == 1

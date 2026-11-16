@@ -35,6 +35,12 @@ FOODCOM, GUTENBERG_SEGMENT, WIKIBOOKS, TASTESET ingredient-line mentions). `ment
     python tools/s178_ingcat_propose.py --backtest-only                   # agreement of the engine with the ledger's own labels
 
 Counts-only summaries; the CSV carries registry names, SR names (public domain) and counts, never recipe text.
+
+S178 FIX-ROUTER (SCI-B R7 / R4): the confirmation sheet no longer says "unlocks ABSENT" (that steered the human towards
+accepting for impact). It shows a neutral "affects ABSENT screen (n S177 items)" and, next to each row, the SR basis of the
+router's plausible vitamin-C identities (SR derivation codes and data points, analytical or not), with the instruction to
+judge the category from the food itself. The CSV gains the same basis columns and `absent_possible_s178` (crosswalk confirms
+AND every plausible SR value analytical: the only case in which confirming the category could change the ABSENT screen).
 """
 from __future__ import annotations
 
@@ -75,7 +81,10 @@ USABLE_LEGACY_BANDS = frozenset({HIGH, MEDIUM})
 EXACT, APPROX, NONE = "EXACT", "APPROX", "NONE"
 CSV_COLUMNS = ("ing_id", "name", "proposed_category", "basis", "confidence", "sr_food_group", "mention_items", "human_decision",
                "rank", "mention_nonbbc", "mention_all_families", "conflicts", "alt_category", "new_category_suggestion",
-               "registry_kind", "sr_description", "legacy_band", "crosswalk_confirms", "unlocks_absent_vitc", "status")
+               "registry_kind", "sr_description", "legacy_band", "crosswalk_confirms", "unlocks_absent_vitc",
+               "sr_vitc_basis_codes", "sr_vitc_basis_data_points", "sr_vitc_all_analytical", "absent_possible_s178", "status")
+SHEET_NOTE = ("Judge the category from the food itself; the SR group shown is the router's identity, not evidence for the "
+              "category.")
 
 
 # ============================================================================================ names and tokens
@@ -578,6 +587,7 @@ class Inputs:
     s177_items: Mapping[str, int]
     router_groups: Mapping[str, str]     # ING -> SR group of the router's rank-1 identity (shipped content table)
     vocabulary: tuple[str, ...]
+    sr_basis: Mapping[str, tuple[str, str, str]] = field(default_factory=dict)   # S178 R4: ING -> (codes, points, YES/NO)
 
 
 def build_evidence(i: str, inp: Inputs, precedent: Mapping[str, Counter], *, exclude_self: bool = False) -> Evidence:
@@ -613,7 +623,26 @@ def load_inputs(root: Path, *, sr_dir: Path | None = None, paths: Mapping[str, s
     router = {k: v[1] for k, v in EG.read_table_full(table)[2].items()} if table.exists() else {}
     vocabulary = tuple(sorted({r["category"] for r in ing.values() if r["category"]}))
     return Inputs(ing, registry, read_aliases(root / p["alias"]), read_legacy_rank1(root / p["legacy"]), groups, descs,
-                  read_mentions(root / p["vocab"]), read_s177_items(root / p["s177"]), router, vocabulary)
+                  read_mentions(root / p["vocab"]), read_s177_items(root / p["s177"]), router, vocabulary,
+                  router_sr_basis(root, table) if table.exists() else {})
+
+
+VC_SVAR = "SVAR-000009"
+
+
+def router_sr_basis(root: Path, table: Path) -> dict[str, tuple[str, str, str]]:
+    """S178 R4: ING -> (SR derivation codes, data points, all analytical YES/NO) of the router's plausible vitamin-C
+    identities, from the shipped content table (``evidence_gates.basis_summary``). Codes and counts only."""
+    from culinarystate.mechanism import evidence_gates as EG
+    floor_path = Path(root) / "registry" / "target_presence_floor_v1_PROPOSED.csv"
+    if not floor_path.exists():
+        return {}
+    cands, values, cats = EG.read_table_full(table)
+    floors = EG.read_floors(floor_path)
+    if VC_SVAR not in floors:
+        return {}
+    sc = EG.TargetPresenceScreen(floors, cands, values, cats, basis=EG.read_table_basis(table))
+    return {i: EG.basis_summary(sc.member_basis(VC_SVAR, i)) for i in cands}
 
 
 # ============================================================================================ build and render
@@ -637,6 +666,7 @@ def build_rows(inp: Inputs) -> list[dict]:
         rg = inp.router_groups.get(i)
         cw = crosswalk_confirms(pr.category, rg)
         s177 = inp.s177_items.get(i)
+        codes, pts, anal = inp.sr_basis.get(i, ("", "", ""))
         conflicts = pr.conflicts
         if pr.category and cw is False and rg:
             conflicts = "; ".join(x for x in (conflicts, f"CROSSWALK_WOULD_NOT_CONFIRM({pr.category} vs SR group '{rg}')") if x)
@@ -649,6 +679,8 @@ def build_rows(inp: Inputs) -> list[dict]:
             "registry_kind": pr.registry_kind, "sr_description": pr.sr_description, "legacy_band": pr.legacy_band,
             "crosswalk_confirms": "" if cw is None else ("YES" if cw else "NO"),
             "unlocks_absent_vitc": "YES" if (s177 is not None and cw) else ("NO" if s177 is not None else ""),
+            "sr_vitc_basis_codes": codes, "sr_vitc_basis_data_points": pts, "sr_vitc_all_analytical": anal,
+            "absent_possible_s178": "YES" if (s177 is not None and cw and anal == "YES") else ("NO" if s177 is not None else ""),
             "status": STATUS})
     return rows
 
@@ -689,9 +721,12 @@ def top_sheet(rows: Sequence[Mapping], n: int = 100) -> str:
         "Status: **AI_DRAFTED / PROPOSED / NON_CITABLE.** Nothing below is a decision. No ledger was edited. A category here is a "
         "PROPOSAL for an ACTIVE ING that has none; it comes from the existing ING category vocabulary only.", "",
         "How to use: tick `[x]` to ACCEPT the proposal; write `CHANGE:<CATEGORY>` or `REJECT` after the line otherwise. "
-        "Order is the ING's non-BBC corpus mention count (ingredient lines). `S177 items` is the S177 full-census item count for "
-        "ING that only a missing category keeps out of the vitamin-C ABSENT rule. `unlocks` = confirming it would clear that "
-        "block under the current S177 crosswalk.", "",
+        "Order is the ING's non-BBC corpus mention count (ingredient lines). `affects ABSENT screen (n S177 items)` marks an "
+        "ING whose vitamin-C ABSENT verdict in the S177 census also depended on its category; n is shown for scale only and says "
+        "nothing about which category is right. `SR vitamin-C basis` is the SR Legacy derivation of the router's plausible "
+        "vitamin-C values: since S178 (SCI-B R4) an ING whose values are not all analytical (code A / AI / AR with at least "
+        "one data point) stays UNKNOWN whatever its category.", "",
+        f"**{SHEET_NOTE}**", "",
         "Confidence: HIGH = two bases agree on one existing value; MEDIUM = one decent basis or approximate fit; LOW = weak, "
         "conflicting or no existing value fits (proposal may be empty). Flags: NO_EXACT_FIT (closest existing value, a NEW value "
         "is suggested, not added), SR_GROUP_DISAGREES (the SR food group files it elsewhere), DUAL_USE, PRECEDENT_DISAGREES.", ""]
@@ -702,11 +737,14 @@ def top_sheet(rows: Sequence[Mapping], n: int = 100) -> str:
         bits.append(f"SR: {r['sr_food_group'] or 'none'}")
         bits.append(f"{int(r['mention_nonbbc']):,} mentions")
         if r["mention_items"]:
-            bits.append(f"S177 items {int(r['mention_items']):,}")
-        if r["unlocks_absent_vitc"] == "YES":
-            bits.append("unlocks ABSENT")
-        elif r["unlocks_absent_vitc"] == "NO":
-            bits.append("does NOT unlock (crosswalk)")
+            bits.append(f"affects ABSENT screen ({int(r['mention_items']):,} S177 items)")
+        anal = r.get("sr_vitc_all_analytical", "")
+        if anal:
+            label = "analytical" if anal == "YES" else "NOT analytical"
+            bits.append(f"SR vitamin-C basis: {label} (codes {r.get('sr_vitc_basis_codes') or '-'}; "
+                        f"data points {r.get('sr_vitc_basis_data_points') or '-'})")
+        else:
+            bits.append("SR vitamin-C basis: no router SR identity")
         if r["new_category_suggestion"]:
             bits.append(f"suggest NEW value {r['new_category_suggestion']}")
         short = [c.split("(")[0] for c in r["conflicts"].split("; ") if c and not c.startswith("NEW_VALUE_SUGGESTED")]
@@ -819,7 +857,7 @@ def overlay_gates(base, overlay: Mapping[str, str]):
         if ing in cats:
             cats[ing] = (cat, cats[ing][1])
             applied += 1
-    screen = EG.TargetPresenceScreen(s.floors, s.cands, s.values, cats, s.kinds)
+    screen = EG.TargetPresenceScreen(s.floors, s.cands, s.values, cats, s.kinds, s.basis)      # S178 R4: keep the basis
     return EG.EvidenceGates(screen, presence=base.presence_on, context=base.context_on, provenance=base.provenance), applied
 
 

@@ -1,0 +1,51 @@
+{
+ "counts": {
+  "aqueous_above_100_all": 373,
+  "aqueous_above_100_from_setter": 10,
+  "fat_heat_temperature_from_setter": 460,
+  "flag_typical|TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 162378,
+  "l1_ambient_temperature": 1915,
+  "l1_heat_events": 1696743,
+  "l1_text_stated_range": 422,
+  "l1_text_stated|DRY_HEAT": 33579,
+  "l1_text_stated|FAT_HEAT": 1033,
+  "l1_text_stated|HEAT_GENERAL": 14772,
+  "l1_text_stated|WET_HEAT": 1134,
+  "l2_computed": 793456,
+  "l2_heat_records": 1696743,
+  "lifted_typical": 241,
+  "lifted_typical_above_150": 21,
+  "lifted_typical_core_above_100": 12,
+  "lifted_typical_with_core": 12,
+  "lifted_typical|row=CB_RULE:TEMPERATURE_FROM_SETTER_STEP": 8,
+  "lifted_typical|row=CB_RULE:TEMPERATURE_OWN_CLAUSE": 233,
+  "lifted_typical|solute_member=NO": 123,
+  "lifted_typical|solute_member=YES": 118,
+  "moist_piece_core_above_tboil": 12,
+  "moist_piece_core_above_tboil|medium=LIQUID": 2,
+  "moist_piece_core_above_tboil|medium=WATER": 10,
+  "oven_text_stated_below_77": 318,
+  "oven_text_stated_below_77_core_computed": 20,
+  "setter_shared|DRY_HEAT": 2600,
+  "setter_shared|FAT_HEAT": 460,
+  "until_clause_bound_temperature_reviewer_method": 869,
+  "until_clause_bound_temperature_reviewer_method|DRY_HEAT": 224,
+  "until_clause_bound_temperature_reviewer_method|FAT_HEAT": 10,
+  "until_clause_bound_temperature_reviewer_method|HEAT_GENERAL": 489,
+  "until_clause_bound_temperature_reviewer_method|WET_HEAT": 146
+ },
+ "l1_dirs": [
+  "data/derived/physical_L1_full_S178v04/FOODCOM",
+  "data/derived/physical_L1_full_S178v04/GUTENBERG_SEGMENT",
+  "data/derived/physical_L1_full_S178v04/WIKIBOOKS",
+  "data/derived/physical_L1_full_S178v04/TASTESET"
+ ],
+ "l2_dirs": [
+  "data/derived/physical_L2_full_S178v04/FOODCOM",
+  "data/derived/physical_L2_full_S178v04/GUTENBERG_SEGMENT",
+  "data/derived/physical_L2_full_S178v04/WIKIBOOKS",
+  "data/derived/physical_L2_full_S178v04/TASTESET"
+ ],
+ "status": "AI_DRAFTED_COUNTS_ONLY",
+ "tool": "s178-phys-fixphys-audit-0.1.0"
+}

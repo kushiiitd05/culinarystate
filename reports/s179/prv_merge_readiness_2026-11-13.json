@@ -1,0 +1,245 @@
+{
+  "date": "2026-11-13",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "verdict": "NOT_READY_REMOTE_STATE_UNKNOWN",
+  "head_at_check": "72f39f3fdc514c63281502d412f1f64e5e3c04bf",
+  "remote_checks": {
+    "commands": [
+      "gh pr view 12 --json number,title,state,headRefName,baseRefName,headRefOid,mergeable,mergeStateStatus,statusCheckRollup,isDraft",
+      "gh pr view 11 --json number,title,state,headRefName,baseRefName,headRefOid,mergeable,mergeStateStatus,statusCheckRollup,isDraft"
+    ],
+    "both_exit_code": 1,
+    "error": "error connecting to api.github.com",
+    "current_pr_base_head_state_checks_reviews_protection": "UNKNOWN",
+    "fetch_or_pull_in_this_read_only_subtask": false
+  },
+  "local_candidate_checks": [
+    {
+      "candidate_pr": 12,
+      "mapping": "INFERRED_FROM_HANDOFF_NOT_REMOTE_VERIFIED",
+      "target": "origin/max/s176-orchestration",
+      "target_oid": "3d971962d6ffd4d191a98820a5a19d24e7ef9764",
+      "head": "HEAD",
+      "head_oid": "72f39f3fdc514c63281502d412f1f64e5e3c04bf",
+      "merge_base": "3d971962d6ffd4d191a98820a5a19d24e7ef9764",
+      "changed_files": 702,
+      "legacy_merge_tree_exit": 0,
+      "text_conflict_marker_count": 0,
+      "conflict_scope": "Cached refs only; zero textual markers does not certify GitHub mergeability or semantic compatibility.",
+      "diff_check_exit": 2,
+      "whitespace_diagnostic_count": 15922,
+      "whitespace_by_file": {
+        "registry/compute_runs_v1.csv": 116,
+        "registry/experiments_S179_local_2026-11-12.csv": 4,
+        "registry/negative_results_register_v1.csv": 2,
+        "registry/prompt_registry_v1.csv": 2,
+        "registry/superseded_outputs_S176.csv": 179,
+        "registry/transition_ladder_crosswalk_v1.csv": 2,
+        "reports/orchestration/S179_round6_acceptance_audit.csv": 253,
+        "reports/orchestration/S179_technical_scope_matrix_2026-11-13.csv": 253,
+        "reports/s179/kush_figures_2026-11-13/fig_d097_type_pr.svg": 119,
+        "reports/s179/kush_figures_2026-11-13/fig_paired_vs_d0.svg": 67,
+        "reports/s179/ph_page_locators_2026-11-13/draft_row_page_locators.csv": 489,
+        "reports/s179/technical_figures_2026-11-13/fig1_architecture.svg": 845,
+        "reports/s179/technical_figures_2026-11-13/fig2_evidence_provenance.svg": 921,
+        "reports/s179/technical_figures_2026-11-13/fig3_state_graph.svg": 770,
+        "reports/s179/technical_figures_2026-11-13/fig4_router_routes.svg": 961,
+        "reports/s179/technical_figures_2026-11-13/fig5_risk_coverage.svg": 926,
+        "reports/s179/technical_figures_2026-11-13/fig6_h1_ladder.svg": 904,
+        "reports/s179/technical_figures_2026-11-13/fig7_gate_register.svg": 1011,
+        "reports/s179/technical_figures_2026-11-13_v2/fig1_architecture.svg": 845,
+        "reports/s179/technical_figures_2026-11-13_v2/fig2_evidence_provenance.svg": 921,
+        "reports/s179/technical_figures_2026-11-13_v2/fig3_state_graph.svg": 770,
+        "reports/s179/technical_figures_2026-11-13_v2/fig4_router_routes.svg": 961,
+        "reports/s179/technical_figures_2026-11-13_v2/fig5_risk_coverage.svg": 926,
+        "reports/s179/technical_figures_2026-11-13_v2/fig6_h1_ladder.svg": 904,
+        "reports/s179/technical_figures_2026-11-13_v2/fig7_gate_register.svg": 1011,
+        "reports/s179/technical_figures_2026-11-13_v2/fig8_condition_missingness.svg": 922,
+        "reports/s179/technical_figures_2026-11-13_v2/fig9_p1_agreement.svg": 838
+      },
+      "protected_area_changed_paths": [
+        "benchmark/d5/d5_benchmark_v1_D085_PC.csv",
+        "benchmark/d5/d5_benchmark_v1_D085_S.csv",
+        "benchmark/d5/d5_benchmark_v1_D085_UX.csv",
+        "benchmark/d5/d5_relatives_v1_D085.json",
+        "ledgers/data/UNIT.jsonl",
+        "ledgers/data/_ids.jsonl",
+        "ledgers/schemas/KGE.schema.json",
+        "ledgers/schemas/MECH.schema.json",
+        "ledgers/schemas/UNIT.schema.json",
+        "registry/freezes/15A-BOOT-2026-11-08.json",
+        "registry/freezes/D5-BENCH-2026-11-10.json",
+        "registry/freezes/D5-BENCH-2026-11-10b.json",
+        "registry/freezes/MECH-REFERENCE-2026-11-13.json",
+        "registry/freezes/STRICT-V2-ENGINEERING-2026-11-12.json",
+        "registry/freezes/STRICT-V3-ENGINEERING-2026-11-12.json"
+      ]
+    },
+    {
+      "candidate_pr": 11,
+      "mapping": "INFERRED_FROM_HANDOFF_NOT_REMOTE_VERIFIED",
+      "target": "origin/main",
+      "target_oid": "bfc1c8c8d7692d9e7c502a38febb1e63297af584",
+      "head": "origin/max/s176-orchestration",
+      "head_oid": "3d971962d6ffd4d191a98820a5a19d24e7ef9764",
+      "merge_base": "bfc1c8c8d7692d9e7c502a38febb1e63297af584",
+      "changed_files": 613,
+      "legacy_merge_tree_exit": 0,
+      "text_conflict_marker_count": 0,
+      "conflict_scope": "Cached refs only; zero textual markers does not certify GitHub mergeability or semantic compatibility.",
+      "diff_check_exit": 2,
+      "whitespace_diagnostic_count": 2220,
+      "whitespace_by_file": {
+        "benchmark/d5/d5_draft_PC_v1.csv": 61,
+        "benchmark/d5/d5_draft_S_v1.csv": 41,
+        "docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md": 250,
+        "registry/diffusion_coefficients_sourced_S178.csv": 46,
+        "registry/evidence/aa_kinetics_source_candidates_v1.csv": 17,
+        "registry/food_ph_fda2003_v1.csv": 480,
+        "registry/ing_sr_defaults_v1.csv": 491,
+        "registry/prompt_registry_v1.csv": 20,
+        "registry/scenario_defaults_source_review_S176.csv": 98,
+        "registry/ssot_coverage_classes_S178.csv": 123,
+        "registry/superseded_outputs_S176.csv": 54,
+        "registry/transition_ladder_crosswalk_v1.csv": 27,
+        "reports/orchestration/S178_CORPUS_report.md": 1,
+        "reports/orchestration/S178_EXECUTION_BOARD.md": 1,
+        "reports/s178/ssot238_conformance.csv": 211,
+        "reports/s178/ssot_coverage_map.csv": 296,
+        "reports/step29/29diag_memo_MNAR_claim_boundary_S178_DRAFT.md": 2,
+        "tools/s178_compute_ledger.py": 1
+      },
+      "protected_area_changed_paths": [
+        "benchmark/d5/d5_draft_PC_v1.csv",
+        "benchmark/d5/d5_draft_S_v1.csv",
+        "registry/freezes/15A-BOOT-2026-11-08.json"
+      ]
+    }
+  ],
+  "persisted_test_record": {
+    "path": "reports/s179/technical_completion_verification_2026-11-13.json",
+    "sha256": "8138b521e84c118974b328e8f36d427a0439870462c0a6828454baa96cdef52c",
+    "full_suite": {
+      "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest -q -m 'ledgers or not ledgers' -o faulthandler_timeout=120",
+      "deselected": 0,
+      "errors": 0,
+      "failed": 0,
+      "log": "reports/s179/all_marker_full_suite_2026-11-13.log",
+      "log_sha256": "bb204e9c2ab9af10bc7f881d6992b2f88cb65e7118c304188ad723f7906f011a",
+      "passed": 8182,
+      "scope": "All-marker full suite; source helper tools and MECH schema included. Subsequent source-page locator adapter is read-only, with488/488actual pair/order matches.",
+      "seconds": 451.91,
+      "skipped": 4
+    },
+    "log_hash_matches": true,
+    "rerun_in_this_subtask": false,
+    "current_head_certified_by_record": false,
+    "skip_reasons": "UNKNOWN: persisted full-suite log reports four skips without individual reasons. Must enumerate in fresh check."
+  },
+  "protected_hash_check": {
+    "baseline_record": "35fbb7e",
+    "paths": {
+      "ledgers/data/COND.jsonl": {
+        "expected_sha256": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+        "actual_sha256": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+        "matches": true
+      },
+      "ledgers/data/EVD.jsonl": {
+        "expected_sha256": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+        "actual_sha256": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+        "matches": true
+      },
+      "ledgers/data/MEAS.jsonl": {
+        "expected_sha256": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+        "actual_sha256": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+        "matches": true
+      },
+      "ledgers/data/SNAP.jsonl": {
+        "expected_sha256": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+        "actual_sha256": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+        "matches": true
+      },
+      "ledgers/data/SRC.jsonl": {
+        "expected_sha256": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+        "actual_sha256": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+        "matches": true
+      },
+      "registry/execution_board_S178.csv": {
+        "expected_sha256": "d0d01b099c0ebf28a6f70d15e2cbe08c5835154e1d685f91017052a6a19dd975",
+        "actual_sha256": "d0d01b099c0ebf28a6f70d15e2cbe08c5835154e1d685f91017052a6a19dd975",
+        "matches": true
+      },
+      "reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md": {
+        "expected_sha256": "3c78fce12a9150bf9aa311c6173034036119a7ff80860cf4529273ffadb97f0f",
+        "actual_sha256": "3c78fce12a9150bf9aa311c6173034036119a7ff80860cf4529273ffadb97f0f",
+        "matches": true
+      },
+      "reports/final/SLIDES_DRAFT_S179_2026-11-11.md": {
+        "expected_sha256": "354b2beed5a6da6c70b94882628f93c6b0282919801a30cada084d384b3e94a3",
+        "actual_sha256": "354b2beed5a6da6c70b94882628f93c6b0282919801a30cada084d384b3e94a3",
+        "matches": true
+      },
+      "src/culinarystate/app/static/index.html": {
+        "expected_sha256": "1ffabebe252004d41c4034c6de37b61fc43dbab2f73d744c4774aaa987511223",
+        "actual_sha256": "1ffabebe252004d41c4034c6de37b61fc43dbab2f73d744c4774aaa987511223",
+        "matches": true
+      },
+      "src/culinarystate/decision/demo_context.py": {
+        "expected_sha256": "3f8c3e6be28659bf333298c40ad890bde73a15f84abce177609960142f1b9ce1",
+        "actual_sha256": "3f8c3e6be28659bf333298c40ad890bde73a15f84abce177609960142f1b9ce1",
+        "matches": true
+      },
+      "src/culinarystate/generation/enforce.py": {
+        "expected_sha256": "3ac2aa7e1cb66df16c94d266d996d8fb56a0f04f6e13e56402ed853492e4991f",
+        "actual_sha256": "3ac2aa7e1cb66df16c94d266d996d8fb56a0f04f6e13e56402ed853492e4991f",
+        "matches": true
+      },
+      "src/culinarystate/generation/verbalize.py": {
+        "expected_sha256": "8a10d611cd1177e68d27945c311befe941a91745aea27efd11ba9ed67ebd05eb",
+        "actual_sha256": "8a10d611cd1177e68d27945c311befe941a91745aea27efd11ba9ed67ebd05eb",
+        "matches": true
+      },
+      "src/culinarystate/quantity/grammar.py": {
+        "expected_sha256": "25b34fa8948b8989dadfecd87cee2737765a1fd07f4e02281ddacaf522d4a3c3",
+        "actual_sha256": "25b34fa8948b8989dadfecd87cee2737765a1fd07f4e02281ddacaf522d4a3c3",
+        "matches": true
+      }
+    },
+    "interpretation": "13 recorded protected hashes match current files. PR diffs include other protected-area changes; hash parity to this later baseline does not clear them."
+  },
+  "fallback_asset_checks": [
+    {
+      "source": "src/culinarystate/app/static/strict_v3.html",
+      "copy": "data/derived/presentation_fallback_2026-11-13/strict_v3.html",
+      "source_hash_matches": true,
+      "copy_hash_matches": true
+    },
+    {
+      "source": "reports/s179/strict_v3_fallback_2026-11-12.png",
+      "copy": "data/derived/presentation_fallback_2026-11-13/strict_v3_fallback_2026-11-12.png",
+      "source_hash_matches": true,
+      "copy_hash_matches": true
+    },
+    {
+      "source": "reports/s179/strict_v3_browser_rehearsal_2026-11-12.json",
+      "copy": "data/derived/presentation_fallback_2026-11-13/strict_v3_browser_rehearsal_2026-11-12.json",
+      "source_hash_matches": true,
+      "copy_hash_matches": true
+    }
+  ],
+  "pending": [
+    "Verify live PR metadata, exact base/head SHAs, required CI, approvals and branch protection.",
+    "Resolve or explicitly review existing whitespace diagnostics without rewriting frozen or append-only records.",
+    "Review protected-area diffs against their own freeze dates and decision authority; distinguish new freeze creation from post-freeze mutation.",
+    "Run relevant/full tests on exact candidate integration commit, enumerate four historical skip reasons and current private-input skips.",
+    "Inspect public-source/secret scan for exact candidate commit.",
+    "Merge only through separately authorized final action; none performed here."
+  ],
+  "mutations": "Only the three owned new report files; no merge, commit, fetch, app or protected file edits."
+}

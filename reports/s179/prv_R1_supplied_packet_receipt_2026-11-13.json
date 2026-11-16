@@ -1,0 +1,26 @@
+{
+  "action": "Retain supplied original; expected local destination already contains identical bytes, no overwrite required.",
+  "byte_equal_to_existing_expected_packet": true,
+  "destination": "annotation/condition_audit/condition_audit_packet_100_R1_Parv.csv",
+  "destination_git_ignored": true,
+  "existing_returned_review_sha256": "4ed6e0f311f5a0f664d2174c78d1f8c439bc21987daca3d2f87add2d60566a5d",
+  "existing_review": "reports/s179/prv_07AR1_AI_review_2026-11-13.json",
+  "filled_judgment_cells": 0,
+  "human_labels_supplied": false,
+  "issued_manifest_sha256": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "note": "New upload confirms exact prior reconstruction. It is an issued blank packet, not a completed human review; prior AI review remains separate and unchanged.",
+  "received_at_utc": "2026-11-13T09:20:15.073885+00:00",
+  "received_sha256": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d",
+  "record": "SUPPLIED_PARV_R1_PACKET_RECEIPT",
+  "review_repeated": false,
+  "rows": 100,
+  "scientific_gate_pass": false,
+  "supplied_name": "condition_audit_packet_100_R1_Parv.csv",
+  "unique_audit_ids": 100
+}

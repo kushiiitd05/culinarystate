@@ -1,0 +1,34 @@
+{
+  "approvals": [
+    {
+      "approved_by": "ksh+prv (AI, D-085)",
+      "approved_date": "2026-11-10",
+      "decision": "D-085",
+      "label": "NO_HUMAN_SIGNOFF_D085"
+    }
+  ],
+  "code_sha256": {
+    "src/culinarystate/decision/query_router.py": "e70df1122f5decdd7991708e9747f7601dd4a7d8a493aa336ade40e9690ad895",
+    "src/culinarystate/evaluation/ablation.py": "b464ab0ac42465305daa328357e3c534e0e2b9f89f71ee21971e5b7daf2a8a8f",
+    "src/culinarystate/evaluation/claim_audit.py": "707efcc76d6eff2526a65d0a47566fafcbec8b5ac23cb8b29678393386b5c6f9",
+    "src/culinarystate/evaluation/d4_metrics.py": "36f009806552eedfdecddf070feb95abb42ab283c02d7f6c4d511067d7d4e4d7",
+    "src/culinarystate/evaluation/d5_scoring.py": "dc44088c8c3638434cf27349ac029144520d841686d641613ffc8d9e1b453a27",
+    "src/culinarystate/evaluation/freeze_records.py": "136303fd2f9794352550d7b2ffa15ea3010031043b8312b11ac930cac44021c5",
+    "src/culinarystate/evaluation/frozen_guard.py": "235ae519ee9173e4e039af1ac329a2138c4ada85ad08f1bab1c462cc6d96d40f",
+    "src/culinarystate/evaluation/h1_independence.py": "f331652b7cb3dc899be7e76c06267e5211410372cdfaa26088e2ccb4b3774fb6",
+    "src/culinarystate/evaluation/h3_independent.py": "787f25513c93d936831ee870a4a379a3cf856c103eb2418134c3b532d34ac81f",
+    "src/culinarystate/evaluation/mcnemar_power.py": "03855ad575d5112147282e6dd688498ac1ae3c1fa5cbb9c76ebf28d06933d4c9",
+    "src/culinarystate/evaluation/paired_stats.py": "b6378180a396cf835c4b73982f648d0a65be5ea98632b2ff94e458e545c50857",
+    "src/culinarystate/retrieval/compatibility.py": "7c7fd394c16221ab28421d6c7204edb3b68a986626f66de89783afdaa7a9ac49",
+    "tools/s178_d5_score.py": "cc9be3a136a3dcbb15b8654e5a218af3665098f3d955d8c2e93bd263a5687fa1"
+  },
+  "files": {
+    "benchmark/d5/d5_benchmark_v1_D085_PC.csv": "829bce2e13a25f67bd0c01f5e40b1e7f676a5a8792d09ae216094ac89c9783b0",
+    "benchmark/d5/d5_benchmark_v1_D085_S.csv": "74d256ba046fcb664afee6d1bf14b9affbd8ff0245dc30541e7d7dd0068b4404",
+    "benchmark/d5/d5_benchmark_v1_D085_UX.csv": "0adaa0a28266bdc4c24d5497762e59d1bcf05b87da3e33c5c75f7d3866eb9eaf"
+  },
+  "freeze_id": "D5-BENCH-2026-11-10",
+  "prereg_sha256": "1c1745539cda2d1d46354cefdbe9c86fd1e4c06b24759da8a4accc4b8f2fb27f",
+  "record": "FREEZE_D5_BENCHMARK",
+  "status": "FROZEN"
+}

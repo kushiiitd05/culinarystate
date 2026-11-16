@@ -1,0 +1,947 @@
+{
+  "created_at_utc": "2026-11-12T21:08:10.887464+00:00",
+  "labels": [
+    "AI_CHECKED",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "record": "BINDER_AI_REVIEW_PREHASH_MANIFEST",
+  "record_file_sha256": {
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00000.jsonl": "f1a5d685f03b9c9ec07700966a28861b280d42de372152e04946a2051d992927",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00001.jsonl": "48f49e28c6278ff884ec9550f3fe881cc2af7969b83d598f044ba3b6a1f57db8",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00002.jsonl": "941f604734ae472ef66f1fc2a58dbe213f59c7bb8f0a5f6b33e8c07431af3176",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00003.jsonl": "f7e4e1665867defb1b60c391c377a83ea486311712419633ec37206363fde977",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00004.jsonl": "c7d4eb292b971c94b753b960dec1590d197492471ca0d472e83672c1243f3151",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00005.jsonl": "fd58d6cef3a4f8c76e5e6d585ca9c70c89fd3bf0b907a757a5470e3b16bfacf5",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00006.jsonl": "c31eb3fa4943aaefc051fcd49719eb41b884075f3fed61ae9fb3bf512137a4cd",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00007.jsonl": "cddebca89a5e8f1da19a1a40eb9be8b849ba585281d3996ab866f6075b2f3bfa",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00008.jsonl": "0de77d44710df0e1919826feb4d2e96e2675a966ea9c6935d6983ea2b9f0a5f3",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00009.jsonl": "3a35b3c55a5a19ee6c6aa2adc158d77fbf60f00a17ca543c7d66dac3c29cb24c",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00010.jsonl": "adf19c26ce1ad73df4b0eaaf9fd6a3b46a6225264800414729fb3c97f156ab00",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00011.jsonl": "e1947c9869593fd03159a85f8592a3674dfa8d7e76cf803cb39f874744660e70",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00012.jsonl": "e99eb0261057b64e6e00ae20907a6514816e9682451705a61e6a513e69c7baff",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00013.jsonl": "c482d2337db1abf35be5e01d7180bea0499e3a28b7047188da1ad2d8dc9a613c",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00014.jsonl": "0892c65f14533eb1c5fc1826d69ae60cdfcefa5b92d3b7d735ce148777be5f6d",
+    "data/derived/artifact_reproduction_2026-11-12_WIKIBOOKS/part-00015.jsonl": "e1c14d68f14b1756ae390ad47d2d6fe23ff07b24ecfff39fa9505c80e85973f6"
+  },
+  "review_fields": [
+    "temperature",
+    "unit",
+    "duration",
+    "medium",
+    "event_attribution"
+  ],
+  "rubric": {
+    "MATCH": "Bound TEXT_STATED value/unit and event attribution agree with the cited text under manual AI source reading.",
+    "MISMATCH": "Text contradicts bound value/unit or wrong event ownership.",
+    "NON_TEXT_BASIS": "Physical/process definition or carried/default basis; not scored as literal text extraction precision.",
+    "NOT_BOUND": "Producer axis is UNKNOWN; no positive prediction to score.",
+    "UNASSESSABLE": "Text/context insufficient to decide; excluded from precision denominator, coverage disclosed."
+  },
+  "seed": "20261104",
+  "selected": [
+    {
+      "case_id": "BINDREV-001",
+      "event_id": "E16",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "c65ad8fd23f298fdd0a62e34ad24d81467b9c6af18b829b5482c19d2089b1641",
+      "recipe_id": "REC-015119",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-002",
+      "event_id": "E4",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000014",
+      "producer_row_sha256": "4d96d68ab18bedccac9a6922fbddc99c47e11aa73379938a4aa094f6b758172c",
+      "recipe_id": "REC-012456",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-003",
+      "event_id": "E62",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "440fc373fcb1738ad3b2a58f9802d56ec5cc04c3c9a44f8b97b4d478f4de8ccd",
+      "recipe_id": "REC-013416",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-004",
+      "event_id": "E8",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "fe8048fc6f306a43a6c86c726c2ffa0503052dc505085472d05b9070a8e5dd5a",
+      "recipe_id": "REC-012346",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-005",
+      "event_id": "E9",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "e706dc101b69a55032ef295d3e684ca016241dab404fed00547d92cd7fcdd51b",
+      "recipe_id": "REC-013794",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-006",
+      "event_id": "E6",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000016",
+      "producer_row_sha256": "e326c4cc18d89dca5a64ff8b118f0a8debf3d677fb406b9e2851190b2ab630fd",
+      "recipe_id": "REC-014368",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-007",
+      "event_id": "E9",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "4c76aa775a16f3022a697dff7d942459018b73c97cc52ac62b6c57386552f2db",
+      "recipe_id": "REC-014810",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-008",
+      "event_id": "E2",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000028",
+      "producer_row_sha256": "fe98758f5f83b714f0a5b8e3ba92440eb9b6f2015be5116dce7e6054ffb0d20c",
+      "recipe_id": "REC-012380",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-009",
+      "event_id": "E16",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "2b591dc82c7722fa90defdd593bb6717db2ff5d010a5f8270659021aadfc1d76",
+      "recipe_id": "REC-012841",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-010",
+      "event_id": "E3",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000014",
+      "producer_row_sha256": "787a406ddbd0827463e06b2f9e5386e53f938c0c5597b01aba495db02fe70f21",
+      "recipe_id": "REC-012963",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-011",
+      "event_id": "E4",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "14adc1dfd650edf37a7d05f94b0585cc1e02d4c1bca85a6f0761302a3743567f",
+      "recipe_id": "REC-013844",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-012",
+      "event_id": "E7",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "e9c85e56c106d7cbfa57bdd3e06f8cb43239976809b7fd659346a62349786006",
+      "recipe_id": "REC-013398",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-013",
+      "event_id": "E7",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "d670f8bc6c99d0cd9929657f21c7f3022dc999249a5452994cf59d78d38e466a",
+      "recipe_id": "REC-012507",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-014",
+      "event_id": "E13",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "762745e98e48a6ca27bfad814c0e32fbe8c74e251cb73242ca7b4a4eda59e7bb",
+      "recipe_id": "REC-014453",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-015",
+      "event_id": "E4",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "9d0f1bc84b8f59f63ead62bcb3581a7b463c29bd7030cf03485b282a0eb33b4b",
+      "recipe_id": "REC-013202",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-016",
+      "event_id": "E3",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "6ece88c24e04cb1b4f35070615c1cd79ebe4184e900f66e2038ac68e2bc57919",
+      "recipe_id": "REC-014011",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-017",
+      "event_id": "E14",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "9597b463e13e099c2b5619d3afd350078fa1197e40a554b19549c62f14a23e34",
+      "recipe_id": "REC-012028",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-018",
+      "event_id": "E10",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "9db48465cc8dc784bb0a834d926a566940f00c76b80e07a4682481c96bc64997",
+      "recipe_id": "REC-013721",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-019",
+      "event_id": "E15",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "1975f3ecb6a6fb52fe155f0f1c6caaafa406104c59675aa4bfc589e52e1a2461",
+      "recipe_id": "REC-013040",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-020",
+      "event_id": "E15",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000022",
+      "producer_row_sha256": "1eea458f122442de2f51c1fadbad9da22083c48a8194d08d4e25a55ecd07b3a6",
+      "recipe_id": "REC-013956",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-021",
+      "event_id": "E18",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000003",
+      "producer_row_sha256": "d4ec202552be177818d768ea5449b547aaba7ce74c12d3ac15a5d534fc23e916",
+      "recipe_id": "REC-014265",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-022",
+      "event_id": "E11",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "96bb03df00d9fb9595ee9e6a9775e63f25c5a44c21dcb3d5846fa112b6029521",
+      "recipe_id": "REC-015379",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-023",
+      "event_id": "E29",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "868e127850e17845a31cdc2170ae0bc6b0f89bb63aaf9317095d49fe714d29f5",
+      "recipe_id": "REC-014699",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-024",
+      "event_id": "E26",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000030",
+      "producer_row_sha256": "4c4d3d9756629ea6c8c8d2eb954191186a4e98b125be6be38afb9cd0624ce792",
+      "recipe_id": "REC-014700",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-025",
+      "event_id": "E13",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000003",
+      "producer_row_sha256": "ffa54c3e9c86abb401973e30aa77952c53d2a735b7a3655ed8ea2ab74af2e152",
+      "recipe_id": "REC-013624",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-026",
+      "event_id": "E12",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "c8e564f57170ff0597b43f530bea6a5f8f89165e67c18f821c49b429b101e34a",
+      "recipe_id": "REC-013536",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-027",
+      "event_id": "E6",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "b5bdd4d4d97d6c870c4170ff0130f9db5149d7d05c872faa288a6f11eeadf4fc",
+      "recipe_id": "REC-015230",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-028",
+      "event_id": "E31",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000028",
+      "producer_row_sha256": "2dadebbedf8356ddcc1c6b701f4d59545df61b60ea595a7b4c5345022c86b1e6",
+      "recipe_id": "REC-012057",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-029",
+      "event_id": "E13",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "5f3fc4a34e506ac59558eca1aee3f96efd2c5aed2682c9075f8c59da51d5c17b",
+      "recipe_id": "REC-015092",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-030",
+      "event_id": "E9",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000014",
+      "producer_row_sha256": "d69b2bf38297a13c2483756b03d3fed85a6943c14fce82a0a5a41bd695a0a235",
+      "recipe_id": "REC-012015",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-031",
+      "event_id": "E2",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "518d085cc0d90920bd2c595bf2c78d481f509fb9cb66e8338e48dce2dd138606",
+      "recipe_id": "REC-015097",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-032",
+      "event_id": "E3",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "f23def176781f54000b56237c2b66f6b96b97979f9eb2b1d57ad46646ca287cb",
+      "recipe_id": "REC-014591",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-033",
+      "event_id": "E7",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000002",
+      "producer_row_sha256": "f2a974afbc39b5ec6bead2b9520cb7ad7d872f0e0a60214a629f5cca3a4648a8",
+      "recipe_id": "REC-012864",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-034",
+      "event_id": "E6",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "1c22b6c61c18f37d80b07af4ef2b3dae43893af7418eb01124f915adb9c2750d",
+      "recipe_id": "REC-012197",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-035",
+      "event_id": "E16",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "57ab6dc6a0faadd6f0d4fb04ae678b3a8da3ccd9eaba477faf30179ea9ede26a",
+      "recipe_id": "REC-012898",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-036",
+      "event_id": "E16",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000028",
+      "producer_row_sha256": "45aba98f670b072bce111b4fa554489943995540f7e1addf64c86aed219c7394",
+      "recipe_id": "REC-014875",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-037",
+      "event_id": "E4",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000004",
+      "producer_row_sha256": "45ce54ed05aa1e5c76f727bdcb1c8de58c7759f667abda34742cc7d3310bdef3",
+      "recipe_id": "REC-012636",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-038",
+      "event_id": "E9",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "b92d70217e703d3f4fff565dd644bd430840329c0ff8ed44ca969c47a046a6ab",
+      "recipe_id": "REC-012839",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-039",
+      "event_id": "E12",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "f5fee751f732d3f8eccae09d8496743a6b35780ff25d1f0727baf01fd6b2cb13",
+      "recipe_id": "REC-014179",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-040",
+      "event_id": "E2",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000029",
+      "producer_row_sha256": "24bd7b74deaeb8d045332ffcfc6589023ca4208699c48b306f112c8382c1a6c5",
+      "recipe_id": "REC-012288",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-041",
+      "event_id": "E11",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000002",
+      "producer_row_sha256": "6f1659487104cba53c25d0d585de74cf929de542928cb3aa50d8a8d8f0a7f3cc",
+      "recipe_id": "REC-014708",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-042",
+      "event_id": "E1",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "a7df961ea5f0b42a0abf9a4978b4e1d016bf278c9d3a2e5519675bc45a00e191",
+      "recipe_id": "REC-012838",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-043",
+      "event_id": "E5",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "f8ef381d5a88d0f52f6e5de71949d848e793a93731ae2a5c3465c4347d724f91",
+      "recipe_id": "REC-014372",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-044",
+      "event_id": "E33",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000025",
+      "producer_row_sha256": "d561da8cc18bedf5682fa38e875f9779d80d74b6e7e97c0aeb41ca3163a1378c",
+      "recipe_id": "REC-015467",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-045",
+      "event_id": "E32",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "5a83c940a928836bdee68920537c4c5fba96a0552c5a2a21b7b179d596c700b6",
+      "recipe_id": "REC-014693",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-046",
+      "event_id": "E17",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "d65dd1fcc7106913dcd78d5287bde4a9352ce8ebef8ef9963a9d5a03ba2cb707",
+      "recipe_id": "REC-013683",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-047",
+      "event_id": "E9",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "8ea373890a0b129182b08274f460242b4382a559747354f7cc7f28315dccea63",
+      "recipe_id": "REC-013188",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-048",
+      "event_id": "E3",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "94616acd66f5c50f71218b50ca693f3c454146f281beb36d8e04440f1b5c542c",
+      "recipe_id": "REC-014697",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-049",
+      "event_id": "E8",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000003",
+      "producer_row_sha256": "aa8f6069edd4b4b0901148b2a41011bd0792f02618428eeefa0508dd81a178e7",
+      "recipe_id": "REC-012052",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-050",
+      "event_id": "E6",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "c03d467cb7812b389561af3e6fc4084ceb0f9f035303248a6a7dfcc2e3599493",
+      "recipe_id": "REC-013500",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-051",
+      "event_id": "E31",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000034",
+      "producer_row_sha256": "04118186cbd0ffaf06680b1af171bf04903392462d843e84e82679b64d2df993",
+      "recipe_id": "REC-012587",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-052",
+      "event_id": "E14",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000020",
+      "producer_row_sha256": "e4c4063ceda790d1a59409e99190cd19e5cd7350d701023c952351f1b2b4745a",
+      "recipe_id": "REC-014768",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-053",
+      "event_id": "E9",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "3b9815669b8b63c3dc28548d690cba2e0038537c870958d6ee57215b7b43cc80",
+      "recipe_id": "REC-013776",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-054",
+      "event_id": "E12",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000014",
+      "producer_row_sha256": "9376cdb675c8fc47c47021c0f23c890156cc2a951be3009bd38b4bfd75ebaca3",
+      "recipe_id": "REC-014069",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-055",
+      "event_id": "E17",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "474e7fb6ac59ddbe5fb8425518ced77c8e179a29bd53dea5800a7fb483ec55cd",
+      "recipe_id": "REC-014264",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-056",
+      "event_id": "E5",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "cdd54497d8541f5e19a8f5b118618af846d92fe59b8176913e3daaca3d4413ca",
+      "recipe_id": "REC-015414",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-057",
+      "event_id": "E6",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "c132ba44bbf2dfa93c16c897c16d2875bdb4650a1a0841962f1c57749af36b06",
+      "recipe_id": "REC-014068",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-058",
+      "event_id": "E3",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000014",
+      "producer_row_sha256": "083a5956f05cb509ec8b70cc8e5e91b422411b4cb65278cbe3b925200edcdabb",
+      "recipe_id": "REC-013913",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-059",
+      "event_id": "E5",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "648251d7c22987e5bb5c6cab9107dfbd15dbb54cb000932231ef449e91f13b2e",
+      "recipe_id": "REC-013071",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-060",
+      "event_id": "E23",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000020",
+      "producer_row_sha256": "8876a8c07c21f709edced6a54f0d0ede174b940c4728b45028bbbf5163f983db",
+      "recipe_id": "REC-013185",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-061",
+      "event_id": "E11",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "9263522a84c3f8bafc53160fe659096a65d3bce172784ceafba732120ebd4adc",
+      "recipe_id": "REC-015092",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-062",
+      "event_id": "E19",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000014",
+      "producer_row_sha256": "ccb9972835f562381f7afbdbb0286b5cecdf4c46583605b9edbeb1d5cde0104d",
+      "recipe_id": "REC-012229",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-063",
+      "event_id": "E1",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "875dd8a49e473cb8869ae9f634e8910033de8bf97d5a278f53774b467e907391",
+      "recipe_id": "REC-013974",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-064",
+      "event_id": "E15",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000020",
+      "producer_row_sha256": "544ba69635080a5cc162d7a987d2e2570d581d716a0608ec971440f2acb83e08",
+      "recipe_id": "REC-012554",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-065",
+      "event_id": "E4",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "9c5f7d77a8fd47bfb50db3909b2a49391b40606d55733e34aac828f77b3dc8bd",
+      "recipe_id": "REC-014502",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-066",
+      "event_id": "E2",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "4b0c55bc17100f2a0aace9431bb1d9b7fe0affc3daf593d80eba9b6d884816ca",
+      "recipe_id": "REC-014078",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-067",
+      "event_id": "E1",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "a4da3bc80cf9b5e9f9bc43ef94632c0ca7955e70bf58924724355fa291556dc8",
+      "recipe_id": "REC-013561",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-068",
+      "event_id": "E6",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "050dd66ef26d52ccad22ee6717052cd3070b446c265ac23af37f38c321195741",
+      "recipe_id": "REC-015191",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-069",
+      "event_id": "E6",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "f1c12f9274bf54ac3aeb85cc0f740b9f99a980087ffd429a35ada7f66f428239",
+      "recipe_id": "REC-013113",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-070",
+      "event_id": "E8",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "609c5bc123e1d2327e5bbae60ccb92b2831334583431f5669b6dfecd586b5868",
+      "recipe_id": "REC-015389",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-071",
+      "event_id": "E13",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000036",
+      "producer_row_sha256": "361398f644ec2220063ad9af931d6126d78700e8ce5afc28bf44aab631f9ea4a",
+      "recipe_id": "REC-013817",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-072",
+      "event_id": "E17",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000022",
+      "producer_row_sha256": "d95f04a03ce7f48d704b45b84d6102609d5efb5c28f3228bf8f904e9ca223b60",
+      "recipe_id": "REC-012729",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-073",
+      "event_id": "E16",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "5633bdf35992f368e75fa72cbd2827902f99d49f30987c6f02a8741092094435",
+      "recipe_id": "REC-012771",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-074",
+      "event_id": "E22",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000016",
+      "producer_row_sha256": "672b7591e617085fc794ad578322e759cc914b6e477a7390e2679d24ed4319f5",
+      "recipe_id": "REC-012364",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-075",
+      "event_id": "E3",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "b8fdcc2ec6195ae80358af54d6be2e7afeb7adad98f6152f1d15c37b88c15702",
+      "recipe_id": "REC-014335",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-076",
+      "event_id": "E23",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "d70ce41c39bc6517c842fe931dd387067b57f2d34ed5b07a91bbcc00593ea327",
+      "recipe_id": "REC-013990",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-077",
+      "event_id": "E10",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000004",
+      "producer_row_sha256": "1c0710af703b194c7b2ceab6617ae2263ae7b3ed731b9de57787a6aa72861a1d",
+      "recipe_id": "REC-012042",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-078",
+      "event_id": "E16",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000014",
+      "producer_row_sha256": "bfcda182b76161a031b0d94246a2662633da169f174a377229f0c24852a6401b",
+      "recipe_id": "REC-015396",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-079",
+      "event_id": "E7",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "f74ada60f962725bf2360e46a0959eba7c989f3e41ff81b13559c6785bd1d0e3",
+      "recipe_id": "REC-014443",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-080",
+      "event_id": "E14",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000020",
+      "producer_row_sha256": "d9073cea0dad5f721e0e491b128332f96a27df20c3f245839bafbafb1e14f972",
+      "recipe_id": "REC-013329",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-081",
+      "event_id": "E5",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "1d8d1ca9e83c472f54e3a00438fd0a7c91d2c9e895dfc0fb6c5912bb38351539",
+      "recipe_id": "REC-014311",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-082",
+      "event_id": "E3",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000016",
+      "producer_row_sha256": "8cd43d4919347b6db87a809cbbd35c7048f38d0919a44a686bd1ecb1d89cd9a5",
+      "recipe_id": "REC-012318",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-083",
+      "event_id": "E44",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "7a9eaea9987c808e0c393c94deae2f22103199c2e4ac84a5b5352bec36ebd38d",
+      "recipe_id": "REC-012715",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-084",
+      "event_id": "E2",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "3977277bbc0467e2f69c35fa405a2ef3b1c43650cc9d4b2496838a4f040b1daf",
+      "recipe_id": "REC-013279",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-085",
+      "event_id": "E12",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "d5d3002f5af33c2bb0ca297cfa48343c5ca8c87636beda8efafd071445131910",
+      "recipe_id": "REC-012415",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-086",
+      "event_id": "E35",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000016",
+      "producer_row_sha256": "00eac6ce8249713acff84fb521dc52305283919959d598727092603c3f474223",
+      "recipe_id": "REC-012592",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-087",
+      "event_id": "E16",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "e21c6b7472dd3841b1a52b71b1c70d38be9eec438423e21af5bd7faf02fb75ac",
+      "recipe_id": "REC-013606",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-088",
+      "event_id": "E15",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000020",
+      "producer_row_sha256": "b2671326bcda2c4ff99f812feda07175a19fdbeb07057da91bd6d519378c4337",
+      "recipe_id": "REC-015222",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-089",
+      "event_id": "E24",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "0a7870257cf4b09e4b887ad4040320af5baa0e2ee8683c72abc4f223e82f3b6f",
+      "recipe_id": "REC-012326",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-090",
+      "event_id": "E6",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000016",
+      "producer_row_sha256": "1b9a746cacf0832099d35197bca988d38ddda241f8e1bd56712547150553a093",
+      "recipe_id": "REC-015339",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-091",
+      "event_id": "E6",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000032",
+      "producer_row_sha256": "582e26f09538d081af3f88d8ec7c8087c19437dd9724788f68f0c83a92b75d5a",
+      "recipe_id": "REC-014402",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-092",
+      "event_id": "E11",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "1d747492c4c2a8cb045cb4547d146dd2904054780c5994383d732bd78f2f8d2b",
+      "recipe_id": "REC-013668",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-093",
+      "event_id": "E10",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000003",
+      "producer_row_sha256": "f504e49ab3d592d04ae8d8b85dc876c313808e42c3d6a1c5b91dd34bb5431139",
+      "recipe_id": "REC-014020",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-094",
+      "event_id": "E9",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000009",
+      "producer_row_sha256": "53d853aaf33f633436d95a77424b531c233efcb9858412709c07f4988ae8c643",
+      "recipe_id": "REC-013601",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-095",
+      "event_id": "E10",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000031",
+      "producer_row_sha256": "3c75393237b71e6d12db1c2df99ba81bcb32c012b18a3b84de222362b326b526",
+      "recipe_id": "REC-012264",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-096",
+      "event_id": "E16",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000019",
+      "producer_row_sha256": "e3ea2d1640db70dbb2ee3a089c7cb4b09a1f0e6c4b7391ce57d3ee4e30d44898",
+      "recipe_id": "REC-014043",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-097",
+      "event_id": "E2",
+      "family": "DRY_HEAT",
+      "process_id": "PROC-000001",
+      "producer_row_sha256": "f6eb2f4ff4e9c92baca22ca8ce1f8d37db48be1c6566d02ff1fa6347c673436c",
+      "recipe_id": "REC-012703",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-098",
+      "event_id": "E12",
+      "family": "FAT_HEAT",
+      "process_id": "PROC-000015",
+      "producer_row_sha256": "13546cdaab03f041b52a8b647439655babb5c91bd16f780bad6494781885edd5",
+      "recipe_id": "REC-012251",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-099",
+      "event_id": "E8",
+      "family": "HEAT_GENERAL",
+      "process_id": "PROC-000034",
+      "producer_row_sha256": "2f2def4dc3b553e10c42bed32f2689493a143df60fc735f1dd76fabd105610e7",
+      "recipe_id": "REC-013772",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "case_id": "BINDREV-100",
+      "event_id": "E26",
+      "family": "WET_HEAT",
+      "process_id": "PROC-000020",
+      "producer_row_sha256": "67c470fef61ac715e08d939e31b8dae3fa77ba4156294783979e2adad4c722e3",
+      "recipe_id": "REC-014245",
+      "source_family": "WIKIBOOKS"
+    }
+  ],
+  "selection": "Round-robin process family; within family SHA256(seed|family|recipe_id|event_id) ascending",
+  "size": 100,
+  "source_scope": "WIKIBOOKS_ONLY; source-family generalization is not assessed"
+}

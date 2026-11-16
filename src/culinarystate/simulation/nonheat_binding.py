@@ -19,6 +19,11 @@ Rules (all deterministic):
 - Qualitative classes (FRIDGE, FREEZER, ROOM, OVERNIGHT ...) stay classes: fridge and freezer words are never turned
   into temperatures here (Layer 2 does that from the NH registry).
 - Statuses: MEASURED, RANGE, BOUND_UPPER, BOUND_LOWER (up to / at least), QUALITATIVE (class, no number), UNKNOWN.
+
+S178 FIX-PHYS (version 0.3.0, SCI-A m4 and the heat-link changes of Layer 1 0.3.0): the COOLING target food temperature ("cool to
+40 C") is an ENDPOINT of the food, not an input: it is stored in the record's ``endpoint`` block (key
+``target_food_temperature``) and never in ``inputs``, so it never reaches a feature row. Layer 2 still reads it for the query
+``minutes_to_target_food_c``. The prior-heat links carry the Layer 1 0.3.0 heat inputs (medium-compatible temperatures, cue axes).
 """
 from __future__ import annotations
 
@@ -38,9 +43,10 @@ from culinarystate.recipes.ledgers import LOCALE
 from culinarystate.simulation import condition_binding as CB
 
 ROOT = Path(__file__).resolve().parents[3]
-VERSION = "nonheat-binding-L1-0.2.0-draft"
+VERSION = "nonheat-binding-L1-0.3.0-draft"
+VERSION_V02 = "nonheat-binding-L1-0.2.0-draft"  # SUPERSEDED: COOLING target in inputs; heat links from Layer 1 0.2.0
 VERSION_V01 = "nonheat-binding-L1-0.1.0-draft"  # SUPERSEDED: heat-step links used the 0.1.0 nearest-temperature rule; no span_id / row
-CENSUS_VERSION = "nonheat-census-L1-0.1.0-draft"
+CENSUS_VERSION = "nonheat-census-L1-0.2.0-draft"  # S178 FIX-PHYS: + endpoint_status (m4)
 NH_FAMILIES = ("COOLING", "SEPARATION", "FERMENT_LEAVEN", "PRESERVATION", "MECHANICAL_CUT", "MECHANICAL_MIX",
                "RESTING", "STORAGE")
 STORE_PROC = "PROC-000113"
@@ -57,8 +63,7 @@ FORM_CANDIDATE = {
     "STORAGE": "ARRHENIUS_AT_STORAGE_T_PARAM_PENDING",
 }
 INPUTS = {
-    "COOLING": ("duration", "medium_temperature", "target_food_temperature", "environment", "target_state",
-                "start_state", "piece_size_class"),
+    "COOLING": ("duration", "medium_temperature", "environment", "target_state", "start_state", "piece_size_class"),
     "SEPARATION": ("duration", "removed_phase", "liquid_fate", "rinse_medium", "rinse_temperature_class",
                    "follows_soak_or_brine"),
     "FERMENT_LEAVEN": ("duration", "medium_temperature", "environment", "medium", "salt_concentration_pct",
@@ -71,6 +76,8 @@ INPUTS = {
     "STORAGE": ("duration", "medium_temperature", "environment", "container"),
 }
 TEXT_BASES = ("TEXT_STATED", "TEXT_CUE")
+ENDPOINT_KEY = "endpoint"
+TARGET_KEY = "target_food_temperature"  # S178 FIX-PHYS m4: an endpoint of the food, kept outside ``inputs``
 TIMED_FAMILIES = ("COOLING", "FERMENT_LEAVEN", "PRESERVATION", "RESTING", "STORAGE")
 # surfaces that the lexicon maps to a verb but that are nouns or adjectives in recipe text (counted, never simulated)
 NON_VERB_SURFACES = ("marinade", "marinades", "canned", "cans", "can", "pickles", "grates")
@@ -103,8 +110,9 @@ _GAP_SUM = re.compile(r"^\s*(?:,|and|&)?\s*$", re.I)
 _GAP_RANGE = re.compile(r"^\s*(?:to|-|–|or)\s*$", re.I)
 _TEMP = re.compile(
     r"(?<![\w.])(?P<a>[-−]?\d{1,3}(?:\.\d+)?)(?:\s*(?:-|–|to)\s*(?P<b>[-−]?\d{1,3}(?:\.\d+)?))?"
-    r"(?:\s*(?:°|º|˚)\s*|\s+degrees?\s+|\s+deg\.?\s*|\s+(?=Celsius\b|Fahrenheit\b)|(?=[CF]\b))"
-    r"(?P<u>C(?:elsius)?|F(?:ahrenheit)?)\b")
+    r"(?:\s*(?:°|º|˚)\s*|\s+degrees?\s+|\s+deg\.?\s*|\s+(?=Celsius\b|Fahrenheit\b)|\s?(?=[CF]\b))"
+    r"(?P<u>C(?:elsius)?|F(?:ahrenheit)?)\b")  # S178 FIX-PHYS m1: "40 F" with a space is read too (cups guard below)
+_CUPS_AFTER = re.compile(r"\.?\s+(?:of|cups?|water|milk|stock|broth|cream|flour|sugar|oil|butter|rice|juice)\b", re.I)
 _TARGET_PREFIX = re.compile(r"(?:\bto|\buntil|\breach(?:es|ing)?|\bbelow|\bunder|\bdown to|\bless than|\blower than)"
                             r"\s*(?:about|around|approximately)?\s*(?:a |an |the )?(?:temperature of )?\s*$", re.I)
 T_MIN_C, T_MAX_C = Fraction(-60), Fraction(260)
@@ -270,6 +278,8 @@ class NonHeatBinder:
     def _temperatures(raw: str, win: tuple[int, int], anchor: int) -> list[dict]:
         out = []
         for m in _TEMP.finditer(raw, win[0], win[1]):
+            if m.group("u") == "C" and not re.search(r"°|º|˚|deg", m.group(0)) and _CUPS_AFTER.match(raw, m.end()):
+                continue  # "1 C sugar", "2 C. of water": cups, not Celsius
             a = Fraction(m.group("a").replace("−", "-"))
             b = Fraction(m.group("b").replace("−", "-")) if m.group("b") else a
             lo, hi = sorted((_c_of(a, m.group("u")), _c_of(b, m.group("u"))))
@@ -472,7 +482,7 @@ class NonHeatBinder:
                 children.setdefault(p, []).append(e.entity_id)
         # heat inputs of every heat step, tracking the carried oven setpoint exactly as the heat binder does
         heat_inputs, setpoint, gas = {}, None, None
-        plan = base.temperature_plan(raw, events)  # S178: the same temperature ownership as the heat binder (0.2.0)
+        plan = base.temperature_plan(raw, events, g)  # S178: the same temperature ownership as the heat binder (0.3.0)
         for ev in events:
             pid = _attr(ev.attributes, "proc_id")
             fam = base.family.get(pid)
@@ -527,12 +537,19 @@ class NonHeatBinder:
                  "PRESERVATION": self._preservation, "MECHANICAL_CUT": self._cut, "MECHANICAL_MIX": self._mix,
                  "RESTING": self._rest, "STORAGE": self._storage}[fam]
         hist = build(ev, pid, role, surface, verb, win, ctx, inp, cues)
+        endpoint = {}
+        if TARGET_KEY in inp:  # m4: the target food temperature is an endpoint, never an input axis
+            endpoint[TARGET_KEY] = inp.pop(TARGET_KEY)
+            self._stamp(endpoint, fam, pid)
         self._stamp(inp, fam, pid)
         if surface in NON_VERB_SURFACES:
             cues.append({"name": "NON_VERB_SURFACE", "span": list(verb)})
-        return {"event_id": ev.event_id, "process_id": pid, "family": self.base.family.get(pid), "nh_family": fam,
-                "process_role": role, "form_candidate": FORM_CANDIDATE[fam], "layer": "TEXT_STATED",
-                "version": VERSION, "verb_span": list(verb), "inputs": inp, "cues": cues, "history": hist or {}}
+        out = {"event_id": ev.event_id, "process_id": pid, "family": self.base.family.get(pid), "nh_family": fam,
+               "process_role": role, "form_candidate": FORM_CANDIDATE[fam], "layer": "TEXT_STATED",
+               "version": VERSION, "verb_span": list(verb), "inputs": inp, "cues": cues, "history": hist or {}}
+        if endpoint:
+            out[ENDPOINT_KEY] = endpoint
+        return out
 
     @staticmethod
     def _stamp(inp: dict, fam: str, pid: str) -> None:
@@ -811,11 +828,14 @@ def _steps(rec: Mapping) -> list[str]:
 
 
 def row(rec: Mapping, src_family, recipe_id) -> dict:
-    return {"recipe_id": recipe_id, "source_family": src_family, "event_id": rec["event_id"],
-            "process_id": rec["process_id"], "family": rec["family"], "nh_family": rec["nh_family"],
-            "process_role": rec["process_role"], "form_candidate": rec["form_candidate"], "layer": "TEXT_STATED",
-            "version": VERSION, "verb_span": rec["verb_span"], "cues": rec["cues"], "history": rec["history"],
-            "inputs": {k: {kk: _s(vv) for kk, vv in v.items()} for k, v in rec["inputs"].items()}}
+    out = {"recipe_id": recipe_id, "source_family": src_family, "event_id": rec["event_id"],
+           "process_id": rec["process_id"], "family": rec["family"], "nh_family": rec["nh_family"],
+           "process_role": rec["process_role"], "form_candidate": rec["form_candidate"], "layer": "TEXT_STATED",
+           "version": VERSION, "verb_span": rec["verb_span"], "cues": rec["cues"], "history": rec["history"],
+           "inputs": {k: {kk: _s(vv) for kk, vv in v.items()} for k, v in rec["inputs"].items()}}
+    if rec.get(ENDPOINT_KEY):
+        out[ENDPOINT_KEY] = {k: {kk: _s(vv) for kk, vv in v.items()} for k, v in rec[ENDPOINT_KEY].items()}
+    return out
 
 
 def _chunk(args: tuple[int, list[Mapping]]) -> dict:
@@ -857,6 +877,8 @@ def _chunk(args: tuple[int, list[Mapping]]) -> dict:
                         c[("why", fam, name, code(x.get("reason") or "UNSPECIFIED"))] += 1
                 for cue in ev["cues"]:
                     c[("cue", fam, code(cue["name"]))] += 1
+                for name, x in (ev.get(ENDPOINT_KEY) or {}).items():  # m4: endpoint axes, counted apart from the inputs
+                    c[("endpoint", fam, name, x["status"])] += 1
                 if "prior_heat" in ev["history"]:
                     c[("prior_heat", fam, ev["history"]["prior_heat"]["basis"])] += 1
                 if fh:
@@ -923,6 +945,7 @@ def census_from_records(records: Iterable[Mapping], *, seed: str, size: int, wor
               "events_by_role": _nest(acc, "role"), "input_status": _nest(acc, "st"), "input_basis": _nest(acc, "ba"),
               "unknown_reasons": _nest(acc, "why"), "missing_core_inputs": _nest(acc, "missing_core"),
               "cues": _nest(acc, "cue"), "prior_heat_link_basis": _nest(acc, "prior_heat"),
+              "endpoint_status": _nest(acc, "endpoint"),
               "exceptions_by_class": {k[1]: v for k, v in sorted(acc.items()) if k[0] == "exc"}}
     D.assert_counts_only(report)
     return report

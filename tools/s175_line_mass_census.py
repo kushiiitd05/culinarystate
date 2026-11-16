@@ -25,7 +25,7 @@ from culinarystate.extraction.rung_a_lexicon import load_lexicon, tokens  # noqa
 
 SR_DIR = ROOT / "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04"
 REGISTRY = ROOT / "registry/ing_sr_defaults_v1.csv"
-PH_REGISTRY = ROOT / "registry/food_ph_fda2003_v1.csv"
+PH_REGISTRY = ROOT / "registry/food_ph_fda_draft_v1.csv"   # S179 P5: L-PH (Apr 2007), parent context
 
 
 def _ing_names() -> tuple[dict[str, str], dict[str, int]]:
@@ -77,7 +77,7 @@ def main(argv=None) -> int:
               resolve=make_resolve(foods, M.load_registry(REGISTRY), M.build_index(foods)), foods=foods)
     recs = corpus_records(tuple(a.families), ROOT)
     if a.lots:
-        out = LOT.census(recs, ph=PH.PHTable(PH.load_registry(PH_REGISTRY)), **kw)
+        out = LOT.census(recs, ph=PH.PHTable(PH.load_registry_lph(PH_REGISTRY)), **kw)
     else:
         out = LC.census(recs, **kw)
     out["usable_match_statuses"] = ["REGISTRY_MAPPED", "AUTO_MATCH_HIGH"]

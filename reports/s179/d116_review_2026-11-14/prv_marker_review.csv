@@ -1,0 +1,91 @@
+ing_id,canonical_name,marker,verdict,reason
+ING-000001,butter,LIPID,ACCEPT,~80% fat W/O emulsion; LIPID acceptable; salted butter also SALT
+ING-000003,olive oil,LIPID,ACCEPT,Fat/oil phase
+ING-000006,lemon,ACID,ACCEPT,Juice pH ~2-2.6; but whole-lemon mentions often zest/wedges; flag usage
+ING-000015,vegetable oil,LIPID,ACCEPT,Fat/oil phase
+ING-000021,lime,ACID,ACCEPT,Juice pH ~2-2.8; whole-fruit mentions often zest/wedges; flag usage
+ING-000024,wine vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-000026,sunflower oil,LIPID,ACCEPT,Fat/oil phase
+ING-000034,rapeseed oil,LIPID,ACCEPT,Fat/oil phase
+ING-000035,chicken stock,AQUEOUS,ACCEPT,Water-based cooking liquid; commercial stock also salty
+ING-000037,extra virgin olive oil,LIPID,ACCEPT,Fat/oil phase
+ING-000039,vegetable stock,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-000043,lemon juice,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-000044,salt,SALT,ACCEPT,NaCl-based
+ING-000053,soy sauce,SALT,ACCEPT,Salt ~14-18%; pH ~4.7-4.9 so ACID not warranted; LLM YES/YES flag is wrong
+ING-000066,white wine,ACID,ACCEPT,pH ~3.0-3.4; acidic deglazing liquid
+ING-000071,oil,LIPID,ACCEPT,Fat/oil phase
+ING-000090,balsamic vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-000092,cider vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-000094,sesame oil,LIPID,ACCEPT,Fat/oil phase
+ING-000105,red wine,ACID,ACCEPT,pH ~3.3-3.7; acidic
+ING-000109,water,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-000143,fish sauce,SALT,ACCEPT,~20-25% salt; correct
+ING-000148,lime juice,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-000150,beef stock,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-000208,sherry vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-000216,rice vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-000221,light soy sauce,SALT,ACCEPT,Salty; pH ~4.8 not ACID
+ING-000271,groundnut oil,LIPID,ACCEPT,Fat/oil phase
+ING-000279,dark soy sauce,SALT,ACCEPT,Salty; pH ~4.8 not ACID
+ING-000298,coconut oil,LIPID,ACCEPT,Fat/oil phase
+ING-000322,ghee,LIPID,ACCEPT,Fat/oil phase
+ING-000380,rice wine,ACID,REJECT,"Rice wine pH ~4-4.6 borderline, not an acidulant; use AQUEOUS or UNKNOWN"
+ING-000408,stock,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-000428,tamarind paste,ACID,ACCEPT,pH ~2.8-3.2; acidulant
+ING-000447,malt vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-000448,margarine,LIPID,ACCEPT,"Fat spread, ~80% fat; LIPID acceptable"
+ING-000454,fish stock,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-000459,lard,LIPID,ACCEPT,Fat/oil phase
+ING-000508,light olive oil,LIPID,ACCEPT,Fat/oil phase
+ING-000516,chilli oil,LIPID,ACCEPT,Oil phase; LLM acidic YES/YES flag is spurious
+ING-000541,suet,LIPID,ACCEPT,Hard animal fat; LIPID
+ING-000556,vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-000574,truffle oil,LIPID,ACCEPT,Oil phase; LLM acidic flag spurious
+ING-000575,walnut oil,LIPID,ACCEPT,Oil phase; LLM acidic flag spurious
+ING-000583,lamb stock,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-000592,celery salt,SALT,ACCEPT,Mostly NaCl with ground celery seed
+ING-000797,flavourless oil,LIPID,ACCEPT,Fat/oil phase
+ING-000853,veg stock,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-000898,rock salt,SALT,ACCEPT,"NaCl; note often used non-edibly (salt crust, ice)"
+ING-000899,rosé wine,ACID,ACCEPT,pH ~3.1-3.4; acidic
+ING-000908,wine,ACID,ACCEPT,Generic grape wine pH ~3-3.8
+ING-001024,garlic salt,SALT,ACCEPT,Mostly NaCl with garlic powder
+ING-001088,cooking oil,LIPID,ACCEPT,Fat/oil phase
+ING-001095,dessert wine,ACID,ACCEPT,"Grape wine pH ~3.3-3.8; sweet, weak acidulant role; pH not sourced"
+ING-001101,ginger wine,ACID,ACCEPT,"Grape/raisin fortified wine, pH likely <4; not sourced; flag"
+ING-001107,hazelnut oil,LIPID,ACCEPT,Fat/oil phase
+ING-001147,spray oil,LIPID,ACCEPT,Fat/oil phase
+ING-001165,white vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-001194,chinese black vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-001241,neutral-tasting oil,LIPID,ACCEPT,Fat/oil phase
+ING-001263,shaohsing wine,ACID,REJECT,Same as shaoxing wine (spelling variant); not a clear acidulant
+ING-001296,avocado oil,LIPID,ACCEPT,Fat/oil phase
+ING-001324,corn oil,LIPID,ACCEPT,Fat/oil phase
+ING-001328,crispy chilli oil,LIPID,ACCEPT,Oil-based; also contains salt - single marker limitation
+ING-001436,turkey stock,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-001484,cooking spray,LIPID,ACCEPT,Oil plus lecithin/propellant; LIPID acceptable
+ING-001518,ham stock,AQUEOUS,ACCEPT,AQUEOUS fine; typically very salty - single marker hides SALT
+ING-001539,marsala wine,ACID,ACCEPT,"Fortified grape wine pH ~3.4-3.6; acceptable, pH not sourced"
+ING-001567,pork stock,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-001586,rice bran oil,LIPID,ACCEPT,Fat/oil phase
+ING-001624,tamarind pulp,ACID,ACCEPT,pH ~2.8-3.2; acidulant
+ING-001627,tarragon vinegar,ACID,ACCEPT,"Vinegar/acidic juice, pH <4.6"
+ING-001670,basil oil,LIPID,ACCEPT,Oil phase; LLM acidic flag spurious
+ING-001687,bouillon,SALT,REJECT,Ambiguous broth vs cube/granules; inconsistent with stock=AQUEOUS; needs quantity disambiguation
+ING-001785,garlic oil,LIPID,ACCEPT,Fat/oil phase
+ING-001786,garlic-infused oil,LIPID,ACCEPT,Fat/oil phase
+ING-001787,glass red wine,ACID,ACCEPT,"Marker fine (wine pH ~3.3-3.7); canonical_name leaks unit ""glass"" - normalisation bug"
+ING-001800,grapeseed oil,LIPID,ACCEPT,Fat/oil phase
+ING-001838,madeira wine,ACID,ACCEPT,"Fortified grape wine pH ~3.3-3.6; acceptable, pH not sourced"
+ING-001860,mustard oil,LIPID,ACCEPT,Fat/oil phase
+ING-001886,pink himalayan salt,SALT,ACCEPT,NaCl-based
+ING-001936,shaoxing wine,ACID,REJECT,"Cooking Shaoxing is often salted, pH borderline; not an acidulant; not ACID"
+ING-001957,tamarind,ACID,ACCEPT,Pulp pH ~2.8-3.2; acidulant
+ING-001958,tamarind chutney,ACID,ACCEPT,"Sweetened tamarind condiment, pH likely <4; condiment not pure acidulant"
+ING-001959,tamarind sauce,ACID,ACCEPT,Acidic tamarind-based sauce
+ING-001978,veal stock,AQUEOUS,ACCEPT,Water-based cooking liquid
+ING-002033,citric acid,ACID,ACCEPT,Pure acidulant
+ING-002070,palm oil,LIPID,ACCEPT,Fat/oil phase
+ING-002074,peanut oil,LIPID,ACCEPT,Fat/oil phase
+ING-002088,shortening,LIPID,ACCEPT,Fat/oil phase

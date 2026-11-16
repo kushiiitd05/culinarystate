@@ -1,15 +1,15 @@
-matrix_class,regime,basis,solute_rich,source_status
-VEGETABLE,MOIST,"raw vegetables are 80-95 percent water (food composition tables)",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-FRUIT,MOIST,"raw fruit is mostly free water",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-MEAT,MOIST,"muscle is about 70-75 percent water",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-SEAFOOD,MOIST,"fish and shellfish flesh is about 70-80 percent water",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-EGG,MOIST,"egg is about 75 percent water",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-DAIRY,MOIST,"milk, cream, yogurt, fresh cheese; hard and powdered dairy are lower in water but are not separated here",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-BEVERAGE,MOIST,"liquids",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-LEGUME,MIXED_AMBIGUOUS,"dried legumes are dry, soaked or canned ones are moist; the group does not say which",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-CEREAL,MIXED_AMBIGUOUS,"flour and dry grain are dry, dough, batter and cooked grain or bread are moist; the group does not say which",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-CONDIMENT,MIXED_AMBIGUOUS,"sauces and pastes are moist, salt and dry mixes are not",YES,SOURCE_UNVERIFIED_AGENT_RECALLED
-NUT_SEED,DRY_LOW_MOISTURE,"nuts and seeds are about 2-10 percent water",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-HERB_SPICE,MIXED_AMBIGUOUS,"dried spices are dry, fresh herbs and aromatics are moist; the group does not say which",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
-SWEETENER,DRY_LOW_MOISTURE,"sugar is dry; honey and syrup keep about 17-30 percent water but behave as a low-moisture matrix",YES,SOURCE_UNVERIFIED_AGENT_RECALLED
-FAT_OIL,DRY_LOW_MOISTURE,"oils and fats carry no free water (butter and margarine carry about 16 percent and are not separated here)",NO,SOURCE_UNVERIFIED_AGENT_RECALLED
+matrix_class,regime,basis,solute_rich,solute_kind,source_status
+VEGETABLE,MOIST,raw vegetables are 80-95 percent water (food composition tables),NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+FRUIT,MOIST,raw fruit is mostly free water,NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+MEAT,MOIST,muscle is about 70-75 percent water,NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+SEAFOOD,MOIST,fish and shellfish flesh is about 70-80 percent water,NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+EGG,MOIST,egg is about 75 percent water,NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+DAIRY,MOIST,"milk, cream, yogurt, fresh cheese; hard and powdered dairy are lower in water but are not separated here",NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+BEVERAGE,MOIST,liquids,NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+LEGUME,MIXED_AMBIGUOUS,"dried legumes are dry, soaked or canned ones are moist; the group does not say which",NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+CEREAL,MIXED_AMBIGUOUS,"flour and dry grain are dry, dough, batter and cooked grain or bread are moist; the group does not say which",NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+CONDIMENT,MIXED_AMBIGUOUS,"sauces and pastes are moist, salt and dry mixes are not",YES,SALT_OR_CONDIMENT,SOURCE_UNVERIFIED_AGENT_RECALLED
+NUT_SEED,DRY_LOW_MOISTURE,nuts and seeds are about 2-10 percent water,NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+HERB_SPICE,MIXED_AMBIGUOUS,"dried spices are dry, fresh herbs and aromatics are moist; the group does not say which",NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED
+SWEETENER,DRY_LOW_MOISTURE,sugar is dry; honey and syrup keep about 17-30 percent water but behave as a low-moisture matrix,YES,SUGAR_PHASE,SOURCE_UNVERIFIED_AGENT_RECALLED
+FAT_OIL,DRY_LOW_MOISTURE,oils and fats carry no free water (butter and margarine carry about 16 percent and are not separated here),NO,NONE,SOURCE_UNVERIFIED_AGENT_RECALLED

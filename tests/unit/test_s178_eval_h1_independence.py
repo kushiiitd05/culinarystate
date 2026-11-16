@@ -32,8 +32,10 @@ def test_gold_origin_inference():
     assert I.gold_origin({"status": "DRAFT_FOR_REVIEW", "drafted_by": "AI_AGENT_S171"}) == "ENGINE_DRAFT"
     assert I.gold_origin({"verdict": "KEEP"}) == "HUMAN_AFTER_SEEING_ENGINE"
     assert I.gold_origin({"verdict": "EDIT", "seen_system_output": "true"}) == "HUMAN_AFTER_SEEING_ENGINE"
-    assert I.gold_origin({"verdict": "KEEP", "seen_system_output": "false"}) == "HUMAN_BLIND"
-    assert I.gold_origin({"gold_origin": "human_blind"}) == "HUMAN_BLIND"
+    # S178 FIX-EVAL (SCI-B E1): a KEEP of the engine draft is anchored on the engine whatever the seen flag says (was HUMAN_BLIND)
+    assert I.gold_origin({"verdict": "KEEP", "seen_system_output": "false"}) == "HUMAN_AFTER_SEEING_ENGINE"
+    assert I.gold_origin({"gold_source": "BLIND_HUMAN", "blind_answer_r1": "cider", "seen_system_output": "false"}) == "HUMAN_BLIND"
+    assert I.gold_origin({"gold_origin": "human_blind"}) == "HUMAN_BLIND"           # no AI drafter, no verdict: declared
     assert I.gold_origin({"gold_origin": "nonsense", "verdict": ""}) == "ENGINE_DRAFT"
 
 

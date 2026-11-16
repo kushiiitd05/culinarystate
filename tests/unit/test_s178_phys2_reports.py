@@ -57,6 +57,7 @@ def _read(d: Path):
 def test_heat_tool_names_the_comparison_block_by_tag_and_counts_bath_changes(heat_tool, tmp_path):
     l1 = tmp_path / "l1"
     recs = [_rec("PROC-000019", "WATER", 20, 160), _rec("PROC-000001", "OVEN_AIR", 30, 200)]
+    recs[0]["inputs"]["temperature_profile"]["row"] = "CB_RULE:TEMPERATURE_OWN_CLAUSE"  # S178 FIX-PHYS: owned, but dilute (Q1)
     _write(l1, recs)
     first = tmp_path / "a.json"
     assert heat_tool.main(["--l1", str(l1), "--l2", str(tmp_path / "l2a"), "--out", str(first)]) == 0
@@ -78,7 +79,9 @@ def test_heat_tool_names_the_comparison_block_by_tag_and_counts_bath_changes(hea
     c = rep["v03_to_v04"]["counts"]
     assert c["events"] == 2 and c["bath_c_changed"]["TYPICAL"] == 1 and "ALIGNMENT_ERROR" not in c
     c2 = rep["counts"]
-    assert c2["stated_liquid_typical_by_stated_c_and_member"]["ABOVE_150"]["NO_SOLUTE_RICH_MEMBER"] == 1
+    # S178 FIX-PHYS (Q1): an owned 160 C boil with no sugar member, syrup or pressure cue is not lifted (was lifted at 0.4.0)
+    assert "stated_liquid_typical_by_stated_c_and_member" not in c2
+    assert c2["fixphys_flag_typical"]["STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_DILUTE"] == 1
     assert rep["layer_version"] == SL.VERSION
     for r in _read(tmp_path / "l2b"):
         assert "l1_provenance" in r
@@ -161,7 +164,7 @@ def test_sensitivity_input_basis_split(sens, tmp_path):
         b["bases"]["bath_c"], b["bases"]["duration_min"] = "L1:TEXT_STATED", "L1:TEXT_STATED"
     _write(heat, [_l2("PROC-000001", copy.deepcopy(a), copy.deepcopy(a), copy.deepcopy(a))])
     rep = sens.heat_report([sens.heat_file(str(heat / "part-0.jsonl"))])
-    bb = rep["DRY_HEAT"]["by_input_basis"]["bath_STATED_duration_STATED"]
+    bb = rep["DRY_HEAT"]["by_input_basis"]["bath_TEXT_STATED_duration_TEXT_STATED"]  # S178 FIX-PHYS m8: basis kinds split
     assert bb["computed"] == 1 and bb["core_reaches_70c_fragile_share"] == 0.0 and bb["core_end_c_width"]["p50"] == 0.0
 
 
@@ -202,8 +205,12 @@ def test_stated_liquid_report_joins_before_and_after(stated, heat_tool, tmp_path
     assert rep["l1_old_to_new"]["reason_of_change"]["ABOVE_150"]["OWNED_BY_OTHER_EVENT"] == 1
     assert rep["l1_old_to_new"]["ambient_temperature_kept"]["ABOVE_150"] == 1
     l2 = rep["l2"]
-    assert l2["before_l2_0_3_0"]["counts"]["lifted"]["ABOVE_150"] == 2 and l2["after_l2_0_4_0"]["counts"]["lifted"] == {"105_TO_120": 1}  # the SWEETENER-only lot is uncapped (dry class): nothing to lift
-    assert l2["before_l2_0_3_0"]["max_core_end_c_of_a_lifted_event_by_bucket"]["ABOVE_150"] > 100.0
+    # S178 FIX-PHYS: both blocks are now produced by Layer 2 0.5.0 (the Q1 gate): the synthetic records carry no Layer 1 row, so a
+    # stated value is not OWNED and lifts nothing; the SWEETENER-only lot is uncapped (dry class)
+    assert l2["before_l2_0_3_0"]["counts"]["not_lifted"]["ABOVE_150"] == {"STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_NOT_OWNED": 2}
+    assert "lifted" not in l2["after_l2_0_4_0"]["counts"]
+    assert l2["after_l2_0_4_0"]["counts"]["not_lifted"] == {"105_TO_120": {"STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED_NOT_OWNED": 1}}
+    assert l2["before_l2_0_3_0"]["max_core_end_c_of_a_lifted_event_by_bucket"] == {}
     assert "diagnosis" in md.read_text().lower() or "Stated-liquid" in md.read_text()
 
 

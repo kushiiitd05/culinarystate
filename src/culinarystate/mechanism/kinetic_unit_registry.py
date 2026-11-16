@@ -1,9 +1,10 @@
-"""Kinetic unit rows and exact conversions (S178 aa-fit-sim, T5-C07-R5). AI_DRAFTED, NOT_IN_LEDGER.
+"""Kinetic unit rows and exact conversions (S178 aa-fit-sim, T5-C07-R5). AI_DRAFTED rows, IN the UNIT ledger (D-079).
 
 Draft of the additive UNIT contract for kinetic units (R-02, CHG-24-4): rate constants (s^-1, min^-1, h^-1, d^-1),
 activation energy per amount (J/mol, kJ/mol, kcal/mol with its calorie convention) and absolute temperature (K, degC).
-Rows live in ``registry/kinetic_units_v1_DRAFT.csv``; nothing is appended to ``ledgers/data/UNIT.jsonl`` (the
-orchestrator mints the ids). Each conversion factor is an exact ``Fraction``; there is no rounding and no default.
+Rows live in ``registry/kinetic_units_v1_DRAFT.csv``. Since D-079 (2026-11-10) they are also minted into the UNIT
+ledger by ``tools/s179_mint_kinetic_units.py`` (this module never writes the ledger; ``ledger_unit_ids`` reads it).
+Each conversion factor is an exact ``Fraction``; there is no rounding and no default.
 
 Rules kept here
 - "kcal/mol" is AMBIGUOUS: the thermochemical calorie (4184 J) and the International Table calorie (4186.8 J) differ by
@@ -16,13 +17,14 @@ Rules kept here
   AND its dimension matches the FORM slot; ``param_unit_issues`` is the check wired to a PARAM record.
 
 ``units.py`` has no ``kcal`` token and is not edited by this lane; the registry carries the calorie factors instead.
-The ledger schema ``ledgers/schemas/UNIT.schema.json`` (v1.0.0) cannot hold these rows: its ``dimension`` enum has no
-rate or energy-per-amount value and ``unit_type`` has no KINETIC. ``SCHEMA_DELTA`` states the additive enum change.
+Before D-079 the ledger schema ``ledgers/schemas/UNIT.schema.json`` could not hold these rows (no rate or
+energy-per-amount dimension, no KINETIC unit_type). ``SCHEMA_DELTA`` states the additive enum change D-079 applied.
 """
 from __future__ import annotations
 
 import csv
 import io
+import json
 from dataclasses import dataclass
 from fractions import Fraction
 from pathlib import Path
@@ -30,10 +32,11 @@ from typing import Any, Mapping
 
 from culinarystate.simulation.kinetics import units as U
 
-STATUS = "AI_DRAFTED_NOT_IN_LEDGER"
+STATUS = "AI_DRAFTED_IN_LEDGER_D079"
 VERSION = "kinetic-unit-registry-0.1.0-draft"
 ROOT = Path(__file__).resolve().parents[3]
 CSV_PATH = ROOT / "registry" / "kinetic_units_v1_DRAFT.csv"
+LEDGER_PATH = ROOT / "ledgers" / "data" / "UNIT.jsonl"
 COLUMNS = ("proposed_key", "canonical_name", "aliases", "unit_type", "dimension_expr", "si_unit", "si_factor_exact",
            "si_factor_float", "convention", "needs_source", "source_status", "units_py_parses", "notes")
 CALORIES = ("TH", "IT")
@@ -241,27 +244,41 @@ def param_unit_issues(param: Mapping[str, Any], slot_dimension: str | U.Dimensio
 
 # ----------------------------------------------------------------------------- UNIT-ledger projection (not written)
 def unit_records(start_number: int, *, rows: list[dict[str, str]] | None = None,
-                 created_at: str = "2026-11-09T00:00:00+00:00") -> list[dict[str, Any]]:
-    """UNIT-schema records (with the SCHEMA_DELTA enums) for the orchestrator to mint; ids start at UNIT-<start_number>.
+                 created_at: str = "2026-11-09T00:00:00+00:00", created_by: str = "AI_AGENT:aa-fit-sim:S178",
+                 ids: list[str] | None = None) -> list[dict[str, Any]]:
+    """UNIT-schema records for the kinetic rows; ids start at UNIT-<start_number> unless ``ids`` gives minted ids.
 
-    The ids are PROPOSED: this function does not look at the ledger and nothing is appended anywhere."""
+    A defined conversion factor is not a measurement, so it is carried only as ``external_refs`` ``si_factor_exact``
+    (never as a MEASURED QVALUE). Rows whose factor is agent-recalled (the calorie rows) are NEEDS_SOURCE; the plain
+    ``kcal/mol`` row has no factor at all. Nothing is appended anywhere by this function."""
     dim_map = {"TIME^-1": "RATE_PER_TIME", "ENERGY*AMOUNT^-1": "ENERGY_PER_AMOUNT", "TEMPERATURE": "TEMPERATURE"}
+    src = rows if rows is not None else read_rows()
+    if ids is not None and len(ids) != len(src):
+        raise ValueError("one id per row")
     out = []
-    for i, r in enumerate(rows if rows is not None else read_rows()):
-        conv = []
-        if r["canonical_name"].startswith("kcal_"):
-            cal = "TH" if "_th" in r["canonical_name"] else "IT"
-            conv = [{"locale": f"CALORIE_{cal}", "si_value": {"status": "MEASURED", "value": float(
-                Fraction(r["si_factor_exact"].split("/")[0]) / Fraction(r["si_factor_exact"].split("/")[1])),
-                "unit": "J/mol"}, "source_ids": []}]
+    for i, r in enumerate(src):
+        needs = r["needs_source"] == "True"
         out.append({
-            "id": f"UNIT-{start_number + i:06d}", "record_type": "UNIT", "schema_version": "1.0.0", "version": 1,
-            "status": "ACTIVE", "created_at": created_at, "created_by": "AI_AGENT:aa-fit-sim:S178",
-            "provenance": {"method": "DERIVED", "source_ids": [], "agent": "kinetic_unit_registry@0.1-draft",
+            "id": ids[i] if ids is not None else f"UNIT-{start_number + i:06d}", "record_type": "UNIT",
+            "schema_version": "1.0.0", "version": 1, "status": "ACTIVE", "created_at": created_at,
+            "created_by": created_by,
+            "provenance": {"method": "DERIVED", "source_ids": [], "agent": "kinetic_unit_registry@0.2",
                            "locator": r["proposed_key"], "notes": r["source_status"]},
-            "verification": {"status": "UNVERIFIED"}, "canonical_name": r["canonical_name"],
+            "verification": {"status": "NEEDS_SOURCE" if needs else "UNVERIFIED"},
+            "canonical_name": r["canonical_name"],
             "aliases": [a for a in r["aliases"].split("|") if a], "unit_type": "KINETIC",
-            "dimension": dim_map[r["dimension_expr"]], "si_unit": r["si_unit"], "conventions": conv,
+            "dimension": dim_map[r["dimension_expr"]], "si_unit": r["si_unit"], "conventions": [],
             "external_refs": [f"si_factor_exact:{r['si_factor_exact']}"] if r["si_factor_exact"] else [],
             "ambiguity_notes": r["convention"] or None})
     return out
+
+
+def ledger_unit_ids(path: Path = LEDGER_PATH) -> dict[str, str]:
+    """canonical_name -> UNIT id for the ACTIVE KINETIC rows of the UNIT ledger (latest version per id)."""
+    latest: dict[str, dict[str, Any]] = {}
+    for line in Path(path).read_text(encoding="utf-8").splitlines():
+        if line.strip():
+            rec = json.loads(line)
+            latest[rec["id"]] = rec
+    return {r["canonical_name"]: rid for rid, r in latest.items()
+            if r.get("unit_type") == "KINETIC" and r.get("status") == "ACTIVE"}

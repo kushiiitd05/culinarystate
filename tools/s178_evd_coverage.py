@@ -7,17 +7,17 @@ Three layers, each stated as what it is:
   1. EVD supply (ledger, ACTIVE rows): per PROC family, rows, PROC ids with any row, distinct (ING, PROC) pairs that hold a MEASURED or
      CENSORED retention value (the router's definition of a routable pair), and the vitamin-C (SVAR-000009) anchor: 115 pairs, 25 ING.
   2. Corpus demand at PROCESS level (committed census, full non-BBC corpora): process events per family and per PROC from
-     reports/s178/analysis/corpus_can_say_v1.json (heat L1 + non-heat L1; TASTEset has no step lists). The share of events whose PROC has any EVD
+     reports/s178/analysis/corpus_can_say_v2.json (heat L1 + non-heat L1; TASTEset has no step lists). The share of events whose PROC has any EVD
      row is an UPPER bound on coverage: it ignores which ingredient the process acts on.
-  3. Corpus demand at PAIR level (a seeded 1,000-recipe non-BBC sample, seed 20261104, the same sample as the committed S177 router census):
+  3. Corpus demand at PAIR level (a seeded 1,000-recipe non-BBC sample, seed 20261104, the same sample as the committed S179b router census):
      distinct (ING, PROC) pairs the recipes ask about, and how many hold an EVD pair. The sample is re-run through the unchanged router machinery
-     (Rung A -> route_text) and reconciled to ``reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json`` (items, events, distinct pairs,
-     vitamin-C pairs seen). Full-corpus pair totals are read from the committed full non-BBC census (S177, router census 0.3.0), not recomputed.
-     (Until the FIX-GOV repoint this read the S176 full census, which the S177 ABSENT rule superseded.)
+     (Rung A -> route_text) and reconciled to ``reports/step23/router_demo_census_vitc_nonBBC_1000_S179b.json`` (items, events, distinct pairs,
+     vitamin-C pairs seen). Full-corpus pair totals are read from the committed full non-BBC census (S179b, router census 0.4.1), not recomputed.
+     (S179 repoint: S177 census 0.3.0 and corpus_can_say_v1 before; S176 full census before FIX-GOV.)
 
 Inputs are checked against ``registry/superseded_outputs_S176.csv`` before anything is read (culinarystate.governance_superseded): a
 superseded input stops the tool. Status marker (GOV-8): the JSON carries a top-level ``status``; the CSV and SVG cannot carry one safely,
-so their status is the one stated at the top of the sibling ``evd_coverage_vs_corpus_demand_v1.md`` (the SVG also says AI_DRAFTED in its <desc>).
+so their status is the one stated at the top of the sibling ``evd_coverage_vs_corpus_demand_v2.md`` (``_v1`` before S179) (the SVG also says AI_DRAFTED in its <desc>).
 
 One command: ``python tools/s178_evd_coverage.py [--sample-size 1000] [--workers 4] [--out-dir reports/s178/evd]`` writes the JSON, a markdown table with the
 statement, a CSV and an SVG figure. ``--no-sample`` skips layer 3 (the table then says so). Counts only; no recipe text, id or span is written.
@@ -38,10 +38,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from s178_evd_common import (DEFAULT_OUT, ROOT, counter_dict, dumps, md_table, pct, protected_hashes, read_ledger,  # noqa: E402
                              sha256_file, write_new_or_same)
 
-TOOL_VERSION = "s178-evd-coverage-0.2.0-draft"
-CAN_SAY = "reports/s178/analysis/corpus_can_say_v1.json"
-CENSUS_FULL = "reports/step23/router_demo_census_vitc_nonBBC_full_S177.json"
-CENSUS_1000 = "reports/step23/router_demo_census_vitc_nonBBC_1000_S177.json"
+TOOL_VERSION = "s178-evd-coverage-0.3.0-draft"   # 0.3.0 (S179): can_say v2, router census 0.4.1, v2 output names
+CAN_SAY = "reports/s178/analysis/corpus_can_say_v2.json"
+CENSUS_FULL = "reports/step23/router_demo_census_vitc_nonBBC_full_S179b.json"
+CENSUS_1000 = "reports/step23/router_demo_census_vitc_nonBBC_1000_S179b.json"
+# S179: v2 names; the v1 files stay on record (write_new_or_same refuses to change a committed file).
+OUTPUT_NAMES = ("evd_coverage_vs_corpus_demand_v2.json", "evd_coverage_vs_corpus_demand_v2.csv", "evd_coverage_vs_corpus_demand_v2.md",
+                "fig_evd_coverage_by_family_v2.svg")
 TARGET = "SVAR-000009"
 SEED = "20261104"
 SAMPLE_FAMILIES = ("WIKIBOOKS", "GUTENBERG_SEGMENT", "FOODCOM", "TASTESET")
@@ -245,11 +248,11 @@ def build(root: Path, size: int, workers: int, with_sample: bool) -> dict:
         "can_say_heat_events_equal_committed_census_non_BBC": ce["heat_events"] == sum(v for k, v in ce["census_heat_events_by_source"].items() if k in ("FOODCOM", "GUTENBERG_SEGMENT", "WIKIBOOKS")),
     }
     if smp:
-        recon["sample_vs_committed_S177_1000_census"] = {k: [smp[k], c1v] for k, c1v in (("items", census_1000["items"]), ("events", census_1000["events"]),
+        recon["sample_vs_committed_1000_census"] = {k: [smp[k], c1v] for k, c1v in (("items", census_1000["items"]), ("events", census_1000["events"]),
                                                                                          ("recipes_seen", census_1000["recipes_seen"]), ("recipes_sampled", census_1000["recipes_sampled"]))}
-        recon["sample_vs_committed_S177_1000_census"].update(distinct_pairs=[len(smp["pairs"]), c1["sample_distinct_pairs"]], distinct_ingredients=[len(smp["ingredients"]), c1["sample_distinct_ingredients"]],
+        recon["sample_vs_committed_1000_census"].update(distinct_pairs=[len(smp["pairs"]), c1["sample_distinct_pairs"]], distinct_ingredients=[len(smp["ingredients"]), c1["sample_distinct_ingredients"]],
                                                               vitc_pairs_seen=[smp["evd_pairs_target_seen"], c1["evd_pairs_seen_in_sample"]])
-        recon["sample_reproduces_committed_S177_1000_census"] = all(v[0] == v[1] for v in recon["sample_vs_committed_S177_1000_census"].values())
+        recon["sample_reproduces_committed_1000_census"] = all(v[0] == v[1] for v in recon["sample_vs_committed_1000_census"].values())
     sample_block = None
     if smp:
         sample_block = {"seed_sha256": census_1000["seed_sha256"], "size": size, "recipes_seen": smp["recipes_seen"], "recipes_sampled": smp["recipes_sampled"],
@@ -310,7 +313,7 @@ def render_md(d: dict) -> str:
            "and how many hold an EVD pair; last column = vitamin-C DIRECT items in the committed full non-BBC router census (gated).", "",
            md_table(["process family", "corpus events", "% events with EVD PROC", "EVD rows", "EVD PROC ids", "EVD pairs", "sample pairs", "sample pairs with EVD", "% sample pairs with EVD", "vit-C DIRECT (router)"], rows,
                     align_right=tuple(range(1, 10))), "",
-           "![coverage](fig_evd_coverage_by_family_v1.svg)", "",
+           f"![coverage]({OUTPUT_NAMES[3]})", "",
            "## Reconciliation to the router census and the EVD ledger", "",
            f"- EVD vitamin-C (SVAR-000009) routable pairs: ledger {rc['evd_vitc_pairs_equal_router_census'][0]} = full non-BBC census {rc['evd_vitc_pairs_equal_router_census'][1]} = 1,000-sample census {rc['evd_vitc_pairs_equal_router_census'][2]}; "
            f"ingredients {rc['evd_vitc_ingredients_equal_router_census'][0]} = {rc['evd_vitc_ingredients_equal_router_census'][1]} = {rc['evd_vitc_ingredients_equal_router_census'][2]}. Equal: **{rc['evd_pair_counts_equal_router_census']}**.",
@@ -319,8 +322,8 @@ def render_md(d: dict) -> str:
            f"vitamin-C pairs seen {rc['full_nonBBC_census']['evd_vitc_pairs_seen']} ({rc['full_nonBBC_census']['pct_vitc_pairs_seen_of_distinct_pairs']} % of distinct pairs); census_version {rc['full_nonBBC_census']['census_version']}."]
     if d["sample"]:
         s = d["sample"]
-        out += [f"- Sample re-run ({s['recipes_sampled']} of {s['recipes_seen']:,} recipes; {s['items']:,} items; {s['events']:,} events; {s['exceptions']} exceptions) vs the committed S177 1,000-recipe census "
-                f"(items, events, recipes seen, distinct pairs, distinct ingredients, vitamin-C pairs seen): **reproduces: {rc['sample_reproduces_committed_S177_1000_census']}** {rc['sample_vs_committed_S177_1000_census']}.",
+        out += [f"- Sample re-run ({s['recipes_sampled']} of {s['recipes_seen']:,} recipes; {s['items']:,} items; {s['events']:,} events; {s['exceptions']} exceptions) vs the committed 1,000-recipe census ({CENSUS_1000.split('/')[-1]}) "
+                f"(items, events, recipes seen, distinct pairs, distinct ingredients, vitamin-C pairs seen): **reproduces: {rc['sample_reproduces_committed_1000_census']}** {rc['sample_vs_committed_1000_census']}.",
                 f"- Sample ingredients with any EVD row: {s['ingredients_with_any_evd_row']} of {s['distinct_ingredients']}."]
     out += ["", "## How to read it", ""] + [f"- {x}" for x in d["reading"]] + [""]
     return "\n".join(out)
@@ -339,11 +342,11 @@ def run(out_dir: Path, size: int, workers: int, with_sample: bool, root: Path = 
     d = build(root, size, workers, with_sample)
     assert before == protected_hashes(root), "protected ledger changed during run"
     d["protected_ledgers_unchanged_during_run"] = True
-    h = {"json": write_new_or_same(out_dir / "evd_coverage_vs_corpus_demand_v1.json", dumps(d)),
-         "csv": write_new_or_same(out_dir / "evd_coverage_vs_corpus_demand_v1.csv", render_csv(d)),
-         "md": write_new_or_same(out_dir / "evd_coverage_vs_corpus_demand_v1.md", render_md(d)),
-         "svg": write_new_or_same(out_dir / "fig_evd_coverage_by_family_v1.svg", render_svg(d))}
-    return {"sha256": h, "reconciled": d["reconciliation"].get("sample_reproduces_committed_S177_1000_census"), "evd_pair_counts_equal_router_census": d["reconciliation"]["evd_pair_counts_equal_router_census"],
+    h = {"json": write_new_or_same(out_dir / OUTPUT_NAMES[0], dumps(d)),
+         "csv": write_new_or_same(out_dir / OUTPUT_NAMES[1], render_csv(d)),
+         "md": write_new_or_same(out_dir / OUTPUT_NAMES[2], render_md(d)),
+         "svg": write_new_or_same(out_dir / OUTPUT_NAMES[3], render_svg(d))}
+    return {"sha256": h, "reconciled": d["reconciliation"].get("sample_reproduces_committed_1000_census"), "evd_pair_counts_equal_router_census": d["reconciliation"]["evd_pair_counts_equal_router_census"],
             "statement": d["statement"]}
 
 

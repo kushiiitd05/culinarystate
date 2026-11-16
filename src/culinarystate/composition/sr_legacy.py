@@ -91,6 +91,8 @@ def _portions(d: Path, keep: dict) -> dict[int, list[tuple[int, Portion]]]:
         else:
             desc = f"{unit}, {mod}" if mod else unit
         amount = _float(r["amount"], "amount", r["fdc_id"]) if r["amount"].strip() else 1.0
+        if amount <= 0:                     # S179 A7: 18 SR rows have amount 0 (no per-unit weight)
+            continue
         p = Portion(desc, _float(r["gram_weight"], "gram_weight", r["fdc_id"]), amount, uid, unit)
         out.setdefault(fdc, []).append((int(r["seq_num"] or 0), p))
     return out

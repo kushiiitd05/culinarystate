@@ -67,6 +67,7 @@ def test_heat_tool_v02_to_v03_block_and_zone_counts(heat_tool, tmp_path):
             _rec("PROC-000011", "OIL_IMMERSION", 5, 180, matrix="MEAT"), _rec("PROC-000019", "WATER", 20, 100, temp_basis="PHYSICAL_DEFINITION"),
             _rec("PROC-000001", "OVEN_AIR", 30, 200, size=None)]
     recs[1]["inputs"]["matrix_groups"] = {"value": ["FRUIT", "SWEETENER"], "status": "MEASURED", "basis": "FOOD_GROUP", "span": None}
+    recs[1]["inputs"]["temperature_profile"]["row"] = "CB_RULE:TEMPERATURE_OWN_CLAUSE"  # S178 FIX-PHYS Q1: an owned value lifts
     _write(l1, recs)
     first = tmp_path / "a.json"
     assert heat_tool.main(["--l1", str(l1), "--l2", str(tmp_path / "l2a"), "--out", str(first)]) == 0
@@ -77,7 +78,8 @@ def test_heat_tool_v02_to_v03_block_and_zone_counts(heat_tool, tmp_path):
     assert c["stated_liquid_above_tboil"] == {"GENTLE": 1, "TYPICAL": 1, "INTENSE": 1}
     assert c["stated_liquid_above_tboil_by_stated_c"]["TYPICAL"] == {"100_TO_105": 1}
     assert c["cap_flag_typical"]["TBOIL_CEILING_DILUTE_AQUEOUS_ONLY"] == 5 and c["cap_flag_typical"]["BOILING_POINT_ELEVATION_NOT_MODELLED"] == 5
-    assert c["cap_flag_typical"]["TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER"] == 1
+    assert c["cap_flag_typical"]["SUGAR_PHASE_TBOIL_LOWER_ESTIMATE"] == 1  # S178 FIX-PHYS m10 (was TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER)
+    assert c["fixphys_flag_typical"]["STATED_LIQUID_LIFT_SUGAR_PHASE_MEMBER"] == 1
     zq = a["zone_field"]["zone_mean_over_dose_at_volume_avg_t_quantiles"]["zone_mean_over_dose_at_volume_avg_t"]["TYPICAL"]
     assert zq["n"] == 4 and zq["p01"] >= 0.999 and a["zone_field"]["n_nodes"] == 8
     prev = tmp_path / "prev"
@@ -168,7 +170,7 @@ def test_nonheat_tool_v02_to_v03_block(nh_tool, tmp_path):
     assert nh_tool.main(argv2) == 0
     rep = json.loads((tmp_path / "b_l2.json").read_text())
     v = rep["v02_to_v03"]
-    assert rep["layer_version"] == "nonheat-scenario-L2-0.4.0-draft" and v["previous_layer_version"] == "nonheat-scenario-L2-0.2.0-draft"
+    assert rep["layer_version"] == "nonheat-scenario-L2-0.5.0-draft" and v["previous_layer_version"] == "nonheat-scenario-L2-0.2.0-draft"  # S178 FIX-PHYS: 0.5.0
     pc = v["counts"]
     assert "ALIGNMENT_ERROR" not in pc and "PREV_FILE_MISSING" not in pc
     st = pc["status"]["PRESERVATION"]

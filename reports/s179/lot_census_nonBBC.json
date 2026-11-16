@@ -1,0 +1,81 @@
+{
+ "families": {
+  "FOODCOM": {
+   "lots": 520298,
+   "ph_flags": {
+    "ALL_MEMBERS_ACID": 1317,
+    "ANY_MEMBER_PH_UNKNOWN": 503734,
+    "CONTAINS_ACID_MEMBER": 198652
+   },
+   "provisional": 516368,
+   "recipes": 522517,
+   "water_g_status": {
+    "INTERVAL": 128710,
+    "UNKNOWN": 391588
+   },
+   "water_g_width": {
+    "ge_0.5": 101240,
+    "lt_0.05": 8636,
+    "lt_0.2": 8005,
+    "lt_0.5": 10829
+   }
+  },
+  "GUTENBERG_SEGMENT": {
+   "lots": 0,
+   "ph_flags": {},
+   "provisional": 0,
+   "recipes": 73955,
+   "water_g_status": {},
+   "water_g_width": {}
+  },
+  "TASTESET": {
+   "lots": 700,
+   "ph_flags": {
+    "ANY_MEMBER_PH_UNKNOWN": 687,
+    "CONTAINS_ACID_MEMBER": 214
+   },
+   "provisional": 692,
+   "recipes": 700,
+   "water_g_status": {
+    "INTERVAL": 135,
+    "UNKNOWN": 565
+   },
+   "water_g_width": {
+    "ge_0.5": 37,
+    "lt_0.05": 55,
+    "lt_0.2": 26,
+    "lt_0.5": 17
+   }
+  },
+  "WIKIBOOKS": {
+   "lots": 3676,
+   "ph_flags": {
+    "ANY_MEMBER_PH_UNKNOWN": 3631,
+    "CONTAINS_ACID_MEMBER": 1143
+   },
+   "provisional": 3645,
+   "recipes": 3676,
+   "water_g_status": {
+    "INTERVAL": 451,
+    "UNKNOWN": 3225
+   },
+   "water_g_width": {
+    "ge_0.5": 210,
+    "lt_0.05": 133,
+    "lt_0.2": 64,
+    "lt_0.5": 44
+   }
+  }
+ },
+ "labels": [
+  "COUNTS_ONLY",
+  "MODEL_DERIVED_GRAMS",
+  "SR_LINK_UNVERIFIED"
+ ],
+ "lot_kind": "RECIPE_POOL",
+ "usable_match_statuses": [
+  "REGISTRY_MAPPED",
+  "AUTO_MATCH_HIGH"
+ ],
+ "version": "s175-lot-census-0.1.0"
+}

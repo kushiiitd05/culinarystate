@@ -19,7 +19,8 @@ Registry kind -> candidates handed to ``evidence_gates.TargetPresenceScreen`` (`
 An ING is looked up by the normalised canonical name, then by its ACTIVE English aliases (only when they all agree on one
 registry food). The ING category is the latest ACTIVE ING ledger row's ``category``; the SR food group is the rank-1
 candidate's ``food_category`` in SR Legacy. Values are read as exact decimals from SR ``food_nutrient.csv`` (an SR food with
-no row is UNKNOWN, never 0). The shipped derived table (``tools/build_target_content_table.py``) is written from this
+no row is UNKNOWN, never 0), with their SR derivation code and data-point count (S178 R4: SR values are analytical,
+imputed, calculated or assumed; only analytical ones may support an ABSENT claim). The shipped derived table (``tools/build_target_content_table.py``) is written from this
 module, so the demo needs no ``data/raw`` at run time.
 """
 from __future__ import annotations
@@ -181,9 +182,12 @@ def build_identity(*, root: Path = ROOT, sr_dir: Path | None = None, registry_pa
     return Identity(cands, cats, kinds, dict(sorted(diag.items())))
 
 
-def table_rows(identity: Identity, values: Mapping[tuple[int, str], Fraction], keys: Iterable[str]) -> list[dict[str, str]]:
-    """The derived content table's rows: ``evidence_gates.build_table_rows`` plus the identity source and registry kind."""
-    rows = EG.build_table_rows(identity.cands, values, keys, identity.categories)
+def table_rows(identity: Identity, values: Mapping[tuple[int, str], Fraction], keys: Iterable[str],
+               basis: Mapping[tuple[int, str], tuple[str, int]] | None = None) -> list[dict[str, str]]:
+    """The derived content table's rows: ``evidence_gates.build_table_rows`` plus the identity source and registry kind.
+    S178 (R4): ``basis`` ((fdc, key) -> (SR derivation code, data points), ``evidence_gates.read_sr_basis``) fills the
+    ``sr_derivation_code`` / ``sr_data_points`` columns."""
+    rows = EG.build_table_rows(identity.cands, values, keys, identity.categories, basis)
     for r in rows:
         r["identity_source"] = IDENTITY_SOURCE
         r["registry_kind"] = identity.kinds[r["ing_id"]]

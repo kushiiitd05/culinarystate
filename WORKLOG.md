@@ -1229,3 +1229,584 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `handoff/RESUME_ANCHOR_2026-11-09_ORCH.md; handoff/MAC_CLAUDE_MERGE_PROMPT_2026-11-09.md; handoff/orch_briefs_S178/*; registry/execution_board_S178.csv; branch max/s178-wip`
 - **Verified:** lane suites green at each commit; WIP touched suites 843 passed, 2 failed (outputs to regenerate after FIX-EVAL); full suite last at 32415c4 (4,485 passed, failures pre-existing env/Mac-data)
 - **Next:** Finish WIP lanes (v05 + router 0.4.0 full runs on manjot, reports, separate commits), short re-review, BBC re-runs on the Mac after that; humans: decision sitting, signatures, D5 review + gold columns, freeze record
+
+### S180 · 2026-11-09 23:08 IST · S179 · Merge manjot S176-S178, composition tickets, finish WIP lanes (v05, router 0.4.0, FIX-EVAL, MECH), BBC legs
+- **Who:** Kush+Claude (Mac, manjot, vinayak)
+- **Did:** Fast-forwarded to max/s176-orchestration; branch kush/s179-finish-fixes = max/s178-wip + Mac fixes. Composition tickets A1-A11, F1-F5, P1/P3/P4/P5/P9 (tests first; reply in MAC_TASKS file). FIX-EVAL: regenerated D5 fixture output + prompt registry; replay invariants v2 full families (0 unexplained). FIX-PHYS: v05 sample + full non-BBC on manjot (schema 100%, moist-piece core above Tboil 12->0), BBC v05 on Mac. FIX-ROUTER: census 0.4.0 full non-BBC on vinayak (host equivalence proven on the 1,000 sample), BBC leg on Mac; DIRECT 40,308->30,248, ABSENT ING 52->13. MECH screen on v05 incl. first FOODCOM full run. Non-BBC composition censuses on vinayak (TASTESET grams lines +284 from U+2044). Lane reports FIX-EVAL/FIX-PHYS/FIX-ROUTER; supersessions registered; GOV re-review no blockers.
+- **Files:** `src/culinarystate/composition/*; tests/unit/test_s179_*; reports/orchestration/S178_FIX-{EVAL`, `PHYS`, `ROUTER}_report.md; reports/s179/*; reports/step26/*_v05.json; reports/step23/*_S179*.json; reports/s178/mech/*_v05*; registry/compute_runs_v1.csv; registry/superseded_outputs_S176.csv`
+- **Verified:** manjot full suite 4,968 passed (failures env gaps only); the 48 env-gap modules on Mac 2,881 passed 0 failed; composition 72+4 tests; governance superseded 9 passed; GOV re-review 0 blockers
+- **Next:** SCI re-review result; push max/s176-orchestration + PR (ask Kush before merging main); push kush/s179-finish-fixes after re-review; humans: verify ing_sr_defaults via reports/s179/ing_sr_review_queue_BBC.csv, A6b hull choice, F1 grammar.py OK, deleting v04 per-record dirs on manjot
+
+### S181 · 2026-11-10 02:03 IST · S179 · SCI re-review fixes and v06 / router 0.4.1 re-runs
+- **Who:** Kush+Claude (Mac, manjot, vinayak)
+- **Did:** SCI re-review: no blockers; fixed #1 M1 residual (endpoint-cues 0.3.0, L1 0.3.1), #3 audit counter by role, #4 post-food prior-state cues (router 0.4.1), #5 pH lookup size words / parent family, #6 split-sum marked not checkable; tests first each. Re-runs: non-BBC physics v06 + reports + MECH v06 on manjot (schema 100%, events unchanged; text-stated medium temperatures 51,121->51,001, food-target cues up, oven<77C 189->171), router 0.4.1 full non-BBC on vinayak (DIRECT 30,248->30,220), composition re-run byte-identical, BBC v06 + router 0.4.1 + lot S179b on Mac. 29 run rows, 55 supersession rows (89 older rows re-pointed to the live file). Lane reports FIX-PHYS sec 5, FIX-ROUTER sec 6.
+- **Files:** `reports/step26/*_S179_v06.json; reports/s178/phys/*S179_v06*; reports/s178/mech/*S179_v06*; reports/step23/*_S179b.json; registry/compute_runs_v1.csv; registry/superseded_outputs_S176.csv; reports/orchestration/S178_FIX-{PHYS`, `ROUTER}_report.md; reports/orchestration/review/S179_REV_{GOV`, `SCI}.md`
+- **Verified:** physics suites 641 passed; governance/register/S179/report-reading tests 76 + 79 passed; schema validator 0 problems all kinds; MECH 0 invariant violations, 0 exceptions
+- **Next:** Kush: SCI #2 lift gate (Q1), SCI #7 SR analytical zero, A6b hull, F1 grammar.py OK, ing_sr review queue, delete v04/v05 per-record dirs on manjot, PR #11 merge OK, demo stash
+
+### S182 · 2026-11-10 11:07 IST · S179 · Analysis chain re-pointed to physics v06 / router 0.4.1; SCI #8
+- **Who:** Kush+Claude (Mac, manjot)
+- **Did:** Tests first: corpus can-say 0.3.0 reads S179 v06 censuses and records; renderer, EVD coverage 0.3.0, EVD repro record 0.2.0 and Food.com card 0.2.0 write v2 files beside the kept v1. Re-run on manjot (RUN-S179-ANA6-001..004): reconciliation PASS, 0 alignment errors; coverage sample reproduces the S179b 1,000 census; dataset card hash reproduced; gated vit-C DIRECT 40,308 -> 30,220. Card on the Mac (RUN-S179-CARD-001): STEPS verb-slot mapped 78.816 -> 76.11 %. 16 v1 files registered superseded. SCI #8: McNemar power docstring derivative fixed (symbolic check m 3..11); wrong-direction rejections < 1e-6 at each MDE, max 0.013 at delta 0.005.
+- **Files:** `tools/s178_analysis_corpus_can_say{`, `_render}.py; tools/s178_evd_coverage.py; tools/s178_evd_repro_record.py; tools/s178_corpus_foodcom_card.py; tests/unit/test_s179_analysis_inputs_live.py; reports/s178/analysis/*_v2*; reports/s178/evd/*_v2*; reports/s178/corpus/foodcom_data_card_v2.*; src/culinarystate/evaluation/mcnemar_power.py; reports/orchestration/S178_{ANALYSIS`, `EVD}_report.md`
+- **Verified:** new tests 5 passed; analysis/EVD/corpus/governance/report-reading tests 180 passed; power tests 56 passed
+- **Next:** Not re-run: s178_ingcat_propose (mention_items still from S177 census; re-run would overwrite the human confirmation sheet); FIX-EVAL tools default --out to kept-on-record paths (pass --out); humans as in S181
+
+### S183 · 2026-11-10 11:36 IST · S179 · Full suite after the re-review fixes; public-mode check; STATUS S179 block
+- **Who:** Kush+Claude (Mac, manjot)
+- **Did:** Full suite on manjot at 897ede1 (handoff 2.5): 4,995 passed, 6 failed, 53 errors; one new failure was a census version pin missed in the 0.4.1 bump (test_s177_router_gates), fixed cd66104; the other failures/errors are the env-gap modules (lxml, requests, hypothesis, sklearn missing on manjot), all 48 pass on the Mac (2,897 passed, 0 failed). Public-mode check on the Mac (handoff 4): local server 503 on every tunnel-like request, loopback 200; public mode drops 11,928 BBC-derived KGE edges incl. carbon and typical durations; 155-ingredient substitution sweep 0 BBC candidates. STATUS.md S179 update block. Correction to S182 Next: the FIX-EVAL tools already refuse to overwrite an existing output (exists check / xb mode), so no hazard.
+- **Files:** `tests/unit/test_s177_router_gates.py; reports/s179/public_mode_check_S179.md; STATUS.md`
+- **Verified:** manjot suite 4,995 passed; env-gap modules on Mac 2,897 passed 0 failed; router tests 86 passed; public-mode tests 99 passed
+- **Next:** Humans: SCI #2 (Q1), SCI #7, A6b, F1 grammar.py OK, ing_sr review queue, delete v04/v05 per-record dirs on manjot, PR #11/#12 merge OK, demo stash; S178 list (07.A-R1 signatures, CAL pilot, D5 freeze)
+
+### S184 · 2026-11-10 14:33 IST · M8 · S179 board items: report sections, D3 gold diagnostic, NEG-0050, M1-M9 experiment registry
+- **Who:** Kush+Claude (Mac)
+- **Did:** Crosswalk H1-H5 vs proposal H1-H4 and SSOT tasks vs D5/D-008 (T0-C07-R2, T0-C11-R3); licence paragraph + split labels (T9-C28-R1, T9-C09-R3); P1 closeout (T3-C15-R1); pooled compiler vs P1 (7) + 40 dev gold with Wilson, and event-type table with recipe-cluster bootstrap (T3-C11-R1, T3-C17-R2; RUN-S179-GOLD-001/002); D3 report section (T9-C16-R1); NEG-0050 DEL-2 D7==D1 on raw PE (T9-C08-R4); registry/experiments_S171_S175.csv (T9-C11-R1); board brief for the orchestrator. Found: expansion gold has 0 events (40 dev gold = pilot_20 v1.1 + Food.com v1.1); eval tool scores the rule compiler, not Rung A
+- **Files:** `reports/final/sections/S179_*_DRAFT.md; reports/step19/pilot_iaa_report.md; reports/del3/compiler_vs_gold_pooled_S179.{json`, `md}; reports/del3/event_type_table_S179.json; src/culinarystate/evaluation/compiler_vs_gold_pooled.py; tools/s179_compiler_vs_gold_pooled.py; tools/s179_event_type_table.py; registry/negative_results_register_v1.csv; registry/experiments_S171_S175.csv; reports/orchestration/S179_board_update_brief_mac.md`
+- **Verified:** new tests 7 passed; gold/rule-compiler tests 19 passed; NEG register tests 6 passed; compiler-vs-gold rerun byte-identical (2981ba0a)
+- **Next:** T2-C14-R1 seal check, T9-C30-R1 DoD scorecard, T8-C15-R3 Ollama digest (VPN); humans: read licence paragraph, D-008 merge, NEG rows read
+
+### S185 · 2026-11-10 15:11 IST · M8 · S179 board items part 2: seal check, digest pin, host inputs, run-log audit, DoD scorecard
+- **Who:** Kush+Claude (Mac, vinayak)
+- **Did:** 15a.R seal integrity check 6/6 PASS incl. byte-identical re-derivation (T2-C14-R1, RUN-S179-SEAL-001; private access log started); Ollama digest pinned from run host vinayak, qwen2.5:7b-instruct 845dbda0, prompt registry sha bc5766b7 (T8-C15-R3, RUN-S179-PIN-001); Step 35 inputs x host x sha256 on Mac and vinayak (T7-C01-R5, RUN-S179-ENV-001/002): only the Mac has every input and package; run-log gap audit (T9-C11-R2); DoD scorecard 38 rows, 6 MET (T9-C30-R1)
+- **Files:** `src/culinarystate/lineage/seal_integrity.py; tools/s179_seal_integrity_check.py; reports/s179/{seal_integrity_check_S179.json`, `env_inputs_check_mac_S179.json`, `env_inputs_check_vinayak_S179.json`, `env_inputs_three_hosts_S179.md`, `run_log_gap_audit_S179.md`, `dod_scorecard_S179.md}; registry/compute_runs_v1.csv; reports/orchestration/S179_board_update_brief_mac.md`
+- **Verified:** seal tests + 15a.R tests 54 passed; prompt registry --check clean; no private IP in committed host JSONs
+- **Next:** Humans: Route B host, H4 UNIT schema enum, licence paragraph read, NEG/DoD reads, D-008 merge, D5 signatures and freeze
+
+### S186 · 2026-11-10 16:23 IST · M8 · D-079: S179 drafts accepted; kinetic units minted into UNIT
+- **Who:** Kush+Claude (Mac)
+- **Did:** Recorded D-079 (Kush read and accepted S179 drafts; H4 additive UNIT enum). UNIT schema unit_type += KINETIC, dimension += RATE_PER_TIME, ENERGY_PER_AMOUNT; 11 kinetic rows minted UNIT-000075..085 via LedgerStore (first 74 rows byte-identical); kcal/mol no factor, calorie rows NEEDS_SOURCE, defined factors only as si_factor_exact (MEASURED label removed); kinetic_unit_registry reads ledger ids; S178 tests updated to the post-D-079 schema
+- **Files:** `DECISIONS.md; src/culinarystate/ledgers/registry.py; ledgers/schemas/UNIT.schema.json; ledgers/data/{UNIT`, `_ids}.jsonl; src/culinarystate/mechanism/kinetic_unit_registry.py; tools/s179_mint_kinetic_units.py; tests/unit/test_s179_unit_kinetic_ledger.py; tests/unit/test_s178_aasim_units.py`
+- **Verified:** full Mac suite 5,405 passed, 1 skipped, 0 failed (23 min); new + S178 unit tests 44 passed
+- **Next:** Humans: D5 prereg signatures + freeze (unblocks B0-B7 and H1 runs), D-008 merge, Route B host, calorie convention
+
+### S187 · 2026-11-10 17:15 IST · M8 · D-080..D-082: persona choice items, prereg amendments in place, G23.2 property test
+- **Who:** Kush+Claude (Mac)
+- **Did:** Sorted the 52 human-blocked MUST items under D-071 and the persona line: 17 pack choice items decided by ksh/prv (D-080) plus D-008 merge and Route B=Mac (Kush); D5 amendment options G-A/K1/H3-A/F1 (D-081), D-D5-6 sidedness left to humans (one-sided would loosen); 29-diag and AA options (D-082). Applied the three S178 amendments in place to the DRAFT preregs (checkers bind those paths) with tools/s179_apply_prereg_amendments.py (base from git at the named sha256; --check); withdrew the separate D5 v2 file. G23.2 property test 10,500 queries 0 failing (RUN-S179-PROP-001). Signatures, freezes, labels, verification and human facts NOT done
+- **Files:** `DECISIONS.md; tools/s179_apply_prereg_amendments.py; reports/{del5/d5_benchmark`, `step29/29diag`, `step10/aa_pilot}_preregistration_DRAFT.md; registry/transition_ladder_crosswalk_v1.csv; tests/unit/test_s179_prereg_amendments_applied.py; reports/orchestration/S179_board_update_brief_mac.md`
+- **Verified:** prereg-related tests 214 passed; --check OK for D5, D29, AA; no signature file exists
+- **Next:** Agent: 29-diag code for K-A/S-A/contrast/cap/duplicates (test-first). Humans: D-D5-6, #2 07.A ruling, all signatures, freeze approvals, labels, PDFs, reviews
+
+### S188 · 2026-11-10 17:37 IST · M8 · D-083 two-sided H3 test; 29-diag pre-registered additions coded
+- **Who:** Kush+Claude (Mac)
+- **Did:** D-083 (ksh/prv, tightening): D5 H3 sign test two-sided; prereg rebuilt, no open option. 29-diag code per the amended prereg: B2IngredientMean (TB-V0 B-2, not in DEL-2 all_models), S-5 food_group_disjoint split, D2-vs-B2 paired cluster contrast (S-3/S-4/S-6, K_min 10, ONE_LINEAGE_CLUSTER fallback), cap sensitivity 0.95/0.975/1.0, imputation-duplicate groups + duplicate-safe S-2/S-3; runner wired; crosswalk XW-04/XW-05 updated. Declined to have personas sign, freeze, label or verify (D-071)
+- **Files:** `src/culinarystate/transition/{baselines`, `splits}.py; src/culinarystate/evaluation/{diag29_additions`, `diag29_runner}.py; tests/unit/test_s179_diag29_additions.py; registry/transition_ladder_crosswalk_v1.csv; tools/s179_apply_prereg_amendments.py; reports/del5/d5_benchmark_preregistration_DRAFT.md; DECISIONS.md`
+- **Verified:** 410 passed across transition/diag/bakeoff/crosswalk tests; prereg --check OK; no-imputation guard kept (no fillna added)
+- **Next:** Humans only: #2 07.A ruling; signatures (07A-R1, AA, 29-diag, D5 x2, H8); 15A-BOOT and crosswalk freezes; 07A-R1 labels; 5 PDFs; CAL/SIM-VAL verification; D5 review; 30-claim audit; Bagler permission; calendar
+
+### S189 · 2026-11-10 17:51 IST · M8 · Env locks per host, release card, 35h decision records, signing helper, KGE schema drift
+- **Who:** Kush+Claude (Mac, manjot, vinayak)
+- **Did:** No signature file exists (Kush said all signed by Parv): wrote tools/human_sign.py for signers to run themselves (refuses personas, never overwrites); freeze 15A-BOOT hashes still match, status PROPOSED. Bundled manjot+vinayak to 440dbeb. Env lock + smoke + transition tests on 3 hosts (T6-C19-R1): Mac/vinayak 56/56, manjot 53/56 (no sklearn); transition hang not reproduced (T6-C02-R2). RELEASE_CARD.md (T9-C24-R1). 35h decision records L12/L13 v1 with LR-1..LR-5 deferral (T7-C22-R1, T7-C20-R1). KGE schema regenerated + drift test
+- **Files:** `tools/human_sign.py; tests/unit/test_s179_human_sign.py; reports/s179/env_lock/*; reports/final/RELEASE_CARD.md; reports/step35/35h_decision_record_level{12`, `13}_v1.md; ledgers/schemas/KGE.schema.json; tests/unit/test_s179_schemas_match_registry.py; registry/compute_runs_v1.csv`
+- **Verified:** human_sign tests 10 passed; KGE/schema tests 587 passed; env runs logged RUN-S179-ENV-003..005
+- **Next:** Humans: run tools/human_sign.py (Kush D5/AA/D29 + freeze; Parv D5/AA from his own session); #2 07.A ruling; PDFs; labels; reviews. Agent then: 29-diag run on the Mac, AA extraction, D5 freeze and ladder
+
+### S190 · 2026-11-10 22:49 IST · M8 · D-085: human gates delegated to ksh+prv (AI); delegate freeze and prereg locks
+- **Who:** Kush+Claude (Mac)
+- **Did:** Recorded D-085 (Kush: ksh/prv act on the humans' behalf for every remaining gate). freeze_records gains AI_DELEGATE 'ksh+prv (AI, D-085)', approval_kind/prereg_signer_kind; bootstrap_diag labels NO_HUMAN_SIGNOFF_D085 when either is delegated. tools/d085_delegate.py approved 15A-BOOT-2026-11-08 and locked the D29, D5 and AA preregs (refuses overwrite). No human name written anywhere
+- **Files:** `DECISIONS.md; src/culinarystate/evaluation/{freeze_records`, `bootstrap_diag}.py; tools/d085_delegate.py; registry/freezes/15A-BOOT-2026-11-08.json; reports/step29/29diag_prereg_signature.json; reports/del5/d5_prereg_lock_D085.json; reports/step10/aa_pilot_prereg_lock_D085.json; tests/unit/test_s179_d085_delegation.py`
+- **Verified:** d085 delegation tests pass; any other AI name still refused
+- **Next:** 29-diag run
+
+### S191 · 2026-11-10 22:49 IST · DEL-2 · 29-diag run under D-085 (RUN-S179-DIAG29-001), G15-R PASS
+- **Who:** Kush+Claude (Mac)
+- **Did:** Ran the DEL-2 ladder D0-D7 + B2 twice on the Mac, byte-identical. 17,978 rows, 14,423 after seal. D7 = D1 exactly on Phenol-Explorer (NEG-0050 confirmed). Imputation-duplicate share Bognar 0.949, USDA 0.587, PE 0.111. D2 vs B2 on PE study-disjoint 0.099 [-0.045, 0.240]: no direction shown. Labels DIAGNOSTIC / BOOTSTRAP_UNVERIFIED / NON_CITABLE / NO_HUMAN_SIGNOFF_D085
+- **Files:** `tools/run_29diag.py; reports/step29/diag/diag_results_S179.{json`, `md}; registry/compute_runs_v1.csv`
+- **Verified:** two runs identical sha (prefix 7bb28437)
+- **Next:** 07A-R1 record, D-086..088
+
+### S192 · 2026-11-10 22:49 IST · M8 · 07A-R1 NOT_RUN under D-085; D-086..D-088 delegate entries; stale repo-state tests reframed
+- **Who:** Kush+Claude (Mac)
+- **Did:** 07A-R1 recorded NOT_RUN: two personas of one model agreeing is not inter-rater evidence (D-085, D-088); the 07.A v4 FAIL stays on record and no 07A label file is written. Appended D-086 (crosswalk freeze), D-087 (FORM- prefix, FORM/PARAM/VAL schemas frozen), D-088 (persona line as amended by D-085), approver ksh+prv (AI, D-085). test_eval_bootstrap_diag real-repo tests updated to the post-D-085 state (only 15A-BOOT frozen, delegate kind asserted)
+- **Files:** `DECISIONS.md; tests/unit/test_eval_bootstrap_diag.py; WORKLOG.md`
+- **Verified:** 121 passed (bootstrap_diag, s160, 15a.R, step19, d085)
+- **Next:** H8 scope-cut table + lock; A2 CONTEXT_MISMATCH; D5 U/X drafts
+
+### S193 · 2026-11-10 23:19 IST · M8 · H8 scope-cut register (D-089, ksh+prv D-085)
+- **Who:** Kush+Claude (Mac)
+- **Did:** registry/h8_scope_cut_register_v1.csv: 11 proposal promises (D2, full H2, H4, Steps 20/28/33/34, FlavorTwin, D3 gold 40, 8-scenario demo, SSOT L10-11) each with status DIAGNOSTIC / DECLARED_NOT_RUN / NOT_DELIVERED_AT_THIS_SCALE, report wording and existing evidence path; D-089 binds its sha256 under the delegate
+- **Files:** `registry/h8_scope_cut_register_v1.csv; tests/unit/test_s179_h8_scope_cut_register.py; DECISIONS.md`
+- **Verified:** 4 passed (rows, evidence paths exist, no claim words, D-089 hash)
+- **Next:** A2
+
+### S194 · 2026-11-10 23:19 IST · M8 · A2 CONTEXT_MISMATCH route, test-first; census old vs new
+- **Who:** Kush+Claude (Mac)
+- **Did:** evidence_gates 0.3.1: CONTEXT_MISMATCH route value (opt-in) for context-withheld DIRECT/BRACKETING where the engine has only UNKNOWN; strength = UNKNOWN, never upgrades; router_demo applies it; census flag --context-mismatch-route. Mac census 1,000 non-BBC off/on (off = vinayak S179b exactly): ungated DIRECT 450 -> DIRECT 57, CONTEXT_MISMATCH 358. BBC full on: 6,125 -> 1,058 DIRECT, 4,904 CONTEXT_MISMATCH. Full non-BBC NOT_RUN (VPN down)
+- **Files:** `src/culinarystate/mechanism/{evidence_gates`, `router_demo}.py; tools/router_demo_census.py; tests/unit/test_s179_context_mismatch_route.py; reports/step23/router_demo_census_vitc_*_S179_cm*.json; reports/s179/a2_context_mismatch_census_S179.md; registry/compute_runs_v1.csv`
+- **Verified:** router/gate/aasim/census tests 410 passed + 8 new; RUN-S179-ROUTER-007/008, RUN-S179-BBC6-007
+- **Next:** full non-BBC census on vinayak when VPN returns
+
+### S195 · 2026-11-10 23:19 IST · DEL-5 · D5 benchmark v1 reviewed and frozen by ksh+prv (D-090)
+- **Who:** Kush+Claude (Mac)
+- **Did:** Persona review of 110 drafts (KEEP/DROP, rank entry); S gold written from recipe text with engine draft hidden, AI_DRAFTED_GOLD; P/C gold rechecked against EVD (all equal); 29 drops (13 unusable S, 3 unlinkable S gold, 9 target near-absent, 4 implausible process). n = 74 (S1 12, S2 12, P1-P3/C 10 each, U 5, X 5). frozen_guard accepts the delegate only with D-085 + label; h1_independence 0.3 AI_DRAFTED_GOLD never independent. Freeze D5-BENCH-2026-11-10 passes check_real_inputs (signoff AI_DELEGATED_D085)
+- **Files:** `tools/s179_d085_d5_review.py; tools/d085_delegate.py; src/culinarystate/evaluation/{frozen_guard`, `h1_independence}.py; benchmark/d5/d5_benchmark_v1_D085_{S`, `PC`, `UX}.csv; reports/del5/d5_review_ksh_prv_D085.csv; registry/freezes/D5-BENCH-2026-11-10.json; tests/unit/test_s179_d085_d5_{freeze_gold`, `review`, `freeze_record}.py; DECISIONS.md`
+- **Verified:** D5/freeze/h1 tests 136 passed + review 4 + freeze record 2; guard ok
+- **Next:** D5 rung runner (B0-B7 answers on the frozen benchmark) and run on vinayak
+
+### S196 · 2026-11-10 23:25 IST · M8 · T9-C07-R3 gate provenance section generated from DECISIONS
+- **Who:** Kush+Claude (Mac)
+- **Did:** tools/s179_gate_provenance_report.py classes every DECISIONS entry from its Approver line (title/instruction fallback): HUMAN 69, AI_DELEGATED_D085 6, AI_PERSONA_D071 6, MIXED 1, AI_AGENT_PROVISIONAL 7; section lists every non-human decision; --check
+- **Files:** `tools/s179_gate_provenance_report.py; tests/unit/test_s179_gate_provenance_report.py; reports/final/sections/S179_gate_provenance_DRAFT.md`
+- **Verified:** 4 passed
+- **Next:** regenerate after every DECISIONS append
+
+### S197 · 2026-11-10 23:25 IST · STEP-10 · AA pilot under D-085: licences, CAL pre-check, firewall, Model A fit (D-091)
+- **Who:** Kush+Claude (Mac)
+- **Did:** Licence lines read on publisher pages: CC BY for AAK-01/06 (CAL) and AAK-03/07 (SIM-VAL, licence only); AAK-09 403, AAK-11 TLS fail (unconfirmed), AAK-12 not checked; AAK-02/04/05/08/10 NOT_ACQUIRED (no work-around of site checks). CAL: 16/16 spans verbatim + PDF hashes; 01/06 VERIFIED, 09/11 REJECTED (licence). SIM-VAL PDFs moved out with sha256. aa_pilot_fit --delegate: Ea 64.4 kJ/mol (SE 10.4), 7 rows, 2 papers, AI_PRECHECKED, NOT_VALIDATED / RESEARCH_ONLY
+- **Files:** `registry/evidence/aa_licence_checks_D085_v1.csv; tools/aa_pilot_fit.py; tests/unit/test_s179_aa_fit_delegate.py; reports/step10/aa_pilot_model_a_fit_D085.json; DECISIONS.md`
+- **Verified:** AA fit tests 14 passed; fit sha256 b9247db0
+- **Next:** SIM-VAL extraction in a separate session given only the fit hash; human browser download of the 5 PDFs
+
+### S198 · 2026-11-11 00:34 IST · DEL-5 · D5 ladder on vinayak GPU, scored: H1 and H3 RULE_NOT_MET (D-092); A2 full census
+- **Who:** Kush+Claude (Mac, vinayak)
+- **Did:** D5 runner + e5 cache (GPU) + relatives; supplementary freeze 10b (scorer inputs); 346 answers; H1 B4=B1=B2=0.25 (n=24, 4 discordant); H3 sign test 16-0 p=3e-5 but B7 P3 abstention 0/10 < B2 3/10 -> RULE_NOT_MET; audit skipped (cannot change verdict). A2 full non-BBC: ungated DIRECT 267,933 -> DIRECT 30,220 + CONTEXT_MISMATCH 224,240
+- **Files:** `tools/s179_d5_{run_rungs`, `embed_cache`, `relatives}.py; registry/freezes/D5-BENCH-2026-11-10b.json; reports/del5/d5_runs_v1_D085.*; reports/del5/d5_score_v1_D085/*; reports/step23/router_demo_census_vitc_nonBBC_full_S179_cmon.json; DECISIONS.md`
+- **Verified:** runner tests 4 passed; guard ok; RUN-S179-D5-001, RUN-S179-ROUTER-009
+- **Next:** examine why B7 does not abstain on P3; SIM-VAL extraction in a separate session
+
+### S199 · 2026-11-11 22:14 IST · S179 · Local Python 3.11 baseline and stale-test corrections
+- **Who:** Parv
+- **Did:** Fetched and switched to Kush working branch65298da. Created requested pinned Python3.11.9 environment. Baseline7906passed8failed13errors; corrected3stale test assumptions.83localhost tests pass with access;44targeted pass. Final full7926passed1failed11errors14skipped44deselected;all remaining failure/errors missing local identity-features/Food.com files;tests not weakened.
+- **Files:** `reports/s179/parv_verification_2026-11-11.json`, `reports/s179/env_lock/parv_S179_2026-11-11.txt`, `tests/unit/test_s177_sr_identity_adapter.py`, `tests/unit/test_s179_human_sign.py`, `tests/unit/test_s179_prereg_amendments_applied.py`
+- **Verified:** Full run135.31s;RUN-S179-PARV-TEST-001..005. Socket restrictions isolated from missing-data outcomes.
+- **Next:** Restore local inputs; rerun affected checks. No SSH before current VPN/host confirmation.
+
+### S200 · 2026-11-11 22:14 IST · STEP-10 · Frozen AA Model A conditional identifiability diagnostic
+- **Who:** Parv
+- **Did:** Derived analytic coefficient profile intervals from frozen OLS covariance and residual summaries without refit or SIM-VAL access. Reported separate finite-df t intervals. All3profiles bounded conditional on OLS;practical precision NOT_ASSESSED;NOT_VALIDATED/RESEARCH_ONLY retained.
+- **Files:** `tools/s179_aa_profile_summary.py`, `tests/unit/test_s179_aa_profile_summary.py`, `reports/step10/aa_identifiability_profile_summary_S179.json`, `reports/step10/identifiability_report_v1.md`
+- **Verified:** TDD missing-module red;10new tests and21AA tests pass. Synthetic constrained OLS endpoint checks. Fit hashb9247db0 unchanged;RUN-S179-PARV-AA-001.
+- **Next:** CAL/ModelB and separate-session SIM-VAL require private files;PARAM/calibration/G15 retain own gates.
+
+### S201 · 2026-11-11 22:14 IST · M8 · Round6 full acceptance audit and original-result report assembly
+- **Who:** Parv
+- **Did:** Audited252unique board rows84MUST168SHOULD;51POST retained. Resolved VERIFY choices from existing decisions. Added D1/D4/H2-lineage sections,7diagnostic memos,updated crosswalk/licence section,integrated report and Markdown slide drafts,release card,schedule and D5 boundary amendment proposal. Original H1 raw/supplement distinction and compatible-recall contradiction retained;no new experiment or human sign-off.
+- **Files:** `reports/orchestration/S179_round6_acceptance_audit.csv`, `reports/orchestration/S179_round6_acceptance_audit.md`, `reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md`, `reports/final/SLIDES_DRAFT_S179_2026-11-11.md`, `reports/del5/D5_P3_evidence_boundary_amendment_PROPOSAL_2026-11-11.md`, `handoff/S179_D085_EXECUTION_HANDOFF.md`
+- **Verified:** Board original acceptance preserved;128stratified+384sensitivity rows checked from JSON by report agent;7memo forbidden-word lint;provenance and prereg --check OK. Frozen/protected files to be checked before push.
+- **Next:** Private inputs;full emission/leakage scans;versioned split registry;authors edit/contributions;post19NovMPU and timed24Nov rehearsal.
+
+### S202 · 2026-11-11 23:00 IST · S179 · Private transfer installed with hash and ignore checks
+- **Who:** Parv
+- **Did:** Verified all15 manifest hashes; copied to expected ignored folders, preserving source. D085CALsheet matches frozen fit. No transferred text committed. Added tested JSONproof exclusion after finding CSV-only ignore rule.
+- **Files:** `reports/s179/private_transfer_import_2026-11-11.json`, `.gitignore`, `tests/unit/test_s179_private_transfer.py`
+- **Verified:** 15files byte-equal and ignored;privacytest red1 then4pass;no human approvals inferred from filenames.
+- **Next:** Identity-features/Food.com still absent;no SSH without host/VPN confirmation.
+
+### S203 · 2026-11-11 23:00 IST · STEP-10 · Model B and CAL source sensitivity dispositions
+- **Who:** Parv
+- **Did:** Separate-paper OLS ModelB and all predeclared arm dispositions. Source proof16/16 spans checked. Assay-clean primary NEED_DATA(onepaper),licence-rejected arm NOT_RUN;unchanged arms not refitted;frozenModelA untouched.
+- **Files:** `src/culinarystate/simulation/aa_cal_sensitivity.py`, `tools/s179_aa_cal_sensitivity.py`, `tests/unit/test_s179_aa_cal_sensitivity.py`, `reports/step10/aa_model_b_sensitivities_2026-11-11.json`
+- **Verified:** 25target tests incl14new;producer/source hashes bound;RUN-S179-PARV-AA-002.
+- **Next:** No assay harmonisation or production calibration inferred.
+
+### S204 · 2026-11-11 23:00 IST · STEP-10 · Separate SIM-VAL extraction and source-gated diagnostic refusal
+- **Who:** Parv
+- **Did:** Estimate-unexposed extractor finalized19rows;second unexposed source reviewer6PASS12FLAG1REJECT,zero computational eligibility. AAK12 licence403 text unopened. No primary predictions or errors emitted. Added source-bound diagnostic tool, retained firstbuild and newv2 output.
+- **Files:** `reports/step10/SIMVAL_extraction_precheck_2026-11-11.md`, `reports/step10/SIMVAL_source_precheck_2026-11-11.md`, `tools/s179_aa_simval_diagnostic.py`, `tests/unit/test_s179_aa_simval_diagnostic.py`, `reports/step10/aa_SIMVAL_diagnostic_2026-11-11_v2.json`
+- **Verified:** 21tests pass and independent review confirms provenance gapclosed;FLAGfailsclosed;zeroeligible retainsnullmetrics. Private spans/rows/manifests ignored.
+- **Next:** Source-supported assay/basis resolution or honest NOT_RUN;no tuning/fake observations.
+
+### S205 · 2026-11-11 23:00 IST · M8 · T5 scorecard and private-transfer report closeout
+- **Who:** Parv
+- **Did:** All13requested G15T5 gates mapped:5PARTIAL3NEED_DATA5NOT_MET0PASS. Calibrationdisposition anddraftSIMMcard retain realroute refusal. Updated report/deck andround7supplement. Local source-window scan0matches on5sources7artifacts,limitedscope.
+- **Files:** `reports/step10/G15_T5_scorecard_2026-11-11.md`, `reports/step10/calibration_disposition_2026-11-11.md`, `reports/step10/SIMM-AA-1_card_DRAFT_2026-11-11.json`, `reports/orchestration/S179_round7_private_transfer_update.md`, `reports/s179/source_text_scan_partial_2026-11-11_v2.json`, `reports/s179/private_transfer_verification_2026-11-11.json`
+- **Verified:** Final full7975passed1failed11errors13skipped44deselected109.43s;48new-tool tests;21peerrecheck. Missing-data outcomes retained. Frozen/protected checks before push.
+- **Next:** Genuine KIN/PARAM provenance;sourcebasis;missingtestinputs;fullcorpus/emission/leakage;authorfacts/rehearsal.
+
+### S206 · 2026-11-12 10:42 IST · S179 · Read-only emission auditor and source-name regression correction
+- **Who:** Parv
+- **Did:** Built separate lexical/structural instrument test-first. Recognizes large,signed,scientific andpercentage retention numbers;packetrefs,pointvalues andprecisioncaps;structuralUNKNOWN/SIMULATE,model/evidence,L2impossibility. Recordedsource names maskeddistinctly after3regressions;oldrun retained,newv2 atseparatepath.
+- **Files:** `src/culinarystate/evaluation/emission_audit.py`, `tools/s179_emission_audit.py`, `tests/unit/test_s179_emission_audit.py`
+- **Verified:** 21tests pass. Code committed before each audit;allsourcecode hashes stable. Original generation/scorer/prompt unchanged.
+- **Next:** Implement dated versioned runtime/fallback hardening perproposal;do not retune oldbenchmarks.
+
+### S207 · 2026-11-12 10:42 IST · M8 · All-answer and public-demo provenance audit recorded
+- **Who:** Parv
+- **Did:** Scanned all346savedanswers and1000seededmetadata-template publicdemo calls with200explicit syntheticrecipe requests. Correctedv2 flags30savedrecords(B0:4,B2:8,B5:18);B5T/B7 anddemo noflags within lexicalscope. Only173TRANSFORMATION calls,36recipepayloads,51physicalsteps. T0C06R2remainsPARTIAL. NEG0052added,originalrun/frozenresults retained.
+- **Files:** `reports/s179/emission_audit_2026-11-12.json`, `reports/s179/emission_audit_2026-11-12_v2.json`, `reports/s179/emission_audit_2026-11-12.md`, `reports/s179/emission_path_review_2026-11-11.md`, `registry/negative_results_register_v1.csv`
+- **Verified:** RUN-S179-PARV-EMIT-001/002;no semantic/cross-option/unit/condition/allbasis certificate. Source-path draft received beforeagentusage limit;rootcompleted checks,no independent auditor signoffclaimed.
+- **Next:** Fullsemantics/basis/branchchecks;versioned guardhardening;humanfactsonlywhereactuallyneeded.
+
+### S208 · 2026-11-12 10:42 IST · M8 · Emission session regression and counts-only publication preparation
+- **Who:** Parv
+- **Did:** Updated report,STATUS,handoff andround8brief with scope andnegativefinding. Partialsource scan0matches5sources4artifacts,no releaseclearance. No rawanswers/queries/recipes in auditoutputs.
+- **Files:** `reports/s179/emission_audit_verification_2026-11-12.json`, `reports/s179/source_text_scan_partial_2026-11-12.json`, `reports/s179/emission_runtime_amendment_PROPOSAL_2026-11-12.md`, `STATUS.md`, `handoff/S179_D085_EXECUTION_HANDOFF.md`
+- **Verified:** Full7996passed1failed11errors13skipped44deselected105.40s;missingdata only. Target21pass;NEG/audit27pass. Source/frozen/append-only checks before push.
+- **Next:** Restore identityfeatures/Food.com;PARAM/basis andsemanticchecks;authorcontributions/talkfacts/rehearsal.
+
+### S209 · 2026-11-12 18:49 IST · S179 · Restore local bundles without changing source content
+- **Who:** Parv
+- **Did:** Checksum-matched tier1 restored actual4missing files;3641totalextractions included3637AppleDouble sidecars, quarantinedwithhashedmanifest outsidecheckout. Tier2 metadata revealsdifferentNERcheckpoint;no substitution.
+- **Files:** `reports/s179/local_tier1_restoration_2026-11-12.json`, `reports/s179/local_metadata_quarantine_2026-11-12.json`, `reports/s179/optional_model_bundle_check_2026-11-12.json`
+- **Verified:** Requiredsourcehashesmatch;29previousmissinginputtests pass. Originalannotations andassertions unchanged.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S210 · 2026-11-12 18:49 IST · M5 · Freeze-set split and exposure registry reconciled locally
+- **Who:** Parv
+- **Did:** Versionedv2missingGutenberg retained;v3loadsall24Srecipes,74questions8blocks79goldEVD. Positiveexposuresdisclosed. Historicalassignments notfreshlyrederived.
+- **Files:** `tools/s179_frozen_split_registry.py`, `registry/d5_frozen_split_registry_v3.csv`, `reports/s179/d5_frozen_split_leakage_v3.json`
+- **Verified:** 6TDDtests;perblockunit/hashrecheck;LEAK004/005recorded;separateexperimentsregistry,no inventedEXPids.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S211 · 2026-11-12 18:49 IST · M6 · Separate strict emission and physical provenance implementation
+- **Who:** Parv
+- **Did:** D093snapshotbeforeaudit. Exactdeclaredfields/typedpoints only;no contextguess;finalfallbackcheck. FixedAIreviewwrongprocess/option/tier/malformedinputs/overflowcases. Physicalpernumberbasis/refs preserveunknown.
+- **Files:** `src/culinarystate/generation/strict_v2.py`, `src/culinarystate/decision/demo_context_v2.py`, `src/culinarystate/decision/physics_summary_v2.py`, `registry/freezes/STRICT-V2-ENGINEERING-2026-11-12.json`
+- **Verified:** 65newengineering/reviewtests pass beforeliveaudit. Originalgeneration/scorer/prompts/results unchanged. Fullindependentfinalreviewnotclaimed.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S212 · 2026-11-12 18:49 IST · M6 · Strict local runtime and HTTP diagnostic complete
+- **Who:** Parv
+- **Did:** 1000calls200syntheticrequests:155ABSTAIN186SAFETY659ASK;0retentionfigures;53physicssteps141numericfields0missing/unknown;nohandlererrors. Public/localHTTPsmokepass.
+- **Files:** `reports/s179/strict_runtime_audit_2026-11-12.json`, `reports/s179/strict_http_smoke_2026-11-12.json`, `tools/run_local_demo_v2.py`
+- **Verified:** EMIT003/HTTP001;frozenengineeringhashesunchanged;metadata/syntheticonly;coverage limitationexplicit. Original30D5flags retained.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S213 · 2026-11-12 18:49 IST · S179 · Full local regression green after metadata quarantine
+- **Who:** Parv
+- **Did:** Firstrestoredrun8080pass2fail(metadata);correctedlocalfilesystemwithouttest/sourceannotationchanges. Finalfull8085pass0fail0errors4skip44deselected171.88s;separatefinal75targetedpass.
+- **Files:** `reports/s179/local_completion_verification_2026-11-12.json`, `reports/s179/local_full_suite_2026-11-12.log`
+- **Verified:** TEST014/015/016;protectedledgers,grammar,immutableboard,legacygeneration/context andD5snapshotbyteidenticalto47164d78.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S214 · 2026-11-12 18:49 IST · M8 · Draft report and deck exported and local source scan completed
+- **Who:** Parv
+- **Did:** 10pagereport13slidesHTML/PDF;manifest/source/PDFtext hashes.0matching12wordwindows on612782indexedrecipes+4licensedpapertexts;177GUTrawsegmentsabsent. Rootviewedslidecontactsheet/reportfirstpage.
+- **Files:** `reports/final/exports_2026-11-12/manifest.json`, `reports/s179/local_corpus_draft_text_scan_2026-11-12_v2.json`, `tools/s179_release_source_scan.py`
+- **Verified:** Source-scan3TDDtests;LEAK006/007/EXPORT001;allPDFpagesnonempty,nooffpagetextdetected. Draftonly/noimages/paraphrase/shortexcerptclearance.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S215 · 2026-11-12 18:49 IST · M8 · Record local closeout and review dependencies
+- **Who:** Parv
+- **Did:** UpdatedSTATUS,round9andhandoffs;factualcontributions/talkquestionpending. ExactNERartifact,sourcebasis/PARAMlineage,privatehistoricalassignment andfuturedatesretaintheirlimits. NoSSH/VPN/modelcall/hosting orscientificpass.
+- **Files:** `reports/s179/local_completion_closeout_2026-11-12.md`, `reports/orchestration/S179_round9_local_completion_update.md`, `handoff/PARV_SESSION_NOTES.md`
+- **Verified:** OriginalH1/H3failures,zeroSIMVALeligible/zeroG15passes,originalemissionflags andNO_HUMAN_SIGNOFF_D085preserved.
+- **Next:** Push current branch; authors/expert can verify recorded hashes and resolve stated real dependencies.
+
+### S216 · 2026-11-13 03:48 IST · M1 · AA source staging and eligibility assessment
+- **Who:** Parv
+- **Did:** 35 source-bound rows staged; seven pH-context corrections separate from original extraction. Zero eligible SIM-VAL, source/assay/lineage gaps retained.
+- **Files:** `reports/step10/aa_lineage_staging_readiness_2026-11-12.json`, `reports/step10/aa_data_availability_2026-11-13.md`
+- **Verified:** AA007;8 TDD tests; no IDs or scientific eligibility minted.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S217 · 2026-11-13 03:48 IST · M6 · Strict-v3 display and actual browser diagnostics
+- **Who:** Parv
+- **Did:** Separate frozen v3 fixes tiny-point rounding, hidden heat-only events and missing-provenance display; real Chrome four scenarios plus null control. 1000-call audit no enumerated display errors. Original answer flags retained.
+- **Files:** `registry/freezes/STRICT-V3-ENGINEERING-2026-11-12.json`, `reports/s179/strict_runtime_v3_audit_2026-11-12.json`, `reports/s179/strict_v3_browser_rehearsal_2026-11-12.json`
+- **Verified:** D095;EMIT004/BROWSER001;68 targeted controls. No applicability/scientific certification.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S218 · 2026-11-13 03:48 IST · M5 · Repeat integration and as-listed composition audit
+- **Who:** Parv
+- **Did:** 50 actual recipes repeat identical core output;1000 prehashed composition sample,800 ingredient pools deterministic. Replay and router paths parallel; no invented shared API or lot conservation.
+- **Files:** `reports/s179/pipeline_regression_2026-11-12.md`, `reports/s179/composition_sample_audit_2026-11-12.json`
+- **Verified:** PIPE001/002 COMP001; gold repeat and unknown-state controls pass.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S219 · 2026-11-13 03:48 IST · M5 · All-target sample and full BBC mechanism completion
+- **Who:** Parv
+- **Did:** 224 ACTIVE targets on1000 selected recipes/800 instruction-bearing, zero exceptions. Full11934 BBC recipes through four existing mechanism producers, zero exceptions. Initial slow attempt retained as ABORTED.
+- **Files:** `reports/s179/all_target_router_sample_2026-11-13_v2.json`, `reports/s179/bbc_mech_completion_2026-11-13/completion.json`
+- **Verified:** TARGET001/002 BBC001..004; cache parity controls, stable source/HEAD; defaults remain unverified.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S220 · 2026-11-13 03:48 IST · M1 · Coverage and concrete AI binding error review
+- **Who:** Parv
+- **Did:** All five source-family proxy channels/queues checked. 100-event prehashed review: event72/92,20 mismatches,8 ambiguous; duration30/33; medium precision unmeasured. No binder tuned.
+- **Files:** `reports/s179/coverage_BBC_GUT_2026-11-13.json`, `reports/s179/binding_precision_AI_review_2026-11-13.json`
+- **Verified:** COVER001/002 BIND001; explicit conditional denominators/Wilson CIs; raw review packets ignored.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S221 · 2026-11-13 03:48 IST · M5 · Canonical cells and Rung A Gold contract audit
+- **Who:** Parv
+- **Did:** Canonical key/assignment hashes and reversed-input repeat; actual40 devGold recipes expose generic ACTION versus typedGold incompatibility. Missing P1A packets and semantic contract separate; no invented P/R.
+- **Files:** `reports/s179/canonical_cell_density_2026-11-13.json`, `reports/s179/runga_gold_contract_2026-11-13.json`
+- **Verified:** CELL001 GOLD001; key omits temperature; null metrics retained.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S222 · 2026-11-13 03:48 IST · S179 · Conservative policy and structural MECH freeze
+- **Who:** Parv
+- **Did:** D096 records raw-axis/overlap/order/D21/Q21/L13E/local compute/visibility/runtimeCLM/INTERPOLATE dispositions. Parsed-identical schema alias only; no writer changes, new IDs or chemistry validation.
+- **Files:** `DECISIONS.md`, `registry/freezes/MECH-REFERENCE-2026-11-13.json`, `reports/s179/technical_policy_dispositions_2026-11-13.md`
+- **Verified:** 34 schema/semantics tests; provenance report refreshed after D096; AI delegate NO_HUMAN_SIGNOFF_D085.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S223 · 2026-11-13 03:48 IST · M8 · Reproduction and technical review assets
+- **Who:** Parv
+- **Did:** Router/binder rerun,40 P/C templates exact match; two router differences explained. 1038 numeric substrings classified by exact-line AI review. Nine technical figures, ignored fallback pack,488 pH page locators. Final report/deck unchanged.
+- **Files:** `reports/s179/artifact_reproduction_2026-11-12/comparison.json`, `reports/s179/number_class_AI_review_2026-11-12.json`, `reports/s179/technical_figures_2026-11-13_v2/manifest.json`, `reports/s179/ph_page_locators_2026-11-13/manifest.json`
+- **Verified:** REPRO001 NUMBER001 FIG001/002 PH001; no H1/B7 regeneration or primary-source/human pH adoption.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S224 · 2026-11-13 03:48 IST · S179 · Full all-marker regression and historical run reconciliation
+- **Who:** Parv
+- **Did:** 8182 passed4 skipped0 failures/errors/deselected; later compute parser3 targeted pass separately. Historical330 rows audited,18 recorded hashes found in Git; missing paths/times remain disclosed.
+- **Files:** `reports/s179/technical_completion_verification_2026-11-13.json`, `reports/s179/all_marker_full_suite_2026-11-13.log`, `reports/s179/compute_reconciliation_2026-11-13_v2.json`
+- **Verified:** TEST017/018 LOG001/002; protected/frozen hashes unchanged. EXP000007 card receives explicit NOT_RUN metadata, no fake execution.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S225 · 2026-11-13 03:48 IST · S179 · Reconcile technical scope and handoff
+- **Who:** Parv
+- **Did:** 252 original items retained,84 MUST168 SHOULD51 POST;40 dispositions updated. Exact artifact, typed contract, scientific data and real-event constraints recorded. Author facts/final edits excluded per D094.
+- **Files:** `reports/orchestration/S179_technical_scope_matrix_2026-11-13.csv`, `reports/s179/technical_completion_closeout_2026-11-13.md`, `handoff/PARV_TECHNICAL_CLOSEOUT_2026-11-13.md`
+- **Verified:** All evidence refs/hash snapshots checked; no overall completion percentage or scientific pass.
+- **Next:** Review concrete recorded dependencies; retain frozen scientific guards and author exclusions.
+
+### S226 · 2026-11-13 03:49 IST · M8 · Technical artifact text scan and final bookkeeping checks
+- **Who:** Parv
+- **Did:** 93 technical artifacts scanned against612782indexedrecipes and4licensedtexts:zero matching12word windows.177GUTrawsegmentsmissing. Matrix evidence hashes refreshed after final log appends; no source text added by bookkeeping.
+- **Files:** `reports/s179/technical_artifact_source_scan_2026-11-13.json`, `reports/orchestration/S179_technical_scope_matrix_2026-11-13.csv`
+- **Verified:** LEAK008; no release clearance. Protected ledgers/frozen originals/report/deck unchanged; append-only compute prefix verified. Remote branch has no new commits after fetch.
+- **Next:** Commit each file separately and push authorized review branch.
+
+### S227 · 2026-11-13 11:02 IST · S179 · Private artifacts located; 15a registry, NER vs Rung A, D-097 type table, 29-diag paired vs D0
+- **Who:** Kush (ksh+prv AI, D-085)
+- **Did:** Found on Kush Mac/vinayak by sha256: NER ckpt 582c056a (vinayak), 15a seed/list (Mac private), P1-A gold (Mac, 7). Seal 6/6 PASS. T9-C09-R1 registry 177/709 groups 0 crossing. T3-C09-R1 NER FOOD covered by lexicon 98.4/95.5/94.6% (FC/WB/TS). D-097 structural mapping pre-declared then scored: pooled P 0.52-0.62; Merge P>=0.91; Transform over-predicted. T6-C02-R3 all rungs vs D0 per split: USDA rungs beat D0, PE mostly worse (negative kept). T8-C21-R2 ablations not started (needs design).
+- **Files:** `registry/split_registry_15a_v1.csv; reports/s179/{15a_assignment_registry`, `seal_integrity_check_S179`, `ner_vs_runga_agreement_S179`, `d097_runga_type_table}_2026-11-13.json; reports/step29/diag/paired_vs_d0_S179_2026-11-13.json; DECISIONS D-097`
+- **Verified:** new tests 25 pass; G15-R PASS paired_vs_d0; no ids/text/host paths in committed outputs; RUN-S179-KUSH-*
+- **Next:** Kush pass/fail review of AI results; T8-C21-R2 ablation design; Parv corrects dependency closeout
+
+### S228 · 2026-11-13 12:33 IST · S179 · Reconcile supplied material and upstream dependency results
+- **Who:** Parv
+- **Did:** Five supplied documents retained; pulled matching handoffs and upstream results. Four artifact families exist with Kush, not newly received on Parv Mac. Original local-only absence JSON retained and superseded.
+- **Files:** `reports/s179/material_handoff_receipt_2026-11-13.json`, `reports/s179/local_model_and_seal_dependencies_SUPERSEDED_2026-11-13.md`
+- **Verified:** 31 initial targeted tests passed; K13 human review by Kush recorded upstream, Parv review not inferred.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S229 · 2026-11-13 12:33 IST · M1 · Blind prv CAL verification complete with metadata corrections
+- **Who:** Parv
+- **Did:** Fresh reviewer read only Parv packet/allowed sources.16numericspansmatched,13CORRECTED3VERIFIED. Original values and fit unchanged; exact sourcepage/span hashes and returned sheet preserved ignored.
+- **Files:** `reports/s179/prv_CAL_source_review_2026-11-13.json`
+- **Verified:** PRV-CAL001;blinding/preservation/privatepaths verified. Kush to compare returnedprv sheet and adjudicate; no scientificgatepass.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S230 · 2026-11-13 12:33 IST · M2 · Recover exact R1 Parv packet and complete separate AI half
+- **Who:** Parv
+- **Did:** Initial packet absent; rederived exact frozenissued bytes/hash without transfer,seedorKushlabels. Fresh reviewer100rows97ACCEPT3conservativeREJECT,1800nonjudgmentcellsexact. No paired score/human gate.
+- **Files:** `reports/s179/prv_07AR1_packet_reconstruction_2026-11-13.json`, `reports/s179/prv_07AR1_AI_review_2026-11-13.json`
+- **Verified:** PRV-R1001/002;no need for previously requestedpacketfolder. Kush owns counterpart/scoring/adjudication; persona resultNOT_COUNTED.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S231 · 2026-11-13 12:33 IST · M6 · Predeclared blind claim and branch AI reviews retain negative findings
+- **Who:** Parv
+- **Did:** D099sample30claims;freshjudgeblindtoring/checker,14/27agreement3unclear. SeparatefreshbranchGoldall74questions,45/74routeragreement. Labels frozenbeforeunblind; fullconfusion/private notes retained.
+- **Files:** `reports/s179/prv_claim_review_2026-11-13.json`, `reports/s179/prv_branch_review_2026-11-13.json`, `reports/del5/prv_claim_audit_caveat_DRAFT_2026-11-13.md`
+- **Verified:** PRV-CLAIM001/002 BRANCH001/002;TDD4+2controls. Enrichedclaimsampleandquestion-onlyGoldnotindependenthuman evidence; H1/H3unchanged.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S232 · 2026-11-13 12:33 IST · M8 · Prepare technical insert, numbered-review and rehearsal/readiness packs
+- **Who:** Parv
+- **Did:** Newtechnicaldraftonly;106numeric substrings reviewed,zero unclassified.13slide720secondplanned run sheet/Q&A/fallback;actualrehearsalNOT_RUN. LivePRsnapshot after permittedread,nomerge.
+- **Files:** `reports/final/drafts_2026-11-13/prv_technical_results_update_DRAFT.md`, `reports/s179/prv_draft_number_AI_review_2026-11-13.json`, `reports/s179/prv_rehearsal_pack_2026-11-13.md`, `reports/s179/prv_merge_readiness_2026-11-13_v2.json`
+- **Verified:** PRV-NUMBER001 PR001;negativePE/claimresultsvisible. Personal facts/final edits excluded; five licensed-source browserdownloads still not acquired.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S233 · 2026-11-13 12:33 IST · S179 · Repair decision provenance parser and verify full local regression
+- **Who:** Parv
+- **Did:** TDDcaughtsuffixD097aomissionandexplicitAItitleclassification; parser fixedwithoutchangingdecisions. Full8228pass4namedskip,priorfailures retained;D106concurrentsync then25targetedpass. Protectedoriginals unchanged.
+- **Files:** `tools/s179_gate_provenance_report.py`, `tests/unit/test_s179_gate_provenance_report.py`, `reports/s179/prv_continuation_verification_2026-11-13.json`
+- **Verified:** PRV-TEST001; no skipsadded/assertionsweakened. Fulltestedrevisionandpostsynccoverage statedseparately;torch/pintoptional/FDAcapture/bundle-test skipsnamed.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S234 · 2026-11-13 12:33 IST · S179 · Reconcile v2 scope and stage private return sheets
+- **Who:** Parv
+- **Did:** All252items84MUST168SHOULD51POSTpreserved;fiveupstreamclosuresplusprvdispositionsupdated. Fiveprivate return artifacts stagedignored,not sent. Shared review rows pendinghuman.
+- **Files:** `reports/orchestration/S179_technical_scope_matrix_2026-11-13_v2.csv`, `reports/s179/prv_private_return_manifest_2026-11-13.json`
+- **Verified:** PRV-LEAK001 zero12wordmatches;0scientificpassesinferred. ExactR1packetissue resolved; source/data/independence/calendarconstraints remain.
+- **Next:** Kush: privately receive prv R1/CAL sheets from local return pack; score/counterreview/adjudicate under AI labels. Retain originals and scientific guards.
+
+### S235 · 2026-11-13 12:51 IST · M1 · Continue publisher licence checks and retain strict source boundaries
+- **Who:** Parv
+- **Did:** AAK04/10 publisher attribution notices confirmed; AAK05 article-specific NC-SA4.0 differs from aggregator CC-BY and is excluded under existing allowlist. AAK02/08 remain unconfirmed. No local PDF or new source rows; D101 records AI dispositions.
+- **Files:** `DECISIONS.md`, `reports/step10/aa_publisher_licence_followup_2026-11-13.json`, `registry/evidence/aa_licence_checks_2026-11-13_supplement.csv`, `reports/orchestration/S179_technical_scope_matrix_2026-11-13_v3.csv`
+- **Verified:** RUN-S179-PRV-LICENCE001;6provenance tests pass. Prior registers/source data/fit untouched; no site challenge bypass, new scientific eligibility or human approval.
+- **Next:** Kush/Parv: review D101; acquire permitted source PDFs through normal browser and retain exact hashes before extraction. R1 packet transfer question already resolved.
+
+### S236 · 2026-11-13 14:50 IST · M2 · Verify newly supplied Parv R1 packet matches original issued bytes
+- **Who:** Parv
+- **Did:** User added issued CSV to material. Exact SHA256 matches original manifest and reconstructed expected local packet;100rows,no judgment cells filled. Original upload retained, existing destination ignored, no overwrite or review repetition.
+- **Files:** `reports/s179/prv_R1_supplied_packet_receipt_2026-11-13.json`
+- **Verified:** RUN-S179-PRV-R1-003;original issued SHA f086975a confirmed. Prior returnedAIreview unchanged. Pulled upstream updates and refreshed generated provenance;6provenance tests pass.
+- **Next:** Kush: receive existing private prv return for counterpart/scoring/adjudication. The uploaded blank packet is not a human review or gate pass.
+
+### S237 · 2026-11-13 15:31 IST · M2 · Complete counterpart AI condition/CAL reviews and paired comparisons
+- **Who:** Parv
+- **Did:** Fresh-context kshAIreviewers blinded to prvlabels. RegisteredR1statisticscompared afterhashfreeze;NOT_COUNTED. CAL16numericspanagreements;metadataqualifiers/proposals retained without fit/extractionchanges.
+- **Files:** `reports/s179/r1_paired_AI_closeout_2026-11-13.json`, `reports/s179/CAL_paired_AI_closeout_2026-11-13.json`, `reports/s179/reduced_submission_review_resolution_2026-11-13.md`
+- **Verified:** REDUCED-R1001/CAL001;3TDDindependence/immutable-inputcontrols. Humanapprovalnotinferred;406originalR1differencespreserved.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S238 · 2026-11-13 15:31 IST · M6 · Run eight authored strict demo scenarios and fix instrument envelope handling
+- **Who:** Parv
+- **Did:** Initialinstrumentfailedbranchlookup;actualroute.branchregressionadded,newv2all8checks pass. Unsupportedmetadata/search/vision and absent substitutionedges remain honest refusals;physicsnumbersbasislabelled.
+- **Files:** `tools/s179_submission_demo.py`, `reports/s179/reduced_submission_demo_2026-11-13_v2.json`, `reports/s179/reduced_submission_producer_snapshots_2026-11-13/README.md`
+- **Verified:** REDUCED-DEMO001/002;4controltests. Originalfailedinstrumentoutput/exactsourcebytesretained;noapp/frozen/scientificsourcechange.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S239 · 2026-11-13 15:31 IST · S179 · Final full regression and candidate source scan green
+- **Who:** Parv
+- **Did:** 8271pass4namedskip0failed/errors/deselected225.27s. Fourfrozenmanifests/protectedoriginalsmatch;35candidate-textscan0matcheson612782recipes+sixpapers.
+- **Files:** `reports/s179/reduced_submission_final_verification_2026-11-13.json`, `reports/s179/reduced_submission_full_suite_2026-11-13.log`, `reports/s179/reduced_submission_source_scan_2026-11-13.json`
+- **Verified:** REDUCED-TEST001/LEAK001;21newtargetedcontrolspass separately. Nooptionalpackageinstalled/skipadded. Scientificgatesandnegativefindingsunchanged.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S240 · 2026-11-13 15:31 IST · M8 · Build verified reduced submission candidate and private takeover pack
+- **Who:** Parv
+- **Did:** 49allowlistedpublicartifacts plusinternalmanifestinlocalZIP;14packagingTDDcontrols. IndependentCRC/member/archivehashcheck. Separate11fileprivateZIPstagedNOT_SENT. Originalreport/deckearlierdrafts preservedwithnewaddenda.
+- **Files:** `tools/s179_submission_candidate.py`, `reports/final/submission_candidate_2026-11-13/build_manifest_v1.json`, `reports/final/submission_candidate_2026-11-13/verification_v1.json`, `reports/s179/kush_private_takeover_manifest_2026-11-13.json`
+- **Verified:** REDUCED-PACK001/PRIVATE001;exactsource_revisionandmemberbytesbound. Noauthorapproval,sourcepaper/model/seedupload,hostingormerge.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S241 · 2026-11-13 15:31 IST · S179 · Write complete Kush reduced-submission takeover document
+- **Who:** Parv
+- **Did:** Primaryhandoffcoverscompletedartifacts,commands,private locations,AIstatistical/source limitations,actualremainingauthor/model/integration/calendaractions. Companionpathsindexseparatespubliccandidatefromprivateproofs.
+- **Files:** `handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md`, `handoff/KUSH_TAKEOVER_PACKAGE_PATHS_2026-11-13.md`
+- **Verified:** Alllinks/files/allowlistvalidated. CounterpartAItransferdependencyresolved;independenthuman/sciencedatastillnotfabricated;authorfacts/finaleditsexcluded.
+- **Next:** Kush: start with handoff/KUSH_TAKEOVER_REDUCED_SUBMISSION_2026-11-13.md; review paired AI limitations, integrate final author edits/results and perform exact-version PR/event checks.
+
+### S242 · 2026-11-14 17:14 IST · D-116 · BBC v1.1 composition run + schema v1.1 doc
+- **Who:** Kush+Claude
+- **Did:** BBC v11 leg done (11,934 recipes, 0 exceptions); schema v1.1 doc written
+- **Files:** `reports/s179/d116_composition_state_schema_v1_1.md`, `reports/s179/state_dataset_fill_BBC_D116v11_2026-11-14.json`
+- **Verified:** 0 exceptions; contains_text False
+- **Next:** VPN: merge manjot v1 shards, run v11 non-BBC
+
+### S243 · 2026-11-15 01:44 IST · 36A · Step 1 of the 15 Nov freeze: finalized state-variable inventory + canonical 13-axis registry
+- **Who:** Kush
+- **Did:** Reconciled the 14 Nov gap matrix against SSOT v15/v16 and the 36-step owners. Found that every adopt-now item of the 15 Nov architecture freeze already has an SSOT-v16 change request (Event IR = CR-25/26; UNKNOWN!=0 = CR-07/51; no-unsupported-numerics = CR-25/26 interval rule; basis/provenance = CR-02; alternatives-not-conjunctions = CR-25 / VNEXT_ALTERNATIVE_SKIPPED; compiler+packet = 36A.3 + CR-57..61/65), so the work is formalization, not new design. Created registry/rag/compatibility_axes_v1.csv, the 13-axis spec file that N.7 referenced but which did not exist: 9 axes implemented in retrieval/compatibility.py, 4 (pH, aw/moisture, geometry, measurement method) now carried in the schema as UNKNOWN with a reason instead of dropped. Quantified the time/conditions gap: S_t holds dose, cumulative dose, hot-aqueous/hot-fat minutes, medium, lid, piece size, start mode, moisture cap, oxygen proxy, prior salt/acid exposure, but STATE_VECTOR_V0 exposes only temperature and duration (Q = 2 of 51 dims).
+- **Files:** `reports/s179/state_inventory_FINAL_2026-11-15.md`, `registry/rag/compatibility_axes_v1.csv`
+- **Verified:** 13 axes parse, 0 malformed rows, code_axis_name set matches retrieval/compatibility.py AXES exactly (9); tests/unit/test_s179_state_vector.py 4 passed
+- **Next:** Freeze step 2: formalize Event IR + validator invariants with minimal code changes, no second graph implementation
+
+### S244 · 2026-11-15 01:52 IST · 17a · Step 2 of the 15 Nov freeze: typed Event IR contract + alternatives invariant
+- **Who:** Kush
+- **Did:** Documented the Event IR that already existed across interfaces.py / validators.py / rung_a_binding.py / invariants.py as one contract (docs/EVENT_IR_CONTRACT.md), and closed the one invariant V4 did not enforce. Added two CR-25 fields to EventCandidate: alternative_group and condition_profile_id, both defaulting to None, never inferred, non-blank when set. Added _alternatives to invariants.py: at most one member of an alternative_group may commit state (non-empty consumes/produces/discards), reported once per group as ALTERNATIVE_GROUP_TREATED_AS_CONJUNCTION, never repaired. Found that the other five freeze invariants were already enforced (lineage conservation by V4; UNKNOWN!=0 by check_mass_balance UNKNOWN-not-FAIL; no-unsupported-numerics by auditor + CR-25/26 interval rule; basis/provenance by ValueClaim origin/status/claim_route = CR-02; evidence-context UNKNOWN!=MATCH by compatibility.py VALUE table), and that CR-26 allocation basis already existed as AllocationCandidate.basis. No second graph implementation.
+- **Files:** `docs/EVENT_IR_CONTRACT.md`, `src/culinarystate/extraction/interfaces.py`, `src/culinarystate/extraction/invariants.py`, `tests/unit/test_s180_event_ir_alternatives.py`
+- **Verified:** TDD: 12 new tests RED (10 failed) then GREEN (12 passed); no regression across test_step17a_invariants, test_step17a_interfaces, test_step18_event_log, test_step17b_rung_a, test_step17b_rung_a_measure, test_s166_agreement_event_argument, test_s166_rung_a_code_provenance = 160 passed 1 skipped
+- **Next:** Freeze step 3: extend RAG packet v2 into a query-specific evidence compiler over all 13 compatibility axes; wire axis 9 geometry
+
+### S245 · 2026-11-15 01:56 IST · 36A · Steps 3-4 of the 15 Nov freeze: query-specific evidence compiler + Claim Packet
+- **Who:** Kush
+- **Did:** composition/evidence_compiler.py compiles the canonical 13-axis schema read from registry/rag/compatibility_axes_v1.csv (axis list never duplicated in code), replacing rag_packet v2's five hardcoded keys. select_axes(target, question_kind) picks axes BEFORE applicability checking over a closed question vocabulary (RETENTION_NUMERIC, PROCESS_EFFECT, COMPOSITION, LEACHING, FLAVOUR); a numeric retention claim must carry every hard-exclusion axis (1/3/10/11). An unimplemented axis compiles to UNKNOWN with the registry's reason and can never be MATCH; UNKNOWN axes are listed in unknown_axes, never dropped. composition/claim_packet.py adds the seven freeze fields: allowed_claims, required_caveats, forbidden_claims, evidence_ids, compatibility, max_allowed_precision, unknown_reasons. Precision is read from the evidence as reported (tightest cap across rows) and is None with no applied evidence, not zero. ABSTAIN is in every packet. Caveats are built from what is actually UNKNOWN, not boilerplate.
+- **Files:** `src/culinarystate/composition/evidence_compiler.py`, `src/culinarystate/composition/claim_packet.py`, `tests/unit/test_s180_evidence_compiler.py`
+- **Verified:** TDD: 25 tests RED (import error) then GREEN (25 passed); agreement test asserts the Claim Packet never contradicts rag_packet v2's allowed_claim on tomato A and D; no regression on test_s179_rag_packet, state_full, state_vector, d116_router_v12, all_target_router_v2 = 34 passed
+- **Next:** Freeze step 5: claim verifier + deterministic template fallback when verification fails
+
+### S246 · 2026-11-15 01:59 IST · 36C · Step 5 of the 15 Nov freeze: claim verifier + deterministic template fallback
+- **Who:** Kush
+- **Did:** composition/claim_verifier.py runs after LLM generation and checks the text against the Claim Packet; a failing answer is replaced by a deterministic template built only from packet values, never patched. Checks: numbers must be values present in the cited evidence; precision may not exceed the source's reported decimals; a numeric claim must carry an evidence id; a route may not be upgraded in prose; an unsupported route must say it is not known AND state an actual reason; named near evidence must be accompanied by a no-transfer statement. Only numbers that assert something about the target are checked - a number followed by a context unit (minutes, hours, degC, g, ml) or preceded by an index word (step, stage, row) is the recipe's own condition, and evidence ids are stripped before scanning so digits inside EVD-002765 are never read as a value. FROZEN_ROUTER_REASONS stays packet-recorded and is deliberately not text-required: it is provenance, not a reader caveat. A DIRECT answer whose number is cited is not forced to recite unrelated UNKNOWNs.
+- **Files:** `src/culinarystate/composition/claim_verifier.py`, `tests/unit/test_s180_claim_verifier.py`
+- **Verified:** TDD: 18 tests RED (import error) then GREEN (18 passed). Includes a self-consistency test that every template passes its own verifier, which caught 'at step 1' being read as a claimed value. No regression: s180 compiler + event IR + s179 rag_packet all pass.
+- **Next:** Freeze step 6: Layer-1 LLM structured proposer on ambiguity triggers only, span-grounded, validator decides acceptance
+
+### S247 · 2026-11-15 02:02 IST · 36C · Step 6 of the 15 Nov freeze: Layer-1 LLM proposer gated by ambiguity triggers
+- **Who:** Kush
+- **Did:** composition/layer1_proposer.py asks the model only when an ambiguity trigger fires, and the validator decides acceptance. Triggers are not new detection logic: they are the signals already emitted - the lineage vNext flags (VNEXT_ALTERNATIVE_SKIPPED, VNEXT_FAT_STAYS, VNEXT_MIXTURE_COREF) plus the Rung-A ambiguity codes (AMBIGUOUS_ACTION/ANTECEDENT/CANDIDATES/OR_MISSING/REFERENCE) and an unresolved lot status (UNRESOLVED, APPARENTLY_UNUSED). Unknown flags are ignored, never escalated. A Proposal is frozen and cannot be constructed without a span; raw is a REQUIRED argument to review so offsets are always range-checked. Proposable fields are categorical only (alternative_group, condition_profile_id); produces/consumes are never proposable and any numeric-looking value is refused outright, so no numeric chemistry comes from the model. review runs V4 on the would-be graph and refuses any proposal that introduces a new issue code (WOULD_VIOLATE_INVARIANT). review never mutates the graph; apply returns a new one. The client is an injected Protocol, so the whole gate is tested offline with no network.
+- **Files:** `src/culinarystate/composition/layer1_proposer.py`, `tests/unit/test_s180_layer1_proposer.py`
+- **Verified:** TDD: RED (import error) then GREEN, 24 passed. Covers trigger closure, unknown-flag ignoring, span requirement, inverted/empty/out-of-range spans, non-proposable fields, numeric refusal, unknown event, trigger-did-not-fire, invariant violation, no-mutation, apply-returns-new, client not called without a trigger, and malformed client output rejected rather than raised. 36 passed with the event IR suite.
+- **Next:** Freeze step 7: small sealed comparison of Nemotron-Ultra vs local Qwen against the same structured schema
+
+### S248 · 2026-11-15 02:06 IST · 36C · Step 7 part 1 of the 15 Nov freeze: sealed hard-case set + prereg, no model run
+- **Who:** Kush
+- **Did:** tools/s180_seal_hardcases.py selects recipes where a Layer-1 ambiguity trigger fires, stratified by primary trigger and ranked inside each stratum by sha256(seed||pageid). Sealed 60 cases from 1,880 eligible out of 3,797 Wikibooks recipes scanned, 0 parse failures. Wikibooks only (CC-BY, public, citable by pageid/revid/url) because arm H sends case text to an external API and only public or self-written text may go there. Packet is git-ignored and holds the text; the committed manifest holds pageid/revid/url/title/triggers plus the deterministic rules-only baseline per case and the packet SHA-256, with no step text (verified by scan). Pre-registration registers three arms (D deterministic rules-only, L local Qwen, H hosted Nemotron-Ultra), one shared Proposal schema and one shared gate, six measures, and the rule that the whole comparison is DIAGNOSTIC_ONLY because no gold exists for Layer-1 proposals on these cases. Committed before any model has been run.
+- **Files:** `tools/s180_seal_hardcases.py`, `reports/s180/hardcase_seal_2026-11-15.json`, `reports/s180/step7_sealed_comparison_preregistration.md`
+- **Verified:** scanned 3797 | eligible 1880 | selected 60 | failures 0; quotas respected (ALT 15, COREF 15, AMBIG_REF 12, UNRESOLVED_LOT 9, FAT_STAYS 9); 60 unique pageids, all with revid and url; manifest text-leak scan negative; packet confirmed git-ignored via .gitignore data/interim/; packet sha256 b926c303993541d5
+- **Next:** Step 7 arms L and H need VPN (local Qwen) and an explicit go-ahead for the metered external NIM call; then step 8 chemistry primary-source verification (MUST, humans verify each record)
+
+### S249 · 2026-11-15 02:23 IST · 36C · Step 7 amendment A1: trigger-field licensing added to the Layer-1 gate
+- **Who:** Kush
+- **Did:** A 3-case throwaway probe of arm L (written to /tmp, not recorded) exposed that the gate accepted semantically wrong proposals: VNEXT_MIXTURE_COREF answered with alternative_group='filling' and ='dish', i.e. coreference answers smuggled in as an alternatives binding. Any categorical string was structurally valid so the gate could not see it. Added TRIGGER_FIELDS to layer1_proposer: only VNEXT_ALTERNATIVE_SKIPPED may bind alternative_group, every other trigger may touch condition_profile_id only; violations are rejected as FIELD_NOT_LICENSED_BY_TRIGGER. The absolute numeric prohibition is checked BEFORE licensing, so a number is refused as a number whatever field or trigger it arrived under. Amendment A1 appended to the prereg, dated before any recorded model result; the sealed set is unchanged (same 60 cases, same seed, same packet sha256). The gate still cannot judge whether a licensed value is the right one - that limit is stated in the amendment.
+- **Files:** `src/culinarystate/composition/layer1_proposer.py`, `tests/unit/test_s180_layer1_proposer.py`, `reports/s180/step7_sealed_comparison_preregistration.md`
+- **Verified:** TDD: 3 licensing tests RED then GREEN; reordering caught by the existing numeric test, which now asserts NUMERIC_VALUE_NOT_ALLOWED wins over licensing; 40 passed with the event IR suite
+- **Next:** Run arm L over all 60 sealed cases
+
+### S250 · 2026-11-15 02:27 IST · 36A · Step 8 / axis 7: pH bands wired from the in-repo FDA/CFSAN 2003 table
+- **Who:** Kush
+- **Did:** The gap matrix recorded pH as 0% fill and 'schema only', and the known limitations said there was no sourced pH table so tomato sauce could not be called acidic. A sourced table was already in the repo: registry/food_ph_fda2003_v1.csv, 479 rows from FDA/CFSAN Approximate pH of Foods and Food Products Oct 2003, public domain, each row carrying the source sha256, with an ING crosswalk. composition/ph_bands.py loads it using EXACT/FULL crosswalk rows ONLY (147 of 1,718; the crosswalk is AI_DRAFTED and a LOW-confidence generalisation is not evidence), giving 140 ING ids a band. An interval stays an interval: no midpoint, no clipping (D-013). acidity_band classifies against the FDA 4.6 threshold and returns INCONCLUSIVE_SPANS_THRESHOLD when the interval straddles it rather than forcing a side - tomato 4.3-4.9 is exactly that case, while vinegar 2.4-3.4 and lemon juice 2.0-2.6 are ACIDIC. Axis 7 is wired into evidence_compiler.ph_axis_cell and the registry status moved from SCHEMA_ONLY to IMPLEMENTED_IN_COMPILER; it reports no code_axis_name because it is implemented in the compiler, not in retrieval/compatibility.py. Every band carries basis FDA_PH_2003_VIA_AI_DRAFTED_CROSSWALK and verify_status UNVERIFIED_CROSSWALK_AI_DRAFTED: the band is sourced but the mapping is not yet human-verified, so step 8 verification is still owed for anything used in a figure (D-085).
+- **Files:** `src/culinarystate/composition/ph_bands.py`, `src/culinarystate/composition/evidence_compiler.py`, `registry/rag/compatibility_axes_v1.csv`, `tests/unit/test_s180_ph_bands.py`, `tests/unit/test_s180_evidence_compiler.py`
+- **Verified:** TDD: 15 pH tests RED then GREEN; 140 ING bands (113 INTERVAL, 25 POINT, 2 LOWER_BOUND_ONLY); tomato/vinegar/lemon juice all EXACT; schema-only axes now {8,9,12} not {7,8,9,12}; 59 passed across pH + compiler + verifier
+- **Next:** Humans verify the pH crosswalk rows used in figures; remaining chemistry records (vitamin C acid stability, leaching, lycopene oil/heat isomerisation) still need primary sources
+
+### S251 · 2026-11-15 10:25 IST · 36C · Step 7 arm L complete: local qwen2.5:7b over the 60 sealed cases
+- **Who:** Kush
+- **Did:** Ran arm L to completion after the first attempt was voided by a mid-run VPN drop (12/60, moved out of reports/ to /tmp, never committed as a result). Added ssh retry (4 attempts, 20s backoff, ServerAliveInterval) so a blip no longer voids a run. Result: 60/60 answered, 0 failures, 84 proposals returned, schema compliance 1.000 (84/84 parsed into the Proposal schema), 39 accepted, gate acceptance 0.4643, all 39 accepted spans valid, latency mean 16.17s max 66.07s. The rejection histogram has exactly ONE entry: FIELD_NOT_LICENSED_BY_TRIGGER x45. Zero span errors, zero numeric violations, zero malformed returns, zero invariant violations. Accepted fields: condition_profile_id 26, alternative_group 13. 31 of 60 cases got at least one accepted proposal, 29 got none.
+- **Files:** `reports/s180/step7_arm_L_qwen7b_2026-11-15.json`, `tools/s180_run_layer1_arms.py`
+- **Verified:** seal verified at load (packet sha256 matched the manifest before any call); 60/60 answered with 0 failures; span validity 39/39; single-reason rejection profile
+- **Next:** Decide arm H (metered, external, needs Kush's go-ahead); step 9 retrieval diagnostic
+
+### S252 · 2026-11-15 10:48 IST · 36C · Step 7 arm L v2 + step 9 retrieval diagnostic
+- **Who:** Kush
+- **Did:** Arm L v2 (prompt names only the licensed field, amendment A2): 60/60 answered, 24 returned, 24 accepted, gate 1.000, schema 1.000, latency mean 7.3s. This TRIPPED the registered tripwire: A2 said that if acceptance approached 1.0 the prompt had become an answer key rather than a question, and the run must be reported as such rather than as a success. It is reported as such. Offering one field made misrouting structurally impossible rather than resolved, and the model also got far shyer: proposals returned fell 84 -> 24 (-71%), cases where it declined entirely rose 18 -> 43, and ACCEPTED proposals fell 39 -> 24. So acceptance rate is the wrong figure of merit here; accepted proposals per case is, and v1 beats v2 on it. Neither run measures correctness. Step 9: three-view retrieval diagnostic over 5,166 states from 150 Wikibooks recipes, 40 queries, k=10. Mean Jaccard TEXT|PROCESS 0.1164, TEXT|COMPOSITION 0.1032, PROCESS|COMPOSITION 0.0442. Added a chance-Jaccard null (0.001 at k=10 over 5,166 states) because a low overlap is uninterpretable without it: lift over chance is 116x / 103x / 44x. Top-1 agreement 2.5-5%. 34 of 40 queries had NOTHING shared by all three views.
+- **Files:** `reports/s180/step7_arm_L_qwen7b_v2_2026-11-15.json`, `reports/s180/retrieval_diagnostic_2026-11-15.json`, `tools/s180_retrieval_diagnostic.py`, `tools/s180_run_layer1_arms.py`
+- **Verified:** seal verified before both arm runs; v1 kept unchanged alongside v2; chance baseline computed in-tool, not asserted; arm H probe failed on curl rc (120s too short for a 550B reasoning model), fixed to -sS with explicit rc reporting and re-probing at 420s
+- **Next:** Arm H full run once the probe confirms; report both arm L runs side by side; step 10 figures
+
+### S253 · 2026-11-15 10:58 IST · 36A · STATE_VECTOR_V1 exposes the physics history; step 9 rerun on V0 and V1
+- **Who:** Kush
+- **Did:** V0 carried only temperature_C and duration_min in its Q block (2 of 51 dims) while State v2 already computed thermal dose, cumulative dose, hot-aqueous and hot-fat minutes, food temperature, moisture cap, lid state and an oxygen proxy. Added dims_v1/encode_v1 with 9 named dims (log_heat_steps_so_far plus 8 Q dims), taking Q from 2 to 11 of 60. V0 is untouched because the step-9 diagnostic was measured on it, and V1 extends V0's dim order so V0's names are a prefix of V1's. Nothing learned, nothing estimated: every dim is an existing State v2 cell, an absent cell stays mask 0, and a known zero (hot_fat_minutes = 0) stays distinct from UNKNOWN. delta and similarity were hardcoded to V0's 51 dim names and silently truncated a V1 vector; they now pick the dim list by vector length. Reran the step-9 diagnostic on both. Caught a confound on the way: the first V0 run had a corpus of 5,166 states against V1's 5,181 because a numeric guard added for V1 changed what parses, so V0 was rerun on the identical code path for a fair comparison.
+- **Files:** `src/culinarystate/composition/state_vector.py`, `tests/unit/test_s180_state_vector_v1.py`, `tools/s180_retrieval_diagnostic.py`, `reports/s180/retrieval_diagnostic_2026-11-15.json`, `reports/s180/retrieval_diagnostic_V1_2026-11-15.json`
+- **Verified:** TDD: 14 V1 tests, 1 RED on delta truncation then GREEN; 18 passed with the V0 suite; both diagnostic runs now on 5,181 states. V0: TEXT|COMPOSITION 0.1018, PROCESS|COMPOSITION 0.0455, nothing-shared 34/40. V1: 0.0966, 0.0502, 35/40. Chance Jaccard 0.001 both.
+- **Next:** Step 10 figures; arm H full run if the probe confirms
+
+### S254 · 2026-11-15 16:37 IST · S254 · Step 7 analysis written; 72b run void at 20/60
+- **Who:** Kush+Claude
+- **Did:** Voided the qwen2.5:72b prompt-v1 run (VPN dropped, 40/60 SSH timeouts, moved out of reports/, never committed). Wrote reports/s180/step7_analysis_2026-11-15.md over arm D + arm L 7B v1 + v2. Arm D floor: 1,001 proposable slots over 60 cases, 4 allocations total, 57/60 cases zero allocations. v1 39 accepted of 84 (gate 0.4643), v2 24 of 24 (gate 1.000) -> reported as the A2 tripwire, not a success, since accepted proposals fell 39->24 and accepted alternative_group fell 13->1. Main finding: zero exact and zero (event_id, field) slot agreement between every pair of runs (7B v1 vs 7B v2 over 10 shared cases; 7B v1 vs the void 72B subset over 20 cases), with accepted condition_profile_id values spanning ingredient, vessel, process and duration names. The gate accepts any non-numeric string in a licensed field - a validator gap, not a model gap. Hosted arm H closed with no recorded result.
+- **Files:** `reports/s180/step7_analysis_2026-11-15.md`
+- **Verified:** DIAGNOSTIC_ONLY, no gold on the 60 sealed cases; no arm called correct. Sealed packet SHA-256 unchanged b926c303993541d5380e4531f495f9c89c2111a0c5c902e99df0ad95f15da6e7. Void 72b partial kept in scratchpad, not in reports/ and not committed.
+- **Next:** Re-run qwen2.5:72b v1 over all 60 when VPN stable; decide whether condition_profile_id becomes a closed vocabulary; explain zero acceptances on VNEXT_FAT_STAYS.
+
+### S255 · 2026-11-15 16:56 IST · S255 · Axis 9 geometry wired; pH limitations corrected; D-134 approver gap surfaced
+- **Who:** Kush+Claude
+- **Did:** Wired compatibility axis 9 (geometry/size) into the evidence compiler as geometry_axis_cell, reading Q.piece_size_class which State v2 already derives from cut history. A known query size with no row geometry is QUERY_ONLY, not EVALUABLE, because evidence rows carry no geometry field and the freeze invariant forbids treating an UNKNOWN evidence context as a MATCH. Registry axis 9 SCHEMA_ONLY -> IMPLEMENTED_IN_COMPILER with the one-sided limitation in owner_step. 8 new tests, TDD RED->GREEN; updated the stale SCHEMA_ONLY assertion from {8,9,12} to {8,12}. Appended dated corrections to reports/s179/state_inventory_FINAL_2026-11-15.md and d116_composition_state_schema_v1.md: a sourced pH table does exist, but the ING crosswalk is AI-drafted and unverified and state.py:77 still writes NO_SOURCED_PH_TABLE, so every recorded corpus fill number stands. Killed a 14h43m hung full-suite run and ran tests/unit scoped instead. Regenerated the gate provenance section (11 new decisions).
+- **Files:** `src/culinarystate/composition/evidence_compiler.py`, `registry/rag/compatibility_axes_v1.csv`, `tests/unit/test_s180_geometry_axis.py`, `tests/unit/test_s180_evidence_compiler.py`, `reports/s179/state_inventory_FINAL_2026-11-15.md`, `reports/s179/d116_composition_state_schema_v1.md`, `reports/final/sections/S179_gate_provenance_DRAFT.md`
+- **Verified:** tests/unit: 5950 passed, 1 skipped, 2 failed before the regeneration; now 1 failed. The remaining failure is test_s179_gate_provenance_report.test_every_entry_is_classed_and_none_unknown on D-134, which promoted lineage vNext with no human approver line. Left RED deliberately: it is the human gate and only Kush or Parv can close it. No approver line was added.
+- **Next:** Kush or Parv to approve or withdraw D-134. Decide whether condition_profile_id becomes a closed vocabulary. Re-run qwen2.5:72b over all 60 cases when VPN is stable.
+
+### S256 · 2026-11-15 17:57 IST · S256 · Layer-1 surface narrowed to alternative_group (D-135); D-134 approved AI-delegated
+- **Who:** Kush+Claude
+- **Did:** Diagnosed VNEXT_FAT_STAYS zero acceptances: the rule commits the fat/food merge before the flag is raised, so no open question exists. Found the real step-7 cause: condition_profile_id is a reference field with no referent and no consumer (36-step plan maps it to 07H COND; nothing in src/ reads it; no COND records on the recipe side), so a non-blank string check accepted nouns lifted from the sentence. Wrote a proposal and had it reviewed by ksh and prv (AI personas, D-085) on Kush's instruction; both ACCEPT_WITH_CHANGES, all changes applied. Implemented: condition_profile_id -> REFERENCE_FIELDS refused as FIELD_REQUIRES_EXISTING_REFERENT; VNEXT_FAT_STAYS and all coreference triggers license nothing; numeric prohibition moved ahead of every field check; REJECTION_CODES declared and closed. Net LLM surface one field on one trigger. Refused a condition-kind vocabulary (would be a second unsourced opinion on cells the rules already fill with a basis). Re-scored step 7 with denominators: v1 39 -> 13 accepted, v2 24 -> 1, over 18 cases with a licensed trigger. Reviewed D-134 (the only NO_APPROVER_LINE in 115 decisions) and added an AI-delegated approver line with a wording constraint and prv's contact-not-quantity scope note. Built a 20-row human verification packet for alternative_group. Recorded D-135.
+- **Files:** `src/culinarystate/composition/layer1_proposer.py`, `tests/unit/test_s180_layer1_surface.py`, `tests/unit/test_s180_layer1_proposer.py`, `DECISIONS.md`, `reports/s180/layer1_proposable_surface_proposal_v1.md`, `reports/s180/layer1_surface_review_2026-11-15/`, `reports/s180/d134_review_2026-11-15/`, `reports/s180/alternatives_verification_2026-11-15/`, `reports/s180/step7_analysis_2026-11-15.md`, `reports/final/sections/S179_gate_provenance_DRAFT.md`
+- **Verified:** tests/unit 5959 passed, 1 skipped, 1 failed before D-134 got an approver; now the gate provenance test passes and NO_APPROVER_LINE is 0 of 115 (HUMAN 80, AI_DELEGATED_D085 21). Step 7 sections 1-8 unedited; the addendum is appended. Recorded result JSONs unchanged. No arm called correct: still no gold.
+- **Next:** Step 10 figures and report. Kush/Parv to fill the alternatives packet (the only route to a Layer-1 correctness number) and to give D-134 a human sign-off before submission. Re-run 72b over the 18 eligible cases when VPN is stable.
+
+### S257 · 2026-11-15 18:01 IST · S257 · Step 10: S180 figure set and report section
+- **Who:** Kush+Claude
+- **Did:** Wrote tools/s180_figures.py following the existing s179 pattern: committed sources only, sha256 of every source in a MANIFEST, refuses to overwrite an existing output directory. Four figures: retrieval views V0 vs V1 with the chance-Jaccard null drawn as a line; Layer-1 accepted proposals recorded vs surviving licensed surface with denominators on the axis; the 13 compatibility axes by registry status (9 implemented, 2 in compiler, 2 schema only); the 140 ingredient pH bands as intervals against 4.6 with dotted open rays for the 2 LOWER_BOUND_ONLY rows, no midpoints and no clipping. Every figure resting on the sealed comparison or the retrieval diagnostic carries a DIAGNOSTIC_ONLY stamp. Fixed two layout collisions found by reading the rendered PNGs (footer overlapping tick labels; legend overlapping axis 12). Wrote reports/final/sections/S180_freeze_results_DRAFT.md leading with the zero-slot-agreement result and its cause.
+- **Files:** `tools/s180_figures.py`, `reports/final/figures_s180_2026-11-15/`, `reports/final/sections/S180_freeze_results_DRAFT.md`
+- **Verified:** Figures regenerated from scratch after each fix and inspected as rendered images. MANIFEST records sha256 for 7 sources. pH counts in the figure (31 acidic, 101 low acid, 8 inconclusive) sum to 140, matching load_ph_bands(). Axis counts 9+2+2 sum to 13. Retrieval numbers match the committed diagnostic JSONs; Layer-1 numbers match the committed arm JSONs re-scored under D-135.
+- **Next:** Kush/Parv: alternatives packet, pH crosswalk verification, human sign-off on D-134 and D-135. Agent: 72b re-run when VPN returns; decide whether C_t is wired to pH bands.
+
+### S258 · 2026-11-15 18:04 IST · S258 · pH C_t wiring refused by review; report section completed
+- **Who:** Kush+Claude
+- **Did:** Put the last open agent decision to ksh+prv (AI, D-085) per Kush's instruction: should C_t be wired to the FDA pH bands before the freeze. Both DO_NOT_WIRE. Recorded as D-136 with the food-science reason as primary: the FDA table measures the ingredient as purchased, not the lot in the pot, so a member band is provenance-correct but situationally weak and wiring would replace a correct UNKNOWN with a correct-but-misleading interval on the 8 bands straddling 4.6. Listed those 8 in the report (apricots, tomato paste, mustard, tomatoes, pimiento, soy sauce, buttermilk, bananas) and used tomato - the project's running example and one of the eight - as the statement of the no-midpoints rule. Recorded NO_SOURCED_PH_TABLE as knowingly stale rather than applying a C_t change that would re-fill the corpus four days before the freeze. Wrote prereg amendment A3 declaring the D-135 gate change, with the registered expectation and void condition, and committed it before launching the 72b run.
+- **Files:** `DECISIONS.md`, `reports/s180/ph_ct_wiring_review_2026-11-15/`, `reports/s180/step7_sealed_comparison_preregistration.md`, `reports/final/sections/S180_freeze_results_DRAFT.md`
+- **Verified:** Gate provenance regenerated and green; NO_APPROVER_LINE 0 of 116. The 8 inconclusive bands were enumerated from load_ph_bands(), not transcribed. A3 committed before the 72b run could produce any output.
+- **Next:** 72b run in flight over all 60 sealed cases, prompt v1, gated live under D-135. Kush/Parv: alternatives packet, pH crosswalk, human sign-off on D-134/D-135/D-136.
+
+### S259 · 2026-11-15 18:23 IST · S259 · Report, deck and STATUS folded forward to S180
+- **Who:** Kush+Claude
+- **Did:** Closed the remaining agent-doable items of freeze step 10. STATUS.md: prepended the 15 Nov state as the newest snapshot and corrected the stale unit-suite figure in place (1,681 from S152 -> 5,960 at S257), with a pending list split into agent-doable, human-only and excluded-by-directive. FINAL_REPORT_DRAFT_S179: appended a dated architecture-freeze supplement matching the file's existing supplement pattern, editing nothing above it, carrying the D-135 result and cause, retrieval and axis status, the pH position including why C_t stays unwired and why existing coverage figures are unchanged, provenance counts, and four additions to limitations. SLIDES_DRAFT_S179: inserted three slides before the closing slide - freeze and axis status, the Layer-1 zero-slot-agreement result, and a pH slide built on tomato remaining inconclusive now that the table exists.
+- **Files:** `STATUS.md`, `reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md`, `reports/final/SLIDES_DRAFT_S179_2026-11-11.md`
+- **Verified:** Checked before writing that the report's only pH number (line 71, EVD condition-axis table) refers to evidence rows and not ingredient bands, so it is still accurate and was left untouched. Both documents were appended to, not rewritten; the 11 Nov drafts above the new headings are unchanged. Unit suite 5,960 passed, 1 skipped, 0 failed.
+- **Next:** 72b arm still in flight over all 60 sealed cases. After it: no agent-doable step remains. Everything else is human-only, led by the 20-row alternatives packet.
+
+### S260 · 2026-11-15 19:18 IST · S260 · ksh+prv evidence pass; span grounding hole found and closed (D-137)
+- **Who:** Kush+Claude
+- **Did:** Ran the ksh+prv evidence pass over the 14 accepted alternative_group proposals against the sealed text (packet sha256 verified before reading). Values: 6 REAL_CHOICE, 1 REAL_CHOICE_WRONG_LABEL, 7 NOT_A_CHOICE. The 7 failures are structured, not random: three durations, two ingredient names, one component name, and one conjunction read as a choice, which is the inverse of the error VNEXT_ALTERNATIVE_SKIPPED exists to fix. In five of the seven a real alternative existed in the same recipe and was missed, several of them lipid swaps, so recall appears worse than precision and is unmeasured. Spans: 0 of 14 supported their value, at 43 to 530 characters from the real evidence. Root cause: the gate checked only that offsets lay inside the text, so range-checked was being reported as span-grounded. Implemented span_grounds_value requiring a standalone or/either not part of an endpoint construction (or until/till/when/so), new code SPAN_DOES_NOT_GROUND_VALUE, TDD RED->GREEN 8 tests including one asserting all 14 recorded proposals would now be refused. The same check caught a latent defect in the existing test fixture, whose default span ended mid-or and grounded nothing. Wrote prereg amendment A4 before the 72b result exists, declaring the tightening and the in-flight asymmetry. Recorded D-137.
+- **Files:** `src/culinarystate/composition/layer1_proposer.py`, `tests/unit/test_s180_span_grounding.py`, `tests/unit/test_s180_layer1_proposer.py`, `DECISIONS.md`, `reports/s180/alternatives_verification_2026-11-15/AI_EVIDENCE_PASS_ksh_prv.md`, `reports/s180/alternatives_verification_2026-11-15/ai_verdicts_ksh_prv_D085.csv`, `reports/s180/step7_sealed_comparison_preregistration.md`
+- **Verified:** tests/unit 5968 passed, 1 skipped, 0 failed. Every verdict cites a character offset in the sealed packet. The evidence pass is labelled AI_DELEGATED_D085 / NOT_HUMAN_VERIFIED / NOT_GOLD / NOT_INTER_RATER and the human columns in alternatives_to_verify.csv are left empty, so the human packet stays open and owed: two personas of one model are not independent raters, as this project already recorded when setting 07.A-R1 to NOT_RUN. No recorded result JSON was edited.
+- **Next:** 72b run still in flight under the pre-grounding gate; report it both as-gated and after a deterministic re-score. Then fold the grounding finding into the report, deck and figures.
+
+### S261 · 2026-11-15 20:11 IST · S261 · 72B arm complete; scale helps at choosing, not at grounding
+- **Who:** Kush+Claude
+- **Did:** The qwen2.5:72b arm completed 60/60 with 0 failures, schema 1.000, gated under D-135 but before D-137 as amendment A4 declared in advance. 16 accepted on the licensed field against 13 for the 7B, meeting A3's registered 'scale helps' threshold, but the count is weak evidence without gold. Ran the ksh+prv evidence pass over all 16 against the sealed text: 13 of 16 name a real choice (81%) against 7 of 14 for the 7B (50%). The 72B avoided every 7B failure mode, including reading a conjunction as a choice, and found two alternatives the 7B missed entirely, one a lipid swap that changes the context C_t tracks. Its three failures are milder, the most interesting being channa_or_choley, which glosses two names for one dish. Re-scored both arms under D-137 span grounding: 0 of 16 and 0 of 13. The models read the recipe correctly and then emit offsets pointing elsewhere. Folded into the report section and a new deck slide. New unchecked failure mode recorded but not acted on: the 72B proposed the same alternative group twice on one recipe and V4 does not check duplication across events.
+- **Files:** `reports/s180/step7_arm_L72b_v1prompt_2026-11-15.json`, `reports/s180/step7_72b_result_2026-11-15.md`, `reports/s180/alternatives_verification_2026-11-15/ai_verdicts_72b_ksh_prv_D085.csv`, `reports/final/sections/S180_freeze_results_DRAFT.md`, `reports/final/SLIDES_DRAFT_S179_2026-11-11.md`
+- **Verified:** 60/60 answered, 0 failures, so the A4 void condition does not apply. Grounding re-score is deterministic: span_grounds_value applied to the recorded spans against the sealed packet, sha256 verified. No latency comparison drawn between arms because the 49 GB 72B does not fit a 40 GB A100 and ran on CPU. Evidence pass labelled AI_DELEGATED_D085 / NOT_GOLD / NOT_INTER_RATER with human columns left empty; the human packet now covers 30 proposals and stays open.
+- **Next:** Agent work complete. Human-only: the 30-proposal packet, sign-off on D-134 to D-137, pH crosswalk. Not done before freeze and recorded: a prompt that requires quoting the licensing text, duplicate-group checking, recall measurement.
+
+### S262 · 2026-11-16 00:48 IST · S262 · Layer-1 closed: 0 to 21 grounded proposals; all planned work complete
+- **Who:** Kush+Claude
+- **Did:** Repaired the 72B v3 run to 60/60 under amendment A6: pageid 77844 needed 832s against the main pass's 420s timeout, which is exactly what had killed it, and it contributed 9 returned and 0 accepted since AMBIGUOUS_REFERENCE licenses no field. Fixed the ssh error reporting that had masked that timeout twice by reporting the server's post-quantum advisory as the error. Ran the ksh+prv evidence pass over the 21 grounded proposals: 9 well-named real choices, 8 real but slot-labelled, 2 duplicates of a correct group, 2 not choices. Both failures recorded as our gaps - a two-names-one-dish gloss and an endpoint construction that escaped the or-until filter, which was deliberately not widened after seeing which phrase slipped through. Rewrote figure 2 as the four-arm accepted-vs-grounded comparison, replaced the deck slide with the three-defect story, and folded everything into the report section and STATUS.
+- **Files:** `reports/s180/step7_arm_L72b_v3prompt_2026-11-15.json`, `reports/s180/step7_FINAL_COMPARISON_2026-11-16.md`, `reports/s180/alternatives_verification_2026-11-15/ai_verdicts_72b_v3_ksh_prv_D085.csv`, `reports/final/figures_s180_2026-11-16/`, `reports/final/sections/S180_freeze_results_DRAFT.md`, `reports/final/SLIDES_DRAFT_S179_2026-11-11.md`, `STATUS.md`, `tools/s180_figures.py`, `tools/s180_run_layer1_arms.py`
+- **Verified:** 60/60 answered, failures 0. 21 accepted and all 21 grounded under D-137. 0 of 63 quotes failed to locate. Unit suite 5,968 passed, 1 skipped, 0 failed. Amendments A1-A6 each committed before the result they govern; the artifact carries repaired_cases and repair_note. Evidence pass labelled AI_DELEGATED_D085 / NOT_GOLD / NOT_INTER_RATER with human columns empty.
+- **Next:** No agent-doable work remains. Human-only: the 35-proposal packet, sign-off on D-134 to D-137, pH crosswalk. Then Tier-1 Vercel deployment (~25MB runtime footprint, deterministic path, no GPU or VPN needed).

@@ -289,7 +289,7 @@ def test_data_card_numbers_equal_their_sources():
     n = card["numbers"]
     al = json.loads((ROOT / CARD.SRC["align"]).read_text(encoding="utf-8"))["diagnostic"]
     assert n["recipes"] == al["recipes"] == 522517 and n["recipes_unequal_lists"] == al["recipes_unequal"]
-    assert n["lines_unit_missing_in_source_s177"] == n["ingredient_part_lines"] == 4129433 and n["lines_with_grams_s177"] == 0
+    assert n["lines_unit_missing_in_source"] == n["ingredient_part_lines"] == 4129433 and n["lines_with_grams"] == 0
     assert n["quantity_strings_with_a_letter"] == 0
     assert [s["id"] for s in card["sentences"]] == ["LICENCE", "SHAPE", "NO_UNITS", "GRAMS", "MISALIGNMENT", "SP002", "NAMES", "STEPS"]
     assert "NOT verified" in card["sentences"][0]["text"] and card["contains_text"] is False

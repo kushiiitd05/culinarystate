@@ -1,0 +1,197 @@
+{
+ "approver": "ksh+prv (AI, D-085)",
+ "compared": "RUNG_A_LEXICON_GREEDY_LONGEST_MATCH",
+ "contains_ids": false,
+ "contains_text": false,
+ "families": {
+  "FOODCOM": {
+   "counts": {
+    "lexicon_exact_boundary_ner_food": 3058200,
+    "lexicon_extra_no_gold_span": 35403,
+    "lexicon_overlapping_ner_food": 4134639,
+    "lexicon_overlapping_only_ner_COLOR": 704,
+    "lexicon_overlapping_only_ner_PART": 513,
+    "lexicon_overlapping_only_ner_PHYSICAL_QUALITY": 37331,
+    "lexicon_overlapping_only_ner_PROCESS": 413,
+    "lexicon_overlapping_only_ner_PURPOSE": 233,
+    "lexicon_overlapping_only_ner_QUANTITY": 8,
+    "lexicon_overlapping_only_ner_TASTE": 232,
+    "lexicon_overlapping_only_ner_UNIT": 8188,
+    "lexicon_spans": 4217664,
+    "lines": 4129433,
+    "lines_lexicon_empty_ner_food": 45085,
+    "lines_with_ner_food": 4098353,
+    "ner_food_contains_shorter_lexicon_span": 219674,
+    "ner_food_exact_boundary": 3058200,
+    "ner_food_inside_a_longer_lexicon_span": 785563,
+    "ner_food_missed_no_overlap": 67697,
+    "ner_food_partial_overlap": 2647,
+    "ner_food_spans": 4133781,
+    "ner_food_spans_in_lexicon_empty_lines": 45975
+   },
+   "derived_lists": {
+    "extra_lexicon_spans": {
+     "git_ignored": true,
+     "path": "data/derived/s179_ner_vs_runga/extra_lexicon_spans_FOODCOM.csv",
+     "rows": 500,
+     "sha256": "2be357ca38a198ac45a0b5deece80ebf8da62557dc7c891facafaa90ff158b77"
+    },
+    "missed_ner_foods": {
+     "git_ignored": true,
+     "path": "data/derived/s179_ner_vs_runga/missed_ner_foods_FOODCOM.csv",
+     "rows": 500,
+     "sha256": "451edc7876709804916b4ce77ddf8d705883fff7341ed3fb3625603f91edad94"
+    }
+   },
+   "distinct_extra_phrases": 779,
+   "distinct_missed_phrases": 1171,
+   "rates_pct": {
+    "lexicon_spans_no_ner_span": 0.839,
+    "lexicon_spans_overlapping_ner_food": 98.031,
+    "lines_lexicon_empty_given_ner_food": 1.1,
+    "ner_food_covered_by_a_lexicon_span": 98.362,
+    "ner_food_exact_boundary": 73.981,
+    "ner_food_missed_by_lexicon": 1.638
+   }
+  },
+  "GUTENBERG_SEGMENT": {
+   "status": "EMPTY_INPUT_NOT_RUN"
+  },
+  "TASTESET": {
+   "counts": {
+    "lexicon_exact_boundary_ner_food": 2764,
+    "lexicon_extra_no_gold_span": 236,
+    "lexicon_overlapping_ner_food": 4017,
+    "lexicon_overlapping_only_ner_COLOR": 4,
+    "lexicon_overlapping_only_ner_PHYSICAL_QUALITY": 48,
+    "lexicon_overlapping_only_ner_PROCESS": 18,
+    "lexicon_overlapping_only_ner_PURPOSE": 9,
+    "lexicon_overlapping_only_ner_TASTE": 2,
+    "lexicon_overlapping_only_ner_UNIT": 5,
+    "lexicon_spans": 4339,
+    "lines": 3788,
+    "lines_lexicon_empty_ner_food": 125,
+    "lines_with_ner_food": 3756,
+    "ner_food_contains_shorter_lexicon_span": 520,
+    "ner_food_exact_boundary": 2764,
+    "ner_food_inside_a_longer_lexicon_span": 523,
+    "ner_food_missed_no_overlap": 216,
+    "ner_food_partial_overlap": 9,
+    "ner_food_spans": 4032,
+    "ner_food_spans_in_lexicon_empty_lines": 134
+   },
+   "derived_lists": {
+    "extra_lexicon_spans": {
+     "git_ignored": true,
+     "path": "data/derived/s179_ner_vs_runga/extra_lexicon_spans_TASTESET.csv",
+     "rows": 146,
+     "sha256": "4af9357132dc1c0e5ee1be54441b6a216dfa60f5540f81d5af7a201c64fa0395"
+    },
+    "missed_ner_foods": {
+     "git_ignored": true,
+     "path": "data/derived/s179_ner_vs_runga/missed_ner_foods_TASTESET.csv",
+     "rows": 149,
+     "sha256": "52486d76caea136fde7330e5b513d81b107e06d19701b137209f09e4d891f722"
+    }
+   },
+   "distinct_extra_phrases": 146,
+   "distinct_missed_phrases": 149,
+   "rates_pct": {
+    "lexicon_spans_no_ner_span": 5.439,
+    "lexicon_spans_overlapping_ner_food": 92.579,
+    "lines_lexicon_empty_given_ner_food": 3.328,
+    "ner_food_covered_by_a_lexicon_span": 94.643,
+    "ner_food_exact_boundary": 68.552,
+    "ner_food_missed_by_lexicon": 5.357
+   }
+  },
+  "WIKIBOOKS": {
+   "counts": {
+    "lexicon_exact_boundary_ner_food": 24478,
+    "lexicon_extra_no_gold_span": 1380,
+    "lexicon_overlapping_ner_food": 34950,
+    "lexicon_overlapping_only_ner_COLOR": 46,
+    "lexicon_overlapping_only_ner_PART": 10,
+    "lexicon_overlapping_only_ner_PHYSICAL_QUALITY": 505,
+    "lexicon_overlapping_only_ner_PROCESS": 181,
+    "lexicon_overlapping_only_ner_PURPOSE": 75,
+    "lexicon_overlapping_only_ner_QUANTITY": 7,
+    "lexicon_overlapping_only_ner_TASTE": 6,
+    "lexicon_overlapping_only_ner_UNIT": 387,
+    "lexicon_spans": 37547,
+    "lines": 32036,
+    "lines_lexicon_empty_ner_food": 497,
+    "lines_with_ner_food": 31543,
+    "ner_food_contains_shorter_lexicon_span": 3288,
+    "ner_food_exact_boundary": 24478,
+    "ner_food_inside_a_longer_lexicon_span": 5984,
+    "ner_food_missed_no_overlap": 1590,
+    "ner_food_partial_overlap": 71,
+    "ner_food_spans": 35411,
+    "ner_food_spans_in_lexicon_empty_lines": 526
+   },
+   "derived_lists": {
+    "extra_lexicon_spans": {
+     "git_ignored": true,
+     "path": "data/derived/s179_ner_vs_runga/extra_lexicon_spans_WIKIBOOKS.csv",
+     "rows": 500,
+     "sha256": "d78ae78a94e2efd3244fe6c98a200683e6bc5d406a02e32e8ae1f174331b16eb"
+    },
+    "missed_ner_foods": {
+     "git_ignored": true,
+     "path": "data/derived/s179_ner_vs_runga/missed_ner_foods_WIKIBOOKS.csv",
+     "rows": 500,
+     "sha256": "786ab3d044cf51c5cc9cef27fd4ca8ce004cf055a6406104fe3f23e367e6b56f"
+    }
+   },
+   "distinct_extra_phrases": 504,
+   "distinct_missed_phrases": 1003,
+   "rates_pct": {
+    "lexicon_spans_no_ner_span": 3.675,
+    "lexicon_spans_overlapping_ner_food": 93.083,
+    "lines_lexicon_empty_given_ner_food": 1.576,
+    "ner_food_covered_by_a_lexicon_span": 95.51,
+    "ner_food_exact_boundary": 69.125,
+    "ner_food_missed_by_lexicon": 4.49
+   }
+  }
+ },
+ "inputs": {
+  "FOODCOM": {
+   "file": "ner_FOODCOM_S174.jsonl",
+   "sha256": "6c57ed232ebf104ae563d3308f530bf5311b117c895b5cbb879304768db7d252"
+  },
+  "GUTENBERG_SEGMENT": {
+   "file": "ner_GUTENBERG_SEGMENT_S174.jsonl",
+   "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "TASTESET": {
+   "file": "ner_TASTESET_S174.jsonl",
+   "sha256": "6aa86ad70a9d2b1e90b26e322dab71ce17126f5761b8ce42fe46a009bb9e1dd8"
+  },
+  "WIKIBOOKS": {
+   "file": "ner_WIKIBOOKS_S174.jsonl",
+   "sha256": "2d674dc7d9299784135c2863e833a88164185ce3d3f75ede4e648406df877b38"
+  }
+ },
+ "item": "T3-C09-R1",
+ "labels": [
+  "DIAGNOSTIC",
+  "NOT_GOLD",
+  "AI_PRECHECKED",
+  "NON_CITABLE",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "lexicon_fingerprint": "9678937f6a9a0ff6f9ce4acbaaa20d85cb5da6138e956f4742189078b94903c3",
+ "notes": [
+  "Agreement between two methods; neither is human gold, so no precision/recall of either is claimed.",
+  "TASTEset trained the NER checkpoint: its row is in-domain for NER.",
+  "A missed NER food is a surface the ING/ALIAS registry lacks, or an NER false positive; this record cannot tell which.",
+  "BBC was never NER-tagged (D-003); GUTENBERG_SEGMENT S174 file is empty (no ingredient-line channel)."
+ ],
+ "record": "NER_VS_RUNGA_MENTION_AGREEMENT",
+ "reference": "NER_FROZEN_CKPT_582c056ac20625ac_S174_SPANS",
+ "run_at_utc": "2026-11-13T05:23:43+00:00",
+ "scientific_gate_pass": false,
+ "tool_version": "s179-ner-vs-runga-0.1.0"
+}

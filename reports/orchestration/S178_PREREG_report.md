@@ -127,3 +127,31 @@ Tests: none run; this lane changed no code. Disk: < 1 MB.
   computability tables).
 - Every numeric threshold proposed (0.95 bootstrap bound, X_crit, X_any, 8 of 10, USDA sub-quotas, K_min 10,
   k = 5 for B-2, claim-audit size) is a PROPOSED design value for the humans to set, not a literature constant.
+
+## S178 correction (FIX-EVAL), 2026-11-09
+
+AI_DRAFTED (D-071: this correction only tightens or withdraws). Appended by lane FIX-EVAL after the SCI-B review
+(`reports/orchestration/review/S178_REV_SCI-B.md`, P1, P2, E7); the sections above are kept as written. The amendment
+drafts carry a "Revision S178-FIX-EVAL" note at the top.
+
+- **P1 (i), §3 row "07.A Option A, provenance".** "replaced by three copy checks" was presented in the 07.A draft as
+  "three stronger copy checks". Withdrawn: they are different and do not catch a judgement-only copy (reviewer 2 copies
+  reviewer 1's 10 judgement columns and blanks the reasons: the old rule gives NOT_COUNTED, all three new checks pass).
+  Synthetic demonstration with the project's scorer code: `tests/unit/test_s178_fixeval_prereg.py`. No check on the
+  judgement columns can separate that copy from an honest perfect agreement.
+- **P1 (ii), §3 row "07.A Option A (AC1)" and the "post-hoc weakening" framing.** Option A is a **LOOSENING relative to
+  the signed R-06** in the kappa-paradox region. Counterexample (same test file): reviewer 1 all CORRECT, reviewer 2
+  SHOULD_BE_AMBIGUOUS on 5 conditions in 5 fields, adjudicated to 0 defects: R-06 pooled kappa 0.0, FAIL; Option A
+  bootstrap AC1 lower bound 0.990, every critical field passes, co-gate 0 defects, PASS. **A-keep also passes it** (the
+  files differ in 5 cells, so the kept IDENTICAL_JUDGEMENTS rule does not fire), and so do C and E.
+- **P1 (iii), §2 table "Lane recommendation: A + U1 + P1 + T2".** Replaced by **B + U1 + P1 + T2**: B (R-06 unchanged)
+  is the only attempt option that does not loosen R-06 (D is a deferral). The review suggested "A-keep"; A-keep loosens
+  R-06 in the same region, so an AI may not recommend it. A, A-keep, C and E remain human choices; each needs Kush's own
+  signed D-0NN that names the loosening (the §4 template now asks for that sentence). Under B, planted rows P1 as an
+  added NOT_COUNTED condition only tighten.
+- **P2, §2 table "X_crit 0.95 = at most 1 critical defect of 100; X_any 0.90 = at most 4".** The counts hold for n = 100
+  only. The co-gate is the Clopper-Pearson bound; implied counts: n = 100 (U1, U3) at most 1 / at most 4; n = 120 (U2)
+  at most 1 / at most 6.
+- **E7, D5 amendment C5 and §3.** The C5 power sentence set an n = 30 range over discordance 0.3-0.5 next to an n = 60
+  range over 0.2-0.5. Now: over 0.3-0.5, n = 30 needs a gap of 0.28-0.36 and n = 60 0.20-0.26 (n = 60 at 0.2: 0.16;
+  n = 30 at 0.2: none). Power is monotone in the gap, so the first grid gap reaching 80 % is the MDE; no number changed.

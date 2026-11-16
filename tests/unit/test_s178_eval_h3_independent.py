@@ -139,7 +139,8 @@ def test_relevance_levels_and_minimum_relevance():
     assert verdicts(score("Keeps 65% [EVD-000001].", cell=parent, ing_relatives={"ING-77": ["ING-1"]})) == ["SUPPORTED"]
     assert verdicts(score("Keeps 65% [EVD-000001].", cell=parent)) == ["WRONG_CELL"]
     nocell = score("Keeps 65% [EVD-000003].", cell=None)                               # no question cell: value only
-    assert verdicts(nocell) == ["SUPPORTED"] and nocell["claims"][0]["relevance"] == "NOT_CHECKED"
+    # S178 FIX-EVAL (SCI-B E4): a value match whose cell was not checked is never SUPPORTED (was SUPPORTED)
+    assert verdicts(nocell) == ["CELL_NOT_CHECKED"] and nocell["claims"][0]["relevance"] == "NOT_CHECKED"
     with pytest.raises(ValueError):
         score("Keeps 65% [EVD-000001].", min_relevance="ANY")
 
@@ -160,7 +161,8 @@ def test_directional_claims_checked_against_the_cited_row():
     assert verdicts(score("Vitamin C increases [EVD-000012]."), "DIRECTION") == ["VALUE_MISMATCH"]       # direction DECREASE
     assert verdicts(score("Vitamin C drops [EVD-000012]."), "DIRECTION") == ["SUPPORTED"]                # label-only row
     ev = {"EVD-000013": row(13, 0.9500000000000001, direction="DECREASE")}                          # ledger direction wins
-    assert verdicts(H3.score_answer("Boiling reduces vitamin C [EVD-000013].", evd=ev), "DIRECTION") == ["SUPPORTED"]
+    assert verdicts(H3.score_answer("Boiling reduces vitamin C [EVD-000013].", evd=ev, cell=CELL), "DIRECTION") == ["SUPPORTED"]
+    assert verdicts(H3.score_answer("Boiling reduces vitamin C [EVD-000013].", evd=ev), "DIRECTION") == ["CELL_NOT_CHECKED"]   # E4
     assert H3.row_direction(row(14, 0.97)) == "NO_CHANGE" and H3.row_direction(row(14, None, status="UNKNOWN")) is None
     assert score("Horseradish may be more stable [EVD-000005].")["n_direction"] == 0                  # hedge, not "no change"
     unc = score("Boiling can reduce the vitamin C content.")

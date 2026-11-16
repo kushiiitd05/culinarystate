@@ -186,7 +186,9 @@ def _typical(new, dur=20, temp=200, size="DICED", **kw):
 
 
 def test_layer_renames_the_field_and_flags_it_and_keeps_the_core_dose(new):
-    assert SL.VERSION == "scenario-layer-L2-0.4.0-draft" and SL.VERSION_V03 == "scenario-layer-L2-0.3.0-draft" and PC.VERSION == "evaporation-cap-0.2.0-draft"
+    # S178 FIX-PHYS: Layer 2 0.4.0 -> 0.5.0 (Q1 lift gate, moist-piece boundary), cap model 0.2.0 -> 0.3.0
+    assert SL.VERSION == "scenario-layer-L2-0.5.0-draft" and SL.VERSION_V04 == "scenario-layer-L2-0.4.0-draft"
+    assert SL.VERSION_V03 == "scenario-layer-L2-0.3.0-draft" and PC.VERSION == "evaporation-cap-0.3.0-draft" and PC.VERSION_V02 == "evaporation-cap-0.2.0-draft"
     out = new.run(_rec("PROC-000001", "OVEN_AIR", 20, 200, "DICED"))
     assert out["version"] == SL.VERSION
     for b in B:

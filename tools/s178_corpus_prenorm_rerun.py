@@ -364,7 +364,12 @@ def md(res: dict) -> str:
         if bb["exceptions"] or aa["exceptions"]:
             L.append(f"| exceptions | {sum(bb['exceptions'].values())} | {sum(aa['exceptions'].values())} | |")
         v = b.get("unaffected_lines_verified_identical") or {}
-        L += ["", f"Unaffected unique lines re-checked through the opt-in path: {v.get('identical_unique', 0):,} identical of {v.get('checked_unique', 0):,}."]
+        unaffected = (b.get("unique_lines") or 0) - (b.get("unique_lines_affected") or 0)
+        # S178 FIX-EVAL (SCI-B CORP-6): a capped subset, not an exhaustive check; the denominator is stated
+        chk, same = v.get("checked_unique", 0), v.get("identical_unique", 0)
+        scope = (f"all {chk:,} unaffected unique lines (exhaustive)" if chk == unaffected else
+                 f"{chk:,} sampled (capped: the first lines of each worker chunk, not a random sample) of {unaffected:,} unaffected unique lines")
+        L += ["", f"Unaffected unique lines re-checked through the opt-in path: {scope}; {same:,} of the {chk:,} identical."]
         s = b.get("before_vs_s161")
         if s:
             L.append(f"BEFORE vs committed S161 counts: **{s['status']}** ({s.get('n_differences', 0)} differences).")

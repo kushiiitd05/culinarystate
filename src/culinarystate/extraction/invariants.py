@@ -96,10 +96,33 @@ def v4_invariants(graph: EventGraph, *, order: Callable[[EventCandidate], Any] =
         if n.entity_type in intermediate_types and not producers.get(n.entity_id):
             c.fail("INTERMEDIATE_WITHOUT_PRODUCER", n.entity_id, "A new intermediate needs a producing event")
     _consumption_order(c, graph, events, producers, order)
+    _alternatives(c, graph)
     _allocations(c, graph, entities, partition_kinds)
     _lots(c, graph, entities, lot_types)
     _cycles(c, graph, events)
     return c.report()
+
+
+def _commits_state(event: EventCandidate) -> bool:
+    """True when an event asserts lineage, i.e. it consumes, produces or discards something."""
+    return bool(event.consumes or event.produces or event.discards)
+
+
+def _alternatives(c: _Collector, graph: EventGraph) -> None:
+    """Alternatives are not conjunctions: at most one member of a group may commit state.
+
+    "A or B" is a labelled choice, not two facts. Members that declare the group but commit
+    nothing are fine. Reported once per group, naming its committed members; never repaired.
+    """
+    groups: dict[str, list[str]] = {}
+    for e in graph.events:
+        if e.alternative_group and _commits_state(e):
+            groups.setdefault(e.alternative_group, []).append(e.event_id)
+    for group, members in groups.items():
+        if len(members) > 1:
+            c.fail("ALTERNATIVE_GROUP_TREATED_AS_CONJUNCTION", group,
+                   "Alternatives are not conjunctions: events " + ", ".join(members)
+                   + f" all commit state in alternative group {group}")
 
 
 def _references(c: _Collector, graph: EventGraph, events: Mapping, entities: Mapping) -> None:

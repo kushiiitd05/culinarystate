@@ -1,0 +1,25 @@
+{
+  "approver": "ksh+prv (AI, D-085)",
+  "date": "2026-11-12",
+  "decision_id": "D-093",
+  "files": {
+    "src/culinarystate/decision/demo_context_v2.py": "49074053f3dbe07a94982ac9ce50e1b97ee2d4d7252152026e008ae954609fa9",
+    "src/culinarystate/decision/physics_summary_v2.py": "df9874a226f87fdae4d44c16e6afef8978e041ffe687eb0955d3a394a330716c",
+    "src/culinarystate/generation/strict_v2.py": "c9822bb0a9e1de77f359b7330b57fe35c25b276a8ef701895c17d3bbcc0b335d",
+    "tools/run_local_demo_v2.py": "ae989d8af4e44b3023df20abc3f9582a13518eb2ce9befdbdc9e2ae71fd3208b",
+    "tools/s179_strict_runtime_audit.py": "b5639986f6a009c83937b619ff15e3a49d4bd1c04ceaf01ade9d62e5f085deda"
+  },
+  "labels": [
+    "NO_HUMAN_SIGNOFF_D085",
+    "NON_CITABLE",
+    "ENGINEERING_DIAGNOSTIC"
+  ],
+  "limitations": [
+    "Only exact declared EVD/COND fields checked; no scientific applicability certification.",
+    "Default calls lack explicit condition context and refuse numeric source reports.",
+    "Physics reports declared provenance; UNKNOWN stays UNKNOWN; route chips retain row-existence semantics."
+  ],
+  "record": "STRICT_V2_ENGINEERING_SNAPSHOT",
+  "scientific_gate_pass": false,
+  "scope": "Separate strict-v2 adapter and per-number provenance. Does not replace D5 freeze, outputs, prompts or scorer. No learned model or production default changed."
+}

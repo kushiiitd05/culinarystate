@@ -140,7 +140,10 @@ def run_bootstrap_diag(snapshot_id: str, runner: Callable[[DiagContext], Any], *
     assert commitment is not None and reserved is not None
     ctx = DiagContext(snapshot_id=snapshot_id, unit=str(commitment.get("unit")), root=base, _reserved=reserved)
     result = runner(ctx)
-    return {"status": STATUS, "labels": list(DIAG_LABELS), "citable": False, "snapshot_id": snapshot_id,
+    from culinarystate.evaluation import freeze_records as FR
+    signoff = {"freeze": FR.approval_kind(base, snapshot_id), "prereg": FR.prereg_signer_kind(base)}
+    labels = list(DIAG_LABELS) + (["NO_HUMAN_SIGNOFF_D085"] if "AI_DELEGATED_D085" in signoff.values() else [])
+    return {"status": STATUS, "labels": labels, "signoff": signoff, "citable": False, "snapshot_id": snapshot_id,
             "seal_payload_sha256": commitment.get("payload_sha256"), "exclusions": list(ctx.exclusions),
             "result": result}
 

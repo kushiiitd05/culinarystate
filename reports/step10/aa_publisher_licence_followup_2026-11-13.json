@@ -1,0 +1,108 @@
+{
+  "checked_at_utc": "2026-11-13T07:20:58.094945+00:00",
+  "decision": "D-101",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Website observations and browser-readable PDF are not locally acquired byte-hashed PDF artifacts.",
+    "No human browser-download completion or human licence approval claimed.",
+    "CC-BY version for AAK04 left unspecified from publisher notice; no version inferred from third-party metadata.",
+    "AAK05 exclusion is a project allowlist disposition, not a general legal claim about permissible research.",
+    "No extraction/model fit, CAL/SIMVAL membership change, sealed assignment, protected ledger or scientific gate modified.",
+    "Only metadata/licence checks; root exposed to earlier model results and must not perform new blinded SIMVAL extraction.",
+    "DOI resolver cache/rate errors are tool observations, not proof of publisher refusal. BJI challenge not bypassed."
+  ],
+  "record": "PUBLISHER_LICENSE_FOLLOWUP",
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "rows": [
+    {
+      "browser_pdf_viewed": false,
+      "candidate_id": "AAK-02",
+      "doi": "10.33899/magrj.2017.161257",
+      "eligibility": "UNCONFIRMED",
+      "human_review": "PENDING",
+      "label": "AI_DELEGATED_D085;NOT_INDEPENDENT;NOT_HUMAN_VERIFIED_UNTIL_REVIEW;NO_HUMAN_SIGNOFF_D085",
+      "license": "UNKNOWN",
+      "local_pdf_sha256": null,
+      "locator": "Article page contains a licence-policy navigation link, not an article-specific grant; policy fetch cache miss; PDF click timed out.",
+      "pdf_acquired_locally": false,
+      "pdf_url": "https://alaw.uomosul.edu.iq/index.php/magrj/article/view/57625/55867",
+      "publisher_url": "https://alaw.uomosul.edu.iq/index.php/magrj/article/view/57625",
+      "scientific_eligibility_reassessed": false
+    },
+    {
+      "browser_pdf_viewed": true,
+      "candidate_id": "AAK-04",
+      "doi": "10.1155/ijfo/2464512",
+      "eligibility": "ALLOWLIST_FAMILY_CONFIRMED_AI",
+      "human_review": "PENDING",
+      "label": "AI_DELEGATED_D085;NOT_INDEPENDENT;NOT_HUMAN_VERIFIED_UNTIL_REVIEW;NO_HUMAN_SIGNOFF_D085",
+      "license": "CC-BY (version unspecified in opened publisher PDF notice)",
+      "local_pdf_sha256": null,
+      "locator": "Publisher PDF page1, copyright/licence notice immediately above abstract. Attribution family explicit; version not inferred.",
+      "pdf_acquired_locally": false,
+      "pdf_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1155/ijfo/2464512",
+      "publisher_url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1155/ijfo/2464512",
+      "scientific_eligibility_reassessed": false
+    },
+    {
+      "browser_pdf_viewed": false,
+      "candidate_id": "AAK-05",
+      "doi": "10.7455/ijfs.v8i1.571",
+      "eligibility": "EXCLUDE_UNDER_CCBY_CC0_PROJECT_RULE",
+      "human_review": "PENDING",
+      "label": "AI_DELEGATED_D085;NOT_INDEPENDENT;NOT_HUMAN_VERIFIED_UNTIL_REVIEW;NO_HUMAN_SIGNOFF_D085",
+      "license": "CC-BY-NC-SA-4.0",
+      "local_pdf_sha256": null,
+      "locator": "Article-specific Copyright section links https://creativecommons.org/licenses/by-nc-sa/4.0/; differs from original aggregator CC-BY metadata. No PDF opened/extraction.",
+      "pdf_acquired_locally": false,
+      "pdf_url": "",
+      "publisher_url": "https://iseki-food-ejournal.com/article/564",
+      "scientific_eligibility_reassessed": false
+    },
+    {
+      "browser_pdf_viewed": false,
+      "candidate_id": "AAK-08",
+      "doi": "10.9734/bbj/2014/9837",
+      "eligibility": "UNCONFIRMED",
+      "human_review": "PENDING",
+      "label": "AI_DELEGATED_D085;NOT_INDEPENDENT;NOT_HUMAN_VERIFIED_UNTIL_REVIEW;NO_HUMAN_SIGNOFF_D085",
+      "license": "UNKNOWN",
+      "local_pdf_sha256": null,
+      "locator": "Article page has no article-specific open licence; footer copyright is not a grant. Normal PDF click showed a challenge; stopped without bypass or alternate retrieval.",
+      "pdf_acquired_locally": false,
+      "pdf_url": "https://journalbji.com/index.php/BJI/article/view/524/1053",
+      "publisher_url": "https://journalbji.com/index.php/BJI/article/view/524",
+      "scientific_eligibility_reassessed": false
+    },
+    {
+      "browser_pdf_viewed": false,
+      "candidate_id": "AAK-10",
+      "doi": "10.3390/foods10010046",
+      "eligibility": "ALLOWLIST_FAMILY_CONFIRMED_AI",
+      "human_review": "PENDING",
+      "label": "AI_DELEGATED_D085;NOT_INDEPENDENT;NOT_HUMAN_VERIFIED_UNTIL_REVIEW;NO_HUMAN_SIGNOFF_D085",
+      "license": "CC-BY-4.0",
+      "local_pdf_sha256": null,
+      "locator": "Article-specific copyright paragraph below Table2 explicitly links http://creativecommons.org/licenses/by/4.0/. PDF click returned cache miss.",
+      "pdf_acquired_locally": false,
+      "pdf_url": "https://www.mdpi.com/2304-8158/10/1/46/pdf",
+      "publisher_url": "https://www.mdpi.com/2304-8158/10/1/46",
+      "scientific_eligibility_reassessed": false
+    }
+  ],
+  "scientific_gate_pass": false,
+  "source": "Opened primary publisher pages/ordinary PDF links with web tool; no legal permission inferred from aggregator metadata or open-access badge",
+  "summary": {
+    "allowlist_family_confirmed_AI": 2,
+    "candidates_checked": 5,
+    "local_new_PDFs": 0,
+    "new_rows_extracted": 0,
+    "outside_project_allowlist": 1,
+    "unconfirmed": 2
+  }
+}

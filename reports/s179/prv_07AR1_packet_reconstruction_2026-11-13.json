@@ -1,0 +1,20 @@
+{
+  "record": "EXACT_ISSUED_PARV_R1_PACKET_RECONSTRUCTION",
+  "n": 100,
+  "packet_sha256": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d",
+  "historical_manifest_sha256": "86f8957dc054b6ae57b719eb08e4db8c75704a149a1dfae3c05a786807a75599",
+  "checks": {
+    "packet_byte_identical_to_original_manifest": true,
+    "normalizer_fingerprint_exact": true,
+    "excluded_v4_set_exact": true,
+    "selection_disjoint_from_v4": true
+  },
+  "blinding": "Root read only original v4 copy to prepare exclusion IDs. Fresh label agent must not open it or any result/Kush packet. No completed file or Kush reviewer content read.",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "scientific_gate_pass": false
+}

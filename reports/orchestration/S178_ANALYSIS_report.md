@@ -195,3 +195,25 @@ Appended by the S178 FIX-GOV lane (GOV review findings GOV-1, GOV-2, GOV-6; SCI-
 - The corrected row NEG-0032 in table 4 above should be read with NEG-0048.
 
 **5. Open item 3 above.** `reports/lotstate/lotstate_census_1000_S176_ph_provisional.json` is now registered as INVALID_SUPERSEDED_KEPT_ON_RECORD in `registry/superseded_outputs_S176.csv`. The v02 → v03 → v04 rows were added, and each `superseded_by` now ends at a live file.
+
+## S179 correction (physics v06, 2026-11-10)
+
+**What the corpus can say (T4-C04-R1).** The tool (0.3.0) now reads the S179 v06 censuses and records
+(`*_S179_v06.json`, `data/derived/physical_*_S179v06`). The S178 v04 inputs are superseded (FIX-PHYS v05, then v06
+after the S179 SCI re-review). No v05 build was made, so the change below is v04 -> v06. New files
+`corpus_can_say_v2.{json,md}` and `fig1..3_*_v2.{svg,csv}`; the v1 files stay on record (registered as superseded).
+Run rows RUN-S179-ANA6-001..002. Reconciliation PASS, 0 heat L1/L2 alignment errors; heat events unchanged
+(Food.com 1,503,261; Wikibooks 11,433; Gutenberg 182,049).
+
+| % of heat events | Food.com v04 | v06 | Wikibooks v04 | v06 | Gutenberg v04 | v06 |
+|---|---:|---:|---:|---:|---:|---:|
+| temperature stated in the text | 3.26 | 3.29 | 5.55 | 5.32 | 0.51 | 0.52 |
+| temperature bound | 14.60 | 14.84 | 20.02 | 19.81 | 30.14 | 30.15 |
+| time and temperature both in the text | 1.77 | 1.83 | 3.07 | 3.04 | 0.18 | 0.18 |
+| time stated and temperature bound | 5.80 | 5.98 | 8.13 | 8.10 | 1.09 | 1.09 |
+| temperature ranges | 0.03 | 0.08 | 0.31 | 0.31 | 0.00 | 0.02 |
+| gas mark only (events) | 246 | 218 | 1 | 1 | 0 | 0 |
+
+Food.com by family, temperature in the text: DRY_HEAT 8.89 -> 9.22 %, FAT_HEAT 0.50 -> 0.30 %, WET_HEAT 0.35 -> 0.20 %
+(food targets and setter temperatures no longer counted as the medium temperature). Time-stated shares are unchanged.
+BBC v06 censuses exist only on the Mac (D-003) and are not in these tables.

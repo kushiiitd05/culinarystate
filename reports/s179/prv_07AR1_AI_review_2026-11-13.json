@@ -1,0 +1,78 @@
+{
+  "created_at_utc": "2026-11-13T06:56:18.319689+00:00",
+  "field_code_counts": {
+    "basis_judgement": {
+      "CORRECT": 100
+    },
+    "censoring_judgement": {
+      "CORRECT": 91,
+      "N/A": 9
+    },
+    "duration_judgement": {
+      "CORRECT": 49,
+      "N/A": 48,
+      "WRONG_TYPE": 1,
+      "WRONG_VALUE": 2
+    },
+    "medium_judgement": {
+      "CORRECT": 27,
+      "N/A": 73
+    },
+    "overall_judgement": {
+      "ACCEPT": 97,
+      "REJECT": 3
+    },
+    "power_judgement": {
+      "CORRECT": 6,
+      "N/A": 94
+    },
+    "pressure_judgement": {
+      "CORRECT": 9,
+      "N/A": 91
+    },
+    "retention_type_judgement": {
+      "CORRECT": 91,
+      "N/A": 9
+    },
+    "temperature_location_judgement": {
+      "CORRECT": 62,
+      "N/A": 38
+    },
+    "temperature_value_judgement": {
+      "CORRECT": 62,
+      "N/A": 38
+    }
+  },
+  "issued_sha256": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Fresh reviewer opened only issued Parv packet, not v1-v4 results, Kush file, normalizer or other labels.",
+    "Root reconstructed packet from exact frozen commitments; the same root did not provide labels.",
+    "Three conservative AI flags (duration precision/alternative-versus-interval) require adjudication; not certified normalizer bugs. No tolerance or normalizer change.",
+    "Opaque ontology codes interpreted from displayed raw/normalized alignment, no external code dictionary.",
+    "No independent human gate, signature, paired score or human agreement asserted. Kush owns scoring/adjudication after both packets.",
+    "Historical D085 NOT_RUN/v4 FAIL and original manifests/normalizer unchanged."
+  ],
+  "n": 100,
+  "nonjudgment_cells_preserved": 1800,
+  "paired_gate_disposition": "NOT_COUNTED_AI_PERSONAS_NOT_INTER_RATER_IF_PAIRED",
+  "paired_statistic": null,
+  "record": "PRV_R1_AI_CONDITION_REVIEW_RETURN",
+  "rejected_audit_ids": [
+    "CA-028",
+    "CA-037",
+    "CA-052"
+  ],
+  "returned_sha256": "4ed6e0f311f5a0f664d2174c78d1f8c439bc21987daca3d2f87add2d60566a5d",
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "scientific_gate_pass": false,
+  "verdict_counts": {
+    "ACCEPT": 97,
+    "REJECT": 3
+  }
+}

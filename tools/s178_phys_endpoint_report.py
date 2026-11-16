@@ -33,7 +33,8 @@ def _sum_nested(dicts: list[dict]) -> dict:
     return out
 
 
-def summarise(blocks: dict[str, dict]) -> dict:
+def summarise(blocks: dict[str, dict], fix: dict[str, dict] | None = None) -> dict:
+    """S178 FIX-PHYS: ``fix`` = the census ``fixphys_layer1`` blocks (Layer 1 0.3.0): the until-clause corpus check of SCI-A M1."""
     rows = {}
     for fam, b in blocks.items():
         n, w = b["heat_events"], b["heat_events_with_cue"]
@@ -57,7 +58,14 @@ def summarise(blocks: dict[str, dict]) -> dict:
             "cue_without_duration_by_family": _sum_nested([r["cue_without_duration_by_family"] for r in rows.values()]),
             "cue_without_temperature_by_family": _sum_nested([r["cue_without_temperature_by_family"] for r in rows.values()])}
     allb["share_with_cue"] = round(allb["heat_events_with_cue"] / allb["heat_events"], 4) if allb["heat_events"] else None
-    return {"all_non_bbc_families": allb, "by_source_family": rows}
+    out = {"all_non_bbc_families": allb, "by_source_family": rows}
+    if fix:
+        keys = ("temperatures_in_until_clauses_by_role", "bound_text_stated_temperature_inside_an_until_clause_by_role")
+        out["until_clause_check"] = {
+            "by_source_family": {f: {k: b.get(k, {}) for k in ("until_clauses", *keys)} for f, b in fix.items()},
+            "all_non_bbc_families": {"until_clauses": sum(b.get("until_clauses", 0) for b in fix.values()),
+                                     **{k: _sum_nested([b.get(k, {}) for b in fix.values()]) for k in keys}}}
+    return out
 
 
 def markdown(rep: dict) -> str:
@@ -82,6 +90,19 @@ def markdown(rep: dict) -> str:
     for f in sorted(a["events_with_cue_by_family"]):
         L.append(f"| {f} | {a['events_with_cue_by_family'].get(f, 0):,} | {a['cue_without_duration_by_family'].get(f, 0):,} | "
                  f"{a['cue_without_temperature_by_family'].get(f, 0):,} |")
+    uc = rep["summary"].get("until_clause_check")
+    if uc:
+        u = uc["all_non_bbc_families"]
+        bound = u["bound_text_stated_temperature_inside_an_until_clause_by_role"]
+        L += ["", "## Until-clause check (S178 FIX-PHYS, SCI-A M1)", "",
+              f"{u['until_clauses']:,} until / till clauses. A TEXT_STATED temperature that Layer 1 still binds as the medium temperature "
+              "may lie inside an until-clause only when it is exempt (the liquid's or the medium's own temperature, a syrup / candy stage, "
+              "a setting phrase such as 'until golden at 350 F', a medium thermometer); every other temperature there is a target of the "
+              "food (endpoint).", "", "| role of the temperature inside the clause | temperatures | of which bound as the medium T |",
+              "|---|---:|---:|"]
+        roles = u["temperatures_in_until_clauses_by_role"]
+        for r in sorted(set(roles) | set(bound)):
+            L.append(f"| {r} | {roles.get(r, 0):,} | {bound.get(r, 0):,} |")
     L.append("")
     return "\n".join(L)
 
@@ -95,16 +116,19 @@ def main(argv=None) -> int:
     for p in (a.out, a.out_md):
         if p.exists():
             ap.error(f"refusing to overwrite {p}")
-    blocks, shas = {}, {}
+    blocks, shas, fix = {}, {}, {}
     for item in a.census:
         fam, _, path = item.partition("=")
         if not fam or not path:
             ap.error("--census wants FAMILY=path")
         raw = Path(path).read_bytes()
-        blocks[fam] = json.loads(raw)["endpoint_cues"]
+        census = json.loads(raw)
+        blocks[fam] = census["endpoint_cues"]
+        if "fixphys_layer1" in census:
+            fix[fam] = census["fixphys_layer1"]
         shas[fam] = hashlib.sha256(raw).hexdigest()
     rep = {"record": "ENDPOINT_CUE_COUNTS", "status": "AI_DRAFTED_COUNTS_ONLY", "contains_ids": False, "contains_text": False, "citable": False,
-           "counts_as_human_gate": False, "summary": summarise(blocks), "source_census_sha256": shas,
+           "counts_as_human_gate": False, "summary": summarise(blocks, fix or None), "source_census_sha256": shas,
            "code_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
     D.write_report(a.out, rep, root=ROOT)
     a.out_md.write_text(markdown(rep), encoding="utf-8")

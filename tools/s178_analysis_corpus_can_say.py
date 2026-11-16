@@ -3,12 +3,11 @@
 
 Counts only. Two inputs, both read-only:
 
-  1. committed census JSONs under reports/step26/ (heat L1, non-heat L1, heat L2 and non-heat L2, all S178 v04 since
-     FIX-GOV; they were S176_v02 / S176 / S177_v03 before). Every headline number in the report is a value read from one
-     of these files, and its path is printed beside it. Every input path is checked against
+  1. committed census JSONs under reports/step26/ (heat L1, non-heat L1, heat L2 and non-heat L2, all S179 v06 since
+     S179; S178 v04 after FIX-GOV, S176_v02 / S176 / S177_v03 before). Every headline number in the report is a value
+     read from one of these files, and its path is printed beside it. Every input path is checked against
      registry/superseded_outputs_S176.csv first (culinarystate.governance_superseded): a superseded input stops the tool.
-     The BBC heat L1 file (S173, binder 0.1.0) is superseded and has no v04 re-run on this server (D-003), so BBC is
-     not in the tables;
+     BBC v06 censuses and records exist only on the Mac (D-003), so BBC is not in the tables;
   2. the per-event L1 / L2 records under data/derived/ (git-ignored). They are used ONLY to build the cross-tabs
      that the committed JSONs cannot give (the joint "stated time AND stated temperature", by process, and the
      UNKNOWN reasons of the heat L2 events). The aggregate is reconciled against the committed JSONs; any
@@ -35,8 +34,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-TOOL_VERSION = "s178-corpus-can-say-0.2.0-draft"
-LAYER_TAG = "S178 v04"           # the census / record version every input belongs to (FIX-GOV repoint)
+TOOL_VERSION = "s178-corpus-can-say-0.3.0-draft"   # 0.3.0 (S179): inputs physics v06 (FIX-PHYS + SCI re-review)
+LAYER_TAG = "S179 v06"           # the census / record version every input belongs to (S179 repoint; S178 v04 before)
 STEP26 = "reports/step26"
 DERIVED = "data/derived"
 OUT_DIR = "reports/s178/analysis"
@@ -45,9 +44,9 @@ SOURCES = ("FOODCOM", "WIKIBOOKS", "GUTENBERG_SEGMENT", "TASTESET")
 HEAT_FAMILIES = ("DRY_HEAT", "FAT_HEAT", "HEAT_GENERAL", "WET_HEAT")
 NH_FAMILIES = ("COOLING", "FERMENT_LEAVEN", "MECHANICAL_CUT", "MECHANICAL_MIX", "PRESERVATION", "RESTING",
                "SEPARATION", "STORAGE")
-HEAT_L1_DIR = "physical_L1_full_S178v04"
-HEAT_L2_DIR = "physical_L2_full_S178v04"
-NH_L1_DIR = "physical_NH_L1_{src}_full_S178v04"
+HEAT_L1_DIR = "physical_L1_full_S179v06"
+HEAT_L2_DIR = "physical_L2_full_S179v06"
+NH_L1_DIR = "physical_NH_L1_{src}_full_S179v06"
 HEAT_INPUTS = ("duration", "temperature_profile", "medium", "lid_state", "start_mode", "piece_size_class",
                "water_ratio", "matrix_class")
 NH_TEMP_INPUTS = ("medium_temperature", "target_food_temperature")
@@ -239,20 +238,20 @@ def sha256_file(path: Path) -> str:
 
 
 def heat_census_paths(root: Path) -> dict[str, str]:
-    # BBC (A1) has no v04 heat L1 census on this server (D-003); its S173 file is superseded, so it is not read.
-    return {s: f"{STEP26}/binding_census_L1_{s}_full_S178_v04.json" for s in SOURCES}
+    # BBC (A1) v06 censuses exist only on the Mac (D-003); BBC records are not on this server, so BBC is not read.
+    return {s: f"{STEP26}/binding_census_L1_{s}_full_S179_v06.json" for s in SOURCES}
 
 
 def nh_l1_paths() -> dict[str, str]:
-    return {s: f"{STEP26}/nonheat_L1_{s}_full_S178_v04.json" for s in SOURCES}
+    return {s: f"{STEP26}/nonheat_L1_{s}_full_S179_v06.json" for s in SOURCES}
 
 
 def heat_l2_paths() -> dict[str, str]:
-    return {s: f"{STEP26}/scenario_L2_{s}_full_S178_v04.json" for s in SOURCES}
+    return {s: f"{STEP26}/scenario_L2_{s}_full_S179_v06.json" for s in SOURCES}
 
 
 def nh_l2_paths() -> dict[str, str]:
-    return {s: f"{STEP26}/nonheat_L2_{s}_full_S178_v04.json" for s in SOURCES}
+    return {s: f"{STEP26}/nonheat_L2_{s}_full_S179_v06.json" for s in SOURCES}
 
 
 def derived_dirs() -> list[str]:
@@ -357,7 +356,7 @@ def build(root: Path, agg_path: Path) -> dict:
     check_inputs_not_superseded(root)
     agg = json.loads(agg_path.read_text(encoding="utf-8"))
     if agg.get("meta", {}).get("layer_tag") != LAYER_TAG:
-        raise SystemExit(f"aggregate {agg_path} was built from {agg.get('meta', {}).get('layer_tag', 'pre-v04 records')}, not {LAYER_TAG}: re-run --aggregate")
+        raise SystemExit(f"aggregate {agg_path} was built from {agg.get('meta', {}).get('layer_tag', 'older records')}, not {LAYER_TAG}: re-run --aggregate")
     heat_flat, nh_flat = agg["heat"], agg["nh"]
     errors: list[str] = []
     # per-source committed census

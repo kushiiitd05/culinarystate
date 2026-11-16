@@ -47,7 +47,7 @@ Sample: full families.
 | flag PRENORM_SP002_U2044 | 0 | 1,275,153 | +1,275,153 |
 | flag UNSUPPORTED_COMPOUND_AMOUNT | 2,155 | 3,280 | +1,125 |
 
-Unaffected unique lines re-checked through the opt-in path: 18,723 identical of 18,723.
+Unaffected unique lines re-checked through the opt-in path: 18,723 sampled (capped: the first lines of each worker chunk, not a random sample) of 79,196 unaffected unique lines; 18,723 of the 18,723 identical.
 BEFORE vs committed S161 counts: **IDENTICAL** (0 differences).
 
 Transitions among affected lines (lines):
@@ -90,7 +90,7 @@ Transitions among affected lines (lines):
 | lines_flagged | 22,859 | 22,859 | +0 |
 | lines_contract_valid | 32,034 | 32,034 | +0 |
 
-Unaffected unique lines re-checked through the opt-in path: 18,986 identical of 18,986.
+Unaffected unique lines re-checked through the opt-in path: 18,986 sampled (capped: the first lines of each worker chunk, not a random sample) of 20,806 unaffected unique lines; 18,986 of the 18,986 identical.
 BEFORE vs committed S161 counts: **IDENTICAL** (0 differences).
 
 Transitions among affected lines (lines):
@@ -133,7 +133,7 @@ Transitions among affected lines (lines):
 | flag UNSUPPORTED_COMPOUND_AMOUNT | 9 | 10 | +1 |
 | flag locale_ambiguous | 1,510 | 1,881 | +371 |
 
-Unaffected unique lines re-checked through the opt-in path: 2,739 identical of 2,739.
+Unaffected unique lines re-checked through the opt-in path: all 2,739 unaffected unique lines (exhaustive); 2,739 of the 2,739 identical.
 BEFORE vs committed S161 counts: **IDENTICAL** (0 differences).
 
 Transitions among affected lines (lines):

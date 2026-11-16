@@ -43,7 +43,8 @@ def test_disjoint_report():
 
 
 def test_write_once_and_verify_roundtrip(tmp_path):
-    rows = [row("SPL-A"), row("SPL-B", n_units=2, ids_sha256=SR.assignment_sha256([("u1", "train"), ("u2", "test")]))]
+    # S178 FIX-EVAL (SCI-B E5): one hash convention per row; the assignment hash belongs to a DIAG29-style row
+    rows = [row("SPL-A"), row("SPL-B", evaluation="DIAG29", n_units=2, ids_sha256=SR.assignment_sha256([("u1", "train"), ("u2", "test")]))]
     units = [{"registry_id": "SPL-A", "unit_id": u, "role": "benchmark", "attributes": ""} for u in "abc"] + \
             [{"registry_id": "SPL-B", "unit_id": "u1", "role": "train", "attributes": ""},
              {"registry_id": "SPL-B", "unit_id": "u2", "role": "test", "attributes": ""}]

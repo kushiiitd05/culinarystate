@@ -23,6 +23,16 @@ Labels on every output: NOT_VALIDATED, RESEARCH_ONLY, NON_CITABLE (+ SCENARIO wh
 fixtures). Section 141 class ``physically_possible``; no number outside ``retention_interval``. Basis is REDUCED L-ascorbic
 acid and carries BASIS_MISMATCH_TOTAL_VITC (the router target SVAR-000009 is total vitamin C).
 
+S178 FIX-PHYS (version 0.2.0, SCI-A M7 / m5 / m6; Q2 ruling PROPOSED, flagged for Kush):
+- M7 / Q2: a Layer 2 scenario default never counts as observed. G7 is UNKNOWN (``INPUT_UNOBSERVED_SCENARIO_ONLY``) whenever a model
+  input (temperature, duration, medium) has a basis that is not a Layer 1 basis (ASSUMED_DEFAULT:<id> from ``with_scenario``, or any
+  other scenario code), so a scenario-filled event reaches at most QUALITATIVE. "UNKNOWN never routes to SIMULATE" now holds for the
+  ``with_scenario`` path too (property test in tests/unit/test_s178_fixphys_aasim.py).
+- m5: the run treats the product as the bath (BATH_EQUALS_PRODUCT); a known Layer 1 piece size (a cut solid piece) needs the zone
+  model, so the gate answers UNKNOWN ``SOLID_PIECE_NEEDS_ZONE_MODEL`` until ``physics_drivers.zone_mean_survival`` is wired here.
+- m6: ``BranchConfig.query_overrides`` is refused in REAL mode (``SimulateBranchError`` at construction), and ``TestOnlyFixtures``
+  can only be built inside a pytest process (explicit test-environment marker).
+
 OPEN FOR HUMANS (not decided here): under the adopted route rule SIMULATE needs domain IN_VALIDATION_DOMAIN, i.e. a VAL
 record with ``may_define_validated_domain`` (verdict MEETS_PREREGISTERED_CRITERIA, not tier V3). The pilot is pre-announced
 RESEARCH_ONLY and descriptive (no threshold, amendment C4), so its VAL cannot define a validated domain and the engine
@@ -34,6 +44,7 @@ import csv
 import hashlib
 import json
 import math
+import sys
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field
 from fractions import Fraction
@@ -49,7 +60,8 @@ from culinarystate.simulation import systems as SYS
 from culinarystate.simulation.kinetics import models as KM
 
 STATUS = "AI_DRAFTED_PROPOSED_UNSIGNED"
-VERSION = "simulate-branch-0.1.0-draft"
+VERSION = "simulate-branch-0.2.0-draft"
+VERSION_V01 = "simulate-branch-0.1.0-draft"  # SUPERSEDED: G7 observed on scenario defaults, piece size ignored, REAL-mode overrides
 ROOT = Path(__file__).resolve().parents[3]
 SYSTEM_ID = "sim_aa_1"
 ANALYTE_BASIS = "REDUCED_L_ASCORBIC_ACID"
@@ -60,6 +72,8 @@ TEST_ONLY_MARK = "TEST_ONLY"
 LAYER1_BASES = frozenset({"TEXT_STATED", "CARRIED_SETPOINT", "PHYSICAL_DEFINITION", "PROCESS_DEFINITION", "CUE",
                           "CUT_HISTORY", "FOOD_GROUP", "ING_LINK"})
 LAYER2_BASE = "ASSUMED_DEFAULT"
+UNOBSERVED_SCENARIO = "INPUT_UNOBSERVED_SCENARIO_ONLY"   # Q2: a scenario default is never an observation
+SOLID_PIECE = "SOLID_PIECE_NEEDS_ZONE_MODEL"             # m5
 FROZEN_FIT_CANDIDATES = ("reports/step10/aa_pilot_model_a_fit_FROZEN.json",   # written by tools/aa_pilot_fit.py
                          "reports/step10/aa_pilot_fit_frozen.json")           # name in the S178 execution board
 GATE_FILES = ("registry/aa_simulate_matrix_class_list_v1.csv", "registry/aa_simulate_medium_contact_map_v1.csv",
@@ -116,6 +130,17 @@ class AAEvent:
     medium_basis: str | None = None
     ph_interval: tuple[float, float] | None = None
     ph_basis: str | None = None
+    piece_size_class: str | None = None            # m5: a Layer 1 cut size (CUT_HISTORY) means a solid piece
+
+    def scenario_only_inputs(self) -> tuple[str, ...]:
+        """Model inputs whose basis is not a Layer 1 basis (Q2: never observed)."""
+        out = []
+        for name, q in (("temperature", self.temperature_C), ("duration", self.duration_min)):
+            if q.value is not None and q.basis not in LAYER1_BASES:
+                out.append(name)
+        if self.medium_code is not None and self.medium_basis not in LAYER1_BASES:
+            out.append("medium")
+        return tuple(out)
 
     @staticmethod
     def _l1_num(x: Mapping[str, Any] | None, unit: str) -> Q:
@@ -131,10 +156,11 @@ class AAEvent:
                     ph_basis: str | None = None) -> "AAEvent":
         """From a ``condition_binding`` event record's ``inputs`` (Layer 1, TEXT_STATED + physical definitions)."""
         med = inputs.get("medium") or {}
+        size = inputs.get("piece_size_class") or {}
         return cls(event_id, process_id, ingredient_id, cls._l1_num(inputs.get("temperature_profile"), "degC"),
                    cls._l1_num(inputs.get("duration"), "min"),
                    med.get("value") if med.get("status", "UNKNOWN") != "UNKNOWN" else None, med.get("basis"),
-                   ph_interval, ph_basis)
+                   ph_interval, ph_basis, size.get("value") if size.get("status", "UNKNOWN") != "UNKNOWN" else None)
 
     @classmethod
     def with_scenario(cls, base: "AAEvent", scenario: Mapping[str, Any]) -> "AAEvent":
@@ -153,7 +179,7 @@ class AAEvent:
 
         return cls(base.event_id, base.process_id, base.ingredient_id,
                    bracket("bath_c", "degC", base.temperature_C), bracket("duration_min", "min", base.duration_min),
-                   base.medium_code, base.medium_basis, base.ph_interval, base.ph_basis)
+                   base.medium_code, base.medium_basis, base.ph_interval, base.ph_basis, base.piece_size_class)
 
 
 # ----------------------------------------------------------------------------- domain gate
@@ -257,6 +283,8 @@ def evaluate_gate(gate: DomainGate | None, ev: AAEvent, item: Mapping[str, Any])
     db = ev.duration_min.bounds
     if db is None or db[0] <= 0:
         unk.append("DURATION_UNKNOWN")
+    if ev.piece_size_class:  # m5: BATH_EQUALS_PRODUCT is wrong for a cut solid piece until the zone model is wired
+        unk.append(SOLID_PIECE)
     if gate.ph_mode == "PH_A":
         if ev.ph_interval is None:
             unk.append("PH_UNKNOWN")
@@ -281,6 +309,8 @@ class TestOnlyFixtures:
     def __post_init__(self) -> None:
         if not self.reason.strip():
             raise SimulateBranchError("TestOnlyFixtures needs a reason")
+        if "pytest" not in sys.modules:  # m6: explicit test-environment marker (production code never imports pytest)
+            raise SimulateBranchError("TestOnlyFixtures can only be built inside a pytest run")
 
 
 @dataclass(frozen=True)
@@ -524,6 +554,8 @@ class SimulateBranch:
         self.artifacts, self.gate, self.config = artifacts, gate, config
         self.signatures, self.entries = tuple(signatures), tuple(entries)
         self.guard = check_guard(artifacts)
+        if config.query_overrides is not None and self.guard.mode == "REAL":  # m6: no production backdoor
+            raise SimulateBranchError("query_overrides are test scaffolding and are refused in REAL mode")
         self._binder = None
 
     @classmethod
@@ -564,11 +596,12 @@ class SimulateBranch:
         flag = ge.domain_flag_base
         if flag == "IN_CALIBRATION_ONLY" and self.guard.allowed and self.guard.may_define_validated_domain:
             flag = "IN_VALIDATION_DOMAIN"
-        observed = ge.verdict != UNK
+        scenario_only = ev.scenario_only_inputs()
+        observed = ge.verdict != UNK and not scenario_only
         g6 = (AP.CaseGate("APPLICABLE", (), self.guard.form_id) if (self.guard.allowed and ge.verdict == IN)
               else AP.CaseGate("NOT_APPLICABLE", ("ASSUMPTION_VIOLATED",), None) if ge.verdict == OUT
               else AP.CaseGate("UNKNOWN", ("NO_FORM",), None))
-        g7 = (AP.CaseGate("APPLICABLE", (), f"AAEVENT-{ev.event_id}") if observed
+        g7 = (AP.CaseGate("APPLICABLE", (), f"AAEVENT-{ev.event_id}") if observed  # the engine's G7 code; the branch says why
               else AP.CaseGate("UNKNOWN", ("INPUT_UNOBSERVED",), None))
         g8 = (AP.CaseGate("APPLICABLE", (), ",".join(self.guard.param_ids)) if self.guard.allowed
               else AP.CaseGate("NOT_APPLICABLE", ("NO_COMPATIBLE_PARAM",), None)
@@ -586,11 +619,12 @@ class SimulateBranch:
         rec = AP.evaluate(AP.ApplicabilityQuery(**kw), self.signatures, self.entries, hierarchy)
         if rec["route"] != "SIMULATE":
             why = sorted(set(ge.reasons) | set(self.guard.reasons) | {
-                r for g in rec["gates"].values() for r in g["reasons"]} | {f"ENGINE_ROUTE_{rec['route']}"})
+                r for g in rec["gates"].values() for r in g["reasons"]} | {f"ENGINE_ROUTE_{rec['route']}"} |
+                ({UNOBSERVED_SCENARIO} | {f"SCENARIO_ONLY_INPUT:{n}" for n in scenario_only} if scenario_only else set()))
             return Outcome(False, mode, "NOT_SIMULATED", tuple(why), rec["route"], ge, self.guard.reasons)
-        if not (self.guard.allowed and ge.verdict == IN):                       # defence in depth, never expected
-            return Outcome(False, mode, "NOT_SIMULATED", ("GUARD_OR_GATE_DISAGREES_WITH_ENGINE",), rec["route"], ge,
-                           self.guard.reasons)
+        if not (self.guard.allowed and ge.verdict == IN) or scenario_only:     # defence in depth, never expected
+            return Outcome(False, mode, "NOT_SIMULATED", ("GUARD_OR_GATE_DISAGREES_WITH_ENGINE",) +
+                           ((UNOBSERVED_SCENARIO,) if scenario_only else ()), rec["route"], ge, self.guard.reasons)
         try:
             out = self._run(ev, ge, rec)
         except (SC.SimulationError, SimulateBranchError, KM.ModelError, ValueError) as exc:

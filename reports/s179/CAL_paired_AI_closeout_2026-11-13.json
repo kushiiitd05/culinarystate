@@ -1,0 +1,360 @@
+{
+  "completed_at_utc": "2026-11-13T09:50:52.234541+00:00",
+  "counts_as_human_gate": false,
+  "gate": "NOT_COUNTED",
+  "input_sha256": {
+    "annotation/aa_pilot/ksh_CAL_source_review_closeout_2026-11-13.csv": "321b49e09226b7cd46bca99cd95cecfcec5b3a6893898cfe3827b12300a07cbd",
+    "annotation/aa_pilot/prv_CAL_source_review_2026-11-13.csv": "6fef2d8a407e15582d8f2343e8b5fb55a52eabbac0edcaf7b96945beed039d07"
+  },
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Both reviewers verified source spans; this does not validate chemical assay specificity or simulation.",
+    "Lexical correction differences include synonymous wording and added metadata, not measured disagreement accuracy.",
+    "No updated extraction/fit/lineage or human approval inferred."
+  ],
+  "n": 16,
+  "numeric_span_status_agreement": 16,
+  "private_queue": "data/derived/reduced_submission_closeout_2026-11-13/CAL_metadata_comparison.json",
+  "private_queue_sha256": "bb8173b13ae1b4f1e3395184576a528b0b47fcf8f0397c435e12858bc664ce26",
+  "reason": "AI_PERSONAS_NOT_INDEPENDENT_SOURCE_VERIFIERS",
+  "record": "REDUCED_SUBMISSION_AI_CAL_CLOSEOUT",
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "rows": [
+    {
+      "correction_fields_ksh": [
+        "n_time_points",
+        "time_range"
+      ],
+      "correction_fields_prv": [
+        "n_time_points",
+        "time_range"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "n_time_points",
+        "time_range"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-001"
+    },
+    {
+      "correction_fields_ksh": [
+        "n_time_points",
+        "time_range"
+      ],
+      "correction_fields_prv": [
+        "n_time_points",
+        "time_range"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "n_time_points",
+        "time_range"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-002"
+    },
+    {
+      "correction_fields_ksh": [
+        "n_time_points",
+        "time_range"
+      ],
+      "correction_fields_prv": [
+        "n_time_points",
+        "time_range"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "n_time_points",
+        "time_range"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-003"
+    },
+    {
+      "correction_fields_ksh": [
+        "n_time_points",
+        "time_range"
+      ],
+      "correction_fields_prv": [
+        "n_time_points",
+        "time_range"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "n_time_points",
+        "time_range"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-004"
+    },
+    {
+      "correction_fields_ksh": [
+        "n_time_points",
+        "time_range"
+      ],
+      "correction_fields_prv": [
+        "n_time_points",
+        "time_range"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "n_time_points",
+        "time_range"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-005"
+    },
+    {
+      "correction_fields_ksh": [
+        "leaching_design",
+        "matrix"
+      ],
+      "correction_fields_prv": [
+        "leaching_design"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "leaching_design",
+        "matrix"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-006"
+    },
+    {
+      "correction_fields_ksh": [
+        "leaching_design",
+        "matrix"
+      ],
+      "correction_fields_prv": [
+        "leaching_design"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "leaching_design",
+        "matrix"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-007"
+    },
+    {
+      "correction_fields_ksh": [
+        "leaching_design",
+        "matrix"
+      ],
+      "correction_fields_prv": [
+        "leaching_design"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "leaching_design",
+        "matrix"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-008"
+    },
+    {
+      "correction_fields_ksh": [
+        "leaching_design",
+        "matrix"
+      ],
+      "correction_fields_prv": [
+        "leaching_design"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "leaching_design",
+        "matrix"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-009"
+    },
+    {
+      "correction_fields_ksh": [
+        "T_location_comeup",
+        "analyte_basis",
+        "n_reported"
+      ],
+      "correction_fields_prv": [
+        "T_location_comeup",
+        "n_reported"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "T_location_comeup",
+        "analyte_basis",
+        "n_reported"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-010"
+    },
+    {
+      "correction_fields_ksh": [
+        "T_location_comeup",
+        "analyte_basis",
+        "n_reported"
+      ],
+      "correction_fields_prv": [
+        "T_location_comeup",
+        "n_reported"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "T_location_comeup",
+        "analyte_basis",
+        "n_reported"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-011"
+    },
+    {
+      "correction_fields_ksh": [
+        "T_location_comeup",
+        "analyte_basis",
+        "n_reported"
+      ],
+      "correction_fields_prv": [
+        "T_location_comeup",
+        "n_reported"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "T_location_comeup",
+        "analyte_basis",
+        "n_reported"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-012"
+    },
+    {
+      "correction_fields_ksh": [
+        "T_location_comeup",
+        "analyte_basis",
+        "n_reported"
+      ],
+      "correction_fields_prv": [
+        "T_location_comeup",
+        "n_reported"
+      ],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "T_location_comeup",
+        "analyte_basis",
+        "n_reported"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "CORRECTED",
+      "row_id": "AAP-013"
+    },
+    {
+      "correction_fields_ksh": [
+        "assay",
+        "leaching_design",
+        "matrix"
+      ],
+      "correction_fields_prv": [],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "assay",
+        "leaching_design",
+        "matrix"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "VERIFIED",
+      "row_id": "AAP-014"
+    },
+    {
+      "correction_fields_ksh": [
+        "assay",
+        "leaching_design",
+        "matrix"
+      ],
+      "correction_fields_prv": [],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "assay",
+        "leaching_design",
+        "matrix"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "VERIFIED",
+      "row_id": "AAP-015"
+    },
+    {
+      "correction_fields_ksh": [
+        "assay",
+        "leaching_design",
+        "matrix",
+        "order"
+      ],
+      "correction_fields_prv": [],
+      "ksh_verdict": "CORRECTED",
+      "lexical_or_additional_correction_fields": [
+        "assay",
+        "leaching_design",
+        "matrix",
+        "order"
+      ],
+      "numeric_ksh": "VERIFIED",
+      "numeric_prv": "VERIFIED",
+      "numeric_span_status_agrees": true,
+      "prv_verdict": "VERIFIED",
+      "row_id": "AAP-016"
+    }
+  ],
+  "scientific_gate_pass": false,
+  "source_values_or_fit_changed": false,
+  "started_at_utc": "2026-11-13T09:50:52.233114+00:00",
+  "tool_sha256": "6bd336b2ca73ec4a5663eff90d112e781b6ab1f11c1e466d5f38e93a0dab6b93",
+  "verdict_pairs": {
+    "CORRECTED|CORRECTED": 13,
+    "CORRECTED|VERIFIED": 3
+  }
+}

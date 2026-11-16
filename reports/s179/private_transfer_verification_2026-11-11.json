@@ -1,0 +1,36 @@
+{
+  "base_commit": "6e29cc5f",
+  "date": "2026-11-11",
+  "full_suite": {
+    "deselected": 44,
+    "duration_seconds": 109.43,
+    "errors": 11,
+    "failed": 1,
+    "local_log_sha256": "425f98c6c976f1006abf3f5e7b240e9ba8ed40cf72e648e4ecd364f22fb054a4",
+    "passed": 7975,
+    "skipped": 13,
+    "summary": "1 failed, 7975 passed, 13 skipped, 44 deselected, 11 errors in 109.43s (0:01:49)"
+  },
+  "independent_source_binding_recheck": {
+    "gap_closed": true,
+    "passed": 21
+  },
+  "limits": [
+    "Full suite NOT clean:missing-input failure/errors retained, not skipped.",
+    "13skips from existing conditions;44deselected by existing non-ledgers marker.",
+    "Only aggregate counts/hashes public;raw traces and private source evidence stay local.",
+    "TDD intentional red runs precede implementation and review fixes;not scientific failures."
+  ],
+  "new_tests": 48,
+  "production_SIMULATE_allowed": false,
+  "record": "PRIVATE_TRANSFER_SESSION_VERIFICATION",
+  "remaining_missing_inputs": [
+    "ledgers/recipe_identity/recipe_identity_features_v1.parquet",
+    "data/external/foodcom/recipes.parquet"
+  ],
+  "scientific_gate_passes_supplied": 0,
+  "targeted_new_tools": {
+    "duration_seconds": 0.23,
+    "passed": 48
+  }
+}

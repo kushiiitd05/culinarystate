@@ -77,7 +77,8 @@ def test_fridge_and_freezer_words_stay_qualitative_and_a_stated_number_is_kept_e
     assert ev(binder, "Chill in a 40F fridge.", "chill")["inputs"]["medium_temperature"]["value"] == Fraction(40 - 32) * Fraction(5, 9)
     r = ev(binder, "Chill the soup in a 2-4C fridge.", "chill")["inputs"]["medium_temperature"]
     assert r["status"] == "RANGE" and r["value"] == (Fraction(2), Fraction(4))
-    assert ev(binder, "Cool the soup to 40C.", "cool")["inputs"]["target_food_temperature"]["value"] == Fraction(40)
+    cooled = ev(binder, "Cool the soup to 40C.", "cool")  # S178 FIX-PHYS m4: the target is an endpoint, not an input
+    assert cooled["endpoint"]["target_food_temperature"]["value"] == Fraction(40) and "target_food_temperature" not in cooled["inputs"]
     assert ev(binder, "Cool the soup to 40C.", "cool")["inputs"]["medium_temperature"]["status"] == "UNKNOWN"
 
 

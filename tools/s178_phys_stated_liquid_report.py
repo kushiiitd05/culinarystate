@@ -12,6 +12,10 @@ temperature bucket, with a computed core, with a solute-rich lot member, and the
         --out reports/s178/phys/stated_liquid_t_before_after_S178.json --out-md reports/s178/phys/stated_liquid_t_before_after_S178.md
 
 ``--family`` repeats with the four directory arguments in the same order (one set per family). Never overwrites; counts only.
+
+S178 FIX-PHYS: ``--before-label`` / ``--after-label`` name the two Layer 2 blocks (defaults: the PHYS2 v03 / v04 names; the v05 run uses
+``before_l2_0_4_0`` / ``after_l2_0_5_0``); the Layer 2 scan also counts the Q1 gate (``not_lifted`` by reason, ``lift_reason``) and the
+moist-piece rule (``moist_piece_bounded``), and reads the sugar-phase flag of cap 0.3.0 as well as the 0.2.0 solute flag.
 """
 from __future__ import annotations
 
@@ -97,10 +101,20 @@ def scan_l2(path: str) -> dict:
                 continue
             r = json.loads(line)
             t = r["scenarios"].get("TYPICAL")
-            if not t or "STATED_LIQUID_T_ABOVE_TBOIL" not in t["flags"]:
+            if not t:
+                continue
+            for f in t["flags"]:
+                if f.startswith("STATED_LIQUID_T_ABOVE_TBOIL_NOT_LIFTED"):
+                    c[("not_lifted", bucket(t["bath_c"]), f)] += 1
+            if "STATED_LIQUID_T_ABOVE_TBOIL" not in t["flags"]:
                 continue
             b = bucket(t["bath_c"])
-            solute = "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER" in t["flags"]
+            solute = any(f in t["flags"] for f in ("TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER", "SUGAR_PHASE_TBOIL_LOWER_ESTIMATE"))
+            for f in t["flags"]:
+                if f.startswith("STATED_LIQUID_LIFT_"):
+                    c[("lift_reason", b, f)] += 1
+            if "STATED_LIQUID_T_NOT_APPLIED_TO_MOIST_PIECE" in t["flags"]:
+                c[("moist_piece_bounded", b)] += 1
             c[("lifted", b)] += 1
             c[("lifted_by_solute", b, "SOLUTE_RICH_MEMBER" if solute else "NO_SOLUTE_RICH_MEMBER")] += 1
             if t.get("core_end_c") is not None:
@@ -121,7 +135,8 @@ def _after_job(a):
     return scan_after(*a)
 
 
-def run_family(fam: str, d1b: Path, d1a: Path, d2b: Path, d2a: Path, workers: int) -> dict:
+def run_family(fam: str, d1b: Path, d1a: Path, d2b: Path, d2a: Path, workers: int,
+               labels: tuple[str, str] = ("before_l2_0_3_0", "after_l2_0_4_0")) -> dict:
     before: dict = {}
     for part in _pool(scan_before, [str(f) for f in sorted(d1b.glob("*.jsonl"))], workers):
         before.update(part)
@@ -142,7 +157,7 @@ def run_family(fam: str, d1b: Path, d1a: Path, d2b: Path, d2a: Path, workers: in
         if cat == "STILL_STATED_AQUEOUS_ABOVE_100":
             tab[("remaining_by_solute_rich_member", b, "SOLUTE_RICH_MEMBER" if solute else "NO_SOLUTE_RICH_MEMBER")] += 1
     l2 = {}
-    for tag, d in (("before_l2_0_3_0", d2b), ("after_l2_0_4_0", d2a)):
+    for tag, d in ((labels[0], d2b), (labels[1], d2a)):
         c: Counter = Counter()
         mx: dict = {}
         for p in _pool(scan_l2, [str(f) for f in sorted(d.glob("*.jsonl"))], workers):
@@ -165,8 +180,9 @@ def _nest(items) -> dict:
 
 def markdown(rep: dict) -> str:
     L = ["# Stated-liquid temperature lift: diagnosis and before / after (S178 PHYS2, S177 open item (a))", "",
-         "Status: DRAFT / AI_DRAFTED, counts only. Before = Layer 1 0.1.0 (nearest temperature of the sentence) with Layer 2 0.3.0; after = Layer 1 "
-         "0.2.0 (temperature ownership, oven / heat-level cue guard, food-target diversion) with Layer 2 0.4.0.", ""]
+         "Status: DRAFT / AI_DRAFTED, counts only. The two Layer 2 blocks are named by their labels (PHYS2: before = Layer 1 0.1.0 with "
+         "Layer 2 0.3.0, after = Layer 1 0.2.0 with Layer 2 0.4.0; FIX-PHYS v05: before = 0.2.0 / 0.4.0, after = Layer 1 0.3.0 with Layer 2 "
+         "0.5.0, the Q1 lift gate and the moist-piece boundary).", ""]
     for fam, d in rep["families"].items():
         L += [f"## {fam}", "", f"Aqueous-medium heat events with a stated temperature above 100 C (Layer 1, before): {d['l1_events_before']}.", ""]
         tab = d["l1_old_to_new"].get("old_bucket_by_new_category", {})
@@ -178,10 +194,13 @@ def markdown(rep: dict) -> str:
                     L.append(f"| {b} | " + " | ".join(str(tab[b].get(c, 0)) for c in cats) + " |")
             L.append("")
         l2 = d["l2"]
-        for tag, name in (("before_l2_0_3_0", "Layer 2 0.3.0 (before)"), ("after_l2_0_4_0", "Layer 2 0.4.0 (after)")):
+        for tag in l2:
             c = l2[tag]["counts"]
-            L.append(f"- {name}: events lifted by stated T bucket {c.get('lifted', {})}; with a computed core {c.get('lifted_core_computed', {})}; "
-                     f"highest core of a lifted event {l2[tag]['max_core_end_c_of_a_lifted_event_by_bucket']}.")
+            L.append(f"- {tag}: events lifted by stated T bucket {c.get('lifted', {})}; with a computed core {c.get('lifted_core_computed', {})}; "
+                     f"highest core of a lifted event {l2[tag]['max_core_end_c_of_a_lifted_event_by_bucket']}"
+                     + (f"; not lifted (Q1 gate) {c['not_lifted']}" if c.get("not_lifted") else "")
+                     + (f"; lift reasons {c['lift_reason']}" if c.get("lift_reason") else "")
+                     + (f"; moist piece bounded by T_boil {c['moist_piece_bounded']}" if c.get("moist_piece_bounded") else "") + ".")
         L.append("")
     return "\n".join(L)
 
@@ -196,13 +215,15 @@ def main(argv=None) -> int:
     ap.add_argument("--out", required=True, type=Path)
     ap.add_argument("--out-md", required=True, type=Path)
     ap.add_argument("--workers", type=int, default=1)
+    ap.add_argument("--before-label", default="before_l2_0_3_0")
+    ap.add_argument("--after-label", default="after_l2_0_4_0")
     a = ap.parse_args(argv)
     if not (len(a.family) == len(a.l1_before) == len(a.l1_after) == len(a.l2_before) == len(a.l2_after)):
         ap.error("--family, --l1-before, --l1-after, --l2-before and --l2-after must be given the same number of times")
     for p in (a.out, a.out_md):
         if p.exists():
             ap.error(f"refusing to overwrite {p}")
-    fams = {f: run_family(f, b1, a1, b2, a2, a.workers) for f, b1, a1, b2, a2 in
+    fams = {f: run_family(f, b1, a1, b2, a2, a.workers, (a.before_label, a.after_label)) for f, b1, a1, b2, a2 in
             zip(a.family, a.l1_before, a.l1_after, a.l2_before, a.l2_after)}
     rep = {"record": "STATED_LIQUID_T_BEFORE_AFTER", "status": "AI_DRAFTED_COUNTS_ONLY", "contains_ids": False, "contains_text": False,
            "citable": False, "counts_as_human_gate": False, "families": fams,

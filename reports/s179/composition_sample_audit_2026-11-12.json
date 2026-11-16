@@ -1,0 +1,688 @@
+{
+  "code_sha256": {
+    "src/culinarystate/composition/__init__.py": "074e1f761c30b34902406bc5d291f22216088892c8a4784c5de8f9e52cd5cfe3",
+    "src/culinarystate/composition/food_ph.py": "460fcffa0859b7cfba709413eb3ea8386c1c273be6b524c02d9ebd315ce80f73",
+    "src/culinarystate/composition/ing_sr_match.py": "e86166077aeff843b7b11f9de444c7ce33429dda1ba2c73f5f807f752c899661",
+    "src/culinarystate/composition/line_census.py": "895c6456f8749ccecd31ee749db02a56e2f279bbcfc565116528988f9203269f",
+    "src/culinarystate/composition/line_mass.py": "9a0752fe5313d7389f3a58e8515323d350da5f389d54e8a7be20fd3be17330a5",
+    "src/culinarystate/composition/lot_census.py": "d6f08eb2f4d4418fd39749731986333f7ba5819ee4a21a48e35850f28857bb72",
+    "src/culinarystate/composition/lot_state.py": "25a297a63d7469f293c1e0b81abd2d8a6f9efc97a21b8b0bc89aecd418c16959",
+    "src/culinarystate/composition/review_queue.py": "e761efe37d65595b3e504195b36176952c185be73a5a98eef1e5d38c4cf22372",
+    "src/culinarystate/composition/sr_legacy.py": "70833798920460ddff7e77357699c14bb430cc59699262c58cbc2c9273f8aa95",
+    "tools/s175_line_mass_census.py": "768c4247b7c1069480ea95f2343b03ddbc8aa43b6879d2cd5009064b0d66ccc7",
+    "tools/s179_composition_sample_audit.py": "f1e984b2a845d12ef70a364053618e259a983e235c27a605cc6ad05e3cf78f83"
+  },
+  "completed_at_utc": "2026-11-12T14:25:10.425198+00:00",
+  "counts": {
+    "deterministic_repeats_equal": 800,
+    "deterministic_repeats_mismatched": 0,
+    "known_grams_members": 3223,
+    "lots": 800,
+    "missing_required_state_labels": 0,
+    "recipes": 1000,
+    "recipes_without_ingredient_lines": 200,
+    "unknown_grams_members": 3144
+  },
+  "examples": [
+    {
+      "as_listed_state": {
+        "composition": {
+          "ash_g": {
+            "high": 0.0004,
+            "low": 0.00039999999999999996,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "calcium_mg": {
+            "high": 0.016666666666666666,
+            "low": 0.016666666666666666,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "mg/g"
+          },
+          "carbohydrate_g": {
+            "high": 0.6665333333333334,
+            "low": 0.6665333333333333,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "fat_g": {
+            "high": 0.0,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "fibre_g": {
+            "high": 0.0,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "protein_g": {
+            "high": 0.0,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "sodium_mg": {
+            "high": 0.02,
+            "low": 0.02,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "mg/g"
+          },
+          "starch_g": {
+            "high": null,
+            "low": null,
+            "reason": "MEMBER_COMPOSITION_UNKNOWN",
+            "status": "UNKNOWN",
+            "unit": "g/g"
+          },
+          "sugars_g": {
+            "high": 0.6653333333333333,
+            "low": 0.6653333333333333,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "vitamin_c_mg": {
+            "high": 0.0,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "mg/g"
+          },
+          "water_g": {
+            "high": 0.3331333333333334,
+            "low": 0.33313333333333334,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          }
+        },
+        "labels": [
+          "MODEL_DERIVED",
+          "COMPOSITION_FROM_SR_LEGACY",
+          "AS_LISTED_NO_PROCESS_EFFECTS",
+          "NON_CITABLE",
+          "PROVISIONAL_SR_LINK_UNVERIFIED"
+        ],
+        "n_members": 2,
+        "ph_flags": [
+          "ANY_MEMBER_PH_UNKNOWN"
+        ],
+        "solute": {
+          "sodium_mg_per_g_water": {
+            "high": 0.060036021612967776,
+            "low": 0.06003602161296777,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "mg/g water"
+          },
+          "sugars_g_per_g_water": {
+            "high": 1.9971983189913947,
+            "low": 1.9971983189913944,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g water"
+          }
+        },
+        "total_mass_g": {
+          "high": 150.0,
+          "low": 150.0,
+          "reason": null,
+          "status": "INTERVAL",
+          "unit": "g"
+        },
+        "water_activity": "NOT_COMPUTED_NEEDS_SOURCED_MODEL"
+      },
+      "authored_inputs": [
+        "100 g sugar",
+        "50 g water"
+      ],
+      "example_id": "SYNTHETIC_KNOWN_MASS",
+      "mass_export": {
+        "basis": "SUM_OF_DECLARED_MEMBER_GRAM_INTERVALS",
+        "high_g": 150.0,
+        "low_g": 150.0,
+        "status": "INTERVAL"
+      },
+      "members": [
+        {
+          "fdc_id": 169655,
+          "link_match_status": "REGISTRY_MAPPED",
+          "link_verification": "UNVERIFIED",
+          "mass": {
+            "basis": "TEXT_STATED_MASS",
+            "fdc_id": 169655,
+            "flags": [],
+            "high_g": 100.0,
+            "link_verification_required": false,
+            "low_g": 100.0,
+            "portions": [],
+            "q_level": "Q0",
+            "reason": null,
+            "status": "POINT",
+            "value_type": "SOURCE_STATED"
+          },
+          "member_index": 0,
+          "record_tier": "NOT_AN_EVD_RECORD",
+          "source": "USDA_SR_LEGACY_2018_04",
+          "source_record_id": 169655
+        },
+        {
+          "fdc_id": 173647,
+          "link_match_status": "REGISTRY_MAPPED",
+          "link_verification": "UNVERIFIED",
+          "mass": {
+            "basis": "TEXT_STATED_MASS",
+            "fdc_id": 173647,
+            "flags": [],
+            "high_g": 50.0,
+            "link_verification_required": false,
+            "low_g": 50.0,
+            "portions": [],
+            "q_level": "Q0",
+            "reason": null,
+            "status": "POINT",
+            "value_type": "SOURCE_STATED"
+          },
+          "member_index": 1,
+          "record_tier": "NOT_AN_EVD_RECORD",
+          "source": "USDA_SR_LEGACY_2018_04",
+          "source_record_id": 173647
+        }
+      ],
+      "origin": "AUTHORED_SYNTHETIC_NOT_GOLD",
+      "scientific_applicability_certified": false,
+      "state_sha256": "4d4173727d982a90af73663a326f72293d7468932425558ff0636dfd90b49369"
+    },
+    {
+      "as_listed_state": {
+        "composition": {
+          "ash_g": {
+            "high": 0.998,
+            "low": 0.0001,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "calcium_mg": {
+            "high": 0.24,
+            "low": 0.01,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "mg/g"
+          },
+          "carbohydrate_g": {
+            "high": 0.9998,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "fat_g": {
+            "high": 0.0,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "fibre_g": {
+            "high": 0.0,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "protein_g": {
+            "high": 0.0,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "sodium_mg": {
+            "high": 387.58,
+            "low": 0.01,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "mg/g"
+          },
+          "starch_g": {
+            "high": null,
+            "low": null,
+            "reason": "MEMBER_COMPOSITION_UNKNOWN",
+            "status": "UNKNOWN",
+            "unit": "g/g"
+          },
+          "sugars_g": {
+            "high": 0.998,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          },
+          "vitamin_c_mg": {
+            "high": 0.0,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "mg/g"
+          },
+          "water_g": {
+            "high": 0.002,
+            "low": 0.0002,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g"
+          }
+        },
+        "labels": [
+          "MODEL_DERIVED",
+          "COMPOSITION_FROM_SR_LEGACY",
+          "AS_LISTED_NO_PROCESS_EFFECTS",
+          "NON_CITABLE",
+          "PROVISIONAL_SR_LINK_UNVERIFIED"
+        ],
+        "n_members": 2,
+        "ph_flags": [
+          "ANY_MEMBER_PH_UNKNOWN"
+        ],
+        "solute": {
+          "sodium_mg_per_g_water": {
+            "high": 193790.0,
+            "low": 49.99999999999999,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "mg/g water"
+          },
+          "sugars_g_per_g_water": {
+            "high": 4990.0,
+            "low": 0.0,
+            "reason": null,
+            "status": "INTERVAL",
+            "unit": "g/g water"
+          }
+        },
+        "total_mass_g": {
+          "high": null,
+          "low": 100.0,
+          "reason": null,
+          "status": "INTERVAL",
+          "unit": "g"
+        },
+        "water_activity": "NOT_COMPUTED_NEEDS_SOURCED_MODEL"
+      },
+      "authored_inputs": [
+        "100 g sugar",
+        "salt to taste"
+      ],
+      "example_id": "SYNTHETIC_UNKNOWN_MASS",
+      "mass_export": {
+        "basis": "MEMBER_MASS_UNKNOWN",
+        "high_g": null,
+        "low_g": null,
+        "status": "UNKNOWN"
+      },
+      "members": [
+        {
+          "fdc_id": 169655,
+          "link_match_status": "REGISTRY_MAPPED",
+          "link_verification": "UNVERIFIED",
+          "mass": {
+            "basis": "TEXT_STATED_MASS",
+            "fdc_id": 169655,
+            "flags": [],
+            "high_g": 100.0,
+            "link_verification_required": false,
+            "low_g": 100.0,
+            "portions": [],
+            "q_level": "Q0",
+            "reason": null,
+            "status": "POINT",
+            "value_type": "SOURCE_STATED"
+          },
+          "member_index": 0,
+          "record_tier": "NOT_AN_EVD_RECORD",
+          "source": "USDA_SR_LEGACY_2018_04",
+          "source_record_id": 169655
+        },
+        {
+          "fdc_id": 173468,
+          "link_match_status": "REGISTRY_MAPPED",
+          "link_verification": "UNVERIFIED",
+          "mass": {
+            "basis": "QUALITATIVE",
+            "fdc_id": 173468,
+            "flags": [],
+            "high_g": null,
+            "link_verification_required": false,
+            "low_g": null,
+            "portions": [],
+            "q_level": "Q6",
+            "reason": null,
+            "status": "QUALITATIVE",
+            "value_type": null
+          },
+          "member_index": 1,
+          "record_tier": "NOT_AN_EVD_RECORD",
+          "source": "USDA_SR_LEGACY_2018_04",
+          "source_record_id": 173468
+        }
+      ],
+      "origin": "AUTHORED_SYNTHETIC_NOT_GOLD",
+      "scientific_applicability_certified": false,
+      "state_sha256": "a9608211e54e26da83bdc39137c13bddd7fb3159f8c0379fa8ea17772bd4614c"
+    }
+  ],
+  "input_sha256": {
+    "/Users/parvgoyal/wth/CGAS/takeover/a1/A1 3/data/processed/recipes_processed.jsonl": "113172f424e612ca872c8aa34ab88e10b7b5cd1987b036e862d02e1c23b4bcc0",
+    "data/external/foodcom/recipes.parquet": "9f591abe9f8d1c691bbc630b0431ec6613f09fabe93f1789af87a06484aae9fb",
+    "data/interim/gutenberg/recipes.jsonl": "2c157ffdf22ed050c81fd2212b1246c1a92ca72565d5a784b9ad373feedd645f",
+    "data/interim/wikibooks/recipes.jsonl": "62374f4f292233a24d7b071d5c0dcafd4882ba7f2c7305d1c70a303330156933",
+    "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04/food.csv": "de8b0390058db4f102368c9fbdfde144790b480ff4cb0507c0e060ef99805dee",
+    "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04/food_nutrient.csv": "6d07e6fc062b09750c4d95112be5a5cdb56a2346efcfd0c96b7a7d705812d4bd",
+    "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04/food_portion.csv": "6332e29da61e13f7bd950b759461af73303c76e8b0e64dc9df4e41d5347cf3d1",
+    "data/raw/fdc/sr_legacy/FoodData_Central_sr_legacy_food_csv_2018-04/measure_unit.csv": "c1396ffebbe6337260fe4de6276aa91847c7f41ff31a4f69080764a5b36ba155",
+    "data/raw/tasteset/TASTEset.csv": "e5d455b5ea4073e47220a7047a6d02d5fd07522b26f3a86336220ddd1868f2e4",
+    "ledgers/data/ING.jsonl": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+    "ledgers/data/REC.jsonl": "91f65a47389260efa345e34695060053ae1b433afce0726baca42c310e24bd85",
+    "registry/food_ph_fda_draft_v1.csv": "6c591cfdd0dd5dc2ee1300eea0a50582d173f8c39c0345dd62660d6f51ebc0d8",
+    "registry/ing_sr_defaults_v1.csv": "56a2d4d246602cb4aebe88070d888d351b9e352d85319f08de7c694e587e5d0d"
+  },
+  "labels": [
+    "ENGINEERING_DIAGNOSTIC",
+    "MODEL_DERIVED",
+    "SR_LINK_UNVERIFIED",
+    "AS_LISTED_NO_PROCESS_EFFECTS",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Balanced sample is not prevalence-weighted and does not constitute a full-corpus census.",
+    "RECIPE_POOL/as-listed slice only; no event-level lot transition, evaporation, leaching or fat-loss replay.",
+    "Existing SR-derived gram intervals are exploratory/provisional; deferred portion authority is not promoted.",
+    "Unknown member grams remain UNKNOWN in exported total-mass view; original interval engine remains unchanged.",
+    "SR links are UNVERIFIED; pH member flags are not mixture-pH measurements; no food safety claims.",
+    "Authored worked examples are synthetic illustrations using sourced SR records, not independent gold or chemical validation."
+  ],
+  "line_census": {
+    "families": {
+      "A1_BBC_GOOD_FOOD": {
+        "basis": {
+          "COUNT_x_SR_PORTION": 369,
+          "QUALITATIVE": 85,
+          "TEXT_STATED_MASS": 578,
+          "UNKNOWN": 409,
+          "VOLUME_x_SR_DENSITY": 529
+        },
+        "flags": {
+          "SR_SINGLE_PORTION_NO_SPREAD": 427
+        },
+        "lines": 1970,
+        "lines_with_grams": 1476,
+        "lines_with_grams_link_unverified": 898,
+        "match_status": {
+          "AUTO_MATCH_HIGH": 60,
+          "AUTO_MATCH_LOW": 61,
+          "NO_FOOD_MENTION": 15,
+          "NO_MATCH": 147,
+          "REGISTRY_MAPPED": 1511,
+          "REGISTRY_UNMAPPABLE": 176
+        },
+        "q_level": {
+          "Q0": 578,
+          "Q1": 369,
+          "Q2": 529,
+          "Q6": 494
+        },
+        "reason": {
+          "NO_AMOUNT": 110,
+          "NO_SR_COUNT_PORTION": 110,
+          "NO_SR_DENSITY": 4,
+          "NO_SR_FOOD": 185
+        },
+        "recipes": 200,
+        "recipes_all_quantified_lines_with_grams": 37
+      },
+      "FOODCOM": {
+        "basis": {
+          "UNIT_MISSING_IN_SOURCE": 1602
+        },
+        "flags": {},
+        "lines": 1602,
+        "lines_with_grams": 0,
+        "lines_with_grams_link_unverified": 0,
+        "match_status": {
+          "AUTO_MATCH_HIGH": 43,
+          "AUTO_MATCH_LOW": 106,
+          "NO_FOOD_MENTION": 19,
+          "NO_MATCH": 48,
+          "REGISTRY_MAPPED": 1267,
+          "REGISTRY_UNMAPPABLE": 119
+        },
+        "q_level": {
+          "Q6": 1602
+        },
+        "reason": {
+          "UNIT_MISSING_IN_SOURCE": 1602
+        },
+        "recipes": 200,
+        "recipes_all_quantified_lines_with_grams": 0
+      },
+      "GUTENBERG_SEGMENT": {
+        "basis": {},
+        "flags": {},
+        "lines": 0,
+        "lines_with_grams": 0,
+        "lines_with_grams_link_unverified": 0,
+        "match_status": {},
+        "q_level": {},
+        "reason": {},
+        "recipes": 200,
+        "recipes_all_quantified_lines_with_grams": 0
+      },
+      "TASTESET": {
+        "basis": {
+          "COUNT_x_SR_PORTION": 148,
+          "QUALITATIVE": 28,
+          "TEXT_STATED_MASS": 142,
+          "UNKNOWN": 368,
+          "VOLUME_x_SR_DENSITY": 394
+        },
+        "flags": {
+          "SR_SINGLE_PORTION_NO_SPREAD": 195,
+          "UNIT_HULL_LOCALE_UNKNOWN": 391
+        },
+        "lines": 1080,
+        "lines_with_grams": 684,
+        "lines_with_grams_link_unverified": 542,
+        "match_status": {
+          "AUTO_MATCH_HIGH": 59,
+          "AUTO_MATCH_LOW": 91,
+          "NO_FOOD_MENTION": 35,
+          "NO_MATCH": 55,
+          "REGISTRY_MAPPED": 715,
+          "REGISTRY_UNMAPPABLE": 125
+        },
+        "q_level": {
+          "Q0": 142,
+          "Q1": 148,
+          "Q2": 394,
+          "Q6": 396
+        },
+        "reason": {
+          "NO_AMOUNT": 98,
+          "NO_SR_COUNT_PORTION": 48,
+          "NO_SR_DENSITY": 18,
+          "NO_SR_FOOD": 204
+        },
+        "recipes": 200,
+        "recipes_all_quantified_lines_with_grams": 31
+      },
+      "WIKIBOOKS": {
+        "basis": {
+          "COUNT_x_SR_PORTION": 234,
+          "QUALITATIVE": 84,
+          "TEXT_STATED_MASS": 221,
+          "UNKNOWN": 568,
+          "VOLUME_x_SR_DENSITY": 608
+        },
+        "flags": {
+          "SR_SINGLE_PORTION_NO_SPREAD": 330,
+          "UNIT_HULL_LOCALE_UNKNOWN": 585
+        },
+        "lines": 1715,
+        "lines_with_grams": 1063,
+        "lines_with_grams_link_unverified": 842,
+        "match_status": {
+          "AUTO_MATCH_HIGH": 44,
+          "AUTO_MATCH_LOW": 127,
+          "NO_FOOD_MENTION": 38,
+          "NO_MATCH": 116,
+          "REGISTRY_MAPPED": 1227,
+          "REGISTRY_UNMAPPABLE": 163
+        },
+        "q_level": {
+          "Q0": 221,
+          "Q1": 234,
+          "Q2": 608,
+          "Q6": 652
+        },
+        "reason": {
+          "NO_AMOUNT": 237,
+          "NO_SR_COUNT_PORTION": 51,
+          "NO_SR_DENSITY": 11,
+          "NO_SR_FOOD": 269
+        },
+        "recipes": 200,
+        "recipes_all_quantified_lines_with_grams": 26
+      }
+    },
+    "labels": [
+      "COUNTS_ONLY",
+      "MODEL_DERIVED_GRAMS",
+      "SR_LINK_UNVERIFIED"
+    ],
+    "version": "s179-line-census-0.2.0"
+  },
+  "lot_census": {
+    "families": {
+      "A1_BBC_GOOD_FOOD": {
+        "lots": 200,
+        "ph_flags": {
+          "ANY_MEMBER_PH_UNKNOWN": 200,
+          "CONTAINS_ACID_MEMBER": 94
+        },
+        "provisional": 199,
+        "recipes": 200,
+        "water_g_status": {
+          "INTERVAL": 32,
+          "UNKNOWN": 168
+        },
+        "water_g_width": {
+          "ge_0.5": 7,
+          "lt_0.05": 13,
+          "lt_0.2": 9,
+          "lt_0.5": 3
+        }
+      },
+      "FOODCOM": {
+        "lots": 200,
+        "ph_flags": {
+          "ANY_MEMBER_PH_UNKNOWN": 193,
+          "CONTAINS_ACID_MEMBER": 78
+        },
+        "provisional": 199,
+        "recipes": 200,
+        "water_g_status": {
+          "INTERVAL": 43,
+          "UNKNOWN": 157
+        },
+        "water_g_width": {
+          "ge_0.5": 33,
+          "lt_0.05": 1,
+          "lt_0.2": 5,
+          "lt_0.5": 4
+        }
+      },
+      "GUTENBERG_SEGMENT": {
+        "lots": 0,
+        "ph_flags": {},
+        "provisional": 0,
+        "recipes": 200,
+        "water_g_status": {},
+        "water_g_width": {}
+      },
+      "TASTESET": {
+        "lots": 200,
+        "ph_flags": {
+          "ANY_MEMBER_PH_UNKNOWN": 195,
+          "CONTAINS_ACID_MEMBER": 69
+        },
+        "provisional": 196,
+        "recipes": 200,
+        "water_g_status": {
+          "INTERVAL": 39,
+          "UNKNOWN": 161
+        },
+        "water_g_width": {
+          "ge_0.5": 10,
+          "lt_0.05": 16,
+          "lt_0.2": 6,
+          "lt_0.5": 7
+        }
+      },
+      "WIKIBOOKS": {
+        "lots": 200,
+        "ph_flags": {
+          "ANY_MEMBER_PH_UNKNOWN": 192,
+          "CONTAINS_ACID_MEMBER": 64
+        },
+        "provisional": 198,
+        "recipes": 200,
+        "water_g_status": {
+          "INTERVAL": 29,
+          "UNKNOWN": 171
+        },
+        "water_g_width": {
+          "ge_0.5": 12,
+          "lt_0.05": 9,
+          "lt_0.2": 5,
+          "lt_0.5": 3
+        }
+      }
+    },
+    "labels": [
+      "COUNTS_ONLY",
+      "MODEL_DERIVED_GRAMS",
+      "SR_LINK_UNVERIFIED"
+    ],
+    "lot_kind": "RECIPE_POOL",
+    "version": "s175-lot-census-0.1.0"
+  },
+  "manifest": "reports/s179/composition_sample_manifest_2026-11-12.json",
+  "manifest_sha256": "90d37ab016c070742ce1088860a1128502fdc558d2fdf8593a46bc2322273f99",
+  "mass_export_status": {
+    "INTERVAL": 71,
+    "UNKNOWN": 729
+  },
+  "member_mass_basis": {
+    "COUNT_x_SR_PORTION": 751,
+    "QUALITATIVE": 197,
+    "TEXT_STATED_MASS": 941,
+    "UNIT_MISSING_IN_SOURCE": 1602,
+    "UNKNOWN": 1345,
+    "VOLUME_x_SR_DENSITY": 1531
+  },
+  "record": "COMPOSITION_BALANCED_SAMPLE_AND_WORKED_EXAMPLES",
+  "repeat_state_hashes_sha256": "885ef27eb28a251daaea81b8d75a78a8605a80f9c554ef161319bf02a7d82a08",
+  "scientific_gate_pass": false,
+  "started_at_utc": "2026-11-12T14:24:57.460474+00:00"
+}

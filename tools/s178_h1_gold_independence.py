@@ -13,10 +13,14 @@ The embedder is a deterministic hashed bag of words (no model on this server): t
 NON_CITABLE; the state-block and pre-cut results do not depend on it. Recipe text is read to run the engine and is not
 written anywhere.
 
-    python tools/s178_h1_gold_independence.py
+    python tools/s178_h1_gold_independence.py [--out reports/s178/h1_gold_independence_d5_draft_v2.json]
+
+S178 FIX-EVAL (SCI-B E1): ``--out`` writes a new version (the tool still refuses to overwrite); the provenance block now
+comes from ``h1_independence@0.2`` (evidence-based HUMAN_BLIND, ENGINE_DRAFT_KEPT reasons, refusals).
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import json
@@ -55,9 +59,12 @@ def steps_of(r) -> list[str]:
     return [s.strip() for s in r.get("steps") or [] if isinstance(s, str) and s.strip()]
 
 
-def main() -> int:
-    if OUT.exists():
-        sys.exit(f"refusing to overwrite {OUT}")
+def main(argv=None) -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", default=str(OUT))
+    out_path = Path(ap.parse_args(argv).out)
+    if out_path.exists():
+        sys.exit(f"refusing to overwrite {out_path}")
     with open(S_DRAFT, newline="", encoding="utf-8-sig") as fh:
         rows = list(csv.DictReader(fh))
     want = {r["recipe_id"] for r in rows}
@@ -119,11 +126,11 @@ def main() -> int:
                     "shares_engine_output_with_gold is 0 by construction in both views",
                     "the printed action list is still engine output: where residual_circularity_s1 shows a plain heat-verb rule "
                     "rebuilding the gold, only blind-first human gold (gold_origin HUMAN_BLIND) makes that row non-circular"]}
-    OUT.parent.mkdir(parents=True, exist_ok=True)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     data = (json.dumps(report, indent=1, sort_keys=True) + "\n").encode()
-    with open(OUT, "xb") as fh:
+    with open(out_path, "xb") as fh:
         fh.write(data)
-    print(json.dumps({"out": OUT.relative_to(ROOT).as_posix(), "sha256": hashlib.sha256(data).hexdigest()}))
+    print(json.dumps({"out": str(out_path), "sha256": hashlib.sha256(data).hexdigest()}))
     return 0
 
 

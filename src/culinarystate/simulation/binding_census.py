@@ -9,6 +9,11 @@ Per sampled recipe: ``condition_binding.Binder.bind_text``; counts per heat even
 ``records_dir`` it also writes one JSONL row per heat event (recipe id, event id, process, inputs with values as
 strings, layer TEXT_STATED) into that directory, which must be a data-plane location (the caller checks). The report
 holds counts and codes only. Fork pool for ``workers`` > 1, merged counts identical to one worker.
+
+S178 FIX-PHYS (census 0.3.0, Layer 1 0.3.0): ``fixphys_layer1`` block: the corpus check of SCI-A M1 (bound temperatures inside an
+until-clause span, by the role of that temperature: 0 is expected outside the exempt roles), temperature roles in until-clauses, the
+new CUE axes (syrup / stage, pressure, water bath), ambient temperatures by rule, the Layer 1 temperature flags (fan / conventional,
+heat level at or below T_boil) and RANGE temperatures.
 """
 from __future__ import annotations
 
@@ -25,7 +30,7 @@ from culinarystate.recipes.ledgers import LOCALE
 from culinarystate.simulation import condition_binding as CB
 from culinarystate.simulation import endpoint_cues as EC
 
-CENSUS_VERSION = "binding-census-L1-0.2.0-draft"
+CENSUS_VERSION = "binding-census-L1-0.3.0-draft"
 _CTX: dict = {}
 
 
@@ -85,6 +90,25 @@ def _count_event(ev: Mapping, rec_inputs: Mapping, extra: Counter, ep: Counter) 
         v = t["value"]
         hi = max(float(Fraction(str(x))) for x in v) if isinstance(v, (list, tuple)) else float(Fraction(str(v)))
         extra[("stated_aqueous_temperature", _bucket(hi), code(ev["process_id"]) if hi > 150 else "ALL")] += 1
+    # S178 FIX-PHYS: until-clause check (M1), cue axes (M4 / m3), ambient rules (M2), temperature flags (m1 / m2)
+    sp = t.get("span") if t["status"] != "UNKNOWN" and t["basis"] == "TEXT_STATED" else None
+    for cl in blk.get("until_clauses") or []:
+        extra[("fx", "until_clauses")] += 1
+        for tt in cl.get("temperatures") or []:
+            extra[("fx_until_role", code(tt["role"]))] += 1
+        if sp and cl["span"][0] <= sp[0] and sp[1] <= cl["span"][1]:
+            role = next((tt["role"] for tt in cl.get("temperatures") or [] if tt["span"] == list(sp)), "NOT_CLASSIFIED")
+            extra[("fx_bound_in_until_clause", code(role))] += 1
+    for ax in ("syrup_stage_cue", "pressure_cue", "water_bath_cue"):
+        if ax in rec_inputs:
+            extra[("fx_cue_axis", ax, f)] += 1
+    amb = rec_inputs.get("ambient_temperature")
+    if amb:
+        extra[("fx_ambient_row", code(str(amb.get("row")).replace("CB_RULE:", "")))] += 1
+    for flag in t.get("flags") or []:
+        extra[("fx_temperature_flag", code(flag))] += 1
+    if t["status"] == "RANGE":
+        extra[("fx", "temperature_range_events")] += 1
     for axis, x in rec_inputs.items():
         if x["status"] == "UNKNOWN":
             extra[("prov", "unknown_axes")] += 1
@@ -236,4 +260,12 @@ def _s178_blocks(extra: Counter, ep: Counter, heat_events: int) -> dict:
             "aqueous_medium_events_with_stated_temperature_by_bucket": _nest_counter(extra, "stated_aqueous_temperature")},
         "matrix_groups": {"events_by_member_group_count": _nest_counter(extra, "matrix_groups_events"),
                           "events_without_any_food_group": extra[("no_food_group_events",)]},
+        "fixphys_layer1": {
+            "until_clauses": extra[("fx", "until_clauses")],
+            "temperatures_in_until_clauses_by_role": _nest_counter(extra, "fx_until_role"),
+            "bound_text_stated_temperature_inside_an_until_clause_by_role": _nest_counter(extra, "fx_bound_in_until_clause"),
+            "cue_axis_events_by_family": _nest_counter(extra, "fx_cue_axis"),
+            "ambient_temperature_by_rule": _nest_counter(extra, "fx_ambient_row"),
+            "temperature_flags": _nest_counter(extra, "fx_temperature_flag"),
+            "temperature_range_events": extra[("fx", "temperature_range_events")]},
         "provenance_axes": prov}

@@ -12,6 +12,13 @@ not; a conclusion of a family is flagged ROBUST when the fragile share is at mos
 FRAGILE otherwise. The thresholds of the conclusions (core >= 70 C, cooling to 5 or 60 C, half uptake) are reporting thresholds, not
 food-safety or doneness criteria. The brackets are scenario defaults (ASSUMED_DEFAULT, MODEL_DERIVED, NON_CITABLE): a ROBUST flag
 says the conclusion does not depend on where in the scenario ranges the event sits, not that it is true of food.
+
+S178 FIX-PHYS (1.1.0, SCI-A M6 / m8; Q3 ruling PROPOSED): the report carries the CAVEAT below (JSON ``caveat``, md first section):
+the bracket is a joint corner of one boundary-condition model; the boundary-model and pan-geometry uncertainty is not bracketed;
+ROBUST means robust within the Robin-at-T_cap model; the stated-oven-temperature finding is a consequence of the cap. The basis
+kinds are split (TEXT_STATED / CARRIED_SETPOINT / PHYSICAL_DEFINITION / DEFAULT, m8: a WET_HEAT "stated" bath was mostly the boil
+by definition) and "reaches 70 C" uses one test for the core and the volume average (end value >= 70 C; for a heating slab the
+end value is the maximum). The boundary-model axis (fixed-T_boil surface) is OPEN (not computed here).
 """
 from __future__ import annotations
 
@@ -31,7 +38,22 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from culinarystate.quantity import rc2_dryrun as D  # noqa: E402
 
-VERSION = "phys-sensitivity-1.0.0-draft"
+VERSION = "phys-sensitivity-1.1.0-draft"
+VERSION_V10 = "phys-sensitivity-1.0.0-draft"  # SUPERSEDED: no caveat, STATED basis kind lumped L1 bases, two reach-70 tests
+CAVEAT = (
+    "CAVEAT (S178 FIX-PHYS, SCI-A M6; Q3 PROPOSED, for Kush): (1) GENTLE and INTENSE are JOINT corners: every scenario input moves to "
+    "its low or high end together (bath, duration, film coefficient h, piece half-thickness, start temperature), so the GENTLE-INTENSE "
+    "spread is a corner-to-corner range, not a sensitivity estimate of any one input and not a probability. (2) The bracket stays "
+    "inside ONE boundary-condition model (Robin at T_cap with the medium's h). The boundary-model uncertainty (a fixed T_boil surface, "
+    "a wet-bulb plateau) and the pan geometry (pan contact is the two-sided fast end only) are NOT bracketed; for moist pieces in dry or "
+    "fat heat they can dominate (a 1 cm dice in an oven for 3 min: core about 34 C with Robin h 25 at 100 C against about 92 C with a "
+    "fixed 100 C surface). (3) ROBUST therefore means robust within the Robin-at-T_cap model, not robust to the model. (4) The finding "
+    "that a stated oven or oil temperature alone does not narrow 'core reaches 70 C' is a consequence of the cap: under the cap a moist "
+    "core never sees the oven or oil set-point, only min(T_medium, T_boil).")
+CAVEAT_CODES = ("JOINT_CORNERS_NOT_A_SENSITIVITY_ESTIMATE", "ONE_BOUNDARY_MODEL_ROBIN_AT_TCAP",
+                "BOUNDARY_MODEL_UNCERTAINTY_NOT_BRACKETED", "PAN_GEOMETRY_NOT_BRACKETED_TWO_SIDED_FAST_END_ONLY",
+                "ROBUST_MEANS_ROBUST_WITHIN_ROBIN_AT_TCAP_MODEL", "STATED_OVEN_OR_OIL_T_RESULT_IS_A_CONSEQUENCE_OF_THE_CAP")
+BASIS_KINDS = ("TEXT_STATED", "CARRIED_SETPOINT", "PHYSICAL_DEFINITION", "DEFAULT")
 FRAGILE_SHARE_THRESHOLD = 0.10
 BR = ("GENTLE", "TYPICAL", "INTENSE")
 QUANT = (("p10", 0.1), ("p50", 0.5), ("p90", 0.9), ("max", 1.0))
@@ -59,7 +81,11 @@ def verdict(vals: list) -> str | None:
 
 
 def _basis_kind(b) -> str:
-    return "STATED" if str(b or "").startswith("L1:") else "DEFAULT"
+    """m8: TEXT_STATED / CARRIED_SETPOINT / PHYSICAL_DEFINITION (or another L1 basis) / DEFAULT (any scenario row)."""
+    b = str(b or "")
+    if b.startswith("L1:"):
+        return b[3:].split("|")[0] or "L1_OTHER"
+    return "DEFAULT"
 
 
 def _num(x) -> bool:
@@ -112,7 +138,7 @@ def heat_file(path: str) -> dict:
                 zg, zi = g.get("zone_mean_cook_value_min"), i.get("zone_mean_cook_value_min")
                 if _num(zg) and _num(zi) and zg > 0 and zi > 0:
                     put((fam, "zone_mean_dose_log10_ratio"), math.log10(zi / zg))
-                v = verdict([s["core_minutes_above_70"] > 0 for s in (g, t, i)])
+                v = verdict([s["core_end_c"] >= CORE_C for s in (g, t, i)])  # m8: one test (end value) for core and volume average
                 c[("conclusion", fam, "core_reaches_70c", v)] += 1
                 c[("by_basis_conclusion", fam, kinds, "core_reaches_70c", v)] += 1
                 put((kinds, "core_end_c_width", fam), abs(core[2] - core[0]))
@@ -288,7 +314,10 @@ def _run(fn, files: list[str], workers: int) -> list[dict]:
 
 
 def markdown(rep: dict) -> str:
-    L = ["# Sensitivity of the GENTLE-INTENSE bracket (S178 PHYS2, T4-C05-R1)", "",
+    L = ["# Sensitivity of the GENTLE-INTENSE bracket (S178 PHYS2, T4-C05-R1; FIX-PHYS v05)", "", "## Caveat", "", CAVEAT, "",
+         "Caveat codes in the JSON: " + ", ".join(f"`{c}`" for c in rep["caveat"]) + ".", "",
+         "Basis kinds (m8) are TEXT_STATED, CARRIED_SETPOINT, PHYSICAL_DEFINITION (the boil by definition) and DEFAULT (a scenario row); "
+         "'reaches 70 C' is the end value >= 70 C for the core and for the volume average alike.", "",
          "Status: DRAFT / AI_DRAFTED, counts and quantiles only, no recipe text or ids. The brackets are scenario defaults "
          "(ASSUMED_DEFAULT, MODEL_DERIVED, NON_CITABLE). A conclusion is ROBUST for a family when at most "
          f"{FRAGILE_SHARE_THRESHOLD:.0%} of its events change the conclusion between GENTLE, TYPICAL and INTENSE (PROPOSED threshold); "
@@ -357,6 +386,7 @@ def main(argv=None) -> int:
     rep = {"record": "PHYSICAL_LAYER_SENSITIVITY", "status": "AI_DRAFTED_COUNTS_ONLY", "version": VERSION, "contains_ids": False,
            "contains_text": False, "citable": False, "counts_as_human_gate": False, "fragile_share_threshold_proposed": FRAGILE_SHARE_THRESHOLD,
            "thresholds_are_reporting_thresholds_not_safety_or_doneness": {"core_c": CORE_C, "chilled_c": CHILL_C, "hot_holding_c": HOT_C},
+           "caveat": list(CAVEAT_CODES), "basis_kinds": list(BASIS_KINDS), "boundary_model_axis": "OPEN_NOT_COMPUTED",
            "heat_layer_version": version(hf), "nonheat_layer_version": version(nf), "heat_files": len(hf), "nonheat_files": len(nf),
            "family_source": "registry/proc_family_registry_v1.csv", "heat": heat, "nonheat": nonheat,
            "code_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}

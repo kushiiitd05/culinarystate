@@ -1,0 +1,62 @@
+{
+ "cond_sha256": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+ "dataset_code_sha256": "f1c6e75c20c02a929226debc9697b7503af8cf91bb0024cf0abc964c15acbce4",
+ "diag29_recompute_inputs": {
+  "families": {
+   "BOGNAR-2002": {
+    "cells": 6594,
+    "excluded_by_reason": {
+     "NO_RETENTION_VALUE": 496
+    }
+   },
+   "PHENOL-EXPLORER-3.6": {
+    "cells": 3870,
+    "excluded_by_reason": {}
+   },
+   "USDA-RETN-R6": {
+    "cells": 6994,
+    "excluded_by_reason": {
+     "NO_RETENTION_VALUE": 24
+    }
+   }
+  }
+ },
+ "evd_sha256": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+ "listing_only": {
+  "findings": [
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-BOGNAR-2002-S-1-random (6594 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-BOGNAR-2002-S-2-pair_holdout (6594 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-BOGNAR-2002-S-3-matrix_disjoint (6594 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-BOGNAR-2002-S-4-process_disjoint (6594 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-PHENOL-EXPLORER-3.6-S-1-random (3870 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-PHENOL-EXPLORER-3.6-S-2-pair_holdout (3870 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-PHENOL-EXPLORER-3.6-S-3-matrix_disjoint (3870 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-PHENOL-EXPLORER-3.6-S-4-process_disjoint (3870 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-PHENOL-EXPLORER-3.6-S-5-study_disjoint (3870 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-USDA-RETN-R6-S-1-random (6994 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-USDA-RETN-R6-S-2-pair_holdout (6994 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-USDA-RETN-R6-S-3-matrix_disjoint (6994 units, no listing)",
+   "NOT_VERIFIABLE_FROM_LISTING: SPL-29D-USDA-RETN-R6-S-4-process_disjoint (6994 units, no listing)"
+  ],
+  "n_not_verifiable_from_listing": 13
+ },
+ "module": "split_registry@0.1",
+ "n_rows": 25,
+ "n_rows_by_evaluation": {
+  "07A_R1": 2,
+  "D5_BENCHMARK": 8,
+  "DIAG29": 15
+ },
+ "reading": "listing_only names every DIAG29 row as NOT_VERIFIABLE_FROM_LISTING (no unit listing is committed for them); with_recomputed_diag29 checks them against the split recomputed from the ledgers. An empty findings list there means every registered id hash re-derives.",
+ "registry_sha256": "88b521bbed35e7e07aead4a81b0a70552d671f94eab2a313cc3036f2b47cd78c",
+ "splits_code_sha256": "2eb9f10f67f8a9554e2720dbd8b5267bd7750672b0da4d387ff05987d3b9ce83",
+ "status": "AI_DRAFTED_COUNTS_ONLY",
+ "tool": "tools/s178_fixeval_verify_split_registry.py",
+ "units_sha256": "0aae13d22bbfc700a81b2fc99aefad355485faa5b95fe33a9dd0bbf71897e2a8",
+ "with_recomputed_diag29": {
+  "findings": [],
+  "n_diag29_rows_with_units": 13,
+  "n_errors": 0,
+  "n_recomputed": 13
+ }
+}

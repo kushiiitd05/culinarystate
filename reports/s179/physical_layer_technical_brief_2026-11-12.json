@@ -1,0 +1,70 @@
+{
+  "labels": [
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "record": "PHYSICAL_TECHNICAL_BRIEF_SOURCE_BINDING",
+  "scientific_gate_pass": false,
+  "source_counts": {
+    "BBC L1 local": {
+      "counts": {
+        "bound_axes": 104932,
+        "bound_with_basis": 104932,
+        "bound_with_row": 104932,
+        "bound_with_span_id": 104932,
+        "endpoint_blocks": 49662,
+        "records": 49662,
+        "unknown_axes": 325502,
+        "unknown_axes_with_reason": 325502
+      },
+      "files": 16,
+      "path": "reports/s179/schema_validation_L1_HEAT_A1_S179_v06.json",
+      "sha256": "c3015b8aafe52e6e7dd4168203b4354fa27add1114e26b99247d7d551d2a2458"
+    },
+    "BBC L2 local": {
+      "counts": {
+        "basis_entries": 320451,
+        "basis_entries_valid": 320451,
+        "bracket_records": 52485,
+        "input_fields": 215481,
+        "input_fields_with_basis": 215481,
+        "output_fields": 147336,
+        "output_fields_traceable_to_input_bases": 147336,
+        "records": 49662
+      },
+      "files": 16,
+      "path": "reports/s179/schema_validation_L2_HEAT_A1_S179_v06.json",
+      "sha256": "f59d8c4acc59a4f019f44b1024057b13d1dc9b63cb106909ff15c3364b4d6c7d"
+    },
+    "non-BBC L1": {
+      "counts": {
+        "bound_axes": 3847976,
+        "bound_with_basis": 3847976,
+        "bound_with_row": 3847976,
+        "bound_with_span_id": 3847976,
+        "endpoint_blocks": 1696743,
+        "records": 1696743,
+        "unknown_axes": 10982300,
+        "unknown_axes_with_reason": 10982300
+      },
+      "files": 384,
+      "path": "reports/s178/phys/schema_validation_L1_HEAT_S179_v06.json",
+      "sha256": "f2ed4498bdbeabee01996cc00e0f0e0ba0cf3b93e18a92a473b18d542cb74618"
+    },
+    "non-BBC L2": {
+      "counts": {
+        "basis_entries": 14578224,
+        "basis_entries_valid": 14578224,
+        "bracket_records": 2380368,
+        "input_fields": 9817488,
+        "input_fields_with_basis": 9817488,
+        "output_fields": 7054662,
+        "output_fields_traceable_to_input_bases": 7054662,
+        "records": 1696743
+      },
+      "files": 384,
+      "path": "reports/s178/phys/schema_validation_L2_HEAT_S179_v06.json",
+      "sha256": "1b903ea289f064eff4af8591ffcaec98c766aab26e55cdc618387b487c36937f"
+    }
+  }
+}

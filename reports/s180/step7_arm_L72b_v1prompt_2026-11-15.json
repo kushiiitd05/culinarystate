@@ -1,0 +1,1008 @@
+{
+ "accepted_span_valid": 16,
+ "arm": "L",
+ "cases_answered": 60,
+ "cases_attempted": 60,
+ "failures": 0,
+ "gate_acceptance_rate": 0.2286,
+ "labels": [
+  "DIAGNOSTIC_ONLY",
+  "NO_GOLD_SO_AGREEMENT_IS_NOT_ACCURACY",
+  "WIKIBOOKS_CC_BY_PUBLIC_TEXT_ONLY",
+  "SEALED_SET_UNCHANGED"
+ ],
+ "latency_s": {
+  "max": 374.46,
+  "mean": 125.47
+ },
+ "model": "qwen2.5:72b",
+ "per_case": [
+  {
+   "accepted": [],
+   "latency_s": 335.36,
+   "n_accepted": 0,
+   "n_parsed": 3,
+   "n_returned": 3,
+   "pageid": "168956",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "UNRESOLVED_LOT",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 115.72,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "293424",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E5",
+     "field": "alternative_group",
+     "span": [
+      197,
+      208
+     ],
+     "value": "sugar_or_milk"
+    }
+   ],
+   "latency_s": 277.43,
+   "n_accepted": 1,
+   "n_parsed": 3,
+   "n_returned": 3,
+   "pageid": "474566",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 189.47,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "54215",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E5",
+     "field": "alternative_group",
+     "span": [
+      124,
+      163
+     ],
+     "value": "cooking_or_freezing"
+    }
+   ],
+   "latency_s": 204.42,
+   "n_accepted": 1,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "16581",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E5",
+     "field": "alternative_group",
+     "span": [
+      167,
+      189
+     ],
+     "value": "garnish_option"
+    }
+   ],
+   "latency_s": 105.73,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "457278",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 52.43,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "198491",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 27.21,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "461375",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 95.84,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "452632",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 8.13,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "412250",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 18.87,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "34656",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 84.53,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "308380",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 45.16,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "32868",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "alternative_group",
+     "span": [
+      34,
+      51
+     ],
+     "value": "frying_fat_or_butter"
+    }
+   ],
+   "latency_s": 87.0,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "98204",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 113.54,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "473948",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 175.1,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "140677",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 87.64,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "38746",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 189.31,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "112828",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 54.31,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "483763",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E14",
+     "field": "alternative_group",
+     "span": [
+      89,
+      107
+     ],
+     "value": "sauce_choice"
+    }
+   ],
+   "latency_s": 108.18,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "447188",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 330.13,
+   "n_accepted": 0,
+   "n_parsed": 4,
+   "n_returned": 4,
+   "pageid": "360478",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT",
+    "VNEXT_FAT_STAYS",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 94.71,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "38104",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 18.76,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "414621",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 84.64,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "38382",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 103.07,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "85442",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 198.65,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "409684",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 82.65,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "452009",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 176.28,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "442870",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 269.81,
+   "n_accepted": 0,
+   "n_parsed": 4,
+   "n_returned": 4,
+   "pageid": "414691",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 96.71,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "95957",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 167.94,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "395867",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 214.02,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "77844",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 106.47,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "96993",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 123.25,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "462384",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 39.63,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "456927",
+   "rejected_reasons": [],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 74.1,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "485354",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 131.02,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "465358",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E3",
+     "field": "alternative_group",
+     "span": [
+      104,
+      129
+     ],
+     "value": "yeast_or_baking_soda"
+    },
+    {
+     "event_id": "E15",
+     "field": "alternative_group",
+     "span": [
+      347,
+      368
+     ],
+     "value": "channa_or_choley"
+    }
+   ],
+   "latency_s": 197.53,
+   "n_accepted": 2,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "96872",
+   "rejected_reasons": [],
+   "triggers": [
+    "UNRESOLVED_LOT",
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 53.47,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "254298",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 65.96,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "457094",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 374.46,
+   "n_accepted": 0,
+   "n_parsed": 5,
+   "n_returned": 5,
+   "pageid": "141201",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 100.15,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "27156",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 97.16,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "203804",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 18.32,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "42807",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 14.92,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "252224",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "alternative_group",
+     "span": [
+      69,
+      85
+     ],
+     "value": "salad_type"
+    }
+   ],
+   "latency_s": 75.15,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "222131",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 174.01,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "139266",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "UNRESOLVED_LOT"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 45.37,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "456501",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_FAT_STAYS"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 14.46,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "96882",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 80.45,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "136641",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 124.64,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "462089",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "AMBIGUOUS_REFERENCE",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E4",
+     "field": "alternative_group",
+     "span": [
+      107,
+      129
+     ],
+     "value": "clarified_butter_or_olive_oil"
+    },
+    {
+     "event_id": "E5",
+     "field": "alternative_group",
+     "span": [
+      134,
+      160
+     ],
+     "value": "clarified_butter_or_olive_oil"
+    }
+   ],
+   "latency_s": 191.33,
+   "n_accepted": 2,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "457195",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E5",
+     "field": "alternative_group",
+     "span": [
+      89,
+      102
+     ],
+     "value": "sauce_or_ketchup"
+    }
+   ],
+   "latency_s": 104.63,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "443383",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED",
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 234.07,
+   "n_accepted": 0,
+   "n_parsed": 3,
+   "n_returned": 3,
+   "pageid": "205352",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 183.47,
+   "n_accepted": 0,
+   "n_parsed": 2,
+   "n_returned": 2,
+   "pageid": "461584",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER",
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 90.5,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "205015",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 58.66,
+   "n_accepted": 0,
+   "n_parsed": 0,
+   "n_returned": 0,
+   "pageid": "457484",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E2",
+     "field": "alternative_group",
+     "span": [
+      34,
+      65
+     ],
+     "value": "blend_texture"
+    },
+    {
+     "event_id": "E5",
+     "field": "alternative_group",
+     "span": [
+      104,
+      139
+     ],
+     "value": "meat_flavor"
+    },
+    {
+     "event_id": "E7",
+     "field": "alternative_group",
+     "span": [
+      169,
+      215
+     ],
+     "value": "palm_oil_heating"
+    },
+    {
+     "event_id": "E21",
+     "field": "alternative_group",
+     "span": [
+      439,
+      465
+     ],
+     "value": "boiled_eggs"
+    }
+   ],
+   "latency_s": 305.48,
+   "n_accepted": 4,
+   "n_parsed": 4,
+   "n_returned": 4,
+   "pageid": "483794",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  },
+  {
+   "accepted": [],
+   "latency_s": 124.43,
+   "n_accepted": 0,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "100369",
+   "rejected_reasons": [
+    "FIELD_NOT_LICENSED_BY_TRIGGER"
+   ],
+   "triggers": [
+    "VNEXT_MIXTURE_COREF"
+   ]
+  },
+  {
+   "accepted": [
+    {
+     "event_id": "E26",
+     "field": "alternative_group",
+     "span": [
+      415,
+      430
+     ],
+     "value": "grill_or_pan_fry"
+    }
+   ],
+   "latency_s": 112.43,
+   "n_accepted": 1,
+   "n_parsed": 1,
+   "n_returned": 1,
+   "pageid": "457403",
+   "rejected_reasons": [],
+   "triggers": [
+    "VNEXT_ALTERNATIVE_SKIPPED"
+   ]
+  }
+ ],
+ "prompt_version": "v1",
+ "proposals_accepted": 16,
+ "proposals_parsed_into_schema": 70,
+ "proposals_returned": 70,
+ "rejection_reasons": {
+  "FIELD_NOT_LICENSED_BY_TRIGGER": 54
+ },
+ "schema_compliance": 1.0
+}
