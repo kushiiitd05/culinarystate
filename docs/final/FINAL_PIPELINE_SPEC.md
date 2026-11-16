@@ -134,7 +134,7 @@ Every scientific decision is deterministic; the LLM proposes and phrases and is 
 - **Outputs:** candidate EVD rows.
 - **Provenance:** EVD id, source, tier per row.
 - **Failure modes:** all rows tier E3, 0 human-verified `[CM]`.
-- **Evaluation:** silver only — structured MRR 0.856 vs hybrid 0.704 vs BM25 0.597 `[BT RQ02]`. Condition-compatible Recall@K not reported `[CM]`. State-vector views are DIAGNOSTIC_ONLY `[ST]`.
+- **Evaluation:** silver only — structured MRR 0.856 vs hybrid 0.704 vs BM25 0.597 `[BT RQ02]`. Condition-compatible Recall@K computed 17 Nov and **degenerate** (0.20/0.34/0.375 at K=1/3/5, n=20, equal to plain recall because no benchmark question states a condition axis) — `reports/s181/d4_contract_metrics.md`. State-vector views are DIAGNOSTIC_ONLY `[ST]`.
 - **Artifact:** `…/retrieval/retriever.py`, `bm25.py`, `food_graph.py`.
 - **What is novel:** nothing claimed. **What is not novel:** BM25, dense retrieval, RRF.
 - **Next component:** compatibility.
@@ -148,7 +148,7 @@ Every scientific decision is deterministic; the LLM proposes and phrases and is 
 - **Outputs:** per-axis verdicts.
 - **Provenance:** axis table basis `D-122_AXIS_TABLE` on Y cells.
 - **Failure modes:** rows lacking a field → UNKNOWN_ROW.
-- **Evaluation:** unit tests; risk–coverage / ECE not reported `[CM]`.
+- **Evaluation:** unit tests; risk–coverage curve reported, partial AURC 0.0977 (B7, coverage 0.45–1.0, n=40); unsupported-claim rate B7 4/34 = 0.118 vs B2 24/43 = 0.558; **ECE NOT_COMPUTABLE** — categorical classes only, no numeric confidence — `reports/s181/d4_contract_metrics.md`. All MODEL_ASSISTED_GOLD · POST_HOC.
 - **Artifact:** `…/retrieval/compatibility.py`.
 - **What is novel:** UNKNOWN-neutral, never-silent compatibility as part of the integration. **Not novel:** rule tables.
 - **Next component:** route.

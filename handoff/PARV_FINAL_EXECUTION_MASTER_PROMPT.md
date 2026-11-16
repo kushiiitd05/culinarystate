@@ -7,7 +7,7 @@
 
 **Self-contained. You should not need to rediscover the project from this document.**
 Written 16 Nov 2026. Freeze **19 Nov** · verify **20 Nov** · submit **21 Nov** · present **25–26 Nov**.
-Branch `kush/s179-finish-fixes` · PR #12 **open, not merged** · tests 5,977 pass, 0 fail.
+Everything through 16 Nov is on **`main`** (PRs #11 and #12 merged, D-138). Current work branch: `kush/s181-explorer-build`. Unit tests: 5,977 passed at the 16 Nov merge; re-run before quoting a count.
 
 ---
 
@@ -50,7 +50,7 @@ Full matrix: `reports/final/DELIVERABLE_COMPLIANCE_MATRIX_2026-11-16.md`.
 | 1 | **D1: 40 hand-verified literature rows** | yes, if started now | **human only** |
 | 2 | **D5: chef/peer review** (3–5 reviewed scenarios closes it honestly) | yes | **human only** |
 | 3 | **D4: Recall@K / risk–coverage / ECE** | yes | agent |
-| 4 | **The 35-proposal packet** — 9 divergent rows need a verdict (~20 min) | yes | **human only** |
+| 4 | **The proposal packet** — 51 AI-prechecked rows across three arms (14 + 16 + 21); on the 21 grounded rows ksh and prv differ on 9, which is where a human verdict decides something (~20 min) | yes | **human only** |
 | 5 | **D3: 40 gold recipes** | unlikely | human + agent |
 | 6 | D2 remaining statistics | partially | agent |
 
@@ -81,7 +81,7 @@ RecipeDB3 protocol **leaks**: 13.6% masked-family overlap, 5.4% duplicate test r
 may propose **one field** (`alternative_group`) on **one trigger** (`VNEXT_ALTERNATIVE_SKIPPED`).
 Nothing else. Everything else is detected, recorded UNKNOWN, left alone. Why: `condition_profile_id`
 was a reference field with no referent, so `pan`, `chicken`, `bowl_content` all passed as "condition
-profiles". Result on the 60 hardest cases: **21 grounded proposals** (72B, prompt v3), 17 judged
+profiles". Result on the 60 hardest cases: **21 grounded proposals** (72B, prompt v3). Counting rule, so the two figures in circulation are not confused: **19 of 21 name a real choice; 17 of 21 are distinct well-formed groups** once the 2 duplicates of an already-accepted group are set aside (ksh governing, D-139). 17 judged
 well-formed. Say: *the surface is small because the destinations for the other answers do not exist
 yet, not because the questions are uninteresting.*
 
@@ -238,13 +238,17 @@ Hand-to-developer spec, **grounded in the engine's actual shapes** (`composition
 - Versions verified, not assumed: **Next 16.4.6** (`middleware.ts` → `proxy.ts`), **Tailwind 4 with no
   `tailwind.config.js`** (CSS-only theming), shadcn CLI v4, `@xyflow/react` 12.12.1.
 
-## 15–17. Backend, Ollama, deployment
+## 15–17. Backend, Ollama, deployment — `deployment/FINAL_DEPLOYMENT_ARCHITECTURE.md` governs
 
 ```
-Browser → Vercel (Next.js + BFF API routes) → HTTPS, secret server-side
-        → Cloudflare Tunnel → FastAPI gateway on the research server
-        → frozen CulinaryState engine + ledgers + Ollama (local model)
+Browser → Vercel: Next.js UI + BFF + SIGNED PRECOMPUTED SNAPSHOT   ← default serving mode
+              └─(opt-in, live)→ Cloudflare Tunnel → stdlib gateway on the PRESENTER'S MAC
+                                 (existing app/strict_server_v3.py, started with --public)
 ```
+**Superseded 16 Nov:** an earlier version of this section drew a FastAPI gateway on the research
+server with Ollama behind it. Do not build that. No FastAPI rewrite (the stdlib server is the audited
+one), not the GPU server (VPN + shared GPU on the critical path), and **Ollama is off the request path
+entirely**.
 **Ollama is never exposed to the browser.** One provider abstraction for local Ollama and any hosted
 fallback; **a hosted LLM is not scientific authority.** Secrets in environment variables only, never
 committed. CORS restricted to the Vercel production origin. Rate-limit demo endpoints. Return a
