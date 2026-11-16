@@ -1,0 +1,1618 @@
+{
+ "topic": "T3",
+ "title": "Recipe semantics and state tracking (steps 16-20, NER/linker deployment, quantities CQPO, vocab/ontology, identity 07I, lot-state [K])",
+ "ssot_ranges_checked": [
+  "L25228-L25322 (\u00a7232)",
+  "L25323-L25399 (\u00a7233)",
+  "L25400-L25499 (\u00a7234)",
+  "L25500-L25586 (\u00a7235)",
+  "L25587-L25658 (\u00a7236)",
+  "L25659-L25744 (\u00a7237)",
+  "L27873-L28094 (\u00a7257A.1-A.4)",
+  "L29336-L31189 (\u00a7257C Recipe..State; EvidenceAtom belongs to the evidence topic)",
+  "L31465-L33895 (\u00a7257D headings only)",
+  "L43395-L43537 (\u00a7264 headings)"
+ ],
+ "components": [
+  {
+   "id": "T3-C01",
+   "name": "Recipe-semantics schema contract v1 (EVT, ENTITY, STATE, QNT, POR, INST, ALLOC, REF, GRAPH, SPLIT)",
+   "ssot_anchor": "\u00a7232.1-232.8 L25228-25322; \u00a7233.1-233.5 L25323-25380; \u00a7257C Event/Entity/State L30472-30957",
+   "plan_steps": [
+    "16 (16a,16b,16c)"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "reports/step16/schema_drafts/*.draft_v1|v2.schema.json",
+    "ledgers/schemas/*.schema.json (v0)",
+    "reports/step19/pilot_schema_problem_log.md",
+    "DECISIONS D-042,D-070 (SP-001 -> 16A, SP-004 -> 16B)",
+    "STATUS.md: 17/18 are DRAFT_PENDING_16c"
+   ],
+   "what_exists": "12 draft schema files (QNT/STATE have v2 drafts), v0 schemas in force, 16a registries (entity_type, event_kind, lifecycle, modality, temporal_relation, tool_role, transformation_mode, annotation_mode, field_status, claim_route as *_DRAFT.csv), P1 pilot ran on the v0 contract and the schema-problem log was triaged (all 4 SP items WORKAROUND, STOP-SCHEMA not triggered, P1 representability all FAITHFUL).",
+   "gap_vs_ssot": "Gate 16c (freeze of contract v1 + vocab hierarchy + handbook v2 + hard-case keys) is OPEN, so everything built on it (Rung A, replay, census) is DRAFT_PENDING_16c. SP-001 (SCHEMA_GAP, 16A) and SP-004 (SCHEMA_GAP, BLOCKING risk, 16B) are not yet folded into a v1.1/v2 draft. Lot/mixture state fields needed by the packet section 5 (members, mass interval, composition, pH flags, mechanism screen, interaction edges) are not in STATE v2 draft (check).",
+   "remaining": [
+    {
+     "item_id": "T3-C01-R1",
+     "item": "Fold SP-001 and SP-004 plus lot-state fields into STATE/ENTITY v1.1 drafts under new ids (R-18: new versions only) with validator tests",
+     "work_types": [
+      "CODE",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C25 design decision"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Schema churn after 16c would invalidate run outputs",
+     "acceptance": "draft_v3 schemas validate all P1 recipes plus a lot-state fixture; tests pass; no existing schema file edited"
+    },
+    {
+     "item_id": "T3-C01-R2",
+     "item": "Step 16c freeze: Kush and Parv review contract v1, vocabulary hierarchy, handbook v2, hard-case keys and sign",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "1-2 (assemble packet)",
+     "human_hours": "4-8 (Kush 2-4, Parv 2-4, UNVERIFIED estimate)",
+     "depends_on": [
+      "T3-C01-R1",
+      "T3-C02-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "If skipped, every D3 claim must carry DRAFT_PENDING_16c; acceptable for a course talk but weak for the paper",
+     "acceptance": "Signed 16c freeze record under reports/step16/ with sha256 of bound files"
+    },
+    {
+     "item_id": "T3-C01-R3",
+     "item": "Representability check of the 20 hard-case prompts (17 synthetic + SSOT \u00a7237.5 list) against the v1.1 schemas",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C01-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Synthetic cases are not evidence of real representability",
+     "acceptance": "pilot_representability table 20/20 or a logged gap per case"
+    }
+   ]
+  },
+  {
+   "id": "T3-C02",
+   "name": "Annotation handbook, Addendum A/B and hard-case catalog",
+   "ssot_anchor": "\u00a7237.1 L25661-25689; \u00a7237.5 L25721-25744; \u00a7257D intro L31465-31468",
+   "plan_steps": [
+    "16",
+    "19"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "annotation/annotation_handbook_v1.md",
+    "annotation/annotation_handbook_v1_addendum_B.md (stamped, D-070 O3: 8 issued rules in force from P1b/P2, 10 held)",
+    "annotation/annotation_handbook_v2_DRAFT.md",
+    "annotation/hard_case_catalog_v2_DRAFT.jsonl",
+    "reports/step19/p1_agreement_counts_S166.json verdict HANDBOOK_REVISION_REQUIRED"
+   ],
+   "what_exists": "Handbook v1 + Addendum A frozen as the P1 instrument; Addendum B stamped (8 rules); handbook v2 and hard-case catalog v2 are drafts.",
+   "gap_vs_ssot": "P1 gate verdict is HANDBOOK_REVISION_REQUIRED (per-pair rates: coref 0.956, final_state 0.817, event_type 0.763, entity_type 0.236, event_argument 0.227; threshold 0.20). Revision exists only as Addendum B (8 rules) and has never been tested on new recipes (that is P1b). Handbook v2 not reviewed.",
+   "remaining": [
+    {
+     "item_id": "T3-C02-R1",
+     "item": "Integrate Addendum B + 10 held rules into handbook v2; dual-review the hard-case catalog answer keys",
+     "work_types": [
+      "WRITING",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "3-5",
+     "human_hours": "3-6 (Kush+Parv, UNVERIFIED)",
+     "depends_on": [
+      "T3-C16 result"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Keys drafted by AI (same-model caveat)",
+     "acceptance": "handbook v2 signed; catalog keys have two human sign-offs"
+    },
+    {
+     "item_id": "T3-C02-R2",
+     "item": "Outside expert (food scientist / culinary annotator) sample check of handbook state attributes (cooked, cut, hydrated) for 10-20 events",
+     "work_types": [
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "1-3 expert",
+     "depends_on": [
+      "T3-C16"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Expert availability",
+     "acceptance": "expert comment log with disagreement count"
+    }
+   ]
+  },
+  {
+   "id": "T3-C03",
+   "name": "Vocabulary: ING / ALIAS ingredient concepts and canonicalization tree",
+   "ssot_anchor": "\u00a7234.1-234.9 L25400-25499; \u00a7257A.1-A.1.2 L27873-27958; \u00a7257C CanonicalIngredient L29794-29965, Alias L29966-30067",
+   "plan_steps": [
+    "07I",
+    "16a",
+    "12"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/ingredient_registry_v1.md",
+    "registry/ingredients/{ingredient_registry_v1,alias_registry_v1}.csv",
+    "ledgers/data/ING|ALIAS (protected from our edits)",
+    "reports/ner/alias_leakage_audit.md"
+   ],
+   "what_exists": "Registry built from BBC A1 mentions: 123,598 mentions, 6,562 canonicals, 1,951 ING concepts (993 with parent), 2,052 ALIAS, 17 polysemous concepts AI-drafted, 44 high-frequency unresolved, mention coverage 95.1 % on BBC. Crosswalks FoodOn/FDC/FlavorDB/RecipeDB all UNRESOLVED_EXTERNAL. Rung A lexicon links against ING/ALIAS on all families (569,839 link NO_VALID_CANDIDATE + 80,096 UNRESOLVED in the 612,782 run).",
+   "gap_vs_ssot": "Coverage measured only on BBC (Mac-only corpus); coverage of 4.13 M Food.com ingredient lines against ING/ALIAS is not reported. Packet quotes 5,387 ING rows but the registry report says 1,951 concepts (contradiction to reconcile). \u00a7234.7 proposal states (candidate/accepted/...) and \u00a7234.8-9 growth control/long-tail policy not implemented for Food.com tail. Human review of 17 polysemous + 44 unresolved outstanding.",
+   "remaining": [
+    {
+     "item_id": "T3-C03-R1",
+     "item": "Reconcile ING counts (1,951 report vs 5,387 packet vs ledgers/data/ING.jsonl rows) and publish a counts-only vocab status table",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Numbers in the talk may contradict",
+     "acceptance": "one JSON with ledger row counts per type and a note naming which report is stale"
+    },
+    {
+     "item_id": "T3-C03-R2",
+     "item": "Coverage census: fraction of Food.com / Wikibooks / TASTEset ingredient mentions (NER FOOD spans and Rung A links) that hit ING/ALIAS, by mention frequency, counts-only",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C09-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Lot-state composition cannot exist for unmapped ingredients",
+     "acceptance": "reports/ coverage curve per family; unmapped top-500 list by frequency (counts, no recipe text)"
+    },
+    {
+     "item_id": "T3-C03-R3",
+     "item": "Human review queue for the top-frequency unmapped / polysemous ingredients (top ~300 covering ~80 % of Food.com mentions)",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "2-3 (queue build)",
+     "human_hours": "6-10 (Kush+Parv, UNVERIFIED)",
+     "depends_on": [
+      "T3-C03-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "AI-drafted mapping is not human-verified; Q7 lean is verify top ingredients",
+     "acceptance": "verified/rejected labels for the queue with reviewer ids; LOW-confidence flag for the rest"
+    },
+    {
+     "item_id": "T3-C03-R4",
+     "item": "Implement \u00a7234.7 vocabulary proposal states + \u00a7234.8 growth control as a registry column and a validator",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "Low value before 25 Nov",
+     "acceptance": "tests for state transitions; no ING row created without proposal record"
+    }
+   ]
+  },
+  {
+   "id": "T3-C04",
+   "name": "ING to USDA SR Legacy / FDC crosswalk (feeds composition and portions)",
+   "ssot_anchor": "\u00a7234.6 L25463-25466; \u00a7257C CanonicalIngredient crosswalk fields L29794-29965",
+   "plan_steps": [
+    "12",
+    "lot-state [K]"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "registry/ingredients/fdc_crosswalk_candidates_v0.csv",
+    "reports/fdc_crosswalk_v0.md",
+    "D-006 (FDC candidate-only until human verified)",
+    "packet section 4 ING->FDC 0 % resolved"
+   ],
+   "what_exists": "Candidate-only FDC crosswalk v0 and FoodOn/OFF crosswalks (unresolved). No resolved mapping.",
+   "gap_vs_ssot": "0 % of ING rows crosswalked to SR Legacy; lot composition (water, fat, protein, sugar, sodium, vitamin C) cannot be computed. Overlaps the structured-DB evidence topic (Step 12); lot-state needs it first, so tracked here.",
+   "remaining": [
+    {
+     "item_id": "T3-C04-R1",
+     "item": "Deterministic scored lexical matcher ING -> SR Legacy (7,793 foods), AI-drafted, with confidence and method fields; counts-only report",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "6-10",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C03-R2"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Wrong match silently poisons composition; mark MODEL_DERIVED",
+     "acceptance": "tool + tests; match table in data/derived (git-ignored); coverage by mention frequency"
+    },
+    {
+     "item_id": "T3-C04-R2",
+     "item": "Human verification of matches for the top ingredients by corpus frequency",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "4-8 (UNVERIFIED)",
+     "depends_on": [
+      "T3-C04-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Q7: how much verification is enough is undecided",
+     "acceptance": "verified fraction of mention mass reported; unverified rows flagged LOW"
+    },
+    {
+     "item_id": "T3-C04-R3",
+     "item": "Decision: SR Legacy as portion/composition authority under new basis codes (SR_PORTION) vs strict HUMAN_VERIFIED rule of rc2",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "Blocks C08 and C26",
+     "acceptance": "DECISIONS entry"
+    }
+   ]
+  },
+  {
+   "id": "T3-C05",
+   "name": "Process vocabulary (PROC) and process hierarchy",
+   "ssot_anchor": "\u00a7234.5 L25459-25462; \u00a7257A.3 L28049-28075; \u00a7257C Event.process fields",
+   "plan_steps": [
+    "16a",
+    "17"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/process_registry_v1.md",
+    "registry/processes/{process_registry_v1,process_hierarchy_v1_DRAFT,endpoint_vocabulary_v1_DRAFT}.csv",
+    "handoff/PROCESS_COVERAGE_PLAN_2026-11-08.md"
+   ],
+   "what_exists": "156 PROC (9 endpoints) in 18 families, 99.3 % of BBC steps have >=1 recognised process; 1,345 unmapped verb lemmas; 106 corpus processes with zero EVD rows; hierarchy and endpoint vocabulary are drafts. Rung A maps verbs to PROC on all families (PROC_LEMMA_GUESS 39 on BBC).",
+   "gap_vs_ssot": "PROC flat (no parent hierarchy frozen), ENDPOINT mixed in; coverage measured on BBC steps; Food.com step coverage not reported; no non-heat family has physics bound (see process coverage plan).",
+   "remaining": [
+    {
+     "item_id": "T3-C05-R1",
+     "item": "Verb-coverage census of Rung A on Food.com + Gutenberg + Wikibooks steps (share of ACTION events mapped to PROC; top unmapped verbs, counts-only)",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Unmapped verbs hide non-heat processes from the lot-state layer",
+     "acceptance": "table by family; top-200 unmapped verbs by frequency"
+    },
+    {
+     "item_id": "T3-C05-R2",
+     "item": "Freeze PROC hierarchy v1 (parents, endpoint split) after human review",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "WRITING"
+     ],
+     "where": "human",
+     "agent_hours": "2-3",
+     "human_hours": "2-4",
+     "depends_on": [
+      "T3-C01-R2"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Part of 16c",
+     "acceptance": "hierarchy file reviewed and listed in 16c packet"
+    }
+   ]
+  },
+  {
+   "id": "T3-C06",
+   "name": "Tool vocabulary (TOOL) and tool-role registry",
+   "ssot_anchor": "\u00a7234.1 L25402-25427; \u00a7257C Entity tool roles",
+   "plan_steps": [
+    "16a"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/tool_registry_v1.md",
+    "ledgers/data/TOOL.jsonl (297 rows)",
+    "registry/recipe_semantics/tool_role_registry_v1_DRAFT.csv"
+   ],
+   "what_exists": "119 tools (BBC/Wikibooks-derived), 66.9 % of BBC+Wikibooks steps with a tool mention, 610 process-tool links; Rung A found 2,308,465 TOOL mentions in 612,782 recipes.",
+   "gap_vs_ssot": "Tool role (vessel, heat source) feeds condition binding for medium/lid; coverage on Food.com steps unreported; ledgers/data TOOL has 297 rows vs registry 119 (reconcile).",
+   "remaining": [
+    {
+     "item_id": "T3-C06-R1",
+     "item": "Reconcile TOOL ledger (297) vs registry (119); coverage census on Food.com steps",
+     "work_types": [
+      "ANALYSIS",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "Minor",
+     "acceptance": "counts-only table"
+    }
+   ]
+  },
+  {
+   "id": "T3-C07",
+   "name": "Quantity parsing and normalisation (CQPO quantity layer)",
+   "ssot_anchor": "\u00a7235.1-235.2 L25502-25519; \u00a7235.5-235.6 L25536-25555; \u00a7235.9 L25582-25586; \u00a7257A.2 L27959-28048; \u00a7257C Quantity L30068-30289",
+   "plan_steps": [
+    "16 (rc2)",
+    "17"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/step16/S161_real_data_runs.md",
+    "reports/step16/rc2_grounding_dryrun_counts.json",
+    "reports/step16/sp002_fix_design_ksh_S168.md",
+    "reports/quantity_coverage_v0.md",
+    "D-069,D-070"
+   ],
+   "what_exists": "rc2 grounding ran over all 612,782 recipes / 4,281,956 ingredient lines, 0 exceptions, invented grams 0 (2 invalid lines, Wikibooks inverted interval). Mass at Q0 stated: 33,373 lines (0.78 %); Q6 (no gram) 4,248,583. BBC A1 grammar coverage 90.2 % any numeric channel; raw text preserved.",
+   "gap_vs_ssot": "SP-002: U+2044 fraction slash in 1,275,782 of 4,281,956 lines (29.8 %, nearly all Food.com) parses as count 1 with no unit, silently wrong and not caught by the auditor; fix design approved but scheduled AFTER the presentation (D-070), so every quantity figure carries the caveat. Food.com source drops units (S175 finding), so grams are unknowable for ~85 % of the corpus from this source. Packaging/qualitative/range channels counted but \u00a7235.2 interval (low, high) mass is not populated for most lines. Packet reports a quantity coverage rate but it is a count, not a validation against gold.",
+   "remaining": [
+    {
+     "item_id": "T3-C07-R1",
+     "item": "Implement SP-002 pre-normalisation in parse_quantity_v2 (versioned rc2 result beside S161), re-run grounding on non-BBC families, report before/after counts",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-5 code + 1-2 run (non-BBC; rc2 took 50 min on 4 workers)",
+     "human_hours": "0.5 review",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "D-070 deferred it after the talk; if not done, lot-state masses and any quantity number are wrong for ~30 % of lines",
+     "acceptance": "tests incl. glued '11\u20442' REFUSE; versioned output with sha256; run row appended to compute_runs by orchestrator"
+    },
+    {
+     "item_id": "T3-C07-R2",
+     "item": "BBC A1 re-run of the SP-002-fixed grounding on the Mac (BBC has only 188 U+2044 lines; low urgency)",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "mac",
+     "agent_hours": "0.5",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C07-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "D-003",
+     "acceptance": "counts-only BBC row"
+    },
+    {
+     "item_id": "T3-C07-R3",
+     "item": "Decision: how Food.com no-unit lines are treated (presence-only composition; or find original data with units; or flagged imputation)",
+     "work_types": [
+      "DECISION",
+      "DOWNLOAD"
+     ],
+     "where": "human",
+     "agent_hours": "1 (sourcing check)",
+     "human_hours": "0.5-1",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "Source dump drops units; (b) licence/availability unknown; DOWNLOAD would have H2 implications",
+     "acceptance": "DECISIONS entry; if (b), source licence recorded before any file is fetched"
+    },
+    {
+     "item_id": "T3-C07-R4",
+     "item": "Empirical measurement: share of Food.com lines whose quantity is a bare count vs whether NER UNIT/QUANTITY ratio agrees (confirm the unit-drop mechanism is source-level, not parser-level)",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C09-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "S175 finding not yet written to a report",
+     "acceptance": "counts-only report"
+    }
+   ]
+  },
+  {
+   "id": "T3-C08",
+   "name": "Portion, density and grams grounding (POR / CQPO portion ladder)",
+   "ssot_anchor": "\u00a7235.3-235.4 L25520-25535; \u00a7235.8 L25572-25581; \u00a7257C PortionProfile L30290-30471",
+   "plan_steps": [
+    "16",
+    "lot-state [K]"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "registry/ingredients/fdc_portion_candidates_v0.csv",
+    "reports/step16/rc2_grounding_dryrun_counts.json (por_records_supplied 0)",
+    "D-006",
+    "packet Q9",
+    "reports/step16/quantity_contract_synthetic_examples.json"
+   ],
+   "what_exists": "Contract and synthetic examples; FDC portion candidates v0; rc2 grounding dry-run supplied 0 POR records and 0 ingredient links, so NO_INGREDIENT_LINK explains 4,018,242 of the Q6 lines.",
+   "gap_vs_ssot": "No POR records (portion evidence ladder \u00a7235.3 not populated); no empirical portion distributions \u00a7235.8; volume to grams and count to grams unavailable. Rule conflict: rc2 requires HUMAN_VERIFIED portions while the lot-state design uses SR portion weights.",
+   "remaining": [
+    {
+     "item_id": "T3-C08-R1",
+     "item": "Build POR candidate records from SR Legacy food_portion (basis SR_PORTION, interval low/high, sample_count) after the C04 decision",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "manjot",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C04-R3",
+      "T3-C04-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Recalled values must not be used: take only values read from the SR file",
+     "acceptance": "POR table with source row ids; tests; unit/density never invented"
+    },
+    {
+     "item_id": "T3-C08-R2",
+     "item": "Re-run rc2 grounding with ingredient links + POR supplied; report Q-level distribution by family",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C08-R1",
+      "T3-C07-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Food.com no-unit lines stay UNKNOWN",
+     "acceptance": "mass-known fraction by family (counts-only); invented grams still 0"
+    },
+    {
+     "item_id": "T3-C08-R3",
+     "item": "Human verification of the top ~100 portion records by usage",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "2-4",
+     "depends_on": [
+      "T3-C08-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Time",
+     "acceptance": "verified flag on rows; unverified rows flagged"
+    },
+    {
+     "item_id": "T3-C08-R4",
+     "item": "Empirical portion distributions per ING from stated-mass lines (\u00a7235.8) for sanity cross-check of SR portions",
+     "work_types": [
+      "ANALYSIS",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-4",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C07-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "33,373 Q0 lines only",
+     "acceptance": "distribution table with n per ING"
+    }
+   ]
+  },
+  {
+   "id": "T3-C09",
+   "name": "Ingredient-line NER deployment and MENTION ledger draft",
+   "ssot_anchor": "\u00a7232.1 L25230-25247 (mention layer); \u00a7257C IngredientMention L29602-29793; \u00a7257D V cases L31465+",
+   "plan_steps": [
+    "17",
+    "D-077 deploy"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/ner_v2/ner_corpus_counts_S174.json",
+    "registry/compute_runs_v1.csv RUN-S174-003",
+    "reports/ner/culinaryner_kf_final_report.md",
+    "handoff/NER_RUNBOOK.md",
+    "reports/ner_v2/final_link_human_agreement.md"
+   ],
+   "what_exists": "DeBERTa-base + CRF (ckpt_tasteset_base_crf_s1, TASTEset DEV F1 0.940) tagged 4.16 M ingredient lines (Food.com 4,129,433; Wikibooks 32,036; TASTEset 3,788, the last not an accuracy measure because it was in training) on vinayak GPUs; label counts only, spans in ~/Kush/cs_runs (not committed). BBC not run (D-003). Gutenberg has no separate ingredient lines.",
+   "gap_vs_ssot": "No MENTION ledger draft, no NER-vs-Rung-A agreement report, no accuracy estimate on Food.com (domain shift: trained on TASTEset which has units, Food.com lines have none; Food.com UNIT 171,812 vs QUANTITY 3,937,650). BBC lines untagged. NER output must never become gold (Q33).",
+   "remaining": [
+    {
+     "item_id": "T3-C09-R1",
+     "item": "NER vs Rung A mention agreement diagnostic (span overlap, FOOD span in lexicon-missed lines), counts-only, labelled DIAGNOSTIC not gold",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "spans on vinayak copied or run there"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Spans live on vinayak; same-model bias none (different methods)",
+     "acceptance": "report with overlap rates and a list of the top missed foods by frequency"
+    },
+    {
+     "item_id": "T3-C09-R2",
+     "item": "MENTION ledger DRAFT as a git-ignored derived table (mention_id, line_id, span offsets, label, model hash, confidence) plus a counts-only committed schema and summary",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "3-5",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C01-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Large per-line output must stay git-ignored",
+     "acceptance": "schema doc + sha256 of derived table; no third-party text committed"
+    },
+    {
+     "item_id": "T3-C09-R3",
+     "item": "Tag BBC ingredient lines on the Mac (CPU/MPS) for completeness, counts-only",
+     "work_types": [
+      "GPU_COMPUTE",
+      "CPU_COMPUTE"
+     ],
+     "where": "mac",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "Mac only per D-003; speed on CPU unknown",
+     "acceptance": "BBC counts row; compute_runs row"
+    },
+    {
+     "item_id": "T3-C09-R4",
+     "item": "Small human-labelled Food.com line sample (200-300 lines) to measure NER and Rung A accuracy under no-unit shift",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "ANALYSIS"
+     ],
+     "where": "human",
+     "agent_hours": "2",
+     "human_hours": "3-5 (Kush+Parv, UNVERIFIED)",
+     "depends_on": [
+      "T3-C09-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Without it Q34 domain shift stays unmeasured",
+     "acceptance": "F1 with CI by label on Food.com sample; labels not shown model output (blind)"
+    },
+    {
+     "item_id": "T3-C09-R5",
+     "item": "Decide retrain vs accept (Q34): fine-tune on unit-less Food.com lines or accept",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T3-C09-R4"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Training licence for Food.com unresolved (Q30)",
+     "acceptance": "DECISIONS entry"
+    }
+   ]
+  },
+  {
+   "id": "T3-C10",
+   "name": "Entity linker deployment (mention to ING)",
+   "ssot_anchor": "\u00a7234.2 L25428-25442; \u00a7257C Alias/IngredientMention link fields L29966-30067",
+   "plan_steps": [
+    "17",
+    "NER"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "reports/ner_v2/fresh_linker_final_report.md",
+    "reports/ner_v2/culinary_link_decision_final_report.md",
+    "reports/ner_v2/CULINARY_LINK_DECISION_FINAL_FREEZE_MANIFEST.json",
+    "src/culinarystate/vocab/line_link.py"
+   ],
+   "what_exists": "Linker bake-off evaluated on human gold (fresh set 441 items: Tev1-4B strict Acc@1 0.901, kappa 0.50; final 850-item set: BGE 0.881, CD-L2 0.862, no significant student gain; human kappa 0.317 before adjudication). Frozen systems and gold manifests. Not deployed over the corpus.",
+   "gap_vs_ssot": "No corpus-scale linking with the chosen linker; Rung A lexicon is the only deployed linker; link failures 569,839 NO_VALID_CANDIDATE + 80,096 UNRESOLVED remain UNKNOWN. Compute estimate (derived: CD-L2 ~16 ms/line) is ~19 GPU-hours on 4.16 M lines before surface-string dedup, so a dedup of unique normalised lines first is needed.",
+   "remaining": [
+    {
+     "item_id": "T3-C10-R1",
+     "item": "Decision and run: link unique normalised FOOD spans (deduped) with the frozen CD-L2 or BGE top-1 for lines Rung A failed to link; output as MODEL_DERIVED candidates with NIL threshold",
+     "work_types": [
+      "DECISION",
+      "GPU_COMPUTE",
+      "CODE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "6-10",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T3-C09-R1",
+      "T3-C03-R2"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Linker top-1 is a candidate, not identity; ambiguity set-valued",
+     "acceptance": "link table with confidence; Acc on the sealed fresh-gold NOT recomputed (gold sealed), applied only; counts-only report"
+    },
+    {
+     "item_id": "T3-C10-R2",
+     "item": "Measure how much composition coverage (mention mass) linker adds over Rung A lexicon",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "2",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C10-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "May add little",
+     "acceptance": "coverage delta table"
+    }
+   ]
+  },
+  {
+   "id": "T3-C11",
+   "name": "Rung A deterministic instruction extraction (events, quantities in steps, references)",
+   "ssot_anchor": "\u00a7232.1; \u00a7233.3-233.5 L25349-25380; \u00a7257A.3-A.4 L28049-28094; \u00a7257C Event L30472-30673",
+   "plan_steps": [
+    "17a",
+    "17b"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/step17/rung_a_dryrun_counts_full_corpus_final.json",
+    "reports/step17/S155_build_note.md",
+    "reports/step17/d073_r1_precision_S170.json",
+    "DECISIONS D-073,D-074",
+    "tests/unit/test_step17a_*.py"
+   ],
+   "what_exists": "17a interfaces, validators V1-V4, invented-value auditor; 17b Rung A over all 612,782 recipes (611,902 with steps): 9,470,190 Rung A events, exceptions 0, invented_count 0 across 89,316,045 values checked, 4,511 V2 INVERTED_INTERVAL in 3,848 texts (review pending, J4 read by humans D-059). Census/replay chain events: 14,594,812 (includes adapter LOT_INTRODUCTION events).",
+   "gap_vs_ssot": "No comparison with any human gold (G17 gates not evaluated). Rule precision unmeasured except D-073 implicit-object R1 (4/60 correct, DO_NOT_LAND, R2 withdrawn); ~7.0 % real binding gap stays UNKNOWN; 'COMBINE_WITH_CURRENT' 1,284,014 and AMBIGUOUS_REFERENCE 108,716 unvalidated. P1 per-pair disagreement shows event_type 0.76 / coref 0.96 between annotators, so gold target itself is unstable. Rung B/C (LLM cascade) not built.",
+   "remaining": [
+    {
+     "item_id": "T3-C11-R1",
+     "item": "Diagnostic comparison of Rung A events against the P1 gold (7 recipes) and the 40 AI-assisted dev-Gold recipes using tools/eval_compiler_vs_gold.py, labelled NOT INDEPENDENT (D-017, D-060)",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "4-6 (BBC recipes need the Mac; Food.com on manjot)",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T3-C15"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Gold is human-accepted AI draft; do not claim D3 accuracy",
+     "acceptance": "per-field P/R with Wilson intervals; report states label_basis HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND"
+    },
+    {
+     "item_id": "T3-C11-R2",
+     "item": "Per-rule precision audit on a seeded sample for the 5 highest-volume rules (COMBINE_WITH_CURRENT, AMBIGUOUS_REFERENCE, LEXICAL_COREF_DESCENDANT, PLURAL_STRIP, TOOL binding), using the D-074 pre-registered method",
+     "work_types": [
+      "ANALYSIS",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "3-4 (sample + prereg)",
+     "human_hours": "4-6 (labelling)",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "D-074 showed a plausible rule can be 6.7 % precise; unaudited high-volume rules may be similar",
+     "acceptance": "precision with Wilson lower bound per rule; DO_NOT_LAND or keep decision recorded"
+    },
+    {
+     "item_id": "T3-C11-R3",
+     "item": "Review the 4,511 inverted-interval V2 cases summary and decide the rule (UNKNOWN vs swap)",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "1",
+     "depends_on": [],
+     "priority_25nov": "COULD",
+     "risk": "Already read at K10; closeout",
+     "acceptance": "DECISIONS entry"
+    },
+    {
+     "item_id": "T3-C11-R4",
+     "item": "Re-run Rung A after SP-002 + vocab fixes with a version bump on non-BBC families on manjot (CPU 32 workers) and BBC on Mac",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "1-2 + Mac 0.5",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C07-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Prior full run took hours on vinayak (S163, 2 h limit exceeded in cloud)",
+     "acceptance": "new sha256; compute_runs row"
+    },
+    {
+     "item_id": "T3-C11-R5",
+     "item": "Rung B/C extraction cascade (local LLM + V1-V6 + two-model disagreement + confident learning)",
+     "work_types": [
+      "CODE",
+      "GPU_COMPUTE",
+      "TRAINING"
+     ],
+     "where": "vinayak",
+     "agent_hours": "40-80",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C01-R2",
+      "H2 licence decision"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Blocked on H2 (training/LLM processing licence for Food.com/TASTEset/A1) and the 16c freeze",
+     "acceptance": "not scheduled before 25 Nov"
+    }
+   ]
+  },
+  {
+   "id": "T3-C12",
+   "name": "Event-sourcing replay engine and event log",
+   "ssot_anchor": "\u00a7233.1-233.5 L25325-25380; \u00a7257C Entity L30674-30775",
+   "plan_steps": [
+    "18"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/step18/S156_build_note.md",
+    "reports/step18/S156_engine_audit.md",
+    "src/culinarystate/state_graph/{replay,event_log,event_adapter}.py",
+    "reports/step26/simulability_census_full_corpus_S169.json",
+    "WORKLOG S169 (census 0.2.0: 612,782 recipes, 14,594,812 events, exceptions 0)"
+   ],
+   "what_exists": "Append-only event log with canonical JSON and SHA-256 head; deterministic replay with exact rational bounds, UNKNOWN not FAIL on unknown mass terms, reused event ids rejected; adapter to simulation inputs; census chain over the full corpus (NO_CONSUMED_ENTITY 7.0 %, LOT_INTRODUCTION 35.1 %). P1 replay_ok 7/7 pairs. Status DRAFT_PENDING_16c.",
+   "gap_vs_ssot": "No gold comparison of replayed states (D3); G18 gate not recorded; 'test_transition' hang did not reproduce (thread caps stay, no root cause); merge/split/reserve/recombine fidelity measured only on 7 P1 recipes. Replay is per-lot lineage, not composition (see C22). Entity 'state belief' fields (\u00a7233.2) with timestamp/uncertainty not populated beyond temperature census.",
+   "remaining": [
+    {
+     "item_id": "T3-C12-R1",
+     "item": "Replay-invariant property tests at corpus scale (order, consumption, split fractions sum, no resurrection of discarded lots) with counts-only violation report",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Violations may reveal Rung A defects",
+     "acceptance": "violation counts per invariant by family; 0 unexplained"
+    },
+    {
+     "item_id": "T3-C12-R2",
+     "item": "G18 gate record: replay agreement with P1/P1b gold alive-entity and process-link metrics",
+     "work_types": [
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C11-R1",
+      "T3-C16"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "P1 alive_entity_f1 mean 0.619 shows disagreement between annotators",
+     "acceptance": "g18 report with caveat"
+    },
+    {
+     "item_id": "T3-C12-R3",
+     "item": "Add \u00a7233.2 belief fields (timestamp, provenance class, unknown flag) to replay output records per lot-step",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C22-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Schema creep",
+     "acceptance": "fields on lot-step records, tests"
+    }
+   ]
+  },
+  {
+   "id": "T3-C13",
+   "name": "Quantity propagation and mass balance through merges/splits",
+   "ssot_anchor": "\u00a7233.6 L25381-25384; \u00a7257A.2.1 L28007-28048",
+   "plan_steps": [
+    "18",
+    "lot-state [K]"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/state_graph/{symqty,replay}.py",
+    "reports/step18/S156_build_note.md",
+    "reports/step17/rung_a_dryrun_counts_full_corpus_final.json allocations SPLIT 46,056, RESERVE 83,901, REMAINDER 825"
+   ],
+   "what_exists": "Exact rational interval propagation; mass balance only when every term is known; split fractions and reserve/remainder allocations extracted.",
+   "gap_vs_ssot": "Because only 0.78 % lines have stated grams (rc2 Q0), propagated mass is UNKNOWN for almost all recipes; no measurement of propagation accuracy on real data; SPLIT_COUNT_UNKNOWN 1,499 on BBC alone.",
+   "remaining": [
+    {
+     "item_id": "T3-C13-R1",
+     "item": "Measure the fraction of recipes with a fully known or interval-bounded mass graph after C07/C08 fixes (counts-only)",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C08-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Likely low for Food.com",
+     "acceptance": "coverage table by family and Q-level"
+    }
+   ]
+  },
+  {
+   "id": "T3-C14",
+   "name": "Deep-Gold sampling frame, strata and hard-case sampling",
+   "ssot_anchor": "\u00a7236.3 L25603-25618; \u00a7237.5 L25721-25744; \u00a7264 (family grouping for splits)",
+   "plan_steps": [
+    "16b",
+    "19-D"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "tools/step16b_build_frame.py",
+    "tools/step16b_text_strata.py",
+    "reports/step16/16b_text_strata_README.md (431,458 frame rows)",
+    "reports/step19/pilot_start_record.SIGNED.json",
+    "registry/recipe_semantics/deep_gold_pilot_v1/"
+   ],
+   "what_exists": "Frame builder and text-regex strata over 431,458 frame rows, seeded draw and exclusion list (superset of 50 AI-assisted ids), used for the P1 draw; commitments and manifests on tracked path.",
+   "gap_vs_ssot": "Gutenberg and TASTEset cannot be sampled for the gold-1.0 template (0 ingredient lines / 0 steps) so those families have no Deep-Gold representation; frame bound to the provisional 07I family grouping (uncalibrated).",
+   "remaining": [
+    {
+     "item_id": "T3-C14-R1",
+     "item": "Frame update for P1b: exclude all 21 P1 manifest rows and groups; wave-scoped files and --wave P1b support in pilot_real/pilot_commit/packet maker/scorer (test-first)",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "Kush nonce and size (T3-C16)"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Code can be built and tested on synthetic now; the draw needs the nonce",
+     "acceptance": "tests pass with synthetic nonce; real draw not executed by agent"
+    }
+   ]
+  },
+  {
+   "id": "T3-C15",
+   "name": "Gold pilot P1 (7 recipes, dual annotation, counts-only scoring)",
+   "ssot_anchor": "\u00a7237.2 L25690-25702; \u00a7237.3 L25703-25716; \u00a7257D (instrument cases)",
+   "plan_steps": [
+    "19-pilot"
+   ],
+   "status": "DONE",
+   "status_evidence": [
+    "reports/step19/p1_agreement_counts_S166.json",
+    "reports/step19/pilot_start_record.SIGNED.json (D-048)",
+    "DECISIONS D-057..D-067",
+    "reports/step19/pilot_schema_problem_log.md",
+    "commitments in registry/recipe_semantics/deep_gold_pilot_v1/"
+   ],
+   "what_exists": "P1 ran: 7 pairs, 21 manifest rows, 57 lines, 881 spans, 194 events, 226 coref, 71 state units; key commitments verified; means: spans exact F1 0.843, event F1 strict 0.559 / loose 0.599, coref B3 0.836, state_field_agreement 0.264, alive_entity F1 0.619; verdict HANDBOOK_REVISION_REQUIRED (5 categories flagged). Label basis HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND (D-060, D-064 deviation: B built on Kush's Mac).",
+   "gap_vs_ssot": "SSOT \u00a7237.2 requires independent blind double annotation; P1 was model-assisted and the annotators saw each other's issues, so it cannot certify reliability (design says feasibility/falsification only). Minutes-per-recipe not measured (D-061). Gold is not Deep-Gold: registry tier DEEP_GOLD=0 and GOLD_LIGHT=0.",
+   "remaining": [
+    {
+     "item_id": "T3-C15-R1",
+     "item": "Write the P1 closeout: report that states the negative gate verdict, the basis caveat, SP triage and what P1b tests; include no model-generated text as human voice",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Overstating P1 would breach R-20 / D-071",
+     "acceptance": "reports/step19/pilot_iaa_report.md draft with label_basis and verdict visible"
+    }
+   ]
+  },
+  {
+   "id": "T3-C16",
+   "name": "Gold pilot P1b (3-4 new recipes, Addendum B rule check)",
+   "ssot_anchor": "\u00a7237.2 L25690-25702; \u00a7237.3 L25703-25716",
+   "plan_steps": [
+    "19-pilot"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "reports/step19/P1b_design_amendment_PROPOSED.md",
+    "D-069 (P1b yes), D-070 O5",
+    "handoff/FINISH_PLAN_2026-11-07.md M7 WAITING ON KUSH",
+    "src/culinarystate/annotation/pilot_real.py (refuses NONCE_SUPPLIER_NOT_KUSH)"
+   ],
+   "what_exists": "Design amendment approved in principle; tooling plan listed.",
+   "gap_vs_ssot": "Blocked on three human facts: size 3 or 4, a new pre-frame nonce written by Kush and committed by sha256, and a signed amendment to the start record authorising wave P1b with its budget. The agent cannot supply the nonce (D-071 does not authorise AI nonces).",
+   "remaining": [
+    {
+     "item_id": "T3-C16-R1",
+     "item": "Kush supplies size (3 or 4), writes the new nonce, signs the start-record amendment for P1b",
+     "work_types": [
+      "HUMAN_SIGNATURE",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5-1",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Without it the only 25-Nov gold evidence stays P1",
+     "acceptance": "signed amendment file in reports/step19/; nonce sha256 committed before frame rebuild"
+    },
+    {
+     "item_id": "T3-C16-R2",
+     "item": "Run P1b annotation (AI first pass ksh/prv under D-060, human stamps) and score with the same scorer",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "ANALYSIS"
+     ],
+     "where": "human",
+     "agent_hours": "3-5",
+     "human_hours": "6-12 (Kush+Parv; UNVERIFIED, P1 timing not measured)",
+     "depends_on": [
+      "T3-C16-R1",
+      "T3-C14-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Human capacity competes with 07.A labels (13 Nov), AA verification (15 Nov), benchmark review (16 Nov)",
+     "acceptance": "P1b score file; Addendum B categories vs 0.20 gate reported as calibration only"
+    }
+   ]
+  },
+  {
+   "id": "T3-C17",
+   "name": "State-tracker gold evaluation (D3 claim) and held-out replay test",
+   "ssot_anchor": "\u00a7257D Q/V catalog L31465-33895; \u00a7237.3 L25703-25716",
+   "plan_steps": [
+    "17",
+    "18",
+    "19"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "packet section 1 D3 'no gold comparison yet'",
+    "handoff/FINISH_PLAN_2026-11-07.md",
+    "tools/eval_compiler_vs_gold.py exists",
+    "registry/recipe_quality_tier_registry_v1.csv DEEP_GOLD 0"
+   ],
+   "what_exists": "Tools for gold-vs-compiler comparison exist for the older compiler; nothing run against Rung A or replay.",
+   "gap_vs_ssot": "No D3 accuracy figure of any kind. Minimum gold size for a D3 claim undecided (Q28). Only P1 (7) and AI-assisted dev Gold (40, not independent) exist.",
+   "remaining": [
+    {
+     "item_id": "T3-C17-R1",
+     "item": "Decision on the minimum gold size and wording for the D3 claim at the talk (diagnostic on 7+40 recipes versus nothing)",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T3-C11-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Over-claiming D3 is the largest credibility risk",
+     "acceptance": "DECISIONS entry"
+    },
+    {
+     "item_id": "T3-C17-R2",
+     "item": "Event-type and state-label confusion matrix of Rung A vs P1 gold, counts-only, for the slides",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C11-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Small n; wide intervals",
+     "acceptance": "figure with cluster bootstrap intervals; label basis stated"
+    }
+   ]
+  },
+  {
+   "id": "T3-C18",
+   "name": "Deep-Gold main cohort (19-S sizing, 19-M annotation N>=40, sealed test)",
+   "ssot_anchor": "\u00a7237.2-237.4 L25690-25720; \u00a7237.5 L25721-25744",
+   "plan_steps": [
+    "19-S",
+    "19-M",
+    "19-T"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "docs plan Step 19 card (19-M HARD on 16c, 07I-C, H5, 19-S)",
+    "reports/step19/deep_gold_pilot_design_v1_draft.md stop/scale rule",
+    "registry/recipe_quality_tier_registry_v1.csv"
+   ],
+   "what_exists": "Design only (stop/scale rule, hours cap 40 h per annotator).",
+   "gap_vs_ssot": "N>=40 Deep-Gold (course minimum MP AH6) not started; DEEP_GOLD = 0; blocked by 16c, P1b/capacity check and human hours (30-60 h annotation + 6-12 h adjudication per plan estimates, UNVERIFIED).",
+   "remaining": [
+    {
+     "item_id": "T3-C18-R1",
+     "item": "19-S sizing decision from measured P1/P1b throughput (NEED_HUMAN_CAPACITY if too low)",
+     "work_types": [
+      "DECISION",
+      "ANALYSIS"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "1",
+     "depends_on": [
+      "T3-C16"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "P1 timing unmeasured",
+     "acceptance": "signed sizing note"
+    },
+    {
+     "item_id": "T3-C18-R2",
+     "item": "Annotate Deep-Gold cohort (fallback 20 recipes at depth A2) and adjudicate",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "8-12 (tooling, packets)",
+     "human_hours": "40-100 (UNVERIFIED)",
+     "depends_on": [
+      "T3-C18-R1",
+      "T3-C01-R2"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Cannot finish by 25 Nov",
+     "acceptance": "dg_iaa_report with alpha/F1 and CIs; sealed access log"
+    }
+   ]
+  },
+  {
+   "id": "T3-C19",
+   "name": "Scale procedural corpus (T0 weak corpus, T1 Silver 1k-10k, T2 Gold-Light units)",
+   "ssot_anchor": "\u00a7236.1-236.7 L25587-25658; \u00a7257A.15 L28326-28340",
+   "plan_steps": [
+    "20 (20a-20g)"
+   ],
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md section 7 'Not before 25 Nov: Steps 20'",
+    "docs plan Step 20 card NOT STARTED",
+    "src/culinarystate/silver/ empty"
+   ],
+   "what_exists": "Nothing in silver/. The Rung A full-corpus run is effectively an unlabelled T0 weak corpus but is not packaged as ledgers/recipe_semantics/t0_weak_v1.",
+   "gap_vs_ssot": "Silver tiers, sampling frame silver_sampling_frame_v1, per-batch audits, utility test, DATA-SEM-SILVER release design, \u00a7257P checklist (P-A4, A11, A13 unmet) all not started. H2 (training/LLM licence) undecided: training-allowed only for Gutenberg 73,955.",
+   "remaining": [
+    {
+     "item_id": "T3-C19-R1",
+     "item": "Package the existing Rung A + replay outputs as a documented T0 weak corpus (counts-only manifest, per-recipe file in git-ignored data/derived) with release tier labels",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C11-R4"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Only relevant if the talk needs a dataset-card figure",
+     "acceptance": "manifest with sha256, licence tier per source; no text committed"
+    },
+    {
+     "item_id": "T3-C19-R2",
+     "item": "\u00a7257P checklist status report for Step 20 gates",
+     "work_types": [
+      "WRITING",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "3-4",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "AFTER",
+     "risk": "None",
+     "acceptance": "257P_checklist_status.md"
+    },
+    {
+     "item_id": "T3-C19-R3",
+     "item": "H2 licence decision for Food.com / TASTEset / A1 (LLM processing, training)",
+     "work_types": [
+      "DECISION",
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "1-2",
+     "depends_on": [],
+     "priority_25nov": "AFTER",
+     "risk": "Gates T3-C11-R5 and learned rungs",
+     "acceptance": "signed H2 note"
+    },
+    {
+     "item_id": "T3-C19-R4",
+     "item": "T1 Silver pilot 1k -> 5k -> 10k (LLM cascade) with batch audits",
+     "work_types": [
+      "GPU_COMPUTE",
+      "TRAINING",
+      "HUMAN_REVIEW"
+     ],
+     "where": "vinayak",
+     "agent_hours": "40-80",
+     "human_hours": "30-60 audit labels (UNVERIFIED)",
+     "depends_on": [
+      "T3-C19-R3",
+      "T3-C18"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Not before the presentation",
+     "acceptance": "step20 gate result"
+    }
+   ]
+  },
+  {
+   "id": "T3-C20",
+   "name": "Recipe identity, duplicates, families and split groups (07I)",
+   "ssot_anchor": "\u00a7264.1-264.x L43395-43537; Step 07I-R/07I-C",
+   "plan_steps": [
+    "07I",
+    "16b",
+    "19",
+    "20"
+   ],
+   "status": "DONE",
+   "status_evidence": [
+    "reports/step07i/step07ir_gate_result.json",
+    "reports/step07i/identity_summary_v1.json",
+    "reports/step07i/identity_benchmark_report.md",
+    "DECISIONS D-025,D-033,D-034",
+    "registry/ledgers recipe_identity parquet"
+   ],
+   "what_exists": "612,782 recipes, 1,039 exact-duplicate groups (611,714 logical recipes), 8,639,518 candidate pairs, 744,615 kept pairs, 605,476 families (5,803 multi-member), 46,697 dish-family candidates; deterministic rebuild verified; 07I-C agreement 0.88 on Kush-basis labels; family cut B3 = 0.75.",
+   "gap_vs_ssot": "Family grouping is PROVISIONAL_STAR_V1 and calibrated=false; G08-3 lineage gate FAILED (on record) so split groups for Step 20 and sealed gold carry caveats; \u00a7264 multi-view recipe distance and novelty score (264.2+) not in scope of what was built (check against T-other topic for novelty/completion).",
+   "remaining": [
+    {
+     "item_id": "T3-C20-R1",
+     "item": "State the calibration caveat on every split used by T3 items; add a conservative union grouping check (exact U provisional family U title) for any gold/test partition",
+     "work_types": [
+      "ANALYSIS",
+      "CODE"
+     ],
+     "where": "manjot",
+     "agent_hours": "2-3",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Leakage between gold and test through near-duplicates",
+     "acceptance": "partition table with 0 cross-group duplicates"
+    },
+    {
+     "item_id": "T3-C20-R2",
+     "item": "07I-C family threshold calibration on a human-labelled pair sample",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "ANALYSIS"
+     ],
+     "where": "human",
+     "agent_hours": "3-4",
+     "human_hours": "3-5",
+     "depends_on": [],
+     "priority_25nov": "AFTER",
+     "risk": "Time",
+     "acceptance": "calibrated flag with sample size and CI"
+    }
+   ]
+  },
+  {
+   "id": "T3-C21",
+   "name": "State variables for lot state: physical and history SVARs (state-field policy)",
+   "ssot_anchor": "\u00a7257A.4 L28076-28094; \u00a7233.2 L25333-25348; \u00a7257C State L30776-30957",
+   "plan_steps": [
+    "03",
+    "16",
+    "lot-state [K]"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "ledgers/data/SVAR.jsonl (355 rows)",
+    "registry/state_variable_registry_v1.csv",
+    "reports/step16/schema_drafts/STATE.draft_v2.schema.json",
+    "reports/h_state/state_representation_contract_v1.md",
+    "packet Q11"
+   ],
+   "what_exists": "355 SVAR (354 chemical, 1 physical); STATE v2 draft; state representation contract v1 in reports/h_state.",
+   "gap_vs_ssot": "Physical and history variables missing (moisture fraction, water activity, cell integrity, enzyme state, time since disruption, thermal dose, emulsion/aeration, gluten development); protected ledger cannot be edited, so an additive SVAR v1.1 registry is needed; definitions need a human/expert decision (Q11).",
+   "remaining": [
+    {
+     "item_id": "T3-C21-R1",
+     "item": "Draft SVAR v1.1 physical/history registry (definitions, units, allowed types, UNKNOWN semantics) as additive file; no write to SVAR.jsonl",
+     "work_types": [
+      "WRITING",
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C25-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Definitions are science claims; mark AI_DRAFTED",
+     "acceptance": "registry file + validator; every variable has unit and missingness rule"
+    },
+    {
+     "item_id": "T3-C21-R2",
+     "item": "Human decision on the minimal variable set and definitions (and optional food-scientist review)",
+     "work_types": [
+      "DECISION",
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "1-3",
+     "depends_on": [
+      "T3-C21-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Q11 unresolved",
+     "acceptance": "signed variable list"
+    }
+   ]
+  },
+  {
+   "id": "T3-C22",
+   "name": "Lot-state layer [K]: members, mass, composition, solutes, pH flags, mechanism screen, interaction edges",
+   "ssot_anchor": "Packet section 5 (new); SSOT \u00a7233.1/233.5-233.6 L25325-25384, \u00a7257C Entity/State L30674-30957, \u00a74 state vector",
+   "plan_steps": [
+    "31 (features)",
+    "22",
+    "23"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "grep of src/ tools/ for lot_state: no match",
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md section 5 'being built now'",
+    "DECISIONS D-077 (two layers)"
+   ],
+   "what_exists": "Only per-lot lineage from replay and Layer 1/2 temperature drivers (reports/step26) exist; the packet design is a proposal, not frozen. No lot_state module or test exists in this tree (it may exist on the Mac coding agent branch; verify).",
+   "gap_vs_ssot": "Composition, solute load, water activity, member-pH ranges and lot flags, mechanism screen over the 32 unreviewed MECH entries, and mechanism-mediated interaction edges are all absent. Prerequisites C04/C08 (SR match, grams) and a sourced mechanism condition-window registry (belongs to the mechanism topic, note T4) are absent. Water-activity constants (Norrish/Ross) and the FDA pH list (~488 items) need opened sources; recalled values forbidden.",
+   "remaining": [
+    {
+     "item_id": "T3-C22-R1",
+     "item": "Step 1-2 slice: lot members + presence-only composition from ING->SR match; mass interval only where grams are known (UNKNOWN otherwise); record per lot-step with basis/provenance",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "10-16",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C04-R1",
+      "T3-C08-R1",
+      "T3-C12-R3"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Food.com has no units so most masses UNKNOWN; presence-only is the honest result",
+     "acceptance": "unit tests incl. UNKNOWN never 0 and interval bounds exact; 1,000-recipe sample census then non-BBC full run; counts-only report"
+    },
+    {
+     "item_id": "T3-C22-R2",
+     "item": "FDA pH list registry: obtain the document, parse the ~488 items, member pH ranges and flags CONTAINS_ACID_MEMBER (<=4.6), CONTAINS_ALKALINE_MEMBER, ALL_MEMBERS_ACID; NO mixture pH number",
+     "work_types": [
+      "DOWNLOAD",
+      "CODE"
+     ],
+     "where": "manjot",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C22-R1",
+      "T3-C04-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Download of a US-government document (archived at webharvest.gov) is allowed; licence public domain; not a recalled table",
+     "acceptance": "registry with page citation per row; tests; flag counts by family"
+    },
+    {
+     "item_id": "T3-C22-R3",
+     "item": "Solute load (g salt, g sugar per g water) and water-activity estimate as MODEL_DERIVED intervals, only where masses are known",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "4-6",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C22-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Constants need a cited source (Q2); skip aw if source not opened",
+     "acceptance": "every aw value carries a source id or is absent"
+    },
+    {
+     "item_id": "T3-C22-R4",
+     "item": "Mechanism screen (POSSIBLE / NOT_POSSIBLE / UNKNOWN Kleene) over the 32 MECH entries using lot composition and drivers; interaction edges only mechanism-mediated, never learned weights",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "12-20",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C22-R1",
+      "T3-C22-R2",
+      "MECH condition-window registry (topic T4)"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "MECH entries unreviewed (G21.6): output must be labelled AI_DRAFTED and QUALITATIVE; never routed to SIMULATE",
+     "acceptance": "screen output with reason codes; property test UNKNOWN never POSSIBLE; edges name mechanism id + both members"
+    },
+    {
+     "item_id": "T3-C22-R5",
+     "item": "Non-heat process families feeding the same lot record (cool, drain, marinate/brine, dry, cut, mix, rest, store) as TEXT_STATED/SCENARIO records",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "20-30",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C22-R1",
+      "process coverage plan (topic physical state, note T5/T6)"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Large; scope depends on Q39 decision",
+     "acceptance": "family-by-family counts; each family gated by tests"
+    },
+    {
+     "item_id": "T3-C22-R6",
+     "item": "Full-corpus lot-state run on manjot (non-BBC) with nice -n 10, 32 workers; BBC on the Mac; counts-only reports; outputs in data/derived",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-5 (run) + Mac 1",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C22-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Disk 95% full: keep under 15 GB",
+     "acceptance": "reports + sha256 + compute_runs rows (orchestrator)"
+    },
+    {
+     "item_id": "T3-C22-R7",
+     "item": "Decision Q39: is lot-state worth doing before 25 Nov versus all time on H1/H3 + first SIMULATE; fix the minimal slice",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5",
+     "depends_on": [],
+     "priority_25nov": "MUST",
+     "risk": "Agent time competes with H1/H3 benchmark",
+     "acceptance": "DECISIONS entry naming slice (R1+R2 minimum)"
+    }
+   ]
+  },
+  {
+   "id": "T3-C23",
+   "name": "Recipe-level metadata, source/licence fields and recipe base",
+   "ssot_anchor": "\u00a7257C Recipe L29340-29601; \u00a7257A.15 L28326-28340; \u00a7236.1-236.2",
+   "plan_steps": [
+    "06",
+    "07H",
+    "16b"
+   ],
+   "status": "DONE",
+   "status_evidence": [
+    "ledgers/recipe_base/recipe_base_v1.parquet",
+    "registry/recipe_source_usage_registry_v1.csv",
+    "DECISIONS D-026 (all 612,782 usable for project use)",
+    "reports/recipe_registry_v1.md"
+   ],
+   "what_exists": "612,782 recipes in recipe base v1 (Food.com 522,517, Gutenberg segments 73,955, BBC 11,934, Wikibooks 3,676, TASTESET 700), usage registry, owner decision, gold index.",
+   "gap_vs_ssot": "Food.com licence is uploader-declared CC0, UNVERIFIED; `training_allowed` UNKNOWN for 535,151 recipes; Food.com source quantities lack units; Gutenberg segmentation precision ~80-85 %; Gutenberg and TASTEset lack either lines or steps.",
+   "remaining": [
+    {
+     "item_id": "T3-C23-R1",
+     "item": "Record Food.com licence/units limitations in a one-page data card (counts-only) used by every T3 report",
+     "work_types": [
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Reviewer questions on licence",
+     "acceptance": "data card sentence set in reports/"
+    }
+   ]
+  },
+  {
+   "id": "T3-C24",
+   "name": "SSOT \u00a7257D gold test catalog conformance (162 Q cases, 121 V cases)",
+   "ssot_anchor": "\u00a7257D L31465-33895; \u00a7257A.2.1 L28007-28048",
+   "plan_steps": [
+    "16",
+    "17"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "grep: 257D appears only in tools/build_ssot15_experiment_map.py and notes, no tests or fixtures reference it",
+    "tests/unit/test_step16_quantity_contract.py exists (different case set)"
+   ],
+   "what_exists": "Quantity unit tests and synthetic fixtures exist but none map to 257D.Q001..Q162 or V001..V121.",
+   "gap_vs_ssot": "The 283 SSOT semantic test classes (expected behaviour often 'parse correctly and return UNKNOWN') are not executed against rc2 / vocab. Not a plan step; likely un-covered by the 36-step plan.",
+   "remaining": [
+    {
+     "item_id": "T3-C24-R1",
+     "item": "Extract the Q and V cases into a machine-readable fixture file (text only from SSOT; no third-party text) and run rc2 / vocab / link against it as a conformance report",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "8-14",
+     "human_hours": "0",
+     "depends_on": [
+      "T3-C07-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Cases are expectations written by the SSOT author, not gold labels; pass rate is a regression measure",
+     "acceptance": "conformance table: pass/UNKNOWN/fail per case id; fails triaged"
+    },
+    {
+     "item_id": "T3-C24-R2",
+     "item": "Human spot review of failing cases to decide code fix vs SSOT note",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "2-3",
+     "depends_on": [
+      "T3-C24-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Time",
+     "acceptance": "triage log"
+    }
+   ]
+  },
+  {
+   "id": "T3-C25",
+   "name": "Design decisions for lot-state/schema (state belief, five memory classes, model memory not evidence memory)",
+   "ssot_anchor": "\u00a7233.2 L25333-25348; \u00a7233.7 L25385-25399",
+   "plan_steps": [
+    "16",
+    "18",
+    "31"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "src/culinarystate/state_graph/prefix_state.py (H_STATE tooling only)",
+    "reports/h_state/state_representation_contract_v1.md",
+    "packet section 5.3 'computed vs learned'"
+   ],
+   "what_exists": "Contract v1 text for H_STATE; the rule Model Memory != Evidence Memory is respected in outputs (MODEL_DERIVED/NON_CITABLE labels in the physical layers).",
+   "gap_vs_ssot": "Five memory classes are not materialised as typed stores; session memory (class 3) exists only in H_STATE sessions; override rule (observed beats older prediction, prediction kept in audit trail) not implemented.",
+   "remaining": [
+    {
+     "item_id": "T3-C25-R1",
+     "item": "Write a short design note fixing belief fields and class tags (source/semantic/episode/evidence/model) for every lot-step field; reviewed by Kush/Parv",
+     "work_types": [
+      "WRITING",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "2-3",
+     "human_hours": "1-2",
+     "depends_on": [],
+     "priority_25nov": "SHOULD",
+     "risk": "Without it C01/C21/C22 schemas diverge",
+     "acceptance": "signed design note listing field -> class"
+    }
+   ]
+  }
+ ],
+ "ssot_requirements_without_plan_coverage": [
+  "\u00a7257D Q001-Q162 and V001-V121 gold test catalog (283 cases): no plan step or test executes it (T3-C24).",
+  "\u00a7233.7 five typed memory classes and \u00a7233.2 override-by-observation rule: no store or step (T3-C25).",
+  "\u00a7234.7-\u00a7234.9 vocabulary proposal states, growth control, long-tail policy: no implementation for Food.com tail (T3-C03-R4).",
+  "\u00a7235.8 empirical portion distributions and \u00a7235.3 portion evidence ladder: not in a plan step beyond POR drafts (T3-C08).",
+  "\u00a7257A.4 state field policy for physical and history variables: only an additive SVAR v1.1 under H4 (T3-C21).",
+  "\u00a7233.6 quantity propagation measured on real data: depends on gram grounding the plan cannot supply for Food.com (T3-C13).",
+  "Packet lot-state layer [K] is not a step in the 36-step plan v2 (lives in the review packet only); it is 25-Nov MUST by the agent's ranking, but needs SSOT/plan anchoring (T3-C22)."
+ ],
+ "contradictions": [
+  "Rung A events: the step-17 counts file reports 9,470,190 events; the packet and WORKLOG S169 quote 14,594,812 'Rung A events' but that number is the census/replay chain total including adapter LOT_INTRODUCTION events (35.1 %). Use 9.47 M for extraction, 14.59 M for replay census.",
+  "ING counts: packet says 5,387 ING rows with 0 % crosswalked; reports/ingredient_registry_v1.md says 1,951 ING concepts and 6,562 canonicals; ledger counts not re-verified.",
+  "Packet table lists Step 16 'DRAFT' and Step 19 'P1 done' but the P1 verdict is HANDBOOK_REVISION_REQUIRED and labels are not blind; any 'gold' language must carry label_basis.",
+  "Packet says Rung A 'gold comparison needs P1b' but a diagnostic comparison against P1 (7) and the 40 AI-assisted recipes is already possible (not independent).",
+  "D-070 schedules the SP-002 fix after the presentation, while 29.8 % of ingredient lines (the lot-state mass input) are wrongly parsed until then; conflict with packet priority #1 (lot state).",
+  "TOOL ledger has 297 rows while tool registry v1 lists 119 tools (not reconciled).",
+  "Plan card Step 19 says only the 7-recipe P1 is authorised, while the P1 handbook gate fails; Step 20 and 19-M depend on 16c which is unsigned, yet Steps 17/18 outputs are already used downstream (DRAFT_PENDING_16c)."
+ ],
+ "notes": "Not duplicated, belong elsewhere: mechanism ontology / MECH condition-window registry and mechanism screen definitions (Step 21/22 topic, tag T4); physical drivers, Layer 1/2, non-heat families physics (physical-state topic); evidence atoms and SVAR/EVD (evidence topic); router gates and formula registry (router topic); Step 35 representations over lot-state sequences and recipe-distance/novelty \u00a7264.2+ (representation topic). Status rule used: RUN only for real full-corpus runs (Rung A, rc2, census, NER tagging; vocab registry is real-data but BBC-derived). Priority logic: MUST items are those needed so the talk can state a D3 number honestly (T3-C17-R1), a lot-state minimal slice, and unit/portion decisions; P1b, 16c signature, Silver and Deep-Gold main are not achievable or are optional by 25 Nov. Human hours are UNVERIFIED estimates from plan cards. Host rules: BBC only on Mac (D-003), GPU jobs on vinayak, CPU jobs on manjot (32 workers, nice 10). Lot-state code might exist on the Mac coding agent branch (the .orch tree is S174/S175); T3-C22 status NOT_STARTED is from this tree only."
+}

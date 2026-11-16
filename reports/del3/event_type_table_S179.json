@@ -1,0 +1,341 @@
+{
+ "not_independent": true,
+ "record": "S179_EVENT_TYPE_TABLE",
+ "sets": {
+  "DEV_FOODCOM_V1_1": {
+   "bootstrap": {
+    "interval": "percentile 95%",
+    "n": 2000,
+    "seed": "s179-type-table-DEV_FOODCOM_V1_1",
+    "unit": "recipe"
+   },
+   "contains_ids": false,
+   "contains_text": false,
+   "independent": false,
+   "input_set_sha256": "e7a12eb7d0f67726d5e401d9d99ba063a2e18364d680e3c723e0ac728f3e37fb",
+   "label_basis": "AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD",
+   "level": "P",
+   "matching": "per recipe, matched = min(gold count, predicted count) for the type (count match, no alignment)",
+   "n_recipes": 20,
+   "types": {
+    "Discard": {
+     "gold": 1,
+     "matched": 0,
+     "precision": 0.0,
+     "precision_ci95": [
+      0.0,
+      0.0
+     ],
+     "pred": 9,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Merge": {
+     "gold": 114,
+     "matched": 84,
+     "precision": 0.9655,
+     "precision_ci95": [
+      0.9302,
+      1.0
+     ],
+     "pred": 87,
+     "recall": 0.7368,
+     "recall_ci95": [
+      0.6019,
+      0.8557
+     ]
+    },
+    "Recombine": {
+     "gold": 2,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Reserve": {
+     "gold": 8,
+     "matched": 3,
+     "precision": 0.6,
+     "precision_ci95": [
+      0.0,
+      1.0
+     ],
+     "pred": 5,
+     "recall": 0.375,
+     "recall_ci95": [
+      0.0,
+      0.7143
+     ]
+    },
+    "Split": {
+     "gold": 13,
+     "matched": 4,
+     "precision": 0.4444,
+     "precision_ci95": [
+      0.0,
+      1.0
+     ],
+     "pred": 9,
+     "recall": 0.3077,
+     "recall_ci95": [
+      0.0,
+      0.5833
+     ]
+    },
+    "Transfer": {
+     "gold": 17,
+     "matched": 10,
+     "precision": 0.6667,
+     "precision_ci95": [
+      0.3333,
+      1.0
+     ],
+     "pred": 15,
+     "recall": 0.5882,
+     "recall_ci95": [
+      0.3125,
+      0.8333
+     ]
+    },
+    "Transform": {
+     "gold": 155,
+     "matched": 152,
+     "precision": 0.5429,
+     "precision_ci95": [
+      0.4549,
+      0.6462
+     ],
+     "pred": 280,
+     "recall": 0.9806,
+     "recall_ci95": [
+      0.9524,
+      1.0
+     ]
+    }
+   }
+  },
+  "DEV_PILOT20_V1_1": {
+   "bootstrap": {
+    "interval": "percentile 95%",
+    "n": 2000,
+    "seed": "s179-type-table-DEV_PILOT20_V1_1",
+    "unit": "recipe"
+   },
+   "contains_ids": false,
+   "contains_text": false,
+   "independent": false,
+   "input_set_sha256": "881a10b99f0f618d9f5ed528f69ff69ecc4f2c147d6baea1ab0d167a065b693e",
+   "label_basis": "AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD",
+   "level": "P",
+   "matching": "per recipe, matched = min(gold count, predicted count) for the type (count match, no alignment)",
+   "n_recipes": 20,
+   "types": {
+    "Discard": {
+     "gold": 10,
+     "matched": 6,
+     "precision": 0.6,
+     "precision_ci95": [
+      0.3333,
+      1.0
+     ],
+     "pred": 10,
+     "recall": 0.6,
+     "recall_ci95": [
+      0.3333,
+      0.8889
+     ]
+    },
+    "Merge": {
+     "gold": 86,
+     "matched": 58,
+     "precision": 0.9667,
+     "precision_ci95": [
+      0.9219,
+      1.0
+     ],
+     "pred": 60,
+     "recall": 0.6744,
+     "recall_ci95": [
+      0.5667,
+      0.7701
+     ]
+    },
+    "Reserve": {
+     "gold": 1,
+     "matched": 1,
+     "precision": 0.125,
+     "precision_ci95": [
+      0.0,
+      0.4
+     ],
+     "pred": 8,
+     "recall": 1.0,
+     "recall_ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "Split": {
+     "gold": 21,
+     "matched": 10,
+     "precision": 0.7143,
+     "precision_ci95": [
+      0.4444,
+      1.0
+     ],
+     "pred": 14,
+     "recall": 0.4762,
+     "recall_ci95": [
+      0.3077,
+      0.6667
+     ]
+    },
+    "Transfer": {
+     "gold": 22,
+     "matched": 10,
+     "precision": 0.4545,
+     "precision_ci95": [
+      0.24,
+      0.7
+     ],
+     "pred": 22,
+     "recall": 0.4545,
+     "recall_ci95": [
+      0.2778,
+      0.6842
+     ]
+    },
+    "Transform": {
+     "gold": 97,
+     "matched": 93,
+     "precision": 0.5503,
+     "precision_ci95": [
+      0.425,
+      0.6923
+     ],
+     "pred": 169,
+     "recall": 0.9588,
+     "recall_ci95": [
+      0.8621,
+      1.0
+     ]
+    }
+   }
+  },
+  "P1_A_KUSH": {
+   "bootstrap": {
+    "interval": "percentile 95%",
+    "n": 2000,
+    "seed": "s179-type-table-P1_A_KUSH",
+    "unit": "recipe"
+   },
+   "contains_ids": false,
+   "contains_text": false,
+   "independent": false,
+   "input_set_sha256": "08371c63f56e505921e56c7e0e6ddc7623f99595dc75429b6fc4cdb1733ec0a5",
+   "label_basis": "HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND",
+   "level": "P",
+   "matching": "per recipe, matched = min(gold count, predicted count) for the type (count match, no alignment)",
+   "n_recipes": 7,
+   "types": {
+    "Discard": {
+     "gold": 1,
+     "matched": 0,
+     "precision": 0.0,
+     "precision_ci95": [
+      0.0,
+      0.0
+     ],
+     "pred": 1,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Merge": {
+     "gold": 36,
+     "matched": 21,
+     "precision": 1.0,
+     "precision_ci95": [
+      1.0,
+      1.0
+     ],
+     "pred": 21,
+     "recall": 0.5833,
+     "recall_ci95": [
+      0.4324,
+      0.7222
+     ]
+    },
+    "Reserve": {
+     "gold": 0,
+     "matched": 0,
+     "precision": 0.0,
+     "precision_ci95": [
+      0.0,
+      0.0
+     ],
+     "pred": 3,
+     "recall": null,
+     "recall_ci95": null
+    },
+    "Split": {
+     "gold": 8,
+     "matched": 0,
+     "precision": 0.0,
+     "precision_ci95": [
+      0.0,
+      0.0
+     ],
+     "pred": 1,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Transfer": {
+     "gold": 22,
+     "matched": 6,
+     "precision": 1.0,
+     "precision_ci95": [
+      1.0,
+      1.0
+     ],
+     "pred": 6,
+     "recall": 0.2727,
+     "recall_ci95": [
+      0.05,
+      0.4737
+     ]
+    },
+    "Transform": {
+     "gold": 35,
+     "matched": 33,
+     "precision": 0.5238,
+     "precision_ci95": [
+      0.4,
+      0.6957
+     ],
+     "pred": 63,
+     "recall": 0.9429,
+     "recall_ci95": [
+      0.8125,
+      1.0
+     ]
+    }
+   }
+  }
+ },
+ "status": "AI_DIAGNOSTIC_COUNTS_ONLY",
+ "tool_version": "s179-event-type-table-0.1.0"
+}

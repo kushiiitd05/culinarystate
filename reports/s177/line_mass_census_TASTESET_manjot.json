@@ -1,0 +1,48 @@
+{
+ "families": {
+  "TASTESET": {
+   "basis": {
+    "COUNT_x_SR_PORTION": 586,
+    "QUALITATIVE": 103,
+    "TEXT_STATED_MASS": 450,
+    "UNKNOWN": 1538,
+    "VOLUME_x_SR_DENSITY": 1111
+   },
+   "lines": 3788,
+   "lines_with_grams": 2147,
+   "lines_with_grams_link_unverified": 1697,
+   "match_status": {
+    "AUTO_MATCH_HIGH": 217,
+    "AUTO_MATCH_LOW": 354,
+    "NO_FOOD_MENTION": 129,
+    "NO_MATCH": 191,
+    "REGISTRY_MAPPED": 2498,
+    "REGISTRY_UNMAPPABLE": 399
+   },
+   "q_level": {
+    "Q0": 450,
+    "Q1": 586,
+    "Q2": 1111,
+    "Q6": 1641
+   },
+   "reason": {
+    "NO_AMOUNT": 334,
+    "NO_SR_COUNT_PORTION": 407,
+    "NO_SR_DENSITY": 51,
+    "NO_SR_FOOD": 746
+   },
+   "recipes": 700,
+   "recipes_all_quantified_lines_with_grams": 90
+  }
+ },
+ "labels": [
+  "COUNTS_ONLY",
+  "MODEL_DERIVED_GRAMS",
+  "SR_LINK_UNVERIFIED"
+ ],
+ "usable_match_statuses": [
+  "REGISTRY_MAPPED",
+  "AUTO_MATCH_HIGH"
+ ],
+ "version": "s175-line-census-0.1.0"
+}

@@ -1,0 +1,279 @@
+{
+  "label": "S178 T7-C01-R5 / T8-C15-R3 host check",
+  "ollama_local": {
+    "has_tag_qwen2.5:7b-instruct": false,
+    "n_models": 30,
+    "note": "metadata only (GET /api/tags); no generation; not the D5 run host, so a digest here is a reference, not a pin",
+    "qwen_models": [
+      {
+        "digest_prefix12": "d53d04290064",
+        "name": "qwen:latest"
+      },
+      {
+        "digest_prefix12": "dd314f039b9d",
+        "name": "qwen2:latest"
+      },
+      {
+        "digest_prefix12": "7cdf5a0187d5",
+        "name": "qwen2.5:14b"
+      },
+      {
+        "digest_prefix12": "9f13ba1299af",
+        "name": "qwen2.5:32b"
+      },
+      {
+        "digest_prefix12": "845dbda0ea48",
+        "name": "qwen2.5:latest"
+      }
+    ],
+    "server_on_localhost": true
+  },
+  "packages": {
+    "faiss": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "hypothesis": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "jsonschema": {
+      "importable": true,
+      "version": "4.19.2"
+    },
+    "lightgbm": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "lxml": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "matplotlib": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "networkx": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "numpy": {
+      "importable": true,
+      "version": "1.26.4"
+    },
+    "pandas": {
+      "importable": true,
+      "version": "2.1.4"
+    },
+    "pyarrow": {
+      "importable": true,
+      "version": "14.0.2"
+    },
+    "pytest": {
+      "importable": true,
+      "version": "9.2.0"
+    },
+    "rank_bm25": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "rdkit": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "requests": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "scipy": {
+      "importable": true,
+      "version": "1.17.1"
+    },
+    "sentence_transformers": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "sklearn": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "statsmodels": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "tabpfn": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "torch": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "tqdm": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "transformers": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "xgboost": {
+      "importable": false,
+      "reason": "not installed"
+    },
+    "yaml": {
+      "importable": false,
+      "reason": "not installed"
+    }
+  },
+  "project_modules": {
+    "culinarystate.evaluation.h3_independent": "OK",
+    "culinarystate.generation.llm": "OK",
+    "culinarystate.molecules.pubchem": "FAIL ModuleNotFoundError: No module named 'requests'",
+    "culinarystate.representation.cuisine_rungs": "OK",
+    "culinarystate.representation.explicit_runner": "OK",
+    "culinarystate.representation.prereg_guard": "OK",
+    "culinarystate.representation.recipe_rungs": "OK",
+    "culinarystate.representation.similarity_registry": "OK",
+    "culinarystate.retrieval.retriever": "OK",
+    "culinarystate.transition.baselines": "OK"
+  },
+  "python": "3.12.3",
+  "step35_inputs": {
+    "bound": [
+      {
+        "path": "ledgers/data/IMAP.jsonl",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "ledgers/data/ING.jsonl",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "ledgers/data/KGE.jsonl",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "ledgers/data/MOL.jsonl",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "ledgers/recipe_identity_v2/recipe_split_groups_v1.parquet",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "registry/cuisine/cuisine_lookup_v1_DRAFT.csv",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "registry/cuisine/explicit_cuisine_labels_v1.csv",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "registry/cuisine/foodcom_tag_census_v1.csv",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "registry/cuisine/foodcom_tag_cuisine_map_v1_DRAFT.csv",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "registry/recipe_source_usage_registry_v1.csv",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "registry/ssot15_similarity_registry.csv",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "reports/review/protocol_review_addendum_DRAFT.md",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "reports/step35/35_0_parv_review_DRAFT.md",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "reports/step35/35_0_v2_threshold_rows.csv",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "reports/step35/preregistration_35_0_v1_draft.md",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "src/culinarystate/representation/cuisine_rungs.py",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "src/culinarystate/representation/explicit_runner.py",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "src/culinarystate/representation/prereg_guard.py",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "src/culinarystate/representation/recipe_rungs.py",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "src/culinarystate/representation/similarity_registry.py",
+        "present": true,
+        "sha256_matches_template": true
+      },
+      {
+        "path": "tools/step35_foodcom_tag_census.py",
+        "present": true,
+        "sha256_matches_template": true
+      }
+    ],
+    "listed_absent_in_template": [
+      {
+        "frozen_sha256_in_repo": "5545da589d9c77891d3aefcebf21374d75a03632d14a4e8231603c68c9c824f0",
+        "frozen_sha256_source": "reports/step07/step07hr_freeze_manifest.json",
+        "path": "ledgers/recipe_base/recipe_base_v1.parquet",
+        "present_here": true,
+        "sha256_here": "5545da589d9c77891d3aefcebf21374d75a03632d14a4e8231603c68c9c824f0",
+        "sha256_matches_frozen": true
+      },
+      {
+        "frozen_sha256_in_repo": "a4353f5c2dce2c3b1a269ea592205b1e25a03309b661a4b30f604a19ad343cd0",
+        "frozen_sha256_source": "ledgers/recipe_identity_v2/op_selection_report_v1.json",
+        "path": "ledgers/recipe_identity/gold_firewall_v1.parquet",
+        "present_here": true,
+        "sha256_here": "a4353f5c2dce2c3b1a269ea592205b1e25a03309b661a4b30f604a19ad343cd0",
+        "sha256_matches_frozen": true
+      },
+      {
+        "frozen_sha256_in_repo": "98b3b43f41f4724105556d22bde5dbf90eb6fbc53b62d9b0b0571f19213ad612",
+        "frozen_sha256_source": "reports/step07/step07hr_freeze_manifest.json",
+        "path": "ledgers/recipe_semantics/recipe_ingredient_mentions_v1.parquet",
+        "present_here": false
+      }
+    ],
+    "n_bound": 21,
+    "n_bound_present": 21,
+    "n_bound_sha_match": 21,
+    "template_document_sha256": "009c9047ce78da21dd7d7061a64bc9fbb86d38d3eada5b3d8c9769ce5dd60145"
+  }
+}

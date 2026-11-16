@@ -1,0 +1,27 @@
+{
+ "end": "2026-11-10T12:14:11Z",
+ "git_commit": "440dbeb",
+ "host": "vinayak",
+ "lock_file": "reports/s179/env_lock/vinayak_S179.txt",
+ "lock_sha256": "61dccc80d5f00225c279d95bef6e49639edcd1799c7ee3b88c3ca98d503b101f",
+ "n_packages": 38,
+ "note": "T6-C19-R1; local install paths redacted",
+ "record": "ENV_LOCK_SMOKE_S179",
+ "seconds": 41,
+ "smoke": {
+  "culinarystate.evaluation.bakeoff": "OK",
+  "culinarystate.evaluation.diag29_additions": "OK",
+  "culinarystate.evaluation.diag29_runner": "OK",
+  "culinarystate.evaluation.freeze_records": "OK",
+  "culinarystate.transition.baselines": "OK",
+  "culinarystate.transition.splits": "OK",
+  "pkg:hypothesis": "6.170.5",
+  "pkg:numpy": "1.26.4",
+  "pkg:pandas": "2.1.4",
+  "pkg:scipy": "1.11.4",
+  "pkg:sklearn": "1.2.2",
+  "python": "3.11.18"
+ },
+ "start": "2026-11-10T12:13:30Z",
+ "transition_tests": "56 passed in 39.89s"
+}

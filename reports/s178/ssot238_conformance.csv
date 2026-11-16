@@ -1,0 +1,211 @@
+contract,ssot_field,map_kind,schema_property,code_or_table_counterpart,count_artifact,n_rows,n_populated,pct_populated,reason
+Recipe,recipe_id,RENAMED,REC.id,recipe_base_v1.parquet:recipe_id,"ledgers/data/REC.jsonl (ACTIVE, latest version per id): id",89565,89565,100.0,
+Recipe,dataset_version,TABLE_ONLY,(none),recipe_base_v1.parquet:source_version,recipe_base: source_version,612782,612782,100.0,REC has no dataset-version property; the table column is the source's version
+Recipe,source_id,COMPOSED,REC.provenance.source_ids,recipe_base_v1.parquet:source_id,"ledgers/data/REC.jsonl (ACTIVE, latest version per id): provenance.source_ids",89565,89565,100.0,
+Recipe,source_url,EXACT,REC.source_url,(table has raw_recipe_pointer only),"ledgers/data/REC.jsonl (ACTIVE, latest version per id): source_url",89565,89565,100.0,table omits the URL by design (licence)
+Recipe,source_domain,RELATED,(none),recipe_base_v1.parquet:source_family,recipe_base: source_family,612782,612782,100.0,"table column is the corpus family, not a URL domain; the domain is derivable only from REC.source_url"
+Recipe,license_class,TABLE_ONLY,(none),recipe_base_v1.parquet:licence_status,recipe_base: licence_status,612782,612782,100.0,REC has no licence property
+Recipe,source_checksum,RENAMED,REC.content_sha256,recipe_base_v1.parquet:raw_hash,"ledgers/data/REC.jsonl (ACTIVE, latest version per id): content_sha256",89565,89565,100.0,
+Recipe,title_raw,RENAMED,REC.title,recipe_base_v1.parquet:title_raw,"ledgers/data/REC.jsonl (ACTIVE, latest version per id): title",89565,89565,100.0,
+Recipe,title_normalized,ABSENT,(none),(none),n/a (no counterpart),,,,no normalised-title column was ever written (project law: normalisation is a new column; none built)
+Recipe,language,TABLE_ONLY,(none),recipe_base_v1.parquet:language,recipe_base: language,612782,612782,100.0,REC has no language property
+Recipe,locale,TABLE_ONLY,(none),recipe_base_v1.parquet:locale,recipe_base: locale,612782,612782,100.0,REC has no locale property
+Recipe,cuisine_labels,RENAMED,REC.cuisine,recipe_base_v1.parquet:cuisine_if_explicit,"ledgers/data/REC.jsonl (ACTIVE, latest version per id): cuisine",89565,60144,67.2,
+Recipe,dish_categories,RELATED,(none),recipe_identity_fk_v1.parquet:dish_family_candidate_id,recipe_identity_fk: dish_family_candidate_id,612782,198273,32.4,"candidate dish-family id, not category labels"
+Recipe,servings_raw,ABSENT,(none),(none),n/a (no counterpart),,,,no step extracts servings; no REC property or table column
+Recipe,servings_normalized,ABSENT,(none),(none),n/a (no counterpart),,,,as servings_raw
+Recipe,ingredient_mention_ids,RELATED,REC.n_ingredient_lines,(none),"ledgers/data/REC.jsonl (ACTIVE, latest version per id): n_ingredient_lines",89565,89565,100.0,only the count of ingredient lines is carried; the mention ledger is not materialised (see IngredientMention)
+Recipe,event_ids,RELATED,(none; GRAPH.event_ids),(none),GRAPH: 0 ledger rows (no ledgers/data/GRAPH.jsonl),0,0,,"the link is held on the GRAPH record (0 ledger rows), not on REC"
+Recipe,entity_ids,RELATED,(none; ENTITY.recipe_id),(none),ENTITY: 0 ledger rows (no ledgers/data/ENTITY.jsonl),0,0,,reverse link only: ENTITY.recipe_id (0 ledger rows)
+Recipe,recipe_graph_id,RELATED,(none; GRAPH.recipe_id),(none),GRAPH: 0 ledger rows (no ledgers/data/GRAPH.jsonl),0,0,,reverse link only: GRAPH.recipe_id (0 ledger rows)
+Recipe,duplicate_group_id,TABLE_ONLY,(none),recipe_identity_fk_v1.parquet:duplicate_group_id,recipe_identity_fk: duplicate_group_id,612782,612782,100.0,"identity tables, not REC"
+Recipe,annotation_tier,RELATED,(none),recipe_base_v1.parquet:quality_tier,recipe_base: quality_tier,612782,612782,100.0,"quality tier registry label, not the SSOT annotation tier vocabulary"
+Recipe,annotation_model,COMPOSED,(none),recipe_base_v1.parquet:ner_version + linker_version + parser_version + normalizer_version,recipe_base: parser_version,612782,612782,100.0,four version columns instead of one model field; rule/NER stages
+Recipe,prompt_version,ABSENT,(none),(none),n/a (no counterpart),,,,"no LLM prompt version is recorded for recipe annotation; production stages are rules/NER (parser_version, ner_version)"
+Recipe,schema_version,EXACT,REC.schema_version,(none),"ledgers/data/REC.jsonl (ACTIVE, latest version per id): schema_version",89565,89565,100.0,
+Recipe,validation_status,RENAMED,REC.verification.status,recipe_base_v1.parquet:human_verification_status,"ledgers/data/REC.jsonl (ACTIVE, latest version per id): verification.status",89565,89565,100.0,
+Recipe,validation_flags,ABSENT,(none),(none),n/a (no counterpart),,,,no per-recipe flag list; validator issue codes exist only in counts-only reports
+IngredientMention,mention_id,CODE_ONLY,(no schema),extraction/interfaces.py Mention.mention_id,n/a (not a ledger or table field),,,,code-level interface only
+IngredientMention,recipe_id,RELATED,QNT.recipe_id (line-level record),interfaces SourceText.text_id,n/a (not a ledger or table field),,,,"QNT is a line record, not a mention record"
+IngredientMention,raw_text,RELATED,QNT.raw,interfaces SourceText.raw,n/a (not a ledger or table field),,,,nearest property; semantics differ or the link is held on another record
+IngredientMention,source_span,RELATED,QNT.span,interfaces Mention.span (Span),n/a (not a ledger or table field),,,,nearest property; semantics differ or the link is held on another record
+IngredientMention,canonical_ingredient_id,RELATED,QNT.ingredient_id,interfaces LinkResult.selected_id,n/a (not a ledger or table field),,,,nearest property; semantics differ or the link is held on another record
+IngredientMention,candidate_ids,CODE_ONLY,(no schema; ALIAS.candidate_ingredient_ids is alias-level),interfaces LinkResult.candidates (concept_id),n/a (not a ledger or table field),,,,code-level interface only
+IngredientMention,variety,CODE_ONLY,(no schema; ING.facets.variety is canonical-level),interfaces Mention.attributes (ValueClaim.field),n/a (not a ledger or table field),,,,"attribute claims, not a fixed field"
+IngredientMention,form,CODE_ONLY,(no schema; ING.facets.form is canonical-level),interfaces Mention.attributes,n/a (not a ledger or table field),,,,code-level interface only
+IngredientMention,state,CODE_ONLY,(no schema; ING.facets.prep_state is canonical-level),interfaces Mention.attributes,n/a (not a ledger or table field),,,,code-level interface only
+IngredientMention,size,RELATED,QNT.parsed.size,interfaces Mention.attributes,n/a (not a ledger or table field),,,,nearest property; semantics differ or the link is held on another record
+IngredientMention,quantity_id,RELATED,QNT.id,interfaces QuantityParseResult.result_id,n/a (not a ledger or table field),,,,nearest property; semantics differ or the link is held on another record
+IngredientMention,role,ABSENT,(none),(none),n/a (no counterpart),,,,no extractor for ingredient role (main/garnish) exists
+IngredientMention,optional,RELATED,QNT.qualifiers (string list),(none),n/a (not a ledger or table field),,,,"carried as a qualifier string, not a boolean"
+IngredientMention,divided,RELATED,QNT.qualifiers (string list),(none),n/a (not a ledger or table field),,,,as optional
+IngredientMention,reserved,RELATED,QNT.qualifiers (string list),(none),n/a (not a ledger or table field),,,,as optional; reserved portions are never implicit by design (D-074)
+IngredientMention,brand,ABSENT,(none),(none),n/a (no counterpart),,,,no extractor for brand
+IngredientMention,canonicalization_status,RELATED,ALIAS.link_band,interfaces LinkResult.failure / selected_id is None,n/a (not a ledger or table field),,,,"alias link band is per alias, not per mention"
+IngredientMention,provenance,CODE_ONLY,(no schema; QNT.provenance is the nearest),interfaces Provenance,n/a (not a ledger or table field),,,,code-level interface only
+IngredientMention,annotation_confidence_features,ABSENT,(none),(none),n/a (no counterpart),,,,the confidence vector (decision/confidence.py) is answer-level; no per-mention features recorded
+CanonicalIngredient,ingredient_id,RENAMED,ING.id,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): id",2048,2048,100.0,
+CanonicalIngredient,preferred_name,RENAMED,ING.canonical_name,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): canonical_name",2048,2048,100.0,
+CanonicalIngredient,food_category,RENAMED,ING.category,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): category",2048,631,30.8,
+CanonicalIngredient,parent_id,RENAMED,ING.parent_ids (list),,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): parent_ids",2048,315,15.4,"single id in SSOT, list in the schema"
+CanonicalIngredient,scientific_name,EXACT,ING.scientific_name,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): scientific_name",2048,0,0.0,
+CanonicalIngredient,foodon_id,RENAMED,ING.crosswalks.foodon.external_id,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): crosswalks.foodon.external_id",2048,849,41.5,
+CanonicalIngredient,fdc_ids,RENAMED,ING.crosswalks.fdc.external_id,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): crosswalks.fdc.external_id",2048,0,0.0,single external id in the schema (list in SSOT)
+CanonicalIngredient,aliases,RELATED,(reverse: ALIAS.ingredient_id),,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): ingredient_id",4103,4103,100.0,"held in the ALIAS ledger, not on ING"
+CanonicalIngredient,regional_aliases,RELATED,(reverse: ALIAS.region),,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): region",4103,3515,85.7,as aliases
+CanonicalIngredient,languages,RELATED,(reverse: ALIAS.language),,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): language",4103,4103,100.0,as aliases
+CanonicalIngredient,known_forms,RENAMED,ING.facets.form,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): facets.form",2048,235,11.5,
+CanonicalIngredient,known_states,RENAMED,ING.facets.prep_state,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): facets.prep_state",2048,0,0.0,
+CanonicalIngredient,portion_profile_ids,RELATED,(reverse: POR.ingredient_id),,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,POR has 0 ledger rows
+CanonicalIngredient,chemistry_link_ids,RELATED,(reverse: IMAP.ingredient_id),,"ledgers/data/IMAP.jsonl (ACTIVE, latest version per id): ingredient_id",30294,30294,100.0,held in the IMAP ledger (rows counted are IMAP rows with an ingredient id)
+CanonicalIngredient,status,EXACT,ING.status,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): status",2048,2048,100.0,
+CanonicalIngredient,version_created,RENAMED,ING.created_at (and ING.version),,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): created_at",2048,2048,100.0,
+CanonicalIngredient,human_verified,RENAMED,ING.verification.status,,"ledgers/data/ING.jsonl (ACTIVE, latest version per id): verification.status",2048,2048,100.0,"status enum, not boolean"
+Alias,alias_id,RENAMED,ALIAS.id,,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): id",4103,4103,100.0,
+Alias,surface,EXACT,ALIAS.surface,,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): surface",4103,4103,100.0,
+Alias,canonical_ingredient_id,RENAMED,ALIAS.ingredient_id,,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): ingredient_id",4103,4103,100.0,null when the alias is ambiguous (candidate_ingredient_ids holds the options)
+Alias,language,EXACT,ALIAS.language,,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): language",4103,4103,100.0,
+Alias,locale,RELATED,ALIAS.region,,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): region",4103,3515,85.7,"region, not a locale code"
+Alias,alias_type,EXACT,ALIAS.alias_type,,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): alias_type",4103,4103,100.0,
+Alias,source_count,RELATED,ALIAS.corpus_frequency,,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): corpus_frequency",4103,2207,53.8,"corpus frequency, not a count of sources"
+Alias,source_domains,ABSENT,(none),(none),n/a (no counterpart),,,,ALIAS carries corpus_frequency only; no domain list
+Alias,verification,EXACT,ALIAS.verification,,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): verification.status",4103,4103,100.0,
+Alias,first_seen_version,RELATED,ALIAS.created_at (and ALIAS.version),,"ledgers/data/ALIAS.jsonl (ACTIVE, latest version per id): created_at",4103,4103,100.0,"creation time/version of the record, not first corpus version"
+Quantity,quantity_id,RENAMED,QNT.id,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,raw_text,RENAMED,QNT.raw,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,quantity_type,RENAMED,QNT.parsed.kind,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,enum NUMBER/RANGE/FRACTION/MIXED/MULTIPLIER/PACKAGE/QUALITATIVE/NONE
+Quantity,value,RENAMED,QNT.parsed.value,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,lower,RENAMED,QNT.parsed.low,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,upper,RENAMED,QNT.parsed.high,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,fraction,RELATED,QNT.parsed.value (kind FRACTION / MIXED),,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,no separate fraction field; fractions are kinds of value
+Quantity,count,EXACT,QNT.count,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,unit_id,RENAMED,QNT.parsed.unit_id,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,unit_locale,RENAMED,QNT.locale,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,size,RENAMED,QNT.parsed.size,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,packing,RELATED,QNT.parsed.package_size,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,"package size, not packing (POR.packing exists on the portion record)"
+Quantity,container,ABSENT,(none),(none),n/a (no counterpart),,,,no container property in QNT
+Quantity,approximate,RELATED,QNT.parsed.qualifier,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,"qualifier string, not a boolean"
+Quantity,qualitative_term,RENAMED,QNT.parsed.qualifier / normalized.qualitative,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,optional,RELATED,QNT.qualifiers (string list),,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,nearest property; semantics differ or the link is held on another record
+Quantity,divided,RELATED,QNT.qualifiers (string list),,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,nearest property; semantics differ or the link is held on another record
+Quantity,reserved,RELATED,QNT.qualifiers (string list),,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,nearest property; semantics differ or the link is held on another record
+Quantity,normalized_mass_g,RENAMED,QNT.mass_g,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,normalized_volume_ml,RENAMED,QNT.volume_ml,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,conversion_record_id,RENAMED,"QNT.portion_id (+ conversion_method, conversion_path)",,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+Quantity,provenance,EXACT,QNT.provenance,,QNT: 0 ledger rows (no ledgers/data/QNT.jsonl),0,0,,
+PortionProfile,portion_profile_id,RENAMED,POR.id,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,ingredient_id,EXACT,POR.ingredient_id,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,state,RELATED,POR.form,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,no separate prep-state property
+PortionProfile,form,EXACT,POR.form,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,size_class,ABSENT,(none),(none),n/a (no counterpart),,,,POR has no size property; SR portion size words are not modelled (Mac ticket A5 concerns size words)
+PortionProfile,packing,EXACT,POR.packing,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,portion_value,RELATED,POR.from_unit_id,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,value is implicit 1 per from_unit_id
+PortionProfile,portion_unit,RENAMED,POR.from_unit_id,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,unit_locale,RENAMED,POR.locale,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,mass_g,RENAMED,POR.grams_per_unit.value,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,mass_low_g,RENAMED,POR.grams_per_unit.low,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,mass_high_g,RENAMED,POR.grams_per_unit.high,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,conversion_class,RELATED,QNT.conversion_method (on the quantity record),,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,not on POR
+PortionProfile,source_type,RENAMED,POR.basis,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,"POR.basis enum is MEASURED / DATABASE / CONVENTION / RECIPE_CORPUS_EMPIRICAL_DISTRIBUTION; the composition/ plan names basis SR_PORTION, which is NOT in the enum (conformance gap)"
+PortionProfile,source_record,COMPOSED,POR.provenance.source_ids / provenance.locator,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+PortionProfile,sample_count,ABSENT,(none),(none),n/a (no counterpart),,,,no sample_count property; the composition/ POR candidates need one (board T3-C08-R1)
+PortionProfile,source_diversity,ABSENT,(none),(none),n/a (no counterpart),,,,no property
+PortionProfile,verification,EXACT,POR.verification,,POR: 0 ledger rows (no ledgers/data/POR.jsonl),0,0,,
+Event,event_id,RENAMED,EVT.id,state_graph/event_log.py EngineEvent.event_id,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,
+Event,recipe_id,EXACT,EVT.recipe_id,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,
+Event,event_index,COMPOSED,EVT.step_index + EVT.ordinal,EngineEvent.order,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,
+Event,process_id,EXACT,EVT.process_id,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,
+Event,process_modifiers,CODE_ONLY,(none),EngineEvent.attributes,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,EVT has no modifiers property (EVD.process.modifiers is evidence-side)
+Event,input_entity_ids,RELATED,EVT.input_state_ids,EngineEvent.consumes,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,"state ids, not entity ids"
+Event,output_entity_ids,RELATED,EVT.output_state_ids,EngineEvent.produces,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,"state ids, not entity ids"
+Event,tool_ids,EXACT,EVT.tool_ids,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,
+Event,medium,RELATED,EVT.condition_id -> COND.medium,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,held on the condition record
+Event,temperature_C,RELATED,EVT.condition_id -> COND.temperatures,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,held on the condition record
+Event,temperature_raw,RELATED,EVT.condition_id -> COND.temperatures (raw),,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,held on the condition record
+Event,duration_s,RELATED,EVT.condition_id -> COND.duration,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,held on the condition record
+Event,duration_raw,RELATED,EVT.condition_id -> COND.duration (raw),,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,held on the condition record
+Event,pressure,RELATED,EVT.condition_id -> COND.pressure,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,held on the condition record
+Event,pH,RELATED,EVT.condition_id -> COND.ph_initial / ph_final,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,held on the condition record
+Event,moisture_condition,RELATED,EVT.condition_id -> COND.moisture,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,held on the condition record
+Event,endpoint_states,RENAMED,EVT.endpoint,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,single string in the schema
+Event,source_span,RENAMED,EVT.span,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,
+Event,provenance,EXACT,EVT.provenance,,EVT: 0 ledger rows (no ledgers/data/EVT.jsonl),0,0,,
+Event,validation_flags,ABSENT,(none),(none),n/a (no counterpart),,,,no flags property; replay/validator issue codes appear in counts-only reports
+Entity,entity_id,RENAMED,ENTITY.id,,ENTITY: 0 ledger rows (no ledgers/data/ENTITY.jsonl),0,0,,
+Entity,recipe_id,EXACT,ENTITY.recipe_id,,ENTITY: 0 ledger rows (no ledgers/data/ENTITY.jsonl),0,0,,
+Entity,entity_type,RENAMED,ENTITY.kind,,ENTITY: 0 ledger rows (no ledgers/data/ENTITY.jsonl),0,0,,enum INGREDIENT_LOT/INTERMEDIATE/TOOL_CONTENTS/FINAL_DISH/DISCARD/UNKNOWN
+Entity,canonical_food_id,RENAMED,ENTITY.ingredient_id,,ENTITY: 0 ledger rows (no ledgers/data/ENTITY.jsonl),0,0,,
+Entity,name,RENAMED,ENTITY.label,,ENTITY: 0 ledger rows (no ledgers/data/ENTITY.jsonl),0,0,,
+Entity,parent_entity_ids,ABSENT,(none),state_graph/event_log.py Allocation.parent / child,n/a (no counterpart),,,,"lineage lives in event allocations (code), not on the entity record"
+Entity,created_by_event,RELATED,(reverse: STATE.produced_by_event_id),,ENTITY: 0 ledger rows (no ledgers/data/ENTITY.jsonl),0,0,,held on the state record
+Entity,destroyed_or_consumed_by_event,ABSENT,(none),EngineEvent.consumes / discards,n/a (no counterpart),,,,no property on ENTITY
+Entity,quantity_state_id,ABSENT,(none; reverse STATE.entity_id),,n/a (no counterpart),,,,link is by STATE.entity_id
+Entity,current_state_id,ABSENT,"(none; reverse STATE.entity_id, max state_version)",,n/a (no counterpart),,,,"derived by query, not stored"
+State,state_id,RENAMED,STATE.id,,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,
+State,entity_id,EXACT,STATE.entity_id,,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,
+State,event_index,RELATED,STATE.produced_by_event_id (+ state_version),,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"event id, not index"
+State,timestamp,ABSENT,(none),(none),n/a (no counterpart),,,,no clock; ordering by state_version only
+State,form,EXACT,STATE.form,,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,
+State,physical_state,RELATED,STATE.variables[SVAR id],,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"state variables are keyed by SVAR id; the nearest registry row is SVAR-FUT-005 phase (future, 0 rows)"
+State,visual_state,RELATED,STATE.variables[SVAR id],,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"SVAR-FUT-008 colour (future, 0 rows)"
+State,thermal_state,RELATED,STATE.variables[SVAR id],,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"nearest registry row is SVAR-FUT-012 surface/core temperature (future, 0 rows)"
+State,texture_state,RELATED,STATE.variables[SVAR id],,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"SVAR-FUT-007 texture (future, 0 rows)"
+State,temperature_C,RELATED,STATE.variables[SVAR id],,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"SVAR-FUT-012 surface/core temperature (future, 0 rows); no ACTIVE temperature SVAR"
+State,moisture,RELATED,STATE.variables[SVAR id],,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"SVAR-FUT-001 moisture content (future, 0 rows)"
+State,water_activity,RELATED,STATE.variables[SVAR id],,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"SVAR-FUT-002 water activity (future, 0 rows)"
+State,pH,RELATED,STATE.variables[SVAR id],,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"SVAR-FUT-013 pH / acidity (future, 0 rows)"
+State,quantity_mass_g,RENAMED,STATE.quantity,,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,
+State,chemical_state_ref,COMPOSED,STATE.variables[SVAR id] (chemical SVARs),,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,
+State,field_provenance,RELATED,STATE.provenance,,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,"record-level only, not per field"
+State,uncertainty,RENAMED,STATE.variables.*.uncertainty,,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,
+State,observation_source,RELATED,STATE.belief,,STATE: 0 ledger rows (no ledgers/data/STATE.jsonl),0,0,,enum PREDICTED/OBSERVED/PLANNED
+EvidenceAtom,evidence_id,RENAMED,EVD.id,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): id",17978,17978,100.0,
+EvidenceAtom,subject_type,RELATED,(implicit: EVD.matrix is an ingredient matrix),,n/a (implicit in the EVD triple; no property to count),,,,EVD is a fixed matrix/process/target triple; no subject_type property
+EvidenceAtom,subject_id,RELATED,EVD.matrix.ingredient_id,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): matrix.ingredient_id",17978,11569,64.4,nearest property; EVD fixes the subject as an ingredient matrix
+EvidenceAtom,relation,RELATED,EVD.derived.direction,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): derived.direction",17978,17978,100.0,"direction enum, not a free relation"
+EvidenceAtom,object_type,RELATED,(implicit: EVD.target),,n/a (implicit in the EVD triple; no property to count),,,,no object_type property
+EvidenceAtom,object_id,RELATED,EVD.target.state_variable_id,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): target.state_variable_id",17978,17978,100.0,the object is always a state variable
+EvidenceAtom,process_id,RENAMED,EVD.process.process_id,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): process.process_id",17978,17821,99.1,
+EvidenceAtom,conditions,RENAMED,EVD.process.condition_id,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): process.condition_id",17978,17978,100.0,
+EvidenceAtom,measurement_target,RENAMED,EVD.target.state_variable_id / target.raw_name,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): target.raw_name",17978,17978,100.0,
+EvidenceAtom,measurement_value,COMPOSED,EVD.before / after / derived,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): after.value|derived.retention_factor|derived.yield_factor|derived.delta|derived.percent_change|derived.log_fold_change",17978,17978,100.0,counted: any of after.value or a derived value is populated
+EvidenceAtom,measurement_unit,RENAMED,EVD.after.unit,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): after.unit",17978,3870,21.5,
+EvidenceAtom,metric,COMPOSED,"EVD.derived.{delta, percent_change, retention_factor, log_fold_change, yield_factor}",,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): derived.retention_factor",17978,17482,97.2,
+EvidenceAtom,matrix_description,RENAMED,"EVD.matrix.raw_name (+ food_group, form, ...)",,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): matrix.raw_name",17978,17978,100.0,
+EvidenceAtom,analytical_method,RENAMED,EVD.measurement_method_id,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): measurement_method_id",17978,14108,78.5,
+EvidenceAtom,study_id,RENAMED,EVD.study_ids,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): study_ids",17978,3870,21.5,
+EvidenceAtom,source_id,EXACT,EVD.source_id,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): source_id",17978,17978,100.0,
+EvidenceAtom,doi,RELATED,(via SRC / STUDY records),,n/a (implicit in the EVD triple; no property to count),,,,no DOI property on EVD
+EvidenceAtom,table_or_figure,COMPOSED,EVD.provenance.locator,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): provenance.locator",17978,17978,100.0,
+EvidenceAtom,source_span,RELATED,EVD.provenance.locator,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): provenance.locator",17978,17978,100.0,"locator string, not a character span"
+EvidenceAtom,evidence_class,RENAMED,EVD.tier,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): tier",17978,17978,100.0,E1-E7
+EvidenceAtom,verification,EXACT,EVD.verification,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): verification.status",17978,17978,100.0,
+EvidenceAtom,independence_group,EXACT,EVD.independence_group,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): independence_group",17978,17978,100.0,
+EvidenceAtom,quality_features,COMPOSED,EVD.applicability / design / censored / n_replicates,,"ledgers/data/EVD.jsonl (ACTIVE, latest version per id): design",17978,17978,100.0,
+ClaimLedger,claim_id,RENAMED,CLM.id,,CLM: 0 ledger rows (no ledgers/data/CLM.jsonl),0,0,,
+ClaimLedger,response_id,ABSENT,(none),(none),n/a (no counterpart),,,,"CLM is a research-claim ledger (statement, approval, gate_ids); it has no answer/response link"
+ClaimLedger,claim_text,RENAMED,CLM.statement,,CLM: 0 ledger rows (no ledgers/data/CLM.jsonl),0,0,,
+ClaimLedger,claim_type,RELATED,CLM.claim_type,,CLM: 0 ledger rows (no ledgers/data/CLM.jsonl),0,0,,"same name, different vocabulary: CLM enum is DESCRIPTIVE/COMPARATIVE/CAUSAL/SOTA/NEGATIVE_RESULT (a research claim kind), not an answer-claim kind (numeric, directional, ...)"
+ClaimLedger,evidence_ids,EXACT,CLM.evidence_ids,,CLM: 0 ledger rows (no ledgers/data/CLM.jsonl),0,0,,
+ClaimLedger,model_id,ABSENT,(none),(none),n/a (no counterpart),,,,no model id on CLM
+ClaimLedger,model_version,ABSENT,(none),(none),n/a (no counterpart),,,,no model version on CLM
+ClaimLedger,confidence_class,ABSENT,(none),"decision/confidence.py (runtime confidence vector, ordinal)",n/a (no counterpart),,,,not a ledger field
+ClaimLedger,citation_required,ABSENT,(none),(none),n/a (no counterpart),,,,claim checking is runtime (generation/claims.py check_claims); nothing persisted
+ClaimLedger,citation_refs,ABSENT,(none),generation/claims.py CIT regex output (runtime),n/a (no counterpart),,,,runtime only
+ClaimLedger,verification_status,RELATED,CLM.approval (DRAFT/HUMAN_APPROVED/REJECTED) and CLM.verification.status,,CLM: 0 ledger rows (no ledgers/data/CLM.jsonl),0,0,,nearest property; semantics differ or the link is held on another record
+InverseDesignTrial,trial_id,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,initial_state_id,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,target_state,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,candidate_ingredient_ids,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,candidate_process,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,candidate_conditions,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,constraints,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,optimizer,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,forward_model_version,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,predicted_state,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,prediction_interval,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,evidence_distance,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,OOD_flag,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,feasible_flag,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,heldout_or_real_outcome,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"
+InverseDesignTrial,target_error,ABSENT,(no schema),(none),n/a (no counterpart),,,,"no InverseDesignTrial schema or code; the contract belongs to FlavorTwin, out of the course scope (T9-C06 topic anchor)"

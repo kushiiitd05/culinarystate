@@ -1,0 +1,3061 @@
+{
+  "citable": false,
+  "code_sha256": "d096da4009dd53cc65b5596dcce61880cab37dd4dff59525acf895af17aed2b5",
+  "contains_ids": false,
+  "contains_text": false,
+  "counts_as_human_gate": false,
+  "families": {
+    "FOODCOM": {
+      "heat_l1": {
+        "contract_bindings": {
+          "after": 2102295,
+          "before": 2102847,
+          "delta": -552
+        },
+        "driver_bounded_events": {
+          "after": 87139,
+          "before": 88113,
+          "delta": -974
+        },
+        "driver_ready_events": {
+          "after": 55662,
+          "before": 56214,
+          "delta": -552
+        },
+        "gas_mark_only_events": {
+          "after": 246,
+          "before": 237,
+          "delta": 9
+        },
+        "heat_events": {
+          "after": 1503261,
+          "before": 1503261,
+          "delta": 0
+        },
+        "input_basis": {
+          "duration": {
+            "TEXT_STATED": {
+              "after": 463983,
+              "before": 463983,
+              "delta": 0
+            }
+          },
+          "lid_state": {
+            "CUE": {
+              "after": 137373,
+              "before": 137373,
+              "delta": 0
+            }
+          },
+          "matrix_class": {
+            "FOOD_GROUP": {
+              "after": 493247,
+              "before": 493247,
+              "delta": 0
+            }
+          },
+          "medium": {
+            "PROCESS_DEFINITION": {
+              "after": 783518,
+              "before": 783518,
+              "delta": 0
+            }
+          },
+          "piece_size_class": {
+            "CUT_HISTORY": {
+              "after": 139389,
+              "before": 139389,
+              "delta": 0
+            }
+          },
+          "start_mode": {
+            "CUE": {
+              "after": 29123,
+              "before": 29123,
+              "delta": 0
+            }
+          },
+          "temperature_profile": {
+            "CARRIED_SETPOINT": {
+              "after": 70835,
+              "before": 69839,
+              "delta": 996
+            },
+            "PHYSICAL_DEFINITION": {
+              "after": 99745,
+              "before": 99495,
+              "delta": 250
+            },
+            "TEXT_STATED": {
+              "after": 48952,
+              "before": 55364,
+              "delta": -6412
+            }
+          }
+        },
+        "matrix_class_status": {
+          "MEASURED": {
+            "after": 493247,
+            "before": 493247,
+            "delta": 0
+          },
+          "UNKNOWN": {
+            "after": 1010014,
+            "before": 1010014,
+            "delta": 0
+          }
+        },
+        "new_in_v04": {
+          "aqueous_events_with_stated_temperature_by_bucket_v04": {
+            "T_100_105": {
+              "ALL": 22
+            },
+            "T_100_OR_BELOW": {
+              "ALL": 99
+            },
+            "T_105_120": {
+              "ALL": 175
+            },
+            "T_120_150": {
+              "ALL": 62
+            },
+            "T_ABOVE_150": {
+              "PROC__000019": 16,
+              "PROC__000020": 5,
+              "PROC__000023": 1,
+              "PROC__000024": 3,
+              "PROC__000025": 3
+            }
+          },
+          "endpoint_cues_per_event": {
+            "0": 1015927,
+            "1": 400824,
+            "2": 81084,
+            "3": 5426
+          },
+          "endpoint_heat_events_with_cue": 487334,
+          "events_with_ambient_temperature_by_family": {
+            "WET_HEAT": 1895
+          },
+          "events_without_any_food_group": 424063,
+          "exceptions_by_class": {},
+          "matrix_groups_events_by_member_count": {
+            "1": 493247,
+            "2": 227933,
+            "3": 166228,
+            "4": 191790
+          },
+          "provenance_axes": {
+            "bound_axes": 3347258,
+            "bound_with_basis": 3347258,
+            "bound_with_row": 3347258,
+            "bound_with_span_id": 3347258,
+            "unknown_axes": 9759923,
+            "unknown_with_reason": 9759923
+          },
+          "temperature_differs_from_v01_by_reason_and_family": {
+            "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": {
+              "WET_HEAT": 1700
+            },
+            "OWNED_BY_OTHER_EVENT": {
+              "DRY_HEAT": 865,
+              "FAT_HEAT": 668,
+              "HEAT_GENERAL": 519,
+              "WET_HEAT": 376
+            },
+            "TARGET_FOOD_TEMPERATURE": {
+              "DRY_HEAT": 1412,
+              "FAT_HEAT": 115,
+              "HEAT_GENERAL": 730,
+              "WET_HEAT": 109
+            }
+          }
+        },
+        "recipes_sampled": {
+          "after": 522517,
+          "before": 522517,
+          "delta": 0
+        }
+      },
+      "heat_l2": {
+        "cap_flag_typical": {
+          "ALL_MEMBERS_DRY_CLASS": {
+            "after": 2058,
+            "before": 0,
+            "delta": 2058
+          },
+          "ALTITUDE_ASSUMED_SEA_LEVEL": {
+            "after": 638162,
+            "before": 640220,
+            "delta": -2058
+          },
+          "BOILING_POINT_ELEVATION_NOT_MODELLED": {
+            "after": 638167,
+            "before": 640225,
+            "delta": -2058
+          },
+          "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": {
+            "after": 182,
+            "before": 430,
+            "delta": -248
+          },
+          "CAP_NOT_LIFTED_NO_DRYING_MODEL": {
+            "after": 638167,
+            "before": 640225,
+            "delta": -2058
+          },
+          "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": {
+            "after": 29467,
+            "before": 27409,
+            "delta": 2058
+          },
+          "EVAPORATION_CAP_APPLIED": {
+            "after": 432403,
+            "before": 432991,
+            "delta": -588
+          },
+          "EVAPORATION_CAP_NOT_BINDING": {
+            "after": 205764,
+            "before": 207234,
+            "delta": -1470
+          },
+          "MATRIX_AMBIGUOUS_MOIST_ASSUMED": {
+            "after": 68274,
+            "before": 44407,
+            "delta": 23867
+          },
+          "MATRIX_DRY_CLASS_UNCAPPED": {
+            "after": 29467,
+            "before": 27409,
+            "delta": 2058
+          },
+          "MATRIX_UNKNOWN_MOIST_ASSUMED": {
+            "after": 201637,
+            "before": 486525,
+            "delta": -284888
+          },
+          "NOT_A_ZONE_MEAN_DOSE": {
+            "after": 55146,
+            "before": 55146,
+            "delta": 0
+          },
+          "PRESSURE_ASSUMED_1ATM": {
+            "after": 641894,
+            "before": 643692,
+            "delta": -1798
+          },
+          "PRESSURE_PROCESS_BRACKET_FROM_SATURATION_TEMPERATURE": {
+            "after": 5,
+            "before": 5,
+            "delta": 0
+          },
+          "STATED_LIQUID_T_ABOVE_TBOIL": {
+            "after": 182,
+            "before": 430,
+            "delta": -248
+          },
+          "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": {
+            "after": 142918,
+            "before": 6869,
+            "delta": 136049
+          },
+          "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": {
+            "after": 638167,
+            "before": 640225,
+            "delta": -2058
+          }
+        },
+        "core_known_typical": {
+          "False": {
+            "after": 612488,
+            "before": 612488,
+            "delta": 0
+          },
+          "True": {
+            "after": 55146,
+            "before": 55146,
+            "delta": 0
+          }
+        },
+        "layer_version": {
+          "after": "scenario-layer-L2-0.4.0-draft",
+          "before": "scenario-layer-L2-0.3.0-draft"
+        },
+        "new_in_v04": {
+          "ambient_temperature_not_used_as_liquid_t_typical": 193,
+          "stated_liquid_typical_by_stated_c_and_member": {
+            "100_TO_105": {
+              "NO_SOLUTE_RICH_MEMBER": 8,
+              "SOLUTE_RICH_MEMBER": 8
+            },
+            "105_TO_120": {
+              "NO_SOLUTE_RICH_MEMBER": 47,
+              "SOLUTE_RICH_MEMBER": 63
+            },
+            "120_TO_150": {
+              "NO_SOLUTE_RICH_MEMBER": 15,
+              "SOLUTE_RICH_MEMBER": 21
+            },
+            "ABOVE_150": {
+              "NO_SOLUTE_RICH_MEMBER": 9,
+              "SOLUTE_RICH_MEMBER": 11
+            }
+          },
+          "stated_liquid_typical_core_computed_by_stated_c": {
+            "100_TO_105": 2,
+            "105_TO_120": 4,
+            "120_TO_150": 2,
+            "ABOVE_150": 2
+          }
+        },
+        "stated_liquid_lifted_typical": {
+          "after": 182,
+          "before": 430,
+          "delta": -248
+        },
+        "stated_liquid_lifted_typical_by_stated_c": {
+          "100_TO_105": {
+            "after": 16,
+            "before": 21,
+            "delta": -5
+          },
+          "105_TO_120": {
+            "after": 110,
+            "before": 149,
+            "delta": -39
+          },
+          "120_TO_150": {
+            "after": 36,
+            "before": 69,
+            "delta": -33
+          },
+          "ABOVE_150": {
+            "after": 20,
+            "before": 191,
+            "delta": -171
+          }
+        },
+        "status": {
+          "SCENARIO_COMPUTED": {
+            "after": 667634,
+            "before": 667634,
+            "delta": 0
+          },
+          "SCENARIO_UNKNOWN": {
+            "after": 768753,
+            "before": 768753,
+            "delta": 0
+          },
+          "UNSUPPORTED_MEDIUM": {
+            "after": 66874,
+            "before": 66874,
+            "delta": 0
+          }
+        },
+        "surface_state_typical": {
+          "SURFACE_DRYING_POSSIBLE": {
+            "after": 22155,
+            "before": 22129,
+            "delta": 26
+          },
+          "SURFACE_IMMERSED_WET": {
+            "after": 205048,
+            "before": 205353,
+            "delta": -305
+          },
+          "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": {
+            "after": 29467,
+            "before": 27409,
+            "delta": 2058
+          },
+          "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": {
+            "after": 393624,
+            "before": 394212,
+            "delta": -588
+          },
+          "SURFACE_WET_AT_TBOIL": {
+            "after": 16624,
+            "before": 16650,
+            "delta": -26
+          },
+          "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": {
+            "after": 716,
+            "before": 1881,
+            "delta": -1165
+          }
+        },
+        "transition": {
+          "physically_possible": {
+            "after": 667634,
+            "before": 667634,
+            "delta": 0
+          },
+          "unsupported": {
+            "after": 835627,
+            "before": 835627,
+            "delta": 0
+          }
+        },
+        "typical_core_reaches_70": {
+          "False": {
+            "after": 2613,
+            "before": 2678,
+            "delta": -65
+          },
+          "True": {
+            "after": 52533,
+            "before": 52468,
+            "delta": 65
+          }
+        },
+        "v03_to_v04_event_comparison": {
+          "counts": {
+            "bath_basis_changed": {
+              "GENTLE": {
+                "L1__CARRIED_SETPOINT__SD__012": 59,
+                "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 1028,
+                "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 250,
+                "L1__TEXT_STATED__SD__001": 116,
+                "L1__TEXT_STATED__SD__002": 1,
+                "L1__TEXT_STATED__SD__003": 2,
+                "L1__TEXT_STATED__SD__004": 9,
+                "L1__TEXT_STATED__SD__005": 6,
+                "L1__TEXT_STATED__SD__008": 2,
+                "L1__TEXT_STATED__SD__010": 742,
+                "L1__TEXT_STATED__SD__012": 697,
+                "L1__TEXT_STATED__SD__020": 9
+              },
+              "INTENSE": {
+                "L1__CARRIED_SETPOINT__SD__012": 59,
+                "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 1028,
+                "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 250,
+                "L1__TEXT_STATED__SD__001": 116,
+                "L1__TEXT_STATED__SD__002": 1,
+                "L1__TEXT_STATED__SD__003": 2,
+                "L1__TEXT_STATED__SD__004": 9,
+                "L1__TEXT_STATED__SD__005": 6,
+                "L1__TEXT_STATED__SD__008": 2,
+                "L1__TEXT_STATED__SD__010": 742,
+                "L1__TEXT_STATED__SD__012": 697,
+                "L1__TEXT_STATED__SD__020": 9
+              },
+              "TYPICAL": {
+                "L1__CARRIED_SETPOINT__SD__012": 59,
+                "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 1028,
+                "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 250,
+                "L1__TEXT_STATED__SD__001": 116,
+                "L1__TEXT_STATED__SD__002": 1,
+                "L1__TEXT_STATED__SD__003": 2,
+                "L1__TEXT_STATED__SD__004": 9,
+                "L1__TEXT_STATED__SD__005": 6,
+                "L1__TEXT_STATED__SD__008": 2,
+                "L1__TEXT_STATED__SD__010": 742,
+                "L1__TEXT_STATED__SD__012": 697,
+                "L1__TEXT_STATED__SD__020": 9
+              }
+            },
+            "bath_c_changed": {
+              "GENTLE": 2952,
+              "INTENSE": 2947,
+              "TYPICAL": 2948
+            },
+            "changed": {
+              "GENTLE": {
+                "core_cook_value_min": 225,
+                "core_end_c": 238,
+                "surface_cook_value_min": 338,
+                "volume_avg_end_c": 238
+              },
+              "INTENSE": {
+                "core_cook_value_min": 238,
+                "core_end_c": 238,
+                "surface_cook_value_min": 338,
+                "volume_avg_end_c": 238
+              },
+              "TYPICAL": {
+                "core_cook_value_min": 238,
+                "core_end_c": 238,
+                "surface_cook_value_min": 338,
+                "volume_avg_end_c": 238
+              }
+            },
+            "status": {
+              "SCENARIO_COMPUTED": {
+                "SCENARIO_COMPUTED": 667634
+              },
+              "SCENARIO_UNKNOWN": {
+                "SCENARIO_UNKNOWN": 768753
+              },
+              "UNSUPPORTED_MEDIUM": {
+                "UNSUPPORTED_MEDIUM": 66874
+              }
+            },
+            "t_cap_changed": {
+              "GENTLE": 2298,
+              "INTENSE": 2298,
+              "TYPICAL": 2298
+            },
+            "volume_avg_dose_equal_to_0_2_0_name": {
+              "GENTLE": {
+                "False": 238,
+                "True": 54908
+              },
+              "INTENSE": {
+                "False": 238,
+                "True": 54908
+              },
+              "TYPICAL": {
+                "False": 238,
+                "True": 54908
+              }
+            },
+            "zone_mean_dose_gt_dose_at_volume_avg_t": {
+              "GENTLE": {
+                "True": 55146
+              },
+              "INTENSE": {
+                "True": 55146
+              },
+              "TYPICAL": {
+                "True": 55146
+              }
+            }
+          },
+          "events": 1503261,
+          "flag_added_typical": {
+            "ALL_MEMBERS_DRY_CLASS": 2058,
+            "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 1173,
+            "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": 2058,
+            "EVAPORATION_CAP_APPLIED": 1173,
+            "EVAPORATION_CAP_NOT_BINDING": 57,
+            "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 23867,
+            "MATRIX_DRY_CLASS_UNCAPPED": 2058,
+            "OVEN_OR_AMBIENT_TEMPERATURE_STATED_NOT_USED_AS_LIQUID_T": 193,
+            "PRESSURE_ASSUMED_1ATM": 20,
+            "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 136049
+          },
+          "flag_removed_typical": {
+            "ALTITUDE_ASSUMED_SEA_LEVEL": 2058,
+            "BOILING_POINT_ELEVATION_NOT_MODELLED": 2058,
+            "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 1761,
+            "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 248,
+            "CAP_NOT_LIFTED_NO_DRYING_MODEL": 2058,
+            "EVAPORATION_CAP_APPLIED": 1761,
+            "EVAPORATION_CAP_NOT_BINDING": 1527,
+            "MATRIX_UNKNOWN_MOIST_ASSUMED": 284888,
+            "PRESSURE_ASSUMED_1ATM": 1818,
+            "STATED_LIQUID_T_ABOVE_TBOIL": 248,
+            "SURFACE_DOSE_AT_TBOIL_WET_PERIOD_ONLY": 45,
+            "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 2058
+          }
+        }
+      },
+      "nonheat_l1": {
+        "any_l1_value_by_family": {
+          "COOLING": {
+            "after": 297413,
+            "before": 297413,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 48248,
+            "before": 48248,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 541273,
+            "before": 541273,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 381427,
+            "before": 381427,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 12490,
+            "before": 12490,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 11057,
+            "before": 11057,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 269657,
+            "before": 269657,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 20459,
+            "before": 20459,
+            "delta": 0
+          }
+        },
+        "binder_version": {
+          "after": "nonheat-binding-L1-0.2.0-draft",
+          "before": "nonheat-binding-L1-0.1.0-draft"
+        },
+        "driver_ready_events_by_family": {
+          "COOLING": {
+            "after": 3627,
+            "before": 3627,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 867,
+            "before": 867,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 234186,
+            "before": 234186,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 257675,
+            "before": 257675,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 16,
+            "before": 16,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 394,
+            "before": 394,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 160266,
+            "before": 160266,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 2470,
+            "before": 2470,
+            "delta": 0
+          }
+        },
+        "events_by_family": {
+          "COOLING": {
+            "after": 297413,
+            "before": 297413,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 50942,
+            "before": 50942,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 541273,
+            "before": 541273,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 1447067,
+            "before": 1447067,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 66675,
+            "before": 66675,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 14232,
+            "before": 14232,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 269657,
+            "before": 269657,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 24170,
+            "before": 24170,
+            "delta": 0
+          }
+        },
+        "prior_heat_link_basis": {
+          "COOLING": {
+            "after": {
+              "LINEAGE": 161446,
+              "ORDER_ADJACENT": 16226
+            },
+            "before": {
+              "LINEAGE": 161446,
+              "ORDER_ADJACENT": 16226
+            },
+            "delta": null
+          },
+          "RESTING": {
+            "after": {
+              "LINEAGE": 6504,
+              "ORDER_ADJACENT": 853
+            },
+            "before": {
+              "LINEAGE": 6504,
+              "ORDER_ADJACENT": 853
+            },
+            "delta": null
+          }
+        },
+        "recipes_sampled": {
+          "after": 522517,
+          "before": 522517,
+          "delta": 0
+        }
+      },
+      "nonheat_l2": {
+        "computed_by_family": {
+          "COOLING": {
+            "after": 23606,
+            "before": 23606,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 1966,
+            "before": 1966,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 234186,
+            "before": 234186,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 79,
+            "before": 79,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 552,
+            "before": 552,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 113640,
+            "before": 113640,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "errors_by_class": {},
+        "events_by_family": {
+          "COOLING": {
+            "after": 297413,
+            "before": 297413,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 50942,
+            "before": 50942,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 541273,
+            "before": 541273,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 1447067,
+            "before": 1447067,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 66675,
+            "before": 66675,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 14232,
+            "before": 14232,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 269657,
+            "before": 269657,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 24170,
+            "before": 24170,
+            "delta": 0
+          }
+        },
+        "events_whose_status_changed_by_family": {
+          "COOLING": 0,
+          "FERMENT_LEAVEN": 0,
+          "MECHANICAL_CUT": 0,
+          "MECHANICAL_MIX": 0,
+          "PRESERVATION": 0,
+          "RESTING": 0,
+          "SEPARATION": 0,
+          "STORAGE": 0
+        },
+        "layer_version": {
+          "after": "nonheat-scenario-L2-0.4.0-draft",
+          "before": "nonheat-scenario-L2-0.3.0-draft"
+        },
+        "qualitative_or_conditions_by_family": {
+          "COOLING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 4429,
+            "before": 4429,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 174018,
+            "before": 174018,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 257675,
+            "before": 257675,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 183,
+            "before": 183,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 156017,
+            "before": 156017,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 12078,
+            "before": 12078,
+            "delta": 0
+          }
+        },
+        "v03_to_v04_counts": {
+          "events": {
+            "COOLING": 297413,
+            "FERMENT_LEAVEN": 50942,
+            "MECHANICAL_CUT": 541273,
+            "MECHANICAL_MIX": 1447067,
+            "PRESERVATION": 66675,
+            "RESTING": 14232,
+            "SEPARATION": 269657,
+            "STORAGE": 24170
+          },
+          "flag_added": {
+            "RESTING": {
+              "ALL_MEMBERS_DRY_CLASS": 3,
+              "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": 3,
+              "EVAPORATION_CAP_APPLIED": 10,
+              "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 25,
+              "MATRIX_DRY_CLASS_UNCAPPED": 3,
+              "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 193
+            }
+          },
+          "flag_removed": {
+            "RESTING": {
+              "ALTITUDE_ASSUMED_SEA_LEVEL": 3,
+              "BOILING_POINT_ELEVATION_NOT_MODELLED": 3,
+              "CAP_NOT_LIFTED_NO_DRYING_MODEL": 3,
+              "EVAPORATION_CAP_APPLIED": 3,
+              "EVAPORATION_CAP_NOT_BINDING": 10,
+              "MATRIX_UNKNOWN_MOIST_ASSUMED": 375,
+              "PRESSURE_ASSUMED_1ATM": 3,
+              "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 3
+            }
+          },
+          "rest_changed": {
+            "core_end_c": 14,
+            "core_end_of_heat_c": 14,
+            "core_peak_c": 14
+          },
+          "rest_t_cap_changed": 3
+        }
+      }
+    },
+    "GUTENBERG_SEGMENT": {
+      "heat_l1": {
+        "contract_bindings": {
+          "after": 252044,
+          "before": 252046,
+          "delta": -2
+        },
+        "driver_bounded_events": {
+          "after": 1983,
+          "before": 1985,
+          "delta": -2
+        },
+        "driver_ready_events": {
+          "after": 1717,
+          "before": 1719,
+          "delta": -2
+        },
+        "gas_mark_only_events": {
+          "after": 0,
+          "before": 0,
+          "delta": 0
+        },
+        "heat_events": {
+          "after": 182049,
+          "before": 182049,
+          "delta": 0
+        },
+        "input_basis": {
+          "duration": {
+            "TEXT_STATED": {
+              "after": 5850,
+              "before": 5850,
+              "delta": 0
+            }
+          },
+          "lid_state": {
+            "CUE": {
+              "after": 11645,
+              "before": 11645,
+              "delta": 0
+            }
+          },
+          "matrix_class": {
+            "FOOD_GROUP": {
+              "after": 66840,
+              "before": 66840,
+              "delta": 0
+            }
+          },
+          "medium": {
+            "PROCESS_DEFINITION": {
+              "after": 131074,
+              "before": 131074,
+              "delta": 0
+            }
+          },
+          "piece_size_class": {
+            "CUT_HISTORY": {
+              "after": 24550,
+              "before": 24550,
+              "delta": 0
+            }
+          },
+          "start_mode": {
+            "CUE": {
+              "after": 10368,
+              "before": 10368,
+              "delta": 0
+            }
+          },
+          "temperature_profile": {
+            "CARRIED_SETPOINT": {
+              "after": 50,
+              "before": 49,
+              "delta": 1
+            },
+            "PHYSICAL_DEFINITION": {
+              "after": 53893,
+              "before": 53841,
+              "delta": 52
+            },
+            "TEXT_STATED": {
+              "after": 932,
+              "before": 1042,
+              "delta": -110
+            }
+          }
+        },
+        "matrix_class_status": {
+          "MEASURED": {
+            "after": 66840,
+            "before": 66840,
+            "delta": 0
+          },
+          "UNKNOWN": {
+            "after": 115209,
+            "before": 115209,
+            "delta": 0
+          }
+        },
+        "new_in_v04": {
+          "aqueous_events_with_stated_temperature_by_bucket_v04": {
+            "T_100_105": {
+              "ALL": 5
+            },
+            "T_100_OR_BELOW": {
+              "ALL": 26
+            },
+            "T_105_120": {
+              "ALL": 51
+            },
+            "T_120_150": {
+              "ALL": 23
+            },
+            "T_ABOVE_150": {
+              "PROC__000019": 2
+            }
+          },
+          "endpoint_cues_per_event": {
+            "0": 159002,
+            "1": 20554,
+            "2": 2303,
+            "3": 190
+          },
+          "endpoint_heat_events_with_cue": 23047,
+          "events_with_ambient_temperature_by_family": {
+            "WET_HEAT": 10
+          },
+          "events_without_any_food_group": 67973,
+          "exceptions_by_class": {},
+          "matrix_groups_events_by_member_count": {
+            "1": 66840,
+            "2": 22463,
+            "3": 12534,
+            "4": 12239
+          },
+          "provenance_axes": {
+            "bound_axes": 419288,
+            "bound_with_basis": 419288,
+            "bound_with_row": 419288,
+            "bound_with_span_id": 419288,
+            "unknown_axes": 1151190,
+            "unknown_with_reason": 1151190
+          },
+          "temperature_differs_from_v01_by_reason_and_family": {
+            "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": {
+              "WET_HEAT": 10
+            },
+            "OWNED_BY_OTHER_EVENT": {
+              "DRY_HEAT": 16,
+              "FAT_HEAT": 4,
+              "HEAT_GENERAL": 22,
+              "WET_HEAT": 49
+            },
+            "TARGET_FOOD_TEMPERATURE": {
+              "DRY_HEAT": 1,
+              "FAT_HEAT": 2,
+              "HEAT_GENERAL": 1,
+              "WET_HEAT": 5
+            }
+          }
+        },
+        "recipes_sampled": {
+          "after": 73955,
+          "before": 73955,
+          "delta": 0
+        }
+      },
+      "heat_l2": {
+        "cap_flag_typical": {
+          "ALL_MEMBERS_DRY_CLASS": {
+            "after": 249,
+            "before": 0,
+            "delta": 249
+          },
+          "ALTITUDE_ASSUMED_SEA_LEVEL": {
+            "after": 111729,
+            "before": 111978,
+            "delta": -249
+          },
+          "BOILING_POINT_ELEVATION_NOT_MODELLED": {
+            "after": 111729,
+            "before": 111978,
+            "delta": -249
+          },
+          "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": {
+            "after": 56,
+            "before": 84,
+            "delta": -28
+          },
+          "CAP_NOT_LIFTED_NO_DRYING_MODEL": {
+            "after": 111729,
+            "before": 111978,
+            "delta": -249
+          },
+          "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": {
+            "after": 9222,
+            "before": 8973,
+            "delta": 249
+          },
+          "EVAPORATION_CAP_APPLIED": {
+            "after": 47448,
+            "before": 47582,
+            "delta": -134
+          },
+          "EVAPORATION_CAP_NOT_BINDING": {
+            "after": 64281,
+            "before": 64396,
+            "delta": -115
+          },
+          "MATRIX_AMBIGUOUS_MOIST_ASSUMED": {
+            "after": 12073,
+            "before": 9872,
+            "delta": 2201
+          },
+          "MATRIX_DRY_CLASS_UNCAPPED": {
+            "after": 9222,
+            "before": 8973,
+            "delta": 249
+          },
+          "MATRIX_UNKNOWN_MOIST_ASSUMED": {
+            "after": 45697,
+            "before": 78058,
+            "delta": -32361
+          },
+          "NOT_A_ZONE_MEAN_DOSE": {
+            "after": 13186,
+            "before": 13186,
+            "delta": 0
+          },
+          "PRESSURE_ASSUMED_1ATM": {
+            "after": 115742,
+            "before": 115890,
+            "delta": -148
+          },
+          "STATED_LIQUID_T_ABOVE_TBOIL": {
+            "after": 56,
+            "before": 84,
+            "delta": -28
+          },
+          "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": {
+            "after": 18661,
+            "before": 2247,
+            "delta": 16414
+          },
+          "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": {
+            "after": 111729,
+            "before": 111978,
+            "delta": -249
+          }
+        },
+        "core_known_typical": {
+          "False": {
+            "after": 107765,
+            "before": 107765,
+            "delta": 0
+          },
+          "True": {
+            "after": 13186,
+            "before": 13186,
+            "delta": 0
+          }
+        },
+        "layer_version": {
+          "after": "scenario-layer-L2-0.4.0-draft",
+          "before": "scenario-layer-L2-0.3.0-draft"
+        },
+        "new_in_v04": {
+          "ambient_temperature_not_used_as_liquid_t_typical": 4,
+          "stated_liquid_typical_by_stated_c_and_member": {
+            "100_TO_105": {
+              "NO_SOLUTE_RICH_MEMBER": 3,
+              "SOLUTE_RICH_MEMBER": 1
+            },
+            "105_TO_120": {
+              "NO_SOLUTE_RICH_MEMBER": 27,
+              "SOLUTE_RICH_MEMBER": 9
+            },
+            "120_TO_150": {
+              "NO_SOLUTE_RICH_MEMBER": 13,
+              "SOLUTE_RICH_MEMBER": 2
+            },
+            "ABOVE_150": {
+              "NO_SOLUTE_RICH_MEMBER": 1
+            }
+          },
+          "stated_liquid_typical_core_computed_by_stated_c": {}
+        },
+        "stated_liquid_lifted_typical": {
+          "after": 56,
+          "before": 84,
+          "delta": -28
+        },
+        "stated_liquid_lifted_typical_by_stated_c": {
+          "100_TO_105": {
+            "after": 4,
+            "before": 5,
+            "delta": -1
+          },
+          "105_TO_120": {
+            "after": 36,
+            "before": 51,
+            "delta": -15
+          },
+          "120_TO_150": {
+            "after": 15,
+            "before": 24,
+            "delta": -9
+          },
+          "ABOVE_150": {
+            "after": 1,
+            "before": 4,
+            "delta": -3
+          }
+        },
+        "status": {
+          "SCENARIO_COMPUTED": {
+            "after": 120951,
+            "before": 120951,
+            "delta": 0
+          },
+          "SCENARIO_UNKNOWN": {
+            "after": 56765,
+            "before": 56765,
+            "delta": 0
+          },
+          "UNSUPPORTED_MEDIUM": {
+            "after": 4333,
+            "before": 4333,
+            "delta": 0
+          }
+        },
+        "surface_state_typical": {
+          "SURFACE_DRYING_POSSIBLE": {
+            "after": 5060,
+            "before": 5070,
+            "delta": -10
+          },
+          "SURFACE_IMMERSED_WET": {
+            "after": 64280,
+            "before": 64391,
+            "delta": -111
+          },
+          "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": {
+            "after": 9222,
+            "before": 8973,
+            "delta": 249
+          },
+          "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": {
+            "after": 40553,
+            "before": 40665,
+            "delta": -112
+          },
+          "SURFACE_WET_AT_TBOIL": {
+            "after": 1835,
+            "before": 1847,
+            "delta": -12
+          },
+          "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": {
+            "after": 1,
+            "before": 5,
+            "delta": -4
+          }
+        },
+        "transition": {
+          "physically_possible": {
+            "after": 120951,
+            "before": 120951,
+            "delta": 0
+          },
+          "unsupported": {
+            "after": 61098,
+            "before": 61098,
+            "delta": 0
+          }
+        },
+        "typical_core_reaches_70": {
+          "False": {
+            "after": 37,
+            "before": 38,
+            "delta": -1
+          },
+          "True": {
+            "after": 13149,
+            "before": 13148,
+            "delta": 1
+          }
+        },
+        "v03_to_v04_event_comparison": {
+          "counts": {
+            "bath_basis_changed": {
+              "GENTLE": {
+                "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 1,
+                "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 52,
+                "L1__TEXT_STATED__SD__001": 1,
+                "L1__TEXT_STATED__SD__003": 1,
+                "L1__TEXT_STATED__SD__005": 2,
+                "L1__TEXT_STATED__SD__010": 5,
+                "L1__TEXT_STATED__SD__012": 11
+              },
+              "INTENSE": {
+                "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 1,
+                "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 52,
+                "L1__TEXT_STATED__SD__001": 1,
+                "L1__TEXT_STATED__SD__003": 1,
+                "L1__TEXT_STATED__SD__005": 2,
+                "L1__TEXT_STATED__SD__010": 5,
+                "L1__TEXT_STATED__SD__012": 11
+              },
+              "TYPICAL": {
+                "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 1,
+                "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 52,
+                "L1__TEXT_STATED__SD__001": 1,
+                "L1__TEXT_STATED__SD__003": 1,
+                "L1__TEXT_STATED__SD__005": 2,
+                "L1__TEXT_STATED__SD__010": 5,
+                "L1__TEXT_STATED__SD__012": 11
+              }
+            },
+            "bath_c_changed": {
+              "GENTLE": 68,
+              "INTENSE": 68,
+              "TYPICAL": 68
+            },
+            "changed": {
+              "GENTLE": {
+                "core_cook_value_min": 19,
+                "core_end_c": 23,
+                "surface_cook_value_min": 49,
+                "volume_avg_end_c": 23
+              },
+              "INTENSE": {
+                "core_cook_value_min": 23,
+                "core_end_c": 23,
+                "surface_cook_value_min": 49,
+                "volume_avg_end_c": 23
+              },
+              "TYPICAL": {
+                "core_cook_value_min": 23,
+                "core_end_c": 23,
+                "surface_cook_value_min": 49,
+                "volume_avg_end_c": 23
+              }
+            },
+            "status": {
+              "SCENARIO_COMPUTED": {
+                "SCENARIO_COMPUTED": 120951
+              },
+              "SCENARIO_UNKNOWN": {
+                "SCENARIO_UNKNOWN": 56765
+              },
+              "UNSUPPORTED_MEDIUM": {
+                "UNSUPPORTED_MEDIUM": 4333
+              }
+            },
+            "t_cap_changed": {
+              "GENTLE": 275,
+              "INTENSE": 275,
+              "TYPICAL": 275
+            },
+            "volume_avg_dose_equal_to_0_2_0_name": {
+              "GENTLE": {
+                "False": 23,
+                "True": 13163
+              },
+              "INTENSE": {
+                "False": 23,
+                "True": 13163
+              },
+              "TYPICAL": {
+                "False": 23,
+                "True": 13163
+              }
+            },
+            "zone_mean_dose_gt_dose_at_volume_avg_t": {
+              "GENTLE": {
+                "True": 13186
+              },
+              "INTENSE": {
+                "True": 13186
+              },
+              "TYPICAL": {
+                "True": 13186
+              }
+            }
+          },
+          "events": 182049,
+          "flag_added_typical": {
+            "ALL_MEMBERS_DRY_CLASS": 249,
+            "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 4,
+            "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": 249,
+            "EVAPORATION_CAP_APPLIED": 4,
+            "EVAPORATION_CAP_NOT_BINDING": 2,
+            "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 2201,
+            "MATRIX_DRY_CLASS_UNCAPPED": 249,
+            "OVEN_OR_AMBIENT_TEMPERATURE_STATED_NOT_USED_AS_LIQUID_T": 4,
+            "PRESSURE_ASSUMED_1ATM": 12,
+            "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 16414
+          },
+          "flag_removed_typical": {
+            "ALTITUDE_ASSUMED_SEA_LEVEL": 249,
+            "BOILING_POINT_ELEVATION_NOT_MODELLED": 249,
+            "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 138,
+            "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 28,
+            "CAP_NOT_LIFTED_NO_DRYING_MODEL": 249,
+            "EVAPORATION_CAP_APPLIED": 138,
+            "EVAPORATION_CAP_NOT_BINDING": 117,
+            "MATRIX_UNKNOWN_MOIST_ASSUMED": 32361,
+            "PRESSURE_ASSUMED_1ATM": 160,
+            "STATED_LIQUID_T_ABOVE_TBOIL": 28,
+            "SURFACE_DOSE_AT_TBOIL_WET_PERIOD_ONLY": 2,
+            "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 249
+          }
+        }
+      },
+      "nonheat_l1": {
+        "any_l1_value_by_family": {
+          "COOLING": {
+            "after": 11785,
+            "before": 11785,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 6233,
+            "before": 6233,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 110806,
+            "before": 110806,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 28363,
+            "before": 28363,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 3175,
+            "before": 3175,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 1406,
+            "before": 1406,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 53329,
+            "before": 53329,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 305,
+            "before": 305,
+            "delta": 0
+          }
+        },
+        "binder_version": {
+          "after": "nonheat-binding-L1-0.2.0-draft",
+          "before": "nonheat-binding-L1-0.1.0-draft"
+        },
+        "driver_ready_events_by_family": {
+          "COOLING": {
+            "after": 224,
+            "before": 224,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 21,
+            "before": 21,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 47825,
+            "before": 47825,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 26459,
+            "before": 26459,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 1,
+            "before": 1,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 2,
+            "before": 2,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 33866,
+            "before": 33866,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 6,
+            "before": 6,
+            "delta": 0
+          }
+        },
+        "events_by_family": {
+          "COOLING": {
+            "after": 11785,
+            "before": 11785,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 7100,
+            "before": 7100,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 110806,
+            "before": 110806,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 96148,
+            "before": 96148,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 14653,
+            "before": 14653,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 2525,
+            "before": 2525,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 53329,
+            "before": 53329,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 1075,
+            "before": 1075,
+            "delta": 0
+          }
+        },
+        "prior_heat_link_basis": {
+          "COOLING": {
+            "after": {
+              "LINEAGE": 5516,
+              "ORDER_ADJACENT": 1143
+            },
+            "before": {
+              "LINEAGE": 5516,
+              "ORDER_ADJACENT": 1143
+            },
+            "delta": null
+          },
+          "RESTING": {
+            "after": {
+              "LINEAGE": 904,
+              "ORDER_ADJACENT": 176
+            },
+            "before": {
+              "LINEAGE": 904,
+              "ORDER_ADJACENT": 176
+            },
+            "delta": null
+          }
+        },
+        "recipes_sampled": {
+          "after": 73955,
+          "before": 73955,
+          "delta": 0
+        }
+      },
+      "nonheat_l2": {
+        "computed_by_family": {
+          "COOLING": {
+            "after": 1367,
+            "before": 1367,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 383,
+            "before": 383,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 47825,
+            "before": 47825,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 42,
+            "before": 42,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 87,
+            "before": 87,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 19603,
+            "before": 19603,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "errors_by_class": {},
+        "events_by_family": {
+          "COOLING": {
+            "after": 11785,
+            "before": 11785,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 7100,
+            "before": 7100,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 110806,
+            "before": 110806,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 96148,
+            "before": 96148,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 14653,
+            "before": 14653,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 2525,
+            "before": 2525,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 53329,
+            "before": 53329,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 1075,
+            "before": 1075,
+            "delta": 0
+          }
+        },
+        "events_whose_status_changed_by_family": {
+          "COOLING": 0,
+          "FERMENT_LEAVEN": 0,
+          "MECHANICAL_CUT": 0,
+          "MECHANICAL_MIX": 0,
+          "PRESERVATION": 0,
+          "RESTING": 0,
+          "SEPARATION": 0,
+          "STORAGE": 0
+        },
+        "layer_version": {
+          "after": "nonheat-scenario-L2-0.4.0-draft",
+          "before": "nonheat-scenario-L2-0.3.0-draft"
+        },
+        "qualitative_or_conditions_by_family": {
+          "COOLING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 1245,
+            "before": 1245,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 31350,
+            "before": 31350,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 26459,
+            "before": 26459,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 91,
+            "before": 91,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 33726,
+            "before": 33726,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 125,
+            "before": 125,
+            "delta": 0
+          }
+        },
+        "v03_to_v04_counts": {
+          "events": {
+            "COOLING": 11785,
+            "FERMENT_LEAVEN": 7100,
+            "MECHANICAL_CUT": 110806,
+            "MECHANICAL_MIX": 96148,
+            "PRESERVATION": 14653,
+            "RESTING": 2525,
+            "SEPARATION": 53329,
+            "STORAGE": 1075
+          },
+          "flag_added": {
+            "RESTING": {
+              "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 4,
+              "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 32
+            }
+          },
+          "flag_removed": {
+            "RESTING": {
+              "MATRIX_UNKNOWN_MOIST_ASSUMED": 44
+            }
+          }
+        }
+      }
+    },
+    "TASTESET": {
+      "heat_l1": {
+        "contract_bindings": {
+          "after": 0,
+          "before": 0,
+          "delta": 0
+        },
+        "driver_bounded_events": {
+          "after": 0,
+          "before": 0,
+          "delta": 0
+        },
+        "driver_ready_events": {
+          "after": 0,
+          "before": 0,
+          "delta": 0
+        },
+        "gas_mark_only_events": {
+          "after": 0,
+          "before": 0,
+          "delta": 0
+        },
+        "heat_events": {
+          "after": 0,
+          "before": 0,
+          "delta": 0
+        },
+        "input_basis": {
+          "duration": {},
+          "lid_state": {},
+          "matrix_class": {},
+          "medium": {},
+          "piece_size_class": {},
+          "start_mode": {},
+          "temperature_profile": {}
+        },
+        "matrix_class_status": {},
+        "new_in_v04": {
+          "aqueous_events_with_stated_temperature_by_bucket_v04": {},
+          "endpoint_cues_per_event": {},
+          "endpoint_heat_events_with_cue": 0,
+          "events_with_ambient_temperature_by_family": {},
+          "events_without_any_food_group": 0,
+          "exceptions_by_class": {},
+          "matrix_groups_events_by_member_count": {},
+          "provenance_axes": {},
+          "temperature_differs_from_v01_by_reason_and_family": {}
+        },
+        "recipes_sampled": {
+          "after": 700,
+          "before": 700,
+          "delta": 0
+        }
+      },
+      "heat_l2": {
+        "cap_flag_typical": {},
+        "core_known_typical": {
+          "False": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "True": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "layer_version": {
+          "after": "scenario-layer-L2-0.4.0-draft",
+          "before": "scenario-layer-L2-0.3.0-draft"
+        },
+        "new_in_v04": {
+          "ambient_temperature_not_used_as_liquid_t_typical": 0,
+          "stated_liquid_typical_by_stated_c_and_member": {},
+          "stated_liquid_typical_core_computed_by_stated_c": {}
+        },
+        "stated_liquid_lifted_typical": {
+          "after": 0,
+          "before": 0,
+          "delta": 0
+        },
+        "stated_liquid_lifted_typical_by_stated_c": {
+          "100_TO_105": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "105_TO_120": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "120_TO_150": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "ABOVE_150": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "status": {},
+        "surface_state_typical": {},
+        "transition": {},
+        "typical_core_reaches_70": {},
+        "v03_to_v04_event_comparison": {
+          "counts": {},
+          "events": null,
+          "flag_added_typical": {},
+          "flag_removed_typical": {}
+        }
+      },
+      "nonheat_l1": {
+        "any_l1_value_by_family": {
+          "COOLING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "binder_version": {
+          "after": "nonheat-binding-L1-0.2.0-draft",
+          "before": "nonheat-binding-L1-0.1.0-draft"
+        },
+        "driver_ready_events_by_family": {
+          "COOLING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "events_by_family": {
+          "COOLING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "prior_heat_link_basis": {},
+        "recipes_sampled": {
+          "after": 700,
+          "before": 700,
+          "delta": 0
+        }
+      },
+      "nonheat_l2": {
+        "computed_by_family": {
+          "COOLING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "errors_by_class": {},
+        "events_by_family": {
+          "COOLING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "events_whose_status_changed_by_family": {},
+        "layer_version": {
+          "after": "nonheat-scenario-L2-0.4.0-draft",
+          "before": "nonheat-scenario-L2-0.3.0-draft"
+        },
+        "qualitative_or_conditions_by_family": {
+          "COOLING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "v03_to_v04_counts": {}
+      }
+    },
+    "WIKIBOOKS": {
+      "heat_l1": {
+        "contract_bindings": {
+          "after": 15125,
+          "before": 15130,
+          "delta": -5
+        },
+        "driver_bounded_events": {
+          "after": 930,
+          "before": 941,
+          "delta": -11
+        },
+        "driver_ready_events": {
+          "after": 615,
+          "before": 620,
+          "delta": -5
+        },
+        "gas_mark_only_events": {
+          "after": 1,
+          "before": 1,
+          "delta": 0
+        },
+        "heat_events": {
+          "after": 11433,
+          "before": 11433,
+          "delta": 0
+        },
+        "input_basis": {
+          "duration": {
+            "TEXT_STATED": {
+              "after": 2779,
+              "before": 2779,
+              "delta": 0
+            }
+          },
+          "lid_state": {
+            "CUE": {
+              "after": 729,
+              "before": 729,
+              "delta": 0
+            }
+          },
+          "matrix_class": {
+            "FOOD_GROUP": {
+              "after": 3844,
+              "before": 3844,
+              "delta": 0
+            }
+          },
+          "medium": {
+            "PROCESS_DEFINITION": {
+              "after": 5763,
+              "before": 5763,
+              "delta": 0
+            }
+          },
+          "piece_size_class": {
+            "CUT_HISTORY": {
+              "after": 1269,
+              "before": 1269,
+              "delta": 0
+            }
+          },
+          "start_mode": {
+            "CUE": {
+              "after": 126,
+              "before": 126,
+              "delta": 0
+            }
+          },
+          "temperature_profile": {
+            "CARRIED_SETPOINT": {
+              "after": 496,
+              "before": 492,
+              "delta": 4
+            },
+            "PHYSICAL_DEFINITION": {
+              "after": 1159,
+              "before": 1155,
+              "delta": 4
+            },
+            "TEXT_STATED": {
+              "after": 634,
+              "before": 728,
+              "delta": -94
+            }
+          }
+        },
+        "matrix_class_status": {
+          "MEASURED": {
+            "after": 3844,
+            "before": 3844,
+            "delta": 0
+          },
+          "UNKNOWN": {
+            "after": 7589,
+            "before": 7589,
+            "delta": 0
+          }
+        },
+        "new_in_v04": {
+          "aqueous_events_with_stated_temperature_by_bucket_v04": {
+            "T_100_105": {
+              "ALL": 1
+            },
+            "T_100_OR_BELOW": {
+              "ALL": 4
+            },
+            "T_105_120": {
+              "ALL": 3
+            },
+            "T_120_150": {
+              "ALL": 1
+            }
+          },
+          "endpoint_cues_per_event": {
+            "0": 8116,
+            "1": 2652,
+            "2": 621,
+            "3": 44
+          },
+          "endpoint_heat_events_with_cue": 3317,
+          "events_with_ambient_temperature_by_family": {
+            "WET_HEAT": 10
+          },
+          "events_without_any_food_group": 3320,
+          "exceptions_by_class": {},
+          "matrix_groups_events_by_member_count": {
+            "1": 3844,
+            "2": 1834,
+            "3": 1247,
+            "4": 1188
+          },
+          "provenance_axes": {
+            "bound_axes": 24922,
+            "bound_with_basis": 24922,
+            "bound_with_row": 24922,
+            "bound_with_span_id": 24922,
+            "unknown_axes": 74665,
+            "unknown_with_reason": 74665
+          },
+          "temperature_differs_from_v01_by_reason_and_family": {
+            "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": {
+              "WET_HEAT": 9
+            },
+            "OWNED_BY_OTHER_EVENT": {
+              "DRY_HEAT": 6,
+              "FAT_HEAT": 7,
+              "HEAT_GENERAL": 6,
+              "WET_HEAT": 3
+            },
+            "TARGET_FOOD_TEMPERATURE": {
+              "DRY_HEAT": 18,
+              "FAT_HEAT": 3,
+              "HEAT_GENERAL": 42
+            }
+          }
+        },
+        "recipes_sampled": {
+          "after": 3676,
+          "before": 3676,
+          "delta": 0
+        }
+      },
+      "heat_l2": {
+        "cap_flag_typical": {
+          "ALL_MEMBERS_DRY_CLASS": {
+            "after": 17,
+            "before": 0,
+            "delta": 17
+          },
+          "ALTITUDE_ASSUMED_SEA_LEVEL": {
+            "after": 4666,
+            "before": 4683,
+            "delta": -17
+          },
+          "BOILING_POINT_ELEVATION_NOT_MODELLED": {
+            "after": 4666,
+            "before": 4683,
+            "delta": -17
+          },
+          "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": {
+            "after": 3,
+            "before": 6,
+            "delta": -3
+          },
+          "CAP_NOT_LIFTED_NO_DRYING_MODEL": {
+            "after": 4666,
+            "before": 4683,
+            "delta": -17
+          },
+          "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": {
+            "after": 205,
+            "before": 188,
+            "delta": 17
+          },
+          "EVAPORATION_CAP_APPLIED": {
+            "after": 2549,
+            "before": 2547,
+            "delta": 2
+          },
+          "EVAPORATION_CAP_NOT_BINDING": {
+            "after": 2117,
+            "before": 2136,
+            "delta": -19
+          },
+          "MATRIX_AMBIGUOUS_MOIST_ASSUMED": {
+            "after": 632,
+            "before": 452,
+            "delta": 180
+          },
+          "MATRIX_DRY_CLASS_UNCAPPED": {
+            "after": 205,
+            "before": 188,
+            "delta": 17
+          },
+          "MATRIX_UNKNOWN_MOIST_ASSUMED": {
+            "after": 1489,
+            "before": 3413,
+            "delta": -1924
+          },
+          "NOT_A_ZONE_MEAN_DOSE": {
+            "after": 451,
+            "before": 451,
+            "delta": 0
+          },
+          "PRESSURE_ASSUMED_1ATM": {
+            "after": 4701,
+            "before": 4714,
+            "delta": -13
+          },
+          "STATED_LIQUID_T_ABOVE_TBOIL": {
+            "after": 3,
+            "before": 6,
+            "delta": -3
+          },
+          "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": {
+            "after": 799,
+            "before": 49,
+            "delta": 750
+          },
+          "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": {
+            "after": 4666,
+            "before": 4683,
+            "delta": -17
+          }
+        },
+        "core_known_typical": {
+          "False": {
+            "after": 4420,
+            "before": 4420,
+            "delta": 0
+          },
+          "True": {
+            "after": 451,
+            "before": 451,
+            "delta": 0
+          }
+        },
+        "layer_version": {
+          "after": "scenario-layer-L2-0.4.0-draft",
+          "before": "scenario-layer-L2-0.3.0-draft"
+        },
+        "new_in_v04": {
+          "ambient_temperature_not_used_as_liquid_t_typical": 2,
+          "stated_liquid_typical_by_stated_c_and_member": {
+            "100_TO_105": {
+              "SOLUTE_RICH_MEMBER": 1
+            },
+            "105_TO_120": {
+              "SOLUTE_RICH_MEMBER": 2
+            }
+          },
+          "stated_liquid_typical_core_computed_by_stated_c": {
+            "100_TO_105": 1,
+            "105_TO_120": 1
+          }
+        },
+        "stated_liquid_lifted_typical": {
+          "after": 3,
+          "before": 6,
+          "delta": -3
+        },
+        "stated_liquid_lifted_typical_by_stated_c": {
+          "100_TO_105": {
+            "after": 1,
+            "before": 1,
+            "delta": 0
+          },
+          "105_TO_120": {
+            "after": 2,
+            "before": 2,
+            "delta": 0
+          },
+          "120_TO_150": {
+            "after": 0,
+            "before": 1,
+            "delta": -1
+          },
+          "ABOVE_150": {
+            "after": 0,
+            "before": 2,
+            "delta": -2
+          }
+        },
+        "status": {
+          "SCENARIO_COMPUTED": {
+            "after": 4871,
+            "before": 4871,
+            "delta": 0
+          },
+          "SCENARIO_UNKNOWN": {
+            "after": 6154,
+            "before": 6154,
+            "delta": 0
+          },
+          "UNSUPPORTED_MEDIUM": {
+            "after": 408,
+            "before": 408,
+            "delta": 0
+          }
+        },
+        "surface_state_typical": {
+          "SURFACE_DRYING_POSSIBLE": {
+            "after": 162,
+            "before": 164,
+            "delta": -2
+          },
+          "SURFACE_IMMERSED_WET": {
+            "after": 2105,
+            "before": 2110,
+            "delta": -5
+          },
+          "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": {
+            "after": 205,
+            "before": 188,
+            "delta": 17
+          },
+          "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": {
+            "after": 2296,
+            "before": 2292,
+            "delta": 4
+          },
+          "SURFACE_WET_AT_TBOIL": {
+            "after": 91,
+            "before": 91,
+            "delta": 0
+          },
+          "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": {
+            "after": 12,
+            "before": 26,
+            "delta": -14
+          }
+        },
+        "transition": {
+          "physically_possible": {
+            "after": 4871,
+            "before": 4871,
+            "delta": 0
+          },
+          "unsupported": {
+            "after": 6562,
+            "before": 6562,
+            "delta": 0
+          }
+        },
+        "typical_core_reaches_70": {
+          "False": {
+            "after": 14,
+            "before": 14,
+            "delta": 0
+          },
+          "True": {
+            "after": 437,
+            "before": 437,
+            "delta": 0
+          }
+        },
+        "v03_to_v04_event_comparison": {
+          "counts": {
+            "bath_basis_changed": {
+              "GENTLE": {
+                "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 4,
+                "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 4,
+                "L1__TEXT_STATED__SD__010": 10,
+                "L1__TEXT_STATED__SD__012": 11
+              },
+              "INTENSE": {
+                "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 4,
+                "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 4,
+                "L1__TEXT_STATED__SD__010": 10,
+                "L1__TEXT_STATED__SD__012": 11
+              },
+              "TYPICAL": {
+                "L1__TEXT_STATED__L1__CARRIED_SETPOINT": 4,
+                "L1__TEXT_STATED__L1__PHYSICAL_DEFINITION": 4,
+                "L1__TEXT_STATED__SD__010": 10,
+                "L1__TEXT_STATED__SD__012": 11
+              }
+            },
+            "bath_c_changed": {
+              "GENTLE": 29,
+              "INTENSE": 29,
+              "TYPICAL": 29
+            },
+            "changed": {
+              "GENTLE": {
+                "core_cook_value_min": 2,
+                "core_end_c": 2,
+                "surface_cook_value_min": 3,
+                "volume_avg_end_c": 2
+              },
+              "INTENSE": {
+                "core_cook_value_min": 2,
+                "core_end_c": 2,
+                "surface_cook_value_min": 3,
+                "volume_avg_end_c": 2
+              },
+              "TYPICAL": {
+                "core_cook_value_min": 2,
+                "core_end_c": 2,
+                "surface_cook_value_min": 3,
+                "volume_avg_end_c": 2
+              }
+            },
+            "status": {
+              "SCENARIO_COMPUTED": {
+                "SCENARIO_COMPUTED": 4871
+              },
+              "SCENARIO_UNKNOWN": {
+                "SCENARIO_UNKNOWN": 6154
+              },
+              "UNSUPPORTED_MEDIUM": {
+                "UNSUPPORTED_MEDIUM": 408
+              }
+            },
+            "t_cap_changed": {
+              "GENTLE": 20,
+              "INTENSE": 20,
+              "TYPICAL": 20
+            },
+            "volume_avg_dose_equal_to_0_2_0_name": {
+              "GENTLE": {
+                "False": 2,
+                "True": 449
+              },
+              "INTENSE": {
+                "False": 2,
+                "True": 449
+              },
+              "TYPICAL": {
+                "False": 2,
+                "True": 449
+              }
+            },
+            "zone_mean_dose_gt_dose_at_volume_avg_t": {
+              "GENTLE": {
+                "True": 451
+              },
+              "INTENSE": {
+                "True": 451
+              },
+              "TYPICAL": {
+                "True": 451
+              }
+            }
+          },
+          "events": 11433,
+          "flag_added_typical": {
+            "ALL_MEMBERS_DRY_CLASS": 17,
+            "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 14,
+            "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": 17,
+            "EVAPORATION_CAP_APPLIED": 14,
+            "EVAPORATION_CAP_NOT_BINDING": 1,
+            "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 180,
+            "MATRIX_DRY_CLASS_UNCAPPED": 17,
+            "OVEN_OR_AMBIENT_TEMPERATURE_STATED_NOT_USED_AS_LIQUID_T": 2,
+            "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 750
+          },
+          "flag_removed_typical": {
+            "ALTITUDE_ASSUMED_SEA_LEVEL": 17,
+            "BOILING_POINT_ELEVATION_NOT_MODELLED": 17,
+            "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 12,
+            "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 3,
+            "CAP_NOT_LIFTED_NO_DRYING_MODEL": 17,
+            "EVAPORATION_CAP_APPLIED": 12,
+            "EVAPORATION_CAP_NOT_BINDING": 20,
+            "MATRIX_UNKNOWN_MOIST_ASSUMED": 1924,
+            "PRESSURE_ASSUMED_1ATM": 13,
+            "STATED_LIQUID_T_ABOVE_TBOIL": 3,
+            "SURFACE_DOSE_AT_TBOIL_WET_PERIOD_ONLY": 1,
+            "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 17
+          }
+        }
+      },
+      "nonheat_l1": {
+        "any_l1_value_by_family": {
+          "COOLING": {
+            "after": 1564,
+            "before": 1564,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 547,
+            "before": 547,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 4125,
+            "before": 4125,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 2110,
+            "before": 2110,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 109,
+            "before": 109,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 112,
+            "before": 112,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 2403,
+            "before": 2403,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 129,
+            "before": 129,
+            "delta": 0
+          }
+        },
+        "binder_version": {
+          "after": "nonheat-binding-L1-0.2.0-draft",
+          "before": "nonheat-binding-L1-0.1.0-draft"
+        },
+        "driver_ready_events_by_family": {
+          "COOLING": {
+            "after": 3,
+            "before": 3,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 22,
+            "before": 22,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 1794,
+            "before": 1794,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 1462,
+            "before": 1462,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 3,
+            "before": 3,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 1436,
+            "before": 1436,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 10,
+            "before": 10,
+            "delta": 0
+          }
+        },
+        "events_by_family": {
+          "COOLING": {
+            "after": 1564,
+            "before": 1564,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 571,
+            "before": 571,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 4125,
+            "before": 4125,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 9459,
+            "before": 9459,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 485,
+            "before": 485,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 141,
+            "before": 141,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 2403,
+            "before": 2403,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 152,
+            "before": 152,
+            "delta": 0
+          }
+        },
+        "prior_heat_link_basis": {
+          "COOLING": {
+            "after": {
+              "LINEAGE": 819,
+              "ORDER_ADJACENT": 106
+            },
+            "before": {
+              "LINEAGE": 819,
+              "ORDER_ADJACENT": 106
+            },
+            "delta": null
+          },
+          "RESTING": {
+            "after": {
+              "LINEAGE": 59,
+              "ORDER_ADJACENT": 10
+            },
+            "before": {
+              "LINEAGE": 59,
+              "ORDER_ADJACENT": 10
+            },
+            "delta": null
+          }
+        },
+        "recipes_sampled": {
+          "after": 3676,
+          "before": 3676,
+          "delta": 0
+        }
+      },
+      "nonheat_l2": {
+        "computed_by_family": {
+          "COOLING": {
+            "after": 103,
+            "before": 103,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 18,
+            "before": 18,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 1794,
+            "before": 1794,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 1,
+            "before": 1,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 3,
+            "before": 3,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 997,
+            "before": 997,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          }
+        },
+        "errors_by_class": {},
+        "events_by_family": {
+          "COOLING": {
+            "after": 1564,
+            "before": 1564,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 571,
+            "before": 571,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 4125,
+            "before": 4125,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 9459,
+            "before": 9459,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 485,
+            "before": 485,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 141,
+            "before": 141,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 2403,
+            "before": 2403,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 152,
+            "before": 152,
+            "delta": 0
+          }
+        },
+        "events_whose_status_changed_by_family": {
+          "COOLING": 0,
+          "FERMENT_LEAVEN": 0,
+          "MECHANICAL_CUT": 0,
+          "MECHANICAL_MIX": 0,
+          "PRESERVATION": 0,
+          "RESTING": 0,
+          "SEPARATION": 0,
+          "STORAGE": 0
+        },
+        "layer_version": {
+          "after": "nonheat-scenario-L2-0.4.0-draft",
+          "before": "nonheat-scenario-L2-0.3.0-draft"
+        },
+        "qualitative_or_conditions_by_family": {
+          "COOLING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "FERMENT_LEAVEN": {
+            "after": 68,
+            "before": 68,
+            "delta": 0
+          },
+          "MECHANICAL_CUT": {
+            "after": 1427,
+            "before": 1427,
+            "delta": 0
+          },
+          "MECHANICAL_MIX": {
+            "after": 1462,
+            "before": 1462,
+            "delta": 0
+          },
+          "PRESERVATION": {
+            "after": 2,
+            "before": 2,
+            "delta": 0
+          },
+          "RESTING": {
+            "after": 0,
+            "before": 0,
+            "delta": 0
+          },
+          "SEPARATION": {
+            "after": 1406,
+            "before": 1406,
+            "delta": 0
+          },
+          "STORAGE": {
+            "after": 74,
+            "before": 74,
+            "delta": 0
+          }
+        },
+        "v03_to_v04_counts": {
+          "events": {
+            "COOLING": 1564,
+            "FERMENT_LEAVEN": 571,
+            "MECHANICAL_CUT": 4125,
+            "MECHANICAL_MIX": 9459,
+            "PRESERVATION": 485,
+            "RESTING": 141,
+            "SEPARATION": 2403,
+            "STORAGE": 152
+          }
+        }
+      }
+    }
+  },
+  "record": "PHYSICAL_LAYERS_V03_TO_V04_COMPARISON",
+  "source_report_sha256": {
+    "binding_census_L1_FOODCOM_full_S176_v02_json": "3cdef451c0f88d51fbc81a93778efacdd594afe9f07844bb86e666137ef6c366",
+    "binding_census_L1_FOODCOM_full_S178_v04_json": "7b8384d1be330be67503bea3c1c8ffd134f68432ba6aab5d5b06135bc1008b31",
+    "binding_census_L1_GUTENBERG_SEGMENT_full_S176_v02_json": "8a1f74bf35a555bc86ade973bc00283f824466bd9ae67d0299651d202077cd3b",
+    "binding_census_L1_GUTENBERG_SEGMENT_full_S178_v04_json": "88f4483f74df0d96ff587ed55132e9b78ddc958f8a6777e25848d0c711b302ac",
+    "binding_census_L1_TASTESET_full_S176_v02_json": "cd79d64245ecba31d66b4a27bed57dfa65a9e5171efd4e05cbc72c4b00b91b53",
+    "binding_census_L1_TASTESET_full_S178_v04_json": "32ff301c08f6ddc1363896b860c381f6cc5f1a4a1e5f1a46ba9ba14376c2c21c",
+    "binding_census_L1_WIKIBOOKS_full_S176_v02_json": "774b7ac5a2c8493f250d9d8b07cfac3aa76fb12279f8d623246d8b52dcb255c0",
+    "binding_census_L1_WIKIBOOKS_full_S178_v04_json": "46adb77b839c25c8d9b4e106ce7e45d386a5ede74636c17148014c1ed4829e6b",
+    "nonheat_L1_FOODCOM_full_S176_json": "343ff502fa6b8a1f657100231bff1f39a5d4353b1abf5a6881459e8f426d5791",
+    "nonheat_L1_FOODCOM_full_S178_v04_json": "93dc08f06608a003fb82604760309d135b4846bbd98e13997c31bbf7c604c04a",
+    "nonheat_L1_GUTENBERG_SEGMENT_full_S176_json": "e2980b384647e0e03595c62603922c51f1ee1139a161d54ec79a05cafd15759a",
+    "nonheat_L1_GUTENBERG_SEGMENT_full_S178_v04_json": "56b9e74fb85e951aa909f930a0abcdd53125c5c93e513b3f1aaec91d85fa7229",
+    "nonheat_L1_TASTESET_full_S176_json": "d913edc39ffbe22e0cefad646a90df18029fa4ce669c63d6990c15d4c04d07e1",
+    "nonheat_L1_TASTESET_full_S178_v04_json": "0b7f660c02378d2b63809218c6d2df83258347a544c794a346585e81e55aed4a",
+    "nonheat_L1_WIKIBOOKS_full_S176_json": "deb79260ee9639bcf76d7d32297ccff69b8a3d877483962ead7c5a5c42a973ce",
+    "nonheat_L1_WIKIBOOKS_full_S178_v04_json": "04161da6f760fb9ff55d50edadc2745ac767fda6e9f2daf5e2765478e037a628",
+    "nonheat_L2_FOODCOM_full_S177_v03_json": "4477a84ff1d53761fb7e31aa90119d15f70a4557ca13e605486e7c1b4eeea602",
+    "nonheat_L2_FOODCOM_full_S178_v04_json": "83939d44a68f0b425f69ce06369ca8cea51e23e2f3162115a097a1aff25f8022",
+    "nonheat_L2_GUTENBERG_SEGMENT_full_S177_v03_json": "97a2c69afb9f12672495520f12e78699e9ab0d01e923b6c3738af8b39c6e79f5",
+    "nonheat_L2_GUTENBERG_SEGMENT_full_S178_v04_json": "99ec8991479fc632a5fbfe8d2ca39541139d4a0b4beec73ce74ed1cadff5c640",
+    "nonheat_L2_TASTESET_full_S177_v03_json": "12bc8760b96cdae14888f709582eec9de0eb4a218094cecf97d3a47133bdcc5a",
+    "nonheat_L2_TASTESET_full_S178_v04_json": "b0800bd90e01edb06e30d93f2f72d4033868a08f5336049215c6b6c1af8a0fd7",
+    "nonheat_L2_WIKIBOOKS_full_S177_v03_json": "b5948a0b8430d5e75b823f08501b555e70826456dcb3e6d4ad672625ce2f36db",
+    "nonheat_L2_WIKIBOOKS_full_S178_v04_json": "972db8dfb9377587ff51ef35254a66038b0749abe7dd6cb75ea6883821f93642",
+    "scenario_L2_FOODCOM_full_S177_v03_json": "436d0946bc4cb0bf0fbae9f841d15070535bef1d2efb5c91edcb8a1c5de76ea7",
+    "scenario_L2_FOODCOM_full_S178_v04_json": "642dd7f0bd1b3c4f9149cc0006e69e84b6f9aa8da2275b4ed55e259e3301a291",
+    "scenario_L2_GUTENBERG_SEGMENT_full_S177_v03_json": "dc2a21293e7ecc3736805bcb3529fa7c21b31d5ebcfa07c7625dc9373c33301d",
+    "scenario_L2_GUTENBERG_SEGMENT_full_S178_v04_json": "ba4bb5ffb91f48489c814483c6339810d72a7a64fefaac97019a7805b4f6a17a",
+    "scenario_L2_TASTESET_full_S177_v03_json": "12bd859fd07d35f78c990b53d49093668bfc821af755dce190ab1bd94dfd1b4f",
+    "scenario_L2_TASTESET_full_S178_v04_json": "c7a979381b5a0febd4a493cefa6d13f42dae51cbf4802e7589759e3b9c8614c5",
+    "scenario_L2_WIKIBOOKS_full_S177_v03_json": "e55e180a74542975a68548a9d29f2da9af4f8e7bb34966a5c9c26cee9ff59010",
+    "scenario_L2_WIKIBOOKS_full_S178_v04_json": "8aecf6805fd7365e45310c0c659d73932fa93848562378c3f6925e9dc7c52033"
+  },
+  "status": "AI_DRAFTED_COUNTS_ONLY",
+  "superseded": [
+    {
+      "kind": "heat_l1",
+      "output": "reports/step26/binding_census_L1_FOODCOM_full_S176_v02.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "heat_l1",
+      "output": "reports/step26/binding_census_L1_GUTENBERG_SEGMENT_full_S176_v02.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "heat_l1",
+      "output": "reports/step26/binding_census_L1_WIKIBOOKS_full_S176_v02.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "heat_l1",
+      "output": "reports/step26/binding_census_L1_TASTESET_full_S176_v02.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "heat_l2",
+      "output": "reports/step26/scenario_L2_FOODCOM_full_S177_v03.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "heat_l2",
+      "output": "reports/step26/scenario_L2_GUTENBERG_SEGMENT_full_S177_v03.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "heat_l2",
+      "output": "reports/step26/scenario_L2_WIKIBOOKS_full_S177_v03.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "heat_l2",
+      "output": "reports/step26/scenario_L2_TASTESET_full_S177_v03.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "nonheat_l1",
+      "output": "reports/step26/nonheat_L1_FOODCOM_full_S176.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "nonheat_l1",
+      "output": "reports/step26/nonheat_L1_GUTENBERG_SEGMENT_full_S176.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "nonheat_l1",
+      "output": "reports/step26/nonheat_L1_WIKIBOOKS_full_S176.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "nonheat_l1",
+      "output": "reports/step26/nonheat_L1_TASTESET_full_S176.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "nonheat_l2",
+      "output": "reports/step26/nonheat_L2_FOODCOM_full_S177_v03.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "nonheat_l2",
+      "output": "reports/step26/nonheat_L2_GUTENBERG_SEGMENT_full_S177_v03.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "nonheat_l2",
+      "output": "reports/step26/nonheat_L2_WIKIBOOKS_full_S177_v03.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    },
+    {
+      "kind": "nonheat_l2",
+      "output": "reports/step26/nonheat_L2_TASTESET_full_S177_v03.json",
+      "status": "SUPERSEDED_BY_S178_v04"
+    }
+  ]
+}

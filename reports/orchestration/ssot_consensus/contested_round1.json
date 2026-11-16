@@ -1,0 +1,85 @@
+{
+ "round": 1,
+ "synthesiser": "SYNTH (AI_DRAFTED, PROPOSED)",
+ "date": "2026-11-08",
+ "contested": [
+  {
+   "id": "C01",
+   "items": [
+    "T9-C16 (component status)",
+    "T9-C16-R1"
+   ],
+   "issue": "Status of T9-C16 'D3 state-tracking engine VALIDATION (gold comparison)'. Topic said RUN. R-SCI: NOT_STARTED (no gold comparison exists; DEEP_GOLD 0; T3-C17 NOT_STARTED). R-SSOT: CODE (engine RUN under T3-C12, validation NOT_STARTED under T3-C17). Two different status amendments to the same id.",
+   "proposal": "Set T9-C16 to NOT_STARTED and give it only the D3 packaging (T9-C16-R1 MUST, unchanged), with xrefs to T3-C12 (engine, RUN) and T3-C17 (gold evaluation, NOT_STARTED). Correct the evidence to Rung A 9,470,190 events (reports/step17/rung_a_dryrun_counts_full_corpus_final.json) and 26g census 14,594,812. Both reviewers agree on the facts. NOT_STARTED is the only label for a validation component that cannot over-claim. The engine's RUN status stays in T3-C12."
+  },
+  {
+   "id": "C02",
+   "items": [
+    "T2-C09-R1",
+    "T2-C09-R2",
+    "T2-C09-R3",
+    "T2-C09-R4",
+    "T5-C10-R6",
+    "aliases T5-C10-R1..R4, T0-C05-R1..R3, T6-C13-R1/R2, T9-C14-R1/R2, T9-C27-R2, T2-C09-R5/R6"
+   ],
+   "issue": "Canonical owner of the AA-pilot human chain. R-FEAS makes T5-C10-R4 the canonical verification item (T0-C05-R2, T2-C09-R4, T6-C13-R1, T9-C14-R2 as aliases) and T5-C10-R2 the canonical PDF-download item. R-SSOT says T2-C09 owns evidence extraction/verification and T5-C10 owns only the fit/PARAM. The two merges conflict.",
+   "proposal": "Split by the freeze boundary. T2-C09 owns the pre-fit evidence chain: R1 AA prereg signature; R2 browser PDF downloads, MUST, deadline 10 Nov, Kush about 1 h; R3 CAL extraction 11-12 Nov with R-SCI's partition rule for any AAK-X addition; R4 dual blind verification, 3 h each, by 15 Nov, with R-SCI's process-based acceptance. T5-C10 owns everything that opens only after the fit freeze: R5 Model A fit and freeze on 16 Nov; R6 SIM-VAL extraction, verification and descriptive check by 18 Nov, 1.5-2 h each, SHOULD if D5 slips. All R-FEAS deadlines, budgets and alias lists are kept. Only the id that carries them changes. If either reviewer objects, fall back to R-FEAS's ids, which leaves the rest unchanged."
+  },
+  {
+   "id": "C03",
+   "items": [
+    "T5-C22-R1 (R-SCI missing proposal)"
+   ],
+   "issue": "R-SCI proposes a new MUST component T5-C22: composed-pipeline property tests (no L2/MODEL_DERIVED input becomes evidence_supported; NOT_POSSIBLE never rests on L2; no nutrient number without EVD id or VALIDATED_HELD_OUT model; UNKNOWN never routes to SIMULATE). It is a new MUST item, so it changes scope. It overlaps T0-C06-R2, the end-to-end contract audit already adopted as MUST with R-SCI's own acceptance.",
+   "proposal": "Do not add a separate MUST item. Add R-SCI's four rules (a)-(d) to the acceptance of T0-C06-R2, each with one planted-violation fixture that must fail closed. Raise T0-C06-R2 agent_hours from 4-6 to 5-8. Record T5-C22-R1 as an alias of T0-C06-R2. Tests that need hypothesis run on the Mac (T5-C05-R1, T9-C25-R5)."
+  },
+  {
+   "id": "C04",
+   "items": [
+    "T9-C32-R1 (R-SCI missing proposal)"
+   ],
+   "issue": "R-SCI proposes a new MUST number-class lint: every number in the deck and report must carry an evidence-class tag, and words like 'validated', 'calibrated', 'supported' and 'beats' are blocked unless a passed gate backs them. This adds agent and human load at the end of the critical path (report/slides T9-C20-R1).",
+   "proposal": "Make the lint an acceptance clause of T9-C20-R1, not its own MUST item. A SHOULD script (about 2 agent h) lists every number in the deck/report with R-SCI's class tags and flags the forbidden words unless a gate id is given. Kush/Parv approve the exceptions list during the 22-23 Nov edit. If the script is not ready by 21 Nov, the agent does the check by hand on the deck only."
+  },
+  {
+   "id": "C05",
+   "items": [
+    "T4-C26-R1 (R-SCI missing proposal)"
+   ],
+   "issue": "R-SCI proposes a new SHOULD component: a Layer 1 binder precision audit (n about 200, AI pass plus human adjudication of 1-2 h). It adds human hours in the overloaded 9-16 Nov window. Without it, Layer 1 '3.4 % stated' is a coverage figure of unknown correctness.",
+   "proposal": "Keep it SHOULD but run it after the 16 Nov D5 freeze. The agent checks n=100 seeded events (seed 20261104, stratified by family, non-BBC on manjot) and reports the result labelled AI_CHECKED, per field, with Wilson CI. No human hours before 16 Nov. Human adjudication of 20 events is COULD. Slides must say either 'precision AI-checked (n=100)' or 'precision unmeasured'."
+  },
+  {
+   "id": "C06",
+   "items": [
+    "T2-C05-R7 (R-SCI missing proposal)"
+   ],
+   "issue": "R-SCI proposes planted known-wrong normalisations in the 07.A-R1 packet, to measure whether raters can detect errors (DIAGNOSTIC_ONLY). Adding it after signature voids the prereg hash. It also touches the most time-critical human task.",
+   "proposal": "COULD, with a hard condition: add it only if it can be written into the 07A_R1 prereg inside the 10 Nov edit lock (T9-C26-R5) and costs at most 0.3 h per rater. Otherwise drop it for 25 Nov and state the limitation in the report ('AC1 measures agreement, not error detection'). Never add it after signature."
+  },
+  {
+   "id": "C07",
+   "items": [
+    "T9-C25-R3 (R-FEAS missing proposal, proposed id T9-C26-R5)"
+   ],
+   "issue": "R-FEAS proposes a new MUST VPN/vinayak contingency: a D5 runner dry run by 14 Nov, plus a minimal fallback (deterministic rungs on manjot CPU; LLM rungs reported not run). This raises T9-C25-R3 (SHOULD) and changes the D5 rung set conditionally.",
+   "proposal": "Do not add a new MUST item. (a) The 14 Nov dry run is already adopted on T8-C15-R1 through R-FEAS's T0-C11-R2 amendment. (b) Add the fallback to the T9-C26-R2 fallback levels: if vinayak is unreachable by 17 Nov, run deterministic rungs B0/B1/B2/B4/B5T on manjot CPU and report LLM rungs NOT_RUN. Because this changes the run set, the same sentence must go into the D5 prereg inside the 10 Nov edit lock. (c) T9-C25-R3 stays SHOULD."
+  },
+  {
+   "id": "C08",
+   "items": [
+    "T9-C26-R3 (R-FEAS missing proposal, proposed id T9-C21-R2: id collision)"
+   ],
+   "issue": "R-FEAS proposes a MUST rehearsal with Q&A prep (what cannot be claimed: H2, 0 PARAM except AA pilot, 07.A failure) and a hard code/result freeze on 21 Nov. The proposed id T9-C21-R2 is already taken (demo fallback video). The existing rehearsal item T9-C26-R3 is SHOULD, so this is a priority change.",
+   "proposal": "Use the existing id T9-C26-R3 and raise it to MUST: a timed dry run on 24 Nov, 1.5-2 h each, plus a one-page 'cannot claim' Q&A sheet drafted by the agent (1-2 h). The 21 Nov hard freeze is already a T9-C26-R2 trigger (adopted), so it is not added twice. T9-C21-R2 (demo video) is unchanged."
+  },
+  {
+   "id": "C09",
+   "items": [
+    "T0-C19-R1 (merges 5 R-SSOT missing proposals: T0 classical §121-§127/§80-§86/§159-§160; T0 course ontology §152-§158/§161-§170; T0 representation freeze §99-§102/§111-§120/§143/§146; T0 schemas §51/§61-§64/§72-§74; T9 §257G-§257P incl. §257L RQ flow)"
+   ],
+   "issue": "R-SSOT found 87 of 295 top-level SSOT sections that no topic anchors. It proposes owners or 'superseded' flags plus several scope decisions (which §123 null models, §99 freeze satisfied?, §257P critical-path checklist as a pass/fail table). None of the five proposals gives a priority, and together they could add a lot of scope.",
+   "proposal": "One SHOULD agent pass (3-5 h, 0.5 h human review) as T0-C19-R1: a coverage-map table with one row per unanchored section (with SSOT line range), each classed SUPERSEDED / OUT_OF_SCOPE_25NOV / OWNER=<existing item id> / UNCOVERED. No new build work. The §257P checklist rows go into T9-C26 as pass/fail lines. Any section classed UNCOVERED that is needed for 25 Nov comes back as a round-2 item. The §123 null-model scope is handled by the adopted T0-C15-R3 (COULD)."
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+  "code_sha256": "397524c499b84b43e25f4df8ecb54c851302912d54976b3f86189d1f21ffd59b",
+  "contains_ids": false,
+  "contains_text": false,
+  "counts": {
+    "L1_NONHEAT": {
+      "bound_axes": 3253268,
+      "bound_with_basis": 3253268,
+      "bound_with_row": 3253268,
+      "bound_with_span_id": 3253268,
+      "records": 3027750,
+      "unknown_axes": 12120884,
+      "unknown_axes_with_reason": 12120884
+    },
+    "L1_NONHEAT_PRIOR_HEAT_LINK": {
+      "bound_axes": 528306,
+      "bound_with_basis": 528306,
+      "bound_with_row": 528306,
+      "bound_with_span_id": 528306,
+      "unknown_axes": 1180704,
+      "unknown_axes_with_reason": 1180704
+    }
+  },
+  "counts_as_human_gate": false,
+  "files": 768,
+  "inputs_dirs": 4,
+  "kind": "L1_NONHEAT",
+  "max_files": null,
+  "problems": {},
+  "ratios": {
+    "L1_NONHEAT": {
+      "bound_with_basis_over_bound_axes": 1.0,
+      "bound_with_row_over_bound_axes": 1.0,
+      "bound_with_span_id_over_bound_axes": 1.0,
+      "unknown_axes_with_reason_over_unknown_axes": 1.0
+    },
+    "L1_NONHEAT_PRIOR_HEAT_LINK": {
+      "bound_with_basis_over_bound_axes": 1.0,
+      "bound_with_row_over_bound_axes": 1.0,
+      "bound_with_span_id_over_bound_axes": 1.0,
+      "unknown_axes_with_reason_over_unknown_axes": 1.0
+    }
+  },
+  "record": "PHYSICAL_RECORD_SCHEMA_VALIDATION",
+  "schema_version": "physical-record-schema-1.0.0-draft",
+  "status": "AI_ENGINEERING_COUNTS_ONLY",
+  "undeclared_fields": {}
+}

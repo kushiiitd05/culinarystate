@@ -1,0 +1,392 @@
+{
+ "approver": "ksh+prv (AI, D-085)",
+ "boil_combo_salt_acid_lipid": {
+  "NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 1600,
+  "NOT_DETECTED|NOT_DETECTED|True": 68,
+  "NOT_DETECTED|True|NOT_DETECTED": 76,
+  "NOT_DETECTED|True|True": 26,
+  "None|None|None": 205,
+  "True|NOT_DETECTED|NOT_DETECTED": 43,
+  "True|NOT_DETECTED|True": 23,
+  "True|True|NOT_DETECTED": 13,
+  "True|True|True": 21
+ },
+ "columns": [
+  "state_type",
+  "process_id",
+  "process_family",
+  "step_decile",
+  "n_inputs",
+  "n_outputs",
+  "medium",
+  "temperature_C",
+  "duration_min",
+  "matrix_class",
+  "lid_state",
+  "piece_size_class",
+  "thermal_state",
+  "food_T_typical_C",
+  "moisture_cap_C",
+  "aa_retention_typical",
+  "comp_food_lot",
+  "comp_medium_members",
+  "comp_salt_marker_present",
+  "comp_acid_marker_present",
+  "comp_lipid_marker_present",
+  "comp_contact_phase",
+  "comp_nacl_equiv_fraction_as_added",
+  "comp_fat_fraction_as_added",
+  "comp_lot_acidity_band"
+ ],
+ "composition_d116": true,
+ "composition_version": "v11",
+ "contains_ids": false,
+ "contains_text": false,
+ "decision": "D-110",
+ "exceptions": 0,
+ "families_requested": [
+  "A1_BBC_GOOD_FOOD"
+ ],
+ "fill_by_basis_or_reason": {
+  "A1_BBC_GOOD_FOOD": {
+   "aa_retention_typical": {
+    "UNKNOWN:MATRIX_NOT_ACIDIC_FRUIT": 48515,
+    "UNKNOWN:MEDIUM_NOT_LIQUID": 196,
+    "UNKNOWN:MEDIUM_UNKNOWN": 435,
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "UNKNOWN:WATER_CONTACT": 126,
+    "VALUE:FORMULA_RESEARCH_ONLY": 1
+   },
+   "comp_acid_marker_present": {
+    "UNKNOWN:NO_LINKED_MEMBERS": 26893,
+    "VALUE:MARKER_TABLE_V2": 231509
+   },
+   "comp_contact_phase": {
+    "UNKNOWN:MEDIUM_UNKNOWN": 106486,
+    "UNKNOWN:NO_LINKED_MEMBERS": 26893,
+    "VALUE:MARKER_TABLE_V2+PHYSICS_V06_L1": 125023
+   },
+   "comp_fat_fraction_as_added": {
+    "UNKNOWN:MASS_NOT_GROUNDED": 258402
+   },
+   "comp_food_lot": {
+    "UNKNOWN:NO_LINKED_MEMBERS": 26893,
+    "UNKNOWN:ONLY_MEDIUM_MEMBERS": 17430,
+    "VALUE:RUNG_A_LOT": 214079
+   },
+   "comp_lipid_marker_present": {
+    "UNKNOWN:NO_LINKED_MEMBERS": 26893,
+    "VALUE:MARKER_TABLE_V2": 231509
+   },
+   "comp_lot_acidity_band": {
+    "UNKNOWN:LOT_PH_NOT_COMPUTED": 258402
+   },
+   "comp_medium_members": {
+    "UNKNOWN:NO_LINKED_MEMBERS": 26893,
+    "VALUE:MARKER_TABLE_V2": 231509
+   },
+   "comp_nacl_equiv_fraction_as_added": {
+    "UNKNOWN:MASS_NOT_GROUNDED": 258402
+   },
+   "comp_salt_marker_present": {
+    "UNKNOWN:NO_LINKED_MEMBERS": 26893,
+    "VALUE:MARKER_TABLE_V2": 231509
+   },
+   "duration_min": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "UNKNOWN:NO_DURATION_STATED": 29744,
+    "VALUE:TEXT_STATED": 19529
+   },
+   "food_T_typical_C": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "UNKNOWN:SCENARIO_UNKNOWN": 30238,
+    "UNKNOWN:UNSUPPORTED_MEDIUM": 1694,
+    "VALUE:SCENARIO_DEFAULT": 17341
+   },
+   "lid_state": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "UNKNOWN:NO_LID_CUE": 45848,
+    "VALUE:CUE": 3425
+   },
+   "matrix_class": {
+    "UNKNOWN:MULTIPLE_FOOD_GROUPS": 15952,
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "UNKNOWN:NO_FOOD_GROUP": 17878,
+    "VALUE:FOOD_GROUP": 15443
+   },
+   "medium": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "UNKNOWN:NO_MEDIUM_IN_PROCESS_MAP": 30005,
+    "VALUE:PROCESS_DEFINITION": 19268
+   },
+   "moisture_cap_C": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "UNKNOWN:NO_MOISTURE_CAP": 576,
+    "UNKNOWN:SCENARIO_UNKNOWN": 30238,
+    "UNKNOWN:UNSUPPORTED_MEDIUM": 1694,
+    "VALUE:SCENARIO_DEFAULT": 16765
+   },
+   "n_inputs": {
+    "VALUE:RUNG_A": 258402
+   },
+   "n_outputs": {
+    "VALUE:RUNG_A": 258402
+   },
+   "piece_size_class": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "UNKNOWN:NO_CUT_HISTORY": 45211,
+    "VALUE:CUT_HISTORY": 4062
+   },
+   "process_family": {
+    "UNKNOWN:NO_PROC": 2401,
+    "VALUE:PROC_LEDGER": 256001
+   },
+   "process_id": {
+    "UNKNOWN:NO_PROC": 2401,
+    "VALUE:RUNG_A": 256001
+   },
+   "state_type": {
+    "UNKNOWN:UNMAPPED_STRUCTURE": 30009,
+    "VALUE:D-102_V2": 228393
+   },
+   "step_decile": {
+    "VALUE:RUNG_A": 258402
+   },
+   "temperature_C": {
+    "UNKNOWN:GAS_MARK_CODE_ONLY": 110,
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "UNKNOWN:NO_TEMPERATURE_STATED": 40470,
+    "VALUE:CARRIED_SETPOINT": 452,
+    "VALUE:PHYSICAL_DEFINITION": 2593,
+    "VALUE:TEXT_STATED": 5648
+   },
+   "thermal_state": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 209129,
+    "VALUE:PHYSICS_V06_L2": 49273
+   }
+  }
+ },
+ "heat_combo_family_salt_acid_lipid": {
+  "COMBINATION|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 280,
+  "COMBINATION|NOT_DETECTED|NOT_DETECTED|True": 383,
+  "COMBINATION|NOT_DETECTED|True|NOT_DETECTED": 45,
+  "COMBINATION|NOT_DETECTED|True|True": 66,
+  "COMBINATION|None|None|None": 72,
+  "COMBINATION|True|NOT_DETECTED|NOT_DETECTED": 97,
+  "COMBINATION|True|NOT_DETECTED|True": 212,
+  "COMBINATION|True|True|NOT_DETECTED": 36,
+  "COMBINATION|True|True|True": 80,
+  "COOLING|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 211,
+  "COOLING|NOT_DETECTED|NOT_DETECTED|True": 116,
+  "COOLING|NOT_DETECTED|True|NOT_DETECTED": 7,
+  "COOLING|NOT_DETECTED|True|True": 17,
+  "COOLING|None|None|None": 56,
+  "COOLING|True|NOT_DETECTED|NOT_DETECTED": 29,
+  "COOLING|True|NOT_DETECTED|True": 56,
+  "COOLING|True|True|NOT_DETECTED": 5,
+  "COOLING|True|True|True": 9,
+  "DRY_HEAT|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 2976,
+  "DRY_HEAT|NOT_DETECTED|NOT_DETECTED|True": 1466,
+  "DRY_HEAT|NOT_DETECTED|True|NOT_DETECTED": 168,
+  "DRY_HEAT|NOT_DETECTED|True|True": 251,
+  "DRY_HEAT|None|None|None": 502,
+  "DRY_HEAT|True|NOT_DETECTED|NOT_DETECTED": 292,
+  "DRY_HEAT|True|NOT_DETECTED|True": 534,
+  "DRY_HEAT|True|True|NOT_DETECTED": 78,
+  "DRY_HEAT|True|True|True": 151,
+  "FAT_HEAT|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 80,
+  "FAT_HEAT|NOT_DETECTED|NOT_DETECTED|True": 3803,
+  "FAT_HEAT|NOT_DETECTED|True|NOT_DETECTED": 2,
+  "FAT_HEAT|NOT_DETECTED|True|True": 148,
+  "FAT_HEAT|None|None|None": 342,
+  "FAT_HEAT|True|NOT_DETECTED|NOT_DETECTED": 10,
+  "FAT_HEAT|True|NOT_DETECTED|True": 437,
+  "FAT_HEAT|True|True|True": 116,
+  "FERMENT_LEAVEN|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 2,
+  "FERMENT_LEAVEN|NOT_DETECTED|NOT_DETECTED|True": 1,
+  "FERMENT_LEAVEN|True|NOT_DETECTED|True": 1,
+  "HEAT_CONTROL|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 10,
+  "HEAT_CONTROL|NOT_DETECTED|NOT_DETECTED|True": 14,
+  "HEAT_CONTROL|NOT_DETECTED|True|NOT_DETECTED": 1,
+  "HEAT_CONTROL|NOT_DETECTED|True|True": 3,
+  "HEAT_CONTROL|None|None|None": 8,
+  "HEAT_CONTROL|True|NOT_DETECTED|True": 9,
+  "HEAT_CONTROL|True|True|NOT_DETECTED": 2,
+  "HEAT_CONTROL|True|True|True": 2,
+  "HEAT_GENERAL|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 10017,
+  "HEAT_GENERAL|NOT_DETECTED|NOT_DETECTED|True": 6682,
+  "HEAT_GENERAL|NOT_DETECTED|True|NOT_DETECTED": 651,
+  "HEAT_GENERAL|NOT_DETECTED|True|True": 566,
+  "HEAT_GENERAL|None|None|None": 5129,
+  "HEAT_GENERAL|True|NOT_DETECTED|NOT_DETECTED": 954,
+  "HEAT_GENERAL|True|NOT_DETECTED|True": 1035,
+  "HEAT_GENERAL|True|True|NOT_DETECTED": 292,
+  "HEAT_GENERAL|True|True|True": 412,
+  "MECHANICAL_CUT|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 134,
+  "MECHANICAL_CUT|NOT_DETECTED|NOT_DETECTED|True": 35,
+  "MECHANICAL_CUT|NOT_DETECTED|True|NOT_DETECTED": 4,
+  "MECHANICAL_CUT|NOT_DETECTED|True|True": 7,
+  "MECHANICAL_CUT|None|None|None": 13,
+  "MECHANICAL_CUT|True|NOT_DETECTED|NOT_DETECTED": 5,
+  "MECHANICAL_CUT|True|NOT_DETECTED|True": 16,
+  "MECHANICAL_CUT|True|True|NOT_DETECTED": 4,
+  "MECHANICAL_CUT|True|True|True": 8,
+  "MECHANICAL_MIX|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 254,
+  "MECHANICAL_MIX|NOT_DETECTED|NOT_DETECTED|True": 281,
+  "MECHANICAL_MIX|NOT_DETECTED|True|NOT_DETECTED": 37,
+  "MECHANICAL_MIX|NOT_DETECTED|True|True": 49,
+  "MECHANICAL_MIX|None|None|None": 194,
+  "MECHANICAL_MIX|True|NOT_DETECTED|NOT_DETECTED": 63,
+  "MECHANICAL_MIX|True|NOT_DETECTED|True": 150,
+  "MECHANICAL_MIX|True|True|NOT_DETECTED": 17,
+  "MECHANICAL_MIX|True|True|True": 26,
+  "None|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 18,
+  "None|NOT_DETECTED|NOT_DETECTED|True": 5,
+  "None|NOT_DETECTED|True|NOT_DETECTED": 1,
+  "None|NOT_DETECTED|True|True": 3,
+  "None|True|NOT_DETECTED|NOT_DETECTED": 1,
+  "None|True|NOT_DETECTED|True": 4,
+  "None|True|True|True": 2,
+  "PRESERVATION|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 10,
+  "PRESERVATION|NOT_DETECTED|NOT_DETECTED|True": 6,
+  "PRESERVATION|NOT_DETECTED|True|True": 1,
+  "PRESERVATION|None|None|None": 3,
+  "PRESERVATION|True|NOT_DETECTED|NOT_DETECTED": 3,
+  "PRESERVATION|True|NOT_DETECTED|True": 1,
+  "PRESERVATION|True|True|NOT_DETECTED": 1,
+  "RESERVATION|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 29,
+  "RESERVATION|NOT_DETECTED|NOT_DETECTED|True": 14,
+  "RESERVATION|NOT_DETECTED|True|NOT_DETECTED": 1,
+  "RESERVATION|NOT_DETECTED|True|True": 1,
+  "RESERVATION|None|None|None": 5,
+  "RESERVATION|True|NOT_DETECTED|True": 6,
+  "RESTING|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 24,
+  "RESTING|NOT_DETECTED|NOT_DETECTED|True": 12,
+  "RESTING|NOT_DETECTED|True|NOT_DETECTED": 1,
+  "RESTING|NOT_DETECTED|True|True": 3,
+  "RESTING|None|None|None": 3,
+  "RESTING|True|NOT_DETECTED|NOT_DETECTED": 3,
+  "RESTING|True|NOT_DETECTED|True": 8,
+  "RESTING|True|True|NOT_DETECTED": 1,
+  "RESTING|True|True|True": 4,
+  "SEPARATION|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 128,
+  "SEPARATION|NOT_DETECTED|NOT_DETECTED|True": 86,
+  "SEPARATION|NOT_DETECTED|True|NOT_DETECTED": 10,
+  "SEPARATION|NOT_DETECTED|True|True": 10,
+  "SEPARATION|None|None|None": 37,
+  "SEPARATION|True|NOT_DETECTED|NOT_DETECTED": 6,
+  "SEPARATION|True|NOT_DETECTED|True": 25,
+  "SEPARATION|True|True|True": 9,
+  "SERVING|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 157,
+  "SERVING|NOT_DETECTED|NOT_DETECTED|True": 54,
+  "SERVING|NOT_DETECTED|True|NOT_DETECTED": 14,
+  "SERVING|NOT_DETECTED|True|True": 17,
+  "SERVING|None|None|None": 18,
+  "SERVING|True|NOT_DETECTED|NOT_DETECTED": 8,
+  "SERVING|True|NOT_DETECTED|True": 21,
+  "SERVING|True|True|NOT_DETECTED": 6,
+  "SERVING|True|True|True": 8,
+  "SHAPING|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 70,
+  "SHAPING|NOT_DETECTED|NOT_DETECTED|True": 30,
+  "SHAPING|NOT_DETECTED|True|NOT_DETECTED": 3,
+  "SHAPING|NOT_DETECTED|True|True": 6,
+  "SHAPING|None|None|None": 16,
+  "SHAPING|True|NOT_DETECTED|NOT_DETECTED": 5,
+  "SHAPING|True|NOT_DETECTED|True": 9,
+  "SHAPING|True|True|NOT_DETECTED": 1,
+  "SHAPING|True|True|True": 4,
+  "TRANSFER|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 639,
+  "TRANSFER|NOT_DETECTED|NOT_DETECTED|True": 377,
+  "TRANSFER|NOT_DETECTED|True|NOT_DETECTED": 31,
+  "TRANSFER|NOT_DETECTED|True|True": 50,
+  "TRANSFER|None|None|None": 174,
+  "TRANSFER|True|NOT_DETECTED|NOT_DETECTED": 65,
+  "TRANSFER|True|NOT_DETECTED|True": 198,
+  "TRANSFER|True|True|NOT_DETECTED": 27,
+  "TRANSFER|True|True|True": 40,
+  "WET_HEAT|NOT_DETECTED|NOT_DETECTED|NOT_DETECTED": 3923,
+  "WET_HEAT|NOT_DETECTED|NOT_DETECTED|True": 421,
+  "WET_HEAT|NOT_DETECTED|True|NOT_DETECTED": 388,
+  "WET_HEAT|NOT_DETECTED|True|True": 188,
+  "WET_HEAT|None|None|None": 880,
+  "WET_HEAT|True|NOT_DETECTED|NOT_DETECTED": 310,
+  "WET_HEAT|True|NOT_DETECTED|True": 161,
+  "WET_HEAT|True|True|NOT_DETECTED": 119,
+  "WET_HEAT|True|True|True": 129
+ },
+ "heat_rows_joined_to_physics": {
+  "A1_BBC_GOOD_FOOD": 49273
+ },
+ "labels": [
+  "DERIVED_VIEW_NOT_LEDGER",
+  "SCENARIO_DEFAULT_WHERE_STATED",
+  "FORMULA_RESEARCH_ONLY",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "recipes": 11934,
+ "record": "STATE_DATASET_FILL",
+ "row_parts": 6,
+ "rows": 258402,
+ "rows_dir": "BBC",
+ "scientific_gate_pass": false,
+ "shard": "0/1",
+ "value_rate_pct": {
+  "A1_BBC_GOOD_FOOD": {
+   "aa_retention_typical": 0.0,
+   "comp_acid_marker_present": 89.59,
+   "comp_contact_phase": 48.38,
+   "comp_fat_fraction_as_added": 0.0,
+   "comp_food_lot": 82.85,
+   "comp_lipid_marker_present": 89.59,
+   "comp_lot_acidity_band": 0.0,
+   "comp_medium_members": 89.59,
+   "comp_nacl_equiv_fraction_as_added": 0.0,
+   "comp_salt_marker_present": 89.59,
+   "duration_min": 7.56,
+   "food_T_typical_C": 6.71,
+   "lid_state": 1.33,
+   "matrix_class": 5.98,
+   "medium": 7.46,
+   "moisture_cap_C": 6.49,
+   "n_inputs": 100.0,
+   "n_outputs": 100.0,
+   "piece_size_class": 1.57,
+   "process_family": 99.07,
+   "process_id": 99.07,
+   "state_type": 88.39,
+   "step_decile": 100.0,
+   "temperature_C": 3.36,
+   "thermal_state": 19.07
+  }
+ },
+ "value_rate_pct_heat_rows": {
+  "A1_BBC_GOOD_FOOD": {
+   "aa_retention_typical": 0.0,
+   "comp_acid_marker_present": 84.88,
+   "comp_contact_phase": 63.13,
+   "comp_fat_fraction_as_added": 0.0,
+   "comp_food_lot": 71.15,
+   "comp_lipid_marker_present": 84.88,
+   "comp_lot_acidity_band": 0.0,
+   "comp_medium_members": 84.88,
+   "comp_nacl_equiv_fraction_as_added": 0.0,
+   "comp_salt_marker_present": 84.88,
+   "duration_min": 39.63,
+   "food_T_typical_C": 35.19,
+   "lid_state": 6.95,
+   "matrix_class": 31.34,
+   "medium": 39.1,
+   "moisture_cap_C": 34.02,
+   "n_inputs": 100.0,
+   "n_outputs": 100.0,
+   "piece_size_class": 8.24,
+   "process_family": 99.93,
+   "process_id": 99.93,
+   "state_type": 78.99,
+   "step_decile": 100.0,
+   "temperature_C": 17.64,
+   "thermal_state": 100.0
+  }
+ },
+ "wall_seconds": 127.0
+}

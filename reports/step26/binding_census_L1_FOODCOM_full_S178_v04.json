@@ -1,0 +1,433 @@
+{
+  "baseline_check": "PASS_BEFORE_AND_AFTER",
+  "binder_version": "condition-binding-L1-0.2.0-draft",
+  "census_version": "binding-census-L1-0.2.0-draft",
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/extraction/__init__.py",
+        "sha256": "b57b6cc94e8e6810f01f96a9c5671ad864fe0fb067d18930571b9ec694e97bf0"
+      },
+      {
+        "path": "src/culinarystate/extraction/auditor.py",
+        "sha256": "709b4351379e848229279218e7343c3c5fb45d16af8cd81b81892778e6341e21"
+      },
+      {
+        "path": "src/culinarystate/extraction/d073_current_sample.py",
+        "sha256": "c472911050fde29509bbba2b4bf24bb62e962b8f845681a3b23525e663e84a5b"
+      },
+      {
+        "path": "src/culinarystate/extraction/interfaces.py",
+        "sha256": "543dfcb5a36f67abea810ebcfd94427759c4ebdd4bf11736e950b48de240407d"
+      },
+      {
+        "path": "src/culinarystate/extraction/invariants.py",
+        "sha256": "b2e45c3dfd61da10982ade1a78e5458fa0a161c2cb1be454a923f56768da1b8b"
+      },
+      {
+        "path": "src/culinarystate/extraction/j4_inverted_sample.py",
+        "sha256": "84628577169426e01e955405e4ca18a3a43830f93f2bd64017ffefed36e55657"
+      },
+      {
+        "path": "src/culinarystate/extraction/quantity_stages.py",
+        "sha256": "5d3e79f9ba6e50709384ccde8d052dd7a5d39f6be0e6dd4e07994ccada77f899"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a.py",
+        "sha256": "b274feed81bf18f5ef9332761cde0d6231b2e84480eb2a61ebccb5816e19d630"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_binding.py",
+        "sha256": "957471c26dd726468bba7967c3ffc7027390c56777ea90b5abcfb7f2f396ddbf"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_lexicon.py",
+        "sha256": "8973f0eb2d78bd64c6ba4723120a540c3a016707b4178ba6b95e041f14bf0430"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_measure.py",
+        "sha256": "d4c42e85248f626c6a2ea9fad9062f18952785456fbb63d981dede9b64add56b"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_rules.py",
+        "sha256": "12cf0ce00d9e469ef4a77293e86539c5ac8610b41ecc2b499f955ca7f9f93752"
+      },
+      {
+        "path": "src/culinarystate/extraction/validators.py",
+        "sha256": "4ccb60e43b06afab22654baf82d8e1e1ec679e1356c2a63cdeccd8353d6091d9"
+      },
+      {
+        "path": "tools/step17b_rung_a_dryrun.py",
+        "sha256": "9290d52369f9302f92da469bd337c974f29287f3af057eb1cae1fb7a8445b158"
+      },
+      {
+        "path": "src/culinarystate/simulation/condition_binding.py",
+        "sha256": "4f8e50919386ba3b1e4f4a320dd1275b174e23eda0813c5cf7bd7cd8a75597e4"
+      },
+      {
+        "path": "src/culinarystate/simulation/binding_census.py",
+        "sha256": "169730fb8c105ea5dd1fbd9f10963a4d9ab8a8935b3e6988e224d07dcc837feb"
+      },
+      {
+        "path": "registry/process_medium_map_v1.csv",
+        "sha256": "5014c27d553ca8fb8691fe5633b053344fe2281128138dba2b39da819402a953"
+      },
+      {
+        "path": "tools/binding_census.py",
+        "sha256": "0b94198eb43293d5c16e237db7dabcf185e25d3f1f7efaf5a0530002c05bf55b"
+      }
+    ],
+    "git_commit": "e60b581b57b6d4f481bba484dae19e6d3c150f63",
+    "git_dirty": true,
+    "src_tree_sha256": "0e39c19780ff0cc608ebc9e2f21d4e70bb8d639827aab3d1bc3156dd261ed62c"
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "contract_bindings": 2102295,
+  "counts_as_human_gate": false,
+  "driver_bounded_events": 87139,
+  "driver_ready_events": 55662,
+  "endpoint_cues": {
+    "cue_and_duration_by_family": {
+      "DRY_HEAT": 106021,
+      "FAT_HEAT": 19616,
+      "HEAT_GENERAL": 62396,
+      "WET_HEAT": 27029
+    },
+    "cue_class": {
+      "AROMA": 6805,
+      "BUBBLE_BOIL": 24917,
+      "CANDY_STAGE": 428,
+      "COLOUR": 126492,
+      "COOL_COLD": 1005,
+      "CRISP": 20135,
+      "DONENESS_TEST": 17654,
+      "EVAPORATE_REDUCE": 18356,
+      "HOT_WARM": 16139,
+      "INTERNAL_DONENESS": 66625,
+      "MELT_DISSOLVE_SMOOTH": 39715,
+      "PUFF_RISE": 5611,
+      "SERVE_OR_USE": 1723,
+      "SET_FIRM": 18688,
+      "SOFTEN": 106721,
+      "TARGET_FOOD_TEMPERATURE": 2621,
+      "TEXTURE_STATE": 12811,
+      "THICKEN": 30967,
+      "TRANSLUCENT_OPAQUE": 16019,
+      "UNTIL_CLAUSE_UNCLASSIFIED": 42459,
+      "WILT": 3825
+    },
+    "cue_class_by_family": {
+      "DRY_HEAT": {
+        "AROMA": 1414,
+        "BUBBLE_BOIL": 10422,
+        "CANDY_STAGE": 5,
+        "COLOUR": 63276,
+        "COOL_COLD": 208,
+        "CRISP": 5768,
+        "DONENESS_TEST": 17233,
+        "EVAPORATE_REDUCE": 1721,
+        "HOT_WARM": 3807,
+        "INTERNAL_DONENESS": 21769,
+        "MELT_DISSOLVE_SMOOTH": 9118,
+        "PUFF_RISE": 3851,
+        "SERVE_OR_USE": 145,
+        "SET_FIRM": 13453,
+        "SOFTEN": 12225,
+        "TARGET_FOOD_TEMPERATURE": 1733,
+        "TEXTURE_STATE": 4464,
+        "THICKEN": 442,
+        "TRANSLUCENT_OPAQUE": 2501,
+        "UNTIL_CLAUSE_UNCLASSIFIED": 11196,
+        "WILT": 142
+      },
+      "FAT_HEAT": {
+        "AROMA": 1845,
+        "BUBBLE_BOIL": 311,
+        "CANDY_STAGE": 2,
+        "COLOUR": 24597,
+        "COOL_COLD": 46,
+        "CRISP": 4883,
+        "DONENESS_TEST": 14,
+        "EVAPORATE_REDUCE": 892,
+        "HOT_WARM": 483,
+        "INTERNAL_DONENESS": 6818,
+        "MELT_DISSOLVE_SMOOTH": 2143,
+        "PUFF_RISE": 141,
+        "SERVE_OR_USE": 85,
+        "SET_FIRM": 362,
+        "SOFTEN": 21345,
+        "TARGET_FOOD_TEMPERATURE": 74,
+        "TEXTURE_STATE": 2658,
+        "THICKEN": 299,
+        "TRANSLUCENT_OPAQUE": 6511,
+        "UNTIL_CLAUSE_UNCLASSIFIED": 4484,
+        "WILT": 802
+      },
+      "HEAT_GENERAL": {
+        "AROMA": 3440,
+        "BUBBLE_BOIL": 13434,
+        "CANDY_STAGE": 276,
+        "COLOUR": 37483,
+        "COOL_COLD": 444,
+        "CRISP": 8075,
+        "DONENESS_TEST": 324,
+        "EVAPORATE_REDUCE": 8129,
+        "HOT_WARM": 10994,
+        "INTERNAL_DONENESS": 27738,
+        "MELT_DISSOLVE_SMOOTH": 23904,
+        "PUFF_RISE": 1492,
+        "SERVE_OR_USE": 1043,
+        "SET_FIRM": 4016,
+        "SOFTEN": 47458,
+        "TARGET_FOOD_TEMPERATURE": 727,
+        "TEXTURE_STATE": 4280,
+        "THICKEN": 19430,
+        "TRANSLUCENT_OPAQUE": 6116,
+        "UNTIL_CLAUSE_UNCLASSIFIED": 19849,
+        "WILT": 2546
+      },
+      "WET_HEAT": {
+        "AROMA": 106,
+        "BUBBLE_BOIL": 750,
+        "CANDY_STAGE": 145,
+        "COLOUR": 1136,
+        "COOL_COLD": 307,
+        "CRISP": 1409,
+        "DONENESS_TEST": 83,
+        "EVAPORATE_REDUCE": 7614,
+        "HOT_WARM": 855,
+        "INTERNAL_DONENESS": 10300,
+        "MELT_DISSOLVE_SMOOTH": 4550,
+        "PUFF_RISE": 127,
+        "SERVE_OR_USE": 450,
+        "SET_FIRM": 857,
+        "SOFTEN": 25693,
+        "TARGET_FOOD_TEMPERATURE": 87,
+        "TEXTURE_STATE": 1409,
+        "THICKEN": 10796,
+        "TRANSLUCENT_OPAQUE": 891,
+        "UNTIL_CLAUSE_UNCLASSIFIED": 6930,
+        "WILT": 335
+      }
+    },
+    "cue_trigger": {
+      "PHRASE": 1170,
+      "TARGET": 2621,
+      "UNTIL": 575925
+    },
+    "cue_without_duration_by_family": {
+      "DRY_HEAT": 42793,
+      "FAT_HEAT": 47938,
+      "HEAT_GENERAL": 142934,
+      "WET_HEAT": 38607
+    },
+    "cue_without_temperature_by_family": {
+      "DRY_HEAT": 98591,
+      "FAT_HEAT": 67265,
+      "HEAT_GENERAL": 203167,
+      "WET_HEAT": 45853
+    },
+    "cues_per_event": {
+      "0": 1015927,
+      "1": 400824,
+      "2": 81084,
+      "3": 5426
+    },
+    "events_with_cue_by_family": {
+      "DRY_HEAT": 148814,
+      "FAT_HEAT": 67554,
+      "HEAT_GENERAL": 205330,
+      "WET_HEAT": 65636
+    },
+    "extractor_version": "endpoint-cues-0.1.0-draft",
+    "heat_events": 1503261,
+    "heat_events_with_cue": 487334,
+    "stopping_criterion_class": {
+      "AROMA": 5590,
+      "BUBBLE_BOIL": 16494,
+      "CANDY_STAGE": 384,
+      "COLOUR": 100711,
+      "COOL_COLD": 461,
+      "CRISP": 13892,
+      "DONENESS_TEST": 15515,
+      "EVAPORATE_REDUCE": 15249,
+      "HOT_WARM": 14511,
+      "INTERNAL_DONENESS": 59271,
+      "MELT_DISSOLVE_SMOOTH": 33645,
+      "PUFF_RISE": 4719,
+      "SERVE_OR_USE": 1498,
+      "SET_FIRM": 14464,
+      "SOFTEN": 94965,
+      "TARGET_FOOD_TEMPERATURE": 1827,
+      "TEXTURE_STATE": 10027,
+      "THICKEN": 25669,
+      "TRANSLUCENT_OPAQUE": 12921,
+      "UNTIL_CLAUSE_UNCLASSIFIED": 41946,
+      "WILT": 3575
+    },
+    "stored_outside_inputs": true
+  },
+  "events": 8214960,
+  "exceptions_by_class": {},
+  "families_requested": [
+    "FOODCOM"
+  ],
+  "family_status": {
+    "FOODCOM": "READ"
+  },
+  "gas_mark_only_events": 246,
+  "heat_events": 1503261,
+  "heat_events_by_family": {
+    "DRY_HEAT": 365658,
+    "FAT_HEAT": 198562,
+    "HEAT_GENERAL": 655880,
+    "WET_HEAT": 283161
+  },
+  "input_basis": {
+    "ambient_temperature": {
+      "TEXT_STATED": 1895
+    },
+    "duration": {
+      "TEXT_STATED": 463983
+    },
+    "lid_state": {
+      "CUE": 137373
+    },
+    "matrix_class": {
+      "FOOD_GROUP": 493247
+    },
+    "matrix_groups": {
+      "FOOD_GROUP": 1079198
+    },
+    "medium": {
+      "PROCESS_DEFINITION": 783518
+    },
+    "piece_size_class": {
+      "CUT_HISTORY": 139389
+    },
+    "start_mode": {
+      "CUE": 29123
+    },
+    "temperature_profile": {
+      "CARRIED_SETPOINT": 70835,
+      "PHYSICAL_DEFINITION": 99745,
+      "TEXT_STATED": 48952
+    }
+  },
+  "input_status": {
+    "ambient_temperature": {
+      "MEASURED": 1889,
+      "RANGE": 6
+    },
+    "duration": {
+      "MEASURED": 314510,
+      "RANGE": 149473,
+      "UNKNOWN": 1039278
+    },
+    "lid_state": {
+      "MEASURED": 137373,
+      "UNKNOWN": 1365888
+    },
+    "matrix_class": {
+      "MEASURED": 493247,
+      "UNKNOWN": 1010014
+    },
+    "matrix_groups": {
+      "MEASURED": 1079198
+    },
+    "medium": {
+      "MEASURED": 783518,
+      "UNKNOWN": 719743
+    },
+    "piece_size_class": {
+      "MEASURED": 139389,
+      "UNKNOWN": 1363872
+    },
+    "start_mode": {
+      "MEASURED": 29123,
+      "UNKNOWN": 1474138
+    },
+    "temperature_profile": {
+      "MEASURED": 219064,
+      "RANGE": 468,
+      "UNKNOWN": 1283729
+    },
+    "water_ratio": {
+      "UNKNOWN": 1503261
+    }
+  },
+  "label": "REAL_BASE_SAMPLE_COUNTS_NOT_GOLD",
+  "layer": "TEXT_STATED",
+  "matrix_groups": {
+    "events_by_member_group_count": {
+      "1": 493247,
+      "2": 227933,
+      "3": 166228,
+      "4": 191790
+    },
+    "events_without_any_food_group": 424063
+  },
+  "provenance_axes": {
+    "bound_axes": 3347258,
+    "bound_with_basis": 3347258,
+    "bound_with_row": 3347258,
+    "bound_with_span_id": 3347258,
+    "unknown_axes": 9759923,
+    "unknown_with_reason": 9759923
+  },
+  "recipes_sampled": 522517,
+  "recipes_seen": 522517,
+  "record": "BINDING_CENSUS_L1",
+  "records_written": true,
+  "sample_rule": "SHA256_SEED_CONCAT_RECIPE_ID_ASC",
+  "sample_size_requested": 600000,
+  "seed_sha256": "1037f2edb4912104fc759949aacecbc2133a73a1a2b17bde5210cdad7ee901dc",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "temperature_ownership": {
+    "aqueous_medium_events_with_stated_temperature_by_bucket": {
+      "T_100_105": {
+        "ALL": 22
+      },
+      "T_100_OR_BELOW": {
+        "ALL": 99
+      },
+      "T_105_120": {
+        "ALL": 175
+      },
+      "T_120_150": {
+        "ALL": 62
+      },
+      "T_ABOVE_150": {
+        "PROC__000019": 16,
+        "PROC__000020": 5,
+        "PROC__000023": 1,
+        "PROC__000024": 3,
+        "PROC__000025": 3
+      }
+    },
+    "events_where_temperature_differs_from_v01_by_reason_and_family": {
+      "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": {
+        "WET_HEAT": 1700
+      },
+      "OWNED_BY_OTHER_EVENT": {
+        "DRY_HEAT": 865,
+        "FAT_HEAT": 668,
+        "HEAT_GENERAL": 519,
+        "WET_HEAT": 376
+      },
+      "TARGET_FOOD_TEMPERATURE": {
+        "DRY_HEAT": 1412,
+        "FAT_HEAT": 115,
+        "HEAT_GENERAL": 730,
+        "WET_HEAT": 109
+      }
+    },
+    "events_with_ambient_temperature_by_family": {
+      "WET_HEAT": 1895
+    },
+    "rule": "OWN_CLAUSE_OR_EARLIER_SETTER_NOT_NEAREST_IN_SENTENCE"
+  },
+  "texts_with_steps": 522514
+}

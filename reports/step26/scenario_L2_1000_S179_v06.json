@@ -1,0 +1,365 @@
+{
+  "cap_model": "evaporation-cap-0.3.0-draft",
+  "cap_policy": {
+    "altitude_m": null,
+    "enabled": true,
+    "pressure_psig": null
+  },
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/simulation/scenario_layer.py",
+        "sha256": "1377cf63f26582c1f9243a806e6948498d0df3ae29b0935a582c2e80889b4d4a"
+      },
+      {
+        "path": "src/culinarystate/simulation/phase_change.py",
+        "sha256": "18944b320aab53b6bb4b41a26e25d754cd3538ab340dc75795474c447aa16a3d"
+      },
+      {
+        "path": "src/culinarystate/simulation/physics_drivers.py",
+        "sha256": "c741754eadb4f81fd4985191f48c14706255ded5f1b7f3757d0540bd1217638e"
+      },
+      {
+        "path": "src/culinarystate/simulation/condition_binding.py",
+        "sha256": "abb4d3ac1a7831480c09df4aa21e89a29ca899b35c69e8f614d6b2b027dd75c9"
+      },
+      {
+        "path": "src/culinarystate/simulation/endpoint_cues.py",
+        "sha256": "e61eae651ca03d739f360634247d19e6b3a55a7ad36a4a88d820c27a9272af85"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "registry/phase_change_v1.csv",
+        "sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a"
+      },
+      {
+        "path": "registry/matrix_moisture_regime_v1.csv",
+        "sha256": "039fe8f3b8ea69788333877731e249891bb9d5f2ef3423c457cdde8fa209fa0d"
+      },
+      {
+        "path": "tools/scenario_layer_run.py",
+        "sha256": "6e859cd3f0a1700072eb1c3abcb5ca50463c010316bfa4f02cdb15fc2db7d6e9"
+      }
+    ]
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts": {
+    "basis": {
+      "alpha": {
+        "SD": 3999
+      },
+      "bath_c": {
+        "L1": 1392,
+        "SD": 2607
+      },
+      "duration_min": {
+        "KGE": 2484,
+        "L1": 1515
+      },
+      "h": {
+        "SD": 303
+      },
+      "half_thickness_m": {
+        "SD": 303
+      },
+      "initial_c": {
+        "SD": 3999
+      },
+      "k": {
+        "SD": 3999
+      },
+      "t_cap_c": {
+        "L1": 3,
+        "PC": 3816
+      }
+    },
+    "cap_flag_typical": {
+      "ALL_MEMBERS_DRY_CLASS": 2,
+      "ALTITUDE_ASSUMED_SEA_LEVEL": 1273,
+      "BOILING_POINT_ELEVATION_NOT_MODELLED": 1273,
+      "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 1,
+      "CAP_NOT_LIFTED_NO_DRYING_MODEL": 1273,
+      "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": 60,
+      "EVAPORATION_CAP_APPLIED": 793,
+      "EVAPORATION_CAP_NOT_BINDING": 480,
+      "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 155,
+      "MATRIX_DRY_CLASS_UNCAPPED": 60,
+      "MATRIX_UNKNOWN_MOIST_ASSUMED": 410,
+      "NOT_A_ZONE_MEAN_DOSE": 101,
+      "PRESSURE_ASSUMED_1ATM": 1291,
+      "SALT_MEMBER_BPE_SMALL": 143,
+      "STATED_LIQUID_LIFT_SYRUP_STAGE_CUE": 1,
+      "STATED_LIQUID_T_ABOVE_TBOIL": 1,
+      "SUGAR_PHASE_TBOIL_LOWER_ESTIMATE": 193,
+      "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 1273,
+      "WATER_BATH_IN_OVEN": 1,
+      "WATER_BATH_TEMPERATURE_BOUNDED_BY_TBOIL_UPPER_BOUND": 1
+    },
+    "core_known": {
+      "GENTLE": {
+        "False": 1232,
+        "True": 101
+      },
+      "INTENSE": {
+        "False": 1232,
+        "True": 101
+      },
+      "TYPICAL": {
+        "False": 1232,
+        "True": 101
+      }
+    },
+    "fixphys_flag_typical": {
+      "STATED_LIQUID_LIFT_SYRUP_STAGE_CUE": 1,
+      "WATER_BATH_IN_OVEN": 1
+    },
+    "stated_liquid_above_tboil": {
+      "GENTLE": 1,
+      "INTENSE": 1,
+      "TYPICAL": 1
+    },
+    "stated_liquid_above_tboil_by_stated_c": {
+      "GENTLE": {
+        "105_TO_120": 1
+      },
+      "INTENSE": {
+        "105_TO_120": 1
+      },
+      "TYPICAL": {
+        "105_TO_120": 1
+      }
+    },
+    "stated_liquid_typical_by_stated_c_and_member": {
+      "105_TO_120": {
+        "SOLUTE_RICH_MEMBER": 1
+      }
+    },
+    "status": {
+      "SCENARIO_COMPUTED": 1333,
+      "SCENARIO_UNKNOWN": 1342,
+      "UNSUPPORTED_MEDIUM": 145
+    },
+    "surface_state": {
+      "GENTLE": {
+        "SURFACE_DRYING_POSSIBLE": 1,
+        "SURFACE_IMMERSED_WET": 480,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 60,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 731,
+        "SURFACE_WET_AT_TBOIL": 61
+      },
+      "INTENSE": {
+        "SURFACE_DRYING_POSSIBLE": 57,
+        "SURFACE_IMMERSED_WET": 480,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 60,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 731,
+        "SURFACE_WET_AT_TBOIL": 5
+      },
+      "TYPICAL": {
+        "SURFACE_DRYING_POSSIBLE": 35,
+        "SURFACE_IMMERSED_WET": 480,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 60,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 731,
+        "SURFACE_WET_AT_TBOIL": 27
+      }
+    },
+    "transition": {
+      "physically_possible": 1333,
+      "unsupported": 1487
+    },
+    "typical_core_reaches_70": {
+      "False": 5,
+      "True": 96
+    },
+    "zone_nodes_emitted": {
+      "GENTLE": 101,
+      "INTENSE": 101,
+      "TYPICAL": 101
+    }
+  },
+  "counts_as_human_gate": false,
+  "dry_low_moisture_classes": [
+    "FAT_OIL",
+    "NUT_SEED",
+    "SWEETENER"
+  ],
+  "ended_at_utc": "2026-11-09T18:09:11Z",
+  "l1_files": 64,
+  "labels": [
+    "SCENARIO",
+    "MODEL_DERIVED",
+    "NON_CITABLE",
+    "ASSUMED_DEFAULT"
+  ],
+  "layer_version": "scenario-layer-L2-0.5.0-draft",
+  "matrix_regime_registry_sha256": "039fe8f3b8ea69788333877731e249891bb9d5f2ef3423c457cdde8fa209fa0d",
+  "phase_change_registry_sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a",
+  "record": "SCENARIO_L2_SUMMARY",
+  "records_manifest_sha256": "b366e1d430478471ec23d33ee8fa8c772f952b279823d85bf89031a1eba54f1d",
+  "scenario_registry_sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0",
+  "started_at_utc": "2026-11-09T18:09:08Z",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "supersedes": "SCENARIO_L2_0_1_0_CORE_AND_DOSE_FIELDS_OF_DRY_AND_FAT_EVENTS",
+  "v05_to_v06": {
+    "counts": {
+      "events": 2820,
+      "status": {
+        "SCENARIO_COMPUTED": {
+          "SCENARIO_COMPUTED": 1333
+        },
+        "SCENARIO_UNKNOWN": {
+          "SCENARIO_UNKNOWN": 1342
+        },
+        "UNSUPPORTED_MEDIUM": {
+          "UNSUPPORTED_MEDIUM": 145
+        }
+      },
+      "volume_avg_dose_equal_to_0_2_0_name": {
+        "GENTLE": {
+          "True": 101
+        },
+        "INTENSE": {
+          "True": 101
+        },
+        "TYPICAL": {
+          "True": 101
+        }
+      },
+      "zone_mean_dose_gt_dose_at_volume_avg_t": {
+        "GENTLE": {
+          "True": 101
+        },
+        "INTENSE": {
+          "True": 101
+        },
+        "TYPICAL": {
+          "True": 101
+        }
+      }
+    },
+    "layer_version": "scenario-layer-L2-0.5.0-draft",
+    "previous_layer_version": "scenario-layer-L2-0.5.0-draft",
+    "ratio_quantiles": {
+      "zone_mean_over_core_dose": {
+        "GENTLE": {
+          "max": 8.0217,
+          "n": 101,
+          "p01": 1.0069,
+          "p10": 1.0247,
+          "p25": 1.0807,
+          "p50": 1.3446,
+          "p75": 4.3682,
+          "p90": 6.1538,
+          "p99": 8.0217
+        },
+        "INTENSE": {
+          "max": 1.2602,
+          "n": 101,
+          "p01": 1.0027,
+          "p10": 1.0036,
+          "p25": 1.0051,
+          "p50": 1.0128,
+          "p75": 1.0189,
+          "p90": 1.0234,
+          "p99": 1.0634
+        },
+        "TYPICAL": {
+          "max": 3.5972,
+          "n": 101,
+          "p01": 1.0018,
+          "p10": 1.007,
+          "p25": 1.0091,
+          "p50": 1.0292,
+          "p75": 1.0827,
+          "p90": 1.1521,
+          "p99": 1.7187
+        }
+      },
+      "zone_mean_over_dose_at_volume_avg_t": {
+        "GENTLE": {
+          "max": 2.4765,
+          "n": 101,
+          "p01": 1.0008,
+          "p10": 1.0015,
+          "p25": 1.0043,
+          "p50": 1.0366,
+          "p75": 1.7584,
+          "p90": 2.3529,
+          "p99": 2.4765
+        },
+        "INTENSE": {
+          "max": 1.0407,
+          "n": 101,
+          "p01": 1.0006,
+          "p10": 1.0008,
+          "p25": 1.0019,
+          "p50": 1.0069,
+          "p75": 1.0187,
+          "p90": 1.0221,
+          "p99": 1.0234
+        },
+        "TYPICAL": {
+          "max": 1.4564,
+          "n": 101,
+          "p01": 1.0005,
+          "p10": 1.0005,
+          "p25": 1.0015,
+          "p50": 1.0036,
+          "p75": 1.0101,
+          "p90": 1.0174,
+          "p99": 1.1184
+        }
+      }
+    }
+  },
+  "wall_seconds": 2.7,
+  "workers": 4,
+  "zone_field": {
+    "n_nodes": 8,
+    "scheme": "GAUSS_LEGENDRE_HALF_SLAB",
+    "t_ref_c": 100.0,
+    "z_c": 33.0,
+    "zone_mean_over_dose_at_volume_avg_t_quantiles": {
+      "zone_mean_over_dose_at_volume_avg_t": {
+        "GENTLE": {
+          "max": 2.4765,
+          "n": 101,
+          "p01": 1.0008,
+          "p10": 1.0015,
+          "p25": 1.0043,
+          "p50": 1.0366,
+          "p75": 1.7584,
+          "p90": 2.3529,
+          "p99": 2.4765
+        },
+        "INTENSE": {
+          "max": 1.0407,
+          "n": 101,
+          "p01": 1.0006,
+          "p10": 1.0008,
+          "p25": 1.0019,
+          "p50": 1.0069,
+          "p75": 1.0187,
+          "p90": 1.0221,
+          "p99": 1.0234
+        },
+        "TYPICAL": {
+          "max": 1.4564,
+          "n": 101,
+          "p01": 1.0005,
+          "p10": 1.0005,
+          "p25": 1.0015,
+          "p50": 1.0036,
+          "p75": 1.0101,
+          "p90": 1.0174,
+          "p99": 1.1184
+        }
+      }
+    }
+  }
+}

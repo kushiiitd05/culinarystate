@@ -1,0 +1,284 @@
+{
+ "min_realised_discordant_pairs_for_p05": 6,
+ "module": "mcnemar_power@0.1",
+ "newcombe_at_design_points": {
+  "n30_baseline0.5_delta0.3_d0.4": {
+   "counts_abcd": [
+    13,
+    10,
+    2,
+    5
+   ],
+   "diff": 0.2667,
+   "halfwidth": 0.2061,
+   "newcombe95": [
+    0.0431,
+    0.4553
+   ]
+  },
+  "n60_baseline0.5_delta0.15_d0.3": {
+   "counts_abcd": [
+    26,
+    13,
+    4,
+    17
+   ],
+   "diff": 0.15,
+   "halfwidth": 0.1296,
+   "newcombe95": [
+    0.0158,
+    0.275
+   ]
+  },
+  "n60_baseline0.5_delta0.2_d0.4": {
+   "counts_abcd": [
+    24,
+    18,
+    6,
+    12
+   ],
+   "diff": 0.2,
+   "halfwidth": 0.1512,
+   "newcombe95": [
+    0.0415,
+    0.344
+   ]
+  }
+ },
+ "reading": "MDE = smallest accuracy gap from which exact two-sided McNemar keeps >= target power for every larger gap, given a discordance rate d. REV-B (reports/orchestration/review/S176_REV-B_eval_governance.md Q26) reported about 0.28-0.33 at n = 30 and 0.16-0.24 at n = 60 for 80 % power under its own discordance grid; compare the 'mde' columns. H1 needs two such tests (B4 > B1 and B4 > B2): the joint power is only bounded (Frechet) because both share B4's answers.",
+ "rejection_rule_n30": {
+  "10": 9,
+  "11": 10,
+  "12": 10,
+  "13": 11,
+  "14": 12,
+  "15": 12,
+  "16": 13,
+  "17": 13,
+  "18": 14,
+  "19": 15,
+  "20": 15,
+  "21": 16,
+  "22": 17,
+  "23": 17,
+  "24": 18,
+  "25": 18,
+  "26": 19,
+  "27": 20,
+  "28": 20,
+  "29": 21,
+  "30": 21,
+  "6": 6,
+  "7": 7,
+  "8": 8,
+  "9": 8
+ },
+ "rejection_rule_n60": {
+  "10": 9,
+  "12": 10,
+  "14": 12,
+  "16": 13,
+  "18": 14,
+  "20": 15,
+  "22": 17,
+  "24": 18,
+  "26": 19,
+  "28": 20,
+  "30": 21,
+  "32": 23,
+  "34": 24,
+  "36": 25,
+  "38": 26,
+  "40": 27,
+  "42": 28,
+  "44": 29,
+  "46": 31,
+  "48": 32,
+  "50": 33,
+  "52": 34,
+  "54": 35,
+  "56": 36,
+  "58": 37,
+  "6": 6,
+  "60": 39,
+  "8": 8
+ },
+ "rule_287_4": [
+  "state the MDE next to every H1 result",
+  "if discordant < min_realised_discordant_pairs_for_p05 say 'cannot be significant at this n'",
+  "exact test decides, Newcombe interval is descriptive"
+ ],
+ "status": "PLANNING_NON_CITABLE",
+ "table": {
+  "alpha": 0.05,
+  "min_discordant_for_alpha": 6,
+  "rows": [
+   {
+    "discordance": 0.2,
+    "mde": null,
+    "n": 15,
+    "power_at_gap": {
+     "0.1": 0.0101,
+     "0.2": 0.0611
+    }
+   },
+   {
+    "discordance": 0.3,
+    "mde": null,
+    "n": 15,
+    "power_at_gap": {
+     "0.1": 0.0213,
+     "0.2": 0.0881,
+     "0.3": 0.2784
+    }
+   },
+   {
+    "discordance": 0.4,
+    "mde": null,
+    "n": 15,
+    "power_at_gap": {
+     "0.1": 0.0304,
+     "0.2": 0.0989,
+     "0.3": 0.2665,
+     "0.4": 0.5968
+    }
+   },
+   {
+    "discordance": 0.5,
+    "iu_power_bounds_at_mde": [
+     0.6211,
+     0.8105
+    ],
+    "mde": 0.49,
+    "n": 15,
+    "power_at_gap": {
+     "0.1": 0.0355,
+     "0.2": 0.0983,
+     "0.3": 0.2383,
+     "0.4": 0.49
+    },
+    "power_at_mde": 0.8105
+   },
+   {
+    "discordance": 0.2,
+    "mde": null,
+    "n": 30,
+    "power_at_gap": {
+     "0.1": 0.0993,
+     "0.2": 0.5725
+    }
+   },
+   {
+    "discordance": 0.3,
+    "iu_power_bounds_at_mde": [
+     0.6056,
+     0.8028
+    ],
+    "mde": 0.275,
+    "n": 30,
+    "power_at_gap": {
+     "0.1": 0.0919,
+     "0.2": 0.4032,
+     "0.3": 0.9234
+    },
+    "power_at_mde": 0.8028
+   },
+   {
+    "discordance": 0.4,
+    "iu_power_bounds_at_mde": [
+     0.6269,
+     0.8135
+    ],
+    "mde": 0.325,
+    "n": 30,
+    "power_at_gap": {
+     "0.1": 0.0812,
+     "0.2": 0.3071,
+     "0.3": 0.7131,
+     "0.4": 0.9943
+    },
+    "power_at_mde": 0.8135
+   },
+   {
+    "discordance": 0.5,
+    "iu_power_bounds_at_mde": [
+     0.6163,
+     0.8081
+    ],
+    "mde": 0.365,
+    "n": 30,
+    "power_at_gap": {
+     "0.1": 0.0766,
+     "0.2": 0.2579,
+     "0.3": 0.5859,
+     "0.4": 0.8999
+    },
+    "power_at_mde": 0.8081
+   },
+   {
+    "discordance": 0.2,
+    "iu_power_bounds_at_mde": [
+     0.642,
+     0.821
+    ],
+    "mde": 0.165,
+    "n": 60,
+    "power_at_gap": {
+     "0.1": 0.3075,
+     "0.2": 0.9879
+    },
+    "power_at_mde": 0.821
+   },
+   {
+    "discordance": 0.3,
+    "iu_power_bounds_at_mde": [
+     0.6444,
+     0.8222
+    ],
+    "mde": 0.205,
+    "n": 60,
+    "power_at_gap": {
+     "0.1": 0.2208,
+     "0.2": 0.7973,
+     "0.3": 0.9999
+    },
+    "power_at_mde": 0.8222
+   },
+   {
+    "discordance": 0.4,
+    "iu_power_bounds_at_mde": [
+     0.6038,
+     0.8019
+    ],
+    "mde": 0.235,
+    "n": 60,
+    "power_at_gap": {
+     "0.1": 0.169,
+     "0.2": 0.6349,
+     "0.3": 0.9724,
+     "0.4": 1.0
+    },
+    "power_at_mde": 0.8019
+   },
+   {
+    "discordance": 0.5,
+    "iu_power_bounds_at_mde": [
+     0.6105,
+     0.8053
+    ],
+    "mde": 0.265,
+    "n": 60,
+    "power_at_gap": {
+     "0.1": 0.1421,
+     "0.2": 0.5249,
+     "0.3": 0.9072,
+     "0.4": 0.9981
+    },
+    "power_at_mde": 0.8053
+   }
+  ],
+  "target_power": 0.8,
+  "version": "mcnemar_power@0.1"
+ },
+ "tool": "tools/s178_mcnemar_power.py"
+}

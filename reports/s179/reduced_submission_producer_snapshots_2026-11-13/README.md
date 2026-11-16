@@ -1,0 +1,3 @@
+# Initial demonstration producer snapshot
+
+Exact bytes match the producer hash in reduced_submission_demo_2026-11-13.json. That initial instrument read top-level branch instead of the real route.branch envelope; all eight branch checks were instrument failures, not application failures. The source was corrected after a failing actual-envelope regression test and run to new v2 output; original output retained. For reproduction, restore these bytes at tools/s179_submission_demo.py in an isolated checkout, because the relative ROOT assumes that location. This snapshot is historical diagnostic code, not the current launcher. No benchmark/result was rescored.

@@ -1,0 +1,338 @@
+{
+ "contains_ids": false,
+ "contains_text": false,
+ "cost_selection_on_dev": {
+  "chosen_skip_cost_nats": 4.5,
+  "grid_score_coverage_x_precision_at_0_9": {
+   "1_5": 0.0,
+   "3_0": 0.1117,
+   "4_5": 0.2765
+  }
+ },
+ "counts_as_human_gate": false,
+ "diagnostic": {
+  "equal_length_only_rule": {
+   "lines_left_without_quantity": 3172362,
+   "lines_paired": 957071,
+   "lines_with_null_quantity_in_those_recipes": 46605,
+   "pct_of_lines": 23.177,
+   "recipes_paired": 114981
+  },
+  "length_difference_note": "keys clipped to -5..10",
+  "length_difference_quantities_minus_parts_histogram": {
+   "M1": 18016,
+   "M2": 3040,
+   "M3": 574,
+   "M4": 99,
+   "M5": 51,
+   "P0": 114981,
+   "P1": 159307,
+   "P10": 127,
+   "P2": 121697,
+   "P3": 64055,
+   "P4": 26483,
+   "P5": 9429,
+   "P6": 3118,
+   "P7": 1045,
+   "P8": 346,
+   "P9": 149
+  },
+  "lines_in_unequal_recipes": 3172362,
+  "lines_parts_total": 4129433,
+  "mean_quantities_minus_parts_per_recipe": 1.441,
+  "mechanism_hypothesis": "the quantity list looks like one entry per source ingredient line (null when the line has no quantity) and the parts list like the lines in which a food part was extracted; lines with no extracted part (quantities longer, 73.8 percent of recipes, even for recipes with one part) and lines with two foods (parts longer) would shift every later position. The lists carry no line index, so this cannot be checked against the source",
+  "p_equal_length_by_recipe_length": {
+   "1": {
+    "equal": 13,
+    "pct_equal": 0.15,
+    "recipes": 8672
+   },
+   "16_PLUS": {
+    "equal": 4050,
+    "pct_equal": 19.223,
+    "recipes": 21069
+   },
+   "2": {
+    "equal": 2232,
+    "pct_equal": 11.357,
+    "recipes": 19653
+   },
+   "3_4": {
+    "equal": 13245,
+    "pct_equal": 18.077,
+    "recipes": 73271
+   },
+   "5_8": {
+    "equal": 48888,
+    "pct_equal": 23.192,
+    "recipes": 210801
+   },
+   "9_15": {
+    "equal": 46533,
+    "pct_equal": 24.906,
+    "recipes": 186832
+   }
+  },
+  "pct_lines_in_unequal_recipes": 76.823,
+  "pct_recipes_unequal": 77.995,
+  "positional_pairing": {
+   "lines_with_a_paired_quantity": 3937847,
+   "lines_without_quantity_text_padded_or_null": 191586,
+   "padding_positions_parts_without_a_quantity_slot": 26504,
+   "quantities_with_u2044_dropped": 208406,
+   "quantities_with_u2044_paired": 1275153,
+   "quantity_strings_dropped_beyond_the_parts_list": 779502
+  },
+  "quantities_minus_parts_total": 752998,
+  "quantity_strings_null": 298706,
+  "quantity_strings_total": 4882431,
+  "recipes": 522517,
+  "recipes_by_length_relation": {
+   "EQUAL": 114981,
+   "QUANTITIES_LONGER": 385756,
+   "QUANTITIES_SHORTER": 21780
+  },
+  "recipes_unequal": 407536,
+  "recipes_with_zero_parts": 2219,
+  "recipes_with_zero_quantities": 20
+ },
+ "model": {
+  "alpha": 2.0,
+  "bucket_counts": {
+   "BIG": 8978,
+   "E1": 174610,
+   "E2": 91606,
+   "F1": 25312,
+   "LT1": 155570,
+   "M16": 8248,
+   "M4": 58112,
+   "M8": 23366,
+   "NONE": 27660
+  },
+  "distinct_head_words": 777,
+  "distinct_part_phrases": 4778,
+  "min_phrase_count": 20,
+  "trained_on_equal_length_recipes": 68935,
+  "trained_on_lines": 573462
+ },
+ "pairing_version": "S178_FOODCOM_PAIRING_V1_DRAFT",
+ "proposed_rule": {
+  "default": "EQUAL_LENGTH_ONLY",
+  "equal_length_is_not_proof": "equal length is necessary, not sufficient: a recipe that lost one part AND gained one stray quantity is indistinguishable; the rate of that case is unknown",
+  "experimental_alternative": "ALIGN_MODEL at posterior >= 0.9 (see simulation); adopt only after a human spot-check of the pairs; the simulation assumes the mismatch is a few dropped parts or quantities",
+  "simulated_one_part_dropped": {
+   "align_0_9": {
+    "coverage_pct": 44.879,
+    "precision_pct": 91.786
+   },
+   "align_map_accuracy_pct": 78.798,
+   "positional_accuracy_pct": 50.018
+  },
+  "statement": "Pair quantity and part only when the two lists have the same length (114,981 of 522,517 recipes, 23.177 % of lines); in every other recipe give the parts NO quantity (UNKNOWN). The current positional rule mispairs lines after the first drop in the other 77.995 % of recipes (76.823 % of lines)."
+ },
+ "real_unequal_likelihood_diagnostic": {
+  "equal_length_recipes_used": 4000,
+  "mean_nll_equal_length_alignment_posterior_weighted": 1.4822,
+  "mean_nll_equal_length_positional": 1.5365,
+  "mean_nll_unequal_alignment_posterior_weighted": 1.4341,
+  "mean_nll_unequal_positional_prefix": 1.8476,
+  "reading": "compare like with like: positional with positional, posterior-weighted with posterior-weighted (the latter is lower even on aligned recipes because it picks the best-fitting quantity). A real-unequal positional value clearly above the equal-length one means positional pairing fits the unequal recipes worse, as in the simulation; it is a likelihood diagnostic, not a pairing accuracy",
+  "unequal_recipes_used": 4000
+ },
+ "record": "FOODCOM_QUANTITY_ALIGNMENT_S178",
+ "rules": [
+  "POSITIONAL",
+  "EQUAL_LENGTH_ONLY",
+  "ALIGN_MODEL"
+ ],
+ "sample_limit_recipes": null,
+ "seconds": 107.9,
+ "simulation_on_test_split": {
+  "description": "equal-length test recipes with >= 4 parts; k parts (PARTS) or k quantities (QUANTITIES) removed at random; truth = original pairing. positional = current rule; thresholds = ALIGN_MODEL gated by posterior",
+  "scenarios": {
+   "PARTS_dropped_1": {
+    "map_alignment_accuracy_pct": 78.798,
+    "parts": 31115,
+    "positional_accuracy_pct": 50.018,
+    "positional_mean_nll_nats": 1.7172,
+    "posterior_weighted_mean_nll_nats": 1.4374,
+    "recipes": 4000,
+    "thresholds": {
+     "T_0_5": {
+      "coverage_pct": 98.747,
+      "precision_pct": 79.199
+     },
+     "T_0_7": {
+      "coverage_pct": 75.24,
+      "precision_pct": 85.507
+     },
+     "T_0_9": {
+      "coverage_pct": 44.879,
+      "precision_pct": 91.786
+     },
+     "T_0_95": {
+      "coverage_pct": 32.319,
+      "precision_pct": 93.477
+     },
+     "T_0_99": {
+      "coverage_pct": 11.654,
+      "precision_pct": 96.635
+     }
+    }
+   },
+   "PARTS_dropped_2": {
+    "map_alignment_accuracy_pct": 66.664,
+    "parts": 27115,
+    "positional_accuracy_pct": 33.878,
+    "positional_mean_nll_nats": 1.8371,
+    "posterior_weighted_mean_nll_nats": 1.4051,
+    "recipes": 4000,
+    "thresholds": {
+     "T_0_5": {
+      "coverage_pct": 87.483,
+      "precision_pct": 70.001
+     },
+     "T_0_7": {
+      "coverage_pct": 52.738,
+      "precision_pct": 80.259
+     },
+     "T_0_9": {
+      "coverage_pct": 22.914,
+      "precision_pct": 89.554
+     },
+     "T_0_95": {
+      "coverage_pct": 14.162,
+      "precision_pct": 91.849
+     },
+     "T_0_99": {
+      "coverage_pct": 3.983,
+      "precision_pct": 94.444
+     }
+    }
+   },
+   "PARTS_dropped_3": {
+    "map_alignment_accuracy_pct": 57.355,
+    "parts": 24704,
+    "positional_accuracy_pct": 25.441,
+    "positional_mean_nll_nats": 1.8985,
+    "posterior_weighted_mean_nll_nats": 1.3781,
+    "recipes": 4000,
+    "thresholds": {
+     "T_0_5": {
+      "coverage_pct": 72.515,
+      "precision_pct": 64.229
+     },
+     "T_0_7": {
+      "coverage_pct": 35.808,
+      "precision_pct": 75.333
+     },
+     "T_0_9": {
+      "coverage_pct": 12.431,
+      "precision_pct": 85.998
+     },
+     "T_0_95": {
+      "coverage_pct": 7.011,
+      "precision_pct": 89.203
+     },
+     "T_0_99": {
+      "coverage_pct": 1.477,
+      "precision_pct": 92.603
+     }
+    }
+   },
+   "QUANTITIES_dropped_1": {
+    "map_alignment_accuracy_pct": 75.435,
+    "parts": 35115,
+    "positional_accuracy_pct": 44.32,
+    "positional_mean_nll_nats": 1.744,
+    "posterior_weighted_mean_nll_nats": 1.5147,
+    "recipes": 4000,
+    "thresholds": {
+     "T_0_5": {
+      "coverage_pct": 87.461,
+      "precision_pct": 80.19
+     },
+     "T_0_7": {
+      "coverage_pct": 65.499,
+      "precision_pct": 87.296
+     },
+     "T_0_9": {
+      "coverage_pct": 36.819,
+      "precision_pct": 94.091
+     },
+     "T_0_95": {
+      "coverage_pct": 25.667,
+      "precision_pct": 96.083
+     },
+     "T_0_99": {
+      "coverage_pct": 8.822,
+      "precision_pct": 97.708
+     }
+    }
+   },
+   "QUANTITIES_dropped_2": {
+    "map_alignment_accuracy_pct": 61.364,
+    "parts": 35115,
+    "positional_accuracy_pct": 26.16,
+    "positional_mean_nll_nats": 1.8621,
+    "posterior_weighted_mean_nll_nats": 1.5502,
+    "recipes": 4000,
+    "thresholds": {
+     "T_0_5": {
+      "coverage_pct": 66.59,
+      "precision_pct": 73.211
+     },
+     "T_0_7": {
+      "coverage_pct": 39.114,
+      "precision_pct": 83.487
+     },
+     "T_0_9": {
+      "coverage_pct": 15.452,
+      "precision_pct": 92.462
+     },
+     "T_0_95": {
+      "coverage_pct": 9.127,
+      "precision_pct": 94.665
+     },
+     "T_0_99": {
+      "coverage_pct": 2.236,
+      "precision_pct": 96.688
+     }
+    }
+   },
+   "QUANTITIES_dropped_3": {
+    "map_alignment_accuracy_pct": 50.308,
+    "parts": 36704,
+    "positional_accuracy_pct": 17.123,
+    "positional_mean_nll_nats": 1.9111,
+    "posterior_weighted_mean_nll_nats": 1.5768,
+    "recipes": 4000,
+    "thresholds": {
+     "T_0_5": {
+      "coverage_pct": 47.559,
+      "precision_pct": 67.57
+     },
+     "T_0_7": {
+      "coverage_pct": 22.766,
+      "precision_pct": 79.56
+     },
+     "T_0_9": {
+      "coverage_pct": 6.858,
+      "precision_pct": 88.439
+     },
+     "T_0_95": {
+      "coverage_pct": 3.656,
+      "precision_pct": 89.791
+     },
+     "T_0_99": {
+      "coverage_pct": 0.755,
+      "precision_pct": 88.087
+     }
+    }
+   }
+  }
+ },
+ "split_seed": "20261104",
+ "status": "AI_DRAFTED_PROPOSED_COUNTS_ONLY",
+ "tool_version": "s178-corpus-foodcom-alignment-0.1.0-draft"
+}

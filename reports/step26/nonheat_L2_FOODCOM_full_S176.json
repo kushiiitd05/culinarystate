@@ -1,0 +1,602 @@
+{
+  "baseline_check": "PASS_BEFORE_AND_AFTER",
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/extraction/__init__.py",
+        "sha256": "b57b6cc94e8e6810f01f96a9c5671ad864fe0fb067d18930571b9ec694e97bf0"
+      },
+      {
+        "path": "src/culinarystate/extraction/auditor.py",
+        "sha256": "709b4351379e848229279218e7343c3c5fb45d16af8cd81b81892778e6341e21"
+      },
+      {
+        "path": "src/culinarystate/extraction/d073_current_sample.py",
+        "sha256": "c472911050fde29509bbba2b4bf24bb62e962b8f845681a3b23525e663e84a5b"
+      },
+      {
+        "path": "src/culinarystate/extraction/interfaces.py",
+        "sha256": "543dfcb5a36f67abea810ebcfd94427759c4ebdd4bf11736e950b48de240407d"
+      },
+      {
+        "path": "src/culinarystate/extraction/invariants.py",
+        "sha256": "b2e45c3dfd61da10982ade1a78e5458fa0a161c2cb1be454a923f56768da1b8b"
+      },
+      {
+        "path": "src/culinarystate/extraction/j4_inverted_sample.py",
+        "sha256": "84628577169426e01e955405e4ca18a3a43830f93f2bd64017ffefed36e55657"
+      },
+      {
+        "path": "src/culinarystate/extraction/quantity_stages.py",
+        "sha256": "5d3e79f9ba6e50709384ccde8d052dd7a5d39f6be0e6dd4e07994ccada77f899"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a.py",
+        "sha256": "b274feed81bf18f5ef9332761cde0d6231b2e84480eb2a61ebccb5816e19d630"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_binding.py",
+        "sha256": "957471c26dd726468bba7967c3ffc7027390c56777ea90b5abcfb7f2f396ddbf"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_lexicon.py",
+        "sha256": "8973f0eb2d78bd64c6ba4723120a540c3a016707b4178ba6b95e041f14bf0430"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_measure.py",
+        "sha256": "d4c42e85248f626c6a2ea9fad9062f18952785456fbb63d981dede9b64add56b"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_rules.py",
+        "sha256": "12cf0ce00d9e469ef4a77293e86539c5ac8610b41ecc2b499f955ca7f9f93752"
+      },
+      {
+        "path": "src/culinarystate/extraction/validators.py",
+        "sha256": "4ccb60e43b06afab22654baf82d8e1e1ec679e1356c2a63cdeccd8353d6091d9"
+      },
+      {
+        "path": "tools/step17b_rung_a_dryrun.py",
+        "sha256": "9290d52369f9302f92da469bd337c974f29287f3af057eb1cae1fb7a8445b158"
+      },
+      {
+        "path": "src/culinarystate/simulation/nonheat_binding.py",
+        "sha256": "1453fe36b43200df2bd832a217fb094c9a389176b7c044eeccaf0d754038de4d"
+      },
+      {
+        "path": "src/culinarystate/simulation/nonheat_scenario.py",
+        "sha256": "4df2af113eda452ddfccd7c986862d27c0c5504b3486e0d54c2cb7eb5f453528"
+      },
+      {
+        "path": "src/culinarystate/simulation/nonheat_drivers.py",
+        "sha256": "3af066b92f4cafc80a75d2d6ce81aa1e61beec23a26d1e4cb6db3dc3a4c7500d"
+      },
+      {
+        "path": "src/culinarystate/simulation/physics_drivers.py",
+        "sha256": "1162b2f1dbd4d29bdb6a7756615dff24c6bb45ca7313d7183e15a65e84f7d1d3"
+      },
+      {
+        "path": "src/culinarystate/simulation/condition_binding.py",
+        "sha256": "c157f3391763af178ede408251c65ed74344cb499accf0ab9b8973bd42958866"
+      },
+      {
+        "path": "src/culinarystate/simulation/scenario_layer.py",
+        "sha256": "41f03b0df9138a303d8df8bd32e18cd4de2a480ec56f41a6a319e76e648624b8"
+      },
+      {
+        "path": "registry/scenario_defaults_nonheat_v1.csv",
+        "sha256": "047732f446633cf0a07ab0a8504c9ce812ad2ed6b9963567e7a6b5f36b8cf8d4"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "registry/process_medium_map_v1.csv",
+        "sha256": "5014c27d553ca8fb8691fe5633b053344fe2281128138dba2b39da819402a953"
+      },
+      {
+        "path": "tools/nonheat_layer_run.py",
+        "sha256": "a74647a7a4d9a5a9b4484bef1af122db69f9f43226cef9e3072e12580996e268"
+      }
+    ],
+    "git_commit": "570e50224bb4f9a67ec045d029b03017f0fe03d6",
+    "git_dirty": true,
+    "src_tree_sha256": "7d6aaa9067803f82556a6c953ade75ee40f5e6a8336437b5bf57a28366e01a19"
+  },
+  "code_unchanged_during_run": false,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts": {
+    "basis_class_typical_bracket": {
+      "COOLING": {
+        "alpha": {
+          "SD": 21370
+        },
+        "density_food": {
+          "NH": 2236
+        },
+        "duration_min": {
+          "KGE": 16545,
+          "L1": 3978,
+          "NH": 847
+        },
+        "environment": {
+          "L1": 8347,
+          "NH": 13023
+        },
+        "freezing_point": {
+          "NH": 2236
+        },
+        "h": {
+          "NH": 23606
+        },
+        "half_thickness_m": {
+          "L1": 23606
+        },
+        "initial_c": {
+          "NH": 15265,
+          "SD": 6105
+        },
+        "k": {
+          "SD": 21370
+        },
+        "k_frozen": {
+          "NH": 1752
+        },
+        "k_unfrozen": {
+          "SD": 484
+        },
+        "latent_heat_freezing": {
+          "NH": 2236
+        },
+        "medium_c": {
+          "L1": 4,
+          "NH": 23602
+        },
+        "stated_duration_min": {
+          "L1": 262
+        },
+        "target_food_c": {
+          "L1": 11
+        }
+      },
+      "FERMENT_LEAVEN": {
+        "D_eff_m2_s": {
+          "NH": 2003
+        },
+        "duration_min": {
+          "KGE": 1348,
+          "L1": 973,
+          "NH": 130
+        },
+        "half_thickness_m": {
+          "L1": 2003
+        },
+        "medium": {
+          "L1": 2003
+        }
+      },
+      "MECHANICAL_CUT": {
+        "cut_class": {
+          "L1": 408204
+        },
+        "enzyme_system_candidate": {
+          "L1": 82409
+        },
+        "half_thickness_m": {
+          "NH": 787,
+          "SD": 233399
+        },
+        "time_until_next_heat": {
+          "L1": 150463
+        }
+      },
+      "MECHANICAL_MIX": {
+        "AERATED": {
+          "L1": 232663
+        },
+        "DEVELOPED": {
+          "L1": 15444
+        },
+        "EMULSIFIED": {
+          "L1": 11653
+        }
+      },
+      "PRESERVATION": {
+        "D_eff_m2_s": {
+          "NH": 18
+        },
+        "air_c": {
+          "L1": 11,
+          "NH": 50
+        },
+        "density_food": {
+          "NH": 61
+        },
+        "duration_min": {
+          "KGE": 66,
+          "L1": 23,
+          "NH": 5
+        },
+        "h": {
+          "SD": 61
+        },
+        "half_thickness_m": {
+          "L1": 79
+        },
+        "latent_heat_vaporisation": {
+          "NH": 61
+        },
+        "lethality_t_ref": {
+          "NH": 15
+        },
+        "lethality_z": {
+          "NH": 15
+        },
+        "medium": {
+          "L1": 18
+        },
+        "medium_c": {
+          "L1": 15
+        },
+        "water_content_db_critical": {
+          "NH": 61
+        },
+        "water_content_db_equilibrium": {
+          "NH": 61
+        },
+        "water_content_db_initial": {
+          "NH": 61
+        },
+        "wet_bulb_temperature": {
+          "NH": 61
+        }
+      },
+      "RESTING": {
+        "alpha": {
+          "SD": 552
+        },
+        "half_thickness_m": {
+          "HEAT_L1": 17,
+          "L1": 535
+        },
+        "heat_bath_c": {
+          "L1": 251,
+          "SD": 301
+        },
+        "heat_duration_min": {
+          "KGE": 239,
+          "L1": 313
+        },
+        "heat_h": {
+          "SD": 552
+        },
+        "initial_c": {
+          "SD": 552
+        },
+        "k": {
+          "SD": 552
+        },
+        "prior_heat_link": {
+          "L1": 552
+        },
+        "rest_air_c": {
+          "NH": 552
+        },
+        "rest_duration_min": {
+          "KGE": 304,
+          "L1": 236,
+          "NH": 12
+        },
+        "rest_h": {
+          "NH": 552
+        }
+      },
+      "SEPARATION": {
+        "liquid_fate": {
+          "L1": 7814
+        },
+        "liquid_removed_fraction": {
+          "NH": 113640
+        },
+        "removed_phase": {
+          "L1": 269657
+        }
+      },
+      "STORAGE": {
+        "duration_bound_min": {
+          "L1": 2470
+        },
+        "storage_c": {
+          "L1": 5,
+          "NH": 12073
+        }
+      }
+    },
+    "bracket_order_check": {
+      "COOLING": {
+        "core_end_c": {
+          "OK": 21368,
+          "VIOLATION": 2
+        },
+        "freezing_time_min": {
+          "OK": 1752
+        },
+        "thaw_time_min": {
+          "OK": 484
+        }
+      },
+      "FERMENT_LEAVEN": {
+        "uptake_fraction": {
+          "OK": 2003
+        }
+      },
+      "MECHANICAL_CUT": {
+        "half_thickness_m": {
+          "OK": 234186
+        }
+      },
+      "PRESERVATION": {
+        "f0_min": {
+          "OK": 15
+        },
+        "uptake_fraction": {
+          "OK": 18
+        },
+        "water_removed_fraction": {
+          "OK": 61
+        }
+      },
+      "RESTING": {
+        "core_end_of_heat_c": {
+          "OK": 552
+        },
+        "core_peak_c": {
+          "OK": 552
+        }
+      },
+      "SEPARATION": {
+        "liquid_removed_fraction": {
+          "OK": 113640
+        }
+      },
+      "STORAGE": {
+        "storage_c": {
+          "OK": 12078
+        }
+      }
+    },
+    "cooling_target_reached": {
+      "COOLING": {
+        "TYPICAL": 3
+      }
+    },
+    "errors_by_class": {},
+    "events_by_family": {
+      "COOLING": 297413,
+      "FERMENT_LEAVEN": 50942,
+      "MECHANICAL_CUT": 541273,
+      "MECHANICAL_MIX": 1447067,
+      "PRESERVATION": 66675,
+      "RESTING": 14232,
+      "SEPARATION": 269657,
+      "STORAGE": 24170
+    },
+    "flags_typical_bracket": {
+      "COOLING": {
+        "DURATION_CLIPPED_TO_STATED_BOUND": 1673,
+        "DURATION_FROM_OVERNIGHT_WORD": 847,
+        "HIGH_MOISTURE_PROPERTIES_ASSUMED": 23606,
+        "PLANK_SLAB_P_HALF_R_EIGHTH": 1752,
+        "REPORT_THRESHOLDS_NOT_SAFETY": 21370,
+        "SLAB_GEOMETRY_ASSUMED": 21370,
+        "START_AT_FREEZING_POINT_SENSIBLE_HEAT_NOT_INCLUDED": 1752,
+        "START_POST_HEAT": 15265,
+        "START_UNKNOWN_AMBIENT_ASSUMED": 6105,
+        "SUBCOOLING_OF_FROZEN_CORE_NOT_INCLUDED": 484,
+        "THAW_AS_REVERSE_PLANK": 484
+      },
+      "FERMENT_LEAVEN": {
+        "DURATION_CLIPPED_TO_STATED_BOUND": 165,
+        "DURATION_FROM_OVERNIGHT_WORD": 130,
+        "D_NOT_TEMPERATURE_ADJUSTED": 2003,
+        "FICKIAN_SLAB_BI_INFINITY": 2003,
+        "QUALITATIVE_ONLY_NO_NUMBER_FOR_STATE": 3818,
+        "SLAB_GEOMETRY_ASSUMED": 2003,
+        "SOAK_LIQUID_ASSUMED_WATER": 651,
+        "UPTAKE_FRACTION_OF_EQUILIBRIUM_NOT_A_CONCENTRATION": 2003
+      },
+      "MECHANICAL_CUT": {
+        "ENZYME_RELEASE_IS_A_FLAG_NOT_A_NUMBER": 408204,
+        "SLAB_OR_CUBE_BOUNDS_NOT_A_SHAPE_CLAIM": 234186
+      },
+      "MECHANICAL_MIX": {
+        "QUALITATIVE_ONLY_NO_NUMBER": 257675
+      },
+      "PRESERVATION": {
+        "DURATION_FROM_OVERNIGHT_WORD": 5,
+        "D_NOT_TEMPERATURE_ADJUSTED": 18,
+        "EQUIVALENT_MINUTES_ONLY_NO_ORGANISM_CLAIM": 15,
+        "F0_AT_MEDIUM_TEMPERATURE_NOT_COLD_SPOT": 15,
+        "FICKIAN_SLAB_BI_INFINITY": 18,
+        "RH_NOT_STATED_WET_BULB_ASSUMED": 61,
+        "SLAB_GEOMETRY_ASSUMED": 79,
+        "TWO_STAGE_DRYING_SLAB_BOTH_FACES": 61,
+        "UPTAKE_FRACTION_OF_EQUILIBRIUM_NOT_A_CONCENTRATION": 18,
+        "WATER_CONTENT_IS_A_DRYING_STATE_NOT_A_NUTRIENT": 61
+      },
+      "RESTING": {
+        "BRACKETS_ORDERED_BY_HEAT_DOSE_CARRYOVER_RISE_NOT_MONOTONE": 552,
+        "DURATION_CLIPPED_TO_STATED_BOUND": 24,
+        "DURATION_FROM_OVERNIGHT_WORD": 12,
+        "FINITE_DIFFERENCE_SLAB_HEAT_THEN_STILL_AIR": 552,
+        "HIGH_MOISTURE_PROPERTIES_ASSUMED": 552,
+        "NO_EVAPORATION_CAP_AT_100C": 552,
+        "SLAB_GEOMETRY_ASSUMED": 552,
+        "UNIFORM_START_ASSUMED": 552
+      },
+      "SEPARATION": {
+        "FOLLOWS_SOAK_OR_BRINE": 7942,
+        "NO_COMPOUND_NUMBER": 269657,
+        "SOAK_DISCARD_CHAIN_CANDIDATE": 297
+      },
+      "STORAGE": {
+        "NO_KINETICS_MODEL_PARAM_ROWS_PENDING": 12078
+      }
+    },
+    "l1_files": 192,
+    "l2_driver_computed_by_family": {
+      "COOLING": 23606,
+      "FERMENT_LEAVEN": 2003,
+      "MECHANICAL_CUT": 234186,
+      "MECHANICAL_MIX": 0,
+      "PRESERVATION": 94,
+      "RESTING": 552,
+      "SEPARATION": 113640,
+      "STORAGE": 0
+    },
+    "l2_qualitative_or_conditions_by_family": {
+      "COOLING": 0,
+      "FERMENT_LEAVEN": 3818,
+      "MECHANICAL_CUT": 174018,
+      "MECHANICAL_MIX": 257675,
+      "PRESERVATION": 0,
+      "RESTING": 0,
+      "SEPARATION": 156017,
+      "STORAGE": 12078
+    },
+    "missing_reasons": {
+      "COOLING": {
+        "MEDIUM_NOT_ABOVE_FREEZING_POINT": 10,
+        "MEDIUM_NOT_BELOW_FREEZING_POINT": 18,
+        "half_thickness": 273361
+      },
+      "FERMENT_LEAVEN": {
+        "half_thickness": 27057
+      },
+      "MECHANICAL_CUT": {
+        "cut_class": 132826
+      },
+      "PRESERVATION": {
+        "AIR_NOT_WARMER_THAN_WET_BULB": 16,
+        "duration_min": 265,
+        "environment": 55297,
+        "half_thickness": 1169,
+        "medium": 1560,
+        "medium_temperature": 1378
+      },
+      "RESTING": {
+        "half_thickness": 5888,
+        "prior_heat_bath_c": 2983,
+        "prior_heat_duration_min": 217,
+        "prior_heat_h": 3166,
+        "prior_heat_link": 6875,
+        "rest_air": 70
+      },
+      "STORAGE": {
+        "storage_temperature": 12092
+      }
+    },
+    "status": {
+      "COOLING": {
+        "SCENARIO_COMPUTED": 23606,
+        "SCENARIO_UNKNOWN": 273389,
+        "UNSUPPORTED_MEDIUM": 418
+      },
+      "FERMENT_LEAVEN": {
+        "QUALITATIVE_FLAGS_ONLY": 3818,
+        "SCENARIO_COMPUTED": 2003,
+        "SCENARIO_UNKNOWN": 27057,
+        "UNSUPPORTED_NON_VERB_SURFACE": 18064
+      },
+      "MECHANICAL_CUT": {
+        "QUALITATIVE_FLAGS_ONLY": 174018,
+        "SCENARIO_COMPUTED": 234186,
+        "SCENARIO_UNKNOWN": 132826,
+        "UNSUPPORTED_NON_VERB_SURFACE": 243
+      },
+      "MECHANICAL_MIX": {
+        "NO_FLAG_APPLICABLE": 1189392,
+        "QUALITATIVE_FLAGS_ONLY": 257675
+      },
+      "PRESERVATION": {
+        "SCENARIO_COMPUTED": 94,
+        "SCENARIO_UNKNOWN": 59431,
+        "UNSUPPORTED_MEDIUM": 42,
+        "UNSUPPORTED_NON_VERB_SURFACE": 5369,
+        "UNSUPPORTED_TARGET_EQUIPMENT": 1739
+      },
+      "RESTING": {
+        "SCENARIO_COMPUTED": 552,
+        "SCENARIO_UNKNOWN": 13245,
+        "UNSUPPORTED_MEDIUM": 435
+      },
+      "SEPARATION": {
+        "QUALITATIVE_FLAGS_ONLY": 156017,
+        "SCENARIO_COMPUTED": 113640
+      },
+      "STORAGE": {
+        "CONDITIONS_ONLY_KINETICS_UNKNOWN": 12078,
+        "SCENARIO_UNKNOWN": 12092
+      }
+    },
+    "transition": {
+      "COOLING": {
+        "physically_possible": 23606,
+        "unsupported": 273807
+      },
+      "FERMENT_LEAVEN": {
+        "physically_possible": 5821,
+        "unsupported": 45121
+      },
+      "MECHANICAL_CUT": {
+        "physically_possible": 408204,
+        "unsupported": 133069
+      },
+      "MECHANICAL_MIX": {
+        "physically_possible": 257675,
+        "unsupported": 1189392
+      },
+      "PRESERVATION": {
+        "physically_possible": 94,
+        "unsupported": 66581
+      },
+      "RESTING": {
+        "physically_possible": 552,
+        "unsupported": 13680
+      },
+      "SEPARATION": {
+        "physically_possible": 269657
+      },
+      "STORAGE": {
+        "unsupported": 24170
+      }
+    }
+  },
+  "counts_as_human_gate": false,
+  "ended_at_utc": "2026-11-08T15:36:53Z",
+  "families_requested": [
+    "FOODCOM"
+  ],
+  "family_status": {
+    "FOODCOM": "READ"
+  },
+  "labels": [
+    "SCENARIO",
+    "MODEL_DERIVED",
+    "NON_CITABLE",
+    "ASSUMED_DEFAULT"
+  ],
+  "layer_version": "nonheat-scenario-L2-0.1.0-draft",
+  "recipes_sampled": 522517,
+  "record": "NONHEAT_SCENARIO_L2_SUMMARY",
+  "records_manifest_sha256": "7e1ac5bd78120f634125ade49f55b2a9e1339d2a5f71e8a97e07a9a08e20530d",
+  "records_written": true,
+  "scenario_registry_heat_sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0",
+  "scenario_registry_nonheat_sha256": "047732f446633cf0a07ab0a8504c9ce812ad2ed6b9963567e7a6b5f36b8cf8d4",
+  "started_at_utc": "2026-11-08T14:20:39Z",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "wall_seconds_l2": 1432.1,
+  "workers": 24
+}

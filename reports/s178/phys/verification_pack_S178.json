@@ -1,0 +1,335 @@
+{
+ "checks": [
+  {
+   "id": "V01",
+   "max_abs_error": 0.000167436,
+   "max_rel_error": 0.000168275,
+   "n_cases": 12,
+   "note": "tolerance 1e-3 = the O(Bi) difference of the lumped model at Bi = 1e-3",
+   "passed": true,
+   "reference": "exp(-Bi Fo); the lumped model itself differs from the exact slab by O(Bi)",
+   "tolerance": 0.001,
+   "tolerance_on": "rel",
+   "what": "Bi -> 0: volume-average and centre theta against exp(-Bi Fo) (lumped capacitance)"
+  },
+  {
+   "id": "V02",
+   "max_abs_error": 1e-08,
+   "max_rel_error": 5.9348e-08,
+   "n_cases": 10,
+   "note": "Fo >= 0.02; Bi = 1e8",
+   "passed": true,
+   "reference": "Carslaw-Jaeger Dirichlet slab series (400 terms, independent code)",
+   "tolerance": 1e-05,
+   "tolerance_on": "rel",
+   "what": "Bi -> infinity: centre and volume-average theta against the Dirichlet series (4/pi, 8/pi^2)"
+  },
+  {
+   "id": "V03",
+   "max_abs_error": 5.55112e-17,
+   "max_rel_error": 5.25622e-16,
+   "n_cases": 16,
+   "passed": true,
+   "reference": "exact for the slab until the fronts meet (error ~ erfc(1/sqrt(Fo)) < 1e-12)",
+   "tolerance": 1e-09,
+   "tolerance_on": "rel",
+   "what": "Fo < 0.02: surface theta against the convective semi-infinite solution exp(u^2) erfc(u), u = Bi sqrt(Fo)"
+  },
+  {
+   "id": "V04",
+   "max_abs_error": 4.54556e-07,
+   "max_rel_error": 4.54556e-07,
+   "n_cases": 24,
+   "passed": true,
+   "reference": "left and right limits at Fo = 0.02 -/+ 1e-9",
+   "tolerance": 1e-06,
+   "tolerance_on": "abs",
+   "what": "continuity of the local and mean theta across the series / front switch at Fo = 0.02"
+  },
+  {
+   "id": "V05",
+   "max_abs_error": 5.0691e-05,
+   "max_rel_error": 0.000342721,
+   "n_cases": 27,
+   "note": "tolerance 6e-4 = rounding of a 4-decimal table",
+   "passed": true,
+   "reference": "recalled textbook table (SOURCE_UNVERIFIED_AGENT_RECALLED); Bi = infinity is exact (pi/2)",
+   "source_status": "SOURCE_UNVERIFIED_AGENT_RECALLED",
+   "tolerance": 0.0006,
+   "tolerance_on": "abs",
+   "what": "plane-wall first-term zeta_1 and C_1 versus Bi (textbook table, 4 decimals) against the root finder"
+  },
+  {
+   "id": "V06",
+   "max_abs_error": 0.0166483,
+   "max_rel_error": 0.0181376,
+   "max_rel_error_by_fo": {
+    "0.2": 0.0181376,
+    "0.3": 0.0053495,
+    "0.5": 0.000556018,
+    "1.0": 0.000150109,
+    "2.0": 0.000290511
+   },
+   "n_cases": 65,
+   "note": "tolerance 2e-2 = the textbook accuracy of the one-term curve at Fo = 0.2 (second term dropped); the error falls with Fo; includes the 4-decimal rounding of the constants",
+   "passed": true,
+   "reference": "one-term series with recalled textbook constants (SOURCE_UNVERIFIED_AGENT_RECALLED)",
+   "source_status": "SOURCE_UNVERIFIED_AGENT_RECALLED",
+   "tolerance": 0.02,
+   "tolerance_on": "rel",
+   "what": "centre theta at Fo >= 0.2: full series against the one-term chart curve built from textbook zeta_1, C_1"
+  },
+  {
+   "id": "V07",
+   "max_abs_error": 5.55112e-16,
+   "max_rel_error": 5.55388e-16,
+   "n_cases": 20,
+   "passed": true,
+   "reference": "quadrature of slab_theta (independent of the closed-form mean)",
+   "tolerance": 2e-06,
+   "tolerance_on": "abs",
+   "what": "volume-average theta against 32-node Gauss-Legendre integration of the local theta over the slab"
+  },
+  {
+   "id": "V08",
+   "max_abs_error": 7.59918e-06,
+   "max_rel_error": 2.85803e-05,
+   "n_cases": 48,
+   "note": "FD spatial error ~ 1/n^2; relative error uses a floor of 1e-3 in theta",
+   "passed": true,
+   "reference": "dense CN solve, Rannacher start (independent of the series)",
+   "tolerance": 0.002,
+   "tolerance_on": "abs",
+   "what": "centre, surface and volume-average theta against a 200-node Crank-Nicolson finite-difference solve"
+  },
+  {
+   "id": "V09",
+   "max_abs_error": 5.61025e-06,
+   "max_rel_error": 6.39332e-06,
+   "n_cases": 4,
+   "note": "observed order = log2(error(n) / error(2n)) for n = 10, 20, 40, 80, 160",
+   "observed_order_by_case": {
+    "Bi1.0_Fo0.2": [
+     1.999,
+     2.0,
+     2.0,
+     2.0
+    ],
+    "Bi1.0_Fo0.5": [
+     2.001,
+     2.0,
+     2.0,
+     2.0
+    ],
+    "Bi10.0_Fo0.2": [
+     2.002,
+     2.0,
+     2.0,
+     2.0
+    ],
+    "Bi10.0_Fo0.5": [
+     2.002,
+     2.001,
+     2.0,
+     2.0
+    ]
+   },
+   "passed": true,
+   "reference": "analytic series; the stepper is exact in time, so the difference is the spatial discretisation (2nd order)",
+   "tolerance": 0.0002,
+   "tolerance_on": "abs",
+   "what": "exact modal stepper (n = 160 nodes) against the series for (1 - theta) at the centre, surface and volume mean"
+  },
+  {
+   "id": "V10",
+   "max_abs_error": 0.000300991,
+   "max_rel_error": 3.98508e-06,
+   "n_cases": 18,
+   "note": "deg C; n = 160 nodes; the difference is the spatial error of the stepper",
+   "passed": true,
+   "reference": "linear superposition of the series (same film coefficient in both stages)",
+   "tolerance": 0.05,
+   "tolerance_on": "abs",
+   "what": "exact modal stepper, two stages (ambient 150 -> 60 C), against the analytic superposition of two series"
+  },
+  {
+   "id": "V11",
+   "max_abs_error": 2.52259e-05,
+   "max_rel_error": 3.74698e-07,
+   "n_cases": 21,
+   "note": "deg C; the CN time-stepping error is the difference",
+   "passed": true,
+   "reference": "Crank-Nicolson time stepping of the same finite-difference operator",
+   "tolerance": 0.05,
+   "tolerance_on": "abs",
+   "what": "exact modal stepper against its own Crank-Nicolson mode (same 30-node system, Fo step 5e-4), two stages"
+  },
+  {
+   "id": "V12",
+   "largest_needed_n": 10,
+   "max_abs_error": 0.0,
+   "max_rel_error": 0.0,
+   "n_cases": 25,
+   "n_terms_default": 60,
+   "note": "at Fo >= 0.02 the series is converged to 1e-10 with far fewer than N_TERMS terms; the default has a margin of 6.0x over the worst case",
+   "passed": true,
+   "reference": "400-term series (same formula)",
+   "smallest_n_for_1e_10_by_case": {
+    "Bi0.1_Fo0.02": 10,
+    "Bi0.1_Fo0.05": 10,
+    "Bi0.1_Fo0.1": 5,
+    "Bi0.1_Fo0.3": 5,
+    "Bi0.1_Fo1.0": 5,
+    "Bi1.0_Fo0.02": 10,
+    "Bi1.0_Fo0.05": 10,
+    "Bi1.0_Fo0.1": 5,
+    "Bi1.0_Fo0.3": 5,
+    "Bi1.0_Fo1.0": 5,
+    "Bi10.0_Fo0.02": 10,
+    "Bi10.0_Fo0.05": 10,
+    "Bi10.0_Fo0.1": 5,
+    "Bi10.0_Fo0.3": 5,
+    "Bi10.0_Fo1.0": 5,
+    "Bi100.0_Fo0.02": 10,
+    "Bi100.0_Fo0.05": 10,
+    "Bi100.0_Fo0.1": 5,
+    "Bi100.0_Fo0.3": 5,
+    "Bi100.0_Fo1.0": 5,
+    "Bi1000.0_Fo0.02": 10,
+    "Bi1000.0_Fo0.05": 10,
+    "Bi1000.0_Fo0.1": 5,
+    "Bi1000.0_Fo0.3": 5,
+    "Bi1000.0_Fo1.0": 5
+   },
+   "tolerance": 1e-10,
+   "tolerance_on": "abs",
+   "what": "N_TERMS = 60 convergence: centre and mean theta against a 400-term series, Fo >= 0.02"
+  },
+  {
+   "id": "V13",
+   "max_abs_error": 2.87931e-07,
+   "max_rel_error": 3.6e-10,
+   "n_cases": 15,
+   "passed": true,
+   "reference": "RK4 integral of rho L ds/dt = dT / (1/h + s/k), s = 0 .. a/2; closed-form limits",
+   "tolerance": 1e-06,
+   "tolerance_on": "rel",
+   "what": "Plank slab freezing time against an independent integration of the quasi-steady front ODE, thaw mirror, conduction-only and convection-only limits and 1/dT scaling"
+  },
+  {
+   "error_decreases_with_stefan_number": true,
+   "id": "V14",
+   "max_abs_error": 16.0737,
+   "max_rel_error": 0.107939,
+   "n_cases": 3,
+   "note": "the error is the neglected sensible heat; it must fall with Ste, here from the largest Ste to the smallest",
+   "passed": true,
+   "reference": "explicit enthalpy FD, 40 nodes in the half slab, sensible heat of the frozen layer included",
+   "results_by_stefan_number": {
+    "Ste_0.1": {
+     "enthalpy_s": 137.02,
+     "plank_over_enthalpy": 0.9695,
+     "plank_s": 132.84
+    },
+    "Ste_0.2": {
+     "enthalpy_s": 141.08,
+     "plank_over_enthalpy": 0.9416,
+     "plank_s": 132.84
+    },
+    "Ste_0.4": {
+     "enthalpy_s": 148.91,
+     "plank_over_enthalpy": 0.8921,
+     "plank_s": 132.84
+    }
+   },
+   "tolerance": 0.25,
+   "tolerance_on": "rel",
+   "what": "Plank time against an enthalpy-method Stefan solve at decreasing Stefan number (Plank = the Ste -> 0 limit)"
+  },
+  {
+   "half_uptake_source_status": "SOURCE_UNVERIFIED_AGENT_RECALLED",
+   "half_uptake_tau_code": 0.19673,
+   "half_uptake_tau_textbook": 0.19676,
+   "id": "V15",
+   "max_abs_error": 4.4063e-05,
+   "max_abs_error_long_time_one_term": 2.04333e-11,
+   "max_abs_error_short_time_sqrt_limit": 0.0,
+   "max_abs_error_vs_fd": 4.4063e-05,
+   "max_rel_error": 0.00165982,
+   "monotone_and_bounded": true,
+   "n_cases": 16,
+   "passed": true,
+   "reference": "FD diffusion solve; limits; recalled half-time (SOURCE_UNVERIFIED_AGENT_RECALLED)",
+   "tolerance": 0.0005,
+   "tolerance_on": "abs",
+   "what": "Fickian slab uptake fraction against a 200-node Crank-Nicolson diffusion solve, the short-time sqrt and long-time one-term limits and the textbook half-uptake time"
+  }
+ ],
+ "code_sha256": {
+  "src/culinarystate/simulation/nonheat_drivers.py": "af550ad233339b44cc4db3aab658630788cf6e5563dea9348592905003f57c41",
+  "src/culinarystate/simulation/phys_verification.py": "7004cf81f64de9020352217e424d41342179176dfab3035189a6ddd341aa47fb",
+  "src/culinarystate/simulation/physics_drivers.py": "c741754eadb4f81fd4985191f48c14706255ded5f1b7f3757d0540bd1217638e",
+  "tools/s178_phys_verification.py": "f63abc9f4cc7a8e50567675a855ac477cb7e9ba01fd63fe49b47d919da4b4551"
+ },
+ "command": "python tools/s178_phys_verification.py --out-json reports/s178/phys/verification_pack_S178.json --out-md reports/s178/phys/verification_pack_S178.md",
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "environment": {
+  "numpy": "1.26.4",
+  "platform": "Linux",
+  "python": "3.12.3"
+ },
+ "headline": {
+  "all_passed": true,
+  "checks": 15,
+  "checks_passed": 15,
+  "fickian": {
+   "half_uptake_tau_code": 0.19673,
+   "half_uptake_tau_textbook": 0.19676,
+   "vs_fd_max_abs_error": 4.4063e-05
+  },
+  "modal_stepper": {
+   "n160_max_abs_error_vs_series": 5.61025e-06,
+   "spatial_order_observed": "2 (see V09)",
+   "vs_crank_nicolson_max_abs_error_c": 2.52259e-05
+  },
+  "n_terms": {
+   "default": 60,
+   "largest_n_needed_for_1e_10": 10,
+   "max_abs_error_at_default": 0.0
+  },
+  "plank": {
+   "vs_enthalpy_stefan_by_ste": {
+    "Ste_0.1": {
+     "enthalpy_s": 137.02,
+     "plank_over_enthalpy": 0.9695,
+     "plank_s": 132.84
+    },
+    "Ste_0.2": {
+     "enthalpy_s": 141.08,
+     "plank_over_enthalpy": 0.9416,
+     "plank_s": 132.84
+    },
+    "Ste_0.4": {
+     "enthalpy_s": 148.91,
+     "plank_over_enthalpy": 0.8921,
+     "plank_s": 132.84
+    }
+   },
+   "vs_ode_max_rel_error": 3.6e-10
+  },
+  "slab_series_vs_independent_references": {
+   "fd_reference_max_abs_error_theta": 7.59918e-06,
+   "fd_reference_max_rel_error_theta": 2.85803e-05,
+   "lumped_limit_difference_abs": 0.000167436,
+   "max_abs_error_theta": 7.59918e-06,
+   "max_rel_error_theta": 2.85803e-05
+  }
+ },
+ "recalled_constants_source_status": "SOURCE_UNVERIFIED_AGENT_RECALLED",
+ "record": "PHYSICAL_LAYER_VERIFICATION_PACK",
+ "results_sha256": "212b07e9b752a7ba3b90606d063171d1f01f0258a4d3ed3ed7ffb2adcb904bd8",
+ "status": "AI_DRAFTED_NUMERICAL_VERIFICATION_NOT_A_VALIDATION",
+ "version": "phys-verification-1.0.0-draft",
+ "wall_seconds": 90.5
+}

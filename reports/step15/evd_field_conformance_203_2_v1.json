@@ -1,0 +1,2548 @@
+{
+ "carrier_legend": {
+  "-": "none",
+  "C": "COND record via condition_id (v1: mask only)",
+  "J": "joined ledger (SVAR / SRC / PROC) via an export id",
+  "L": "EVD ledger only (not in export v1)",
+  "V2": "export v2 added column",
+  "X": "export v1 column",
+  "XC": "export v1 + COND join"
+ },
+ "contains_ids": false,
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "export_v2_lineage": {
+  "assignment_status": {
+   "SCRATCH_PROVISIONAL": 17978
+  },
+  "distinct_split_group_ids": 127,
+  "independence_resolution": {
+   "PUBLICATION_ONLY": 3678,
+   "SOURCE_FAMILY_ONLY": 14108,
+   "UNKNOWN": 192
+  },
+  "lineage_study_id_status": {
+   "NOT_IDENTIFIABLE": 14300,
+   "PRESENT": 3678
+  },
+  "rows_with_v2_key_record": 17978,
+  "split_group_id_present": 17978,
+  "study_id_present_v2": 3678
+ },
+ "inputs": {
+  "exports/lineage/step08a_v1/keys.jsonl": "f8da2fe7eb32dc1934686d8a6f35e36dce0ee4c9005da1f487e9c896956bfe90",
+  "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "ledgers/data/PROC.jsonl": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+  "ledgers/data/SRC.jsonl": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+  "ledgers/data/SVAR.jsonl": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697"
+ },
+ "protected_ledgers_unchanged_during_run": true,
+ "record": "EVD_FIELD_CONFORMANCE_203_2_S178",
+ "scope": {
+  "expected_rows": 17978,
+  "export_version": "evd_export@1.0.0",
+  "ledger_sha256_evd": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "rows": 17978,
+  "rows_by_source_family": {
+   "BOGNAR-2002": 7090,
+   "PHENOL-EXPLORER-3.6": 3870,
+   "USDA-RETN-R6": 7018
+  },
+  "rows_equal_export_v1_count": true,
+  "ssot_section": "203.2 canonical process-event table (minimum schema)"
+ },
+ "status": "AI_DRAFTED_PROPOSED_UNREVIEWED",
+ "status_legend": {
+  "ABSENT": "no field of that meaning exists in the ledger schemas or the export",
+  "CENSORED_BOUND_ONLY": "only a one-sided bound is stated",
+  "NOT_APPLICABLE": "field does not apply to this row by form",
+  "PRESENT": "row carries a stated value",
+  "UNKNOWN": "field has a home; row carries explicit UNKNOWN / null (never 0, never imputed)"
+ },
+ "summary": {
+  "carried_on_every_row": 10,
+  "fields_total": 55,
+  "in_schema_but_never_populated": 18,
+  "lists": {
+   "carried_on_every_row": [
+    "event_id",
+    "target_type",
+    "target_variable",
+    "censor_flag",
+    "source_id",
+    "evidence_tier",
+    "verification_status",
+    "extraction_method",
+    "explicit_or_inferred",
+    "dataset_version"
+   ],
+   "in_schema_but_never_populated": [
+    "tool",
+    "geometry",
+    "moisture_value",
+    "moisture_range",
+    "water_activity_value",
+    "water_activity_range",
+    "pH_value",
+    "pH_range",
+    "pH_type",
+    "pressure_range",
+    "oxygen_value",
+    "oxygen_category",
+    "mixing",
+    "target_compound",
+    "target_hi",
+    "LOD",
+    "verified_by",
+    "notes"
+   ],
+   "no_field_exists": [
+    "ingredient_state_out",
+    "t_type",
+    "moisture_type",
+    "water_activity_type",
+    "pressure_type",
+    "ordinal_band",
+    "platform",
+    "split_id"
+   ],
+   "other": [],
+   "populated_on_some_rows": [
+    "ingredient_id",
+    "ingredient_state_in",
+    "process_leaf",
+    "process_family",
+    "T_value",
+    "T_lo",
+    "T_hi",
+    "T_type",
+    "t_value",
+    "t_lo",
+    "t_hi",
+    "medium",
+    "pressure_value",
+    "target_value",
+    "target_lo",
+    "unit",
+    "direction_label",
+    "study_id",
+    "doi_or_citation"
+   ]
+  },
+  "no_field_exists": 8,
+  "other": 0,
+  "populated_on_some_rows": 19,
+  "ssot_203_2_lines": 45
+ },
+ "table": [
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:evd_id": 17978
+   },
+   "field": "event_id",
+   "group": "identity",
+   "match": "EXACT",
+   "note": "an EVD row is an evidence atom (food x process x target), not a recipe process event",
+   "ssot_line": "event_id",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 2598,
+     "UNKNOWN": 4492
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3850,
+     "UNKNOWN": 20
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 5121,
+     "UNKNOWN": 1897
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 11569,
+    "UNKNOWN": 6409
+   },
+   "detail": {
+    "PRESENT:ING_linked": 11569,
+    "UNKNOWN:ING_unresolved_raw_name_kept": 6409
+   },
+   "field": "ingredient_id",
+   "group": "identity",
+   "match": "EXACT",
+   "note": "unlinked rows keep matrix.raw_name",
+   "ssot_line": "ingredient_id",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 1482,
+     "UNKNOWN": 5536
+    }
+   },
+   "carrier": "XC",
+   "carrier_text": "export v1 + COND join",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 12442,
+    "UNKNOWN": 5536
+   },
+   "detail": {
+    "PRESENT:free_text_state": 12442,
+    "UNKNOWN:no_state_text": 5536
+   },
+   "field": "ingredient_state_in",
+   "group": "state",
+   "match": "PARTIAL",
+   "note": "free text matrix.initial_state / prior_processing; no controlled vocabulary (prior_state_id is a hash of the raw descriptor)",
+   "ssot_line": "ingredient_state_in",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 7090,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 3870,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 7018,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "-",
+   "carrier_text": "none",
+   "counts": {
+    "ABSENT": 17978,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "ABSENT:no output-state field": 17978
+   },
+   "field": "ingredient_state_out",
+   "group": "state",
+   "match": "NONE",
+   "note": "the process raw name may imply it; nothing structured",
+   "ssot_line": "ingredient_state_out",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7065,
+     "UNKNOWN": 25
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3738,
+     "UNKNOWN": 132
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17821,
+    "UNKNOWN": 157
+   },
+   "detail": {
+    "PRESENT:process_id": 17821,
+    "UNKNOWN:process_id_null_raw_name_kept": 157
+   },
+   "field": "process_leaf",
+   "group": "process",
+   "match": "EXACT",
+   "note": "process.process_id (PROC ledger); multi-step rows also list step_process_ids",
+   "ssot_line": "process_leaf",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7065,
+     "UNKNOWN": 25
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3738,
+     "UNKNOWN": 132
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "XC",
+   "carrier_text": "export v1 + COND join",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17821,
+    "UNKNOWN": 157
+   },
+   "detail": {
+    "PRESENT:family": 17821,
+    "UNKNOWN:no_family": 157
+   },
+   "field": "process_family",
+   "group": "process",
+   "match": "EXACT",
+   "note": "PROC.family of the process id",
+   "ssot_line": "process_family",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 3369,
+     "NOT_APPLICABLE": 34,
+     "PRESENT": 384,
+     "UNKNOWN": 3303
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 182,
+     "PRESENT": 2046,
+     "UNKNOWN": 1642
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 3369,
+    "NOT_APPLICABLE": 216,
+    "PRESENT": 2430,
+    "UNKNOWN": 11963
+   },
+   "detail": {
+    "CENSORED_BOUND_ONLY:one_sided_bound": 3369,
+    "NOT_APPLICABLE:stated_as_range": 216,
+    "PRESENT:measured": 2430,
+    "UNKNOWN:no_temperature_stated": 11963
+   },
+   "field": "T_value",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.temperatures[]; v1 export keeps only completeness_mask.temperature",
+   "ssot_line": "T_value",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 3753,
+     "PRESENT": 34,
+     "UNKNOWN": 3303
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 2046,
+     "PRESENT": 182,
+     "UNKNOWN": 1642
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 5799,
+    "PRESENT": 216,
+    "UNKNOWN": 11963
+   },
+   "detail": {
+    "NOT_APPLICABLE:stated_as_point_or_bound": 5799,
+    "PRESENT:range": 216,
+    "UNKNOWN:no_temperature_stated": 11963
+   },
+   "field": "T_lo",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.temperatures[] RANGE low",
+   "ssot_line": "T_lo",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 3753,
+     "PRESENT": 34,
+     "UNKNOWN": 3303
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 2046,
+     "PRESENT": 182,
+     "UNKNOWN": 1642
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 5799,
+    "PRESENT": 216,
+    "UNKNOWN": 11963
+   },
+   "detail": {
+    "NOT_APPLICABLE:stated_as_point_or_bound": 5799,
+    "PRESENT:range": 216,
+    "UNKNOWN:no_temperature_stated": 11963
+   },
+   "field": "T_hi",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.temperatures[] RANGE high",
+   "ssot_line": "T_hi",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3787,
+     "UNKNOWN": 3303
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 56,
+     "UNKNOWN": 3814
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 3843,
+    "UNKNOWN": 14135
+   },
+   "detail": {
+    "PRESENT:location_given": 3843,
+    "UNKNOWN:location_unspecified": 2172,
+    "UNKNOWN:no_temperature_stated": 11963
+   },
+   "field": "T_type",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.temperatures[].location (SETPOINT / MEDIUM / CORE ...)",
+   "ssot_line": "T_type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 8,
+     "PRESENT": 2348,
+     "UNKNOWN": 1514
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 468,
+     "PRESENT": 259,
+     "UNKNOWN": 6291
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 476,
+    "PRESENT": 2607,
+    "UNKNOWN": 14895
+   },
+   "detail": {
+    "NOT_APPLICABLE:stated_as_range": 476,
+    "PRESENT:measured": 2607,
+    "UNKNOWN:no_duration_stated": 14895
+   },
+   "field": "t_value",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.duration (unit min)",
+   "ssot_line": "t_value",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 2348,
+     "PRESENT": 8,
+     "UNKNOWN": 1514
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 259,
+     "PRESENT": 468,
+     "UNKNOWN": 6291
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 2607,
+    "PRESENT": 476,
+    "UNKNOWN": 14895
+   },
+   "detail": {
+    "NOT_APPLICABLE:stated_as_point": 2607,
+    "PRESENT:range": 476,
+    "UNKNOWN:no_duration_stated": 14895
+   },
+   "field": "t_lo",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.duration RANGE low",
+   "ssot_line": "t_lo",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 2348,
+     "PRESENT": 8,
+     "UNKNOWN": 1514
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 259,
+     "PRESENT": 468,
+     "UNKNOWN": 6291
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 2607,
+    "PRESENT": 476,
+    "UNKNOWN": 14895
+   },
+   "detail": {
+    "NOT_APPLICABLE:stated_as_point": 2607,
+    "PRESENT:range": 476,
+    "UNKNOWN:no_duration_stated": 14895
+   },
+   "field": "t_hi",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.duration RANGE high",
+   "ssot_line": "t_hi",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 7090,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 3870,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 7018,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "-",
+   "carrier_text": "none",
+   "counts": {
+    "ABSENT": 17978,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "ABSENT:COND.duration has value/unit/raw only": 17978
+   },
+   "field": "t_type",
+   "group": "condition",
+   "match": "NONE",
+   "note": "no total-vs-hold-vs-ramp type",
+   "ssot_line": "t_type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3102,
+     "UNKNOWN": 3988
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 846,
+     "UNKNOWN": 3024
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 468,
+     "UNKNOWN": 6550
+    }
+   },
+   "carrier": "XC",
+   "carrier_text": "export v1 + COND join",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 4416,
+    "UNKNOWN": 13562
+   },
+   "detail": {
+    "PRESENT:medium_recorded": 4416,
+    "UNKNOWN:medium_not_recorded": 13562
+   },
+   "field": "medium",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "process.medium or COND.medium",
+   "ssot_line": "medium",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:tool_ids_never_populated": 17978
+   },
+   "field": "tool",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.tool_ids / process.tool_ids exist in the schema; no row fills them",
+   "ssot_line": "tool",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:geometry_never_populated": 17978
+   },
+   "field": "geometry",
+   "group": "condition",
+   "match": "PARTIAL",
+   "note": "COND.geometry / particle_size / matrix.geometry exist; matrix.form (sliced, diced ...) is not counted as geometry",
+   "ssot_line": "geometry",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:not_populated": 17978
+   },
+   "field": "moisture_value",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.moisture",
+   "ssot_line": "moisture_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:not_populated": 17978
+   },
+   "field": "moisture_range",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.moisture RANGE",
+   "ssot_line": "moisture_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 7090,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 3870,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 7018,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "-",
+   "carrier_text": "none",
+   "counts": {
+    "ABSENT": 17978,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "ABSENT:no moisture basis/type field": 17978
+   },
+   "field": "moisture_type",
+   "group": "condition",
+   "match": "NONE",
+   "note": "wet vs dry basis is carried only by the unit string, when a value exists",
+   "ssot_line": "moisture_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:not_populated": 17978
+   },
+   "field": "water_activity_value",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.water_activity exists in the schema (the completeness_mask has no a_w key; the card's NOT_IN_COND_SCHEMA is about the mask)",
+   "ssot_line": "water_activity_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:not_populated": 17978
+   },
+   "field": "water_activity_range",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.water_activity RANGE",
+   "ssot_line": "water_activity_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 7090,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 3870,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 7018,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "-",
+   "carrier_text": "none",
+   "counts": {
+    "ABSENT": 17978,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "ABSENT:no a_w type field": 17978
+   },
+   "field": "water_activity_type",
+   "group": "condition",
+   "match": "NONE",
+   "note": "",
+   "ssot_line": "water_activity_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:not_populated": 17978
+   },
+   "field": "pH_value",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.ph_initial / ph_final (mask key `ph` is UNKNOWN on every row)",
+   "ssot_line": "pH_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:not_populated": 17978
+   },
+   "field": "pH_range",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.ph_initial RANGE",
+   "ssot_line": "pH_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:not_populated": 17978
+   },
+   "field": "pH_type",
+   "group": "condition",
+   "match": "PARTIAL",
+   "note": "initial vs final is the only type the schema has (no medium / tissue distinction)",
+   "ssot_line": "pH_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 129,
+     "UNKNOWN": 3741
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 7018,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 7018,
+    "PRESENT": 129,
+    "UNKNOWN": 10831
+   },
+   "detail": {
+    "NOT_APPLICABLE:mask_not_applicable": 7018,
+    "PRESENT:measured": 129,
+    "UNKNOWN:not_populated": 10831
+   },
+   "field": "pressure_value",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.pressure; mask NOT_APPLICABLE for USDA retention rows",
+   "ssot_line": "pressure_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 129,
+     "PRESENT": 0,
+     "UNKNOWN": 3741
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 7018,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 7147,
+    "PRESENT": 0,
+    "UNKNOWN": 10831
+   },
+   "detail": {
+    "NOT_APPLICABLE:mask_not_applicable": 7018,
+    "NOT_APPLICABLE:stated_as_point": 129,
+    "UNKNOWN:not_populated": 10831
+   },
+   "field": "pressure_range",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.pressure RANGE",
+   "ssot_line": "pressure_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 7090,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 3870,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 7018,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "-",
+   "carrier_text": "none",
+   "counts": {
+    "ABSENT": 17978,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "ABSENT:no absolute / gauge / vacuum type field": 17978
+   },
+   "field": "pressure_type",
+   "group": "condition",
+   "match": "NONE",
+   "note": "unit strings only (psi, MPa, Mpa: three spellings in COND)",
+   "ssot_line": "pressure_value / range / type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:not_populated": 17978
+   },
+   "field": "oxygen_value",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.oxygen",
+   "ssot_line": "oxygen_value / category",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:not_populated": 17978
+   },
+   "field": "oxygen_category",
+   "group": "condition",
+   "match": "PARTIAL",
+   "note": "COND.oxygen.qualitative",
+   "ssot_line": "oxygen_value / category",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "C",
+   "carrier_text": "COND record via condition_id (v1: mask only)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:agitation_never_populated": 17978
+   },
+   "field": "mixing",
+   "group": "condition",
+   "match": "EXACT",
+   "note": "COND.agitation",
+   "ssot_line": "mixing",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "J",
+   "carrier_text": "joined ledger (SVAR / SRC / PROC) via an export id",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:CHEMICAL": 17482,
+    "PRESENT:PHYSICAL": 496
+   },
+   "field": "target_type",
+   "group": "target",
+   "match": "EXACT",
+   "note": "SVAR.family (CHEMICAL / PHYSICAL) through target_state_variable_id; the registry adds a subfamily",
+   "ssot_line": "target_type",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:svar_id": 17978
+   },
+   "field": "target_variable",
+   "group": "target",
+   "match": "EXACT",
+   "note": "target_state_variable_id + canonical_variable_id (duplicate mapping)",
+   "ssot_line": "target_variable / target_compound",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "L",
+   "carrier_text": "EVD ledger only (not in export v1)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:molecule_id_never_populated": 17978
+   },
+   "field": "target_compound",
+   "group": "target",
+   "match": "EXACT",
+   "note": "target.molecule_id; no PubChem / ChEBI / InChIKey link on any row",
+   "ssot_line": "target_variable / target_compound",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 3274,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3816,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 2620,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 4374,
+     "UNKNOWN": 24
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 5894,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 12060,
+    "UNKNOWN": 24
+   },
+   "detail": {
+    "CENSORED_BOUND_ONLY:retention_censored_at_cap": 5894,
+    "PRESENT:before_after_measured": 3870,
+    "PRESENT:retention_measured": 7694,
+    "PRESENT:yield_measured": 496,
+    "UNKNOWN:retention_unknown": 24
+   },
+   "field": "target_value",
+   "group": "target",
+   "match": "EXACT",
+   "note": "retention fraction, before/after pair, or yield fraction; a GT_CAP value is a bound, not a measurement",
+   "ssot_line": "target_value",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 3274,
+     "NOT_APPLICABLE": 3816,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 3870,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 2620,
+     "NOT_APPLICABLE": 4374,
+     "PRESENT": 0,
+     "UNKNOWN": 24
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 5894,
+    "NOT_APPLICABLE": 12060,
+    "PRESENT": 0,
+    "UNKNOWN": 24
+   },
+   "detail": {
+    "CENSORED_BOUND_ONLY:lower_bound_is_censor_limit": 5894,
+    "NOT_APPLICABLE:point_value": 12060,
+    "UNKNOWN:retention_unknown": 24
+   },
+   "field": "target_lo",
+   "group": "target",
+   "match": "PARTIAL",
+   "note": "retention low; for censored rows the censor limit is the lower bound",
+   "ssot_line": "target_lo",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 7090,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 3870,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 6994,
+     "PRESENT": 0,
+     "UNKNOWN": 24
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 17954,
+    "PRESENT": 0,
+    "UNKNOWN": 24
+   },
+   "detail": {
+    "NOT_APPLICABLE:one_sided_lower_bound": 5894,
+    "NOT_APPLICABLE:point_value": 12060,
+    "UNKNOWN:retention_unknown": 24
+   },
+   "field": "target_hi",
+   "group": "target",
+   "match": "PARTIAL",
+   "note": "retention high",
+   "ssot_line": "target_hi",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 6994,
+     "UNKNOWN": 24
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17954,
+    "UNKNOWN": 24
+   },
+   "detail": {
+    "PRESENT:unit_stated": 17954,
+    "UNKNOWN:no_value": 24
+   },
+   "field": "unit",
+   "group": "target",
+   "match": "EXACT",
+   "note": "retention_unit / before_unit; the 496 yield rows have no unit column in v1",
+   "ssot_line": "unit",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3816,
+     "UNKNOWN": 3274
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 4374,
+     "UNKNOWN": 2644
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 12060,
+    "UNKNOWN": 5918
+   },
+   "detail": {
+    "PRESENT:increase_decrease_or_no_change": 12060,
+    "UNKNOWN:direction_unknown_derived": 5918
+   },
+   "field": "direction_label",
+   "group": "target",
+   "match": "EXACT",
+   "note": "derived.direction; UNKNOWN is derived, not source-stated (censored rows)",
+   "ssot_line": "direction_label",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 7090,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 3870,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 7018,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "-",
+   "carrier_text": "none",
+   "counts": {
+    "ABSENT": 17978,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "ABSENT:no ordinal band field": 17978
+   },
+   "field": "ordinal_band",
+   "group": "target",
+   "match": "NONE",
+   "note": "",
+   "ssot_line": "ordinal_band",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:flag_false": 12084,
+    "PRESENT:flag_true": 5894
+   },
+   "field": "censor_flag",
+   "group": "quality",
+   "match": "EXACT",
+   "note": "censoring_flag is a boolean on every row; true on 5,894",
+   "ssot_line": "censor_flag",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:NOT_REPORTED_BY_SOURCE_ROW": 17978
+   },
+   "field": "LOD",
+   "group": "quality",
+   "match": "PARTIAL",
+   "note": "export columns lod / loq exist, null on all rows; GT_CAP limits are upper caps, not detection limits",
+   "ssot_line": "LOD",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 7090,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 3870,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 7018,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "-",
+   "carrier_text": "none",
+   "counts": {
+    "ABSENT": 17978,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "ABSENT:no analytical-platform field": 17978
+   },
+   "field": "platform",
+   "group": "provenance",
+   "match": "NONE",
+   "note": "MEAS records give the method family of the database, not HPLC / GC of the primary measurement",
+   "ssot_line": "platform",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 3870,
+    "UNKNOWN": 14108
+   },
+   "detail": {
+    "PRESENT:study_id": 3870,
+    "UNKNOWN:NOT_IDENTIFIABLE": 14108
+   },
+   "field": "study_id",
+   "group": "provenance",
+   "match": "EXACT",
+   "note": "export v1 study_ids; v2 adds study_id from the lineage keys",
+   "ssot_line": "study_id",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:source_id": 17978
+   },
+   "field": "source_id",
+   "group": "provenance",
+   "match": "EXACT",
+   "note": "",
+   "ssot_line": "source_id",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3678,
+     "UNKNOWN": 192
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "J",
+   "carrier_text": "joined ledger (SVAR / SRC / PROC) via an export id",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 3678,
+    "UNKNOWN": 14300
+   },
+   "detail": {
+    "PRESENT:doi_on_publication_record": 3678,
+    "UNKNOWN:database_level_citation_only_or_no_doi": 14300
+   },
+   "field": "doi_or_citation",
+   "group": "provenance",
+   "match": "PARTIAL",
+   "note": "SRC.doi on 3,678 publication records; USDA and Bognar rows cite the database SRC (authors / year / title) but no primary study",
+   "ssot_line": "doi_or_citation",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:E3": 17978
+   },
+   "field": "evidence_tier",
+   "group": "quality",
+   "match": "EXACT",
+   "note": "all E3",
+   "ssot_line": "evidence_tier",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "L",
+   "carrier_text": "EVD ledger only (not in export v1)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:no_human_verifier": 17978
+   },
+   "field": "verified_by",
+   "group": "quality",
+   "match": "EXACT",
+   "note": "verification.verifier; AI_PRECHECKED rows carry ai_reviewer only",
+   "ssot_line": "verified_by",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:AI_PRECHECKED": 3870,
+    "PRESENT:UNVERIFIED": 14108
+   },
+   "field": "verification_status",
+   "group": "quality",
+   "match": "EXACT",
+   "note": "UNVERIFIED or AI_PRECHECKED; 0 HUMAN_VERIFIED",
+   "ssot_line": "verification_status",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "L",
+   "carrier_text": "EVD ledger only (not in export v1)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:bognar_parser@0.1": 6594,
+    "PRESENT:bognar_yield@0.1": 496,
+    "PRESENT:phenol_explorer_parser@0.1": 3870,
+    "PRESENT:usda_r6_parser@0.2": 7018
+   },
+   "field": "extraction_method",
+   "group": "provenance",
+   "match": "EXACT",
+   "note": "extraction_version + provenance.method (IMPORT); the export keeps only provenance_class",
+   "ssot_line": "extraction_method",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:EXPLICIT_SOURCE": 17978
+   },
+   "field": "explicit_or_inferred",
+   "group": "provenance",
+   "match": "EXACT",
+   "note": "provenance_class; EXPLICIT_SOURCE for all rows; USDA rows flagged SOURCE_SIDE_IMPUTATION_POSSIBLE",
+   "ssot_line": "explicit_or_inferred",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7090
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 3870
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 7018
+    }
+   },
+   "carrier": "L",
+   "carrier_text": "EVD ledger only (not in export v1)",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 17978
+   },
+   "detail": {
+    "UNKNOWN:empty": 17978
+   },
+   "field": "notes",
+   "group": "provenance",
+   "match": "EXACT",
+   "note": "EVD.notes is empty on every ACTIVE row",
+   "ssot_line": "notes",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7090,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 3870,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 0,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 7018,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "X",
+   "carrier_text": "export v1 column",
+   "counts": {
+    "ABSENT": 0,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 17978,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "PRESENT:export_version_only": 17978
+   },
+   "field": "dataset_version",
+   "group": "provenance",
+   "match": "PROXY",
+   "note": "export_version evd_export@1.0.0 is a schema version; no dataset has been frozen (15a not frozen), so this is a proxy",
+   "ssot_line": "dataset_version",
+   "total": 17978
+  },
+  {
+   "by_source_family": {
+    "BOGNAR-2002": {
+     "ABSENT": 7090,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "PHENOL-EXPLORER-3.6": {
+     "ABSENT": 3870,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    },
+    "USDA-RETN-R6": {
+     "ABSENT": 7018,
+     "CENSORED_BOUND_ONLY": 0,
+     "NOT_APPLICABLE": 0,
+     "PRESENT": 0,
+     "UNKNOWN": 0
+    }
+   },
+   "carrier": "V2",
+   "carrier_text": "export v2 added column",
+   "counts": {
+    "ABSENT": 17978,
+    "CENSORED_BOUND_ONLY": 0,
+    "NOT_APPLICABLE": 0,
+    "PRESENT": 0,
+    "UNKNOWN": 0
+   },
+   "detail": {
+    "ABSENT:not in export v1": 17978
+   },
+   "field": "split_id",
+   "group": "provenance",
+   "match": "PROXY",
+   "note": "export v2 adds split_group_id (SCRATCH_PROVISIONAL assignment, keys-v1) on every row",
+   "ssot_line": "split_id",
+   "total": 17978
+  }
+ ],
+ "tool_version": "s178-evd-conformance-0.1.0-draft"
+}

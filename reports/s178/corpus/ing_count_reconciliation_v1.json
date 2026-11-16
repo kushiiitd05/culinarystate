@@ -1,0 +1,762 @@
+{
+ "claims_checked_against_files": [
+  {
+   "claim": "ING_CONCEPTS_1951",
+   "counts": "ACTIVE ids first written by the A1 (BBC) registry build (a1_ner+registry_build@0.1): 1951 in the ledger now; the report's own ledger-write tally (4 created + 1,867 unchanged + 80 revised = 1,951) is that build's output. STALE as a description of the current ledger: it omits the Wikibooks-link ids added by a later step (and does not track later status changes).",
+   "file": "reports/ingredient_registry_v1.md",
+   "found_in_file": true,
+   "line": 4,
+   "number": 1951
+  },
+  {
+   "claim": "ING_CONCEPTS_1951_FDC",
+   "counts": "ACTIVE ids first written by the A1 (BBC) registry build (a1_ner+registry_build@0.1): 1951 in the ledger now; the report's own ledger-write tally (4 created + 1,867 unchanged + 80 revised = 1,951) is that build's output. STALE as a description of the current ledger: it omits the Wikibooks-link ids added by a later step (and does not track later status changes).",
+   "file": "reports/fdc_crosswalk_v0.md",
+   "found_in_file": true,
+   "line": 3,
+   "number": 1951
+  },
+  {
+   "claim": "ING_ROWS_5387_PACKET",
+   "counts": "ledger VERSION LINES of ING.jsonl (append-only), not concepts: 2110 ids + 3277 later versions (enrichment and merge revisions; git history shows the X1 FoodOn, X2 Open Food Facts, X2b merge and X3 Wikibooks commits touching this file). The review packet's 'ING rows' means these lines.",
+   "file": "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md",
+   "found_in_file": true,
+   "line": 292,
+   "number": 5387
+  },
+  {
+   "claim": "ING_LINES_5387_MP_AUDIT",
+   "counts": "ledger VERSION LINES of ING.jsonl (append-only), not concepts: 2110 ids + 3277 later versions (enrichment and merge revisions; git history shows the X1 FoodOn, X2 Open Food Facts, X2b merge and X3 Wikibooks commits touching this file). The review packet's 'ING rows' means these lines.",
+   "file": "reports/master_plan/master_plan_research_audit_v2.md",
+   "found_in_file": true,
+   "line": 639,
+   "number": 5387
+  },
+  {
+   "claim": "ING_ACTIVE_2048_L_LOT",
+   "counts": "distinct ING ids whose latest version is ACTIVE; this is the ING set the Rung A lexicon and every S175-S178 census use (`rung_a_lexicon._latest_active`).",
+   "file": "reports/orchestration/S176_L-LOT_report.md",
+   "found_in_file": true,
+   "line": 27,
+   "number": 2048
+  },
+  {
+   "claim": "ING_IDS_2110_L_LOT",
+   "counts": "distinct ING ids of every status (2048 ACTIVE + 49 SUPERSEDED + 13 DEPRECATED).",
+   "file": "reports/orchestration/S176_L-LOT_report.md",
+   "found_in_file": true,
+   "line": 27,
+   "number": 2110
+  }
+ ],
+ "contains_ids": false,
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "item": "T3-C03-R1",
+ "ledger_file_sha256": {
+  "ALIAS.jsonl": "65d89c0dfe164a5c2955c7e874c93e6f8b76bddc30fc9f3639997d9430c3278c",
+  "ALLERGEN.jsonl": "cf976097a030250daf3257359203a66d8797c3c29451c097c557769e67e3fe2a",
+  "COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "DATASET.jsonl": "ebcc63456be2a77a80f70f88d893b405da35932d5bb2848fffd449472bf66f85",
+  "DOC.jsonl": "afa31f4b5c734c5bcdcb2e9bb279d5f873fad5dd3ea8bd33a8cbb151afbb4f74",
+  "EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "EXP.jsonl": "183b40d06c9eb9a31216ecc1ea843c71baf199ec6e939b5409d2331f3945bd99",
+  "IMAP.jsonl": "d09aeead076401e1325f3f588ce67251d8a84b5862e5418d5ac83d9cd2386c78",
+  "ING.jsonl": "ef439951982b98efa9a21787f7b646a162c3c4912718405cdae6ed56dc1cd574",
+  "KGE.jsonl": "1c9ffda0d74dcaaa71b9f45c0667489a4e5268759e9e1810067e54502cf39bd8",
+  "MEAS.jsonl": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+  "MOL.jsonl": "f9d25b373ae2a4a92ed625f81f3a6f642c34683ea3a59176f1ddb00d2a2489dc",
+  "PROC.jsonl": "b9248bf2b4069572b9b38a624fb83799c6634075466e25848dbf574f98f6f644",
+  "REC.jsonl": "91f65a47389260efa345e34695060053ae1b433afce0726baca42c310e24bd85",
+  "SNAP.jsonl": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+  "SRC.jsonl": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+  "SRC_08A_YIELD.jsonl": "e92f71e8bb630eac23de0c05ead667d26bef3291db6c7148321f3e8a4c56332b",
+  "STUDY.jsonl": "727120365e5dabd9636d37c61981dcc5bd0c7c23de07ff740ae4fb6d552cff27",
+  "SVAR.jsonl": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697",
+  "TOOL.jsonl": "897243c7c02e0b7657ae564d797d3e4757efb4ce9c2e82b985d1ec0593492c02",
+  "UNIT.jsonl": "c7b317ae32c6c03bada10f381ef5a3e657acabd00bd0424882ffe2548dfe18c7",
+  "_ids.jsonl": "c2950817fc50c201a9dd49924a653ea2574ac9163ce7fe95fd12c0203bfaeefb"
+ },
+ "ledgers": {
+  "ALIAS": {
+   "active_ids": 4103,
+   "ids": 4116,
+   "latest_status": {
+    "ACTIVE": 4103,
+    "DEPRECATED": 13
+   },
+   "line_status": {
+    "ACTIVE": 4170,
+    "DEPRECATED": 13
+   },
+   "lines": 4183,
+   "lines_beyond_first_version": 67,
+   "lines_without_id": 0,
+   "origin": {
+    "ids_by_first_version_agent": {
+     "a1_ner+registry_build@0.1": 2065,
+     "off_taxonomy@0.1": 1896,
+     "wikibooks_links@0.1": 155
+    },
+    "latest_status_by_first_version_agent": {
+     "a1_ner+registry_build@0.1": {
+      "ACTIVE": 2052,
+      "DEPRECATED": 13
+     },
+     "off_taxonomy@0.1": {
+      "ACTIVE": 1896
+     },
+     "wikibooks_links@0.1": {
+      "ACTIVE": 155
+     }
+    },
+    "lines_by_agent": {
+     "a1_ner+registry_build@0.1": 2127,
+     "off_taxonomy@0.1": 1901,
+     "wikibooks_links@0.1": 155
+    },
+    "lines_by_created_at_date": {
+     "2026-10-18": 4183
+    }
+   },
+   "schema_versions": {
+    "1.0.0": 4183
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 4103
+   },
+   "versions_per_id": {
+    "1": 4049,
+    "2": 67
+   },
+   "vocab_status": {
+    "active_aliases": 4103,
+    "active_aliases_with_an_active_ing_target": 4103,
+    "active_aliases_with_several_candidate_targets": 0,
+    "active_aliases_without_an_active_ing_target": 0,
+    "alias_type": {
+     "PLURAL": 12,
+     "SYNONYM": 2628,
+     "TRANSLATION": 1463
+    },
+    "link_band": {
+     "EXACT": 1950,
+     "HIGH": 2063,
+     "MEDIUM": 90
+    }
+   }
+  },
+  "ALLERGEN": {
+   "active_ids": 8,
+   "ids": 8,
+   "latest_status": {
+    "ACTIVE": 8
+   },
+   "line_status": {
+    "ACTIVE": 11
+   },
+   "lines": 11,
+   "lines_beyond_first_version": 3,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 11
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 8
+   },
+   "versions_per_id": {
+    "1": 5,
+    "2": 3
+   }
+  },
+  "COND": {
+   "active_ids": 4414,
+   "ids": 4414,
+   "latest_status": {
+    "ACTIVE": 4414
+   },
+   "line_status": {
+    "ACTIVE": 4746
+   },
+   "lines": 4746,
+   "lines_beyond_first_version": 332,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 4746
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 4414
+   },
+   "versions_per_id": {
+    "1": 4082,
+    "2": 332
+   }
+  },
+  "DATASET": {
+   "active_ids": 5,
+   "ids": 5,
+   "latest_status": {
+    "ACTIVE": 5
+   },
+   "line_status": {
+    "ACTIVE": 5
+   },
+   "lines": 5,
+   "lines_beyond_first_version": 0,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 5
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 5
+   },
+   "versions_per_id": {
+    "1": 5
+   }
+  },
+  "DOC": {
+   "active_ids": 1967,
+   "ids": 1967,
+   "latest_status": {
+    "ACTIVE": 1967
+   },
+   "line_status": {
+    "ACTIVE": 1967
+   },
+   "lines": 1967,
+   "lines_beyond_first_version": 0,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 1967
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 1967
+   },
+   "versions_per_id": {
+    "1": 1967
+   }
+  },
+  "EVD": {
+   "active_ids": 17978,
+   "ids": 18156,
+   "latest_status": {
+    "ACTIVE": 17978,
+    "DEPRECATED": 178
+   },
+   "line_status": {
+    "ACTIVE": 56828,
+    "DEPRECATED": 452
+   },
+   "lines": 57280,
+   "lines_beyond_first_version": 39124,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 57280
+   },
+   "verification_of_active": {
+    "AI_PRECHECKED": 3870,
+    "UNVERIFIED": 14108
+   },
+   "versions_per_id": {
+    "2": 6167,
+    "3": 3209,
+    "4": 8581,
+    "5": 199
+   }
+  },
+  "EXP": {
+   "active_ids": 7,
+   "ids": 7,
+   "latest_status": {
+    "ACTIVE": 7
+   },
+   "line_status": {
+    "ACTIVE": 8
+   },
+   "lines": 8,
+   "lines_beyond_first_version": 1,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 8
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 7
+   },
+   "versions_per_id": {
+    "1": 6,
+    "2": 1
+   }
+  },
+  "IMAP": {
+   "active_ids": 30294,
+   "ids": 30294,
+   "latest_status": {
+    "ACTIVE": 30294
+   },
+   "line_status": {
+    "ACTIVE": 31972
+   },
+   "lines": 31972,
+   "lines_beyond_first_version": 1678,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 31972
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 30294
+   },
+   "versions_per_id": {
+    "1": 29940,
+    "11": 1,
+    "5": 229,
+    "7": 120,
+    "9": 4
+   }
+  },
+  "ING": {
+   "active_ids": 2048,
+   "ids": 2110,
+   "latest_status": {
+    "ACTIVE": 2048,
+    "DEPRECATED": 13,
+    "SUPERSEDED": 49
+   },
+   "line_status": {
+    "ACTIVE": 5325,
+    "DEPRECATED": 13,
+    "SUPERSEDED": 49
+   },
+   "lines": 5387,
+   "lines_beyond_first_version": 3277,
+   "lines_without_id": 0,
+   "origin": {
+    "ids_by_first_version_agent": {
+     "a1_ner+registry_build@0.1": 2013,
+     "wikibooks_links@0.1": 97
+    },
+    "latest_status_by_first_version_agent": {
+     "a1_ner+registry_build@0.1": {
+      "ACTIVE": 1951,
+      "DEPRECATED": 13,
+      "SUPERSEDED": 49
+     },
+     "wikibooks_links@0.1": {
+      "ACTIVE": 97
+     }
+    },
+    "lines_by_agent": {
+     "a1_ner+registry_build@0.1": 5149,
+     "wikibooks_links@0.1": 238
+    },
+    "lines_by_created_at_date": {
+     "2026-10-18": 5387
+    }
+   },
+   "schema_versions": {
+    "1.0.0": 5387
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 2048
+   },
+   "versions_per_id": {
+    "2": 1158,
+    "3": 749,
+    "4": 191,
+    "5": 12
+   },
+   "vocab_status": {
+    "active_concepts": 2048,
+    "ambiguity": {
+     "HIGH": 15,
+     "LOW": 1936,
+     "MEDIUM": 97
+    },
+    "crosswalk_fdc": {
+     "UNRESOLVED_EXTERNAL": 2048
+    },
+    "crosswalk_flavordb": {
+     "UNRESOLVED_EXTERNAL": 2048
+    },
+    "crosswalk_foodon": {
+     "CANDIDATE": 296,
+     "LINKED": 553,
+     "NO_MATCH": 1199
+    },
+    "crosswalk_recipedb": {
+     "UNRESOLVED_EXTERNAL": 2048
+    },
+    "foodon_linked_pct": 27.0,
+    "scientific_identity_status": {
+     "UNKNOWN": 2048
+    },
+    "usda_fdc_linked_pct": 0.0,
+    "with_external_refs": 1057,
+    "with_facets": 235,
+    "with_facets_pct": 11.47,
+    "with_parent_ids": 315,
+    "with_parent_ids_pct": 15.38
+   }
+  },
+  "KGE": {
+   "active_ids": 45201,
+   "ids": 48181,
+   "latest_status": {
+    "ACTIVE": 45201,
+    "DEPRECATED": 2980
+   },
+   "line_status": {
+    "ACTIVE": 77606,
+    "DEPRECATED": 3001
+   },
+   "lines": 80607,
+   "lines_beyond_first_version": 32426,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 80607
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 45201
+   },
+   "versions_per_id": {
+    "1": 29362,
+    "11": 8,
+    "13": 4,
+    "15": 4,
+    "2": 11136,
+    "23": 2,
+    "3": 5217,
+    "5": 2108,
+    "7": 262,
+    "9": 78
+   }
+  },
+  "MEAS": {
+   "active_ids": 3,
+   "ids": 3,
+   "latest_status": {
+    "ACTIVE": 3
+   },
+   "line_status": {
+    "ACTIVE": 3
+   },
+   "lines": 3,
+   "lines_beyond_first_version": 0,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 3
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 3
+   },
+   "versions_per_id": {
+    "1": 3
+   }
+  },
+  "MOL": {
+   "active_ids": 1726,
+   "ids": 1726,
+   "latest_status": {
+    "ACTIVE": 1726
+   },
+   "line_status": {
+    "ACTIVE": 1726
+   },
+   "lines": 1726,
+   "lines_beyond_first_version": 0,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 1726
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 1726
+   },
+   "versions_per_id": {
+    "1": 1726
+   }
+  },
+  "PROC": {
+   "active_ids": 156,
+   "ids": 156,
+   "latest_status": {
+    "ACTIVE": 156
+   },
+   "line_status": {
+    "ACTIVE": 552
+   },
+   "lines": 552,
+   "lines_beyond_first_version": 396,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 552
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 156
+   },
+   "versions_per_id": {
+    "1": 7,
+    "2": 26,
+    "3": 45,
+    "4": 49,
+    "5": 20,
+    "6": 4,
+    "7": 3,
+    "8": 1,
+    "9": 1
+   }
+  },
+  "REC": {
+   "active_ids": 89565,
+   "ids": 89565,
+   "latest_status": {
+    "ACTIVE": 89565
+   },
+   "line_status": {
+    "ACTIVE": 107760
+   },
+   "lines": 107760,
+   "lines_beyond_first_version": 18195,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 107760
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 89565
+   },
+   "versions_per_id": {
+    "1": 71370,
+    "2": 18195
+   }
+  },
+  "SNAP": {
+   "active_ids": 346,
+   "ids": 346,
+   "latest_status": {
+    "ACTIVE": 346
+   },
+   "line_status": {
+    "ACTIVE": 347
+   },
+   "lines": 347,
+   "lines_beyond_first_version": 1,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 347
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 346
+   },
+   "versions_per_id": {
+    "1": 345,
+    "2": 1
+   }
+  },
+  "SRC": {
+   "active_ids": 488,
+   "ids": 488,
+   "latest_status": {
+    "ACTIVE": 488
+   },
+   "line_status": {
+    "ACTIVE": 609
+   },
+   "lines": 609,
+   "lines_beyond_first_version": 121,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 609
+   },
+   "verification_of_active": {
+    "AI_PRECHECKED": 5,
+    "NEEDS_SOURCE": 4,
+    "UNVERIFIED": 479
+   },
+   "versions_per_id": {
+    "1": 367,
+    "2": 121
+   }
+  },
+  "SRC_08A_YIELD": {
+   "active_ids": 7,
+   "ids": 7,
+   "latest_status": {
+    "ACTIVE": 7
+   },
+   "line_status": {
+    "ACTIVE": 7
+   },
+   "lines": 7,
+   "lines_beyond_first_version": 0,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 7
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 7
+   },
+   "versions_per_id": {
+    "1": 7
+   }
+  },
+  "STUDY": {
+   "active_ids": 132,
+   "ids": 132,
+   "latest_status": {
+    "ACTIVE": 132
+   },
+   "line_status": {
+    "ACTIVE": 257
+   },
+   "lines": 257,
+   "lines_beyond_first_version": 125,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 257
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 132
+   },
+   "versions_per_id": {
+    "1": 7,
+    "2": 125
+   }
+  },
+  "SVAR": {
+   "active_ids": 224,
+   "ids": 224,
+   "latest_status": {
+    "ACTIVE": 224
+   },
+   "line_status": {
+    "ACTIVE": 355
+   },
+   "lines": 355,
+   "lines_beyond_first_version": 131,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 355
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 224
+   },
+   "versions_per_id": {
+    "1": 93,
+    "2": 131
+   }
+  },
+  "TOOL": {
+   "active_ids": 119,
+   "ids": 119,
+   "latest_status": {
+    "ACTIVE": 119
+   },
+   "line_status": {
+    "ACTIVE": 297
+   },
+   "lines": 297,
+   "lines_beyond_first_version": 178,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 297
+   },
+   "verification_of_active": {
+    "UNVERIFIED": 119
+   },
+   "versions_per_id": {
+    "1": 12,
+    "2": 52,
+    "3": 40,
+    "4": 14,
+    "5": 1
+   }
+  },
+  "UNIT": {
+   "active_ids": 74,
+   "ids": 74,
+   "latest_status": {
+    "ACTIVE": 74
+   },
+   "line_status": {
+    "ACTIVE": 74
+   },
+   "lines": 74,
+   "lines_beyond_first_version": 0,
+   "lines_without_id": 0,
+   "schema_versions": {
+    "1.0.0": 74
+   },
+   "verification_of_active": {
+    "NEEDS_SOURCE": 4,
+    "UNVERIFIED": 70
+   },
+   "versions_per_id": {
+    "1": 74
+   }
+  }
+ },
+ "minted_id_registry": {
+  "by_prefix": {
+   "ALIAS": 4116,
+   "ALLERGEN": 8,
+   "COND": 4414,
+   "DATASET": 5,
+   "DOC": 1967,
+   "EVD": 18157,
+   "EXP": 7,
+   "IMAP": 30294,
+   "ING": 2110,
+   "KGE": 48181,
+   "MEAS": 3,
+   "MOL": 1726,
+   "PROC": 156,
+   "REC": 89565,
+   "SNAP": 346,
+   "SRC": 495,
+   "STUDY": 132,
+   "SVAR": 224,
+   "TOOL": 119,
+   "UNIT": 74
+  },
+  "lines": 202099
+ },
+ "notes": [
+  "Latest version per id = highest `version` (later line wins a tie), as rung_a_lexicon._latest_active.",
+  "SUPERSEDED / DEPRECATED ids (49 + 13) are no longer ACTIVE; their lines stay in the append-only ledger.",
+  "All vocabulary records are UNVERIFIED (AI-drafted); 'ACTIVE' is a lifecycle status, not a verification status.",
+  "Protected ledgers (EVD, COND, SRC, MEAS, SNAP) were read only; their sha256 are recorded in ledger_file_sha256 for before/after comparison."
+ ],
+ "reconciliation": {
+  "active_ids": 2048,
+  "active_ids_from_a1_registry_build": 1951,
+  "active_ids_from_other_origins": {
+   "wikibooks_links@0.1": 97
+  },
+  "deprecated_ids": 13,
+  "distinct_ids": 2110,
+  "identities": {
+   "active_equal_a1_active_plus_other_active": true,
+   "ids_equal_active_plus_superseded_plus_deprecated": true,
+   "lines_equal_ids_plus_extra_versions": true
+  },
+  "ids_from_a1_registry_build": 2013,
+  "ids_superseded_or_deprecated": 62,
+  "ledger_lines": 5387,
+  "lines_beyond_first_version": 3277,
+  "superseded_ids": 49,
+  "verdict": {
+   "current_concept_count": 2048,
+   "file_that_produced_5387": "ledgers/data/ING.jsonl (wc -l); not a separate Food.com-extended registry: the consensus R-SSOT guess 'suspected Food.com-extended ING' is NOT supported (no ING line has a Food.com provenance agent).",
+   "mislabelled_wording": "'5,387 ING rows' (review packet Q7, master-plan audit, SSOT working notes) counts ledger lines; say '2,048 ACTIVE ING concepts (5,387 ledger lines)'. The statement 'crosswalked 0 %' in packet Q7 refers to USDA/FDC: {'UNRESOLVED_EXTERNAL': 2048}; FoodOn LINKED is 27.0 %.",
+   "stale_report": "reports/ingredient_registry_v1.md (and reports/fdc_crosswalk_v0.md): '1,951 ING concepts' is the first BBC-only build, not the current vocabulary. Quote 2,048 ACTIVE concepts (1,951 BBC-derived + 97 Wikibooks-linked) with the ledger lines (5,387) named as lines.",
+   "vocab_built_from_bbc_only": "the A1-derived ids are 1,951 of 2,048 ACTIVE (95.3 %); Wikibooks links add 97; no Food.com or Gutenberg ING ids exist in the ledger."
+  },
+  "what_it_counts": {
+   "1951": "ACTIVE ids first written by the A1 (BBC) registry build (a1_ner+registry_build@0.1): 1951 in the ledger now; the report's own ledger-write tally (4 created + 1,867 unchanged + 80 revised = 1,951) is that build's output. STALE as a description of the current ledger: it omits the Wikibooks-link ids added by a later step (and does not track later status changes).",
+   "2048": "distinct ING ids whose latest version is ACTIVE; this is the ING set the Rung A lexicon and every S175-S178 census use (`rung_a_lexicon._latest_active`).",
+   "2110": "distinct ING ids of every status (2048 ACTIVE + 49 SUPERSEDED + 13 DEPRECATED).",
+   "5387": "ledger VERSION LINES of ING.jsonl (append-only), not concepts: 2110 ids + 3277 later versions (enrichment and merge revisions; git history shows the X1 FoodOn, X2 Open Food Facts, X2b merge and X3 Wikibooks commits touching this file). The review packet's 'ING rows' means these lines."
+  }
+ },
+ "record": "ING_COUNT_RECONCILIATION_S178",
+ "status": "AI_DRAFTED_PROPOSED_COUNTS_ONLY",
+ "tool_version": "s178-corpus-ing-reconcile-0.1.0-draft"
+}

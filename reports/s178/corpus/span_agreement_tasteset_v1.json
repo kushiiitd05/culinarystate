@@ -1,0 +1,74 @@
+{
+ "contains_ids": false,
+ "contains_text": false,
+ "counts": {
+  "gold_food_contains_shorter_lexicon_span": 530,
+  "gold_food_exact_boundary": 2750,
+  "gold_food_inside_a_longer_lexicon_span": 522,
+  "gold_food_missed_no_overlap": 210,
+  "gold_food_partial_overlap": 8,
+  "gold_food_spans": 4020,
+  "lexicon_exact_boundary_gold_food": 2750,
+  "lexicon_extra_no_gold_span": 230,
+  "lexicon_overlapping_gold_food": 4018,
+  "lexicon_overlapping_only_gold_COLOR": 4,
+  "lexicon_overlapping_only_gold_PART": 2,
+  "lexicon_overlapping_only_gold_PHYSICAL_QUALITY": 53,
+  "lexicon_overlapping_only_gold_PROCESS": 16,
+  "lexicon_overlapping_only_gold_PURPOSE": 9,
+  "lexicon_overlapping_only_gold_TASTE": 3,
+  "lexicon_overlapping_only_gold_UNIT": 4,
+  "lexicon_spans": 4339
+ },
+ "counts_as_human_gate": false,
+ "derived_lists": {
+  "extra_lexicon_spans": {
+   "distinct_phrases": 153,
+   "git_ignored": true,
+   "path": "data/derived/s178_corpus/span_agreement_extra_lexicon_spans_TASTESET.csv",
+   "rows": 153,
+   "sha256": "46444227cbab3d9f0760104177a227a4088d3f6bf86144a65f64bc679e1303a0"
+  },
+  "missed_gold_foods": {
+   "distinct_phrases": 147,
+   "git_ignored": true,
+   "path": "data/derived/s178_corpus/span_agreement_missed_gold_foods_TASTESET.csv",
+   "rows": 147,
+   "sha256": "4895f5c122eb9b656cc2652e85f79ff4ebee0f53e9fefb22fe829dbca2112cfa"
+  }
+ },
+ "gold_entity_types": {
+  "COLOR": 231,
+  "FOOD": 4020,
+  "PART": 55,
+  "PHYSICAL_QUALITY": 793,
+  "PROCESS": 1091,
+  "PURPOSE": 94,
+  "QUANTITY": 3780,
+  "TASTE": 126,
+  "UNIT": 3172
+ },
+ "item": "T3-C09-R1 (PARTIAL proxy)",
+ "label": "DIAGNOSTIC_NOT_GOLD",
+ "lexicon_fingerprint": "9678937f6a9a0ff6f9ce4acbaaa20d85cb5da6138e956f4742189078b94903c3",
+ "ner_vs_rung_a": "BLOCKED_DATA",
+ "notes": [
+  "Boundary rate is strict: modifiers (fresh, chopped) make the gold span longer or shorter than the lexicon span; the overlap rates are the fairer reading.",
+  "TASTEset text was used to train the NER checkpoint, so this is not an out-of-domain measure for NER; for Rung A (a lexicon) it is.",
+  "The lexicon is the ACTIVE ING + ALIAS surface set: a missed gold food is a surface the registry lacks (or a spelling variant), not an extraction error of a model."
+ ],
+ "rates_pct": {
+  "gold_food_covered_by_a_lexicon_span": 94.776,
+  "gold_food_exact_boundary": 68.408,
+  "gold_food_missed": 5.224,
+  "lexicon_spans_exact_boundary_gold_food": 63.379,
+  "lexicon_spans_extra_no_gold_span": 5.301,
+  "lexicon_spans_overlapping_gold_food": 92.602
+ },
+ "recipes": 700,
+ "record": "SPAN_AGREEMENT_TASTESET_S178",
+ "reference": "HUMAN_GOLD_FOOD_SPANS_TASTESET_NOT_NER_OUTPUT",
+ "sample_limit_recipes": null,
+ "status": "AI_DRAFTED_PROPOSED_COUNTS_ONLY",
+ "tool_version": "s178-corpus-span-agreement-0.1.0-draft"
+}

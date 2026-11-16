@@ -1,0 +1,55 @@
+{
+ "pilot": "AA_KINETICS_D076",
+ "packet": "CAL_v1",
+ "status": "PENDING_HUMAN_VERIFICATION",
+ "extracted_by": "AI_AGENT_S171",
+ "counts_as_verified": false,
+ "papers_extracted": [
+  "AAK-01",
+  "AAK-06",
+  "AAK-09",
+  "AAK-11"
+ ],
+ "rows": 16,
+ "rows_by_type": {
+  "AUTHOR_FIT_EA": 3,
+  "K_AT_T": 13
+ },
+ "temperatures_C_per_paper": {
+  "AAK-01": [
+   "70",
+   "80",
+   "90",
+   "95"
+  ],
+  "AAK-06": [
+   "70",
+   "80",
+   "90"
+  ],
+  "AAK-09": [
+   "80",
+   "90",
+   "95"
+  ],
+  "AAK-11": [
+   "30",
+   "60",
+   "90"
+  ]
+ },
+ "spans_verbatim_checked": "16_of_16",
+ "ai_flags": [
+  "AAK-11 k nearly temperature-independent (30-90 C)",
+  "AAK-06 iodine titration not AA-specific",
+  "AAK-01 k given to 1-2 significant figures"
+ ],
+ "sha256_packet_Kush": "471585da527e135eeeb6f94ef93ac5ca537d1ad3885980c24ad6438e955774ea",
+ "sha256_packet_Parv": "471585da527e135eeeb6f94ef93ac5ca537d1ad3885980c24ad6438e955774ea",
+ "verdict_codes": [
+  "VERIFIED",
+  "CORRECTED",
+  "REJECTED"
+ ],
+ "preregistration": "reports/step10/aa_pilot_preregistration_DRAFT.md"
+}

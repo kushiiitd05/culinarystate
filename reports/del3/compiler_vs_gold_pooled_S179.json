@@ -1,0 +1,1145 @@
+{
+ "not_independent": true,
+ "record": "S179_COMPILER_VS_GOLD_POOLED",
+ "sets": {
+  "DEV_FOODCOM_V1_1": {
+   "contains_ids": false,
+   "contains_text": false,
+   "independent": false,
+   "input_set_sha256": "e7a12eb7d0f67726d5e401d9d99ba063a2e18364d680e3c723e0ac728f3e37fb",
+   "interval": "Wilson 95% on pooled counts",
+   "label_basis": "AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD",
+   "levels": {
+    "G": {
+     "alive_entities": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.918,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.918,
+       1.0
+      ],
+      "tp": 43
+     },
+     "all_edges": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9936,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9936,
+       1.0
+      ],
+      "tp": 599
+     },
+     "events_loose": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9878,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9878,
+       1.0
+      ],
+      "tp": 310
+     },
+     "events_type_only": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9878,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9878,
+       1.0
+      ],
+      "tp": 310
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 1.0,
+      "ci95": [
+       0.969,
+       1.0
+      ],
+      "correct": 120,
+      "total": 120
+     },
+     "structural_edges": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9905,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9905,
+       1.0
+      ],
+      "tp": 402
+     }
+    },
+    "O1": {
+     "alive_entities": {
+      "f1": 0.4505,
+      "fn": 18,
+      "fp": 43,
+      "precision": 0.3676,
+      "precision_ci95": [
+       0.263,
+       0.4864
+      ],
+      "recall": 0.5814,
+      "recall_ci95": [
+       0.4333,
+       0.7162
+      ],
+      "tp": 25
+     },
+     "all_edges": {
+      "f1": 0.4275,
+      "fn": 335,
+      "fp": 372,
+      "precision": 0.4151,
+      "precision_ci95": [
+       0.3774,
+       0.4538
+      ],
+      "recall": 0.4407,
+      "recall_ci95": [
+       0.4015,
+       0.4807
+      ],
+      "tp": 264
+     },
+     "events_loose": {
+      "f1": 0.3241,
+      "fn": 193,
+      "fp": 295,
+      "precision": 0.284,
+      "precision_ci95": [
+       0.2426,
+       0.3294
+      ],
+      "recall": 0.3774,
+      "recall_ci95": [
+       0.3253,
+       0.4326
+      ],
+      "tp": 117
+     },
+     "events_type_only": {
+      "f1": 0.7091,
+      "fn": 54,
+      "fp": 156,
+      "precision": 0.6214,
+      "precision_ci95": [
+       0.5736,
+       0.6669
+      ],
+      "recall": 0.8258,
+      "recall_ci95": [
+       0.7797,
+       0.864
+      ],
+      "tp": 256
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 0.2,
+      "ci95": [
+       0.1382,
+       0.2804
+      ],
+      "correct": 24,
+      "total": 120
+     },
+     "structural_edges": {
+      "f1": 0.4701,
+      "fn": 233,
+      "fp": 148,
+      "precision": 0.5331,
+      "precision_ci95": [
+       0.4781,
+       0.5873
+      ],
+      "recall": 0.4204,
+      "recall_ci95": [
+       0.3731,
+       0.4692
+      ],
+      "tp": 169
+     }
+    },
+    "O2": {
+     "alive_entities": {
+      "f1": 0.4464,
+      "fn": 18,
+      "fp": 44,
+      "precision": 0.3623,
+      "precision_ci95": [
+       0.259,
+       0.4802
+      ],
+      "recall": 0.5814,
+      "recall_ci95": [
+       0.4333,
+       0.7162
+      ],
+      "tp": 25
+     },
+     "all_edges": {
+      "f1": 0.4238,
+      "fn": 339,
+      "fp": 368,
+      "precision": 0.414,
+      "precision_ci95": [
+       0.3761,
+       0.4529
+      ],
+      "recall": 0.4341,
+      "recall_ci95": [
+       0.3949,
+       0.474
+      ],
+      "tp": 260
+     },
+     "events_loose": {
+      "f1": 0.3189,
+      "fn": 196,
+      "fp": 291,
+      "precision": 0.2815,
+      "precision_ci95": [
+       0.2399,
+       0.3272
+      ],
+      "recall": 0.3677,
+      "recall_ci95": [
+       0.316,
+       0.4227
+      ],
+      "tp": 114
+     },
+     "events_type_only": {
+      "f1": 0.7077,
+      "fn": 57,
+      "fp": 152,
+      "precision": 0.6247,
+      "precision_ci95": [
+       0.5766,
+       0.6705
+      ],
+      "recall": 0.8161,
+      "recall_ci95": [
+       0.7692,
+       0.8553
+      ],
+      "tp": 253
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 0.2,
+      "ci95": [
+       0.1382,
+       0.2804
+      ],
+      "correct": 24,
+      "total": 120
+     },
+     "structural_edges": {
+      "f1": 0.4699,
+      "fn": 234,
+      "fp": 145,
+      "precision": 0.5367,
+      "precision_ci95": [
+       0.4814,
+       0.5912
+      ],
+      "recall": 0.4179,
+      "recall_ci95": [
+       0.3707,
+       0.4667
+      ],
+      "tp": 168
+     }
+    },
+    "P": {
+     "alive_entities": {
+      "f1": 0.4464,
+      "fn": 18,
+      "fp": 44,
+      "precision": 0.3623,
+      "precision_ci95": [
+       0.259,
+       0.4802
+      ],
+      "recall": 0.5814,
+      "recall_ci95": [
+       0.4333,
+       0.7162
+      ],
+      "tp": 25
+     },
+     "all_edges": {
+      "f1": 0.4238,
+      "fn": 339,
+      "fp": 368,
+      "precision": 0.414,
+      "precision_ci95": [
+       0.3761,
+       0.4529
+      ],
+      "recall": 0.4341,
+      "recall_ci95": [
+       0.3949,
+       0.474
+      ],
+      "tp": 260
+     },
+     "events_loose": {
+      "f1": 0.3189,
+      "fn": 196,
+      "fp": 291,
+      "precision": 0.2815,
+      "precision_ci95": [
+       0.2399,
+       0.3272
+      ],
+      "recall": 0.3677,
+      "recall_ci95": [
+       0.316,
+       0.4227
+      ],
+      "tp": 114
+     },
+     "events_type_only": {
+      "f1": 0.7077,
+      "fn": 57,
+      "fp": 152,
+      "precision": 0.6247,
+      "precision_ci95": [
+       0.5766,
+       0.6705
+      ],
+      "recall": 0.8161,
+      "recall_ci95": [
+       0.7692,
+       0.8553
+      ],
+      "tp": 253
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 0.2,
+      "ci95": [
+       0.1382,
+       0.2804
+      ],
+      "correct": 24,
+      "total": 120
+     },
+     "structural_edges": {
+      "f1": 0.4699,
+      "fn": 234,
+      "fp": 145,
+      "precision": 0.5367,
+      "precision_ci95": [
+       0.4814,
+       0.5912
+      ],
+      "recall": 0.4179,
+      "recall_ci95": [
+       0.3707,
+       0.4667
+      ],
+      "tp": 168
+     }
+    }
+   },
+   "n_recipes": 20
+  },
+  "DEV_PILOT20_V1_1": {
+   "contains_ids": false,
+   "contains_text": false,
+   "independent": false,
+   "input_set_sha256": "881a10b99f0f618d9f5ed528f69ff69ecc4f2c147d6baea1ab0d167a065b693e",
+   "interval": "Wilson 95% on pooled counts",
+   "label_basis": "AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD",
+   "levels": {
+    "G": {
+     "alive_entities": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.8794,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.8794,
+       1.0
+      ],
+      "tp": 28
+     },
+     "all_edges": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9917,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9917,
+       1.0
+      ],
+      "tp": 461
+     },
+     "events_loose": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.984,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.984,
+       1.0
+      ],
+      "tp": 237
+     },
+     "events_type_only": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.984,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.984,
+       1.0
+      ],
+      "tp": 237
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 1.0,
+      "ci95": [
+       0.9536,
+       1.0
+      ],
+      "correct": 79,
+      "total": 79
+     },
+     "structural_edges": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9881,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9881,
+       1.0
+      ],
+      "tp": 319
+     }
+    },
+    "O1": {
+     "alive_entities": {
+      "f1": 0.2602,
+      "fn": 12,
+      "fp": 79,
+      "precision": 0.1684,
+      "precision_ci95": [
+       0.1064,
+       0.2562
+      ],
+      "recall": 0.5714,
+      "recall_ci95": [
+       0.3907,
+       0.7349
+      ],
+      "tp": 16
+     },
+     "all_edges": {
+      "f1": 0.3221,
+      "fn": 317,
+      "fp": 289,
+      "precision": 0.3326,
+      "precision_ci95": [
+       0.2898,
+       0.3782
+      ],
+      "recall": 0.3124,
+      "recall_ci95": [
+       0.2718,
+       0.3561
+      ],
+      "tp": 144
+     },
+     "events_loose": {
+      "f1": 0.2607,
+      "fn": 170,
+      "fp": 210,
+      "precision": 0.2419,
+      "precision_ci95": [
+       0.1952,
+       0.2956
+      ],
+      "recall": 0.2827,
+      "recall_ci95": [
+       0.2292,
+       0.3431
+      ],
+      "tp": 67
+     },
+     "events_type_only": {
+      "f1": 0.6732,
+      "fn": 64,
+      "fp": 104,
+      "precision": 0.6245,
+      "precision_ci95": [
+       0.5662,
+       0.6795
+      ],
+      "recall": 0.73,
+      "recall_ci95": [
+       0.6701,
+       0.7825
+      ],
+      "tp": 173
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 0.1139,
+      "ci95": [
+       0.0611,
+       0.2025
+      ],
+      "correct": 9,
+      "total": 79
+     },
+     "structural_edges": {
+      "f1": 0.3514,
+      "fn": 225,
+      "fp": 122,
+      "precision": 0.4352,
+      "precision_ci95": [
+       0.3708,
+       0.5019
+      ],
+      "recall": 0.2947,
+      "recall_ci95": [
+       0.2473,
+       0.3469
+      ],
+      "tp": 94
+     }
+    },
+    "O2": {
+     "alive_entities": {
+      "f1": 0.2521,
+      "fn": 13,
+      "fp": 76,
+      "precision": 0.1648,
+      "precision_ci95": [
+       0.1025,
+       0.2543
+      ],
+      "recall": 0.5357,
+      "recall_ci95": [
+       0.3581,
+       0.7047
+      ],
+      "tp": 15
+     },
+     "all_edges": {
+      "f1": 0.3341,
+      "fn": 310,
+      "fp": 292,
+      "precision": 0.3409,
+      "precision_ci95": [
+       0.2983,
+       0.3862
+      ],
+      "recall": 0.3275,
+      "recall_ci95": [
+       0.2863,
+       0.3717
+      ],
+      "tp": 151
+     },
+     "events_loose": {
+      "f1": 0.2731,
+      "fn": 166,
+      "fp": 212,
+      "precision": 0.2509,
+      "precision_ci95": [
+       0.2039,
+       0.3045
+      ],
+      "recall": 0.2996,
+      "recall_ci95": [
+       0.2448,
+       0.3607
+      ],
+      "tp": 71
+     },
+     "events_type_only": {
+      "f1": 0.6846,
+      "fn": 59,
+      "fp": 105,
+      "precision": 0.629,
+      "precision_ci95": [
+       0.5713,
+       0.6832
+      ],
+      "recall": 0.7511,
+      "recall_ci95": [
+       0.6923,
+       0.8018
+      ],
+      "tp": 178
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 0.1139,
+      "ci95": [
+       0.0611,
+       0.2025
+      ],
+      "correct": 9,
+      "total": 79
+     },
+     "structural_edges": {
+      "f1": 0.3586,
+      "fn": 222,
+      "fp": 125,
+      "precision": 0.4369,
+      "precision_ci95": [
+       0.3733,
+       0.5027
+      ],
+      "recall": 0.3041,
+      "recall_ci95": [
+       0.2562,
+       0.3566
+      ],
+      "tp": 97
+     }
+    },
+    "P": {
+     "alive_entities": {
+      "f1": 0.2521,
+      "fn": 13,
+      "fp": 76,
+      "precision": 0.1648,
+      "precision_ci95": [
+       0.1025,
+       0.2543
+      ],
+      "recall": 0.5357,
+      "recall_ci95": [
+       0.3581,
+       0.7047
+      ],
+      "tp": 15
+     },
+     "all_edges": {
+      "f1": 0.3341,
+      "fn": 310,
+      "fp": 292,
+      "precision": 0.3409,
+      "precision_ci95": [
+       0.2983,
+       0.3862
+      ],
+      "recall": 0.3275,
+      "recall_ci95": [
+       0.2863,
+       0.3717
+      ],
+      "tp": 151
+     },
+     "events_loose": {
+      "f1": 0.2731,
+      "fn": 166,
+      "fp": 212,
+      "precision": 0.2509,
+      "precision_ci95": [
+       0.2039,
+       0.3045
+      ],
+      "recall": 0.2996,
+      "recall_ci95": [
+       0.2448,
+       0.3607
+      ],
+      "tp": 71
+     },
+     "events_type_only": {
+      "f1": 0.6846,
+      "fn": 59,
+      "fp": 105,
+      "precision": 0.629,
+      "precision_ci95": [
+       0.5713,
+       0.6832
+      ],
+      "recall": 0.7511,
+      "recall_ci95": [
+       0.6923,
+       0.8018
+      ],
+      "tp": 178
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 0.1139,
+      "ci95": [
+       0.0611,
+       0.2025
+      ],
+      "correct": 9,
+      "total": 79
+     },
+     "structural_edges": {
+      "f1": 0.3586,
+      "fn": 222,
+      "fp": 125,
+      "precision": 0.4369,
+      "precision_ci95": [
+       0.3733,
+       0.5027
+      ],
+      "recall": 0.3041,
+      "recall_ci95": [
+       0.2562,
+       0.3566
+      ],
+      "tp": 97
+     }
+    }
+   },
+   "n_recipes": 20
+  },
+  "P1_A_KUSH": {
+   "contains_ids": false,
+   "contains_text": false,
+   "independent": false,
+   "input_set_sha256": "08371c63f56e505921e56c7e0e6ddc7623f99595dc75429b6fc4cdb1733ec0a5",
+   "interval": "Wilson 95% on pooled counts",
+   "label_basis": "HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND",
+   "levels": {
+    "G": {
+     "alive_entities": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.7009,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.7009,
+       1.0
+      ],
+      "tp": 9
+     },
+     "all_edges": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9803,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9803,
+       1.0
+      ],
+      "tp": 191
+     },
+     "events_loose": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9637,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9637,
+       1.0
+      ],
+      "tp": 102
+     },
+     "events_type_only": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9637,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9637,
+       1.0
+      ],
+      "tp": 102
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 1.0,
+      "ci95": [
+       0.8897,
+       1.0
+      ],
+      "correct": 31,
+      "total": 31
+     },
+     "structural_edges": {
+      "f1": 1.0,
+      "fn": 0,
+      "fp": 0,
+      "precision": 1.0,
+      "precision_ci95": [
+       0.9668,
+       1.0
+      ],
+      "recall": 1.0,
+      "recall_ci95": [
+       0.9668,
+       1.0
+      ],
+      "tp": 112
+     }
+    },
+    "O1": {
+     "alive_entities": {
+      "f1": 0.4,
+      "fn": 3,
+      "fp": 15,
+      "precision": 0.2857,
+      "precision_ci95": [
+       0.1381,
+       0.4996
+      ],
+      "recall": 0.6667,
+      "recall_ci95": [
+       0.3542,
+       0.8794
+      ],
+      "tp": 6
+     },
+     "all_edges": {
+      "f1": 0.3284,
+      "fn": 136,
+      "fp": 89,
+      "precision": 0.3819,
+      "precision_ci95": [
+       0.3066,
+       0.4634
+      ],
+      "recall": 0.288,
+      "recall_ci95": [
+       0.2284,
+       0.3559
+      ],
+      "tp": 55
+     },
+     "events_loose": {
+      "f1": 0.2437,
+      "fn": 78,
+      "fp": 71,
+      "precision": 0.2526,
+      "precision_ci95": [
+       0.176,
+       0.3484
+      ],
+      "recall": 0.2353,
+      "recall_ci95": [
+       0.1635,
+       0.3263
+      ],
+      "tp": 24
+     },
+     "events_type_only": {
+      "f1": 0.6091,
+      "fn": 42,
+      "fp": 35,
+      "precision": 0.6316,
+      "precision_ci95": [
+       0.5312,
+       0.7217
+      ],
+      "recall": 0.5882,
+      "recall_ci95": [
+       0.4912,
+       0.6788
+      ],
+      "tp": 60
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 0.1613,
+      "ci95": [
+       0.0709,
+       0.3263
+      ],
+      "correct": 5,
+      "total": 31
+     },
+     "structural_edges": {
+      "f1": 0.3596,
+      "fn": 80,
+      "fp": 34,
+      "precision": 0.4848,
+      "precision_ci95": [
+       0.3685,
+       0.6029
+      ],
+      "recall": 0.2857,
+      "recall_ci95": [
+       0.2102,
+       0.3754
+      ],
+      "tp": 32
+     }
+    },
+    "O2": {
+     "alive_entities": {
+      "f1": 0.4,
+      "fn": 3,
+      "fp": 15,
+      "precision": 0.2857,
+      "precision_ci95": [
+       0.1381,
+       0.4996
+      ],
+      "recall": 0.6667,
+      "recall_ci95": [
+       0.3542,
+       0.8794
+      ],
+      "tp": 6
+     },
+     "all_edges": {
+      "f1": 0.3284,
+      "fn": 136,
+      "fp": 89,
+      "precision": 0.3819,
+      "precision_ci95": [
+       0.3066,
+       0.4634
+      ],
+      "recall": 0.288,
+      "recall_ci95": [
+       0.2284,
+       0.3559
+      ],
+      "tp": 55
+     },
+     "events_loose": {
+      "f1": 0.2437,
+      "fn": 78,
+      "fp": 71,
+      "precision": 0.2526,
+      "precision_ci95": [
+       0.176,
+       0.3484
+      ],
+      "recall": 0.2353,
+      "recall_ci95": [
+       0.1635,
+       0.3263
+      ],
+      "tp": 24
+     },
+     "events_type_only": {
+      "f1": 0.6091,
+      "fn": 42,
+      "fp": 35,
+      "precision": 0.6316,
+      "precision_ci95": [
+       0.5312,
+       0.7217
+      ],
+      "recall": 0.5882,
+      "recall_ci95": [
+       0.4912,
+       0.6788
+      ],
+      "tp": 60
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 0.1613,
+      "ci95": [
+       0.0709,
+       0.3263
+      ],
+      "correct": 5,
+      "total": 31
+     },
+     "structural_edges": {
+      "f1": 0.3596,
+      "fn": 80,
+      "fp": 34,
+      "precision": 0.4848,
+      "precision_ci95": [
+       0.3685,
+       0.6029
+      ],
+      "recall": 0.2857,
+      "recall_ci95": [
+       0.2102,
+       0.3754
+      ],
+      "tp": 32
+     }
+    },
+    "P": {
+     "alive_entities": {
+      "f1": 0.4,
+      "fn": 3,
+      "fp": 15,
+      "precision": 0.2857,
+      "precision_ci95": [
+       0.1381,
+       0.4996
+      ],
+      "recall": 0.6667,
+      "recall_ci95": [
+       0.3542,
+       0.8794
+      ],
+      "tp": 6
+     },
+     "all_edges": {
+      "f1": 0.3284,
+      "fn": 136,
+      "fp": 89,
+      "precision": 0.3819,
+      "precision_ci95": [
+       0.3066,
+       0.4634
+      ],
+      "recall": 0.288,
+      "recall_ci95": [
+       0.2284,
+       0.3559
+      ],
+      "tp": 55
+     },
+     "events_loose": {
+      "f1": 0.2437,
+      "fn": 78,
+      "fp": 71,
+      "precision": 0.2526,
+      "precision_ci95": [
+       0.176,
+       0.3484
+      ],
+      "recall": 0.2353,
+      "recall_ci95": [
+       0.1635,
+       0.3263
+      ],
+      "tp": 24
+     },
+     "events_type_only": {
+      "f1": 0.6091,
+      "fn": 42,
+      "fp": 35,
+      "precision": 0.6316,
+      "precision_ci95": [
+       0.5312,
+       0.7217
+      ],
+      "recall": 0.5882,
+      "recall_ci95": [
+       0.4912,
+       0.6788
+      ],
+      "tp": 60
+     },
+     "recipes_with_replay_issues": 0,
+     "state_fields": {
+      "accuracy": 0.1613,
+      "ci95": [
+       0.0709,
+       0.3263
+      ],
+      "correct": 5,
+      "total": 31
+     },
+     "structural_edges": {
+      "f1": 0.3596,
+      "fn": 80,
+      "fp": 34,
+      "precision": 0.4848,
+      "precision_ci95": [
+       0.3685,
+       0.6029
+      ],
+      "recall": 0.2857,
+      "recall_ci95": [
+       0.2102,
+       0.3754
+      ],
+      "tp": 32
+     }
+    }
+   },
+   "n_recipes": 7
+  }
+ },
+ "status": "AI_DIAGNOSTIC_COUNTS_ONLY",
+ "tool_version": "s179-compiler-vs-gold-pooled-0.1.0"
+}

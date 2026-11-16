@@ -219,6 +219,40 @@ class D7BiasedMF(Model):
         return np.where(np.isfinite(arr), arr, self.mu)
 
 
+@dataclass
+class B2IngredientMean(Model):
+    """TB-V0 B-2 ingredient-conditioned mean (29-diag only, D-082; not in ``all_models``, so DEL-2 is unchanged).
+
+    Matrix mean shrunk to its food-group mean, the food-group mean shrunk to the global mean, both with k = 5; an
+    unseen matrix falls back to its food group, an unseen or empty food group to the global mean. Never reads the
+    process."""
+    k: float = 5.0
+    name: str = "B2_ingredient_mean"
+
+    def fit(self, df):
+        y = y_train(df)
+        self.mu = float(y.mean())
+        fg = df["food_group"].astype(str)        # dataset always writes a string ("" = no food group)
+        g = y.groupby(fg).agg(["sum", "count"])
+        self.fg = {k: (r["sum"] + self.k * self.mu) / (r["count"] + self.k) for k, r in g.iterrows() if k != ""}
+        key = df["matrix"].astype(str) + "|" + fg
+        c = y.groupby(key).agg(["sum", "count"])
+        self.mat = {}
+        for k, r in c.iterrows():
+            prior = self.fg.get(k.split("|", 1)[1], self.mu)
+            self.mat[k.split("|", 1)[0]] = (r["sum"] + self.k * prior) / (r["count"] + self.k)
+        return self
+
+    def predict(self, df):
+        out = []
+        for m, f in zip(df["matrix"].astype(str), df["food_group"].astype(str)):
+            v = self.mat.get(m)
+            if v is None:
+                v = self.fg.get(f, self.mu)
+            out.append(v)
+        return np.asarray(out, dtype=float)
+
+
 def all_models() -> list[Model]:
     return [D0Persistence(), D1GlobalMean(), D2ProcessMean(), D3Hierarchical(), D4NearestEvidence(), D5Boosting(),
             D7BiasedMF()]

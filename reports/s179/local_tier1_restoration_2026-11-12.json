@@ -1,0 +1,29 @@
+{
+  "all_restored_paths_git_ignored": true,
+  "archive_sha256": "c75c2edfaf414a5a69847f06708c2069f079928d3c370844e5032d3832b6007c",
+  "date": "2026-11-12",
+  "elapsed_seconds": 28.34,
+  "existing_files_overwritten": 0,
+  "private_full_manifest_sha256": "15debcc911f17eef7fdadfd81e7540feaa55b32d90700eb21e2680c3327dc9c5",
+  "private_manifest_path": "data/raw/local_restoration_manifest_2026-11-12.json",
+  "record": "LOCAL_TIER1_RESTORATION",
+  "restored_count": 3641,
+  "selected_restored_files": [
+    {
+      "bytes": 178723234,
+      "path": "data/external/foodcom/recipes.parquet",
+      "sha256": "9f591abe9f8d1c691bbc630b0431ec6613f09fabe93f1789af87a06484aae9fb"
+    },
+    {
+      "bytes": 141857622,
+      "path": "data/interim/gutenberg/recipes.jsonl",
+      "sha256": "2c157ffdf22ed050c81fd2212b1246c1a92ca72565d5a784b9ad373feedd645f"
+    },
+    {
+      "bytes": 308538405,
+      "path": "ledgers/recipe_identity/recipe_identity_features_v1.parquet",
+      "sha256": "10c15cd1b4169ac10d96ab3a745bc7c4d309a848009df3ad11a4a4a871e254f9"
+    }
+  ],
+  "skipped_count": 3571
+}

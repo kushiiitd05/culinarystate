@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CulinaryState — local research demo</title>
+<style>
+:root{color-scheme:light dark;--paper:#edf2f4;--panel:#fff;--ink:#192d3b;--muted:#526875;--line:#c9d7df;--accent:#245a69}
+@media(prefers-color-scheme:dark){:root{--paper:#112029;--panel:#192d38;--ink:#e9f1f5;--muted:#acbec8;--line:#36515e;--accent:#92ccd5}}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.5 system-ui,sans-serif}
+main{max-width:1100px;margin:auto;padding:32px 20px}h1{margin:0;font-size:38px}h2{font-size:23px}h3{font-size:18px;margin:0 0 8px}
+p{max-width:78ch}.sub,.note{color:var(--muted)}.grid{display:grid;grid-template-columns:minmax(260px,380px) 1fr;gap:28px;margin-top:24px}
+@media(max-width:780px){.grid{grid-template-columns:1fr}}label{display:block;font-weight:650;margin:16px 0 5px}
+input,textarea,button{font:inherit}input,textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--ink)}
+textarea{min-height:160px}button{background:var(--accent);color:var(--panel);border:0;border-radius:6px;padding:10px 17px;margin-top:14px;cursor:pointer}
+button[disabled]{opacity:.6}.example{background:transparent;color:var(--accent);border:1px solid var(--line);font-size:14px;margin-right:5px;padding:6px 9px}
+.card{border:1px solid var(--line);border-radius:8px;padding:18px;background:var(--panel);margin-bottom:14px}.answer{white-space:pre-wrap}
+.badge{display:inline-block;font-size:14px;font-weight:650;padding:3px 8px;background:var(--paper);border:1px solid var(--line);border-radius:4px}
+.quantity{margin:8px 0;padding:8px 0;border-top:1px solid var(--line)}.basis{display:block;font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.warning{border-left:4px solid #bd8d36;padding-left:12px}.note{font-size:14px}.error{font-weight:650}.meta{overflow-wrap:anywhere}
+:focus-visible{outline:3px solid #b48829;outline-offset:3px}footer{margin-top:28px}
+</style>
+</head>
+<body><main>
+<header><h1>CulinaryState</h1><p class="sub">Explore cooking evidence and clearly labelled physical scenarios. Missing conditions stay unknown. Table rows and model estimates are unverified research material.</p>
+<p id="mode" class="note" role="status">Checking data mode…</p></header>
+<div class="grid"><form id="question-form">
+<label for="question">Your question</label><input id="question" type="text" maxlength="500" required placeholder="How much vitamin C remains after boiling carrot?">
+<label for="recipe">Recipe steps, optional</label><textarea id="recipe" maxlength="6000" placeholder="Boil carrot in water at 90 C for 5 minutes."></textarea>
+<p class="note">Recipe text supplies recorded inputs for the scenario display. It does not certify that an evidence row applies.</p>
+<button id="submit" type="submit">Ask</button>
+<div><button type="button" class="example" data-question="How much vitamin C remains after boiling carrot?" data-recipe="Boil carrot in water at 90 C for 5 minutes.">Cooking effect</button>
+<button type="button" class="example" data-question="Can I substitute butter with olive oil?">Substitution pattern</button></div>
+</form><section id="result" aria-live="polite"><p class="sub">Ask a question to inspect the answer, its limits and any recorded or scenario quantities.</p></section></div>
+<footer><p class="note warning">Research demo · NON_CITABLE · NO_HUMAN_SIGNOFF_D085. Evidence and scenario defaults have not received independent scientific verification. A source-row match is not condition applicability. No food-safety advice.</p></footer>
+</main><script>
+const $ = (selector) => document.querySelector(selector);
+const element = (tag, className, text) => { const node = document.createElement(tag); if(className)node.className=className;if(text!=null)node.textContent=text;return node; };
+const MODE = {ASK:"More information needed",ABSTAIN:"No numeric evidence answer",ABSTAIN_SAFETY:"Food safety: use official guidance",ABSTAIN_NO_EDGES:"No corpus pattern",ABSTAIN_NOT_BUILT:"Not available",ABSTAIN_UNSUPPORTED:"Not available",ABSTAIN_ERROR:"Could not answer",ANSWER:"Unverified source table",COMPARE:"Unverified source tables",ANSWER_CORPUS_PATTERN:"Unverified corpus pattern"};
+function addQuantity(parent, number) {
+  if(typeof number.value!=='number'||!Number.isFinite(number.value)||!number.basis||!number.unit)return;
+  const line=element('div','quantity',`${number.label}: ${number.display_value} ${number.unit}`);
+  line.dataset.quantityPath=number.path;
+  line.append(element('span','basis',`${number.basis} · ${number.status} · not validated`));
+  const refs=[...(number.span_ids||[]),...(number.registry_refs||[]),...(number.assumed_default_refs||[])];
+  if(refs.length)line.append(element('span','basis meta','Declared references: '+[...new Set(refs)].join(', ')));
+  parent.append(line);
+}
+function render(payload) {
+  const result=$('#result');result.replaceChildren();
+  const main=element('article','card');main.append(element('span','badge',MODE[payload.mode]||'Research response'));
+  main.append(element('p','answer',payload.answer||''));
+  if(payload.cited?.length)main.append(element('p','note meta','Unverified source IDs: '+payload.cited.join(', ')));
+  const detail=payload.detail||{};
+  for(const number of detail.numeric_provenance||[]) {
+    main.append(element('p','basis meta',`Source value ${number.display_value} ${number.unit} · ${number.basis} · ${number.evd_id} · applicability not certified`));
+  }
+  result.append(main);
+  const view=detail.recipe_display;
+  if(view?.steps?.length) {
+    result.append(element('h2',null,'Recorded inputs and physical scenarios'));
+    result.append(element('p','note','Numbers below carry their own declared basis. Scenario values are model estimates, not evidence-backed food effects. Unavailable values are omitted.'));
+    for(const step of view.steps) {
+      const card=element('article','card');card.append(element('h3',null,step.action||'Recipe event'),element('span','badge',step.badge));
+      card.append(element('p','note',step.explanation));
+      if(step.evidence_ids?.length)card.append(element('p','note meta','Unverified source IDs: '+step.evidence_ids.join(', ')));
+      for(const number of step.physics.numbers)addQuantity(card,number);
+      if(step.physics.unavailable_paths.length)card.append(element('p','note','Other quantities are unavailable or have unknown provenance.'));
+      result.append(card);
+    }
+  }
+}
+function showMode(mode) {
+  $('#mode').textContent=mode?.mode==='public'?'Public-filtered data · local research demo':mode?.mode==='local'?'Local-only data · keep output on this machine':'Data mode unknown; keep output on this machine';
+}
+if(!window.__STRICT_REHEARSAL__)fetch('/api/health').then(r=>r.json()).then(data=>showMode(data.mode)).catch(()=>showMode(null));
+$('#question-form').addEventListener('submit',async(event)=>{
+  event.preventDefault();const button=$('#submit');button.disabled=true;button.textContent='Checking…';
+  try{
+    const response=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:$('#question').value,recipe_text:$('#recipe').value||null})});
+    const payload=await response.json();
+    if(!response.ok)$('#result').replaceChildren(element('p','error',payload.error||'The request was refused.'));else render(payload);
+  }catch(error){$('#result').replaceChildren(element('p','error','Could not reach the local demo.'));}
+  finally{button.disabled=false;button.textContent='Ask';}
+});
+document.querySelectorAll('.example').forEach(button=>button.addEventListener('click',()=>{$('#question').value=button.dataset.question;$('#recipe').value=button.dataset.recipe||'';$('#question').focus();}));
+if(window.__STRICT_REHEARSAL__){showMode({mode:'public'});render(window.__STRICT_REHEARSAL__);}
+</script></body></html>

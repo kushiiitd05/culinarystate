@@ -1,0 +1,181 @@
+{
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "protected_ledger_hashes_read": {
+  "COND": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "EVD": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "MEAS": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+  "SNAP": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+  "SRC": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f"
+ },
+ "protected_ledgers_unchanged_during_run": true,
+ "record": "SVAR_RECONCILIATION_S178",
+ "status": "AI_DRAFTED_PROPOSED",
+ "table": {
+  "duplicate_mapping": {
+   "canonical_variables_after_mapping_on_active_rows": 213,
+   "duplicate_ids_mapped_to_canonical": 11,
+   "path": "registry/svar_duplicate_mapping_v1.csv",
+   "rows": 18,
+   "rows_by_relation": {
+    "DUPLICATE_SAME_ANALYTE": 11,
+    "EQUIVALENT_CANDIDATE_NOT_MERGED": 7
+   },
+   "sha256": "4e60d1c6aa661b400e34790d6ab0f08a107e4fca03a9eff4a651a7c035aa1af8"
+  },
+  "evd_usage": {
+   "active_evd_rows": 17978,
+   "active_row_svar_ids_missing_from_ledger": 0,
+   "distinct_svar_ids_on_active_rows": 224,
+   "distinct_svar_ids_on_any_evd_version_line_latest": 224,
+   "ledger_ids_not_used_by_any_active_row": 0,
+   "path": "ledgers/data/EVD.jsonl",
+   "rows_by_family": {
+    "CHEMICAL": 17482,
+    "PHYSICAL": 496
+   }
+  },
+  "ledger_SVAR_jsonl": {
+   "distinct_ids": 224,
+   "distinct_ids_by_family_latest_version": {
+    "CHEMICAL": 223,
+    "PHYSICAL": 1
+   },
+   "distinct_ids_by_status_latest_version": {
+    "ACTIVE": 224
+   },
+   "id_range": [
+    "SVAR-000001",
+    "SVAR-000224"
+   ],
+   "ids_whose_family_differs_between_versions": 0,
+   "ids_with_one_version": 93,
+   "ids_with_two_or_more_versions": 131,
+   "lines_by_family": {
+    "CHEMICAL": 354,
+    "PHYSICAL": 1
+   },
+   "lines_by_status": {
+    "ACTIVE": 355
+   },
+   "path": "ledgers/data/SVAR.jsonl",
+   "sha256": "d617f17bb8fb6c39903ebca35c716eb7abd31bc9bdb5ef70bb4f821ffa2e8697",
+   "version_count_histogram": {
+    "1": 93,
+    "2": 131
+   },
+   "version_lines": 355
+  },
+  "one_line_summary": "SVAR.jsonl has 355 version lines = 224 distinct ids (223 CHEMICAL + 1 PHYSICAL at the latest version; by line 354 CHEMICAL + 1 PHYSICAL); the registry CSV has 254 rows = 224 ledger ids + 30 FUTURE ids; 224 ids are used by the 17,978 ACTIVE EVD rows (213 canonical after the duplicate mapping).",
+  "quotes": {
+   "lines_already_carrying_the_correction": [
+    {
+     "line": 35,
+     "path": "registry/component_ledger_v1.csv"
+    },
+    {
+     "line": 38,
+     "path": "registry/component_ledger_v1.csv"
+    },
+    {
+     "line": 46193,
+     "path": "docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md"
+    },
+    {
+     "line": 46536,
+     "path": "docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md"
+    },
+    {
+     "line": 46765,
+     "path": "docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md"
+    },
+    {
+     "line": 343,
+     "path": "reports/orchestration/ssot_consensus/CONSENSUS_PLAN_2026-11-08.md"
+    },
+    {
+     "line": 25,
+     "path": "reports/orchestration/ssot_consensus/CONSENSUS_DRAFT.md"
+    },
+    {
+     "line": 142,
+     "path": "reports/orchestration/ssot_consensus/CONSENSUS_DRAFT.md"
+    },
+    {
+     "line": 170,
+     "path": "reports/orchestration/ssot_consensus/CONSENSUS_DRAFT.md"
+    },
+    {
+     "line": 66,
+     "path": "reports/orchestration/review/S176_REV-A_science.md"
+    },
+    {
+     "line": 128,
+     "path": "reports/orchestration/S176_V16_report.md"
+    },
+    {
+     "line": 22,
+     "path": "registry/execution_board_S178.csv"
+    }
+   ],
+   "lines_quoting_355_as_a_count_without_the_224_correction": [
+    {
+     "excerpt": "| 03 State semantics | S_t fields, SVAR registry | registry (355 SVAR: 354 chemical, 1 physical) | DONE | physical/history SVARs missing (Q11) |",
+     "line": 123,
+     "path": "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md"
+    },
+    {
+     "excerpt": "istry/state_variable_registry_v1.csv (254 rows; packet says 355 SVAR: 354 chem + 1 physical); reports/h_state/state_representation_contract_v1.md; DECISIONS D",
+     "line": 436,
+     "path": "registry/component_ledger_v1.csv"
+    },
+    {
+     "excerpt": "s) and physical/history variables | ledgers/data/SVAR.jsonl 355 rows: 354 CHEMICAL, 1 PHYSICAL; registry/state_variable_registry_v1.csv; registry/svar_duplica",
+     "line": 53,
+     "path": "reports/orchestration/ssot_consensus/CONSENSUS_PLAN_2026-11-08.md"
+    },
+    {
+     "excerpt": "istry/state_variable_registry_v1.csv (254 rows; packet says 355 SVAR: 354 chem + 1 physical); reports/h_state/state_representation_contract_v1.md; DECISIONS D",
+     "line": 60,
+     "path": "reports/orchestration/ssot_consensus/CONSENSUS_PLAN_2026-11-08.md"
+    }
+   ],
+   "scanned_files": 9
+  },
+  "registry_csv": {
+   "FUTURE_by_family": {
+    "CHEMICAL": 7,
+    "PHYSICAL": 12,
+    "PROCEDURAL": 5,
+    "SAFETY": 3,
+    "SENSORY": 3
+   },
+   "FUTURE_id_pattern_all_SVAR_FUT": true,
+   "FUTURE_rows": 30,
+   "ledger_ids_missing_from_registry": 0,
+   "non_FUTURE_ids_equal_ledger_distinct_ids": true,
+   "non_FUTURE_rows": 224,
+   "path": "registry/state_variable_registry_v1.csv",
+   "registry_non_FUTURE_ids_missing_from_ledger": 0,
+   "rows": 254,
+   "rows_by_family": {
+    "CHEMICAL": 230,
+    "PHYSICAL": 13,
+    "PROCEDURAL": 5,
+    "SAFETY": 3,
+    "SENSORY": 3
+   },
+   "rows_by_status": {
+    "ACTIVE": 59,
+    "DUPLICATE": 11,
+    "FUTURE": 30,
+    "MISSING_EVIDENCE": 81,
+    "PROVISIONAL": 73
+   },
+   "rows_whose_current_row_count_differs_from_active_evd_usage": 0,
+   "sha256": "ee446a23b29f804681e55a66d2356625b391c8963c7a8f1612d2fc9cd3b00fd6",
+   "sum_current_row_count_non_FUTURE": 17978
+  }
+ },
+ "tool_version": "s178-evd-svar-reconcile-0.1.0-draft"
+}

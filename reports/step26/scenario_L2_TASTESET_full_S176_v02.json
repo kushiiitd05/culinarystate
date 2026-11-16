@@ -1,0 +1,76 @@
+{
+  "before_after": {
+    "after_layer_version": "scenario-layer-L2-0.2.0-draft",
+    "before_layer_version": "scenario-layer-L2-0.1.0-draft",
+    "counts": {},
+    "dose_quantiles": {}
+  },
+  "cap_model": "evaporation-cap-0.1.0-draft",
+  "cap_policy": {
+    "altitude_m": null,
+    "enabled": true,
+    "pressure_psig": null
+  },
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/simulation/scenario_layer.py",
+        "sha256": "194bad77e098cb71d3e6bb670493ab856cbd6a48e4c82a64cb2184e7507706db"
+      },
+      {
+        "path": "src/culinarystate/simulation/phase_change.py",
+        "sha256": "a3b3fd82f194dc997a7a140f9e485dab7f5bfa78068e4ef19a38e022fcf840cf"
+      },
+      {
+        "path": "src/culinarystate/simulation/physics_drivers.py",
+        "sha256": "cfc677f6d19e8d3ff5565ba5047c078e091574e38a360c4c496f8b3dac4ab977"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "registry/phase_change_v1.csv",
+        "sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a"
+      },
+      {
+        "path": "registry/matrix_moisture_regime_v1.csv",
+        "sha256": "c4736dbcf2d392b50f911816a08780c7d92ec86f4f6010c6ba16f2f332406e1d"
+      },
+      {
+        "path": "tools/scenario_layer_run.py",
+        "sha256": "74085da5acbdad32df1c6f6a58f8977e1b1280e1520b4c8862e95e66f2aa23c5"
+      }
+    ]
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts": {},
+  "counts_as_human_gate": false,
+  "dry_low_moisture_classes": [
+    "FAT_OIL",
+    "NUT_SEED",
+    "SWEETENER"
+  ],
+  "ended_at_utc": "2026-11-08T16:14:05Z",
+  "l1_files": 64,
+  "labels": [
+    "SCENARIO",
+    "MODEL_DERIVED",
+    "NON_CITABLE",
+    "ASSUMED_DEFAULT"
+  ],
+  "layer_version": "scenario-layer-L2-0.2.0-draft",
+  "matrix_regime_registry_sha256": "c4736dbcf2d392b50f911816a08780c7d92ec86f4f6010c6ba16f2f332406e1d",
+  "phase_change_registry_sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a",
+  "record": "SCENARIO_L2_SUMMARY",
+  "records_manifest_sha256": "bb299e635f22bf31dafd5754a489c26d3c920f6ffb033000204757ee8764fbe7",
+  "scenario_registry_sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0",
+  "started_at_utc": "2026-11-08T16:14:04Z",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "supersedes": "SCENARIO_L2_0_1_0_CORE_AND_DOSE_FIELDS_OF_DRY_AND_FAT_EVENTS",
+  "wall_seconds": 0.5,
+  "workers": 8
+}

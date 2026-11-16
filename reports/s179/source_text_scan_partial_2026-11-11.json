@@ -1,0 +1,25 @@
+{
+  "artifact_files": 2,
+  "findings": [],
+  "input_sha256": {
+    "annotation/d5_review/d5_S_context_v1.jsonl": "688529df6e2b44eb5ebb8f8ff650588b0d6e2425d7025b886544fc624953aa8b",
+    "data/raw/aa_pilot/AAK-01.txt": "8ea1e91e8c6d8e9d4ff78b850edb812dec9699e1d13a862fc3aa02d18a05c3bf",
+    "data/raw/aa_pilot/AAK-06.txt": "5cbd05388d283611a278e76933a8aa632ea7bded72eacdd15acc3e9a3ab47076",
+    "reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md": "916e1329977c8505188cda3b393641d8c830413cc9f09a26a6605fe97a644b6e",
+    "reports/final/SLIDES_DRAFT_S179_2026-11-11.md": "acd5048dce3b20c0e092b9f8615439e044f103b29e75d72ecb7739a189767aae"
+  },
+  "limitations": [
+    "Supplied sources/artifacts only; absent corpora and later edits are not checked.",
+    "No paraphrase, short-excerpt, OCR or image detection.",
+    "Window size is a disclosed engineering setting, not a legal or scientific threshold."
+  ],
+  "matched_windows": 0,
+  "normalization": "NFKC_CASEFOLD_UNICODE_WORDS",
+  "record": "LIMITED_LOCAL_SOURCE_TEXT_SCAN",
+  "release_clearance": false,
+  "source_files": 3,
+  "status": "NO_MATCHES_IN_SUPPLIED_SOURCES_ONLY",
+  "tool_sha256": "ab82ce6245f8b3aca491e85e1ef12c17fae5d317ac0e57f1f6e055401cdc3b82",
+  "unique_source_windows": 14050,
+  "window_words": 12
+}

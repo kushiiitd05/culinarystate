@@ -1,0 +1,779 @@
+{
+  "before_after": {
+    "after_layer_version": "scenario-layer-L2-0.2.0-draft",
+    "before_layer_version": "scenario-layer-L2-0.1.0-draft",
+    "counts": {
+      "after": {
+        "core_computed": {
+          "GENTLE": 451,
+          "INTENSE": 451,
+          "TYPICAL": 451
+        },
+        "core_gt_100": {
+          "GENTLE": 1,
+          "INTENSE": 5,
+          "TYPICAL": 5
+        },
+        "core_gt_100_nonpressure": {
+          "GENTLE": 1,
+          "INTENSE": 5,
+          "TYPICAL": 5
+        },
+        "core_gt_100_nonpressure_dry_class": {
+          "GENTLE": 1,
+          "INTENSE": 5,
+          "TYPICAL": 5
+        },
+        "events_core_gt_100_any_bracket": 5,
+        "events_core_gt_100_nonpressure_any_bracket": 5,
+        "heat_events": 11433,
+        "status": {
+          "SCENARIO_COMPUTED": 4871,
+          "SCENARIO_UNKNOWN": 6154,
+          "UNSUPPORTED_MEDIUM": 408
+        },
+        "typical_core_computed": 451,
+        "typical_core_computed_dry_class": 8,
+        "typical_core_computed_moist_class": 443
+      },
+      "before": {
+        "core_computed": {
+          "GENTLE": 451,
+          "INTENSE": 451,
+          "TYPICAL": 451
+        },
+        "core_gt_100": {
+          "GENTLE": 92,
+          "INTENSE": 262,
+          "TYPICAL": 257
+        },
+        "core_gt_100_nonpressure": {
+          "GENTLE": 92,
+          "INTENSE": 262,
+          "TYPICAL": 257
+        },
+        "core_gt_100_nonpressure_dry_class": {
+          "GENTLE": 1,
+          "INTENSE": 5,
+          "TYPICAL": 5
+        },
+        "core_gt_100_nonpressure_moist_class": {
+          "GENTLE": 91,
+          "INTENSE": 257,
+          "TYPICAL": 252
+        },
+        "events_core_gt_100_any_bracket": 262,
+        "events_core_gt_100_nonpressure_any_bracket": 262,
+        "events_core_gt_100_nonpressure_moist_class_any_bracket": 257,
+        "heat_events": 11433,
+        "status": {
+          "SCENARIO_COMPUTED": 4871,
+          "SCENARIO_UNKNOWN": 6154,
+          "UNSUPPORTED_MEDIUM": 408
+        },
+        "typical_core_computed": 451,
+        "typical_core_computed_dry_class": 8,
+        "typical_core_computed_moist_class": 443
+      }
+    },
+    "dose_quantiles": {
+      "after": {
+        "core_cook_value_min": {
+          "GENTLE": {
+            "max": 82.2866,
+            "n": 451,
+            "p01": 0.0013,
+            "p10": 0.0026,
+            "p25": 0.0134,
+            "p50": 0.1701,
+            "p75": 1.6356,
+            "p90": 8.9052,
+            "p99": 37.4217
+          },
+          "INTENSE": {
+            "max": 62727.0768,
+            "n": 451,
+            "p01": 0.5491,
+            "p10": 4.5526,
+            "p25": 13.2294,
+            "p50": 24.3762,
+            "p75": 114.3216,
+            "p90": 234.438,
+            "p99": 1268.1782
+          },
+          "TYPICAL": {
+            "max": 1547.2987,
+            "n": 451,
+            "p01": 0.0343,
+            "p10": 0.6963,
+            "p25": 3.5853,
+            "p50": 8.4807,
+            "p75": 13.6674,
+            "p90": 29.3802,
+            "p99": 117.1841
+          }
+        },
+        "quality_cook_value_min": {
+          "GENTLE": {
+            "max": 82.2866,
+            "n": 451,
+            "p01": 0.003,
+            "p10": 0.0068,
+            "p25": 0.0264,
+            "p50": 0.248,
+            "p75": 1.6797,
+            "p90": 9.0196,
+            "p99": 37.5919
+          },
+          "INTENSE": {
+            "max": 62727.9905,
+            "n": 451,
+            "p01": 0.5944,
+            "p10": 4.6423,
+            "p25": 13.2968,
+            "p50": 24.3873,
+            "p75": 114.361,
+            "p90": 234.4381,
+            "p99": 1285.9963
+          },
+          "TYPICAL": {
+            "max": 1564.4604,
+            "n": 451,
+            "p01": 0.0895,
+            "p10": 1.0616,
+            "p25": 3.7142,
+            "p50": 8.4845,
+            "p75": 13.7947,
+            "p90": 29.3999,
+            "p99": 117.747
+          }
+        },
+        "surface_cook_value_min": {
+          "GENTLE": {
+            "max": 84.2686,
+            "n": 191,
+            "p01": 1.0,
+            "p10": 1.4045,
+            "p25": 2.2823,
+            "p50": 3.5112,
+            "p75": 7.0224,
+            "p90": 10.5336,
+            "p99": 44.241
+          },
+          "INTENSE": {
+            "max": 240.0,
+            "n": 191,
+            "p01": 1.3699,
+            "p10": 5.0,
+            "p25": 10.5822,
+            "p50": 31.7466,
+            "p75": 216.0,
+            "p90": 240.0,
+            "p99": 240.0
+          },
+          "TYPICAL": {
+            "max": 120.0,
+            "n": 191,
+            "p01": 1.0,
+            "p10": 4.0,
+            "p25": 6.2213,
+            "p50": 10.0,
+            "p75": 15.0,
+            "p90": 37.5,
+            "p99": 120.0
+          }
+        }
+      },
+      "after_dry": {
+        "core_cook_value_min": {
+          "GENTLE": {
+            "max": 55.9215,
+            "n": 8,
+            "p01": 0.0148,
+            "p10": 0.1068,
+            "p25": 0.1652,
+            "p50": 0.3091,
+            "p75": 1.318,
+            "p90": 18.2187,
+            "p99": 52.1512
+          },
+          "INTENSE": {
+            "max": 62727.0768,
+            "n": 8,
+            "p01": 234.438,
+            "p10": 234.4382,
+            "p25": 234.4383,
+            "p50": 3639.8895,
+            "p75": 5257.322,
+            "p90": 22641.8186,
+            "p99": 58718.551
+          },
+          "TYPICAL": {
+            "max": 1547.2987,
+            "n": 8,
+            "p01": 9.6482,
+            "p10": 12.3709,
+            "p25": 13.6674,
+            "p50": 266.5641,
+            "p75": 592.7672,
+            "p90": 880.5602,
+            "p99": 1480.6248
+          }
+        },
+        "quality_cook_value_min": {
+          "GENTLE": {
+            "max": 56.6607,
+            "n": 8,
+            "p01": 0.0312,
+            "p10": 0.1781,
+            "p25": 0.248,
+            "p50": 0.5152,
+            "p75": 2.0032,
+            "p90": 19.136,
+            "p99": 52.9082
+          },
+          "INTENSE": {
+            "max": 62727.9905,
+            "n": 8,
+            "p01": 234.4381,
+            "p10": 234.4382,
+            "p25": 234.4383,
+            "p50": 3676.5633,
+            "p75": 5272.1793,
+            "p90": 22675.2804,
+            "p99": 58722.7195
+          },
+          "TYPICAL": {
+            "max": 1564.4604,
+            "n": 8,
+            "p01": 10.3589,
+            "p10": 12.6864,
+            "p25": 13.7947,
+            "p50": 296.8342,
+            "p75": 608.7867,
+            "p90": 919.1856,
+            "p99": 1499.9329
+          }
+        },
+        "surface_cook_value_min": {
+          "GENTLE": {
+            "max": 3.0,
+            "n": 3,
+            "p01": 3.0,
+            "p10": 3.0,
+            "p25": 3.0,
+            "p50": 3.0,
+            "p75": 3.0,
+            "p90": 3.0,
+            "p99": 3.0
+          },
+          "INTENSE": {
+            "max": 240.0,
+            "n": 3,
+            "p01": 240.0,
+            "p10": 240.0,
+            "p25": 240.0,
+            "p50": 240.0,
+            "p75": 240.0,
+            "p90": 240.0,
+            "p99": 240.0
+          },
+          "TYPICAL": {
+            "max": 15.0,
+            "n": 3,
+            "p01": 15.0,
+            "p10": 15.0,
+            "p25": 15.0,
+            "p50": 15.0,
+            "p75": 15.0,
+            "p90": 15.0,
+            "p99": 15.0
+          }
+        }
+      },
+      "after_moist": {
+        "core_cook_value_min": {
+          "GENTLE": {
+            "max": 82.2866,
+            "n": 443,
+            "p01": 0.0013,
+            "p10": 0.0026,
+            "p25": 0.0134,
+            "p50": 0.1701,
+            "p75": 1.6356,
+            "p90": 8.6065,
+            "p99": 34.1807
+          },
+          "INTENSE": {
+            "max": 234.4383,
+            "n": 443,
+            "p01": 0.5491,
+            "p10": 4.5378,
+            "p25": 13.1701,
+            "p50": 20.665,
+            "p75": 108.825,
+            "p90": 210.9944,
+            "p99": 234.4383
+          },
+          "TYPICAL": {
+            "max": 117.1841,
+            "n": 443,
+            "p01": 0.034,
+            "p10": 0.6919,
+            "p25": 3.5853,
+            "p50": 8.0767,
+            "p75": 13.6674,
+            "p90": 27.706,
+            "p99": 116.989
+          }
+        },
+        "quality_cook_value_min": {
+          "GENTLE": {
+            "max": 82.2866,
+            "n": 443,
+            "p01": 0.003,
+            "p10": 0.0068,
+            "p25": 0.0264,
+            "p50": 0.248,
+            "p75": 1.6797,
+            "p90": 8.7329,
+            "p99": 34.7968
+          },
+          "INTENSE": {
+            "max": 234.4383,
+            "n": 443,
+            "p01": 0.5944,
+            "p10": 4.5924,
+            "p25": 13.2968,
+            "p50": 20.6691,
+            "p75": 108.9997,
+            "p90": 210.9944,
+            "p99": 234.4383
+          },
+          "TYPICAL": {
+            "max": 117.1841,
+            "n": 443,
+            "p01": 0.0895,
+            "p10": 1.0616,
+            "p25": 3.7142,
+            "p50": 8.3659,
+            "p75": 13.7947,
+            "p90": 27.9775,
+            "p99": 116.9894
+          }
+        },
+        "surface_cook_value_min": {
+          "GENTLE": {
+            "max": 84.2686,
+            "n": 188,
+            "p01": 1.0,
+            "p10": 1.4045,
+            "p25": 2.08,
+            "p50": 3.5112,
+            "p75": 7.0224,
+            "p90": 10.5336,
+            "p99": 44.873
+          },
+          "INTENSE": {
+            "max": 240.0,
+            "n": 188,
+            "p01": 1.3576,
+            "p10": 5.0,
+            "p25": 10.5822,
+            "p50": 31.7466,
+            "p75": 216.0,
+            "p90": 240.0,
+            "p99": 240.0
+          },
+          "TYPICAL": {
+            "max": 120.0,
+            "n": 188,
+            "p01": 1.0,
+            "p10": 3.9945,
+            "p25": 6.2213,
+            "p50": 9.954,
+            "p75": 15.0,
+            "p90": 39.688,
+            "p99": 120.0
+          }
+        }
+      },
+      "before": {
+        "core_cook_value_min": {
+          "GENTLE": {
+            "max": 27543.2619,
+            "n": 451,
+            "p01": 0.0014,
+            "p10": 0.0027,
+            "p25": 0.0195,
+            "p50": 0.2836,
+            "p75": 5.6955,
+            "p90": 82.2866,
+            "p99": 6089.7726
+          },
+          "INTENSE": {
+            "max": 568668.0043,
+            "n": 451,
+            "p01": 2.233,
+            "p10": 9.6578,
+            "p25": 165.4503,
+            "p50": 3277.5183,
+            "p75": 15339.628,
+            "p90": 62727.0768,
+            "p99": 510313.825
+          },
+          "TYPICAL": {
+            "max": 89327.9653,
+            "n": 451,
+            "p01": 0.114,
+            "p10": 3.5742,
+            "p25": 9.3457,
+            "p50": 58.361,
+            "p75": 861.4411,
+            "p90": 5041.666,
+            "p99": 26281.6417
+          }
+        },
+        "surface_cook_value_min": {
+          "GENTLE": {
+            "max": 84.2686,
+            "n": 191,
+            "p01": 1.0,
+            "p10": 1.4045,
+            "p25": 2.2823,
+            "p50": 3.5112,
+            "p75": 7.0224,
+            "p90": 10.5336,
+            "p99": 44.241
+          },
+          "INTENSE": {
+            "max": 563.0949,
+            "n": 191,
+            "p01": 1.3699,
+            "p10": 5.0,
+            "p25": 10.5822,
+            "p50": 31.7466,
+            "p75": 216.0,
+            "p90": 240.0,
+            "p99": 248.7259
+          },
+          "TYPICAL": {
+            "max": 120.0,
+            "n": 191,
+            "p01": 1.0,
+            "p10": 4.0,
+            "p25": 6.2213,
+            "p50": 10.0,
+            "p75": 15.0,
+            "p90": 44.7932,
+            "p99": 120.0
+          }
+        }
+      },
+      "before_dry": {
+        "core_cook_value_min": {
+          "GENTLE": {
+            "max": 55.9215,
+            "n": 8,
+            "p01": 0.0148,
+            "p10": 0.1068,
+            "p25": 0.1652,
+            "p50": 0.3091,
+            "p75": 1.318,
+            "p90": 18.2187,
+            "p99": 52.1512
+          },
+          "INTENSE": {
+            "max": 62727.0768,
+            "n": 8,
+            "p01": 234.438,
+            "p10": 234.4382,
+            "p25": 234.4383,
+            "p50": 3639.8895,
+            "p75": 5257.322,
+            "p90": 22641.8186,
+            "p99": 58718.551
+          },
+          "TYPICAL": {
+            "max": 1547.2987,
+            "n": 8,
+            "p01": 9.6482,
+            "p10": 12.3709,
+            "p25": 13.6674,
+            "p50": 266.5641,
+            "p75": 592.7672,
+            "p90": 880.5602,
+            "p99": 1480.6248
+          }
+        },
+        "surface_cook_value_min": {
+          "GENTLE": {
+            "max": 3.0,
+            "n": 3,
+            "p01": 3.0,
+            "p10": 3.0,
+            "p25": 3.0,
+            "p50": 3.0,
+            "p75": 3.0,
+            "p90": 3.0,
+            "p99": 3.0
+          },
+          "INTENSE": {
+            "max": 240.0,
+            "n": 3,
+            "p01": 240.0,
+            "p10": 240.0,
+            "p25": 240.0,
+            "p50": 240.0,
+            "p75": 240.0,
+            "p90": 240.0,
+            "p99": 240.0
+          },
+          "TYPICAL": {
+            "max": 15.0,
+            "n": 3,
+            "p01": 15.0,
+            "p10": 15.0,
+            "p25": 15.0,
+            "p50": 15.0,
+            "p75": 15.0,
+            "p90": 15.0,
+            "p99": 15.0
+          }
+        }
+      },
+      "before_moist": {
+        "core_cook_value_min": {
+          "GENTLE": {
+            "max": 27543.2619,
+            "n": 443,
+            "p01": 0.0014,
+            "p10": 0.0027,
+            "p25": 0.0195,
+            "p50": 0.2836,
+            "p75": 6.2063,
+            "p90": 96.8812,
+            "p99": 6276.721
+          },
+          "INTENSE": {
+            "max": 568668.0043,
+            "n": 443,
+            "p01": 2.1826,
+            "p10": 9.6578,
+            "p25": 165.4503,
+            "p50": 3277.5183,
+            "p75": 15339.628,
+            "p90": 62727.0768,
+            "p99": 511186.9746
+          },
+          "TYPICAL": {
+            "max": 89327.9653,
+            "n": 443,
+            "p01": 0.1075,
+            "p10": 3.5742,
+            "p25": 9.3304,
+            "p50": 58.3455,
+            "p75": 957.4512,
+            "p90": 5041.666,
+            "p99": 26780.4775
+          }
+        },
+        "surface_cook_value_min": {
+          "GENTLE": {
+            "max": 84.2686,
+            "n": 188,
+            "p01": 1.0,
+            "p10": 1.4045,
+            "p25": 2.08,
+            "p50": 3.5112,
+            "p75": 7.0224,
+            "p90": 10.5336,
+            "p99": 44.873
+          },
+          "INTENSE": {
+            "max": 563.0949,
+            "n": 188,
+            "p01": 1.3576,
+            "p10": 5.0,
+            "p25": 10.5822,
+            "p50": 31.7466,
+            "p75": 216.0,
+            "p90": 240.0,
+            "p99": 251.3436
+          },
+          "TYPICAL": {
+            "max": 120.0,
+            "n": 188,
+            "p01": 1.0,
+            "p10": 3.9945,
+            "p25": 6.2213,
+            "p50": 9.954,
+            "p75": 15.0,
+            "p90": 45.4326,
+            "p99": 120.0
+          }
+        }
+      }
+    }
+  },
+  "cap_model": "evaporation-cap-0.1.0-draft",
+  "cap_policy": {
+    "altitude_m": null,
+    "enabled": true,
+    "pressure_psig": null
+  },
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/simulation/scenario_layer.py",
+        "sha256": "194bad77e098cb71d3e6bb670493ab856cbd6a48e4c82a64cb2184e7507706db"
+      },
+      {
+        "path": "src/culinarystate/simulation/phase_change.py",
+        "sha256": "a3b3fd82f194dc997a7a140f9e485dab7f5bfa78068e4ef19a38e022fcf840cf"
+      },
+      {
+        "path": "src/culinarystate/simulation/physics_drivers.py",
+        "sha256": "cfc677f6d19e8d3ff5565ba5047c078e091574e38a360c4c496f8b3dac4ab977"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "registry/phase_change_v1.csv",
+        "sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a"
+      },
+      {
+        "path": "registry/matrix_moisture_regime_v1.csv",
+        "sha256": "c4736dbcf2d392b50f911816a08780c7d92ec86f4f6010c6ba16f2f332406e1d"
+      },
+      {
+        "path": "tools/scenario_layer_run.py",
+        "sha256": "74085da5acbdad32df1c6f6a58f8977e1b1280e1520b4c8862e95e66f2aa23c5"
+      }
+    ]
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts": {
+    "basis": {
+      "alpha": {
+        "SD": 14613
+      },
+      "bath_c": {
+        "L1": 6282,
+        "SD": 8331
+      },
+      "duration_min": {
+        "KGE": 9198,
+        "L1": 5415
+      },
+      "h": {
+        "SD": 1353
+      },
+      "half_thickness_m": {
+        "SD": 1353
+      },
+      "initial_c": {
+        "SD": 14613
+      },
+      "k": {
+        "SD": 14613
+      },
+      "t_cap_c": {
+        "PC": 14049
+      }
+    },
+    "cap_flag_typical": {
+      "ALTITUDE_ASSUMED_SEA_LEVEL": 4683,
+      "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": 188,
+      "EVAPORATION_CAP_APPLIED": 2553,
+      "EVAPORATION_CAP_NOT_BINDING": 2130,
+      "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 452,
+      "MATRIX_DRY_CLASS_UNCAPPED": 188,
+      "MATRIX_UNKNOWN_MOIST_ASSUMED": 3413,
+      "PRESSURE_ASSUMED_1ATM": 4714
+    },
+    "core_known": {
+      "GENTLE": {
+        "False": 4420,
+        "True": 451
+      },
+      "INTENSE": {
+        "False": 4420,
+        "True": 451
+      },
+      "TYPICAL": {
+        "False": 4420,
+        "True": 451
+      }
+    },
+    "status": {
+      "SCENARIO_COMPUTED": 4871,
+      "SCENARIO_UNKNOWN": 6154,
+      "UNSUPPORTED_MEDIUM": 408
+    },
+    "surface_state": {
+      "GENTLE": {
+        "SURFACE_DRYING_POSSIBLE": 15,
+        "SURFACE_IMMERSED_WET": 2104,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 188,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 2287,
+        "SURFACE_WET_AT_TBOIL": 241,
+        "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": 36
+      },
+      "INTENSE": {
+        "SURFACE_DRYING_POSSIBLE": 246,
+        "SURFACE_IMMERSED_WET": 2104,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 188,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 2296,
+        "SURFACE_WET_AT_TBOIL": 11,
+        "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": 26
+      },
+      "TYPICAL": {
+        "SURFACE_DRYING_POSSIBLE": 166,
+        "SURFACE_IMMERSED_WET": 2104,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 188,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 2296,
+        "SURFACE_WET_AT_TBOIL": 91,
+        "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": 26
+      }
+    },
+    "transition": {
+      "physically_possible": 4871,
+      "unsupported": 6562
+    },
+    "typical_core_reaches_70": {
+      "False": 14,
+      "True": 437
+    }
+  },
+  "counts_as_human_gate": false,
+  "dry_low_moisture_classes": [
+    "FAT_OIL",
+    "NUT_SEED",
+    "SWEETENER"
+  ],
+  "ended_at_utc": "2026-11-08T16:14:03Z",
+  "l1_files": 64,
+  "labels": [
+    "SCENARIO",
+    "MODEL_DERIVED",
+    "NON_CITABLE",
+    "ASSUMED_DEFAULT"
+  ],
+  "layer_version": "scenario-layer-L2-0.2.0-draft",
+  "matrix_regime_registry_sha256": "c4736dbcf2d392b50f911816a08780c7d92ec86f4f6010c6ba16f2f332406e1d",
+  "phase_change_registry_sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a",
+  "record": "SCENARIO_L2_SUMMARY",
+  "records_manifest_sha256": "3c393e1e51a82cd7e16cc050fa16121783583fdc6724153541e12fee46331626",
+  "scenario_registry_sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0",
+  "started_at_utc": "2026-11-08T16:14:00Z",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "supersedes": "SCENARIO_L2_0_1_0_CORE_AND_DOSE_FIELDS_OF_DRY_AND_FAT_EVENTS",
+  "wall_seconds": 2.8,
+  "workers": 8
+}

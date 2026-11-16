@@ -111,3 +111,22 @@ def test_unlinked_food_rows_are_not_called_similar():
     h = Hit(h.evd_id, h.score, h.bm25, {"match": {"matrix": "UNKNOWN"}}, h.row)
     t = verbalize("q", _ans("QUALITATIVE"), {"boil": EvidencePacket("q", Query(), "QUALITATIVE", [], [h])})
     assert "relation to yours unknown: shellfish" in t and "similar" not in t
+
+
+def _near(i, rf, proc, match):
+    h = _hit(i, rf, "stem vegetables")
+    row = {**h.row, "process": {"raw_name": proc}}
+    return Hit(h.evd_id, h.score, h.bm25, {"match": {"matrix": "PARENT", "process": match}}, row)
+
+
+def test_rows_from_other_processes_are_named_as_such():
+    # S173: the steam option cited boil and stew rows without saying the process differs
+    pk = EvidencePacket("q", Query(), "INTERPOLATED", [], [_near(1, 0.65, "boil", "SAME_FAMILY"),
+                                                          _near(2, 0.80, "stew", "SAME_FAMILY")])
+    t = verbalize("q", _ans("INTERPOLATED"), {"steam": pk})
+    assert "measured for other processes (boil, stew), not steam" in t
+
+
+def test_exact_process_rows_get_no_other_process_note():
+    pk = EvidencePacket("q", Query(), "INTERPOLATED", [], [_near(1, 0.65, "boil", "EXACT")])
+    assert "other processes" not in verbalize("q", _ans("INTERPOLATED"), {"boil": pk})

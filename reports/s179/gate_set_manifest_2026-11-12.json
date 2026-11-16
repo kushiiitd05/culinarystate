@@ -1,0 +1,20 @@
+{
+  "files": {
+    "benchmark/d5/d5_benchmark_v1_D085_UX.csv": "0adaa0a28266bdc4c24d5497762e59d1bcf05b87da3e33c5c75f7d3866eb9eaf",
+    "benchmark/diagnostic/gate_set_2026-11-12.csv": "db0ad615d8d17341ac8553239f9e4f9222c3136b03b4d55c811440777e8a230c",
+    "src/culinarystate/decision/query_router.py": "e70df1122f5decdd7991708e9747f7601dd4a7d8a493aa336ade40e9690ad895",
+    "src/culinarystate/decision/relevance.py": "dc881b180362214cdb4bd02e8adb8a9d5ebaf10bc11e4a0c4a885a113f4e9d51",
+    "src/culinarystate/decision/safety.py": "a598baf861a59645caa3056b70cf35018b204aa3cda5e3469ae93356a36e698d",
+    "tools/s179_gate_set_diagnostic.py": "1437cd5b989f328d618c6ac212eaa91c6613eb7c08f77b01e4a3aa33b39ff1ea"
+  },
+  "label_definition": "Positive means process-effect/causal/diagnosis/recovery reasoning is needed. Static food metadata, graph relationship lookup, navigation, safety referral and multimodal request do not authorize a process model.",
+  "labels": [
+    "AI_LABELLED_NOT_BLIND",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "labels_prehashed_at_utc": "2026-11-12T14:16:40.909431+00:00",
+  "n_cases": 100,
+  "provenance": "95newAIauthored semantic labels and5knownfrozenD5Xcontrols. Labels written before predictions; author knew project/rules. No blinded, independent or representative gold claim. No rule tuning.",
+  "record": "AI_GATE_LABELS_PREHASH"
+}

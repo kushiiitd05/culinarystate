@@ -1,0 +1,153 @@
+{
+  "basis": "ASSUMED_DEFAULT",
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/simulation/shape_series.py",
+        "sha256": "d120d566875eb25f60bba826a668e44b21eda41a38e28b0393462e5bd1e7dd5b"
+      },
+      {
+        "path": "registry/shape_map_v1.csv",
+        "sha256": "ce5b313f10d3cbd17d1a30e268153774f4f96227fd63165f31a2f4781d6f84c2"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "tools/s178_phys3_shape_census.py",
+        "sha256": "d2e9433bd575889d9823a98ffe0bf7866abb75b9a1def73314a71137dba2329e"
+      }
+    ]
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "core_end_change_if_shape_replaced_slab_by_bracket": {
+    "GENTLE": {
+      "DT_0_1_TO_1": 2155,
+      "DT_1_TO_5": 3305,
+      "DT_5_TO_20": 9502,
+      "DT_GT_20": 12351,
+      "DT_LE_0_1": 4168
+    },
+    "INTENSE": {
+      "DT_0_1_TO_1": 2083,
+      "DT_1_TO_5": 1801,
+      "DT_5_TO_20": 844,
+      "DT_GT_20": 285,
+      "DT_LE_0_1": 26468
+    },
+    "TYPICAL": {
+      "DT_0_1_TO_1": 4776,
+      "DT_1_TO_5": 2349,
+      "DT_5_TO_20": 7433,
+      "DT_GT_20": 3266,
+      "DT_LE_0_1": 13657
+    }
+  },
+  "counts_as_human_gate": false,
+  "events_by_cut_class_and_shape": {
+    "CHOPPED": {
+      "CUBE": 34428
+    },
+    "CRUSHED": {
+      "SLAB_BOUND_UNRESOLVED": 12291
+    },
+    "DICED": {
+      "CUBE": 11976
+    },
+    "GRATED": {
+      "INFINITE_CYLINDER": 9406
+    },
+    "HALVED": {
+      "SLAB_BOUND_UNRESOLVED": 9871
+    },
+    "MINCED": {
+      "CUBE": 5454
+    },
+    "NONE": {
+      "SLAB": 58513,
+      "SLAB_BOUND_UNRESOLVED": 1295298,
+      "SPHERE": 10061
+    },
+    "SHREDDED": {
+      "SLAB": 6919
+    },
+    "SLICED": {
+      "FINITE_CYLINDER": 6651,
+      "SLAB": 42393
+    }
+  },
+  "events_by_map_row": {
+    "SM_001": 42393,
+    "SM_002": 6651,
+    "SM_003": 11976,
+    "SM_004": 34428,
+    "SM_005": 5454,
+    "SM_006": 9406,
+    "SM_007": 6919,
+    "SM_008": 9871,
+    "SM_009": 12291,
+    "SM_010": 845,
+    "SM_011": 9216,
+    "SM_012": 58513,
+    "SM_013": 1295298
+  },
+  "events_by_shape": {
+    "CUBE": 51858,
+    "FINITE_CYLINDER": 6651,
+    "INFINITE_CYLINDER": 9406,
+    "SLAB": 107825,
+    "SLAB_BOUND_UNRESOLVED": 1317460,
+    "SPHERE": 10061
+  },
+  "events_shape_class_would_change": 77976,
+  "l1_duplicate_event_keys": 0,
+  "l1_files": 192,
+  "l1_heat_events": 1503261,
+  "l1_versions": {
+    "CONDITION_BINDING_L1_0_2_0_DRAFT": 1503261
+  },
+  "l2_core_computed": 55146,
+  "l2_core_computed_by_shape": {
+    "CUBE": 23691,
+    "FINITE_CYLINDER": 3023,
+    "INFINITE_CYLINDER": 4767,
+    "SLAB": 23665
+  },
+  "l2_core_computed_shape_would_change": 31481,
+  "l2_core_computed_shape_would_change_by_row": {
+    "SM_002": 3023,
+    "SM_003": 5514,
+    "SM_004": 15912,
+    "SM_005": 2265,
+    "SM_006": 4767
+  },
+  "l2_fields_missing_by_bracket": {},
+  "l2_files": 192,
+  "l2_not_joined_to_l1": 0,
+  "l2_records": 1503261,
+  "l2_status": {
+    "SCENARIO_COMPUTED": 667634,
+    "SCENARIO_UNKNOWN": 768753,
+    "UNSUPPORTED_MEDIUM": 66874
+  },
+  "record": "SHAPE_CLASS_DIAGNOSTIC",
+  "shape_series_version": "shape-series-0.1.0-draft",
+  "slab_bound_holds_by_bracket": {
+    "GENTLE": 31481,
+    "INTENSE": 31481,
+    "TYPICAL": 31481
+  },
+  "slab_bound_violated_by_bracket": {},
+  "slab_recompute_differs_by_bracket": {},
+  "slab_recompute_matches_record_by_bracket": {
+    "GENTLE": 31481,
+    "INTENSE": 31481,
+    "TYPICAL": 31481
+  },
+  "status": "AI_ENGINEERING_DIAGNOSTIC_COUNTS_ONLY",
+  "tool_version": "s178-phys3-shape-census-0.1.0-draft",
+  "wired_into_layer2": false
+}

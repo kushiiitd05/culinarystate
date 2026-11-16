@@ -1,0 +1,61 @@
+# SSOT v15 status block (section 128) versus the repository: delta table (T0-C01-R2)
+
+Status: **AI_DRAFTED / PROPOSED** (S178 GOVDOC lane, Mon 9 Nov 2026, manjot-server, HEAD `4a95380` plus uncommitted work). Nothing here edits the SSOT or amends a decision; it is the one-page delta that the agent lean for decision #22 (Q40: do not apply the v16 change set) says to ship in the report instead. SSOT v15 stays authoritative until Kush approves v16 (D-078). The rule used throughout: **the report cites repo paths, not SSOT status blocks.**
+
+Source read: SSOT v15 section 128 "Where we actually are: status block" (L7872-7895) and its one-line position (L7892), and the merge/change registers of sections 184 (L13279), 195 (L15366), 206 (L17742) and 217 (L23053), read by line range via `docs/SSOT_INDEX.md`. Repo facts were checked by commands run on 9 Nov 2026 (counts below), not copied from a summary. Earlier prose delta: `handoff/PROGRESS_AUDIT_2026-11-07.md`; consensus `reports/orchestration/ssot_consensus/CONSENSUS_PLAN_2026-11-08.md` sections 1-2.
+
+**Repo facts used (measured 9 Nov).** `src/culinarystate/`: 281 Python files, 46,966 lines, in **29 packages with code**; `classical/` holds only an empty `__init__.py` and `silver/` has no `.py` file. Tests: 259 files in `tests/unit`. Tools: 249 files in `tools/`. WORKLOG S177 records "full suite on manjot: 3,554 passed" with 6 failures and 5 errors identical on the base commit (missing sklearn, lxml, requests, hypothesis, or Mac-only data). Not rerun for this table.
+
+Verdict key: **AGREES** the repo is consistent with the SSOT row; **STALE** the SSOT row understates what exists; **CONTRADICTED** the SSOT row is false of the repo; **ONLY_SPEC** the SSOT row is a specification statement and the repo has no implementation to compare.
+
+## 1. One row per section-128 claim
+
+| # | SSOT 128 row (L) | SSOT says | Repo evidence (path) | Verdict | Wording for the report |
+|---|---|---|---|---|---|
+| 1 | Field orientation, Levels 0-6 (L7876) | conceptual pass complete | no code or data needed; nothing in the repo contradicts it | AGREES (not testable in the repo) | omit |
+| 2 | Classical flavour pairing, Level 7 (L7877) | **Frozen**: `n_ij`, `N_s(R)`, `N_s(C)` | the specification is frozen; **no implementation**: `src/culinarystate/classical/__init__.py` is empty (0 bytes), no `n_ij` or `N_s` code in `src/` or `tools/`; ledger items T0-C15-R1 (implement) NOT_STARTED, priority COULD (`registry/component_ledger_v1.csv`) | ONLY_SPEC | "Level 7 is specified and frozen; the replication code is not written (COULD)." |
+| 3 | Null / monkey cuisines, Level 8 (L7878) | **Frozen**: 4 controls, `Delta N_s`, `Z`, `p_emp` | same: no null-model code; T0-C15-R3 (which nulls are in scope) NOT_STARTED | ONLY_SPEC | as row 2 |
+| 4 | Drivers of the signal, Level 9 (L7879) | taught, canonicalised in section 130 | no `chi_i` code; ledger T0-C15 covers it as a replication item | ONLY_SPEC | as row 2 |
+| 5 | Matrix/vector representation, Level 10 (L7880) | taught, canonicalised in section 131 | `src/culinarystate/representation/{recipe_rungs,cuisine_rungs,similarity_registry,explicit_runner,prereg_guard}.py` (35c-35e, synthetic-tested); `reports/step35/35c_recipe_rungs_build_note.md`; Step 35 v2 package UNSIGNED, runner refuses (`STATUS.md`) | STALE | "Recipe and cuisine similarity rungs exist as tested code; no real evaluation, protocol unsigned." |
+| 6 | Molecular structure representation, Level 11 (L7881) | taught, canonicalised in section 132 | `src/culinarystate/molecules/pubchem.py` only (needs `requests`, not importable on manjot); RDKit: `STATUS.md` (S160) says pinned as an optional extra, `handoff/API_BLOCKERS.md` #6 says not installed in any conda env, and it is not importable on manjot (see T7-C01-R5 in `reports/orchestration/S178_GOVDOC_report.md`) | ONLY_SPEC | "Molecular rungs designed; RDKit availability unresolved; not run." |
+| 7 | Learned encoders, Level 12 (L7882) | specification complete; empirical/code gate OPEN | no learned molecule or set encoder; the only trained encoder is the ingredient-line NER (`gpu/ner_bench`, `reports/ner_v2/ner_corpus_counts_S174.json`), which is not a Level-12 `z_m` | AGREES | "Learned encoders: not built; deferred (T7-C20, T7-C22-R1)." |
+| 8 | Recipe/cuisine representation, Level 13 (L7883) | specification complete; execution waits on Level-12 inputs | rungs R0-R3 and C0-C2 only (35c, 35d); learned R4-R9 and objectives O0-O7 not built | AGREES | as row 7 |
+| 9 | Process-conditioned representation, Level 14 (L7884) | specification complete; data/evidence spine OPEN; dynamics DATA-CONSTRAINED | evidence plane exists and is more specific than the SSOT: EVD ledger 17,978 ACTIVE rows, all tier E3, 0 human-verified (`reports/s178/analysis/evd_dataset_card_v1.md`); 08a lineage run with G08-3 FAILED (`STATUS.md`); 15a freeze record proposed, not approved (`registry/freezes/15A-BOOT-2026-11-08.json`); 0 verified kinetic PARAM rows | AGREES (and more detailed) | "Evidence spine built, unverified, one lineage gate failed." |
+| 10 | Process-effect / transition learning, Level 15 (L7885) | specification complete; sparse/kinetic/hybrid/inverse program | DEL-2 baselines D0-D5 and D7a run with a negative cold-split result (`reports/del2/*_results.md`); D6 skipped; D8-D11 not implemented (`registry/transition_ladder_crosswalk_v1.csv`); `sim_aa_1` code with no parameters; 29-diag signature pending | AGREES | "Level 15: baselines run and negative on cold splits; kinetics and hybrids not run." |
+| 11 | CulinaryState-RAG / semantic data system, Level 16 (L7886) | specification complete; **empirical implementation and data gates OPEN** | the implementation is substantial: `decision/` (20 files), `retrieval/` (4), `generation/` (5), `app/`, router census over 612,782 recipes (`reports/step23/ROUTER_CENSUS_FILES.md`); D5 benchmark drafted (60 P/C + 40 S questions, `benchmark/d5/`); **no G16 gate passes** (`reports/s178/g16_gate_status.md`) | STALE | "Level 16 pipeline built and run end to end on the corpus; no gate passed." |
+| 12 | FlavorTwin V2 boundary (L7887) | complete at process-conditioned inverse-search scope; preserve | no FlavorTwin code; Step 35 is the only related scaffold; decision #3 recommends "designed, not run" | AGREES | "FlavorTwin: boundary only." |
+| 13 | Chemistry depth track (L7888) | active long-pole evidence track | MECH registry 32 entries AI_DRAFTED and unreviewed (`registry/mechanisms/`); Step 10 ascorbic-acid pilot waiting on human verification (ops pack 4.3); `simulation/` 23 modules (physics drivers, Choi-Okos, slab conduction) | AGREES | "Mechanism and kinetics: drafted, unverified; no PARAM rows." |
+| 14 | **Code written** (L7889) | "**None yet.** Deliberate. First code = Level-7/8 replication (section 138)" | **281 Python files, 46,966 lines in 29 packages; 259 test files; 249 tools** (counts above). The first code was the evidence plane and recipe pipeline (Steps 01-19), not the Level-7/8 replication, which is still absent | **CONTRADICTED** | "The SSOT status block 'Code written: None yet' is stale; this report cites the repo (counts above)." |
+| 15 | Professor API endpoints (L7890) | not yet received; blocking the section-42 audit | still true: RecipeDB / FlavorDB / Foodoscope key and licence not received (`handoff/API_BLOCKERS.md` #1, #2, #9); written permission is decision #19 (draft `handoff/H1_email_bagler.md`); workaround in use: BBC corpus, TASTEset, PubChem identities, Phenol-Explorer IMAP | AGREES | "External API access not obtained; workarounds named." |
+| 16 | One-line position (L7892) | priority: data/evidence spine, then persistence/lookup/classical/tabular baselines, then leakage-safe cold/OOD evaluation, then focused kinetics, learned only if earned; and schema/ontology + Deep Gold, then semantic/quantity engine, then Silver scaling | the first order was followed (evidence spine, DEL-2 baselines, lineage and split audits, kinetics interface). The second order stalled at its first step: **no independent Deep Gold** (07.A FAILED, `STATUS.md`; P1 has 7 pairs, AI-drafted and human-accepted); quantity engine built (`src/culinarystate/quantity/`, rc2 run); **Silver scaling absent** (`src/culinarystate/silver/` empty) | AGREES for the order, STALE for progress | "Deep Gold and Silver are the open gap; the evidence plane came first." |
+
+Counts: 16 rows; CONTRADICTED 1 (row 14), STALE 3 (rows 5, 11, 16 in part), ONLY_SPEC 4 (rows 2, 3, 4, 6), AGREES 8 (rows 1, 7, 8, 9, 10, 12, 13, 15).
+
+## 2. The merge/change registers (sections 184, 195, 206, 217)
+
+Each register says what a version changed and "what did NOT change". The rows below are the claims a reader could mistake for implementation; the repo check is the same rule.
+
+| Register | Claim | Repo check (path) | Verdict |
+|---|---|---|---|
+| 184 (v9) | Level 12 changed from "open" to "specification complete; empirical gate open"; "No empirical Level-12 model has earned 'default/frozen'" | no learned encoder exists (row 7) | AGREES |
+| 184 (v9) | T0-T9 evidence-backed program is part of the SSOT; dataset engineering, provenance, concentration/OAV, missingness and licence are first-class dependencies | provenance and licence handled in the evidence and recipe tables (`reports/s178/ssot238_conformance.md`); OAV/concentration not built | PARTIAL |
+| 195 (v10) | Recipe-set aggregation has a formal R0-R9 ladder; objective ladder O0-O7; "No learned z_m, z_i, z_R or z_C is frozen by documentation alone" | R0-R3 only in code (`representation/recipe_rungs.py`); nothing learned frozen | AGREES (spec only above R3) |
+| 206 (v11) | #6 the Level-14 MVP starts with a provenance-tracked process-event/evidence table | EVD ledger, 17,978 ACTIVE rows (`ledgers/data/EVD.jsonl`) | AGREES |
+| 206 (v11) | #9 strong tabular baselines are mandatory before FiLM or dynamic models | DEL-2 D5 (HistGB) run (`src/culinarystate/transition/baselines.py`); no FiLM model | AGREES |
+| 206 (v11) | #15 pair-holdout plus source/study-disjoint is the default headline test | `transition/splits.py` builds pair_holdout and study_disjoint (study-disjoint only for Phenol-Explorer) | AGREES, with the single-source limit |
+| 206 (v11) | #16 calibration, conformal/selective prediction and RAG abstention are part of the MVP | abstention is rule-based and uncalibrated (`decision/confidence.py`); conformal intervals not built (T6-C10) | **PARTIAL** (calibration and conformal absent) |
+| 217 (v12) | #5 D0-D11 is the canonical transition ladder | code has D0-D5 and D7a; D6 skipped; D8-D11 not implemented (`registry/transition_ladder_crosswalk_v1.csv`) | **PARTIAL** |
+| 217 (v12) | #7 classical kinetics is a first-class non-neural baseline | `sim_aa_1` interface with no parameter values; 0 PARAM rows | PARTIAL (code, no fit) |
+| 217 (v12) | #21 G15-1..12 plus R/H/I are frozen decision gates | no G15 or G16 gate passes (`reports/s178/g16_gate_status.md`, `reports/h_state/ssot15_state_program_inventory.md`) | AGREES (frozen, none passed) |
+
+Not read here: the v14 register (section 258) and the v15 register (section 279); the ledger item names only four registers. `reports/s178/ssot_coverage_map.md` classes section 258 as owned by this item.
+
+## 3. What the report should say (three sentences)
+
+1. "SSOT v15's status block ('Code written: None yet') predates the implementation; this report cites repository paths and counts, not the status block."
+2. "The specifications of Levels 12-16 are complete in the SSOT; the repository implements the evidence plane, the recipe/state pipeline, the baseline ladder D0-D5 and D7a, the router and the RAG stack, and implements none of the learned encoders, kinetics fits or the Level 7/8 replication."
+3. "No SSOT gate (G15 or G16) passes; the failed gates (07.A, G08-3) stay on record."
+
+## 4. Limits
+
+The verdict on each row is the agent's reading; a human should confirm rows 14 and 16 before the sentences go into the report. Counts are from the working tree on 9 Nov (HEAD `4a95380` plus uncommitted lane files), so the 281 files include other lanes' uncommitted work. This table does not apply or draft any v16 change (`docs/SSOT/computational_gastronomy_master_ssot_v16_0_DRAFT.md` is separate).

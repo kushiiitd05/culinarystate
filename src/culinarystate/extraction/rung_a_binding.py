@@ -110,10 +110,18 @@ def _referring(m: Mention) -> str | None:
     return REFERRING.get(m.span.surface.lower()) if m.label == "FOOD_MENTION" else None
 
 
+# D-132 opt-in lineage vNext (frozen behaviour when vnext=False)
+VNEXT_FAT_WORDS = frozenset({"oil", "butter", "ghee", "lard", "fat", "dripping", "drippings", "margarine", "shortening"})
+VNEXT_MIXTURE_WORDS = frozenset({"sauce", "mixture", "batter", "dough", "paste", "stew", "soup", "filling", "dressing",
+                                 "marinade", "glaze", "puree", "purée", "custard"})
+VNEXT_OR_RE = re.compile(r"\s*,?\s*or\s+(?:the\s+|a\s+|some\s+)?", re.IGNORECASE)
+
+
 class _Binder:
     def __init__(self, source: SourceText, mentions: MentionSet, lexicon: RungALexicon,
-                 rules: Mapping[str, R.Recomputer]) -> None:
+                 rules: Mapping[str, R.Recomputer], vnext: bool = False) -> None:
         self.source, self.raw, self.lex, self.rules = source, source.raw, lexicon, rules
+        self.vnext = vnext
         self.ms = sorted(mentions.mentions, key=lambda m: (m.span.char_start, m.span.char_end))
         self.endpoints = [m for m in self.ms if m.label == "ENDPOINT"]
         self.ents: dict[str, _Ent] = {}
@@ -164,9 +172,18 @@ class _Binder:
             frontier = nxt
         return [d for d in dict.fromkeys(out) if self.ents[d].live]
 
+    def _head(self, eid: str) -> str:
+        e = self.ents[eid]
+        return (self.raw[e.span.char_start:e.span.char_end].lower().split() or [""])[-1] if e.span else ""
+
     def _lexical(self, m: Mention) -> str:
         key = self._key(m)
         prev = self.keyed.get(key)
+        if self.vnext and prev is None and self.current and self.ents[self.current].live \
+                and (m.span.surface.lower().split() or [""])[-1] in VNEXT_MIXTURE_WORDS:
+            self.flags.append("VNEXT_MIXTURE_COREF")         # D-132 C: "the sauce" = the one live current mixture
+            self.keyed[key] = self.current
+            return self.current
         if prev is not None:
             if self.ents[prev].live:
                 self.flags.append("LEXICAL_COREF_REUSE")
@@ -228,8 +245,15 @@ class _Binder:
         ids = self.lex.proc_ids(act.span.surface)
         info = self.lex.proc_info.get(next(iter(ids))) if len(ids) == 1 else None
         product, inputs, ref_failed = None, [], False
+        prev_end = None
         for m in margs:
             kind = _referring(m)
+            if self.vnext and kind is None and prev_end is not None \
+                    and VNEXT_OR_RE.fullmatch(self.raw[prev_end:m.span.char_start]):
+                self.flags.append("VNEXT_ALTERNATIVE_SKIPPED")   # D-132 D: "A or B" binds A only, flagged
+                prev_end = m.span.char_end
+                continue
+            prev_end = m.span.char_end if kind is None else None
             if kind is None and product is None and PRODUCT_RE.search(self.raw[window[0]:m.span.char_start]):
                 product = m
             elif kind is None:
@@ -295,6 +319,12 @@ class _Binder:
                 ev.produces.append(out)
                 if combine:
                     self.current = out
+            elif self.vnext and len(inputs) >= 2 and any(self._head(i) in VNEXT_FAT_WORDS for i in inputs) \
+                    and not all(self._head(i) in VNEXT_FAT_WORDS for i in inputs):
+                self.flags.append("VNEXT_FAT_STAYS")           # D-132 B: frying fat stays in the food's lot
+                out = self._new("MIXTURE", parents=tuple(inputs), created_by=ev.eid)
+                self._consume(ev, inputs, {i: out for i in inputs})
+                ev.produces.append(out)
             else:
                 mapping = {i: self._new("INTERMEDIATE", parents=(i,), created_by=ev.eid) for i in inputs}
                 self._consume(ev, inputs, mapping)
@@ -426,8 +456,8 @@ def _event_attrs(b: _Binder, ev: _Ev, mentions: list[Mention], quantities: Seque
 
 def build_graph(source: SourceText, mentions: MentionSet, links: Sequence[LinkResult],
                 quantities: Sequence[QuantityGroundingResult], config: StageConfig, lexicon: RungALexicon,
-                rules: Mapping[str, R.Recomputer]) -> EventGraph:
-    binder = _Binder(source, mentions, lexicon, rules)
+                rules: Mapping[str, R.Recomputer], vnext: bool = False) -> EventGraph:
+    binder = _Binder(source, mentions, lexicon, rules, vnext=vnext)
     bound = binder.run()
     link_by = {lr.mention_id: lr for lr in links}
     producers = {eid: e.created_by for eid, e in bound.entities.items()}

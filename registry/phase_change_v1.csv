@@ -1,0 +1,15 @@
+default_id,quantity,applies_to,low,mid,high,unit,source_hint,source_status
+PC-001,boiling_point,ATM_1,100,100,100,degC,"PROCESS_DEFINITION: water boils at 100 C at 1 atm (SSOT v16 DRAFT 284.3 rule 1; flag PRESSURE_ASSUMED_1ATM); solutes not modelled",PROCESS_DEFINITION
+PC-002,boiling_point_pressure_process,WATER_PRESSURIZED,108.4,115.2,121.0,degC,"S176 L-SRC proposal for SD-006: saturation temperature at 5 / 10 / 15 psig; interpolated from the NIST Chemistry WebBook SRD 69 water saturation rows the L-SRC lane opened (19.736 psia 108.45 C; 24.784 psia 115.31 C; 29.661 psia 120.92 C; 30.248 psia 121.54 C); this lane did not open NIST itself",L_SRC_OPENED_SOURCE_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-010,boiling_point_altitude,ALT_0,99.97,99.97,99.97,degC,"S176 L-SRC LSRC-ALT-BOIL (derived from NIST saturation rows and the NWS pressure-altitude formula, standard atmosphere); used only when an altitude is supplied, default is PC-001",L_SRC_DERIVED_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-011,boiling_point_altitude,ALT_1000,96.65,96.65,96.65,degC,"S176 L-SRC LSRC-ALT-BOIL",L_SRC_DERIVED_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-012,boiling_point_altitude,ALT_1500,94.98,94.98,94.98,degC,"S176 L-SRC LSRC-ALT-BOIL",L_SRC_DERIVED_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-013,boiling_point_altitude,ALT_2000,93.31,93.31,93.31,degC,"S176 L-SRC LSRC-ALT-BOIL (matches the FSIS 208 F at 2000 ft sheet within 0.3 F per L-SRC)",L_SRC_DERIVED_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-014,boiling_point_altitude,ALT_3000,89.97,89.97,89.97,degC,"S176 L-SRC LSRC-ALT-BOIL",L_SRC_DERIVED_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-030,saturation_temperature_gauge_psi,PSIG_0,100.0,100.0,100.0,degC,"1 atm anchor = PC-001 (PROCESS_DEFINITION)",PROCESS_DEFINITION
+PC-031,saturation_temperature_gauge_psi,PSIG_5,108.4,108.4,108.4,degC,"S176 L-SRC SD-006 derived row (see PC-002)",L_SRC_OPENED_SOURCE_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-032,saturation_temperature_gauge_psi,PSIG_10,115.2,115.2,115.2,degC,"S176 L-SRC SD-006 derived row (see PC-002)",L_SRC_OPENED_SOURCE_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-033,saturation_temperature_gauge_psi,PSIG_15,121.0,121.0,121.0,degC,"S176 L-SRC SD-006 derived row (see PC-002)",L_SRC_OPENED_SOURCE_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-034,saturation_temperature_gauge_psi,PSIG_15.552,121.54,121.54,121.54,degC,"NIST row 30.248 psia as reported by S176 L-SRC (SD-006); upper end of the table",L_SRC_OPENED_SOURCE_AI_DRAFTED_NOT_HUMAN_VERIFIED
+PC-040,drying_criterion_core_within,ALL,1.0,1.0,1.0,degC,"engineering tolerance of the qualitative surface-state flag (core within this many degC of the cap), not a food parameter",ENGINEERING_TOLERANCE_NOT_A_FOOD_PARAMETER
+PC-041,cap_invariant_tolerance,ALL,0.5,0.5,0.5,degC,"numerical tolerance of the invariant test (no moist zone above T_boil + this while water remains), SSOT v16 DRAFT 284.3 rule 6",ENGINEERING_TOLERANCE_NOT_A_FOOD_PARAMETER

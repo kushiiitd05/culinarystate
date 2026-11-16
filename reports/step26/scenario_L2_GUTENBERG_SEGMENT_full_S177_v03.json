@@ -1,0 +1,428 @@
+{
+  "cap_model": "evaporation-cap-0.2.0-draft",
+  "cap_policy": {
+    "altitude_m": null,
+    "enabled": true,
+    "pressure_psig": null
+  },
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/simulation/scenario_layer.py",
+        "sha256": "ef10179f261d2e36a2bc9b1df1d0a1d7efd8d531872626e6b44f6856519cbaa1"
+      },
+      {
+        "path": "src/culinarystate/simulation/phase_change.py",
+        "sha256": "4ebcc9b1a61ee945d51d983bc94945e171582f9089a66f9ae30a56060b79f0b2"
+      },
+      {
+        "path": "src/culinarystate/simulation/physics_drivers.py",
+        "sha256": "c741754eadb4f81fd4985191f48c14706255ded5f1b7f3757d0540bd1217638e"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "registry/phase_change_v1.csv",
+        "sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a"
+      },
+      {
+        "path": "registry/matrix_moisture_regime_v1.csv",
+        "sha256": "6bf2be86466f789a4eab75b3cd2b81e72e8e884da4acde3f7d2639eab54a0e83"
+      },
+      {
+        "path": "tools/scenario_layer_run.py",
+        "sha256": "6a4af95b81d1a9cb7f17a1c619f3ad2d2aa1708c38ee0d80e229eb4a5fb570c5"
+      }
+    ]
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts": {
+    "basis": {
+      "alpha": {
+        "SD": 362853
+      },
+      "bath_c": {
+        "L1": 164133,
+        "SD": 198720
+      },
+      "duration_min": {
+        "KGE": 348567,
+        "L1": 14286
+      },
+      "h": {
+        "SD": 39558
+      },
+      "half_thickness_m": {
+        "SD": 39558
+      },
+      "initial_c": {
+        "SD": 362853
+      },
+      "k": {
+        "SD": 362853
+      },
+      "t_cap_c": {
+        "L1": 252,
+        "PC": 335682
+      }
+    },
+    "cap_flag_typical": {
+      "ALTITUDE_ASSUMED_SEA_LEVEL": 111978,
+      "BOILING_POINT_ELEVATION_NOT_MODELLED": 111978,
+      "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 84,
+      "CAP_NOT_LIFTED_NO_DRYING_MODEL": 111978,
+      "DRY_MATRIX_CONDUCTION_PROPERTIES_NOT_IN_REGISTRY": 8973,
+      "EVAPORATION_CAP_APPLIED": 47582,
+      "EVAPORATION_CAP_NOT_BINDING": 64396,
+      "MATRIX_AMBIGUOUS_MOIST_ASSUMED": 9872,
+      "MATRIX_DRY_CLASS_UNCAPPED": 8973,
+      "MATRIX_UNKNOWN_MOIST_ASSUMED": 78058,
+      "NOT_A_ZONE_MEAN_DOSE": 13186,
+      "PRESSURE_ASSUMED_1ATM": 115890,
+      "STATED_LIQUID_T_ABOVE_TBOIL": 84,
+      "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 2247,
+      "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 111978
+    },
+    "core_known": {
+      "GENTLE": {
+        "False": 107765,
+        "True": 13186
+      },
+      "INTENSE": {
+        "False": 107765,
+        "True": 13186
+      },
+      "TYPICAL": {
+        "False": 107765,
+        "True": 13186
+      }
+    },
+    "stated_liquid_above_tboil": {
+      "GENTLE": 84,
+      "INTENSE": 84,
+      "TYPICAL": 84
+    },
+    "stated_liquid_above_tboil_by_stated_c": {
+      "GENTLE": {
+        "100_TO_105": 5,
+        "105_TO_120": 51,
+        "120_TO_150": 24,
+        "ABOVE_150": 4
+      },
+      "INTENSE": {
+        "100_TO_105": 5,
+        "105_TO_120": 51,
+        "120_TO_150": 24,
+        "ABOVE_150": 4
+      },
+      "TYPICAL": {
+        "100_TO_105": 5,
+        "105_TO_120": 51,
+        "120_TO_150": 24,
+        "ABOVE_150": 4
+      }
+    },
+    "status": {
+      "SCENARIO_COMPUTED": 120951,
+      "SCENARIO_UNKNOWN": 56765,
+      "UNSUPPORTED_MEDIUM": 4333
+    },
+    "surface_state": {
+      "GENTLE": {
+        "SURFACE_DRYING_POSSIBLE": 98,
+        "SURFACE_IMMERSED_WET": 64391,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 8973,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 40663,
+        "SURFACE_WET_AT_TBOIL": 6819,
+        "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": 7
+      },
+      "INTENSE": {
+        "SURFACE_DRYING_POSSIBLE": 6852,
+        "SURFACE_IMMERSED_WET": 64391,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 8973,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 40665,
+        "SURFACE_WET_AT_TBOIL": 65,
+        "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": 5
+      },
+      "TYPICAL": {
+        "SURFACE_DRYING_POSSIBLE": 5070,
+        "SURFACE_IMMERSED_WET": 64391,
+        "SURFACE_STATE_NOT_APPLICABLE_DRY_MATRIX": 8973,
+        "SURFACE_STATE_UNKNOWN_CORE_NOT_COMPUTED": 40665,
+        "SURFACE_WET_AT_TBOIL": 1847,
+        "SURFACE_WET_BELOW_TBOIL_CAP_NOT_BINDING": 5
+      }
+    },
+    "transition": {
+      "physically_possible": 120951,
+      "unsupported": 61098
+    },
+    "typical_core_reaches_70": {
+      "False": 38,
+      "True": 13148
+    },
+    "zone_nodes_emitted": {
+      "GENTLE": 13186,
+      "INTENSE": 13186,
+      "TYPICAL": 13186
+    }
+  },
+  "counts_as_human_gate": false,
+  "dry_low_moisture_classes": [
+    "FAT_OIL",
+    "NUT_SEED",
+    "SWEETENER"
+  ],
+  "ended_at_utc": "2026-11-09T08:10:47Z",
+  "l1_files": 64,
+  "labels": [
+    "SCENARIO",
+    "MODEL_DERIVED",
+    "NON_CITABLE",
+    "ASSUMED_DEFAULT"
+  ],
+  "layer_version": "scenario-layer-L2-0.3.0-draft",
+  "matrix_regime_registry_sha256": "6bf2be86466f789a4eab75b3cd2b81e72e8e884da4acde3f7d2639eab54a0e83",
+  "phase_change_registry_sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a",
+  "record": "SCENARIO_L2_SUMMARY",
+  "records_manifest_sha256": "439c4bc6024503801c65fef2371cd34137ab908465ee76d03e15ef8890e1408a",
+  "scenario_registry_sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0",
+  "started_at_utc": "2026-11-09T08:09:05Z",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "supersedes": "SCENARIO_L2_0_1_0_CORE_AND_DOSE_FIELDS_OF_DRY_AND_FAT_EVENTS",
+  "v02_to_v03": {
+    "counts": {
+      "changed": {
+        "GENTLE": {
+          "surface_cook_value_min": 84
+        },
+        "INTENSE": {
+          "surface_cook_value_min": 84
+        },
+        "TYPICAL": {
+          "surface_cook_value_min": 84
+        }
+      },
+      "events": 182049,
+      "flag_added": {
+        "GENTLE": {
+          "BOILING_POINT_ELEVATION_NOT_MODELLED": 111978,
+          "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 84,
+          "EVAPORATION_CAP_NOT_BINDING": 84,
+          "NOT_A_ZONE_MEAN_DOSE": 13186,
+          "STATED_LIQUID_T_ABOVE_TBOIL": 84,
+          "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 2247,
+          "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 111978,
+          "ZONE_NODE_HISTORIES_EMITTED_FOR_OWN_KINETICS": 13186
+        },
+        "INTENSE": {
+          "BOILING_POINT_ELEVATION_NOT_MODELLED": 111978,
+          "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 84,
+          "EVAPORATION_CAP_NOT_BINDING": 84,
+          "NOT_A_ZONE_MEAN_DOSE": 13186,
+          "STATED_LIQUID_T_ABOVE_TBOIL": 84,
+          "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 2247,
+          "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 111978,
+          "ZONE_NODE_HISTORIES_EMITTED_FOR_OWN_KINETICS": 13186
+        },
+        "TYPICAL": {
+          "BOILING_POINT_ELEVATION_NOT_MODELLED": 111978,
+          "CAP_NOT_BELOW_TEXT_STATED_LIQUID_T": 84,
+          "EVAPORATION_CAP_NOT_BINDING": 84,
+          "NOT_A_ZONE_MEAN_DOSE": 13186,
+          "STATED_LIQUID_T_ABOVE_TBOIL": 84,
+          "TBOIL_CAP_LOWER_ESTIMATE_SOLUTE_RICH_MEMBER": 2247,
+          "TBOIL_CEILING_DILUTE_AQUEOUS_ONLY": 111978,
+          "ZONE_NODE_HISTORIES_EMITTED_FOR_OWN_KINETICS": 13186
+        }
+      },
+      "flag_removed": {
+        "GENTLE": {
+          "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 84,
+          "CAP_IS_UPPER_BOUND_NOT_VALIDATED": 111978,
+          "EVAPORATION_CAP_APPLIED": 84,
+          "SURFACE_DOSE_AT_TBOIL_WET_PERIOD_ONLY": 84
+        },
+        "INTENSE": {
+          "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 84,
+          "CAP_IS_UPPER_BOUND_NOT_VALIDATED": 111978,
+          "EVAPORATION_CAP_APPLIED": 84,
+          "SURFACE_DOSE_AT_TBOIL_WET_PERIOD_ONLY": 84
+        },
+        "TYPICAL": {
+          "CAPPED_BOUNDARY_ROBIN_SAME_H_NO_FLUX_LIMIT": 84,
+          "CAP_IS_UPPER_BOUND_NOT_VALIDATED": 111978,
+          "EVAPORATION_CAP_APPLIED": 84,
+          "SURFACE_DOSE_AT_TBOIL_WET_PERIOD_ONLY": 84
+        }
+      },
+      "status": {
+        "SCENARIO_COMPUTED": {
+          "SCENARIO_COMPUTED": 120951
+        },
+        "SCENARIO_UNKNOWN": {
+          "SCENARIO_UNKNOWN": 56765
+        },
+        "UNSUPPORTED_MEDIUM": {
+          "UNSUPPORTED_MEDIUM": 4333
+        }
+      },
+      "t_cap_changed": {
+        "GENTLE": 84,
+        "INTENSE": 84,
+        "TYPICAL": 84
+      },
+      "t_cap_raised": {
+        "GENTLE": 84,
+        "INTENSE": 84,
+        "TYPICAL": 84
+      },
+      "volume_avg_dose_equal_to_0_2_0_name": {
+        "GENTLE": {
+          "True": 13186
+        },
+        "INTENSE": {
+          "True": 13186
+        },
+        "TYPICAL": {
+          "True": 13186
+        }
+      },
+      "zone_mean_dose_gt_dose_at_volume_avg_t": {
+        "GENTLE": {
+          "True": 13186
+        },
+        "INTENSE": {
+          "True": 13186
+        },
+        "TYPICAL": {
+          "True": 13186
+        }
+      }
+    },
+    "layer_version": "scenario-layer-L2-0.3.0-draft",
+    "previous_layer_version": "scenario-layer-L2-0.2.0-draft",
+    "ratio_quantiles": {
+      "zone_mean_over_core_dose": {
+        "GENTLE": {
+          "max": 22.7037,
+          "n": 13186,
+          "p01": 1.0055,
+          "p10": 1.016,
+          "p25": 1.0347,
+          "p50": 1.3799,
+          "p75": 2.4254,
+          "p90": 6.1538,
+          "p99": 8.0217
+        },
+        "INTENSE": {
+          "max": 2.0026,
+          "n": 13186,
+          "p01": 1.0028,
+          "p10": 1.0038,
+          "p25": 1.0099,
+          "p50": 1.0184,
+          "p75": 1.0221,
+          "p90": 1.023,
+          "p99": 1.028
+        },
+        "TYPICAL": {
+          "max": 7.0172,
+          "n": 13186,
+          "p01": 1.0018,
+          "p10": 1.0021,
+          "p25": 1.0082,
+          "p50": 1.0137,
+          "p75": 1.0826,
+          "p90": 1.1166,
+          "p99": 1.7187
+        }
+      },
+      "zone_mean_over_dose_at_volume_avg_t": {
+        "GENTLE": {
+          "max": 5.6239,
+          "n": 13186,
+          "p01": 1.0008,
+          "p10": 1.0012,
+          "p25": 1.0027,
+          "p50": 1.0422,
+          "p75": 1.2311,
+          "p90": 2.3529,
+          "p99": 2.4765
+        },
+        "INTENSE": {
+          "max": 1.1763,
+          "n": 13186,
+          "p01": 1.0008,
+          "p10": 1.0022,
+          "p25": 1.0062,
+          "p50": 1.0167,
+          "p75": 1.022,
+          "p90": 1.023,
+          "p99": 1.0234
+        },
+        "TYPICAL": {
+          "max": 2.1198,
+          "n": 13186,
+          "p01": 1.0005,
+          "p10": 1.0009,
+          "p25": 1.0031,
+          "p50": 1.0047,
+          "p75": 1.0101,
+          "p90": 1.0174,
+          "p99": 1.1184
+        }
+      }
+    }
+  },
+  "wall_seconds": 101.2,
+  "workers": 8,
+  "zone_field": {
+    "n_nodes": 8,
+    "scheme": "GAUSS_LEGENDRE_HALF_SLAB",
+    "t_ref_c": 100.0,
+    "z_c": 33.0,
+    "zone_mean_over_dose_at_volume_avg_t_quantiles": {
+      "zone_mean_over_dose_at_volume_avg_t": {
+        "GENTLE": {
+          "max": 5.6239,
+          "n": 13186,
+          "p01": 1.0008,
+          "p10": 1.0012,
+          "p25": 1.0027,
+          "p50": 1.0422,
+          "p75": 1.2311,
+          "p90": 2.3529,
+          "p99": 2.4765
+        },
+        "INTENSE": {
+          "max": 1.1763,
+          "n": 13186,
+          "p01": 1.0008,
+          "p10": 1.0022,
+          "p25": 1.0062,
+          "p50": 1.0167,
+          "p75": 1.022,
+          "p90": 1.023,
+          "p99": 1.0234
+        },
+        "TYPICAL": {
+          "max": 2.1198,
+          "n": 13186,
+          "p01": 1.0005,
+          "p10": 1.0009,
+          "p25": 1.0031,
+          "p50": 1.0047,
+          "p75": 1.0101,
+          "p90": 1.0174,
+          "p99": 1.1184
+        }
+      }
+    }
+  }
+}

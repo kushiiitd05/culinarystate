@@ -1,0 +1,28 @@
+default_id,quantity,applies_to,low,mid,high,unit,source_hint,source_status
+SD-001,bath_temperature,PROC-000020,85,90,95,degC,"cooking-science convention: simmer is below the boil (e.g. McGee, On Food and Cooking, 2004)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-002,bath_temperature,PROC-000021,70,80,90,degC,"poaching liquid below a simmer (cooking-science convention)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-003,bath_temperature,PROC-000023,95,98,100,degC,"blanching in water at or near the boil",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-004,bath_temperature,PROC-000024,85,90,95,degC,"braising liquid at a simmer",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-005,bath_temperature,PROC-000025,85,90,95,degC,"stewing liquid at a simmer",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-006,bath_temperature,PROC-000027,110,118,121,degC,"saturated steam: about 121 C at 15 psi gauge (steam tables); lower settings near 110 C",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-007,bath_temperature,PROC-000150,80,83,85,degC,"scalding: liquid just below the boil",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-008,bath_temperature,PROC-000011,160,175,190,degC,"deep-fry oil; EU Regulation 2017/2158 acrylamide benchmark advises frying at or below 175 C",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-009,bath_temperature,PROC-000012,150,170,190,degC,"shallow-fry oil temperature (cooking convention)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-010,bath_temperature,PROC-000013|PROC-000009|PROC-000010|PROC-000014|PROC-000015|PROC-000016,140,170,200,degC,"pan contact temperature is not standardised; wide range",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-011,bath_temperature,PROC-000017,100,120,140,degC,"sweating: gentle pan heat without browning",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-012,bath_temperature,PROC-000001|PROC-000002|PROC-000153,160,180,220,degC,"common oven settings when none is stated (about gas 3 to 7)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-013,bath_temperature,PROC-000008,180,190,200,degC,"air fryer settings",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-020,gas_mark,GAS_1|GAS_2|GAS_3|GAS_4|GAS_5|GAS_6|GAS_7|GAS_8|GAS_9,140|150|170|180|190|200|220|230|240,,,degC,"UK gas mark scale (published conversion tables); mid = table value",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-030,h,WATER|LIQUID|LIQUID_PARTIAL|WATER_BATH_SEALED,200,600,1500,W/m2K,"natural convection / boiling liquid around food (food engineering texts, e.g. Singh and Heldman)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-031,h,STEAM|WATER_PRESSURIZED,1000,3000,8000,W/m2K,"condensing steam (food engineering texts)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-032,h,OIL_IMMERSION|OIL_SHALLOW,250,450,700,W/m2K,"deep-fat frying with bubbling (frying heat-transfer literature)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-033,h,OVEN_AIR,15,25,40,W/m2K,"still-air oven, convection plus radiation (food engineering texts)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-034,h,OVEN_AIR_FORCED,30,50,80,W/m2K,"forced-air oven / air fryer",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-035,h,PAN_CONTACT_OIL,200,500,1000,W/m2K,"effective contact coefficient, pan with a fat film (rough)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-040,k,FOOD_HIGH_MOISTURE,0.45,0.5,0.6,W/mK,"high-moisture foods near water (food engineering texts)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-041,alpha,FOOD_HIGH_MOISTURE,1.2e-7,1.4e-7,1.6e-7,m2/s,"high-moisture foods near water (food engineering texts)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-050,half_thickness,MINCED|GRATED|SHREDDED,0.0005,0.001,0.0015,m,"cut-size convention",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-051,half_thickness,SLICED,0.0015,0.0025,0.004,m,"cut-size convention (3-8 mm slices)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-052,half_thickness,DICED,0.003,0.005,0.008,m,"cut-size convention (6-16 mm dice)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-053,half_thickness,CHOPPED,0.003,0.006,0.012,m,"cut-size convention (chopped pieces vary)",SOURCE_UNVERIFIED_AGENT_RECALLED
+SD-060,initial_temperature,ALL,4,20,25,degC,"refrigerated to room temperature",SOURCE_UNVERIFIED_AGENT_RECALLED

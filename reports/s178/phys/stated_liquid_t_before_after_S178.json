@@ -1,0 +1,453 @@
+{
+  "citable": false,
+  "code_sha256": "464c77c470df8d89abaa080ec30eb2994e4d0390e2fc3e2f4d540eab6ad82f84",
+  "contains_ids": false,
+  "contains_text": false,
+  "counts_as_human_gate": false,
+  "families": {
+    "FOODCOM": {
+      "l1_events_before": 560,
+      "l1_old_to_new": {
+        "ambient_temperature_kept": {
+          "105_TO_120": 1,
+          "120_TO_150": 18,
+          "ABOVE_150": 140
+        },
+        "old_bucket_by_new_category": {
+          "100_TO_105": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 3,
+            "NOW_UNKNOWN_TEMPERATURE": 3,
+            "STILL_STATED_AQUEOUS_ABOVE_100": 22
+          },
+          "105_TO_120": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 41,
+            "NOW_UNKNOWN_TEMPERATURE": 5,
+            "STILL_STATED_AQUEOUS_ABOVE_100": 175
+          },
+          "120_TO_150": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 21,
+            "NOW_UNKNOWN_TEMPERATURE": 16,
+            "STILL_STATED_AQUEOUS_ABOVE_100": 62
+          },
+          "ABOVE_150": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 101,
+            "NOW_UNKNOWN_TEMPERATURE": 83,
+            "STILL_STATED_AQUEOUS_ABOVE_100": 28
+          }
+        },
+        "old_medium": {
+          "LIQUID": 9,
+          "LIQUID_PARTIAL": 25,
+          "WATER": 526
+        },
+        "old_process": {
+          "100_TO_105": {
+            "PROC_000019": 23,
+            "PROC_000020": 5
+          },
+          "105_TO_120": {
+            "PROC_000019": 196,
+            "PROC_000020": 25
+          },
+          "120_TO_150": {
+            "PROC_000019": 72,
+            "PROC_000020": 19,
+            "PROC_000021": 1,
+            "PROC_000023": 1,
+            "PROC_000024": 6
+          },
+          "ABOVE_150": {
+            "PROC_000019": 115,
+            "PROC_000020": 62,
+            "PROC_000021": 2,
+            "PROC_000023": 3,
+            "PROC_000024": 19,
+            "PROC_000025": 9,
+            "PROC_000026": 2
+          }
+        },
+        "reason_of_change": {
+          "100_TO_105": {
+            "OWNED_BY_OTHER_EVENT": 5,
+            "TARGET_FOOD_TEMPERATURE": 1
+          },
+          "105_TO_120": {
+            "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": 1,
+            "OWNED_BY_OTHER_EVENT": 28,
+            "TARGET_FOOD_TEMPERATURE": 17
+          },
+          "120_TO_150": {
+            "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": 12,
+            "OWNED_BY_OTHER_EVENT": 20,
+            "TARGET_FOOD_TEMPERATURE": 5
+          },
+          "ABOVE_150": {
+            "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": 51,
+            "OWNED_BY_OTHER_EVENT": 133
+          }
+        },
+        "remaining_by_solute_rich_member": {
+          "100_TO_105": {
+            "NO_SOLUTE_RICH_MEMBER": 8,
+            "SOLUTE_RICH_MEMBER": 14
+          },
+          "105_TO_120": {
+            "NO_SOLUTE_RICH_MEMBER": 48,
+            "SOLUTE_RICH_MEMBER": 127
+          },
+          "120_TO_150": {
+            "NO_SOLUTE_RICH_MEMBER": 15,
+            "SOLUTE_RICH_MEMBER": 47
+          },
+          "ABOVE_150": {
+            "NO_SOLUTE_RICH_MEMBER": 10,
+            "SOLUTE_RICH_MEMBER": 18
+          }
+        }
+      },
+      "l2": {
+        "after_l2_0_4_0": {
+          "counts": {
+            "lifted": {
+              "100_TO_105": 16,
+              "105_TO_120": 110,
+              "120_TO_150": 36,
+              "ABOVE_150": 20
+            },
+            "lifted_by_solute": {
+              "100_TO_105": {
+                "NO_SOLUTE_RICH_MEMBER": 8,
+                "SOLUTE_RICH_MEMBER": 8
+              },
+              "105_TO_120": {
+                "NO_SOLUTE_RICH_MEMBER": 47,
+                "SOLUTE_RICH_MEMBER": 63
+              },
+              "120_TO_150": {
+                "NO_SOLUTE_RICH_MEMBER": 15,
+                "SOLUTE_RICH_MEMBER": 21
+              },
+              "ABOVE_150": {
+                "NO_SOLUTE_RICH_MEMBER": 9,
+                "SOLUTE_RICH_MEMBER": 11
+              }
+            },
+            "lifted_core_computed": {
+              "100_TO_105": 2,
+              "105_TO_120": 4,
+              "120_TO_150": 2,
+              "ABOVE_150": 2
+            }
+          },
+          "max_core_end_c_of_a_lifted_event_by_bucket": {
+            "100_TO_105": 104.4,
+            "105_TO_120": 115.6,
+            "120_TO_150": 148.7,
+            "ABOVE_150": 176.7
+          }
+        },
+        "before_l2_0_3_0": {
+          "counts": {
+            "lifted": {
+              "100_TO_105": 21,
+              "105_TO_120": 149,
+              "120_TO_150": 69,
+              "ABOVE_150": 191
+            },
+            "lifted_by_solute": {
+              "100_TO_105": {
+                "NO_SOLUTE_RICH_MEMBER": 21
+              },
+              "105_TO_120": {
+                "NO_SOLUTE_RICH_MEMBER": 149
+              },
+              "120_TO_150": {
+                "NO_SOLUTE_RICH_MEMBER": 68,
+                "SOLUTE_RICH_MEMBER": 1
+              },
+              "ABOVE_150": {
+                "NO_SOLUTE_RICH_MEMBER": 185,
+                "SOLUTE_RICH_MEMBER": 6
+              }
+            },
+            "lifted_core_computed": {
+              "100_TO_105": 3,
+              "105_TO_120": 8,
+              "120_TO_150": 8,
+              "ABOVE_150": 7
+            }
+          },
+          "max_core_end_c_of_a_lifted_event_by_bucket": {
+            "100_TO_105": 104.4,
+            "105_TO_120": 117.6,
+            "120_TO_150": 150.0,
+            "ABOVE_150": 204.4
+          }
+        }
+      }
+    },
+    "GUTENBERG_SEGMENT": {
+      "l1_events_before": 121,
+      "l1_old_to_new": {
+        "ambient_temperature_kept": {
+          "120_TO_150": 2,
+          "ABOVE_150": 2
+        },
+        "old_bucket_by_new_category": {
+          "100_TO_105": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 2,
+            "STILL_STATED_AQUEOUS_ABOVE_100": 5
+          },
+          "105_TO_120": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 23,
+            "STILL_STATED_AQUEOUS_ABOVE_100": 51
+          },
+          "120_TO_150": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 7,
+            "NOW_UNKNOWN_TEMPERATURE": 3,
+            "STILL_STATED_AQUEOUS_ABOVE_100": 23
+          },
+          "ABOVE_150": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 2,
+            "NOW_UNKNOWN_TEMPERATURE": 3,
+            "STILL_STATED_AQUEOUS_ABOVE_100": 2
+          }
+        },
+        "old_medium": {
+          "LIQUID": 2,
+          "LIQUID_PARTIAL": 3,
+          "WATER": 116
+        },
+        "old_process": {
+          "100_TO_105": {
+            "PROC_000019": 7
+          },
+          "105_TO_120": {
+            "PROC_000019": 74
+          },
+          "120_TO_150": {
+            "PROC_000019": 30,
+            "PROC_000020": 1,
+            "PROC_000024": 1,
+            "PROC_000025": 1
+          },
+          "ABOVE_150": {
+            "PROC_000019": 4,
+            "PROC_000024": 2,
+            "PROC_000025": 1
+          }
+        },
+        "reason_of_change": {
+          "100_TO_105": {
+            "OWNED_BY_OTHER_EVENT": 2
+          },
+          "105_TO_120": {
+            "OWNED_BY_OTHER_EVENT": 18,
+            "TARGET_FOOD_TEMPERATURE": 5
+          },
+          "120_TO_150": {
+            "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": 2,
+            "OWNED_BY_OTHER_EVENT": 8
+          },
+          "ABOVE_150": {
+            "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": 2,
+            "OWNED_BY_OTHER_EVENT": 3
+          }
+        },
+        "remaining_by_solute_rich_member": {
+          "100_TO_105": {
+            "NO_SOLUTE_RICH_MEMBER": 3,
+            "SOLUTE_RICH_MEMBER": 2
+          },
+          "105_TO_120": {
+            "NO_SOLUTE_RICH_MEMBER": 27,
+            "SOLUTE_RICH_MEMBER": 24
+          },
+          "120_TO_150": {
+            "NO_SOLUTE_RICH_MEMBER": 13,
+            "SOLUTE_RICH_MEMBER": 10
+          },
+          "ABOVE_150": {
+            "NO_SOLUTE_RICH_MEMBER": 1,
+            "SOLUTE_RICH_MEMBER": 1
+          }
+        }
+      },
+      "l2": {
+        "after_l2_0_4_0": {
+          "counts": {
+            "lifted": {
+              "100_TO_105": 4,
+              "105_TO_120": 36,
+              "120_TO_150": 15,
+              "ABOVE_150": 1
+            },
+            "lifted_by_solute": {
+              "100_TO_105": {
+                "NO_SOLUTE_RICH_MEMBER": 3,
+                "SOLUTE_RICH_MEMBER": 1
+              },
+              "105_TO_120": {
+                "NO_SOLUTE_RICH_MEMBER": 27,
+                "SOLUTE_RICH_MEMBER": 9
+              },
+              "120_TO_150": {
+                "NO_SOLUTE_RICH_MEMBER": 13,
+                "SOLUTE_RICH_MEMBER": 2
+              },
+              "ABOVE_150": {
+                "NO_SOLUTE_RICH_MEMBER": 1
+              }
+            }
+          },
+          "max_core_end_c_of_a_lifted_event_by_bucket": {}
+        },
+        "before_l2_0_3_0": {
+          "counts": {
+            "lifted": {
+              "100_TO_105": 5,
+              "105_TO_120": 51,
+              "120_TO_150": 24,
+              "ABOVE_150": 4
+            },
+            "lifted_by_solute": {
+              "100_TO_105": {
+                "NO_SOLUTE_RICH_MEMBER": 5
+              },
+              "105_TO_120": {
+                "NO_SOLUTE_RICH_MEMBER": 51
+              },
+              "120_TO_150": {
+                "NO_SOLUTE_RICH_MEMBER": 24
+              },
+              "ABOVE_150": {
+                "NO_SOLUTE_RICH_MEMBER": 4
+              }
+            }
+          },
+          "max_core_end_c_of_a_lifted_event_by_bucket": {}
+        }
+      }
+    },
+    "WIKIBOOKS": {
+      "l1_events_before": 8,
+      "l1_old_to_new": {
+        "ambient_temperature_kept": {
+          "120_TO_150": 1
+        },
+        "old_bucket_by_new_category": {
+          "100_TO_105": {
+            "STILL_STATED_AQUEOUS_ABOVE_100": 1
+          },
+          "105_TO_120": {
+            "STILL_STATED_AQUEOUS_ABOVE_100": 3
+          },
+          "120_TO_150": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 1,
+            "STILL_STATED_AQUEOUS_ABOVE_100": 1
+          },
+          "ABOVE_150": {
+            "NOW_BOIL_BY_PHYSICAL_DEFINITION": 2
+          }
+        },
+        "old_medium": {
+          "WATER": 8
+        },
+        "old_process": {
+          "100_TO_105": {
+            "PROC_000019": 1
+          },
+          "105_TO_120": {
+            "PROC_000019": 2,
+            "PROC_000020": 1
+          },
+          "120_TO_150": {
+            "PROC_000019": 2
+          },
+          "ABOVE_150": {
+            "PROC_000019": 2
+          }
+        },
+        "reason_of_change": {
+          "120_TO_150": {
+            "OVEN_OIL_OR_HEAT_LEVEL_CUE_TEMPERATURE_OF_LIQUID_STEP": 1
+          },
+          "ABOVE_150": {
+            "OWNED_BY_OTHER_EVENT": 2
+          }
+        },
+        "remaining_by_solute_rich_member": {
+          "100_TO_105": {
+            "SOLUTE_RICH_MEMBER": 1
+          },
+          "105_TO_120": {
+            "SOLUTE_RICH_MEMBER": 3
+          },
+          "120_TO_150": {
+            "SOLUTE_RICH_MEMBER": 1
+          }
+        }
+      },
+      "l2": {
+        "after_l2_0_4_0": {
+          "counts": {
+            "lifted": {
+              "100_TO_105": 1,
+              "105_TO_120": 2
+            },
+            "lifted_by_solute": {
+              "100_TO_105": {
+                "SOLUTE_RICH_MEMBER": 1
+              },
+              "105_TO_120": {
+                "SOLUTE_RICH_MEMBER": 2
+              }
+            },
+            "lifted_core_computed": {
+              "100_TO_105": 1,
+              "105_TO_120": 1
+            }
+          },
+          "max_core_end_c_of_a_lifted_event_by_bucket": {
+            "100_TO_105": 104.3,
+            "105_TO_120": 112.2
+          }
+        },
+        "before_l2_0_3_0": {
+          "counts": {
+            "lifted": {
+              "100_TO_105": 1,
+              "105_TO_120": 2,
+              "120_TO_150": 1,
+              "ABOVE_150": 2
+            },
+            "lifted_by_solute": {
+              "100_TO_105": {
+                "NO_SOLUTE_RICH_MEMBER": 1
+              },
+              "105_TO_120": {
+                "NO_SOLUTE_RICH_MEMBER": 2
+              },
+              "120_TO_150": {
+                "NO_SOLUTE_RICH_MEMBER": 1
+              },
+              "ABOVE_150": {
+                "NO_SOLUTE_RICH_MEMBER": 2
+              }
+            },
+            "lifted_core_computed": {
+              "100_TO_105": 1,
+              "105_TO_120": 1
+            }
+          },
+          "max_core_end_c_of_a_lifted_event_by_bucket": {
+            "100_TO_105": 104.3,
+            "105_TO_120": 112.2
+          }
+        }
+      }
+    }
+  },
+  "record": "STATED_LIQUID_T_BEFORE_AFTER",
+  "status": "AI_DRAFTED_COUNTS_ONLY"
+}

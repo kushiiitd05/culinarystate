@@ -1,0 +1,283 @@
+{
+  "figures": [
+    {
+      "name": "fig1_architecture",
+      "paths": [
+        "reports/s179/technical_figures_2026-11-13/fig1_architecture.svg",
+        "reports/s179/technical_figures_2026-11-13/fig1_architecture.png"
+      ],
+      "scope": "Authored architecture schematic. Replay state is not passed into the current router API.",
+      "series": null,
+      "title": "Source-to-replay and source-to-answer engineering paths"
+    },
+    {
+      "name": "fig2_evidence_provenance",
+      "paths": [
+        "reports/s179/technical_figures_2026-11-13/fig2_evidence_provenance.svg",
+        "reports/s179/technical_figures_2026-11-13/fig2_evidence_provenance.png"
+      ],
+      "scope": "E3_UNVERIFIED / COND_UNAUDITED. Imported row counts are not independent experiments.",
+      "series": {
+        "BOGNAR-2002": 7090,
+        "PHENOL-EXPLORER-3.6": 3870,
+        "USDA-RETN-R6": 7018
+      },
+      "title": "Imported evidence by source family"
+    },
+    {
+      "name": "fig3_state_graph",
+      "paths": [
+        "reports/s179/technical_figures_2026-11-13/fig3_state_graph.svg",
+        "reports/s179/technical_figures_2026-11-13/fig3_state_graph.png"
+      ],
+      "scope": "Authored schema illustration, not a measured recipe trajectory or gold event annotation.",
+      "series": null,
+      "title": "A lot/event relationship"
+    },
+    {
+      "name": "fig4_router_routes",
+      "paths": [
+        "reports/s179/technical_figures_2026-11-13/fig4_router_routes.svg",
+        "reports/s179/technical_figures_2026-11-13/fig4_router_routes.png"
+      ],
+      "scope": "ENGINEERING_DIAGNOSTIC. Source-row routing does not certify condition applicability.",
+      "series": {
+        "DIRECT": 57,
+        "NOT_APPLICABLE": 113,
+        "UNKNOWN": 57341
+      },
+      "title": "Vitamin-C router: recorded 1,000-recipe non-BBC sample"
+    },
+    {
+      "name": "fig5_risk_coverage",
+      "paths": [
+        "reports/s179/technical_figures_2026-11-13/fig5_risk_coverage.svg",
+        "reports/s179/technical_figures_2026-11-13/fig5_risk_coverage.png"
+      ],
+      "scope": "MODEL_ASSISTED_GOLD. Ordinal thresholds are uncalibrated; CP95 intervals transcribed, no rescore.",
+      "series": {
+        "B5": [
+          {
+            "answered": 18,
+            "coverage": 0.45,
+            "risk": {
+              "cp95": [
+                0.4099,
+                0.8666
+              ],
+              "n": 18,
+              "rate": 0.6667,
+              "x": 12
+            },
+            "threshold": "QUANTITATIVE"
+          },
+          {
+            "answered": 30,
+            "coverage": 0.75,
+            "risk": {
+              "cp95": [
+                0.406,
+                0.7734
+              ],
+              "n": 30,
+              "rate": 0.6,
+              "x": 18
+            },
+            "threshold": "INTERVAL"
+          },
+          {
+            "answered": 39,
+            "coverage": 0.975,
+            "risk": {
+              "cp95": [
+                0.5243,
+                0.8298
+              ],
+              "n": 39,
+              "rate": 0.6923,
+              "x": 27
+            },
+            "threshold": "QUALITATIVE"
+          },
+          {
+            "answered": 40,
+            "coverage": 1.0,
+            "risk": {
+              "cp95": [
+                0.5347,
+                0.8344
+              ],
+              "n": 40,
+              "rate": 0.7,
+              "x": 28
+            },
+            "threshold": "ABSTAIN"
+          }
+        ],
+        "B7": [
+          {
+            "answered": 18,
+            "coverage": 0.45,
+            "risk": {
+              "cp95": [
+                0.0138,
+                0.3471
+              ],
+              "n": 18,
+              "rate": 0.1111,
+              "x": 2
+            },
+            "threshold": "QUANTITATIVE"
+          },
+          {
+            "answered": 30,
+            "coverage": 0.75,
+            "risk": {
+              "cp95": [
+                0.0376,
+                0.3072
+              ],
+              "n": 30,
+              "rate": 0.1333,
+              "x": 4
+            },
+            "threshold": "INTERVAL"
+          },
+          {
+            "answered": 39,
+            "coverage": 0.975,
+            "risk": {
+              "cp95": [
+                0.1909,
+                0.5022
+              ],
+              "n": 39,
+              "rate": 0.3333,
+              "x": 13
+            },
+            "threshold": "QUALITATIVE"
+          },
+          {
+            "answered": 40,
+            "coverage": 1.0,
+            "risk": {
+              "cp95": [
+                0.2063,
+                0.5168
+              ],
+              "n": 40,
+              "rate": 0.35,
+              "x": 14
+            },
+            "threshold": "ABSTAIN"
+          }
+        ]
+      },
+      "title": "Frozen P/C risk\u2013coverage diagnostic"
+    },
+    {
+      "name": "fig6_h1_ladder",
+      "paths": [
+        "reports/s179/technical_figures_2026-11-13/fig6_h1_ladder.svg",
+        "reports/s179/technical_figures_2026-11-13/fig6_h1_ladder.png"
+      ],
+      "scope": "Rung-blind resolution supplement; 24 questions per rung. CIRCULAR_SELF_CONSISTENCY_ONLY.",
+      "series": {
+        "B0": {
+          "cp95": [
+            0.0103,
+            0.27
+          ],
+          "n": 24,
+          "rate": 0.0833,
+          "x": 2
+        },
+        "B1": {
+          "cp95": [
+            0.0977,
+            0.4671
+          ],
+          "n": 24,
+          "rate": 0.25,
+          "x": 6
+        },
+        "B2": {
+          "cp95": [
+            0.0977,
+            0.4671
+          ],
+          "n": 24,
+          "rate": 0.25,
+          "x": 6
+        },
+        "B4": {
+          "cp95": [
+            0.0977,
+            0.4671
+          ],
+          "n": 24,
+          "rate": 0.25,
+          "x": 6
+        }
+      },
+      "title": "H1: recorded rule not met"
+    },
+    {
+      "name": "fig7_gate_register",
+      "paths": [
+        "reports/s179/technical_figures_2026-11-13/fig7_gate_register.svg",
+        "reports/s179/technical_figures_2026-11-13/fig7_gate_register.png"
+      ],
+      "scope": "Preview dated 12 November; not the required post-19-Nov MPU event. No scientific pass supplied.",
+      "series": {
+        "FAIL_INDEPENDENCE_COMPONENT": 1,
+        "HOLDS_BY_REFUSAL_NOT_SCIENTIFIC_PASS": 1,
+        "NOT_EVALUATED": 1,
+        "NOT_EVALUATED_ON_INDEPENDENT_GOLD": 1,
+        "NOT_MET": 1,
+        "NOT_RUN_BY_SCOPE": 1,
+        "PARTIAL": 6,
+        "PARTIAL_NEGATIVE_RESULT": 1,
+        "RULE_NOT_MET": 1
+      },
+      "title": "Current evidence-preview dispositions"
+    }
+  ],
+  "file_sha256": {
+    "reports/s179/technical_figures_2026-11-13/fig1_architecture.png": "d7855b983babe277eeedaf39486bd7b669c0b0636129c7189571f984fadf40df",
+    "reports/s179/technical_figures_2026-11-13/fig1_architecture.svg": "14dc0ba5364e3d0aa66d98cfbefab850227ca48f81a93caf637f313426f872d8",
+    "reports/s179/technical_figures_2026-11-13/fig2_evidence_provenance.png": "cbf609c901a84e75f45d13c2bd05d5a8470c144596678da284eccc36c9d7c646",
+    "reports/s179/technical_figures_2026-11-13/fig2_evidence_provenance.svg": "6ddab04bff19b70a4fe197c8bb50744007093ffaa4a0812567f38d502b3c021b",
+    "reports/s179/technical_figures_2026-11-13/fig3_state_graph.png": "5bdd4214da00c53de9dc3a1228482bb5b59c208111be6e6c437e3bf5820333e3",
+    "reports/s179/technical_figures_2026-11-13/fig3_state_graph.svg": "5e1f31d62ccb39e0391971d81be3af99ec7719be1658b3e04265cebf875f0dd5",
+    "reports/s179/technical_figures_2026-11-13/fig4_router_routes.png": "f24152873b2eff2c41a6ad12adfe7a9cbea4228c8f94c875815d579909745e3f",
+    "reports/s179/technical_figures_2026-11-13/fig4_router_routes.svg": "aa574a635627161193d1ed13a0a9353fbaf1893c9d3fcf21d287f58a50cc5dda",
+    "reports/s179/technical_figures_2026-11-13/fig5_risk_coverage.png": "4ec894232bdf21e735338be07f870451a73b115f8d96fc265348999858613c56",
+    "reports/s179/technical_figures_2026-11-13/fig5_risk_coverage.svg": "5a403ed975aeb8c041c296b5b33181d7d811f553df4190540f7ed998a09e6f9c",
+    "reports/s179/technical_figures_2026-11-13/fig6_h1_ladder.png": "a11d95d80382481763bba7e7288e2ca26204f116e4ec73848949481b954351e4",
+    "reports/s179/technical_figures_2026-11-13/fig6_h1_ladder.svg": "6c90373829e69ec17ed9ec1e63f262681f1a8c86370685557f82509305e6ba12",
+    "reports/s179/technical_figures_2026-11-13/fig7_gate_register.png": "94d1d5289ac0c2295b53ae2b7f1482038cd5d5326849ea1bf9ed1c69a3be80ff",
+    "reports/s179/technical_figures_2026-11-13/fig7_gate_register.svg": "e8e46c5e0856b16028e4dbe9953566f5ba25b2f726a7d4e8cae4f367a2a771c0"
+  },
+  "labels": [
+    "ENGINEERING_DIAGNOSTIC",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Authored architecture/state diagrams are labelled schematics, not data-derived experimental graphs.",
+    "No author report/deck edits or final submission approval.",
+    "Original frozen results and unsuccessful hypotheses remain unchanged."
+  ],
+  "matplotlib": "3.9.4",
+  "record": "TECHNICAL_FIGURE_EXPORT",
+  "scientific_gate_pass": false,
+  "sources_sha256": {
+    "reports/del5/d5_score_v1_D085/d5_h1_after_rung_blind_check_D085.json": "c5a843ca0175bdd5b797cae80c065edcba30601e60d205d916b5aac9097e1c5d",
+    "reports/del5/d5_score_v1_D085/d5_scoring_result.json": "6d8c6a7922fd151f5f6e9654dcb8e1fc569839a704f172990052bb056ab53422",
+    "reports/s178/analysis/evd_dataset_card_v1.json": "1e7af6e25a8ffc1a72316f75028619709a1fd797edc2bb7d500e4efe6fe7ebfd",
+    "reports/s179/MPU_current_evidence_preview_2026-11-12.json": "1381a7997e67231c21124b0c3722174af85d99162bbc714f6d949690004a9db8",
+    "reports/step23/router_demo_census_vitc_nonBBC_1000_S179b.json": "cd49acd8d083107b25b0dbebc041f170f111b7eef95665eb5202957b7eeff525"
+  },
+  "tool_sha256": "3e4f54aa15bc27e70968ad5e9b7a86db382c8ab69142d800b973c5c0c55469c8"
+}

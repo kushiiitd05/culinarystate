@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://culinarystate.local/registry/schemas/D5CLM.draft_v1.schema.json",
+  "title": "D5CLM draft v1: claim record of a D5 benchmark answer (DRAFT_PENDING_SIGNATURES)",
+  "$comment": "S178 AI draft (T8-C17-R1, T9-C06-R2), not human-approved. One record per claim extracted from one (question, rung) answer of a D5 run. It carries the eleven SSOT 238.253 ClaimLedger fields (claim_id, response_id, claim_text, claim_type, evidence_ids, model_id, model_version, confidence_class, citation_required, citation_refs, verification_status) plus the run-record fields the D5 prereg needs (run_id, qid, rung, prompt_id, scorer, verdict, relevance). It is NOT the ledgers/schemas/CLM.schema.json record, which is a research-claim ledger (statement, approval, gate_ids). claim_type here is the answer-claim kind used by evaluation/h3_independent.extract_claims (NUMERIC / DIRECTION / DIRECTION_UNCITED). confidence_class is the ordinal output-precision class of the decision layer, never a probability. is_evidence is always false: a claim made by a model is not evidence. claim_text of model answers to recipe questions is derived text; files of these records stay under data/derived/ (git-ignored) unless every question is licence-clean; only counts are committed. model_version is the Ollama digest of the run host (PENDING_PIN_ON_RUN_HOST until pinned) or NOT_APPLICABLE_NO_LLM for the B5T template. prompt_id must exist in registry/prompt_registry_v1.csv (a test checks the cross-reference). Not a ledger: no ledgers/data file is written and no id is minted from the ledger id registry.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type", "schema_version", "claim_id", "status", "is_evidence", "run_id", "qid", "rung", "response_id",
+    "claim_text", "claim_type", "evidence_ids", "citation_required", "citation_refs", "model_id", "model_version",
+    "prompt_id", "confidence_class", "scorer", "verdict", "relevance", "supporting_ids", "verification_status"
+  ],
+  "properties": {
+    "record_type": {"const": "D5CLM"},
+    "schema_version": {"const": "0.1.0-draft"},
+    "claim_id": {"type": "string", "pattern": "^D5CLM-DRAFT-[0-9a-f]{16}$"},
+    "status": {"const": "DRAFT_PENDING_SIGNATURES"},
+    "is_evidence": {"const": false},
+    "run_id": {"type": "string", "pattern": "^RUN-[A-Z0-9]+(-[A-Z0-9]+)*$", "$comment": "a run_id of registry/compute_runs_v1.csv"},
+    "qid": {"type": "string", "pattern": "^D5-[A-Z]+[0-9]?-[0-9]{3}$"},
+    "rung": {"enum": ["B0", "B1", "B2", "B4", "B5", "B5T", "B7"]},
+    "response_id": {"type": "string", "minLength": 1, "$comment": "qid + '|' + rung + '|' + run_id"},
+    "claim_text": {"type": "string", "minLength": 1, "maxLength": 400},
+    "claim_type": {"enum": ["NUMERIC", "DIRECTION", "DIRECTION_UNCITED"]},
+    "value": {"anyOf": [{"type": "number"}, {"type": "null"}], "$comment": "retention fraction after loss/retention semantics; null for a direction claim"},
+    "semantics": {"enum": ["RETENTION", "LOSS", "ASSUMED_RETENTION", "RETENTION_FACTOR", "DECREASE", "INCREASE", "NO_CHANGE"]},
+    "binding": {"enum": ["FOLLOWING", "PRECEDING", "SENTENCE", "NONE"]},
+    "evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EVD-[0-9]{6}$"}},
+    "citation_required": {"type": "boolean"},
+    "citation_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evd_id", "exists_in_ledger", "in_packet"],
+        "properties": {
+          "evd_id": {"type": "string", "pattern": "^EVD-[0-9]{6}$"},
+          "exists_in_ledger": {"type": "boolean"},
+          "in_packet": {"anyOf": [{"type": "boolean"}, {"type": "null"}]}
+        }
+      }
+    },
+    "model_id": {"type": "string", "minLength": 1, "$comment": "e.g. qwen2.5:7b-instruct, or B5T_TEMPLATE_NO_LLM"},
+    "model_version": {"type": "string", "pattern": "^(sha256:)?[0-9a-f]{12,64}$|^PENDING_PIN_ON_RUN_HOST$|^NOT_APPLICABLE_NO_LLM$"},
+    "prompt_id": {"type": "string", "pattern": "^(PR|CK)-[A-Z0-9]+(-[A-Z0-9]+)*$"},
+    "confidence_class": {"enum": ["QUANTITATIVE", "INTERVAL", "QUALITATIVE", "REPORT_CONFLICT", "ABSTAIN", "NOT_RECORDED"], "$comment": "ordinal output-precision class (decision layer), not a probability"},
+    "scorer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {"name": {"enum": ["h3_independent", "claims_c17"]}, "version": {"type": "string", "minLength": 1}}
+    },
+    "verdict": {"enum": ["SUPPORTED", "UNCITED", "NONEXISTENT_ID", "ROW_NO_VALUE", "VALUE_MISMATCH", "WRONG_CELL"]},
+    "relevance": {"enum": ["EXACT", "SIMILAR", "NOT_CHECKED", null]},
+    "supporting_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "pattern": "^EVD-[0-9]{6}$"}},
+    "verification_status": {"enum": ["UNVERIFIED_AI_SCORED", "HUMAN_AUDIT_SUPPORTED", "HUMAN_AUDIT_UNSUPPORTED", "HUMAN_AUDIT_NOT_SAMPLED"]},
+    "human_audit_sha256": {"anyOf": [{"type": "string", "pattern": "^[0-9a-f]{64}$"}, {"type": "null"}], "$comment": "sha256 of the merged blind-audit label file this verdict was checked against, when sampled"}
+  }
+}

@@ -11,15 +11,19 @@ from __future__ import annotations
 import re
 from collections import Counter
 
+from culinarystate.decision import safety as SF
 from culinarystate.generation.claims import row_value
 from culinarystate.retrieval.retriever import EvidencePacket
 
-VERSION = "verbalize@0.1"
+VERSION = "verbalize@0.2"  # S173: names other-process rows
 NO_NUMBERS = {"QUALITATIVE", "REPORT_CONFLICT", "ABSTAIN"}
 ABSTAIN_TEXT = {
     "NO_CORROBORATED_CAUSE": "No cause for this is stated by at least two independent sources in the corpus.",
     "NO_CORROBORATED_RECOVERY": "No recovery step for this is stated by at least two independent sources in the corpus.",
     "NO_EVIDENCE_FOR_ANY_TARGET": "There is not enough evidence about this food to answer.",
+    SF.REASON: SF.MESSAGE,
+    "TARGET_ABSENT": "The reference food-composition table lists no meaningful amount of this nutrient in this food, so "
+                     "a retention figure for it would mean nothing and I won't give one.",
     "OUT_OF_SCOPE": "That is outside what CulinaryState answers: cooking processes, their effects and recipe state.",
 }
 VERDICT = {"OVERLAPPING": "The ranges overlap, so the evidence does not show that one method keeps more.",
@@ -39,13 +43,22 @@ def _food(name: str) -> str:
     return s.lower() if s.isupper() else s
 
 
+def _other_processes(p: EvidencePacket, key: str) -> str:
+    """S173: name the processes of near rows that were not measured under the asked process."""
+    other = list(dict.fromkeys(h.row["process"].get("raw_name") for h in p.near
+                               if (h.compat.get("match") or {}).get("process") not in (None, "EXACT", "STEP")
+                               and h.row["process"].get("raw_name")))
+    return f"; measured for other processes ({', '.join(other[:3])}), not {key}" if other else ""
+
+
 def _label(p: EvidencePacket, key: str) -> str:
     if p.direct:
         return key
     foods = list(dict.fromkeys(_food(h.row["matrix"]["raw_name"]) for h in p.near if h.row["matrix"].get("raw_name")))
+    procs = _other_processes(p, key)
     if p.near and all((h.compat.get("match") or {}).get("matrix") == "UNKNOWN" for h in p.near):
-        return f"{key} (other foods, relation to yours unknown: {', '.join(foods[:3])})"
-    return f"{key} (similar foods only: {', '.join(foods[:3])})"
+        return f"{key} (other foods, relation to yours unknown: {', '.join(foods[:3])}{procs})"
+    return f"{key} (similar foods only: {', '.join(foods[:3])}{procs})"
 
 
 def _measured(r: dict) -> bool:                           # censored limits are bounds, not values

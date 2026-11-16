@@ -1,0 +1,23 @@
+{
+  "contains_ids": false,
+  "contains_text": false,
+  "counts_as_human_gate": false,
+  "label_counts": {
+    "CORRECT": 4,
+    "NOT_AN_ACTION": 8,
+    "NO_OBJECT": 2,
+    "UNCLEAR": 3,
+    "WRONG_OBJECT": 43
+  },
+  "labeller": "ksh (AI) under D-071",
+  "landing_rule": "n>=60: CORRECT>=54; else Wilson95 lower>=0.8",
+  "n": 60,
+  "precision": 0.0667,
+  "prereg": "reports/step17/d073_implicit_binding_precision_PREREG.md",
+  "private_sha256": "4900549d4c5adf1547c21066d481a0691be7c802c0a79a79312237115c6ed1fb",
+  "record": "D073_R1_PRECISION_SCORE",
+  "rule_id": "RA_IMPLICIT_CURRENT_V1",
+  "status": "AI_ENGINEERING_COUNTS_ONLY",
+  "verdict": "DO_NOT_LAND",
+  "wilson95_lower": 0.0262
+}

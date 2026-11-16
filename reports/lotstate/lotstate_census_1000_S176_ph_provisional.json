@@ -1,0 +1,455 @@
+{
+  "bbc_text_read": false,
+  "census_version": "lotstate-census-0.1.0-draft",
+  "code_sha256": [
+    {
+      "path": "src/culinarystate/lotstate/__init__.py",
+      "sha256": "020686b5fff2f9992e102c9bce3c3a0d34a648bb924a03f8323956947884dfaf"
+    },
+    {
+      "path": "src/culinarystate/lotstate/census.py",
+      "sha256": "f3f5cb1b2ed7260a8cb8d87a9caa3eacaf3e6ca5027865a8a44ac01d99f2017a"
+    },
+    {
+      "path": "src/culinarystate/lotstate/composition.py",
+      "sha256": "33d1fad5b83686372d446ccabdeef2c1afdac803dfaefedd81253cd86340684e"
+    },
+    {
+      "path": "src/culinarystate/lotstate/corpus.py",
+      "sha256": "8a55ec6c6c9942c9cc4c8479b5efcab7fb4f94146f3457aafa866c76895fc9b6"
+    },
+    {
+      "path": "src/culinarystate/lotstate/ing_match.py",
+      "sha256": "2f72b6502c9c469df60a92bcf471c7cf8773396e55c4f3ab7f688eb4684b2280"
+    },
+    {
+      "path": "src/culinarystate/lotstate/intervals.py",
+      "sha256": "223e0bf9b847cb6ccaca373cb7eebd944118ca64f20cdc276259770d7e37dc74"
+    },
+    {
+      "path": "src/culinarystate/lotstate/line_grams.py",
+      "sha256": "0954c37fc4e1a60091193ea9d47ccda550fa4ab7ab58c11f9ddfba153e921f4f"
+    },
+    {
+      "path": "src/culinarystate/lotstate/linker.py",
+      "sha256": "9c4e5608d34603966826c4b053c96a6c915bc6711b76ccab8ce9737f6b47751f"
+    },
+    {
+      "path": "src/culinarystate/lotstate/lots.py",
+      "sha256": "c4cfc769c6c69a980dfe794be1c5aeefe0ce09b5261bb123b25b2a3dbcbb01d9"
+    },
+    {
+      "path": "src/culinarystate/lotstate/mention_freq.py",
+      "sha256": "de98ab86d8d0d857fa517f03bca3ac43889dfb50da66faafd1ed64c4ec08b8bb"
+    },
+    {
+      "path": "src/culinarystate/lotstate/ph.py",
+      "sha256": "de7f40fa73f17fbf294a587b340b14dd930952f6fb5b36c2a785fcf241f1c7a4"
+    },
+    {
+      "path": "src/culinarystate/lotstate/sr_legacy.py",
+      "sha256": "3154aac7dcd949b09b12898e38ba304ae4355fb894fa88b655c5f2f1b34ae8a2"
+    },
+    {
+      "path": "src/culinarystate/lotstate/text.py",
+      "sha256": "2d029a16486465153b7de43e0333d1b715242da29e231ac66a5f69b6c1be175c"
+    },
+    {
+      "path": "src/culinarystate/lotstate/units_check.py",
+      "sha256": "0a9c75c0f58b09ee4cec0ff124c011013a5d3dc31a290281a953eda16a1fff51"
+    },
+    {
+      "path": "src/culinarystate/lotstate/values.py",
+      "sha256": "d26f8b94dd37db4e2103d3eaec35923ffdbe8686136ce16e92745c44086f58a1"
+    },
+    {
+      "path": "tools/lotstate_census.py",
+      "sha256": "b255adb35ad04058b2f79f92a4b5599bced4d747b8f6cf74726b830144a9331a"
+    },
+    {
+      "path": "registry/lotstate_aw_constants_draft_v1.csv",
+      "sha256": "ad509af8415e3b5c13205956aef3b5bc559c14bc49b6b7617d1cf1acf14eec28"
+    },
+    {
+      "path": "registry/ing_sr_legacy_match_draft_v1.csv",
+      "sha256": "d577a3d7436723f25314db8aff8717f7627c537b05e1037e7ee8fe24dc94b9cc"
+    }
+  ],
+  "contains_ids": false,
+  "contains_text": false,
+  "counts_as_human_gate": false,
+  "exceptions_by_class": {},
+  "families_requested": [
+    "FOODCOM",
+    "GUTENBERG_SEGMENT",
+    "WIKIBOOKS",
+    "TASTESET"
+  ],
+  "foodcom_recipes_q_len_ne_p_len": 683,
+  "graph_attempted": 997,
+  "graph_failed": 0,
+  "label": "REAL_BASE_SAMPLE_COUNTS_NOT_GOLD",
+  "labels": "MODEL_DERIVED|NON_CITABLE",
+  "layer": "REFERENCE_DATA_MODEL_DERIVED",
+  "lines": {
+    "band_floor": "MEDIUM",
+    "basis_by_family": {
+      "FOODCOM": {
+        "UNKNOWN": 6682
+      },
+      "TASTESET": {
+        "SR_PORTION": 1,
+        "STATED_MASS": 3,
+        "UNKNOWN": 13
+      },
+      "WIKIBOOKS": {
+        "SR_PORTION": 5,
+        "STATED_MASS": 1,
+        "UNKNOWN": 24
+      }
+    },
+    "basis_counts": {
+      "SR_PORTION": 6,
+      "STATED_MASS": 4,
+      "UNKNOWN": 6719
+    },
+    "by_family": {
+      "FOODCOM": 6682,
+      "TASTESET": 17,
+      "WIKIBOOKS": 30
+    },
+    "grams_any_band": 10,
+    "grams_high_band_only": 9,
+    "link_by_family": {
+      "FOODCOM": {
+        "LINKED": 6634,
+        "UNLINKED": 48
+      },
+      "TASTESET": {
+        "LINKED": 16,
+        "UNLINKED": 1
+      },
+      "WIKIBOOKS": {
+        "LINKED": 29,
+        "UNLINKED": 1
+      }
+    },
+    "linked_to_ing": 6679,
+    "pct_basis_all_lines": {
+      "SR_PORTION": 0.089,
+      "STATED_MASS": 0.059,
+      "UNKNOWN": 99.851
+    },
+    "pct_grams_high_band_only": 0.134,
+    "pct_linked": 99.257,
+    "pct_linked_band": {
+      "HIGH": 74.308,
+      "LOW": 4.072,
+      "MEDIUM": 20.482,
+      "NONE": 1.138
+    },
+    "pct_usable_by_basis": {
+      "SR_PORTION": 0.074,
+      "STATED_MASS": 0.059
+    },
+    "pct_usable_grams": 0.134,
+    "reason_by_family": {
+      "FOODCOM": {
+        "FOODCOM_QP_LENGTH_MISMATCH": 5237,
+        "FOODCOM_UNIT_STRIPPED": 1378,
+        "NO_QUANTITY": 63,
+        "NO_SR_PORTION": 4
+      },
+      "TASTESET": {
+        "LOCALE_AMBIGUOUS": 13,
+        "SR_COUNT_PORTION": 1,
+        "STATED_MASS": 3
+      },
+      "WIKIBOOKS": {
+        "LOCALE_AMBIGUOUS": 14,
+        "NO_QUANTITY": 4,
+        "NO_SR_MATCH": 1,
+        "NO_SR_PORTION": 1,
+        "QUALITATIVE": 2,
+        "SR_COUNT_PORTION": 5,
+        "STATED_MASS": 1,
+        "UNSUPPORTED_EXPRESSION": 2
+      }
+    },
+    "reason_counts": {
+      "FOODCOM_QP_LENGTH_MISMATCH": 5237,
+      "FOODCOM_UNIT_STRIPPED": 1378,
+      "LOCALE_AMBIGUOUS": 27,
+      "NO_QUANTITY": 67,
+      "NO_SR_MATCH": 1,
+      "NO_SR_PORTION": 5,
+      "QUALITATIVE": 2,
+      "SR_COUNT_PORTION": 6,
+      "STATED_MASS": 4,
+      "UNSUPPORTED_EXPRESSION": 2
+    },
+    "sr_top1_band_of_linked": {
+      "HIGH": 4963,
+      "LOW": 272,
+      "MEDIUM": 1368,
+      "NONE": 76
+    },
+    "total": 6729,
+    "unlinked": 50,
+    "usable_grams_at_band_floor": 9,
+    "usable_interval_lines_by_basis": {
+      "SR_PORTION": 4
+    }
+  },
+  "lots": {
+    "by_family": {
+      "FOODCOM": 20733,
+      "GUTENBERG_SEGMENT": 3433,
+      "TASTESET": 3,
+      "WIKIBOOKS": 111
+    },
+    "by_kind": {
+      "INGREDIENT_LOT": 8254,
+      "INTERMEDIATE": 12126,
+      "MIXTURE": 2875,
+      "RECIPE_POOL": 861,
+      "RESERVED_PORTION": 164
+    },
+    "composition_kind_by_family": {
+      "FOODCOM": {
+        "PRESENCE_ONLY": 9387,
+        "SINGLE_MEMBER_POINT": 11346
+      },
+      "GUTENBERG_SEGMENT": {
+        "PRESENCE_ONLY": 929,
+        "SINGLE_MEMBER_POINT": 2504
+      },
+      "TASTESET": {
+        "PRESENCE_ONLY": 3
+      },
+      "WIKIBOOKS": {
+        "PRESENCE_ONLY": 38,
+        "SINGLE_MEMBER_POINT": 73
+      }
+    },
+    "composition_kind_by_lot_kind": {
+      "INGREDIENT_LOT": {
+        "PRESENCE_ONLY": 409,
+        "SINGLE_MEMBER_POINT": 7845
+      },
+      "INTERMEDIATE": {
+        "PRESENCE_ONLY": 6147,
+        "SINGLE_MEMBER_POINT": 5979
+      },
+      "MIXTURE": {
+        "PRESENCE_ONLY": 2875
+      },
+      "RECIPE_POOL": {
+        "PRESENCE_ONLY": 852,
+        "SINGLE_MEMBER_POINT": 9
+      },
+      "RESERVED_PORTION": {
+        "PRESENCE_ONLY": 74,
+        "SINGLE_MEMBER_POINT": 90
+      }
+    },
+    "composition_kind_by_match_floor": {
+      "HIGH": {
+        "PRESENCE_ONLY": 1211,
+        "SINGLE_MEMBER_POINT": 8140
+      },
+      "LOW": {
+        "PRESENCE_ONLY": 1717
+      },
+      "MEDIUM": {
+        "PRESENCE_ONLY": 5928,
+        "SINGLE_MEMBER_POINT": 5783
+      },
+      "NONE": {
+        "PRESENCE_ONLY": 1501
+      }
+    },
+    "composition_kind_counts": {
+      "INTERVAL_EXACT_BOUNDS": 0,
+      "NO_MEMBERS": 0,
+      "PRESENCE_ONLY": 10357,
+      "SINGLE_MEMBER_POINT": 13923
+    },
+    "ingredient_lot_member_band": {
+      "HIGH": 4758,
+      "LOW": 234,
+      "MEDIUM": 3087,
+      "NONE": 175
+    },
+    "ingredient_lot_member_link": {
+      "LINKED": 8254
+    },
+    "leaf_composition_kind": {
+      "PRESENCE_ONLY": 1970,
+      "SINGLE_MEMBER_POINT": 2769
+    },
+    "leaf_lots": 4739,
+    "leaf_ph_contains_acid": {
+      "FALSE": 423,
+      "TRUE": 704,
+      "UNKNOWN": 3612
+    },
+    "lots_by_replay_status": {
+      "FAIL": 615,
+      "NONE": 861,
+      "PASS": 18563,
+      "UNKNOWN": 4241
+    },
+    "lots_with_all_member_masses_known_by_match_floor": {
+      "floor_HIGH": 9
+    },
+    "member_match_floor_counts": {
+      "HIGH": 9351,
+      "LOW": 1717,
+      "MEDIUM": 11711,
+      "NONE": 1501
+    },
+    "nutrient_value_types_in_point_or_interval_lots": {
+      "ash": {
+        "POINT": 13923
+      },
+      "carbohydrate": {
+        "POINT": 13923
+      },
+      "fat": {
+        "POINT": 13923
+      },
+      "fibre": {
+        "POINT": 13539,
+        "UNKNOWN": 384
+      },
+      "protein": {
+        "POINT": 13923
+      },
+      "sodium": {
+        "POINT": 13920,
+        "UNKNOWN": 3
+      },
+      "starch": {
+        "POINT": 2553,
+        "UNKNOWN": 11370
+      },
+      "sugars": {
+        "POINT": 12883,
+        "UNKNOWN": 1040
+      },
+      "vitamin_c": {
+        "POINT": 13673,
+        "UNKNOWN": 250
+      },
+      "water": {
+        "POINT": 13923
+      }
+    },
+    "pct_composition_kind": {
+      "INTERVAL_EXACT_BOUNDS": 0.0,
+      "NO_MEMBERS": 0.0,
+      "PRESENCE_ONLY": 42.657,
+      "SINGLE_MEMBER_POINT": 57.343
+    },
+    "pct_ingredient_lot_band": {
+      "HIGH": 57.645,
+      "LOW": 2.835,
+      "MEDIUM": 37.4,
+      "NONE": 2.12
+    },
+    "pct_interval_composition": 0.0,
+    "pct_ph_flag_true": {
+      "ALL_MEMBERS_ACID": 3.447,
+      "CONTAINS_ACID_MEMBER": 13.105,
+      "CONTAINS_ALKALINE_MEMBER": 0.733
+    },
+    "pct_ph_flag_unknown": {
+      "ALL_MEMBERS_ACID": 64.37,
+      "CONTAINS_ACID_MEMBER": 77.867,
+      "CONTAINS_ALKALINE_MEMBER": 85.923
+    },
+    "pct_presence_only": 42.657,
+    "pct_single_member_point": 57.343,
+    "ph_flags": {
+      "ALL_MEMBERS_ACID": {
+        "FALSE": 7814,
+        "TRUE": 837,
+        "UNKNOWN": 15629
+      },
+      "CONTAINS_ACID_MEMBER": {
+        "FALSE": 2192,
+        "TRUE": 3182,
+        "UNKNOWN": 18906
+      },
+      "CONTAINS_ALKALINE_MEMBER": {
+        "FALSE": 3240,
+        "TRUE": 178,
+        "UNKNOWN": 20862
+      }
+    },
+    "ph_mask_counts": {
+      "0": 14381,
+      "1": 9899
+    },
+    "solute_load_types": {
+      "salt_g_per_g_water": {
+        "POINT": 13391,
+        "UNKNOWN": 10889
+      },
+      "sugar_g_per_g_water": {
+        "POINT": 12357,
+        "UNKNOWN": 11923
+      }
+    },
+    "solute_unknown_reasons": {
+      "salt_g_per_g_water": {
+        "MEMBER_MASS_UNKNOWN": 7139,
+        "MEMBER_NOT_MATCHED_OR_BELOW_BAND": 3218,
+        "NO_WATER_OR_NO_MASS": 529,
+        "SR_NUTRIENT_MISSING_FOR_A_MEMBER": 3
+      },
+      "sugar_g_per_g_water": {
+        "MEMBER_MASS_UNKNOWN": 7139,
+        "MEMBER_NOT_MATCHED_OR_BELOW_BAND": 3218,
+        "NO_WATER_OR_NO_MASS": 526,
+        "SR_NUTRIENT_MISSING_FOR_A_MEMBER": 1040
+      }
+    },
+    "total": 24280,
+    "water_activity_types": {
+      "UNKNOWN": 24280
+    }
+  },
+  "match_draft_sha256": "d577a3d7436723f25314db8aff8717f7627c537b05e1037e7ee8fe24dc94b9cc",
+  "min_band": "MEDIUM",
+  "ph_registry": "PRESENT_PROVISIONAL",
+  "ph_registry_rows": 541,
+  "ph_registry_sha256": "6c591cfdd0dd5dc2ee1300eea0a50582d173f8c39c0345dd62660d6f51ebc0d8",
+  "protected_ledgers_unchanged": true,
+  "recipes_by_family": {
+    "FOODCOM": 859,
+    "GUTENBERG_SEGMENT": 134,
+    "TASTESET": 3,
+    "WIKIBOOKS": 4
+  },
+  "recipes_sampled": 1000,
+  "recipes_with_steps": 997,
+  "record": "LOTSTATE_CENSUS_S176",
+  "records_written": false,
+  "replay_status": {
+    "FAIL": 28,
+    "NONE": 3,
+    "PASS": 850,
+    "UNKNOWN": 119
+  },
+  "sample_rule": "SHA256_SEED_CONCAT_RECIPE_ID_ASC",
+  "sample_size_requested": 1000,
+  "seconds": 54.7,
+  "seed_sha256": "1037f2edb4912104fc759949aacecbc2133a73a1a2b17bde5210cdad7ee901dc",
+  "sr_food_csv_sha256": "de8b0390058db4f102368c9fbdfde144790b480ff4cb0507c0e060ef99805dee",
+  "started": "2026-11-08T14:14:50Z",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "water_activity_switch": "OFF",
+  "workers": 24
+}

@@ -1,0 +1,130 @@
+{
+ "band_rule": {
+  "A_up_to_pct_of_nonexact_mentions": 80.0,
+  "B_up_to_pct": 95.0,
+  "C": "tail, default confidence LOW_CONFIDENCE_UNREVIEWED"
+ },
+ "contains_ids": false,
+ "contains_text": false,
+ "counts_as_human_gate": false,
+ "families": {
+  "FOODCOM": {
+   "distinct_phrases": 7198,
+   "mentions": 4129433,
+   "mentions_by_band": {
+    "A": 588282,
+    "B": 110254,
+    "C": 36732
+   },
+   "mentions_in_phrases_seen_once": 1516,
+   "miss_phrases": 634,
+   "nonexact_mentions": 735268,
+   "nonexact_phrases": 6086,
+   "partial_phrases": 5452,
+   "partial_polysemous_more_than_one_candidate_id": 0,
+   "partial_with_covered_tokens_equal_tokens_minus_one": 3122,
+   "partial_with_one_candidate_id": 5452,
+   "pct_of_all_mentions_nonexact": 17.806,
+   "phrases_for_pct_of_nonexact_mentions": {
+    "P50": 146,
+    "P80": 633,
+    "P90": 1144,
+    "P95": 1723,
+    "P99": 3120
+   },
+   "rows_by_band": {
+    "A": 633,
+    "B": 1090,
+    "C": 4363
+   }
+  },
+  "TASTESET": {
+   "distinct_phrases": 1665,
+   "mentions": 3779,
+   "mentions_by_band": {
+    "A": 1256,
+    "B": 235,
+    "C": 78
+   },
+   "mentions_in_phrases_seen_once": 975,
+   "miss_phrases": 111,
+   "nonexact_mentions": 1569,
+   "nonexact_phrases": 1165,
+   "partial_phrases": 1054,
+   "partial_polysemous_more_than_one_candidate_id": 0,
+   "partial_with_covered_tokens_equal_tokens_minus_one": 606,
+   "partial_with_one_candidate_id": 1054,
+   "pct_of_all_mentions_nonexact": 41.519,
+   "phrases_for_pct_of_nonexact_mentions": {
+    "P50": 381,
+    "P80": 852,
+    "P90": 1009,
+    "P95": 1087,
+    "P99": 1150
+   },
+   "rows_by_band": {
+    "A": 852,
+    "B": 235,
+    "C": 78
+   }
+  },
+  "WIKIBOOKS": {
+   "distinct_phrases": 8255,
+   "mentions": 31966,
+   "mentions_by_band": {
+    "A": 9280,
+    "B": 1740,
+    "C": 579
+   },
+   "mentions_in_phrases_seen_once": 5798,
+   "miss_phrases": 645,
+   "nonexact_mentions": 11599,
+   "nonexact_phrases": 7017,
+   "partial_phrases": 6372,
+   "partial_polysemous_more_than_one_candidate_id": 1,
+   "partial_with_covered_tokens_equal_tokens_minus_one": 2851,
+   "partial_with_one_candidate_id": 6371,
+   "pct_of_all_mentions_nonexact": 36.285,
+   "phrases_for_pct_of_nonexact_mentions": {
+    "P50": 1219,
+    "P80": 4698,
+    "P90": 5858,
+    "P95": 6438,
+    "P99": 6902
+   },
+   "rows_by_band": {
+    "A": 4698,
+    "B": 1740,
+    "C": 579
+   }
+  }
+ },
+ "files": {
+  "FOODCOM": {
+   "git_ignored": true,
+   "path": "data/derived/s178_corpus/ing_review_queue_FOODCOM_v1.csv",
+   "rows": 6086,
+   "sha256": "24b6c4626284bf1c2ecc8451da23da2e91ff841de6c445ca18dfaa8cdc2eaa09"
+  },
+  "TASTESET": {
+   "git_ignored": true,
+   "path": "data/derived/s178_corpus/ing_review_queue_TASTESET_v1.csv",
+   "rows": 1165,
+   "sha256": "4e05aa91348d6c11366425745ad8fdcfdfe167b325803e38e4597549c9ba534c"
+  },
+  "WIKIBOOKS": {
+   "git_ignored": true,
+   "path": "data/derived/s178_corpus/ing_review_queue_WIKIBOOKS_v1.csv",
+   "rows": 7017,
+   "sha256": "0033054252ec78f71f622d0d582d2f3ea8f6e3afe3b8ff81f0dc59233acf8d82"
+  }
+ },
+ "human_part": "OPEN: verified / rejected labels with reviewer ids (Kush + Parv, 6-10 h UNVERIFIED estimate); the CSV columns reviewer_id, verdict, note are empty",
+ "item": "T3-C03-R3 (agent part)",
+ "lexicon_fingerprint": "9678937f6a9a0ff6f9ce4acbaaa20d85cb5da6138e956f4742189078b94903c3",
+ "mention_rule": "MENTION_RULE_V1",
+ "record": "ING_REVIEW_QUEUE_SUMMARY_S178",
+ "sample_limit_recipes": null,
+ "status": "AI_DRAFTED_PROPOSED_COUNTS_ONLY",
+ "tool_version": "s178-corpus-ing-review-queue-0.1.0-draft"
+}

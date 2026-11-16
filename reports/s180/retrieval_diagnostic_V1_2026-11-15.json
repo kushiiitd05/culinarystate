@@ -1,0 +1,690 @@
+{
+ "build_seconds": 22.1,
+ "chance_jaccard_at_k": 0.001,
+ "corpus_states": 5181,
+ "family_distribution": {
+  "COMBINATION": 1365,
+  "COOLING": 137,
+  "DRY_HEAT": 149,
+  "FAT_HEAT": 138,
+  "HEAT_GENERAL": 284,
+  "MECHANICAL_CUT": 194,
+  "MECHANICAL_MIX": 1119,
+  "SEPARATION": 77,
+  "SERVING": 238,
+  "SHAPING": 282,
+  "TRANSFER": 784,
+  "WET_HEAT": 241
+ },
+ "k": 10,
+ "labels": [
+  "DIAGNOSTIC_ONLY",
+  "NO_RELEVANCE_GOLD_SO_OVERLAP_IS_NOT_PRECISION",
+  "WIKIBOOKS_CC_BY_PUBLIC_TEXT_ONLY",
+  "STATE_VECTOR_V0_WEIGHTS_FIXED_NOT_VALIDATED"
+ ],
+ "mean_hits_shared_by_all_three": 0.425,
+ "mean_jaccard_overlap_at_k": {
+  "PROCESS|COMPOSITION": 0.0502,
+  "TEXT|COMPOSITION": 0.0966,
+  "TEXT|PROCESS": 0.1164
+ },
+ "overlap_lift_over_chance": {
+  "PROCESS|COMPOSITION": 50.2,
+  "TEXT|COMPOSITION": 96.6,
+  "TEXT|PROCESS": 116.4
+ },
+ "per_query": [
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "455660:2:ING-000023",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "455660:3:ING-000023",
+    "PROCESS": "185950:15:ING-001761",
+    "TEXT": "155858:2:ING-000004"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.3333
+   },
+   "query_id": "199851:7:ING-000182",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "453109:8:ING-001206",
+    "PROCESS": "199851:7:ING-000784",
+    "TEXT": "110262:1:ING-000045"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "198601:5:ING-000324",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "198601:5:ING-000019",
+    "PROCESS": "155858:24:ING-000262",
+    "TEXT": "155858:3:ING-000004"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.1765,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "461946:3:ING-000020",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "461946:3:ING-000002",
+    "PROCESS": "168682:7:ING-000004",
+    "TEXT": "461946:3:ING-000002"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "168682:7:ING-000004",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "168682:6:ING-000004",
+    "PROCESS": "461946:3:ING-000020",
+    "TEXT": "445957:15:ING-000005"
+   }
+  },
+  {
+   "family": "HEAT_GENERAL",
+   "is_heat": true,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.1111,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "445957:19:ING-001418",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "445957:19:ING-000004",
+    "PROCESS": "290907:32:ING-000017",
+    "TEXT": "201209:4:ING-000758"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.1765
+   },
+   "query_id": "30959:4:ING-000943",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "30959:2:ING-000059",
+    "PROCESS": "404207:27:ING-000040",
+    "TEXT": "38548:4:ING-000876"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.1765,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "155858:24:ING-000262",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "155858:24:ING-000238",
+    "PROCESS": "198601:5:ING-000324",
+    "TEXT": "155858:3:ING-000004"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "461946:5:ING-001975",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "453104:7:ING-000156",
+    "PROCESS": "198601:5:ING-000324",
+    "TEXT": "155858:3:ING-000004"
+   }
+  },
+  {
+   "family": "SHAPING",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.25,
+    "TEXT|PROCESS": 0.0714
+   },
+   "query_id": "464494:12:ING-000374",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "464494:9:ING-000374",
+    "PROCESS": "4308:1:ING-001878",
+    "TEXT": "464494:12:ING-000002"
+   }
+  },
+  {
+   "family": "COOLING",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0526,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.25
+   },
+   "query_id": "169235:6:ING-000045",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "4308:7:ING-001878",
+    "PROCESS": "169235:6:ING-000086",
+    "TEXT": "104683:4:ING-000187"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.3333,
+    "TEXT|PROCESS": 0.0667
+   },
+   "query_id": "128910:10:ING-000223",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "128910:9:ING-000223",
+    "PROCESS": "128910:10:ING-000004",
+    "TEXT": "128910:10:ING-000004"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "456291:4:ING-000140",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "456291:6:ING-000140",
+    "PROCESS": "126575:16:ING-001418",
+    "TEXT": "464494:2:ING-000002"
+   }
+  },
+  {
+   "family": "TRANSFER",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "404207:22:ING-000177",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "404207:22:ING-000002",
+    "PROCESS": "456920:21:ING-000144",
+    "TEXT": "446735:6:ING-000157"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0667
+   },
+   "query_id": "128910:10:ING-000004",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "128910:9:ING-000004",
+    "PROCESS": "128910:10:ING-000223",
+    "TEXT": "128910:10:ING-000045"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0526,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "126575:16:ING-001418",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "404207:20:ING-000002",
+    "PROCESS": "456291:4:ING-000140",
+    "TEXT": "464494:2:ING-000002"
+   }
+  },
+  {
+   "family": "WET_HEAT",
+   "is_heat": true,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0526,
+    "TEXT|COMPOSITION": 0.25,
+    "TEXT|PROCESS": 0.1765
+   },
+   "query_id": "155858:6:ING-000045",
+   "shared_by_all_three": 1,
+   "top1": {
+    "COMPOSITION": "155858:6:ING-000450",
+    "PROCESS": "28745:11:ING-000050",
+    "TEXT": "155858:6:ING-000004"
+   }
+  },
+  {
+   "family": "SHAPING",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.1111
+   },
+   "query_id": "152959:10:ING-001138",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "200933:3:ING-000045",
+    "PROCESS": "96974:3:ING-001119",
+    "TEXT": "104683:22:ING-000016"
+   }
+  },
+  {
+   "family": "SERVING",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "5477:30:ING-000112",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "104683:29:ING-001091",
+    "PROCESS": "404207:30:ING-000005",
+    "TEXT": "155858:27:ING-000004"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.2
+   },
+   "query_id": "185950:13:ING-001761",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "185950:9:ING-000005",
+    "PROCESS": "77813:20:ING-000004",
+    "TEXT": "185950:13:ING-000005"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.25,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "7656:13:ING-000041",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "7656:14:ING-000062",
+    "PROCESS": "404207:24:ING-000173",
+    "TEXT": "16682:7:ING-000010"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.25,
+    "TEXT|PROCESS": 0.1765
+   },
+   "query_id": "155858:17:ING-000045",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "155858:16:ING-000045",
+    "PROCESS": "424982:15:ING-000130",
+    "TEXT": "155858:17:ING-000004"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "38548:12:ING-000876",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "453095:7:ING-001206",
+    "PROCESS": "198601:5:ING-000324",
+    "TEXT": "155858:3:ING-000004"
+   }
+  },
+  {
+   "family": "SERVING",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0526,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "404207:30:ING-000005",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "404207:30:ING-000153",
+    "PROCESS": "5477:30:ING-000112",
+    "TEXT": "155858:27:ING-000004"
+   }
+  },
+  {
+   "family": "HEAT_GENERAL",
+   "is_heat": true,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.1765,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "290907:32:ING-000017",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "290907:32:ING-000022",
+    "PROCESS": "445957:19:ING-001418",
+    "TEXT": "461946:7:ING-000984"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.25,
+    "TEXT|COMPOSITION": 0.25,
+    "TEXT|PROCESS": 0.6667
+   },
+   "query_id": "413703:11:ING-000256",
+   "shared_by_all_three": 4,
+   "top1": {
+    "COMPOSITION": "413703:11:ING-000104",
+    "PROCESS": "169235:2:ING-000086",
+    "TEXT": "413703:11:ING-000004"
+   }
+  },
+  {
+   "family": "TRANSFER",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.1111,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "30959:5:ING-000005",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "30959:5:ING-000075",
+    "PROCESS": "126753:6:ING-001323",
+    "TEXT": "155858:15:ING-000004"
+   }
+  },
+  {
+   "family": "WET_HEAT",
+   "is_heat": true,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0526,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "7656:17:ING-000218",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "7656:17:ING-000348",
+    "PROCESS": "453095:10:ING-000395",
+    "TEXT": "155858:22:ING-000004"
+   }
+  },
+  {
+   "family": "SHAPING",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.1429,
+    "TEXT|PROCESS": 0.2308
+   },
+   "query_id": "7441:2:ING-000278",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "7441:3:ING-000278",
+    "PROCESS": "7441:2:ING-000030",
+    "TEXT": "461946:11:ING-000984"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.1111
+   },
+   "query_id": "446218:5:ING-002023",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "446218:7:ING-002023",
+    "PROCESS": "461946:3:ING-000020",
+    "TEXT": "461946:3:ING-000002"
+   }
+  },
+  {
+   "family": "COMBINATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "198601:4:ING-000695",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "17004:4:ING-000324",
+    "PROCESS": "456291:4:ING-000140",
+    "TEXT": "464494:2:ING-000002"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.1111,
+    "TEXT|COMPOSITION": 0.1111,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "457283:7:ING-000725",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "457283:7:ING-000130",
+    "PROCESS": "457283:7:ING-000130",
+    "TEXT": "461946:10:ING-000984"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "412224:6:ING-001051",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "412224:9:ING-000185",
+    "PROCESS": "198601:5:ING-000324",
+    "TEXT": "155858:3:ING-000004"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "185950:15:ING-001761",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "453095:8:ING-000395",
+    "PROCESS": "455660:2:ING-000023",
+    "TEXT": "155858:2:ING-000004"
+   }
+  },
+  {
+   "family": "HEAT_GENERAL",
+   "is_heat": true,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.1765,
+    "TEXT|COMPOSITION": 0.3333,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "110473:15:ING-000023",
+   "shared_by_all_three": 1,
+   "top1": {
+    "COMPOSITION": "110473:15:ING-000182",
+    "PROCESS": "455660:8:ING-000020",
+    "TEXT": "101882:6:ING-001851"
+   }
+  },
+  {
+   "family": "FERMENT_LEAVEN",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.6667,
+    "TEXT|COMPOSITION": 0.5385,
+    "TEXT|PROCESS": 0.5385
+   },
+   "query_id": "457063:7:ING-000002",
+   "shared_by_all_three": 5,
+   "top1": {
+    "COMPOSITION": "457063:7:ING-000182",
+    "PROCESS": "457063:7:ING-000182",
+    "TEXT": "457063:7:ING-000023"
+   }
+  },
+  {
+   "family": "DRY_HEAT",
+   "is_heat": true,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0526,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "12554:30:ING-000998",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "462082:18:ING-000032",
+    "PROCESS": "422313:6:ING-000112",
+    "TEXT": "155858:18:ING-000004"
+   }
+  },
+  {
+   "family": "SEPARATION",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.4286,
+    "TEXT|COMPOSITION": 0.4615,
+    "TEXT|PROCESS": 0.9
+   },
+   "query_id": "17004:7:ING-000017",
+   "shared_by_all_three": 6,
+   "top1": {
+    "COMPOSITION": "17004:7:ING-000057",
+    "PROCESS": "470200:3:ING-000326",
+    "TEXT": "445304:10:ING-000353"
+   }
+  },
+  {
+   "family": "TRANSFER",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0
+   },
+   "query_id": "456920:21:ING-000144",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "456920:21:ING-000119",
+    "PROCESS": "404207:22:ING-000177",
+    "TEXT": "155858:13:ING-000004"
+   }
+  },
+  {
+   "family": "MECHANICAL_MIX",
+   "is_heat": false,
+   "overlap": {
+    "PROCESS|COMPOSITION": 0.0,
+    "TEXT|COMPOSITION": 0.0,
+    "TEXT|PROCESS": 0.0526
+   },
+   "query_id": "28745:41:ING-000139",
+   "shared_by_all_three": 0,
+   "top1": {
+    "COMPOSITION": "28745:41:ING-000002",
+    "PROCESS": "198601:5:ING-000324",
+    "TEXT": "155858:3:ING-000004"
+   }
+  }
+ ],
+ "queries": 40,
+ "queries_with_no_shared_hit_in_all_three": 35,
+ "recipes_scanned": 150,
+ "seed": "s180-retrieval-diagnostic-2026-11-15",
+ "state_vector_dims": 60,
+ "state_vector_version": "V1",
+ "top1_agreement": {
+  "PROCESS|COMPOSITION": 0.05,
+  "TEXT|COMPOSITION": 0.025,
+  "TEXT|PROCESS": 0.025
+ }
+}

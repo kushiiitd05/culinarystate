@@ -1,0 +1,506 @@
+{
+  "baseline_check": "PASS_BEFORE_AND_AFTER",
+  "category_blocked_items": {
+    "ING__000062": 33891,
+    "ING__000081": 3162,
+    "ING__000082": 5331,
+    "ING__000086": 155781,
+    "ING__000107": 17970,
+    "ING__000114": 467,
+    "ING__000132": 14789,
+    "ING__000135": 103403,
+    "ING__000142": 9026,
+    "ING__000143": 19383,
+    "ING__000196": 3609,
+    "ING__000202": 128,
+    "ING__000225": 129,
+    "ING__000227": 15057,
+    "ING__000442": 795,
+    "ING__000454": 2682
+  },
+  "census_version": "router-demo-census-0.4.1-draft",
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/extraction/__init__.py",
+        "sha256": "b57b6cc94e8e6810f01f96a9c5671ad864fe0fb067d18930571b9ec694e97bf0"
+      },
+      {
+        "path": "src/culinarystate/extraction/auditor.py",
+        "sha256": "709b4351379e848229279218e7343c3c5fb45d16af8cd81b81892778e6341e21"
+      },
+      {
+        "path": "src/culinarystate/extraction/d073_current_sample.py",
+        "sha256": "c472911050fde29509bbba2b4bf24bb62e962b8f845681a3b23525e663e84a5b"
+      },
+      {
+        "path": "src/culinarystate/extraction/interfaces.py",
+        "sha256": "543dfcb5a36f67abea810ebcfd94427759c4ebdd4bf11736e950b48de240407d"
+      },
+      {
+        "path": "src/culinarystate/extraction/invariants.py",
+        "sha256": "b2e45c3dfd61da10982ade1a78e5458fa0a161c2cb1be454a923f56768da1b8b"
+      },
+      {
+        "path": "src/culinarystate/extraction/j4_inverted_sample.py",
+        "sha256": "84628577169426e01e955405e4ca18a3a43830f93f2bd64017ffefed36e55657"
+      },
+      {
+        "path": "src/culinarystate/extraction/quantity_stages.py",
+        "sha256": "5d3e79f9ba6e50709384ccde8d052dd7a5d39f6be0e6dd4e07994ccada77f899"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a.py",
+        "sha256": "b274feed81bf18f5ef9332761cde0d6231b2e84480eb2a61ebccb5816e19d630"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_binding.py",
+        "sha256": "957471c26dd726468bba7967c3ffc7027390c56777ea90b5abcfb7f2f396ddbf"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_lexicon.py",
+        "sha256": "8973f0eb2d78bd64c6ba4723120a540c3a016707b4178ba6b95e041f14bf0430"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_measure.py",
+        "sha256": "d4c42e85248f626c6a2ea9fad9062f18952785456fbb63d981dede9b64add56b"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_rules.py",
+        "sha256": "12cf0ce00d9e469ef4a77293e86539c5ac8610b41ecc2b499f955ca7f9f93752"
+      },
+      {
+        "path": "src/culinarystate/extraction/validators.py",
+        "sha256": "4ccb60e43b06afab22654baf82d8e1e1ec679e1356c2a63cdeccd8353d6091d9"
+      },
+      {
+        "path": "tools/step17b_rung_a_dryrun.py",
+        "sha256": "9290d52369f9302f92da469bd337c974f29287f3af057eb1cae1fb7a8445b158"
+      },
+      {
+        "path": "src/culinarystate/mechanism/router_demo.py",
+        "sha256": "59c81f5eef5cb2801335fd3aece8844332aa2e9b799aa10904d97656e3778623"
+      },
+      {
+        "path": "src/culinarystate/mechanism/router_census.py",
+        "sha256": "bd6cf8971530adf323b5eae74063a510f23f35b14c4df485b83e75c015d52ade"
+      },
+      {
+        "path": "src/culinarystate/mechanism/applicability.py",
+        "sha256": "09fa8aa220bf6038aadf90c48fb0dc20d7075611e1d70d107bbe69d76063f589"
+      },
+      {
+        "path": "src/culinarystate/mechanism/evidence_gates.py",
+        "sha256": "2dced594caec55b60fc4bf5618439b600b00c5ff2a953a613245fc85026653c6"
+      },
+      {
+        "path": "tools/router_demo_census.py",
+        "sha256": "223566358ee8272fb787598e8592fec9c6be108337a1f44131a0b26db70b0eef"
+      },
+      {
+        "path": "src/culinarystate/mechanism/sr_identity.py",
+        "sha256": "823e73634e039a57abef428bc6e9f935ee050215ae139417a543f46d4564cd04"
+      },
+      {
+        "path": "src/culinarystate/mechanism/process_signatures.py",
+        "sha256": "8567f63f0674d5fac4984a447dded89927443475e484e25d9293674c5ca12844"
+      },
+      {
+        "path": "tools/build_target_content_table.py",
+        "sha256": "4b2fdbf6437b2973927c87172405c8a30d0b38d86521d57cdbcd4b5ec7708e22"
+      }
+    ],
+    "git_commit": "bf2e6354a0fb3ab7df3911c69c27f78ead730eb4",
+    "git_dirty": false,
+    "src_tree_sha256": "0e30463e95e179698d545954922a51bc46195a2afc2122cde1543e6aae1bd9d7"
+  },
+  "code_unchanged_during_run": true,
+  "conditions_consumed": false,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts_as_human_gate": false,
+  "demo_version": "router-demo-0.4.0-draft",
+  "direct_by_process": {
+    "PROC__000001": 4910,
+    "PROC__000002": 1457,
+    "PROC__000003": 1867,
+    "PROC__000009": 2040,
+    "PROC__000010": 3,
+    "PROC__000011": 7,
+    "PROC__000013": 1,
+    "PROC__000014": 461,
+    "PROC__000016": 5006,
+    "PROC__000019": 5646,
+    "PROC__000020": 543,
+    "PROC__000021": 243,
+    "PROC__000022": 1,
+    "PROC__000024": 48,
+    "PROC__000025": 76,
+    "PROC__000031": 3173,
+    "PROC__000032": 3545,
+    "PROC__000033": 93,
+    "PROC__000040": 68,
+    "PROC__000071": 777,
+    "PROC__000132": 93,
+    "PROC__000133": 162
+  },
+  "direct_ungated_by_process": {
+    "PROC__000001": 131890,
+    "PROC__000002": 7090,
+    "PROC__000003": 11941,
+    "PROC__000009": 12247,
+    "PROC__000010": 15,
+    "PROC__000011": 16,
+    "PROC__000013": 8,
+    "PROC__000014": 1179,
+    "PROC__000016": 13666,
+    "PROC__000019": 22178,
+    "PROC__000020": 18002,
+    "PROC__000021": 800,
+    "PROC__000022": 23,
+    "PROC__000024": 169,
+    "PROC__000025": 320,
+    "PROC__000031": 20301,
+    "PROC__000032": 14627,
+    "PROC__000033": 3427,
+    "PROC__000040": 570,
+    "PROC__000071": 7795,
+    "PROC__000132": 547,
+    "PROC__000133": 1122
+  },
+  "direct_ungated_by_role": {
+    "ATTRIBUTIVE_STATE__UNKNOWN": 13310,
+    "PROCESS_STEP__DIRECT": 30220,
+    "PROCESS_STEP__UNKNOWN": 224240,
+    "SERVING_SUGGESTION__UNKNOWN": 163
+  },
+  "direct_ungated_cross": {
+    "PRESENT__MERGED__UNKNOWN": 159886,
+    "PRESENT__SINGLE_MEMBER__DIRECT": 9598,
+    "PRESENT__SINGLE_MEMBER__UNKNOWN": 12280,
+    "UNKNOWN__MERGED__UNKNOWN": 54218,
+    "UNKNOWN__SINGLE_MEMBER__DIRECT": 20622,
+    "UNKNOWN__SINGLE_MEMBER__UNKNOWN": 11329
+  },
+  "engine_mode": "23a",
+  "engine_version": "step23a-engine-0.1.0-draft",
+  "event_role": {
+    "ATTRIBUTIVE_STATE": 642354,
+    "PROCESS_STEP": 34577551,
+    "SERVING_SUGGESTION": 36696
+  },
+  "events": 9208811,
+  "evidence_coverage": {
+    "evd_ingredients_for_target": 25,
+    "evd_pairs_for_target": 115,
+    "evd_pairs_seen_in_sample": 102,
+    "sample_distinct_ingredients": 1758,
+    "sample_distinct_pairs": 125172,
+    "sample_ingredients_with_target_evidence": 25
+  },
+  "exceptions_by_class": {},
+  "families_requested": [
+    "WIKIBOOKS",
+    "GUTENBERG_SEGMENT",
+    "FOODCOM",
+    "TASTESET"
+  ],
+  "family_status": {
+    "FOODCOM": "READ",
+    "GUTENBERG_SEGMENT": "READ",
+    "TASTESET": "READ",
+    "WIKIBOOKS": "READ"
+  },
+  "gate_cross": {
+    "ABSENT__MERGED": 120,
+    "ABSENT__SINGLE_MEMBER": 78742,
+    "PRESENT__MERGED": 21144738,
+    "PRESENT__SINGLE_MEMBER": 1994986,
+    "UNKNOWN__MERGED": 6146374,
+    "UNKNOWN__NO_LOT": 1012786,
+    "UNKNOWN__SINGLE_MEMBER": 4878855
+  },
+  "gates": {
+    "absent_rule": "RANK1_HIGH_AND_ALL_PLAUSIBLE_ANY_BAND_KNOWN_BELOW_FLOOR_AND_ANALYTICAL_AND_CATEGORY_CONFIRMED",
+    "analytical_derivation_codes": [
+      "A",
+      "AI",
+      "AR"
+    ],
+    "analytical_min_data_points": 1,
+    "basis_status": "AI_DRAFTED_UNSIGNED_STRICT",
+    "category_crosswalk_status": "AI_DRAFTED_UNSIGNED",
+    "content_source": "table",
+    "content_table_sha256": "a164a6cab44843e7411c869acf183bf30c5bfc3b9d4fe237912a544f5fd74f12",
+    "context_gate": true,
+    "enabled": true,
+    "event_role_rules_status": "AI_DRAFTED_UNSIGNED",
+    "floor_file_sha256": "897f6fda77de1c1d348d91ac2e8eb99bbe97e0fbef95a26a323cb95ac9723b73",
+    "floors": {
+      "SVAR__000009": {
+        "identity_score_margin": 0.15,
+        "status": "PROPOSED_PILOT",
+        "unit": "mg",
+        "value": 1.0
+      },
+      "SVAR__000215": {
+        "identity_score_margin": 0.15,
+        "status": "PROPOSED_PILOT",
+        "unit": "mg",
+        "value": 1.0
+      }
+    },
+    "identity_kinds": {
+      "APPROX": 109,
+      "DEFAULT_FORM": 62,
+      "DIRECT": 149,
+      "LEGACY_FALLBACK": 498,
+      "UK_US": 58
+    },
+    "identity_registry_sha256": "56a2d4d246602cb4aebe88070d888d351b9e352d85319f08de7c694e587e5d0d",
+    "identity_source": "ing_sr_defaults_v1|legacy_match_alternates",
+    "match_registry_sha256": "d577a3d7436723f25314db8aff8717f7627c537b05e1037e7ee8fe24dc94b9cc",
+    "presence_gate": true,
+    "presupposed_prior_heat_exemption": "OFF_PENDING_HUMAN_DECISION_SCI_B_Q1",
+    "presupposed_prior_heat_exemption_applied": false,
+    "prior_process_kinds": [
+      "HEAT",
+      "LEACH",
+      "PRESERVED",
+      "PROCESSED",
+      "UNRESOLVED"
+    ],
+    "sr_source": "USDA_SR_LEGACY_2018_04",
+    "state_words_sha256": "ebb353fe09d2040a2ed7f6a178717c2ab397eee3fefab2ec501e7a20d94f0c91",
+    "state_words_status": "AI_DRAFTED_UNSIGNED",
+    "status": "AI_DRAFTED_PROPOSED_PILOT_UNSIGNED",
+    "version": "evidence-gates-0.3.0-draft"
+  },
+  "ingredient_lines": {
+    "ingredient_line_ing_states": 93272,
+    "ingredient_lines_seen": 4161456,
+    "ingredient_lines_with_state_cue": 130491
+  },
+  "items": 35256601,
+  "items_linked": 34243815,
+  "items_unlinked": 1012786,
+  "items_with_process": 34951524,
+  "items_without_process": 305077,
+  "label": "REAL_BASE_SAMPLE_COUNTS_NOT_GOLD",
+  "labels": [
+    "NON_CITABLE",
+    "DEMO_ONLY",
+    "EVIDENCE_E3_UNVERIFIED",
+    "NO_REVIEWED_MECHANISM",
+    "NO_CONDITIONS_CONSUMED"
+  ],
+  "member_absent_items": {
+    "ING__000066": 32686,
+    "ING__000078": 87949,
+    "ING__000105": 14458,
+    "ING__000134": 37648,
+    "ING__000159": 1545,
+    "ING__000182": 96602,
+    "ING__000205": 2551,
+    "ING__000243": 169897,
+    "ING__000363": 1773,
+    "ING__000439": 2311,
+    "ING__000493": 6849,
+    "ING__000510": 4317,
+    "ING__000648": 7230
+  },
+  "member_blocker": {
+    "CATEGORY_EMPTY": 347822,
+    "CATEGORY_MISMATCH": 37781,
+    "IDENTITIES_DISAGREE": 823675,
+    "NO_USABLE_IDENTITY": 6315048,
+    "RANK1_NOT_HIGH": 5778775,
+    "SR_VALUE_MISSING": 1716672,
+    "SR_ZERO_NOT_ANALYTICAL": 8884851
+  },
+  "member_presence": {
+    "ABSENT": 465816,
+    "NONE": 1012786,
+    "PRESENT": 9873375,
+    "UNKNOWN": 23904624
+  },
+  "non_step_direct_withheld_only_by_role": {
+    "ATTRIBUTIVE_STATE": 1824,
+    "SERVING_SUGGESTION": 54
+  },
+  "prior_presupposed_would_release": 102,
+  "prior_process_unresolved_withheld": {
+    "ONLY": 1676,
+    "WITH_KNOWN_KIND": 358
+  },
+  "prior_process_withheld": {
+    "HEAT": 7287,
+    "HEAT_LEACH": 1892,
+    "HEAT_LEACH_PRESERVED": 26,
+    "HEAT_LEACH_PRESERVED_UNRESOLVED": 1,
+    "HEAT_LEACH_PROCESSED": 49,
+    "HEAT_LEACH_PROCESSED_UNRESOLVED": 1,
+    "HEAT_LEACH_UNRESOLVED": 39,
+    "HEAT_PRESERVED": 46,
+    "HEAT_PRESERVED_PROCESSED": 2,
+    "HEAT_PRESERVED_UNRESOLVED": 13,
+    "HEAT_PROCESSED": 129,
+    "HEAT_PROCESSED_UNRESOLVED": 3,
+    "HEAT_UNRESOLVED": 263,
+    "LEACH": 1550,
+    "LEACH_PRESERVED": 28,
+    "LEACH_PROCESSED": 14,
+    "LEACH_UNRESOLVED": 19,
+    "PRESERVED": 89,
+    "PRESERVED_PROCESSED": 3,
+    "PRESERVED_UNRESOLVED": 10,
+    "PROCESSED": 279,
+    "PROCESSED_UNRESOLVED": 9,
+    "UNRESOLVED": 1676
+  },
+  "prior_process_withheld_by_basis": {
+    "EVENT": 9803,
+    "EVENT_EVENT_UNRESOLVED": 329,
+    "EVENT_EVENT_UNRESOLVED_INGREDIENT_LINE": 1,
+    "EVENT_EVENT_UNRESOLVED_INGREDIENT_LINE_TEXT_STATED_STATE": 2,
+    "EVENT_EVENT_UNRESOLVED_TEXT_STATED_STATE": 3,
+    "EVENT_INGREDIENT_LINE": 102,
+    "EVENT_INGREDIENT_LINE_TEXT_STATED_STATE": 49,
+    "EVENT_TEXT_STATED_STATE": 555,
+    "EVENT_UNRESOLVED": 1676,
+    "EVENT_UNRESOLVED_INGREDIENT_LINE": 7,
+    "EVENT_UNRESOLVED_INGREDIENT_LINE_TEXT_STATED_STATE": 2,
+    "EVENT_UNRESOLVED_TEXT_STATED_STATE": 14,
+    "INGREDIENT_LINE": 394,
+    "INGREDIENT_LINE_TEXT_STATED_STATE": 86,
+    "TEXT_STATED_STATE": 405
+  },
+  "reason_counts": {
+    "ATTRIBUTIVE_STATE_NOT_EVENT": 642354,
+    "DOMAIN_UNKNOWN": 35256601,
+    "EVENT_UNRESOLVED": 305077,
+    "EVIDENCE_PREEMPTS": 30220,
+    "INPUT_UNOBSERVED": 35256601,
+    "MERGED_LOT_CONTEXT": 210812,
+    "NO_CANDIDATE_MECHANISM": 35256601,
+    "NO_FORM": 35256601,
+    "NO_LINKED_INGREDIENT": 1012786,
+    "NO_SINGLE_APPLICABLE_MECHANISM": 35256601,
+    "PARAM_UNCONFIRMABLE": 35256601,
+    "PRIOR_PROCESS_CONTEXT": 11752,
+    "PRIOR_PROCESS_UNRESOLVED": 2034,
+    "SAFETY_UNKNOWN": 35256601,
+    "SERVING_SUGGESTION_NOT_EVENT": 36696,
+    "TARGET_ABSENT": 74597,
+    "TARGET_PRESENCE_UNKNOWN": 12038015
+  },
+  "recipes_sampled": 600848,
+  "recipes_seen": 600848,
+  "recipes_with_any_direct": 29154,
+  "recipes_with_any_direct_ungated": 168654,
+  "record": "ROUTER_DEMO_CENSUS",
+  "route": {
+    "DIRECT": 30220,
+    "NOT_APPLICABLE": 74597,
+    "UNKNOWN": 35151784
+  },
+  "route_ungated": {
+    "DIRECT": 267933,
+    "UNKNOWN": 34988668
+  },
+  "sample_rule": "SHA256_SEED_CONCAT_RECIPE_ID_ASC",
+  "sample_size_requested": 700000,
+  "seed_sha256": "1037f2edb4912104fc759949aacecbc2133a73a1a2b17bde5210cdad7ee901dc",
+  "sr_not_analytical_items": {
+    "ING__000001": 999723,
+    "ING__000003": 333372,
+    "ING__000004": 1212776,
+    "ING__000007": 14882,
+    "ING__000009": 5153,
+    "ING__000018": 84297,
+    "ING__000025": 214,
+    "ING__000026": 1731,
+    "ING__000028": 57248,
+    "ING__000031": 118308,
+    "ING__000032": 135304,
+    "ING__000034": 52,
+    "ING__000035": 132697,
+    "ING__000044": 982601,
+    "ING__000049": 39447,
+    "ING__000051": 161591,
+    "ING__000053": 126286,
+    "ING__000056": 55448,
+    "ING__000058": 177754,
+    "ING__000069": 2430,
+    "ING__000074": 26091,
+    "ING__000077": 75654,
+    "ING__000083": 32722,
+    "ING__000085": 23811,
+    "ING__000087": 27236,
+    "ING__000088": 539,
+    "ING__000090": 17175,
+    "ING__000092": 5604,
+    "ING__000094": 36084,
+    "ING__000096": 1390,
+    "ING__000098": 76815,
+    "ING__000102": 7651,
+    "ING__000109": 1427479,
+    "ING__000110": 60809,
+    "ING__000112": 185610,
+    "ING__000113": 37351,
+    "ING__000118": 129695,
+    "ING__000120": 112917,
+    "ING__000123": 238,
+    "ING__000130": 1333929,
+    "ING__000131": 32241,
+    "ING__000150": 29036,
+    "ING__000151": 5253,
+    "ING__000152": 20277,
+    "ING__000166": 41186,
+    "ING__000172": 47,
+    "ING__000176": 123,
+    "ING__000189": 9155,
+    "ING__000191": 25487,
+    "ING__000203": 66242,
+    "ING__000206": 13438,
+    "ING__000212": 5166,
+    "ING__000217": 2778,
+    "ING__000220": 28270,
+    "ING__000226": 2554,
+    "ING__000238": 12321,
+    "ING__000244": 123783,
+    "ING__000248": 11446,
+    "ING__000265": 230,
+    "ING__000271": 348,
+    "ING__000273": 73115,
+    "ING__000275": 56088,
+    "ING__000280": 11642,
+    "ING__000283": 2829,
+    "ING__000290": 12787,
+    "ING__000307": 1111,
+    "ING__000340": 125,
+    "ING__000369": 731,
+    "ING__000388": 901,
+    "ING__000398": 67,
+    "ING__000405": 7573,
+    "ING__000417": 376,
+    "ING__000453": 1748,
+    "ING__000462": 18,
+    "ING__000477": 232,
+    "ING__000484": 33,
+    "ING__000488": 27,
+    "ING__000494": 872,
+    "ING__000504": 82,
+    "ING__000507": 2540,
+    "ING__000525": 202,
+    "ING__000543": 633,
+    "ING__000608": 172,
+    "ING__000690": 11958,
+    "ING__000701": 4149,
+    "ING__000764": 5345
+  },
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "target_svar": "SVAR-000009",
+  "texts_with_steps": 599968
+}

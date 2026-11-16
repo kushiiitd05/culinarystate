@@ -1,0 +1,203 @@
+{
+  "baseline_check": "PASS_BEFORE_AND_AFTER",
+  "before_after": {
+    "after_layer_version": "nonheat-scenario-L2-0.2.0-draft",
+    "before_layer_version": "nonheat-scenario-L2-0.1.0-draft",
+    "counts": {},
+    "temperature_quantiles_resting": {}
+  },
+  "cap_model": "evaporation-cap-0.1.0-draft",
+  "cap_policy": {
+    "altitude_m": null,
+    "enabled": true,
+    "pressure_psig": null
+  },
+  "citable": false,
+  "code_provenance": {
+    "code_sha256": [
+      {
+        "path": "src/culinarystate/extraction/__init__.py",
+        "sha256": "b57b6cc94e8e6810f01f96a9c5671ad864fe0fb067d18930571b9ec694e97bf0"
+      },
+      {
+        "path": "src/culinarystate/extraction/auditor.py",
+        "sha256": "709b4351379e848229279218e7343c3c5fb45d16af8cd81b81892778e6341e21"
+      },
+      {
+        "path": "src/culinarystate/extraction/d073_current_sample.py",
+        "sha256": "c472911050fde29509bbba2b4bf24bb62e962b8f845681a3b23525e663e84a5b"
+      },
+      {
+        "path": "src/culinarystate/extraction/interfaces.py",
+        "sha256": "543dfcb5a36f67abea810ebcfd94427759c4ebdd4bf11736e950b48de240407d"
+      },
+      {
+        "path": "src/culinarystate/extraction/invariants.py",
+        "sha256": "b2e45c3dfd61da10982ade1a78e5458fa0a161c2cb1be454a923f56768da1b8b"
+      },
+      {
+        "path": "src/culinarystate/extraction/j4_inverted_sample.py",
+        "sha256": "84628577169426e01e955405e4ca18a3a43830f93f2bd64017ffefed36e55657"
+      },
+      {
+        "path": "src/culinarystate/extraction/quantity_stages.py",
+        "sha256": "5d3e79f9ba6e50709384ccde8d052dd7a5d39f6be0e6dd4e07994ccada77f899"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a.py",
+        "sha256": "b274feed81bf18f5ef9332761cde0d6231b2e84480eb2a61ebccb5816e19d630"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_binding.py",
+        "sha256": "957471c26dd726468bba7967c3ffc7027390c56777ea90b5abcfb7f2f396ddbf"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_lexicon.py",
+        "sha256": "8973f0eb2d78bd64c6ba4723120a540c3a016707b4178ba6b95e041f14bf0430"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_measure.py",
+        "sha256": "d4c42e85248f626c6a2ea9fad9062f18952785456fbb63d981dede9b64add56b"
+      },
+      {
+        "path": "src/culinarystate/extraction/rung_a_rules.py",
+        "sha256": "12cf0ce00d9e469ef4a77293e86539c5ac8610b41ecc2b499f955ca7f9f93752"
+      },
+      {
+        "path": "src/culinarystate/extraction/validators.py",
+        "sha256": "4ccb60e43b06afab22654baf82d8e1e1ec679e1356c2a63cdeccd8353d6091d9"
+      },
+      {
+        "path": "tools/step17b_rung_a_dryrun.py",
+        "sha256": "9290d52369f9302f92da469bd337c974f29287f3af057eb1cae1fb7a8445b158"
+      },
+      {
+        "path": "src/culinarystate/simulation/nonheat_binding.py",
+        "sha256": "1453fe36b43200df2bd832a217fb094c9a389176b7c044eeccaf0d754038de4d"
+      },
+      {
+        "path": "src/culinarystate/simulation/nonheat_scenario.py",
+        "sha256": "7ab795545061c5991c4a59d70c01cca93c2dbf2d9015906628dc1ae5e2476ad2"
+      },
+      {
+        "path": "src/culinarystate/simulation/nonheat_drivers.py",
+        "sha256": "615c93edc960e7e8f8ad18720dd861bf208ea90abdb220ff5b11a61e4f26ed59"
+      },
+      {
+        "path": "src/culinarystate/simulation/physics_drivers.py",
+        "sha256": "cfc677f6d19e8d3ff5565ba5047c078e091574e38a360c4c496f8b3dac4ab977"
+      },
+      {
+        "path": "src/culinarystate/simulation/phase_change.py",
+        "sha256": "a3b3fd82f194dc997a7a140f9e485dab7f5bfa78068e4ef19a38e022fcf840cf"
+      },
+      {
+        "path": "registry/phase_change_v1.csv",
+        "sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a"
+      },
+      {
+        "path": "registry/matrix_moisture_regime_v1.csv",
+        "sha256": "c4736dbcf2d392b50f911816a08780c7d92ec86f4f6010c6ba16f2f332406e1d"
+      },
+      {
+        "path": "src/culinarystate/simulation/condition_binding.py",
+        "sha256": "c157f3391763af178ede408251c65ed74344cb499accf0ab9b8973bd42958866"
+      },
+      {
+        "path": "src/culinarystate/simulation/scenario_layer.py",
+        "sha256": "194bad77e098cb71d3e6bb670493ab856cbd6a48e4c82a64cb2184e7507706db"
+      },
+      {
+        "path": "registry/scenario_defaults_nonheat_v1.csv",
+        "sha256": "047732f446633cf0a07ab0a8504c9ce812ad2ed6b9963567e7a6b5f36b8cf8d4"
+      },
+      {
+        "path": "registry/scenario_defaults_v1.csv",
+        "sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0"
+      },
+      {
+        "path": "registry/process_medium_map_v1.csv",
+        "sha256": "5014c27d553ca8fb8691fe5633b053344fe2281128138dba2b39da819402a953"
+      },
+      {
+        "path": "tools/nonheat_layer_run.py",
+        "sha256": "21505e07183578e6d21859496cd7c14d5c75cf3b56a1aa696d478d4f86859109"
+      }
+    ],
+    "git_commit": "bbf5ee6238e7a5e7ae2755819982c3b791faed9d",
+    "git_dirty": true,
+    "src_tree_sha256": "38c73086a0b7ce6d81c2142c3dd4970c69c6cd609402e26aae577b50369c4253"
+  },
+  "code_unchanged_during_run": true,
+  "contains_ids": false,
+  "contains_text": false,
+  "counts": {
+    "basis_class_typical_bracket": {},
+    "bracket_order_check": {},
+    "cooling_target_reached": {},
+    "errors_by_class": {},
+    "events_by_family": {
+      "COOLING": 0,
+      "FERMENT_LEAVEN": 0,
+      "MECHANICAL_CUT": 0,
+      "MECHANICAL_MIX": 0,
+      "PRESERVATION": 0,
+      "RESTING": 0,
+      "SEPARATION": 0,
+      "STORAGE": 0
+    },
+    "flags_typical_bracket": {},
+    "l1_files": 192,
+    "l2_driver_computed_by_family": {
+      "COOLING": 0,
+      "FERMENT_LEAVEN": 0,
+      "MECHANICAL_CUT": 0,
+      "MECHANICAL_MIX": 0,
+      "PRESERVATION": 0,
+      "RESTING": 0,
+      "SEPARATION": 0,
+      "STORAGE": 0
+    },
+    "l2_qualitative_or_conditions_by_family": {
+      "COOLING": 0,
+      "FERMENT_LEAVEN": 0,
+      "MECHANICAL_CUT": 0,
+      "MECHANICAL_MIX": 0,
+      "PRESERVATION": 0,
+      "RESTING": 0,
+      "SEPARATION": 0,
+      "STORAGE": 0
+    },
+    "missing_reasons": {},
+    "status": {},
+    "transition": {}
+  },
+  "counts_as_human_gate": false,
+  "ended_at_utc": "2026-11-08T16:18:43Z",
+  "families_requested": [
+    "TASTESET"
+  ],
+  "family_status": {},
+  "l1_records_manifest_sha256": "4f31bc2f08ece733607aad195af0f2e5e07dbf0a219c3e8dd982cef9166a8537",
+  "l2_only": true,
+  "labels": [
+    "SCENARIO",
+    "MODEL_DERIVED",
+    "NON_CITABLE",
+    "ASSUMED_DEFAULT"
+  ],
+  "layer_version": "nonheat-scenario-L2-0.2.0-draft",
+  "matrix_regime_registry_sha256": "c4736dbcf2d392b50f911816a08780c7d92ec86f4f6010c6ba16f2f332406e1d",
+  "phase_change_registry_sha256": "d23eac29c5411799797805653d3d51e8ce78458c827b777d529d61090433465a",
+  "recipes_sampled": 700,
+  "record": "NONHEAT_SCENARIO_L2_SUMMARY",
+  "records_manifest_sha256": "4f31bc2f08ece733607aad195af0f2e5e07dbf0a219c3e8dd982cef9166a8537",
+  "records_written": true,
+  "scenario_registry_heat_sha256": "f6e82d80e942ae0d11adaf1dbc337c687b00e5cbdf5e87e31c59b1847187cce0",
+  "scenario_registry_nonheat_sha256": "047732f446633cf0a07ab0a8504c9ce812ad2ed6b9963567e7a6b5f36b8cf8d4",
+  "started_at_utc": "2026-11-08T16:18:42Z",
+  "status": "AI_ENGINEERING_DRY_RUN_COUNTS_ONLY",
+  "supersedes": "NONHEAT_SCENARIO_L2_0_1_0_RESTING_CORE_FIELDS",
+  "wall_seconds_l2": 0.6,
+  "workers": 8
+}

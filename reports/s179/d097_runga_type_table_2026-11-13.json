@@ -1,0 +1,423 @@
+{
+ "approver": "ksh+prv (AI, D-085)",
+ "contains_ids": false,
+ "contains_text": false,
+ "decision": "D-097",
+ "git_commit": "715691d",
+ "items": [
+  "T3-C11-R1",
+  "T3-C17-R2"
+ ],
+ "labels": [
+  "DIAGNOSTIC",
+  "NOT_INDEPENDENT",
+  "NON_CITABLE",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "limitations": [
+  "No gold set is independent (D-017, D-060); P1-A is HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND.",
+  "Count match per type per recipe, not event alignment; a matched count is not a matched event.",
+  "Structural arity is a declared proxy for gold semantics, not Rung A accuracy.",
+  "First scored output under D-097; any change is a dated amendment with a new path."
+ ],
+ "mapping": "D-097 structural (discards/consumes/produces arity); Transfer/Reserve/Recombine never predicted",
+ "record": "D097_RUNGA_TYPED_VS_GOLD",
+ "run_at_utc": "2026-11-13T05:27:02+00:00",
+ "scientific_gate_pass": false,
+ "sets": {
+  "DEV_FOODCOM_V1_1": {
+   "bootstrap": {
+    "interval": "percentile 95%",
+    "n": 2000,
+    "seed": "s179-d097-type-table",
+    "unit": "recipe"
+   },
+   "contains_ids": false,
+   "contains_text": false,
+   "independent": false,
+   "input_set_sha256": "e7a12eb7d0f67726d5e401d9d99ba063a2e18364d680e3c723e0ac728f3e37fb",
+   "label_basis": "AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD",
+   "matching": "per recipe, matched = min(gold count, predicted count) for the type (count match, no alignment)",
+   "n_recipes": 20,
+   "pooled": {
+    "fn": 59,
+    "fp": 174,
+    "interval": "Wilson 95% on pooled type-count matches",
+    "precision": 0.5906,
+    "precision_ci95": [
+     0.5432,
+     0.6363
+    ],
+    "recall": 0.8097,
+    "recall_ci95": [
+     0.7623,
+     0.8495
+    ],
+    "tp": 251
+   },
+   "types": {
+    "Discard": {
+     "gold": 1,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": true,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Merge": {
+     "gold": 114,
+     "matched": 98,
+     "precision": 0.9074,
+     "precision_ci95": [
+      0.8283,
+      0.9709
+     ],
+     "pred": 108,
+     "predictable_under_d097": true,
+     "recall": 0.8596,
+     "recall_ci95": [
+      0.7632,
+      0.9406
+     ]
+    },
+    "Recombine": {
+     "gold": 2,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": false,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Reserve": {
+     "gold": 8,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": false,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Split": {
+     "gold": 13,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": true,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Transfer": {
+     "gold": 17,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": false,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Transform": {
+     "gold": 155,
+     "matched": 153,
+     "precision": 0.4826,
+     "precision_ci95": [
+      0.3985,
+      0.586
+     ],
+     "pred": 317,
+     "predictable_under_d097": true,
+     "recall": 0.9871,
+     "recall_ci95": [
+      0.9603,
+      1.0
+     ]
+    }
+   },
+   "unmapped_candidate_events": 36
+  },
+  "DEV_PILOT20_V1_1": {
+   "bootstrap": {
+    "interval": "percentile 95%",
+    "n": 2000,
+    "seed": "s179-d097-type-table",
+    "unit": "recipe"
+   },
+   "contains_ids": false,
+   "contains_text": false,
+   "independent": false,
+   "input_set_sha256": "881a10b99f0f618d9f5ed528f69ff69ecc4f2c147d6baea1ab0d167a065b693e",
+   "label_basis": "AI_ASSISTED_HUMAN_REVIEWED_DEV_GOLD",
+   "matching": "per recipe, matched = min(gold count, predicted count) for the type (count match, no alignment)",
+   "n_recipes": 20,
+   "pooled": {
+    "fn": 68,
+    "fp": 158,
+    "interval": "Wilson 95% on pooled type-count matches",
+    "precision": 0.5168,
+    "precision_ci95": [
+     0.4628,
+     0.5705
+    ],
+    "recall": 0.7131,
+    "recall_ci95": [
+     0.6525,
+     0.7669
+    ],
+    "tp": 169
+   },
+   "types": {
+    "Discard": {
+     "gold": 10,
+     "matched": 2,
+     "precision": 1.0,
+     "precision_ci95": [
+      1.0,
+      1.0
+     ],
+     "pred": 2,
+     "predictable_under_d097": true,
+     "recall": 0.2,
+     "recall_ci95": [
+      0.0,
+      0.5
+     ]
+    },
+    "Merge": {
+     "gold": 86,
+     "matched": 69,
+     "precision": 0.9079,
+     "precision_ci95": [
+      0.8243,
+      0.9848
+     ],
+     "pred": 76,
+     "predictable_under_d097": true,
+     "recall": 0.8023,
+     "recall_ci95": [
+      0.6883,
+      0.8911
+     ]
+    },
+    "Recombine": {
+     "gold": 0,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": false,
+     "recall": null,
+     "recall_ci95": null
+    },
+    "Reserve": {
+     "gold": 1,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": false,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Split": {
+     "gold": 21,
+     "matched": 1,
+     "precision": 0.5,
+     "precision_ci95": [
+      0.0,
+      1.0
+     ],
+     "pred": 2,
+     "predictable_under_d097": true,
+     "recall": 0.0476,
+     "recall_ci95": [
+      0.0,
+      0.1818
+     ]
+    },
+    "Transfer": {
+     "gold": 22,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": false,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Transform": {
+     "gold": 97,
+     "matched": 97,
+     "precision": 0.3927,
+     "precision_ci95": [
+      0.3136,
+      0.4932
+     ],
+     "pred": 247,
+     "predictable_under_d097": true,
+     "recall": 1.0,
+     "recall_ci95": [
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "unmapped_candidate_events": 48
+  },
+  "P1_A_KUSH": {
+   "bootstrap": {
+    "interval": "percentile 95%",
+    "n": 2000,
+    "seed": "s179-d097-type-table",
+    "unit": "recipe"
+   },
+   "contains_ids": false,
+   "contains_text": false,
+   "independent": false,
+   "input_set_sha256": "08371c63f56e505921e56c7e0e6ddc7623f99595dc75429b6fc4cdb1733ec0a5",
+   "label_basis": "HUMAN_ACCEPTED_AI_DRAFTS_NOT_BLIND",
+   "matching": "per recipe, matched = min(gold count, predicted count) for the type (count match, no alignment)",
+   "n_recipes": 7,
+   "pooled": {
+    "fn": 42,
+    "fp": 37,
+    "interval": "Wilson 95% on pooled type-count matches",
+    "precision": 0.6186,
+    "precision_ci95": [
+     0.5191,
+     0.709
+    ],
+    "recall": 0.5882,
+    "recall_ci95": [
+     0.4912,
+     0.6788
+    ],
+    "tp": 60
+   },
+   "types": {
+    "Discard": {
+     "gold": 1,
+     "matched": 1,
+     "precision": 1.0,
+     "precision_ci95": [
+      1.0,
+      1.0
+     ],
+     "pred": 1,
+     "predictable_under_d097": true,
+     "recall": 1.0,
+     "recall_ci95": [
+      1.0,
+      1.0
+     ]
+    },
+    "Merge": {
+     "gold": 36,
+     "matched": 24,
+     "precision": 1.0,
+     "precision_ci95": [
+      1.0,
+      1.0
+     ],
+     "pred": 24,
+     "predictable_under_d097": true,
+     "recall": 0.6667,
+     "recall_ci95": [
+      0.4545,
+      0.8182
+     ]
+    },
+    "Recombine": {
+     "gold": 0,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": false,
+     "recall": null,
+     "recall_ci95": null
+    },
+    "Reserve": {
+     "gold": 0,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": false,
+     "recall": null,
+     "recall_ci95": null
+    },
+    "Split": {
+     "gold": 8,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": true,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Transfer": {
+     "gold": 22,
+     "matched": 0,
+     "precision": null,
+     "precision_ci95": null,
+     "pred": 0,
+     "predictable_under_d097": false,
+     "recall": 0.0,
+     "recall_ci95": [
+      0.0,
+      0.0
+     ]
+    },
+    "Transform": {
+     "gold": 35,
+     "matched": 35,
+     "precision": 0.4861,
+     "precision_ci95": [
+      0.3875,
+      0.6027
+     ],
+     "pred": 72,
+     "predictable_under_d097": true,
+     "recall": 1.0,
+     "recall_ci95": [
+      1.0,
+      1.0
+     ]
+    }
+   },
+   "unmapped_candidate_events": 17
+  }
+ },
+ "tool_version": "s179-d097-runga-type-table-0.1.0"
+}

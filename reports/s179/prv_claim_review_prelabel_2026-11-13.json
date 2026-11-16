@@ -1,0 +1,97 @@
+{
+  "blinding": "Reviewer gets only six blind content columns plus empty judgment fields. Preparing root has seen system outputs; judging fresh agent must not open key/checker/results.",
+  "created_at_utc": "2026-11-13T06:43:06.173331+00:00",
+  "decision": "D-099",
+  "design": {
+    "B2": {
+      "INDEP_SUPPORTED|CHECKER_CLEAN": {
+        "population": 16,
+        "sampled": 2,
+        "weight": 8.0
+      },
+      "INDEP_SUPPORTED|CHECKER_FLAGGED": {
+        "population": 3,
+        "sampled": 3,
+        "weight": 1.0
+      },
+      "INDEP_UNSUPPORTED|CHECKER_CLEAN": {
+        "population": 22,
+        "sampled": 3,
+        "weight": 7.333333
+      },
+      "INDEP_UNSUPPORTED|CHECKER_FLAGGED": {
+        "population": 11,
+        "sampled": 2,
+        "weight": 5.5
+      }
+    },
+    "B5T": {
+      "INDEP_SUPPORTED|CHECKER_CLEAN": {
+        "population": 53,
+        "sampled": 5,
+        "weight": 10.6
+      },
+      "INDEP_SUPPORTED|CHECKER_FLAGGED": {
+        "population": 0,
+        "sampled": 0,
+        "weight": null
+      },
+      "INDEP_UNSUPPORTED|CHECKER_CLEAN": {
+        "population": 6,
+        "sampled": 5,
+        "weight": 1.2
+      },
+      "INDEP_UNSUPPORTED|CHECKER_FLAGGED": {
+        "population": 0,
+        "sampled": 0,
+        "weight": null
+      }
+    },
+    "B7": {
+      "INDEP_SUPPORTED|CHECKER_CLEAN": {
+        "population": 31,
+        "sampled": 5,
+        "weight": 6.2
+      },
+      "INDEP_SUPPORTED|CHECKER_FLAGGED": {
+        "population": 0,
+        "sampled": 0,
+        "weight": null
+      },
+      "INDEP_UNSUPPORTED|CHECKER_CLEAN": {
+        "population": 13,
+        "sampled": 5,
+        "weight": 2.6
+      },
+      "INDEP_UNSUPPORTED|CHECKER_FLAGGED": {
+        "population": 0,
+        "sampled": 0,
+        "weight": null
+      }
+    }
+  },
+  "input_sha256": {
+    "benchmark/d5/d5_benchmark_v1_D085_PC.csv": "829bce2e13a25f67bd0c01f5e40b1e7f676a5a8792d09ae216094ac89c9783b0",
+    "benchmark/d5/d5_benchmark_v1_D085_S.csv": "74d256ba046fcb664afee6d1bf14b9affbd8ff0245dc30541e7d7dd0068b4404",
+    "benchmark/d5/d5_benchmark_v1_D085_UX.csv": "0adaa0a28266bdc4c24d5497762e59d1bcf05b87da3e33c5c75f7d3866eb9eaf",
+    "benchmark/d5/d5_relatives_v1_D085.json": "cf19acb7fe9fc1d849c83c0a3bd24cc08a554c0147e6385484824819a1076ce0",
+    "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+    "reports/del5/d5_runs_v1_D085.jsonl": "e796be568c1a7bf3f29745cdc9b2ab29f6a91e3f76239078dca9e029e023db2e",
+    "tools/s179_prv_claim_review.py": "7548d659bfacb5ffc81bc304347f9b9a40664795ccaccee7137027c31d5ea825"
+  },
+  "key_sha256": "67d536f2dd783c032fb240c705eddda1a1c66b718625bb7c971a0e2b041a083d",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085",
+    "AI_JUDGE_NOT_HUMAN"
+  ],
+  "n": 30,
+  "packet": "data/derived/prv_claim_review_2026-11-13/blind_claim_packet_prv_AI.csv",
+  "packet_sha256": "0e2151694c4d491cbede9834b79649f9b70cbd37e298c658837a876b89299532",
+  "record": "D099_AI_CLAIM_REVIEW_PRELABEL_MANIFEST",
+  "seed": "s179-prv-d099-20261113",
+  "selection": "Existing stratified audit sampler:10 each B2/B5T/B7; deterministic seed; scorer strata deliberately enriched, not simple population random sample",
+  "shortfalls": []
+}

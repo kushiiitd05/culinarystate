@@ -1,0 +1,51 @@
+{
+  "all_frozen_file_hashes_match": true,
+  "author_report_deck_unchanged": true,
+  "date": "2026-11-13",
+  "full_suite": {
+    "command": "OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1 python -m pytest -q -m 'ledgers or not ledgers' -o faulthandler_timeout=120",
+    "deselected": 0,
+    "errors": 0,
+    "failed": 0,
+    "log": "reports/s179/all_marker_full_suite_2026-11-13.log",
+    "log_sha256": "bb204e9c2ab9af10bc7f881d6992b2f88cb65e7118c304188ad723f7906f011a",
+    "passed": 8182,
+    "scope": "All-marker full suite; source helper tools and MECH schema included. Subsequent source-page locator adapter is read-only, with488/488actual pair/order matches.",
+    "seconds": 451.91,
+    "skipped": 4
+  },
+  "labels": [
+    "AI_PRECHECKED",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "A green regression suite is not scientific source validation, independence or a passed hypothesis gate.",
+    "Source data/contract/calendar constraints remain explicit; originals and negative results retained."
+  ],
+  "previous_all_marker_run": {
+    "failed": 0,
+    "passed": 8172,
+    "seconds": 237.97,
+    "skipped": 4
+  },
+  "protected_baseline": "35fbb7e",
+  "protected_hashes": {
+    "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+    "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+    "ledgers/data/MEAS.jsonl": "bdb7b4210af4fd9be54f57dc12aac5c1727d147150eb683d57be9096d6da2a65",
+    "ledgers/data/SNAP.jsonl": "8834094ff203442790d57bfc8fef0d9e88f57485f9e70ff90b94ff267e48754a",
+    "ledgers/data/SRC.jsonl": "6fddc14bac6d8cc8f6b5c1e07c64a84a8e4ef9f263a6df914dbf98c504cd1f2f",
+    "registry/execution_board_S178.csv": "d0d01b099c0ebf28a6f70d15e2cbe08c5835154e1d685f91017052a6a19dd975",
+    "reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md": "3c78fce12a9150bf9aa311c6173034036119a7ff80860cf4529273ffadb97f0f",
+    "reports/final/SLIDES_DRAFT_S179_2026-11-11.md": "354b2beed5a6da6c70b94882628f93c6b0282919801a30cada084d384b3e94a3",
+    "src/culinarystate/app/static/index.html": "1ffabebe252004d41c4034c6de37b61fc43dbab2f73d744c4774aaa987511223",
+    "src/culinarystate/decision/demo_context.py": "3f8c3e6be28659bf333298c40ad890bde73a15f84abce177609960142f1b9ce1",
+    "src/culinarystate/generation/enforce.py": "3ac2aa7e1cb66df16c94d266d996d8fb56a0f04f6e13e56402ed853492e4991f",
+    "src/culinarystate/generation/verbalize.py": "8a10d611cd1177e68d27945c311befe941a91745aea27efd11ba9ed67ebd05eb",
+    "src/culinarystate/quantity/grammar.py": "25b34fa8948b8989dadfecd87cee2737765a1fd07f4e02281ddacaf522d4a3c3"
+  },
+  "record": "TECHNICAL_COMPLETION_VERIFICATION",
+  "remaining_artifact_question": "Exact frozenNERcheckpoint,matching15aseed/list andacceptedP1AGold; authorfacts/finaledits excluded.",
+  "scientific_gate_pass": false
+}

@@ -1,0 +1,72 @@
+{
+  "cases": [
+    {
+      "allQuantityBasis": true,
+      "badge": "No numeric evidence answer",
+      "elapsed_ms": 67.658,
+      "errors": 0,
+      "id": "transform_heat",
+      "quantityCount": 4,
+      "sourceRowMislabel": false,
+      "unknownOrNonfiniteDisplayed": false
+    },
+    {
+      "allQuantityBasis": true,
+      "badge": "No corpus pattern",
+      "elapsed_ms": 28.201,
+      "errors": 0,
+      "id": "substitution",
+      "quantityCount": 0,
+      "sourceRowMislabel": false,
+      "unknownOrNonfiniteDisplayed": false
+    },
+    {
+      "allQuantityBasis": true,
+      "badge": "Food safety: use official guidance",
+      "elapsed_ms": 27.232,
+      "errors": 0,
+      "id": "safety",
+      "quantityCount": 0,
+      "sourceRowMislabel": false,
+      "unknownOrNonfiniteDisplayed": false
+    },
+    {
+      "allQuantityBasis": true,
+      "badge": "Not available",
+      "elapsed_ms": 28.242,
+      "errors": 0,
+      "id": "unsupported",
+      "quantityCount": 0,
+      "sourceRowMislabel": false,
+      "unknownOrNonfiniteDisplayed": false
+    }
+  ],
+  "claim_24_nov_rehearsal": false,
+  "completed_at_utc": "2026-11-12T14:19:38.067960+00:00",
+  "driver_sha256": "c1c13b0f7a3f31e8fdf4146f91af2a3e04ffff7924c8d7b78efc172dc67f6cef",
+  "external_requests": [],
+  "labels": [
+    "ENGINEERING_DIAGNOSTIC",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Four scripted local synthetic UI cases and a planted missing-value control; not natural-query validation.",
+    "Local public-filtered mode only; original frozen scientific results are unchanged.",
+    "Technical rehearsal on12Nov is not the required24Nov timed human presentation event.",
+    "Screenshot is static fallback from synthetic caller input, not experimental evidence."
+  ],
+  "planted_missing_value": {
+    "fabricatedZero": false,
+    "quantityCount": 0,
+    "unknownNotice": true
+  },
+  "record": "STRICT_V3_ISOLATED_BROWSER_TECHNICAL_REHEARSAL",
+  "scientific_gate_pass": false,
+  "screenshot": {
+    "path": "reports/s179/strict_v3_fallback_2026-11-12.png",
+    "sha256": "c94e859e84646314c05a77d5342ae359f930707fe93579035054369d45161eb4"
+  },
+  "started_at_utc": "2026-11-12T14:19:30.672000+00:00",
+  "status": "PASS"
+}

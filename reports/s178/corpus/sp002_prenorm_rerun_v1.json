@@ -1,0 +1,655 @@
+{
+ "adapter_version_before": "CQPO_PARSE_TO_AST_V2",
+ "contains_recipe_ids": false,
+ "contains_recipe_text": false,
+ "counts_as_human_gate": false,
+ "families": {
+  "A1_BBC_GOOD_FOOD": {
+   "reason": "D_003_BBC_DATA_NOT_PRESENT",
+   "status": "NOT_ON_THIS_SERVER"
+  },
+  "FOODCOM": {
+   "affected_lines_whose_before_amount_was_exactly_one": 1098957,
+   "affected_lines_whose_legacy_parse_changes": 1275153,
+   "affected_lines_whose_normalised_amount_changes": 1275123,
+   "affected_lines_whose_rc2_record_changes": 1275123,
+   "affected_lines_with_identical_rc2_record": 31,
+   "after": {
+    "arithmetic_status": {
+     "KNOWN": 3856966,
+     "RANGE": 76145,
+     "UNKNOWN": 196322
+    },
+    "ast_root": {
+     "RANGE": 76145,
+     "RATIONAL": 3856966,
+     "UNKNOWN": 196322
+    },
+    "exceptions": {},
+    "flags": {
+     "APPROXIMATE_SOURCE_AMOUNT": 1,
+     "MASS_FLOAT_REPRESENTATION": 3,
+     "NONTERMINATING_RANGE_BOUND": 1482,
+     "NORMALIZATION_FLOAT_PRECISION_LIMIT": 101860,
+     "PRENORM_SP002_HYPHEN_MIXED": 1,
+     "PRENORM_SP002_U2044": 1275153,
+     "SIZE_IS_NOT_QUANTITY": 4,
+     "UNCONSUMED_UNIT": 178,
+     "UNRESOLVED_ALTERNATIVE": 66,
+     "UNSUPPORTED_COMPOUND_AMOUNT": 3280,
+     "UNSUPPORTED_OR_UNSTATED_QUANTITY": 191312
+    },
+    "issue_codes": {},
+    "legacy_vs_rc2_mass": {
+     "legacy_MEASURED__rc2_MEASURED": 122,
+     "legacy_RANGE__rc2_RANGE": 5,
+     "legacy_UNKNOWN__rc2_UNKNOWN": 4129306
+    },
+    "lines_blank": 0,
+    "lines_contract_valid": 4129433,
+    "lines_flagged": 1468840,
+    "lines_grounded": 4129433,
+    "lines_total": 4129433,
+    "lines_with_rc2_count": 3932984,
+    "lines_with_rc2_mass": 127,
+    "lines_with_rc2_volume": 0,
+    "mass_route": {
+     "AST_EXACT_PHYSICAL": 127,
+     "NO_INGREDIENT_LINK": 3932984,
+     "NO_QUANTITY": 191228,
+     "UNSUPPORTED_EXPRESSION": 5094
+    },
+    "q_level": {
+     "Q0": 127,
+     "Q6": 4129306
+    },
+    "recipes": 522517,
+    "unit_resolution": {
+     "COUNT": 3932974,
+     "MASS_PHYSICAL": 127,
+     "NONE": 196322,
+     "PACKAGE": 10
+    }
+   },
+   "before": {
+    "arithmetic_status": {
+     "KNOWN": 3873285,
+     "RANGE": 62433,
+     "UNKNOWN": 193715
+    },
+    "ast_root": {
+     "RANGE": 62433,
+     "RATIONAL": 3873285,
+     "UNKNOWN": 193715
+    },
+    "exceptions": {},
+    "flags": {
+     "APPROXIMATE_SOURCE_AMOUNT": 1,
+     "SIZE_IS_NOT_QUANTITY": 4,
+     "UNCONSUMED_UNIT": 178,
+     "UNRESOLVED_ALTERNATIVE": 66,
+     "UNSUPPORTED_COMPOUND_AMOUNT": 2155,
+     "UNSUPPORTED_OR_UNSTATED_QUANTITY": 191312
+    },
+    "issue_codes": {},
+    "legacy_vs_rc2_mass": {
+     "legacy_MEASURED__rc2_MEASURED": 83,
+     "legacy_RANGE__rc2_RANGE": 4,
+     "legacy_UNKNOWN__rc2_UNKNOWN": 4129346
+    },
+    "lines_blank": 0,
+    "lines_contract_valid": 4129433,
+    "lines_flagged": 193716,
+    "lines_grounded": 4129433,
+    "lines_total": 4129433,
+    "lines_with_rc2_count": 3935631,
+    "lines_with_rc2_mass": 87,
+    "lines_with_rc2_volume": 0,
+    "mass_route": {
+     "AST_EXACT_PHYSICAL": 87,
+     "NO_INGREDIENT_LINK": 3935631,
+     "NO_QUANTITY": 191228,
+     "UNSUPPORTED_EXPRESSION": 2487
+    },
+    "q_level": {
+     "Q0": 87,
+     "Q6": 4129346
+    },
+    "recipes": 522517,
+    "unit_resolution": {
+     "COUNT": 3935631,
+     "MASS_PHYSICAL": 87,
+     "NONE": 193715
+    }
+   },
+   "before_vs_s161": {
+    "differences": {},
+    "n_differences": 0,
+    "recipes_match": true,
+    "status": "IDENTICAL"
+   },
+   "delta_lines_contract_valid": 0,
+   "delta_lines_flagged": 1275124,
+   "delta_lines_with_rc2_mass": 40,
+   "delta_lines_with_rc2_volume": 0,
+   "legacy_parse_kind_transition_lines": {
+    "NUMBER__FRACTION": 1031934,
+    "NUMBER__MIXED": 224992,
+    "NUMBER__NUMBER": 1,
+    "NUMBER__RANGE": 15203,
+    "RANGE__RANGE": 3024
+   },
+   "lines_affected_by_any_rule": 1275154,
+   "lines_by_rule": {
+    "SP002_HYPHEN_MIXED": 1,
+    "SP002_U2044": 1275153
+   },
+   "lines_by_rule_combination": {
+    "SP002_HYPHEN_MIXED": 1,
+    "SP002_U2044": 1275153
+   },
+   "lines_refused_glued": 0,
+   "lines_total": 4129433,
+   "pct_lines_affected": 30.88,
+   "pct_lines_changing_rc2_record": 30.879,
+   "pct_lines_whose_normalised_amount_changes": 30.879,
+   "recipes": 522517,
+   "recipes_without_ingredient_lines": 2219,
+   "seconds": 193.0,
+   "status": "READ",
+   "transitions_lines": {
+    "arithmetic_status__KNOWN__TO__RANGE": 13740,
+    "arithmetic_status__KNOWN__TO__UNKNOWN": 2579,
+    "arithmetic_status__RANGE__TO__UNKNOWN": 28,
+    "ast_root__RANGE__TO__UNKNOWN": 28,
+    "ast_root__RATIONAL__TO__RANGE": 13740,
+    "ast_root__RATIONAL__TO__UNKNOWN": 2579,
+    "flag_added__MASS_FLOAT_REPRESENTATION": 3,
+    "flag_added__NONTERMINATING_RANGE_BOUND": 1482,
+    "flag_added__NORMALIZATION_FLOAT_PRECISION_LIMIT": 101860,
+    "flag_added__UNSUPPORTED_COMPOUND_AMOUNT": 1125,
+    "mass_route__NO_INGREDIENT_LINK__TO__AST_EXACT_PHYSICAL": 40,
+    "mass_route__NO_INGREDIENT_LINK__TO__UNSUPPORTED_EXPRESSION": 2607,
+    "q_level__Q6__TO__Q0": 40,
+    "rc2_mass_status__UNKNOWN__TO__MEASURED": 39,
+    "rc2_mass_status__UNKNOWN__TO__RANGE": 1,
+    "unit_resolution__COUNT__TO__MASS_PHYSICAL": 40,
+    "unit_resolution__COUNT__TO__NONE": 2607,
+    "unit_resolution__COUNT__TO__PACKAGE": 10,
+    "valueclass__E1__TO__FRACTIONAL_GT1": 172208,
+    "valueclass__E1__TO__LT1": 911130,
+    "valueclass__E1__TO__RANGE": 13333,
+    "valueclass__E1__TO__UNKNOWN": 2285,
+    "valueclass__INT_GT1__TO__FRACTIONAL_GT1": 52615,
+    "valueclass__INT_GT1__TO__LT1": 119827,
+    "valueclass__INT_GT1__TO__RANGE": 3279,
+    "valueclass__INT_GT1__TO__UNKNOWN": 320,
+    "valueclass__RANGE__TO__UNKNOWN": 2
+   },
+   "unaffected_lines_verified_identical": {
+    "checked_unique": 18723,
+    "identical_unique": 18723
+   },
+   "unique_lines": 120129,
+   "unique_lines_affected": 40933
+  },
+  "GUTENBERG_SEGMENT": {
+   "reason": "NO_INGREDIENT_LINES_S177_F6",
+   "status": "NOT_AVAILABLE"
+  },
+  "TASTESET": {
+   "affected_lines_whose_before_amount_was_exactly_one": 358,
+   "affected_lines_whose_legacy_parse_changes": 441,
+   "affected_lines_whose_normalised_amount_changes": 414,
+   "affected_lines_whose_rc2_record_changes": 441,
+   "affected_lines_with_identical_rc2_record": 2,
+   "after": {
+    "arithmetic_status": {
+     "KNOWN": 3039,
+     "QUALITATIVE": 102,
+     "RANGE": 36,
+     "UNKNOWN": 611
+    },
+    "ast_root": {
+     "QUALITATIVE": 102,
+     "RANGE": 36,
+     "RATIONAL": 3039,
+     "UNKNOWN": 611
+    },
+    "exceptions": {},
+    "flags": {
+     "APPROXIMATE_SOURCE_AMOUNT": 38,
+     "COMPATIBILITY_CHANNEL_MASKED": 45,
+     "LOCALE_AMBIGUOUS": 1748,
+     "MASS_FLOAT_REPRESENTATION": 402,
+     "NORMALIZATION_FLOAT_PRECISION_LIMIT": 314,
+     "PARENTHETICAL_EXPRESSION_SEPARATE": 23,
+     "PRENORM_SP002_HYPHEN_MIXED": 2,
+     "PRENORM_SP002_U2044": 441,
+     "QUALIFIED_FILL_UNCERTAINTY": 1,
+     "SIZE_IS_NOT_QUANTITY": 1,
+     "UNCONSUMED_UNIT": 1,
+     "UNRESOLVED_ALTERNATIVE": 232,
+     "UNSUPPORTED_COMPOUND_AMOUNT": 10,
+     "UNSUPPORTED_DUAL_EXPRESSION": 1,
+     "UNSUPPORTED_MULTIPLIER": 1,
+     "UNSUPPORTED_OR_UNSTATED_QUANTITY": 365,
+     "locale_ambiguous": 1881,
+     "second_unit_ignored": 1
+    },
+    "issue_codes": {},
+    "legacy_vs_rc2_mass": {
+     "legacy_MEASURED__rc2_MEASURED": 462,
+     "legacy_MEASURED__rc2_UNKNOWN": 42,
+     "legacy_QUALITATIVE__rc2_UNKNOWN": 104,
+     "legacy_RANGE__rc2_RANGE": 3,
+     "legacy_RANGE__rc2_UNKNOWN": 3,
+     "legacy_UNKNOWN__rc2_UNKNOWN": 3174
+    },
+    "lines_blank": 0,
+    "lines_contract_valid": 3788,
+    "lines_flagged": 2784,
+    "lines_grounded": 3788,
+    "lines_total": 3788,
+    "lines_with_rc2_count": 858,
+    "lines_with_rc2_mass": 465,
+    "lines_with_rc2_volume": 16,
+    "mass_route": {
+     "AST_EXACT_PHYSICAL": 453,
+     "NO_INGREDIENT_LINK": 2610,
+     "NO_QUANTITY": 321,
+     "PARENTHETICAL_SOURCE_STATED": 12,
+     "QUALITATIVE": 102,
+     "UNSUPPORTED_EXPRESSION": 290
+    },
+    "q_level": {
+     "Q0": 465,
+     "Q6": 3323
+    },
+    "recipes": 700,
+    "unit_resolution": {
+     "COUNT": 858,
+     "MASS_PHYSICAL": 453,
+     "NONE": 713,
+     "VOLUME_LOCALE_AMBIGUOUS": 1748,
+     "VOLUME_PHYSICAL": 16
+    }
+   },
+   "before": {
+    "arithmetic_status": {
+     "KNOWN": 3043,
+     "QUALITATIVE": 102,
+     "RANGE": 33,
+     "UNKNOWN": 610
+    },
+    "ast_root": {
+     "QUALITATIVE": 102,
+     "RANGE": 33,
+     "RATIONAL": 3043,
+     "UNKNOWN": 610
+    },
+    "exceptions": {},
+    "flags": {
+     "APPROXIMATE_SOURCE_AMOUNT": 38,
+     "COMPATIBILITY_CHANNEL_MASKED": 40,
+     "LOCALE_AMBIGUOUS": 1399,
+     "MASS_FLOAT_REPRESENTATION": 345,
+     "NORMALIZATION_FLOAT_PRECISION_LIMIT": 233,
+     "PARENTHETICAL_EXPRESSION_SEPARATE": 22,
+     "QUALIFIED_FILL_UNCERTAINTY": 1,
+     "SIZE_IS_NOT_QUANTITY": 1,
+     "UNCONSUMED_UNIT": 1,
+     "UNRESOLVED_ALTERNATIVE": 232,
+     "UNSUPPORTED_COMPOUND_AMOUNT": 9,
+     "UNSUPPORTED_DUAL_EXPRESSION": 1,
+     "UNSUPPORTED_MULTIPLIER": 1,
+     "UNSUPPORTED_OR_UNSTATED_QUANTITY": 365,
+     "locale_ambiguous": 1510,
+     "second_unit_ignored": 1
+    },
+    "issue_codes": {},
+    "legacy_vs_rc2_mass": {
+     "legacy_MEASURED__rc2_MEASURED": 408,
+     "legacy_MEASURED__rc2_UNKNOWN": 38,
+     "legacy_QUALITATIVE__rc2_UNKNOWN": 103,
+     "legacy_RANGE__rc2_RANGE": 2,
+     "legacy_RANGE__rc2_UNKNOWN": 2,
+     "legacy_UNKNOWN__rc2_UNKNOWN": 3235
+    },
+    "lines_blank": 0,
+    "lines_contract_valid": 3788,
+    "lines_flagged": 2376,
+    "lines_grounded": 3788,
+    "lines_total": 3788,
+    "lines_with_rc2_count": 1264,
+    "lines_with_rc2_mass": 410,
+    "lines_with_rc2_volume": 16,
+    "mass_route": {
+     "AST_EXACT_PHYSICAL": 397,
+     "NO_INGREDIENT_LINK": 2666,
+     "NO_QUANTITY": 321,
+     "PARENTHETICAL_SOURCE_STATED": 13,
+     "QUALITATIVE": 102,
+     "UNSUPPORTED_EXPRESSION": 289
+    },
+    "q_level": {
+     "Q0": 410,
+     "Q6": 3378
+    },
+    "recipes": 700,
+    "unit_resolution": {
+     "COUNT": 1264,
+     "MASS_PHYSICAL": 397,
+     "NONE": 712,
+     "VOLUME_LOCALE_AMBIGUOUS": 1399,
+     "VOLUME_PHYSICAL": 16
+    }
+   },
+   "before_vs_s161": {
+    "differences": {},
+    "n_differences": 0,
+    "recipes_match": true,
+    "status": "IDENTICAL"
+   },
+   "delta_lines_contract_valid": 0,
+   "delta_lines_flagged": 408,
+   "delta_lines_with_rc2_mass": 55,
+   "delta_lines_with_rc2_volume": 0,
+   "legacy_parse_kind_transition_lines": {
+    "NUMBER__FRACTION": 358,
+    "NUMBER__MIXED": 74,
+    "NUMBER__NUMBER": 2,
+    "NUMBER__QUALITATIVE": 1,
+    "NUMBER__RANGE": 6,
+    "RANGE__RANGE": 2
+   },
+   "lines_affected_by_any_rule": 443,
+   "lines_by_rule": {
+    "SP002_HYPHEN_MIXED": 2,
+    "SP002_U2044": 441
+   },
+   "lines_by_rule_combination": {
+    "SP002_HYPHEN_MIXED": 2,
+    "SP002_U2044": 441
+   },
+   "lines_refused_glued": 0,
+   "lines_total": 3788,
+   "pct_lines_affected": 11.695,
+   "pct_lines_changing_rc2_record": 11.642,
+   "pct_lines_whose_normalised_amount_changes": 10.929,
+   "recipes": 700,
+   "recipes_without_ingredient_lines": 0,
+   "seconds": 15.9,
+   "status": "READ",
+   "transitions_lines": {
+    "arithmetic_status__KNOWN__TO__RANGE": 3,
+    "arithmetic_status__KNOWN__TO__UNKNOWN": 1,
+    "ast_root__RATIONAL__TO__RANGE": 3,
+    "ast_root__RATIONAL__TO__UNKNOWN": 1,
+    "flag_added__COMPATIBILITY_CHANNEL_MASKED": 5,
+    "flag_added__LOCALE_AMBIGUOUS": 349,
+    "flag_added__MASS_FLOAT_REPRESENTATION": 57,
+    "flag_added__NORMALIZATION_FLOAT_PRECISION_LIMIT": 81,
+    "flag_added__PARENTHETICAL_EXPRESSION_SEPARATE": 1,
+    "flag_added__UNSUPPORTED_COMPOUND_AMOUNT": 1,
+    "flag_added__locale_ambiguous": 371,
+    "mass_route__NO_INGREDIENT_LINK__TO__AST_EXACT_PHYSICAL": 54,
+    "mass_route__NO_INGREDIENT_LINK__TO__PARENTHETICAL_SOURCE_STATED": 1,
+    "mass_route__NO_INGREDIENT_LINK__TO__UNSUPPORTED_EXPRESSION": 1,
+    "mass_route__PARENTHETICAL_SOURCE_STATED__TO__AST_EXACT_PHYSICAL": 2,
+    "q_level__Q6__TO__Q0": 55,
+    "rc2_mass_status__UNKNOWN__TO__MEASURED": 54,
+    "rc2_mass_status__UNKNOWN__TO__RANGE": 1,
+    "unit_resolution__COUNT__TO__MASS_PHYSICAL": 56,
+    "unit_resolution__COUNT__TO__NONE": 1,
+    "unit_resolution__COUNT__TO__VOLUME_LOCALE_AMBIGUOUS": 349,
+    "valueclass__E1__TO__FRACTIONAL_GT1": 51,
+    "valueclass__E1__TO__LT1": 302,
+    "valueclass__E1__TO__RANGE": 4,
+    "valueclass__E1__TO__UNKNOWN": 1,
+    "valueclass__INT_GT1__TO__FRACTIONAL_GT1": 18,
+    "valueclass__INT_GT1__TO__LT1": 37,
+    "valueclass__INT_GT1__TO__RANGE": 1
+   },
+   "unaffected_lines_verified_identical": {
+    "checked_unique": 2739,
+    "identical_unique": 2739
+   },
+   "unique_lines": 3116,
+   "unique_lines_affected": 377
+  },
+  "WIKIBOOKS": {
+   "affected_lines_whose_before_amount_was_exactly_one": 0,
+   "affected_lines_whose_legacy_parse_changes": 0,
+   "affected_lines_whose_normalised_amount_changes": 0,
+   "affected_lines_whose_rc2_record_changes": 0,
+   "affected_lines_with_identical_rc2_record": 0,
+   "after": {
+    "arithmetic_status": {
+     "ALTERNATIVE": 3,
+     "KNOWN": 21313,
+     "QUALITATIVE": 1546,
+     "RANGE": 818,
+     "UNKNOWN": 8356
+    },
+    "ast_root": {
+     "ADD": 13,
+     "ALTERNATIVE": 3,
+     "PACKAGE_CONTENT": 22,
+     "QUALITATIVE": 1546,
+     "RANGE": 818,
+     "RATIONAL": 21291,
+     "UNKNOWN": 8343
+    },
+    "exceptions": {},
+    "flags": {
+     "APPROXIMATE_SOURCE_AMOUNT": 342,
+     "COMPATIBILITY_CHANNEL_MASKED": 1121,
+     "INVALID_NUMBER": 2,
+     "INVALID_NUMERIC_INPUT": 2,
+     "LOCALE_AMBIGUOUS": 12910,
+     "MASS_FLOAT_REPRESENTATION": 1202,
+     "NONTERMINATING_RANGE_BOUND": 9,
+     "NORMALIZATION_FLOAT_PRECISION_LIMIT": 732,
+     "OPEN_EXTRA_AMOUNT": 13,
+     "PARENTHETICAL_EXPRESSION_SEPARATE": 2879,
+     "PART_AMOUNT_UNGROUNDED": 72,
+     "QUALIFIED_FILL_UNCERTAINTY": 29,
+     "REGIONAL_VESSEL_NO_STANDARD_VOLUME": 29,
+     "SIZE_IS_NOT_QUANTITY": 29,
+     "UNCONSUMED_UNIT": 27,
+     "UNRESOLVED_ALTERNATIVE": 2616,
+     "UNSUPPORTED_COMPOUND_AMOUNT": 234,
+     "UNSUPPORTED_DUAL_EXPRESSION": 651,
+     "UNSUPPORTED_MULTIPLIER": 16,
+     "UNSUPPORTED_OR_UNSTATED_QUANTITY": 4687,
+     "contradictory_stated_mass": 15,
+     "locale_ambiguous": 14352,
+     "non_standard_vessel": 30,
+     "second_unit_ignored": 6
+    },
+    "issue_codes": {
+     "INVERTED_INTERVAL": 2
+    },
+    "legacy_vs_rc2_mass": {
+     "legacy_MEASURED__rc2_MEASURED": 2960,
+     "legacy_MEASURED__rc2_UNKNOWN": 1102,
+     "legacy_QUALITATIVE__rc2_UNKNOWN": 1617,
+     "legacy_RANGE__rc2_RANGE": 60,
+     "legacy_RANGE__rc2_UNKNOWN": 19,
+     "legacy_UNKNOWN__rc2_UNKNOWN": 26278
+    },
+    "lines_blank": 0,
+    "lines_contract_valid": 32034,
+    "lines_flagged": 22859,
+    "lines_grounded": 32036,
+    "lines_total": 32036,
+    "lines_with_rc2_count": 6142,
+    "lines_with_rc2_mass": 3020,
+    "lines_with_rc2_volume": 532,
+    "mass_route": {
+     "ALTERNATIVE": 3,
+     "AST_EXACT_PHYSICAL": 2547,
+     "AST_PACKAGE_SOURCE_STATED": 7,
+     "NO_INGREDIENT_LINK": 19111,
+     "NO_QUANTITY": 4292,
+     "OPEN_OR_UNAVAILABLE_OPERAND": 13,
+     "PARENTHETICAL_SOURCE_STATED": 466,
+     "QUALITATIVE": 1546,
+     "UNSUPPORTED_EXPRESSION": 4051
+    },
+    "q_level": {
+     "Q0": 3020,
+     "Q6": 29016
+    },
+    "recipes": 3676,
+    "unit_resolution": {
+     "COUNT": 6070,
+     "MASS_PHYSICAL": 2554,
+     "NONE": 9905,
+     "PACKAGE": 36,
+     "REGIONAL_NO_STANDARD": 29,
+     "VOLUME_LOCALE_AMBIGUOUS": 12910,
+     "VOLUME_PHYSICAL": 532
+    }
+   },
+   "before": {
+    "arithmetic_status": {
+     "ALTERNATIVE": 3,
+     "KNOWN": 21313,
+     "QUALITATIVE": 1546,
+     "RANGE": 818,
+     "UNKNOWN": 8356
+    },
+    "ast_root": {
+     "ADD": 13,
+     "ALTERNATIVE": 3,
+     "PACKAGE_CONTENT": 22,
+     "QUALITATIVE": 1546,
+     "RANGE": 818,
+     "RATIONAL": 21291,
+     "UNKNOWN": 8343
+    },
+    "exceptions": {},
+    "flags": {
+     "APPROXIMATE_SOURCE_AMOUNT": 342,
+     "COMPATIBILITY_CHANNEL_MASKED": 1121,
+     "INVALID_NUMBER": 2,
+     "INVALID_NUMERIC_INPUT": 2,
+     "LOCALE_AMBIGUOUS": 12910,
+     "MASS_FLOAT_REPRESENTATION": 1202,
+     "NONTERMINATING_RANGE_BOUND": 9,
+     "NORMALIZATION_FLOAT_PRECISION_LIMIT": 732,
+     "OPEN_EXTRA_AMOUNT": 13,
+     "PARENTHETICAL_EXPRESSION_SEPARATE": 2879,
+     "PART_AMOUNT_UNGROUNDED": 72,
+     "QUALIFIED_FILL_UNCERTAINTY": 29,
+     "REGIONAL_VESSEL_NO_STANDARD_VOLUME": 29,
+     "SIZE_IS_NOT_QUANTITY": 29,
+     "UNCONSUMED_UNIT": 27,
+     "UNRESOLVED_ALTERNATIVE": 2616,
+     "UNSUPPORTED_COMPOUND_AMOUNT": 234,
+     "UNSUPPORTED_DUAL_EXPRESSION": 651,
+     "UNSUPPORTED_MULTIPLIER": 16,
+     "UNSUPPORTED_OR_UNSTATED_QUANTITY": 4687,
+     "contradictory_stated_mass": 15,
+     "locale_ambiguous": 14352,
+     "non_standard_vessel": 30,
+     "second_unit_ignored": 6
+    },
+    "issue_codes": {
+     "INVERTED_INTERVAL": 2
+    },
+    "legacy_vs_rc2_mass": {
+     "legacy_MEASURED__rc2_MEASURED": 2960,
+     "legacy_MEASURED__rc2_UNKNOWN": 1102,
+     "legacy_QUALITATIVE__rc2_UNKNOWN": 1617,
+     "legacy_RANGE__rc2_RANGE": 60,
+     "legacy_RANGE__rc2_UNKNOWN": 19,
+     "legacy_UNKNOWN__rc2_UNKNOWN": 26278
+    },
+    "lines_blank": 0,
+    "lines_contract_valid": 32034,
+    "lines_flagged": 22859,
+    "lines_grounded": 32036,
+    "lines_total": 32036,
+    "lines_with_rc2_count": 6142,
+    "lines_with_rc2_mass": 3020,
+    "lines_with_rc2_volume": 532,
+    "mass_route": {
+     "ALTERNATIVE": 3,
+     "AST_EXACT_PHYSICAL": 2547,
+     "AST_PACKAGE_SOURCE_STATED": 7,
+     "NO_INGREDIENT_LINK": 19111,
+     "NO_QUANTITY": 4292,
+     "OPEN_OR_UNAVAILABLE_OPERAND": 13,
+     "PARENTHETICAL_SOURCE_STATED": 466,
+     "QUALITATIVE": 1546,
+     "UNSUPPORTED_EXPRESSION": 4051
+    },
+    "q_level": {
+     "Q0": 3020,
+     "Q6": 29016
+    },
+    "recipes": 3676,
+    "unit_resolution": {
+     "COUNT": 6070,
+     "MASS_PHYSICAL": 2554,
+     "NONE": 9905,
+     "PACKAGE": 36,
+     "REGIONAL_NO_STANDARD": 29,
+     "VOLUME_LOCALE_AMBIGUOUS": 12910,
+     "VOLUME_PHYSICAL": 532
+    }
+   },
+   "before_vs_s161": {
+    "differences": {},
+    "n_differences": 0,
+    "recipes_match": true,
+    "status": "IDENTICAL"
+   },
+   "delta_lines_contract_valid": 0,
+   "delta_lines_flagged": 0,
+   "delta_lines_with_rc2_mass": 0,
+   "delta_lines_with_rc2_volume": 0,
+   "legacy_parse_kind_transition_lines": {},
+   "lines_affected_by_any_rule": 0,
+   "lines_by_rule": {},
+   "lines_by_rule_combination": {},
+   "lines_refused_glued": 0,
+   "lines_total": 32036,
+   "pct_lines_affected": 0.0,
+   "pct_lines_changing_rc2_record": 0.0,
+   "pct_lines_whose_normalised_amount_changes": 0.0,
+   "recipes": 3676,
+   "recipes_without_ingredient_lines": 0,
+   "seconds": 39.3,
+   "status": "READ",
+   "transitions_lines": {},
+   "unaffected_lines_verified_identical": {
+    "checked_unique": 18986,
+    "identical_unique": 18986
+   },
+   "unique_lines": 20806,
+   "unique_lines_affected": 0
+  }
+ },
+ "ingredient_links_supplied": false,
+ "item": "T3-C07-R1",
+ "locale_source": "LEGACY_SOURCE_FAMILY_LOCALE_MAP",
+ "pipeline_version_before": "CQPO_RC2_GROUNDING_V1_DRAFT",
+ "por_records_supplied": 0,
+ "prenorm_version": "CQPO_SP002_PRENORM_V1_DRAFT",
+ "record": "SP002_PRENORM_RERUN_S178",
+ "rules": [
+  "SP002_U2044",
+  "SP002_GLUED_REFUSE",
+  "SP002_HYPHEN_MIXED"
+ ],
+ "sample_recipes_per_family": null,
+ "sample_seed_sha256": null,
+ "seconds_total": 248.1,
+ "status": "AI_ENGINEERING_COUNTS_ONLY_DRAFT",
+ "tool_version": "s178-corpus-prenorm-rerun-0.1.0-draft",
+ "workers": 16
+}

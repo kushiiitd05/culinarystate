@@ -1,0 +1,287 @@
+{
+ "reviewer": "R-SSOT",
+ "round": 1,
+ "non_agree": [
+  {
+   "id": "T3-C22",
+   "vote": "AMEND",
+   "reason": "T3 states 'no lot_state module in this tree' but src/culinarystate/lotstate/{__init__,values,intervals,text}.py exist (untracked, L-LOT lane in progress).",
+   "amendment": "status: NOT_STARTED -> CODE (in-progress lane L-LOT, untracked, no committed tests, unreviewed); what_exists: cite src/culinarystate/lotstate/*.py; keep remaining items for SSOT-conformance, tests, review. Re-verify against reports/orchestration/S176_L-LOT_report.md once it exists (not present on 2026-11-08)."
+  },
+  {
+   "id": "T4-C11",
+   "vote": "AMEND",
+   "reason": "Marked NOT_STARTED, but registry/scenario_defaults_nonheat_v1.csv (40 rows, untracked) and src/culinarystate/simulation/nonheat_drivers.py (thaw_time_s, slab_two_stage, drying_state, f0_minutes, slab_av/cube_av) exist from lane L-NH.",
+   "amendment": "status: NOT_STARTED -> CODE (L-NH lane, untracked, SOURCE_UNVERIFIED defaults, no corpus run); status_evidence add the two paths; keep corpus binder/census as remaining items."
+  },
+  {
+   "id": "T4-C15",
+   "vote": "AMEND",
+   "reason": "PRESERVATION (drying, F0 lethality) has functions drying_state and f0_minutes plus defaults NH-050..054, NH-060/061 in the untracked L-NH files; NOT_STARTED is stale.",
+   "amendment": "status: NOT_STARTED -> CODE (partial: drying + F0 only; pickle/pasteurise-by-pH not covered), with L-NH evidence paths."
+  },
+  {
+   "id": "T4-C13",
+   "vote": "AMEND",
+   "reason": "SEPARATION has default NH-080 (liquid_removed_fraction) in registry/scenario_defaults_nonheat_v1.csv but no driver function in nonheat_drivers.py; status is right but evidence should name the stub.",
+   "amendment": "status stays NOT_STARTED; add status_evidence: 'only default row NH-080, no function'; avoid double counting with T4-C11."
+  },
+  {
+   "id": "T4-C16",
+   "vote": "AMEND",
+   "reason": "MECHANICAL_CUT: half_thickness default NH-070 and cube_av/slab_av exist in L-NH files; geometry now slab and cube, not slab only.",
+   "amendment": "status: NOT_STARTED -> CODE (partial); T4-C08 what_exists: 'slab only' -> 'slab (tested) and cube A/V helper (untracked L-NH); no cylinder/sphere'. T4-C08 status NOT_STARTED -> CODE(partial)."
+  },
+  {
+   "id": "T4-C06",
+   "vote": "AMEND",
+   "reason": "Packet and T4 say 28 default rows; registry/scenario_defaults_v1.csv has 27 data rows (header + 27 lines = 28 lines), all 27 SOURCE_UNVERIFIED_AGENT_RECALLED. The '28' is a line count.",
+   "amendment": "what_exists / notes: '28 rows' -> '27 rows (28 lines incl. header); packet Q2 count of 28 is a line count'. Add the packet-vs-registry count to T4 contradictions. Also add the 40 nonheat rows as a separate registry."
+  },
+  {
+   "id": "T4-C09",
+   "vote": "AMEND",
+   "reason": "Surface-vs-core and moisture are marked NOT_STARTED, but nonheat_drivers.drying_state (constant-rate/falling-rate with wet-bulb, critical moisture) is a moisture-state model for the drying family.",
+   "amendment": "status: NOT_STARTED -> CODE (partial: drying-only moisture state, not frying/baking crust); SSOT L6042-6048 gap remains for heat families."
+  },
+  {
+   "id": "T2-C01",
+   "vote": "AMEND",
+   "reason": "'17,978 ACTIVE rows' is correct only as distinct ids; ledgers/data/EVD.jsonl is append-only: 57,280 lines, 56,828 lines flagged ACTIVE, 452 DEPRECATED, 18,156 ids (reports/step04/lineage_contract_v1_1.md L77). Also 6,148 lines carry an ai_reviewer verification block, 51,132 UNVERIFIED. A reader counting lines gets a number 3x too high.",
+   "amendment": "what_exists: state 'EVD.jsonl 57,280 lines = 18,156 ids; 17,978 current ACTIVE ids (counting rule: latest version per id); 0 human-verified, 6,148 lines carry an AI precheck block (not a human verification)'. Add this counting rule to the contradictions list."
+  },
+  {
+   "id": "T9-C02",
+   "vote": "AMEND",
+   "reason": "SVAR count contradiction (254 vs 355) is unresolved in the inventories, but repo shows three different numbers: ledgers/data/SVAR.jsonl has 355 ACTIVE lines but only 224 distinct ids (354 CHEMICAL, 1 PHYSICAL); registry/state_variable_registry_v1.csv has 254 rows. Packet '355 SVAR' is line count.",
+   "amendment": "what_exists: record 'SVAR ledger 355 lines / 224 distinct ids; registry v1 254 rows; the 355 and 254 are not the same population'. Add action item: reconcile ledger vs registry and fix the packet. Same amendment in T2-C03, T0 contradiction list."
+  },
+  {
+   "id": "T2-C03",
+   "vote": "AMEND",
+   "reason": "Duplicate of T9-C02 and T3-C21 with a different status (DONE vs DONE vs DRAFT) and the counts above are not stated.",
+   "amendment": "Designate T2-C03 owner of the SVAR ledger/registry (DONE for CHEMICAL only); T9-C02 becomes a cross-reference (no separate remaining items); T3-C21 owns physical/history extension only."
+  },
+  {
+   "id": "T9-C16",
+   "vote": "AMEND",
+   "reason": "Status RUN for D3 conflicts with T3-C17 NOT_STARTED (no gold comparison run; DEEP_GOLD 0 in registry/recipe_quality_tier_registry_v1.csv) and T3-C12 RUN (the engine, not its validation). D3 'validation' has not run.",
+   "amendment": "status: RUN -> CODE (engine RUN under T3-C12; validation NOT_STARTED under T3-C17); make T9-C16 reference T3-C12/C17 and own only the D3 deliverable packaging."
+  },
+  {
+   "id": "T9-C28",
+   "vote": "AMEND",
+   "reason": "DONE contradicts T9-C05 BLOCKED and T2-C18 BLOCKED (21 undecided licence items H2; packet row 06 says DONE but 'Food.com training licence open'; Q30 open).",
+   "amendment": "status: DONE -> DRAFT (policy registry exists; per-source terms, Food.com training use and H2 approvals open). Reconcile T9-C05 / T9-C28 / T2-C18 into one licence owner (T2-C18) with the other two as references."
+  },
+  {
+   "id": "T9-C05",
+   "vote": "AMEND",
+   "reason": "Duplicate of T2-C18 (licences, H2 approvals) with the same BLOCKED status; double-counts items and MUSTs.",
+   "amendment": "Merge remaining items into T2-C18 or mark T9-C05 'xref only'; keep one owner for the H1 professor email (T0-C17/T9) too."
+  },
+  {
+   "id": "T0-C08",
+   "vote": "AMEND",
+   "reason": "Same router appears as T0-C08 (CODE), T5-C05 (RUN, 23a demo census) and T8-C01 (CODE): three statuses for one artefact (src/culinarystate/mechanism/router_census.py, decision/query_router.py are two different routers: formula/applicability router 23a vs SSOT §39 query router).",
+   "amendment": "Disambiguate: T0-C08 and T8-C01 = SSOT §39 QUERY router (decision/query_router.py, CODE); T5-C05 = applicability/formula router 23a (mechanism/applicability.py, RUN on demo). State the distinction in both names; no shared status."
+  },
+  {
+   "id": "T0-C06",
+   "vote": "AMEND",
+   "reason": "§141 output contract is split across T0-C06 (CODE), T8-C25 (CODE) and T5-C05; the T0 note says no frozen crosswalk router modes->three labels and no emit-path leak audit, but T8-C25 does not carry the same MUST items, so ownership is undefined.",
+   "amendment": "Make T0-C06 the single owner of the two MUST items (crosswalk, no-numeric-leak audit); T8-C25 and T5-C05 reference them. Add acceptance: grep/test enumerating every emit path in decision/ and mechanism/."
+  },
+  {
+   "id": "T6-C15",
+   "vote": "AMEND",
+   "reason": "Step 34 / §212 is CODE here (composition.py DRAFT_PENDING_34a_0, abstention spec all-UNKNOWN) but OUT_OF_SCOPE in T5-C19 (rollout trust horizon, same §212). Evidence shows scaffold only, signed spec absent, no real run.",
+   "amendment": "status: CODE -> DRAFT (scaffold + unsigned spec, synthetic tests only); align T5-C19 to say 'OUT_OF_SCOPE for run, DRAFT scaffold owned by T6-C15'."
+  },
+  {
+   "id": "T5-C09",
+   "vote": "AMEND",
+   "reason": "Counts-only physical drivers duplicate T4-C04/C05/C07 (same 'RUN' layers, same D-077 evidence) with different numbers (T5 3.3%/4.8% from the 1,000-recipe sample vs T4 3.4%/5.3% from summed census JSONs).",
+   "amendment": "Mark T5-C09 as xref to T4-C04/C05/C07, drop its numeric claims, and add the sample-vs-full-corpus discrepancy to T4 contradictions (T4 figures are the full-corpus ones)."
+  },
+  {
+   "id": "T6-C13",
+   "vote": "AMEND",
+   "reason": "Step 32 focused kinetics is CODE in T6-C13 and CODE in T5-C15 and T5-C11/C12; AA pilot Model A fit appears in T5-C10, T6-C13 and T2-C09 with three owners.",
+   "amendment": "Owner T5-C15 for fitting library; T6-C13 becomes a pointer; AA pilot data/verification only in T2-C09/T5-C10 (merge those two)."
+  },
+  {
+   "id": "T5-C10",
+   "vote": "AMEND",
+   "reason": "Duplicate of T2-C09 (Step 10 AA pilot, same blockers: prereg signature, 5 PDFs, 16 rows verification by 15 Nov). The human critical path items are double counted in the MUST totals.",
+   "amendment": "Merge: T2-C09 owns evidence extraction/verification, T5-C10 owns fit/PARAM output only; remaining human items listed once."
+  },
+  {
+   "id": "T7-C13",
+   "vote": "AMEND",
+   "reason": "Recipe identity/variant calibration duplicates T3-C20 (DONE) yet is DRAFT here.",
+   "amendment": "Reduce T7-C13 to the 35-specific split-group usage; status DONE-by-reference for the identity ledger; xref T3-C20."
+  },
+  {
+   "id": "T7-C01",
+   "vote": "AMEND",
+   "reason": "plan_steps in T7.json is a string ('35.0'), not a list as in T0-T6,T8,T9; downstream joins by step split it into characters ('3','5','.','0').",
+   "amendment": "Schema fix: plan_steps -> list of strings for all T7 components (e.g. ['35.0'], ['35a','35e'], ['35-E']); same fix for T7-C02..C27."
+  },
+  {
+   "id": "T0-C15",
+   "vote": "AMEND",
+   "reason": "Verified: src/culinarystate/classical/__init__.py is a 0-byte file and nothing else exists. But the anchor '§128-§132' omits the actual method sections §121-§127 (Level 8-9: Delta N_s, extended null-model lattice §123 L6999-7328, n_ij improvement §124 L7329-7696, final decisions §126) and §80-§86 (class addendum), none of which appear in any topic anchor.",
+   "amendment": "ssot_anchor: add '§121-§127 L6659-7871; §80-§86 L4358-4782; §159-§160 (null-model consensus, frequency/authenticity)'; add remaining item: 'Decide which of §123 null models (ingredient-shuffle, category-preserving, frequency-preserving) are in scope for the talk; list rest as uncovered'. Cross-reference T7-C06/C14 to avoid two owners of n_ij/N_s."
+  },
+  {
+   "id": "T0-C16",
+   "vote": "AMEND",
+   "reason": "Anchor lists §128-§134 but §131 (Level 10, L8136) and §132 (Level 11, L8232-8450) are not named in any topic; status OUT_OF_SCOPE needs an explicit decision record.",
+   "amendment": "ssot_anchor: add §131 L8136-8231, §132 L8232-8450, §135 L8541-8678; status_evidence: cite DECISIONS entry that scopes Levels 10-11 out, or add a remaining item 'record scope decision'."
+  },
+  {
+   "id": "T3-C22",
+   "vote": "AMEND",
+   "reason": "(second point) T3-C22 and T7-C11 and T4 lot-temperature both describe the packet lot-state layer; T7-C11 NOT_STARTED, T3-C22 NOT_STARTED, no owner.",
+   "amendment": "T3-C22 owns; T7-C11 and T3-C13 reference it."
+  },
+  {
+   "id": "T9-C25",
+   "vote": "AMEND",
+   "reason": "'Compute plan' is a plan, not an executed component; status RUN misreports. Also T5/T6/T7 environment findings (verified: manjot .venv312 lacks sklearn, lightgbm, torch, pymc, rdkit, hypothesis, lxml; scipy present) are repeated per topic instead of one owner.",
+   "amendment": "status: RUN -> DRAFT; add remaining item 'environment authorisation decision (sklearn/rdkit/hypothesis/lxml on manjot vs run on Mac) with D-number' as the single owner; T5/T6/T7 reference it."
+  },
+  {
+   "id": "T6-C19",
+   "vote": "AMEND",
+   "reason": "Cross-cutting enabler duplicates the environment item above (T9-C25).",
+   "amendment": "T6-C19 -> xref T9-C25; keep reproducibility seeds only."
+  },
+  {
+   "id": "T8-C20",
+   "vote": "AMEND",
+   "reason": "D5 benchmark appears as T0-C11, T8-C20 and T9-C17, each DRAFT with its own prereg items; the SSOT §12 nine tasks vs D-008 T1-T8 vs D5 blocks crosswalk is a T0 item but T8 and T9 repeat it.",
+   "amendment": "Owner T8-C20; T0-C11 keeps only the SSOT §12 task-crosswalk item; T9-C17 is stats/prereg only. De-duplicate MUST counts accordingly."
+  },
+  {
+   "id": "T0-C12",
+   "vote": "AMEND",
+   "reason": "Metrics (SSOT §13) is duplicated by T9-C12 (statistics design) and T6-C10 (calibration/conformal) and T8-C12; all are CODE with no single owner for ECE/Brier/risk-coverage, which is listed as uncovered in T8 and T9.",
+   "amendment": "Owner T9-C12 for metric spec; T0-C12, T6-C10 cross-reference; one shared remaining item: 'ECE/Brier/risk-coverage on independent gold (§242.5)' with realistic status NOT_STARTED."
+  },
+  {
+   "id": "T0-C13",
+   "vote": "AMEND",
+   "reason": "MPU checklist duplicates T9-C23 (paper path/MPU) and T9-C30 (Definition of Done).",
+   "amendment": "T0-C13 -> xref T9-C23/C30; keep one MPU table (14 items) with per-item status in T9-C23."
+  },
+  {
+   "id": "T0-C18",
+   "vote": "AMEND",
+   "reason": "Governance/human gates duplicate T9-C07, T9-C13, T9-C29 and T5-C21; 'BLOCKED' in T0 vs 'DONE' in T9-C07 for the same gate registry.",
+   "amendment": "Split: gate registry DONE (T9-C07); executing signatures BLOCKED (T9-C13/C08); T0-C18 xref only."
+  },
+  {
+   "id": "T3-C03",
+   "vote": "AMEND",
+   "reason": "ING counts: 1,951 (reports/ingredient_registry_v1.md L4, BBC-only vocab) vs 5,387 (packet Q7). Both are real but different registries; T3 lists the contradiction but not which is current.",
+   "amendment": "Add resolution item: state which file produced 5,387 (suspected Food.com-extended ING) and add its path; do not call vocab 'built from BBC only' without also naming the 5,387 source."
+  }
+ ],
+ "missing": [
+  {
+   "topic": "T0",
+   "proposal": {
+    "component": "SSOT Level 8-9 classical pairing method sections §121-§127 (L6659-7871) and class addendum §80-§86 (L4358-4782), §159-§160: no topic anchors them",
+    "status": "NOT_STARTED/uncovered",
+    "remaining": [
+     "Scope decision: record which parts are replicated by Step 35 C-rungs or 35b, and list the rest as uncovered with owner",
+     "Reconcile with T0-C15 and T7-C06"
+    ]
+   }
+  },
+  {
+   "topic": "T0",
+   "proposal": {
+    "component": "Course-level frozen ontology and midsem imports §152-§158, §161-§170 (L9149-10523): course objects, hypothesis-first design, imported RQs, write-back matrix",
+    "status": "uncovered",
+    "remaining": [
+     "Table mapping §158 course computational objects, §163 simplifications, §164 process-conditioned flavour transformation, §170 hypothesis-first design to plan steps or to 'not in scope'"
+    ]
+   }
+  },
+  {
+   "topic": "T0",
+   "proposal": {
+    "component": "Pre-Level-7 representation freeze §99-§102 (L5347-5690), §111-§120 incl. §114-§120 FlavorTwin/RAG implications, §143 descriptor compute tiers (L8872-8973), §146 learned encoders",
+    "status": "uncovered",
+    "remaining": [
+     "State whether §99 representation-freeze and §119 'what we freeze before Level 7' are satisfied; cite repo evidence or list as uncovered"
+    ]
+   }
+  },
+  {
+   "topic": "T0",
+   "proposal": {
+    "component": "SSOT front matter schemas and product sections §51 software architecture, §61-§64 user/recipe/food/process-effect schemas (L3096-3915), §72-§74 demos and roadmap",
+    "status": "uncovered",
+    "remaining": [
+     "Map §61-§64 schema sections to the §238 / SVAR / EVD contracts (T9-C06) or mark superseded; §62-§64 are not named in any topic"
+    ]
+   }
+  },
+  {
+   "topic": "T9",
+   "proposal": {
+    "component": "SSOT §257G-§257K and §257M-§257P (dataset audit report, annotation few-shot, test strategy, human-agency contract, sequencing checklist, evidence packet examples, decision traces, query playbook, final critical-path checklist) plus §257L RQ execution flow (L35075-42159, 7,085 lines, not anchored by any topic)",
+    "status": "uncovered",
+    "remaining": [
+     "Add §257P critical-path checklist (L42705) as an explicit pass/fail table in T9-C26; §257I test strategy and §257G dataset audit tables to T9-C24 or list as uncovered; state which RQ16 rows in §257L are in scope"
+    ]
+   }
+  },
+  {
+   "topic": "T4",
+   "proposal": {
+    "component": "FDA/food pH registry (lane L-PH): registry/food_ph_fda_draft_v1.csv (489 lines), food_ph_fda_ing_crosswalk_draft_v1.csv, tools/build_food_ph_fda_draft.py, tests/test_food_ph_fda_draft.py (all untracked) feed the SSOT §199.5 pH axis (L16147) and acid-dependent kinetics; no topic lists it",
+    "status": "CODE (draft, untracked, values AI-drafted)",
+    "remaining": [
+     "Verify source status (pH values not source-opened = SOURCE_UNVERIFIED), wire to ING crosswalk, record whether pH enters Layer 2 defaults or stays UNKNOWN",
+     "Add pH to T2-C01 'no pH column' gap cross-reference"
+    ]
+   }
+  },
+  {
+   "topic": "T9",
+   "proposal": {
+    "component": "Single owner for the 'environment and installs authorisation' decision: sklearn, lightgbm, torch, pymc, rdkit, hypothesis, lxml missing on manjot .venv312 (verified); gates 29-diag, DEL-2, 35a/b, property tests",
+    "status": "BLOCKED on human decision",
+    "remaining": [
+     "Decision D-number: install on manjot vs run on Mac/vinayak; list exact packages per step; record that T5 test count (622) excludes hypothesis/lxml-gated tests"
+    ]
+   }
+  },
+  {
+   "topic": "T9",
+   "proposal": {
+    "component": "Scope-cut register for the course (H8): one table of proposal promises (D2, H2, H4, D3 gold 40 recipes, 8-scenario demo) vs delivered/diagnostic/declared-not-run, with the SSOT §14 MPU items",
+    "status": "NOT_STARTED",
+    "remaining": [
+     "Create table with repo evidence per row; every cut gets a decision record; referenced by T6-C11, T9-C15, T9-C19, T7 MUST decision"
+    ]
+   }
+  },
+  {
+   "topic": "T0",
+   "proposal": {
+    "component": "Stale-status delta: SSOT §128 (L7872) 'Code written: None yet' vs repo (src/ has 29 packages; classical/ is the only empty one); plus SSOT merge-change registers §184, §195, §206, §217 (empty of owners)",
+    "status": "DRAFT",
+    "remaining": [
+     "Include the §128 delta table in T0-C01-R2 with one row per SSOT claim; add a rule that reports cite repo paths, not SSOT status blocks"
+    ]
+   }
+  }
+ ],
+ "global": "Spot-checked 28 claims against repo. Verified OK: classical/ empty (0-byte __init__); sklearn/lightgbm/torch/pymc/rdkit/hypothesis/lxml missing, scipy present; EVD 17,978 current ids (57,280 lines, 18,156 ids); mechanism roster 32 rows and no MECH.jsonl; 4-5 SSOT anchor ranges (§0 L226, §7 L770, §39 L2499, §128 L7872, §141 L8822, §203.1 L17121, §232 L25228, §245.1 L26606, §249.1 L27444, §257 L27846) land on the right headings; BBC absent. Defects found: (1) stale status from parallel untracked lanes (lotstate, nonheat drivers/defaults, food pH) so T3-C22 and T4-C08/C09/C11/C13/C15/C16 are understated; re-check when S176_*_report.md arrive (none exist yet, reports/orchestration has only ssot_consensus). (2) Count errors: scenario defaults are 27 rows not 28; SVAR is 355 ledger lines = 224 distinct ids vs 254 registry rows; EVD line count vs id count not stated. (3) Same artefact owned by several topics with differing statuses: routers (T0-C08/T5-C05/T8-C01), D5 (T0-C11/T8-C20/T9-C17), licences (T2-C18/T9-C05/T9-C28), AA pilot (T2-C09/T5-C10), physical drivers (T4/T5-C09), SVAR (T2-C03/T3-C21/T9-C02), metrics, MPU, governance; MUST totals (16+12+10+7+10+23+2+19+28=127) therefore overcount and human-path items (07.A, AA, D5 review, prereg signatures) are repeated. Recommend one owner per artefact with xrefs and recompute MUST totals after dedup. (4) SSOT coverage: by heading-number plus line-range matching, 87 of 295 top-level SSOT sections are not anchored by any topic; most are superseded, product or marketing text (acceptable if listed as such) but these need an owner or explicit 'superseded' flag: §121-§127 and §80-§86 classical pairing (about 1,500 lines), §99-§102 and §111-§120 representation freeze, §143 compute tiers, §152-§158 and §161-§170 course-level ontology and midsem imports, §61-§64 schemas, §257G-§257P and §257L (7,085 lines). There is no T1 topic in the set (T0 then T2..T9); confirm T1 was merged into T0. (5) T7.json plan_steps is a string, not a list. Also the topic claim that nothing was run is fine, but every 'RUN' status should cite the compute_runs_v1.csv row id (the registry has only 14 data rows, so RUN claims for Rung A, rc2, NER, replay census need a row or a report path; I did not find a 9,470,190 or 1,746,405 entry in registry/compute_runs_v1.csv)."
+}

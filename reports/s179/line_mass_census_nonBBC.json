@@ -1,0 +1,127 @@
+{
+ "families": {
+  "FOODCOM": {
+   "basis": {
+    "UNIT_MISSING_IN_SOURCE": 4129433
+   },
+   "flags": {},
+   "lines": 4129433,
+   "lines_with_grams": 0,
+   "lines_with_grams_link_unverified": 0,
+   "match_status": {
+    "AUTO_MATCH_HIGH": 137572,
+    "AUTO_MATCH_LOW": 279838,
+    "NO_FOOD_MENTION": 45825,
+    "NO_MATCH": 134589,
+    "REGISTRY_MAPPED": 3233174,
+    "REGISTRY_UNMAPPABLE": 298435
+   },
+   "q_level": {
+    "Q6": 4129433
+   },
+   "reason": {
+    "UNIT_MISSING_IN_SOURCE": 4129433
+   },
+   "recipes": 522517,
+   "recipes_all_quantified_lines_with_grams": 0
+  },
+  "GUTENBERG_SEGMENT": {
+   "basis": {},
+   "flags": {},
+   "lines": 0,
+   "lines_with_grams": 0,
+   "lines_with_grams_link_unverified": 0,
+   "match_status": {},
+   "q_level": {},
+   "reason": {},
+   "recipes": 73955,
+   "recipes_all_quantified_lines_with_grams": 0
+  },
+  "TASTESET": {
+   "basis": {
+    "COUNT_x_SR_PORTION": 536,
+    "QUALITATIVE": 104,
+    "TEXT_STATED_MASS": 509,
+    "UNKNOWN": 1253,
+    "VOLUME_x_SR_DENSITY": 1386
+   },
+   "flags": {
+    "SR_SINGLE_PORTION_NO_SPREAD": 656,
+    "UNIT_HULL_LOCALE_UNKNOWN": 1376
+   },
+   "lines": 3788,
+   "lines_with_grams": 2431,
+   "lines_with_grams_link_unverified": 1922,
+   "match_status": {
+    "AUTO_MATCH_HIGH": 217,
+    "AUTO_MATCH_LOW": 354,
+    "NO_FOOD_MENTION": 129,
+    "NO_MATCH": 191,
+    "REGISTRY_MAPPED": 2498,
+    "REGISTRY_UNMAPPABLE": 399
+   },
+   "q_level": {
+    "Q0": 509,
+    "Q1": 536,
+    "Q2": 1386,
+    "Q6": 1357
+   },
+   "reason": {
+    "NO_AMOUNT": 334,
+    "NO_SR_COUNT_PORTION": 145,
+    "NO_SR_DENSITY": 64,
+    "NO_SR_FOOD": 710
+   },
+   "recipes": 700,
+   "recipes_all_quantified_lines_with_grams": 126
+  },
+  "WIKIBOOKS": {
+   "basis": {
+    "COUNT_x_SR_PORTION": 4073,
+    "QUALITATIVE": 1617,
+    "TEXT_STATED_MASS": 4141,
+    "UNKNOWN": 11509,
+    "VOLUME_x_SR_DENSITY": 10696
+   },
+   "flags": {
+    "SR_SINGLE_PORTION_NO_SPREAD": 5392,
+    "UNIT_HULL_LOCALE_UNKNOWN": 10192
+   },
+   "lines": 32036,
+   "lines_with_grams": 18910,
+   "lines_with_grams_link_unverified": 14769,
+   "match_status": {
+    "AUTO_MATCH_HIGH": 992,
+    "AUTO_MATCH_LOW": 2615,
+    "NO_FOOD_MENTION": 538,
+    "NO_MATCH": 2152,
+    "REGISTRY_MAPPED": 22315,
+    "REGISTRY_UNMAPPABLE": 3424
+   },
+   "q_level": {
+    "Q0": 4141,
+    "Q1": 4073,
+    "Q2": 10696,
+    "Q6": 13126
+   },
+   "reason": {
+    "NO_AMOUNT": 4785,
+    "NO_SR_COUNT_PORTION": 1274,
+    "NO_SR_DENSITY": 212,
+    "NO_SR_FOOD": 5238
+   },
+   "recipes": 3676,
+   "recipes_all_quantified_lines_with_grams": 368
+  }
+ },
+ "labels": [
+  "COUNTS_ONLY",
+  "MODEL_DERIVED_GRAMS",
+  "SR_LINK_UNVERIFIED"
+ ],
+ "usable_match_statuses": [
+  "REGISTRY_MAPPED",
+  "AUTO_MATCH_HIGH"
+ ],
+ "version": "s179-line-census-0.2.0"
+}

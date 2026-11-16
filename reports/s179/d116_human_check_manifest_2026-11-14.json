@@ -1,0 +1,32 @@
+{
+ "tool": "s179_d116_human_packet",
+ "seed": "20261114",
+ "families": [
+  "WIKIBOOKS",
+  "GUTENBERG_SEGMENT"
+ ],
+ "per_stratum": 10,
+ "n_items": 50,
+ "strata": {
+  "SALT_TRUE": 10,
+  "ACID_TRUE": 10,
+  "LIPID_TRUE": 10,
+  "NONE_TRUE": 10,
+  "SUGGESTED": 10
+ },
+ "sha256": {
+  "key_SEALED.json": "eb2abfefccd836e7b42512387d3074d364f21efd05423c398db3ddf95d3267e5",
+  "packet_A_kush.csv": "12dea5c26e604a7b2ab75e7e364a40fd3d45dede6da5df9162f9b99d1658c89f",
+  "packet_B_parv.csv": "12dea5c26e604a7b2ab75e7e364a40fd3d45dede6da5df9162f9b99d1658c89f"
+ },
+ "contains_text": false,
+ "human_cols": [
+  "salt_in_contact",
+  "acid_in_contact",
+  "lipid_in_contact",
+  "water_liquid_contact",
+  "salt_likely_but_unstated",
+  "notes"
+ ],
+ "status": "ISSUED_NOT_LABELLED"
+}

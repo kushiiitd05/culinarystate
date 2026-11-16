@@ -1,0 +1,39 @@
+{
+  "record": "PRV_LOCAL_PRIVATE_RETURN_PACK",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "files": [
+    {
+      "source": "annotation/aa_pilot/prv_CAL_source_review_2026-11-13.csv",
+      "copy": "data/derived/prv_return_to_kush_2026-11-13/1_prv_CAL_source_review_2026-11-13.csv",
+      "sha256": "6fef2d8a407e15582d8f2343e8b5fb55a52eabbac0edcaf7b96945beed039d07"
+    },
+    {
+      "source": "annotation/aa_pilot/prv_CAL_source_spans_2026-11-13.json",
+      "copy": "data/derived/prv_return_to_kush_2026-11-13/2_prv_CAL_source_spans_2026-11-13.json",
+      "sha256": "81883d9f7a9ea2c9a2f3fd7cd4d62291b765cd5a095e521be6a9d3732d3ec673"
+    },
+    {
+      "source": "data/derived/prv_claim_review_2026-11-13/returned_prv_AI.csv",
+      "copy": "data/derived/prv_return_to_kush_2026-11-13/3_returned_prv_AI.csv",
+      "sha256": "83409288f57137a106178566b04b430bb460e2347506b66867af4b9b3c35b094"
+    },
+    {
+      "source": "data/derived/prv_branch_review_2026-11-13/returned_prv_AI.csv",
+      "copy": "data/derived/prv_return_to_kush_2026-11-13/4_returned_prv_AI.csv",
+      "sha256": "ec893a9fd7abab21ef457fbab2ad956a220ce53d626bde776b2651f9c72e8340"
+    },
+    {
+      "source": "annotation/condition_audit/prv_R1_AI_review_2026-11-13.csv",
+      "copy": "data/derived/prv_return_to_kush_2026-11-13/5_prv_R1_AI_review_2026-11-13.csv",
+      "sha256": "4ed6e0f311f5a0f664d2174c78d1f8c439bc21987daca3d2f87add2d60566a5d"
+    }
+  ],
+  "transfer_status": "LOCAL_STAGED_NOT_SENT",
+  "note": "For Kush to receive by existing private transfer; contains source-linked reviewer rows, never git-add or publish. No seed/sealed list requested or included."
+}

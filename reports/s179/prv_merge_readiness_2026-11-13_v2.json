@@ -1,0 +1,60 @@
+{
+  "checked_at_utc": "2026-11-13T06:50:54.116469+00:00",
+  "labels": [
+    "AI_DELEGATED_D085",
+    "NOT_INDEPENDENT",
+    "NOT_HUMAN_VERIFIED_UNTIL_REVIEW",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Live PR metadata verified after authorized network access; previous default-sandbox failure report preserved.",
+    "Empty statusCheckRollup does not prove required CI or approvals. Branch protection not fetched.",
+    "Local Parv review commits are not represented in older remote-head snapshots; recheck exact candidate after push.",
+    "Source/independence gates and prior negative results unchanged. No merge performed."
+  ],
+  "local_whitespace_checks": [
+    {
+      "base": "origin/main",
+      "diagnostic_lines": 507,
+      "exit": 2,
+      "head_oid": "3d971962d6ffd4d191a98820a5a19d24e7ef9764",
+      "scope": "Whole stacked candidate, not isolated new-file regressions; existing generated-SVG whitespace is not normalized"
+    },
+    {
+      "base": "origin/max/s176-orchestration",
+      "diagnostic_lines": 29244,
+      "exit": 2,
+      "head_oid": "24e662a32274753e6eb3f6b382832af75250aedb",
+      "scope": "Whole stacked candidate, not isolated new-file regressions; existing generated-SVG whitespace is not normalized"
+    }
+  ],
+  "record": "LIVE_PR_READINESS_SUPPLEMENT",
+  "remote_snapshots": [
+    {
+      "baseRefName": "main",
+      "baseRefOid": "bfc1c8c8d7692d9e7c502a38febb1e63297af584",
+      "headRefName": "max/s176-orchestration",
+      "headRefOid": "3d971962d6ffd4d191a98820a5a19d24e7ef9764",
+      "mergeStateStatus": "CLEAN",
+      "mergeable": "MERGEABLE",
+      "number": 11,
+      "state": "OPEN",
+      "statusCheckRollup": [],
+      "url": "https://github.com/kushiiitd05/culinarystate/pull/11"
+    },
+    {
+      "baseRefName": "max/s176-orchestration",
+      "baseRefOid": "3d971962d6ffd4d191a98820a5a19d24e7ef9764",
+      "headRefName": "kush/s179-finish-fixes",
+      "headRefOid": "35b6b7411ae942b951203b328569f245fe088fbd",
+      "mergeStateStatus": "UNKNOWN",
+      "mergeable": "UNKNOWN",
+      "number": 12,
+      "state": "OPEN",
+      "statusCheckRollup": [],
+      "url": "https://github.com/kushiiitd05/culinarystate/pull/12"
+    }
+  ],
+  "review_status": "AI_VERDICT_PENDING_HUMAN_REVIEW",
+  "verdict": "REVIEW_REQUIRED_NO_MERGE"
+}

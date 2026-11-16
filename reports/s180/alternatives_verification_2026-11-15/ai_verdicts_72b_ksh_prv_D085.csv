@@ -1,0 +1,25 @@
+verify_id,arm,pageid,title,proposed_value,span,span_text,value_verdict,span_verdict,evidence_in_text,note,ksh_verdict,prv_verdict
+A72-001,L_qwen72b_v1,474566,Koko da Kosai (Fermented Corn Porridge and Bean Fritters),sugar_or_milk,197-208,"et, then us",REAL_CHOICE,SPAN_DOES_NOT_SUPPORT,"""If desired, add sugar or milk to taste"" @694",Well named and genuine.,,
+A72-002,L_qwen72b_v1,16581,Pork Gyoza,cooking_or_freezing,124-163,"teins for a mushier consistency.
+Get ou",REAL_CHOICE,SPAN_DOES_NOT_SUPPORT,"""Either proceed directly to the cooking stage, or freeze"" @551",The 'Either...or' is explicit.,,
+A72-003,L_qwen72b_v1,457278,Gored Gored (Ethiopian Raw Beef),garnish_option,167-189,"de.
+Add the bite-sized",REAL_CHOICE_VAGUE_LABEL,SPAN_DOES_NOT_SUPPORT,"""Garnish with freshly chopped parsley or cilantro"" @597","Real, but 'garnish_option' names the slot, not the branches.",,
+A72-004,L_qwen72b_v1,98204,Philosopher's Stew,frying_fat_or_butter,34-51,"out 5 mm).
+Heat t",REAL_CHOICE,SPAN_DOES_NOT_SUPPORT,"""Heat the frying fat or butter"" @65",Genuine lipid swap.,,
+A72-005,L_qwen72b_v1,447188,Boiled Ona (Nigerian Boiled Bitter Yam),sauce_choice,89-107,to a pot and cover,REAL_CHOICE_VAGUE_LABEL,SPAN_DOES_NOT_SUPPORT,"""serve with egg sauce, palm oil or pepper sauce"" @252","Real three-way choice; label names the slot. Better than 7B, which named one branch.",,
+A72-006,L_qwen72b_v1,96872,Fried Wheat Bread Balls (Bhatoora),yeast_or_baking_soda,104-129,".
+Mix the ghee and sugar ",REAL_CHOICE,SPAN_DOES_NOT_SUPPORT,"""Add the yoghurt and dissolved yeast or the baking soda"" @181","Leavening swap; changes the chemistry, not just the shopping list.",,
+A72-007,L_qwen72b_v1,96872,Fried Wheat Bread Balls (Bhatoora),channa_or_choley,347-368, it with a wet cloth ,NOT_A_CHOICE,SPAN_DOES_NOT_SUPPORT,"""serve hot with channa or choley (chickpea curry)"" @659","'channa' and 'choley' are two names for one dish, glossed in the same sentence. An orthographic variant read as a cooking decision.",,
+A72-008,L_qwen72b_v1,222131,Garlic and Tarragon Dressing,salad_type,69-85,", garlic salt, s",REAL_CHOICE_VAGUE_LABEL,SPAN_DOES_NOT_SUPPORT,"""Pour it on lettuce or cabbage salads"" @123",Real; label names the slot.,,
+A72-009,L_qwen72b_v1,457195,Kitfo (Ethiopian Minced Raw Meat),clarified_butter_or_olive_oil,107-129,"ck pepper, and berbere",REAL_CHOICE,SPAN_DOES_NOT_SUPPORT,"""Heat the clarified butter or olive oil"" @304",Lipid swap. 7B missed this one entirely.,,
+A72-010,L_qwen72b_v1,457195,Kitfo (Ethiopian Minced Raw Meat),clarified_butter_or_olive_oil,134-160,"e blend.
+Sprinkle the spic",REAL_CHOICE_DUPLICATE,SPAN_DOES_NOT_SUPPORT,"""Heat the clarified butter or olive oil"" @304 (same group as A72-009)","Same group proposed twice on one recipe. V4 checks mutual exclusivity within a group, not duplicate groups across events.",,
+A72-011,L_qwen72b_v1,443383,Pasta with Sausage,sauce_or_ketchup,89-102, cook for 3 m,REAL_CHOICE,SPAN_DOES_NOT_SUPPORT,"""mix in sauce or ketchup"" @213",Well named.,,
+A72-012,L_qwen72b_v1,483794,Obe Ata,blend_texture,34-65,"scotch bonnet, and one onion.
+T",REAL_CHOICE_VAGUE_LABEL,SPAN_DOES_NOT_SUPPORT,"""The blend can be smooth or slightly coarse depending on preference"" @88",Real; label names the slot.,,
+A72-013,L_qwen72b_v1,483794,Obe Ata,meat_flavor,104-139,"se depending on preference.
+Season ",REAL_CHOICE_WRONG_LABEL,SPAN_DOES_NOT_SUPPORT,"""Add cooked meat or fish"" @563",A real meat/fish choice exists; 'meat_flavor' does not name it and reads as a property.,,
+A72-014,L_qwen72b_v1,483794,Obe Ata,palm_oil_heating,169-215,"asoning cubes.
+Cook until tender and set aside",NOT_A_CHOICE,SPAN_DOES_NOT_SUPPORT,none; this recipe's coordinators are 'smooth or coarse' @88 and 'meat or fish' @563,'palm_oil_heating' is a process description.,,
+A72-015,L_qwen72b_v1,483794,Obe Ata,boiled_eggs,439-465, blended pepper mix and co,NOT_A_CHOICE,SPAN_DOES_NOT_SUPPORT,"none, as above",'boiled_eggs' is an ingredient.,,
+A72-016,L_qwen72b_v1,457403,Ibirayi n'Ibishyimbo (Rwandan Bean Soup with Fish),grill_or_pan_fry,415-430,"arrot, potato, ",REAL_CHOICE,SPAN_DOES_NOT_SUPPORT,"""Grill or pan-fry the fish"" @910",Cooking-method choice. 7B missed this one entirely.,,

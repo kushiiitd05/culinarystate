@@ -1,0 +1,25 @@
+{
+  "approver": "ksh+prv (AI, D-085)",
+  "date": "2026-11-12",
+  "decision_id": "D-095",
+  "files": {
+    "src/culinarystate/app/static/strict_v3.html": "c4111fbdd124404eb84ed98ad1061c92111a69396fc8bf7544adba1ffc684f70",
+    "src/culinarystate/app/strict_server_v3.py": "de0ba9d07cec8c9341500fc5a55f57a6513ec684ffef17f4ea1ae0379401ca5f",
+    "src/culinarystate/decision/demo_context_v3.py": "a31519e90ec2ca2f20d88c5154b73bf99bad65bb6f49b114c5eb4d242fffe0e5",
+    "src/culinarystate/decision/strict_display_v3.py": "3bb6d8367d66ab0b90a9e7d14c8d2a370c3e469476e3fa3997d35062fcdbdc4e",
+    "src/culinarystate/generation/strict_v3.py": "02c94d614654a45af1a1b751bdb150fa01fd886d4d6ff3202116df6be115f430",
+    "tools/run_local_demo_v3.py": "36dba8b2592f12d2b205f1d3ff09eadd7f2ec84cad67fb4e5800bf9e31c729b7",
+    "tools/s179_artifact_reproduction.py": "568b8123c435fd7b88daeb63c2b1d7482b474823908518b077ffbfe28c794acf",
+    "tools/s179_strict_browser_driver.mjs": "c1c13b0f7a3f31e8fdf4146f91af2a3e04ffff7924c8d7b78efc172dc67f6cef",
+    "tools/s179_strict_browser_rehearsal.py": "2554b0b5648dd4f6323beb108e27cb84b97fe479f90420da35ad8820aac80e48",
+    "tools/s179_strict_runtime_audit_v3.py": "fc73fa804bfbb1c63be8a83a8a953de2f65967db63ed33eda09e467e0d785190"
+  },
+  "labels": [
+    "ENGINEERING_DIAGNOSTIC",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "record": "STRICT_V3_ENGINEERING_SNAPSHOT",
+  "scientific_gate_pass": false,
+  "scope": "Separate strict-v3 view and numeric display; supplemental technical reproductions; preserves D5 and strict-v2 frozen sources/results."
+}

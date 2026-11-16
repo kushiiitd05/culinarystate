@@ -1,0 +1,1576 @@
+{
+ "topic": "T2",
+ "title": "Evidence plane: EVD/COND/SVAR/STUDY ledgers, condition normalisation + 07.A, lineage 08a/08b, extraction 09, pilot 10, wave-1 11, structured DB 12, literature corpus 13, coverage 14, freeze 15, D1",
+ "ssot_ranges_checked": [
+  "L16185-L16208 (199.7)",
+  "L16651-L16691 (201.7-201.8)",
+  "L16692-L16718 (201.9)",
+  "L17076-L17104 (G14)",
+  "L17119-L17390 (203)",
+  "L17623-L17628 (205.5)",
+  "L19111-L19136 (210.29)",
+  "L19782-L19793 (211.48)",
+  "L22378-L22396 (G15 data gates)",
+  "L23656-L23667 (220.8)",
+  "L34681-L34765 (257F)"
+ ],
+ "components": [
+  {
+   "id": "T2-C01",
+   "name": "EVD endpoint ledger + export v1 (process-event table, E3 plane)",
+   "ssot_anchor": "\u00a7203.1-203.2 L17121-17190; \u00a7201.7 L16651-16675; G14-1 L17078; G15-1 L22382",
+   "plan_steps": [
+    "04",
+    "05",
+    "ES-1.1"
+   ],
+   "status": "DONE",
+   "status_evidence": [
+    "ledgers/data/EVD.jsonl (57,280 version lines, 18,156 ids, 17,978 ACTIVE, 178 DEPRECATED; all tier E3)",
+    "SRC split of ACTIVE: USDA R6 SRC-000001 7,018 / Bognar SRC-000141 7,090 / Phenol-Explorer SRC-000012 3,870",
+    "reports/es1/es1_1_audit.md (GATE PASS, 17,978 in = 17,978 out, 0 schema failures)",
+    "exports/evd/evd_export_v1.*; tools/build_evd_export_v1.py, tools/validate_evd_export_v1.py",
+    "registry/evd_contract_v1.csv; registry/evidence_tier_provenance_map_v1.csv"
+   ],
+   "what_exists": "Endpoint-only evidence ledger (before/after/delta/retention/yield) with tier, provenance class, verification status, design strength kept as separate fields (ruling C1), deterministic derived fields only where inputs are MEASURED (delta 3,870; log_fold_change 3,787; log_retention 11,503). Protected, byte-identical. 0 human-verified rows; 0 E1/E2/E4 rows.",
+   "gap_vs_ssot": "SSOT \u00a7203.2 lists ~50 columns; EVD/export carry a subset. No pH, a_w, moisture, geometry, oxygen, mixing, platform, split_id, dataset_version columns in the process-event view; ingredient_id UNKNOWN 6,409/17,978, prior_state_id UNKNOWN 5,536, yield_fraction UNKNOWN 13,612, lod/loq null for all rows (source never reports them). R6 values partly imputed by source (SOURCE_IMPUTATION_POSSIBLE 7,018, not row-identifiable). \u00a7201.7 says test labels should be E1-E4 and human verified: 0 rows qualify today.",
+   "remaining": [
+    {
+     "item_id": "T2-C01-R1",
+     "item": "Field-by-field conformance table of the \u00a7203.2 process-event schema vs EVD export v1 (PRESENT / UNKNOWN-by-source / ABSENT with counts), so the D1 claim is exact",
+     "work_types": [
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "3-5",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C01 export v1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Over-claiming D1 coverage if columns are silently missing",
+     "acceptance": "Committed counts-only table under reports/step15/ with one row per \u00a7203.2 field, counts match export v1 (17,978), reviewed by Kush"
+    },
+    {
+     "item_id": "T2-C01-R2",
+     "item": "Confirm EVD export v2 (08a.7) builder output is regenerated and byte-reproducible after the last ledger state, and record hash in compute_runs",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "0.5-1",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C06"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Export v2 stale against 08a keys",
+     "acceptance": "tools/step08a_export_v2.py rerun twice gives identical sha256; EVD/COND/SRC/MEAS/SNAP hashes unchanged"
+    }
+   ]
+  },
+  {
+   "id": "T2-C02",
+   "name": "Kinetic / trajectory evidence contract (KIN, KINPT, XTR, ADJ; SEXP/SMP/OBS/LIN/DOC)",
+   "ssot_anchor": "\u00a7210.29 L19111-19136; \u00a7211.48 L19782-19793; \u00a7257F.4-257F.5 L34731-34756",
+   "plan_steps": [
+    "04.1",
+    "04.3",
+    "09.1"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "registry/schemas/{KIN,KINPT}.draft_v1_1.schema.json; src/culinarystate/lineage/kinetic_contract.py (validator) + tests/fixtures/kinetic_v1_1_fixtures.py",
+    "ledgers/schemas/{DOC,LIN,SEXP,SMP,OBS}.schema.json present; no KIN/KINPT/XTR/ADJ in ledgers/schemas; no KIN ledger in ledgers/data",
+    "D-051 (THR-04K-01..04 signed); WORKLOG S158"
+   ],
+   "what_exists": "Pure validator for the 04.3 v1.1 draft (series never collapsed to endpoints, lab_group_id mandatory, UNKNOWN lab never TEST/SIM-VAL eligible), tested on synthetic fixtures only. No real kinetic row has been stored in any ledger.",
+   "gap_vs_ssot": "SSOT \u00a7210.29 kinetic fields (k, order, A, Ea, temperature/time points, fit metric, CI, effective_or_mechanistic, verified) have no ledger home yet: the 16 AA CAL rows live in a git-ignored packet. XTR/ADJ (extraction/adjudication records) schemas missing, so \u00a7257F.4 per-cell retention and the E5-to-E4 adjudication trail cannot be stored.",
+   "remaining": [
+    {
+     "item_id": "T2-C02-R1",
+     "item": "Decide the storage form for the AA pilot rows (KIN/KINPT ledger vs staged CSV) and add KIN/KINPT/XTR/ADJ schemas to ledgers/schemas",
+     "work_types": [
+      "DECISION",
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "4-8",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "T2-C02 validator",
+      "D-076"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "PARAM rows for sim_aa_1 have no auditable home; fit provenance weak",
+     "acceptance": "Schemas validate the 16 CAL rows + a multi-T x multi-t fixture + a figure-only fixture (G09-6); KIN ledger append done by orchestrator with lab_group_id set"
+    },
+    {
+     "item_id": "T2-C02-R2",
+     "item": "Orchestrator-owned append of verified AA rows as new KIN/KINPT ledger (not protected EVD) with hashes",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C09-R4",
+      "T2-C02-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Writing before verification would leak unverified rows into SIMULATE",
+     "acceptance": "Ledger lines exist only for rows where both humans VERIFIED; count equals the verified-row count in the verification files"
+    }
+   ]
+  },
+  {
+   "id": "T2-C03",
+   "name": "SVAR registry (state variables) and physical/history variables",
+   "ssot_anchor": "\u00a7199.5 L16147-16172 (condition axes); SSOT state vector \u00a74 L526-558; Q11 packet",
+   "plan_steps": [
+    "03",
+    "07.D"
+   ],
+   "status": "DONE",
+   "status_evidence": [
+    "ledgers/data/SVAR.jsonl 355 rows: 354 CHEMICAL, 1 PHYSICAL",
+    "registry/state_variable_registry_v1.csv; registry/svar_duplicate_mapping_v1.csv"
+   ],
+   "what_exists": "Nutrient/phenolic variables for every EVD analyte; one physical variable.",
+   "gap_vs_ssot": "No moisture fraction, water activity, cell integrity, enzyme state, time since disruption, thermal dose, emulsion/aeration, gluten development SVARs (packet Q11, \u00a79 item 10). SVAR is in the 15A-BOOT hash list, so any append voids that proposed freeze.",
+   "remaining": [
+    {
+     "item_id": "T2-C03-R1",
+     "item": "Decide the physical/history SVAR v1.1 set and definitions (shared with the lot-state topic)",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5-1",
+     "human_hours": "1-2",
+     "depends_on": [
+      "lot-state topic"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Lot state fields without registry entries cannot be cited or masked consistently",
+     "acceptance": "DECISIONS entry listing the set with units, definitions and masks"
+    },
+    {
+     "item_id": "T2-C03-R2",
+     "item": "Append additive SVAR v1.1 rows (physical/history) via orchestrator, before the 15a freeze is approved or as 15a.1",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "3-6",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C03-R1",
+      "T2-C15-R3"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Ordering conflict with freeze hash: ledger change after approval voids 15A-BOOT",
+     "acceptance": "SVAR validates against schema; protected ledgers other than SVAR unchanged; freeze hashes regenerated if needed"
+    }
+   ]
+  },
+  {
+   "id": "T2-C04",
+   "name": "COND ledger and condition normaliser (07 automated part)",
+   "ssot_anchor": "\u00a7199.5 L16147-16172; \u00a7199.7 L16185-16208; \u00a7201.9 L16692-16718",
+   "plan_steps": [
+    "07",
+    "07H",
+    "07H-R"
+   ],
+   "status": "DONE",
+   "status_evidence": [
+    "ledgers/data/COND.jsonl 4,746 ACTIVE rows",
+    "reports/step07/step07h_gate_result.json (G1-G10 PASS), step07hr_gate_result.json (G1-G7 PASS), step07hr_freeze_manifest.json (fingerprint e7d58913...)",
+    "reports/step07/step07_condition_coverage_audit.json",
+    "tests/unit/test_condition_*.py"
+   ],
+   "what_exists": "Frozen rule-based normaliser with value types POINT / INTERVAL / QUALITATIVE / UNKNOWN per field, measurement location, basis, retention type, censoring registries. Coverage on 4,414 audited conditions: temperature POINT 2,354 + INTERVAL 276 but only 213 VALID (2,409 location unspecified, 472 multiple values); duration VALID 1,410; pressure POINT 129 (all AMBIGUOUS); pH, moisture, a_w UNKNOWN for 100%; censoring ABOVE_CAP 5,894.",
+   "gap_vs_ssot": "Scientifically UNAUDITED until 07.A passes (hard gate for 15b, 23b, 26d/27, 29-33). 07.B COND v1.1 axes (water:food ratio, lid, start mode, geometry, headspace, tissue vs medium pH) not adopted; 07.C MEAS v1.1 platform vocabulary not adopted (MEAS has 3 rows). Condition bucket definition (\u00a7198.1/\u00a7203.8) never specified. DEL-2 trained censored rows at 0.975, in tension with \u00a7201.9.",
+   "remaining": [
+    {
+     "item_id": "T2-C04-R1",
+     "item": "Rule whether 07.B COND v1.1 axes and 07.C platform vocabulary are adopted now (new AA/literature rows need them) or stay as raw-text SEXP optional fields",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "T2-C09"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Literature rows stored without the axes that decide kinetics (water ratio, lid, geometry)",
+     "acceptance": "DECISIONS entry; if adopted, additive schema + tests, normaliser untouched"
+    },
+    {
+     "item_id": "T2-C04-R2",
+     "item": "Define the condition-bucket scheme per process family (bin edges for T, t, pH, a_w; treatment of INTERVAL/QUALITATIVE)",
+     "work_types": [
+      "WRITING",
+      "DECISION"
+     ],
+     "where": "any",
+     "agent_hours": "3-6",
+     "human_hours": "1-2",
+     "depends_on": [
+      "T2-C05"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Retrieval keys (\u00a7203.8) ambiguous; evaluation buckets arbitrary",
+     "acceptance": "Registry file with bin edges and unit tests; used by D4 retrieval key"
+    },
+    {
+     "item_id": "T2-C04-R3",
+     "item": "If 07.A-R1 fails: repair normaliser as 07H.v2 with full regression and issue packet v5",
+     "work_types": [
+      "CODE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "8-24",
+     "human_hours": "1-2",
+     "depends_on": [
+      "T2-C05-R3"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Cannot finish before 25 Nov; condition rows stay UNKNOWN-for-science",
+     "acceptance": "New fingerprint, regression audit PASS, new packet disjoint from v1-v4 and R1"
+    }
+   ]
+  },
+  {
+   "id": "T2-C05",
+   "name": "07.A human condition-audit gate (v4 FAILED, R1 redo)",
+   "ssot_anchor": "\u00a7199.7; G14-3 L17078; G15-H L22395; plan Step 07.A",
+   "plan_steps": [
+    "07.A",
+    "07-DEP"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "reports/step07/step07_v4_adjudication_result.md (FAIL_REVIEWER_DISAGREEMENT: pooled kappa 0.0 on original labels, raw agreement 0.9944, 5/100 disputed cells adjudicated to Kush)",
+    "reports/step07/step07h_human_gate_result.json (v3 NOT_COUNTED_PROVENANCE_INVALID, kappa 0.998 kept as record)",
+    "reports/step07/07A_R1_preregistration_DRAFT.md (UNSIGNED), 07A_R1_packet_manifest.json (100 fresh conditions, FREEZE_INTACT, audited_by_humans=false)",
+    "tools/step07ar_build_packet.py, step07ar_agreement.py; src/culinarystate/evidence/condition_agreement.py; D-075; S171"
+   ],
+   "what_exists": "Pre-registered Gwet AC1 gate (pooled AC1 >= 0.80 + critical-field AC1/exact/repeat-pair rule, kappa diagnostic only), packet of 100 conditions disjoint from v1-v4, scorer and CLI built and tested. No R1 label exists. The v4 FAIL stays on record (R-20).",
+   "gap_vs_ssot": "The gate result is the single human gate that unlocks 15b, 23b and every condition-dependent claim; it has no labels. Even a pass does not open 23b by itself (R-05 also needs 15b FROZEN, which needs Steps 11/12/14 verdicts and a human-verified test subset).",
+   "remaining": [
+    {
+     "item_id": "T2-C05-R1",
+     "item": "Kush and Parv sign the 07A_R1 pre-registration (sha-bound signature file) before opening the packet",
+     "work_types": [
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "0.2",
+     "human_hours": "0.5-1 each",
+     "depends_on": [
+      "07A_R1_preregistration_DRAFT.md"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Signing after seeing the packet voids the attempt; AI persona (ksh/prv) cannot sign (D-071)",
+     "acceptance": "Signature record naming Kush and Parv with the sha256 of the exact prereg text"
+    },
+    {
+     "item_id": "T2-C05-R2",
+     "item": "Kush and Parv each independently label the 100-condition R1 packet (9 fields + overall), alone, blind, no external source",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "3-4 each",
+     "depends_on": [
+      "T2-C05-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Human time collides with AA verification (15 Nov) and benchmark review (16 Nov); copying or AI-filling makes NOT_COUNTED",
+     "acceptance": "Two returned CSVs, not identical, non-judgement columns equal issued packet, sha256 recorded on receipt before scoring, by 13 Nov"
+    },
+    {
+     "item_id": "T2-C05-R3",
+     "item": "Score with tools/step07ar_agreement.py; verify freeze (step07hr_freeze.py --verify); write result JSON + diagnostics (kappa, PABAK, per-field, bootstrap CI)",
+     "work_types": [
+      "ANALYSIS",
+      "CPU_COMPUTE"
+     ],
+     "where": "any",
+     "agent_hours": "0.5-1",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C05-R2"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Normaliser change between packet build and scoring invalidates",
+     "acceptance": "reports/step07/step07_human_gate_result_R1.json with gate verdict PASS / FAIL_OR_ADJUDICATE / INVALID_INPUT / NOT_COUNTED and fingerprint e7d589136275"
+    },
+    {
+     "item_id": "T2-C05-R4",
+     "item": "Joint adjudication of disagreements, DECISIONS entry (counted by orchestrator), statistic never recomputed after adjudication",
+     "work_types": [
+      "HUMAN_REVIEW",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5-1 each",
+     "depends_on": [
+      "T2-C05-R3"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Informal adjudication leaves the gate ambiguous",
+     "acceptance": "Adjudicated file hashed; DECISIONS D-0xx states verdict and what it unlocks"
+    },
+    {
+     "item_id": "T2-C05-R5",
+     "item": "Written ruling reconciling the plan card (R-06: AC1 diagnostic only, original kappa rule) with the R1 gating statistic, and stating what a valid 07.A unlocks given 15b dependency",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "D-075",
+      "R-06"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "A PASS under a substituted statistic could be challenged as gate weakening",
+     "acceptance": "DECISIONS entry that cites R-06, R-20 and says 23b stays BLOCKED until 15b, or defines a narrower named release"
+    },
+    {
+     "item_id": "T2-C05-R6",
+     "item": "Produce the card's diagnostics annex for v4 (PABAK, AC1, specific agreement, disagreement matrix) as DIAGNOSTIC_ONLY without re-labelling the verdict",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0-0",
+     "depends_on": [
+      "step07_v4 files"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "R1 prereg says v4 is not rescored; card says annex allowed",
+     "acceptance": "reports/step07/step07_human_gate_diagnostics_v4.json marked DIAGNOSTIC_ONLY, v4 verdict unchanged"
+    }
+   ]
+  },
+  {
+   "id": "T2-C06",
+   "name": "Source lineage 08a on the 17,978 EVD rows (study / lineage root / split group keys)",
+   "ssot_anchor": "\u00a7220.8 L23656-23667; G14-6 L17083; G15-1 L22382; Split 6 L16886-16891",
+   "plan_steps": [
+    "08a"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "reports/step08/step08a_audit_result_v2.json (G08-3 FAIL: B3 13/50 Kush, 0/50 Parv; B2 49/50 vs 0/50 with 49 UNCERTAIN; STRONG 50/50 both)",
+    "D-032, D-033, D-034 (B3 cut 0.75 kept)",
+    "ledgers/data/DOC.jsonl 1,967; STUDY.jsonl 257 version lines (all design UNKNOWN); SRC_08A_YIELD.jsonl 7",
+    "exports/lineage/step08a_v1/*; reports/step08/step08a_feasibility_scratch_v1.txt; usda_bognar_overlap_v1.md (NO_OVERLAP_FOUND_IN_BIBLIOGRAPHY, agent verdict pending expert)",
+    "WORKLOG S144, S145"
+   ],
+   "what_exists": "Real run applied (gates G08-1,2,4,5,6,8,10 PASS, two rebuilds identical). Keys are SCRATCH_PROVISIONAL, conservative merge. Feasibility: 127 split groups; USDA and Bognar are one group each (7,018 / 7,090 rows), PE 125 publication groups (n_eff 36.1); headline label publication-component CV (PE only), weakest label leave-one-source-family-out; lab-disjoint NEED_DATA; only 4 of 5,259 analyte x matrix x process cells have >=5 groups.",
+   "gap_vs_ssot": "G08-3 FAIL means no 'PASS' or study-disjoint claim; study design UNKNOWN for all studies; STUDY per \u00a7257F.3 metadata not captured for PE papers; expert has not read the USDA-Bognar overlap verdict; G14-6 can only pass vacuously on Priority-A data (no independent study groups outside PE).",
+   "remaining": [
+    {
+     "item_id": "T2-C06-R1",
+     "item": "Expert/Kush reading of the USDA R6 vs Bognar overlap verdict (8 vs 11 references, Bognar cites USDA 1998) before cross_source_v1 is called independent",
+     "work_types": [
+      "EXPERT_REVIEW",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.5-2",
+     "depends_on": [
+      "usda_bognar_overlap_v1.md"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Independence of the two main E3 sources over-stated",
+     "acceptance": "Signed verdict OVERLAP_FOUND / NO_OVERLAP / NOT_DETERMINABLE recorded in DECISIONS; cross_source_v1 labelled accordingly"
+    },
+    {
+     "item_id": "T2-C06-R2",
+     "item": "Slide-level honest statement of lineage: counts, G08-3 FAIL, publication-component CV label, one-line implication for every H2 claim",
+     "work_types": [
+      "WRITING",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T2-C06 reports"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Negative result hidden or cited as PASS",
+     "acceptance": "Slide/report text cites step08a_audit_result_v2.json numbers verbatim and the label from the feasibility report"
+    },
+    {
+     "item_id": "T2-C06-R3",
+     "item": "Optional detector rework and a second 150-edge human audit as a NEW version (08a.1); D-034 says no retune of v1",
+     "work_types": [
+      "CODE",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "8-16",
+     "human_hours": "2-4 each",
+     "depends_on": [
+      "D-034",
+      "new DECISION"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Does not change 25 Nov claims; costs reviewer time",
+     "acceptance": "New audit scored with provenance validity and Wilson LB >= 0.90 or a second recorded FAIL"
+    },
+    {
+     "item_id": "T2-C06-R4",
+     "item": "Capture lab/author groups and study design for the PE 125 papers (needs reading of papers, library access)",
+     "work_types": [
+      "DOWNLOAD",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "3-6",
+     "human_hours": "10-30",
+     "depends_on": [
+      "T2-C10-R2"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Lab-disjoint and study-disjoint headline impossible without it (NEED_DATA)",
+     "acceptance": "STUDY rows with design and lab_group_id for >=60% of PE papers"
+    }
+   ]
+  },
+  {
+   "id": "T2-C07",
+   "name": "Lineage library 08b-v0 (DOC registration, detector, keys for new evidence)",
+   "ssot_anchor": "\u00a7203.6 L17299-17316; G14-6; plan Step 08b",
+   "plan_steps": [
+    "08b"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/lineage/library.py; tests/unit/test_lineage_library.py (20 tests); reports/step08/step08b_v0_build_note.md",
+    "reports/step08/step08b_preregistration_v1_DRAFT.md; step08b_questions_for_kush.md; registry/preregistered_thresholds_08b_v1_DRAFT.csv",
+    "D-035 (08b-v0 authorised); THR-08B-05 unsigned"
+   ],
+   "what_exists": "Offline library with register_document (sha256 key), propose_edges (B0-B3 at cut 0.75), assign_keys, check_disjointness, rule_version; seeded 420-pair fixture test only. Not run on real documents; no precision/recall claim.",
+   "gap_vs_ssot": "08b v1 not released; Step 10 plan requires 08b-v0 detector at document intake; AA pilot papers have not been registered through it (DOC rows for the 12 AA candidates absent).",
+   "remaining": [
+    {
+     "item_id": "T2-C07-R1",
+     "item": "Sign THR-08B-05 or accept 08b-v0 as 'no claim' intake only; answer step08b_questions_for_kush.md",
+     "work_types": [
+      "HUMAN_SIGNATURE",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "T2-C07"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Lineage of new AA rows unchecked (low risk, 12 distinct papers)",
+     "acceptance": "Signature or DECISIONS entry"
+    },
+    {
+     "item_id": "T2-C07-R2",
+     "item": "Register the AA pilot PDFs (7 fetched + 5 after browser download) and DOIs through register_document into scratch DOC library and run propose_edges to confirm no shared lab/duplicate",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "1-2",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C09-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "SIM-VAL leakage via same-lab papers (prereg says lab unknown)",
+     "acceptance": "DOC library file with 12 sha256 keys, edge report, any shared-author pair logged and partition rule applied"
+    }
+   ]
+  },
+  {
+   "id": "T2-C08",
+   "name": "Extraction and verification machinery (Step 09)",
+   "ssot_anchor": "\u00a7201.8 L16676-16691; \u00a7203.6 L17299-17316; \u00a7205.5 L17623-17628; \u00a7257F.3-257F.5 L34715-34756; G15-H L22395",
+   "plan_steps": [
+    "09"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "src/culinarystate/evidence/{machinery,extraction_fields,precheck,link_review}.py; src/culinarystate/extraction/*",
+    "registry/schemas/evidence_verification_queue_item.provisional_v1.schema.json; reports/step09/S157_09_audit.md, S157_ai_review.md, S157_build_note.md",
+    "tools/apply_human_review.py (rejects verifier = Claude)",
+    "tests/unit/test_step09_*; full suite 2,341 passed at S157"
+   ],
+   "what_exists": "15 field classes with locators, extractor proposals, validators that only flag, human-derived status only; no code path promotes E5 to E4 without a human record (S157 R1/R2 fixes). Real use limited to the S171 AA extraction (agent as sole extractor).",
+   "gap_vs_ssot": "Plan G09 gates not run: no golden fixture suite (tests/fixtures/extraction_golden absent), no validator catch-rate on seeded errors, no prompt registry (registry/prompt_registry_v1.csv absent), no Extractor B (second model family or human), no XTR/ADJ schema, no pre-registered Step-10/11 accuracy gate (precision LB >= 0.90, recall LB >= 0.85 on >=150 instances), no figure digitisation tooling, no abstract triage. 20 AA rows cannot certify the machinery (CI about 0.76-0.99).",
+   "remaining": [
+    {
+     "item_id": "T2-C08-R1",
+     "item": "Build golden fixtures (synthetic tables with seeded fabricated values, unit/basis traps, censoring footnotes, figure-only series, empty document) and the G09-1..G09-7 gate runner",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "8-16",
+     "human_hours": "1-2",
+     "depends_on": [
+      "T2-C02-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Machinery trusted without tests while AI extraction is the main route to PARAM rows",
+     "acceptance": "tests/fixtures/extraction_golden + step09_gate_result.json with G09-1..7 pass/fail, validator catch 100% on fabricated values"
+    },
+    {
+     "item_id": "T2-C08-R2",
+     "item": "Prompt/model registry and Extractor B: run a second, different-family local model (Ollama on vinayak) blind on the AA CAL papers and diff field by field",
+     "work_types": [
+      "GPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "vinayak",
+     "agent_hours": "4-8",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C09-R3"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Single agent extractor = single point of failure; H2/licence rule: no licensed text to external API",
+     "acceptance": "registry/prompt_registry_v1.csv with versions; field-level agreement table; disagreements queued for humans"
+    },
+    {
+     "item_id": "T2-C08-R3",
+     "item": "Pre-register the Step 10/11 accuracy gate (precision/recall LB thresholds, human-first fallback) before any further extraction counts",
+     "work_types": [
+      "WRITING",
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0.5-1 each",
+     "depends_on": [
+      "T2-C08"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Accuracy claimed post hoc on n=20",
+     "acceptance": "Signed step10_11_accuracy_preregistration_v1.md before verification results are read"
+    },
+    {
+     "item_id": "T2-C08-R4",
+     "item": "Figure digitisation tooling (DIGITIZED value_origin with tool/version/uncertainty)",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "6-12",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C02-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Many kinetic series are figure-only",
+     "acceptance": "Digitiser wrapper + fixtures; digitised values flagged and never merged silently"
+    }
+   ]
+  },
+  {
+   "id": "T2-C09",
+   "name": "Step 10 reduced pilot: ascorbic-acid kinetics rows (D-076) -> first PARAM rows for sim_aa_1",
+   "ssot_anchor": "\u00a7203.3 Priority C L17230-17237; \u00a7210.29A L19137-19163; \u00a7201.8; G14-3; plan Step 10/11",
+   "plan_steps": [
+    "10",
+    "11",
+    "24",
+    "25",
+    "26",
+    "27"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "D-076, D-052 (sim_aa_1 selected); S171",
+    "reports/step10/aa_pilot_CAL_packet_manifest_v1.json (16 CAL rows from AAK-01/06/09/11: 13 K_AT_T + 3 AUTHOR_FIT_EA, spans 16/16 verbatim, counts_as_verified=false, status PENDING_HUMAN_VERIFICATION)",
+    "reports/step10/aa_pilot_preregistration_DRAFT.md (DRAFT_PENDING_SIGNATURES; split fixed by hash: SIM-VAL AAK-12/07/03/05, SIM-CAL AAK-02/04/10/11/09/01/08/06)",
+    "registry/evidence/aa_kinetics_source_candidates_v1.csv (16 candidates: 8 INCLUDE, 4 MAYBE, 4 EXCLUDE)",
+    "src/culinarystate/simulation/aa_pilot_fit.py, tools/aa_pilot_fit.py, tests/unit/test_s171_aa_pilot_fit.py"
+   ],
+   "what_exists": "CC-BY source search, 7 of 12 PDFs fetched (AAK-01,03,06,07,09,11,12), 5 refuse scripted download (AAK-02,04,05,08,10; not bypassed), AI extraction of 16 CAL rows with verbatim spans, human verification packets (git-ignored, Mac), Model A fit module and freeze CLI (tested on synthetic data only). AI flags: AAK-11 k nearly T-independent, AAK-06 iodine titration not AA-specific, AAK-01 k to 1-2 sig. figs. Fit spec section 6 added after seeing CAL values (not blind).",
+   "gap_vs_ssot": "Plan Step 10 card not met: no 100-abstract double triage (G10-4), no dual independent extraction (G10-2), no kinetic_series_availability table for AA vs chlorophyll (G10-5), no K-level yield stats. 0 verified rows, 0 PARAM rows. At most about 20 rows from 8 CAL papers; SIM-VAL has 4 papers and lab groups unknown, so the plan's SIM-VAL >= 5 lab groups / >=30% rule (G15-f) cannot be shown: Step 27 will be descriptive pilot only.",
+   "remaining": [
+    {
+     "item_id": "T2-C09-R1",
+     "item": "Sign the AA pilot pre-registration (before any verdict is read)",
+     "work_types": [
+      "HUMAN_SIGNATURE"
+     ],
+     "where": "human",
+     "agent_hours": "0.1",
+     "human_hours": "0.3-0.5 each",
+     "depends_on": [
+      "aa_pilot_preregistration_DRAFT.md"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Verification before signing weakens the split firewall",
+     "acceptance": "Signature record with sha256 of prereg text"
+    },
+    {
+     "item_id": "T2-C09-R2",
+     "item": "Browser-download the 5 PDFs that refuse scripted download (AAK-02,04,05,08,10) into data/raw/aa_pilot/ on the Mac; confirm licence on the publisher page",
+     "work_types": [
+      "DOWNLOAD",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "T2-C09-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "4 of 8 SIM-CAL papers (02,04,08,10) and 1 SIM-VAL (05) missing; fit can still run on 4 papers",
+     "acceptance": "5 PDFs present with sha256 in extraction file; licence CC-BY/CC0 confirmed or paper dropped and recorded"
+    },
+    {
+     "item_id": "T2-C09-R3",
+     "item": "AI extraction of CAL rows from newly downloaded SIM-CAL papers with spans (SIM-VAL papers stay unopened until fit freeze)",
+     "work_types": [
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "mac",
+     "agent_hours": "3-5",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C09-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Agent is extractor and fitter: extraction bias; 4 SIM-VAL papers not to be opened",
+     "acceptance": "Extended CAL packet with spans verified verbatim 100%, manifest updated, new packet sha256 recorded"
+    },
+    {
+     "item_id": "T2-C09-R4",
+     "item": "Kush and Parv each verify every CAL row (VERIFIED / CORRECTED / REJECTED) against the paper span, blind to the other",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "2-3 each",
+     "depends_on": [
+      "T2-C09-R1"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "AI 'LIKELY_CONFIRM' anchoring; the critical path (15 Nov) collides with 07.A labels",
+     "acceptance": "Two verification files, row counts >= 12 with both VERIFIED (or same CORRECTED), provenance checked, by 15 Nov"
+    },
+    {
+     "item_id": "T2-C09-R5",
+     "item": "Freeze Model A fit on verified SIM-CAL rows (inclusion 60-100 C, shared Ea, per-paper intercept) and commit hash before opening SIM-VAL full texts",
+     "work_types": [
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C09-R4"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Fit with identifiability below spec (needs >=3 T in >=2 matrices) gives NEED_DATA",
+     "acceptance": "Fit JSON with row ids, Ea +/- SE, sigma_b, code hash committed; SHA recorded before SIM-VAL open"
+    },
+    {
+     "item_id": "T2-C09-R6",
+     "item": "Extract and humanly verify SIM-VAL rows (AAK-03,05,07,12) after the freeze; hand to Step 27 scoring",
+     "work_types": [
+      "ANALYSIS",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "2-4",
+     "human_hours": "1-2 each",
+     "depends_on": [
+      "T2-C09-R5"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Only descriptive error is possible; may be 0 usable VAL rows",
+     "acceptance": "SIM-VAL rows with verdicts; interval-coverage and ln-k error table reported with all rows lost listed (scoring belongs to simulator topic)"
+    },
+    {
+     "item_id": "T2-C09-R7",
+     "item": "Record what the pilot is not: n, papers, lab groups UNKNOWN, no E4 promotion, DEL-1 0/40 unaffected; kinetic_series_availability for AA (and chlorophyll if time) as a counts table",
+     "work_types": [
+      "WRITING",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "2-4",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T2-C09-R6"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Pilot over-read as validation",
+     "acceptance": "Report paragraph + table with row/paper/T-range counts; G10-5 stated as NOT MET or met"
+    },
+    {
+     "item_id": "T2-C09-R8",
+     "item": "Chlorophyll (sim_chl_1) second system: extraction and comparison per R-14",
+     "work_types": [
+      "ANALYSIS",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "8-16",
+     "human_hours": "3-6 each",
+     "depends_on": [
+      "T2-C09-R6"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Not feasible in time",
+     "acceptance": "Availability table and PROVISIONAL ranking signed"
+    }
+   ]
+  },
+  {
+   "id": "T2-C10",
+   "name": "Wave-1 hand-verified literature evidence (DEL-1: >=40 verified rows) and E4 promotion",
+   "ssot_anchor": "\u00a7201.7 L16651-16675; \u00a7201.8 L16676-16691; \u00a7203.6; G14-3 L17078; G15-H L22395",
+   "plan_steps": [
+    "11",
+    "HV-001..HV-003",
+    "HV-010"
+   ],
+   "status": "NOT_STARTED",
+   "status_evidence": [
+    "registry/human_verification_queue.csv (HV-001 0/634, HV-003 NOT_STARTED)",
+    "registry/evidence/human_review_pack_v1.csv (55 rows: 40 MAIN + 15 RESERVE, all ai_suggestion LIKELY_CONFIRM, human_decision blank)",
+    "registry/evidence/verification_queue_ranked_v1.csv (634 rows: 125 Route A PE papers of which 15 OA / 110 non-OA; 509 Route B openalex gap, 437 OA); route_a_paper_precheck.csv",
+    "handoff/EVIDENCE_REVIEW_GUIDE.md, MANUAL_NEXT_STEPS #2; tools/apply_human_review.py"
+   ],
+   "what_exists": "A ready 40+15 row review pack and a ranked 634-row queue; apply_human_review tool that rejects AI verifiers. No row has a human decision; no E4 row; E3 PE rows carry AI_PRECHECKED (rule checks) which is not verification.",
+   "gap_vs_ssot": "DEL-1 0/40. SSOT: test labels E1-E4 human verified (L16664, L16688); G14-3 and G15-H unmet; a single verifier gives HUMAN_VERIFIED at tier E3, not E4 (E4 needs dual extraction + adjudication). 110 of 125 PE papers need library access. G11 gates (>=150 adjudicated instances per field class, >=10 negative/inhibited, >=3 conflict, >=6 of 12 families) cannot be met before 25 Nov.",
+   "remaining": [
+    {
+     "item_id": "T2-C10-R1",
+     "item": "Strip the AI suggestion columns and have Kush verify the 40 MAIN rows against the cited papers (Parv audits a predeclared sample; RESERVE 15 as replacements)",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1-2",
+     "human_hours": "6-12 Kush; 3-6 Parv",
+     "depends_on": [
+      "T2-C10-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "All 55 AI labels say LIKELY_CONFIRM: anchoring bias; non-OA papers unreachable",
+     "acceptance": "40 decisions with locator, verifier, date; apply_human_review run; counts of CONFIRMED/CORRECTED/REJECTED reported honestly even if below 40"
+    },
+    {
+     "item_id": "T2-C10-R2",
+     "item": "Library/proxy access for the 110 non-OA Phenol-Explorer papers (human permission or institutional login)",
+     "work_types": [
+      "DOWNLOAD",
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "1-3",
+     "depends_on": [
+      "IIITD library"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Without it only 15 Route A papers are checkable",
+     "acceptance": "PDFs saved locally (git-ignored) with sha256; licence logged"
+    },
+    {
+     "item_id": "T2-C10-R3",
+     "item": "Ingest human decisions into EVD verification status (new version lines, tier stays E3 unless dual-verified) via orchestrator",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "1-2",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C10-R1",
+      "T2-C14"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Ledger change after 15a approval voids 15A-BOOT; unverified promotion",
+     "acceptance": "Ledger guard 7/7; EVD ACTIVE count unchanged; verified-row count equals decisions; no E4 label without two humans"
+    },
+    {
+     "item_id": "T2-C10-R4",
+     "item": "HV-003: predeclare sample size and audit 3,870 AI_PRECHECKED PE rows (Parv)",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "3-6",
+     "depends_on": [
+      "T2-C10-R2"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "PE tier uncertain",
+     "acceptance": "Sample plan hashed before audit; error rate with Wilson interval"
+    },
+    {
+     "item_id": "T2-C10-R5",
+     "item": "11b breadth: mechanism/negative/conflict rows for the 32 MECH entries (>=10 negative, >=3 conflict candidates), partition lock",
+     "work_types": [
+      "ANALYSIS",
+      "HUMAN_REVIEW",
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "40-80",
+     "human_hours": "40-80 Kush; 30-60 Parv; 10-20 expert",
+     "depends_on": [
+      "T2-C09",
+      "T2-C13"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Largest human block of Phase C; not feasible before 25 Nov",
+     "acceptance": "G11-1..G11-6 pass or NEED_DATA verdict"
+    },
+    {
+     "item_id": "T2-C10-R6",
+     "item": "Record 11.D formally: AA chosen at 26.0 (D-052) before Step 11 evidence (R-14 intended choice from verified evidence); state this in the decision log",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.2",
+     "human_hours": "0.2",
+     "depends_on": [
+      "D-052"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Process deviation unexplained to a reviewer",
+     "acceptance": "DECISIONS note linking D-052, D-076 and R-14"
+    }
+   ]
+  },
+  {
+   "id": "T2-C11",
+   "name": "Structured database evidence (Step 12) and local-but-unregistered sources",
+   "ssot_anchor": "\u00a7203.3 Priority A L17195-17211; \u00a7203.4 L17249-17264; \u00a7211.48; \u00a7257F.2 L34698-34714; G15-1",
+   "plan_steps": [
+    "12",
+    "12.0",
+    "12-local"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "reports/step12/step12_local_counts_v1.json: USDA Cooking Yields R2 173 rows staged (70 flagged, 3 unmapped columns, 0 skipped); Bognar remaining 11 tables 1,693 cells staged (basis A 705 / B 810 / UNKNOWN 178; method mapping positional-only 1,268, unmapped 178)",
+    "registry/staging/step12_0_src_snap_proposed_v1.jsonl (proposed SRC/SNAP rows, no ids minted)",
+    "src/culinarystate/{ingest/usda_yields_r2,ingest/bognar_remaining,evidence/step12_local,evidence/registration}.py; WORKLOG S157",
+    "registry/evidence/fdc_raw_cooked_pairs_v1.csv (867 E6 candidates, weak agreement with R6)"
+   ],
+   "what_exists": "Parsers and staging for the two cheap structured wins; nothing appended to EVD or SRC. Manifest of 64 sources with scores and H2 queue (21 actions).",
+   "gap_vs_ssot": "Not ingested: R2 yields (water/fat gain-loss, no T/t), Bognar remaining 11 tables, FDC Foundation Foods, Flavonoid DB 3.3, CoFID, FNDDS portions, INFOODS density (local files without SRC family). G12 gates not run (audit >=75 rows per source with 0 errors; plane/regime fields; bibliography-edge file). Ingestion changes protected EVD/SRC and would void 15A-BOOT. The card's 'stdlib only on server' constraint is outdated (.venv312 has pandas/pyarrow).",
+   "remaining": [
+    {
+     "item_id": "T2-C11-R1",
+     "item": "Stage-only use of R2 yields and SR retention factors for the lot-state mass-balance (no ledger append): counts-only report",
+     "work_types": [
+      "ANALYSIS",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "2-4",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C11 staging"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Mass balance claims from E3 yields imply nothing about kinetics (\u00a7211.48)",
+     "acceptance": "Counts-only report; data in git-ignored data/interim; clearly labelled endpoint-only"
+    },
+    {
+     "item_id": "T2-C11-R2",
+     "item": "Decision on ordering: ingest R2 + Bognar remainder into EVD before approving the 15a freeze, or defer to 15a.1 (new version)",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.2",
+     "human_hours": "0.3",
+     "depends_on": [
+      "T2-C15-R3"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Freeze voided by a later ledger change",
+     "acceptance": "DECISIONS entry choosing order"
+    },
+    {
+     "item_id": "T2-C11-R3",
+     "item": "Ingest R2 + Bognar remaining tables after audit sample >=75 rows per source with 0 transcription errors and H2 decisions",
+     "work_types": [
+      "CODE",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "8-16",
+     "human_hours": "4-8 Kush; 4-8 Parv",
+     "depends_on": [
+      "T2-C18-R1",
+      "T2-C11-R2"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Positional-only method mapping for 1,268 cells; plane assignments need Kush signature",
+     "acceptance": "G12-1..G12-5 pass; EVD ACTIVE rises by the audited count; double rebuild identical"
+    },
+    {
+     "item_id": "T2-C11-R4",
+     "item": "Download/stage FDC Foundation Foods, Flavonoid DB 3.3, UK CoFID after licence confirmation",
+     "work_types": [
+      "DOWNLOAD",
+      "DECISION"
+     ],
+     "where": "manjot",
+     "agent_hours": "3-6",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "T2-C18-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "CoFID OGL unverified; AFCD licence conflict",
+     "acceptance": "Files with sha256 in SRC/SNAP proposed rows; licence_status VERIFIED"
+    }
+   ]
+  },
+  {
+   "id": "T2-C12",
+   "name": "Literature discovery corpus (Step 13)",
+   "ssot_anchor": "\u00a7203.3 Priority B/C L17212-17237; \u00a7224 L24269-24387 (acquisition protocol); \u00a7257F.3",
+   "plan_steps": [
+    "13",
+    "13a-0",
+    "13a-1..5",
+    "13b"
+   ],
+   "status": "CODE",
+   "status_evidence": [
+    "reports/step13/S157_13a0_seed_corpus_full_counts.json (715 seeds, 703 valid DOIs, exact-DOI dedup, 12 without DOI, no abstracts)",
+    "registry/evidence/seed_corpus_13a0_{tracked,full}_v0.jsonl",
+    "src/culinarystate/evidence/{seed_corpus,literature,doi_resolve}.py; registry/evidence_query_matrix_v1.csv (30 query templates with Europe PMC counts)",
+    "25 first-page OpenAlex result files (584 works); S171 AA source search (Europe PMC + OpenAlex)"
+   ],
+   "what_exists": "Offline seed corpus and OpenAlex client; ad hoc search for the AA pilot.",
+   "gap_vs_ssot": "No 13a-1..5 run: no API keys/H2 approvals recorded, no per-document licence/OA status table, no abstracts, no query log, no recall evaluation, no triage labels, no propensity universe for MNAR (\u00a7220 coverage). 13b (extraction at scale) correctly not started.",
+   "remaining": [
+    {
+     "item_id": "T2-C12-R1",
+     "item": "H2 decisions and user-created keys (OpenAlex/Crossref email, NCBI key if used) for Europe PMC, OpenAlex, Unpaywall",
+     "work_types": [
+      "DECISION",
+      "DOWNLOAD"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "es_1_2_h2_approval_queue.md #1,#3,#4"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Agent must never self-register with the user's email",
+     "acceptance": "DECISIONS entry + keys stored outside git"
+    },
+    {
+     "item_id": "T2-C12-R2",
+     "item": "13a metadata-only discovery for AA and chlorophyll systems: query log, licence/OA status per DOI, 100 abstracts double-labelled",
+     "work_types": [
+      "DOWNLOAD",
+      "ANALYSIS",
+      "HUMAN_REVIEW"
+     ],
+     "where": "manjot",
+     "agent_hours": "6-12",
+     "human_hours": "3-6 each",
+     "depends_on": [
+      "T2-C12-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Only AA pilot needed before 25 Nov",
+     "acceptance": "Reproducible query log, 100% DOI licence status or UNKNOWN, recall on seed list with Wilson LB"
+    },
+    {
+     "item_id": "T2-C12-R3",
+     "item": "Full 13a corpus with propensity universe and known-item recall >= 0.90, then triage classifier decision",
+     "work_types": [
+      "DOWNLOAD",
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "20-40",
+     "human_hours": "6-12 each",
+     "depends_on": [
+      "T2-C12-R2"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Paper-time only",
+     "acceptance": "G13-1..G13-4 evaluated"
+    }
+   ]
+  },
+  {
+   "id": "T2-C13",
+   "name": "Coverage-driven evidence growth (Step 14) and anchor-set choice",
+   "ssot_anchor": "\u00a7203.3 Priority B L17212-17229; \u00a7203.10 L17373-17390; \u00a7220.8 L23656-23667; G14-5..G14-10",
+   "plan_steps": [
+    "14",
+    "ES-1.2"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "reports/h_state/hstate_missing_evidence_cells_ranked.csv (58 targets); h_state_coverage_lift_forecast.md; evidence_first_*.csv",
+    "reports/step23/router_demo_census_vitc_full_corpus_S171.json (EVD vitamin C: 115 pairs over 25 ingredients vs 130,886 distinct corpus pairs; DIRECT 0.754%)",
+    "tools/make_evidence_queue.py",
+    "reports/ssot15/data_foundation_audit.md (EVD cell for 24 of 2,132 ING_PROCESSED_BY edges)"
+   ],
+   "what_exists": "Planning artefacts only: ranked missing cells, forecast, queue builder. No scheduler, no lineage-unit coverage map, readiness ledger or stop rules.",
+   "gap_vs_ssot": "Anchor ingredient set (\u00a7203.3: onion, garlic, potato, tomato, chicken, beef, coffee/cocoa; \u00a7144.3 list differs) not chosen after a coverage audit. \u00a7203.10 launch criterion (enough support for pair-holdout and study-disjoint test sets) not evaluated; per Step 8a feasibility only 4 cells reach >=5 groups.",
+   "remaining": [
+    {
+     "item_id": "T2-C13-R1",
+     "item": "Counts-only coverage statement for the talk: EVD pair/cell coverage against corpus demand, per process family, with the 07.A-unaudited tag",
+     "work_types": [
+      "ANALYSIS",
+      "CPU_COMPUTE"
+     ],
+     "where": "manjot",
+     "agent_hours": "4-8",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T2-C01",
+      "T2-C17"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Reader confuses 0.754% DIRECT with system failure",
+     "acceptance": "Figure + table reproducible by one command; numbers equal router census and EVD counts"
+    },
+    {
+     "item_id": "T2-C13-R2",
+     "item": "Choose the anchor set after a coverage audit and register the READY/PARTIAL/NEED_DATA readiness ledger for consumers (26/27, 29/30, 23 negatives)",
+     "work_types": [
+      "ANALYSIS",
+      "DECISION"
+     ],
+     "where": "any",
+     "agent_hours": "6-12",
+     "human_hours": "1-2",
+     "depends_on": [
+      "T2-C06",
+      "T2-C09"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Claims made without readiness",
+     "acceptance": "Readiness ledger file with verdict per consumer"
+    },
+    {
+     "item_id": "T2-C13-R3",
+     "item": "Active acquisition scheduler with random stream >= 30% and stop rules, acquisition log",
+     "work_types": [
+      "CODE",
+      "DOWNLOAD"
+     ],
+     "where": "any",
+     "agent_hours": "16-40",
+     "human_hours": "40-120 each",
+     "depends_on": [
+      "T2-C10",
+      "T2-C12"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Open-ended human load",
+     "acceptance": "G14-A..G14-C"
+    }
+   ]
+  },
+  {
+   "id": "T2-C14",
+   "name": "Pre-freeze rulings (15.0) and 15a.R reserved-group seal",
+   "ssot_anchor": "G15-R L22393; \u00a7220.8; plan Step 15.0/15a.R",
+   "plan_steps": [
+    "15.0",
+    "15a.R"
+   ],
+   "status": "DONE",
+   "status_evidence": [
+    "D-068 (RESERVED_FRACTION 1/5, STUDY_THEN_CELL, stratify SOURCE_FAMILY, seed hash 73d3ed4d...)",
+    "reports/step15/15a_R_seal_commitment_v1.json (886 groups, 177 reserved, 3,555 rows, sealed 2026-11-06, list outside git)",
+    "src/culinarystate/lineage/reserved_seal.py; tools/step15a_R_seal.py; S160 AI review (R1-R4 fixed)"
+   ],
+   "what_exists": "Deterministic, hash-committed group-level seal; seed on Kush's Mac, sealed list outside git. Rows of the reserved set are not to be read before 15b.",
+   "gap_vs_ssot": "Seal commits to provisional (G08-3 FAIL) group keys: if 08a keys change, reserved groups may merge with dev groups (burned and replaced per card). D-068 self-append waiver by Kush noted as deviation.",
+   "remaining": [
+    {
+     "item_id": "T2-C14-R1",
+     "item": "Seal integrity check before any 15a/29-diag read (reserved list hash vs commitment, access log)",
+     "work_types": [
+      "ANALYSIS"
+     ],
+     "where": "mac",
+     "agent_hours": "0.5",
+     "human_hours": "0-0",
+     "depends_on": [
+      "seed on Kush Mac"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Reserved group read leaks",
+     "acceptance": "Check script output matches commitment hash; no DEV filter bypass"
+    }
+   ]
+  },
+  {
+   "id": "T2-C15",
+   "name": "Freeze 15a (bootstrap), dataset card, SPLIT registry, reproducibility log",
+   "ssot_anchor": "\u00a7203.9 L17355-17372; G14-1/2 L17077-17078; G15-1 L22382; G15-R L22393; plan Step 15a",
+   "plan_steps": [
+    "15a",
+    "15"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "registry/freezes/15A-BOOT-2026-11-08.json (status PROPOSED, approved_by null, ledger sha256 for COND/EVD/ING/MEAS/PROC/SNAP/SRC/STUDY/SVAR + seal)",
+    "ledgers/data/DATASET.jsonl 5 rows (recipe corpora only); no ledgers/data/SPLIT.jsonl",
+    "src/culinarystate/evaluation/{splits,leakage,bootstrap_diag,freeze_records}.py; reports/step29/29diag_preregistration_DRAFT.md (UNSIGNED)",
+    "reports/h_state/ledger_stats.md; registry/compute_runs_v1.csv (14 rows)"
+   ],
+   "what_exists": "Proposed snapshot record, group-disjoint split code (property-tested), 29-diag runner that refuses without an approved freeze and signed prereg.",
+   "gap_vs_ssot": "No dataset card per \u00a7203.9 (rows, unique ingredients/processes, pair counts, target-type, tier, study/platform counts, T/t/pH/a_w/moisture/pressure coverage, missingness by source, pair-frequency distribution, condition ranges, duplicate/conflict audit); G15-a requires it before any model-selection run. SPLIT ledger absent and SPLIT.strategy enum lacks lineage-component, duplicate-group, lab, condition-OOD, platform, calibration values. 15a not approved, so 29-diag cannot start.",
+   "remaining": [
+    {
+     "item_id": "T2-C15-R1",
+     "item": "Build the dataset-card generator and publish counts-only card for the 17,978 ACTIVE E3 rows (all \u00a7203.9 outputs, COND_UNAUDITED / BOOTSTRAP_UNVERIFIED tags)",
+     "work_types": [
+      "CODE",
+      "CPU_COMPUTE",
+      "ANALYSIS"
+     ],
+     "where": "manjot",
+     "agent_hours": "5-10",
+     "human_hours": "1-2 review",
+     "depends_on": [
+      "T2-C01",
+      "T2-C04",
+      "T2-C06"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Model results quoted before a card exists (G15-a)",
+     "acceptance": "reports/step15/dataset_card_15a_v1.md/.json with each \u00a7203.9 item, deterministic double run identical, timestamp earlier than any 29-diag run"
+    },
+    {
+     "item_id": "T2-C15-R2",
+     "item": "Kush approves (or rejects) the proposed 15A-BOOT freeze after reading the card; any ledger change first",
+     "work_types": [
+      "HUMAN_SIGNATURE",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0.2",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "T2-C15-R1",
+      "T2-C11-R2",
+      "T2-C03-R2"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "29-diag (H2 diagnostic, medium value) cannot run; approving then changing ledgers voids it",
+     "acceptance": "registry/freezes/15A-BOOT-2026-11-08.json status FROZEN with approved_by Kush and date, or a successor"
+    },
+    {
+     "item_id": "T2-C15-R3",
+     "item": "SPLIT schema v1.1 (add lineage-component, duplicate-group, lab, condition-OOD, matrix-OOD, platform, calibration strategies) and SPLIT.jsonl for 15a diagnostics",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "4-8",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T2-C06"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Splits not auditable",
+     "acceptance": "Schema + SPLIT rows validated; every split registered DIAGNOSTIC_ONLY or HEADLINE with K>=10 clusters (15.0 K=10)"
+    },
+    {
+     "item_id": "T2-C15-R4",
+     "item": "Reproducibility record: seeds, versions, hashes, splits, run rows for every evidence-plane run (G15-R)",
+     "work_types": [
+      "WRITING",
+      "CPU_COMPUTE"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C15-R1"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Rerun impossible within tolerance",
+     "acceptance": "Rows in compute_runs_v1.csv (orchestrator) and a rerun that reproduces dataset card hash"
+    }
+   ]
+  },
+  {
+   "id": "T2-C16",
+   "name": "Freeze 15b (paper-grade DATA-EVIDENCE v1)",
+   "ssot_anchor": "G14-3 L17078; G15-H L22395; \u00a7201.8; plan Step 15b",
+   "plan_steps": [
+    "15b"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "handoff/FINISH_PLAN_2026-11-07.md and plan v2 Step 15 card: 15b requires a VALID 07.A pass, 08a+08b, Steps 11/12/14 verdicts, human-verified held-out subset, SIM partitions"
+   ],
+   "what_exists": "Nothing beyond the 15a pieces. R-05: 23b stays blocked until both 07.A valid and 15b frozen.",
+   "gap_vs_ssot": "Not achievable before 25 Nov: no verified test subset, SIM-VAL has <5 lab groups, G08-3 FAIL means study-disjoint headline absent. Realistic fallback in card: release 15a + PE-only publication-component CV headline + focused AA partitions.",
+   "remaining": [
+    {
+     "item_id": "T2-C16-R1",
+     "item": "Run the 15b readiness checklist and publish an explicit NOT_FROZEN/ BLOCKED_BY list for the report (honest negative)",
+     "work_types": [
+      "ANALYSIS",
+      "WRITING"
+     ],
+     "where": "any",
+     "agent_hours": "2-3",
+     "human_hours": "0.5",
+     "depends_on": [
+      "T2-C05",
+      "T2-C10",
+      "T2-C13"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Reader assumes 15b done",
+     "acceptance": "Report table listing each 15b precondition with PASS/NOT_MET and evidence"
+    },
+    {
+     "item_id": "T2-C16-R2",
+     "item": "Actual 15b freeze (verified test subset, sealed locked test H5, release licence matrix)",
+     "work_types": [
+      "HUMAN_SIGNATURE",
+      "CODE",
+      "HUMAN_REVIEW"
+     ],
+     "where": "any",
+     "agent_hours": "16-24",
+     "human_hours": "12-20 Kush; 6-13 Parv; 2-3 expert",
+     "depends_on": [
+      "T2-C05-R4",
+      "T2-C10",
+      "T2-C13",
+      "T2-C11"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Depends on the largest human blocks",
+     "acceptance": "G15-a..G15-h pass; DATA-EVIDENCE v1 sealed"
+    }
+   ]
+  },
+  {
+   "id": "T2-C17",
+   "name": "EVD to ingredient/process linkage (ING, PROC, prior_state) for routing",
+   "ssot_anchor": "\u00a7203.2 ingredient_id/process_leaf; \u00a7203.8 L17330-17354; G15-1",
+   "plan_steps": [
+    "05",
+    "23"
+   ],
+   "status": "RUN",
+   "status_evidence": [
+    "src/culinarystate/evidence/{linker,link_review}.py; registry/evidence/evd_ingredient_link_decisions.csv (389 rows: LINKED 237, HELD 129, CONCEPT_MISSING 23)",
+    "reports/es1/es1_1_audit.md (ingredient_id UNKNOWN 6,409, prior_state UNKNOWN 5,536, process_id UNKNOWN 157)",
+    "HV-008 NOT_STARTED, HV-010 NOT_STARTED (93 PROC mechanism families AI-drafted)"
+   ],
+   "what_exists": "Linker applied with human-review CSV; 129 matrices held for Kush.",
+   "gap_vs_ssot": "A third of EVD rows lack ingredient_id, which caps router DIRECT/INTERPOLATE hits; prior_state vocabulary pending. ING to FDC/SR crosswalk 0% resolved belongs to the lot-state topic.",
+   "remaining": [
+    {
+     "item_id": "T2-C17-R1",
+     "item": "Kush resolves the 129 HELD and 23 CONCEPT_MISSING ingredient links (HV-008)",
+     "work_types": [
+      "HUMAN_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "1",
+     "human_hours": "2-4",
+     "depends_on": [
+      "evd_ingredient_link_decisions.csv"
+     ],
+     "priority_25nov": "SHOULD",
+     "risk": "Coverage figure in the talk understates evidence",
+     "acceptance": "Decisions applied; ingredient_id UNKNOWN count drops and is recomputed; EVD link table version bumped (not an in-place edit of protected EVD)"
+    },
+    {
+     "item_id": "T2-C17-R2",
+     "item": "Re-run router census with updated links to refresh the coverage numbers",
+     "work_types": [
+      "CPU_COMPUTE"
+     ],
+     "where": "vinayak",
+     "agent_hours": "1-3",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C17-R1"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Stale 0.754%",
+     "acceptance": "New census json with hash in compute_runs; DIRECT count change explained"
+    }
+   ]
+  },
+  {
+   "id": "T2-C18",
+   "name": "Source registry, licences, H2 approvals, permission emails (SRC/SNAP, \u00a7257F.1-257F.2)",
+   "ssot_anchor": "\u00a7203.4 L17249-17264; \u00a7257F.1-257F.2 L34683-34714; \u00a7203.9",
+   "plan_steps": [
+    "06",
+    "12.0",
+    "ES-1.2"
+   ],
+   "status": "BLOCKED",
+   "status_evidence": [
+    "registry/data_source_acquisition_manifest.csv 64 sources (P0 3, P1 16, P2 17, EXISTING 19, BLOCKED 7, PARK 2)",
+    "reports/h_state/es_1_2_h2_approval_queue.md (21 actions)",
+    "handoff/API_BLOCKERS.md (#1 RecipeDB key, #2 FlavorDB, #3 FSIS), SOURCE_ACCESS.md, H1_email_bagler.md",
+    "ledgers/data/SRC.jsonl 609 lines / 488 ACTIVE; data/raw/fsis/*.html present"
+   ],
+   "what_exists": "Complete planning manifest with 7 separate scores; licence statements dated 2026-10-22; local files not in SRC (R2 yields, FNDDS, INFOODS, Food.com, CoSyLab).",
+   "gap_vs_ssot": "H2 rulings and permissions are human only: Phenol-Explorer authors (redistribution), IFCT (NIN-ICMR), FAO/INFOODS, CoSyLab written confirmation (D-015), Food.com S116 eligibility (0/84 confirmed; HV-005), Prof. Bagler key (H1). AFCD licence CONFLICT. D-026 treats all 612,782 recipes usable but Food.com CC0 is uploader-declared and unverified.",
+   "remaining": [
+    {
+     "item_id": "T2-C18-R1",
+     "item": "Kush rules on the H2 queue items needed before 25 Nov: #1/#3/#4 (Europe PMC, NCBI, Unpaywall), #6 (CoFID OGL), #16 (Food.com)",
+     "work_types": [
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "0",
+     "human_hours": "0.5-1",
+     "depends_on": [
+      "es_1_2_h2_approval_queue.md"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Silent use of unapproved sources",
+     "acceptance": "DECISIONS entry per item"
+    },
+    {
+     "item_id": "T2-C18-R2",
+     "item": "Send permission/terms emails (H1 Bagler: RecipeDB/FlavorDB keys; INFOODS; IFCT; Phenol-Explorer authors; CoSyLab written confirmation)",
+     "work_types": [
+      "HUMAN_SIGNATURE",
+      "DECISION"
+     ],
+     "where": "human",
+     "agent_hours": "1-2 drafting",
+     "human_hours": "1-2",
+     "depends_on": [
+      "handoff/H1_email_bagler.md"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Replies unlikely before 25 Nov",
+     "acceptance": "Emails sent and logged; replies recorded in SRC licence_status"
+    },
+    {
+     "item_id": "T2-C18-R3",
+     "item": "Register local unregistered files into SRC/SNAP (12.0) with orchestrator minting ids",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "2-4",
+     "human_hours": "0-0",
+     "depends_on": [
+      "T2-C11-R2"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Ledger change voids freeze",
+     "acceptance": "SRC rows with sha256 and licence_status for R2, FNDDS, INFOODS, Food.com"
+    }
+   ]
+  },
+  {
+   "id": "T2-C19",
+   "name": "Evidence tiers E1-E6 mapping and conflict records",
+   "ssot_anchor": "\u00a7201.7 L16651-16675; \u00a7257F.7 L34761-34765; G16-CONFLICT L27464",
+   "plan_steps": [
+    "02.4",
+    "04",
+    "11"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "registry/evidence_tier_provenance_map_v1.csv (E1-E7 with current_rows; E3 17,978)",
+    "registry/evidence/conflict_queue.csv (17 PE conflict candidates)",
+    "registry/negative_results_register_v1.csv"
+   ],
+   "what_exists": "Tier and provenance-class crosswalk; conflict candidates from PE (same matrix/process, spread of RF), no resolution.",
+   "gap_vs_ssot": "SSOT E6 = heuristic/qualitative, E7 does not exist, while plan/EVD uses E6 = MODEL_ESTIMATED and E7 = SIMULATED. Conflict records require compatibility checks (matched variables, differing conditions, independent-source count) not yet implemented; conflict_queue human_status blank.",
+   "remaining": [
+    {
+     "item_id": "T2-C19-R1",
+     "item": "Record the E6/E7 reconciliation in the v16 change set (decision only)",
+     "work_types": [
+      "DECISION",
+      "WRITING"
+     ],
+     "where": "human",
+     "agent_hours": "0.5",
+     "human_hours": "0.3",
+     "depends_on": [
+      "v16 change set"
+     ],
+     "priority_25nov": "COULD",
+     "risk": "Tier naming disagreement in a report",
+     "acceptance": "DECISIONS note and map file annotated"
+    },
+    {
+     "item_id": "T2-C19-R2",
+     "item": "Implement conflict-record builder with compatibility checks and human adjudication states",
+     "work_types": [
+      "CODE"
+     ],
+     "where": "any",
+     "agent_hours": "6-10",
+     "human_hours": "1-2 review",
+     "depends_on": [
+      "T2-C06"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Not needed for 25 Nov (no benchmark class depends on it)",
+     "acceptance": "Conflict records validate; queue rows get status"
+    }
+   ]
+  },
+  {
+   "id": "T2-C20",
+   "name": "Raw-vs-cooked volatile literature anchors and platform harmonisation",
+   "ssot_anchor": "\u00a7203.3 Priority B L17212-17229; \u00a7203.7 L17317-17329",
+   "plan_steps": [
+    "11b",
+    "13",
+    "14"
+   ],
+   "status": "OUT_OF_SCOPE",
+   "status_evidence": [
+    "D-075/D-076 scope (kinetics pilot, D4, D5, H1/H3); MEAS 3 rows; no volatile ledger plane; reports/h_state missing-cell ranking mentions volatiles only generically"
+   ],
+   "what_exists": "Nothing; platform and censoring (ND, <LOD) classes exist in registries only.",
+   "gap_vs_ssot": "SSOT Priority B and platform-disjoint evaluation have no step owning them before 25 Nov; MEAS v1.1 platform vocabulary not adopted.",
+   "remaining": [
+    {
+     "item_id": "T2-C20-R1",
+     "item": "Defer: curate 5-7 anchor foods (onion, garlic, potato, tomato, chicken, beef, coffee) matched raw-vs-cooked volatile studies with platform recorded",
+     "work_types": [
+      "DOWNLOAD",
+      "ANALYSIS",
+      "HUMAN_REVIEW",
+      "EXPERT_REVIEW"
+     ],
+     "where": "human",
+     "agent_hours": "20-40",
+     "human_hours": "20-40 each",
+     "depends_on": [
+      "T2-C12",
+      "T2-C04-R1"
+     ],
+     "priority_25nov": "AFTER",
+     "risk": "Paper-time; licence per article",
+     "acceptance": "Anchor table with platform and censoring fields, human verified"
+    }
+   ]
+  },
+  {
+   "id": "T2-C21",
+   "name": "D1 deliverable packaging: evidence ledger for the proposal (report text, slide figures, honest scope)",
+   "ssot_anchor": "Proposal D1; \u00a7203.8 L17330-17354; \u00a7203.9; \u00a7201.8",
+   "plan_steps": [
+    "D1",
+    "report"
+   ],
+   "status": "DRAFT",
+   "status_evidence": [
+    "handoff/MAX_PLAN_REVIEW_PACKET_2026-11-08.md section 1 (D1: 17,978 E3 rows unverified; 0/40 hand-verified)",
+    "reports/es1/es1_1_audit.md; reports/h_state/ledger_stats.md; reports/del2/*"
+   ],
+   "what_exists": "Numbers for D1 exist and are consistent across reports.",
+   "gap_vs_ssot": "The final D1 acceptance (DEL-1: >=40 hand-verified literature rows with provenance) is unmet; D1 wording must separate E3 aggregates, AI-prechecked rows and verified rows.",
+   "remaining": [
+    {
+     "item_id": "T2-C21-R1",
+     "item": "Write the D1 section and figures: sources, counts by tier/source/target, coverage (T/t/pH/a_w), lineage label, verified rows n/40, what is not claimed",
+     "work_types": [
+      "WRITING",
+      "ANALYSIS"
+     ],
+     "where": "any",
+     "agent_hours": "4-8",
+     "human_hours": "1-2 review",
+     "depends_on": [
+      "T2-C15-R1",
+      "T2-C10-R1",
+      "T2-C06-R2"
+     ],
+     "priority_25nov": "MUST",
+     "risk": "Over-claim of D1; reviewers find E3 imputation",
+     "acceptance": "Section and slide numbers each traceable to a committed json; Kush and Parv review"
+    }
+   ]
+  }
+ ],
+ "ssot_requirements_without_plan_coverage": [
+  "\u00a7203.2 columns oxygen, mixing, direction_label, ordinal_band, split_id, dataset_version: no plan step maps them into the process-event view (T2-C01-R1 only audits)",
+  "\u00a7203.3 Priority B curated raw-vs-cooked volatile literature anchor set and \u00a7203.7 platform-disjoint evaluation: no owner step before 25 Nov (T2-C20 OUT_OF_SCOPE)",
+  "Condition bucket definition (\u00a7198.1/\u00a7203.8), ordinal_band cut-points and dead-band delta definition: unspecified in SSOT and plan",
+  "\u00a7201.9 LOD/LOQ and Tobit-like censored likelihood: EVD lod/loq null for all rows; DEL-2 substituted 0.975 for GT_CAP rows (training default substitution)",
+  "\u00a7257F.5 figure digitisation: tool deferred; no step owns it",
+  "\u00a7257F.7 evidence conflict records with compatibility checks: no step owns it (queue of 17 PE candidates only)",
+  "\u00a7220.8 / Step 13 propensity universe for MNAR (studied vs never-studied cells): no component",
+  "G14-3/G15-H human-verified held-out labels and \u00a7201.7 test labels E1-E4: 0 qualifying rows, reachable only after Step 11/14",
+  "G15-1 'yield/normalisation status on every quantitative row': yield_fraction UNKNOWN 13,612/17,978",
+  "G14-6 study-disjoint evaluation: only Phenol-Explorer has independent study groups; SSOT escape clause 'where study IDs exist' can pass vacuously",
+  "Minimum support for 'meaningful' pair-holdout / study-disjoint tests (\u00a7203.10): K=10 proposed (15.0) but not derived from SSOT"
+ ],
+ "contradictions": [
+  "Plan v2 Step 07 card (26 Oct) says packet v4 has 0 judgements and gate is pooled kappa; repo shows v4 labelled, kappa 0.0 (paradox), raw agreement 0.9944, FAIL_REVIEWER_DISAGREEMENT; the 07.A R1 redo gates on Gwet AC1, whereas the card/R-06 says AC1 is diagnostic only: needs an explicit DECISIONS ruling (T2-C05-R5)",
+  "Packet/FINISH_PLAN rank 'M2 opens 23b' as high value, but plan Step 15/R-05 also require 15b FROZEN for 23b; 15b needs verified test subset and SIM partitions that cannot exist by 25 Nov",
+  "07A_R1 prereg says v4 labels are not rescored with AC1; plan Step 07 substep 6 asks for a v4 diagnostics annex with AC1/PABAK (resolve as DIAGNOSTIC_ONLY, T2-C05-R6)",
+  "Plan Step 08 card still says 'NOT STARTED; NOT AUTHORISED'; repo has 08a run (S144/S145), D-032 authorisation, 08b-v0 built; PROGRESS_AUDIT says Step 09 'prototypes' while S157 built machinery (CODE)",
+  "Plan Step 10 card (100-abstract triage, dual human extraction, AA vs chlorophyll ranking, G10-1..6) vs D-076 reduced pilot (about 20 AI-extracted rows, model-assisted verification, AA only): G10-2/G10-4/G10-5 not met by construction",
+  "D-052 selected sim_aa_1 at 26.0 before Step 10/11 evidence, though R-14 says the final system is chosen at 11.D from verified evidence",
+  "Plan Step 12 card says this server has stdlib Python only; .venv312 now has pandas/pyarrow/scipy (card constraint outdated)",
+  "15A-BOOT hashes SVAR/EVD/SRC/COND; Step 12 ingestion, 12.0 SRC registration, SVAR v1.1 or human-verification append would void a freeze that Kush has not yet approved: order must be decided first",
+  "EVD.jsonl has 57,280 lines but 17,978 ACTIVE rows (178 DEPRECATED ids): quote 17,978, never line count",
+  "G08-3 audit: Kush B2 49/50 correct vs Parv 0/50 (49 UNCERTAIN) on the same edges: reviewer protocol difference, not resolved; recorded as FAIL",
+  "SSOT tier E6/E7 definitions differ from EVD tier enum (SSOT E6 = heuristic, no E7)",
+  "Status 'Phenol-Explorer verification AI_PRECHECKED 3,870' must not be shown as verification (precheck tool docstring: never human verification)"
+ ],
+ "notes": "Out of this topic (note, not duplicated): ING to SR/FDC crosswalk (0% resolved), Food.com missing units, lot composition and member pH registry (lot-state / physical-state topic); 07I-C recipe identity calibration and 07I-S split_group_id (recipe-plane topic; D-033 records 0.88, 07I-R scientifically PROVISIONAL); condition BINDING of recipe text (Layer 1/2, D-077) is not Step 07 COND; PARAM/FORM registries, sim_aa_1 scoring and Step 27 (simulator topic) consume the AA rows from T2-C09; 29-diag and Step 30 evaluation code (evaluation topic) consume T2-C15; evidence retrieval packets and abstention (\u00a7203.8 response policy) belong to D4/D5; FSIS data/raw/fsis html is already on the server (API_BLOCKERS #3 may be stale; WARN builder belongs to the safety/decision topic). Critical path on humans before 25 Nov, by date: sign 07A_R1 + AA prereg (9-10 Nov) -> 07.A labels 3-4 h each (13 Nov) -> AA verification 2-3 h each (15 Nov) -> benchmark review (16 Nov, other topic): Kush and Parv carry roughly 12-20 h each over eight days from the T2 items alone if the 40-row DEL-1 verification is attempted. All agent items except Extractor-B (vinayak GPU/Ollama) and BBC are CPU-light and can run on manjot or any host; AA PDFs and packets live on the Mac (git-ignored). Nothing was downloaded, run or modified in this audit; counts above were read from ledgers and committed reports."
+}

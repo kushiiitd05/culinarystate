@@ -1,0 +1,337 @@
+{
+  "completed_at_utc": "2026-11-12T14:24:22.164384+00:00",
+  "excluded_family_channels": {
+    "TASTESET": "INGREDIENT_ONLY_ADAPTER_HAS_NO_INSTRUCTIONS"
+  },
+  "hash_scope": "ADAPTER_IDENTITY_TITLE_INGREDIENT_LINE_AND_STEP_FIELDS_NOT_ORIGINAL_FILE_BYTES",
+  "input_sha256": {
+    "/Users/parvgoyal/wth/CGAS/takeover/a1/A1 3/data/processed/recipes_processed.jsonl": "113172f424e612ca872c8aa34ab88e10b7b5cd1987b036e862d02e1c23b4bcc0",
+    "data/external/foodcom/recipes.parquet": "9f591abe9f8d1c691bbc630b0431ec6613f09fabe93f1789af87a06484aae9fb",
+    "data/interim/gutenberg/recipes.jsonl": "2c157ffdf22ed050c81fd2212b1246c1a92ca72565d5a784b9ad373feedd645f",
+    "data/interim/wikibooks/recipes.jsonl": "62374f4f292233a24d7b071d5c0dcafd4882ba7f2c7305d1c70a303330156933",
+    "data/raw/tasteset/TASTEset.csv": "e5d455b5ea4073e47220a7047a6d02d5fd07522b26f3a86336220ddd1868f2e4",
+    "ledgers/data/REC.jsonl": "91f65a47389260efa345e34695060053ae1b433afce0726baca42c310e24bd85"
+  },
+  "labels": [
+    "ENGINEERING_REGRESSION_NOT_SCIENTIFIC_GOLD",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "n_recipes": 50,
+  "per_family": {
+    "A1_BBC_GOOD_FOOD": 13,
+    "FOODCOM": 12,
+    "GUTENBERG_SEGMENT": 12,
+    "WIKIBOOKS": 13
+  },
+  "preselection_design_note": "Initial five-family quota check refused before outcomes; TASTEset exposes no instruction channel. Four instruction-bearing families allocated13/13/12/12 before pipeline execution.",
+  "record": "FIXED_50_PIPELINE_ENGINEERING_SELECTION",
+  "scientific_gate_pass": false,
+  "seed": "s179-local-pipeline-regression-2026-11-12",
+  "selection_rule": "SMALLEST_SHA256_SEED_FAMILY_RECIPE_ID;NONEMPTY_INSTRUCTIONS;NO_OUTCOME_FILTER",
+  "selection_tool_sha256": "102c582c9595c01b4904a5974f1d33b73b09c479270df75671650e2899644e5d",
+  "started_at_utc": "2026-11-12T14:24:13.617242+00:00",
+  "target_svar": "SVAR-000009",
+  "units": [
+    {
+      "adapter_source_fields_sha256": "452a67191a4c399b6496af0da60bd1000864bde6accf80c80382cd704298aaa1",
+      "recipe_id": "REC-000007",
+      "selection_rank_sha256": "00019f58888d6172a993c6a14480bb06c2122272b2df4c4d467d17b15690dc86",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "e7011cc6abcfbfe3e870ca80cbd58ccfbaac3a55960109b42a082ce04846176d",
+      "recipe_id": "REC-001252",
+      "selection_rank_sha256": "0007294bf69857643844c19a1c313324fe24b0ab4b54fbdb618a0bca6528b25e",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "0cc52b08d55a24494d651bda3b65ba29a8ff63d80d013fc688e6256fe80462bb",
+      "recipe_id": "REC-000099",
+      "selection_rank_sha256": "000e5a8863cf1a093fe93af954af7e061e1cd30c1a31d57a58335679a240a061",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "4997bfd67fdbc234112aa0cb811027ab1917c1aea7e55353ba8a6e15ebca3d9d",
+      "recipe_id": "REC-010854",
+      "selection_rank_sha256": "00134cb04ed52c41f6f94dc934052c23f29024653f57d071856f8db033b87785",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "123beed272c314af3c7c5b4c6b4a4e40f375cd0f8be060f668d43eb944560688",
+      "recipe_id": "REC-005179",
+      "selection_rank_sha256": "001addd48afa7454ebdad6a7a2819c09c6ce40a51d392903c011e0e8c3959634",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "7498e9deb62116963990257b88e227259f48b1d383d8f50f8e180022d8bb6f59",
+      "recipe_id": "REC-008227",
+      "selection_rank_sha256": "002daad8809c62ca086e43c270f4568e8a68091d453d1dac6997d7a26d7a39d2",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "ac18e65846b7216bee7a979e1594524db6d53ee83bd3aaa033ea1982c0c89b75",
+      "recipe_id": "REC-009339",
+      "selection_rank_sha256": "00408944db3ddf743089503b9bc88a0727eb89f59255bbc9787d5bbfdd001381",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "e3916c0e455314b80269a284fcdf7e3d76a372bbc5a78f30cd320fd9bdb8dba4",
+      "recipe_id": "REC-009995",
+      "selection_rank_sha256": "00439b317a8fb1f3f4a75608476d709e2b31374e08aea7c67aa1dc1e8ffc578f",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "1433948870099b9a69d86dd4886d03a22716083487eb22482dc3f2c7932ecaf5",
+      "recipe_id": "REC-002113",
+      "selection_rank_sha256": "006282fe145d7b1297665befe81c085aaee7730b5dcbee8305059a9b08d77675",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "afacba023c8957f67a000cb04b2e7c763de112a653ef0624c481113f20b59197",
+      "recipe_id": "REC-007668",
+      "selection_rank_sha256": "006f4e82933a816f1b31e2eb1a36e14c0a0899f60e9b97356b9c57f973528a11",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "837a9006e6e6094bc7e87fdaf574055a2820faa2807eeaf3daac417c8ff497e9",
+      "recipe_id": "REC-008528",
+      "selection_rank_sha256": "0079204e8142ecfcbec3890f44a5789be9bc0b4be5137cb2e4b1f07fa0e01da4",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "ab26ee216032b977b2fa6cb1de3e2b618e259fbeffab780a33e0badc5f6e39cc",
+      "recipe_id": "REC-003537",
+      "selection_rank_sha256": "007ded95eebde5e4c4f961d3617056d2ad14a9b4c9b81f2a2ef5cd9bdd4129ab",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "969e9efe5fc46da729388240f75952b10db39039de99724c2a780dd53055b6c2",
+      "recipe_id": "REC-002068",
+      "selection_rank_sha256": "007eedd64b3831c6b42c1e4133b805b792a16f071efd6c6aab6255eceed30281",
+      "source_family": "A1_BBC_GOOD_FOOD"
+    },
+    {
+      "adapter_source_fields_sha256": "8b4c68958fbcb934d52a9a79b2ae8ffb3b36a5e41bcdaa17607f101f08f10ea8",
+      "recipe_id": "REC-012288",
+      "selection_rank_sha256": "00177606393b9f00be735d00820bb154f84ca595c2ca6df89d9c8b912e3ebb5c",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "2075076b4a9b691b2e7493fcaabccee3ac736c58d7f3f53404c65dcf35630483",
+      "recipe_id": "REC-013629",
+      "selection_rank_sha256": "0018b8c400d2389ca1fcb4c6d3f87f5a0324f9a1333b664ebfd8e9f6ba250640",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "7664b249b420e0b5b12f02a3a97aa9ce1cbe847ffa026bf26152249fb656b6cf",
+      "recipe_id": "REC-012252",
+      "selection_rank_sha256": "001d4fe15266b1691f2620ddcd93bd31989bd027f60cd162badf1186bc1b6a0d",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "4d1164539cd93076b83475ef9893b392a1152541224acf6d547b3ef8cb6bcfa0",
+      "recipe_id": "REC-012229",
+      "selection_rank_sha256": "003185336b577c3c7f4992be06e6deb6864134c07c5f4a95a913efda98653b71",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "5430e4b2a7addfb6e9791a1e54260216f53c10d54576ea013ebe97a471d46e6c",
+      "recipe_id": "REC-013185",
+      "selection_rank_sha256": "00447cc20d6bb65b42a82a0dbe145ffb00ca6db004dfe2957f351dae814a18f5",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "c62c5d41772f2cbf9654748698c0a33ecce2422f110417c0967f52ff69d3bf39",
+      "recipe_id": "REC-014060",
+      "selection_rank_sha256": "00454efc38dc5bdf6f7a225572d0b3b03f09bb8822960a8dfc9d731c37e9a7f8",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "9cdcf4c72e3e8aa8639d21c44ff5afdee61090ee45b58c3b2f5ef21872064b1d",
+      "recipe_id": "REC-015281",
+      "selection_rank_sha256": "00486b46a64e9041ffcbebd29f2ff977af6b8d495432933c431214c8b982b2e4",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "ff31ef28339f8288d998b54dd0ae010f432c4f38d5d52f1281311ce7983bc283",
+      "recipe_id": "REC-013117",
+      "selection_rank_sha256": "005530e8f72a902c161c071b9081a04c9fe34cb90dc511ec358d834119e68499",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "ca63c2425c4c78f40b0a623b2c57485989f5918d7039e068d9378a2967c3fa14",
+      "recipe_id": "REC-014137",
+      "selection_rank_sha256": "0057e068ea074116610125d741b4ee0fbb55989e6b1140ea246f68b85b5dcce8",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "cf163102723ed18527af658d260122f00c071b359b1e2d351d8540d081ddf738",
+      "recipe_id": "REC-012707",
+      "selection_rank_sha256": "006d4bac43aa68b18697c735e1d01cfa60e39eb8b50746d62566d61d78eafaf6",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "3cf5b7bf37a9803ca8dbf4500e601cf520271ea7a6c17441e5e2df9c0acc2355",
+      "recipe_id": "REC-014009",
+      "selection_rank_sha256": "00798e2dc92203d6379ba648142252a85ae6bf1204e6c17f406de9b4353253c4",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "7398270ae16e744ca0d21a016a96e6b494d981cc363bfcc49aff6842eccded4d",
+      "recipe_id": "REC-015231",
+      "selection_rank_sha256": "00852750f627046e227bc7793dafa85ca3607faac4477746500301cf619f6c62",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "8cf78e18de5dda5b07526195e675a2a2788cbb12e884473c22dccfb82b407eca",
+      "recipe_id": "REC-013983",
+      "selection_rank_sha256": "009b462d40477d74cad5834cfaa26e5e98496b1b9adc4cacef16266fdebbee26",
+      "source_family": "WIKIBOOKS"
+    },
+    {
+      "adapter_source_fields_sha256": "54a600a8fd2b1f5f43e7eb606ffd2870c65d8222d99edb9a0ba992e43453fe8f",
+      "recipe_id": "REC-077200",
+      "selection_rank_sha256": "0000959039e454b2ee241946fe553a30470ca4fe0c89fced63d173b5017117a6",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "2a2a228945fa5436813ff75f03107d51eba785e55083ec81937a9ec97816b1b3",
+      "recipe_id": "REC-078735",
+      "selection_rank_sha256": "000337a7116d0d380cb27640b8e8abc2381f146ba8c537bb2ef60ac8691d5034",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "196fc9d987fb2f5af15a99108739d024567e69e272018793deb465a042c0fdd4",
+      "recipe_id": "REC-068246",
+      "selection_rank_sha256": "0004c5f181e0060ece16325dd704ce72663c1b0c23edddb9d3a5f58b9372fa73",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "4abe95229cca42c52abc5560fd2c8ef82c9aed6287f49df6375e2f9e12d724e8",
+      "recipe_id": "REC-026154",
+      "selection_rank_sha256": "0004f906c399f555005dad8a6b6952594dc41349ebebb0ca077bd761f7209309",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "85301dbdebfdbf61a9d4dbdacc04c6fe4ba1f3cdf68df2e59d742ec67d8bc137",
+      "recipe_id": "REC-071270",
+      "selection_rank_sha256": "0004f9842eb4905dbf958c689f9f3878460c8b9ae24c154037d57c381601080d",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "97f8c214ccbec3a58e10eb51ac6a930c14977f71970c62600a2739a0553765a9",
+      "recipe_id": "REC-050966",
+      "selection_rank_sha256": "00068fad797621d7959d659cd9366497f2bb234a25568dbb8af29150982438ca",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "b7a16996c78f1c74f5563031d1c86dbaf3516a2a1d7a7a2a07e4e4b624d3e786",
+      "recipe_id": "REC-018948",
+      "selection_rank_sha256": "0006e18a1c5ef3f9ca67aa64ce4d72fb85e10cc4a073d58b70e0554465ebc73c",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "801d07c362127658868973eb795b84e3c8e7a83b419aebadc9f0f4a2d543a240",
+      "recipe_id": "REC-081975",
+      "selection_rank_sha256": "00071a3c6b954c769b55908abf90f626597ffee046ecd33c30cba2c542d075f3",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "a11f4fce40501d6bb9a62186f44e45be6bd99d642f8502fb105d19a7025713dd",
+      "recipe_id": "REC-078004",
+      "selection_rank_sha256": "000892dcfd48211aaa6c96fbf145ff92b4c9a273230ef69e21702a3844ee4abf",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "2eedd6e68a76f0f5a21a226f8f9339abadb703bd9a698558dc3affd4330a4e7e",
+      "recipe_id": "REC-029003",
+      "selection_rank_sha256": "0009b2b9eec6792e226fbe5d3a1f1c01a72592475edd336d7e7295fe1099b5dd",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "2a32525ef3de118f9c89e60d61adda51ab3e45beda78d60634144b3fea91671b",
+      "recipe_id": "REC-073308",
+      "selection_rank_sha256": "000a26aa36e7d1f4170a01d255d61c907f6d9de4ecc37c6c2b38300b3b5d518a",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "b5d84ff9023bf8c8243d5842d413be8d1a3a7e76ff3cb4c24cb79d504bb8c9bd",
+      "recipe_id": "REC-057480",
+      "selection_rank_sha256": "000a4b5660588e19d3568347d96eeadb1d31e73a7c0ebc10458c23fa65a898d9",
+      "source_family": "GUTENBERG_SEGMENT"
+    },
+    {
+      "adapter_source_fields_sha256": "bc48ac1219a65b6e6ede3e2b97c14fee49291be68df8987a9dc8a82176530d1c",
+      "recipe_id": "FC68090",
+      "selection_rank_sha256": "000015cce9aad37b78f622b240c307e915d6d241fecb418933a7c4bdb25a158b",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "5a5f96f690f6ab577ad5e5e59354cc3d134f70f4a7b5e17c34bae0787653f203",
+      "recipe_id": "FC326671",
+      "selection_rank_sha256": "000030daee9fd0517f74d1d76ca6353b9c55341943bba484230b1c68092f2ed0",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "05721e845f34c2b66d61e7c6aaed602f0fcd620ab0d6c0835219fc860cf53d4a",
+      "recipe_id": "FC521210",
+      "selection_rank_sha256": "0000425d110cc040a80e98f21c20535166fd15a80a9cf0127b7e29033db5221f",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "337db8b1ba0f1c846ef737bc3f595f31bc049c7ce47e104f534d4a6e1ecbe026",
+      "recipe_id": "FC339491",
+      "selection_rank_sha256": "00004ab23a637f0224012bf270a56cdb3173e063bf667f3b3d8b449b18505dff",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "667dda9fa74747a342951c64d669a246292795c807d4ebdc16f7692fd1de988a",
+      "recipe_id": "FC478497",
+      "selection_rank_sha256": "00004d1e24d24870fbb0596325c876a250d4782b8d11d52668b7e65962b6c3f8",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "a70cae9504220e3c588a2c211c7b1e0af9398d22cf1508b8606f0bbb830541ec",
+      "recipe_id": "FC257285",
+      "selection_rank_sha256": "000060bcabc0e15a3f3456be4700819d2920f40da2defe65ee531b3bc1008598",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "66dfd81a18154ae0102f24775f19b5db5611d0d0a97d2488ace21b5b7eeea588",
+      "recipe_id": "FC182923",
+      "selection_rank_sha256": "000064fe5a0e9157ed4f001f352e71d4c1b1c837b23dc4670a9258e4dd78a2f4",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "a9d5167590e4430b3ca7cc39f42042dfae84e943f42d0763533b9b204259ad59",
+      "recipe_id": "FC397467",
+      "selection_rank_sha256": "000094e4d4b46183ae5052343797c51f8647e589fb9701ccfda6a4324ec86b6f",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "a232490aff23123ba863113e92f89ec8f443d250becd2f45e1d49312f3d99721",
+      "recipe_id": "FC137759",
+      "selection_rank_sha256": "0000b1bee4f11a0d4804af9ad666b9484e56294ef6c23757a850805c32fa155a",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "ed0b639dfc424f091a03a9fef4a4853e696ca8642ada3b885bd4540ebb85a4e2",
+      "recipe_id": "FC287072",
+      "selection_rank_sha256": "000123cc45b217356f45afd5d8fd14f9c62981193315db292fb6f7d0769014c8",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "c6167c9e3848ac440ac46d9db1e30d4bb21f259ea8434cd2737618763f8e8cc5",
+      "recipe_id": "FC261132",
+      "selection_rank_sha256": "00015eac5a00f0f997d1216b4e09534b7671118cea9762fe26ded6d357a1e79e",
+      "source_family": "FOODCOM"
+    },
+    {
+      "adapter_source_fields_sha256": "f55c9a5b3188af44381088f4acf744ffeebc6d0dde10d13769deeee3f5ae18b3",
+      "recipe_id": "FC421498",
+      "selection_rank_sha256": "00015f0c32e8492d83f88a67a1efb91a6bf68e04ca7e289faeb04135509d74e8",
+      "source_family": "FOODCOM"
+    }
+  ]
+}

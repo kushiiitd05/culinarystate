@@ -1,0 +1,169 @@
+{
+ "approver": "ksh+prv (AI, D-085)",
+ "columns": [
+  "state_type",
+  "process_id",
+  "process_family",
+  "step_decile",
+  "n_inputs",
+  "n_outputs",
+  "medium",
+  "temperature_C",
+  "duration_min",
+  "matrix_class",
+  "lid_state",
+  "piece_size_class",
+  "thermal_state",
+  "food_T_typical_C",
+  "moisture_cap_C",
+  "aa_retention_typical"
+ ],
+ "contains_ids": false,
+ "contains_text": false,
+ "decision": "D-110",
+ "exceptions": 0,
+ "families_requested": [
+  "A1_BBC_GOOD_FOOD"
+ ],
+ "fill_by_basis_or_reason": {
+  "A1_BBC_GOOD_FOOD": {
+   "aa_retention_typical": {
+    "UNKNOWN:MATRIX_NOT_ACIDIC_FRUIT": 48900,
+    "UNKNOWN:MEDIUM_NOT_LIQUID": 196,
+    "UNKNOWN:MEDIUM_UNKNOWN": 438,
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "UNKNOWN:WATER_CONTACT": 127,
+    "VALUE:FORMULA_RESEARCH_ONLY": 1
+   },
+   "duration_min": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "UNKNOWN:NO_DURATION_STATED": 29977,
+    "VALUE:TEXT_STATED": 19685
+   },
+   "food_T_typical_C": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "UNKNOWN:SCENARIO_UNKNOWN": 30444,
+    "UNKNOWN:UNSUPPORTED_MEDIUM": 1723,
+    "VALUE:SCENARIO_DEFAULT": 17495
+   },
+   "lid_state": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "UNKNOWN:NO_LID_CUE": 46231,
+    "VALUE:CUE": 3431
+   },
+   "matrix_class": {
+    "UNKNOWN:MULTIPLE_FOOD_GROUPS": 16154,
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "UNKNOWN:NO_FOOD_GROUP": 17974,
+    "VALUE:FOOD_GROUP": 15534
+   },
+   "medium": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "UNKNOWN:NO_MEDIUM_IN_PROCESS_MAP": 30207,
+    "VALUE:PROCESS_DEFINITION": 19455
+   },
+   "moisture_cap_C": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "UNKNOWN:NO_MOISTURE_CAP": 577,
+    "UNKNOWN:SCENARIO_UNKNOWN": 30444,
+    "UNKNOWN:UNSUPPORTED_MEDIUM": 1723,
+    "VALUE:SCENARIO_DEFAULT": 16918
+   },
+   "n_inputs": {
+    "VALUE:RUNG_A": 261379
+   },
+   "n_outputs": {
+    "VALUE:RUNG_A": 261379
+   },
+   "piece_size_class": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "UNKNOWN:NO_CUT_HISTORY": 45555,
+    "VALUE:CUT_HISTORY": 4107
+   },
+   "process_family": {
+    "UNKNOWN:NO_PROC": 2401,
+    "VALUE:PROC_LEDGER": 258978
+   },
+   "process_id": {
+    "UNKNOWN:NO_PROC": 2401,
+    "VALUE:RUNG_A": 258978
+   },
+   "state_type": {
+    "UNKNOWN:UNMAPPED_STRUCTURE": 29683,
+    "VALUE:D-102_V2": 231696
+   },
+   "step_decile": {
+    "VALUE:RUNG_A": 261379
+   },
+   "temperature_C": {
+    "UNKNOWN:GAS_MARK_CODE_ONLY": 110,
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "UNKNOWN:NO_TEMPERATURE_STATED": 40815,
+    "VALUE:CARRIED_SETPOINT": 471,
+    "VALUE:PHYSICAL_DEFINITION": 2602,
+    "VALUE:TEXT_STATED": 5664
+   },
+   "thermal_state": {
+    "UNKNOWN:NOT_A_HEAT_EVENT": 211717,
+    "VALUE:PHYSICS_V06_L2": 49662
+   }
+  }
+ },
+ "heat_rows_joined_to_physics": {
+  "A1_BBC_GOOD_FOOD": 49662
+ },
+ "labels": [
+  "DERIVED_VIEW_NOT_LEDGER",
+  "SCENARIO_DEFAULT_WHERE_STATED",
+  "FORMULA_RESEARCH_ONLY",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "recipes": 11934,
+ "record": "STATE_DATASET_FILL",
+ "row_parts": 6,
+ "rows": 261379,
+ "rows_dir": "BBC",
+ "scientific_gate_pass": false,
+ "shard": "0/1",
+ "value_rate_pct": {
+  "A1_BBC_GOOD_FOOD": {
+   "aa_retention_typical": 0.0,
+   "duration_min": 7.53,
+   "food_T_typical_C": 6.69,
+   "lid_state": 1.31,
+   "matrix_class": 5.94,
+   "medium": 7.44,
+   "moisture_cap_C": 6.47,
+   "n_inputs": 100.0,
+   "n_outputs": 100.0,
+   "piece_size_class": 1.57,
+   "process_family": 99.08,
+   "process_id": 99.08,
+   "state_type": 88.64,
+   "step_decile": 100.0,
+   "temperature_C": 3.34,
+   "thermal_state": 19.0
+  }
+ },
+ "value_rate_pct_heat_rows": {
+  "A1_BBC_GOOD_FOOD": {
+   "aa_retention_typical": 0.0,
+   "duration_min": 39.64,
+   "food_T_typical_C": 35.23,
+   "lid_state": 6.91,
+   "matrix_class": 31.28,
+   "medium": 39.17,
+   "moisture_cap_C": 34.07,
+   "n_inputs": 100.0,
+   "n_outputs": 100.0,
+   "piece_size_class": 8.27,
+   "process_family": 100.0,
+   "process_id": 100.0,
+   "state_type": 78.5,
+   "step_decile": 100.0,
+   "temperature_C": 17.59,
+   "thermal_state": 100.0
+  }
+ },
+ "wall_seconds": 95.1
+}

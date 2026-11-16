@@ -1,0 +1,72 @@
+{
+ "cross": {
+  "d5_gold_conditions_in_07ar1_packet": 5,
+  "d5_gold_evd_conditions": 69,
+  "d5_gold_evd_ids": 101,
+  "d5_gold_evd_ids_in_diag29_pool_pre_seal": 101
+ },
+ "d5": {
+  "checks": {
+   "PC": {
+    "cells_unique_within_block": true,
+    "distinct_ingredients": 39,
+    "distinct_processes": 6,
+    "prereg_floor": ">=8 ingredients and >=4 processes"
+   },
+   "S": {
+    "cut_in_range": true,
+    "families_allowed_only": true,
+    "min_4_steps": true,
+    "one_recipe_per_question": true,
+    "s1_s2_recipe_overlap": {}
+   }
+  },
+  "n_pc": 60,
+  "n_s": 40
+ },
+ "diag29": {
+  "families": [
+   "BOGNAR-2002",
+   "PHENOL-EXPLORER-3.6",
+   "USDA-RETN-R6"
+  ],
+  "n_rows_by_family": {
+   "BOGNAR-2002": 6594,
+   "PHENOL-EXPLORER-3.6": 3870,
+   "USDA-RETN-R6": 6994
+  },
+  "prereg_vs_runner": {
+   "S-5": "prereg says food-group disjoint; runner builds study_disjoint (possible only for PHENOL-EXPLORER-3.6)",
+   "grouping": "prereg says all splits grouped by independence_group; runner groups S-2/S-3/S-4 by matrix/process keys and only S-5 by study component"
+  },
+  "snapshot_hash_check": {
+   "ledgers/data/COND.jsonl": "MATCH",
+   "ledgers/data/EVD.jsonl": "MATCH",
+   "ledgers/data/ING.jsonl": "MATCH",
+   "ledgers/data/MEAS.jsonl": "MATCH",
+   "ledgers/data/PROC.jsonl": "MATCH",
+   "ledgers/data/SNAP.jsonl": "MATCH",
+   "ledgers/data/SRC.jsonl": "MATCH",
+   "ledgers/data/STUDY.jsonl": "MATCH",
+   "ledgers/data/SVAR.jsonl": "MATCH"
+  }
+ },
+ "module": "split_registry@0.1",
+ "n_rows": 25,
+ "n_units_listed": 300,
+ "r1": {
+  "excluded_set_sha256_matches_manifest": true,
+  "n": 100,
+  "overlap_with_v4": 0,
+  "packet_bytes_reproduced": true,
+  "packet_sha256": "f086975a2eac8531633299ff4f089da007ecc19c46c77619977ba96b925ca27d",
+  "pool_sizes_match": true,
+  "selected_by_stratum_match": true,
+  "selected_ids_sha256": "f3e1d5d9fffe077bb1e3a22a87476dca4505a929ba2bb7a50fc2c63a5a657f70",
+  "source_family_counts_match": true
+ },
+ "registry_sha256": "88b521bbed35e7e07aead4a81b0a70552d671f94eab2a313cc3036f2b47cd78c",
+ "tool": "tools/s178_build_split_registry.py",
+ "units_sha256": "0aae13d22bbfc700a81b2fc99aefad355485faa5b95fe33a9dd0bbf71897e2a8",
+ "verify_findings": []
+}

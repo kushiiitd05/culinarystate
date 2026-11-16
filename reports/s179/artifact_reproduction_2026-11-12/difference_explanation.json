@@ -1,0 +1,39 @@
+{
+  "D5": {
+    "H1_LLM_or_B7_generator_regenerated": false,
+    "component": "B5T P/C template only",
+    "denominator": 40,
+    "exact_matches": 40
+  },
+  "binding": {
+    "all_comparison_metrics_equal": true
+  },
+  "comparison_sha256": "ceda7facfa9553ce577ec3e97f39620ba2c5d77f4f8d54bfb63e7a75e47efce5",
+  "labels": [
+    "ENGINEERING_DIAGNOSTIC",
+    "NON_CITABLE",
+    "NO_HUMAN_SIGNOFF_D085"
+  ],
+  "limitations": [
+    "Full artifact SHA256 differs due new provenance and the disclosed gates serialization.",
+    "No original rescore, frozen result replacement or hypothesis rerun.",
+    "Historical H1/B7 generator provenance is verified by hash only; actual model outputs not regenerated locally."
+  ],
+  "record": "ARTIFACT_REPRODUCTION_DIFFERENCE_EXPLANATION",
+  "router": {
+    "all_route_reason_event_recipe_and_coverage_counts_identical": true,
+    "explanation": "The newer gates serialization has version0.3.1 and explicit disabled context_mismatch_route=False. The original artifact has version0.3.0 and omits the optional false flag. Every other core field is byte-equivalent under canonical JSON; no counted output differs. Existing comparison remains unchanged.",
+    "nested_differences": {
+      "context_mismatch_route": {
+        "new": false,
+        "old": "MISSING"
+      },
+      "version": {
+        "new": "evidence-gates-0.3.1-draft",
+        "old": "evidence-gates-0.3.0-draft"
+      }
+    },
+    "raw_metrics_comparison_retained": false
+  },
+  "scientific_gate_pass": false
+}
