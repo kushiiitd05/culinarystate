@@ -1,5 +1,9 @@
 # CulinaryState Explorer — Motion Specification
 
+> **`AI_DRAFTED` · `NOT_HUMAN_REVIEWED` · design decision record.**
+> Resolution rule: **ksh governs** (D-139). Binding on the UI build. Carries no scientific claim
+> and closes no deliverable.
+
 Next.js + Tailwind + Motion (Framer Motion) + React Flow. Audience: examiners, 25–26 Nov 2026, live,
 laptop, possibly a projector. Nothing below is decorative except §9.
 

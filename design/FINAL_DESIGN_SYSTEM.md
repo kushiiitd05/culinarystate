@@ -1,5 +1,10 @@
 # CulinaryState Explorer — Design System v1
 
+> **`AI_DRAFTED` · `NOT_HUMAN_REVIEWED` · design decision record, not a scientific artifact.**
+> Colour and font claims are **machine-measured and re-runnable** (`design/audit/`); the design
+> *judgements* built on them are not human-reviewed. Resolution rule: **ksh governs** (D-139).
+> Binding on the UI build. Carries no scientific claim and closes no deliverable.
+
 Next.js · TypeScript · Tailwind 4 · shadcn/ui · React Flow · Recharts/SVG. Presentation 25–26 Nov 2026.
 
 **Every colour below was generated in OKLCH, converted to sRGB, gamut-checked and WCAG-contrast-checked

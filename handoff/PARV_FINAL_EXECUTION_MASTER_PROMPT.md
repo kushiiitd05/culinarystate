@@ -1,5 +1,10 @@
 # PARV — FINAL EXECUTION MASTER PROMPT (CulinaryState)
 
+> **`AI_DRAFTED` · `NOT_HUMAN_REVIEWED` · execution handoff.**
+> Compliance figures are quoted from `reports/final/DELIVERABLE_COMPLIANCE_MATRIX_2026-11-16.md`,
+> itself `AI_DRAFTED`. **Kush and Parv own the compliance claim.** Resolution rule: **ksh governs**
+> (D-139). This document closes no deliverable and no D-085 gate.
+
 **Self-contained. You should not need to rediscover the project from this document.**
 Written 16 Nov 2026. Freeze **19 Nov** · verify **20 Nov** · submit **21 Nov** · present **25–26 Nov**.
 Branch `kush/s179-finish-fixes` · PR #12 **open, not merged** · tests 5,977 pass, 0 fail.

@@ -1,5 +1,11 @@
 # CulinaryState — demo gateway and deployment architecture
 
+> **`AI_DRAFTED` · `NOT_HUMAN_REVIEWED` · architecture decision record.**
+> Footprint, cold-start and memory figures are **measured on this machine** and supersede the
+> “~25 MB” estimate given earlier in the same session. Vercel limits were checked at time of
+> writing — **re-verify before relying on them**. Resolution rule: **ksh governs** (D-139).
+> Closes no deliverable.
+
 **For the 25–26 Nov 2026 presentation. Written 16 Nov 2026. The scientific core is frozen; nothing
 here modifies it.**
 

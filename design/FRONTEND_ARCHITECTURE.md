@@ -1,5 +1,10 @@
 # CulinaryState Explorer — Frontend Architecture & Component Plan
 
+> **`AI_DRAFTED` · `NOT_HUMAN_REVIEWED` · implementation spec.**
+> Interfaces mirror shapes the frozen engine already emits; **nothing here asks the engine to
+> change**. Package versions were checked at time of writing — re-verify before install.
+> Resolution rule: **ksh governs** (D-139). Closes no deliverable.
+
 Hand-to-developer spec. Target demo: 25–26 Nov 2026. The engine is frozen; this document describes a UI that is a **pure consumer** of its JSON.
 
 **Grounding note:** before writing this I read the actual engine shapes rather than inventing a schema. The interfaces below mirror what the Python already emits, so no engine change is implied anywhere.
