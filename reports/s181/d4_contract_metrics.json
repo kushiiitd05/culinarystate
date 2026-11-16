@@ -1,0 +1,607 @@
+{
+ "gates_unchanged": {
+  "H1": "RULE_NOT_MET (D-092)",
+  "H3": "RULE_NOT_MET (D-092)",
+  "note": "transcribed, not recomputed; nothing in this file bears on either rule"
+ },
+ "inputs_sha256": {
+  "benchmark/d5/d5_benchmark_v1_D085_PC.csv": "829bce2e13a25f67bd0c01f5e40b1e7f676a5a8792d09ae216094ac89c9783b0",
+  "ledgers/data/COND.jsonl": "e9a1827a4a648a876adfe8b22aa6b5de8243100c279fb4bbce92422850598ccf",
+  "ledgers/data/EVD.jsonl": "5b3b1939c7993283dd3ee9083a5e418b4aa550fdebf10d982f297d39d0fc2c56",
+  "reports/del5/d5_runs_v1_D085.jsonl": "e796be568c1a7bf3f29745cdc9b2ab29f6a91e3f76239078dca9e029e023db2e",
+  "reports/del5/d5_score_v1_D085/d5_scoring_result.json": "6d8c6a7922fd151f5f6e9654dcb8e1fc569839a704f172990052bb056ab53422",
+  "src/culinarystate/decision/confidence.py": "18bb18db261515f8a1549b32c8e0a2e6952400baf8442b883a8c9008e8e07d8c",
+  "src/culinarystate/evaluation/d4_metrics.py": "36f009806552eedfdecddf070feb95abb42ab283c02d7f6c4d511067d7d4e4d7",
+  "src/culinarystate/retrieval/compatibility.py": "7c7fd394c16221ab28421d6c7204edb3b68a986626f66de89783afdaa7a9ac49",
+  "tools/s179_d5_run_rungs.py": "1a0d597ab5722db074fac706b0ee28945e9743436f092c7f19a1f3ffd9e97d30"
+ },
+ "inputs_vs_d5_freeze_pins": {
+  "benchmark/d5/d5_benchmark_v1_D085_PC.csv": "MATCHES_FREEZE",
+  "ledgers/data/EVD.jsonl": "MATCHES_FREEZE",
+  "src/culinarystate/evaluation/d4_metrics.py": "MATCHES_FREEZE",
+  "src/culinarystate/retrieval/compatibility.py": "MATCHES_FREEZE"
+ },
+ "label_line": "MODEL_ASSISTED_GOLD · NO_HUMAN_SIGNOFF_D085 · POST_HOC_DIAGNOSTIC",
+ "labels": [
+  "MODEL_ASSISTED_GOLD",
+  "NO_HUMAN_SIGNOFF_D085",
+  "POST_HOC_DIAGNOSTIC"
+ ],
+ "metrics": {
+  "condition_compatible_recall_at_k": {
+   "compat_axis_values_over_gold_hits": {
+    "matrix": {
+     "UNKNOWN": 13
+    },
+    "medium": {
+     "UNKNOWN": 13
+    },
+    "process": {
+     "UNKNOWN": 13
+    },
+    "target": {
+     "UNKNOWN": 13
+    },
+    "temperature": {
+     "UNKNOWN": 13
+    },
+    "time": {
+     "UNKNOWN": 13
+    }
+   },
+   "condition_compatible_recall_at_k": {
+    "condition_discriminating_variant": {
+     "missing_input": "a benchmark question that states time, temperature or medium, and a stated-condition query in the run record: n_questions_stating_condition_axis = 0; benchmark condition columns present = []; the run records carry no gold_compat and no query_states_condition field",
+     "outcome": "NOT_COMPUTABLE"
+    },
+    "definition": "amendment S178_D4 M1: gold hit counts if frozen compatibility() gives no MISMATCH on matrix/process/target/time/temperature/medium (d4_metrics.compat_ok); UNKNOWN is not a mismatch; mean over questions",
+    "frozen_0.0_explained": "the frozen scorer recorded compat recall 0.0 because the run records carry no gold_compat vectors and compat_ok() treats a missing vector as incompatible (d4_metrics.py:106-110); it is a missing-input artifact, not a measured zero. The frozen JSON is left as it is.",
+    "outcome": "COMPUTED_NOW",
+    "qualifier": "DEGENERATE_EQUALS_PLAIN_RECALL_NO_CONDITION_AXIS_STATED",
+    "query_used": "empty Query() — the query the B2 rung retrieved with (tools/s179_d5_run_rungs.py:110)",
+    "reading": "every gold hit has all six axes UNKNOWN under the run's query, so nothing can mismatch and the value equals plain recall by construction (the amendment says so in advance). It shows nothing about condition-aware retrieval."
+   },
+   "denominator": "questions in P1/P2/C with gold ids and a dumped ranked list",
+   "k_caveat": "ranked lists hold at most 5 ids, so K=10 cannot exceed K=5; Recall@10 is not a true top-10 figure",
+   "labels": [
+    "MODEL_ASSISTED_GOLD",
+    "NO_HUMAN_SIGNOFF_D085",
+    "POST_HOC_DIAGNOSTIC"
+   ],
+   "n_by_block": {
+    "C": 0,
+    "P1": 10,
+    "P2": 10
+   },
+   "n_gold_hit_rows": 13,
+   "n_gold_hit_rows_compat_ok": 13,
+   "n_questions": 20,
+   "n_questions_frozen": 20,
+   "n_questions_without_list": 10,
+   "other_rungs": {
+    "B0": "NA_NO_RETRIEVAL_LIST",
+    "B5": "NA_NO_RETRIEVAL_LIST",
+    "B5T": "NA_NO_RETRIEVAL_LIST",
+    "B7": "NA_NO_RETRIEVAL_LIST"
+   },
+   "plain_recall_at_k": {
+    "outcome": "ALREADY_REPORTED",
+    "recomputed_equals_frozen": true,
+    "where": "reports/del5/d5_score_v1_D085/d5_scoring_result.json :: retrieval_d4_m1.rungs.B2.blocks.pooled_P1_P2_C"
+   },
+   "questions_without_list": [
+    "D5-C-001",
+    "D5-C-002",
+    "D5-C-003",
+    "D5-C-004",
+    "D5-C-005",
+    "D5-C-007",
+    "D5-C-008",
+    "D5-C-009",
+    "D5-C-011",
+    "D5-C-012"
+   ],
+   "ranked_list_length": {
+    "max": 5,
+    "min": 5
+   },
+   "rung": "B2",
+   "table": {
+    "K=1": {
+     "all_gold_in_top_k_frozen": {
+      "cp95": [
+       0.0123,
+       0.317
+      ],
+      "n": 20,
+      "rate": 0.1,
+      "x": 2
+     },
+     "compat_recall_computed_now": 0.2,
+     "compat_recall_frozen_as_recorded": 0.0,
+     "frozen_gold_hits_without_compat_vector": 6,
+     "gold_hits_scored_now": 6,
+     "plain_recall_frozen": 0.2,
+     "plain_recall_recomputed": 0.2
+    },
+    "K=10": {
+     "all_gold_in_top_k_frozen": {
+      "cp95": [
+       0.1539,
+       0.5922
+      ],
+      "n": 20,
+      "rate": 0.35,
+      "x": 7
+     },
+     "compat_recall_computed_now": 0.375,
+     "compat_recall_frozen_as_recorded": 0.0,
+     "frozen_gold_hits_without_compat_vector": 13,
+     "gold_hits_scored_now": 13,
+     "plain_recall_frozen": 0.375,
+     "plain_recall_recomputed": 0.375
+    },
+    "K=3": {
+     "all_gold_in_top_k_frozen": {
+      "cp95": [
+       0.1189,
+       0.5428
+      ],
+      "n": 20,
+      "rate": 0.3,
+      "x": 6
+     },
+     "compat_recall_computed_now": 0.3417,
+     "compat_recall_frozen_as_recorded": 0.0,
+     "frozen_gold_hits_without_compat_vector": 11,
+     "gold_hits_scored_now": 11,
+     "plain_recall_frozen": 0.3417,
+     "plain_recall_recomputed": 0.3417
+    },
+    "K=5": {
+     "all_gold_in_top_k_frozen": {
+      "cp95": [
+       0.1539,
+       0.5922
+      ],
+      "n": 20,
+      "rate": 0.35,
+      "x": 7
+     },
+     "compat_recall_computed_now": 0.375,
+     "compat_recall_frozen_as_recorded": 0.0,
+     "frozen_gold_hits_without_compat_vector": 13,
+     "gold_hits_scored_now": 13,
+     "plain_recall_frozen": 0.375,
+     "plain_recall_recomputed": 0.375
+    }
+   }
+  },
+  "ece": {
+   "binning_if_it_were_computable": "10 equal-width bins",
+   "decision_fields_emitted": [
+    "comparison",
+    "mode",
+    "ood",
+    "per_option",
+    "precision",
+    "reason",
+    "sufficiency"
+   ],
+   "labels": [
+    "MODEL_ASSISTED_GOLD",
+    "NO_HUMAN_SIGNOFF_D085",
+    "POST_HOC_DIAGNOSTIC"
+   ],
+   "missing_input": "a per-item numeric confidence in [0, 1]: the run records carry only categorical fields (mode, precision class, sufficiency mode); no probability is emitted or stored",
+   "n_decision_records_scanned": 150,
+   "not_a_substitute": "reports/ner/ holds ECE for the NER linker confidence (a different component, D1); it says nothing about D4 abstention",
+   "numeric_confidence_fields_found": [],
+   "outcome": "NOT_COMPUTABLE",
+   "value": null,
+   "why_no_mapping": [
+    "src/culinarystate/decision/confidence.py:3-4 states the confidence vector holds 'ordinal features in [0, 1] for a later calibrator (§242.4) — not probabilities'; that vector is also not saved in the run records",
+    "src/culinarystate/evaluation/d4_metrics.py:56-57 (NOT_REPORTED, frozen): 'B7 emits an ordinal rule-based label, not a probability; no calibrator disjoint from D5 exists'",
+    "the §242.4 calibrator was never built, and fitting one on the 40 D5 questions and scoring it on the same 40 would be circular; assigning numbers to QUANTITATIVE/INTERVAL/QUALITATIVE by hand would be an invented mapping"
+   ]
+  },
+  "risk_coverage": {
+   "aurc": {
+    "not_comparable_to": "a full-range AURC from a continuous confidence; the span starts at the first observed coverage, nothing is extrapolated to coverage 0",
+    "outcome": "COMPUTED_NOW",
+    "outside_frozen_amendment": "the frozen amendment and scorer deliberately compute no area ('a handful of tied levels; the amendment computes no area'). This AURC is a post-hoc addition over 4 tied ordinal levels; it is not a pre-registered quantity and carries no interval.",
+    "rule": "trapezoid between the observed step points, exact fractions; partial area over the observed coverage span only; normalized = area / span width"
+   },
+   "curve_points": {
+    "outcome": "ALREADY_REPORTED",
+    "where": "reports/del5/d5_score_v1_D085/d5_scoring_result.json :: d4_m2_risk_coverage.decision_layer_rungs.<rung>.primary_precision_class.points; transcribed in reports/final/sections/S179_D4_retrieval_and_abstention_DRAFT.md (M2 table)"
+   },
+   "denominator": "the 40 P1/P2/P3/C questions per rung",
+   "labels": [
+    "MODEL_ASSISTED_GOLD",
+    "NO_HUMAN_SIGNOFF_D085",
+    "POST_HOC_DIAGNOSTIC"
+   ],
+   "rungs": {
+    "B5": {
+     "all_answered_risk": {
+      "n": 10,
+      "note": "reduced fraction",
+      "value": 0.7,
+      "x": 7
+     },
+     "aurc_normalized_mean_risk_over_span": {
+      "n": 5720,
+      "note": "reduced fraction",
+      "value": 0.6414,
+      "x": 3669
+     },
+     "aurc_partial_area": {
+      "n": 10400,
+      "note": "reduced fraction",
+      "value": 0.3528,
+      "x": 3669
+     },
+     "coverage_span": [
+      {
+       "n": 20,
+       "note": "reduced fraction",
+       "value": 0.45,
+       "x": 9
+      },
+      {
+       "n": 1,
+       "note": "reduced fraction",
+       "value": 1.0,
+       "x": 1
+      }
+     ],
+     "error_definition": "E1",
+     "n_points": 4,
+     "n_questions": 40,
+     "normalized_minus_all_answered_risk": -0.0586,
+     "points_frozen": [
+      {
+       "coverage": {
+        "n": 40,
+        "value": 0.45,
+        "x": 18
+       },
+       "risk": {
+        "n": 18,
+        "value": 0.6667,
+        "x": 12
+       },
+       "threshold": "QUANTITATIVE"
+      },
+      {
+       "coverage": {
+        "n": 40,
+        "value": 0.75,
+        "x": 30
+       },
+       "risk": {
+        "n": 30,
+        "value": 0.6,
+        "x": 18
+       },
+       "threshold": "INTERVAL"
+      },
+      {
+       "coverage": {
+        "n": 40,
+        "value": 0.975,
+        "x": 39
+       },
+       "risk": {
+        "n": 39,
+        "value": 0.6923,
+        "x": 27
+       },
+       "threshold": "QUALITATIVE"
+      },
+      {
+       "coverage": {
+        "n": 40,
+        "value": 1.0,
+        "x": 40
+       },
+       "risk": {
+        "n": 40,
+        "value": 0.7,
+        "x": 28
+       },
+       "threshold": "ABSTAIN"
+      }
+     ],
+     "risk_non_decreasing_in_coverage": false
+    },
+    "B5T": {
+     "all_answered_risk": {
+      "n": 8,
+      "note": "reduced fraction",
+      "value": 0.125,
+      "x": 1
+     },
+     "aurc_normalized_mean_risk_over_span": {
+      "n": 68640,
+      "note": "reduced fraction",
+      "value": 0.0638,
+      "x": 4379
+     },
+     "aurc_partial_area": {
+      "n": 124800,
+      "note": "reduced fraction",
+      "value": 0.0351,
+      "x": 4379
+     },
+     "coverage_span": [
+      {
+       "n": 20,
+       "note": "reduced fraction",
+       "value": 0.45,
+       "x": 9
+      },
+      {
+       "n": 1,
+       "note": "reduced fraction",
+       "value": 1.0,
+       "x": 1
+      }
+     ],
+     "error_definition": "E1",
+     "n_points": 4,
+     "n_questions": 40,
+     "normalized_minus_all_answered_risk": -0.0612,
+     "points_frozen": [
+      {
+       "coverage": {
+        "n": 40,
+        "value": 0.45,
+        "x": 18
+       },
+       "risk": {
+        "n": 18,
+        "value": 0.0,
+        "x": 0
+       },
+       "threshold": "QUANTITATIVE"
+      },
+      {
+       "coverage": {
+        "n": 40,
+        "value": 0.75,
+        "x": 30
+       },
+       "risk": {
+        "n": 30,
+        "value": 0.0667,
+        "x": 2
+       },
+       "threshold": "INTERVAL"
+      },
+      {
+       "coverage": {
+        "n": 40,
+        "value": 0.975,
+        "x": 39
+       },
+       "risk": {
+        "n": 39,
+        "value": 0.1282,
+        "x": 5
+       },
+       "threshold": "QUALITATIVE"
+      },
+      {
+       "coverage": {
+        "n": 40,
+        "value": 1.0,
+        "x": 40
+       },
+       "risk": {
+        "n": 40,
+        "value": 0.125,
+        "x": 5
+       },
+       "threshold": "ABSTAIN"
+      }
+     ],
+     "risk_non_decreasing_in_coverage": false
+    },
+    "B7": {
+     "all_answered_risk": {
+      "n": 20,
+      "note": "reduced fraction",
+      "value": 0.35,
+      "x": 7
+     },
+     "aurc_normalized_mean_risk_over_span": {
+      "n": 2640,
+      "note": "reduced fraction",
+      "value": 0.1777,
+      "x": 469
+     },
+     "aurc_partial_area": {
+      "n": 4800,
+      "note": "reduced fraction",
+      "value": 0.0977,
+      "x": 469
+     },
+     "coverage_span": [
+      {
+       "n": 20,
+       "note": "reduced fraction",
+       "value": 0.45,
+       "x": 9
+      },
+      {
+       "n": 1,
+       "note": "reduced fraction",
+       "value": 1.0,
+       "x": 1
+      }
+     ],
+     "error_definition": "E1",
+     "n_points": 4,
+     "n_questions": 40,
+     "normalized_minus_all_answered_risk": -0.1723,
+     "points_frozen": [
+      {
+       "coverage": {
+        "n": 40,
+        "value": 0.45,
+        "x": 18
+       },
+       "risk": {
+        "n": 18,
+        "value": 0.1111,
+        "x": 2
+       },
+       "threshold": "QUANTITATIVE"
+      },
+      {
+       "coverage": {
+        "n": 40,
+        "value": 0.75,
+        "x": 30
+       },
+       "risk": {
+        "n": 30,
+        "value": 0.1333,
+        "x": 4
+       },
+       "threshold": "INTERVAL"
+      },
+      {
+       "coverage": {
+        "n": 40,
+        "value": 0.975,
+        "x": 39
+       },
+       "risk": {
+        "n": 39,
+        "value": 0.3333,
+        "x": 13
+       },
+       "threshold": "QUALITATIVE"
+      },
+      {
+       "coverage": {
+        "n": 40,
+        "value": 1.0,
+        "x": 40
+       },
+       "risk": {
+        "n": 40,
+        "value": 0.35,
+        "x": 14
+       },
+       "threshold": "ABSTAIN"
+      }
+     ],
+     "risk_non_decreasing_in_coverage": true
+    }
+   },
+   "score_used_for_ordering": "ordinal output-precision class (rule-based, not a probability)"
+  },
+  "unsupported_claim_rate": {
+   "checker": "machine checker against the EVD ledger; the human claim audit is PENDING_HUMAN_LABELS (D-092: NOT_RUN), so no human-verified rate exists",
+   "labels": [
+    "MODEL_ASSISTED_GOLD",
+    "NO_HUMAN_SIGNOFF_D085",
+    "POST_HOC_DIAGNOSTIC"
+   ],
+   "not_yet_in_prose": "the figure is in the frozen score JSON; the S179 D4 section and the final report draft do not quote it",
+   "outcome": "ALREADY_REPORTED",
+   "reading": "UCR covers numeric claims only and is undefined for an answer with no number; read it next to coverage",
+   "rungs": {
+    "B0": {
+     "enforcement_checker_not_independent": {
+      "numeric_claims": 4,
+      "ucr_frozen": 1.0,
+      "unsupported": 4
+     },
+     "independent_checker": {
+      "answers_with_no_claim_and_no_abstention": 36,
+      "n_questions": 40,
+      "numeric_claims": 8,
+      "ucr_frozen": 1.0,
+      "ucr_recomputed": 1.0,
+      "unsupported": 8,
+      "version": "h3_independent@0.2"
+     }
+    },
+    "B2": {
+     "enforcement_checker_not_independent": {
+      "numeric_claims": 42,
+      "ucr_frozen": 0.1905,
+      "unsupported": 8
+     },
+     "independent_checker": {
+      "answers_with_no_claim_and_no_abstention": 4,
+      "n_questions": 40,
+      "numeric_claims": 43,
+      "ucr_frozen": 0.5581,
+      "ucr_recomputed": 0.5581,
+      "unsupported": 24,
+      "version": "h3_independent@0.2"
+     }
+    },
+    "B5": {
+     "enforcement_checker_not_independent": {
+      "numeric_claims": 74,
+      "ucr_frozen": 0.1622,
+      "unsupported": 12
+     },
+     "independent_checker": {
+      "answers_with_no_claim_and_no_abstention": 0,
+      "n_questions": 40,
+      "numeric_claims": 76,
+      "ucr_frozen": 0.4605,
+      "ucr_recomputed": 0.4605,
+      "unsupported": 35,
+      "version": "h3_independent@0.2"
+     }
+    },
+    "B5T": {
+     "enforcement_checker_not_independent": {
+      "numeric_claims": 57,
+      "ucr_frozen": 0.0,
+      "unsupported": 0
+     },
+     "independent_checker": {
+      "answers_with_no_claim_and_no_abstention": 1,
+      "n_questions": 40,
+      "numeric_claims": 57,
+      "ucr_frozen": 0.0702,
+      "ucr_recomputed": 0.0702,
+      "unsupported": 4,
+      "version": "h3_independent@0.2"
+     }
+    },
+    "B7": {
+     "enforcement_checker_not_independent": {
+      "numeric_claims": 34,
+      "ucr_frozen": 0.0,
+      "unsupported": 0
+     },
+     "independent_checker": {
+      "answers_with_no_claim_and_no_abstention": 17,
+      "n_questions": 40,
+      "numeric_claims": 34,
+      "ucr_frozen": 0.1176,
+      "ucr_recomputed": 0.1176,
+      "unsupported": 4,
+      "version": "h3_independent@0.2"
+     }
+    }
+   },
+   "unit": "numeric claims in the 40 P/C answers per rung (claim-level, not question-level)",
+   "where": "reports/del5/d5_score_v1_D085/d5_scoring_result.json :: h3_summaries.rungs.<rung>.all (ucr, n_unsupported, n_numeric_claims) and h3_summaries.enforcement_checker_ucr"
+  }
+ },
+ "post_hoc_statement": "Every figure here was computed after the D5 results were seen. They are descriptive statistics on a 74-question benchmark with model-assisted gold (D-085), not pre-registered tests and not the accuracy of the system in general.",
+ "status": "POST_HOC_DIAGNOSTIC · NON_CITABLE · AI_DRAFTED",
+ "version": "s181_d4_contract_metrics@0.1"
+}
