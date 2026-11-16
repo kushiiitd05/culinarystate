@@ -197,8 +197,16 @@ fallback; **a hosted LLM is not scientific authority.** Secrets in environment v
 committed. CORS restricted to the Vercel production origin. Rate-limit demo endpoints. Return a
 request id and backend/model version on every response.
 
-Measured footprint for the deterministic path: **src ~10 MB + registries ~13 MB ≈ 25 MB.** The
-3.2 GB `data/` directory is build-time only and is never on the request path.
+**CORRECTED 16 Nov — an earlier "~25 MB" figure in this session was wrong.** It was `du` on `src/`
+and `registry/` and never traced what the runtime loads. Measured: `DemoContext.load()` reads
+**~153 MB of ledger JSONL** (EVD 85 MB, KGE 58 MB, ING, COND, ALIAS, PROC), takes **9.7 s**, and peaks
+at **1.21 GB RSS**; a query is then **~30 ms**. The 3.2 GB `data/` tree is build-time only.
+
+**Consequence: do not run the Python core on Vercel.** Not because of bundle size — Python's limit is
+500 MB, not 250 MB — but because (i) `EVD.jsonl` and `KGE.jsonl` contain **BBC-derived rows filtered
+at load time, not file level**, so uploading them violates D-003; (ii) 1.21 GB against a 2 GB instance
+risks OOM; (iii) a 9.7 s cold load becomes 20–40 s on a shared vCPU, paid on the first click of the
+talk. Full analysis: `deployment/FINAL_DEPLOYMENT_ARCHITECTURE.md`.
 
 ## 18. Fallback mode — hard requirement
 
