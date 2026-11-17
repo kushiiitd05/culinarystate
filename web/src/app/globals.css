@@ -149,7 +149,7 @@ body {
 
 /* React Flow */
 .react-flow { --xy-background-color: transparent; --xy-edge-stroke: var(--cs-border-strong); --xy-edge-stroke-width: 1.5; --xy-attribution-background-color: transparent; }
-.lg-node { background: var(--cs-surface-2); border: 2px solid var(--viz-derived); color: var(--cs-text-primary); font-size: 12px; line-height: 1.3; padding: 6px 8px; width: 150px; border-radius: var(--radius-control); transition: opacity var(--dur-base) var(--ease-out); }
+.lg-node { background: var(--cs-surface-2); border: 2px solid var(--viz-derived); color: var(--cs-text-primary); font-size: 12px; line-height: 1.3; padding: 6px 8px; width: 140px; border-radius: var(--radius-control); transition: opacity var(--dur-base) var(--ease-out); }
 .lg-node.ev { border-radius: 0; border-color: var(--cs-border-strong); }
 .lg-node.ev.alt { border-style: dashed; border-color: var(--viz-ai-suggested); }
 .lg-node.active { outline: 3px solid var(--cs-text-primary); outline-offset: 2px; }
