@@ -1,5 +1,5 @@
 "use client";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { CellView } from "@/components/CellView";
 import { BLOCKS, BLOCK_NAMES, decodeCell, type Delta, type RawState, type Transition } from "@/lib/types";
@@ -8,7 +8,6 @@ import { DELTA_ORDER, DeltaChip } from "./DeltaChip";
 type Row = { field: string; delta?: Delta; present: boolean };
 
 export function StateBlocks({ state, index, transition }: { state: RawState; index: number; transition?: Transition }) {
-  const reduce = useReducedMotion();
   const [onlyDelta, setOnlyDelta] = useState(false);
   const deltas = useMemo(() => new Map((transition?.deltas ?? []).map((d) => [`${d.block}.${d.field}`, d])), [transition]);
   const counts = useMemo(() => {
@@ -51,7 +50,7 @@ export function StateBlocks({ state, index, transition }: { state: RawState; ind
                     <td>{r.present ? <CellView cell={decodeCell(state[b][r.field])} /> : <span className="caption">not present at this step</span>}</td>
                     <td>
                       {r.delta ? (
-                        <motion.div key={`${index}-${r.field}`} initial={reduce ? false : { opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}
+                        <motion.div key={`${index}-${r.field}`} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.2, ease: [0.2, 0, 0, 1] }} className="flex flex-col items-start gap-0.5">
                           <DeltaChip kind={r.delta.kind} />
                           <span className="was">was: <CellView cell={decodeCell(r.delta.before)} /></span>
