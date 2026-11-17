@@ -22,11 +22,11 @@ export function CellView({ cell, showBasis = false }: { cell: Cell; showBasis?: 
       );
     case "unknown":
       return (
-        <span className="st st-unknown-source inline-flex items-center gap-1.5 pr-1.5 py-px" aria-label={`Unknown. Reason: ${cell.reason}`}>
+        <span className="st st-unknown-source inline-flex flex-wrap items-center gap-x-1.5 pr-1.5 py-px max-w-full" aria-label={`Unknown. Reason: ${cell.reason}`}>
           <SquareDashed size={12} aria-hidden="true" />
           <span className="marker" aria-hidden="true">—</span>
           <span className="font-medium">UNKNOWN</span>
-          <span className="mono break-all">{cell.reason}</span>
+          <span className="mono [overflow-wrap:anywhere]">{cell.reason}</span>
         </span>
       );
   }
