@@ -56,9 +56,10 @@ verification cannot be delegated to an AI under D-085.
 |---|---|
 | **Status** | **STRONG CORE, EVALUATION PARTIAL** |
 | Met | Engine built and event-sourced; **30 scripted sessions pass** (`docs/BUILD_TRACKER.md` C3); typed operations and provenance fields present; this is the project's central contribution and it exceeds the contract in representation terms (`S_t=(G,C,Q,Y,P)`, lot-aware, 611,902 recipes replayed) |
-| **Not met** | **The 40-gold-recipe evaluation.** State-field accuracy, replay consistency and merge/split F1 against a gold set are not demonstrated |
+| **Correction 17 Nov** | An earlier version of this row said the 40-gold-recipe evaluation was not performed. **That was wrong.** `reports/del3/compiler_vs_gold_pooled_S179.md` scores all three contract metrics on 40 dev-gold recipes (pilot_20 v1.1 + Food.com v1.1) plus 7 P1-A: state-field accuracy **0.11–0.20**, merge/split F1 **0.36–0.47**, **0 replay issues**. |
+| **Not met** | **Independent gold.** Every set began as an AI draft accepted by the authors; none is blind or held out, and the engine was developed with pilot_20 in view. The P1-A label is inconsistent (files say "awaiting Kush review", the S179 report calls them human-accepted). |
 | Evidence | `reports/final/sections/S179_D3_state_tracking_DRAFT.md`, `src/culinarystate/state_graph/engine.py` |
-| Report wording | "The engine is built and runs corpus-wide; the 40-gold-recipe scoring prescribed by the contract was not performed, so no state-field accuracy or merge/split F1 is reported." |
+| Report wording | "The engine was scored on 40 dev-gold recipes for all three contract metrics (state-field accuracy 0.11–0.20, merge/split F1 0.36–0.47, 0 replay issues). The gold is author-accepted AI drafts, not blind independent gold, and the engine was developed with part of it in view, so these are development-set figures." |
 
 ---
 
@@ -99,7 +100,7 @@ verification cannot be delegated to an AI under D-085.
 |---|---|---|---|
 | D1 | PARTIAL | **0 of ≥40 hand-verified literature rows** | **human only** |
 | D2 | PARTIAL | not every prescribed statistical treatment demonstrated | agent, if scoped |
-| D3 | STRONG CORE | **40-gold-recipe evaluation not performed** | human (gold) + agent (scoring) |
+| D3 | PARTIAL | evaluation **was** performed (0.11–0.20 field acc, 0.36–0.47 merge/split F1); **gold is not independent** | human: settle P1-A label, spot-audit 10 gold recipes |
 | D4 | STRONG CORE | Recall@K / risk–coverage / ECE not all reported | agent |
 | D5 | PARTIAL | **chef/peer review**; interactive demo | human; agent |
 
