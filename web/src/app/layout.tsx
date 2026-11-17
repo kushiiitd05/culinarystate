@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans, JetBrains_Mono, Source_Serif_4 } from "next/font/google";
 import { Legend } from "@/components/Legend";
+import { MotionRoot } from "@/components/MotionRoot";
 import { TopNav } from "@/components/TopNav";
 import "./globals.css";
 
@@ -19,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col">
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-canvas focus:p-2">Skip to content</a>
         <TopNav />
-        <main id="main" className="flex-1 min-h-0">{children}</main>
+        <main id="main" className="flex-1 min-h-0"><MotionRoot>{children}</MotionRoot></main>
         <Legend />
       </body>
     </html>
