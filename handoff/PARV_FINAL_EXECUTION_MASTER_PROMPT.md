@@ -5,6 +5,8 @@
 > itself `AI_DRAFTED`. **Kush and Parv own the compliance claim.** Resolution rule: **ksh governs**
 > (D-139). This document closes no deliverable and no D-085 gate.
 
+> **17 Nov update:** Kush has handed the remaining work to Parv. Read `handoff/PARV_HANDOVER_2026-11-17.md` first; it adds the signed snapshot, the Explorer UI, the live RAG console (`/live`) and the remaining task list, and wins where the two differ.
+
 **Self-contained. You should not need to rediscover the project from this document.**
 Written 16 Nov 2026. Freeze **19 Nov** · verify **20 Nov** · submit **21 Nov** · present **25–26 Nov**.
 Everything through 16 Nov is on **`main`** (PRs #11 and #12 merged, D-138). Current work branch: `kush/s181-explorer-build`. Unit tests: 5,977 passed at the 16 Nov merge; re-run before quoting a count.
