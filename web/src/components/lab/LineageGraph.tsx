@@ -49,7 +49,7 @@ function layout(s: Scenario): { nodes: Omit<LgNode, "data">[]; meta: Map<string,
     const d = depth.get(id) ?? 0;
     const r = rows.get(d) ?? 0;
     rows.set(d, r + 1);
-    return { x: d * 200, y: r * 74 };
+    return { x: d * 170, y: r * 80 };
   };
   const meta = new Map<string, Omit<LgData, "active" | "dim">>();
   const nodes: Omit<LgNode, "data">[] = [];
@@ -62,9 +62,9 @@ function layout(s: Scenario): { nodes: Omit<LgNode, "data">[]; meta: Map<string,
     nodes.push({ id: e.event_id, type: "lg", position: place(e.event_id), draggable: false });
   }
   const edges: Edge[] = s.graph.events.flatMap((e) => [
-    ...e.consumes.filter((c) => ents.has(c)).map((c) => ({ id: `${c}>${e.event_id}`, source: c, target: e.event_id, label: "consumes" })),
-    ...e.produces.filter((c) => ents.has(c)).map((c) => ({ id: `${e.event_id}>${c}`, source: e.event_id, target: c, label: "produces" })),
-    ...e.discards.filter((c) => ents.has(c)).map((c) => ({ id: `${e.event_id}x${c}`, source: e.event_id, target: c, label: "discards", style: { strokeDasharray: "4 3" } })),
+    ...e.consumes.filter((c) => ents.has(c)).map((c) => ({ id: `${c}>${e.event_id}`, source: c, target: e.event_id })),
+    ...e.produces.filter((c) => ents.has(c)).map((c) => ({ id: `${e.event_id}>${c}`, source: e.event_id, target: c })),
+    ...e.discards.filter((c) => ents.has(c)).map((c) => ({ id: `${e.event_id}x${c}`, source: e.event_id, target: c, style: { strokeDasharray: "4 3" } })),
   ]);
   return { nodes, meta, edges };
 }
@@ -81,11 +81,11 @@ export function LineageGraph({ scenario, activeEventId, onPickEvent }: { scenari
     <section aria-label="Lot lineage graph">
       <div className="flex items-baseline justify-between">
         <h2 className="label-sc">Lot lineage</h2>
-        <span className="caption">rounded = lot / intermediate · square = event · dashed square = alternative_group · dashed edge = discards</span>
+        <span className="caption">rounded = lot / intermediate · square = event · dashed square = alternative_group · dashed edge = discards · drag to pan</span>
       </div>
       <div className="mt-1 h-[300px] border border-line-2 bg-canvas" style={{ borderRadius: 0 }}>
-        <ReactFlow nodes={nodes} edges={base.edges} nodeTypes={nodeTypes} fitView nodesDraggable={false} nodesConnectable={false}
-          elementsSelectable={false} minZoom={0.3} proOptions={{ hideAttribution: true }}
+        <ReactFlow nodes={nodes} edges={base.edges} nodeTypes={nodeTypes} fitView fitViewOptions={{ minZoom: 0.7, padding: 0.08 }} nodesDraggable={false} nodesConnectable={false}
+          elementsSelectable={false} minZoom={0.3}
           onNodeClick={(_, n) => { if (n.data.kind === "event") onPickEvent(n.id); }}>
           <Background gap={24} size={1} color="var(--cs-border-subtle)" />
         </ReactFlow>
