@@ -3,6 +3,7 @@ import { IBM_Plex_Sans, JetBrains_Mono, Source_Serif_4 } from "next/font/google"
 import { Legend } from "@/components/Legend";
 import { MotionRoot } from "@/components/MotionRoot";
 import { TopNav } from "@/components/TopNav";
+import { liveEnabled } from "@/lib/liveFlag";
 import "./globals.css";
 
 const serif = Source_Serif_4({ subsets: ["latin"], variable: "--font-serif4", display: "swap" });
@@ -19,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${serif.variable} ${plex.variable} ${mono.variable}`} suppressHydrationWarning>
       <body className="min-h-screen flex flex-col">
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-canvas focus:p-2">Skip to content</a>
-        <TopNav />
+        <TopNav showLive={liveEnabled()} />
         <main id="main" className="flex-1 min-h-0"><MotionRoot>{children}</MotionRoot></main>
         <Legend />
       </body>
