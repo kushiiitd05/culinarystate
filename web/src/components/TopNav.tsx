@@ -33,14 +33,15 @@ function ThemeToggle() {
   );
 }
 
-export function TopNav() {
+export function TopNav({ showLive = false }: { showLive?: boolean }) {
   const path = usePathname();
+  const links = showLive ? LINKS : LINKS.filter(([href]) => href !== "/live");
   return (
     <header className="sticky top-2 z-40 mx-2 mt-2">
       <nav aria-label="Primary" className="glass flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2">
         <Link href="/" aria-label="CulinaryState home"><Logo /></Link>
         <ul className="flex items-center gap-1">
-          {LINKS.map(([href, label]) => {
+          {links.map(([href, label]) => {
             const on = path === href || path.startsWith(`${href}/`);
             return (
               <li key={href}>
