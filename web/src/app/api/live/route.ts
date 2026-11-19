@@ -1,5 +1,6 @@
 // Proxy to the local live RAG server (tools/s182_live_rag_server.py, 127.0.0.1 only).
 // The browser never talks to Python or to NVIDIA directly; the key never leaves the Python process.
+import { liveDisabledResponse, liveEnabled } from "@/lib/liveFlag";
 
 const LIVE_URL = process.env.CS_LIVE_URL ?? "http://127.0.0.1:8770";
 const HEALTH_TIMEOUT_MS = 1500;
@@ -10,6 +11,7 @@ function offline(reason: string, status = 503) {
 }
 
 export async function GET() {
+  if (!liveEnabled()) return liveDisabledResponse();
   try {
     const r = await fetch(`${LIVE_URL}/api/health`, { cache: "no-store", signal: AbortSignal.timeout(HEALTH_TIMEOUT_MS) });
     if (!r.ok) return offline(`health HTTP ${r.status}`);
@@ -20,6 +22,7 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
+  if (!liveEnabled()) return liveDisabledResponse();
   let body: unknown;
   try {
     body = await request.json();
