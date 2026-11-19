@@ -35,7 +35,8 @@ start_server() {  # extra env assignments, e.g. CS_LIVE_ENABLED=1
   for _ in $(seq 1 40); do curl -s -o /dev/null -m 2 "http://localhost:$PORT/" && return 0; sleep 0.5; done
   bad "web server did not start (log: $LOG/web.log)"; return 1
 }
-trap stop_server EXIT INT TERM
+trap stop_server EXIT
+trap 'stop_server; echo; echo "preflight interrupted"; exit 130' INT TERM
 
 echo "CulinaryState preflight · $(date '+%Y-%m-%d %H:%M') · $(git -C "$ROOT" rev-parse --short HEAD)"
 [ -x "$PY" ] || { echo "✗ no Python found; set CS_PYTHON"; exit 1; }
@@ -57,7 +58,7 @@ check "public key committed" 'git -C "$ROOT" ls-files --error-unmatch web/public
 echo "3 · Public build (no CS_LIVE_ENABLED)"
 if (cd "$WEB" && rm -rf .next && env -u CS_LIVE_ENABLED NEXT_TELEMETRY_DISABLED=1 ./node_modules/.bin/next build > "$LOG/build.log" 2>&1); then
   ok "next build"
-  check "no BBC marker in shipped files" '! grep -rlq -e "BBCGF-A1" -e "SRC-000002" "$WEB/public" "$WEB/.next/static" 2>/dev/null'
+  check "no BBC marker in shipped files (public/ and the whole .next build)" '! grep -rlq -e "BBCGF-A1" -e "SRC-000002" "$WEB/public" "$WEB/.next" 2>/dev/null'
   if start_server env -u CS_LIVE_ENABLED; then
     for p in / /lab /compare /method /snapshot/manifest.json /snapshot/manifest.sig /snapshot/public_key.pem; do
       check "GET $p → 200" '[ "$(code "$p")" = 200 ]'
@@ -103,11 +104,15 @@ for group, body in groups:
         except Exception as exc:  # noqa: BLE001
             print(f"  ✗ {label}: {type(exc).__name__}: {exc}"); n_bad += 1; continue
         stages = {s["id"]: s["status"] for s in out.get("pipeline", [])}
+        safety = expect[group] == "SAFETY"
+        # Reaching Verify means the model answered and the verifier ran ("done"); a failed model call leaves
+        # verify "pending". The safety preset is refused before the model, so its verify stage is "skipped".
+        want_verify = "skipped" if safety else "done"
         problems = [p for p in (
             out.get("error") and f"error {out['error']}",
             out.get("mode") != expect[group] and f"mode {out.get('mode')} (expected {expect[group]})",
-            "verify" not in stages and "no verify stage",
-            stages.get("verify") == "error" and "verify stage errored",
+            stages.get("verify") != want_verify and f"verify {stages.get('verify')} (expected {want_verify})",
+            not safety and stages.get("model") != "done" and f"model {stages.get('model')} (expected done)",
             any(v == "error" for v in stages.values()) and f"stage errors {stages}",
         ) if p]
         print(f"  {'✗' if problems else '✓'} {label}: mode {out.get('mode')}, verify {stages.get('verify')}, {out.get('timing_ms', {}).get('total')} ms"
