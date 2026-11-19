@@ -1,8 +1,11 @@
 // Fast first phase: engine only (state, simulation, evidence, similar recipes), no model call.
+import { liveDisabledResponse, liveEnabled } from "@/lib/liveFlag";
+
 const LIVE_URL = process.env.CS_LIVE_URL ?? "http://127.0.0.1:8770";
 const ANALYSE_TIMEOUT_MS = 30_000;
 
 export async function POST(request: Request) {
+  if (!liveEnabled()) return liveDisabledResponse();
   let body: unknown;
   try {
     body = await request.json();
