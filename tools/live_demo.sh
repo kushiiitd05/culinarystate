@@ -4,7 +4,15 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PY=/opt/anaconda3/bin/python
+# Python with the engine's dependencies: $CS_PYTHON if set, else the first of these that exists.
+PY="${CS_PYTHON:-}"
+if [ -z "$PY" ]; then
+  for cand in /opt/anaconda3/bin/python "$ROOT/../.venvs/s179-py311/bin/python"; do
+    [ -x "$cand" ] && { PY="$cand"; break; }
+  done
+fi
+[ -n "$PY" ] && [ -x "$PY" ] || { echo "✗ no Python found; set CS_PYTHON=/path/to/python"; exit 1; }
+export CS_LIVE_ENABLED=1   # /live and its API routes exist only with this server-side flag (public builds omit it)
 KEY_FILE="$HOME/.config/culinarystate/nvidia.env"
 ENGINE_URL=http://127.0.0.1:8770/api/health
 WEB_URL=http://localhost:3000
