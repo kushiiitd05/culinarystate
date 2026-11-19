@@ -23,6 +23,8 @@
 # misc
 .DS_Store
 *.pem
+# D-141: the snapshot's PUBLIC key must ship so the browser can verify manifest.sig. Private keys stay ignored.
+!/public/snapshot/public_key.pem
 
 # debug
 npm-debug.log*
