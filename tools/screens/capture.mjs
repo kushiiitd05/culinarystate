@@ -127,7 +127,7 @@ try {
     await shot("07_live_answer_carrots", "/live");
     if (carrots.plain?.status === "OK") {
       await page.getByRole("button", { name: "Compare with plain LLM" }).click();
-      await page.getByRole("region", { name: "Plain LLM answer" }).waitFor();
+      await page.getByRole("region", { name: "Plain LLM answer" }).scrollIntoViewIfNeeded();
       await shot("08_live_compare_plain_carrots", "/live");
     }
     const tomatoes = await ask("Tomatoes · vitamin C", "tomatoes");
@@ -136,8 +136,6 @@ try {
       await page.getByRole("region", { name: "Plain LLM answer" }).scrollIntoViewIfNeeded();
       await shot("09_live_vitc_compare", "/live");
     }
-    await similarShot();
-    await safetyShot();
   }
 } finally {
   const file = resolve(output, "MANIFEST.json");
