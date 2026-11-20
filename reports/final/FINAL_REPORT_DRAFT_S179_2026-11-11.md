@@ -42,7 +42,7 @@ Sources: `reports/final/DELIVERABLE_COMPLIANCE_MATRIX_2026-11-16.md`, `reports/s
 
 The cold-split and paired diagnostics measure performance under differing food, pair and study partitions. The paired comparison includes Phenol-Explorer contrasts where rungs often fare worse than D0. Full proposal H2 and some prescribed treatments remain outside the demonstrated results. The retained pairing is labelled prior-exposure reanalysis.
 
-The ascorbic-acid pilot provides a frozen research fit. No available SIM-VAL row qualifies for a validated retention prediction. Missing assay specificity, basis and raw time courses constrain model and calibration claims.
+The ascorbic-acid pilot provides a frozen research fit on **seven rows from two papers**. The SIM-VAL diagnostic has **zero primary-comparable rows and zero retention observations**. Missing assay specificity, basis and raw time courses constrain model and calibration claims.
 
 Sources: `reports/step29/diag/paired_vs_d0_S179_2026-11-13.json`, `reports/step29/technical_scope_and_contrast_boundary_2026-11-13.md`, `reports/step10/aa_pilot_model_a_fit_D085.json`, `reports/step10/aa_SIMVAL_diagnostic_2026-11-11_v2.json`.
 
