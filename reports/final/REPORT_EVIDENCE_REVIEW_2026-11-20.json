@@ -199,5 +199,56 @@
       ]
     }
   ],
-  "human_limits": "D1 and D5 use the no-human-review wording. D3 acceptance is attributed to the development gold. The seven P1-A pilot labels retain the ambiguity documented in the audit. The proposal review records concurrence with AI verdicts, while the individual disagreements are pending."
+  "human_limits": "D1 and D5 use the no-human-review wording. D3 acceptance is attributed to the development gold. The seven P1-A pilot labels retain the ambiguity documented in the audit. The proposal review records concurrence with AI verdicts, while the individual disagreements are pending.",
+  "live_observations": [
+    {
+      "finding": "10/10 approved presets passed the frozen preflight; 9 Verify stages done and 1 safety refusal Verify skipped.",
+      "inputs": [
+        {
+          "path": "reports/final/screens/runs/preflight_live_2026-11-20.txt",
+          "sha256": "9c83307d01ba2df8503074724fbdd87d593aca3c93405c3b5ce68d35ddb9218c"
+        }
+      ]
+    },
+    {
+      "finding": "The carrot response had 0 parsed structured citations (0/0). Its cooking advice remains unverified.",
+      "inputs": [
+        {
+          "path": "reports/final/screens/runs/carrots.json",
+          "sha256": "70ebe6e39b0e4b2955dd35051bff1f1737a4a04ab42c4e0dbd503629d8d6714b"
+        }
+      ]
+    },
+    {
+      "finding": "The system reported 95.0% retention from EVD-002765 and an unknown measurement method. The plain answer gave 60–80% loss; both numerical endpoints were flagged as unsupported.",
+      "inputs": [
+        {
+          "path": "reports/final/screens/runs/tomatoes.json",
+          "sha256": "aea6c54eb9b736cbad361c2e01a1a15d6352736f0fa3a9493b1682aac1c43a08"
+        }
+      ]
+    },
+    {
+      "finding": "The potato title index searched 612,903 documents. The local safety response refused with hosted sending disabled.",
+      "inputs": [
+        {
+          "path": "reports/final/screens/runs/potatoes.json",
+          "sha256": "6e017d091d2c65a403172d90e27ca5ba44042c388aadb00f9d6a4dc4535de3bc"
+        },
+        {
+          "path": "reports/final/screens/runs/safety.json",
+          "sha256": "995567018540b0e35f917525504e5b5139b08b8c9e71b1d64a563f9282569c08"
+        }
+      ]
+    },
+    {
+      "finding": "All four public production routes returned 200 and displayed a verified signature. All three live endpoint probes returned 404. The hosted manifest, signature and public key matched frozen bytes.",
+      "inputs": [
+        {
+          "path": "reports/final/DEPLOYMENT_2026-11-20.json",
+          "sha256": "f9b2d098c7341b9fcb70dbe1de79b534cd4ca2498b7a11a8cf4c6cf9e7d06812"
+        }
+      ]
+    }
+  ]
 }
