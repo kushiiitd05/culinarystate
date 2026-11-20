@@ -6,18 +6,18 @@ The technical freeze is still `freeze-2026-11-20` at `0a41d62`. The project sour
 
 | Check | Evidence or blocker |
 |---|---|
-| A1–A4 human reviews and wording | **Open.** Report `14d22e5` states the known gaps. D1 has no hand-verified rows; D5 chef review, nine proposal disagreements, D3 spot-audit and the P1-A label remain open. The final deck still needs the matching wording. |
+| A1–A4 human reviews and wording | **Open.** Report `32ffdf7` states the known gaps. D1 has no hand-verified rows; D5 chef review, nine proposal disagreements, D3 spot-audit and the P1-A label remain open. The final deck still needs the matching wording. |
 | B1 decision and full test suite | **Checked.** D-140 at the freeze; 8,578 passed, five skipped, zero failed, 44 deselected. |
 | Freeze tag, manifest and freshness | **Checked.** `0a41d62`; hashes and verification below. |
 | B3 public Vercel URL | **Open.** Frozen web-only source staged and public routes tested on loopback. Vercel CLI is logged out. Production approval follows the checked preview. |
 | B4 full live run | **Open.** Ten authored preset requests await consent. The safety system refuses, and its separate plain arm can still send when the checkbox is selected. |
 | N1 screenshot set | **8 of 12 captured.** Six signed snapshot views and two local console views with hosted sending disabled, dimensions and hashes checked, all visually inspected. Manifest `f2ac492`. Screens 06–09 await hosted calls. The requested `?vision=deut` mode is unimplemented at the freeze. |
 | N3 story panels | **2 of 4 traceable.** Signed Tomato A–D pairs and local chicken refusal, `a34a318`. Carrots and tomato vitamin C hosted comparisons pending. |
-| B6/B7 report and slide exports | **Open.** Checked eight-page report PDF `06b250b` and numeric evidence `b04cdc6`. Keynote rendered all 19 slides in the review. Deck disposition, final wording, chart layout and hosted evidence remain open. |
+| B6/B7 report and slide exports | **Open.** Checked eight-page report PDF `d9f788e` and numeric evidence `e0b0cb6`. Keynote rendered all 19 slides in the review. Deck disposition, final wording, chart layout and hosted evidence remain open. |
 | N2 business proposal | **One-page appendix included** per Parv, `2204448`. Slide is present in deck review; final deck is pending. |
 | B9 rehearsal and fallback | **Script and shot list ready** in `2b17636`. Parv's video is pending. |
-| B8 submission ZIP | **Review candidate checked**, 3,664,658 bytes, 465 checksums on fresh extraction and no required marker or private-path hits. Local file and `485b840` check record. The path-exclusion decision and final assets are pending. |
-| Push, PR and worklog | **Worklog updated** through S275, `92b12b4`. Local commits remain on the handoff branch pending approval to push and open the PR. Draft `fa1d2c2`. |
+| B8 submission ZIP | **Review candidate checked**, 3,665,147 bytes, 465 checksums on fresh extraction and no required marker or private-path hits. Local file and `a6d82ca` check record. The path-exclusion decision and final assets are pending. |
+| Push, PR and worklog | **Worklog updated** through S276, `24c1ea3`. Local commits remain on the handoff branch pending approval to push and open the PR. Draft `fa1d2c2`. |
 | WhatsApp line | **Drafted** in the Kush handoff `3621fea` for Parv. |
 
 The ledger distribution concern and the exact remaining sequence are in `handoff/KUSH_SUBMISSION_TAKEOVER_2026-11-20.md`. The local console showed 612,903 title records for the potato preset. Its response and that of the safety preset show both Model and Verify skipped in these captures.
