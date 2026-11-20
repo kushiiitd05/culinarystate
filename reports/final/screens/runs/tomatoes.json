@@ -1,0 +1,949 @@
+{
+  "labels": [
+    "DIAGNOSTIC_ONLY",
+    "NO_GOLD",
+    "LIVE_LLM_OUTPUT_UNVERIFIED_EXCEPT_BY_CLAIM_VERIFIER"
+  ],
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "question": "How much vitamin C remains in the tomatoes after this recipe?",
+  "mode": "NUTRIENT",
+  "parsed": {
+    "target": "vitc",
+    "question_kind": "RETENTION_NUMERIC",
+    "food": "tomato",
+    "foods": [
+      "tomato"
+    ]
+  },
+  "states": [
+    {
+      "index": 0,
+      "food": "tomato",
+      "step": 1,
+      "action": "Dice"
+    },
+    {
+      "index": 1,
+      "food": "tomato",
+      "step": 2,
+      "action": "Boil"
+    }
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "action": "Dice",
+      "food": "tomato",
+      "known": {
+        "process": "PROC-000045 dice",
+        "family": "MECHANICAL_CUT",
+        "lot_members": [
+          "tomato"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": false,
+        "heat_steps_so_far": 0,
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "hot_aqueous_minutes": 0,
+        "hot_fat_minutes": 0
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "lipid_present": "NO_RECOGNIZED_MARKER",
+        "aqueous_present": "NO_RECOGNIZED_MARKER",
+        "contact_phase": "MEDIUM_UNKNOWN",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "medium": "UNKNOWN",
+        "temperature_C": "UNKNOWN",
+        "duration_min": "UNKNOWN",
+        "lid_state": "UNKNOWN",
+        "piece_size_class": "UNKNOWN",
+        "matrix_class": "UNKNOWN",
+        "start_mode": "UNKNOWN",
+        "thermal_state": "NOT_A_HEAT_EVENT",
+        "food_T_typical_C": "NOT_A_HEAT_EVENT",
+        "moisture_cap_C": "NOT_A_HEAT_EVENT",
+        "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+        "cumulative_thermal_dose_min": "NOT_HEATED_YET",
+        "oxygen_exposure_proxy": "NO_LID_CUE"
+      }
+    },
+    {
+      "step": 2,
+      "action": "Boil",
+      "food": "tomato",
+      "known": {
+        "process": "PROC-000019 boil",
+        "family": "WET_HEAT",
+        "lot_members": [
+          "tomato",
+          "water"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": true,
+        "heat_steps_so_far": 1,
+        "aqueous_present": true,
+        "contact_phase": "AQUEOUS",
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "medium": "WATER",
+        "temperature_C": "100",
+        "duration_min": "15",
+        "lid_state": "COVERED",
+        "piece_size_class": "DICED",
+        "matrix_class": "VEGETABLE",
+        "hot_aqueous_minutes": 15,
+        "hot_fat_minutes": 0,
+        "thermal_state": "SCENARIO_COMPUTED",
+        "food_T_typical_C": 100,
+        "moisture_cap_C": 100,
+        "thermal_dose_typical_min": 11.402,
+        "cumulative_thermal_dose_min": 11.402,
+        "oxygen_exposure_proxy": "LIMITED_LID"
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "lipid_present": "NO_RECOGNIZED_MARKER",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "start_mode": "NO_START_CUE"
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "step": 1,
+      "action": "Dice",
+      "food": "tomato",
+      "counts": {
+        "FILLED": 10,
+        "NOT_APPLICABLE": 5,
+        "UNKNOWN": 14
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000045 dice",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "MECHANICAL_CUT",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "tomato"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": false,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 0,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "MEDIUM_UNKNOWN"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_HEATED_YET"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "action": "Boil",
+      "food": "tomato",
+      "counts": {
+        "FILLED": 24,
+        "NOT_APPLICABLE": 0,
+        "UNKNOWN": 5
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000019 boil",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "WET_HEAT",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "tomato",
+            "water"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": true,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 1,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "FILLED",
+          "value": true,
+          "source": "MARKER_TABLE_V2:ING-000109; USDA_SR_LEGACY_2018_04:fdc:173647:water_g_per_100g=99.9; PHYSICS_V06_L1:WATER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "FILLED",
+          "value": "AQUEOUS",
+          "source": "CONTEXT_AXES_V12"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "WATER",
+          "source": "PROCESS_DEFINITION"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "100",
+          "source": "PHYSICAL_DEFINITION"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "15",
+          "source": "TEXT_STATED"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "COVERED",
+          "source": "CUE"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "DICED",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "VEGETABLE",
+          "source": "FOOD_GROUP"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_START_CUE"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 15,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": "SCENARIO_COMPUTED",
+          "source": "PHYSICS_V06_L2"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 11.402,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 11.402,
+          "source": "SUM_SCENARIO"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": "LIMITED_LID",
+          "source": "LID_STATE_PROXY"
+        }
+      ]
+    }
+  ],
+  "context": null,
+  "evidence": [
+    {
+      "id": "EVD-002765",
+      "role": "applied",
+      "source_family_id": "USDA-RETN-R6",
+      "source_id": "SRC-000001",
+      "matrix": {
+        "food_group": "Vegetables and Vegetable Products",
+        "form": null,
+        "ingredient_id": "ING-000010",
+        "initial_state": null,
+        "raw_name": "TOMATOES"
+      },
+      "process": {
+        "condition_id": "COND-000107",
+        "medium": null,
+        "modifiers": {},
+        "process_id": "PROC-000019",
+        "raw_name": "TOMATOES,BOILED/BAKED",
+        "step_process_ids": [
+          "PROC-000019"
+        ],
+        "steps": [
+          "boil|bake"
+        ]
+      },
+      "target": {
+        "basis": "RETENTION_TR_OR_AR",
+        "raw_name": "Vitamin C, total ascorbic acid",
+        "state_variable_id": "SVAR-000009"
+      },
+      "tier": "E3",
+      "design": "DATABASE_AGGREGATE"
+    }
+  ],
+  "similar": {
+    "search": {
+      "query_foods": [
+        "tomato"
+      ],
+      "query_processes": [
+        "boil"
+      ],
+      "counts": {
+        "A1_BBC_GOOD_FOOD": 219,
+        "FOODCOM": 8680,
+        "GUTENBERG_SEGMENT": 1372,
+        "WIKIBOOKS": 26
+      },
+      "shown": [
+        {
+          "id": "WIKIBOOKS:132790",
+          "family": "WIKIBOOKS",
+          "title": "Bacon and Egg Stuffed Tomatoes",
+          "score": 0.401,
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Bacon_and_Egg_Stuffed_Tomatoes",
+          "licence": "CC BY-SA (Wikibooks Cookbook)",
+          "steps_available": true
+        },
+        {
+          "id": "WIKIBOOKS:7261",
+          "family": "WIKIBOOKS",
+          "title": "Tomato Salad",
+          "score": 0.357,
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Tomato_Salad",
+          "licence": "CC BY-SA (Wikibooks Cookbook)",
+          "steps_available": true
+        },
+        {
+          "id": "REC-024214",
+          "family": "GUTENBERG_SEGMENT",
+          "title": "Tomato \"Shredders\"",
+          "score": 0.768,
+          "url": null,
+          "licence": "Public domain (Project Gutenberg)",
+          "steps_available": false
+        },
+        {
+          "id": "REC-040107",
+          "family": "GUTENBERG_SEGMENT",
+          "title": "Tomatoes",
+          "score": 0.768,
+          "url": null,
+          "licence": "Public domain (Project Gutenberg)",
+          "steps_available": false
+        }
+      ],
+      "searched": 612903,
+      "min_score": 0.25,
+      "reference_id": "WIKIBOOKS:132790",
+      "reference_candidates": [
+        "WIKIBOOKS:132790",
+        "WIKIBOOKS:7261",
+        "WIKIBOOKS:199080",
+        "WIKIBOOKS:82978",
+        "WIKIBOOKS:5077"
+      ]
+    },
+    "reference": {
+      "id": "WIKIBOOKS:7261",
+      "title": "Tomato Salad",
+      "url": "https://en.wikibooks.org/wiki/Cookbook:Tomato_Salad",
+      "licence": "CC BY-SA (Wikibooks Cookbook)",
+      "heat_steps": [
+        {
+          "step": 2,
+          "action": "Boil",
+          "food": "onion",
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": "4",
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": 0.647
+        },
+        {
+          "step": 3,
+          "action": "boiling",
+          "food": "onion",
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": 10.1
+        },
+        {
+          "step": 10,
+          "action": "boiling",
+          "food": "garlic",
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": 14.568
+        }
+      ],
+      "same_process": true
+    }
+  },
+  "pipeline": [
+    {
+      "id": "parse",
+      "label": "Read recipe",
+      "status": "done",
+      "detail": "2 steps recognised",
+      "ms": 6
+    },
+    {
+      "id": "state",
+      "label": "Build state",
+      "status": "done",
+      "detail": "2 food states · foods: tomato",
+      "ms": null
+    },
+    {
+      "id": "simulate",
+      "label": "Physics simulation",
+      "status": "done",
+      "detail": "Boil (step 2, tomato): food 100 °C simulated, thermal dose 11.402 min simulated, 15 min stated, lid COVERED",
+      "ms": null
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence lookup",
+      "status": "done",
+      "detail": "route DIRECT · 1 applied, 0 near · claim packet built",
+      "ms": null
+    },
+    {
+      "id": "similar",
+      "label": "Similar recipes",
+      "status": "done",
+      "detail": "10297 similar of 612,903 recipes · reference: “Tomato Salad” (Wikibooks, same process)",
+      "ms": 106
+    },
+    {
+      "id": "model",
+      "label": "Ask model",
+      "status": "done",
+      "detail": "answered",
+      "ms": 14474
+    },
+    {
+      "id": "verify",
+      "label": "Verify",
+      "status": "done",
+      "detail": "claim verifier passed: LLM answer shown",
+      "ms": null
+    }
+  ],
+  "system": {
+    "status": "PACKET",
+    "route": "DIRECT",
+    "packet": {
+      "food": "tomato",
+      "step": 2,
+      "action": "Boil",
+      "target": "vitc",
+      "question_kind": "RETENTION_NUMERIC",
+      "route": "DIRECT",
+      "allowed_claims": [
+        "NUMERIC_FROM_CITED_EVIDENCE",
+        "QUALITATIVE_DIRECTION",
+        "ABSTAIN"
+      ],
+      "required_caveats": [
+        "STATE_UNKNOWN_ON_AXES: measurement method / platform",
+        "FROZEN_ROUTER_REASONS: DOMAIN_UNKNOWN, EVIDENCE_PREEMPTS, INPUT_UNOBSERVED, NO_CANDIDATE_MECHANISM"
+      ],
+      "forbidden_claims": [
+        "NUMERIC_TRANSFER_FROM_NEAR_EVIDENCE",
+        "TREAT_UNKNOWN_AS_ZERO",
+        "UPGRADE_ROUTE_OR_COMPATIBILITY",
+        "ANY_NUMBER_WITHOUT_AN_EVIDENCE_ID"
+      ],
+      "evidence_ids": [
+        "EVD-002765"
+      ],
+      "evidence_values": [
+        "EVD-002765=95.0%"
+      ],
+      "near_evidence_ids": [],
+      "compatibility": {
+        "ax01_matrix": {
+          "status": "NOT_EVALUATED",
+          "reason": "NOT_SCORED_BY_ROUTER",
+          "axis": "matrix (food id / species / food group / part / cultivar)",
+          "owner_step": "36A.3",
+          "hard_exclusion": true
+        },
+        "ax02_state_form_cut": {
+          "status": "EVALUABLE",
+          "reason": null,
+          "axis": "state / form / cut (prior state; raw vs processed)",
+          "owner_step": "36A.3",
+          "hard_exclusion": false
+        },
+        "ax03_process": {
+          "status": "NOT_EVALUATED",
+          "reason": "NOT_SCORED_BY_ROUTER",
+          "axis": "process",
+          "owner_step": "36A.3",
+          "hard_exclusion": true
+        },
+        "ax04_temperature": {
+          "status": "EVALUABLE",
+          "reason": null,
+          "axis": "temperature (value + location: setpoint/medium/surface/core)",
+          "owner_step": "36A.3",
+          "hard_exclusion": false
+        },
+        "ax05_time": {
+          "status": "EVALUABLE",
+          "reason": null,
+          "axis": "time",
+          "owner_step": "36A.3",
+          "hard_exclusion": false
+        },
+        "ax06_medium_heat-transfer_mode": {
+          "status": "EVALUABLE",
+          "reason": null,
+          "axis": "medium / heat-transfer mode",
+          "owner_step": "36A.3",
+          "hard_exclusion": false
+        },
+        "ax07_ph": {
+          "axis": "pH",
+          "owner_step": "36A.3 (FDA/CFSAN 2003 via EXACT crosswalk; human verification still owed)",
+          "hard_exclusion": false,
+          "status": "EVALUABLE",
+          "reason": null,
+          "ph_low": 4.3,
+          "ph_high": 4.9,
+          "value_type": "INTERVAL",
+          "acidity": "INCONCLUSIVE_SPANS_THRESHOLD",
+          "item_as_printed": "Tomatoes",
+          "basis": "FDA_PH_2003_VIA_AI_DRAFTED_CROSSWALK",
+          "source": "FDA/CFSAN Approximate pH of Foods and Food Products, Oct 2003 (webharvest.gov peth04, 2004-10-31)",
+          "source_sha256": "4580cc3d0188ec1c9e518e4b945d1bc8150fba9f9872b028d03d6b12599c7ac1",
+          "verify_status": "UNVERIFIED_CROSSWALK_AI_DRAFTED"
+        },
+        "ax10_target": {
+          "status": "NOT_EVALUATED",
+          "reason": "NOT_SCORED_BY_ROUTER",
+          "axis": "target (SVAR canonical; equivalence status)",
+          "owner_step": "36A.3",
+          "hard_exclusion": true
+        },
+        "ax11_measurement_basis": {
+          "status": "NOT_EVALUATED",
+          "reason": "NOT_SCORED_BY_ROUTER",
+          "axis": "measurement basis (fresh/dry weight; per raw/per cooked; %TR vs %AR; yield-corrected apparent retention)",
+          "owner_step": "36A.3",
+          "hard_exclusion": true
+        },
+        "ax12_measurement_method_platform": {
+          "status": "UNKNOWN",
+          "reason": "MEAS_HAS_3_ROWS_PE_METHOD_NULL",
+          "axis": "measurement method / platform",
+          "owner_step": "36A.3",
+          "hard_exclusion": false
+        },
+        "ax13_source_tier_verification": {
+          "status": "NOT_EVALUATED",
+          "reason": "NOT_SCORED_BY_ROUTER",
+          "axis": "source / tier / verification (reported for D1, not a match)",
+          "owner_step": "36A.3",
+          "hard_exclusion": false
+        }
+      },
+      "selected_axes": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        10,
+        11,
+        12,
+        13
+      ],
+      "max_allowed_precision": 1,
+      "unknown_reasons": {
+        "ax12_measurement_method_platform": "MEAS_HAS_3_ROWS_PE_METHOD_NULL"
+      }
+    },
+    "state_index": 1,
+    "draft": "95.0% [EVD-002765]. The measurement method/platform is unknown.",
+    "draft_check": {
+      "ok": true,
+      "codes": [],
+      "violations": []
+    },
+    "final": "95.0% [EVD-002765]. The measurement method/platform is unknown.",
+    "used_template": false,
+    "draft_call": {
+      "status": "OK",
+      "ms": 14474
+    }
+  },
+  "plain": {
+    "status": "OK",
+    "text": "Boiling diced tomatoes for 15 minutes causes severe vitamin C loss—typically 60–80%—as the water-soluble vitamin leaches into the cooking water and degrades from prolonged heat exposure. The lid traps steam but does not prevent nutrient loss into the liquid, so most remaining vitamin C would be found in the cooking water rather than the tomatoes themselves.",
+    "ms": 5342,
+    "check": {
+      "ok": false,
+      "codes": [
+        "NUMBER_NOT_IN_EVIDENCE",
+        "NUMBER_WITHOUT_EVIDENCE_ID"
+      ],
+      "violations": [
+        {
+          "code": "NUMBER_NOT_IN_EVIDENCE",
+          "detail": "60 is not a value in ['95.0']"
+        },
+        {
+          "code": "NUMBER_WITHOUT_EVIDENCE_ID",
+          "detail": "60 is stated without an evidence id"
+        },
+        {
+          "code": "NUMBER_NOT_IN_EVIDENCE",
+          "detail": "80 is not a value in ['95.0']"
+        },
+        {
+          "code": "NUMBER_WITHOUT_EVIDENCE_ID",
+          "detail": "80 is stated without an evidence id"
+        }
+      ]
+    },
+    "claimed_numbers": [
+      {
+        "number": "60",
+        "matches_packet_evidence_value": false
+      },
+      {
+        "number": "80",
+        "matches_packet_evidence_value": false
+      }
+    ]
+  },
+  "licence_hits": [],
+  "timing_ms": {
+    "pipeline": 6,
+    "similar": 106,
+    "total": 14588
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "freeze": "0a41d62768ac6559c2d6ee3959700485784fd144",
+  "review": "AI_DRAFTED; frozen numeric source and wording check; no human gate credit",
+  "populations": {
+    "recipe_base_v1": {
+      "records": 612782,
+      "counts_by_source_family": {
+        "FOODCOM": 522517,
+        "GUTENBERG_SEGMENT": 73955,
+        "A1_BBC_GOOD_FOOD": 11934,
+        "WIKIBOOKS": 3676,
+        "TASTESET": 700
+      },
+      "check": "Parquet source_family counts agree with the sum of recipes_in_base by family in the source-usage registry.",
+      "inputs": [
+        {
+          "path": "ledgers/recipe_base/recipe_base_v1.parquet",
+          "sha256": "5545da589d9c77891d3aefcebf21374d75a03632d14a4e8231603c68c9c824f0"
+        },
+        {
+          "path": "registry/recipe_source_usage_registry_v1.csv",
+          "sha256": "325238d610fffdcaffec768c4ee26abd3fe6a9f71396a3987b97f0007793f1c7"
+        }
+      ]
+    },
+    "compiler": {
+      "recipe_texts_with_steps": 611902,
+      "check": "Read texts_with_steps in the full-corpus census. The vNext differential used a run of this size and is diagnostic.",
+      "inputs": [
+        {
+          "path": "reports/step26/simulability_census_full_corpus_S166.json",
+          "sha256": "9cba3f665198761429b877cc783b454be04a154f43f3b7da636f349ddeceb50f"
+        },
+        {
+          "path": "reports/s179/lineage_vnext_diff_full_2026-11-14.json",
+          "sha256": "5507b67e3e3e24d5aca476e0a94045bcb589c16686704007f37371687a17d617"
+        }
+      ]
+    },
+    "similar_title_index": {
+      "documents": 612903,
+      "local_wikibooks_records": 3797,
+      "check": "612782 - 3676 + 3797. All local Wikibooks page IDs are distinct. Documents are search records, not unique title strings. No third-party title or recipe text was exported by this check.",
+      "inputs": [
+        {
+          "path": "tools/s182_similar.py",
+          "sha256": "72e0a78bec055f0f7f8f8da3768f6ae9b086f88b0541d13e22dfbf7bce37c3e5"
+        },
+        {
+          "path": "data/interim/wikibooks/recipes.jsonl",
+          "sha256": "62374f4f292233a24d7b071d5c0dcafd4882ba7f2c7305d1c70a303330156933"
+        }
+      ]
+    }
+  },
+  "numeric_claims": [
+    {
+      "figures": "17,978 active evidence rows; 0 human-verified; 40 candidates (16 kinetics, 24 raw-versus-cooked); 28 opened, 12 inaccessible; 16 numeric CAL span matches",
+      "inputs": [
+        {
+          "path": "reports/h_state/ledger_stats.json",
+          "sha256": "ef85891bda5b2194bce84ce9d725765d9f83e72a111384aa5b3d7f2409581949"
+        },
+        {
+          "path": "reports/s181/human_audit/REPORT_WORDING.md",
+          "sha256": "356e4e6f7e119b0fc2a5ae80535d4d63fc2c40c15c4519b059551dd4cca26be3"
+        },
+        {
+          "path": "reports/s179/CAL_paired_AI_closeout_2026-11-13.json",
+          "sha256": "24636eddd904845b96c9df7df8c2c713d0bd1f5852bf8e10c625bc014dcc123b"
+        }
+      ]
+    },
+    {
+      "figures": "Ascorbic-acid Model A fit: 7 rows from 2 papers; SIM-VAL: 0 primary-comparable rows, 0 retention observations",
+      "inputs": [
+        {
+          "path": "reports/step10/aa_pilot_model_a_fit_D085.json",
+          "sha256": "b9247db03e98423f8866fa50b24e2ecd33831d907f3aace00b1f7e4f2ea9543f"
+        },
+        {
+          "path": "reports/step10/aa_SIMVAL_diagnostic_2026-11-11_v2.json",
+          "sha256": "697b3fc2c0cf3edd205339b6494cf7e73faa73ab04d9237553d81c8272477fbb"
+        }
+      ]
+    },
+    {
+      "figures": "40 development recipes, 7 P1 pilot recipes, 30 scripted sessions, 11–20% state-field match, merge/split F1 0.36–0.47, 0 replay issues",
+      "inputs": [
+        {
+          "path": "reports/del3/compiler_vs_gold_pooled_S179.md",
+          "sha256": "2cc2a040c92b9822ec520b466f757cb41fc795bc8799590e9f03d39bfd3d1b61"
+        },
+        {
+          "path": "reports/s181/human_audit/D3_gold_status.md",
+          "sha256": "913abaa2518b9f75b6068331e9aeafb5716c02713b5f353c31eb19d086549319"
+        },
+        {
+          "path": "reports/final/DELIVERABLE_COMPLIANCE_MATRIX_2026-11-16.md",
+          "sha256": "9004c6c6291a9aafd20c636f90900df63460cf011035357a1482708ac41fa545"
+        }
+      ]
+    },
+    {
+      "figures": "13 compatibility axes, 9 implemented, 2 compiler, 2 schema; Recall@1/3/5 0.20/0.3417/0.375 (20 questions); B7 partial AURC 0.0977 at 0.45–1.00 (40 questions); unsupported B7 4/34 and B2 24/43",
+      "inputs": [
+        {
+          "path": "registry/rag/compatibility_axes_v1.csv",
+          "sha256": "c06db1af67fadf01179d63c6c09714fdc743d397ce86121b61893f056b8ded61"
+        },
+        {
+          "path": "reports/s181/d4_contract_metrics.json",
+          "sha256": "bf2f59dc9f7585be431ad03ef2c2d5fc4ecc9297237ee14081830817edf12d7f"
+        }
+      ]
+    },
+    {
+      "figures": "74 benchmark questions, 8 task types; 9 authored snapshots, 8 contractual ask outputs; 3 pre-review personas; frozen H1 and H3 rules not met",
+      "inputs": [
+        {
+          "path": "reports/del5/d5_score_v1_D085/d5_scoring_result.json",
+          "sha256": "6d8c6a7922fd151f5f6e9654dcb8e1fc569839a704f172990052bb056ab53422"
+        },
+        {
+          "path": "web/public/snapshot/manifest.json",
+          "sha256": "bf0f80611429552b1a8264bdedf56b03fef1323630e41b896b1e3cfd81a24025"
+        },
+        {
+          "path": "reports/s181/human_audit/REPORT_WORDING.md",
+          "sha256": "356e4e6f7e119b0fc2a5ae80535d4d63fc2c40c15c4519b059551dd4cca26be3"
+        }
+      ]
+    },
+    {
+      "figures": "NER macro F1 0.9504 ± 0.0034 baseline and 0.9545 ± 0.0037 primary; 13.6% masked-family overlap and 5.4% duplicate test rows",
+      "inputs": [
+        {
+          "path": "reports/ner/culinaryner_kf_final_report.md",
+          "sha256": "2abafa7a713b9bc64dab3769ac3a587d5fcf5869ff5fb80027243fcdca513ab5"
+        }
+      ]
+    },
+    {
+      "figures": "Layer-1 60 cases, 59 calls plus 1 repaired; 0 grounded proposals under offset prompts, 21 in 72B quote-first arm; 17 well-formed under AI-delegated evidence reading",
+      "inputs": [
+        {
+          "path": "reports/s180/step7_FINAL_COMPARISON_2026-11-16.md",
+          "sha256": "b10da2e23c3248dc6a28942a79df939275e97374499e629516510c6a0bf4d1f2"
+        },
+        {
+          "path": "reports/s180/alternatives_verification_2026-11-15/DUAL_PERSONA_PASS.md",
+          "sha256": "7a886ee2f5d5b9d684570bc22ef096fe6096f1ec0b6d3bbac0795fd79be93e7f"
+        }
+      ]
+    },
+    {
+      "figures": "Ingredient pH 4.3–4.9 crosses threshold 4.6; 479 source rows produce 140 bands (31, 101, 8); pot A reports vitamin C 95.0% under EVD-002765",
+      "inputs": [
+        {
+          "path": "reports/s179/state_inventory_FINAL_2026-11-15.md",
+          "sha256": "6830a45eb1d99f1c2f9a46ddf020091e5c9655457c8e10eec638d75b16ce483f"
+        },
+        {
+          "path": "web/public/snapshot/scenarios/tomato-a.json",
+          "sha256": "47a7b38c81f030e0940bddc1e06c76d92abbf4f371e08d797a686350667d2d8f"
+        },
+        {
+          "path": "docs/final/FINAL_COMPONENT_INVENTORY.md",
+          "sha256": "cf8a71f5ae175646173b595fbc7596bc702e4c0bf04bd7135530b757e251bd88"
+        }
+      ]
+    },
+    {
+      "figures": "Frozen plain-run baseline: 3 of 19 replies made unsourced 20–30% claims; at least 4 cautious replies flagged by wording checks",
+      "inputs": [
+        {
+          "path": "reports/s181/snapshot_findings.md",
+          "sha256": "4ce643c9a7a756ffcae4fd40f796dc84d1ecc09aa27bef1ea0f8b7b7f7f23407"
+        }
+      ]
+    },
+    {
+      "figures": "8,578 passed, 5 skipped, 0 failed, 44 deselected; preflight 28/28; verified signature",
+      "inputs": [
+        {
+          "path": "STATUS.md",
+          "revision": "freeze-2026-11-20",
+          "sha256": "7de65aa28a0ad31697d895d5d26f6a1db4d75662a28fb164cb31dcef8382bf86"
+        },
+        {
+          "path": "WORKLOG.md",
+          "revision": "freeze-2026-11-20",
+          "sha256": "7aa043cb77ec80215aa939ff5c771dc87fea25b22dbba5dfe1ee894102ad3f01"
+        },
+        {
+          "path": "web/public/snapshot/manifest.json",
+          "sha256": "bf0f80611429552b1a8264bdedf56b03fef1323630e41b896b1e3cfd81a24025"
+        }
+      ]
+    }
+  ],
+  "human_limits": "D1 and D5 use the no-human-review wording. D3 acceptance is attributed to the development gold. The seven P1-A pilot labels retain the ambiguity documented in the audit. The proposal review records concurrence with AI verdicts, while the individual disagreements are pending.",
+  "live_observations": [
+    {
+      "finding": "10/10 approved presets passed the frozen preflight; 9 Verify stages done and 1 safety refusal Verify skipped.",
+      "inputs": [
+        {
+          "path": "reports/final/screens/runs/preflight_live_2026-11-20.txt",
+          "sha256": "9c83307d01ba2df8503074724fbdd87d593aca3c93405c3b5ce68d35ddb9218c"
+        }
+      ]
+    },
+    {
+      "finding": "The carrot response had 0 parsed structured citations (0/0). Its cooking advice remains unverified.",
+      "inputs": [
+        {
+          "path": "reports/final/screens/runs/carrots.json",
+          "sha256": "70ebe6e39b0e4b2955dd35051bff1f1737a4a04ab42c4e0dbd503629d8d6714b"
+        }
+      ]
+    },
+    {
+      "finding": "The system reported 95.0% retention from EVD-002765 and an unknown measurement method. The plain answer gave 60–80% loss; both numerical endpoints were flagged as unsupported.",
+      "inputs": [
+        {
+          "path": "reports/final/screens/runs/tomatoes.json",
+          "sha256": "aea6c54eb9b736cbad361c2e01a1a15d6352736f0fa3a9493b1682aac1c43a08"
+        }
+      ]
+    },
+    {
+      "finding": "The potato title index searched 612,903 documents. The local safety response refused with hosted sending disabled.",
+      "inputs": [
+        {
+          "path": "reports/final/screens/runs/potatoes.json",
+          "sha256": "6e017d091d2c65a403172d90e27ca5ba44042c388aadb00f9d6a4dc4535de3bc"
+        },
+        {
+          "path": "reports/final/screens/runs/safety.json",
+          "sha256": "995567018540b0e35f917525504e5b5139b08b8c9e71b1d64a563f9282569c08"
+        }
+      ]
+    },
+    {
+      "finding": "All four public production routes returned 200 and displayed a verified signature. All three live endpoint probes returned 404. The hosted manifest, signature and public key matched frozen bytes.",
+      "inputs": [
+        {
+          "path": "reports/final/DEPLOYMENT_2026-11-20.json",
+          "sha256": "f9b2d098c7341b9fcb70dbe1de79b534cd4ca2498b7a11a8cf4c6cf9e7d06812"
+        }
+      ]
+    }
+  ]
+}

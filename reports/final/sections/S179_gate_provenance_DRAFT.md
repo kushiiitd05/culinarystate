@@ -8,15 +8,15 @@ Status: **AI_DRAFTED, generated** by `tools/s179_gate_provenance_report.py` from
 
 | Class | Decisions |
 |---|---|
-| HUMAN | 80 |
+| HUMAN | 84 |
 | AI_DELEGATED_D085 | 24 |
 | AI_PERSONA_D071 | 6 |
 | MIXED_PERSONA_AND_HUMAN | 1 |
 | AI_AGENT_PROVISIONAL | 7 |
 | NO_APPROVER_LINE | 0 |
-| **all** | 118 |
+| **all** | 122 |
 
-Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 27 name the human in the title or instruction line instead of an Approver line.
+Of the HUMAN decisions, 19 record Parv's view as relayed by Kush, and 29 name the human in the title or instruction line instead of an Approver line.
 
 ## Decisions not made by a human
 

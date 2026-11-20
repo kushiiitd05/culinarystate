@@ -1,0 +1,1962 @@
+{
+  "labels": [
+    "DIAGNOSTIC_ONLY",
+    "NO_GOLD",
+    "LIVE_LLM_OUTPUT_UNVERIFIED_EXCEPT_BY_CLAIM_VERIFIER"
+  ],
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "question": "My roast potatoes came out soggy, not crispy. What went wrong?",
+  "mode": "ADVICE",
+  "parsed": {
+    "target": null,
+    "question_kind": "RETENTION_NUMERIC",
+    "food": "potato",
+    "foods": [
+      "potato"
+    ]
+  },
+  "states": [
+    {
+      "index": 0,
+      "food": "potato",
+      "step": 2,
+      "action": "cut"
+    },
+    {
+      "index": 1,
+      "food": "potato",
+      "step": 3,
+      "action": "Boil"
+    },
+    {
+      "index": 2,
+      "food": "potato",
+      "step": 4,
+      "action": "Drain"
+    },
+    {
+      "index": 3,
+      "food": "potato",
+      "step": 5,
+      "action": "Roast"
+    }
+  ],
+  "trace": [
+    {
+      "step": 2,
+      "action": "cut",
+      "food": "potato",
+      "known": {
+        "process": "PROC-000046 cut",
+        "family": "MECHANICAL_CUT",
+        "lot_members": [
+          "potato"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": false,
+        "heat_steps_so_far": 0,
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "hot_aqueous_minutes": 0,
+        "hot_fat_minutes": 0
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "lipid_present": "NO_RECOGNIZED_MARKER",
+        "aqueous_present": "NO_RECOGNIZED_MARKER",
+        "contact_phase": "MEDIUM_UNKNOWN",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "medium": "UNKNOWN",
+        "temperature_C": "UNKNOWN",
+        "duration_min": "UNKNOWN",
+        "lid_state": "UNKNOWN",
+        "piece_size_class": "UNKNOWN",
+        "matrix_class": "UNKNOWN",
+        "start_mode": "UNKNOWN",
+        "thermal_state": "NOT_A_HEAT_EVENT",
+        "food_T_typical_C": "NOT_A_HEAT_EVENT",
+        "moisture_cap_C": "NOT_A_HEAT_EVENT",
+        "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+        "cumulative_thermal_dose_min": "NOT_HEATED_YET",
+        "oxygen_exposure_proxy": "NO_LID_CUE"
+      }
+    },
+    {
+      "step": 3,
+      "action": "Boil",
+      "food": "potato",
+      "known": {
+        "process": "PROC-000019 boil",
+        "family": "WET_HEAT",
+        "lot_members": [
+          "potato",
+          "water"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": true,
+        "heat_steps_so_far": 1,
+        "aqueous_present": true,
+        "contact_phase": "AQUEOUS",
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "medium": "WATER",
+        "temperature_C": "100",
+        "duration_min": "8",
+        "matrix_class": "VEGETABLE",
+        "hot_aqueous_minutes": 8,
+        "hot_fat_minutes": 0,
+        "thermal_state": "SCENARIO_COMPUTED",
+        "food_T_typical_C": 100,
+        "moisture_cap_C": 100
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "lipid_present": "NO_RECOGNIZED_MARKER",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "lid_state": "NO_LID_CUE",
+        "piece_size_class": "NO_CUT_HISTORY",
+        "start_mode": "NO_START_CUE",
+        "thermal_dose_typical_min": "DOSE_NOT_COMPUTED",
+        "cumulative_thermal_dose_min": "DOSE_NOT_COMPUTED",
+        "oxygen_exposure_proxy": "NO_LID_CUE"
+      }
+    },
+    {
+      "step": 4,
+      "action": "Drain",
+      "food": "potato",
+      "known": {
+        "process": "PROC-000078 drain",
+        "family": "SEPARATION",
+        "lot_members": [
+          "potato"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": false,
+        "heat_steps_so_far": 1,
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "hot_aqueous_minutes": 8,
+        "hot_fat_minutes": 0
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "lipid_present": "NO_RECOGNIZED_MARKER",
+        "aqueous_present": "NO_RECOGNIZED_MARKER",
+        "contact_phase": "MEDIUM_UNKNOWN",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "medium": "UNKNOWN",
+        "temperature_C": "UNKNOWN",
+        "duration_min": "UNKNOWN",
+        "lid_state": "UNKNOWN",
+        "piece_size_class": "UNKNOWN",
+        "matrix_class": "UNKNOWN",
+        "start_mode": "UNKNOWN",
+        "thermal_state": "NOT_A_HEAT_EVENT",
+        "food_T_typical_C": "NOT_A_HEAT_EVENT",
+        "moisture_cap_C": "NOT_A_HEAT_EVENT",
+        "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+        "cumulative_thermal_dose_min": "DOSE_NOT_COMPUTED",
+        "oxygen_exposure_proxy": "NO_LID_CUE"
+      }
+    },
+    {
+      "step": 5,
+      "action": "Roast",
+      "food": "potato",
+      "known": {
+        "process": "PROC-000002 roast",
+        "family": "DRY_HEAT",
+        "lot_members": [
+          "oil",
+          "potato"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": true,
+        "heat_steps_so_far": 2,
+        "lipid_present": true,
+        "contact_phase": "LIPID",
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "medium": "OVEN_AIR",
+        "temperature_C": "200",
+        "duration_min": "40",
+        "matrix_class": "VEGETABLE",
+        "hot_aqueous_minutes": 8,
+        "hot_fat_minutes": 40,
+        "thermal_state": "SCENARIO_COMPUTED",
+        "food_T_typical_C": 100,
+        "moisture_cap_C": 100
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "aqueous_present": "NO_RECOGNIZED_MARKER",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "lid_state": "NO_LID_CUE",
+        "piece_size_class": "NO_CUT_HISTORY",
+        "start_mode": "NO_START_CUE",
+        "thermal_dose_typical_min": "DOSE_NOT_COMPUTED",
+        "cumulative_thermal_dose_min": "DOSE_NOT_COMPUTED",
+        "oxygen_exposure_proxy": "NO_LID_CUE"
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "step": 2,
+      "action": "cut",
+      "food": "potato",
+      "counts": {
+        "FILLED": 10,
+        "NOT_APPLICABLE": 5,
+        "UNKNOWN": 14
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000046 cut",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "MECHANICAL_CUT",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "potato"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": false,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 0,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "MEDIUM_UNKNOWN"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_HEATED_YET"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "action": "Boil",
+      "food": "potato",
+      "counts": {
+        "FILLED": 19,
+        "NOT_APPLICABLE": 0,
+        "UNKNOWN": 10
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000019 boil",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "WET_HEAT",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "potato",
+            "water"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": true,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 1,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "FILLED",
+          "value": true,
+          "source": "MARKER_TABLE_V2:ING-000109; USDA_SR_LEGACY_2018_04:fdc:173647:water_g_per_100g=99.9; PHYSICS_V06_L1:WATER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "FILLED",
+          "value": "AQUEOUS",
+          "source": "CONTEXT_AXES_V12"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "WATER",
+          "source": "PROCESS_DEFINITION"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "100",
+          "source": "PHYSICAL_DEFINITION"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "8",
+          "source": "TEXT_STATED"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_CUT_HISTORY"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "VEGETABLE",
+          "source": "FOOD_GROUP"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_START_CUE"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 8,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": "SCENARIO_COMPUTED",
+          "source": "PHYSICS_V06_L2"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "DOSE_NOT_COMPUTED"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "DOSE_NOT_COMPUTED"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "action": "Drain",
+      "food": "potato",
+      "counts": {
+        "FILLED": 10,
+        "NOT_APPLICABLE": 4,
+        "UNKNOWN": 15
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000078 drain",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "SEPARATION",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "potato"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": false,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 1,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "MEDIUM_UNKNOWN"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 8,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "DOSE_NOT_COMPUTED"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "action": "Roast",
+      "food": "potato",
+      "counts": {
+        "FILLED": 19,
+        "NOT_APPLICABLE": 0,
+        "UNKNOWN": 10
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000002 roast",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "DRY_HEAT",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "oil",
+            "potato"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": true,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 2,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "FILLED",
+          "value": true,
+          "source": "MARKER_TABLE_V2:ING-000071; USDA_SR_LEGACY_2018_04:fdc:172370:fat_g_per_100g=100"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "FILLED",
+          "value": "LIPID",
+          "source": "CONTEXT_AXES_V12"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "OVEN_AIR",
+          "source": "PROCESS_DEFINITION"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "200",
+          "source": "TEXT_STATED"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "40",
+          "source": "TEXT_STATED"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_CUT_HISTORY"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "VEGETABLE",
+          "source": "FOOD_GROUP"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_START_CUE"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 8,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 40,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": "SCENARIO_COMPUTED",
+          "source": "PHYSICS_V06_L2"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "DOSE_NOT_COMPUTED"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "DOSE_NOT_COMPUTED"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        }
+      ]
+    }
+  ],
+  "context": {
+    "where_you_are": {
+      "food": "potato",
+      "current_step": 5,
+      "action": "Roast",
+      "total_steps": 5,
+      "hot_aqueous_minutes_so_far": 8,
+      "hot_fat_minutes_so_far": 40
+    },
+    "state_trace": [
+      {
+        "step": 2,
+        "action": "cut",
+        "food": "potato",
+        "known": {
+          "process": "PROC-000046 cut",
+          "family": "MECHANICAL_CUT",
+          "lot_members": [
+            "potato"
+          ],
+          "cell_integrity": "CUT",
+          "is_heat_step": false,
+          "heat_steps_so_far": 0,
+          "salt_exposure_before": false,
+          "acid_exposure_before": false,
+          "hot_aqueous_minutes": 0,
+          "hot_fat_minutes": 0
+        },
+        "unknown": {
+          "salt_present": "NO_RECOGNIZED_MARKER",
+          "acid_present": "NO_RECOGNIZED_MARKER",
+          "lipid_present": "NO_RECOGNIZED_MARKER",
+          "aqueous_present": "NO_RECOGNIZED_MARKER",
+          "contact_phase": "MEDIUM_UNKNOWN",
+          "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+          "medium": "UNKNOWN",
+          "temperature_C": "UNKNOWN",
+          "duration_min": "UNKNOWN",
+          "lid_state": "UNKNOWN",
+          "piece_size_class": "UNKNOWN",
+          "matrix_class": "UNKNOWN",
+          "start_mode": "UNKNOWN",
+          "thermal_state": "NOT_A_HEAT_EVENT",
+          "food_T_typical_C": "NOT_A_HEAT_EVENT",
+          "moisture_cap_C": "NOT_A_HEAT_EVENT",
+          "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+          "cumulative_thermal_dose_min": "NOT_HEATED_YET",
+          "oxygen_exposure_proxy": "NO_LID_CUE"
+        }
+      },
+      {
+        "step": 3,
+        "action": "Boil",
+        "food": "potato",
+        "known": {
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "lot_members": [
+            "potato",
+            "water"
+          ],
+          "cell_integrity": "CUT",
+          "is_heat_step": true,
+          "heat_steps_so_far": 1,
+          "aqueous_present": true,
+          "contact_phase": "AQUEOUS",
+          "salt_exposure_before": false,
+          "acid_exposure_before": false,
+          "medium": "WATER",
+          "temperature_C": "100",
+          "duration_min": "8",
+          "matrix_class": "VEGETABLE",
+          "hot_aqueous_minutes": 8,
+          "hot_fat_minutes": 0,
+          "thermal_state": "SCENARIO_COMPUTED",
+          "food_T_typical_C": 100,
+          "moisture_cap_C": 100
+        },
+        "unknown": {
+          "salt_present": "NO_RECOGNIZED_MARKER",
+          "acid_present": "NO_RECOGNIZED_MARKER",
+          "lipid_present": "NO_RECOGNIZED_MARKER",
+          "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+          "lid_state": "NO_LID_CUE",
+          "piece_size_class": "NO_CUT_HISTORY",
+          "start_mode": "NO_START_CUE",
+          "thermal_dose_typical_min": "DOSE_NOT_COMPUTED",
+          "cumulative_thermal_dose_min": "DOSE_NOT_COMPUTED",
+          "oxygen_exposure_proxy": "NO_LID_CUE"
+        }
+      },
+      {
+        "step": 4,
+        "action": "Drain",
+        "food": "potato",
+        "known": {
+          "process": "PROC-000078 drain",
+          "family": "SEPARATION",
+          "lot_members": [
+            "potato"
+          ],
+          "cell_integrity": "CUT",
+          "is_heat_step": false,
+          "heat_steps_so_far": 1,
+          "salt_exposure_before": false,
+          "acid_exposure_before": false,
+          "hot_aqueous_minutes": 8,
+          "hot_fat_minutes": 0
+        },
+        "unknown": {
+          "salt_present": "NO_RECOGNIZED_MARKER",
+          "acid_present": "NO_RECOGNIZED_MARKER",
+          "lipid_present": "NO_RECOGNIZED_MARKER",
+          "aqueous_present": "NO_RECOGNIZED_MARKER",
+          "contact_phase": "MEDIUM_UNKNOWN",
+          "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+          "medium": "UNKNOWN",
+          "temperature_C": "UNKNOWN",
+          "duration_min": "UNKNOWN",
+          "lid_state": "UNKNOWN",
+          "piece_size_class": "UNKNOWN",
+          "matrix_class": "UNKNOWN",
+          "start_mode": "UNKNOWN",
+          "thermal_state": "NOT_A_HEAT_EVENT",
+          "food_T_typical_C": "NOT_A_HEAT_EVENT",
+          "moisture_cap_C": "NOT_A_HEAT_EVENT",
+          "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+          "cumulative_thermal_dose_min": "DOSE_NOT_COMPUTED",
+          "oxygen_exposure_proxy": "NO_LID_CUE"
+        }
+      },
+      {
+        "step": 5,
+        "action": "Roast",
+        "food": "potato",
+        "known": {
+          "process": "PROC-000002 roast",
+          "family": "DRY_HEAT",
+          "lot_members": [
+            "oil",
+            "potato"
+          ],
+          "cell_integrity": "CUT",
+          "is_heat_step": true,
+          "heat_steps_so_far": 2,
+          "lipid_present": true,
+          "contact_phase": "LIPID",
+          "salt_exposure_before": false,
+          "acid_exposure_before": false,
+          "medium": "OVEN_AIR",
+          "temperature_C": "200",
+          "duration_min": "40",
+          "matrix_class": "VEGETABLE",
+          "hot_aqueous_minutes": 8,
+          "hot_fat_minutes": 40,
+          "thermal_state": "SCENARIO_COMPUTED",
+          "food_T_typical_C": 100,
+          "moisture_cap_C": 100
+        },
+        "unknown": {
+          "salt_present": "NO_RECOGNIZED_MARKER",
+          "acid_present": "NO_RECOGNIZED_MARKER",
+          "aqueous_present": "NO_RECOGNIZED_MARKER",
+          "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+          "lid_state": "NO_LID_CUE",
+          "piece_size_class": "NO_CUT_HISTORY",
+          "start_mode": "NO_START_CUE",
+          "thermal_dose_typical_min": "DOSE_NOT_COMPUTED",
+          "cumulative_thermal_dose_min": "DOSE_NOT_COMPUTED",
+          "oxygen_exposure_proxy": "NO_LID_CUE"
+        }
+      }
+    ],
+    "changes": [
+      {
+        "from_step": 2,
+        "to_step": 3,
+        "changes": [
+          {
+            "field": "family",
+            "kind": "CHANGED",
+            "before": "MECHANICAL_CUT",
+            "after": "WET_HEAT"
+          },
+          {
+            "field": "heat_steps_so_far",
+            "kind": "CHANGED",
+            "before": 0,
+            "after": 1
+          },
+          {
+            "field": "is_heat_step",
+            "kind": "CHANGED",
+            "before": false,
+            "after": true
+          },
+          {
+            "field": "lot_members",
+            "kind": "CHANGED",
+            "before": [
+              "potato"
+            ],
+            "after": [
+              "potato",
+              "water"
+            ]
+          },
+          {
+            "field": "process",
+            "kind": "CHANGED",
+            "before": "PROC-000046 cut",
+            "after": "PROC-000019 boil"
+          },
+          {
+            "field": "aqueous_present",
+            "kind": "CHANGED",
+            "before": "NO_RECOGNIZED_MARKER",
+            "after": true
+          },
+          {
+            "field": "contact_phase",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "AQUEOUS"
+          },
+          {
+            "field": "cumulative_thermal_dose_min",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "duration_min",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "8"
+          },
+          {
+            "field": "food_T_typical_C",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": 100
+          },
+          {
+            "field": "hot_aqueous_minutes",
+            "kind": "CHANGED",
+            "before": 0,
+            "after": 8
+          },
+          {
+            "field": "lid_state",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "matrix_class",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "VEGETABLE"
+          },
+          {
+            "field": "medium",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "WATER"
+          },
+          {
+            "field": "moisture_cap_C",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": 100
+          },
+          {
+            "field": "piece_size_class",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "start_mode",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "temperature_C",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "100"
+          },
+          {
+            "field": "thermal_dose_typical_min",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "thermal_state",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "SCENARIO_COMPUTED"
+          }
+        ]
+      },
+      {
+        "from_step": 3,
+        "to_step": 4,
+        "changes": [
+          {
+            "field": "family",
+            "kind": "CHANGED",
+            "before": "WET_HEAT",
+            "after": "SEPARATION"
+          },
+          {
+            "field": "is_heat_step",
+            "kind": "CHANGED",
+            "before": true,
+            "after": false
+          },
+          {
+            "field": "lot_members",
+            "kind": "CHANGED",
+            "before": [
+              "potato",
+              "water"
+            ],
+            "after": [
+              "potato"
+            ]
+          },
+          {
+            "field": "process",
+            "kind": "CHANGED",
+            "before": "PROC-000019 boil",
+            "after": "PROC-000078 drain"
+          },
+          {
+            "field": "aqueous_present",
+            "kind": "CHANGED",
+            "before": true,
+            "after": "NO_RECOGNIZED_MARKER"
+          },
+          {
+            "field": "contact_phase",
+            "kind": "BECAME_UNKNOWN",
+            "before": "AQUEOUS",
+            "after": null
+          },
+          {
+            "field": "duration_min",
+            "kind": "BECAME_UNKNOWN",
+            "before": "8",
+            "after": null
+          },
+          {
+            "field": "food_T_typical_C",
+            "kind": "BECAME_UNKNOWN",
+            "before": 100,
+            "after": null
+          },
+          {
+            "field": "lid_state",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "matrix_class",
+            "kind": "BECAME_UNKNOWN",
+            "before": "VEGETABLE",
+            "after": null
+          },
+          {
+            "field": "medium",
+            "kind": "BECAME_UNKNOWN",
+            "before": "WATER",
+            "after": null
+          },
+          {
+            "field": "moisture_cap_C",
+            "kind": "BECAME_UNKNOWN",
+            "before": 100,
+            "after": null
+          },
+          {
+            "field": "piece_size_class",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "start_mode",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "temperature_C",
+            "kind": "BECAME_UNKNOWN",
+            "before": "100",
+            "after": null
+          },
+          {
+            "field": "thermal_dose_typical_min",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "thermal_state",
+            "kind": "BECAME_UNKNOWN",
+            "before": "SCENARIO_COMPUTED",
+            "after": null
+          }
+        ]
+      },
+      {
+        "from_step": 4,
+        "to_step": 5,
+        "changes": [
+          {
+            "field": "family",
+            "kind": "CHANGED",
+            "before": "SEPARATION",
+            "after": "DRY_HEAT"
+          },
+          {
+            "field": "heat_steps_so_far",
+            "kind": "CHANGED",
+            "before": 1,
+            "after": 2
+          },
+          {
+            "field": "is_heat_step",
+            "kind": "CHANGED",
+            "before": false,
+            "after": true
+          },
+          {
+            "field": "lot_members",
+            "kind": "CHANGED",
+            "before": [
+              "potato"
+            ],
+            "after": [
+              "oil",
+              "potato"
+            ]
+          },
+          {
+            "field": "process",
+            "kind": "CHANGED",
+            "before": "PROC-000078 drain",
+            "after": "PROC-000002 roast"
+          },
+          {
+            "field": "contact_phase",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "LIPID"
+          },
+          {
+            "field": "lipid_present",
+            "kind": "CHANGED",
+            "before": "NO_RECOGNIZED_MARKER",
+            "after": true
+          },
+          {
+            "field": "duration_min",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "40"
+          },
+          {
+            "field": "food_T_typical_C",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": 100
+          },
+          {
+            "field": "hot_fat_minutes",
+            "kind": "CHANGED",
+            "before": 0,
+            "after": 40
+          },
+          {
+            "field": "lid_state",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "matrix_class",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "VEGETABLE"
+          },
+          {
+            "field": "medium",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "OVEN_AIR"
+          },
+          {
+            "field": "moisture_cap_C",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": 100
+          },
+          {
+            "field": "piece_size_class",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "start_mode",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "temperature_C",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "200"
+          },
+          {
+            "field": "thermal_dose_typical_min",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "thermal_state",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "SCENARIO_COMPUTED"
+          }
+        ]
+      }
+    ],
+    "evidence_match_current_step": {
+      "vitc": {
+        "route": "UNKNOWN",
+        "route_basis": "COMPOSITION_UNCONFIRMED_IN_SOURCE:LIPID",
+        "axis_match": {
+          "salt": "NO_STATED_DIFFERENCE",
+          "acid": "NO_STATED_DIFFERENCE",
+          "lipid": "UNCONFIRMED"
+        },
+        "evidence_found": []
+      },
+      "lycopene": {
+        "route": "UNKNOWN",
+        "route_basis": "COMPOSITION_UNCONFIRMED_IN_SOURCE:LIPID",
+        "axis_match": {
+          "salt": "NO_STATED_DIFFERENCE",
+          "acid": "NO_STATED_DIFFERENCE",
+          "lipid": "UNCONFIRMED"
+        },
+        "evidence_found": []
+      }
+    },
+    "similar_public_recipe_reference": {
+      "note": "A DIFFERENT recipe (public, Wikibooks) found by similarity search; its conditions are typical values for comparison, not facts about this kitchen.",
+      "title": "Roast Potatoes",
+      "licence": "CC BY-SA (Wikibooks Cookbook)",
+      "heat_steps": [
+        {
+          "step": 9,
+          "action": "parboil",
+          "food": "potato",
+          "process": "PROC-000026 parboil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": "COVERED",
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 10,
+          "action": "roasting",
+          "food": "potato",
+          "process": "PROC-000002 roast",
+          "family": "DRY_HEAT",
+          "medium": "OVEN_AIR",
+          "duration_min": null,
+          "temperature_C": null,
+          "lid_state": "COVERED",
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 20,
+          "action": "roast",
+          "food": "potato",
+          "process": "PROC-000002 roast",
+          "family": "DRY_HEAT",
+          "medium": "OVEN_AIR",
+          "duration_min": [
+            "20",
+            "50"
+          ],
+          "temperature_C": null,
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 27,
+          "action": "warm",
+          "food": "potato",
+          "process": "PROC-000032 heat",
+          "family": "HEAT_GENERAL",
+          "medium": null,
+          "duration_min": null,
+          "temperature_C": null,
+          "lid_state": null,
+          "food_T_typical_C": null,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 29,
+          "action": "Parboil",
+          "food": "potato",
+          "process": "PROC-000026 parboil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 32,
+          "action": "boiling",
+          "food": "potato",
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        }
+      ]
+    },
+    "similar_recipes_found_in_corpus": 10294
+  },
+  "evidence": [],
+  "similar": {
+    "search": {
+      "query_foods": [
+        "potato"
+      ],
+      "query_processes": [
+        "boil",
+        "roast"
+      ],
+      "counts": {
+        "A1_BBC_GOOD_FOOD": 176,
+        "FOODCOM": 8635,
+        "GUTENBERG_SEGMENT": 1464,
+        "WIKIBOOKS": 19
+      },
+      "shown": [
+        {
+          "id": "WIKIBOOKS:34185",
+          "family": "WIKIBOOKS",
+          "title": "Roast Potatoes",
+          "score": 0.478,
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Roast_Potatoes",
+          "licence": "CC BY-SA (Wikibooks Cookbook)",
+          "steps_available": true
+        },
+        {
+          "id": "WIKIBOOKS:451653",
+          "family": "WIKIBOOKS",
+          "title": "Roasted Potatoes",
+          "score": 0.467,
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Roasted_Potatoes",
+          "licence": "CC BY-SA (Wikibooks Cookbook)",
+          "steps_available": true
+        },
+        {
+          "id": "REC-036751",
+          "family": "GUTENBERG_SEGMENT",
+          "title": "How To Boil Potatoes",
+          "score": 0.852,
+          "url": null,
+          "licence": "Public domain (Project Gutenberg)",
+          "steps_available": false
+        },
+        {
+          "id": "REC-015920",
+          "family": "GUTENBERG_SEGMENT",
+          "title": "To Boil Potatoes",
+          "score": 0.852,
+          "url": null,
+          "licence": "Public domain (Project Gutenberg)",
+          "steps_available": false
+        }
+      ],
+      "searched": 612903,
+      "min_score": 0.25,
+      "reference_id": "WIKIBOOKS:34185",
+      "reference_candidates": [
+        "WIKIBOOKS:34185",
+        "WIKIBOOKS:451653",
+        "WIKIBOOKS:451976",
+        "WIKIBOOKS:451654",
+        "WIKIBOOKS:451651"
+      ]
+    },
+    "reference": {
+      "id": "WIKIBOOKS:34185",
+      "title": "Roast Potatoes",
+      "url": "https://en.wikibooks.org/wiki/Cookbook:Roast_Potatoes",
+      "licence": "CC BY-SA (Wikibooks Cookbook)",
+      "heat_steps": [
+        {
+          "step": 9,
+          "action": "parboil",
+          "food": "potato",
+          "process": "PROC-000026 parboil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": "COVERED",
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 10,
+          "action": "roasting",
+          "food": "potato",
+          "process": "PROC-000002 roast",
+          "family": "DRY_HEAT",
+          "medium": "OVEN_AIR",
+          "duration_min": null,
+          "temperature_C": null,
+          "lid_state": "COVERED",
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 20,
+          "action": "roast",
+          "food": "potato",
+          "process": "PROC-000002 roast",
+          "family": "DRY_HEAT",
+          "medium": "OVEN_AIR",
+          "duration_min": [
+            "20",
+            "50"
+          ],
+          "temperature_C": null,
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 27,
+          "action": "warm",
+          "food": "potato",
+          "process": "PROC-000032 heat",
+          "family": "HEAT_GENERAL",
+          "medium": null,
+          "duration_min": null,
+          "temperature_C": null,
+          "lid_state": null,
+          "food_T_typical_C": null,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 29,
+          "action": "Parboil",
+          "food": "potato",
+          "process": "PROC-000026 parboil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 32,
+          "action": "boiling",
+          "food": "potato",
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        }
+      ],
+      "same_process": true
+    }
+  },
+  "pipeline": [
+    {
+      "id": "parse",
+      "label": "Read recipe",
+      "status": "done",
+      "detail": "4 steps recognised",
+      "ms": 8
+    },
+    {
+      "id": "state",
+      "label": "Build state",
+      "status": "done",
+      "detail": "4 food states · foods: potato",
+      "ms": null
+    },
+    {
+      "id": "simulate",
+      "label": "Physics simulation",
+      "status": "done",
+      "detail": "Boil (step 3, potato): food 100 °C simulated, 8 min stated; Roast (step 5, potato): food 100 °C simulated, 40 min stated",
+      "ms": null
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence lookup",
+      "status": "done",
+      "detail": "0 evidence rows found for the current step (axis match checked)",
+      "ms": null
+    },
+    {
+      "id": "similar",
+      "label": "Similar recipes",
+      "status": "done",
+      "detail": "10294 similar of 612,903 recipes · reference: “Roast Potatoes” (Wikibooks, same process)",
+      "ms": 184
+    },
+    {
+      "id": "model",
+      "label": "Ask model",
+      "status": "skipped",
+      "detail": "not sent",
+      "ms": null
+    },
+    {
+      "id": "verify",
+      "label": "Verify",
+      "status": "skipped",
+      "detail": "nothing was sent to the model",
+      "ms": null
+    }
+  ],
+  "system": {
+    "status": "ADVICE_NOT_SENT",
+    "route": null,
+    "packet": null,
+    "draft": null,
+    "draft_check": null,
+    "final": "State-aware advice needs the hosted model, and this text was not marked self-written or public, so nothing was sent.",
+    "used_template": true
+  },
+  "plain": {
+    "status": "NOT_SENT_TEXT_NOT_SELF_WRITTEN",
+    "reason": "Only public or self-written text may go to the hosted model."
+  },
+  "licence_hits": [],
+  "timing_ms": {
+    "pipeline": 8,
+    "similar": 184,
+    "total": 192
+  }
+}

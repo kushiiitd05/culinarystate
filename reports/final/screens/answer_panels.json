@@ -1,0 +1,72 @@
+{
+  "stories": [
+    {
+      "id": "tomato-a-d",
+      "question": "How much vitamin C remains in the tomatoes after this recipe?",
+      "plain_model": "Tomato A: water only\nAfter boiling tomatoes in water for 15 minutes, some of the vitamin C content will be lost due to heat exposure and leaching into the cooking water. The exact amount of remaining vitamin C cannot be precisely determined without knowing the initial concentration and the specific conditions of the boiling process.\n\nTomato B: water and salt\nThe boiling process can reduce the amount of vitamin C in tomatoes, and depending on the duration and temperature, approximately 20-30% of the vitamin C may be lost during this cooking method. However, the exact percentage of remaining vitamin C cannot be precisely determined without knowing the initial content and specific conditions of the cooking process.\n\nTomato C: water, salt and vinegar\nThe boiling process can reduce the amount of vitamin C in tomatoes, but the addition of salt and vinegar might slightly preserve some of it due to their acidity. However, without specific values for the initial vitamin C content and the exact conditions of cooking, an exact percentage cannot be provided.\n\nTomato D: water, salt, vinegar and oil\nThe amount of vitamin C remaining in the tomatoes after boiling them in water with salt, vinegar, and olive oil for 15 minutes would be significantly reduced compared to raw tomatoes, as heat can degrade vitamin C. However, the exact percentage retained cannot be specified without knowing the initial vitamin C content and the specific conditions of the cooking process.",
+      "culinarystate": "Tomato A: water only\nFor tomato at step 2, the measured vitc value is EVD-002765=95.0% [EVD-002765]. This is taken from the cited evidence and nothing is inferred beyond it.\n\nTomato B: water and salt\nFor tomato at step 2, vitc is not known from the evidence available for this context. Reasons: measurement method platform: MEAS_HAS_3_ROWS_PE_METHOD_NULL. A nearby row exists (EVD-002765) but its number cannot be transferred to this context.\n\nTomato C: water, salt and vinegar\nFor tomato at step 2, vitc is not known from the evidence available for this context. Reasons: measurement method platform: MEAS_HAS_3_ROWS_PE_METHOD_NULL. A nearby row exists (EVD-002765) but its number cannot be transferred to this context.\n\nTomato D: water, salt, vinegar and oil\nFor tomato at step 2, vitc is not known from the evidence available for this context. Reasons: measurement method platform: MEAS_HAS_3_ROWS_PE_METHOD_NULL. A nearby row exists (EVD-002765) but its number cannot be transferred to this context.",
+      "why": "The evidence compiler uses the recorded pot state to restrict transfer. A receives a table report. B–D retain UNKNOWN.",
+      "limit": "Ingredient pH crosswalk is AI-drafted. Mixture pH remains unknown.",
+      "model": "qwen2.5:7b-instruct",
+      "date": "2026-11-17",
+      "source_run": "reports/final/screens/runs/tomato-a-d.json",
+      "status": "SIGNED_SNAPSHOT",
+      "unsourced_values": [
+        "Tomato B · 20"
+      ],
+      "source_sha256": "d6410520469e235302bfbc727f5c5f2eef47921be3e51a394e032429f81a8d4a"
+    },
+    {
+      "id": "carrots",
+      "question": "My carrots came out too soft and mushy. What should I change next time?",
+      "plain_model": "Reduce the boiling time to 5–7 minutes and test the carrots with a fork for doneness before draining. Alternatively, cut the carrots into larger pieces so they take longer to cook through.",
+      "culinarystate": "- Reduce the boil time: step 3 shows duration_min = 10 and a simulated thermal_dose_typical_min of 6.426; try 5–7 minutes instead.  \n- Cut larger pieces: step 2 records cell_integrity = CUT and step 3 piece_size_class = DICED (exact size unknown); use ½‑inch batons or larger dice to slow heat penetration.  \n- Add acid to the cooking water: step 3 acid_present = NO_RECOGNIZED_MARKER; a splash of lemon juice or vinegar helps stabilize pectin and keep carrots firmer.  \n- Salt the water: step 3 salt_present = NO_RECOGNIZED_MARKER; 1–2 % salt by weight can firm vegetable cell walls.  \n- Leave the lid off: step 3 lid_state = COVERED; uncovering reduces steam pressure and slightly lowers the effective cooking temperature.",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "date": "2026-11-20",
+      "source_run": "reports/final/screens/runs/carrots.json",
+      "status": "RECORDED_LIVE",
+      "why": "The system had access to cut, lid, time and simulated heat. The parser recognized zero structured citations in this answer.",
+      "limit": "The cooking advice remains unverified.",
+      "unsourced_values": [],
+      "plain_status": "OK",
+      "verify_detail": "0/0 cited state facts match the engine",
+      "source_sha256": "70ebe6e39b0e4b2955dd35051bff1f1737a4a04ab42c4e0dbd503629d8d6714b"
+    },
+    {
+      "id": "tomatoes",
+      "question": "How much vitamin C remains in the tomatoes after this recipe?",
+      "plain_model": "Boiling diced tomatoes for 15 minutes causes severe vitamin C loss—typically 60–80%—as the water-soluble vitamin leaches into the cooking water and degrades from prolonged heat exposure. The lid traps steam but does not prevent nutrient loss into the liquid, so most remaining vitamin C would be found in the cooking water rather than the tomatoes themselves.",
+      "culinarystate": "95.0% [EVD-002765]. The measurement method/platform is unknown.",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "date": "2026-11-20",
+      "source_run": "reports/final/screens/runs/tomatoes.json",
+      "status": "RECORDED_LIVE",
+      "why": "The claim packet allowed the cited table value under DIRECT and retained the measurement-method caveat.",
+      "limit": "The saved answers illustrate one case. Gold labels for judging response quality are unavailable.",
+      "unsourced_values": [
+        "60",
+        "80"
+      ],
+      "plain_status": "OK",
+      "evidence_ids": [
+        "EVD-002765"
+      ],
+      "source_sha256": "aea6c54eb9b736cbad361c2e01a1a15d6352736f0fa3a9493b1682aac1c43a08"
+    },
+    {
+      "id": "safety",
+      "question": "Is the chicken safe to eat?",
+      "plain_model": "Only public or self-written text may go to the hosted model.",
+      "culinarystate": "I can't answer food-safety questions (safe temperatures, doneness, bacteria, or how long food keeps), so I won't guess.",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b (configured only; no call)",
+      "date": "2026-11-20",
+      "source_run": "reports/final/screens/runs/safety.json",
+      "status": "RECORDED_LIVE_WITHOUT_PLAIN",
+      "why": "The system arm refuses before drafting. The plain comparison is separate. This capture used the preview with hosted sending disabled.",
+      "limit": "The refusal gives no safety determination.",
+      "unsourced_values": [],
+      "plain_status": "NOT_SENT_TEXT_NOT_SELF_WRITTEN",
+      "source_sha256": "995567018540b0e35f917525504e5b5139b08b8c9e71b1d64a563f9282569c08"
+    }
+  ]
+}

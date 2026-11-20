@@ -1,0 +1,1449 @@
+{
+  "labels": [
+    "DIAGNOSTIC_ONLY",
+    "NO_GOLD",
+    "LIVE_LLM_OUTPUT_UNVERIFIED_EXCEPT_BY_CLAIM_VERIFIER"
+  ],
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "question": "My carrots came out too soft and mushy. What should I change next time?",
+  "mode": "ADVICE",
+  "parsed": {
+    "target": null,
+    "question_kind": "PROCESS_EFFECT",
+    "food": "carrot",
+    "foods": [
+      "carrot"
+    ]
+  },
+  "states": [
+    {
+      "index": 0,
+      "food": "carrot",
+      "step": 2,
+      "action": "dice"
+    },
+    {
+      "index": 1,
+      "food": "carrot",
+      "step": 3,
+      "action": "Boil"
+    },
+    {
+      "index": 2,
+      "food": "carrot",
+      "step": 4,
+      "action": "Drain"
+    }
+  ],
+  "trace": [
+    {
+      "step": 2,
+      "action": "dice",
+      "food": "carrot",
+      "known": {
+        "process": "PROC-000045 dice",
+        "family": "MECHANICAL_CUT",
+        "lot_members": [
+          "carrot"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": false,
+        "heat_steps_so_far": 0,
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "hot_aqueous_minutes": 0,
+        "hot_fat_minutes": 0
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "lipid_present": "NO_RECOGNIZED_MARKER",
+        "aqueous_present": "NO_RECOGNIZED_MARKER",
+        "contact_phase": "MEDIUM_UNKNOWN",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "medium": "UNKNOWN",
+        "temperature_C": "UNKNOWN",
+        "duration_min": "UNKNOWN",
+        "lid_state": "UNKNOWN",
+        "piece_size_class": "UNKNOWN",
+        "matrix_class": "UNKNOWN",
+        "start_mode": "UNKNOWN",
+        "thermal_state": "NOT_A_HEAT_EVENT",
+        "food_T_typical_C": "NOT_A_HEAT_EVENT",
+        "moisture_cap_C": "NOT_A_HEAT_EVENT",
+        "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+        "cumulative_thermal_dose_min": "NOT_HEATED_YET",
+        "oxygen_exposure_proxy": "NO_LID_CUE"
+      }
+    },
+    {
+      "step": 3,
+      "action": "Boil",
+      "food": "carrot",
+      "known": {
+        "process": "PROC-000019 boil",
+        "family": "WET_HEAT",
+        "lot_members": [
+          "carrot",
+          "water"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": true,
+        "heat_steps_so_far": 1,
+        "aqueous_present": true,
+        "contact_phase": "AQUEOUS",
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "medium": "WATER",
+        "temperature_C": "100",
+        "duration_min": "10",
+        "lid_state": "COVERED",
+        "piece_size_class": "DICED",
+        "hot_aqueous_minutes": 10,
+        "hot_fat_minutes": 0,
+        "thermal_state": "SCENARIO_COMPUTED",
+        "food_T_typical_C": 100,
+        "moisture_cap_C": 100,
+        "thermal_dose_typical_min": 6.426,
+        "cumulative_thermal_dose_min": 6.426,
+        "oxygen_exposure_proxy": "LIMITED_LID"
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "lipid_present": "NO_RECOGNIZED_MARKER",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "matrix_class": "NO_FOOD_GROUP",
+        "start_mode": "NO_START_CUE"
+      }
+    },
+    {
+      "step": 4,
+      "action": "Drain",
+      "food": "carrot",
+      "known": {
+        "process": "PROC-000078 drain",
+        "family": "SEPARATION",
+        "lot_members": [
+          "carrot"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": false,
+        "heat_steps_so_far": 1,
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "hot_aqueous_minutes": 10,
+        "hot_fat_minutes": 0,
+        "cumulative_thermal_dose_min": 6.426
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "lipid_present": "NO_RECOGNIZED_MARKER",
+        "aqueous_present": "NO_RECOGNIZED_MARKER",
+        "contact_phase": "MEDIUM_UNKNOWN",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "medium": "UNKNOWN",
+        "temperature_C": "UNKNOWN",
+        "duration_min": "UNKNOWN",
+        "lid_state": "UNKNOWN",
+        "piece_size_class": "UNKNOWN",
+        "matrix_class": "UNKNOWN",
+        "start_mode": "UNKNOWN",
+        "thermal_state": "NOT_A_HEAT_EVENT",
+        "food_T_typical_C": "NOT_A_HEAT_EVENT",
+        "moisture_cap_C": "NOT_A_HEAT_EVENT",
+        "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+        "oxygen_exposure_proxy": "NO_LID_CUE"
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "step": 2,
+      "action": "dice",
+      "food": "carrot",
+      "counts": {
+        "FILLED": 10,
+        "NOT_APPLICABLE": 5,
+        "UNKNOWN": 14
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000045 dice",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "MECHANICAL_CUT",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "carrot"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": false,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 0,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "MEDIUM_UNKNOWN"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_HEATED_YET"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "action": "Boil",
+      "food": "carrot",
+      "counts": {
+        "FILLED": 23,
+        "NOT_APPLICABLE": 0,
+        "UNKNOWN": 6
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000019 boil",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "WET_HEAT",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "carrot",
+            "water"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": true,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 1,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "FILLED",
+          "value": true,
+          "source": "MARKER_TABLE_V2:ING-000109; USDA_SR_LEGACY_2018_04:fdc:173647:water_g_per_100g=99.9; PHYSICS_V06_L1:WATER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "FILLED",
+          "value": "AQUEOUS",
+          "source": "CONTEXT_AXES_V12"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "WATER",
+          "source": "PROCESS_DEFINITION"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "100",
+          "source": "PHYSICAL_DEFINITION"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "10",
+          "source": "TEXT_STATED"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "COVERED",
+          "source": "CUE"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "DICED",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_FOOD_GROUP"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_START_CUE"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 10,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": "SCENARIO_COMPUTED",
+          "source": "PHYSICS_V06_L2"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 6.426,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 6.426,
+          "source": "SUM_SCENARIO"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": "LIMITED_LID",
+          "source": "LID_STATE_PROXY"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "action": "Drain",
+      "food": "carrot",
+      "counts": {
+        "FILLED": 11,
+        "NOT_APPLICABLE": 4,
+        "UNKNOWN": 14
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000078 drain",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "SEPARATION",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "carrot"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": false,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 1,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "MEDIUM_UNKNOWN"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 10,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 6.426,
+          "source": "SUM_SCENARIO"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        }
+      ]
+    }
+  ],
+  "context": {
+    "where_you_are": {
+      "food": "carrot",
+      "current_step": 4,
+      "action": "Drain",
+      "total_steps": 4,
+      "hot_aqueous_minutes_so_far": 10,
+      "hot_fat_minutes_so_far": 0
+    },
+    "state_trace": [
+      {
+        "step": 2,
+        "action": "dice",
+        "food": "carrot",
+        "known": {
+          "process": "PROC-000045 dice",
+          "family": "MECHANICAL_CUT",
+          "lot_members": [
+            "carrot"
+          ],
+          "cell_integrity": "CUT",
+          "is_heat_step": false,
+          "heat_steps_so_far": 0,
+          "salt_exposure_before": false,
+          "acid_exposure_before": false,
+          "hot_aqueous_minutes": 0,
+          "hot_fat_minutes": 0
+        },
+        "unknown": {
+          "salt_present": "NO_RECOGNIZED_MARKER",
+          "acid_present": "NO_RECOGNIZED_MARKER",
+          "lipid_present": "NO_RECOGNIZED_MARKER",
+          "aqueous_present": "NO_RECOGNIZED_MARKER",
+          "contact_phase": "MEDIUM_UNKNOWN",
+          "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+          "medium": "UNKNOWN",
+          "temperature_C": "UNKNOWN",
+          "duration_min": "UNKNOWN",
+          "lid_state": "UNKNOWN",
+          "piece_size_class": "UNKNOWN",
+          "matrix_class": "UNKNOWN",
+          "start_mode": "UNKNOWN",
+          "thermal_state": "NOT_A_HEAT_EVENT",
+          "food_T_typical_C": "NOT_A_HEAT_EVENT",
+          "moisture_cap_C": "NOT_A_HEAT_EVENT",
+          "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+          "cumulative_thermal_dose_min": "NOT_HEATED_YET",
+          "oxygen_exposure_proxy": "NO_LID_CUE"
+        }
+      },
+      {
+        "step": 3,
+        "action": "Boil",
+        "food": "carrot",
+        "known": {
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "lot_members": [
+            "carrot",
+            "water"
+          ],
+          "cell_integrity": "CUT",
+          "is_heat_step": true,
+          "heat_steps_so_far": 1,
+          "aqueous_present": true,
+          "contact_phase": "AQUEOUS",
+          "salt_exposure_before": false,
+          "acid_exposure_before": false,
+          "medium": "WATER",
+          "temperature_C": "100",
+          "duration_min": "10",
+          "lid_state": "COVERED",
+          "piece_size_class": "DICED",
+          "hot_aqueous_minutes": 10,
+          "hot_fat_minutes": 0,
+          "thermal_state": "SCENARIO_COMPUTED",
+          "food_T_typical_C": 100,
+          "moisture_cap_C": 100,
+          "thermal_dose_typical_min": 6.426,
+          "cumulative_thermal_dose_min": 6.426,
+          "oxygen_exposure_proxy": "LIMITED_LID"
+        },
+        "unknown": {
+          "salt_present": "NO_RECOGNIZED_MARKER",
+          "acid_present": "NO_RECOGNIZED_MARKER",
+          "lipid_present": "NO_RECOGNIZED_MARKER",
+          "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+          "matrix_class": "NO_FOOD_GROUP",
+          "start_mode": "NO_START_CUE"
+        }
+      },
+      {
+        "step": 4,
+        "action": "Drain",
+        "food": "carrot",
+        "known": {
+          "process": "PROC-000078 drain",
+          "family": "SEPARATION",
+          "lot_members": [
+            "carrot"
+          ],
+          "cell_integrity": "CUT",
+          "is_heat_step": false,
+          "heat_steps_so_far": 1,
+          "salt_exposure_before": false,
+          "acid_exposure_before": false,
+          "hot_aqueous_minutes": 10,
+          "hot_fat_minutes": 0,
+          "cumulative_thermal_dose_min": 6.426
+        },
+        "unknown": {
+          "salt_present": "NO_RECOGNIZED_MARKER",
+          "acid_present": "NO_RECOGNIZED_MARKER",
+          "lipid_present": "NO_RECOGNIZED_MARKER",
+          "aqueous_present": "NO_RECOGNIZED_MARKER",
+          "contact_phase": "MEDIUM_UNKNOWN",
+          "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+          "medium": "UNKNOWN",
+          "temperature_C": "UNKNOWN",
+          "duration_min": "UNKNOWN",
+          "lid_state": "UNKNOWN",
+          "piece_size_class": "UNKNOWN",
+          "matrix_class": "UNKNOWN",
+          "start_mode": "UNKNOWN",
+          "thermal_state": "NOT_A_HEAT_EVENT",
+          "food_T_typical_C": "NOT_A_HEAT_EVENT",
+          "moisture_cap_C": "NOT_A_HEAT_EVENT",
+          "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+          "oxygen_exposure_proxy": "NO_LID_CUE"
+        }
+      }
+    ],
+    "changes": [
+      {
+        "from_step": 2,
+        "to_step": 3,
+        "changes": [
+          {
+            "field": "family",
+            "kind": "CHANGED",
+            "before": "MECHANICAL_CUT",
+            "after": "WET_HEAT"
+          },
+          {
+            "field": "heat_steps_so_far",
+            "kind": "CHANGED",
+            "before": 0,
+            "after": 1
+          },
+          {
+            "field": "is_heat_step",
+            "kind": "CHANGED",
+            "before": false,
+            "after": true
+          },
+          {
+            "field": "lot_members",
+            "kind": "CHANGED",
+            "before": [
+              "carrot"
+            ],
+            "after": [
+              "carrot",
+              "water"
+            ]
+          },
+          {
+            "field": "process",
+            "kind": "CHANGED",
+            "before": "PROC-000045 dice",
+            "after": "PROC-000019 boil"
+          },
+          {
+            "field": "aqueous_present",
+            "kind": "CHANGED",
+            "before": "NO_RECOGNIZED_MARKER",
+            "after": true
+          },
+          {
+            "field": "contact_phase",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "AQUEOUS"
+          },
+          {
+            "field": "cumulative_thermal_dose_min",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": 6.426
+          },
+          {
+            "field": "duration_min",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "10"
+          },
+          {
+            "field": "food_T_typical_C",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": 100
+          },
+          {
+            "field": "hot_aqueous_minutes",
+            "kind": "CHANGED",
+            "before": 0,
+            "after": 10
+          },
+          {
+            "field": "lid_state",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "COVERED"
+          },
+          {
+            "field": "matrix_class",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "medium",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "WATER"
+          },
+          {
+            "field": "moisture_cap_C",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": 100
+          },
+          {
+            "field": "oxygen_exposure_proxy",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "LIMITED_LID"
+          },
+          {
+            "field": "piece_size_class",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "DICED"
+          },
+          {
+            "field": "start_mode",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "temperature_C",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "100"
+          },
+          {
+            "field": "thermal_dose_typical_min",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": 6.426
+          },
+          {
+            "field": "thermal_state",
+            "kind": "RESOLVED",
+            "before": null,
+            "after": "SCENARIO_COMPUTED"
+          }
+        ]
+      },
+      {
+        "from_step": 3,
+        "to_step": 4,
+        "changes": [
+          {
+            "field": "family",
+            "kind": "CHANGED",
+            "before": "WET_HEAT",
+            "after": "SEPARATION"
+          },
+          {
+            "field": "is_heat_step",
+            "kind": "CHANGED",
+            "before": true,
+            "after": false
+          },
+          {
+            "field": "lot_members",
+            "kind": "CHANGED",
+            "before": [
+              "carrot",
+              "water"
+            ],
+            "after": [
+              "carrot"
+            ]
+          },
+          {
+            "field": "process",
+            "kind": "CHANGED",
+            "before": "PROC-000019 boil",
+            "after": "PROC-000078 drain"
+          },
+          {
+            "field": "aqueous_present",
+            "kind": "CHANGED",
+            "before": true,
+            "after": "NO_RECOGNIZED_MARKER"
+          },
+          {
+            "field": "contact_phase",
+            "kind": "BECAME_UNKNOWN",
+            "before": "AQUEOUS",
+            "after": null
+          },
+          {
+            "field": "duration_min",
+            "kind": "BECAME_UNKNOWN",
+            "before": "10",
+            "after": null
+          },
+          {
+            "field": "food_T_typical_C",
+            "kind": "BECAME_UNKNOWN",
+            "before": 100,
+            "after": null
+          },
+          {
+            "field": "lid_state",
+            "kind": "BECAME_UNKNOWN",
+            "before": "COVERED",
+            "after": null
+          },
+          {
+            "field": "matrix_class",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "medium",
+            "kind": "BECAME_UNKNOWN",
+            "before": "WATER",
+            "after": null
+          },
+          {
+            "field": "moisture_cap_C",
+            "kind": "BECAME_UNKNOWN",
+            "before": 100,
+            "after": null
+          },
+          {
+            "field": "oxygen_exposure_proxy",
+            "kind": "BECAME_UNKNOWN",
+            "before": "LIMITED_LID",
+            "after": null
+          },
+          {
+            "field": "piece_size_class",
+            "kind": "BECAME_UNKNOWN",
+            "before": "DICED",
+            "after": null
+          },
+          {
+            "field": "start_mode",
+            "kind": "CHANGED",
+            "before": null,
+            "after": null
+          },
+          {
+            "field": "temperature_C",
+            "kind": "BECAME_UNKNOWN",
+            "before": "100",
+            "after": null
+          },
+          {
+            "field": "thermal_dose_typical_min",
+            "kind": "BECAME_UNKNOWN",
+            "before": 6.426,
+            "after": null
+          },
+          {
+            "field": "thermal_state",
+            "kind": "BECAME_UNKNOWN",
+            "before": "SCENARIO_COMPUTED",
+            "after": null
+          }
+        ]
+      }
+    ],
+    "evidence_match_current_step": {
+      "vitc": {
+        "route": "UNKNOWN",
+        "route_basis": "COMPOSITION_NO_STATED_DIFFERENCE",
+        "axis_match": {
+          "salt": "NO_STATED_DIFFERENCE",
+          "acid": "NO_STATED_DIFFERENCE",
+          "lipid": "NO_STATED_DIFFERENCE"
+        },
+        "evidence_found": []
+      },
+      "lycopene": {
+        "route": "UNKNOWN",
+        "route_basis": "COMPOSITION_NO_STATED_DIFFERENCE",
+        "axis_match": {
+          "salt": "NO_STATED_DIFFERENCE",
+          "acid": "NO_STATED_DIFFERENCE",
+          "lipid": "NO_STATED_DIFFERENCE"
+        },
+        "evidence_found": []
+      }
+    },
+    "similar_public_recipe_reference": {
+      "note": "A DIFFERENT recipe (public, Wikibooks) found by similarity search; its conditions are typical values for comparison, not facts about this kitchen.",
+      "title": "Carrot Jam",
+      "licence": "CC BY-SA (Wikibooks Cookbook)",
+      "heat_steps": [
+        {
+          "step": 1,
+          "action": "Boil",
+          "food": "carrot",
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 3,
+          "action": "boil",
+          "food": "sugar",
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": [
+            "15",
+            "20"
+          ],
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        }
+      ]
+    },
+    "similar_recipes_found_in_corpus": 4893
+  },
+  "evidence": [],
+  "similar": {
+    "search": {
+      "query_foods": [
+        "carrot"
+      ],
+      "query_processes": [
+        "boil"
+      ],
+      "counts": {
+        "A1_BBC_GOOD_FOOD": 161,
+        "FOODCOM": 4454,
+        "GUTENBERG_SEGMENT": 260,
+        "WIKIBOOKS": 18
+      },
+      "shown": [
+        {
+          "id": "WIKIBOOKS:484606",
+          "family": "WIKIBOOKS",
+          "title": "Carrot Cookies",
+          "score": 0.64,
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Carrot_Cookies",
+          "licence": "CC BY-SA (Wikibooks Cookbook)",
+          "steps_available": true
+        },
+        {
+          "id": "WIKIBOOKS:447638",
+          "family": "WIKIBOOKS",
+          "title": "Sweet Carrot Juice",
+          "score": 0.463,
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Sweet_Carrot_Juice",
+          "licence": "CC BY-SA (Wikibooks Cookbook)",
+          "steps_available": true
+        },
+        {
+          "id": "REC-082204",
+          "family": "GUTENBERG_SEGMENT",
+          "title": "To Boil Carrots",
+          "score": 0.935,
+          "url": null,
+          "licence": "Public domain (Project Gutenberg)",
+          "steps_available": false
+        },
+        {
+          "id": "REC-019792",
+          "family": "GUTENBERG_SEGMENT",
+          "title": "Carrots",
+          "score": 0.824,
+          "url": null,
+          "licence": "Public domain (Project Gutenberg)",
+          "steps_available": false
+        }
+      ],
+      "searched": 612903,
+      "min_score": 0.25,
+      "reference_id": "WIKIBOOKS:484606",
+      "reference_candidates": [
+        "WIKIBOOKS:484606",
+        "WIKIBOOKS:447638",
+        "WIKIBOOKS:56140",
+        "WIKIBOOKS:10049",
+        "WIKIBOOKS:177340"
+      ]
+    },
+    "reference": {
+      "id": "WIKIBOOKS:56140",
+      "title": "Carrot Jam",
+      "url": "https://en.wikibooks.org/wiki/Cookbook:Carrot_Jam",
+      "licence": "CC BY-SA (Wikibooks Cookbook)",
+      "heat_steps": [
+        {
+          "step": 1,
+          "action": "Boil",
+          "food": "carrot",
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": null,
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 3,
+          "action": "boil",
+          "food": "sugar",
+          "process": "PROC-000019 boil",
+          "family": "WET_HEAT",
+          "medium": "WATER",
+          "duration_min": [
+            "15",
+            "20"
+          ],
+          "temperature_C": "100",
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        }
+      ],
+      "same_process": true
+    }
+  },
+  "pipeline": [
+    {
+      "id": "parse",
+      "label": "Read recipe",
+      "status": "done",
+      "detail": "3 steps recognised",
+      "ms": 9
+    },
+    {
+      "id": "state",
+      "label": "Build state",
+      "status": "done",
+      "detail": "3 food states · foods: carrot",
+      "ms": null
+    },
+    {
+      "id": "simulate",
+      "label": "Physics simulation",
+      "status": "done",
+      "detail": "Boil (step 3, carrot): food 100 °C simulated, thermal dose 6.426 min simulated, 10 min stated, lid COVERED",
+      "ms": null
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence lookup",
+      "status": "done",
+      "detail": "0 evidence rows found for the current step (axis match checked)",
+      "ms": null
+    },
+    {
+      "id": "similar",
+      "label": "Similar recipes",
+      "status": "done",
+      "detail": "4893 similar of 612,903 recipes · reference: “Carrot Jam” (Wikibooks, same process)",
+      "ms": 176
+    },
+    {
+      "id": "model",
+      "label": "Ask model",
+      "status": "done",
+      "detail": "answered",
+      "ms": 12994
+    },
+    {
+      "id": "verify",
+      "label": "Verify",
+      "status": "done",
+      "detail": "0/0 cited state facts match the engine",
+      "ms": null
+    }
+  ],
+  "system": {
+    "status": "STATE_AWARE_ADVICE",
+    "route": null,
+    "packet": null,
+    "draft": "- Reduce the boil time: step 3 shows duration_min = 10 and a simulated thermal_dose_typical_min of 6.426; try 5–7 minutes instead.  \n- Cut larger pieces: step 2 records cell_integrity = CUT and step 3 piece_size_class = DICED (exact size unknown); use ½‑inch batons or larger dice to slow heat penetration.  \n- Add acid to the cooking water: step 3 acid_present = NO_RECOGNIZED_MARKER; a splash of lemon juice or vinegar helps stabilize pectin and keep carrots firmer.  \n- Salt the water: step 3 salt_present = NO_RECOGNIZED_MARKER; 1–2 % salt by weight can firm vegetable cell walls.  \n- Leave the lid off: step 3 lid_state = COVERED; uncovering reduces steam pressure and slightly lowers the effective cooking temperature.",
+    "draft_check": null,
+    "final": "- Reduce the boil time: step 3 shows duration_min = 10 and a simulated thermal_dose_typical_min of 6.426; try 5–7 minutes instead.  \n- Cut larger pieces: step 2 records cell_integrity = CUT and step 3 piece_size_class = DICED (exact size unknown); use ½‑inch batons or larger dice to slow heat penetration.  \n- Add acid to the cooking water: step 3 acid_present = NO_RECOGNIZED_MARKER; a splash of lemon juice or vinegar helps stabilize pectin and keep carrots firmer.  \n- Salt the water: step 3 salt_present = NO_RECOGNIZED_MARKER; 1–2 % salt by weight can firm vegetable cell walls.  \n- Leave the lid off: step 3 lid_state = COVERED; uncovering reduces steam pressure and slightly lowers the effective cooking temperature.",
+    "used_template": false,
+    "draft_call": {
+      "status": "OK",
+      "ms": 12994
+    },
+    "label": "AI_SUGGESTED_STATE_GROUNDED",
+    "warnings": [
+      "UNSOURCED_PERCENT: 2"
+    ],
+    "citations": []
+  },
+  "plain": {
+    "status": "OK",
+    "text": "Reduce the boiling time to 5–7 minutes and test the carrots with a fork for doneness before draining. Alternatively, cut the carrots into larger pieces so they take longer to cook through.",
+    "ms": 2320,
+    "warnings": []
+  },
+  "licence_hits": [],
+  "timing_ms": {
+    "pipeline": 9,
+    "similar": 176,
+    "total": 13181
+  }
+}

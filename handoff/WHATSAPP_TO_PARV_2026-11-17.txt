@@ -1,0 +1,22 @@
+Parv, handing CulinaryState over to you from here, I'm out on this one.
+
+Everything is pushed to branch kush/s181-explorer-build. Give your Claude this file first:
+handoff/PARV_HANDOVER_2026-11-17.md (PDF attached, same content). It has the full task list.
+
+New since yesterday:
+- signed snapshot demo + Explorer UI (Lab / Compare / Method)
+- /live page: same Nemotron model answers through our engine vs plain, with a live pipeline status, state + simulation, evidence and similar recipes from all 612k. Run ./tools/live_demo.sh
+
+You'll need:
+- your own NVIDIA key in ~/.config/culinarystate/nvidia.env (build.nvidia.com)
+- ledgers/recipe_base + data/interim/wikibooks from the private bundle (only for the similar-recipe tab)
+
+Only you can do these (an agent can't close them):
+1. hand-verify the 40 D1 literature rows
+2. get one chef/peer review of the 8 scenarios
+3. the 9-row proposal packet
+Packets are in reports/s181/human_audit/
+
+Your Claude does the rest: Vercel deploy (snapshot only), freeze, final report PDF, deck, submission package, rehearsal.
+
+Dates: freeze 19 Nov, submit 21 Nov, present 25-26 Nov.

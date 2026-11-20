@@ -1,0 +1,225 @@
+{
+ "version": "scenarios_v1",
+ "labels": [
+  "AI_DRAFTED_SCENARIOS",
+  "SELF_WRITTEN_RECIPE_TEXT_ONLY",
+  "NO_HUMAN_SIGNOFF_D085"
+ ],
+ "note": "Recipe texts written for this demo by the coding agent; no third-party recipe text. 'food' on a question is the canonical food name whose final state answers it.",
+ "scenarios": [
+  {
+   "id": "tomato-a",
+   "title": "Tomato A: water only",
+   "kind": "contrast",
+   "recipe_text": "Chop the tomatoes. Boil the tomatoes in water for 15 minutes.",
+   "questions": [
+    {
+     "id": "vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much vitamin C remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "lycopene-retention",
+     "target": "lycopene",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much lycopene remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "vitc-leaching",
+     "target": "vitc",
+     "question_kind": "LEACHING",
+     "food": "tomato",
+     "text": "Does vitamin C leach from the tomatoes into the cooking water in this recipe?"
+    }
+   ],
+   "teaches": "Baseline of the contrast: the recipe context matches a measured row, so a cited number may be stated."
+  },
+  {
+   "id": "tomato-b",
+   "title": "Tomato B: water and salt",
+   "kind": "contrast",
+   "recipe_text": "Chop the tomatoes. Boil the tomatoes in water with salt for 15 minutes.",
+   "questions": [
+    {
+     "id": "vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much vitamin C remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "lycopene-retention",
+     "target": "lycopene",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much lycopene remains in the tomatoes after this recipe?"
+    }
+   ],
+   "teaches": "One added ingredient (salt) changes the composition context of the lot."
+  },
+  {
+   "id": "tomato-c",
+   "title": "Tomato C: water, salt and vinegar",
+   "kind": "contrast",
+   "recipe_text": "Chop the tomatoes. Boil the tomatoes in water with salt and vinegar for 15 minutes.",
+   "questions": [
+    {
+     "id": "vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much vitamin C remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "lycopene-retention",
+     "target": "lycopene",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much lycopene remains in the tomatoes after this recipe?"
+    }
+   ],
+   "teaches": "Salt and acid together: the measured row is near evidence and its number may not be transferred."
+  },
+  {
+   "id": "tomato-d",
+   "title": "Tomato D: water, salt, vinegar and oil",
+   "kind": "contrast",
+   "recipe_text": "Chop the tomatoes. Boil the tomatoes in water with salt, vinegar and olive oil for 15 minutes.",
+   "questions": [
+    {
+     "id": "vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much vitamin C remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "lycopene-retention",
+     "target": "lycopene",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much lycopene remains in the tomatoes after this recipe?"
+    }
+   ],
+   "teaches": "Adds a lipid to the lot; three composition axes now differ from the measured context."
+  },
+  {
+   "id": "sauce-coref",
+   "title": "Lineage: 'the sauce' continues an earlier lot",
+   "kind": "lineage_coreference",
+   "recipe_text": "Chop the tomatoes and the onions. Fry the onions in olive oil for 5 minutes. Add the tomatoes and salt. Simmer the mixture for 20 minutes. Blend the sauce until smooth.",
+   "questions": [
+    {
+     "id": "vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much vitamin C remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "lycopene-retention",
+     "target": "lycopene",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much lycopene remains in the tomatoes after this recipe?"
+    }
+   ],
+   "teaches": "'The mixture' and 'the sauce' are not new ingredients; they must continue a lot that already exists."
+  },
+  {
+   "id": "acid-alternatives",
+   "title": "Alternatives: lemon juice or vinegar",
+   "kind": "alternatives",
+   "recipe_text": "Chop the tomatoes. Boil the tomatoes in water with lemon juice or vinegar for 15 minutes.",
+   "questions": [
+    {
+     "id": "vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much vitamin C remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "lycopene-retention",
+     "target": "lycopene",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much lycopene remains in the tomatoes after this recipe?"
+    }
+   ],
+   "teaches": "'A or B' is a choice, not two facts: the lot must not contain both."
+  },
+  {
+   "id": "cut-dice",
+   "title": "Explicit cut: diced tomatoes",
+   "kind": "explicit_cut",
+   "recipe_text": "Dice the tomatoes. Boil the tomatoes in water for 15 minutes.",
+   "questions": [
+    {
+     "id": "vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much vitamin C remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "lycopene-retention",
+     "target": "lycopene",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much lycopene remains in the tomatoes after this recipe?"
+    }
+   ],
+   "teaches": "A stated cut is carried forward as piece-size history into the later heat step."
+  },
+  {
+   "id": "cut-mixed",
+   "title": "Explicit cuts on two foods that are later combined",
+   "kind": "explicit_cut_two_foods",
+   "recipe_text": "Dice the tomatoes. Slice the carrots. Boil the carrots in water for 10 minutes. Add the tomatoes to the carrots. Simmer for 5 minutes.",
+   "questions": [
+    {
+     "id": "vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much vitamin C remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "lycopene-retention",
+     "target": "lycopene",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "tomato",
+     "text": "How much lycopene remains in the tomatoes after this recipe?"
+    },
+    {
+     "id": "carrot-vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "carrot",
+     "text": "How much vitamin C remains in the carrots after this recipe?"
+    }
+   ],
+   "teaches": "Two foods with different cuts merged into one lot; included because the engine output here needs a reader's scrutiny (see findings)."
+  },
+  {
+   "id": "banana-abstain",
+   "title": "Abstention: baked mashed banana",
+   "kind": "abstention",
+   "recipe_text": "Peel the bananas. Mash the bananas. Bake for 30 minutes.",
+   "questions": [
+    {
+     "id": "vitc-retention",
+     "target": "vitc",
+     "question_kind": "RETENTION_NUMERIC",
+     "food": "banana",
+     "text": "How much vitamin C remains in the bananas after this recipe?"
+    }
+   ],
+   "teaches": "No evidence row fits this food and process, so the answer is an abstention with its reasons."
+  }
+ ]
+}

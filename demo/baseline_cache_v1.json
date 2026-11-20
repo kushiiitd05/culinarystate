@@ -1,0 +1,183 @@
+{
+ "entries": {
+  "09d822d27fe52543a0142c64986181eeba031ad86bc1fd98bf573b39a7e7c9be": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water with salt for 15 minutes.\n\nQuestion: How much lycopene remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "lycopene-retention",
+   "scenario_id": "tomato-b",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The boiling process can break down some of the cell walls, making lycopene more readily available to the body, but it does not significantly reduce the total amount of lycopene in the tomatoes. However, a 15-minute boil might slightly decrease the lycopene content compared to raw tomatoes, though this reduction is generally minimal."
+  },
+  "1c736dad7b82c3e40bdeabe3cb68056f3a3047da81eb1991c087729e71ee596d": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water for 15 minutes.\n\nQuestion: How much lycopene remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "lycopene-retention",
+   "scenario_id": "tomato-a",
+   "status": "OK",
+   "temperature": 0,
+   "text": "After boiling tomatoes for 15 minutes, some of the lycopene content may be lost due to heat exposure, but a significant amount is still retained and can be beneficial for health. The exact percentage of lycopene remaining would depend on various factors including the initial concentration and the specific conditions of the boiling process."
+  },
+  "1f90caf00b4819bbc9e876954b020f247acaf166a20d600b23612cab832957f9": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water with lemon juice or vinegar for 15 minutes.\n\nQuestion: How much lycopene remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "lycopene-retention",
+   "scenario_id": "acid-alternatives",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The boiling process can increase the availability of lycopene, a carotenoid antioxidant, due to the breakdown of cell walls in tomatoes. However, while some lycopene is likely to remain and may even become more accessible, it's difficult to quantify exactly how much without specific testing, as this can vary based on factors such as cooking time and method."
+  },
+  "4c0f04eb617ec60111b2d18878ed5825d5b36cc7e1ca88ea4e5c4f2bade0a9da": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water with salt and vinegar for 15 minutes.\n\nQuestion: How much vitamin C remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "vitc-retention",
+   "scenario_id": "tomato-c",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The boiling process can reduce the amount of vitamin C in tomatoes, but the addition of salt and vinegar might slightly preserve some of it due to their acidity. However, without specific values for the initial vitamin C content and the exact conditions of cooking, an exact percentage cannot be provided."
+  },
+  "5a9febae4feaf63c08480fff78da862f09263ba316df7ea0c9ed9f4e323b6d54": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Dice the tomatoes. Slice the carrots. Boil the carrots in water for 10 minutes. Add the tomatoes to the carrots. Simmer for 5 minutes.\n\nQuestion: How much lycopene remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "lycopene-retention",
+   "scenario_id": "cut-mixed",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The amount of lycopene remaining in the tomatoes after this recipe is likely to be similar to that before cooking, as boiling does not significantly degrade lycopene. However, some loss may occur due to the heat and liquid exposure during simmering, though it would be minimal under these conditions."
+  },
+  "73c12eb08cf706558e970057fcf6b68f42778df88e1d645fef952376f66a8151": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Dice the tomatoes. Slice the carrots. Boil the carrots in water for 10 minutes. Add the tomatoes to the carrots. Simmer for 5 minutes.\n\nQuestion: How much vitamin C remains in the carrots after this recipe? Answer in two sentences.",
+   "question_id": "carrot-vitc-retention",
+   "scenario_id": "cut-mixed",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The amount of vitamin C remaining in the carrots after boiling them for 10 minutes and then simmering with tomatoes for an additional 5 minutes would be reduced, but it is difficult to quantify without specific data on the initial vitamin C content and the exact cooking conditions. Generally, prolonged heating can lead to a significant loss of water-soluble vitamins like vitamin C."
+  },
+  "7502f74a717857d81c5727f29073b4c4af2ed134d50b367f4c7a6525e17d991a": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water with lemon juice or vinegar for 15 minutes.\n\nQuestion: How much vitamin C remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "vitc-retention",
+   "scenario_id": "acid-alternatives",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The boiling of tomatoes with lemon juice or vinegar can enhance the solubility and absorption of certain nutrients, including vitamin C, making more of it available. However, prolonged heating can lead to some loss of vitamin C, so while there will still be significant amounts remaining, it may not be as high as raw tomatoes."
+  },
+  "7e4df29acad6bbbd193fba75ad6a6902e9c86758fa85dc6fb09aa17c5de1444c": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes and the onions. Fry the onions in olive oil for 5 minutes. Add the tomatoes and salt. Simmer the mixture for 20 minutes. Blend the sauce until smooth.\n\nQuestion: How much lycopene remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "lycopene-retention",
+   "scenario_id": "sauce-coref",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The cooking process described, including chopping, frying, simmering, and blending, does not significantly reduce the amount of lycopene in the tomatoes. However, some lycopene may be lost during the high-heat frying step, though it is generally well-preserved due to the short duration at that temperature."
+  },
+  "806421e9436db396d46b7e981972e48ac0c4955a3ff520a9f13b58989b27473e": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water with salt, vinegar and olive oil for 15 minutes.\n\nQuestion: How much lycopene remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "lycopene-retention",
+   "scenario_id": "tomato-d",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The process of boiling tomatoes in water with salt, vinegar, and olive oil for 15 minutes can increase the bioavailability of lycopene due to the heat treatment, though some lycopene may still be lost. Typically, about 20-30% of the initial lycopene content remains after such processing."
+  },
+  "87166a74952f48f6d87beaba42d81c1ae86eacca9c051a9f7f11cdc8d0a5e348": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water with salt and vinegar for 15 minutes.\n\nQuestion: How much lycopene remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "lycopene-retention",
+   "scenario_id": "tomato-c",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The amount of lycopene remaining in the tomatoes after boiling them in water with salt and vinegar for 15 minutes is likely to be significantly reduced due to heat exposure, though some lycopene will still remain. The exact percentage can vary but generally, cooking tomatoes can lead to a loss of about 20-30% of their lycopene content."
+  },
+  "9036e2f1a85194f55d8f1ce89a58a202083a20b3538df6170987a4df23a81bfc": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Dice the tomatoes. Boil the tomatoes in water for 15 minutes.\n\nQuestion: How much vitamin C remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "vitc-retention",
+   "scenario_id": "cut-dice",
+   "status": "OK",
+   "temperature": 0,
+   "text": "After boiling tomatoes for 15 minutes, some of the vitamin C content will be lost due to heat exposure, but the exact amount remaining cannot be precisely quantified without specific data on initial vitamin C levels and thermal degradation rates. Generally, a significant portion of the vitamin C is retained, though not fully preserved."
+  },
+  "9359544496704b260ffd34169073d0744da760f2625d9b4dfa28d10bd8be0685": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water for 15 minutes.\n\nQuestion: How much vitamin C remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "vitc-retention",
+   "scenario_id": "tomato-a",
+   "status": "OK",
+   "temperature": 0,
+   "text": "After boiling tomatoes in water for 15 minutes, some of the vitamin C content will be lost due to heat exposure and leaching into the cooking water. The exact amount of remaining vitamin C cannot be precisely determined without knowing the initial concentration and the specific conditions of the boiling process."
+  },
+  "b4441c59c0e698c110885915a63e02b2a36ebac30f6b9493481d998377455265": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Dice the tomatoes. Slice the carrots. Boil the carrots in water for 10 minutes. Add the tomatoes to the carrots. Simmer for 5 minutes.\n\nQuestion: How much vitamin C remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "vitc-retention",
+   "scenario_id": "cut-mixed",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The cooking process described, including boiling the carrots and then simmering with the tomatoes, generally does not significantly affect the vitamin C content of the tomatoes. However, prolonged heat exposure can lead to some loss of vitamin C, though 10-15 minutes of total cooking time is relatively short and would result in minimal loss."
+  },
+  "c26e08ed9de75a70ce42b2281829d3090bc43cbc8c57b7ae72d04f9c8a92f42a": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes and the onions. Fry the onions in olive oil for 5 minutes. Add the tomatoes and salt. Simmer the mixture for 20 minutes. Blend the sauce until smooth.\n\nQuestion: How much vitamin C remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "vitc-retention",
+   "scenario_id": "sauce-coref",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The cooking process described, including chopping, frying, and simmering, can reduce the vitamin C content in tomatoes, but it typically retains a significant portion of its initial value. The exact amount of remaining vitamin C would depend on factors such as cooking time, temperature, and individual tomato variety."
+  },
+  "d8d3e7561bf32c181d0a97ec0417fef2fc1c1b672e30bee4796a56f03919b445": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Peel the bananas. Mash the bananas. Bake for 30 minutes.\n\nQuestion: How much vitamin C remains in the bananas after this recipe? Answer in two sentences.",
+   "question_id": "vitc-retention",
+   "scenario_id": "banana-abstain",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The baking process itself does not significantly reduce the amount of vitamin C in bananas; however, prolonged exposure to heat can lead to some loss. Given the short baking time of 30 minutes, the vitamin C content would likely remain relatively high but slightly reduced from its original level."
+  },
+  "e4389b104fdb2dec7ee6207e3d4a7727f7b06f8cac0a742aa32b8f5a277de17d": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Dice the tomatoes. Boil the tomatoes in water for 15 minutes.\n\nQuestion: How much lycopene remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "lycopene-retention",
+   "scenario_id": "cut-dice",
+   "status": "OK",
+   "temperature": 0,
+   "text": "After boiling tomatoes for 15 minutes, some of the lycopene content may be released into the water, but a significant amount remains within the tomatoes. The exact percentage of lycopene remaining would depend on various factors including the initial concentration and the specific conditions of the boiling process."
+  },
+  "f1287b3f3a8a3e37e12a8b183cc66c4b30e7df33b22deca89404828f33bad9d6": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water with salt, vinegar and olive oil for 15 minutes.\n\nQuestion: How much vitamin C remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "vitc-retention",
+   "scenario_id": "tomato-d",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The amount of vitamin C remaining in the tomatoes after boiling them in water with salt, vinegar, and olive oil for 15 minutes would be significantly reduced compared to raw tomatoes, as heat can degrade vitamin C. However, the exact percentage retained cannot be specified without knowing the initial vitamin C content and the specific conditions of the cooking process."
+  },
+  "f8eba4585734f404afaaf17c7317918920ac10572b0cfdb7c8cb524879fe4f62": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water for 15 minutes.\n\nQuestion: Does vitamin C leach from the tomatoes into the cooking water in this recipe? Answer in two sentences.",
+   "question_id": "vitc-leaching",
+   "scenario_id": "tomato-a",
+   "status": "OK",
+   "temperature": 0,
+   "text": "Yes, some vitamin C can leach into the cooking water when tomatoes are boiled for an extended period like 15 minutes. To minimize vitamin C loss, consider using methods that require less cooking time or adding the tomatoes towards the end of the cooking process."
+  },
+  "fa453b855ec6b70252910f7ad299688acc7b0898d55a3e59fe7c36f7d99770c4": {
+   "model": "qwen2.5:7b-instruct",
+   "prompt": "Recipe: Chop the tomatoes. Boil the tomatoes in water with salt for 15 minutes.\n\nQuestion: How much vitamin C remains in the tomatoes after this recipe? Answer in two sentences.",
+   "question_id": "vitc-retention",
+   "scenario_id": "tomato-b",
+   "status": "OK",
+   "temperature": 0,
+   "text": "The boiling process can reduce the amount of vitamin C in tomatoes, and depending on the duration and temperature, approximately 20-30% of the vitamin C may be lost during this cooking method. However, the exact percentage of remaining vitamin C cannot be precisely determined without knowing the initial content and specific conditions of the cooking process."
+  }
+ },
+ "labels": [
+  "DIAGNOSTIC_ONLY",
+  "NOT_SYSTEM_OUTPUT",
+  "UNVERIFIED",
+  "NO_EVIDENCE_IDS"
+ ],
+ "note": "One model, one prompt, temperature 0, no gold. Replies verbatim.",
+ "record": "B0_LLM_ONLY_BASELINE_CACHE"
+}

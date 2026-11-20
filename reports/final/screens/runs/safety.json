@@ -1,0 +1,723 @@
+{
+  "labels": [
+    "DIAGNOSTIC_ONLY",
+    "NO_GOLD",
+    "LIVE_LLM_OUTPUT_UNVERIFIED_EXCEPT_BY_CLAIM_VERIFIER"
+  ],
+  "model": "nvidia/nemotron-3-ultra-550b-a55b",
+  "question": "Is the chicken safe to eat?",
+  "mode": "SAFETY",
+  "parsed": {
+    "target": null,
+    "question_kind": "RETENTION_NUMERIC",
+    "food": "chicken",
+    "foods": [
+      "chicken"
+    ]
+  },
+  "states": [
+    {
+      "index": 0,
+      "food": "chicken",
+      "step": 1,
+      "action": "Cut"
+    },
+    {
+      "index": 1,
+      "food": "chicken",
+      "step": 2,
+      "action": "Fry"
+    }
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "action": "Cut",
+      "food": "chicken",
+      "known": {
+        "process": "PROC-000046 cut",
+        "family": "MECHANICAL_CUT",
+        "lot_members": [
+          "chicken"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": false,
+        "heat_steps_so_far": 0,
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "hot_aqueous_minutes": 0,
+        "hot_fat_minutes": 0
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "lipid_present": "NO_RECOGNIZED_MARKER",
+        "aqueous_present": "NO_RECOGNIZED_MARKER",
+        "contact_phase": "MEDIUM_UNKNOWN",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "medium": "UNKNOWN",
+        "temperature_C": "UNKNOWN",
+        "duration_min": "UNKNOWN",
+        "lid_state": "UNKNOWN",
+        "piece_size_class": "UNKNOWN",
+        "matrix_class": "UNKNOWN",
+        "start_mode": "UNKNOWN",
+        "thermal_state": "NOT_A_HEAT_EVENT",
+        "food_T_typical_C": "NOT_A_HEAT_EVENT",
+        "moisture_cap_C": "NOT_A_HEAT_EVENT",
+        "thermal_dose_typical_min": "NOT_A_HEAT_EVENT",
+        "cumulative_thermal_dose_min": "NOT_HEATED_YET",
+        "oxygen_exposure_proxy": "NO_LID_CUE"
+      }
+    },
+    {
+      "step": 2,
+      "action": "Fry",
+      "food": "chicken",
+      "known": {
+        "process": "PROC-000009 fry",
+        "family": "FAT_HEAT",
+        "lot_members": [
+          "chicken",
+          "oil"
+        ],
+        "cell_integrity": "CUT",
+        "is_heat_step": true,
+        "heat_steps_so_far": 1,
+        "lipid_present": true,
+        "contact_phase": "LIPID",
+        "salt_exposure_before": false,
+        "acid_exposure_before": false,
+        "medium": "PAN_CONTACT_OIL",
+        "duration_min": "6",
+        "matrix_class": "MEAT",
+        "hot_aqueous_minutes": 0,
+        "hot_fat_minutes": 6,
+        "thermal_state": "SCENARIO_COMPUTED",
+        "food_T_typical_C": 100,
+        "moisture_cap_C": 100
+      },
+      "unknown": {
+        "salt_present": "NO_RECOGNIZED_MARKER",
+        "acid_present": "NO_RECOGNIZED_MARKER",
+        "aqueous_present": "NO_RECOGNIZED_MARKER",
+        "lot_acidity_band": "LOT_PH_NOT_COMPUTED",
+        "temperature_C": "NO_TEMPERATURE_STATED",
+        "lid_state": "NO_LID_CUE",
+        "piece_size_class": "NO_CUT_HISTORY",
+        "start_mode": "NO_START_CUE",
+        "thermal_dose_typical_min": "DOSE_NOT_COMPUTED",
+        "cumulative_thermal_dose_min": "DOSE_NOT_COMPUTED",
+        "oxygen_exposure_proxy": "NO_LID_CUE"
+      }
+    }
+  ],
+  "coverage": [
+    {
+      "step": 1,
+      "action": "Cut",
+      "food": "chicken",
+      "counts": {
+        "FILLED": 10,
+        "NOT_APPLICABLE": 5,
+        "UNKNOWN": 14
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000046 cut",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "MECHANICAL_CUT",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "chicken"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": false,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 0,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "MEDIUM_UNKNOWN"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "UNKNOWN"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_A_HEAT_EVENT"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "NOT_APPLICABLE",
+          "value": null,
+          "source": "NOT_HEATED_YET"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "action": "Fry",
+      "food": "chicken",
+      "counts": {
+        "FILLED": 18,
+        "NOT_APPLICABLE": 0,
+        "UNKNOWN": 11
+      },
+      "cells": [
+        {
+          "field": "process",
+          "group": "process",
+          "status": "FILLED",
+          "value": "PROC-000009 fry",
+          "source": "RUNG_A"
+        },
+        {
+          "field": "family",
+          "group": "process",
+          "status": "FILLED",
+          "value": "FAT_HEAT",
+          "source": "PROC_LEDGER"
+        },
+        {
+          "field": "lot_members",
+          "group": "process",
+          "status": "FILLED",
+          "value": [
+            "chicken",
+            "oil"
+          ],
+          "source": "RUNG_A_LOT"
+        },
+        {
+          "field": "cell_integrity",
+          "group": "process",
+          "status": "FILLED",
+          "value": "CUT",
+          "source": "CUT_HISTORY"
+        },
+        {
+          "field": "is_heat_step",
+          "group": "process",
+          "status": "FILLED",
+          "value": true,
+          "source": "PHYSICS_V06_L1"
+        },
+        {
+          "field": "heat_steps_so_far",
+          "group": "process",
+          "status": "FILLED",
+          "value": 1,
+          "source": "LINEAGE+PHYSICS_V06_HEAT_FLAG"
+        },
+        {
+          "field": "salt_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "acid_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "lipid_present",
+          "group": "composition",
+          "status": "FILLED",
+          "value": true,
+          "source": "MARKER_TABLE_V2:ING-000071; USDA_SR_LEGACY_2018_04:fdc:172370:fat_g_per_100g=100; PHYSICS_V06_L1:PAN_CONTACT_OIL"
+        },
+        {
+          "field": "aqueous_present",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_RECOGNIZED_MARKER"
+        },
+        {
+          "field": "contact_phase",
+          "group": "composition",
+          "status": "FILLED",
+          "value": "LIPID",
+          "source": "CONTEXT_AXES_V12"
+        },
+        {
+          "field": "salt_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "acid_exposure_before",
+          "group": "composition",
+          "status": "FILLED",
+          "value": false,
+          "source": "LINEAGE_C_T"
+        },
+        {
+          "field": "lot_acidity_band",
+          "group": "composition",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "LOT_PH_NOT_COMPUTED"
+        },
+        {
+          "field": "medium",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "PAN_CONTACT_OIL",
+          "source": "PROCESS_DEFINITION"
+        },
+        {
+          "field": "temperature_C",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_TEMPERATURE_STATED"
+        },
+        {
+          "field": "duration_min",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "6",
+          "source": "TEXT_STATED"
+        },
+        {
+          "field": "lid_state",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        },
+        {
+          "field": "piece_size_class",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_CUT_HISTORY"
+        },
+        {
+          "field": "matrix_class",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": "MEAT",
+          "source": "FOOD_GROUP"
+        },
+        {
+          "field": "start_mode",
+          "group": "conditions",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_START_CUE"
+        },
+        {
+          "field": "hot_aqueous_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 0,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "hot_fat_minutes",
+          "group": "conditions",
+          "status": "FILLED",
+          "value": 6,
+          "source": "SUM_TEXT_STATED"
+        },
+        {
+          "field": "thermal_state",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": "SCENARIO_COMPUTED",
+          "source": "PHYSICS_V06_L2"
+        },
+        {
+          "field": "food_T_typical_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "moisture_cap_C",
+          "group": "simulation",
+          "status": "FILLED",
+          "value": 100,
+          "source": "SCENARIO_DEFAULT"
+        },
+        {
+          "field": "thermal_dose_typical_min",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "DOSE_NOT_COMPUTED"
+        },
+        {
+          "field": "cumulative_thermal_dose_min",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "DOSE_NOT_COMPUTED"
+        },
+        {
+          "field": "oxygen_exposure_proxy",
+          "group": "simulation",
+          "status": "UNKNOWN",
+          "value": null,
+          "source": "NO_LID_CUE"
+        }
+      ]
+    }
+  ],
+  "context": null,
+  "evidence": [],
+  "similar": {
+    "search": {
+      "query_foods": [
+        "chicken"
+      ],
+      "query_processes": [
+        "fry"
+      ],
+      "counts": {
+        "A1_BBC_GOOD_FOOD": 211,
+        "FOODCOM": 15403,
+        "GUTENBERG_SEGMENT": 732,
+        "WIKIBOOKS": 11
+      },
+      "shown": [
+        {
+          "id": "WIKIBOOKS:132729",
+          "family": "WIKIBOOKS",
+          "title": "Peanut Chicken Stir-Fry",
+          "score": 0.411,
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Peanut_Chicken_Stir-Fry",
+          "licence": "CC BY-SA (Wikibooks Cookbook)",
+          "steps_available": true
+        },
+        {
+          "id": "WIKIBOOKS:200788",
+          "family": "WIKIBOOKS",
+          "title": "Fry Seasoning for Chicken",
+          "score": 0.375,
+          "url": "https://en.wikibooks.org/wiki/Cookbook:Fry_Seasoning_for_Chicken",
+          "licence": "CC BY-SA (Wikibooks Cookbook)",
+          "steps_available": true
+        },
+        {
+          "id": "REC-063232",
+          "family": "GUTENBERG_SEGMENT",
+          "title": "To Fry Chickens",
+          "score": 0.939,
+          "url": null,
+          "licence": "Public domain (Project Gutenberg)",
+          "steps_available": false
+        },
+        {
+          "id": "REC-076265",
+          "family": "GUTENBERG_SEGMENT",
+          "title": "Chicken Merinds",
+          "score": 0.745,
+          "url": null,
+          "licence": "Public domain (Project Gutenberg)",
+          "steps_available": false
+        }
+      ],
+      "searched": 612903,
+      "min_score": 0.25,
+      "reference_id": "WIKIBOOKS:132729",
+      "reference_candidates": [
+        "WIKIBOOKS:132729",
+        "WIKIBOOKS:200788",
+        "WIKIBOOKS:457288",
+        "WIKIBOOKS:418864",
+        "WIKIBOOKS:482433"
+      ]
+    },
+    "reference": {
+      "id": "WIKIBOOKS:132729",
+      "title": "Peanut Chicken Stir-Fry",
+      "url": "https://en.wikibooks.org/wiki/Cookbook:Peanut_Chicken_Stir-Fry",
+      "licence": "CC BY-SA (Wikibooks Cookbook)",
+      "heat_steps": [
+        {
+          "step": 2,
+          "action": "Stir-fry",
+          "food": "onion",
+          "process": "PROC-000010 stir-fry",
+          "family": "FAT_HEAT",
+          "medium": "PAN_CONTACT_OIL",
+          "duration_min": null,
+          "temperature_C": null,
+          "lid_state": null,
+          "food_T_typical_C": 100,
+          "thermal_dose_typical_min": null
+        },
+        {
+          "step": 8,
+          "action": "cook",
+          "food": "cornflour",
+          "process": "PROC-000031 cook",
+          "family": "HEAT_GENERAL",
+          "medium": null,
+          "duration_min": "5",
+          "temperature_C": null,
+          "lid_state": null,
+          "food_T_typical_C": null,
+          "thermal_dose_typical_min": null
+        }
+      ],
+      "same_process": true
+    }
+  },
+  "pipeline": [
+    {
+      "id": "parse",
+      "label": "Read recipe",
+      "status": "done",
+      "detail": "2 steps recognised",
+      "ms": 4
+    },
+    {
+      "id": "state",
+      "label": "Build state",
+      "status": "done",
+      "detail": "2 food states · foods: chicken",
+      "ms": null
+    },
+    {
+      "id": "simulate",
+      "label": "Physics simulation",
+      "status": "done",
+      "detail": "Fry (step 2, chicken): food 100 °C simulated, 6 min stated",
+      "ms": null
+    },
+    {
+      "id": "evidence",
+      "label": "Evidence lookup",
+      "status": "skipped",
+      "detail": "food-safety question: refused, nothing looked up",
+      "ms": null
+    },
+    {
+      "id": "similar",
+      "label": "Similar recipes",
+      "status": "done",
+      "detail": "16357 similar of 612,903 recipes · reference: “Peanut Chicken Stir-Fry” (Wikibooks, same process)",
+      "ms": 64
+    },
+    {
+      "id": "model",
+      "label": "Ask model",
+      "status": "skipped",
+      "detail": "refused before the model",
+      "ms": null
+    },
+    {
+      "id": "verify",
+      "label": "Verify",
+      "status": "skipped",
+      "detail": "—",
+      "ms": null
+    }
+  ],
+  "system": {
+    "status": "ABSTAIN_SAFETY",
+    "route": null,
+    "packet": null,
+    "draft": null,
+    "draft_check": null,
+    "final": "I can't answer food-safety questions (safe temperatures, doneness, bacteria, or how long food keeps), so I won't guess.",
+    "used_template": true
+  },
+  "plain": {
+    "status": "NOT_SENT_TEXT_NOT_SELF_WRITTEN",
+    "reason": "Only public or self-written text may go to the hosted model."
+  },
+  "licence_hits": [],
+  "timing_ms": {
+    "pipeline": 4,
+    "similar": 64,
+    "total": 68
+  }
+}

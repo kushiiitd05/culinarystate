@@ -1,0 +1,132 @@
+%% CulinaryState — final architecture. AI_DRAFTED, NOT_HUMAN_REVIEWED, 17 Nov 2026.
+%% Solid box = code found on disk 17 Nov. Dashed box (class planned) = PLANNED_ONLY, not implemented.
+%% Each "flowchart" below is a separate diagram; render one block at a time.
+
+%% ============ 1. MASTER PIPELINE ============
+flowchart TD
+  IN[Recipe text / Query] --> SRC[Semantic Recipe Compiler<br/>Rung A rules + lineage vNext — DIAGNOSTIC]
+  SRC --> TRG{Ambiguity trigger<br/>VNEXT_ALTERNATIVE_SKIPPED?}
+  TRG -- no / any other flag: recorded UNKNOWN --> IR[Typed Event IR<br/>EventGraph]
+  TRG -- yes --> LLM["LLM Layer-1 proposer<br/>alternative_group only (D-135)<br/>offline, span-grounded, DIAGNOSTIC"]
+  LLM --> GATE{review gate<br/>span_grounds_value}
+  GATE -- accepted --> IR
+  GATE -- rejected with code --> REJ[discarded, logged]
+  IR --> VAL[Invariant validator V1–V4<br/>reports, never repairs]
+  VAL --> ST[Event-sourced state<br/>S_t = G, C, Q, Y, P<br/>UNKNOWN with reason is a valid cell]
+  ST --> EC[Query-specific evidence compiler<br/>13-axis registry]
+  EC --> RET[Candidate retrieval<br/>structured primary, BM25 fallback]
+  RET --> CMP[Compatibility engine<br/>9 axes: MATCH / NEAR / UNKNOWN / MISMATCH]
+  CMP --> RT[Route<br/>answer / ask / abstain]
+  RT --> CP[Claim Packet]
+  CP --> VB[Verbalizer<br/>deterministic template]
+  VB --> CV{Claim verifier}
+  CV -- pass --> ANS[Grounded answer + citations + UNKNOWNs]
+  CV -- violation --> TF[Template fallback] --> ANS
+  RT -- insufficient evidence --> ABS[Abstention with reason]
+
+%% ============ 2. SEMANTIC COMPILER ============
+flowchart LR
+  T[raw text] --> SEG[step segmentation]
+  SEG --> LNK[ingredient linking<br/>lexicon + aliases → ING id]
+  SEG --> QTY[quantity grammar<br/>mass mostly NOT grounded]
+  SEG --> PRC[process recognition → PROC id + family]
+  LNK --> BND[binding: consumes / produces / discards]
+  QTY --> BND
+  PRC --> BND
+  BND --> VN[lineage vNext rules A–D — DIAGNOSTIC]
+  VN --> G[EventGraph + flags]
+  NER[NER DeBERTa-base+CRF<br/>evaluated separately; TIE on clean split;<br/>not on the State v2 path] -.-> LNK
+
+%% ============ 3. LOT LINEAGE ============
+flowchart TD
+  L1[INGREDIENT_LOT a] --> M((MERGE event))
+  L2[INGREDIENT_LOT b] --> M
+  M --> X[intermediate lot<br/>members = union of ancestors]
+  X --> S((SPLIT event))
+  S --> X1[child lot 1<br/>fraction UNKNOWN unless stated]
+  S --> X2[child lot 2]
+  X1 --> TR((TRANSFORM event)) --> X3[lot after process]
+  ALT[alternative_group: A or B] -. at most one member commits state .-> M
+  COREF['the sauce' → prior lot<br/>VNEXT_MIXTURE_COREF — DIAGNOSTIC] -.-> X
+
+%% ============ 4. STATE TRANSITION ============
+flowchart LR
+  S0[S_t for food f] --> E[event E_t]
+  E --> H[update running history<br/>procs, heat steps, dose, aqueous/fat minutes,<br/>cut integrity, prior salt/acid]
+  H --> GB[G block]
+  H --> CB[C block<br/>context v1.2 + USDA SR]
+  H --> QB[Q block<br/>physics L1 + L2 scenario + history sums]
+  H --> YB[Y block<br/>route + evidence, 2 targets]
+  GB --> S1[S_t+1]
+  CB --> S1
+  QB --> S1
+  YB --> S1
+  S1 --> P[P: every cell is v+basis or UNKNOWN+reason]
+  S1 -.-> DV[vector delta V0/V1<br/>DIAGNOSTIC_RETRIEVAL_ONLY]
+
+%% ============ 5. EVIDENCE RETRIEVAL ============
+flowchart TD
+  Q[question + state] --> SA[select_axes target, question kind]
+  SA --> STR[structured index lookup]
+  STR --> FG[food-graph expansion parent/child]
+  Q --> BM[BM25 free-text fallback]
+  FG --> C[candidate EVD rows<br/>all tier E3, 0 human-verified]
+  BM --> C
+  SV[state-vector views V0/V1<br/>DIAGNOSTIC_ONLY, no relevance gold] -.-> C
+
+%% ============ 6. COMPATIBILITY ============
+flowchart TD
+  C[candidate row] --> AX[13-axis registry]
+  AX --> I9[9 implemented:<br/>matrix, state, process, time, temperature,<br/>medium, target, basis, tier]
+  AX --> I2[2 in compiler:<br/>7 pH — crosswalk UNVERIFIED<br/>9 geometry — QUERY_ONLY]
+  AX --> I0[2 schema-only → UNKNOWN with reason:<br/>8 a_w no producer, 12 method no data]
+  I9 --> V[MATCH 1.0 / NEAR 0.5 / UNKNOWN 0.25 / MISMATCH 0.0]
+  I2 --> V
+  I0 --> V
+  V --> R[route: UNKNOWN is never MATCH and never MISMATCH]
+
+%% ============ 7. CLAIM PACKET ============
+flowchart LR
+  CE[compiled evidence] --> AL[allowed claims]
+  CE --> FB[forbidden claims]
+  CE --> CA[required caveats]
+  CE --> ID[evidence ids]
+  CE --> PR[max precision]
+  CE --> UR[UNKNOWN reasons]
+  AL --> PK[Claim Packet]
+  FB --> PK
+  CA --> PK
+  ID --> PK
+  PR --> PK
+  UR --> PK
+
+%% ============ 8. PROPOSER / VERBALIZER SEPARATION ============
+flowchart TD
+  subgraph UP[Upstream of state — proposes]
+    P1["LLM Layer-1 proposer<br/>alternative_group only (D-135)"] --> P2[review gate + V4]
+  end
+  P2 --> STATE[deterministic state + compatibility + route + Claim Packet]
+  subgraph DOWN[Downstream of packet — phrases]
+    V1[template verbalizer — on the request path]
+    V2[LLM rephrase — exists, UNPROMOTED, not on the request path]:::planned
+    V1 --> CVV[claim verifier]
+    V2 -.-> CVV
+  end
+  STATE --> V1
+  STATE -.-> V2
+  CVV --> OUT[answer or template fallback]
+  NOTE[No LLM output reaches state or answer without a deterministic check]
+  classDef planned stroke-dasharray: 5 5
+
+%% ============ 9. DEPLOYMENT PATH ============
+%% Spec: deployment/FINAL_DEPLOYMENT_ARCHITECTURE.md. Dashed = PLANNED_ONLY (web/ and
+%% tools/build_demo_snapshot.py were absent on disk on 17 Nov).
+flowchart LR
+  B[Browser] --> VC[Vercel: Next.js UI + BFF]:::planned
+  VC --> SNAP[signed static snapshot — DEFAULT mode]:::planned
+  VC -. optional LIVE, 3 s timeout, else snapshot .-> CF[Cloudflare Tunnel]:::planned
+  CF -.-> GW[stdlib gateway on presenter Mac<br/>app/server.py / strict_server_v3.py — exists<br/>must start with --public]
+  GW --> CORE[frozen engine + ledgers]
+  OLL[Ollama: NOT on the request path]:::off
+  classDef planned stroke-dasharray: 5 5
+  classDef off stroke-dasharray: 2 2,color:#777

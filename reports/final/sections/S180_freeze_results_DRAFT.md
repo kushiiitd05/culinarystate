@@ -289,3 +289,7 @@ which phrase slipped through.
   832 s against a 420 s timeout and contributed no accepted proposal.
 - **Recall unmeasured**; **duplicate groups across events unchecked**; **the endpoint filter is
   incomplete**.
+
+## Submission note, 20 Nov 2026
+
+The architecture comparison in this section predates the signed Explorer and local console. The report now incorporates those interfaces with the same D-134–D-139 interpretation. Guarded answer and source-state demonstrations are diagnostic. The frozen hypotheses, the development-gold limit and the outstanding human checks remain as recorded.
