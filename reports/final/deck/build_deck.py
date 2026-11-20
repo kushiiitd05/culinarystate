@@ -1,5 +1,6 @@
-"""Build CulinaryState_final.pptx (python-pptx). Run: /opt/anaconda3/bin/python build_deck.py"""
+"""Build CulinaryState_final.pptx with the project Python and python-pptx."""
 from pathlib import Path
+import os
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -8,7 +9,7 @@ from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 
 HERE = Path(__file__).resolve().parent
 FIG = HERE.parent / "figures_s180_2026-11-16"
-OUT = HERE / "CulinaryState_final.pptx"
+OUT = Path(os.environ.get("CS_DECK_OUTPUT", str(HERE.parent / "CulinaryState_final.pptx")))
 
 BG, INK = RGBColor(0xFC, 0xFB, 0xF9), RGBColor(0x23, 0x1E, 0x19)
 BLUE, AMBER = RGBColor(0x1B, 0x36, 0xC4), RGBColor(0xC7, 0x78, 0x00)
@@ -118,7 +119,8 @@ def picture(s, name, x, y, w=None, h=None):
     kw = {}
     if w: kw["width"] = Inches(w)
     if h: kw["height"] = Inches(h)
-    return s.shapes.add_picture(str(FIG / name), Inches(x), Inches(y), **kw)
+    path = Path(name)
+    return s.shapes.add_picture(str(path if path.is_absolute() else FIG / path), Inches(x), Inches(y), **kw)
 
 # ---------------------------------------------------------------- slides
 from slides import build  # noqa: E402  (slide content lives in slides.py)
