@@ -1,0 +1,47 @@
+CulinaryState preflight · 2026-11-20 18:58 · b5e46e2
+1 · Snapshot
+  ✓ signature and file hashes verify (bf0f80611429…)
+  ✓ in-memory rebuild matches disk (--check FRESH)
+2 · Secrets and licence markers
+  ✓ no NVIDIA key in tracked files
+  ✓ no private key in tracked files
+  ✓ public key committed
+3 · Public build (no CS_LIVE_ENABLED)
+  ✓ next build
+  ✓ no BBC marker in shipped files (public/ and the whole .next build)
+  ✓ GET / → 200
+  ✓ GET /lab → 200
+  ✓ GET /compare → 200
+  ✓ GET /method → 200
+  ✓ GET /snapshot/manifest.json → 200
+  ✓ GET /snapshot/manifest.sig → 200
+  ✓ GET /snapshot/public_key.pem → 200
+  ✓ GET /live → 404 (live hidden)
+  ✓ GET /api/live → 404 (live hidden)
+  ✓ POST /api/live/analyse → 404
+  ✓ /: badge says signature verified
+  ✓ /: no link to /live
+  ✓ /lab: badge says signature verified
+  ✓ /lab: no link to /live
+  ✓ /compare: badge says signature verified
+  ✓ /compare: no link to /live
+  ✓ /method: badge says signature verified
+  ✓ /method: no link to /live
+4 · Engine-down path (CS_LIVE_ENABLED=1, engine unreachable)
+  ✓ GET /live → 200
+  ✓ GET /api/live reports offline
+  ✓ /live shows the engine-offline chip
+5 · Live presets through the running engine (127.0.0.1:8770)
+  ✓ ★ Carrots came out mushy: mode ADVICE, verify done, 25961 ms
+  ✓ Eggs too salty: mode ADVICE, verify done, 17395 ms
+  ✓ Roast potatoes soggy: mode ADVICE, verify done, 18223 ms
+  ✓ Onions burned: mode ADVICE, verify done, 15598 ms
+  ✓ Rice mushy: mode ADVICE, verify done, 16360 ms
+  ✓ Pasta · vinegar by mistake: mode ADVICE, verify done, 24565 ms
+  ✓ Tomatoes · vitamin C: mode NUTRIENT, verify done, 13476 ms
+  ✓ Broccoli stir-fry · vitamin C: mode NUTRIENT, verify done, 5688 ms
+  ✓ Roasted peppers · vitamin C: mode NUTRIENT, verify done, 6000 ms
+  ✓ Chicken · is it safe?: mode SAFETY, verify skipped, 4303 ms
+  10/10 presets reached Verify without error
+
+PREFLIGHT PASS
