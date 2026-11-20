@@ -1901,3 +1901,9 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `STATUS.md`, `handoff/KUSH_SUBMISSION_TAKEOVER_2026-11-20.md`, `handoff/SUBMISSION_PR_DRAFT_2026-11-20.md`
 - **Verified:** Source, registry, ledgers and web match the freeze. Verified the ledger row counts for Parv to raise with Kush.
 - **Next:** Await push and PR approvals after the submission gates.
+
+### S276 · 2026-11-20 18:51 IST · DEL-5 · D2 count and archive check
+- **Who:** Parv+GPT
+- **Did:** Added the frozen pilot fit and SIM-VAL eligibility counts to the report and regenerated the local PDF and archive.
+- **Files:** `reports/final/CulinaryState_final_report.pdf`, `submission/CulinaryState_Group17_2026-11-20_REVIEW_CHECKS.txt`
+- **Verified:** Eight pages; 29 artifact checksums; updated D2 page inspected; all 465 fresh-extract checksums passed; 3665147 bytes.
