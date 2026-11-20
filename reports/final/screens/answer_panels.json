@@ -1,0 +1,61 @@
+{
+  "stories": [
+    {
+      "id": "tomato-a-d",
+      "question": "How much vitamin C remains in the tomatoes after this recipe?",
+      "plain_model": "Tomato A: water only\nAfter boiling tomatoes in water for 15 minutes, some of the vitamin C content will be lost due to heat exposure and leaching into the cooking water. The exact amount of remaining vitamin C cannot be precisely determined without knowing the initial concentration and the specific conditions of the boiling process.\n\nTomato B: water and salt\nThe boiling process can reduce the amount of vitamin C in tomatoes, and depending on the duration and temperature, approximately 20-30% of the vitamin C may be lost during this cooking method. However, the exact percentage of remaining vitamin C cannot be precisely determined without knowing the initial content and specific conditions of the cooking process.\n\nTomato C: water, salt and vinegar\nThe boiling process can reduce the amount of vitamin C in tomatoes, but the addition of salt and vinegar might slightly preserve some of it due to their acidity. However, without specific values for the initial vitamin C content and the exact conditions of cooking, an exact percentage cannot be provided.\n\nTomato D: water, salt, vinegar and oil\nThe amount of vitamin C remaining in the tomatoes after boiling them in water with salt, vinegar, and olive oil for 15 minutes would be significantly reduced compared to raw tomatoes, as heat can degrade vitamin C. However, the exact percentage retained cannot be specified without knowing the initial vitamin C content and the specific conditions of the cooking process.",
+      "culinarystate": "Tomato A: water only\nFor tomato at step 2, the measured vitc value is EVD-002765=95.0% [EVD-002765]. This is taken from the cited evidence and nothing is inferred beyond it.\n\nTomato B: water and salt\nFor tomato at step 2, vitc is not known from the evidence available for this context. Reasons: measurement method platform: MEAS_HAS_3_ROWS_PE_METHOD_NULL. A nearby row exists (EVD-002765) but its number cannot be transferred to this context.\n\nTomato C: water, salt and vinegar\nFor tomato at step 2, vitc is not known from the evidence available for this context. Reasons: measurement method platform: MEAS_HAS_3_ROWS_PE_METHOD_NULL. A nearby row exists (EVD-002765) but its number cannot be transferred to this context.\n\nTomato D: water, salt, vinegar and oil\nFor tomato at step 2, vitc is not known from the evidence available for this context. Reasons: measurement method platform: MEAS_HAS_3_ROWS_PE_METHOD_NULL. A nearby row exists (EVD-002765) but its number cannot be transferred to this context.",
+      "why": "The evidence compiler uses the recorded pot state to restrict transfer. A receives a table report. B–D retain UNKNOWN.",
+      "limit": "Ingredient pH crosswalk is AI-drafted. Mixture pH remains unknown.",
+      "model": "qwen2.5:7b-instruct",
+      "date": "2026-11-17",
+      "source_run": "reports/final/screens/runs/tomato-a-d.json",
+      "status": "SIGNED_SNAPSHOT",
+      "unsourced_values": [
+        "Tomato B · 20"
+      ],
+      "source_sha256": "d6410520469e235302bfbc727f5c5f2eef47921be3e51a394e032429f81a8d4a"
+    },
+    {
+      "id": "carrots",
+      "question": "My carrots came out too soft and mushy. What should I change next time?",
+      "plain_model": "Pending live capture.",
+      "culinarystate": "Pending live capture.",
+      "model": null,
+      "date": null,
+      "source_run": null,
+      "status": "PENDING_LIVE_CAPTURE",
+      "why": "The trace supplies cut, lid, time and simulated heat fields. State citations are checked against the trace.",
+      "limit": "The cooking advice remains unverified.",
+      "unsourced_values": []
+    },
+    {
+      "id": "tomatoes",
+      "question": "How much vitamin C remains in the tomatoes after this recipe?",
+      "plain_model": "Pending live capture.",
+      "culinarystate": "Pending live capture.",
+      "model": null,
+      "date": null,
+      "source_run": null,
+      "status": "PENDING_LIVE_CAPTURE",
+      "why": "The claim packet restricts numerical output to applicable source reports. The wording and number check can trigger a template fallback.",
+      "limit": "The saved answers illustrate one case. Gold labels for judging response quality are unavailable.",
+      "unsourced_values": []
+    },
+    {
+      "id": "safety",
+      "question": "Is the chicken safe to eat?",
+      "plain_model": "Only public or self-written text may go to the hosted model.",
+      "culinarystate": "I can't answer food-safety questions (safe temperatures, doneness, bacteria, or how long food keeps), so I won't guess.",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b (configured only; no call)",
+      "date": "2026-11-20",
+      "source_run": "reports/final/screens/runs/safety.json",
+      "status": "RECORDED_LIVE_WITHOUT_PLAIN",
+      "why": "The system arm refuses before drafting. The plain comparison is separate. This capture used the preview with hosted sending disabled.",
+      "limit": "The refusal gives no safety determination.",
+      "unsourced_values": [],
+      "plain_status": "NOT_SENT_TEXT_NOT_SELF_WRITTEN",
+      "source_sha256": "995567018540b0e35f917525504e5b5139b08b8c9e71b1d64a563f9282569c08"
+    }
+  ]
+}
