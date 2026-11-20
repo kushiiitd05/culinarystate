@@ -10,9 +10,9 @@ Freeze `freeze-2026-11-20` at `0a41d62`. The freeze suite recorded 8,578 tests p
 
 ## Run the demos
 
-- Public Explorer URL pending deployment. To run the signed snapshot locally, go to `web/`, run `npm ci`, then `npm run build` and `npm run start`. The browser verifies the snapshot with the included public key. Open Lab or Compare.
+- Public Explorer at [culinarystate-group17.vercel.app](https://culinarystate-group17.vercel.app). To run the signed snapshot locally, go to `web/`, run `npm ci`, then `npm run build` and `npm run start`. The browser verifies the snapshot with the included public key. Open Lab or Compare.
 - From a full project checkout and with authorised local inputs set up, run `./tools/live_demo.sh` and open `http://localhost:3000/live`. Follow the source-use rules and use your own configured credential.
-- The rehearsal and recording shot list are in `handoff/REHEARSAL_SCRIPT_2026-11-24.md`. The fallback video and the two hosted answer comparisons are pending. The signed snapshot and saved screenshots remain available.
+- The rehearsal and recording shot list are in `handoff/REHEARSAL_SCRIPT_2026-11-24.md`. The fallback video is pending. Both hosted comparison runs and the live preflight are in the archive. The signed snapshot and saved screenshots remain available.
 
 ## Reproduce and verify
 
