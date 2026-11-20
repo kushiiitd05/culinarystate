@@ -1824,3 +1824,80 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Files:** `DECISIONS.md`, `web/.gitignore`, `web/public/snapshot/public_key.pem`, `web/public/snapshot/manifest.sig`, `web/src/lib/liveFlag.ts`, `web/src/app/layout.tsx`, `web/src/components/TopNav.tsx`, `web/src/app/live/page.tsx`, `web/src/app/api/live/route.ts`, `web/src/app/api/live/analyse/route.ts`, `tools/live_demo.sh`, `tools/preflight.sh`, `reports/final/sections/S179_gate_provenance_DRAFT.md`, `STATUS.md`
 - **Verified:** On f9c1816: pytest 8,578 passed, 5 skipped, 0 failed; preflight 28/28; snapshot --verify OK, --check FRESH, manifest sha256 bf0f8061... unchanged; signature also verified with Node crypto (one-byte change rejected); clean git-archive build serves the four snapshot pages with the badge verified and /live 404; all ten /live presets run the pre-model pipeline on this Mac; similar-recipe output shows only Wikibooks/Gutenberg titles; no NVIDIA key anywhere in git history. Uncommitted deck edits present at freeze were not made by this session and are not in the tag.
 - **Next:** Agent: Vercel deploy, preflight --live, screenshots, story panels, report PDF, deck, business proposal if Kush confirms, submission zip 21 Nov, rehearsal + fallback video, PR to main. Human: D1 40 rows (0 done), D5 chef review, 9-row packet, D3 spot-audit + P1-A question, sign-off D-134..D-137.
+
+### S265 · 2026-11-20 18:49 IST · DEL-5 · T1 existing deck review
+- **Who:** Parv+GPT
+- **Did:** Reviewed the working-tree deck changes, preserved both files, and built a local review copy.
+- **Files:** `reports/final/deck/NUMBER_SOURCES.md`
+- **Verified:** Keynote exported 19 pages. Slide 11 chart spacing and legacy comparison wording require attention.
+- **Next:** Await Parv's keep or discard choice.
+
+### S266 · 2026-11-20 18:49 IST · DEL-5 · T2 live preset gate
+- **Who:** Parv+GPT
+- **Did:** Checked loopback engine availability and the frozen model-send path. The full hosted run awaits consent.
+- **Files:** `handoff/KUSH_SUBMISSION_TAKEOVER_2026-11-20.md`
+- **Verified:** The system safety arm refuses. With the send box selected the plain arm still calls the model; local no-send responses record skipped model and verify.
+- **Next:** Run the ten-preset preflight after Parv approves the authored inputs.
+
+### S267 · 2026-11-20 18:49 IST · DEL-5 · T3 screenshot evidence
+- **Who:** Parv+GPT
+- **Did:** Captured six signed public views and two local console views. The isolated tool uses playwright-core 1.57.0 and installed Chrome. Pillow 11.3.0 was used from a temporary tooling directory for visual checks.
+- **Files:** `tools/screens/capture.mjs`, `reports/final/screens/MANIFEST.json`
+- **Verified:** Eight images opened and checked at 1600×1000; eight hashes recomputed. The colour-vision query is unimplemented.
+- **Next:** Capture four hosted views once model sending is authorised.
+
+### S268 · 2026-11-20 18:49 IST · DEL-5 · T4 recorded story panels
+- **Who:** Parv+GPT
+- **Did:** Transcribed all four snapshot Tomato A–D pairs from signed files and saved the local chicken safety response. Saved the potato index response separately.
+- **Files:** `reports/final/screens/STORIES.md`, `reports/final/screens/runs`
+- **Verified:** Each trace matched its signed answer fields or saved response hash. The chicken code is ABSTAIN_SAFETY with plain sending disabled.
+- **Next:** Capture carrots and tomatoes through both arms.
+
+### S269 · 2026-11-20 18:49 IST · DEL-5 · T5 snapshot deployment staging
+- **Who:** Parv+GPT
+- **Did:** Prepared an isolated archive of the frozen web tree for Vercel.
+- **Files:** `handoff/KUSH_SUBMISSION_TAKEOVER_2026-11-20.md`
+- **Verified:** Public loopback pages and public key returned 200; live page and API returned 404. Vercel CLI 66.2.0 was logged out.
+- **Next:** Parv logs in; verify the preview and seek production approval.
+
+### S270 · 2026-11-20 18:49 IST · DEL-5 · T6 report PDF
+- **Who:** Parv+GPT
+- **Did:** Updated the existing report and results section with checked counts and review qualifications. Installed Markdown 3.4.1 and PyMuPDF 1.26.6 into temporary tooling directories for rendering and verification.
+- **Files:** `reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md`, `reports/final/CulinaryState_final_report.pdf`, `reports/final/REPORT_EVIDENCE_REVIEW_2026-11-20.json`
+- **Verified:** Eight pages inspected and 27 source hashes checked. Report text passed the forbidden-phrase and marker checks.
+- **Next:** Refresh exports after the pending stories and production URL.
+
+### S271 · 2026-11-20 18:49 IST · DEL-5 · T7 Keynote review export
+- **Who:** Parv+GPT
+- **Did:** Tested PowerPoint generation with python-pptx 1.0.2 installed in a temporary tooling directory and rendered a review PDF with Keynote.
+- **Files:** `reports/final/deck/NUMBER_SOURCES.md`
+- **Verified:** 19 slides rendered; honest limits are penultimate. Hosted evidence, a chart spacing correction and final wording are pending.
+- **Next:** Finish deck after the disposition decision.
+
+### S272 · 2026-11-20 18:49 IST · DEL-5 · T8 business proposal
+- **Who:** Parv+GPT
+- **Did:** Prepared the proposal page and checked the matching slide in the review export following Parv's direction to include the proposal.
+- **Files:** `reports/final/deck/BUSINESS_PROPOSAL_OPTIONAL_2026-11-20.md`
+- **Verified:** Report appendix is one page. The review slide uses the same customer and pilot framing.
+- **Next:** Carry through the approved deck export.
+
+### S273 · 2026-11-20 18:49 IST · DEL-5 · T9 rehearsal and recording
+- **Who:** Parv+GPT
+- **Did:** Wrote the click-by-click rehearsal and Parv's recording shot list, including the no-send safety step.
+- **Files:** `handoff/REHEARSAL_SCRIPT_2026-11-24.md`
+- **Verified:** Checked presets and navigation labels against the frozen app.
+- **Next:** Parv records and checks playback.
+
+### S274 · 2026-11-20 18:49 IST · DEL-5 · T10 review package
+- **Who:** Parv+GPT
+- **Did:** Built a local allow-listed review ZIP from the freeze and checked outputs. Recorded omitted files and the full frozen private-path filename inventory.
+- **Files:** `submission/README_SUBMISSION.md`, `submission/CulinaryState_Group17_2026-11-20_REVIEW_CHECKS.txt`
+- **Verified:** Unzip test passed; all 465 fresh-extract hashes matched; marker and path scan returned zero hits. ZIP 3664658 bytes.
+- **Next:** Private-path disposition and final assets remain open.
+
+### S275 · 2026-11-20 18:49 IST · DEL-5 · T11 handoff and closeout
+- **Who:** Parv+GPT
+- **Did:** Prepared the checklist, handoff, PR body and WhatsApp draft. Committed verified items one file per commit under Parv.
+- **Files:** `STATUS.md`, `handoff/KUSH_SUBMISSION_TAKEOVER_2026-11-20.md`, `handoff/SUBMISSION_PR_DRAFT_2026-11-20.md`
+- **Verified:** Source, registry, ledgers and web match the freeze. Verified the ledger row counts for Parv to raise with Kush.
+- **Next:** Await push and PR approvals after the submission gates.
