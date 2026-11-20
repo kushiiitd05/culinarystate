@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 FINAL = ROOT / "reports/final"
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 CSS = """
-@page { size: A4; margin: 15mm 17mm 15mm; }
+@page { size: A4; margin: 14mm 16mm 14mm; }
 html { color:#231e19; background:white; }
 body { font: 10.5pt/1.43 "Helvetica Neue", Arial, sans-serif; }
 h1,h2,h3 { font-family: Georgia, serif; color:#231e19; break-after:avoid; line-height:1.18; }
@@ -20,15 +20,15 @@ h2 { font-size:19pt; margin:19pt 0 6pt; border-top:1px solid #c5c2bb; padding-to
 h3 { font-size:13pt; margin:13pt 0 4pt; }
 p { margin:0 0 8pt; orphans:3; widows:3; }
 table { border-collapse:collapse; width:100%; font-size:9.3pt; margin:8pt 0 12pt; }
-th,td { text-align:left; padding:4pt 6pt; border-bottom:1px solid #dcd9d3; vertical-align:top; }
+th,td { text-align:left; padding:3pt 5pt; border-bottom:1px solid #dcd9d3; vertical-align:top; }
 th { color:#1b36c4; }
-tr, img, .story, .business { break-inside:avoid; }
+table, tr, img, .story, .business { break-inside:avoid; }
 img { max-width:100%; max-height:95mm; object-fit:contain; }
 code { font: 8.3pt Menlo, monospace; overflow-wrap:anywhere; }
 a { color:#1b36c4; overflow-wrap:anywhere; }
-.story { margin:9pt 0 12pt; border:1px solid #c5c2bb; padding:9pt; }
+.story { margin:6pt 0 9pt; border:1px solid #c5c2bb; padding:7pt; font-size:10pt; line-height:1.33; }
 .answers { display:grid; grid-template-columns:1fr 1fr; gap:9pt; }
-.answers section { padding:7pt; background:#f7f6f2; white-space:pre-wrap; }
+.answers section { padding:7pt; background:#f7f6f2; white-space:pre-wrap; overflow-wrap:anywhere; }
 .story small { display:block; margin-top:6pt; overflow-wrap:anywhere; }
 .business { break-before:page; }
 """
