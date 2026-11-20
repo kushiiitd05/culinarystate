@@ -13,14 +13,14 @@
 | B4 hosted presets | **10/10 passed** in `c8f169f`. Verify ran for nine and skipped the expected safety refusal. |
 | N1 screenshots | **12 of 12 views captured and checked** in `e3dc5d3`. The requested `?vision=deut` variant is unimplemented in the frozen Explorer. |
 | N3 story panels | **Four saved-response panels** in `aa61617`. The carrot parser recognized zero structured citations. The tomato answer gives the cited 95.0% plus an unknown measurement-method caveat. The plain 60–80% loss endpoints were flagged as unsourced. |
-| B6/B7 final exports | **Checked.** Report PDF `89caa9f`, PPTX `dbd0727`, Keynote PDF `cf299e8`. Eight report pages and 19 slides visually reviewed. Evidence index `f2814f9`. |
+| B6/B7 final exports | **Checked.** Report PDF `89caa9f`, PPTX `85690f9`, Keynote PDF `dc2b334` (footer page number kept on one line, `32e8f98`; slide content unchanged from `dbd0727` / `cf299e8`). Eight report pages and 19 slides visually reviewed. Evidence index `f2814f9`. **Author contributions in the report are still PENDING** — Kush and Parv write them, then re-render the PDF and rebuild the ZIP. |
 | N2 business proposal | **Page and slide included** per Parv. |
 | B9 rehearsal and fallback | **Rehearsal and shot list ready** in `228cf3b`. Parv's video is pending. |
-| B8 submission ZIP | **Checked** in `afdd0d9` / `f6b2cfa`. 6,185,186 bytes, 475 fresh-extract hashes matched, no required source/key or private-path hits. Approved path exclusions recorded. The video is outside this archive while pending. |
+| B8 submission ZIP | **Checked** in `5462e69` / `62aa896` (rebuilt for the deck footer; first build `afdd0d9` / `f6b2cfa`). 6,184,757 bytes, same 476 entries, 475 fresh-extract hashes matched, no required source/key or private-path hits. Approved path exclusions recorded. The video is outside this archive while pending. |
 | Push, PR and worklog | **Pushed; PR #13 open**. WORKLOG through S283 in `a006031`. |
 | WhatsApp | **Drafted** for Parv in the Kush handoff `fa9ace1`. |
 
-## Technical freeze — 20 November 2026 (newest; supersedes the snapshots below) · tag `freeze-2026-11-20`
+## Technical freeze — 20 November 2026 (supersedes the snapshots below) · tag `freeze-2026-11-20`
 
 Branch `kush/s181-explorer-build`; decisions through **D-141**. Kush handed the remaining work to Parv on
 17 Nov (`handoff/PARV_HANDOVER_2026-11-17.md`, `handoff/PARV_LATEST_PROMPT_2026-11-19.md`). The freeze was
