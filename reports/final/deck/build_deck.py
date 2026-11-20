@@ -30,7 +30,8 @@ def new_slide(title, kicker=None):
         text(s, kicker, 0.6, 0.32, 12, 0.3, size=11, color=MUTED, font=MONO)
     text(s, title, 0.6, 0.55, 12.1, 0.8, size=28, font=SERIF, color=INK)
     n = len(prs.slides)
-    text(s, f"CulinaryState · Group 17 · {n}", 10.6, 7.08, 2.1, 0.3, size=9, color=MUTED,
+    # 2.3 in fits 29 Menlo 9 pt characters on one line; the box starts where source() ends (0.6 + 9.8).
+    text(s, f"CulinaryState · Group 17 · {n}", 10.4, 7.08, 2.3, 0.3, size=9, color=MUTED,
          align=PP_ALIGN.RIGHT, font=MONO)
     return s
 
