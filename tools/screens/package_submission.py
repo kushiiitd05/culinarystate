@@ -1,4 +1,4 @@
-"""Make and verify the local submission review archive from explicit file lists."""
+"""Make and verify the submission archive from explicit file lists."""
 from pathlib import Path
 import hashlib
 import json
@@ -14,7 +14,7 @@ import fitz
 ROOT = Path(__file__).resolve().parents[2]
 SUBMISSION = ROOT / "submission"
 FREEZE = "freeze-2026-11-20"
-NAME = "CulinaryState_Group17_2026-11-20_REVIEW"
+NAME = "CulinaryState_Group17_2026-11-20"
 SCREEN_DIR = "reports/final/screens/"
 FROZEN_ROOTS = (
     "web",
@@ -57,6 +57,7 @@ LOCAL_FILES = (
     "reports/final/FINAL_REPORT_DRAFT_S179_2026-11-11.md",
     "reports/final/sections/S180_freeze_results_DRAFT.md",
     "reports/final/REPORT_EVIDENCE_REVIEW_2026-11-20.json",
+    "reports/final/DEPLOYMENT_2026-11-20.json",
     "reports/final/deck/BUSINESS_PROPOSAL_OPTIONAL_2026-11-20.md",
     "reports/final/deck/NUMBER_SOURCES.md",
     "reports/final/CulinaryState_final_report.pdf",
@@ -128,16 +129,18 @@ def main():
                 path.unlink()
 
         shots = json.loads((ROOT / SCREEN_DIR / "MANIFEST.json").read_text())
-        optional = []
+        if len(shots["images"]) != 12:
+            raise ValueError("The release requires twelve screenshot views.")
+        screenshots = []
         for shot in shots["images"]:
             name = SCREEN_DIR + shot["file"]
             if sha256(ROOT / name) != shot["sha256"]:
                 raise ValueError(f"Screenshot hash mismatch: {name}")
-            optional.append(name)
-        for name in LOCAL_FILES + tuple(optional):
+            screenshots.append(name)
+        for name in LOCAL_FILES + tuple(screenshots):
             source = ROOT / name
             if not source.is_file():
-                continue
+                raise FileNotFoundError(source)
             if reasons := scan(source):
                 raise ValueError(f"Refusing to add {name}. {', '.join(reasons)}")
             target = staging / name
@@ -162,16 +165,21 @@ def main():
         with draft.open("rb") as stream, out.open("wb") as target:
             shutil.copyfileobj(stream, target)
 
+    private_hits = command("git", "grep", "-Il", "-F", "/Users/", FREEZE, "--",
+                           "src", "tools", "tests", "registry", "web", "docs", "design", "deployment", "handoff",
+                           "reports", "DECISIONS.md", "STATUS.md", "WORKLOG.md", "pyproject.toml", "CLAUDE.md")
     check.write_text(
-        f"Review archive {out.name}\nFreeze {command('git', 'rev-list', '-n', '1', FREEZE).strip()}\n"
+        f"Submission archive {out.name}\nFreeze {command('git', 'rev-list', '-n', '1', FREEZE).strip()}\n"
         f"Size {out.stat().st_size:,} bytes\nSHA256 {sha256(out)}\n"
         f"{integrity.strip()}\nFresh extract: {len(verified)} file checksums OK\n"
         "Fresh extract: zero source/key markers or private paths in byte, PDF-text and PPTX-XML scans.\n"
         f"Screenshot checksums: {len(shots['images'])} OK. Visual review is recorded in STATUS.\n"
-        "Review candidate. Final-deck approval, live captures, production URL, fallback recording and the "
-        "private-path disposition are tracked in STATUS.\n"
+        "Parv approved excluding path-bearing files. The fallback recording is pending.\n"
         "Omitted from otherwise selected frozen files\n"
-        + "\n".join(excluded) + "\n\nFresh-extract checksums\n" + "\n".join(verified) + "\n",
+        + "\n".join(excluded)
+        + "\n\nFrozen allow-list private-path inventory (filenames only)\n"
+        + "\n".join(line.split(":", 1)[1] for line in private_hits.splitlines())
+        + "\n\nFresh-extract checksums\n" + "\n".join(verified) + "\n",
     )
     print(f"{out.name}: {out.stat().st_size:,} bytes, {len(verified)} checksums OK")
 
