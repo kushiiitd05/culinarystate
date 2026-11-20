@@ -1949,3 +1949,10 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Did:** Pushed the approved submission assets to kush/s181-explorer-build and opened PR 13 into main.
 - **Files:** `STATUS.md`, `handoff/KUSH_SUBMISSION_TAKEOVER_2026-11-20.md`
 - **Verified:** https://github.com/kushiiitd05/culinarystate/pull/13. Frozen source, ledgers, registry and web paths match the tag.
+
+### S284 · 2026-11-20 21:33 IST · DEL-5 · Post-GPT audit and tidy-up
+- **Who:** Parv+Claude
+- **Did:** Audited the GPT submission work against the repo, live site, zip and PDFs. Widened the deck footer so the page number stays on one line (box starts where the source line ends), rebuilt the PPTX from the committed builder, re-exported the PDF in Keynote and rebuilt the submission ZIP. Committed the GPT task prompt with relative paths. Dropped the stale 'newest' label from the freeze entry. Moved the untracked draft review ZIP to the Trash; its committed checks file stays as the record cited by S274/S276.
+- **Files:** `reports/final/deck/build_deck.py`, `reports/final/CulinaryState_final.pptx`, `reports/final/CulinaryState_final.pdf`, `submission/CulinaryState_Group17_2026-11-20.zip`, `submission/CulinaryState_Group17_2026-11-20_CHECKS.txt`, `handoff/GPT_REMAINING_TASKS_PROMPT_2026-11-20.md`, `STATUS.md`
+- **Verified:** Builder reproduced the committed PPTX byte-for-byte before the change; after it only footer geometry differs on 18 slides. Keynote PDF 19 pages, 18/18 footers on one line, no overlap with source notes. ZIP 6,184,757 bytes, same 476 entries, 475/475 fresh-extract checksums, zero markers. Live site: 4 pages 200 with signature verified, live routes 404, 20 snapshot files match the tag. Frozen src/registry/ledgers/web/tests unchanged.
+- **Next:** Kush and Parv write the author contributions, re-render the report PDF and rebuild the ZIP; Parv records the fallback video; the carrots answer's salt advice is wrong, so prepare an answer for it.
