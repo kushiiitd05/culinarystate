@@ -1,0 +1,109 @@
+{
+  "story": "tomato-a-d",
+  "recorded_in": "signed snapshot, generated 2026-11-17",
+  "rows": [
+    {
+      "id": "tomato-a",
+      "title": "Tomato A: water only",
+      "question": "How much vitamin C remains in the tomatoes after this recipe?",
+      "plain_model": "After boiling tomatoes in water for 15 minutes, some of the vitamin C content will be lost due to heat exposure and leaching into the cooking water. The exact amount of remaining vitamin C cannot be precisely determined without knowing the initial concentration and the specific conditions of the boiling process.",
+      "culinarystate": "For tomato at step 2, the measured vitc value is EVD-002765=95.0% [EVD-002765]. This is taken from the cited evidence and nothing is inferred beyond it.",
+      "model": "qwen2.5:7b-instruct",
+      "route": "DIRECT",
+      "source": "web/public/snapshot/scenarios/tomato-a.json",
+      "evidence_ids": [
+        "EVD-002765"
+      ],
+      "plain_verifier": {
+        "codes": [],
+        "ok": true,
+        "violations": []
+      },
+      "plain_claimed_numbers": []
+    },
+    {
+      "id": "tomato-b",
+      "title": "Tomato B: water and salt",
+      "question": "How much vitamin C remains in the tomatoes after this recipe?",
+      "plain_model": "The boiling process can reduce the amount of vitamin C in tomatoes, and depending on the duration and temperature, approximately 20-30% of the vitamin C may be lost during this cooking method. However, the exact percentage of remaining vitamin C cannot be precisely determined without knowing the initial content and specific conditions of the cooking process.",
+      "culinarystate": "For tomato at step 2, vitc is not known from the evidence available for this context. Reasons: measurement method platform: MEAS_HAS_3_ROWS_PE_METHOD_NULL. A nearby row exists (EVD-002765) but its number cannot be transferred to this context.",
+      "model": "qwen2.5:7b-instruct",
+      "route": "UNKNOWN",
+      "source": "web/public/snapshot/scenarios/tomato-b.json",
+      "evidence_ids": [],
+      "plain_verifier": {
+        "codes": [
+          "FORBIDDEN_NUMERIC_CLAIM",
+          "REQUIRED_CAVEAT_MISSING"
+        ],
+        "ok": false,
+        "violations": [
+          {
+            "code": "FORBIDDEN_NUMERIC_CLAIM",
+            "detail": "route UNKNOWN does not allow a number; found ['20']"
+          },
+          {
+            "code": "REQUIRED_CAVEAT_MISSING",
+            "detail": "an unsupported answer must say it is not known"
+          }
+        ]
+      },
+      "plain_claimed_numbers": [
+        {
+          "decimals": 0,
+          "matches_packet_evidence_value": false,
+          "number": "20"
+        }
+      ]
+    },
+    {
+      "id": "tomato-c",
+      "title": "Tomato C: water, salt and vinegar",
+      "question": "How much vitamin C remains in the tomatoes after this recipe?",
+      "plain_model": "The boiling process can reduce the amount of vitamin C in tomatoes, but the addition of salt and vinegar might slightly preserve some of it due to their acidity. However, without specific values for the initial vitamin C content and the exact conditions of cooking, an exact percentage cannot be provided.",
+      "culinarystate": "For tomato at step 2, vitc is not known from the evidence available for this context. Reasons: measurement method platform: MEAS_HAS_3_ROWS_PE_METHOD_NULL. A nearby row exists (EVD-002765) but its number cannot be transferred to this context.",
+      "model": "qwen2.5:7b-instruct",
+      "route": "UNKNOWN",
+      "source": "web/public/snapshot/scenarios/tomato-c.json",
+      "evidence_ids": [],
+      "plain_verifier": {
+        "codes": [
+          "REQUIRED_CAVEAT_MISSING"
+        ],
+        "ok": false,
+        "violations": [
+          {
+            "code": "REQUIRED_CAVEAT_MISSING",
+            "detail": "an unsupported answer must say it is not known"
+          }
+        ]
+      },
+      "plain_claimed_numbers": []
+    },
+    {
+      "id": "tomato-d",
+      "title": "Tomato D: water, salt, vinegar and oil",
+      "question": "How much vitamin C remains in the tomatoes after this recipe?",
+      "plain_model": "The amount of vitamin C remaining in the tomatoes after boiling them in water with salt, vinegar, and olive oil for 15 minutes would be significantly reduced compared to raw tomatoes, as heat can degrade vitamin C. However, the exact percentage retained cannot be specified without knowing the initial vitamin C content and the specific conditions of the cooking process.",
+      "culinarystate": "For tomato at step 2, vitc is not known from the evidence available for this context. Reasons: measurement method platform: MEAS_HAS_3_ROWS_PE_METHOD_NULL. A nearby row exists (EVD-002765) but its number cannot be transferred to this context.",
+      "model": "qwen2.5:7b-instruct",
+      "route": "UNKNOWN",
+      "source": "web/public/snapshot/scenarios/tomato-d.json",
+      "evidence_ids": [],
+      "plain_verifier": {
+        "codes": [
+          "REQUIRED_CAVEAT_MISSING"
+        ],
+        "ok": false,
+        "violations": [
+          {
+            "code": "REQUIRED_CAVEAT_MISSING",
+            "detail": "an unsupported answer must say it is not known"
+          }
+        ]
+      },
+      "plain_claimed_numbers": []
+    }
+  ],
+  "snapshot_timestamp_utc": "2026-11-17T00:00:00Z"
+}
