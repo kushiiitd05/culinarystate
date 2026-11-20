@@ -1,6 +1,64 @@
 # STATUS — CulinaryState (Group 17 · Kush Tokas + Parv Goyal)
 
-## Layer-1 closed: 0 → 21 grounded proposals — 16 November 2026 (newest)
+## Technical freeze — 20 November 2026 (newest; supersedes the snapshots below) · tag `freeze-2026-11-20`
+
+Branch `kush/s181-explorer-build`; decisions through **D-141**. Kush handed the remaining work to Parv on
+17 Nov (`handoff/PARV_HANDOVER_2026-11-17.md`, `handoff/PARV_LATEST_PROMPT_2026-11-19.md`). The freeze was
+scheduled for **19 Nov and executed on 20 Nov**, one day late.
+
+- **Frozen commit:** the commit carrying this entry, tagged `freeze-2026-11-20`. All gates below ran on
+  `f9c1816`; the two commits after it add only the WORKLOG step and this STATUS entry.
+- **Tests:** full suite **8,578 passed, 5 skipped, 0 failed, 44 deselected (3 min 53 s)** (`pytest -q`, default markers, `ledgers` deselected), Python 3.11.9 on
+  Parv's Mac (`takeover/.venvs/s179-py311`; `/opt/anaconda3` in `CLAUDE.md` is Kush's machine).
+- **Preflight:** `tools/preflight.sh` **28/28** on `f9c1816` — snapshot verify + `--check` FRESH, no key or BBC
+  marker shipped, public build serves Lab/Compare/Method with the signature badge verified and `/live` 404,
+  engine-down path shows the offline chip. `--live` (ten presets through the model) **not yet run**.
+- **Snapshot:** content unchanged from Kush's 17 Nov build (`--check` FRESH). Re-signed 19 Nov with a key
+  generated on Parv's Mac because the public key had never been committed (**D-141**). Private key stays in
+  `~/.culinarystate_private/`, never committed.
+- **Changes since 17 Nov (Parv):** D-140 range bug — adapter kept, `src/` untouched; D-141 re-sign; `/live`
+  and its API routes gated on server-side `CS_LIVE_ENABLED` (public builds omit it); `tools/live_demo.sh`
+  finds a local Python; `tools/preflight.sh` added; gate-provenance section regenerated (122 decisions).
+- **Not in the freeze:** uncommitted edits to `reports/final/deck/build_deck.py` and `slides.py` were present
+  in the working tree at freeze time and were not made by this session; they are not part of the tag.
+- **Deliverables:** D1–D5 all **PARTIAL**, unchanged (`reports/final/DELIVERABLE_COMPLIANCE_MATRIX_2026-11-16.md`).
+
+### Snapshot manifest hashes at the freeze (`web/public/snapshot/`, sha256)
+
+| File | sha256 |
+|---|---|
+| `ask/DEMO-METADATA.json` | `f030273dd528d16f081eaedd17c2b18cd117708830071299dca9b80037c00bc2` |
+| `ask/DEMO-PHYSICS.json` | `62f53eba8aa630d56dfa8f9a47b78a6fbe6f890be245c5e188e11ba5b5c0367c` |
+| `ask/DEMO-RECIPE-SEARCH.json` | `9b522abdfa02bbf8bfb2e9ea54603582ea63e8498e557197a464a3be6161c700` |
+| `ask/DEMO-RETENTION.json` | `d9a85c8f65d0c573cd8b2e64426b7ae5f8b4507b92fc11be4686757b9dd1b603` |
+| `ask/DEMO-SAFETY.json` | `b9959c771e95466b2eaca60419d24ed5e0e09e35a18e87937c2137129aca5eeb` |
+| `ask/DEMO-SUBSTITUTION.json` | `f74e39c55fa1e424809d3d70bea872a07a8481b162ab4717a7ca27cd989f7dc7` |
+| `ask/DEMO-UNKNOWN.json` | `c6d1e65404269da2238f7fa26e1f74fc54b34b7018a80cc6c015e08e7a968658` |
+| `ask/DEMO-VISION.json` | `57177512caba4688b49c2be089530cc014d3f865b106c724a57c488e03806d33` |
+| `manifest.json` | `bf0f80611429552b1a8264bdedf56b03fef1323630e41b896b1e3cfd81a24025` |
+| `manifest.sig` | `c5541a47024e395dd48b2bc7350b8955071abb9713481188a68d10596f427f46` |
+| `public_key.pem` | `46afda3892765ab813481214dc11cf38dae452d7cc8a85934a8c1eaf946258d9` |
+| `scenarios/acid-alternatives.json` | `b53def92b9e8295706c84ddefe0b680bc137662f28e6d89a3a7e7b7c07d62e62` |
+| `scenarios/banana-abstain.json` | `32bc98bea12f86595f495818256fb3f0e13c461014a438450ace45679311ec8b` |
+| `scenarios/cut-dice.json` | `b08cee8834cdcc74dfe6309060fc7280d04513757d240b090eb4b865e35e1a4c` |
+| `scenarios/cut-mixed.json` | `0db769b37f0d30a65663d4b3f3e0819d322b96f86854ced69b534ce2dd8c72e1` |
+| `scenarios/sauce-coref.json` | `cc1061c305a0f850d4bb31801dea9c61bbf44d3bece09a17265c3fad110f64e0` |
+| `scenarios/tomato-a.json` | `47a7b38c81f030e0940bddc1e06c76d92abbf4f371e08d797a686350667d2d8f` |
+| `scenarios/tomato-b.json` | `0487e94b1e1b2bc4a0eadf4eb8d91e13cd925bc476e2bc0f8ee8563a577de92b` |
+| `scenarios/tomato-c.json` | `94fd2b8911b29d71e631945331a77bfa7520d5e13e50bbf197fb3ed797648d9e` |
+| `scenarios/tomato-d.json` | `169d15b8e005d0123f16a662d6be134d988db7df8838df2a7d7b188bb870f2aa` |
+
+### Pending after the freeze
+
+- **Agent:** B3 Vercel deploy (snapshot only) · N1 screenshot set · N3 story panels · B6 report PDF · B7 deck
+  PPTX + PDF · N2 business proposal (**Kush to confirm it is wanted**) · B8 submission zip (21 Nov) · B9
+  rehearsal script + fallback video · `tools/preflight.sh --live` · PR `kush/s181-explorer-build` → `main`.
+- **Human only:** A1 D1 hand-verified literature rows (**0 of 40** filled at the freeze) · A2 D5 chef/peer
+  review · A3 the 9-row proposal packet · A4 D3 spot-audit of 10 gold recipes + the P1-A label question to
+  Kush · human sign-off on D-134…D-137.
+
+
+## Layer-1 closed: 0 → 21 grounded proposals — 16 November 2026
 
 Branch `kush/s179-finish-fixes`; decisions through **D-137**. All four of D-134..D-137 carry
 `AI_DELEGATED_D085` approvals from the ksh/prv personas on Kush's instruction and **all four owe a
