@@ -46,15 +46,19 @@ Source: `reports/final/screens/runs/tomato-a-d.json` · qwen2.5:7b-instruct · 2
 
 **Plain model**
 
-Pending live capture.
+Reduce the boiling time to 5–7 minutes and test the carrots with a fork for doneness before draining. Alternatively, cut the carrots into larger pieces so they take longer to cook through.
 
 **CulinaryState**
 
-Pending live capture.
+- Reduce the boil time: step 3 shows duration_min = 10 and a simulated thermal_dose_typical_min of 6.426; try 5–7 minutes instead.  
+- Cut larger pieces: step 2 records cell_integrity = CUT and step 3 piece_size_class = DICED (exact size unknown); use ½‑inch batons or larger dice to slow heat penetration.  
+- Add acid to the cooking water: step 3 acid_present = NO_RECOGNIZED_MARKER; a splash of lemon juice or vinegar helps stabilize pectin and keep carrots firmer.  
+- Salt the water: step 3 salt_present = NO_RECOGNIZED_MARKER; 1–2 % salt by weight can firm vegetable cell walls.  
+- Leave the lid off: step 3 lid_state = COVERED; uncovering reduces steam pressure and slightly lowers the effective cooking temperature.
 
-**Why.** The trace supplies cut, lid, time and simulated heat fields. State citations are checked against the trace. The cooking advice remains unverified.
+**Why.** The system had access to cut, lid, time and simulated heat. The parser recognized zero structured citations in this answer. The cooking advice remains unverified.
 
-Live run pending.
+Source: `reports/final/screens/runs/carrots.json` · nvidia/nemotron-3-ultra-550b-a55b · 2026-11-20.
 
 ## tomatoes
 
@@ -62,15 +66,17 @@ Live run pending.
 
 **Plain model**
 
-Pending live capture.
+Boiling diced tomatoes for 15 minutes causes severe vitamin C loss—typically 60–80%—as the water-soluble vitamin leaches into the cooking water and degrades from prolonged heat exposure. The lid traps steam but does not prevent nutrient loss into the liquid, so most remaining vitamin C would be found in the cooking water rather than the tomatoes themselves.
 
 **CulinaryState**
 
-Pending live capture.
+95.0% [EVD-002765]. The measurement method/platform is unknown.
 
-**Why.** The claim packet restricts numerical output to applicable source reports. The wording and number check can trigger a template fallback. The saved answers illustrate one case. Gold labels for judging response quality are unavailable.
+**Why.** The claim packet allowed the cited table value under DIRECT and retained the measurement-method caveat. The saved answers illustrate one case. Gold labels for judging response quality are unavailable.
 
-Live run pending.
+Verifier annotation: 60 [no source], 80 [no source]
+
+Source: `reports/final/screens/runs/tomatoes.json` · nvidia/nemotron-3-ultra-550b-a55b · 2026-11-20.
 
 ## safety
 
