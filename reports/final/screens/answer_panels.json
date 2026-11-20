@@ -19,28 +19,39 @@
     {
       "id": "carrots",
       "question": "My carrots came out too soft and mushy. What should I change next time?",
-      "plain_model": "Pending live capture.",
-      "culinarystate": "Pending live capture.",
-      "model": null,
-      "date": null,
-      "source_run": null,
-      "status": "PENDING_LIVE_CAPTURE",
-      "why": "The trace supplies cut, lid, time and simulated heat fields. State citations are checked against the trace.",
+      "plain_model": "Reduce the boiling time to 5–7 minutes and test the carrots with a fork for doneness before draining. Alternatively, cut the carrots into larger pieces so they take longer to cook through.",
+      "culinarystate": "- Reduce the boil time: step 3 shows duration_min = 10 and a simulated thermal_dose_typical_min of 6.426; try 5–7 minutes instead.  \n- Cut larger pieces: step 2 records cell_integrity = CUT and step 3 piece_size_class = DICED (exact size unknown); use ½‑inch batons or larger dice to slow heat penetration.  \n- Add acid to the cooking water: step 3 acid_present = NO_RECOGNIZED_MARKER; a splash of lemon juice or vinegar helps stabilize pectin and keep carrots firmer.  \n- Salt the water: step 3 salt_present = NO_RECOGNIZED_MARKER; 1–2 % salt by weight can firm vegetable cell walls.  \n- Leave the lid off: step 3 lid_state = COVERED; uncovering reduces steam pressure and slightly lowers the effective cooking temperature.",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "date": "2026-11-20",
+      "source_run": "reports/final/screens/runs/carrots.json",
+      "status": "RECORDED_LIVE",
+      "why": "The system had access to cut, lid, time and simulated heat. The parser recognized zero structured citations in this answer.",
       "limit": "The cooking advice remains unverified.",
-      "unsourced_values": []
+      "unsourced_values": [],
+      "plain_status": "OK",
+      "verify_detail": "0/0 cited state facts match the engine",
+      "source_sha256": "70ebe6e39b0e4b2955dd35051bff1f1737a4a04ab42c4e0dbd503629d8d6714b"
     },
     {
       "id": "tomatoes",
       "question": "How much vitamin C remains in the tomatoes after this recipe?",
-      "plain_model": "Pending live capture.",
-      "culinarystate": "Pending live capture.",
-      "model": null,
-      "date": null,
-      "source_run": null,
-      "status": "PENDING_LIVE_CAPTURE",
-      "why": "The claim packet restricts numerical output to applicable source reports. The wording and number check can trigger a template fallback.",
+      "plain_model": "Boiling diced tomatoes for 15 minutes causes severe vitamin C loss—typically 60–80%—as the water-soluble vitamin leaches into the cooking water and degrades from prolonged heat exposure. The lid traps steam but does not prevent nutrient loss into the liquid, so most remaining vitamin C would be found in the cooking water rather than the tomatoes themselves.",
+      "culinarystate": "95.0% [EVD-002765]. The measurement method/platform is unknown.",
+      "model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "date": "2026-11-20",
+      "source_run": "reports/final/screens/runs/tomatoes.json",
+      "status": "RECORDED_LIVE",
+      "why": "The claim packet allowed the cited table value under DIRECT and retained the measurement-method caveat.",
       "limit": "The saved answers illustrate one case. Gold labels for judging response quality are unavailable.",
-      "unsourced_values": []
+      "unsourced_values": [
+        "60",
+        "80"
+      ],
+      "plain_status": "OK",
+      "evidence_ids": [
+        "EVD-002765"
+      ],
+      "source_sha256": "aea6c54eb9b736cbad361c2e01a1a15d6352736f0fa3a9493b1682aac1c43a08"
     },
     {
       "id": "safety",
