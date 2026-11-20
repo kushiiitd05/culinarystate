@@ -1,0 +1,52 @@
+{
+  "url": "https://culinarystate-group17.vercel.app",
+  "project": "culinarystate-group17",
+  "scope": "personal",
+  "freeze": "0a41d62768ac6559c2d6ee3959700485784fd144",
+  "checked_at_utc": "2026-11-20T13:32:16.827Z",
+  "environment": "production",
+  "first_deployment_promoted_by_vercel": true,
+  "routes": {
+    "/": {
+      "status": 200,
+      "signature": "verified",
+      "live_navigation": false
+    },
+    "/lab": {
+      "status": 200,
+      "signature": "verified",
+      "live_navigation": false
+    },
+    "/compare": {
+      "status": 200,
+      "signature": "verified",
+      "live_navigation": false
+    },
+    "/method": {
+      "status": 200,
+      "signature": "verified",
+      "live_navigation": false
+    },
+    "/live": {
+      "status": 404
+    },
+    "/api/live": {
+      "status": 404
+    },
+    "POST /api/live/analyse": {
+      "status": 404
+    },
+    "/snapshot/manifest.json": {
+      "status": 200,
+      "sha256": "bf0f80611429552b1a8264bdedf56b03fef1323630e41b896b1e3cfd81a24025"
+    },
+    "/snapshot/manifest.sig": {
+      "status": 200,
+      "sha256": "c5541a47024e395dd48b2bc7350b8955071abb9713481188a68d10596f427f46"
+    },
+    "/snapshot/public_key.pem": {
+      "status": 200,
+      "sha256": "46afda3892765ab813481214dc11cf38dae452d7cc8a85934a8c1eaf946258d9"
+    }
+  }
+}
