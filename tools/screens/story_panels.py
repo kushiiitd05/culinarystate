@@ -68,6 +68,16 @@ def main():
                 plain_status=plain.get("status"),
                 unsourced_values=annotations(plain.get("claimed_numbers", [])),
             )
+            if key == "carrots":
+                verify = next(stage for stage in response["pipeline"] if stage["id"] == "verify")
+                row["verify_detail"] = verify["detail"]
+                if system.get("status") == "STATE_AWARE_ADVICE" and not system.get("citations"):
+                    row["why"] = ("The system had access to cut, lid, time and simulated heat. "
+                                  "The parser recognized zero structured citations in this answer.")
+            if key == "tomatoes":
+                row["evidence_ids"] = [item["id"] for item in response["evidence"]]
+                row["why"] = ("The claim packet allowed the cited table value under DIRECT and retained the measurement-method caveat."
+                              if system.get("route") == "DIRECT" else why)
             if key == "safety" and plain.get("status") == "NOT_SENT_TEXT_NOT_SELF_WRITTEN":
                 row["why"] += " This capture used the preview with hosted sending disabled."
                 row["model"] = f'{response["model"]} (configured only; no call)'
