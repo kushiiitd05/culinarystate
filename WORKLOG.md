@@ -1907,3 +1907,45 @@ Added `tools/step07_provenance_precheck.py` + `tests/unit/test_step07_provenance
 - **Did:** Added the frozen pilot fit and SIM-VAL eligibility counts to the report and regenerated the local PDF and archive.
 - **Files:** `reports/final/CulinaryState_final_report.pdf`, `submission/CulinaryState_Group17_2026-11-20_REVIEW_CHECKS.txt`
 - **Verified:** Eight pages; 29 artifact checksums; updated D2 page inspected; all 465 fresh-extract checksums passed; 3665147 bytes.
+
+### S277 · 2026-11-20 19:08 IST · DEL-5 · T1 and T7 approved deck delivery
+- **Who:** Parv+GPT
+- **Did:** Kept the authorised edits and produced the final presentation. Fixed the Layer-1 chart spacing and used cropped captures that leave both live answers readable.
+- **Files:** `reports/final/deck/slides.py`, `reports/final/CulinaryState_final.pptx`, `reports/final/CulinaryState_final.pdf`
+- **Verified:** Keynote rendered 19 slides, the limits are penultimate, and shared figures match the report.
+
+### S278 · 2026-11-20 19:08 IST · DEL-5 · T2 completed live gate
+- **Who:** Parv+GPT
+- **Did:** Ran the ten approved authored presets through NVIDIA.
+- **Files:** `reports/final/screens/runs/preflight_live_2026-11-20.txt`
+- **Verified:** PREFLIGHT PASS. Ten presets passed; nine Verify stages ran and safety skipped as expected.
+
+### S279 · 2026-11-20 19:08 IST · DEL-5 · T3 and T4 live evidence
+- **Who:** Parv+GPT
+- **Did:** Captured four hosted screenshots and generated the four panels from saved runs.
+- **Files:** `reports/final/screens/MANIFEST.json`, `reports/final/screens/STORIES.md`
+- **Verified:** All 12 PNGs were inspected and hashed. The carrots parser recognized 0 structured citations. Tomato cites EVD-002765 with its measurement-method caveat, and the plain 60–80% loss endpoints were flagged.
+
+### S280 · 2026-11-20 19:08 IST · DEL-5 · T5 production Explorer
+- **Who:** Parv+GPT
+- **Did:** Deployed only the frozen web tree to Parv's chosen personal Vercel project. Vercel automatically routed the first deployment to production.
+- **Files:** `reports/final/DEPLOYMENT_2026-11-20.json`
+- **Verified:** Public routes 200 with signature verified in Chrome, live endpoints 404, and hosted signed assets matched frozen hashes. Curl recheck passed.
+
+### S281 · 2026-11-20 19:08 IST · DEL-5 · T6 and T8 final report export
+- **Who:** Parv+GPT
+- **Did:** Updated the report from the approved saved runs, linked the public site and retained the proposal appendix.
+- **Files:** `reports/final/CulinaryState_final_report.pdf`, `reports/final/REPORT_EVIDENCE_REVIEW_2026-11-20.json`
+- **Verified:** Eight pages visually inspected and forbidden-term checks passed. The author-contribution statement remains pending.
+
+### S282 · 2026-11-20 19:08 IST · DEL-5 · T9 and T10 checked submission ZIP
+- **Who:** Parv+GPT
+- **Did:** Applied the approved path exclusions and packaged the final report, deck, deployment record, screenshots and story runs.
+- **Files:** `submission/CulinaryState_Group17_2026-11-20.zip`, `submission/CulinaryState_Group17_2026-11-20_CHECKS.txt`
+- **Verified:** 6,185,186 bytes. All 475 hashes matched on a fresh extraction. Source/key markers and private paths absent from the scan. Video assigned to Parv remains pending.
+
+### S283 · 2026-11-20 19:08 IST · DEL-5 · T11 branch and pull request
+- **Who:** Parv+GPT
+- **Did:** Pushed the approved submission assets to kush/s181-explorer-build and opened PR 13 into main.
+- **Files:** `STATUS.md`, `handoff/KUSH_SUBMISSION_TAKEOVER_2026-11-20.md`
+- **Verified:** https://github.com/kushiiitd05/culinarystate/pull/13. Frozen source, ledgers, registry and web paths match the tag.
