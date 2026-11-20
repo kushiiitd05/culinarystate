@@ -99,7 +99,7 @@ The signed comparison shows the state and route change when a recipe adds salt, 
 
 ## Negative results and remaining review
 
-The frozen H1/H3 rules were not met. The NER comparison provides a protocol-leakage finding. Diagnostic changes to lineage and agreement between AI reviews carry limited evidence. The live claim verifier checks wording and numbers against a claim packet. It can flag a cooking time or reject a cautious answer whose wording lacks an explicit uncertainty phrase. For cooking advice, it checks state citations against the trace. Unverified advice, including inferred chemistry, can remain.
+The frozen H1/H3 rules were not met. The NER comparison provides a protocol-leakage finding. Diagnostic changes to lineage and agreement between AI reviews carry limited evidence. The live claim verifier checks wording and numbers against a claim packet. It can flag a cooking time or reject a cautious answer whose wording lacks an explicit uncertainty phrase. For cooking advice, it checks structured state citations against the trace. The carrot response used free-text state references, and the parser recognized zero structured citations. The cooking advice and inferred chemistry remain unverified. The plain tomato response gave a 60–80% loss range, flagged as unsupported, while the system showed the cited 95.0% retention value and the unknown measurement method. These are dated observations without gold labels for answer quality.
 
 The source-title ranker uses word overlap and can return a superficially similar title. The potato and safety examples were run locally with hosted sending disabled. The plain arm can run on a safety question when the checkbox is selected. The system arm still refuses. The local simulation adapter guards the duration-range tuple crash on the interactive path. The JSON batch path receives lists (D-140). Mixture pH and salt and fat fractions remain unknown without grounded inputs.
 
@@ -111,9 +111,9 @@ The literature review, chef/peer review, independent gold checks and proposal di
 - Local console. Run `./tools/live_demo.sh` and open `http://localhost:3000/live`. This uses the presenter's configured NVIDIA NIM key. The model receives only the permitted authored or public recipe inputs.
 - Fallback. Use the signed Compare and Lab pages and the recorded screenshots. The recording shot list is in `handoff/REHEARSAL_SCRIPT_2026-11-24.md`.
 
-Technical freeze `freeze-2026-11-20` points to `0a41d62`. The freeze suite recorded **8,578 passed, five skipped, zero failed and 44 deselected**. The credential-free preflight passed **28/28**. The snapshot was verified and its in-memory rebuild matched disk. Snapshot manifest SHA256: `bf0f80611429552b1a8264bdedf56b03fef1323630e41b896b1e3cfd81a24025`. Sources: the freeze entry in `STATUS.md`, S264 in `WORKLOG.md` and `web/public/snapshot/manifest.json`.
+Technical freeze `freeze-2026-11-20` points to `0a41d62`. The freeze suite recorded **8,578 passed, five skipped, zero failed and 44 deselected**. The credential-free preflight passed **28/28**. The hosted preflight passed **10/10** preset checks. The Verify stage ran for nine and was skipped for the expected safety refusal. The snapshot was verified and its in-memory rebuild matched disk. Snapshot manifest SHA256: `bf0f80611429552b1a8264bdedf56b03fef1323630e41b896b1e3cfd81a24025`. Sources: the freeze entry in `STATUS.md`, S264 in `WORKLOG.md`, `web/public/snapshot/manifest.json`, and `reports/final/screens/runs/preflight_live_2026-11-20.txt`.
 
-The screenshot manifest records the frozen commit, capture time and hashes. The evidence review maps each reported numeric result to a source version and its SHA256. Full historical report sections are available at the freeze tag. The presentation files and package use the provenance and check records supplied alongside them.
+The screenshot manifest and evidence index record the captured assets and the cited artifact hashes. The historical report remains available at the freeze tag.
 
 ## Reproducibility index
 
